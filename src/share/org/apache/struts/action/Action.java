@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.76 2004/06/26 00:36:22 husted Exp $
- * $Revision: 1.76 $
- * $Date: 2004/06/26 00:36:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.77 2004/09/07 02:52:18 niallp Exp $
+ * $Revision: 1.77 $
+ * $Date: 2004/09/07 02:52:18 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -66,7 +66,7 @@ import org.apache.struts.util.TokenProcessor;
  * argument, which can be used to clean up any allocated resources in use
  * by this Action.</p>
  *
- * @version $Revision: 1.76 $ $Date: 2004/06/26 00:36:22 $
+ * @version $Revision: 1.77 $ $Date: 2004/09/07 02:52:18 $
  */
 public class Action {
 
@@ -255,7 +255,7 @@ public class Action {
 	 */
 	protected void addErrors(
 		HttpServletRequest request,
-		ActionErrors errors) {
+		ActionMessages errors) {
 
 		if (errors == null){
 			//	bad programmer! *slap*
@@ -263,9 +263,9 @@ public class Action {
 		}
 
 		// get any existing errors from the request, or make a new one
-		ActionErrors requestErrors = (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
+		ActionMessages requestErrors = (ActionMessages)request.getAttribute(Globals.ERROR_KEY);
 		if (requestErrors == null){
-			requestErrors = new ActionErrors();
+			requestErrors = new ActionMessages();
 		}
 		// add incoming errors
 		requestErrors.add(errors);
@@ -330,18 +330,18 @@ public class Action {
 
     /**
      * Retrieves any existing errors placed in the request by previous actions.  This method could be called instead
-     * of creating a <code>new ActionErrors()<code> at the beginning of an <code>Action<code>
+     * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
      * This will prevent saveErrors() from wiping out any existing Errors
      *
-     * @return the Errors that already exist in the request, or a new ActionErrors object if empty.
+     * @return the Errors that already exist in the request, or a new ActionMessages object if empty.
      * @param request The servlet request we are processing
      * @since Struts 1.2.1
      */
-    protected ActionErrors getErrors(HttpServletRequest request) {
-        ActionErrors errors =
-            (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
+    protected ActionMessages getErrors(HttpServletRequest request) {
+        ActionMessages errors =
+            (ActionMessages) request.getAttribute(Globals.ERROR_KEY);
         if (errors == null) {
-            errors = new ActionErrors();
+            errors = new ActionMessages();
         }
         return errors;
     }
