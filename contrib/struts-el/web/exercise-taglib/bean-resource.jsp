@@ -13,7 +13,7 @@
 <h1>Test struts bean-el Resource Tag</h1>
 </div>
 
-<bean-el:resource id="webxml" url="/WEB-INF/web.xml"/>
+<bean-el:resource id="webxml" name="/WEB-INF/web.xml"/>
 
 <p>Display the contents of the <code>/WEB-INF/web.xml</code> resource for this
 web application, with no filtering.</p>

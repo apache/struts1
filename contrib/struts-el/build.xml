@@ -216,6 +216,7 @@
         tofile="${build.home}/library/commons-digester.jar"/>
   <copy todir="${build.home}/library">
    <fileset dir="${jstl.home}/tld" includes="*.tld"/>
+   <fileset dir="${struts.home}/lib" includes="*.tld"/>
   </copy>
  </target>
 
