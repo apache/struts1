@@ -281,7 +281,7 @@
     
     <p>
     The Struts datasource manager is configured as an element in the
-    <a href="building_controller.html#other_config">
+    <a href="configuration.html#data-source_config">
     Struts configuration file</a> (struts-config.xml). 
     The manager can used to deploy any connection pool that implements the
     <code>javax.sql.DataSource</code> interface and is configurable totally
@@ -299,7 +299,7 @@
     The GenericDataSource class is deprecated as of Struts 1.1 and replaced 
     by direct use of the BasicDataSource.
     </p>
-
+    
     <p>
     After the datasource is defined, here is an example of using the
     manger to establishing a connection from within an Action's 
