@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.8 2003/04/10 02:35:28 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/04/10 02:35:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.9 2003/08/16 18:54:03 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/08/16 18:54:03 $
  *
  * ====================================================================
  *
@@ -59,17 +59,17 @@
  *
  */
 
-
 package org.apache.struts.action;
-
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaClass;
@@ -91,10 +91,9 @@ import org.apache.struts.config.FormPropertyConfig;
  * the <code>initialize()</code> method inside it.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2003/04/10 02:35:28 $
+ * @version $Revision: 1.9 $ $Date: 2003/08/16 18:54:03 $
  * @since Struts 1.1
  */
-
 public class DynaActionForm extends ActionForm implements DynaBean {
 
 
@@ -330,7 +329,40 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         }
 
     }
+    
+    /**
+     * Return the value of a String property with the specified name.
+     * This is equivalent to calling <code>(String) dynaForm.get(name)</code>.
+     * 
+     * @param name Name of the property whose value is to be retrieved
+     *
+     * @throws IllegalArgumentException if there is no property
+     *  of the specified name
+     * @throws NullPointerException if the type specified for the
+     *  property is invalid
+     * @throws ClassCastException if the property is not a String.
+     * @since Struts 1.2
+     */
+    public String getString(String name) {
+        return (String) this.get(name);
+    }
 
+    /**
+     * Return the value of a String[] property with the specified name.
+     * This is equivalent to calling <code>(String[]) dynaForm.get(name)</code>.
+     *
+     * @param name Name of the property whose value is to be retrieved
+     *
+     * @throws IllegalArgumentException if there is no property
+     *  of the specified name
+     * @throws NullPointerException if the type specified for the
+     *  property is invalid
+     * @throws ClassCastException if the property is not a String[].
+     * @since Struts 1.2
+     */
+    public String[] getStrings(String name) {
+        return (String[]) this.get(name);
+    }
 
     /**
      * Return the <code>DynaClass</code> instance that describes the set of
