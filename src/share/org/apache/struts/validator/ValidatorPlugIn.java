@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.26 2004/08/07 04:17:52 martinc Exp $
- * $Revision: 1.26 $
- * $Date: 2004/08/07 04:17:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.27 2004/08/31 18:39:04 jmitchell Exp $
+ * $Revision: 1.27 $
+ * $Date: 2004/08/31 18:39:04 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -43,7 +43,7 @@ import org.apache.struts.config.ModuleConfig;
  * Loads <code>ValidatorResources</code> based on configuration in the
  * struts-config.xml file.
  *
- * @version $Revision: 1.26 $ $Date: 2004/08/07 04:17:52 $
+ * @version $Revision: 1.27 $ $Date: 2004/08/31 18:39:04 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -167,7 +167,7 @@ public class ValidatorPlugIn implements PlugIn {
                                                      resources);
 
             servlet.getServletContext().setAttribute(STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
-                                                     Boolean.valueOf(this.stopOnFirstError));
+                                                     (this.stopOnFirstError ? Boolean.TRUE : Boolean.FALSE));
 
         } catch (Exception e) {
             log.error(e.getMessage(), e);
