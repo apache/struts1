@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.7 2003/10/25 00:02:32 mrdon Exp $
+    $Id: chain-config.xml,v 1.8 2003/10/25 01:16:52 mrdon Exp $
 -->
 
 

@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/AuthorizeAction.java,v 1.2 2003/10/25 01:16:52 mrdon Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/UnauthorizedActionException.java,v 1.1 2003/10/25 01:16:52 mrdon Exp $
+ * $Revision: 1.1 $
  * $Date: 2003/10/25 01:16:52 $
  *
  * ====================================================================
@@ -58,51 +58,31 @@
  * <http://www.apache.org/>.
  *
  */
-
-package org.apache.struts.chain.servlet;
-
-
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.chain.AbstractAuthorizeAction;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.util.MessageResources;
-
+package org.apache.struts.chain;
 
 /**
- * <p>Determine if the action is authorized for the given roles.</p>
+ *  <p>Exception thrown when the chosen action mapping is not authorized
+ *  for the current request.</p>
  *
- * @author Don Brown
- * @version $Revision: 1.2 $ $Date: 2003/10/25 01:16:52 $
+ *@author     Don Brown
+ *@version    $Revision: 1.1 $ $Date: 2003/10/25 01:16:52 $
  */
 
-public class AuthorizeAction extends AbstractAuthorizeAction {
+public class UnauthorizedActionException extends Exception {
 
+    /**  Constructor */
+    public UnauthorizedActionException() {
+        super();
+    }
 
-    // ------------------------------------------------------- Protected Methods
-
-
-    protected boolean isAuthorized(Context context, String[] roles,
-                                   ActionConfig mapping) throws Exception {
-        
-        // Identify the HTTP request object
-        ServletWebContext swcontext = (ServletWebContext) context;
-        HttpServletRequest request = swcontext.getRequest();
-        
-        // Check the current user against the list of required roles
-        for (int i = 0; i < roles.length; i++) {
-            if (request.isUserInRole(roles[i])) {
-                return (true);
-            }
-        }
-        
-        // Default to unauthorized
-        return (false);
-
+    /**
+     *  Constructor.
+     *
+     *@param  message  The error or warning message.
+     */
+    public UnauthorizedActionException(String message) {
+        super(message);
     }
 
 }
+
