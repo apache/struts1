@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.158 2003/07/03 04:44:13 dgraham Exp $
- * $Revision: 1.158 $
- * $Date: 2003/07/03 04:44:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.159 2003/07/04 18:38:37 dgraham Exp $
+ * $Revision: 1.159 $
+ * $Date: 2003/07/04 18:38:37 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.158 $ $Date: 2003/07/03 04:44:13 $
+ * @version $Revision: 1.159 $ $Date: 2003/07/04 18:38:37 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -306,6 +306,8 @@ public class ActionServlet extends HttpServlet {
         "/org/apache/struts/resources/struts-config_1_0.dtd",
         "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
         "/org/apache/struts/resources/struts-config_1_1.dtd",
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
+        "/org/apache/struts/resources/struts-config_1_2.dtd",
         "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN",
         "/org/apache/struts/resources/web-app_2_2.dtd",
         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN",
