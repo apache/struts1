@@ -1,7 +1,7 @@
 <!--
 @author Ted Husted
 @author Craig McClanahan
-@version $Revision: 1.6 $ $Date: 2003/06/07 20:28:15 $
+@version $Revision: 1.7 $ $Date: 2003/06/11 17:51:37 $
 -->
 
 <project name="struts-legacy" default="compile">
@@ -206,10 +206,14 @@
                   zipfile="${upload.dir}/${upload.file.base}-src.tar.gz"/>
         </target>
 
+<!--
+       Clean struts legacy distribution
+-->
 
     <target name="clean"
       description="Prepare for clean build">
-      <delete dir="${build.home}"/>
+      <delete dir="${build.home}" verbose="true"/>
+      <delete dir="${dist.home}"/>
       <mkdir  dir="${dist.home}"/>
     </target>
 
