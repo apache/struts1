@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.53 2002/08/07 05:25:03 martinc Exp $
+$Id: STATUS,v 1.54 2002/08/08 01:52:49 martinc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           10 open bugs to swat!!
+                            9 open bugs to swat!!
 
 
 Controller:
@@ -30,7 +30,6 @@ Example Webapps:
 
 File Upload:
 -----------
-10388 ServletException: Multipart data doesn't start with boundary
 
 
 Standard Actions:
