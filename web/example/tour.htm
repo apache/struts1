@@ -110,9 +110,7 @@ stores the database contents as a XML file, which is parsed by the Struts
 digester and loaded as a set of nested hashtables. The outer table is the list
 of user objects, each of which has its own inner hashtable of subscriptions.
 When you register, a user object is stored in this hashtable ... and when you
-login, the user object is stored within the session context. When the
-application is shut down, the database servlet unloads the database by writing a
-fresh database.xml file.</p>
+login, the user object is stored within the session context.</p>
 <blockquote>
   <p><i>If you want to follow along (and you should!), the package source can be found under the src/example folder in your
   jakarta-struts folder.</i></p>
@@ -598,10 +596,6 @@ link them together with a user ID. The Example application implements a differen
 folders.&nbsp;</p>
 <p>In addition to the usual getters and setters, the user object also has two methods for working with subscription objects. findSubscription takes a hostname and returns the subscription object for that host. getSubscriptions returns an array of all the
 subscriptions for the user (ready-made for the iterate tag!). Besides the fields needed to manage the SubscriptionForm data, the object also maintains a runtime link to its user object.</p>
-<blockquote>
-  <p><i>When the application shuts down, the database servlets stores the user objects and their subscriptions in XML. When the application is initialized again, the database servlet (courtesy of the Struts Digester) loads the objects back into memory,
-  restoring the runtime links. Of course a production system would want a more permanent storage solution, so all the changes won't be lost if the application ever terminates abnormally.&nbsp;</i></p>
-</blockquote>
 <p>To create a new subscription, EditSubscriptionAction.java simply creates a new subscription object, and sets its user to the object found in the request, and then forwards control to its input form, subscription.jsp.&nbsp;</p>
 <h3><font face="Arial"><a name="subcription.jsp">subscription.jsp</a></font></h3>
 Saving the best for last, subscription.jsp demonstrates use of some interesting Struts custom form tags,&nbsp; html:options and html:checkbox.&nbsp;
