@@ -377,6 +377,151 @@ which only just trails Tomcat:
     <hr size="1" noshade=""/>
 
 
+    <h3><a name="20031701"></a>17 Jan 2003 - JSP taglibs + FreeMarker</h3>
+    <p>
+        The new 2.2 version of the FreeMarker template engine now natively supports JSP tag libraries.
+        The first preview release of the new version is downloadable from the project home page at
+    </p>
+    <p>
+      <a href="http://freemarker.sourceforge.net">http://freemarker.sourceforge.net</a>
+    </p>
+    <p>
+        This new ability is of special significance to Jakarta Struts and Taglib
+        communities, since you are no longer forced into a tradeoff. Before now, you
+        had to make a choice: either you couldn't use a template engine, or you
+        couldn't use the taglibs. With FreeMarker, you no longer need to abandon any
+        of the valuable taglibs you came to know and love if you want to change your
+        view technology from JSP to a template engine.
+    </p>
+
+    <p>
+        Aside from the native JSP taglib support, FreeMarker 2.2 introduces many new
+        improvements in areas of macro handling, namespaces, automatic escaping of
+        interpolations and whitespace handling.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030118"></a>18 Jan 2003 - Struts Training in DC and NYC</h3>
+    <p>
+        Increase Your Struts Productivity - Attend the BaseBeans Public Struts
+        Training!!!!
+    </p>
+    <p>
+        We have a 11 hour public class in DC and in NYC in January.
+    </p>
+    <p>
+        Washington DC Class -- January 18th 2003
+        NYC Class  -- January 24th 2003
+    </p>
+    <p>
+        This class is taught by baseBeans Engineering, the company voted to have the
+        best hands on training class by JDJ for their "Fast Track to Struts" class.
+    </p>
+    <p>
+        Get your training from the #1 trainer with a money back guarantee!!!!
+    </p>
+    <p>
+        You will pay $50 to register and be billed the balance. Upon registration,
+        you will be shipped a CD that contains the tools needed for the class, such
+        as an IDE, App. Server, some sample working source code, Struts, etc.
+    </p>
+    <p>
+        Follow this link to register:  http://www.basebeans.com/do/classReservation
+    </p>
+    <p>
+        At the training, we will cover Struts, Java Server Faces, JDO, DAO,
+        JDBC,etc.
+    </p>
+    <p>
+        A pre-requisite for attendance is some Struts knowledge or at least Servlet
+        and SQL knowledge. This class is targeted at tech leads. Bring your
+        questions and receive practical advice from the baseBeans team.
+    </p>
+    <p>
+        You can FedEx a check or a PO for the balance to BaseBeans.
+    </p>
+    <p>
+        Prior paid students and clients are free for this class, as always, but we
+        need to know you are coming.
+    </p>
+    <p>
+        Hope to see you there,
+    </p>
+    <p>
+    #1. We are looking for more people to develop basicPortal.sf.net (baseBeans.com is on basicPortal).
+        Now we are working on setup.exe (currently in beta but available) that will install DB,
+        Tomcat (because people do not know how to set up JDBC realms in server.xml).
+        As you know bP demos master detail processing, XML, RSS, CMS, task tracking, contact management,
+        JDBC realms, BLOBs, CRUD,  JMeter, JaserReports, etc.
+        Just e-mail me if you know Struts and want to contribute to open source.
+    </p>
+    <p>
+    #2. Bring a laptop to public training in DC/NYC training to get *FREE* autographed "Struts in Action".
+        Prices goes up tmrw by 9:30 AM Eastern.
+        This is not intro to Struts, you must know some MVC (and JAVA and SQL well),
+        I do not like teaching intro.
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030106"></a>06 Jan 2003 - neteye actioncache 1.1</h3>
+    <p>
+        The neteye actioncache is a Struts extension that caches the result of
+        actions and views. It can boost the performance of your website because
+        time expensive operations like data retrieval, JSP processing or XSLT
+        transformations are only performed when needed.
+    </p>
+    <p>
+        The new release now uses the Struts 1.1 Plugin and RequestProcessor
+        interfaces to handle request.
+    </p>
+    <p>
+        Sources and documentation can be found at
+        <a href="http://actioncache.neteye.de">http://actioncache.neteye.de</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name=""></a>4 Jan 2003 - JBoss Handbook</h3>
+    <p>
+        I am pleased to announce the availability of the book
+        "JBoss 3.0 Deployment and Administration Handbook".
+        The book provides a comprehensive coverage of the JBoss 3.0 server, focusing on
+    </p>
+    <ul>
+        <li>
+        JBoss architecture
+        </li>
+        <li>
+        Deploying and configuring EJBs, web applications, EAR files, JCA resource adapters, JMX MBeans etc on JBoss
+        </li>
+        <li>
+        JBoss CMP 2.0 features
+        </li>
+        <li>
+        JBoss clustering
+        </li>
+        <li>
+        Configuring JMS and JCA
+        </li>
+        <li>
+        Configuring security, logging, JavaMail
+        </li>
+        <li>
+        JBoss custom features like scheduling
+        </li>
+        <li>
+        Administration and monitoring of the server.
+        </li>
+   </ul>
+
+    <p>
+        The book will be a valuable resource for anyone using JBoss in production and development.
+        The book is published by WROX Press and is available on
+        <a href="http://www.amazon.com/exec/obidos/ISBN=1861008120/hitchhikeguidetoA/">
+        Amazon</a> [ISBN # 1861008120].
+    </p>
+    <hr size="1" noshade=""/>
+
+
 <p align="center">
 <a href="news_2002_q4.html">
 <b>MORE NEWS</b></a>

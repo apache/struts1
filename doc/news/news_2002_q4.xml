@@ -18,7 +18,17 @@
 <hr size="1" noshade=""/>
 -->
 
-<h3><a name="20021230"></a>30 Dec 2002 - Struts 1.1 Beta 3 Released</h3>
+        <h3><a name="20021231.1"></a>31 Dec 2002 - Review of "Struts Kick Start" now on Slashdot</h3>
+        <p>
+            Let the mindless sniping and anti-microsoft tirades begin!
+        </p>
+        <p>
+            <a href="http://books.slashdot.org/books/02/12/27/1559200.shtml?tid=108">http://books.slashdot.org/books/02/12/27/1559200.shtml?tid=108</a>
+        </p>
+        <hr size="1" noshade=""/>
+
+
+<h3><a name="20021231"></a>31 Dec 2002 - Struts 1.1 Beta 3 Released</h3>
 <p>The Struts team is proud to announce the release of Struts 1.1 Beta 3. This
 release includes significant new functionality, while retaining full
 backwards compatibility with earlier versions of Struts. It also
@@ -57,6 +67,86 @@ http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html</a>
 </p>
 <hr size="1" noshade=""/>
 
+<h3><a name="20021227"></a>27 Dec 2002 - Java Development with Ant</h3>
+    <p>
+        I'm proud (and worried about the support e-mails! :) to announce the near-final release of a project
+        demonstrating Ant, XDoclet, Struts, JUnit, Cactus, and Lucene.
+        Its called JavaDevWithAnt as it was written for the book Steve and I co-authored and has been refined
+        during several presentations I've been giving on Ant, XDoclet and Struts.
+    </p>
+    <p>
+        The documentation is in draft stage, and my primary goal is to collect feedback on polishing the documentation
+        (and the application if there are any bugs that surface).
+        The site where I'm hosting the distribution and documentation is:
+    </p>
+    <p>
+       <a href="http://www.ehatchersolutions.com/JavaDevWithAnt/">http://www.ehatchersolutions.com/JavaDevWithAnt/</a>
+    </p>
+    <p>
+        Please let me know if you try it out and have suggestions for improvement,
+        or just to let me know you tried it and hate it or love it, etc.
+        Feedback more than welcome!
+        Direct feedback to me at
+        <a href="mailto:JavaDevWithAnt@ehatchersolutions.com">JavaDevWithAnt@ehatchersolutions.com</a>
+    </p>
+    <p>
+        p.s. Since this is directed to the Struts lists, here are some hilights:
+    </p>
+    <ul>
+        <li>
+    - XDoclet generation of struts-config.xml and validation.xml
+        </li>
+        <li>
+    - Custom XDoclet generation of starter JSP and application properties based on form bean source code
+        </li>
+        <li>
+    - My proudest taglib, LabelTag - shows fields in error and marks required fields with an asterisk.
+        </li>
+        <li>
+    - Use of StrutsTestCase in Cactus mode to test a Struts Action.
+        </li>
+    </ul>
+<hr size="1" noshade=""/>
+
+    <h3><a name="20031229"></a>29 Dec 2002 - BasicPortal 0.7k available on SourceForge</h3>
+    <p>
+    The BasicPortal Project has released version 0.7k.  BasicPortal is a Struts
+    based application that can help your developers get a head start on their
+    Portal development.  Setup the database and deploy the .war and you are
+    ready to go!
+    </p>
+    <p>
+    Version 0.7k contains:
+    </p>
+    <ul>
+        <li>
+    - ability to add content to comments
+        </li>
+        <li>
+    - contact manager module
+        </li>
+        <li>
+    - task manager module
+        </li>
+        <li>
+    - email module
+        </li>
+        <li>
+    - custom DAO
+        </li>
+        <li>
+    - secure modules
+        </li>
+    </ul>
+
+    <p>
+    The BasicPortal application can be customized for use in your company.
+    </p>
+    <p>
+    Any questions on BasicPortal should be directed to the MVC Progammers
+    list -- mvc-programmers@basebeans.com.
+    </p>
+<hr size="1" noshade=""/>
 
 <h3><a name="20021213"></a>12 December 2002 - Struts book #1 and #2</h3>
 <p>
@@ -70,7 +160,6 @@ stops. Learn to use the enclosed CD as a lethal thrown weapon. Fun for
 the whole family.
 </p>
 <hr size="1" noshade=""/>
-
 
 <h3><a name="20021212"></a>12 December 2002 - Struts book #1 and #2</h3>
 <p>
