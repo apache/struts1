@@ -246,8 +246,9 @@
 	Create a tile/component/template definition as a bean. 
 	Newly created bean will be saved under specified "id", in the requested "scope".
 	Definition tag has same syntax as <code>insert</code> tag. 	
-	The new definition can extends a definition described in factory (XML file), and overload 
-	any previously defined parameters.
+	<br></br>The new definition can extends a definition described in factory (XML file), 
+	and overload any previously defined parameters.
+	<br></br>Definition can be used later with <code>&lt;insert beanName="idName" &gt;</code>
 	</info>
         <tagclass>org.apache.struts.taglib.tiles.DefinitionTag</tagclass>
 	    <bodycontent>JSP</bodycontent>
