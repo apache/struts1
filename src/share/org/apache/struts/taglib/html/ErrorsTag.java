@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.3 2001/01/27 20:09:43 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/27 20:09:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.4 2001/02/12 22:23:50 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/12 22:23:50 $
  *
  * ====================================================================
  *
@@ -96,13 +96,19 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/27 20:09:43 $
+ * @version $Revision: 1.4 $ $Date: 2001/02/12 22:23:50 $
  */
 
 public class ErrorsTag extends TagSupport {
 
 
     // ----------------------------------------------------------- Properties
+
+
+    /**
+     * The servlet context attribute key for our resources.
+     */
+    protected String bundle = Action.MESSAGES_KEY;
 
 
     /**
@@ -194,7 +200,7 @@ public class ErrorsTag extends TagSupport {
 	if (locale == null)
 	    locale = defaultLocale;
 	MessageResources messages = (MessageResources)
-	  pageContext.getAttribute(Action.MESSAGES_KEY,
+	  pageContext.getAttribute(bundle,
 				   PageContext.APPLICATION_SCOPE);
 	String message = null;
 	StringBuffer results = new StringBuffer();
@@ -253,6 +259,7 @@ public class ErrorsTag extends TagSupport {
     public void release() {
 
 	super.release();
+        bundle = Action.MESSAGES_KEY;
 	name = Action.ERROR_KEY;
         property = null;
 

@@ -703,6 +703,17 @@
                 </ul>
                 </info>
 
+                <attribute> 
+                    <name>bundle</name> 
+                    <required>false</required> 
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    The servlet context attribute key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                    </info>
+                </attribute> 
+
                 <attribute>
                   <name>name</name>
                   <required>false</required>
