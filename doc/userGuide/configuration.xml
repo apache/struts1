@@ -466,7 +466,7 @@
 
 <section 
     name="5.3.2 Informing the Controller" 
-    href="module_config-inform_conroller">
+    href="module_config-inform_controller">
 
     <p>
     In struts 1.0, you listed your configuration file as an initialization
@@ -969,7 +969,7 @@
 </section>
 
 <section 
-    name="5.4.3 Configure the Struts Tag Library" 
+    name="5.4.3 Configure the Struts Tag Libraries" 
     href="dd_config_taglib">
 
         <p>
