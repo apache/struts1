@@ -10,6 +10,7 @@ to solve problems that are commonly encountered in building web applications.
 <div align="center">
 <a href="#doc.Intro">[Introduction]</a>
 <a href="#doc.Beans">[Beans and Properties]</a>
+<a href="#doc.Collections">[Collection Classes]</a>
 <a href="#doc.JDBC">[JDBC Connection Pool]</a>
 <a href="#doc.Messages">[Message Resources]</a>
 </div>
@@ -48,6 +49,96 @@ are included:</p>
 <p>FIXME</p>
 
 <hr>
+
+<a name="doc.Collections"></a>
+<h3>Collection Classes</h3>
+
+<h5>Background</h5>
+
+<p>Version 1.2 of the Java 2 Standard Edition (J2SE) introduced a powerful
+set of collection classes that are generally useful in Java programming, based
+on the fundamental interfaces <code>java.util.Collection</code>,
+<code>java.util.List</code>, <code>java.util.Map</code>, and
+<code>java.util.Set</code>.  Compared to the collection classes available in
+JDK 1.1 (principally <code>java.util.Hashtable</code> and
+<code>java.util.Vector</code>), the new classes offer much richer functionality
+as well as the opportunity to improve performance.</p>
+
+<p>The performance increase potential comes from the fact that none of the
+methods used to access the new collection classes are <code>synchronized</code>
+as were the methods of <code>Hashtable</code> and <code>Vector</code>.  In a
+single thread application, this means that method calls can execute much more
+quickly because synchronization is never necessary.  In a multiple thread
+environment, though, it is up to the developer to ensure that any method calls
+made while another thread is modifying the collection must be synchronized.
+</p>
+
+<p>There are many cases in multithreaded server environments (such as a web
+application) where data structures are initialized at application startup
+time, and are then predominantly accessed in a read-only manner.  An example
+of this is the Struts controller application, which initializes its collection
+of <code>ActionMapping</code> instances (each corresponding to an
+<code>&lt;action&gt;</code> element in the <code>struts-config.xml</code>
+file) at startup time.  However, it is legal for an application to dynamically
+change the set of available mappings while the application is running -- so,
+to be safe, it would normally be necessary to synchronize access to such
+collections, even though 99% of those accesses are read only and would not
+otherwise require synchronization.</p>
+
+<p>To deal with such scenarios, the Struts utility package includes a series
+of specialized collection classes designed to operate in a multithread
+environment where the large majority of accesses are read only, without
+requiring synchronization on every operation, but still protecting against
+the possibility of runtime modifications to the underlying collection.</p>
+
+<h5>Theory of Operation</h5>
+
+<p>Each of the available collection classes operates in one of two modes:
+<em>fast</em> or <em>slow</em>.  When first created, the collection operates
+in <em>slow</em> mode, which is appropriate for initially populating the
+contents of the collection.  Once the initial population is complete, switch
+to <em>fast</em> mode by calling <code>setFast(true)</code> for maximum
+performance when most accesses are read-only.</p>
+
+<p>When operating in <em>slow</em> mode, all methods that access this
+collection, even read-only methods, are synchronized - resulting in impacts on
+performance similar to that always performed by the <code>Hashtable</code> and
+<code>Vector</code> classes.  This mode is appropriate when you are
+initializing the content of the collection, or when you need to perform a large
+series of updates.</p>
+
+<p>Using <em>fast</em> mode, on the other hand, causes method calls to operate
+in the following manner:</p>
+<ul>
+<li>Method calls that access information from the collection, but do not
+    modify it, are executed <strong>without</strong> synchronization.</li>
+<li>Method calls that modify the structure of a collection do so by
+    synchronizing, cloning the existing collection instance, modifying the
+    cloned instance, and then replacing the current collection instance.</li>
+</ul>
+
+<p>As you can see, modification operations are <strong>much</strong> more
+expensive when operating in <em>fast</em> mode, but doing things in this way
+allows read only operations, which should be the vast majority, to operate at
+maximum speed.</p>
+
+<p>If your collection will <strong>never</strong> be accessed in a multithread
+environment, you should use one of the standard collection classes instead,
+without synchronization, for maximum performance.</p>
+
+<h5>Available Collection Classes</h5>
+
+<p>The following collection classes, with the ability to operate in either
+<em>fast</em> or <em>slow</em> mode, are included:</p>
+<ul>
+<li><a href="FastArrayList.html">org.apache.struts.util.FastArrayList</a> -
+    Similar in functionality to <code>java.util.ArrayList</code>.</li>
+<li><a href="FastHashMap.html">org.apache.struts.util.FastHashMap</a> -
+    Similar in functionality to <code>java.util.HashMap</code>.</li>
+<li><a href="FastTreeMap.html">org.apache.struts.util.FastTreeMap</a> -
+    Similar in functionality to <code>java.util.TreeMap</code>.</li>
+</ul>
+
 
 <a name="doc.JDBC"></a>
 <h3>JDBC Connection Pool</h3>
