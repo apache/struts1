@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.2 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.3 2002/04/01 02:22:08 dwinterfeldt Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/04/01 02:22:08 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.validator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.IOException;
@@ -86,8 +87,9 @@ import org.apache.struts.config.ApplicationConfig;
  * <p>Loads <code>ValidatorResources</code> based on 
  * configuration in the struts-config.xml.</p>
  *
- * @since 1.1
  * @author David Winterfeldt
+ * @version $Revision: 1.3 $ $Date: 2002/04/01 02:22:08 $
+ * @since 1.1
 */
 public class ValidatorPlugIn implements PlugIn {
 
@@ -108,6 +110,11 @@ public class ValidatorPlugIn implements PlugIn {
     private ActionServlet servlet = null;
 
     /**
+     * Delimitter for Validator resources.
+    */
+    private final static String RESOURCE_DELIM = ",";
+    
+    /**
      * Application scope key that <code>ValidatorResources</code> is stored under.
     */
     public final static String VALIDATOR_KEY = "org.apache.commons.validator.VALIDATOR_RESOURCES";
@@ -122,32 +129,23 @@ public class ValidatorPlugIn implements PlugIn {
     // ------------------------------------------------------------- Properties
 
     /**
-     * The last Validator resource added.
+     * A comma delimitted list of Validator resource.
      */
-    private String pathname = null; 
+    private String pathnames = null; 
 
     /**
-     * The list of  Validator resources added.
+     * Gets a comma delimitted list of Validator resource.
     */
-    private List lValidatorRules = new ArrayList(); 
-
-    /**
-     * Gets the last Validator resource added.
-    */
-    public String getPathname() {
-       return pathname;
+    public String getPathnames() {
+       return pathnames;
     }
 
     /**
-     * Sets the last Validator resource added and 
-     * adds the path the list of resources.
+     * Sets a comma delimitted list of Validator resource.
     */
-    public void setPathname(String pathname) {
-       this.pathname = pathname;
-       lValidatorRules.add(pathname);
+    public void setPathnames(String pathnames) {
+       this.pathnames = pathnames;
     }
-
-
 
     /**
      * Initialize and load our resources.
@@ -171,7 +169,7 @@ public class ValidatorPlugIn implements PlugIn {
 	} catch (Exception e) {
 	    log.error(e.getMessage(), e);
 	    throw new UnavailableException
-		("Cannot load validator resources from '" + lValidatorRules + "'");
+		("Cannot load a validator resource from '" + pathnames + "'");
 	}
 
     }
@@ -200,35 +198,41 @@ public class ValidatorPlugIn implements PlugIn {
      */
     protected void initResources() throws IOException, ServletException {
        resources = new ValidatorResources();
-	
-       for (Iterator i = lValidatorRules.iterator(); i.hasNext(); ) {
-          String validatorRules = (String)i.next();
 
-	  if (log.isInfoEnabled()) {
-	     log.info("Loading validation rules file from '" + validatorRules + "'");
-	  }          
-	  
-          InputStream input = null;
-          BufferedInputStream bis = null;
-          input = servlet.getServletContext().getResourceAsStream(validatorRules);
+       if (pathnames != null && pathnames.length() > 0) {
+          StringTokenizer st = new StringTokenizer(pathnames, RESOURCE_DELIM);
           
-          if (input != null) {
-             bis = new BufferedInputStream(input);
-          
-             try {
-                // pass in false so resources aren't processed 
-                // until last file is loaded
-                ValidatorResourcesInitializer.initialize(resources, bis, false);
-             } catch (Exception e) {
-                log.error(e.getMessage(), e);
+          while (st.hasMoreTokens()) {
+             String validatorRules = st.nextToken();
+             
+             validatorRules = validatorRules.trim();
+        
+	     if (log.isInfoEnabled()) {
+	        log.info("Loading validation rules file from '" + validatorRules + "'");
+	     }          
+	     
+             InputStream input = null;
+             BufferedInputStream bis = null;
+             input = servlet.getServletContext().getResourceAsStream(validatorRules);
+             
+             if (input != null) {
+                bis = new BufferedInputStream(input);
+             
+                try {
+                   // pass in false so resources aren't processed 
+                   // until last file is loaded
+                   ValidatorResourcesInitializer.initialize(resources, bis, false);
+                } catch (Exception e) {
+                   log.error(e.getMessage(), e);
+                }
+             } else {
+                log.error("Skipping validation rules file from '" + validatorRules + "'.  No stream could be opened.");	
              }
-          } else {
-             log.error("Skipping validation rules file from '" + validatorRules + "'.  No stream could be opened.");	
           }
+          
+          // process resources
+          resources.process();
        }
-       
-       // process resources
-       resources.process();
     }
 
     /**
