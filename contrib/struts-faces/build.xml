@@ -61,6 +61,14 @@
   <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
 
 
+  <!-- Conditional Processing Flags -->
+  <available                     property="jsfri.present"
+                                classname="com.sun.faces.RIConstants"
+                                classpath="${jsf-impl.jar}"/>
+  <available                     property="myfaces.present"
+                                classname="net.sourceforge.myfaces.MyFacesConfig"
+                                classpath="${jsf-impl.jar}"/>
+
   <!-- Build Defaults -->
   <property name="build.home"      value="${basedir}/build"/>
   <property name="dist.home"       value="${basedir}/dist"/>
@@ -136,6 +144,11 @@
     <filter token="package"  value="${project.package}"/>
     <filter token="state"    value="${systest.state.saving}"/>
     <filter token="version"  value="${project.version}"/>
+    <echo message="jsf-api.jar =    ${jsf-api.jar}"/>
+    <echo message="jsf-impl.jar =   ${jsf-impl.jar}"/>
+    <echo message="struts-jar =     ${struts.jar}"/>
+    <echo message="jsfri.present =  ${jsfri.present}"/>
+    <echo message="myfaces.present= ${myfaces.present}"/>
   </target>
 
 
@@ -301,7 +314,33 @@
   </target>
 
 
-  <target name="example.libraries" depends="example.static"
+  <target name="example.static.jsfri" depends="example.static"
+            if="jsfri.present">
+
+    <replace        dir="${build.home}/webapps/example/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener"/>
+    <replace        dir="${build.home}/webapps/example/WEB-INF"
+                  token="MYFACES_END"
+                  value="--&gt;"/>
+
+  </target>
+
+
+  <target name="example.static.myfaces" depends="example.static.jsfri"
+            if="myfaces.present">
+
+    <replace        dir="${build.home}/webapps/example/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener --&gt;"/>
+    <replace        dir="${build.home}/webapps/example/WEB-INF"
+                  token="MYFACES_END"
+                  value=""/>
+
+  </target>
+
+
+  <target name="example.libraries" depends="example.static.myfaces"
             if="build.standalone">
 
     <!-- Copy libraries required for standalone use only -->
@@ -317,7 +356,19 @@
   </target>
 
 
-  <target name="example.compile" depends="example.libraries">
+  <target name="example.libraries.myfaces" depends="example.libraries"
+            if="myfaces.present">
+
+    <!-- Copy additional libraries required by MyFaces implementation -->
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
+    <copy        todir="${build.home}/webapps/example/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-el.jar"/>
+
+  </target>
+
+
+  <target name="example.compile" depends="example.libraries.myfaces">
 
     <!-- Compile Java Sources -->
     <mkdir         dir="${build.home}/webapps/example/WEB-INF/classes"/>
@@ -420,7 +471,33 @@
   </target>
 
 
-  <target name="example2.libraries" depends="example2.static"
+  <target name="example2.static.jsfri" depends="example2.static"
+            if="jsfri.present">
+
+    <replace        dir="${build.home}/webapps/example2/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener"/>
+    <replace        dir="${build.home}/webapps/example2/WEB-INF"
+                  token="MYFACES_END"
+                  value="--&gt;"/>
+
+  </target>
+
+
+  <target name="example2.static.myfaces" depends="example2.static.jsfri"
+            if="myfaces.present">
+
+    <replace        dir="${build.home}/webapps/example2/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener --&gt;"/>
+    <replace        dir="${build.home}/webapps/example2/WEB-INF"
+                  token="MYFACES_END"
+                  value=""/>
+
+  </target>
+
+
+  <target name="example2.libraries" depends="example2.static.myfaces"
             if="build.standalone">
 
     <!-- Copy libraries required for standalone use only -->
@@ -436,7 +513,19 @@
   </target>
 
 
-  <target name="example2.compile" depends="example2.libraries">
+  <target name="example2.libraries.myfaces" depends="example2.libraries"
+            if="myfaces.present">
+
+    <!-- Copy additional libraries required by MyFaces implementation -->
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-el.jar"/>
+
+  </target>
+
+
+  <target name="example2.compile" depends="example2.libraries.myfaces">
 
     <!-- Compile Java Sources -->
     <mkdir         dir="${build.home}/webapps/example2/WEB-INF/classes"/>
@@ -534,7 +623,33 @@
   </target>
 
 
-  <target name="systest.libraries" depends="systest.static"
+  <target name="systest.static.jsfri" depends="systest.static"
+            if="jsfri.present">
+
+    <replace        dir="${build.home}/webapps/systest/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener"/>
+    <replace        dir="${build.home}/webapps/systest/WEB-INF"
+                  token="MYFACES_END"
+                  value="--&gt;"/>
+
+  </target>
+
+
+  <target name="systest.static.myfaces" depends="systest.static.jsfri"
+            if="myfaces.present">
+
+    <replace        dir="${build.home}/webapps/systest/WEB-INF"
+                  token="MYFACES_BEGIN"
+                  value="&lt;!-- MyFaces Listener --&gt;"/>
+    <replace        dir="${build.home}/webapps/systest/WEB-INF"
+                  token="MYFACES_END"
+                  value=""/>
+
+  </target>
+
+
+  <target name="systest.libraries" depends="systest.static.jsfri"
             if="build.standalone">
 
     <!-- Copy libraries required for standalone use only -->
@@ -550,7 +665,19 @@
   </target>
 
 
-  <target name="systest.compile" depends="systest.libraries">
+  <target name="systest.libraries.myfaces" depends="systest.libraries"
+            if="myfaces.present">
+
+    <!-- Copy additional libraries required by MyFaces implementation -->
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-codec-1.2.jar"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${jsf.home}/lib/commons-el.jar"/>
+
+  </target>
+
+
+  <target name="systest.compile" depends="systest.libraries.myfaces">
 
     <!-- Compile Java Sources -->
     <mkdir         dir="${build.home}/webapps/systest/WEB-INF/classes"/>

@@ -54,7 +54,7 @@ import org.apache.struts.faces.util.HttpServletRequestWrapper;
  * instance normally configured by Struts, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.10 $ $Date: 2004/06/29 14:57:18 $
+ * @version $Revision: 1.11 $ $Date: 2004/08/28 21:32:48 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {
@@ -130,6 +130,10 @@ public class FacesRequestProcessor extends RequestProcessor {
             HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request, uri);
             context = fcf.getFacesContext(servlet.getServletContext(), wrapper,
                                           response, lifecycle); 
+            // Comment out the previous two lines and uncomment
+            // the following line to test eliminating the wrapper
+            context = fcf.getFacesContext(servlet.getServletContext(),
+                                          request, response, lifecycle);
         }
 
         // Create a new view root

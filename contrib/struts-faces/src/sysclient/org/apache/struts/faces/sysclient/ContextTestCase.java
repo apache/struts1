@@ -47,7 +47,7 @@ import junit.framework.TestSuite;
  * <p>Test case for verifying <code>FacesContext</code> information against
  * what is visible in the Struts <code>Action</code> method that is invoked.</p>
  *
- * @version $Revision: 1.1 $ $Date: 2004/08/28 07:44:54 $
+ * @version $Revision: 1.2 $ $Date: 2004/08/28 21:32:48 $
  */
 
 public class ContextTestCase extends AbstractTestCase {
@@ -242,12 +242,10 @@ public class ContextTestCase extends AbstractTestCase {
         spanCA = (HtmlSpan) element("form:remoteUserCA");
         assertEquals(span.asText(), spanCA.asText());
 
-        /* FIXME - define the correct test here
         span = (HtmlSpan) element("form:servletPathRQ");
         assertEquals("/context1.jsp", span.asText());
         spanCA = (HtmlSpan) element("form:servletPathCA");
-        assertEquals(span.asText(), spanCA.asText());
-        */
+        assertEquals("/context.faces", spanCA.asText());
 
         // Validate ServletContext Values
 
