@@ -482,6 +482,28 @@ as a page scope bean named by the <code>id</code> attribute.</p>
     </td>
   </tr>
   <tr>
+    <td align="center">length</td>
+    <td>
+      The maximum number of entries (from the underlying collection) to
+      be enumerated through.  This can be either an integer that
+      directly expresses the desired value, or the name of an
+      attribute (in any scope) of type java.lang.Integer that defines
+      the desired value.  If not present, there will be no limit on the
+      number of entries used.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">offset</td>
+    <td>
+      The zero-relative starting point at which entries from the underlying
+      collection will start being enumerated through.  This can be either an
+      integer that directly expresses the desired value, or the name of
+      an attribute (in any scope) of type java.lang.Integer that defines
+      the desired value.  If not present, zero is assumed (meaning that
+      the collection will be started from the beginning.
+    </td>
+  </tr>
+  <tr>
     <td align="center">name</td>
     <td>
       Attribute name of the collection bean itself (if <code>property</code>
@@ -951,6 +973,28 @@ as a page scope bean named by the <code>id</code> attribute.</p>
       Attribute name of the page scope bean that will be made visible to
       the body of the <code>iterate</code> tag, containing the current
       element of the enumeration.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">length</td>
+    <td>
+      The maximum number of entries (from the underlying collection) to
+      be iterated through.  This can be either an integer that
+      directly expresses the desired value, or the name of an
+      attribute (in any scope) of type java.lang.Integer that defines
+      the desired value.  If not present, there will be no limit on the
+      number of entries used.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">offset</td>
+    <td>
+      The zero-relative starting point at which entries from the underlying
+      collection will start being iterated through.  This can be either an
+      integer that directly expresses the desired value, or the name of
+      an attribute (in any scope) of type java.lang.Integer that defines
+      the desired value.  If not present, zero is assumed (meaning that
+      the collection will be started from the beginning.
     </td>
   </tr>
   <tr>

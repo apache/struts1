@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.1 2000/06/24 19:09:38 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/24 19:09:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.2 2000/06/24 23:28:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/24 23:28:37 $
  *
  * ====================================================================
  *
@@ -81,15 +81,13 @@ import org.apache.struts.util.MessageResources;
  * Custom tag that iterates the elements of a collection, which can be
  * either an attribute or the property of an attribute.  The collection
  * can be any of the following:  an array of objects, an Iterator,
- * a Collection (which includes Lists and Sets), or a Map (whose elements
- * will be iterated over).  Hashtables and Vectors implement the Map and
- * Collection interfaces, respectively, in Java2 so that they can also
- * be used.
+ * a Collection (which includes Lists, Sets and Vectors), or a Map
+ * (which includes Hashtables) whose elements will be iterated over.
  * <p>
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/24 19:09:38 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/24 23:28:37 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -111,6 +109,24 @@ public final class IterateTag extends BodyTagSupport {
 
 
     /**
+     * The length value or attribute name (<=0 means no limit).
+     */
+    private String length = "0";
+
+
+    /**
+     * The number of elements we have already rendered.
+     */
+    private int lengthCount = 0;
+
+
+    /**
+     * The actual length value (calculated in the start tag).
+     */
+    private int lengthValue = 0;
+
+
+    /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
@@ -122,6 +138,18 @@ public final class IterateTag extends BodyTagSupport {
      * The name of the collection or owning bean.
      */
     private String name = null;
+
+
+    /**
+     * The starting offset (zero relative).
+     */
+    private String offset = "0";
+
+
+    /**
+     * The actual offset value (calculated in the start tag).
+     */
+    private int offsetValue = 0;
 
 
     /**
@@ -156,6 +184,28 @@ public final class IterateTag extends BodyTagSupport {
 
 
     /**
+     * Return the length.
+     */
+    public String getLength() {
+
+	return (this.length);
+
+    }
+
+
+    /**
+     * Set the length.
+     *
+     * @param length The new length
+     */
+    public void setLength(String length) {
+
+	this.length = length;
+
+    }
+
+
+    /**
      * Return the name of the collection or owning bean.
      */
     public String getName() {
@@ -173,6 +223,28 @@ public final class IterateTag extends BodyTagSupport {
     public void setName(String name) {
 
 	this.name = name;
+
+    }
+
+
+    /**
+     * Return the offset.
+     */
+    public String getOffset() {
+
+	return (this.offset);
+
+    }
+
+
+    /**
+     * Set the offset.
+     *
+     * @param offset The new offset
+     */
+    public void setOffset(String offset) {
+
+	this.offset = offset;
 
     }
 
@@ -249,10 +321,55 @@ public final class IterateTag extends BodyTagSupport {
 	        (messages.getMessage("iterate.noCollection",
 	                             collection.toString()));
 
+	// Calculate the starting offset
+	if (offset == null)
+	    offsetValue = 0;
+	else {
+	    try {
+		offsetValue = Integer.parseInt(offset);
+	    } catch (NumberFormatException e) {
+		Integer offsetObject =
+		  (Integer) pageContext.findAttribute(offset);
+		if (offsetObject == null)
+		    offsetValue = 0;
+		else
+		    offsetValue = offsetObject.intValue();
+	    }
+	}
+	if (offsetValue < 0)
+	    offsetValue = 0;
+
+	// Calculate the rendering length
+	if (length == null)
+	    lengthValue = 0;
+	else {
+	    try {
+		lengthValue = Integer.parseInt(length);
+	    } catch (NumberFormatException e) {
+		Integer lengthObject =
+		  (Integer) pageContext.findAttribute(length);
+		if (lengthObject == null)
+		    lengthValue = 0;
+		else
+		    lengthValue = lengthObject.intValue();
+	    }
+	}
+	if (lengthValue < 0)
+	    lengthValue = 0;
+	lengthCount = 0;
+
+	// Skip the leading elements up to the starting offset
+	for (int i = 0; i < offsetValue; i++) {
+	    if (iterator.hasNext()) {
+	        Object element = iterator.next();
+	    }
+	}
+
 	// Store the first value and evaluate, or skip the body if none
 	if (iterator.hasNext()) {
 	    Object element = iterator.next();
 	    pageContext.setAttribute(id, element);
+	    lengthCount++;
 	    return (EVAL_BODY_TAG);
         } else
             return (SKIP_BODY);
@@ -268,9 +385,13 @@ public final class IterateTag extends BodyTagSupport {
      */
     public int doAfterBody() throws JspException {
 
+	if ((lengthValue > 0) && (lengthCount >= lengthValue))
+	    return (SKIP_BODY);
+
 	if (iterator.hasNext()) {
 	    Object element = iterator.next();
 	    pageContext.setAttribute(id, element);
+	    lengthCount++;
 	    return (EVAL_BODY_TAG);
 	} else
 	    return (SKIP_BODY);

@@ -31,6 +31,16 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>length</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>offset</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>name</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
@@ -52,6 +62,16 @@
       <name>id</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>length</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>offset</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
       <name>name</name>

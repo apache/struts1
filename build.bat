@@ -18,7 +18,7 @@ rem
 rem   TOMCAT_HOME           Distribution directory for "jakarta-tomcat".
 rem                         [../jakarta-tomcat]
 rem
-rem $Id: build.bat,v 1.5 2000/06/24 03:16:09 craigmcc Exp $
+rem $Id: build.bat,v 1.6 2000/06/24 23:28:34 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 

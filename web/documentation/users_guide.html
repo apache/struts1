@@ -6,7 +6,7 @@
 
 <div align="center">
 <h1>Struts User's Guide</h2>
-<h3>$Id: users_guide.html,v 1.6 2000/06/23 17:37:51 craigmcc Exp $</h3>
+<h3>$Id: users_guide.html,v 1.7 2000/06/24 23:28:40 craigmcc Exp $</h3>
 </div>
 
 
@@ -643,6 +643,10 @@ creating user interfaces:</p>
 <li><a href="tags.html#ifParameterNull">ifParameterNull</a> evaluates its
     tag body only if a specified request parameter is not included in this
     request, or if it is included with zero length.</li>
+<li><a href="tags.html#iterate">iterate</a> repeats its tag body once
+    for each element of a specified collection (which can be a Collection,
+    an Iterator, a Map, or an array of objects.  This tag supercedes the
+    <code>enumerate</code> tag on a Java2 environment.
 <li><a href="tags.html#link">link</a> generates a hyperlink, and automatically
     applies URL encoding to maintain session state in the absence of
     cookie support.</li>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.2 2000/06/24 23:28:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/24 23:28:37 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/24 23:28:37 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {
@@ -106,6 +106,24 @@ public final class EnumerateTag extends BodyTagSupport {
 
 
     /**
+     * The length value or attribute name (<=0 means no limit).
+     */
+    private String length = "0";
+
+
+    /**
+     * The number of elements we have already rendered.
+     */
+    private int lengthCount = 0;
+
+
+    /**
+     * The actual length value (calculated in the start tag).
+     */
+    private int lengthValue = 0;
+
+
+    /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
@@ -117,6 +135,18 @@ public final class EnumerateTag extends BodyTagSupport {
      * The name of the collection or owning bean.
      */
     private String name = null;
+
+
+    /**
+     * The starting offset (zero relative).
+     */
+    private String offset = "0";
+
+
+    /**
+     * The actual offset value (calculated in the start tag).
+     */
+    private int offsetValue = 0;
 
 
     /**
@@ -151,6 +181,28 @@ public final class EnumerateTag extends BodyTagSupport {
 
 
     /**
+     * Return the length.
+     */
+    public String getLength() {
+
+	return (this.length);
+
+    }
+
+
+    /**
+     * Set the length.
+     *
+     * @param length The new length
+     */
+    public void setLength(String length) {
+
+	this.length = length;
+
+    }
+
+
+    /**
      * Return the name of the collection or owning bean.
      */
     public String getName() {
@@ -168,6 +220,28 @@ public final class EnumerateTag extends BodyTagSupport {
     public void setName(String name) {
 
 	this.name = name;
+
+    }
+
+
+    /**
+     * Return the offset.
+     */
+    public String getOffset() {
+
+	return (this.offset);
+
+    }
+
+
+    /**
+     * Set the offset.
+     *
+     * @param offset The new offset
+     */
+    public void setOffset(String offset) {
+
+	this.offset = offset;
 
     }
 
@@ -249,10 +323,55 @@ public final class EnumerateTag extends BodyTagSupport {
 	        (messages.getMessage("enumerate.noCollection",
 	                             collection.toString()));
 
+	// Calculate the starting offset
+	if (offset == null)
+	    offsetValue = 0;
+	else {
+	    try {
+		offsetValue = Integer.parseInt(offset);
+	    } catch (NumberFormatException e) {
+		Integer offsetObject =
+		  (Integer) pageContext.findAttribute(offset);
+		if (offsetObject == null)
+		    offsetValue = 0;
+		else
+		    offsetValue = offsetObject.intValue();
+	    }
+	}
+	if (offsetValue < 0)
+	    offsetValue = 0;
+
+	// Calculate the rendering length
+	if (length == null)
+	    lengthValue = 0;
+	else {
+	    try {
+		lengthValue = Integer.parseInt(length);
+	    } catch (NumberFormatException e) {
+		Integer lengthObject =
+		  (Integer) pageContext.findAttribute(length);
+		if (lengthObject == null)
+		    lengthValue = 0;
+		else
+		    lengthValue = lengthObject.intValue();
+	    }
+	}
+	if (lengthValue < 0)
+	    lengthValue = 0;
+	lengthCount = 0;
+
+	// Skip the leading elements up to the starting offset
+	for (int i = 0; i < offsetValue; i++) {
+	    if (enumeration.hasMoreElements()) {
+	        Object element = enumeration.nextElement();
+	    }
+	}
+
 	// Store the first value and evaluate, or skip the body if none
 	if (enumeration.hasMoreElements()) {
 	    Object element = enumeration.nextElement();
 	    pageContext.setAttribute(id, element);
+	    lengthCount++;
 	    return (EVAL_BODY_TAG);
         } else
             return (SKIP_BODY);
@@ -268,9 +387,13 @@ public final class EnumerateTag extends BodyTagSupport {
      */
     public int doAfterBody() throws JspException {
 
+	if ((lengthValue > 0) && (lengthCount >= lengthValue))
+	    return (SKIP_BODY);
+
 	if (enumeration.hasMoreElements()) {
 	    Object element = enumeration.nextElement();
 	    pageContext.setAttribute(id, element);
+	    lengthCount++;
 	    return (EVAL_BODY_TAG);
 	} else
 	    return (SKIP_BODY);
