@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.24 2000/09/26 23:26:20 craigmcc Exp $
- * $Revision: 1.24 $
- * $Date: 2000/09/26 23:26:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.25 2000/10/01 00:47:03 craigmcc Exp $
+ * $Revision: 1.25 $
+ * $Date: 2000/10/01 00:47:03 $
  *
  * ====================================================================
  *
@@ -199,7 +199,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2000/09/26 23:26:20 $
+ * @version $Revision: 1.25 $ $Date: 2000/10/01 00:47:03 $
  */
 
 public class ActionServlet
@@ -526,6 +526,22 @@ public class ActionServlet
     public MessageResources getResources() {
 
 	return (application);
+
+    }
+
+
+    /**
+     * Log the specified message if the current debugging detail level for
+     * this servlet has been set to an equal or higher value.  Otherwise,
+     * ignore this message.
+     *
+     * @param message Message to be logged
+     * @param level Debugging detail level of this message
+     */
+    public void log(String message, int level) {
+
+        if (debug >= level)
+            log(message);
 
     }
 
