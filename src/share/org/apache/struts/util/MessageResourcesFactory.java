@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.1 2000/12/15 03:08:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/12/15 03:08:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.2 2001/01/16 03:52:57 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/16 03:52:57 $
  *
  * ====================================================================
  * 
@@ -63,9 +63,6 @@
 package org.apache.struts.util;
 
 
-import java.io.PrintWriter;
-
-
 /**
  * Factory for <code>MessageResources</code> instances.  The general usage
  * pattern for this class is:
@@ -81,7 +78,7 @@ import java.io.PrintWriter;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/12/15 03:08:11 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/16 03:52:57 $
  */
 
 public abstract class MessageResourcesFactory {
@@ -102,21 +99,6 @@ public abstract class MessageResourcesFactory {
 
     public void setReturnNull(boolean returnNull) {
         this.returnNull = returnNull;
-    }
-
-
-    /**
-     * The PrintWriter to which we can log debugging and error information,
-     * if any.
-     */
-    protected PrintWriter writer = null;
-
-    public PrintWriter getWriter() {
-        return (this.writer);
-    }
-
-    public void setWriter(PrintWriter writer) {
-        this.writer = writer;
     }
 
 
@@ -159,21 +141,6 @@ public abstract class MessageResourcesFactory {
     }
 
 
-    /**
-     * The PrintWriter to which we can log error and debugging information,
-     * if any.
-     */
-    protected static PrintWriter defaultWriter = null;
-
-    public static PrintWriter getDefaultWriter() {
-        return (MessageResourcesFactory.defaultWriter);
-    }
-
-    public static void setDefaultWriter(PrintWriter writer) {
-        MessageResourcesFactory.defaultWriter = writer;
-    }
-
-
     // --------------------------------------------------------- Static Methods
 
 
@@ -191,14 +158,10 @@ public abstract class MessageResourcesFactory {
                 clazz = Class.forName(factoryClass);
             MessageResourcesFactory factory =
                 (MessageResourcesFactory) clazz.newInstance();
-            factory.setWriter(defaultWriter);
             return (factory);
         } catch (Throwable t) {
-            if (defaultWriter != null) {
-                defaultWriter.println("MessageResourcesFactory.createFactory");
-                t.printStackTrace(defaultWriter);
-                defaultWriter.flush();
-            }
+            System.out.println("MessageResourcesFactory.createFactory");
+            t.printStackTrace(System.out);
             return (null);
         }
 

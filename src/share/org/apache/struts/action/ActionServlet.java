@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.54 2001/01/07 22:39:06 craigmcc Exp $
- * $Revision: 1.54 $
- * $Date: 2001/01/07 22:39:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.55 2001/01/16 03:52:57 craigmcc Exp $
+ * $Revision: 1.55 $
+ * $Date: 2001/01/16 03:52:57 $
  *
  * ====================================================================
  *
@@ -90,7 +90,6 @@ import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
 
@@ -229,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.54 $ $Date: 2001/01/07 22:39:06 $
+ * @version $Revision: 1.55 $ $Date: 2001/01/16 03:52:57 $
  */
 
 public class ActionServlet
@@ -955,8 +954,6 @@ public class ActionServlet
 	if (debug >= 1)
 	    log(internal.getMessage("applicationLoading", value));
 	try {
-            MessageResourcesFactory.setDefaultWriter
-                (new ServletContextWriter(getServletContext()));
             String oldFactory =
                 MessageResourcesFactory.getFactoryClass();      
             if (factory != null)

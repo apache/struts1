@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.7 2001/01/10 22:06:55 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/01/10 22:06:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.8 2001/01/16 03:52:57 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/01/16 03:52:57 $
  *
  * ====================================================================
  * 
@@ -63,7 +63,6 @@
 package org.apache.struts.util;
 
 
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -90,7 +89,7 @@ import java.util.Locale;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/01/10 22:06:55 $
+ * @version $Revision: 1.8 $ $Date: 2001/01/16 03:52:57 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -504,12 +503,9 @@ public abstract class MessageResources implements Serializable {
      */
     public void log(String message) {
 
-        PrintWriter writer = factory.getWriter();
-        if (writer != null) {
-            writer.print("MessageResources: ");
-            writer.println(message);
-            writer.flush();
-        }
+        System.out.print("MessageResources: ");
+        System.out.println(message);
+        System.out.flush();
 
     }
 
@@ -523,13 +519,9 @@ public abstract class MessageResources implements Serializable {
      */
     public void log(String message, Throwable throwable) {
 
-        PrintWriter writer = factory.getWriter();
-        if (writer != null) {
-            writer.print("MessageResources: ");
-            writer.println(message);
-            throwable.printStackTrace(writer);
-            writer.flush();
-        }
+        System.out.print("MessageResources: ");
+        System.out.println(message);
+        throwable.printStackTrace(System.out);
 
     }
 
