@@ -1,4 +1,4 @@
-$Id: README,v 1.14 2001/07/15 04:08:55 craigmcc Exp $
+$Id: README,v 1.15 2001/07/16 00:52:22 craigmcc Exp $
 
 				Struts
 				======
@@ -42,11 +42,11 @@ and not the MVC framework, only the steps marked (*) are required.
 
 - Download and install an XML parser that is compatible with the Java
   API for XML Parsing (JAXP) specification.  A useful XML parser is the
-  JAXP Reference Implementation, version 1.0.1 or later, that is available
+  JAXP Reference Implementation, version 1.1 or later, that is available
   at <http://java.sun.com/xml>.  Another JAXP-compatible parser that has
-  been reported to work fine with Struts is Xerces, version 1.1.2 or later,
+  been reported to work fine with Struts is Xerces, version 1.3.1,
   available at <http://xml.apache.org>.  Be sure to add the "jaxp.jar" and
-  "parser.jar" (or whatever JAR file comes with your parser) files to
+  "crimson.jar" (or whatever JAR file comes with your parser) files to
   your CLASSPATH environment variable.
 
 - Download and install the JDBC 2.0 Optional Package Binary (formerly known

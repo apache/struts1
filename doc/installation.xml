@@ -65,7 +65,7 @@
       <a href="http://java.sun.com/products/jdbc/download.html">http://java.sun.com/products/jdbc/download.html</a>.</li>
   <li><strong>XML Parser</strong> - Struts requires the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
-      specification, 1.0 or later.  You can download and install the JAXP
+      specification, 1.1 or later.  You can download and install the JAXP
       <a href="http://java.sun.com/xml">reference implementation</a>,
       which is required for building the Struts source distribution.  In
       Struts-based web applications, you may replace the reference
@@ -75,14 +75,11 @@
       <a href="#Building">building</a> and <a href="#Installing">installing</a>
       Struts, below.</li>
   <li><strong>Xalan XSLT Processor</strong> - If you are building Struts from
-      the source distribution, you must download and install version 1.2
-      (problems have been reported with current versions of Xalan 2.0)
-      of the <a href="http://xml.apache.org/xalan">Xalan</a>
-      XSLT processor (which also includes the Xerces XML parser), or use the
-      version of Xalan included in the JAXP 1.1 release.  This
-      processor is used to convert the Struts documentation from its internal
-      XML-based format into the HTML that is presented in the Struts
-      documentation application.</li>
+      the source distribution, you will need a version of Xalan to perform
+      XSLT transformations.  If you are using the JAXP/1.1 XML parser, you
+      should use the version of <code>xalan.jar</code> shipped with it.
+      Otherwise, download and install version 1.2 of Xalan from
+      <a href="http://xml.apache.org/xalan">here</a>.</li>
   </ul>
 
   </section>
