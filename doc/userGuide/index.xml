@@ -127,7 +127,8 @@
                     </ul>
                 </li>
                 <li><a href="building_controller.html#module_config-use_actions">4.9 Using ActionMappings for Pages</a></li>
-                <li><a href="building_controller.html#logging">4.10 Using The Commons Logging Interface</a></li>                
+                <li><a href="building_controller.html#action_mapping_wildcards">4.10 Using Wildcards in ActionMappings</a></li>               
+                <li><a href="building_controller.html#logging">4.11 Using The Commons Logging Interface</a></li>               
                 </ul></li>
 
              <li><a href="configuration.html">5. Configuring Applications</a>

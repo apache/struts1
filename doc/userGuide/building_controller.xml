@@ -1039,7 +1039,8 @@ throws Exception;
         <li>
         <code>path</code> - The request URI path that is matched to select this
         mapping.  
-        See below for examples of how matching works.
+        See below for examples of how matching works and how to use wildcards 
+        to match multiple request URIs.
         </li>
 
         <li>
@@ -1360,7 +1361,120 @@ throws Exception;
 
 </section>
 
-<section name="4.10 Commons Logging Interface" href="logging">
+<section name="4.10 Using Wildcards in ActionMappings" href="action_mapping_wildcards">
+
+    <p>
+    As a Struts application grows in size, so will the number of action 
+    mappings.  Wildcards can be used to combine similiar mappings into one
+    more generic mapping.  
+    </p>
+    <p>
+    The best way to explain wildcards is to show an example and walk through 
+    how it works.  This example modifies the previous mapping in the <a 
+    href="#action_mapping_example">ActionMapping Example</a> section to use
+    wildcards to match all pages that start with <code>/edit</code>:
+    </p> 
+
+<pre><code><![CDATA[<!-- Generic edit* mapping -->
+<action    
+    path="/edit*"
+    type="org.apache.struts.webapp.example.Edit{1}Action"
+    name="{1}Form"
+    scope="request"
+    validate="false">
+    <forward 
+        name="failure" 
+        path="/mainMenu.jsp"/>
+    <forward 
+        name="success" 
+        path="/{1}.jsp"/>
+</action>
+]]></code></pre>
+
+    <p>
+    The "<code>*</code>" in the path attribute allows the mapping to match the 
+    request URIs <code>/editSubscription</code>, <code>editRegistration</code>,
+    or any other URI that starts with 
+    <code>/edit</code>, however <code>/editSubscription/add</code> would not be 
+    matched.  The part of 
+    the URI matched by the wildcard will then be substituted into various 
+    attributes of the action mapping and its action forwards replacing 
+    <code>{1}</code>.
+    For the rest of the request, Struts will see the action mapping and its 
+    action forwards containing the new values.
+    </p>
+    
+    <p>
+    Wildcard patterns can contain one or more of the following special tokens:
+    </p>
+
+    <table>
+        <tr>
+            <td>
+            <code>*</code>
+            </td>
+            <td>
+            Matches zero or more characters excluding the 
+            slash ('/') character.
+            </td>
+        </tr>       <tr>
+            <td>
+            <code>**</code>
+            </td>
+            <td>
+            Matches zero or more characters including the 
+            slash ('/') character.
+            </td>
+        </tr>       <tr>
+            <td>
+            <code>\character</code>
+            </td>
+            <td>
+            The backslash character is used as an escape
+            sequence.  Thus <code>\*</code> matches the character asterisk 
+            ('*'), and <code>\\</code>
+            matches the character backslash ('\').
+            </td>
+        </tr>
+    </table>    
+
+    <p>
+    In the action mapping and action forwards, the wildcard-matched values can
+    be accessed with the token <code>{N}</code> where <code>N</code>
+    is a number from 1 to 9 indicating
+    which wildcard-matched value to substitute.  The whole request URI can be
+    accessed with the <code>{0}</code> token.
+    </p>
+
+    <p>
+    The action mapping attributes that will accept wildcard-matched strings
+    are:
+    </p>
+
+    <ul>
+        <li><code>type</code></li>
+        <li><code>roles</code></li>
+        <li><code>parameter</code></li>
+        <li><code>attribute</code></li>
+        <li><code>forward</code></li>
+        <li><code>include</code></li>
+        <li><code>input</code></li>
+        <li><code>forward</code></li>
+        <li><code>forward</code></li>
+    </ul>
+
+    <p>
+    The action forward attributes that will accept wildcard-matched strings
+    are:
+    </p>
+
+    <ul>
+        <li><code>path</code></li>
+    </ul>
+
+</section>
+
+<section name="4.11 Commons Logging Interface" href="logging">
     <p>
     Struts doesn't configure logging itself -- it's all done by
     <a href="http://jakarta.apache.org/commons/">commons-logging</a> 
