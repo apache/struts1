@@ -75,7 +75,7 @@
       </p>
       <ul>
         <li>First, "Observe the style of the original". Resist the temptation to make stylistic changes for their own sake. But, if you must reformat code, commit style changes separately from code changes. Either change the style, commit, and then change the code, or vice- versa.</li>
-        <li>Set editors to replace tabs with spaces and do not trim trailing spaces. Tabs confound the CVS email alerts. Trimming trailing spaces creates unnecessary changes.</li>
+        <li>Set editors to replace tabs with spaces and do not trim trailing spaces. Tabs confound the version control alerts. Trimming trailing spaces creates unnecessary changes.</li>
         <li>Specify imported classes (do not use 
         <code>.*</code>).</li>
         <li>Write all if/else statements as full blocks with each clause within braces, unless the entire statement fits on the same line.</li>

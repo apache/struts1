@@ -78,8 +78,8 @@
     </p>
 
     <p>
-    The documentation is maintained in the <code>doc</code> folder of the CVS 
-    in a XML format. 
+    The documentation is maintained in the <code>doc</code> folder of the
+    repository in a XML format.
     In the Nightly Build, there is a "compile.website" target in the 
     <code>build.xml</code> file, which renders the XML into the HTML we post 
     to the Website. 

@@ -46,7 +46,8 @@
     <strong>Contributors.</strong>
     Contributors are the people who write code or documentation patches or
     contribute positively to the project in other ways. When a volunteer's
-    patch is applied, the contribution is recognized in the CVS log.
+    patch is applied, the contribution is recognized in the version control
+    log.
     </p>
 
     <p>
@@ -89,7 +90,7 @@
     The PMC is responsible for the day-to-day
     management of the Struts Project. The PMC oversees all changes
     made to the codebase. The PMC must ensure that all code under a
-    Apache Struts CVS is the lawful property of the Foundation and
+    Apache Struts repository is the lawful property of the Foundation and
     may be distributed under the <a href="http://apache.org/licenses/">
     Apache Software License</a>. All releases of a Struts subproject
     must be sanctioned by the Project Management Committee.

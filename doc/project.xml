@@ -84,7 +84,7 @@
             />
         <item
             name="Development Releases"
-            href="http://cvs.apache.org/dist/struts/"
+            href="http://svn.apache.org/dist/struts/"
             />
     </menu>
 
@@ -102,8 +102,8 @@
             href="roadmap.html"
             />
         <item
-            name="CVS Repository"
-            href="http://cvs.apache.org/viewcvs/jakarta-struts/"
+            name="Source Repository"
+            href="http://svn.apache.org/viewcvs.cgi/struts/trunk/?root=Apache-SVN"
             />
     </menu>
 

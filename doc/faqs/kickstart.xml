@@ -132,7 +132,7 @@ the environment of a running servlet container.</p>
 <p>
 For static unit tests, we use the <a href="http://www.junit.org">JUnit framework</a>.
 The sources for these tests are in the "src/test"
-hierarchy in the CVS repository, and are executed via the "test.junit"
+hierarchy in the source repository, and are executed via the "test.junit"
 target in the top-level build.xml file.  Such tests are focused on the
 low-level functionality of individual methods, are particularly
 suitable for the static methods in the org.apache.struts.util utility
@@ -291,7 +291,7 @@ appear to help these technologies work as well with Struts.
         <a href="http://java.sun.com/j2ee/javaserverfaces/index.jsp">Java ServerFaces page</a>.
         An early-release JavaServer Faces taglib for Struts,
         <strong>Struts-Faces</strong>, is also in early release and available through the
-        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">nightly build</a>.
+        <a href="http://svn.apache.org/builds/jakarta-struts/nightly/struts-faces/">nightly build</a>.
         The Struts Faces taglib is expected to work with any compliant JSF implementation, including
         <a href="http://www.myfaces.org/">MyFaces</a>.
     </p>

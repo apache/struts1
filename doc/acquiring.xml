@@ -76,20 +76,20 @@
 
     <li>
         Nightly builds - Download the source directly via
-        <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
-        Anonymous CVS</a>.
+        <a href="http://www.apache.org/dev/version-control.html">
+        anonymous access</a>.
     </li>
 
     <li>
         Nightly builds - Download the binary distributions from the
-       <a href="http://cvs.apache.org/builds/jakarta-struts/nightly">
+        <a href="http://svn.apache.org/builds/struts/nightly/">
         Struts nightly builds directory</a>.
     </li>
 
     <li>
-        Nightly builds - Download the source distributions from the
-        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/src">
-        Struts nightly build source directory</a>.
+        Nightly builds - Download the binary distributions from the
+       <a href="http://svn.apache.org/builds/struts/nightly/">
+        Struts nightly builds directory</a>.
     </li>
 
     </ul>
@@ -105,7 +105,7 @@
     <p>
     If you are interested in the Tag Library Descriptor (TLD) files,
     they are maintained in the
-    <a href="http://cvs.apache.org/viewcvs/jakarta-struts/conf/share/">
+    <a href="http://svn.apache.org/repos/asf/struts/trunk/conf/share/">
     /conf/share</a> folder of the main repository.
     </p>
 
@@ -116,11 +116,11 @@
     </p>
 
     <p>
-    Access to the CVS source repository for Struts is available through both
-    <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">web browser</a>
+    Access to the source repository for Struts is available through both
+    <a href="http://svn.apache.org/viewcvs.cgi/struts/trunk/?root=Apache-SVN">web browser</a>
     and
-    <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
-    CVS client</a> interfaces.
+    <a href="http://www.apache.org/dev/version-control.html">
+    Subversion client</a> interfaces.
     </p>
 
 </section>
