@@ -45,21 +45,28 @@
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p><strong>NEW!</strong> - A milestone release, <strong>Version 0.5</strong>
+  <p>A milestone release, <strong>Version 0.5</strong>
   of Struts has been created and made available at
   <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v0.5">
   http://jakarta.apache.org/builds/jakarta-struts/release/v0.5</a>.  This
-  release will provide a stable basis for current projects being developed
-  on Struts, while (sometimes incompatible) changes are occurring on the
-  main code branch leading up to a <strong>Version 1.0</strong> release later.
+  release provides a stable basis for current projects being developed
+  on Struts, while work continues on the
+  main code branch leading up to the <strong>Version 1.0</strong> release.
   You can track the progress towards <strong>Version 1.0</strong>, and get
   early warning about new features and changes, by monitoring the
   <a href="http://jakarta.apache.org/struts/release.html">Release Notes</a>
   that are posted on the Struts project web site, as well as included in the
   nightly build distributions.</p>
 
+  <p><b>New!</b> The feature set for Struts 1.0 is locked, and the TODO list for Struts 
+  1.1 is now open. When a few remaining tasks for Struts 1.0 are  complete, 
+  a build will be released for final testing, leading to the formal release. 
+  The current builds are considered to be generally stable, and many people 
+  are now choosing to develop against the nighly builds.</p>
+  
   <p>You can acquire binary and source distributions of Struts from the
   following locations:</p>
+  
   <ul>
   <li>Download the source directly via
       <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
