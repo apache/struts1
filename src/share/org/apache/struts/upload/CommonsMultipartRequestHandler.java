@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.1 2002/07/27 21:53:13 martinc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/27 21:53:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.2 2002/07/31 06:43:18 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/31 06:43:18 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.config.ApplicationConfig;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.1 $ $Date: 2002/07/27 21:53:13 $
+  * @version $Revision: 1.2 $ $Date: 2002/07/31 06:43:18 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -545,7 +545,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
          * @return The client-size file name.
          */
         public String getFileName() {
-            return fileItem.getName();
+            return getBaseFileName(fileItem.getName());
         }
 
 
@@ -599,6 +599,39 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
          */
         public void destroy() {
             fileItem.delete();
+        }
+
+
+        /**
+         * Returns the base file name from the supplied file path. On the surface,
+         * this would appear to be a trivial task. Apparently, however, some Linux
+         * JDKs do not implement <code>File.getName()</code> correctly for Windows
+         * paths, so we attempt to take care of that here.
+         *
+         * @param filePath The full path to the file.
+         *
+         * @return The base file name, from the end of the path.
+         */
+        protected String getBaseFileName(String filePath) {
+
+            // First, ask the JDK for the base file name.
+            String fileName = new File(filePath).getName();
+
+            // Now check for a Windows file name parsed incorrectly.
+            int colonIndex = fileName.indexOf(":");
+            if (colonIndex == -1) {
+                // Check for a Windows SMB file path.
+                colonIndex = fileName.indexOf("\\\\");
+            }
+            int backslashIndex = fileName.lastIndexOf("\\");
+
+            if (colonIndex > -1 && backslashIndex > -1) {
+                // Consider this filename to be a full Windows path, and parse it
+                // accordingly to retrieve just the base file name.
+                fileName = fileName.substring(backslashIndex + 1);
+            }
+
+            return fileName;
         }
     }
 }
