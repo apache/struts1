@@ -1,0 +1,424 @@
+<?xml version="1.0"?>
+<document url="./struts-bean-el.xml">
+
+<properties>
+  <author>Craig R. McClanahan</author>
+  <author>David M. Karr</author>
+  <title>The Struts Framework Project - JSTL Integration - Bean Tags</title>
+</properties>
+
+<body>
+
+
+<taglib>
+
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>bean</shortname>
+  <display-name>Struts Bean Tags</display-name>
+  <uri>http://jakarta.apache.org/struts/tags-bean-el-1.0</uri>
+  <info>
+  <p>This tag library contains tags useful in accessing beans and their
+  properties, as well as defining new beans (based on these accesses)
+  that are accessible to the remainder of the page via scripting variables
+  and page scope attributes.  Convenient mechanisms to create new beans
+  based on the value of request cookies, headers, and parameters are also
+  provided.</p>
+
+  <p>Many of the tags in this tag library will throw a
+  <code>JspException</code> at runtime when they are utilized incorrectly
+  (such as when you specify an invalid combination of tag attributes).  JSP
+  allows you to declare an "error page" in the <code>&lt;%@ page %&gt;</code>
+  directive.  If you wish to process the actual exception that caused the
+  problem, it is passed to the error page as a request attribute under key
+  <code>org.apache.struts.action.EXCEPTION</code>.</p>
+
+  <p>If you are viewing this page from within the Struts Documentation
+  Application (or online at <a href="http://jakarta.apache.org/struts">
+  http://jakarta.apache.org/struts</a>), you can learn more about using
+  these tags in the
+  <a href="api/org/apache/struts/taglib/bean/package-summary.html#package_description">
+  Bean Tags Developer's Guide</a>.</p>
+  </info>
+
+  <tag>
+
+    <name>message</name>
+    <summary>
+    Render an internationalized message string to the response.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.bean.ELMessageTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieves an internationalized message for the specified locale,
+    using the specified message key, and write it to the output stream.
+    Up to five parametric replacements (such as "{0}") may be specified.</p>
+
+    <p>The message key may be specified directly, using the <code>key</code>
+    attribute, or indirectly, using the <code>name</code> and
+    <code>property</code> attributes to obtain it from a bean.</p>
+    </info>
+
+    <attribute>
+      <name>arg0</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>First parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg1</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Second parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg2</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Third parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg3</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Fourth parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg4</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Fifth parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The name of the application scope bean under which the
+      <code>MessageResources</code> object containing our messages
+      is stored.  If not specified, the default name (the value of
+      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>key</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The message key of the requested message, which must have
+      a corresponding value in the message resources. If not specified,
+      the key is obtained from the <code>name</code> and
+      <code>property</code> attributes.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The name of the session scope bean under which our currently
+      selected <code>Locale</code> object is stored.  If not specified,
+      the default name (the value of the <code>Action.LOCALE_KEY</code>
+      constant string) is used.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the attribute name of the bean whose property is accessed
+      to retrieve the value specified by <code>property</code> (if
+      specified).  If <code>property</code> is not specified, the value of
+      this bean itself will be used as the message resource key.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the property to be accessed on the bean
+      specified by <code>name</code>.  This value may be a simple, indexed,
+      or nested property reference expression.  If not specified, the value
+      of the bean identified by <code>name</code> will itself be used as the
+      message resource key.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the variable scope searched to retrieve the bean specified
+      by <code>name</code>.  If not specified, the default rules applied by
+      <code>PageContext.findAttribute()</code> are applied.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
+    <name>page</name>
+    <summary>
+    Expose a specified item from the page context as a bean.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.bean.ELPageTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieve the value of the specified item from the page context
+    for this page, and define it as a scripting variable, and a page scope
+    attribute accessible to the remainder of the current page.</p>
+
+    <p>If a problem occurs while retrieving the specified configuration
+    object, a request time exception will be thrown.</p>
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the scripting variable (and associated
+      page scope attribute) that will be made available with the value of
+      the specified page context property.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Name of the property from our page context to be retrieved and
+      exposed.  Must be one of <code>application</code>, <code>config</code>,
+      <code>request</code>, <code>response</code>, or <code>session</code>.
+      </p>
+      </info>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>resource</name>
+    <summary>
+    Load a web application resource and make it available as a bean.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.bean.ELResourceTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieve the value of the specified web application resource, and make
+    it available as either a <code>InputStream</code> or a <code>String</code>,
+    depending on the value of the <code>input</code> attribute.</p>
+
+    <p>If a problem occurs while retrieving the specified resource, a
+    request time exception will be thrown.</p>
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the scripting variable (and associated page
+      scope attribute) that will be made available with the value of the
+      specified web application resource.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>input</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>If any arbitrary value for this attribute is specified, the resource
+      will be made available as an <code>InputStream</code>.  If this
+      attribute is not specified, the resource will be made available
+      as a <code>String</code>.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Application-relative name (starting with a '/') of the web application
+      resource to be loaded and made available.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+  <tag>
+
+    <name>size</name>
+    <summary>
+    Define a bean containing the number of elements in a Collection or Map.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.bean.ELSizeTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Given a reference to an array, Collection or Map, creates a new bean, of
+    type <code>java.lang.Integer</code>, whose value is the number of elements
+    in that collection.  You can specify the collection to be counted in any
+    one of the following ways:</p>
+    <ul>
+    <li>As a runtime expression specified as the value of the
+        <code>collection</code> attribute.</li>
+    <li>As a JSP bean specified by the <code>name</code> attribute.</li>
+    <li>As the property, specified by the <code>property</code> attribute,
+        of the JSP bean specified by the <code>bean</code> attribute.</li>
+    </ul>
+    </info>
+
+    <attribute>
+      <name>collection</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>A runtime expression that evaluates to an array, a Collection, or
+      a Map.</p>
+      </info>
+    </attribute>     
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The name of a page scope JSP bean, of type
+      <code>java.lang.Integer</code>, that will be created to contain the
+      size of the underlying collection being counted.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The name of the JSP bean (optionally constrained to the scope
+      specified by the <code>scope</code> attribute) that contains the
+      collection to be counted (if <code>property</code> is not specified),
+      or whose property getter is called to return the collection to be
+      counted (if <code>property</code> is specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The name of the property, of the bean specified by the
+      <code>name</code> attribute, whose getter method will return the
+      collection to be counted.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the JSP bean specified
+      by the <code>name</code> attribute.  If not specified, the available
+      scopes are searched in ascending sequence.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
+    <name>struts</name>
+    <summary>
+    Expose a named Struts internal configuration object as a bean.
+    </summary>
+    <tagclass>org.apache.strutsel.taglib.bean.ELStrutsTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieve the value of the specified Struts internal configuration
+    object, and define it as a scripting variable and as a page scope
+    attribute accessible to the remainder of the current page.  You must
+    specify exactly one of the <code>formBean</code>, <code>forward</code>,
+    and <code>mapping</code> attributes to select the configuration object
+    to be exposed.</p>
+
+    <p>If a problem occurs while retrieving the specified configuration
+    object, a request time exception will be thrown.</p>
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the scripting variable (and associated
+      page scope attribute) that will be made available with the value of
+      the specified Struts internal configuration object.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>formBean</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the Struts <code>ActionFormBean</code>
+      definition object to be exposed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the global Struts <code>ActionForward</code>
+      definition object to be exposed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>mapping</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the matching path of the Struts <code>ActionMapping</code>
+      definition object to be exposed.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+</taglib>
+
+</body>
+
+</document>
