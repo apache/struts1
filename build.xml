@@ -5,6 +5,8 @@
   <property name="build.home"     value="../build/${app.name}"/>
   <property name="catalina.home"  value="../build/tomcat-4.0"/>
   <property name="dist.home"      value="../dist/${app.name}"/>
+  <property name="project.name"   value="jakarta-struts"/>
+  <property name="project.version" value="1.0-dev"/>
   <property name="tomcat.home"    value="../build/tomcat"/>
 
   <!-- BUILD:  Create directories and copy files for library -->
@@ -230,6 +232,26 @@
     <mkdir   dir="${tomcat.home}/webapps/struts-test"/>
     <copydir src="${build.home}/test"
             dest="${tomcat.home}/webapps/struts-test"/>
+  </target>
+
+  <!-- UTILITY:  Display all targets intended for developer use -->
+  <target name="targets">
+    <echo message=""/>
+    <echo message="ANT build for ${project.name} ${project.version}"/>
+    <echo message=""/>
+    <echo message="The following targets are available:"/>
+    <echo message="  all                    Cleans and builds library and webapps"/>
+    <echo message="  clean                  Cleans the build and distribution directories"/>
+    <echo message="  compile.documentation  Builds the documentation webapp"/>
+    <echo message="  compile.examples       Builds the examples webapp"/>
+    <echo message="  compile.javadoc        Builds Javadoc API docs for Struts"/>
+    <echo message="  compile.library        Builds the main packages"/>
+    <echo message="  compile.tests          Builds the tests webapp"/>
+    <echo message="  deploy.catalina        Deploys build to Catalina build directory"/>
+    <echo message="  deploy.tomcat          Depoys build to Tomcat build directory"/>
+    <echo message="  dist                   Builds binary distribution in dist directory"/>
+    <echo message=""/>
+    <echo message="Default target is 'compile.library'"/>
   </target>
 
   <!-- UTILITY:  Clean up build and distribution directories -->
