@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.3 2003/10/18 02:48:16 mrdon Exp $
- * $Revision: 1.3 $
- * $Date: 2003/10/18 02:48:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.4 2003/10/25 01:39:54 mrdon Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/10/25 01:39:54 $
  *
  * ====================================================================
  *
@@ -61,6 +61,7 @@
  
 package org.apache.struts.config;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -82,7 +83,7 @@ import org.apache.struts.util.WildcardHelper;
  *
  * @author    Don Brown
  */
-public class ActionConfigMatcher {
+public class ActionConfigMatcher implements Serializable {
 
     /**  
      * The logging instance 
