@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14.2.3 2001/06/10 04:12:52 craigmcc Exp $
- * $Revision: 1.14.2.3 $
- * $Date: 2001/06/10 04:12:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14.2.4 2001/06/13 02:59:40 craigmcc Exp $
+ * $Revision: 1.14.2.4 $
+ * $Date: 2001/06/13 02:59:40 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14.2.3 $ $Date: 2001/06/10 04:12:52 $
+ * @version $Revision: 1.14.2.4 $ $Date: 2001/06/13 02:59:40 $
  */
 
 public class RequestUtils {
@@ -135,7 +135,7 @@ public class RequestUtils {
     public static URL absoluteURL(HttpServletRequest request, String path)
         throws MalformedURLException {
 
-        return (new URL(serverURL(request), path));
+        return (new URL(serverURL(request), request.getContextPath() + path));
 
     }
 
