@@ -8,7 +8,7 @@
   <!-- Validator Initialization Servlet Configuration -->
   <servlet>
     <servlet-name>validator</servlet-name>
-    <servlet-class>com.wintecinc.struts.action.ValidatorServlet</servlet-class>
+    <servlet-class>org.apache.struts.validator.action.ValidatorServlet</servlet-class>
     <init-param>
       <param-name>config</param-name>
       <param-value>/WEB-INF/validation.xml</param-value>
@@ -26,7 +26,7 @@
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
     <init-param>
       <param-name>application</param-name>
-      <param-value>com.wintecinc.struts.example.validator.ApplicationResources</param-value>
+      <param-value>org.apache.struts.validator.example.ApplicationResources</param-value>
     </init-param>
     <init-param>
       <param-name>config</param-name>

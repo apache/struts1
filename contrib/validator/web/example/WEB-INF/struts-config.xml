@@ -23,19 +23,19 @@
 
     <!-- Registration form bean -->
     <form-bean      name="registrationForm"
-                    type="com.wintecinc.struts.example.validator.RegistrationForm"/>
+                    type="org.apache.struts.validator.example.RegistrationForm"/>
 
     <!-- Multi-Part Registration form bean -->
     <form-bean      name="multiRegistrationForm"
-                    type="com.wintecinc.struts.example.validator.RegistrationForm"/>
+                    type="org.apache.struts.validator.example.RegistrationForm"/>
 
     <!-- Type form bean -->
     <form-bean      name="typeForm"
-                    type="com.wintecinc.struts.example.validator.TypeForm"/>
+                    type="org.apache.struts.validator.example.TypeForm"/>
 
     <!-- JavaScript Type form bean -->
     <form-bean      name="jsTypeForm"
-                    type="com.wintecinc.struts.example.validator.TypeForm"/>
+                    type="org.apache.struts.validator.example.TypeForm"/>
 
   </form-beans>
 
@@ -49,7 +49,7 @@
 
     <!-- Registration Form -->
     <action    path="/registration"
-               type="com.wintecinc.struts.example.validator.RegistrationAction"
+               type="org.apache.struts.validator.example.RegistrationAction"
                name="registrationForm"
                scope="request"
                validate="true"
@@ -59,7 +59,7 @@
 
     <!-- Multi-Part Registration Form -->
     <action    path="/multiRegistration"
-               type="com.wintecinc.struts.example.validator.MultiRegistrationAction"
+               type="org.apache.struts.validator.example.MultiRegistrationAction"
                name="multiRegistrationForm"
                scope="request"
                validate="false">
@@ -70,7 +70,7 @@
 
     <!-- Type Form -->
     <action    path="/type"
-               type="com.wintecinc.struts.example.validator.TypeAction"
+               type="org.apache.struts.validator.example.TypeAction"
                name="typeForm"
                scope="request"
                validate="true"
@@ -80,7 +80,7 @@
 
     <!-- JavaScript Type Form -->
     <action    path="/jsType"
-               type="com.wintecinc.struts.example.validator.TypeAction"
+               type="org.apache.struts.validator.example.TypeAction"
                name="jsTypeForm"
                scope="request"
                validate="true"

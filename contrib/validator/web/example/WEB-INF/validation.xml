@@ -4,7 +4,7 @@
       <constant name="zip" value="^\d{5}\d*$" />
 
       <validator name="required"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateRequired"
                  msg="errors.required">
          <javascript><![CDATA[
@@ -37,7 +37,7 @@
       </validator>
 
       <validator name="minlength"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateMinLength"
                  depends="required"
                  msg="errors.minlength">
@@ -75,7 +75,7 @@
       </validator>
 
       <validator name="maxlength"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateMaxLength"
                  depends="required"
                  msg="errors.maxlength">
@@ -113,7 +113,7 @@
       </validator>
 
       <validator name="mask"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateMask"
                  depends="required"
                  msg="errors.invalid">
@@ -158,7 +158,7 @@
       </validator>
 
       <validator name="byte"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateByte"
                  depends="required"
                  msg="errors.byte"
@@ -197,7 +197,7 @@
       </validator>
 
       <validator name="short"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateShort"
                  depends="required"
                  msg="errors.short"
@@ -236,7 +236,7 @@
       </validator>
 
       <validator name="integer"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateInteger"
                  depends="required"
                  msg="errors.integer"
@@ -275,13 +275,13 @@
       </validator>
       
       <validator name="long"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateLong"
                  depends="required"
                  msg="errors.long"
       />
       <validator name="float"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateFloat"
                  depends="required"
                  msg="errors.float"
@@ -320,13 +320,13 @@
       </validator>
 
       <validator name="double"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateDouble"
                  depends="required"
                  msg="errors.double"/>
 
       <validator name="date"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateDate"
                  depends="required"
                  msg="errors.date"
@@ -493,7 +493,7 @@
       </validator>
 
       <validator name="range"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateRange"
                  depends="required,integer"
                  msg="errors.range">
@@ -533,7 +533,7 @@
       </validator>
 
       <validator name="creditCard"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateCreditCard"
                  depends="required"
                  msg="errors.creditcard">
@@ -602,7 +602,7 @@
       </validator>
 
       <validator name="email"
-                 classname="com.wintecinc.struts.validation.StrutsValidator"
+                 classname="org.apache.struts.validator.util.StrutsValidator"
                  method="validateEmail"
                  depends="required"
                  msg="errors.email">

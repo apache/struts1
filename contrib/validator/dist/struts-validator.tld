@@ -7,7 +7,7 @@
     <shortname>Struts Form Validator Tags</shortname>
     <tag>
         <name>javascript</name>
-        <tagclass>com.wintecinc.struts.taglib.html.JavascriptValidatorTag</tagclass>
+        <tagclass>org.apache.struts.validator.taglib.html.JavascriptValidatorTag</tagclass>
         <attribute>
             <name>formName</name>
             <required>false</required>
@@ -35,106 +35,6 @@
         </attribute>
         <attribute>
             <name>src</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-    <tag>
-        <name>errors</name>
-        <tagclass>com.wintecinc.struts.taglib.html.ErrorsTag</tagclass>
-        <teiclass>com.wintecinc.struts.taglib.html.ErrorsTei</teiclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>id</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>bundle</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>locale</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>name</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>property</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>header</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>footer</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-    <tag>
-        <name>errorsExist</name>
-        <tagclass>com.wintecinc.struts.taglib.html.ErrorsExistTag</tagclass>
-        <attribute>
-            <name>name</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>property</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-    <tag>
-        <name>messages</name>
-        <tagclass>com.wintecinc.struts.taglib.html.MessagesTag</tagclass>
-        <teiclass>com.wintecinc.struts.taglib.html.MessagesTei</teiclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>id</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>bundle</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>locale</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>name</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>header</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>footer</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-    <tag>
-        <name>messagesExist</name>
-        <tagclass>com.wintecinc.struts.taglib.html.MessagesExistTag</tagclass>
-        <attribute>
-            <name>name</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

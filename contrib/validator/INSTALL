@@ -1,13 +1,14 @@
 Struts Validator
 ==================
-The Struts Validator Jar (dist/Struts_Validator-{date}.jar) and version 1.2 of the 
-Jakarta Regular Expression Package (http://jakarta.apache.org/regexp) needs to be 
-added to /WEB-INF/lib.
+The Struts Validator Jar (dist/struts-validator.jar), 
+Jakarta Commons Validator (http://jakarta.apache.org/commons) , 
+and version 1.2 of the Jakarta Regular Expression Package 
+(http://jakarta.apache.org/regexp) needs to be added to /WEB-INF/lib.
 
      This needs to be added to the web.xml file to load the ValidatorServlet. 
      <servlet> 
         <servlet-name>validator</servlet-name> 
-        <servlet-class>com.wintecinc.struts.action.ValidatorServlet</servlet-class> 
+        <servlet-class>org.apache.struts.action.ValidatorServlet</servlet-class> 
         <init-param> 
           <param-name>config</param-name> 
           <param-value>/WEB-INF/validation.xml</param-value> 
