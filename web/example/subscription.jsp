@@ -22,6 +22,7 @@
 <struts:errors/>
 
 <struts:form action="saveSubscription.do" name="subscriptionForm"
+              focus="host"
                type="org.apache.struts.example.SubscriptionForm">
 <struts:hidden property="action"/>
 <table border="0" width="100%">

@@ -225,6 +225,11 @@
       <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
+      <name>focus</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>method</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.3 2000/06/15 18:15:17 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/15 18:15:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.4 2000/06/22 19:23:35 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/22 19:23:35 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/15 18:15:17 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/22 19:23:35 $
  */
 
 public final class FormTag extends TagSupport {
@@ -91,6 +91,12 @@ public final class FormTag extends TagSupport {
      * The action URL to which this form should be submitted, if any.
      */
     private String action = null;
+
+
+    /**
+     * The name of the field to receive focus, if any.
+     */
+    private String focus = null;
 
 
     /**
@@ -165,6 +171,28 @@ public final class FormTag extends TagSupport {
     public void setAction(String action) {
 
 	this.action = action;
+
+    }
+
+
+    /**
+     * Return the focus field name for this form.
+     */
+    public String getFocus() {
+
+	return (this.focus);
+
+    }
+
+
+    /**
+     * Set the focus field name for this form.
+     *
+     * @param focus The new focus field name
+     */
+    public void setFocus(String focus) {
+
+	this.focus = focus;
 
     }
 
@@ -337,6 +365,9 @@ public final class FormTag extends TagSupport {
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<form");
+	results.append(" name=\"");
+	results.append(name);
+	results.append("\"");
 	results.append(" method=\"");
 	results.append(method);
 	results.append("\"");
@@ -415,6 +446,18 @@ public final class FormTag extends TagSupport {
 
 	// Render a tag representing the end of our current form
 	StringBuffer results = new StringBuffer("</form>");
+	if (focus != null) {
+	    results.append("\r\n");
+	    results.append("<script language=\"JavaScript\">\r\n");
+	    results.append("  <!--\r\n");
+	    results.append("    document.");
+	    results.append(name);
+	    results.append(".");
+	    results.append(focus);
+	    results.append(".focus()\r\n");
+	    results.append("  // -->\r\n");
+	    results.append("</script>\r\n");
+	}
 
 	// Print this value to our output writer
 	JspWriter writer = pageContext.getOut();
