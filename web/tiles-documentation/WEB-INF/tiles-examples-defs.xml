@@ -22,7 +22,9 @@
   </definition>
 
   <!-- =======================================================  -->
-  <!-- Menu bar and submenus definitions  									-->
+  <!-- Test complex definition construct						-->
+  <!-- These definitions are not intended to be used. they are 	-->
+  <!-- there to stretch the digester rules					 	-->
   <!-- =======================================================  -->
 
   <!-- Test nested list -->
@@ -31,6 +33,10 @@
     <item value="item1" link="/examples/tabs.jsp"/>
     <item value="item2" link="/examples/tabs.jsp"/>
     <item value="item3" link="/examples/tabs.jsp"/>
+	<bean classtype="org.apache.struts.tiles.beans.SimpleMenuItem">
+	  <set-property property="link" value="aLink1"/>
+	  <set-property property="value" value="aValue1"/>
+	</bean>
     <putList name="list" >
       <item value="nested.item1" link="/examples/tabs.jsp"/>
       <putList name="list" >
@@ -41,6 +47,10 @@
     </putList>
   </putList>
 </definition>
+
+  <!-- =======================================================  -->
+  <!-- Menu bar and submenus definitions  									-->
+  <!-- =======================================================  -->
 
   <!-- Menu bar definition -->
   <!-- Some definition come from other definition files (ex : doc.menu.*) -->
@@ -72,7 +82,7 @@
   <put name="catalogName" value="examples.portal.menuCatalog"/>
   <put name="title" value="My Menu" />
     <putList name="items" >
-      <item value="customize"    link="/examples/myMenuSettings.jsp"  classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="customize"    link="/examples/myMenuSettings.jsp" />
     </putList>
 </definition>
 
@@ -98,21 +108,11 @@
     <item value="my Portal"
 			link="/examples/myPortal.jsp"
           	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="my Portal Settings"
-			link="/examples/myPortalSettings.jsp"
-       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="my Menu Settings"
-			link="/examples/myMenuSettings.jsp"
-       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="Tabs (choosen pages)"
-			link="/examples/tabs.jsp"
-          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="Tabs (Summaries)"
-			link="/examples/summariesTabs.jsp"
-          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="Rss Channels"
-			link="/examples/rssChannels.jsp"
-          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="my Portal Settings"	link="/examples/myPortalSettings.jsp" />
+    <item value="my Menu Settings"		link="/examples/myMenuSettings.jsp" />
+    <item value="Tabs (choosen pages)"	link="/examples/tabs.jsp"/>
+    <item value="Tabs (Summaries)"		link="/examples/summariesTabs.jsp" />
+    <item value="Rss Channels"			link="/examples/rssChannels.jsp"/>
   </putList>
 </definition>
 
@@ -120,15 +120,9 @@
 <definition name="examples.menu.settings" extends="examples.menu.root" >
   <put name="title" value="Preferences" />
     <putList name="items" >
-    <item value="my Portal Settings"
-			link="/examples/myPortalSettings.jsp"
-       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="my Menu Settings"
-			link="/examples/myMenuSettings.jsp"
-       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    <item value="my Layout Settings"
-			link="/examples/skinSettings.jsp"
-       		classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="my Portal Settings"	link="/examples/myPortalSettings.jsp"/>
+    <item value="my Menu Settings"		link="/examples/myMenuSettings.jsp" />
+    <item value="my Layout Settings"	link="/examples/skinSettings.jsp" />
     </putList>
 </definition>
 
@@ -136,7 +130,7 @@
 <definition name="examples.menu.admin" extends="examples.menu.root" >
   <put name="title" value="Admin" />
   <putList name="items" >
-    <item value="Reload"     link="/admin/tiles/reload.do"      classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="Reload"     link="/admin/tiles/reload.do"       />
   </putList>
 </definition>
 
@@ -269,26 +263,16 @@
 	<put name="selectedIndex"  value="0" />
 	<put name="parameterName"  value="selected" />
     <putList name="tabList" >
-      <item value="Doc Home"
-	  		link="/index.jsp" />
-      <item value="Quick overview"
-	  		link="/doc/quickOverview.jsp" />
-      <item value="Tutorial"
-	  		link="/doc/tutorial.jsp" />
-      <item value="Examples Home"
-	  		link="/examples/index.jsp" />
-      <item value="Tutorial Home"
-	  		link="/tutorial/index.jsp" />
-      <item value="Login"
-	  		link="/examples/tiles/portal/login.jsp" />
-      <item value="Messages"
-	  		link="/examples/tiles/portal/messages.jsp" />
-      <item value="NewsFeed"
-	  		link="/examples/tiles/portal/newsFeed.jsp" />
-      <item value="Stocks"
-	  		link="/examples/tiles/portal/stocks.jsp" />
-      <item value="WhatsNew"
-	  		link="/examples/tiles/portal/whatsNew.jsp" />
+      <item value="Doc Home"		link="/index.jsp" />
+      <item value="Quick overview"	link="/doc/quickOverview.jsp" />
+      <item value="Tutorial"		link="/doc/tutorial.jsp" />
+      <item value="Examples Home"	link="/examples/index.jsp" />
+      <item value="Tutorial Home"	link="/tutorial/index.jsp" />
+      <item value="Login"			link="/examples/tiles/portal/login.jsp" />
+      <item value="Messages"		link="/examples/tiles/portal/messages.jsp" />
+      <item value="NewsFeed"		link="/examples/tiles/portal/newsFeed.jsp" />
+      <item value="Stocks"			link="/examples/tiles/portal/stocks.jsp" />
+      <item value="WhatsNew"		link="/examples/tiles/portal/whatsNew.jsp" />
     </putList>
   </definition>
 
@@ -307,36 +291,16 @@
 	<put name="selectedIndex"  value="0" />
 	<put name="parameterName"  value="selected" />
     <putList name="tabList" >
-      <item value="Portal"
-			link="/examples/tiles/portalSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="my Portal"
-			link="/examples/tiles/myPortalSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Menu"
-			link="/examples/tiles/menuSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="my Menu"
-			link="/examples/tiles/myMenuSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Tabs"
-			link="/examples/tiles/tabsSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Rss Channels"
-			link="/examples/tiles/rssChannelsSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Admin"
-			link="/examples/tiles/adminSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="i18n"
-			link="/examples/tiles/i18nSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Multi Channels"
-			link="/examples/tiles/multiChannelsSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Components"
-			link="/examples/tiles/componentsSummary.jsp"
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Portal"			link="/examples/tiles/portalSummary.jsp" />
+      <item value="my Portal"		link="/examples/tiles/myPortalSummary.jsp"/>
+      <item value="Menu"			link="/examples/tiles/menuSummary.jsp"/>
+      <item value="my Menu"			link="/examples/tiles/myMenuSummary.jsp" />
+      <item value="Tabs"			link="/examples/tiles/tabsSummary.jsp" />
+      <item value="Rss Channels"	link="/examples/tiles/rssChannelsSummary.jsp" />
+      <item value="Admin"			link="/examples/tiles/adminSummary.jsp" />
+      <item value="i18n"			link="/examples/tiles/i18nSummary.jsp" />
+      <item value="Multi Channels"	link="/examples/tiles/multiChannelsSummary.jsp" />
+      <item value="Components"		link="/examples/tiles/componentsSummary.jsp" />
     </putList>
   </definition>
 

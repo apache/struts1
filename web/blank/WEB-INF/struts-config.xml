@@ -297,16 +297,15 @@
        - definitions-config: (optional) 
             Specify configuration file names. There can be several comma 
 		    separated file names (default: ?? )
-	   - definitions-debug: (optional)
-	        Specify Tiles debug level.
-			  O : no debug information
-			  1 : debug information
-			  2 : more debug information
-	   - definitions-parser-details: (optional)
-	        Specify Digester debug level. This value is passed to Digester
-			  O : no debug information (default)
-			  1 : debug information
-			  2 : more debug information
+       - moduleAware: (optional - struts1.1) 
+            Specify if the Tiles definition factory is module aware. If true (default), 
+			there will be one factory for each Struts module. 
+			If false, there will be one common factory for all module. In this later case, 
+			it is still needed to declare one plugin per module. The factory will be 
+			initialized with parameters found in the first initialized plugin (generally the
+			one associated with the default module).
+			  true : One factory per module. (default)
+			  false : one single shared factory for all modules
 	   - definitions-parser-validate: (optional)
 	        Specify if xml parser should validate the Tiles configuration file.
 			  true : validate. DTD should be specified in file header. (default)
@@ -320,8 +319,7 @@
   <plug-in className="org.apache.struts.tiles.TilesPlugin" >
     <set-property property="definitions-config" 
 	                 value="/WEB-INF/tiles-defs.xml" />
-    <set-property property="definitions-debug" value="0" />
-    <set-property property="definitions-parser-details" value="0" />
+    <set-property property="moduleAware" value="true" />
     <set-property property="definitions-parser-validate" value="true" />
   </plug-in>
 

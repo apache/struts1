@@ -23,15 +23,12 @@
   <form-beans>
 
     <!-- Logon form bean -->
-    <form-bean      name="invoiceForm"
-                    type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
     <form-bean      name="myPortalSettingsForm"
                     type="org.apache.struts.webapp.tiles.portal.PortalSettingsForm"/>
     <form-bean      name="myMenuSettingsForm"
                     type="org.apache.struts.webapp.tiles.portal.MenuSettingsForm"/>
     <form-bean      name="mySkinSettingsForm"
                     type="org.apache.struts.webapp.tiles.skin.LayoutSettingsForm"/>
-
   </form-beans>
 
 
@@ -106,6 +103,14 @@
                 type="org.apache.struts.webapp.tiles.rssChannel.RssChannelsAction">
    </action>
 			   
+  <!-- =======================================================  -->
+  <!-- Test tabs with an action URL -->
+  <!-- =======================================================  -->
+    <action     path="/tabs"
+                type="org.apache.struts.tiles.actions.NoOpAction">
+        <forward  name="success"   path="examples.tabs.page"/>
+   </action>
+			   
   </action-mappings>
 
   
@@ -124,9 +129,7 @@
 	                 value="/WEB-INF/tiles-defs.xml,
                             /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
                             /WEB-INF/tiles-examples-defs.xml" />
-    <set-property property="definitions-debug" value="1" />
-    <set-property property="definitions-parser-details" value="0" />
-    <set-property property="definitions-parser-validate" value="true" />
+    <set-property property="moduleAware" value="true" />
   </plug-in>
 
 </struts-config>

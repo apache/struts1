@@ -3,23 +3,17 @@
 <th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
+      <p><FONT size=2>03 Nov. 2002</FONT></P>
+      <P><STRONG><EM><FONT color=#ff0000>TilesPlugin module aware</FONT></EM></STRONG>
+	  <br><FONT color=#000000 size=2>
+	  The TilesPlugin for struts now create one separate definition factory for each struts module.
+	  </FONT></P>
+	  
       <p><FONT size=2>19 Jul. 2002</FONT></P>
       <P><STRONG><EM><FONT color=#ff0000>Tiles is now in the main branch of
 	   Struts1.1 distribution</FONT></EM></STRONG>
 	  <br><FONT color=#000000 size=2>
 	  A Tiles plug-in is available for Struts1.1.
-	  </FONT></P>
-	  
-      <p><FONT size=2>13 Jun. 2002</FONT></P>
-      <P><STRONG><EM><FONT color=#ff0000>Vote for Tiles and Struts</FONT></EM></STRONG>
-	  <br><FONT color=#000000 size=2>
-	  <a href="http://www.sys-con.com/java/readerschoice2002/nominationform.cfm"  target="_blank"/>Vote JDJ Readers' Choice Award</a> 
-	    <ul>
-		  <li>6)  Best Java Component : Tiles,</li>
-		  <li>26) Best Java e-Business Framework : Struts,</li>
-		  <li>16) Best Java Training Program : J2EE / JSP Framework by baseBeans
-Struts Fast Track</li>
-		</ul>  
 	  </FONT></P>
 	  
 	  <p><FONT size=2>22 May 2002</FONT></P>

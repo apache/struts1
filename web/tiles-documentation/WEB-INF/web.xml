@@ -37,6 +37,10 @@
       <param-name>config/examples</param-name>
       <param-value>/WEB-INF/struts-examples-config.xml</param-value>
     </init-param>
+    <init-param>
+      <param-name>config/test</param-name>
+      <param-value>/WEB-INF/struts-tests-config.xml</param-value>
+    </init-param>
     <!--
     <init-param>
       <param-name>config/tutorial</param-name>

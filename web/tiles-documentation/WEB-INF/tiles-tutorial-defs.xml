@@ -266,6 +266,4 @@
 <definition name="dynamic.portal.prefs.body" path="/tutorial/actions/myPortalPrefs.tile.do" extends="dynamic.portal.body" >
 </definition>
 
-  
-
 </tiles-definitions>

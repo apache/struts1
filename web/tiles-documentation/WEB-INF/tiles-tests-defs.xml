@@ -15,11 +15,11 @@
     <putList name="items" >
       <item value="All in one"     link="/test/index.jsp"  />
       <item value="Basic" link="/test/testBasic.jsp" />
-      <item value="Ignore attribute"  link="/test/testIgnore.jsp"  classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Definition"  link="/test/testDefinitions.jsp"   classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Role" link="/test/testRole.jsp"     classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Struts action"  link="/test/testStrutsAction.jsp" classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Controller"    link="/test/testController.jsp"   classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Ignore attribute"  link="/test/testIgnore.jsp"   />
+      <item value="Definition"  link="/test/testDefinitions.jsp"    />
+      <item value="Role" link="/test/testRole.jsp"      />
+      <item value="Struts action"  link="/test/testStrutsAction.jsp"   />
+      <item value="Controller"    link="/test/testController.jsp"     />
     </putList>
 </definition>
 

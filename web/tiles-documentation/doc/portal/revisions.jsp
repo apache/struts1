@@ -2,6 +2,19 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 03 Nov. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+	  <FONT size=2>
+      <UL>
+        <LI>Tiles now use the commons-logging package.</LI>
+		<li><useAttribute>: Corrected a bug where the tag fail when reused by server.</li>
+		<li>The struts TilesPlugin now create one factory for each struts module</li>
+	  </UL>
+	  </FONT>
+	</TD>
+  </TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 19 Jul. 2002</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
@@ -15,7 +28,6 @@
 	  </FONT>
 	</TD>
   </TR> 
-  <TR>
   <TR>
     <TD><FONT size=2><STRONG> 20 Jun. 2002</STRONG> </FONT></TD></TR>
   <TR>

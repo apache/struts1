@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+
+     NOTE:  You would only flesh out the details in the "form-bean"
+     declarations if you had a generator tool that used them to create
+     the corresponding Java classes for you.  Otherwise, you would
+     need only the "form-bean" element itself, with the corresponding
+     "name" and "type" attributes.
+-->
+
+
+<struts-config>
+
+
+  
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <!-- Logon form bean -->
+    <form-bean      name="invoiceForm"
+                    type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
+    <form-bean      name="portalPrefsForm"
+                    type="org.apache.struts.webapp.tiles.dynPortal.PortalPrefsForm"/>
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward   name="failure"              path="forward.example.failure.page"/>
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+  <!-- =======================================================  -->
+  <!-- Test actions  -->
+  <!-- =======================================================  -->
+  
+    <!-- Test Struts action and Tiles integration -->
+  <action     path="/testAction"
+       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction">
+      <forward  name="success"        path="test.struts.action"/>
+      <forward  name="failure"        path="test.struts.action.fail"/>
+  </action>
+
+    <!-- Test Struts Forwardintegration -->
+  <action     path="/test/testForward"
+       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction"
+			  forward="test.struts.action"/>
+
+    <!-- Test Struts action and Tiles integration -->
+  <action     path="/testActionForwardJsp"
+       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction">
+      <forward  name="success"        path="/layout.jsp"/>
+      <forward  name="failure"        path="test.struts.action.fail"/>
+  </action>
+
+  <action     path="/dispatch"
+                type="org.apache.struts.tiles.actions.DefinitionDispatcherAction"
+				parameter="def">
+	 <forward  name="success" path="anything" />
+	 <forward  name="error"   path="anything" />
+  </action>
+  
+  <!-- =======================================================  -->
+  <!-- test, to be removed -->
+  <!-- =======================================================  -->
+    <action     path="/tutorial/testAction"
+                type="org.apache.struts.webapp.tiles.lang.SelectLocaleAction">
+      <forward  name="failure"        path="/tutorial/common/footer.jsp"/>
+      <forward  name="success"        path="/tutorial/common/footer.jsp"/>
+  </action>
+  
+    <action     path="/tutorial/testAction2"
+                type="org.apache.struts.webapp.tiles.tutorial.ForwardExampleAction">
+      <forward  name="failure"        path="forward.example.success.page"/>
+      <forward  name="success"        path="forward.example.success.page"/>
+  </action>
+  
+  </action-mappings>
+
+  
+  <!-- ========== Tiles plug-in setting settings =================== -->
+  <!-- Here we specified the tiles plug-in.
+       This plug-in register appropriate Request Processor -->
+  <!--  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"  />  -->
+
+  <!-- ========== Associated Messages Ressource settings =================== -->
+  <!-- Not used by tiles or this website, but needed due to a bug in actual Struts version -->
+  <message-resources parameter="org.apache.struts.webapp.tiles.dev1-1.ApplicationResources" null="false" />
+
+  
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml,
+                            /WEB-INF/tiles-tests-defs.xml,
+							/WEB-INF/tiles-tutorial-defs.xml,
+                            /WEB-INF/tiles-examples-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+  </plug-in>
+
+</struts-config>

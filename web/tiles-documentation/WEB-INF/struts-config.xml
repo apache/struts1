@@ -25,13 +25,8 @@
     <!-- Logon form bean -->
     <form-bean      name="invoiceForm"
                     type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
-    <form-bean      name="myPortalSettingsForm"
-                    type="org.apache.struts.webapp.tiles.portal.PortalSettingsForm"/>
-    <form-bean      name="myMenuSettingsForm"
-                    type="org.apache.struts.webapp.tiles.portal.MenuSettingsForm"/>
-    <form-bean      name="mySkinSettingsForm"
-                    type="org.apache.struts.webapp.tiles.skin.LayoutSettingsForm"/>
-
+    <form-bean      name="portalPrefsForm"
+                    type="org.apache.struts.webapp.tiles.dynPortal.PortalPrefsForm"/>
   </form-beans>
 
 
@@ -71,32 +66,6 @@
       <forward  name="success"        path="/tutorial/invoice/index.jsp"/>
   </action>
 
-    <!-- Test Struts action and Tiles integration -->
-  <action     path="/test/testAction"
-       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction">
-      <forward  name="success"        path="test.struts.action"/>
-      <forward  name="failure"        path="test.struts.action.fail"/>
-  </action>
-
-    <!-- Test Struts Forwardintegration -->
-  <action     path="/test/testForward"
-       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction"
-			  forward="test.struts.action"/>
-
-    <!-- Test Struts action and Tiles integration -->
-  <action     path="/test/testActionForwardJsp"
-       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction">
-      <forward  name="success"        path="/test/layout.jsp"/>
-      <forward  name="failure"        path="test.struts.action.fail"/>
-  </action>
-
-  <action     path="/test/dispatch"
-                type="org.apache.struts.tiles.actions.DefinitionDispatcherAction"
-				parameter="def">
-	 <forward  name="success" path="anything" />
-	 <forward  name="error"   path="anything" />
-  </action>
-  
   <!-- =======================================================  -->
   <!-- Tutorial Dynamic portal actions  -->
   <!-- =======================================================  -->
@@ -237,9 +206,7 @@
 	                 value="/WEB-INF/tiles-defs.xml,
                             /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
                             /WEB-INF/tiles-examples-defs.xml" />
-    <set-property property="definitions-debug" value="1" />
-    <set-property property="definitions-parser-details" value="0" />
-    <set-property property="definitions-parser-validate" value="true" />
+    <set-property property="moduleAware" value="true" />
   </plug-in>
 
 </struts-config>

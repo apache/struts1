@@ -48,6 +48,10 @@ These attribute must be passed to the tile.
 <logic:iterate id="tab" name="tabList" type="org.apache.struts.tiles.beans.MenuItem" >
 <% // compute href
   String href = request.getRequestURI() + "?"+parameterName + "=" + index;
+    // Don't add request URI prefix , but let the client compute the original URL
+	// This allows to use a Struts action as page URL, and perform a forward.
+	// Bug reported by Don Peterkofsky 
+  //String href = "" + "?"+parameterName + "=" + index;
   String color = notSelectedColor;
   if( index == selectedIndex )
     {
