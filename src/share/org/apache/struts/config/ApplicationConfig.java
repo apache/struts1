@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.3 2001/12/31 01:42:13 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/12/31 01:42:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.4 2001/12/31 01:58:26 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/12/31 01:58:26 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.action.ActionServlet;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/12/31 01:42:13 $
+ * @version $Revision: 1.4 $ $Date: 2001/12/31 01:58:26 $
  * @since Struts 1.1
  */
 
@@ -221,10 +221,10 @@ public class ApplicationConfig {
 
 
     /**
-     * Add a new <code>ActionConfig</code> object to the set associated
+     * Add a new <code>ActionConfig</code> instance to the set associated
      * with this application.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -233,16 +233,17 @@ public class ApplicationConfig {
 
         if (configured)
             throw new IllegalStateException("Configuration is frozen");
+        config.setApplicationConfig(this);
         actions.put(config.getPath(), config);
 
     }
 
 
     /**
-     * Add a new <code>DataSourceConfig</code> object to the set associated
+     * Add a new <code>DataSourceConfig</code> instance to the set associated
      * with this application.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -257,10 +258,10 @@ public class ApplicationConfig {
 
 
     /**
-     * Add a new <code>ExceptionConfig</code> object to the set associated
+     * Add a new <code>ExceptionConfig</code> instance to the set associated
      * with this application.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -275,10 +276,10 @@ public class ApplicationConfig {
 
 
     /**
-     * Add a new <code>FormBeanConfig</code> object to the set associated
+     * Add a new <code>FormBeanConfig</code> instance to the set associated
      * with this application.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -293,10 +294,10 @@ public class ApplicationConfig {
 
 
     /**
-     * Add a new <code>ForwardConfig</code> object to the set of global
+     * Add a new <code>ForwardConfig</code> instance to the set of global
      * forwards associated with this application.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -443,12 +444,56 @@ public class ApplicationConfig {
     public void freeze() {
 
         this.configured = true;
+        actions.setFast(true);
+        dataSources.setFast(true);
+        exceptions.setFast(true);
+        formBeans.setFast(true);
+        forwards.setFast(true);
+        ActionConfig[] configs = findActionConfigs();
+        for (int i = 0; i < configs.length; i++) {
+            configs[i].freeze();
+        }
 
     }
 
 
     /**
-     * Remove the data source configuration for the specified key.
+     * Remove the specified action configuration instance.
+     *
+     * @param config ActionConfig instance to be removed
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void removeActionConfig(ActionConfig config) {
+
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        config.setApplicationConfig(null);
+        actions.remove(config.getPath());
+
+    }
+
+
+    /**
+     * Remove the specified exception configuration instance.
+     *
+     * @param config ActionConfig instance to be removed
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void removeExceptionConfig(ExceptionConfig config) {
+
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        exceptions.remove(config.getType());
+
+    }
+
+
+    /**
+     * Remove the specified data source configuration instance.
      *
      * @param config DataSourceConfig instance to be removed
      *
@@ -465,7 +510,7 @@ public class ApplicationConfig {
 
 
     /**
-     * Remove the form bean configuration for the specified key.
+     * Remove the specified form bean configuration instance.
      *
      * @param config FormBeanConfig instance to be removed
      *
@@ -482,7 +527,7 @@ public class ApplicationConfig {
 
 
     /**
-     * Remove the forward configuration for the specified key.
+     * Remove the specified forward configuration instance.
      *
      * @param config ForwardConfig instance to be removed
      *

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.2 2001/12/31 01:42:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/31 01:42:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.3 2001/12/31 01:58:26 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/12/31 01:58:26 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.collections.FastHashMap;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/12/31 01:42:13 $
+ * @version $Revision: 1.3 $ $Date: 2001/12/31 01:58:26 $
  * @since Struts 1.1
  */
 
@@ -99,6 +99,20 @@ public class ActionConfig {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The application configuration with which we are associated.
+     */
+    protected ApplicationConfig applicationConfig = null;
+
+    public ApplicationConfig getApplicationConfig() {
+        return (this.applicationConfig);
+    }
+
+    public void setApplicationConfig(ApplicationConfig applicationConfig) {
+        this.applicationConfig = applicationConfig;
+    }
 
 
     /**
@@ -369,10 +383,10 @@ public class ActionConfig {
 
 
     /**
-     * Add a new <code>ExceptionConfig</code> object to the set associated
+     * Add a new <code>ExceptionConfig</code> instance to the set associated
      * with this action.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -385,10 +399,10 @@ public class ActionConfig {
 
 
     /**
-     * Add a new <code>ForwardConfig</code> object to the set of global
+     * Add a new <code>ForwardConfig</code> instance to the set of global
      * forwards associated with this action.
      *
-     * @param config The new configuration object to be added
+     * @param config The new configuration instance to be added
      *
      * @exception IllegalStateException if this application configuration
      *  has been frozen
@@ -451,7 +465,33 @@ public class ActionConfig {
 
 
     /**
-     * Remove the forward configuration for the specified key.
+     * Freeze the configuration of this action.
+     */
+    public void freeze() {
+
+        exceptions.setFast(true);
+        forwards.setFast(true);
+
+    }
+
+
+    /**
+     * Remove the specified exception configuration instance.
+     *
+     * @param config ExceptionConfig instance to be removed
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void removeExceptionConfig(ExceptionConfig config) {
+
+        exceptions.remove(config.getType());
+
+    }
+
+
+    /**
+     * Remove the specified forward configuration instance.
      *
      * @param config ForwardConfig instance to be removed
      *

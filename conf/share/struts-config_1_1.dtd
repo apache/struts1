@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.4 2001/12/31 01:14:36 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.5 2001/12/31 01:58:26 craigmcc Exp $
 -->
 
 
@@ -177,7 +177,7 @@
     hierarchical     Determines if the exception's class hierarchy should be
                      used to determine the correct handler.
 
-    key              Resource bundle key specifying the error message
+    key              Message resources key specifying the error message
                      associated with this exception.
 
     path             The context-relative path of the resource to
