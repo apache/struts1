@@ -682,9 +682,15 @@
     To create a form with dynamic field names, you could do the following:
     </p>
 
-<pre><code><![CDATA[<% for (int i=0; i<10; i++) {
-String name = "value(foo-" + i + ")";
-<html:text property="<%=name%>"/><br/>
+<pre><code><![CDATA[
+<% 
+	for (int i = 0; i < 10; i++) {
+		String name = "value(foo-" + i + ")";
+%>
+		<html:text property="<%= name %>"/>
+		<br/>
+<%
+	}
 %>
 ]]></code></pre>
 
