@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.3 $ $Date: 2002/05/13 02:03:33 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/22 21:54:56 $
  */
 
 public class OptionsCollectionTag extends TagSupport {
@@ -106,6 +106,20 @@ public class OptionsCollectionTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Should the label values be filtered for HTML sensitive characters?
+     */
+    protected boolean filter = true;
+
+    public boolean getFilter() {
+        return filter;
+    }
+
+    public void setFilter(boolean filter) {
+        this.filter = filter;
+    }
 
 
     /**
@@ -307,6 +321,7 @@ public class OptionsCollectionTag extends TagSupport {
      */
     public void release() {
         super.release();
+        filter = true;
         label = "label";
         name = Constants.BEAN_KEY;
         property = null;
@@ -347,7 +362,11 @@ public class OptionsCollectionTag extends TagSupport {
             sb.append("\"");
         }
         sb.append(">");
-        sb.append(ResponseUtils.filter(label));
+        if (filter) {
+            sb.append(ResponseUtils.filter(label));
+        } else {
+            sb.append(label);
+        }
         sb.append("</option>\r\n");
 
     }
