@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/ContentMap.java,v 1.2 2001/01/16 23:48:41 dgeary Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/16 23:48:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/util/Attic/ContentMap.java,v 1.3 2001/04/29 05:34:50 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/29 05:34:50 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -67,7 +67,7 @@ import java.util.HashMap;
  * that can be performed on a hash map of contents. 
  *
  * @author David Geary
- * @version $Revision: 1.2 $ $Date: 2001/01/16 23:48:41 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/29 05:34:50 $
  */
 public class ContentMap implements java.io.Serializable {
 
