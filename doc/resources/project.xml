@@ -5,45 +5,36 @@
 
     <title>Struts Framework</title>
 
-    <menu name="Welcome">
-        <item name="Home"                    href="../index.html"/>
-        <item name="News &amp; Status"       href="../news_2002.html"/>
-        <item name="Kickstart FAQ"           href="../kickstart.html"/> 
-        <item name="Resources"               href="../resources.html"/>
-        <item name="Who We Are"              href="../volunteers.html"/>
+    <menu name="Struts Resources">        
+        <item href="archives.html" name="Archives"/>
+        <item href="articles.html" name="Articles"/>
+        <item href="books.html" name="Books"/>
+        <item href="consultants.html" name="Consultants"/>
+        <item href="enabling.html" name="Enabling Tech"/>
+        <item href="projects.html" name="Examples"/>
+        <item href="extensions.html" name="Extensions"/>
+        <item href="guis.html" name="GUIs"/>
+        <item href="sigs.html" name="Interest Groups"/>
+        <item href="hosts.html" name="ISPs"/>
+        <item href="powered.html" name="Powered by"/>
+        <item href="seminars.html" name="Seminars"/>
+        <item href="taglibs.html" name="Taglibs"/>
+        <item href="tutorials.html" name="Tutorials"/>
+        <item href="views.html" name="Views"/>
     </menu>
 
-    <menu name="Downloads">
-        <item name="Binaries"                href="http://jakarta.apache.org/site/binindex.html"/>
-        <item name="Source Code"             href="http://jakarta.apache.org/site/sourceindex.html"/>
+    <menu name="Other Resources">
+        <item href="1st.html" name="Read Me First"/>
+        <item href="related.html" name="Other Articles"/>
+        <item href="related_books.html" name="Other Books"/>
+        <item href="resources.html" name="Other Pages"/>
+        <item href="utilities.html" name="Other Utils"/>
     </menu>
 
-    <menu name="Stable Release (1.0.2)">
-        <item name="User Guide"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/index.html"/>
-        <item name="Javadoc"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/api/index.html"/>
-        <item name="Release Notes" 
-            href="http://jakarta.apache.org/struts/doc-1.0.2/release-notes-1.0.2.html"/>
-        <item name="Installation"            
-            href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html"/>
+   <menu name="Getting Started">
+      <item name="Kickstart FAQ" href="../newbie.html"/>
+      <item name="Struts Home" href="../index.html"/>
     </menu>
-
-    <menu name="Nightly Build">
-        <item name="User Guide"
-            href="../userGuide/index.html"/>
-        <item name="Javadoc"
-            href="../api/index.html"/>
-        <item name="Release Notes" 
-            href="../userGuide/release-notes.html"/>
-        <item name="Installation"            
-            href="../userGuide/installation.html"/>
-        <item name="Workflow Proposal"
-            href="workflow.html"/>
-        <item name="Wish List"
-            href="todo-1.1.html"/>
-    </menu>
-
 </project>
 
 

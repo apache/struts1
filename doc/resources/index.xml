@@ -12,14 +12,6 @@
 
 <section name="Resource Index">
  <ul>
-    <li><a href="views.html">Presentation Systems</a></li>
-    <li><a href="guis.html">Code Generators and GUIs</a></li>
-    <li><a href="taglibs.html">Contributor Taglibs</a></li>
-    <li><a href="extensions.html">Contributor Extensions</a></li>
-    <li><a href="projects.html">Projects and Examples</a></li>
- </ul>
-
- <ul>
     <li><a href="1st.html"><b>Read Me First - A path for newbies</b></a></li>
     <li><a href="tutorials.html">Tutorials</a></li>
     <li><a href="articles.html">Articles and Presentations</a></li>
@@ -27,6 +19,14 @@
     <li><a href="seminars.html">Seminars</a></li>
 <!--    <li><a href="guides.html">User Guide Translations</a></li> -->
     <li><a href="archives.html">Mailing List Archives</a></li>
+ </ul>
+
+ <ul>
+    <li><a href="views.html">Presentation Systems</a></li>
+    <li><a href="guis.html">Code Generators and GUIs</a></li>
+    <li><a href="taglibs.html">Contributor Taglibs</a></li>
+    <li><a href="extensions.html">Contributor Extensions</a></li>
+    <li><a href="examples.html">Projects and Examples</a></li>
  </ul>
 
  <ul>
