@@ -49,9 +49,11 @@
 <section name="Development Builds" href="Milestones">
 
     <p>
-    The latest <em>development build</em> of Struts is available in a convenient
-    binary distribution and also with complete source code.
+    The latest <em>development build</em> of Struts is available 
+    <a href="http://svn.apache.org/dist/struts/">here</a>
+    in a convenient binary distribution and also with complete source code.
     </p>
+
     <p>
     Development builds are being reviewed for quality by the Struts community.
     When a build is judged "ready for prime time", it is promoted to "General
@@ -71,21 +73,21 @@
     <ul>
 
     <li>
-        Nightly builds - Download the source directly via
+        Source Repository - Download the source directly via
         <a href="http://www.apache.org/dev/version-control.html">
         anonymous access</a>.
     </li>
 
     <li>
-        Nightly builds - Download the binary distributions from the
+        Nightly binary builds - Download the binary distribution from the
         <a href="http://svn.apache.org/builds/struts/nightly/">
         Struts nightly builds directory</a>.
     </li>
 
     <li>
-        Nightly builds - Download the binary distributions from the
-       <a href="http://svn.apache.org/builds/struts/nightly/">
-        Struts nightly builds directory</a>.
+        Nightly source builds - Download the source distribution from the
+       <a href="http://svn.apache.org/builds/struts/nightly/src/">
+        Struts nightly sources directory</a>.
     </li>
 
     </ul>
