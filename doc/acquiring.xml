@@ -75,11 +75,11 @@
     </p>
 
     <ul>
-    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3">
+    <li><a href="http://www.apache.org/dist/jakarta/struts/binaries/">
     <b>Struts 1.1 Beta 3 Binary Distribution</b></a></li>
-    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/lib">
+    <li><a href="http://www.apache.org/dist/jakarta/struts/library/">
     <b>Struts 1.1 Beta 3 Library Distribution</b></a></li>
-    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/src">
+    <li><a href="http://www.apache.org/dist/jakarta/struts/source/">
     <b>Struts 1.1 Beta 3 Source Code Distribution</b></a></li>
     </ul>
 
