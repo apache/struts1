@@ -4300,7 +4300,7 @@
 
         <attribute>
             <name>property</name>
-            <required>true</required>
+            <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
                 The property of the form bean, or the bean specified by the name
