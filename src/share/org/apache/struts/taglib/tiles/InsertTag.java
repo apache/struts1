@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.9 2002/12/29 21:31:02 cedric Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/29 21:31:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.10 2003/02/01 15:42:44 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/02/01 15:42:44 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -83,20 +83,19 @@ import org.apache.struts.tiles.Controller;
 import org.apache.struts.tiles.DefinitionAttribute;
 import org.apache.struts.tiles.DefinitionNameAttribute;
 import org.apache.struts.tiles.DefinitionsFactoryException;
-//import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.tiles.DirectStringAttribute;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 
 /**
- * This is the tag handler for &lt;template:insert&gt;, which includes
- * a template. The tag's body content consists of &lt;template:put&gt;
- * tags, which are accessed by &lt;template:get&gt; in the template.
+ * This is the tag handler for &lt;tiles:insert&gt;, which includes
+ * a template. The tag's body content consists of &lt;tiles:put&gt;
+ * tags, which are accessed by &lt;tiles:get&gt; in the template.
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.9 $ $Date: 2002/12/29 21:31:02 $
+ * @version $Revision: 1.10 $ $Date: 2003/02/01 15:42:44 $
  */
 public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent {
 

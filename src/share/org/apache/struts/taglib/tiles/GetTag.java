@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetTag.java,v 1.2 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetTag.java,v 1.3 2003/02/01 15:38:37 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/01 15:38:37 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,11 +62,8 @@
 
 package org.apache.struts.taglib.tiles;
 
-
-
-
 /**
- * This is the tag handler for &lt;template:get&gt;, which gets
+ * This is the tag handler for &lt;tiles:get&gt;, which gets
  * content from the request scope and either includes the content or prints
  * it, depending upon the value of the content's direct attribute.
  *
