@@ -541,10 +541,20 @@
     in the Java Web Services Tutorial.</p>
 
     <p>Struts also works well with the new
-    <a href="http://java.sun.com/products/jsp/jstl">Java Standard Tag Library</a>
+    <a href="http://java.sun.com/products/jsp/jstl">JavaServer Pages Standard Tag Library</a>
     and taglibs from other sources, like
     <a href="http://jsptags.com/">JSP Tags</a> and
-    <a href="http://jakarta.apache.org/taglibs/index.html">Jarkata Taglibs</a>.
+    <a href="http://jakarta.apache.org/taglibs/index.html">Jakarta Taglibs</a>.
+    </p>
+
+    <p>
+     One of the contributed libraries that comes with the Struts distribution,
+     called <strong>Struts-EL</strong>, is specifically designed to work well
+     with the JavaServer Pages Standard Tag Library.  In particular, it uses
+     the same "expression language" engine for evaluating tag attribute values
+     as the JSTL.  This is in contrast to the main Struts tag library, which
+     can only use "rtexprvalue"s (runtime scriptlet expressions) for dynamic
+     attribute values.
     </p>
 
     <p>There are also toolkits available that make Struts easy to use with

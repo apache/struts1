@@ -678,6 +678,56 @@ public class UploadForm extends ActionForm {
            return(null);
          </pre>
 
+      </section>
+
+      <section name="3.4.6 The Struts-EL Tag Library" href="struts-el">
+        <p>
+         The <strong>Struts-EL</strong> tag library is a contributed library in
+         the Struts distribution.  It represents an integration of the Struts
+         tag library with the JavaServer Pages Standard Tag Library, or at
+         least the "expression evaluation" engine that is used by the JSTL.
+        </p>
+        <p>
+         The base Struts tag library contains tags which rely on the evaluation
+         of "rtexprvalue"s (runtime scriptlet expressions) to evaluate dynamic
+         attribute values.  For instance, to print a message from a properties
+         file based on a resource key, you would use the
+         <code>bean:write</code> tag, perhaps like this:
+         <pre>
+          &lt;bean:message key='&lt;%= stringvar %&gt;'/&gt;</pre>
+        </p>
+        <p>
+         This assumes that <code>stringvar</code> exists as a JSP scripting
+         variable.  If you're using the <strong>Struts-EL</strong> library, the
+         reference looks very similar, but slightly different, like this:
+         <pre>
+          &lt;bean-el:message key="${stringvar}"/&gt;&lt;/pre&gt;</pre>
+        </p>
+        <p>
+         If you want to know how to properly use the <strong>Struts-EL</strong>
+         tag library, there are two important things you need to know:
+         <ul>
+          <li>The Struts tag library</li>
+          <li>The JavaServer Pages Standard tag library</li>
+         </ul>
+        </p>
+        <p>
+         Once you understand how to use these two, consider Struts tag
+         attribute values being evaluated the same way the JSTL tag attribute
+         values are.  Past that, there is very little else you need to know to
+         effectively use the <strong>Struts-EL</strong> tag library.
+        </p>
+        <p>
+         Although the <strong>Struts-EL</strong> tag library is a direct "port"
+         of the tags from the Struts tag library, not all of the tags in the
+         Struts tag library were implemented in the <strong>Struts-EL</strong>
+         tag library.  This was the case if it was clear that the functionality
+         of a particular Struts tag could be entirely fulfilled by a tag in the
+         JSTL.  It is assumed that developers will want to use the
+         <strong>Struts-EL</strong> tag library along with the JSTL, so it is
+         reasonable to assume that they will use tags from the JSTL if they
+         fill their needs.
+        </p>
         <p align="center">
           Next: <a href="building_controller.html">Building Controller Components</a>
         </p>
@@ -686,7 +736,3 @@ public class UploadForm extends ActionForm {
   </chapter>
   </body>
 </document>
-
-
-
-
