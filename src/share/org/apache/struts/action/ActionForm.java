@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.17 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.17 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.18 2003/12/19 03:41:59 husted Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/12/19 03:41:59 $
  *
  * ====================================================================
  *
@@ -72,22 +72,22 @@ import org.apache.struts.upload.MultipartRequestHandler;
 
 /**
  * <p>An <strong>ActionForm</strong> is a JavaBean optionally associated with
- * one or more <code>ActionMappings</code>.  Such a bean will have had its
+ * one or more <code>ActionMappings</code>. Such a bean will have had its
  * properties initialized from the corresponding request parameters before
- * the corresonding action's <code>execute</code> method is called.</p>
+ * the corresponding <code>Action.execute</code> method is called.</p>
  *
  * <p>When the properties of this bean have been populated, but before the
- * <code>execute</code> method of the action is called, this bean's
+ * <code>execute</code> method of the <code>Action</code> is called, this bean's
  * <code>validate</code> method will be called, which gives the bean a chance
  * to verify that the properties submitted by the user are correct and valid.
  * If this method finds problems, it returns an error messages object that
  * encapsulates those problems, and the controller servlet will return control
- * to the corresponding input form.  Otherwise, the <code>validate</code>
+ * to the corresponding input form. Otherwise, the <code>validate</code>
  * method returns <code>null</code>, indicating that everything is acceptable
- * and the corresponding Action's <code>execute</code> method should be
+ * and the corresponding <code>Action.execute</code> method should be
  * called.</p>
  *
- * <p>This class must be subclassed in order to be instantiated.  Subclasses
+ * <p>This class must be subclassed in order to be instantiated. Subclasses
  * should provide property getter and setter methods for all of the bean
  * properties they wish to expose, plus override any of the public or
  * protected methods for which they wish to provide modified functionality.
@@ -100,7 +100,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.17 $ $Date: 2003/09/29 04:26:23 $
+ * @version $Revision: 1.18 $ $Date: 2003/12/19 03:41:59 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -110,14 +110,14 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * The controller servlet instance to which we are attached.
+     * <p>The servlet instance to which we are attached.</p>
      */
     protected transient ActionServlet servlet = null;
 
 
     /**
-     * The MultipartRequestHandler for this form, can be
-     * <code>null</code>.
+     * <p>The MultipartRequestHandler for this form, can be
+     * <code>null</code>.</p>
      */
     protected transient MultipartRequestHandler multipartRequestHandler;
 
@@ -126,7 +126,7 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Return the controller servlet instance to which we are attached.
+     * <p>Return the servlet instance to which we are attached.</p>
      */
     protected ActionServlet getServlet() {
 
@@ -136,8 +136,9 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Return the controller servlet instance to which we are attached.
-     * as an ActionServletWrapper.
+     * <p>Return the controller servlet instance to which we are attached.
+     * as an <code>ActionServletWrapper</code>.</p>
+     *
      * @see org.apache.struts.action.ActionServletWrapper
      * @since Struts 1.0.1
      */
@@ -149,13 +150,14 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Return the MultipartRequestHandler for this form
+     * <p>Return the <code>MultipartRequestHandler</code> for this form
      * The reasoning behind this is to give form bean developers
      * control over the lifecycle of their multipart requests
-     * through the use of the finish() and/or rollback() methods
-     * of MultipartRequestHandler.  This method will return
+     * through the use of the <code>finish</code> and/or <code>rollback</code>
+     * methods of <code>MultipartRequestHandler</code>.  This method will return
      * <code>null</code> if this form's enctype is not
-     * "multipart/request-data".
+     * "multipart/request-data".</p>
+     *
      * @see org.apache.struts.upload.MultipartRequestHandler
      */
     public MultipartRequestHandler getMultipartRequestHandler() {
@@ -164,35 +166,40 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Set the controller servlet instance to which we are attached (if
+     * <p>Set the servlet instance to which we are attached (if
      * <code>servlet</code> is non-null), or release any allocated resources
-     * (if <code>servlet</code> is null).
+     * (if <code>servlet</code> is null).</p>
      *
      * @param servlet The new controller servlet, if any
      */
     public void setServlet(ActionServlet servlet) {
 
         this.servlet = servlet;
+            // :FIXME: Should this be releasing resources?
 
     }
 
+
     /**
-     * Set the Handler provides to use in dealing with file uploads.
-     * @param multipartRequestHandler   The Handler to use for fileuploads.
+     * <p>Set the Handler provides to use in dealing with file uploads.</p>
+     *
+     * @param multipartRequestHandler The Handler to use for fileuploads.
      */
     public void setMultipartRequestHandler(MultipartRequestHandler multipartRequestHandler) {
+
         this.multipartRequestHandler = multipartRequestHandler;
+
     }
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Reset all bean properties to their default state.  This method is
-     * called before the properties are repopulated by the controller servlet.
-     * <p>
-     * The default implementation attempts to forward to the HTTP
-     * version of this method.
+     * <p>Reset all bean properties to their default state.  This method is
+     * called before the properties are repopulated by the controller.</p>
+     *
+     * <p>The default implementation attempts to forward to the HTTP
+     * version of this method.</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
@@ -209,17 +216,26 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Reset all bean properties to their default state.  This method is
-     * called before the properties are repopulated by the controller servlet.
-     * <p>
-     * The default implementation does nothing.  Subclasses should override
-     * this method to reset all bean properties to default values.
-     * </p>
-     * <p>
-     * This method is <strong>not</strong> the appropriate place to initialize form values
-     * for an "update" type page (this should be done in a setup Action).  You mainly
-     * need to worry about setting checkbox values to false; most of the time you
-     * can leave this method unimplemented.
+     * <p>Reset bean properties to their default state, as needed.  This method is
+     * called before the properties are repopulated by the controller.</p>
+     *
+     * <p>The default implementation does nothing. In practice, the only properties
+     * that need to be reset are those which represent checkboxes on a session-scoped
+     * form. Otherwise, properties can be given initial values where the field is
+     * declared. </p>
+     *
+     * <p>If the form is stored in session-scope so that values can be collected
+     * over multiple requests (a "wizard"), you must be very careful of which
+     * properties, if any, are reset. As mentioned, session-scope checkboxes
+     * must be reset to false for any page where this property is set. This is
+     * because the client does not submit a checkbox value when it is clear (false).
+     * If a session-scoped checkbox is not proactively reset, it can never be set
+     * to false.</p>
+     *
+     * <p>This method is <strong>not</strong> the appropriate place to initialize
+     * form value for an "update" type page (this should be done in a setup Action).
+     * You mainly need to worry about setting checkbox values to false; most of the
+     * time you can leave this method unimplemented.
      * </p>
      *
      * @param mapping The mapping used to select this instance
@@ -233,14 +249,14 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Validate the properties that have been set for this non-HTTP request,
+     * <p>Validate the properties that have been set for this non-HTTP request,
      * and return an <code>ActionErrors</code> object that encapsulates any
-     * validation errors that have been found.  If no errors are found, return
+     * validation errors that have been found. If no errors are found, return
      * <code>null</code> or an <code>ActionErrors</code> object with no
-     * recorded error messages.
-     * <p>
-     * The default implementation attempts to forward to the HTTP version of
-     * this method.
+     * recorded error messages.</p>
+     *
+     * <p>The default implementation attempts to forward to the HTTP version of
+     * this method.</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
@@ -258,15 +274,17 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * Validate the properties that have been set for this HTTP request,
+     * <p>Validate the properties that have been set for this HTTP request,
      * and return an <code>ActionErrors</code> object that encapsulates any
-     * validation errors that have been found.  If no errors are found,
+     * validation errors that have been found. If no errors are found,
      * return <code>null</code> or an <code>ActionErrors</code> object with
-     * no recorded error messages.
-     * <p>
-     * The default ipmlementation performs no validation and returns
-     * <code>null</code>.  Subclasses must override this method to provide
-     * any validation they wish to perform.
+     * no recorded error messages.</p>
+     *
+     * <p>The default implementation performs no validation and returns
+     * <code>null</code>. Subclasses must override this method to provide
+     * any validation they wish to perform.</p>
+     *
+     * @see DynaActionForm
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
