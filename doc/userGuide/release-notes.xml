@@ -547,6 +547,7 @@
         <strong>Documentation Application Changes</strong> [
         <code>struts-documentation.war</code>]:</p>
         <ul>
+            <li>2004-07-11 - Add links to development releases.</li>
             <li>2004-07-07 - Rename "status.xml" to "roadmap.xml" to avoid confusion with STATUS.txt file.</li>
             <li>2004-07-07 - Extend prior draft of bylaws page with additional material from Jakarta site and link to main menu.</li>
         </ul>
