@@ -1,4 +1,4 @@
-@echo on
+@echo off
 rem This is an example "build-all-clean.bat" file, used to build struts from 
 rem a clean commons. 
 rem What is needed is a good top level commons build.xml for ant/maven.
@@ -24,42 +24,47 @@ rem                    anymore. You'll need to copy the cactus.jar into the
 rem                    maven repository directory. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.3 2002/10/27 04:02:00 rleland Exp $
+rem $Id: build-all-clean.bat.sample,v 1.4 2002/12/17 17:10:31 rleland Exp $
 
 cd ..
 
-rem 
+rem goto manualbuild
+
 rm -rf */*/dist
 rm -rf */*/target
 rm -rf */*/build
 rm -rf jakarta-struts-current/dist
 rm -rf jakarta-struts-current/target
 
+:manualbuild
+
+SET CLEAN=clean
+
 cd jakarta-commons
 
 cd logging
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\collections
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\beanutils
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\lang
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\pool
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\dbcp
-call ant clean dist
+call maven
 
 cd ..\digester
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\validator
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\fileupload
 call maven
@@ -70,9 +75,9 @@ cd resources
 call maven
 
 cd ..\services
-call ant clean dist
+call ant %CLEAN% dist
 
 cd ..\..\jakarta-struts-current
-call ant clean dist
+call ant %CLEAN% dist
 
 pause
