@@ -48,6 +48,30 @@
       very useful during development.</li>
   </ul>
 
+  <p>The following major new features have been added to the
+  <em>struts-bean</em> custom tag library (package
+  <code>org.apache.struts.taglib.bean</code>):</p>
+  <ul>
+  <li>A new custom tag, <code>&lt;struts-bean:page&gt;</code>, is available
+      to expose key items from the page context associated with the current
+      page as scripting variables, and as page-scope beans.  For example,
+      you can use the following sequence to render the server information
+      string returned by our servlet context:
+      <pre>
+      &lt;struts-bean:page id="app" property="application"/&gt;
+      &lt;struts-bean:write name="app" property="serverInfo"/&gt;
+      </pre></li>
+  <li>A new custom tag, <code>&lt;struts-bean:struts&gt;</code>, is available
+      to expose internal Struts configuration objects (form bean, forward,
+      and mapping definitions) as scripting variables and page-scope beans.
+      For example, you can use the following sequence to render the actual
+      context-relative path of an <code>ActionForward</code> object:
+      <pre>
+      &lt;struts-bean:struts id="link" forward="success"/&gt;
+      &lt;struts-bean:write name="link" property="path"/&gt;
+      </pre></li>
+  </ul>
+
   </section>
 
 

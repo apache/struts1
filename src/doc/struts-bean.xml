@@ -272,6 +272,50 @@
 
   <tag>
 
+    <name>page</name>
+    <summary>
+    Expose a specified item from the page context as a bean.
+    </summary>
+    <tagclass>org.apache.struts.taglib.bean.PageTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.PageTei</teiclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieve the value of the specified item from the page context
+    for this page, and define it as a scripting variable, and a page scope
+    attribute accessible to the remainder of the current page.</p>
+
+    <p>If a problem occurs while retrieving the specified configuration
+    object, a request time exception will be thrown.</p>
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the scripting variable (and associated
+      page scope attribute) that will be made available with the value of
+      the specified page context property.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Name of the property from our page context to be retrieved and
+      exposed.  Must be one of <code>application</code>, <code>config</code>,
+      <code>request</code>, <code>response</code>, or <code>session</code>.
+      </p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
     <name>parameter</name>
     <summary>
     Define a scripting variable based on the value(s) of the specified
@@ -377,6 +421,71 @@
       <info>
       <p>Context-relative name (starting with a '/') of the web application
       resource to be loaded and made available.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
+    <name>struts</name>
+    <summary>
+    Expose a named Struts internal configuration object as a bean.
+    </summary>
+    <tagclass>org.apache.struts.taglib.bean.StrutsTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.StrutsTei</teiclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieve the value of the specified Struts internal configuration
+    object, and define it as a scripting variable and as a page scope
+    attribute accessible to the remainder of the current page.  You must
+    specify exactly one of the <code>formBean</code>, <code>forward</code>,
+    and <code>mapping</code> attributes to select the configuration object
+    to be exposed.</p>
+
+    <p>If a problem occurs while retrieving the specified configuration
+    object, a request time exception will be thrown.</p>
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>Specifies the name of the scripting variable (and associated
+      page scope attribute) that will be made available with the value of
+      the specified Struts internal configuration object.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>formBean</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the name of the Struts <code>ActionFormBean</code>
+      definition object to be exposed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>forward</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the name of the global Struts <code>ActionForward</code>
+      definition object to be exposed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>mapping</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the matching path of the Struts <code>ActionMapping</code>
+      definition object to be exposed.</p>
       </info>
     </attribute>
 
