@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.4 2003/02/05 00:51:40 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/05 00:51:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.5 2003/07/16 04:47:05 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/16 04:47:05 $
  *
  * ====================================================================
  *
@@ -69,11 +69,12 @@ import org.apache.commons.logging.LogFactory;
  * A factory interface for creating {@link ModuleConfig}s.
  *
  * @author Robert Leland
- * @version $Revision: 1.4 $ $Date: 2003/02/05 00:51:40 $ 
+ * @version $Revision: 1.5 $ $Date: 2003/07/16 04:47:05 $ 
  *
  * @see ModuleConfig
  */
 public abstract class ModuleConfigFactory {
+    
     /**
      * Create and return a newly instansiated {@link ModuleConfig}.
      * This method must be implemented by concrete subclasses.
@@ -88,7 +89,7 @@ public abstract class ModuleConfigFactory {
      * The fully qualified class name that is used for
      * <code>ModuleConfigFactory</code> instances.
      * @return class name that is used for
-     *   <code>ModuleConfigFactory</code> instances
+     * <code>ModuleConfigFactory</code> instances
      */
     public static String getFactoryClass() {
         return (ModuleConfigFactory.factoryClass);
@@ -98,7 +99,7 @@ public abstract class ModuleConfigFactory {
      * Set the fully qualified class name that is used for
      * <code>ModuleConfigFactory</code> instances.
      * @param factoryClass name that is used for
-     *   <code>ModuleConfigFactory</code> instances
+     * <code>ModuleConfigFactory</code> instances
      */
     public static void setFactoryClass(String factoryClass) {
         ModuleConfigFactory.factoryClass = factoryClass;
@@ -116,21 +117,24 @@ public abstract class ModuleConfigFactory {
      */
     public static ModuleConfigFactory createFactory() {
 
-        // Construct a new instance of the specified factory class
+        ModuleConfigFactory factory = null;
+
         try {
             if (clazz == null) {
                 clazz = RequestUtils.applicationClass(factoryClass);
             }
-            
-            ModuleConfigFactory factory =
-                (ModuleConfigFactory) clazz.newInstance();
-            
-            return (factory);
-            
-        } catch (Throwable t) {
-            LOG.error("ModuleConfigFactory.createFactory", t);
-            return (null);
+
+            factory = (ModuleConfigFactory) clazz.newInstance();
+
+        } catch (ClassNotFoundException e) {
+            LOG.error("ModuleConfigFactory.createFactory()", e);
+        } catch (InstantiationException e) {
+            LOG.error("ModuleConfigFactory.createFactory()", e);
+        } catch (IllegalAccessException e) {
+            LOG.error("ModuleConfigFactory.createFactory()", e);
         }
+
+        return factory;
 
     }
 
@@ -144,7 +148,7 @@ public abstract class ModuleConfigFactory {
     /**
      * Commons Logging instance.
      */
-    private static Log LOG = LogFactory.getLog(ModuleConfigFactory.class);
+    private static final Log LOG = LogFactory.getLog(ModuleConfigFactory.class);
 
 
     /**
