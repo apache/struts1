@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.84 2003/02/08 22:12:09 craigmcc Exp $
- * $Revision: 1.84 $
- * $Date: 2003/02/08 22:12:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.85 2003/02/08 23:31:30 craigmcc Exp $
+ * $Revision: 1.85 $
+ * $Date: 2003/02/08 23:31:30 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.84 $ $Date: 2003/02/08 22:12:09 $
+ * @version $Revision: 1.85 $ $Date: 2003/02/08 23:31:30 $
  */
 
 public class RequestUtils {
@@ -1450,8 +1450,9 @@ public class RequestUtils {
 
     }
 
+
     /**
-     * Return the context-relative URL that corresponds to the specified
+     * <p>Return the context-relative URL that corresponds to the specified
      * <code>page</code> attribute value, calculated based on the
      * <code>pagePattern</code> property of the current module's
      * {@link ModuleConfig}.

@@ -101,9 +101,8 @@ public class ExceptionHandler {
         // or from the form input
         if (ae.getPath() != null) {
             forward = new ActionForward(ae.getPath());
-            forward.setContextRelative(true);
         } else {
-        forward = mapping.getInputForward();
+            forward = mapping.getInputForward();
         }
 
         // Figure out the error

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.5 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.6 2003/02/08 23:31:29 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/08 23:31:29 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.6 $ $Date: 2003/02/08 23:31:29 $
  * @since Struts 1.1
  */
 
@@ -147,7 +147,7 @@ public class ExceptionConfig implements Serializable {
 
 
     /**
-     * The context-relative path of the resource to forward to if this
+     * The module-relative path of the resource to forward to if this
      * exception occurs during an <code>Action</code>.
      */
     protected String path = null;
