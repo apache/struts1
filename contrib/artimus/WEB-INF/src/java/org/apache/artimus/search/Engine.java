@@ -5,23 +5,23 @@ import java.io.IOException;
 
 import java.util.Collection;
 
-import com.lucene.analysis.Analyzer;
-import com.lucene.analysis.StopAnalyzer;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.StopAnalyzer;
 
-import com.lucene.document.Document;
-import com.lucene.document.Field;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
 
-import com.lucene.index.IndexReader;
-import com.lucene.index.IndexWriter;
-import com.lucene.index.Term;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.Term;
 
-import com.lucene.queryParser.QueryParser;
-import com.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.queryParser.ParseException;
 
-import com.lucene.search.Hits;
-import com.lucene.search.IndexSearcher;
-import com.lucene.search.Query;
-import com.lucene.search.Searcher;
+import org.apache.lucene.search.Hits;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.Searcher;
 
 import org.apache.scaffold.model.ModelException;
 import org.apache.scaffold.model.ModelParameterException;
@@ -33,8 +33,8 @@ import org.apache.scaffold.search.LuceneUtils;
  * Search engine methods for Articles application.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
- */
+ * @version $Revision: 1.2 $ $Date: 2002/01/01 13:46:17 $
+**/
 public final class Engine {
 
     /**
@@ -224,4 +224,4 @@ public final class Engine {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/

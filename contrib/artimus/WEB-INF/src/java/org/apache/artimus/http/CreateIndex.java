@@ -18,9 +18,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 
-import com.lucene.document.Document;
-import com.lucene.document.Field;
-import com.lucene.index.IndexWriter;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexWriter;
 
 import org.apache.artimus.article.http.Form;
 import org.apache.artimus.search.Engine;
@@ -30,8 +30,8 @@ import org.apache.artimus.article.Access;
 /**
  * Create search engine indexes used by application.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
- */
+ * @version $Revision: 1.2 $ $Date: 2002/01/01 13:46:07 $
+**/
 public final class CreateIndex extends Action {
 
     // --------------------------------------------------------- Instances Variables
@@ -100,9 +100,9 @@ public final class CreateIndex extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.1 2001/11/10 12:04:13 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2001/11/10 12:04:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.2 2002/01/01 13:46:07 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/01 13:46:07 $
  *
  * ====================================================================
  *
@@ -158,5 +158,5 @@ public final class CreateIndex extends Action {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/
 
