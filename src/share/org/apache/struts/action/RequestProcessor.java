@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.23 2003/01/28 19:30:24 craigmcc Exp $
- * $Revision: 1.23 $
- * $Date: 2003/01/28 19:30:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.24 2003/01/30 17:58:13 craigmcc Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/01/30 17:58:13 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.23 $ $Date: 2003/01/28 19:30:24 $
+ * @version $Revision: 1.24 $ $Date: 2003/01/30 17:58:13 $
  * @since Struts 1.1
  */
 
@@ -221,9 +221,9 @@ public class RequestProcessor {
         if (path == null) {
             return;
         }
-        if (log.isInfoEnabled()) {
-            log.info("Processing a '" + request.getMethod() +
-                     "' for path '" + path + "'");
+        if (log.isDebugEnabled()) {
+            log.debug("Processing a '" + request.getMethod() +
+                      "' for path '" + path + "'");
         }
 
         // Select a Locale for the current user if requested
