@@ -19,34 +19,34 @@
   <form-beans>
 
     <!-- Registration form bean -->
-    <form-bean      name="registrationForm"
+    <form-bean      name="RegistrationForm"
                     type="org.apache.struts.webapp.example.RegistrationForm"/>
 
   </form-beans>
 
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
-    <forward   name="registration"         path="/registration.jsp"/>
+    <forward   name="Registration"         path="/Registration.jsp"/>
   </global-forwards>
 
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
 
-    <!-- Edit user registration -->
-    <action    path="/editRegistration"
-               type="org.apache.struts.webapp.example.EditRegistrationAction"
-          attribute="registrationForm"
+    <!-- Matches all edit actions (in this case, only user regstration) -->
+    <action    path="/edit*"
+               type="org.apache.struts.webapp.example.Edit{1}Action"
+          attribute="{1}Form"
               scope="request"
            validate="false">
-      <forward name="success"              path="/registration.jsp"/>
+      <forward name="success"              path="/{1}.jsp"/>
     </action>
 
-    <!-- Save user registration -->
-    <action    path="/saveRegistration"
-               type="org.apache.struts.webapp.example.SaveRegistrationAction"
-               name="registrationForm"
+    <!-- Matches all save actions (in this case, only user registration) -->
+    <action    path="/save*"
+               type="org.apache.struts.webapp.example.Save{1}Action"
+               name="{1}Form"
               scope="request"
-              input="registration"/>
+              input="{1}"/>
 
   </action-mappings>
 

@@ -7,7 +7,7 @@
 <!--
     Validation Rules for the Struts Example Web Application
 
-    $Id: validation.xml,v 1.9 2003/09/22 01:50:01 dgraham Exp $
+    $Id: validation.xml,v 1.10 2003/10/25 01:37:12 mrdon Exp $
 -->
 
 <form-validation>
@@ -55,7 +55,7 @@
         </form>
 
 
-        <form name="registrationForm">
+        <form name="RegistrationForm">
 
             <field property="fromAddress"
                     depends="required,email">

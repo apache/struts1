@@ -3,18 +3,18 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
-<logic:equal name="registrationForm" property="action"
+<logic:equal name="RegistrationForm" property="action"
             scope="request" value="Edit">
   <app:checkLogon/>
 </logic:equal>
 
 <html:html>
 <head>
-<logic:equal name="registrationForm" property="action"
+<logic:equal name="RegistrationForm" property="action"
             scope="request" value="Create">
   <title><bean:message key="registration.title.create"/></title>
 </logic:equal>
-<logic:equal name="registrationForm" property="action"
+<logic:equal name="RegistrationForm" property="action"
             scope="request" value="Edit">
   <title><bean:message key="registration.title.edit"/></title>
 </logic:equal>
@@ -34,14 +34,14 @@
       <bean:message key="prompt.username"/>:
     </th>
     <td align="left">
-      <logic:equal name="registrationForm" property="action"
+      <logic:equal name="RegistrationForm" property="action"
                   scope="request" value="Create">
         <html:text property="username" size="16" maxlength="16"/>
       </logic:equal>
-      <logic:equal name="registrationForm" property="action"
+      <logic:equal name="RegistrationForm" property="action"
                   scope="request" value="Edit">
 <%--
-        <bean:write name="registrationForm" property="username"
+        <bean:write name="RegistrationForm" property="username"
                    scope="request" filter="true"/>
 --%>
 	<html:hidden property="username" write="true"/>
@@ -114,7 +114,7 @@
 </table>
 </html:form>
 
-<logic:equal name="registrationForm" property="action"
+<logic:equal name="RegistrationForm" property="action"
             scope="request" value="Edit">
 
 <div align="center">
@@ -169,14 +169,14 @@
 </table>
 
 <html:link page="/editSubscription.do?action=Create" paramId="username"
- paramName="registrationForm" paramProperty="username">
+ paramName="RegistrationForm" paramProperty="username">
   <bean:message key="registration.addSubscription"/>
 </html:link>
                      
 
 </logic:equal>
 
-<html:javascript formName="registrationForm"
+<html:javascript formName="RegistrationForm"
         dynamicJavascript="true"
          staticJavascript="false"/>
 <script language="Javascript1.1" src="staticJavascript.jsp"></script>

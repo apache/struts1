@@ -16,9 +16,9 @@
   <!-- Edit user registration -->
   <action    path="/editRegistration"
       actionClass="org.apache.struts.webapp.example.EditRegistrationAction"
-    formAttribute="registrationForm"
+    formAttribute="RegistrationForm"
         formClass="org.apache.struts.webapp.example.RegistrationForm">
-    <forward name="success"    path="/registration.jsp"/>
+    <forward name="success"    path="/Registration.jsp"/>
   </action>
 
   <!-- Edit mail subscription -->
@@ -48,9 +48,9 @@
   <!-- Save user registration -->
   <action    path="/saveRegistration"
       actionClass="org.apache.struts.webapp.example.SaveRegistrationAction"
-    formAttribute="registrationForm"
+    formAttribute="RegistrationForm"
         formClass="org.apache.struts.webapp.example.RegistrationForm"
-        inputForm="/registration.jsp">
+        inputForm="/Registration.jsp">
     <forward name="success"    path="/mainMenu.jsp"/>
   </action>
 

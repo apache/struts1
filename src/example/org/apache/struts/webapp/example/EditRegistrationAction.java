@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.14 2003/09/04 16:03:42 husted Exp $
- * $Revision: 1.14 $
- * $Date: 2003/09/04 16:03:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.15 2003/10/25 01:37:11 mrdon Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/10/25 01:37:11 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.action.ActionMapping;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/09/04 16:03:42 $
+ * @version $Revision: 1.15 $ $Date: 2003/10/25 01:37:11 $
  */
 public final class EditRegistrationAction extends Action {
 
@@ -145,7 +145,7 @@ public final class EditRegistrationAction extends Action {
          * Since this Action has a RegistrationForm attribute, struts has
          * already created the form.  The check below is just to guard against
          * a null pointer exception in case someone inadvertently removes the 
-         * attribute="registrationForm" from struts-config-registration.xml
+         * attribute="RegistrationForm" from struts-config-registration.xml
          */
         if (form == null) {
             if (log.isTraceEnabled()) {
