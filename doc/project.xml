@@ -86,12 +86,16 @@
 
     <menu name="Development">
         <item
-            name="Roadmap"
-            href="status.html"
+            name="Bylaws"
+            href="bylaws.html"
             />
         <item
             name="Release Guidelines"
             href="releases.html"
+            />
+        <item
+            name="Roadmap"
+            href="status.html"
             />
         <item
             name="CVS Repository"

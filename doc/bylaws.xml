@@ -7,63 +7,296 @@
 
 <body>
 
-  <section name="Project Management Committee Bylaws">
-<p>
-Struts is a Project of the <a href="http://apache.org/foundation">
-Apache Software Foundation</a> (ASF), formed by a resolution of the
-<a href="http://apache.org/foundation/board/">ASF Board of
-Directors</a>. As an ASF Project, Struts is subject to the
-<a href="http://apache.org/foundation/bylaws.html">ASF Bylaws</a>
-and the direction of the ASF Board.
-</p>
+<chapter name="Apache Struts Project Bylaws">
 
-<p>
-The Project is administered by the Vice President of Struts.
-The Vice President is appointed by the ASF Board. The Vice
-President is assisted by the Project Management Committee (PMC)
-and also serves as the PMC chair. The PMC may nominate new
-members. Nominees may then be approved with a 3/4 majority vote
-of the PMC. Membership can be revoked by a unanimous vote of all
-the active PMC members other than the member in question. The
-list of active PMC members can be found on our
-<a href="volunteers.html">Volunteers page</a>.
-</p>
+    <section name="Charter">
 
-<p>
-<b>Duties</b><br />The PMC is responsible for the day-to-day
-management of the Struts Project. The PMC oversees all changes
-made to the codebase. The PMC must ensure that all code under a
-Apache Struts CVS is the lawful property of the Foundation and that it
-may be distributed under the <a href="http://apache.org/licenses/">
-Apache Software License</a>. All releases of a Struts subproject
-must be sanctioned by the Project Management Committee.
-</p>
+    <p>
+    Struts is a Project of the <a href="http://apache.org/foundation">
+    Apache Software Foundation</a> (ASF), formed by a resolution of the
+    <a href="http://apache.org/foundation/board/">ASF Board of
+    Directors</a>. As an ASF Project, Struts is subject to the
+    <a href="http://apache.org/foundation/bylaws.html">ASF Bylaws</a>
+    and the direction of the ASF Board.
+    </p>
 
-<p>
-<b>Subprojects</b><br />
-Subprojects are the Project's unit of release. Each subproject should
-represent an implementation of the Struts core or a releated component.
-Each subproject should focus on creating, maintaining, and releasing a
-single softare product or "deliverable".
-</p>
+    </section>
 
-<p>
-All PMC Members have voting rights in all subprojects. Members not familiar
-with a subproject codebase may abstain from any given vote. All Committers
-have write access to all subprojects. Subprojects are units of release, not
-units of work.
-</p>
+    <section name="Roles &amp; Responsibilities">
 
-<p>
-<b>Creation of subprojects</b><br /> PMC members may propose the creation
-of new subprojects. Proposals are to contain the scope of the project,
-identify the initial source from which the project is to be populated,
-identify the mailing list(s) if any which are to be created, and
-identify the initial set of committers. Creation of a new subproject
-requires approval by a 3/4 majority vote of the PMC.
-</p>
+    <p>
+    The roles and responsibilities that people can assume in the project
+    are based on merit. Everybody can help no matter what their role.
+    Those who have been longterm or valuable contributors to the project
+    can earn the right to commit directly to the source repository and to
+    cast binding votes during the decision-making process.
+    </p>
 
-</section>
+    <p>
+    <strong>Users.</strong>
+    Users are the people who use the products of the Project. People in
+    this role aren't contributing code, but they are using the products,
+    reporting bugs, making feature requests, and such. This is by far
+    the most important category of people as, without users, there is no
+    reason for the Project. When a user starts to contribute code or
+    documentation patches, they become a Contributor.
+    </p>
 
+    <p>
+    <strong>Contributors.</strong>
+    Contributors are the people who write code or documentation patches or
+    contribute positively to the project in other ways. When a volunteer's
+    patch is applied, the contribution is recognized in the CVS log.
+    </p>
+
+    <p>
+    <strong>Committers.</strong>
+    Contributors who give frequent and valuable contributions to a
+    subproject of the Project can have their status promoted to that of
+    a &quot;<em>Committer</em>&quot; for that subproject. A Committer
+    has write access to the source code repository. Committer status is
+    granted by the Project Management Committee.
+    </p>
+
+    <p>
+    <strong>Project Management Committee (PMC).</strong>
+    Committers who frequently participate with valuable contributions may
+    have their status promoted to that of a &quot;<em>Project Management
+    Committee Member</em>&quot;. The PMC is responsible for the
+    day-to-day management of the Project.
+    </p>
+
+    </section>
+
+    <section name="Management">
+
+    <p>
+    The Vice President is appointed by the ASF Board. The Vice
+    President is assisted by the Project Management Committee (PMC)
+    and also serves as the PMC chair. The PMC may nominate new
+    members. Nominees may then be approved with a 3/4 majority vote
+    of the PMC. Membership can be revoked by a unanimous vote of all
+    the active PMC members other than the member in question. The
+    list of active PMC members can be found on our
+    <a href="volunteers.html">Volunteers page</a>.
+    </p>
+
+    </section>
+
+    <section name="PMC Duties">
+
+    <p>
+    The PMC is responsible for the day-to-day
+    management of the Struts Project. The PMC oversees all changes
+    made to the codebase. The PMC must ensure that all code under a
+    Apache Struts CVS is the lawful property of the Foundation and
+    may be distributed under the <a href="http://apache.org/licenses/">
+    Apache Software License</a>. All releases of a Struts subproject
+    must be sanctioned by the Project Management Committee.
+    </p>
+
+    </section>
+
+    <section name="Subprojects">
+
+    <p>
+    Subprojects are the Project's unit of release. Each subproject should
+    represent an implementation of the Struts core or a related component.
+    Each subproject should focus on creating, maintaining, and releasing a
+    single software product or "deliverable".
+    </p>
+
+    <p>
+    All PMC Members have voting rights in all subprojects. Members not familiar
+    with a subproject codebase may abstain from any given vote. All Committers
+    have write access to all subprojects. Subprojects are units of release, not
+    units of work.
+    </p>
+
+    <p>
+    PMC members may propose the creation
+    of new subprojects. Proposals are to contain the scope of the project,
+    identify the initial source from which the project is to be populated,
+    identify the mailing list(s), if any. which are to be created, and
+    identify the initial set of committers. Creation of a new subproject
+    requires approval by a 3/4 majority vote of the PMC.
+    </p>
+
+    </section>
+
+    <section name="Decision Making">
+
+    <p>
+    All <a href="./roles.html">Volunteers</a> are encouraged
+    to participate in decisions, but the decision itself is made by
+    the <a href="./roles.html">PMC Members</a> of the Project.
+    The Project is a &quot;<em>Minimum Threshod Meritocracy</em>&quot;.
+    </p>
+
+    </section>
+
+    <section name="Voting">
+
+    <p>
+    Any subscriber to the list may vote on any issue or action item.
+    Votes from Contributors and Committers are especially welcome.
+    However, the only binding votes are those cast by a PMC Member.
+    </p>
+
+    <p>
+    The act of voting carries certain obligations. Voters are not only
+    stating their opinion, they are also agreeing to help do the work.
+    </p>
+
+    <p>Each vote can be made in one of three flavors:</p>
+
+    <table>
+    <tr>
+    <td><strong>+1</strong></td>
+    <td>
+        &quot;Yes,&quot; &quot;Agree,&quot; or &quot;the action should be
+        performed.&quot; On some issues this is only binding if the voter
+        has tested the action on their own system(s).
+    </td>
+    </tr>
+
+    <tr>
+    <td><strong>+/-0</strong></td>
+    <td>
+        &quot;Abstain,&quot; &quot;no opinion&quot;. An abstention may
+        have detrimental effects if too many people abstain.
+    </td>
+    </tr>
+
+    <tr>
+    <td><strong>-1</strong></td>
+    <td>
+        &quot;No.&quot; On issues where consensus is required, this vote
+        counts as a <strong>veto</strong>. All vetos must contain an
+        explanation of why the veto is appropriate. Vetos with no
+        explanation are void. No veto can be overruled. If you disagree
+        with the veto, you should lobby the person who cast the veto.
+        Voters intending to veto an action item should make their opinions
+        known to the group immediately so that the problem can be remedied
+        as early as possible.
+    </td>
+    </tr>
+
+    </table>
+
+    <p>
+    An action requiring consensus approval must receive at least
+    <strong>3 binding +1</strong> votes and <strong>no binding
+    vetos</strong>. An action requiring majority approval must receive
+    at least <strong>3 binding +1</strong> votes and more
+    <strong>+1</strong> votes than <strong>-1</strong> votes. All other
+    action items are considered to have lazy approval until somebody
+    votes <strong>-1</strong>, after which point they are decided by
+    either consensus or majority vote, depending on the type of action
+    item.
+    </p>
+
+     </section>
+
+    <section name="Action Items">
+
+    <p>
+    All decisions revolve around &quot;<em>Action
+    Items.</em>&quot; Action Items consist of the following:
+    </p>
+
+        <ul>
+            <li>Long Term Plans</li>
+            <li>Short Term Plans</li>
+            <li>Product Changes</li>
+            <li>Showstoppers</li>
+            <li>Release Plan</li>
+            <li>Release Grade</li>
+        </ul>
+
+    </section>
+
+    <section name="Long Term Plans">
+
+    <p>
+    Long term plans are simply announcements that group members are
+    working on particular issues related to the Project. These are not
+    voted on, but Committers and PMC Members who do not agree with a
+    particular plan, or think that an alternative plan would be better,
+    are obligated to inform the group of their feelings.
+    </p>
+
+    </section>
+
+    <section name="Short Term Plan">
+
+    <p>
+    Short term plans are announcements that a volunteer is working on a
+    particular set of documentation or code files with the implication
+    that other volunteers should avoid them or try to coordinate their
+    changes.
+    </p>
+
+    </section>
+
+    <section name="Product Changes">
+
+    <p>
+    All product changes to the repository are subject to
+    lazy consensus.
+    </p>
+
+    </section>
+
+    <section name="Showstoppers">
+
+    <p>
+    Showstoppers are issues that require a fix be in place before the
+    next public release. They are listed in the status file in order to
+    focus special attention on these problems. An issue becomes a
+    showstopper when it is listed as such in the status file and remains
+    so by lazy consensus.
+    </p>
+
+    </section>
+
+    <section name="Release Plan">
+
+      <p>
+      A release plan may be used to keep all volunteers aware of when a
+      release is desired, who will be the release manager, when the
+      repository will be tagged to create a release, and other assorted
+      information to keep volunteers from tripping over each other. Lazy
+      majority decides each issue in a release plan.
+      </p>
+
+      </section>
+
+    <section name="Release Grade">
+
+    <p>
+    After a new release is built, it must be tested and classified before
+    being released to the general public. A release is automatically
+    assigned an "Alpha" status. The release grade may be changed to
+    "Beta" or "General Availability" by majority vote. Once a release is
+    classified by the PMC Members, it can be distributed to the general
+    public on behalf of the Foundation.
+    </p>
+
+    <p>
+    Once a release is tagged and built (or "rolled"), it should not be
+    rebuilt. If a problem is found, that release may be left at Alpha
+    or Beta status and the next release created.
+    </p>
+
+    </section>
+
+    <section>
+        <p class="right">
+        Next: <a href="releases.html">Release Guidelines</a>
+        </p>
+    </section>
+
+</chapter>
 </body>
 </document>
