@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.14 2003/07/31 00:25:39 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/07/31 00:25:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.15 2003/08/10 10:05:51 sraeburn Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/08/10 10:05:51 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.taglib.TagUtils;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/07/31 00:25:39 $
+ * @version $Revision: 1.15 $ $Date: 2003/08/10 10:05:51 $
  */
 public class RewriteTag extends LinkTag {
 
@@ -102,7 +102,7 @@ public class RewriteTag extends LinkTag {
 					forward,
 					href,
 					page,
-					null,
+					action,
 					params,
 					anchor,
 					false,
