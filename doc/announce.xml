@@ -11,6 +11,41 @@
 
 <section name="Announcements">
 
+    <h4 id="a20050331">31 March 2005 - New Struts PMC Chair</h4>
+    <p>
+        <a href="http://struts.apache.org/volunteers.html#martinc">Martin Cooper</a> has been appointed
+        <strong>Struts PMC Chair</strong> by the ASF Board at their <strong>February 2005</strong> meeting.
+    </p>
+    <p> 
+        <a href="http://struts.apache.org/volunteers.html#craigmcc">Craig McClanahan</a> tendered his 
+        resignation as the Chair of the Struts PMC to the ASF Board at their February 2005 meeting.
+        In Craig's words "I will continue to be active, but it's time for someone else to take the
+        administrative responsibilities.".
+    </p>
+    <p>
+        The Struts PMC nominated Martin Cooper as their preferred choice for the Struts PMC
+        Chair to the ASF Board which was approved unanimously.
+    </p>
+    <p>
+        Minutes of the ASF Board meeting should be available 
+        <a href="http://www.apache.org/foundation/board/calendar.html">here</a> in due course.
+    </p>
+    <hr/>
+
+    <h4 id="a20041212">12 Dec 2004 - Struts 1.2.6 (Beta)</h4>
+    <p>
+        The Struts team is pleased to announce the release of Struts 1.2.6
+        Beta. This release includes minor new functionality, and a number of
+        fixes for bugs which were reported against previous versions.
+    </p>
+    <p>
+        The binary, source and library distributions are available from the
+        <a href="http://struts.apache.org/download.cgi">Struts download page</a>.
+        The <a href="http://struts.apache.org/userGuide/release-notes.html">Release Notes</a>
+        are available on the Struts web site.
+    </p>
+    <hr/>
+
     <h4 id="a20040919">19 Sep 2004 - Struts 1.2.4 (General Availability)</h4>
     <p>
         The Struts team is pleased to announce the release of Struts 1.2.4 for
