@@ -1018,8 +1018,8 @@
                         <p>If you are using extension mapping for selecting the
                         controller servlet, this value should be equal to the
                         <code>path</code> attribute of the corresponding
-                        <code>&lt;action&gt;</code> element, plus the correct
-                        file extension suffix.</p>
+                        <code>&lt;action&gt;</code> element, optionally
+                        followed by the correct extension suffix.</p>
 
                         <p>If you are using path mapping to select the
                         controller servlet, this value should be exactly equal

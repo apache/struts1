@@ -33,7 +33,7 @@
 
 <html:errors/>
 
-<html:form action="/saveSubscription.do" focus="host">
+<html:form action="/saveSubscription" focus="host">
 <html:hidden property="action"/>
 <table border="0" width="100%">
 

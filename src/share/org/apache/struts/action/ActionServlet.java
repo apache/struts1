@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.58 2001/02/14 00:19:46 craigmcc Exp $
- * $Revision: 1.58 $
- * $Date: 2001/02/14 00:19:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.59 2001/02/20 05:20:07 craigmcc Exp $
+ * $Revision: 1.59 $
+ * $Date: 2001/02/20 05:20:07 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.58 $ $Date: 2001/02/14 00:19:46 $
+ * @version $Revision: 1.59 $ $Date: 2001/02/20 05:20:07 $
  */
 
 public class ActionServlet
@@ -369,6 +369,20 @@ public class ActionServlet
 
 
     /**
+     * The URL pattern to which we are mapped in our web application
+     * deployment descriptor.
+     */
+    protected String servletMapping = null;
+
+
+    /**
+     * The servlet name under which we are registered in our web application
+     * deployment descriptor.
+     */
+    protected String servletName = null;
+
+
+    /**
      * Are we using the new configuration file format?
      */
     protected boolean validate = true;
@@ -452,6 +466,7 @@ public class ActionServlet
         initUpload();
         initDataSources();
 	initOther();
+        initServlet();
 
     }
 
@@ -543,6 +558,26 @@ public class ActionServlet
     public void addMapping(ActionMapping mapping) {
 
 	mappings.addMapping(mapping);
+
+    }
+
+
+    /**
+     * Remember a servlet mapping from our web application deployment
+     * descriptor, if it is for this servlet.
+     *
+     * @param servletName The name of the servlet being mapped
+     * @param urlPattern The URL pattern to which this servlet is mapped
+     */
+    public void addServletMapping(String servletName, String urlPattern) {
+
+        if (debug >= 1)
+            log("Process servletName=" + servletName +
+                ", urlPattern=" + urlPattern);
+        if (servletName == null)
+            return;
+        if (servletName.equals(this.servletName))
+            this.servletMapping = urlPattern;
 
     }
 
@@ -1327,6 +1362,50 @@ public class ActionServlet
     }
     
     
+    /**
+     * Initialize the servlet mapping under which our controller servlet
+     * is being accessed.  This will be used in the <code>&html:form&gt;</code>
+     * tag to generate correct destination URLs for form submissions.
+     */
+    protected void initServlet() throws ServletException {
+
+        // Remember our servlet name
+        this.servletName = getServletConfig().getServletName();
+
+        // Prepare a Digester to scan the web application deployment descriptor
+        Digester digester = new Digester();
+        digester.push(this);
+        digester.setDebug(this.debug);
+        digester.setValidating(false);
+        digester.addCallMethod("web-app/servlet-mapping",
+                               "addServletMapping", 2);
+        digester.addCallParam("web-app/servlet-mapping/servlet-name", 0);
+        digester.addCallParam("web-app/servlet-mapping/url-pattern", 1);
+
+        // Process the web application deployment descriptor
+        InputStream input= null;
+        try {
+            input =
+                getServletContext().getResourceAsStream("/WEB-INF/web.xml");
+            digester.parse(input);
+        } catch (Throwable e) {
+            log(internal.getMessage("configWebXml"), e);
+        } finally {
+            if (input != null)
+                input = null;
+        }
+
+        // Record a servlet context attribute (if appropriate)
+        if (debug >= 1)
+            log("Mapping for servlet '" + servletName + "' = '" +
+                servletMapping + "'");
+        if (servletMapping != null)
+            getServletContext().setAttribute(Action.SERVLET_KEY,
+                                             servletMapping);
+
+    }
+
+
     /**
      * Initialize upload parameters and "bufferSize", "multipartClass",
      * "maxFileSize", "tempDir"

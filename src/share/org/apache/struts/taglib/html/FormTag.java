@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.4 2001/01/27 23:21:08 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/01/27 23:21:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.5 2001/02/20 05:20:09 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/20 05:20:09 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/01/27 23:21:08 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/20 05:20:09 $
  */
 
 public class FormTag extends TagSupport {
@@ -632,22 +632,39 @@ public class FormTag extends TagSupport {
 
 
     /**
-     * Return the form action converted into a server-relative URL.  The
-     * URL string is composed of the following pieces:
-     * <ul>
-     * <li>The context path of this web application.</li>
-     * <li>If the <code>action</code> property value does not start with
-     *     a slash, a slash is inserted.</li>
-     * <li>The <code>action</code> property value.</li>
+     * Return the form action converted into a server-relative URL.
      */
     protected String getActionMappingURL() {
 
         HttpServletRequest request =
             (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        if (!action.startsWith("/"))
-            value.append("/");
-        value.append(action);
+        
+        // Use our servlet mapping, if one is specified
+        String servletMapping = (String)
+            pageContext.getAttribute(Action.SERVLET_KEY,
+                                     PageContext.APPLICATION_SCOPE);
+        if (servletMapping != null) {
+            String actionMapping = getActionMappingName();
+            if (servletMapping.startsWith("*.")) {
+                value.append(actionMapping);
+                value.append(servletMapping.substring(1));
+            } else if (servletMapping.endsWith("/*")) {
+                value.append(servletMapping.substring
+                             (0, servletMapping.length() - 2));
+                value.append(actionMapping);
+            }
+        }
+
+        // Otherwise, assume extension mapping is in use and extension is
+        // already included in the action property
+        else {
+            if (!action.startsWith("/"))
+                value.append("/");
+            value.append(action);
+        }
+
+        // Return the completed value
         return (value.toString());
 
     }

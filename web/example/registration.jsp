@@ -24,7 +24,7 @@
 
 <html:errors/>
 
-<html:form action="/saveRegistration.do">
+<html:form action="/saveRegistration">
 <html:hidden property="action"/>
 <table border="0" width="100%">
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.16 2001/01/11 00:16:56 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2001/01/11 00:16:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.17 2001/02/20 05:20:07 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2001/02/20 05:20:07 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/01/11 00:16:56 $
+ * @version $Revision: 1.17 $ $Date: 2001/02/20 05:20:07 $
  */
 
 public class Action {
@@ -207,6 +207,16 @@ public class Action {
      */
     public static final String MULTIPART_KEY =
         "org.apache.struts.action.mapping.multipartclass";
+
+
+    /**
+     * The context attributes key under which we store the mapping defined
+     * for our controller serlet, which will be either a path-mapped pattern
+     * (<code>/action/*</code>) or an extension mapped pattern
+     * (<code>*.do</code>).
+     */
+    public static final String SERVLET_KEY =
+        "org.apache.struts.action.SERVLET_MAPPING";
 
 
     /**
