@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.1 2002/01/22 03:15:50 arron Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/22 03:15:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.2 2002/05/27 07:14:47 arron Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/05/27 07:14:47 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,27 +68,25 @@ import javax.servlet.jsp.tagext.*;
  * attribute optional, so that those who want to script can add it if they need
  * it otherwise we can maintain the nice lean tag markup.
  *
+ * @TODO - Look at deleting this class. Potentially a pointless existance now
+ *         that the super class is towing the line. Left alone because it's not
+ *         hurting anything as-is.
+ *         Note: When done, it requires pointing the tei reference in the
+ *               struts-nested.tld to org.apache.struts.taglib.logic.IterateTei
+ *
  * @author Arron Bates
  *
  * @since Struts 1.1
- * @version $Revision: 1.1 $ $Date: 2002/01/22 03:15:50 $
+ * @version $Revision: 1.2 $ $Date: 2002/05/27 07:14:47 $
  */
 
 public class NestedIterateTei extends IterateTei {
-
 
   /**
    * Return information about the scripting variables to be created.
    */
   public VariableInfo[] getVariableInfo(TagData data) {
-    
-    VariableInfo[] superValue = super.getVariableInfo(data);
-    
-    /* If id's not set, return zero length array */
-    if (data.getAttributeString("id") == null) {
-      return new VariableInfo[0];
-    } else {
-      return superValue;
-    }
+    /* It just lets the result through. */
+    return super.getVariableInfo(data);
   }
 }
