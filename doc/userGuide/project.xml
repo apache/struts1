@@ -44,7 +44,7 @@
 
     <menu name="Welcome">
         <item name="Home"                    href="../index.html"/>
-        <item name="News &amp; Status"       href="../news_2002.html"/>
+        <item name="News &amp; Status"       href="../news.html"/>
         <item name="Kickstart FAQ"           href="../kickstart.html"/> 
         <item name="Resources"               href="../resources/index.html"/>
         <item name="Who We Are"              href="../volunteers.html"/>
