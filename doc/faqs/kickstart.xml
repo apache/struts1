@@ -40,7 +40,8 @@ Here are answers to the usual getting-started questions. <b>For an in-depth, sea
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
     <li><a href="#xhmtl">Are the Struts tags XHTML compliant?</a></li>
     <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
-  </ul><ul>
+    <li><a href="#ide">Is there a particularly good IDE to use with Struts?</a></li>
+ </ul><ul>
     <li><a href="#digest">Is there a digest for the mailing list?</a></li>
     <li><a href="#newsgroup">Is there a Struts Newsgroup?</a></li>
     <li><a href="#mailbounce">Why didn't my posting show up on the user list?"</a></li>
@@ -292,6 +293,19 @@ In September 2002, McClanahan announced that a
 development and might be released sometime in the Q4 2002. The taglib depends
 on unreleased JSF features, and so an early release of the taglib must follow
 release of a later implementation of JSF.
+</p>
+</section>
+
+<section href="ide" name="Is there a particularly good IDE to use with Struts">
+<p>
+Struts should work well with any development environment that you would like to use, as well as with any programmers editor. 
+The members of the Struts development team each use their own tools, which ranges from emacs and Textpad to IntelliJ, with NetBeans and Eclipse ranging in between. 
+</p>
+<p>
+At this writing, in the free zone, NetBeans had the edge with JSP editing, but Eclipse has relatively more advanced refactoring features. 
+Eclipse is also a general-purpose IDE and can be used with non-Java projects.
+In the non-free zone, IntelliJ is highly regarded, but costs money. (Of course, if *you* cost money, good tools are often a good investment.)
+See the <a href="../faqs/index.html">Howto Guides</a> for more about configuring IDEs to work with Struts.
 </p>
 </section>
 

@@ -6,7 +6,7 @@
 </properties>
 <body>
 
-<section name="Struts FAQs and Howtos">
+<section name="Struts FAQs">
 
  <ul>
     <li><a href="kickstart.html">Kickstart FAQ</a> (read me first)</li>
@@ -14,10 +14,14 @@
     <li><a href="helping.html">How to Help FAQ</a> </li>
  </ul>
 
+</section>
+
+<section name="Howto Guides">
+
  <ul>
-    <li><a href="ssl.html">SSL Howto</a></li>
-    <li><a href="eclipse.html">Example development environment with Eclipse 2.0.1</a></li>
-    <li><a href="netbeans.html">Example development environment with Netbeans 3.4</a></li>
+    <li><a href="ssl.html">Using the SSL protocol</a></li>
+    <li><a href="eclipse.html">Installing the Eclipse IDE</a></li>
+    <li><a href="netbeans.html">Installing the Netbeans IDE</a></li>
  </ul>
 
 </section>
