@@ -75,6 +75,13 @@
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
+        jsp.jar                       (optional).  the path to the JSP API
+                                      classes to compile against, if you are
+                                      using JSP 2.0 where these classes have
+                                      been separated from servlet.jar.  If you
+                                      are using JSP 1.1 or 1.2, leave this
+                                      property unset.
+
         servlet.jar                   (required).  The path to the Servlet API
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
@@ -195,6 +202,7 @@
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${jakarta-oro.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
+      <pathelement location="${jsp.jar}"/>
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${xerces.jar}"/>
     </path>
@@ -319,7 +327,7 @@
         <mkdir dir="${build.home}/documentation/api"/>
         <javadoc sourcepath="${src.share.dir}"
             destdir="${build.home}/documentation/api"
-            classpath="${servlet.jar}:${jdbc20ext.jar}"
+            classpath="${servlet.jar}:${jsp.jar}:${jdbc20ext.jar}"
             packagenames="org.apache.struts.*"
             author="true"
             private="true"

@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.31 2003/02/28 06:42:20 martinc Exp $
+# $Id: build.properties.sample,v 1.32 2003/03/06 04:20:49 craigmcc Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -77,6 +77,11 @@ jakarta-oro.jar=${apache.home}/jakarta-oro-2.0.6/jakarta-oro-2.0.6.jar
 # This file can be obtained from:
 # http://java.sun.com/products/jdbc/download.html
 jdbc20ext.jar=../../../Java/Programs/sun/jdbc2_0-stdext.jar
+
+# The JAR file containing the JSP API classes to compile against if you are
+# using JSP 2.0 or later (where these classes are separated from servlet.jar).
+# If you are using JSP 1.1 or 1.2, leave this property unset
+#jsp.jar=${apache.home}/jakarta-servletapi/lib/jsp.jar
 
 # The JAR file containing the Servlet API classes to compile against (either
 # version 2.2 or 2.3)
