@@ -54,6 +54,54 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
 <p align="center"><a href="../faqs/helping.html#release">So when is the next release coming out?</a></p>
 </section>
 
+<section name="Community Support" href="support">
+
+<p>
+Download counts for Struts binary distributions in October 2002:
+</p>
+
+<pre>
+  1.0.2:          15,780
+  1.1-b1:            763
+  1.1-b2:          9,695
+  Nightlies:       2,961
+                  ------
+  Total:          29,199
+                  ======
+</pre>
+
+<p>
+or around 940 per day. That's second highest among Jakarta projects, 
+the highest being Tomcat with 80k-100k downloads per month.
+</p>
+
+<p>
+These counts reflect only the main Apache website -- they don't count
+any downloads from Apache mirrors, or from other sites that support
+download of the Struts binaries, either by themselves or incorporated in
+other tools. (The Apache Software License is wonderful for developers,
+but terrible for bean counters ...)
+</p>
+
+<p>
+As of November 14, the subscription counts to the Struts user mailing 
+lists (counting digest subscribers) is:
+</p>
+
+<pre>
+  STRUTS-USER:     2,399
+</pre>
+
+<p>
+which only just trails Tomcat:  
+</p>
+
+<pre>
+  TOMCAT-USER:     2,454
+</pre>
+
+</section>
+
 <section name="Recent News" href="news">
 
 <!--
@@ -63,8 +111,51 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
 -->
 
 
+<h3><a name="20021115"></a>15 Nov 2002 - [FRIDAY] Top 10 things likely to be overheard from a Klingon Programmer</h3>
+<p>
+From: Andrew Hill
+</p>
+<p>
+10. Specifications are for the weak and timid!
+</p>
+<p>
+9. You question the worthiness of my code? I should kill you where you
+stand!
+</p>
+<p>
+8. Indentation?! - I will show you how to indent when I indent your skull!
+</p>
+<p>
+7. What is this talk of 'release'? Klingons do not make software 'releases'.
+Our software 'escapes' leaving a bloody trail of designers and quality
+assurance people in its wake.
+</p>
+<p>
+6. Klingon function calls do not have 'parameters' - they have 'arguments' -
+and they ALWAYS WIN THEM.
+</p>
+<p>
+5. Debugging? Klingons do not debug. Our software does not coddle the weak.
+</p>
+<p>
+4. A TRUE Klingon Warrior does not comment on his code!
+Klingon software does NOT have BUGS. It has FEATURES, and those features are
+too sophisticated for a Romulan pig like you to understand.
+</p>
+<p>
+3. You cannot truly appreciate Dilbert unless you've read it in the original
+Klingon.
+</p>
+<p>
+2. Our users will know fear and cower before our software!
+</p>
+<p>
+1. Ship it! Ship it and let them flee like the dogs they are!
+</p>
+<hr size="1" noshade=""/>
 
-<h3><a name="20021109.3"></a>Sample chapter from "Struts Kick Start" available</h3>
+
+<h3><a name="20021109.3"></a>09 Nov 2002 - Sample chapter from "Struts Kick Start" available</h3>
 <p>
 Chapter 17 (DynaForms and the Validator) from the upcoming SAMS title
 "Struts Kick Start" is now available at 
@@ -73,7 +164,7 @@ Chapter 17 (DynaForms and the Validator) from the upcoming SAMS title
 <hr size="1" noshade=""/>
 
 
-<h3><a name="">20021109.2</a>Management-oriented Powerpoint Presentation for Struts</h3>
+<h3><a name="20021109.2"></a>09 Nov 2002 - Management-oriented Powerpoint Presentation for Struts</h3>
 <p>
 James Turner and Kevin Bedell have collaborated on a Management Powerpoint
 presentation that can be used to make the case for using Struts for
