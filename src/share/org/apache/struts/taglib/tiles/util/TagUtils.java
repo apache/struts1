@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.7 2003/07/10 01:12:10 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/10 01:12:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.8 2003/07/26 01:11:43 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/26 01:11:43 $
  *
  * ====================================================================
  *
@@ -75,7 +75,6 @@ import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 import org.apache.struts.tiles.TilesUtil;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Collection of utilities.
@@ -105,12 +104,16 @@ public class TagUtils {
         
         if (scopeName.equalsIgnoreCase("component")) {
             return ComponentConstants.COMPONENT_SCOPE;
+            
         } else if (scopeName.equalsIgnoreCase("template")) {
             return ComponentConstants.COMPONENT_SCOPE;
+            
         } else if (scopeName.equalsIgnoreCase("tile")) {
             return ComponentConstants.COMPONENT_SCOPE;
+            
         } else {
-            return RequestUtils.getScope(scopeName);
+            return org.apache.struts.taglib.TagUtils.getInstance().getScope(
+                scopeName);
         }
     }
 

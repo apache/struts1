@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.2 2003/07/26 01:02:30 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/07/26 01:02:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.3 2003/07/26 01:11:43 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/26 01:11:43 $
  *
  * ====================================================================
  *
@@ -61,6 +61,9 @@
 
 package org.apache.struts.taglib;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -77,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -94,9 +97,26 @@ public class TagUtils {
 
     /**
      * The message resources for this package.
+     * TODO We need to move the relevant messages out of this properties file.
      */
     private static final MessageResources messages =
         MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
+        
+    /**
+     * Maps lowercase JSP scope names to their PageContext integer constant 
+     * values. 
+     */
+    private static final Map scopes = new HashMap();
+    
+    /**
+     * Initialize the scope names map.
+     */
+    static {
+        scopes.put("page", new Integer(PageContext.PAGE_SCOPE));
+        scopes.put("request", new Integer(PageContext.REQUEST_SCOPE));
+        scopes.put("session", new Integer(PageContext.SESSION_SCOPE));
+        scopes.put("application", new Integer(PageContext.APPLICATION_SCOPE));
+    }
 
     /**
      * Constructor for TagUtils.
@@ -160,6 +180,23 @@ public class TagUtils {
         }
 
         return errors;
+    }
+    
+    /**
+     * Converts the scope name into its corresponding PageContext constant value.
+     * @param scopeName Can be "page", "request", "session", or "application" in any
+     * case.
+     * @return The constant representing the scope (ie. PageContext.REQUEST_SCOPE).
+     * @throws JspException if the scopeName is not a valid name.
+     */
+    public int getScope(String scopeName) throws JspException {
+        Integer scope = (Integer) scopes.get(scopeName.toLowerCase());
+
+        if (scope == null) {
+            throw new JspException(messages.getMessage("lookup.scope", scope));
+        }
+
+        return scope.intValue();
     }
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.20 2003/05/10 17:37:43 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/05/10 17:37:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.21 2003/07/26 01:11:43 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/07/26 01:11:43 $
  *
  * ====================================================================
  *
@@ -66,6 +66,8 @@ package org.apache.struts.taglib.bean;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -75,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/05/10 17:37:43 $
+ * @version $Revision: 1.21 $ $Date: 2003/07/26 01:11:43 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -279,7 +281,7 @@ public class DefineTag extends BodyTagSupport {
         int inScope = PageContext.PAGE_SCOPE;
         try {
 			if (toScope != null) {
-				inScope = RequestUtils.getScope(toScope);
+				inScope = TagUtils.getInstance().getScope(toScope);
 			}
 		} catch (JspException e) {
 			//  toScope was invalid name so we default to PAGE_SCOPE

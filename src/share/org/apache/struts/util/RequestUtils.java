@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.115 2003/07/26 01:01:11 dgraham Exp $
- * $Revision: 1.115 $
- * $Date: 2003/07/26 01:01:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.116 2003/07/26 01:11:43 dgraham Exp $
+ * $Revision: 1.116 $
+ * $Date: 2003/07/26 01:11:43 $
  *
  * ====================================================================
  *
@@ -88,7 +88,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -116,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.115 $ $Date: 2003/07/26 01:01:11 $
+ * @version $Revision: 1.116 $ $Date: 2003/07/26 01:11:43 $
  */
 
 public class RequestUtils {
@@ -140,13 +139,7 @@ public class RequestUtils {
     private static Method encode = null;
     
     /**
-     * Maps lowercase JSP scope names to their PageContext integer constant values. 
-     */
-    private static Map scopes = new HashMap();
-    
-    /**
-     * Initialize the encode variable with the 1.4 method if available.  Also set up the
-     * scope map values.
+     * Initialize the encode variable with the 1.4 method if available.
      */
     static {
         try {
@@ -156,11 +149,6 @@ public class RequestUtils {
         } catch (NoSuchMethodException e) {
             log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         }
-        
-        scopes.put("page", new Integer(PageContext.PAGE_SCOPE));
-        scopes.put("request", new Integer(PageContext.REQUEST_SCOPE));
-        scopes.put("session", new Integer(PageContext.SESSION_SCOPE));
-        scopes.put("application", new Integer(PageContext.APPLICATION_SCOPE));
     }
 
     // --------------------------------------------------------- Public Methods
@@ -879,15 +867,11 @@ public class RequestUtils {
      * @return The constant representing the scope (ie. PageContext.REQUEST_SCOPE).
      * @throws JspException if the scopeName is not a valid name.
      * @since Struts 1.1
+     * @deprecated Use TagUtils.getScope() instead.  This will be removed after 
+     * Struts 1.2.
      */
     public static int getScope(String scopeName) throws JspException {
-        Integer scope = (Integer) scopes.get(scopeName.toLowerCase());
-
-        if (scope == null) {
-            throw new JspException(messages.getMessage("lookup.scope", scope));
-        }
-
-        return scope.intValue();
+        return TagUtils.getInstance().getScope(scopeName);
     }
 
     /**
