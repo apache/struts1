@@ -1000,6 +1000,12 @@ public static boolean validateTwoFields(
 
 <section href="resources" name="Validator Resources">
 
+	<p>
+    <a href="http://otn.oracle.com/oramag/oracle/04-jan/o14dev_struts.html">
+    <strong>Check Your Form with Validator</strong></a> by James Holmes.
+    Howto article in Oracle Magazine.
+    </p>
+
     <p>
     <a href="http://www.raibledesigns.com/page/rd/20030226#struts_validator_validating_two_fields">
     <strong>Struts Validator: Validating Two Fields Match</strong></a> by Matt Raible.
