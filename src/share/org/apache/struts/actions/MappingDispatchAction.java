@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.1 2003/08/12 03:26:53 sraeburn Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/12 03:26:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.2 2003/08/12 03:52:15 sraeburn Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/12 03:52:15 $
  *
  * ====================================================================
  *
@@ -157,7 +157,7 @@ import org.apache.struts.action.ActionMapping;
  * may differ between the various handlers, so you can combine actions in the 
  * same class that, for example, differ in their use of forms or validation. 
  * Also, a request parameter, which would be visible to the application user,
- * is not required to enable selection of the handler method.
+ * is not required to enable selection of the handler method. 
  * </p>
  *
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
@@ -165,7 +165,7 @@ import org.apache.struts.action.ActionMapping;
  * @author Ted Husted
  * @author Anthony Kay
  * @author Steve Raeburn
- * @version $Revision: 1.1 $ $Date: 2003/08/12 03:26:53 $
+ * @version $Revision: 1.2 $ $Date: 2003/08/12 03:52:15 $
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {
