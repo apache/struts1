@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.1 2001/03/29 18:40:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/03/29 18:40:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.2 2001/03/29 18:41:52 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/03/29 18:41:52 $
  *
  * ====================================================================
  *
@@ -127,7 +127,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/03/29 18:40:30 $
+ * @version $Revision: 1.2 $ $Date: 2001/03/29 18:41:52 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -147,7 +147,7 @@ public abstract class DispatchAction extends Action {
      */
     protected static MessageResources messages =
      MessageResources.getMessageResources
-        ("org.apache.struts.action.LocalStrings");
+        ("org.apache.struts.actions.LocalStrings");
 
 
     /**
