@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
-<author>Ted Husted</author> 
-<author>Cedric Dumoulin</author> 
-<title>The Struts User's Guide - Bean Taglib Guide</title>
+  <author>Craig R. McClanahan</author>
+  <title>The Struts User's Guide - Bean Taglib Guide</title>
 </properties>
 <body> 
 <chapter name="Bean Taglib Guide"> 

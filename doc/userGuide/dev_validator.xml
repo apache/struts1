@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
-<author>Ted Husted</author> 
-<author>David Winterfeldt</author> 
+  <author>David Winterfeldt</author> 
 <title>The Struts User's Guide - Validator Guide</title>
 </properties>
 <body> 
@@ -24,13 +23,14 @@ A concise
 
 </section>
 
+<!-- 
+  <author>Ted Husted</author> 
 <section href="resources" name="Validator Resources">
-
 <p><b><u>Validating Input</u></b> by David Winterfeldt and Ted Husted. 
 Sample chapter from <u>Java Web Development with Struts</u>; available as a 
 <u>free download</u> (PDF).
 </p>
-
 </section>
+-->
 
 </chapter></body></document>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
-<author>Ted Husted</author> 
-<title>The Struts User's Guide - Template Taglib Guide</title>
+  <author>David Geary</author> 
+  <author>Ted Husted</author> 
+  <title>The Struts User's Guide - Template Taglib Guide</title>
 </properties>
 <body> 
 <chapter name="Template Taglib Guide"> 

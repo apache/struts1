@@ -7,15 +7,15 @@
   </properties>
 
   <body>
-
-<section name="Installing Struts with your servlet container" href="Containers"> 
+<chapter name="5.2 Installation" href="installation">
+<section name="Installing Struts with your servlet container" href="Containers">
 
 <h3><a name="sas">SilverStream Application Server 3.7.1 and later</a></h3>
 
 <ul>
   <li>Start the SilverStream application server.</li>
-  <li>Create an XML deployment plan for the &quot;<code>struts-example.war</code>&quot; 
-      application. Call the file &quot;<code>struts-example-depl-plan.xml</code>&quot;. 
+  <li>Create an XML deployment plan for the &quot;<code>struts-example.war</code>&quot;
+      application. Call the file &quot;<code>struts-example-depl-plan.xml</code>&quot;.
       You can use the following contents for the file</li>
 </ul>
 
@@ -41,8 +41,8 @@
 
 <hr/>
 
-<p>Create an XML deployment plan for the &quot;<code>struts-documentation.war</code>&quot; 
-    application. Call the file &quot;struts-documentation-depl-plan.xml&quot;. 
+<p>Create an XML deployment plan for the &quot;<code>struts-documentation.war</code>&quot;
+    application. Call the file &quot;struts-documentation-depl-plan.xml&quot;.
     You can use the following contents for the file:</p>
 
 <hr/>
@@ -65,7 +65,7 @@
 <p>----- cut here -----</p>
 <hr/>
 
-<p>Run the following &quot;<code>SilverCmd DeployWAR</code>&quot; commands to 
+<p>Run the following &quot;<code>SilverCmd DeployWAR</code>&quot; commands to
    deploy the applications. You can change 'localhost' to whatever server you
    are deploying to. You can change 'Silvermaster' to whatever
    database you are deploying to.</p>
@@ -78,5 +78,6 @@
   <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>
+</chapter>
 </body>
 </document>

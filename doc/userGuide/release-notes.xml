@@ -11,6 +11,7 @@
 
   <body>
 
+  <chapter name="5.1 Release Notes" href="release_notoes">
   <section name="Beta Notes" href="beta">
 
     <p>This section contains the release notes for
@@ -592,7 +593,7 @@
     <p>Next: <a href="installation.html">Installation</a></p>
 
 </section>
-
+</chapter>
     </body>
 
 </document>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 	<properties>
-		<author>Ted Husted</author>
 		<author>Cedric Dumoulin</author>
 		<title>The Struts User's Guide - Tiles Guide</title>
 	</properties>
@@ -240,13 +239,17 @@ To enable Tiles you need to:
 					<a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html">
 						<b>UI design with Tiles and Struts</b>
 					</a> by Prakash Malani.</p>
-				<p>
+
+<!--
+<author>Ted Husted</author>
+<p>
 					<b>
 						<u>Developing applications with Tiles</u>
 					</b> by Cedric Dumoulin and Ted Husted. 
 Sample chapter from <u>Java Web Development with Struts</u>; available as a 
 <u>free download</u> (PDF).
 </p>
+-->
 			</section>
 		</chapter>
 	</body>

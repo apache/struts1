@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
-<author>Ted Husted</author> 
-<title>The Struts User's Guide - Utilities Guide</title>
+  <author>Craig R. McClanahan</author> 
+  <title>The Struts User's Guide - Utilities Guide</title>
 </properties>
 <body> 
 <chapter name="Utilities Guide"> 

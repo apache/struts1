@@ -2,6 +2,7 @@
 <document url="./struts-html.xml">
 
 <properties>
+  <author>Craig R. McClanahan</author>
   <author>Martin Cooper</author>
   <author>Mike Schachter</author>
   <title>The Struts Framework Project - HTML Tags</title>

@@ -3,15 +3,35 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>David Geary</author>
     <author>Mike Schachter</author>
-    <author>Larry McCay</author>
     <author>Ted Husted</author>
+    <author>Martin Cooper</author>
+    <author>Arron Bates</author>
+    <author>Cedric Dumoulin</author>
+    <author>David Winterfeldt</author>
+    <author>Chris Assenza</author>
+    <author>dIon Gillard</author>
+    <author>Dominique Plante</author>
+    <author>Ed Burns</author>
+    <author>Eric Wu</author>
+    <author>James DeVries</author>
+    <author>John Rousseau</author>
+    <author>John Ueltzhoeffer</author>
+    <author>Larry McCay</author>
+    <author>Mark Budai</author>
+    <author>Matthias Kerkhoff</author>
+    <author>Paul Runyan</author>
+    <author>Robert Hayden</author>
+    <author>Robert Leland</author>
+    <author>Stanley Santiago</author>
+    <author>Wong Kok Kai</author>
     <title>The Struts User's Guide - Table of Contents</title>
   </properties>
 
   <body>
 
-    <chapter name="0. Contents" href="contents">
+      <!-- Omit chapter heading for the list of chapters (also omits authors) -->
 
       <section name="Table of Contents" href="toc">
 
@@ -29,8 +49,8 @@
               <li><a href="preface.html#xml">0.9 Extensible Markup Language</a></li>
               <li><a href="preface.html#jaas">0.10 JAAS</a></li>
             </ul></li>
- 
-           
+
+
            <li><a href="introduction.html">1. Introduction</a>
                 <ul>
                 <li><a href="introduction.html#history">1.1 Forward into the Past!</a></li>
@@ -99,7 +119,7 @@
                 <li><a href="building_controller.html#logging">4.9 Using The Commons Logging Interface</a></li>
              <li>5. Getting Started</li>
                 <ul>
-                <li><a href="release-notes.html">Release Notes</a></li>
+                <li><a href="release-notes.html">5.1 Release Notes</a></li>
                 <ul>
                 <li><a href="release-notes-1.1-b1.html">Release Notes 1.1-b1</a></li>
                 <li><a href="release-notes-1.0.2.html">Release Notes 1.0.2</a></li>
@@ -109,7 +129,7 @@
                 <li><a href="release-notes-1.0-b2.html">Release Notes 1.0-b2</a></li>
                 <li><a href="release-notes-1.0-b1.html">Release Notes 1.0-b1</a></li>
                 </ul>
-                <li><a href="installation.html">Installation</a></li>
+                <li><a href="installation.html">5.2 Installation</a></li>
                 <ul>
                 <li><a href="installation-ip.html">iPlanet</a></li>
                 <li><a href="installation-ipas.html">Portal Application Server</a></li>
@@ -127,8 +147,6 @@
         </ul>
 
       </section>
-
-    </chapter>
 
   </body>
 

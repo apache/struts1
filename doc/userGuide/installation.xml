@@ -3,18 +3,29 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
-    <author>Martin Cooper</author>
+    <author>Mike Schachter</author>
     <author>Ted Husted</author>
+    <author>Martin Cooper</author>
+    <author>Chris Assenza</author>
+    <author>dIon Gillard</author>
+    <author>Eric Wu</author>
+    <author>John Rousseau</author>
+    <author>John Ueltzhoeffer</author>
+    <author>Mark Budai</author>
+    <author>Paul Runyan</author>
+    <author>Robert Hayden</author>
+    <author>Stanley Santiago</author>
+    <author>Wong Kok Kai</author>
     <title>The Struts Framework Project - Installation (1.1)</title>
   </properties>
 
   <body>
-
+  <chapter name="5.2 Installation" href="installation">
   <section name="Prerequisite Software" href="Prerequisites">
 
-  <p>The Struts binary distribution needs three other software packages installed to 
-  operate. You may already have these installed on your system. To build Struts from 
-  source you may need to acquire and install several others. The complete list is as 
+  <p>The Struts binary distribution needs three other software packages installed to
+  operate. You may already have these installed on your system. To build Struts from
+  source you may need to acquire and install several others. The complete list is as
   follows:</p>
 
   <ul>
@@ -98,8 +109,8 @@
     above.</p>
 
     <p>Unpack the Struts binary distribution into a convenient directory.
-    (If you <a href="#Building">build Struts from the source distribution</a>, 
-    the result of the build will already be an unpacked binary distribution 
+    (If you <a href="#Building">build Struts from the source distribution</a>,
+    the result of the build will already be an unpacked binary distribution
     for you). The distribution consists of the following contents:</p>
 
     <ul>
@@ -146,7 +157,7 @@
         Struts custom tag libraries, but may also be useful as simple examples
         of the usage of various Struts tags.</li>
     <li><strong>webapps/struts-template.war</strong> - This web application
-        both introduces and demonstrates the Struts template tags.</li>       
+        both introduces and demonstrates the Struts template tags.</li>
     <li><strong>webapps/struts-upload.war</strong> - This web application
         is a quick example of uploading files using the Struts framework.</li>
         </ul>
@@ -216,11 +227,11 @@
         <code>commons-*.jar</code> files (copied earlier) on the
         CLASSPATH that is submitted to the compiler.</li>
     </ul>
-</section> <section name="Installing Struts With Your Servlet Container" href="Containers"> 
+</section> <section name="Installing Struts With Your Servlet Container" href="Containers">
 
 <p>For most containers, you need only to: </p>
 <ul>
-  <li>Copy the WAR files in your Struts <code>/webapp</code> directory to your 
+  <li>Copy the WAR files in your Struts <code>/webapp</code> directory to your
     containers <code>webapps</code> directory. </li>
   <li>In some cases, you may need to restart your container if it is running.</li>
 </ul>
@@ -241,23 +252,23 @@ about how to configure additional security manager permissions.</p>
 
 <h3>Installing Struts on Various Containers</h3>
 <ul>
-  <li>Bluestone Universal Business Server - <a href="installation-ubs.html">Additional 
+  <li>Bluestone Universal Business Server 7.2 - <a href="installation-ubs72.html">Additional
     steps required.</a></li>
-  <li>Borland Application Server 4.5 -No additional 
+  <li>Borland Application Server 4.5 -No additional
     steps required.</li>
-  <li>iPlanet Application Server - Service Pack 2 is recommended. Note that the database 
+  <li>iPlanet Application Server - Service Pack 2 is recommended. Note that the database
   object in the Struts-Example application is not compatible with this container.</li>
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
   <li>iPortal Application Server - <a href="installation-ipas.html">Additional steps required.</a></li>
   <li>Jetty - <a href="installation-jetty.html">Additional steps required.</a></li>
   <li>JRun - <a href="installation-jr30.html">Additional steps required.</a></li>
-  <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
+  <li>Orion Application Server - <a href="installation-oas.html">Additional steps
     required.</a></li>
   <li>Resin 1.2+ "standalone" - No additional steps required.</li>
   <li>RexIP - No additional steps required.</li>
   <li>SilverStream 3.7.1 and later - <a href="installation-sas.html">Additional steps required.</a></li>
   <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
-  <li>Tomcat 3.2.1 with Apache - <a href="installation-tc.html">Additional steps 
+  <li>Tomcat 3.2.1 with Apache - <a href="installation-tc.html">Additional steps
     required.</a></li>
   <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Tomcat 4.0 - No additional steps required.</li>
@@ -265,7 +276,7 @@ about how to configure additional security manager permissions.</p>
   <li>WebLogic 6.0+ - No additional steps required.</li>
   <li>WebSphere - <a href="installation-was352.html">Additional steps required.</a></li>
   <li>WebSphere - <a href="installation-was352-x.html">Steps for the Example Application.</a></li></ul>
-</section> 
+</section>
 
 <section name="Building Struts From Source" href="Building">
 
@@ -328,7 +339,7 @@ about how to configure additional security manager permissions.</p>
     in the <a href="Installing">preceding section</a>.</p>
 
     <p>IMPORTANT NOTE: The <code>struts.jar</code>, as well as the JAR files
-    from the Jakarta Commons project, must be in your classpath when 
+    from the Jakarta Commons project, must be in your classpath when
     compiling Struts. The <code>build.xml</code> provided does this
     automatically.  If you use your development machine to test Struts
     application locally, be sure that the <code>stuts.jar</code> is
@@ -337,9 +348,11 @@ about how to configure additional security manager permissions.</p>
 
   </section>
 
+
     <p>
             Next: <a href="../newbie.html">Newbie FAQ</a>
     </p>
 
+  </chapter>
 </body>
 </document>

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <document url="./resources.xml">
 <properties>
-<author>Ted Husted</author> 
-<title>The Struts User's Guide - HTML Taglib Guide</title>
+ <author>Craig R. McClanahan</author>
+ <author>Ted Husted</author>
+ <author>Martin Cooper</author>
+ <author>Mike Schachter</author>
+ <title>The Struts User's Guide - HTML Taglib Guide</title>
 </properties>
-<body> 
-<chapter name="HTML Taglib Guide"> 
+<body>
+<chapter name="HTML Taglib Guide">
 
 <section href="html" name="The HTML Taglib">
 
 <p>
-The tags in the Struts HTML library form a bridge between a JSP view and the other components of a Web application. 
-Since a dynamic Web application often depends on gathering data from a user, input forms play an important role in 
+The tags in the Struts HTML library form a bridge between a JSP view and the other components of a Web application.
+Since a dynamic Web application often depends on gathering data from a user, input forms play an important role in
 the Struts framework. Consequently, the majority of the HTML tags involve HTML forms.
 </p>
 

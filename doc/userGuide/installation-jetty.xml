@@ -3,12 +3,13 @@
 <document url="./installation-ip.xml">
 
 <properties>
-  <author>Paul Runyan</author> 
+  <author>Paul Runyan</author>
   <title>The Struts Framework Project - Installation - Jetty</title>
 </properties>
 
 <body>
-<section name="Installing Struts with your servlet container" href="Containers"> 
+<chapter name="5.2 Installation" href="installation">
+<section name="Installing Struts with your servlet container" href="Containers">
 
 <h3><a name="jetty">Jetty Java HTTP Servlet Server</a></h3>
 
@@ -115,12 +116,9 @@ after the Listeners are declared.
 </pre>
 
 <hr/>
-<ul>
-  <li>Author: Paul Runyan</li>
-</ul>
-<hr/>
 <p>Back to <a href="installation.html#Containers">Installation</a></p>
 
-</section> 
+</section>
+</chapter>
 </body>
 </document>
