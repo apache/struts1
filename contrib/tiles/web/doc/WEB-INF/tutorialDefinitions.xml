@@ -92,6 +92,8 @@
     <add value="First Definition" />
     <add value="Overloaded Definition" />
     <add value="Extended Definition" />
+    <add value="Dynamic Portal" />
+    <add value="Dynamic Portal Prefs" />
     <add value="Struts Forward" />
     <add value="Definition Tag" />
     <add value="Extended Definition Tag" />
@@ -106,6 +108,8 @@
     <add value="/tutorial/firstDefinition.jsp" />
     <add value="/tutorial/overloadDefinitionParameters.jsp" />
     <add value="/tutorial/extendedDefinition.jsp" />
+    <add value="/tutorial/dynPortal/index.jsp" />
+    <add value="/tutorial/dynPortal/myPortalPrefs.jsp" />
     <add value="/tutorial/strutsForward.jsp" />
     <add value="/tutorial/definitionTag.jsp" />
     <add value="/tutorial/extendedDefinitionTag.jsp" />
@@ -192,6 +196,73 @@
 <definition name="forward.example.failure.page" extends="mainLayout" >
   <put name="title" value="Struts Forward to 'failure'" />
   <put name="body"  value="/tutorial/forward/failureBody.jsp" />
+</definition>
+
+  <!-- =======================================================  -->
+  <!-- Rss Channels definitions  -->
+  <!-- =======================================================  -->
+
+    <!-- Dynamic portal main page (use common layout) -->
+<definition name="rssChannelTile" path="/actions/rssChannel.do" >
+      <putList name="urls" >
+	    <add value="http://www.newsforge.com/newsforge.rss" />
+	    <add value="http://xmlhack.com/rss.php" />
+	    <add value="http://lwn.net/headlines/rss" />
+	  </putList>
+</definition>
+
+    <!-- Dynamic portal main page (use common layout) -->
+<definition name="rssLocalChannelTile"  path="/actions/rssChannel.do" >
+      <putList name="urls" >
+	    <add value="http://localhost:8080/wtiles-struts/rss/rss-example.xml" />
+	    <add value="http://localhost:8080/wtiles-struts/rss/apacheweek-headlines.xml" />
+	  </putList>
+</definition>
+
+    <!-- Dynamic portal main page (use common layout) -->
+<definition name="test.rssChannel.page" extends="mainLayout" >
+  <put name="title" value="Rss Channel" />
+  <put name="body"  value="rssChannelTile" />
+</definition>
+
+
+  <!-- =======================================================  -->
+  <!-- Dynamic portal definitions  -->
+  <!-- =======================================================  -->
+  
+    <!-- Dynamic portal body (Define default list) -->
+<definition name="dynamic.portal.body" path="/actions/myPortal.do" >
+	  <put name="numCols" value="2" />
+	  <putList name="list0" >
+	    <add value="/tutorial/portal/login.jsp" />
+	    <add value="/tutorial/portal/messages.jsp" />
+	    <add value="/tutorial/portal/newsFeed.jsp" />
+	    <add value="/tutorial/portal/advert2.jsp" />
+	    <add value="rssLocalChannelTile" />
+	  </putList>
+	  <putList name="list1" >
+	    <add value="/tutorial/portal/advert3.jsp" />
+	    <add value="/tutorial/portal/stocks.jsp" />
+	    <add value="/tutorial/portal/whatsNew.jsp" />
+	    <add value="/tutorial/portal/personalLinks.jsp" />
+	    <add value="/tutorial/portal/search.jsp" />
+	  </putList>
+</definition>
+
+    <!-- Dynamic portal main page (use common layout) -->
+<definition name="myDynamicPortal" extends="mainLayout" >
+  <put name="title" value="My Portal" />
+  <put name="body"  value="dynamic.portal.body" />
+</definition>
+
+    <!-- Dynamic portal preferences page (use common layout) -->
+<definition name="myDynamicPortalPreferences" extends="mainLayout" >
+  <put name="title" value="My Portal Settings" />
+  <put name="body"  value="dynamic.portal.prefs.body" />
+</definition>
+
+    <!-- Dynamic portal preferences body (extends portal.body to inherit default list) -->
+<definition name="dynamic.portal.prefs.body" path="/actions/myPortalPrefs.tile.do" extends="dynamic.portal.body" >
 </definition>
 
   

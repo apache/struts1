@@ -24,6 +24,8 @@
     <!-- Logon form bean -->
     <form-bean      name="invoiceForm"
                     type="org.apache.struts.example.tiles.invoice.InvoiceForm"/>
+    <form-bean      name="portalPrefsForm"
+                    type="org.apache.struts.example.tiles.dynPortal.PortalPrefsForm"/>
 
   </form-beans>
 
@@ -78,7 +80,43 @@
       <forward  name="failure"        path="test.struts.action.fail"/>
   </action>
 
+  <!-- =======================================================  -->
+  <!-- Dynamic portal actions  -->
+  <!-- =======================================================  -->
+    <!-- Dynamic Portal user lists retrieving action -->
+  <action     path="/actions/myPortal"
+       		  type="org.apache.struts.example.tiles.dynPortal.RetrievePortalAction">
+      <forward  name="success"        path="main.portal.body"/>
+  </action>
+
+    <!-- Dynamic Portal user lists set action : no op action forwarding to tile -->
+  <action     path="/actions/myPortalPrefs"
+       		  type="org.apache.struts.tiles.NoOpAction"
+			  name="portalPrefsForm">
+      <forward  name="success"        path="myDynamicPortalPreferences"/>
+  </action>
+
+    <!-- Dynamic Portal user lists set tile-action : -->
+  <action     path="/actions/myPortalPrefs.tile"
+       		  type="org.apache.struts.example.tiles.dynPortal.SetPortalPrefsAction"
+			  name="portalPrefsForm">
+      <forward  name="preferences"    path="/tutorial/dynPortal/myPortalPrefTile.jsp"/>
+      <forward  name="portal"         path="dynamic.portal.body"/>
+  </action>
+
+
+  <!-- =======================================================  -->
+  <!-- Rss Channel -->
+  <!-- =======================================================  -->
+    <action     path="/actions/rssChannel"
+                type="org.apache.struts.example.tiles.rssChannel.Channels">
+      <forward  name="continue"        path="/tutorial/dynPortal/Channels.jsp"/>
+      <forward  name="error"           path="/tutorial/dynPortal/Channels.jsp"/>
+   </action>
+
+  <!-- =======================================================  -->
   <!-- test, to be removed -->
+  <!-- =======================================================  -->
     <action     path="/tutorial/testAction"
                 type="org.apache.struts.example.tiles.lang.SelectLocaleAction">
       <forward  name="failure"        path="/tutorial/common/footer.jsp"/>
