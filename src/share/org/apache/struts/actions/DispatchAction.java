@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.5 2002/03/09 22:26:35 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/09 22:26:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.6 2002/06/23 00:52:50 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/06/23 00:52:50 $
  *
  * ====================================================================
  *
@@ -63,12 +63,10 @@
 package org.apache.struts.actions;
 
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -109,13 +107,13 @@ import org.apache.struts.util.MessageResources;
  * <ul>
  * <li>public ActionForward delete(ActionMapping mapping, ActionForm form,
  *     HttpServletRequest request, HttpServletResponse response)
- *     throws IOException, ServletException</li>
+ *     throws Exception</li>
  * <li>public ActionForward insert(ActionMapping mapping, ActionForm form,
  *     HttpServletRequest request, HttpServletResponse response)
- *     throws IOException, ServletException</li>
+ *     throws Exception</li>
  * <li>public ActionForward update(ActionMapping mapping, ActionForm form,
  *     HttpServletRequest request, HttpServletResponse response)
- *     throws IOException, ServletException</li>
+ *     throws Exception</li>
  * </ul>
  * <p>and call one of the methods with a URL like this:</p>
  * <code>
@@ -130,7 +128,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.5 $ $Date: 2002/03/09 22:26:35 $
+ * @version $Revision: 1.6 $ $Date: 2002/06/23 00:52:50 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -184,10 +182,10 @@ public abstract class DispatchAction extends Action {
      * @since 1.1
      */
      protected ActionForward dispatchMethod(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response,
-                 String name) throws IOException {
+                                            ActionForm form,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            String name) throws Exception {
 
         // Identify the method object to be dispatched to
         Method method = null;
@@ -253,14 +251,13 @@ public abstract class DispatchAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if an exception occurs
      */
-    public ActionForward perform(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response)
-    throws IOException, ServletException {
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+        throws Exception {
 
         // Identify the request parameter containing the method name
         String parameter = mapping.getParameter();

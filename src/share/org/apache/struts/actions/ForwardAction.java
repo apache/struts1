@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.1 2001/05/10 03:13:32 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/05/10 03:13:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.2 2002/06/23 00:52:50 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/06/23 00:52:50 $
  *
  * ====================================================================
  *
@@ -63,9 +63,7 @@
 package org.apache.struts.actions;
 
 
-import java.io.IOException;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -99,7 +97,7 @@ import org.apache.struts.util.MessageResources;
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/05/10 03:13:32 $
+ * @version $Revision: 1.2 $ $Date: 2002/06/23 00:52:50 $
  */
 
 public class ForwardAction extends Action {
@@ -131,14 +129,13 @@ public class ForwardAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if an error occurs
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
         // Create a RequestDispatcher the corresponding resource
         String path = mapping.getParameter();

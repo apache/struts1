@@ -56,7 +56,6 @@
  */
 package org.apache.struts.actions;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -176,17 +175,14 @@ public abstract class LookupDispatchAction extends DispatchAction {
      *      request (if any)
      *@return                       Describes where and how control should be
      *      forwarded.
-     *@exception  IOException       if an input/output error occurs
-     *@exception  ServletException  if a servlet exception occurs, mapping does
-     *      not have a parameter attribute, or the request does not contain the
-     *      attribute named in the mapping parameter.
+     *@exception  Exception         if an error occurs
      */
-    public ActionForward perform(
+    public ActionForward execute(
         ActionMapping mapping,
         ActionForm form,
         HttpServletRequest request,
         HttpServletResponse response)
-        throws IOException, ServletException {
+        throws Exception {
 
         // Identify the request parameter containing the method name
         String parameter = mapping.getParameter();
