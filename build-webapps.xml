@@ -232,15 +232,6 @@
             reloadstylesheet="true">
       <param name="project-path" expression="../faqs/project.xml"/>
     </style>            
-    <!-- Create the news -->
-    <style   basedir="${doc.dir}/news"
-             destdir="${build.home}/documentation/news"
-           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
-            includes="*.xml"
-            excludes="project.xml"
-            reloadstylesheet="true">
-      <param name="project-path" expression="../news/project.xml"/>
-    </style>            
     <!-- Create the proposals -->
     <style   basedir="${doc.dir}/proposals"
              destdir="${build.home}/documentation/proposals"
@@ -249,15 +240,6 @@
             excludes="project.xml"
             reloadstylesheet="true">
       <param name="project-path" expression="../proposals/project.xml"/>
-    </style>            
-    <!-- Create the resources -->
-    <style   basedir="${doc.dir}/resources"
-             destdir="${build.home}/documentation/resources"
-           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
-            includes="*.xml"
-            excludes="project.xml"
-            reloadstylesheet="true">
-      <param name="project-path" expression="../resources/project.xml"/>
     </style>            
     <!-- Create the user guide -->
     <style   basedir="${doc.dir}/userGuide"
