@@ -6,6 +6,7 @@
   <author>Martin Cooper</author>
   <author>Mike Schachter</author>
   <author>James Turner</author>
+  <author>David Graham</author>
   <title>The Struts Framework Project - HTML Tags</title>
 </properties>
 
@@ -2269,9 +2270,11 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-              <p>Set to <code>true</code> in order to record a Locale based on
+              <p>Set to <code>true</code> in order to store a Locale in the session based on
               the current request's <code>Accept-Language</code> header (if
-              any) if none has currently been set.</p>
+              any) if none has currently been set.  This attribute will create a session
+              if one does not already exist.  The lang attribute is rendered with the
+              appropriate language code.</p>
             </info>
           </attribute>
 
