@@ -1,4 +1,4 @@
-$Id: README,v 1.2 2000/06/11 22:38:32 craigmcc Exp $
+$Id: README,v 1.3 2000/06/13 02:32:01 craigmcc Exp $
 
 				Struts
 				======
@@ -29,10 +29,11 @@ package, consisting of the following major components:
 Installing and Using Struts
 ---------------------------
 
-You can utilize a binary distribution of Slide in your own web applications
-by following these steps:
+You can utilize a binary distribution of Struts in your own web applications
+by following these steps (only the steps marked (*) are required if you only
+wish to use the custom tag library:
 
-- Download and install a version 1.1 or later Java Development Kit
+- (*) Download and install a version 1.1 or later Java Development Kit
   implementation for your operating system platform.  Note that some
   Struts classes require Java2 (that is, JDK 1.2.2 or later) to
   operate successfully.  Define an environment variable JAVA_HOME
@@ -46,16 +47,16 @@ by following these steps:
   "parser.jar" (or whatever JAR file comes with your parser) files to
   your CLASSPATH environment variable.
 
-- Download and install a servlet container that supports the Servlet
+- (*) Download and install a servlet container that supports the Servlet
   API Specification, version 2.2 or later, and the JavaServer Pages (JSP)
   Specification, version 1.1 or later.  A useful servlet container is
   Tomcat, version 3.1 or later, that is available at
   <http://jakarta.apache.org>.
 
-- Download and unpack a Struts binary distribution, available from
+- (*) Download and unpack a Struts binary distribution, available from
   <http://jakarta.apache.org/builds/tomcat/nightly/>.
 
-- Install the Struts documentation application by deploying file
+- (*) Install the Struts documentation application by deploying file
   "lib/struts-documentation.war" into your servlet container, using the
   standard techniques supported by that container.  (For Tomcat, simply
   copy this file to the $TOMCAT_HOME/webapps directory and restart Tomcat).
@@ -65,20 +66,20 @@ by following these steps:
   techniques supported by that container.  (For Tomcat, simply copy this
   file to the $TOMCAT_HOME/webapps directory and restart Tomcat).
 
-- Copy the file "lib/struts.tld" from the Struts distribution into the
+- (*) Copy the file "lib/struts.tld" from the Struts distribution into the
   "WEB-INF" directory of your web application.
 
-- Copy the file "lib/struts.jar" from the Struts distribution into the
+- (*) Copy the file "lib/struts.jar" from the Struts distribution into the
   "WEB-INF/lib" directory of your web application.
 
-- Modify your "WEB-INF/web.xml" file to include a <servlet> element to
+- (*) Modify your "WEB-INF/web.xml" file to include a <servlet> element to
   define the controller servlet, and a <servlet-mapping> element to establish
   which request URIs are mapped to this servlet.  Normally, you will map
   the controller servlet to a wildcard pattern ("/execute/*") or a filename
   extension pattern ("*.do").  Use the "WEB-INF/web.xml" file from the
   example application (see below) for an example of how this is done.
 
-- Modify the "WEB-INF/web.xml" file for your web application to include
+- (*) Modify the "WEB-INF/web.xml" file for your web application to include
   a tag library declaration like this:
 
 	<taglib>
@@ -90,7 +91,7 @@ by following these steps:
   requests to specific action classes.  Use the "action.xml" file from
   the example application (see below) as a guide.
 
-- In each JSP page that will use the Struts custom tags, add a line at
+- (*) In each JSP page that will use the Struts custom tags, add a line at
   the top of the page like this:
 
 	<%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
