@@ -38,10 +38,10 @@
     <p>Insert a tiles/component/template with the possibility to pass parameters
     (called attribute).
     A tile can be seen as a procedure that can take parameters or attributes.
-    <code>&lt;template:insert&gt;</code> allows to define these attributes and pass them to the inserted jsp page,
+    <code>&lt;tiles:insert&gt;</code> allows to define these attributes and pass them to the inserted jsp page,
     called template.
-    Attributes are defined using nested tag <code>&lt;template:put&gt;</code> or
-    <code>&lt;template:putList&gt;</code>.
+    Attributes are defined using nested tag <code>&lt;tiles:put&gt;</code> or
+    <code>&lt;tiles:putList&gt;</code>.
     </p>
     <p>
     You must specify one of this tag attribute :
@@ -64,13 +64,13 @@
       </p>
       <p><strong>Example : </strong></p>
         <pre><code>
-          &lt;template:insert page="/basic/myLayout.jsp" flush="true"&gt;
-            &lt;template:put name="title"  value="My first page" /&gt;
-            &lt;template:put name="header" value="/common/header.jsp" /&gt;
-            &lt;template:put name="footer" value="/common/footer.jsp" /&gt;
-            &lt;template:put name="menu"   value="/basic/menu.jsp" /&gt;
-            &lt;template:put name="body"   value="/basic/helloBody.jsp" /&gt;
-          &lt;/template:insert&gt;</code></pre>
+          &lt;tiles:insert page="/basic/myLayout.jsp" flush="true"&gt;
+            &lt;tiles:put name="title"  value="My first page" /&gt;
+            &lt;tiles:put name="header" value="/common/header.jsp" /&gt;
+            &lt;tiles:put name="footer" value="/common/footer.jsp" /&gt;
+            &lt;tiles:put name="menu"   value="/basic/menu.jsp" /&gt;
+            &lt;tiles:put name="body"   value="/basic/helloBody.jsp" /&gt;
+          &lt;/tiles:insert&gt;</code></pre>
     </info>
     <tagclass>org.apache.struts.taglib.tiles.InsertTag</tagclass>
     <bodycontent>JSP</bodycontent>
@@ -112,7 +112,7 @@
       <info>
         Name of the definition to insert. Definition are defined in a centralized file.
         For now, only definition from factory can be inserted with this attribute.
-        To insert a definition defined with tag &lt;template:definition&gt;, use beanName="".
+        To insert a definition defined with tag &lt;tiles:definition&gt;, use beanName="".
       </info>
     </attribute>
 
@@ -387,7 +387,7 @@
       <li>String : Content is printed directly.</li>
       <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
       <li>definition : Value is the name of a definition defined in factory (xml file). Definition will be searched
-      in the inserted tile, in a <code>&lt;template:insert attribute="attributeName"&gt;</code> tag, where 'attributeName'
+      in the inserted tile, in a <code>&lt;tiles:insert attribute="attributeName"&gt;</code> tag, where 'attributeName'
       is the name used for this tag.</li>
       </ul>
       If 'type' attribute is not specified, content is 'untyped', unless it comes from a typed bean.
