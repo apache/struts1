@@ -203,7 +203,7 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -240,7 +240,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value of the label to be placed on this button. This value will
 				also be submitted as the value of the specified request parameter.
@@ -410,7 +410,7 @@
 		<attribute>
 			<name>property</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -447,7 +447,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value of the label to be placed on this button. This value will
 				also be submitted as the value of the specified request parameter.
@@ -629,7 +629,7 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -666,7 +666,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value of the label to be placed on this button. This value will
 				also be submitted as the value of the specified request parameter.
@@ -910,7 +910,7 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -947,7 +947,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value of the label to be placed on this button. This value will
 				also be submitted as the value of the specified request parameter.
@@ -1133,7 +1133,7 @@
 		<attribute>
 			<name>property</name> 
 			<required>true</required> 
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of this input field, and the name of the corresponding bean
 				property if value is not specified. The corresponding bean property
@@ -1144,7 +1144,7 @@
 		<attribute>
 			<name>value</name> 
 			<required>false</required> 
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value to which this field should be initialized. [Use the
 				corresponding bean property value]  
@@ -1502,7 +1502,7 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -1539,7 +1539,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value of the label to be placed on this button. This value will
 				also be submitted as the value of the specified request parameter.
@@ -1570,7 +1570,7 @@
 		<attribute>
 			<name>value</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value to be submitted for this field if this option is selected by
 				the user. 
@@ -1670,7 +1670,7 @@
 		<attribute>
 			<name>property</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Property of the form bean, or the bean specified by the name
 				attribute, that will return the collection of values to returned
@@ -1858,7 +1858,7 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -1905,7 +1905,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value of the label to be placed on this button. This value will
 				also be submitted as the value of the specified request parameter.
@@ -2035,7 +2035,7 @@
                 <attribute>
                         <name>property</name>
                         <required>true</required>
-                        <rtexprvalue>false</rtexprvalue>
+                        <rtexprvalue>true</rtexprvalue>
                         <info>
                                 The corresponding bean property for this radio tag.
                         </info>
@@ -2054,7 +2054,7 @@
                 <attribute>
                         <name>value</name>
                         <required>true</required>
-                        <rtexprvalue>false</rtexprvalue>
+                        <rtexprvalue>true</rtexprvalue>
                         <info>
                             The value of the radio tag.
                         </info>
@@ -2529,7 +2529,7 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -2575,7 +2575,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				The value to compare with for marking an option selected.
 			</info>
@@ -2739,7 +2739,7 @@
 		<attribute>
 			<name>property</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of the request parameter that will be included with this
 				submission, set to the specified value. 
@@ -2776,7 +2776,7 @@
 		<attribute>
 			<name>value</name>
 			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				The value of the button label.
 			</info>
@@ -2819,7 +2819,7 @@
 		<attribute>
 			<name>property</name> 
 			<required>true</required> 
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of this input field, and the name of the corresponding bean
 				property if value is not specified. The corresponding bean property
@@ -2830,7 +2830,7 @@
 		<attribute>
 			<name>value</name> 
 			<required>false</required> 
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value to which this field should be initialized. [Use the
 				corresponding bean property value]  
@@ -3061,7 +3061,7 @@
 		<attribute>
 			<name>property</name> 
 			<required>true</required> 
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Name of this input field, and the name of the corresponding bean
 				property if value is not specified. The corresponding bean property
@@ -3072,7 +3072,7 @@
 		<attribute>
 			<name>value</name> 
 			<required>false</required> 
-			<rtexprvalue>false</rtexprvalue>
+			<rtexprvalue>true</rtexprvalue>
 			<info>
 				Value to which this field should be initialized. [Use the
 				corresponding bean property value]  
