@@ -98,6 +98,18 @@
         </attribute>
 
         <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "propertyName[34]". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>onblur</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -566,6 +578,18 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
         </attribute>
 
         <attribute>
@@ -2239,6 +2263,29 @@
                   attribute, or the <code>page</code> attribute.</p>
                   </info>
                 </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then indexed parameter with name from indexId attribute 
+                will be added to the query string. Indexed parameter looks like
+                "index[32]". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>indexId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                By this attribute different name for the indexed parameter can be 
+                specified. Take a look to the "indexed" attribute for details.
+            </info>
+        </attribute>
 
                 <attribute>
                   <name>linkName</name>
@@ -4062,6 +4109,18 @@
           </info>
         </attribute>
 
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
+
                 <attribute>
                         <name>multiple</name>
                         <required>false</required>
@@ -4312,6 +4371,18 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "propertyName[34]". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
         </attribute>
 
         <attribute>

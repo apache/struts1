@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.6 2001/07/16 00:44:55 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/07/16 00:44:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.7 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/07/16 00:44:55 $
+ * @version $Revision: 1.7 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public class SelectTag extends BaseHandlerTag {
@@ -110,11 +110,11 @@ public class SelectTag extends BaseHandlerTag {
     protected String multiple = null;
 
     public String getMultiple() {
-	return (this.multiple);
+        return (this.multiple);
     }
 
     public void setMultiple(String multiple) {
-	this.multiple = multiple;
+        this.multiple = multiple;
     }
 
 
@@ -124,11 +124,11 @@ public class SelectTag extends BaseHandlerTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
@@ -151,11 +151,11 @@ public class SelectTag extends BaseHandlerTag {
     protected String size = null;
 
     public String getSize() {
-	return (this.size);
+        return (this.size);
     }
 
     public void setSize(String size) {
-	this.size = size;
+        this.size = size;
     }
 
 
@@ -191,7 +191,7 @@ public class SelectTag extends BaseHandlerTag {
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
 
@@ -203,7 +203,7 @@ public class SelectTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-	this.property = property;
+        this.property = property;
 
     }
 
@@ -213,7 +213,7 @@ public class SelectTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
 
@@ -225,7 +225,7 @@ public class SelectTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
@@ -240,74 +240,76 @@ public class SelectTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Create an appropriate "form" element based on our parameters
-	StringBuffer results = new StringBuffer("<select");
-	results.append(" name=\"");
-	results.append(property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (multiple != null) {
-	    results.append(" multiple=\"multiple\"");
-	}
-	if (size != null) {
-	    results.append(" size=\"");
-	    results.append(size);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+        // Create an appropriate "form" element based on our parameters
+        StringBuffer results = new StringBuffer("<select");
+        results.append(" name=\"");
+        if( indexed )
+                prepareIndex( results, name );
+        results.append(property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (multiple != null) {
+            results.append(" multiple=\"multiple\"");
+        }
+        if (size != null) {
+            results.append(" size=\"");
+            results.append(size);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(">");
 
-	// Print this field to our output writer
+        // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Store this tag itself as a page attribute
-	pageContext.setAttribute(Constants.SELECT_KEY, this);
+        // Store this tag itself as a page attribute
+        pageContext.setAttribute(Constants.SELECT_KEY, this);
 
-	// Calculate the match values we will actually be using
-	if (value != null) {
-	    match = new String[1];
+        // Calculate the match values we will actually be using
+        if (value != null) {
+            match = new String[1];
             match[0] = value;
         } else {
-	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null) {
+            Object bean = pageContext.findAttribute(name);
+            if (bean == null) {
                 JspException e = new JspException                    
-		    (messages.getMessage("getter.bean", name));
+                    (messages.getMessage("getter.bean", name));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-	    try {
-		match = BeanUtils.getArrayProperty(bean, property);
-		if (match == null)
-		    match = new String[0];
-	    } catch (IllegalAccessException e) {
+            try {
+                match = BeanUtils.getArrayProperty(bean, property);
+                if (match == null)
+                    match = new String[0];
+            } catch (IllegalAccessException e) {
                 RequestUtils.saveException(pageContext, e);
                 throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
+                    (messages.getMessage("getter.access", property, name));
+            } catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
                 RequestUtils.saveException(pageContext, t);
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (NoSuchMethodException e) {
+                throw new JspException
+                    (messages.getMessage("getter.result",
+                                         property, t.toString()));
+            } catch (NoSuchMethodException e) {
                 RequestUtils.saveException(pageContext, e);
                 throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
-	}
+                    (messages.getMessage("getter.method", property, name));
+            }
+        }
 
-	// Continue processing this page
-	return (EVAL_BODY_TAG);
+        // Continue processing this page
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -339,20 +341,20 @@ public class SelectTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	// Remove the page scope attributes we created
-	pageContext.removeAttribute(Constants.SELECT_KEY);
+        // Remove the page scope attributes we created
+        pageContext.removeAttribute(Constants.SELECT_KEY);
 
-	// Render a tag representing the end of our current form
-	StringBuffer results = new StringBuffer();
-	if (saveBody != null)
-	    results.append(saveBody);
-	results.append("</select>");
+        // Render a tag representing the end of our current form
+        StringBuffer results = new StringBuffer();
+        if (saveBody != null)
+            results.append(saveBody);
+        results.append("</select>");
 
-	// Print this value to our output writer
+        // Print this value to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue processing this page
-	return (EVAL_PAGE);
+        // Continue processing this page
+        return (EVAL_PAGE);
 
     }
 
@@ -362,14 +364,14 @@ public class SelectTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	match = null;
-	multiple = null;
-	name = Constants.BEAN_KEY;
-	property = null;
+        super.release();
+        match = null;
+        multiple = null;
+        name = Constants.BEAN_KEY;
+        property = null;
         saveBody = null;
-	size = null;
-	value = null;
+        size = null;
+        value = null;
 
     }
 

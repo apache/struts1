@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.16 2001/06/11 17:40:30 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2001/06/11 17:40:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.17 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.17 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.HashMap;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,13 +84,13 @@ import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
-
+import org.apache.struts.taglib.logic.IterateTag;
 
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/06/11 17:40:30 $
+ * @version $Revision: 1.17 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -127,11 +128,11 @@ public class LinkTag extends BaseHandlerTag {
     protected String forward = null;
 
     public String getForward() {
-	return (this.forward);
+        return (this.forward);
     }
 
     public void setForward(String forward) {
-	this.forward = forward;
+        this.forward = forward;
     }
 
 
@@ -141,11 +142,11 @@ public class LinkTag extends BaseHandlerTag {
     protected String href = null;
 
     public String getHref() {
-	return (this.href);
+        return (this.href);
     }
 
     public void setHref(String href) {
-	this.href = href;
+        this.href = href;
     }
 
 
@@ -176,11 +177,11 @@ public class LinkTag extends BaseHandlerTag {
     protected String name = null;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
@@ -261,11 +262,11 @@ public class LinkTag extends BaseHandlerTag {
     protected String property = null;
 
     public String getProperty() {
-	return (this.property);
+        return (this.property);
     }
 
     public void setProperty(String property) {
-	this.property = property;
+        this.property = property;
     }
 
 
@@ -289,11 +290,11 @@ public class LinkTag extends BaseHandlerTag {
     protected String target = null;
 
     public String getTarget() {
-	return (this.target);
+        return (this.target);
     }
 
     public void setTarget(String target) {
-	this.target = target;
+        this.target = target;
     }
 
 
@@ -310,6 +311,18 @@ public class LinkTag extends BaseHandlerTag {
         this.transaction = transaction;
     }
 
+    /**
+     * Name of parameter to generate to hold index number
+     */
+    protected String indexId = null;
+
+    public String getIndexId() {
+       return (this.indexId);
+    }
+
+    public void setIndexId(String indexId) {
+        this.indexId = indexId;
+    }
 
     // --------------------------------------------------------- Public Methods
 
@@ -330,10 +343,33 @@ public class LinkTag extends BaseHandlerTag {
             return (EVAL_BODY_TAG);
         }
 
-	// Generate the hyperlink URL
+        // Generate the hyperlink URL
         Map params = RequestUtils.computeParameters
             (pageContext, paramId, paramName, paramProperty, paramScope,
              name, property, scope, transaction);
+
+        //if "indexed=true", add "index=x" parameter to query string 
+        if( indexed ) {
+           // look for outer iterate tag
+           IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
+           if (iterateTag == null) {
+              // this tag should only be nested in iteratetag, if it's not, throw exception
+              JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
+              RequestUtils.saveException(pageContext, e);
+              throw e;
+           }
+
+           //calculate index, and add as a parameter
+           if (params == null) {
+               params = new HashMap();             //create new HashMap if no other params
+           }
+           if (indexId != null) {
+            params.put(indexId, Integer.toString(iterateTag.getIndex()));
+           } else {
+              params.put("index", Integer.toString(iterateTag.getIndex()));
+           }
+        }
+        
         String url = null;
         try {
             url = RequestUtils.computeURL(pageContext, forward, href,
@@ -348,21 +384,21 @@ public class LinkTag extends BaseHandlerTag {
         StringBuffer results = new StringBuffer("<a href=\"");
         results.append(url);
         results.append("\"");
-	if (target != null) {
-	    results.append(" target=\"");
-	    results.append(target);
-	    results.append("\"");
-	}
+        if (target != null) {
+            results.append(" target=\"");
+            results.append(target);
+            results.append("\"");
+        }
         results.append(prepareStyles());
         results.append(prepareEventHandlers());
-	results.append(">");
+        results.append(">");
 
-	// Print this element to our output writer
+        // Print this element to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Evaluate the body of this tag
+        // Evaluate the body of this tag
         this.text = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -398,11 +434,11 @@ public class LinkTag extends BaseHandlerTag {
             results.append(text);
         results.append("</a>");
 
-	// Render the remainder to the output stream
+        // Render the remainder to the output stream
         ResponseUtils.write(pageContext, results.toString());
 
         // Evaluate the remainder of this page
-	return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
 
@@ -412,20 +448,20 @@ public class LinkTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
+        super.release();
         anchor = null;
-	forward = null;
-	href = null;
+        forward = null;
+        href = null;
         linkName = null;
-	name = null;
+        name = null;
         page = null;
-	paramId = null;
-	paramName = null;
-	paramProperty = null;
-	paramScope = null;
-	property = null;
+        paramId = null;
+        paramName = null;
+        paramProperty = null;
+        paramScope = null;
+        property = null;
         scope = null;
-	target = null;
+        target = null;
         text = null;
         transaction = false;
 

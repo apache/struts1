@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.7 2001/04/29 00:38:04 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/04/29 00:38:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.8 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/04/29 00:38:04 $
+ * @version $Revision: 1.8 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -97,11 +97,11 @@ public abstract class BaseFieldTag extends BaseInputTag {
     protected String accept = null;
 
     public String getAccept() {
-	return (this.accept);
+        return (this.accept);
     }
 
     public void setAccept(String accept) {
-	this.accept = accept;
+        this.accept = accept;
     }
 
 
@@ -111,11 +111,11 @@ public abstract class BaseFieldTag extends BaseInputTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
@@ -150,57 +150,59 @@ public abstract class BaseFieldTag extends BaseInputTag {
      */
     public int doStartTag() throws JspException {
 
-	// Create an appropriate "input" element based on our parameters
-	StringBuffer results = new StringBuffer("<input type=\"");
-	results.append(type);
-	results.append("\" name=\"");
-	results.append(property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (accept != null) {
-	    results.append(" accept=\"");
-	    results.append(accept);
-	    results.append("\"");
-	}
-	if (maxlength != null) {
-	    results.append(" maxlength=\"");
-	    results.append(maxlength);
-	    results.append("\"");
-	}
-	if (cols != null) {
-	    results.append(" size=\"");
-	    results.append(cols);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(" value=\"");
-	if (value != null) {
-	    results.append(ResponseUtils.filter(value));
-	} else if (redisplay || !"password".equals(type)) {
+        // Create an appropriate "input" element based on our parameters
+        StringBuffer results = new StringBuffer("<input type=\"");
+        results.append(type);
+        results.append("\" name=\"");
+        if( indexed )
+                prepareIndex( results, name );
+        results.append(property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (accept != null) {
+            results.append(" accept=\"");
+            results.append(accept);
+            results.append("\"");
+        }
+        if (maxlength != null) {
+            results.append(" maxlength=\"");
+            results.append(maxlength);
+            results.append("\"");
+        }
+        if (cols != null) {
+            results.append(" size=\"");
+            results.append(cols);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
+        if (value != null) {
+            results.append(ResponseUtils.filter(value));
+        } else if (redisplay || !"password".equals(type)) {
             Object value = RequestUtils.lookup(pageContext, name, property,
                                                null);
             if (value == null)
                 value = "";
             results.append(ResponseUtils.filter(value.toString()));
-	}
-	results.append("\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+        }
+        results.append("\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(">");
 
-	// Print this field to our output writer
+        // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue processing this page
-	return (EVAL_BODY_TAG);
+        // Continue processing this page
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -210,9 +212,9 @@ public abstract class BaseFieldTag extends BaseInputTag {
      */
     public void release() {
 
-	super.release();
-	accept = null;
-	name = Constants.BEAN_KEY;
+        super.release();
+        accept = null;
+        name = Constants.BEAN_KEY;
         redisplay = true;
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.6 2001/06/10 03:53:31 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/06/10 03:53:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.7 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/06/10 03:53:31 $
+ * @version $Revision: 1.7 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public class CheckboxTag extends BaseHandlerTag {
@@ -98,11 +98,11 @@ public class CheckboxTag extends BaseHandlerTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
@@ -132,7 +132,7 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
 
@@ -144,7 +144,7 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-	this.property = property;
+        this.property = property;
 
     }
 
@@ -154,7 +154,7 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
 
@@ -166,7 +166,7 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
@@ -181,21 +181,23 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Create an appropriate "input" element based on our parameters
-	StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
-	results.append(" name=\"");
-	results.append(this.property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
+        // Create an appropriate "input" element based on our parameters
+        StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
+        results.append(" name=\"");
+        if( indexed ) 
+                prepareIndex( results, name );
+        results.append(this.property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
         results.append(" value=\"");
         if (value == null)
             results.append("on");
@@ -209,20 +211,20 @@ public class CheckboxTag extends BaseHandlerTag {
         if (!(result instanceof String))
             result = result.toString();
         String checked = (String) result;
-	if (checked.equalsIgnoreCase("true")
+        if (checked.equalsIgnoreCase("true")
             || checked.equalsIgnoreCase("yes")
-	    || checked.equalsIgnoreCase("on"))
-	    results.append(" checked=\"checked\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+            || checked.equalsIgnoreCase("on"))
+            results.append(" checked=\"checked\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(">");
 
-	// Print this field to our output writer
+        // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue processing this page
+        // Continue processing this page
         this.text = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -267,11 +269,11 @@ public class CheckboxTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	name = Constants.BEAN_KEY;
-	property = null;
+        super.release();
+        name = Constants.BEAN_KEY;
+        property = null;
         text = null;
-	value = null;
+        value = null;
 
     }
 

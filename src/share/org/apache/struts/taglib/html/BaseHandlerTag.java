@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.7 2001/06/21 16:18:17 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/06/21 16:18:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.8 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -61,8 +61,11 @@
 
 package org.apache.struts.taglib.html;
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.logic.IterateTag;
 
 /**
  * Base class for tags that render form elements capable of including JavaScript
@@ -71,7 +74,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.7 $ $Date: 2001/06/21 16:18:17 $
+ * @version $Revision: 1.8 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -94,6 +97,11 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /** Tab index value. */
     protected String tabindex = null;
+
+//  Indexing ability for Iterate
+
+    /** Whether to created indexed names for fields */
+    protected boolean indexed = false;
 
 //  Mouse Events
 
@@ -174,23 +182,35 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /** Sets the accessKey character. */
     public void setAccesskey(String accessKey) {
-	this.accesskey = accessKey;
+        this.accesskey = accessKey;
     }
 
     /** Returns the accessKey character. */
     public String getAccesskey() {
-	return (this.accesskey);
+        return (this.accesskey);
     }
 
 
     /** Sets the tabIndex value. */
     public void setTabindex(String tabIndex) {
-	this.tabindex = tabIndex;
+        this.tabindex = tabIndex;
     }
 
     /** Returns the tabIndex value. */
     public String getTabindex() {
-	return (this.tabindex);
+        return (this.tabindex);
+    }
+
+//  Indexing ability for Iterate
+    
+    /** Sets the indexed value. */
+    public void setIndexed(boolean indexed) {
+        this.indexed = indexed;
+    }
+
+    /** Returns the indexed value. */
+    public boolean getIndexed() {
+        return (this.indexed);
     }
 
 // Mouse Events
@@ -414,35 +434,60 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     public void release() {
 
-	super.release();
-	accesskey = null;
-	tabindex = null;
-	onclick = null;
-	ondblclick = null;
-	onmouseover = null;
-	onmouseout = null;
-	onmousemove = null;
-	onmousedown = null;
-	onmouseup = null;
-	onkeydown = null;
-	onkeyup = null;
-	onkeypress = null;
-	onselect = null;
-	onchange = null;
-	onblur = null;
-	onfocus = null;
+        super.release();
+        accesskey = null;
+        tabindex = null;
+        onclick = null;
+        ondblclick = null;
+        onmouseover = null;
+        onmouseout = null;
+        onmousemove = null;
+        onmousedown = null;
+        onmouseup = null;
+        onkeydown = null;
+        onkeyup = null;
+        onkeypress = null;
+        onselect = null;
+        onchange = null;
+        onblur = null;
+        onfocus = null;
         disabled = false;
         readonly = false;
-	style = null;
-	styleClass = null;
+        style = null;
+        styleClass = null;
         styleId = null;
         title = null;
+        indexed = false;
 
     }
 
 
     // ------------------------------------------------------ Protected Methods
 
+    /**
+     *  Appends bean name with index in brackets for tags with
+     *  'true' value in 'indexed' attribute.
+     *  @param handlers The StringBuffer that output will be appended to.
+     *  @exception JspException if 'indexed' tag used outside of iterate tag.
+     */
+    protected void prepareIndex( StringBuffer handlers, String name ) 
+        throws JspException {
+        // look for outer iterate tag
+        IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
+        if (iterateTag == null) {
+             // this tag should only be nested in iteratetag, if it's not, throw exception
+             JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
+             RequestUtils.saveException(pageContext, e);
+             throw e;
+        }
+        if( name!=null )
+                handlers.append( name );
+        handlers.append("[");
+        handlers.append(iterateTag.getIndex());
+                handlers.append("]");
+        if( name!=null )
+                handlers.append(".");
+    }
 
     /**
      * Prepares the style attributes for inclusion in the component's HTML tag.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.4 2001/06/01 17:13:36 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/06/01 17:13:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.5 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.ResponseUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.4 $ $Date: 2001/06/01 17:13:36 $
+ * @version $Revision: 1.5 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public class ButtonTag extends BaseHandlerTag {
@@ -188,6 +188,8 @@ public class ButtonTag extends BaseHandlerTag {
         if (property != null) {
             results.append(" name=\"");
             results.append(property);
+            if( indexed )
+                prepareIndex( results, null );
             results.append("\"");
         }
         if (accesskey != null) {
@@ -221,10 +223,10 @@ public class ButtonTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	property = null;
+        super.release();
+        property = null;
         text = null;
-	value = null;
+        value = null;
 
     }
 

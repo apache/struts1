@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.3 2001/04/18 01:31:15 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/18 01:31:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.4 2001/07/24 11:42:15 oalexeev Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/07/24 11:42:15 $
  *
  * ====================================================================
  *
@@ -70,13 +70,14 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
-
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.logic.IterateTag;
 
 /**
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:15 $
+ * @version $Revision: 1.4 $ $Date: 2001/07/24 11:42:15 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -118,7 +119,7 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
 
@@ -130,7 +131,7 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
        
-	this.property = property;
+        this.property = property;
 
     }
 
@@ -140,7 +141,7 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
 
@@ -152,7 +153,7 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
@@ -167,9 +168,9 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Do nothing until doEndTag() is called
+        // Do nothing until doEndTag() is called
         this.text = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -199,40 +200,42 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	// Acquire the label value we will be generating
-	String label = value;
-	if ((label == null) && (text != null))
-	    label = text;
-	if ((label == null) || (label.length() < 1))
-	    label = "Submit";
+        // Acquire the label value we will be generating
+        String label = value;
+        if ((label == null) && (text != null))
+            label = text;
+        if ((label == null) || (label.length() < 1))
+            label = "Submit";
 
-	// Generate an HTML element
-	StringBuffer results = new StringBuffer();
-	results.append("<input type=\"submit\" name=\"");
-	results.append(property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(" value=\"");
-	results.append(label);
-	results.append("\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+        // Generate an HTML element
+        StringBuffer results = new StringBuffer();
+        results.append("<input type=\"submit\" name=\"");
+        results.append(property);
+        if( indexed ) 
+                prepareIndex( results, null );
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
+        results.append(label);
+        results.append("\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(">");
 
-	// Render this element to our writer
+        // Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());
 
         // Evaluate the remainder of this page
-	return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
 
@@ -242,10 +245,10 @@ public class SubmitTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	property = "submit";
+        super.release();
+        property = "submit";
         text = null;
-	value = null;
+        value = null;
 
     }
 
