@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTagBeanInfo.java,v 1.2 2002/10/15 03:11:04 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/15 03:11:04 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,6 @@ public class ELFrameTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()
     {
-        System.out.println("In ELFrameTagBeanInfo.getPropertyDescriptors.");
         PropertyDescriptor[]  result   = new PropertyDescriptor[24];
 
         try {
