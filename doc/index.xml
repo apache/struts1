@@ -140,7 +140,7 @@
 
   <p>
   The Struts <a href="resources/index.html"><b>Resources</b></a> page provides links to
-  everything else published about  Struts, including
+  everything else published about Struts, including
   <a href="resources/books.html">books</a>,
   <a href="resources/articles.html">articles</a>,
   <a href="resources/tutorials.html">tutorials</a>,
@@ -153,6 +153,16 @@
   The Struts <a href="news.html"><b>News &amp; Status</b></a> page highlights current
   events affecting the framework, including new releases, proposals for new features,
   and additions to the Resources page.
+  </p>
+
+  </section>
+
+  <section name="Books about Struts" href="books">
+
+  <p>
+  Printed books about Struts are available now, and several more are on the way.
+  A current list of books about Struts is maintained in <a href="resources/books.html">the
+  resource area</a>. Links to excerpts are provided when available.
   </p>
 
   </section>
