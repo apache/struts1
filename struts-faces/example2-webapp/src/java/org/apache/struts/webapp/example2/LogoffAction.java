@@ -36,7 +36,7 @@ import org.apache.struts.util.MessageResources;
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class LogoffAction extends Action {

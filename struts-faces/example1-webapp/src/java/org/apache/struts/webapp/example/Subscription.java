@@ -23,7 +23,7 @@ package org.apache.struts.webapp.example;
  * associated {@link User}, in a {@link UserDatabase}.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public interface Subscription {

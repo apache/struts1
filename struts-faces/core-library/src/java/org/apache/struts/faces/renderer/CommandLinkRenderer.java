@@ -40,7 +40,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p><code>Renderer</code> implementation for the <code>commandLink</code>
  * tag from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.1 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class CommandLinkRenderer extends AbstractRenderer {

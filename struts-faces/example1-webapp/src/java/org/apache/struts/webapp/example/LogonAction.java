@@ -40,7 +40,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class LogonAction extends Action {

@@ -39,7 +39,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class EditSubscriptionAction extends Action {

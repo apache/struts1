@@ -25,7 +25,7 @@ import javax.faces.component.UIComponent;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.8 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class BaseTag extends AbstractFacesTag {

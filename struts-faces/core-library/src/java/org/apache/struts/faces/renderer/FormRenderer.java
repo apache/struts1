@@ -38,7 +38,7 @@ import org.apache.struts.faces.component.FormComponent;
  * <p><code>Renderer</code> implementation for the <code>form</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.8 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class FormRenderer extends AbstractRenderer {

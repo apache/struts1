@@ -54,7 +54,7 @@ import org.apache.struts.faces.util.HttpServletRequestWrapper;
  * instance normally configured by Struts, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.11 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class FacesRequestProcessor extends RequestProcessor {

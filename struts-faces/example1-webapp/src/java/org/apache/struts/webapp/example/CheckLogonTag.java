@@ -29,7 +29,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  *
  * @author Craig R. McClanahan
  * @author Marius Barduta
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class CheckLogonTag extends TagSupport {

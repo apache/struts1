@@ -42,7 +42,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class SaveRegistrationAction extends Action {

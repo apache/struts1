@@ -34,7 +34,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class LogonForm extends ActionForm {

@@ -27,7 +27,7 @@ import org.apache.struts.Globals;
  * <p>Render an HTML <code>&lt;html&gt;</code> element for
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.10 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class HtmlTag extends AbstractFacesTag {

@@ -36,7 +36,7 @@ import org.apache.struts.util.ResponseUtils;
  * <p><code>Renderer</code> implementation for the <code>message</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class MessageRenderer extends WriteRenderer {

@@ -27,7 +27,7 @@ import javax.faces.el.MethodBinding;
  * <p>Render a <code>CommandLinkComponent</code> inside a
  * Struts-Faces <code>FormComponent</code>.</p>
  *
- * @version $Revision: 1.1 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class CommandLinkTag extends AbstractFacesTag {

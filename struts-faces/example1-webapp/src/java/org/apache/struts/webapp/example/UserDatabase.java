@@ -26,7 +26,7 @@ package org.apache.struts.webapp.example;
  * will be created to perform the actual I/O that is required.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date$
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

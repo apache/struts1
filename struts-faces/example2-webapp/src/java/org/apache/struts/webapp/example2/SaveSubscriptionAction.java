@@ -39,7 +39,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class SaveSubscriptionAction extends Action {

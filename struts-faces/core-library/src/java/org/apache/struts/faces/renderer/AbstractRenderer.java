@@ -41,7 +41,7 @@ import org.apache.commons.logging.LogFactory;
  * <code>javax.faces.render.Renderer</code> for the
  * <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.8 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractRenderer extends Renderer {

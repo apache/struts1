@@ -47,7 +47,7 @@ import junit.framework.TestSuite;
  * <p>Test case for verifying <code>FacesContext</code> information against
  * what is visible in the Struts <code>Action</code> method that is invoked.</p>
  *
- * @version $Revision: 1.2 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class ContextTestCase extends AbstractTestCase {

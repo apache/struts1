@@ -41,7 +41,7 @@ import org.xml.sax.Attributes;
  * database backed by an XML data file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date$
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

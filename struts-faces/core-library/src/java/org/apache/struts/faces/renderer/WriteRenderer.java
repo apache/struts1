@@ -31,7 +31,7 @@ import org.apache.struts.util.ResponseUtils;
  * <p><code>Renderer</code> implementation for the <code>write</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class WriteRenderer extends AbstractRenderer {

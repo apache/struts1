@@ -53,7 +53,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
  * instance normally configured by Struts+Tiles, so it must support non-Faces
  * requests as well.</p>
  *
- * @version $Revision: 1.6 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class FacesTilesRequestProcessor extends TilesRequestProcessor {

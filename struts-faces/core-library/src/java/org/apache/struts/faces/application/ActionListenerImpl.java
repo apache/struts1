@@ -44,7 +44,7 @@ import org.apache.struts.util.RequestUtils;
  * into execution of the corresponding Struts request processing lifecycle.
  * </p>
  *
- * @version $Revision: 1.9 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class ActionListenerImpl implements ActionListener {

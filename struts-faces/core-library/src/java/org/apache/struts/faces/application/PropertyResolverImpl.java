@@ -72,7 +72,7 @@ import org.apache.struts.action.DynaActionForm;
  *     are wrapping.</li>
  * </ul>
  *
- * @version $Revision: 1.5 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class PropertyResolverImpl extends PropertyResolver {

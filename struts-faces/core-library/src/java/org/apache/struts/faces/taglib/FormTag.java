@@ -24,7 +24,7 @@ import javax.faces.component.UIComponent;
  * <p>Render an input form that is submitted to a Struts <code>Action</code>,
  * for the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.8 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class FormTag extends AbstractFacesTag {

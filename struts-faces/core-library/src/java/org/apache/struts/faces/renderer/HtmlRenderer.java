@@ -32,7 +32,7 @@ import org.apache.struts.Globals;
  * <p><code>Renderer</code> implementation for the <code>html</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.5 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class HtmlRenderer extends AbstractRenderer {

@@ -44,7 +44,7 @@ import org.apache.commons.httpclient.HttpState;
 /**
  * <p>Abstract base class for system integration tests based on HtmlUnit.</p>
  *
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public abstract class AbstractTestCase extends TestCase {

@@ -21,7 +21,7 @@ package org.apache.struts.faces;
  * <p>Global manifest constants for the
  * <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.4 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class Constants {

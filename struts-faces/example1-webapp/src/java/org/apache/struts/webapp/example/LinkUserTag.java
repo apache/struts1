@@ -35,7 +35,7 @@ import org.apache.struts.util.ResponseUtils;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class LinkUserTag extends TagSupport {

@@ -39,7 +39,7 @@ import org.apache.struts.util.MessageResources;
  * <p><code>Renderer</code> implementation for the <code>errors</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.9 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class ErrorsRenderer extends AbstractRenderer {

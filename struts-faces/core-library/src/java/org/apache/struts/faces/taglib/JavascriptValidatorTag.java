@@ -56,7 +56,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * to reflect differences in the way JavaServer Faces renders field
  * identifiers.
  *
- * @version $Revision: 1.6 $ $Date$
+ * @version $Rev$ $Date$
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
 

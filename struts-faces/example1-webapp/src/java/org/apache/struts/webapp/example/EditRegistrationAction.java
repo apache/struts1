@@ -40,7 +40,7 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class EditRegistrationAction extends Action {

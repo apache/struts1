@@ -39,7 +39,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public final class SubscriptionForm extends ActionForm  {

@@ -41,7 +41,7 @@ import junit.framework.TestSuite;
  * <p>Test case for a simple Struts-Faces page that is statically examined
  * to ensure that all of the expected elements have been rendered correctly.</p>
  *
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class SimpleTestCase extends AbstractTestCase {

@@ -28,7 +28,7 @@ import javax.faces.webapp.UIComponentTag;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class LinkSubscriptionTag extends UIComponentTag {

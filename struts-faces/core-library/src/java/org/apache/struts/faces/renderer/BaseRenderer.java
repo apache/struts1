@@ -35,7 +35,7 @@ import org.apache.commons.logging.LogFactory;
  * <p><code>Renderer</code> implementation for the <code>base</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.10 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class BaseRenderer extends AbstractRenderer {

@@ -31,7 +31,7 @@ import org.apache.commons.logging.LogFactory;
  * <p><code>Renderer</code> implementation for the <code>stylesheet</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.6 $ $Date$
+ * @version $Rev$ $Date$
  */
 
 public class StylesheetRenderer extends AbstractRenderer {
