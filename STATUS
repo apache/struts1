@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.57 2002/08/29 13:25:00 jholmes Exp $
+$Id: STATUS,v 1.58 2002/08/30 22:45:42 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b2 AND NIGHTLY BUILDS
             ====================================================
 
-                            14 open bugs to swat!!
+                            17 open bugs to swat!!
 
 
 Controller:
@@ -17,12 +17,13 @@ Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 11574 Nested logic tags are brittle
+12023 The "align" attribute on "html:image" and "html:img" should be removed
+12185 HTML tags badly parsed in text/xml mode
 
 
 Documentation:
 -------------
 10537 [:TODO:] sections (18)
-11725 Broken link under Struts Resources
 
 
 Example Webapps:
@@ -40,6 +41,7 @@ Standard Actions:
 Tiles Framework:
 ---------------
 11757 Tiles code needs to be converted to use Commons Logging
+12159 Link to tutorial incorrect
 
 
 Unknown:
@@ -48,6 +50,7 @@ Unknown:
 
 Utilities:
 ---------
+ 4776 ResponseUtils.filter() does not encode the apostrophe character
 10897 PropertyMessageResources loading resources from the wrong ClassLoader
 11685 Unsafe URLEncoding in RequestUtil
 11932 (Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment
@@ -59,8 +62,8 @@ Validator Framework:
 10191 Validator range checking bug
 10348 Validator is not available under sub-application
 11520 [validator-rules.xml] javascript validateRequired() function does not work with radio objects
-11544 PATCH: Date validation not quite right
 11950 Missing <script> in generated javascipt
+12178 Validator restricted to one Message Resource bundle.
 
 
 Web Site:
