@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.3 2002/09/22 06:32:46 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/09/22 06:32:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.4 2002/10/25 05:28:46 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/25 05:28:46 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * found in a specified array, Collection, or Map.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/09/22 06:32:46 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/25 05:28:46 $
  */
 
 public class SizeTag extends TagSupport {
@@ -121,7 +121,7 @@ public class SizeTag extends TagSupport {
      */
     protected static MessageResources messages =
 	MessageResources.getMessageResources
-	("org.apache.struts.taglib.logic.LocalStrings");
+	("org.apache.struts.taglib.bean.LocalStrings");
 
 
 
@@ -179,8 +179,18 @@ public class SizeTag extends TagSupport {
 
         // Retrieve the required property value
         Object value = this.collection;
-        if (value == null)
+        if (value == null) {
+            if (name == null) {
+                // Must specify either a collection attribute or a name
+                // attribute.
+                JspException e = new JspException
+                    (messages.getMessage("size.noCollectionOrName"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            
             value = RequestUtils.lookup(pageContext, name, property, scope);
+        }
 
         // Identify the number of elements, based on the collection type
         int size = 0;
