@@ -2,7 +2,7 @@
 <project name="Struts">
 
   <title>Struts</title>
-  <organizationLogo href="/images/jakarta-logo-blue.gif">Jakarta</organizationLogo>
+  <organizationLogo href="http://jakarta.apache.org/images/jakarta-logo-blue.gif">Jakarta</organizationLogo>
 
   <body>
     <menu name="Struts">
@@ -10,8 +10,10 @@
       <item name="Community"               href="/community.html"/>
       <item name="To Do List"              href="/tasks.html"/>
       <item name="Resources"               href="/resources.html"/>
-      <item name="Legacy 1.0"              href="/1.0/api/org/apache/struts/package-summary.html"/>
-      <item name="Legacy 1.1"              href="/1.1/api/org/apache/struts/package-summary.html"/>
+      <item name="Legacy" href="/index.html" collapse="true">   
+	      <item name="Api 1.0" href="/1.0/api/org/apache/struts/package-summary.html" collapse="true"/>
+	      <item name="Api 1.1" href="/1.1/api/org/apache/struts/package-summary.html" collapse="true"/>
+	  </item>
     </menu>
   </body>
 </project>
