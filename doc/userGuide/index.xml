@@ -26,6 +26,10 @@
     <author>Robert Leland</author>
     <author>Stanley Santiago</author>
     <author>Wong Kok Kai</author>
+    <author>Dan Walker</author>
+    <author>Eddie Bush</author>
+    <author>Yann Cebron </author>
+    <author>David Graham</author>
     <title>The Struts User's Guide - Table of Contents</title>
   </properties>
 
@@ -126,9 +130,15 @@
                 <li><a href="building_controller.html#config_add">4.8 Add Struts Components To Your Application</a></li>
                 <li><a href="building_controller.html#logging">4.9 Using The Commons Logging Interface</a></li>
                 </ul></li>
-             <li>5. Getting Started</li>
+             <li><a href="building_apps.html">5. Building Applications</a>
+                    <ul>
+                    <li><a href="building_apps.html#caveats">5.1 Caveats</a></li>
+                    <li><a href="building_apps.html#overview">5.2 Overview</a></li>
+                    <li><a href="building_apps.html#details">5.3 Details</a></li>
+                    </ul></li>
+             <li>6. Getting Started</li>
                 <ul>
-                <li><a href="release-notes.html">5.1 Release Notes</a></li>
+                <li><a href="release-notes.html">6.1 Release Notes</a></li>
                 <ul>
                 <li><a href="release-notes-1.1-b2.html">Release Notes 1.1-b2</a></li>
                 <li><a href="release-notes-1.1-b1.html">Release Notes 1.1-b1</a></li>
@@ -139,7 +149,7 @@
                 <li><a href="release-notes-1.0-b2.html">Release Notes 1.0-b2</a></li>
                 <li><a href="release-notes-1.0-b1.html">Release Notes 1.0-b1</a></li>
                 </ul>
-                <li><a href="installation.html">5.2 Installation</a></li>
+                <li><a href="installation.html">6.2 Installation</a></li>
                 <ul>
                 <li><a href="installation-ip.html">iPlanet</a></li>
                 <li><a href="installation-ipas.html">Portal Application Server</a></li>

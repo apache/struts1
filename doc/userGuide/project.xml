@@ -12,6 +12,7 @@
       <item name="Model Components"      href="building_model.html"/>
       <item name="View Components"       href="building_view.html"/>
       <item name="Controller Components" href="building_controller.html"/>
+      <item name="Applications"          href="building_apps.html"/>
     </menu>
 
     <menu name="Developer Guides">
@@ -34,18 +35,18 @@
     </menu>
 
     <menu name="Getting Started">
-      <item name="Release Notes"           
+      <item name="Release Notes"
         href="release-notes.html"/>
-      <item name="Installation"           
+      <item name="Installation"
         href="installation.html"/>
-      <item name="Newbie FAQ"           
+      <item name="Newbie FAQ"
         href="../newbie.html"/>
     </menu>
 
     <menu name="Welcome">
         <item name="Home"                    href="../index.html"/>
         <item name="News &amp; Status"       href="../news.html"/>
-        <item name="Kickstart FAQ"           href="../kickstart.html"/> 
+        <item name="Kickstart FAQ"           href="../kickstart.html"/>
         <item name="Resources"               href="../resources/index.html"/>
         <item name="Who We Are"              href="../volunteers.html"/>
     </menu>

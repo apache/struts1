@@ -20,7 +20,7 @@
   </properties>
 
   <body>
-  <chapter name="5.2 Installation" href="installation">
+  <chapter name="6.2 Installation" href="installation">
   <section name="Prerequisite Software" href="Prerequisites">
 
   <p>The Struts binary distribution needs three other software packages installed to
