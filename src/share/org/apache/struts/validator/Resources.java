@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.7 2002/11/28 07:20:18 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/28 07:20:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.8 2002/11/28 07:38:57 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/28 07:38:57 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.config.ModuleConfig;
@@ -85,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.7 $ $Date: 2002/11/28 07:20:18 $
+ * @version $Revision: 1.8 $ $Date: 2002/11/28 07:38:57 $
  * @since Struts 1.1
 */
 public class Resources  {
