@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPerformInclude.java,v 1.1 2003/10/25 00:02:33 mrdon Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/25 00:02:33 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPerformInclude.java,v 1.2 2003/10/25 01:12:38 mrdon Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/10/25 01:12:38 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.config.ModuleConfig;
  * <code>String</code> (if any).</p>
  *
  * @author Don Brown
- * @version $Revision: 1.1 $ $Date: 2003/10/25 00:02:33 $
+ * @version $Revision: 1.2 $ $Date: 2003/10/25 01:12:38 $
  */
 
 public abstract class AbstractPerformInclude implements Command {
@@ -163,7 +163,7 @@ public abstract class AbstractPerformInclude implements Command {
         String include = (String)
             context.get(getIncludeKey());
         if (include == null) {
-            return (true);
+            return (false);
         }
         
         // Determine the currect uri
