@@ -1,10 +1,11 @@
 <%@ page language="java" %>
-<%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 
 <html>
 <head>
-<title><struts:message key="index.title"/></title>
+<title><bean:message key="index.title"/></title>
 </head>
 <body bgcolor="white">
 
@@ -23,10 +24,10 @@
   </font>
 </logic:notPresent>
 
-<h3><struts:message key="index.heading"/></h3>
+<h3><bean:message key="index.heading"/></h3>
 <ul>
-<li><struts:link href="editRegistration.do?action=Create"><struts:message key="index.registration"/></struts:link>
-<li><struts:link href="logon.jsp"><struts:message key="index.logon"/></struts:link>
+<li><form:link href="editRegistration.do?action=Create"><bean:message key="index.registration"/></form:link></li>
+<li><form:link href="logon.jsp"><bean:message key="index.logon"/></form:link></li>
 </ul>
 
 </body>

@@ -1,10 +1,11 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 
 <html>
 <head>
-<title><struts:message key="logon.title"/></title>
+<title><bean:message key="logon.title"/></title>
 </head>
 <body bgcolor="white">
 
@@ -16,7 +17,7 @@
 
   <tr>
     <th align="right">
-      <struts:message key="prompt.username"/>
+      <bean:message key="prompt.username"/>
     </th>
     <td align="left">
       <form:text property="username" size="16" maxlength="16"/>
@@ -25,7 +26,7 @@
 
   <tr>
     <th align="right">
-      <struts:message key="prompt.password"/>
+      <bean:message key="prompt.password"/>
     </th>
     <td align="left">
       <form:password property="password" size="16" maxlength="16"/>

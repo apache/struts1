@@ -1,4 +1,4 @@
-$Id: TODO,v 1.6 2000/10/19 01:00:34 craigmcc Exp $
+$Id: TODO,v 1.7 2000/11/04 00:51:17 craigmcc Exp $
 
 
 			    Struts TODO List
@@ -17,17 +17,6 @@ Strategic Directions:
 - Consider how to make the Struts tag library (especially the form related
   tags) more amenable to a WML environment, as well as environments not using
   HTTP (and therefore not using HttpServletRequest/HttpServletResponse).
-
-- Think about segregating the various tags into logically divided sublibraries,
-  with the "struts.tld" library still containing all-in-one for backwards
-  compatibility.  Considerations for separate libraries:
-	* "form" - <struts:form> and all its related tags
-	* "i18n" - <struts:message> and other tags specifically related to
-          internationalization
-	* "logic" - Logical flow of control tags: conditionals, loops
-	* "beans" - General access to properties of beans, including
-          representation of beans and properties as collections
-	* "template" - The template library contributed by David Geary
 
 
 MVC Framework [org.apache.struts.action]:
@@ -101,10 +90,6 @@ Custom Tag Library [org.apache.struts.taglib]:
 - Improve the mechanism by which you define values and corresponding labels
   for <struts:options>.  Motivation:  STRUTS-DEV (07/27/2000) David
   Winterfeldt, STRUTS-DEV (08/02/2000) David Winterfeldt.
-
-- Add conditionals like ifPropertyLessThan (a specified value),
-  ifPropertyTrue (for booleans), ....  Motivation:  See also
-  ifAttributeEquals: STRUTS-DEV (07/27/2000) David Winterfeldt.
 
 - Enhance the form management tags to optionally generate JavaScript code
   for client side validation of things like required fields.  Background:
