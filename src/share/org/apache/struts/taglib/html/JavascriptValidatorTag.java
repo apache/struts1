@@ -89,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.7 $ $Date: 2002/10/18 01:35:02 $
+ * @version $Revision: 1.8 $ $Date: 2002/10/18 16:58:10 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -393,13 +393,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 }
                 results.append("    } \n\n");
             }
+        } else if ("true".equals(staticJavascript)) {
+            results.append("<script language=\"Javascript1.1\">");
         }
 
         if ("true".equals(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
 
-        if ("true".equals(dynamicJavascript)) {
+        if ("true".equals(dynamicJavascript) || "true".equals(staticJavascript)) {
             results.append(getJavascriptEnd());
         }
 

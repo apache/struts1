@@ -21,7 +21,11 @@ contributed by David Winterfeldt</p>
 <ul>
 <li> Conditionally required fields</li>
 <li> intRange() &amp; floatRange() methods in both JavaScript and Java</li>
+<li> Do <strong>not</strong> use the &lt;script/&gt; to include static java script
+as in the old validator example.
+ </li>
 <li> deprecation of range() methods in both JavaScript and Java</li>
+<li> deprecation of StrutsVlaidator &amp; StrutsValidatorUtil</li>
 </ul>
 
 <p>

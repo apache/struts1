@@ -120,9 +120,8 @@
 
 </html:form>
 
-<html:javascript formName="jsTypeForm" dynamicJavascript="true" staticJavascript="false"/>
-<%-- This wouldn't work right in IE 5.0 when I made the source an attribute of the tag ??? --%>
-<SCRIPT LANGUAGE="Javascript1.1" src="staticJavascript.jsp"></script>
+<html:javascript formName="jsTypeForm" dynamicJavascript="true" staticJavascript="true"/>
+
 
 </body>
 </html:html>
