@@ -18,6 +18,7 @@
 <li><a href="bean-resource.jsp">&lt;bean:resource&gt;</a></li>
 <li><a href="bean-size.jsp">&lt;bean:size&gt;</a></li>
 <li><a href="bean-write.jsp">&lt;bean:write&gt;</a></li>
+<li><a href="bean-write-2.jsp">&lt;bean:write&gt; 2</a></li>
 </ul>
 
 <h3>HTML Tags</h3>
