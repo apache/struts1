@@ -434,12 +434,24 @@ based on information included in the <code>struts-config.xml</code> file.
 Simply include a section that looks like this:</p>
 <pre>
     &lt;data-sources&gt;
-        &lt;data-source
-          autoCommit="false" description="My Database Connection Pool"
-          driverClass="org.postgresql.Driver" maxCount="4" minCount="1"
-          password="mypassword" url="jdbc:postgresql://localhost/mydatabase"
-          user="myusername"
-        /&gt;
+      &lt;data-source&gt;
+        &lt;set-property property="autoCommit"
+                      value="false"/&gt;
+        &lt;set-property property="description"
+                      value="Example Data Source Configuration"/&gt;
+        &lt;set-property property="driverClass"
+                      value="org.postgresql.Driver"/&gt;
+        &lt;set-property property="maxCount"
+                      value="4"/&gt;
+        &lt;set-property property="minCount"
+                      value="2"/&gt;
+        &lt;set-property property="password"
+                      value="mypassword"/&gt;
+        &lt;set-property property="url"
+                      value="jdbc:postgresql://localhost/mydatabase"/&gt;
+        &lt;set-property property="user"
+                      value="myusername"/&gt;
+      &lt;/data-source&gt;
     &lt;/data-sources&gt;
 </pre>
 
