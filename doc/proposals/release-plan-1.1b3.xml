@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.9 2003/01/20 12:41:18 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.10 2003/02/04 18:05:14 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -128,7 +128,7 @@
       <td>Bug on the RequestUtils.computeParameters using a DynaValidatorForm as map of the parameter</td>
     </tr>
     <tr>
-        <td nowrap="nowrap">[ ]</td>
+        <td nowrap="nowrap">[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15451">15451</a></td>
       <td>Multiple mapped properties not possible / Direct maps and indexes not possible</td>
@@ -207,7 +207,7 @@
       <td colspan="3"><strong>Post Mortem -- These tickets were added after the release of Struts 1.1 B3 and need to be resolved before the next iteration</strong></td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15736">15736</a></td>
       <td>Struts doesn't initialize under strict security manager</td>
@@ -219,13 +219,13 @@
       <td>Nested tags picks up wrong bean for values</td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15883">15883</a></td>
       <td>wrong resource file used in multi-application context</td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16019">16019</a></td>
       <td>LookupDispatchAction multiple MessageResources</td>
