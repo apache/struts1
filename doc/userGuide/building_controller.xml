@@ -309,7 +309,7 @@
 
     <tr>
         <td>
-         <code>processActionForward</code>
+         <code>processForwardConfig</code>
         </td>
         <td>
         Finally, the process method of the RequestProcessor takes the 
