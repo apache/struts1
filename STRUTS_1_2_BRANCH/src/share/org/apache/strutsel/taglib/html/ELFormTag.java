@@ -42,6 +42,11 @@ public class ELFormTag extends FormTag {
      */
     private String actionExpr;
     /**
+     * Instance variable mapped to "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String disabledExpr;
+    /**
      * Instance variable mapped to "enctype" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -71,6 +76,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String onsubmitExpr;
+    /**
+     * Instance variable mapped to "readonly" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String readonlyExpr;
     /**
      * Instance variable mapped to "scriptLanguage" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -108,6 +118,11 @@ public class ELFormTag extends FormTag {
      */
     public String getActionExpr() { return (actionExpr); }
     /**
+     * Getter method for "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getDisabledExpr() { return (disabledExpr); }
+    /**
      * Getter method for "enctype" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -137,6 +152,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getOnsubmitExpr() { return (onsubmitExpr); }
+    /**
+     * Getter method for "readonly" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getReadonlyExpr() { return (readonlyExpr); }
     /**
      * Getter method for "scriptLanguage" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -174,6 +194,11 @@ public class ELFormTag extends FormTag {
      */
     public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
     /**
+     * Setter method for "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setDisabledExpr(String disabledExpr) { this.disabledExpr = disabledExpr; }
+    /**
      * Setter method for "enctype" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -203,6 +228,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setOnsubmitExpr(String onsubmitExpr) { this.onsubmitExpr = onsubmitExpr; }
+    /**
+     * Setter method for "readonly" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setReadonlyExpr(String readonlyExpr) { this.readonlyExpr = readonlyExpr; }
     /**
      * Setter method for "scriptLanguage" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -241,12 +271,14 @@ public class ELFormTag extends FormTag {
     {
         super.release();
         setActionExpr(null);
+        setDisabledExpr(null);
         setEnctypeExpr(null);
         setFocusExpr(null);
         setFocusIndexExpr(null);
         setMethodExpr(null);
         setOnresetExpr(null);
         setOnsubmitExpr(null);
+        setReadonlyExpr(null);
         setScriptLanguageExpr(null);
         setStyleExpr(null);
         setStyleClassExpr(null);
@@ -279,6 +311,10 @@ public class ELFormTag extends FormTag {
                                             this, pageContext)) != null)
             setAction(string);
 
+        if ((bool = EvalHelper.evalBoolean("disabled", getDisabledExpr(),
+                                           this, pageContext)) != null)
+            setDisabled(bool.booleanValue());
+
         if ((string = EvalHelper.evalString("enctype", getEnctypeExpr(),
                                             this, pageContext)) != null)
             setEnctype(string);
@@ -302,6 +338,10 @@ public class ELFormTag extends FormTag {
         if ((string = EvalHelper.evalString("onsubmit", getOnsubmitExpr(),
                                             this, pageContext)) != null)
             setOnsubmit(string);
+
+        if ((bool = EvalHelper.evalBoolean("readonly", getReadonlyExpr(),
+                                           this, pageContext)) != null)
+            setReadonly(bool.booleanValue());
 
        if ((bool = EvalHelper.evalBoolean("scriptLanguage", getScriptLanguageExpr(),
                                           this, pageContext)) != null)

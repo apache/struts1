@@ -40,6 +40,10 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo
                                                 null, "setActionExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("disabled", ELTextTag.class,
+                                                null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("enctype", ELFormTag.class,
                                                 null, "setEnctypeExpr"));
         } catch (IntrospectionException ex) {}
@@ -66,6 +70,10 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("onsubmit", ELFormTag.class,
                                                 null, "setOnsubmitExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("readonly", ELTextTag.class,
+                                                null, "setReadonlyExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("scope", ELFormTag.class,
