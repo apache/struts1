@@ -10,11 +10,7 @@
 <section name="Status" href="status">
 
 <p>
-The <b>stable production release</b> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
-</p>
-
-<p>
-<a href="http://www.apache.org/dist/jakarta/struts/">Struts 1.1</a> is in its second <b>release candidate</b> build (7 June 2003).
+The <strong>stable production release</strong> is <a href="http://www.apache.org/dist/jakarta/struts/binaries/">Struts 1.1</a>.
 </p>
 
 <hr size="1" noshade=""/>
