@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.25 2002/08/06 03:47:10 martinc Exp $
- * $Revision: 1.25 $
- * $Date: 2002/08/06 03:47:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.26 2002/08/07 05:25:03 martinc Exp $
+ * $Revision: 1.26 $
+ * $Date: 2002/08/07 05:25:03 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,7 +88,8 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.25 $ $Date: 2002/08/06 03:47:10 $
+ * @author Martin Cooper
+ * @version $Revision: 1.26 $ $Date: 2002/08/07 05:25:03 $
  */
 
 public class FormTag extends TagSupport {
@@ -138,7 +139,7 @@ public class FormTag extends TagSupport {
     /**
      * The request method used when submitting this form.
      */
-    protected String method = "POST";
+    protected String method = null;
 
 
     /**
@@ -163,7 +164,7 @@ public class FormTag extends TagSupport {
      * The scope (request or session) under which our associated bean
      * is stored.
      */
-    protected String scope = "session";
+    protected String scope = null;
 
 
     /**
@@ -203,23 +204,28 @@ public class FormTag extends TagSupport {
      */
     protected String type = null;
 
-    /**
-     * Temporary copy of the 'name' property, used to ensure we don't
-     * modify tag attributes between uses of the same instance.
-     */
-    private String savedName = null;
 
     /**
-     * Temporary copy of the 'scope' property, used to ensure we don't
-     * modify tag attributes between uses of the same instance.
+     * The name of the form bean to (create and) use. This is either the same
+     * as the 'name' attribute, if that was specified, or is obtained from the
+     * associated <code>ActionMapping</code> otherwise.
      */
-    private String savedScope = null;
+    private String beanName = null;
+
 
     /**
-     * Temporary copy of the 'type' property, used to ensure we don't
-     * modify tag attributes between uses of the same instance.
+     * The scope of the form bean to (create and) use. This is either the same
+     * as the 'scope' attribute, if that was specified, or is obtained from the
+     * associated <code>ActionMapping</code> otherwise.
      */
-    private String savedType = null;
+    private String beanScope = null;
+
+    /**
+     * The type of the form bean to (create and) use. This is either the same
+     * as the 'type' attribute, if that was specified, or is obtained from the
+     * associated <code>ActionMapping</code> otherwise.
+     */
+    private String beanType = null;
 
 
     // ------------------------------------------------------------- Properties
@@ -519,12 +525,6 @@ public class FormTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-        // Save the name, scope and type property values so that we can restore
-        // them in doEndTag(). Needed to allow tag reuse to work correctly.
-        savedName = name;
-        savedScope = scope;
-        savedType = type;
-
         // Look up the form bean name, scope, and type if necessary
         lookup();
 
@@ -533,10 +533,10 @@ public class FormTag extends TagSupport {
             (HttpServletResponse) pageContext.getResponse();
         StringBuffer results = new StringBuffer("<form");
         results.append(" name=\"");
-        results.append(name);
+        results.append(beanName);
         results.append("\"");
         results.append(" method=\"");
-        results.append(method);
+        results.append(method == null ? "POST" : method);
         results.append("\" action=\"");
         results.append(response.encodeURL(getActionMappingURL()));
         results.append("\"");
@@ -600,23 +600,37 @@ public class FormTag extends TagSupport {
 
         // Locate or create the bean associated with our form
         int scope = PageContext.SESSION_SCOPE;
-        if ("request".equals(this.scope)) {
+        if ("request".equals(beanScope)) {
             scope = PageContext.REQUEST_SCOPE;
         }
-        Object bean = pageContext.getAttribute(name, scope);
+        Object bean = pageContext.getAttribute(beanName, scope);
         if (bean == null) {
-            bean = RequestUtils.createActionForm
-                ((HttpServletRequest) pageContext.getRequest(),
-                 mapping, appConfig, servlet);
+            if (type != null) {
+                // Backwards compatibility - use explicitly specified values
+                try {
+                    bean = RequestUtils.applicationInstance(beanType);
+                    if (bean != null) {
+                        ((ActionForm) bean).setServlet(servlet);
+                    }
+                } catch (Exception e) {
+                    throw new JspException(messages.getMessage(
+                        "formTag.create", type, e.toString()));
+                }
+            } else {
+                // New and improved - use the values from the action mapping
+                bean = RequestUtils.createActionForm(
+                    (HttpServletRequest) pageContext.getRequest(),
+                    mapping, appConfig, servlet);
+            }
             if (bean instanceof ActionForm) {
                 ((ActionForm) bean).reset
                     (mapping, (HttpServletRequest) pageContext.getRequest());
             }
             if (bean == null) {
                 throw new JspException
-                    (messages.getMessage("formTag.create", type));
+                    (messages.getMessage("formTag.create", beanType));
             }
-            pageContext.setAttribute(name, bean, scope);
+            pageContext.setAttribute(beanName, bean, scope);
         }
         pageContext.setAttribute(Constants.BEAN_KEY, bean,
                                  PageContext.REQUEST_SCOPE);
@@ -659,7 +673,7 @@ public class FormTag extends TagSupport {
             results.append(" type=\"text/javascript\">\r\n");
             results.append("  <!--\r\n");
             results.append(" if (document.forms[\"");
-            results.append(name);
+            results.append(beanName);
             results.append("\"].elements[\"");
             results.append(tempFocus);
             results.append("\"]");
@@ -668,7 +682,7 @@ public class FormTag extends TagSupport {
             }
             results.append(".type != \"hidden\") \r\n");
             results.append("    document.forms[\"");
-            results.append(name);
+            results.append(beanName);
             results.append("\"].elements[\"");
             results.append(tempFocus);
             results.append("\"]");
@@ -689,12 +703,6 @@ public class FormTag extends TagSupport {
                 (messages.getMessage("common.io", e.toString()));
         }
 
-        // Restore original property values used to invoke this tag. Needed
-        // for tag reuse to work correctly.
-        name = savedName;
-        scope = savedScope;
-        type = savedType;
-
         // Continue processing this page
         return (EVAL_PAGE);
 
@@ -712,11 +720,11 @@ public class FormTag extends TagSupport {
         enctype = null;
         focus = null;
         mapping = null;
-        method = "POST";
+        method = null;
         name = null;
         onreset = null;
         onsubmit = null;
-        scope = "session";
+        scope = null;
         servlet = null;
         style = null;
         styleClass = null;
@@ -855,8 +863,6 @@ public class FormTag extends TagSupport {
 
         // Were the required values already specified?
         if (name != null) {
-            if (scope == null)
-                scope = "session";
             if (type == null) {
                 JspException e = new JspException
                     (messages.getMessage("formTag.nameType"));
@@ -864,6 +870,9 @@ public class FormTag extends TagSupport {
                                          PageContext.REQUEST_SCOPE);
                 throw e;
             }
+            beanName = name;
+            beanScope = (scope == null ? "session" : scope);
+            beanType = type;
             return;
         }
 
@@ -879,9 +888,9 @@ public class FormTag extends TagSupport {
         }
 
         // Calculate the required values
-        name = mapping.getAttribute();
-        scope = mapping.getScope();
-        type = formBeanConfig.getType();
+        beanName = mapping.getAttribute();
+        beanScope = mapping.getScope();
+        beanType = formBeanConfig.getType();
 
     }
 }
