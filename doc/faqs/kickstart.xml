@@ -249,7 +249,7 @@ the application can make use of them.
 <p>Markup extensions that use Struts are available for
 <a href="http://jakarta.apache.org/velocity">Velocity</a> and
 <a href="http://www.openroad.ca/opencode/">XLST</a>, among others.
-A new Struts tag for
+A new Struts tag library for
 <a href="#jsf">Java Server Faces</a> is also in development.
 </p>
 
@@ -260,51 +260,68 @@ WAP up your EAserver</a>.
 </section>
 
 <section href="jsf" name="What about the JSTL and JavaServer Faces?">
+    <p>
+       JSTL, the <a href="http://java.sun.com/products/jsp/jstl/">
+       JavaServer Standard Tag Library</a>, is a set of JSP tags that
+       are designed to make it easier to develop Web applications.
+       <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces</a>
+       (JSF) is a specification for a new technology that promises to make
+       it easier to write MVC applications, both for the Web and for the
+       desktop.
+    </p>
 <p>
-The lead developer of Struts, Craig McClanahan, was a member of the
+The inventor of Struts, Craig McClanahan, was a member of the
 expert group for the JavaServer Standard Tag Library (JSR 052) and
-now the specification lead for JavaServer Faces (JSR 127). Both
+is now the specification co-lead for JavaServer Faces (JSR 127). Both
 technologies are complementary to Struts.</p>
 <p>
 The mainstay of the Struts framework is the controller components, which
 can be used with any Java presentation technology. As new technologies
 become available, it is certain that new "glue" components will also
-appear to help these technologies work as well with Struts as the
-bundled JSP tags. This would apply to both the JSTL and JSF.</p>
+appear to help these technologies work as well with Struts.
+    </p>
+    <p>
+        Struts originally came bundled with a set of custom JSP tags.
+        Today, several <a href="../resources/view.html">extensions</a> are available to help
+        you use Struts with other popular presentation technologies, like
+        XSLT and Velocity. Likewise, extensions for JSTL and JSF are now available as well.
+    </p>
 <p>
-At some point, we would not be surprised to see Faces become the
-preferred UI implementation technology once it is standardized and
-available. You can be assured that any future migration will be
-made as painless as possible, and maximize your investment in
-Struts.</p>
-<p>
-The JSTL is available through the Jakarta Taglibs site: <br/>
-<a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html</a>
+    The JSTL reference implementation is available through the
+    <a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">Jakarta Taglibs site</a>.
+    A JSTL taglibs for Struts,
+    <a href="http://jakarta.apache.org/struts/userGuide/building_view.html#struts-el"><b>Struts-El</b></a>,
+    is distributed as part of the Struts 1.1 release.
 </p>
-<p>
-The JavaServer Faces specification is still being finalized. Public release of
-the specification is scheduled for Summer 2002, and an implementation may be
-available in Fall of 2002. <a href="http://servlet.java.sun.com/javaone/sf2002/conf/sessions/display-1697.en.jsp">
-A presentation was given at JavaOne 2002</a> with some additional background.
-</p>
-<p>
-In September 2002, McClanahan announced that a
-<a href="../proposals/struts-faces.html">struts-faces taglib</a> is in
-development and might be released sometime in the Q4 2002. The taglib depends
-on unreleased JSF features, and so an early release of the taglib must follow
-release of a later implementation of JSF.
-</p>
+    <p>
+        Meanwhile, the JSF specification is still under development,
+        although an early-release reference implementation is available through the
+        <a href="http://java.sun.com/webservices/download.html">Java Web Services Developer Pack</a>.
+        An early-release JavaServer Faces taglib for Struts,
+        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">
+        <b>Struts-Faces</b></a>, is also in early release and available
+        through the nightly build.
+    </p>
+    <p>
+        For more about what JavaServer Faces means to the Struts community,
+        see the <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsMoreAboutJSF">
+        StrutsMoreAboutJSF</a> wiki page.
+    </p>
 </section>
 
 <section href="ide" name="Is there a particularly good IDE to use with Struts">
 <p>
 Struts should work well with any development environment that you would like to use, as well as with any programmers editor. 
-The members of the Struts development team each use their own tools, which ranges from emacs and Textpad to IntelliJ, with NetBeans and Eclipse ranging in between. 
+The members of the Struts development team each use their own tools, which ranges from emacs and Textpad to IDEA by IntelliJ,
+    with NetBeans and Eclipse ranging in between.
 </p>
 <p>
 At this writing, in the free zone, NetBeans had the edge with JSP editing, but Eclipse has relatively more advanced refactoring features. 
 Eclipse is also a general-purpose IDE and can be used with non-Java projects.
-In the non-free zone, IntelliJ is highly regarded, but costs money. (Of course, if *you* cost money, good tools are often a good investment.)
+In the non-free zone, IDEA by IntelliJ is highly regarded but costs money. (Of course, if *you* cost money, good tools are often a good investment.)
+    Many of the Struts Committers use IDEA, though others do not.
+    </p>
+    <p>
 See the <a href="../faqs/index.html">Howto Guides</a> for more about configuring IDEs to work with Struts.
 </p>
 </section>
