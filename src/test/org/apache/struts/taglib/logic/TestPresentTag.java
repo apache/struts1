@@ -305,7 +305,7 @@ public class TestPresentTag extends JspTestCase {
 	public void testRequestScopePropertyNotPresent()
 		throws ServletException, JspException {
 		PresentTag pt = new PresentTag();
-		String testKey = "testRequestScopePropertyPresent";
+		String testKey = "testRequestScopePropertyNotPresent";
 		
 		String testStringValue = null;
 		LabelValueBean lvb = new LabelValueBean("The Key", testStringValue);
