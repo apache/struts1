@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.24 2003/01/30 17:58:13 craigmcc Exp $
- * $Revision: 1.24 $
- * $Date: 2003/01/30 17:58:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.25 2003/02/05 05:30:13 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/02/05 05:30:13 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.24 $ $Date: 2003/01/30 17:58:13 $
+ * @version $Revision: 1.25 $ $Date: 2003/02/05 05:30:13 $
  * @since Struts 1.1
  */
 
@@ -406,7 +406,7 @@ public class RequestProcessor {
     /**
      * Forward or redirect to the specified destination, by the specified
      * mechanism.
-     * This method uses the 1.1b2 ForwardConfig object. It should be used in
+     * This method uses the ForwardConfig object. It should be used in
      * place of processActionForward(...).
      *
      * @param request The servlet request we are processing
@@ -424,14 +424,29 @@ public class RequestProcessor {
         if (forward == null) {
             return;
         }
+        
         if (log.isDebugEnabled()) {
             log.debug("processForwardConfig(" + forward + ")");
         }
-
-        String uri = RequestUtils.forwardURL(request, forward);
+        
+        String forwardPath = forward.getPath();
+        String uri = null;
+        
+        // paths not starting with / should be passed through without any processing
+        // (ie. they're absolute)
+        if (forwardPath.startsWith("/")) {
+            uri = RequestUtils.forwardURL(request, forward);    // get module relative uri
+        } else {
+            uri = forwardPath;
+        }
+        
         if (forward.getRedirect()) {
-            response.sendRedirect
-                (response.encodeRedirectURL(request.getContextPath() + uri));
+            // only prepend context path for relative uri
+            if (uri.startsWith("/")) {
+                uri = request.getContextPath() + uri;
+            }
+            response.sendRedirect(response.encodeRedirectURL(uri));
+            
         } else {
             doForward(uri, request, response);
         }
