@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <extend>../project.xml</extend>
+  <name>Jericho</name>
+  <id>struts-jericho</id>
+  <currentVersion>0.1-dev</currentVersion>
+  <inceptionYear>2003</inceptionYear>
+  <shortDescription>Struts Jericho 2.x Whiteboard</shortDescription>
+  <description>
+      Jericho is a whiteboard proposal describing one possible implementation of Struts 2.x.
+      Since Struts 2.x is slated as a "revolution", the Apache practice is to assign a codename to a proposal
+      until the Community comes to a consensus.
+      This proposal is called "Jericho" since it tries to tear-down the walls within the Struts architecture.
+  </description>
+  <developers>
+    <developer>
+      <name>Ted Husted</name>
+      <id>husted</id>
+      <email>husted@apache.org</email>
+      <organization></organization>
+    </developer>
+  </developers>
+
+  <build>
+    <unitTest>
+      <includes>
+        <include>**/*Test.java</include>
+      </includes>
+    </unitTest>
+  </build>
+
+</project>
