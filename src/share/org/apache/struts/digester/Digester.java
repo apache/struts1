@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.15 2001/02/13 23:53:36 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2001/02/13 23:53:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.16 2001/03/13 19:39:48 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2001/03/13 19:39:48 $
  *
  * ====================================================================
  * 
@@ -102,7 +102,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.15 $ $Date: 2001/02/13 23:53:36 $
+ * @version $Revision: 1.16 $ $Date: 2001/03/13 19:39:48 $
  */
 
 public final class Digester extends HandlerBase {
@@ -1081,7 +1081,8 @@ public final class Digester extends HandlerBase {
      * The selected rules are those that match exactly, or those rules
      * that specify a suffix match and the tail of the rule matches the
      * current match position.  Exact matches have precedence over
-     * suffix matches.
+     * suffix matches, then (among suffix matches) the longest match
+     * is preferred.
      *
      * @param match The current match position
      */
@@ -1089,13 +1090,17 @@ public final class Digester extends HandlerBase {
 
         List rulesList = (List) this.rules.get(match);
 	if (rulesList == null) {
+            // Find the longest key, ie more discriminant
+            String longKey = "";
 	    Iterator keys = this.rules.keySet().iterator();
 	    while (keys.hasNext()) {
 	        String key = (String) keys.next();
 		if (key.startsWith("*/")) {
 		    if (match.endsWith(key.substring(1))) {
-		        rulesList = (List) this.rules.get(key);
-			break;
+                        if (key.length() > longKey.length()) {
+                            rulesList = (List) this.rules.get(key);
+                            longKey = key;
+                        }
 		    }
 		}
 	    }
