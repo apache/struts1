@@ -13,6 +13,8 @@
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
 
+    <li><a href="#reload">Why was reload removed from Struts 1.1?</a></li>
+
     <li><a href="#modules">What is a modular application? What does module-relative mean?</a></li>
 
     <li><a href="#naming">Why are some of the class and element names counter-intuitive?</a></li>
@@ -34,6 +36,8 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
     <li>Why do my option lists disappear when validation fails?</li>
 
     <li><a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP using a scriptlet?</a></li>
+
+    <li><a href="#tags">Why do the Struts tags provide for so little formatting?</a></li>
 
     <li>When is the best time to validate input?</li>
 
@@ -66,6 +70,19 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
   </ul>
 </section>
 
+<section href="reload" name="Why was reload removed from Struts 1.1?">
+
+<p>ReloadAction is not supported in 1.1 for two reasons:</p>
+<ul>
+<li>It never did let you reload everything that you would really
+  want to -- particularly changed classes -- so many people
+  ended up having to reload the webapp anyway.</li>
+<li>Not supporting ReloadAction lets Struts avoid doing synchronization
+  locks around all the lookups (like figuring out which action to use,
+  or the destination of an ActionForward) so apps can run a little faster.</li>
+</ul>
+
+</section>
 
 <section href="modules" name="What is a modular application? What does module-relative mean?">
 
@@ -188,6 +205,26 @@ mailing list</a>, where there are more people still using these approaches.
 </p>
 </section>
 
+
+<section href="tags" name="Why do the Struts tags provide for so little formatting?">
+<p>
+<i>The Struts tags seem to provide only the most rudimentary funcationality. Why is there not better support for date formatting and advanced string handling?</i>
+</p>
+<p>
+Three reasons: 
+</p>
+<p>
+First, work started on the JSTL and we didn't want to duplicate the effort.
+</p>
+<p>
+Second, work started on Java Server Faces, and we didn't want to duplicate that effort either.
+</p>
+<p>
+Third, in a Model 2 application, most of the formatting can be handled in the ActionForms (or in the business tier), 
+so all the tag has to do is spit out a string. This leads to better reuse since the same "how to format" code 
+does not need to be repeated in every instance. You can "say it once" in a JavaBean and be done with it.
+</p>
+</section>
 
 <section name="How do I access my database?">
 <p>
