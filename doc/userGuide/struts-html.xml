@@ -1187,6 +1187,12 @@
     &lt;html:form method="POST" enctype="multipart/form-data"&gt;
         &lt;html:file property="theFile" /&gt;
     &lt;/html:form&gt;</pre>
+
+            <p>
+            WARNING: In order to correctly recognize uploaded files, the ActionForm bean
+            associated with this form must include a statement setting the corresponding
+            org.apache.struts.upload.FormFile property to null in the reset() method.
+            </p>
         </info>
 
         <attribute>
