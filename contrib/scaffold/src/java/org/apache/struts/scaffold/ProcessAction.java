@@ -42,7 +42,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.3 $ $Date: 2002/09/12 12:39:50 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/27 18:59:52 $
  */
 public class ProcessAction extends BaseHelperAction {
 
@@ -494,7 +494,7 @@ public class ProcessAction extends BaseHelperAction {
             ProcessResult result = (ProcessResult)
                 dataBean.execute(properties);
 
-                // Execute business logic, using  map
+                // Analyze result of business logic
             checkOutcome(mapping,request,result);
 
         } // end for

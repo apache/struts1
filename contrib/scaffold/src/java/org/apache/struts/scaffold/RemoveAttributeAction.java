@@ -23,7 +23,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * The name of the attribute is passed via the parameter property.
  *
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/08/16 22:29:24 $
+ * @version $Revision: 1.3 $ $Date: 2002/09/27 18:59:52 $
  */
 public final class RemoveAttributeAction extends BaseAction {
 
@@ -38,7 +38,7 @@ public final class RemoveAttributeAction extends BaseAction {
      * [parameter="application;HOURS].
      * non-error state.
      *
-     * To indicatethat all scopes are to be checked,
+     * To indicate that all scopes are to be checked,
      * specify an asterisk instead of the scope name
      * [parameter="*;HOURS]. The attribute will be removed
      * from <b>only</b> the first context found.
@@ -75,7 +75,7 @@ public final class RemoveAttributeAction extends BaseAction {
 
         // :TODO: Add support for multiple attributes
 
-        boolean any = ("*".equals(name));
+        boolean any = ("*".equals(scope));
 
         if (any) {
 
@@ -99,14 +99,20 @@ public final class RemoveAttributeAction extends BaseAction {
 
         else {
 
-            if (Tokens.REQUEST.equals(scope))
+            if (Tokens.REQUEST.equals(scope)) {
+                bean = request.getAttribute(name);
                 request.removeAttribute(name);
+            }
 
-            if (Tokens.SESSION.equals(scope))
+            if (Tokens.SESSION.equals(scope)) {
+                bean = request.getSession().getAttribute(name);
                 request.getSession().removeAttribute(name);
+            }
 
-            if (Tokens.APPLICATION.equals(scope))
+            if (Tokens.APPLICATION.equals(scope)) {
+                bean = servlet.getServletContext().getAttribute(name);
                 servlet.getServletContext().removeAttribute(name);
+            }
 
         } // end !any
 

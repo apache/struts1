@@ -18,8 +18,8 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.validator.ValidatorForm; // Struts 1.1
-// import com.wintecinc.struts.action.ValidatorForm; // Struts 1.0.x
+// import org.apache.struts.validator.ValidatorForm; // Struts 1.1
+import com.wintecinc.struts.action.ValidatorForm; // Struts 1.0.x
 
 import org.apache.commons.scaffold.lang.ChainedException;
 
@@ -27,7 +27,7 @@ import org.apache.commons.scaffold.lang.ChainedException;
 /**
  * Enhanced base ActionForm.
  * @author Ted Husted
- * @version $Revision: 1.6 $ $Date: 2002/09/12 20:39:00 $
+ * @version $Revision: 1.7 $ $Date: 2002/09/27 18:59:52 $
  * @todo Change from BeanUtil.populate to copyProperties
  * in 1.1 version.
  */
