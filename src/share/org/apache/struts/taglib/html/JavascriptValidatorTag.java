@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.40 2003/11/28 22:55:36 dgraham Exp $
- * $Revision: 1.40 $
- * $Date: 2003/11/28 22:55:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.41 2003/12/02 05:06:34 dgraham Exp $
+ * $Revision: 1.41 $
+ * $Date: 2003/12/02 05:06:34 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.40 $ $Date: 2003/11/28 22:55:36 $
+ * @version $Revision: 1.41 $ $Date: 2003/12/02 05:06:34 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -375,7 +375,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     this.createDynamicJavascript(config, resources, locale, form));
                 
             } else if ("true".equalsIgnoreCase(staticJavascript)) {
-                results.append(this.getStartElement());
+                results.append(this.renderStartElement());
                 if ("true".equalsIgnoreCase(htmlComment)) {
                     results.append(HTML_BEGIN_COMMENT);
                 }
@@ -645,7 +645,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             formName.substring(0, 1).toUpperCase()
                 + formName.substring(1, formName.length());
 
-        sb.append(this.getStartElement());
+        sb.append(this.renderStartElement());
         
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("<![CDATA[\r\n");
@@ -726,9 +726,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
-     * Constructs the beginning &lt;script&gt; element depending on XHTML status.
+     * Constructs the beginning &lt;script&gt; element depending on XHTML 
+     * status.
+     * @since Struts 1.2
      */
-    private String getStartElement() {
+    protected String renderStartElement() {
         StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
 
         // there is no language attribute in XHTML
