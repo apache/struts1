@@ -57,6 +57,10 @@
                                       of the Jakarta Commons Digester
                                       package (version 1.0 or later).
 
+        commons-logging.jar           (required).  The path to the JAR file
+                                      of the Jakarta Commons Logging
+                                      package (version 1.0 or later).
+
         servlet.jar                   MUST be set to the pathname of the
                                       servlet API classes you wish to
                                       compile against.
@@ -154,6 +158,7 @@
   <pathelement location="${commons-beanutils.jar}"/>
   <pathelement location="${commons-collections.jar}"/>
   <pathelement location="${commons-digester.jar}"/>
+  <pathelement location="${commons-logging.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>

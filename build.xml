@@ -36,6 +36,10 @@
                                       of the Jakarta Commons Digester
                                       package (version 1.0 or later).
 
+        commons-logging.jar           (required).  The path to the JAR file
+                                      of the Jakarta Commons Logging
+                                      package (version 1.0 or later).
+
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
@@ -67,6 +71,8 @@
              value="/usr/local/commons-collections-1.0/commons-collections.jar"/>
     <property name="commons-digester.jar"
              value="/usr/local/commons-digester-1.0/commons-digester.jar"/>
+    <property name="commons-logging.jar"
+             value="/usr/local/commons-logging-1.0/commons-logging.jar"/>
     <property name="jdbc20ext.jar"   value="../jdbc2_0-stdext.jar"/>
     <property name="servlet.jar"     value="../jakarta-servletapi/lib/servlet.jar"/>
     <property name="tomcat.home"     value="../build/tomcat"/>
@@ -142,6 +148,7 @@
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
     </path>
@@ -158,6 +165,7 @@
     <pathelement location="${commons-beanutils.jar}"/>
     <pathelement location="${commons-collections.jar}"/>
     <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${commons-logging.jar}"/>
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${junit.jar}"/>
     <pathelement location="${jdbc20ext.jar}"/>
@@ -206,6 +214,8 @@
             tofile="${build.home}/library/commons-collections.jar"/>
         <copy file="${commons-digester.jar}"
             tofile="${build.home}/library/commons-digester.jar"/>
+        <copy file="${commons-logging.jar}"
+            tofile="${build.home}/library/commons-logging.jar"/>
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
     </target>

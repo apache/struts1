@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.5 2001/07/15 02:44:30 craigmcc Exp $
+# $Id: build.properties.sample,v 1.6 2002/01/14 18:49:17 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -31,6 +31,10 @@ commons-collections.jar=/usr/local/commons-collections-1.0/commons-collections.j
 # The JAR file containing version 1.0 (or later) of the Digester package
 # from the Jakarta Commons project.
 commons-digester.jar=/usr/local/commons-digester-1.0/commons-digester.jar
+
+# The JAR file containing version 1.0 (or later) of the Logging package
+# from the Jakarta Commons project.
+commons-logging.jar=/usr/local/commons-logging-1.0/commons-logging.jar
 
 # The JAR file containing the JDBC 2.0 Optional Package extensions API
 # (javax.sql).  This file will automatically be added to your class path
