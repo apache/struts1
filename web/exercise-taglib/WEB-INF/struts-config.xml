@@ -8,7 +8,7 @@
 
   <form-beans>
     <form-bean name="testbean"
-               type="org.apache.struts.exercise.TestBean"/>
+               type="org.apache.struts.webapp.exercise.TestBean"/>
   </form-beans>
 
   <global-forwards>
@@ -18,7 +18,7 @@
   <action-mappings>
 
     <action    path="/html-multibox"
-               type="org.apache.struts.exercise.HtmlSettersAction"
+               type="org.apache.struts.webapp.exercise.HtmlSettersAction"
                name="testbean"
               scope="session"
            validate="false">
@@ -26,7 +26,7 @@
     </action>
 
     <action    path="/html-select"
-               type="org.apache.struts.exercise.HtmlSettersAction"
+               type="org.apache.struts.webapp.exercise.HtmlSettersAction"
                name="testbean"
               scope="session"
            validate="false">
@@ -34,7 +34,7 @@
     </action>
 
     <action    path="/html-setters"
-               type="org.apache.struts.exercise.HtmlSettersAction"
+               type="org.apache.struts.webapp.exercise.HtmlSettersAction"
                name="testbean"
               scope="session"
            validate="false">

@@ -11,7 +11,7 @@
 <h1>Test struts-logic Comparison Tags</h1>
 </div>
 
-<jsp:useBean id="bean" scope="page" class="org.apache.struts.exercise.TestBean"/>
+<jsp:useBean id="bean" scope="page" class="org.apache.struts.webapp.exercise.TestBean"/>
 <%
   String doub1 = "321.0";
   String doub2 = "111.0";

@@ -11,7 +11,7 @@
 <h1>Test struts-logic Match Tags</h1>
 </div>
 
-<jsp:useBean id="bean" scope="page" class="org.apache.struts.exercise.TestBean"/>
+<jsp:useBean id="bean" scope="page" class="org.apache.struts.webapp.exercise.TestBean"/>
 <bean:cookie    id="cookie" name="JSESSIONID" value="JSESSIONID-IS-UNDEFINED"/>
 <bean:header    id="header" name="User-Agent" value="USER-AGENT-IS-UNDEFINED"/>
 <bean:parameter id="param"  name="param1"/>
