@@ -3536,6 +3536,7 @@
                 Conditionally display a set of accumulated messages.
                 </summary>
                 <tagclass>org.apache.strutsel.taglib.html.ELMessagesTag</tagclass>
+                <teiclass>org.apache.struts.taglib.html.MessagesTei</teiclass>
                 <bodycontent>JSP</bodycontent>
                 <info>
                 <p>Displays a set of messages prepared by a business

@@ -49,6 +49,7 @@
     as a bean.
     </summary>
     <tagclass>org.apache.strutsel.taglib.bean.ELIncludeTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.IncludeTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
 
@@ -350,6 +351,7 @@
     Load a web application resource and make it available as a bean.
     </summary>
     <tagclass>org.apache.strutsel.taglib.bean.ELResourceTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.ResourceTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified web application resource, and make
@@ -402,6 +404,7 @@
     Define a bean containing the number of elements in a Collection or Map.
     </summary>
     <tagclass>org.apache.strutsel.taglib.bean.ELSizeTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.SizeTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
     <p>Given a reference to an array, Collection or Map, creates a new bean, of
@@ -483,6 +486,7 @@
     Expose a named Struts internal configuration object as a bean.
     </summary>
     <tagclass>org.apache.strutsel.taglib.bean.ELStrutsTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.StrutsTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified Struts internal configuration
