@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.75 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.75 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.76 2004/06/26 00:36:22 husted Exp $
+ * $Revision: 1.76 $
+ * $Date: 2004/06/26 00:36:22 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -66,7 +66,7 @@ import org.apache.struts.util.TokenProcessor;
  * argument, which can be used to clean up any allocated resources in use
  * by this Action.</p>
  *
- * @version $Revision: 1.75 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.76 $ $Date: 2004/06/26 00:36:22 $
  */
 public class Action {
 
@@ -203,6 +203,84 @@ public class Action {
     // ---------------------------------------------------- Protected Methods
 
 
+	/**
+	 * Adds the specified messages keys into the appropriate request
+	 * attribute for use by the &lt;html:messages&gt; tag (if
+	 * messages="true" is set), if any messages are required.
+	 * Initialize the attribute if it has not already been.
+	 * Otherwise, ensure that the request attribute is not set.
+	 *
+	 * @param request   The servlet request we are processing
+	 * @param messages  Messages object
+	 * @since Struts 1.2.1
+	 */
+	protected void addMessages(
+		HttpServletRequest request,
+		ActionMessages messages) {
+
+		if (messages == null){
+			//	bad programmer! *slap*
+			return;
+		}
+
+		// get any existing messages from the request, or make a new one
+		ActionMessages requestMessages = (ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
+		if (requestMessages == null){
+			requestMessages = new ActionMessages();
+		}
+		// add incoming messages
+		requestMessages.add(messages);
+
+		// if still empty, just wipe it out from the request
+		if (requestMessages.isEmpty()) {
+			request.removeAttribute(Globals.MESSAGE_KEY);
+			return;
+		}
+
+		// Save the messages
+		request.setAttribute(Globals.MESSAGE_KEY, requestMessages);
+	}
+
+
+	/**
+	 * Adds the specified errors keys into the appropriate request
+	 * attribute for use by the for use by the &lt;html:errors&gt; tag,
+	 * if any messages are required.
+	 * Initialize the attribute if it has not already been.
+	 * Otherwise, ensure that the request attribute is not set.
+	 *
+	 * @param request   The servlet request we are processing
+	 * @param errors  Errors object
+	 * @since Struts 1.2.1
+	 */
+	protected void addErrors(
+		HttpServletRequest request,
+		ActionErrors errors) {
+
+		if (errors == null){
+			//	bad programmer! *slap*
+			return;
+		}
+
+		// get any existing errors from the request, or make a new one
+		ActionErrors requestErrors = (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
+		if (requestErrors == null){
+			requestErrors = new ActionErrors();
+		}
+		// add incoming errors
+		requestErrors.add(errors);
+
+		// if still empty, just wipe it out from the request
+		if (requestErrors.isEmpty()) {
+			request.removeAttribute(Globals.ERROR_KEY);
+			return;
+		}
+
+		// Save the errors
+		request.setAttribute(Globals.ERROR_KEY, requestErrors);
+	}
+
+
     /**
      * <p>Generate a new transaction token, to be used for enforcing a single
      * request for a particular transaction.</p>
@@ -251,6 +329,25 @@ public class Action {
 
 
     /**
+     * Retrieves any existing errors placed in the request by previous actions.  This method could be called instead
+     * of creating a <code>new ActionErrors()<code> at the beginning of an <code>Action<code>
+     * This will prevent saveErrors() from wiping out any existing Errors
+     *
+     * @return the Errors that already exist in the request, or a new ActionErrors object if empty.
+     * @param request The servlet request we are processing
+     * @since Struts 1.2.1
+     */
+    protected ActionErrors getErrors(HttpServletRequest request) {
+        ActionErrors errors =
+            (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
+        if (errors == null) {
+            errors = new ActionErrors();
+        }
+        return errors;
+    }
+
+
+    /**
      * <p>Return the user's currently selected Locale.</p>
      *
      * @param request The request we are processing
@@ -260,6 +357,25 @@ public class Action {
         return RequestUtils.getUserLocale(request, null);
 
     }
+
+
+	/**
+	 * Retrieves any existing messages placed in the request by previous actions.  This method could be called instead
+	 * of creating a <code>new ActionMessages()<code> at the beginning of an <code>Action<code>
+	 * This will prevent saveMessages() from wiping out any existing Messages
+	 *
+	 * @return the Messages that already exist in the request, or a new ActionMessages object if empty.
+	 * @param request The servlet request we are processing
+     * @since Struts 1.2.1
+	 */
+	protected ActionMessages getMessages(HttpServletRequest request) {
+		ActionMessages messages =
+			(ActionMessages) request.getAttribute(Globals.MESSAGE_KEY);
+		if (messages == null) {
+			messages = new ActionMessages();
+		}
+		return messages;
+	}
 
 
     /**
