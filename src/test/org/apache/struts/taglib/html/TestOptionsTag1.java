@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestOptionsTag1.java,v 1.1 2004/01/03 06:07:56 jmitchell Exp $
- * $Revision: 1.1 $
- * $Date: 2004/01/03 06:07:56 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestOptionsTag1.java,v 1.2 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -75,7 +75,6 @@ import org.apache.struts.util.LabelValueBean;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.html.OptionsTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestOptionsTag1 extends JspTestCase {
 

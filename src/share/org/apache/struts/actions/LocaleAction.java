@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LocaleAction.java,v 1.1 2004/01/01 13:45:49 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/01/01 13:45:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LocaleAction.java,v 1.2 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -82,7 +82,6 @@ import org.apache.struts.action.ActionMapping;
  * @link(java.util.Locale and forwards to a page, based on request level
  * parameters that are set  (language, country, &amp; page).
  *
- * @author David Wintefeldt
 */
 public final class LocaleAction extends Action {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPageContext.java,v 1.2 2003/02/28 02:43:12 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:43:12 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPageContext.java,v 1.3 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -93,8 +93,7 @@ import javax.servlet.jsp.tagext.BodyContent;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/02/28 02:43:12 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class MockPageContext extends PageContext {

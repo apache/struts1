@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestResourceTag.java,v 1.5 2003/05/13 18:21:13 turner Exp $
- * $Revision: 1.5 $
- * $Date: 2003/05/13 18:21:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestResourceTag.java,v 1.6 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:34 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -73,7 +73,6 @@ import org.apache.commons.lang.StringUtils;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.ResourceTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestResourceTag extends JspTestCase {
 	

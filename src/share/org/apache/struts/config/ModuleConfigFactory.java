@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.5 2003/07/16 04:47:05 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/16 04:47:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.6 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  *
@@ -68,8 +68,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * A factory interface for creating {@link ModuleConfig}s.
  *
- * @author Robert Leland
- * @version $Revision: 1.5 $ $Date: 2003/07/16 04:47:05 $ 
+ * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:34 $ 
  *
  * @see ModuleConfig
  */

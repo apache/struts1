@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RedirectingActionForward.java,v 1.6 2003/12/20 12:54:10 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/20 12:54:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RedirectingActionForward.java,v 1.7 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -67,8 +67,7 @@ package org.apache.struts.action;
  * <p>A subclass of <strong>ActionForward</strong> that defaults the
  * <code>redirect</code> attribute to <code>true</code>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/12/20 12:54:10 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:38 $
  */
 
 public class RedirectingActionForward extends ActionForward {

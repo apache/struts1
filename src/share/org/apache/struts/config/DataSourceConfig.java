@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.8 2003/08/10 06:00:49 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/10 06:00:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.9 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -79,8 +79,7 @@ import org.apache.struts.Globals;
  * are recognized by the default data source implementation, but some or all
  * of them may be ignored by custom data source implementations.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2003/08/10 06:00:49 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 

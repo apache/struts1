@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalAction.java,v 1.4 2003/08/16 18:21:31 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/08/16 18:21:31 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalAction.java,v 1.5 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -79,8 +79,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  * If portal settings are not defined for user, defined them based on tiles
  * attributes used as default.
  *
- * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2003/08/16 18:21:31 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:36 $
  */
 public final class UserPortalAction extends TilesAction {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/PortalCatalog.java,v 1.2 2003/02/28 02:23:01 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:23:01 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/PortalCatalog.java,v 1.3 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import java.util.List;
  * Tiles denote a local URL or a Tile definition name.
  * To check : should be possible to put ComponentDefinition class also.
  *
- * @author Cedric Dumoulin
  */
 public class PortalCatalog
 {

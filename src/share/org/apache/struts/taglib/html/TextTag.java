@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextTag.java,v 1.2 2003/03/23 06:08:41 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/03/23 06:08:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextTag.java,v 1.3 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  * 
@@ -66,8 +66,7 @@ package org.apache.struts.taglib.html;
 /**
  * Custom tag for input fields of type "text".
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/03/23 06:08:41 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:33 $
  */
 
 public class TextTag extends BaseFieldTag {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.14 2003/08/04 12:06:46 jmitchell Exp $
- * $Revision: 1.14 $
- * $Date: 2003/08/04 12:06:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.15 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import java.util.HashMap;
  * <code>&lt;action&gt;</code> element from a Struts
  * module configuration file.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/08/04 12:06:46 $
+ * @version $Revision: 1.15 $ $Date: 2004/01/10 21:03:34 $
  * @since Struts 1.1
  */
 public class ActionConfig implements Serializable {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.23 2003/12/23 14:28:35 jmitchell Exp $
- * $Revision: 1.23 $
- * $Date: 2003/12/23 14:28:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.24 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -130,13 +130,7 @@ import org.apache.struts.util.MessageResources;
  * You can also override the <code>getMethodName</code> method to override the action's
  * default handler selection.</p>
  *
- * @author Niall Pemberton <niall.pemberton@btInternet.com>
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @author Leonardo Quijano
- * @author Rob Leland
- * @author Jea-noel Ribette
- * @version $Revision: 1.23 $ $Date: 2003/12/23 14:28:35 $
+ * @version $Revision: 1.24 $ $Date: 2004/01/10 21:03:36 $
  */
 public abstract class DispatchAction extends Action {
 

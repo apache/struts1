@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.24 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.25 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -83,8 +83,7 @@ import org.apache.struts.util.MessageResources;
  * an Iterator, a Collection (which includes Lists, Sets and Vectors),
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.25 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public class IterateTag extends BodyTagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPrincipal.java,v 1.2 2002/12/24 18:49:52 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/24 18:49:52 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPrincipal.java,v 1.3 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -80,8 +80,7 @@ import java.security.Principal;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/12/24 18:49:52 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class MockPrincipal implements Principal {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.14 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.15 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -81,9 +81,7 @@ import java.io.Serializable;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @author David Geary
- * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/09/29 04:26:23 $
+ * @version $Revision: 1.15 $ $Date: 2004/01/10 21:03:38 $
  */
 public class ActionErrors extends ActionMessages implements Serializable {
 

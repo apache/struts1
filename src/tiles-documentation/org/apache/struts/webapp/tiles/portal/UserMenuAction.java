@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.6 2003/09/13 18:40:34 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/09/13 18:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.7 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -108,8 +108,7 @@ import org.apache.struts.tiles.beans.MenuItem;
  *   <li></li>
  * </ul>
  *
- * @author Cedric Dumoulin
- * @version $Revision: 1.6 $ $Date: 2003/09/13 18:40:34 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:36 $
  */
 public final class UserMenuAction extends TilesAction implements Controller {
 

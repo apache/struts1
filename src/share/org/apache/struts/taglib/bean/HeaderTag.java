@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.12 2003/07/27 06:30:09 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/27 06:30:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.13 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.taglib.TagUtils;
  * Define a scripting variable based on the value(s) of the specified
  * header received with this request.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/27 06:30:09 $
+ * @version $Revision: 1.13 $ $Date: 2004/01/10 21:03:37 $
  */
 public class HeaderTag extends TagSupport {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.7 2003/05/31 00:10:37 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/05/31 00:10:37 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleBeanForTesting.java,v 1.8 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import org.apache.struts.action.ActionForm;
 /**
  * Simple bean for unit tests. 
  *
- * @author James Mitchell
  */
 public class SimpleBeanForTesting extends ActionForm {
 	public SimpleBeanForTesting() {

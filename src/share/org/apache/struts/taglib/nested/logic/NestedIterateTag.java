@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.7 2003/02/28 05:14:39 arron Exp $
- * $Revision: 1.7 $
- * $Date: 2003/02/28 05:14:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.8 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:32 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -72,9 +72,8 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
  * Slightly more complex that the other extensions. This one has to yield a
  * proper index property. Very taxing.
  *
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.7 $ $Date: 2003/02/28 05:14:39 $
+ * @version $Revision: 1.8 $ $Date: 2004/01/10 21:03:32 $
  */
 public class NestedIterateTag extends IterateTag implements NestedNameSupport {
 

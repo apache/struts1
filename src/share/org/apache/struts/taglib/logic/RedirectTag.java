@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.20 2004/01/01 19:27:19 husted Exp $
- * $Revision: 1.20 $
- * $Date: 2004/01/01 19:27:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.21 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Generate a URL-encoded redirect to the specified URI.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2004/01/01 19:27:19 $
+ * @version $Revision: 1.21 $ $Date: 2004/01/10 21:03:32 $
  */
 public class RedirectTag extends TagSupport {
 

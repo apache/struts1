@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/LocaleAction.java,v 1.5 2003/09/24 03:42:03 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/24 03:42:03 $
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/LocaleAction.java,v 1.6 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -82,7 +82,6 @@ import org.apache.struts.action.ActionMapping;
  * changes a locale based on request level parameters
  * that are set (language &amp; country).
  *
- * @author David Wintefeldt
 */
 public final class LocaleAction extends Action {
 

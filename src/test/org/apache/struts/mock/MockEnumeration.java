@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockEnumeration.java,v 1.1 2002/07/01 22:10:35 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/01 22:10:35 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockEnumeration.java,v 1.2 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import java.util.Iterator;
  * <p>General purpose <code>Enumeration</code> wrapper around an
  * <code>Iterator</code> specified to our controller.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/01 22:10:35 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class MockEnumeration implements Enumeration {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.5 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.6 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,6 @@ import org.apache.struts.Globals;
  * &lt;html:xhtml/&gt;
  * </p>
  * 
- * @author David Graham
  */
 public class XhtmlTag extends TagSupport {
 

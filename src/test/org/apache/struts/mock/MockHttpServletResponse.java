@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockHttpServletResponse.java,v 1.2 2002/07/02 01:55:27 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/02 01:55:27 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockHttpServletResponse.java,v 1.3 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -86,8 +86,7 @@ import javax.servlet.http.HttpServletResponse;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/07/02 01:55:27 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class MockHttpServletResponse implements HttpServletResponse {

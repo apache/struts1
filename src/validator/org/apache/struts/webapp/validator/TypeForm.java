@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeForm.java,v 1.6 2003/10/31 06:10:17 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2003/10/31 06:10:17 $
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeForm.java,v 1.7 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -73,7 +73,6 @@ import org.apache.struts.validator.ValidatorForm;
 /**
  * Form bean for the user type page.
  *
- * @author David Wintefeldt
 */
 public final class TypeForm extends ValidatorForm implements Serializable {
     private String action = null;

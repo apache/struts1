@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.13 2003/07/27 06:54:28 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/27 06:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.14 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.taglib.TagUtils;
  * Define a scripting variable based on the contents of the specified
  * web application resource.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/07/27 06:54:28 $
+ * @version $Revision: 1.14 $ $Date: 2004/01/10 21:03:37 $
  */
 public class ResourceTag extends TagSupport {
 

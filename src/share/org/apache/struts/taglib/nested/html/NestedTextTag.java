@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedTextTag.java,v 1.5 2003/02/28 05:15:06 arron Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/28 05:15:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedTextTag.java,v 1.6 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,9 +68,8 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
 
 /**
  * NestedTextTag.
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2003/02/28 05:15:06 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:31 $
  */
 public class NestedTextTag extends TextTag implements NestedNameSupport {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleFormBeanForTesting.java,v 1.2 2003/02/28 02:43:12 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:43:12 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/SimpleFormBeanForTesting.java,v 1.3 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -73,8 +73,7 @@ import org.apache.struts.validator.ValidatorForm;
  * Simple Form bean for the Cactus test cases.
  * Feel free to add whatever you need to help with testing.
  *
- * @author James Mitchell
- * @version $Revision: 1.2 $ $Date: 2003/02/28 02:43:12 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:40 $
  */
 
 public final class SimpleFormBeanForTesting extends ValidatorForm  {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.11 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.12 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.taglib.TagUtils;
  * Abstract base class for comparison tags.  Concrete subclasses need only
  * define values for desired1 and desired2.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {

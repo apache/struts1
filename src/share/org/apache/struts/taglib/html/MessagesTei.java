@@ -64,7 +64,6 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * Implementation of <code>TagExtraInfo</code> for the <b>messages</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
- * @author David Winterfeldt
 */
 public class MessagesTei extends TagExtraInfo {
 

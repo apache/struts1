@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.16 2003/07/31 00:25:39 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/31 00:25:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.17 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.util.MessageResources;
  * object stored as a context attribute by our associated
  * <code>ActionServlet</code> implementation.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/07/31 00:25:39 $
+ * @version $Revision: 1.17 $ $Date: 2004/01/10 21:03:37 $
  */
 public class MessageTag extends TagSupport {
 

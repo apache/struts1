@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.8 2003/03/23 03:56:41 jmitchell Exp $
- * $Revision: 1.8 $
- * $Date: 2003/03/23 03:56:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.9 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -72,8 +72,7 @@ import org.apache.struts.Globals;
  * <code>&lt;message-resources&gt;</code> element in a Struts
  * configuration file.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2003/03/23 03:56:41 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 

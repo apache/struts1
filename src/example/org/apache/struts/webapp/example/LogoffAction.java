@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.10 2003/12/21 22:53:19 husted Exp $
- * $Revision: 1.10 $
- * $Date: 2003/12/21 22:53:19 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.11 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.action.ActionMapping;
  * Implementation of <strong>Action</strong> that processes a
  * user logoff.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/12/21 22:53:19 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:37 $
  */
 public final class LogoffAction extends Action {
 

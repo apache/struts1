@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.17 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.18 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -77,9 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Renders an HTML <html> element with appropriate language attributes if
  * there is a current Locale available in the user's session.
  *
- * @author Craig R. McClanahan
- * @author David Graham
- * @version $Revision: 1.17 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.18 $ $Date: 2004/01/10 21:03:33 $
  */
 public class HtmlTag extends TagSupport {
   

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.11 2003/07/27 05:43:36 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/27 05:43:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.12 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.taglib.TagUtils;
  * Define a scripting variable based on the value(s) of the specified
  * cookie received with this request.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/27 05:43:36 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class CookieTag extends TagSupport {

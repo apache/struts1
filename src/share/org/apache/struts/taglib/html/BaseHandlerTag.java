@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.33 2003/08/07 00:48:59 dgraham Exp $
- * $Revision: 1.33 $
- * $Date: 2003/08/07 00:48:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.34 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.34 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -83,9 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * the doStartTag() or doEndTag() methods. Subclasses should provide
  * appropriate implementations of these.
  *
- * @author Don Clasen
- * @author James Turner
- * @version $Revision: 1.33 $ $Date: 2003/08/07 00:48:59 $
+ * @version $Revision: 1.34 $ $Date: 2004/01/10 21:03:33 $
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 

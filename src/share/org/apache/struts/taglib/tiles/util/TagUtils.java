@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.8 2003/07/26 01:11:43 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/26 01:11:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.9 2004/01/10 21:03:42 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:42 $
  *
  * ====================================================================
  *
@@ -82,8 +82,6 @@ import org.apache.struts.tiles.TilesUtil;
  * you want to rip away Struts, simply reimplement some methods in this class.
  * You can copy them from Struts.
  * 
- * @author Cedric Dumoulin
- * @author David Graham
  */
 public class TagUtils {
 

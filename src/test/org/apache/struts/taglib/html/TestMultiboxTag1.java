@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag1.java,v 1.3 2003/12/26 22:10:32 germuska Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/26 22:10:32 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag1.java,v 1.4 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -91,7 +91,6 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
  *  TestMultiboxTag7 - These test validate true (a value was in the array) on our form.
  *  TestMultiboxTag8 - Same as 7, but using BodyContent instead of value attribute
  *
- * @author James Mitchell
  */
 public class TestMultiboxTag1 extends JspTestCase {
 

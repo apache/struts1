@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/SetPortalPrefsAction.java,v 1.4 2003/07/21 15:18:47 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/21 15:18:47 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/SetPortalPrefsAction.java,v 1.5 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -79,8 +79,7 @@ import org.apache.struts.tiles.ComponentContext;
  * Implementation of <strong>Action</strong> that populates an instance of
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/07/21 15:18:47 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:40 $
  */
 
 public final class SetPortalPrefsAction extends Action {

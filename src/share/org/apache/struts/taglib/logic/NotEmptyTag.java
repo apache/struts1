@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/NotEmptyTag.java,v 1.2 2002/06/25 00:53:41 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2002/06/25 00:53:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/NotEmptyTag.java,v 1.3 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -70,8 +70,7 @@ import javax.servlet.jsp.JspException;
  * Evalute the nested body content of this tag if the specified value
  * is not empty for this request.
  *
- * @author Martin Cooper
- * @version $Revision: 1.2 $ $Date: 2002/06/25 00:53:41 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:32 $
  * @since Struts 1.1
  */
 

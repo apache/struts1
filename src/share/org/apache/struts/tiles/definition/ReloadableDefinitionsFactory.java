@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.10 2003/09/28 17:02:22 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/09/28 17:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.11 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -83,9 +83,8 @@ import org.apache.struts.util.RequestUtils;
  * charge real implementation instance, and allows reloading by creating a new
  * instance.
  *
- * @author Cedric Dumoulin
  * @since Struts 1.1
- * @version $Revision: 1.10 $ $Date: 2003/09/28 17:02:22 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:32 $
  */
 public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory {
 

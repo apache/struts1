@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/EditTypeAction.java,v 1.1 2004/01/08 16:18:19 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/01/08 16:18:19 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/EditTypeAction.java,v 1.2 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import org.apache.struts.util.LabelValueBean;
 /**
  * Initializes ActionForm.
  *
- * @author Robert Leland
  */
 public final class EditTypeAction extends Action {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTei.java,v 1.1 2003/10/04 06:10:55 arron Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/04 06:10:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTei.java,v 1.2 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,9 +68,8 @@ import javax.servlet.jsp.tagext.*;
  * do what the doc says and make a scripting variable as an option (when "id"
  * is supplied).
  *
- * @author Arron Bates
  * @since Struts 1.2
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class NestedWriteNestingTei extends TagExtraInfo {
 

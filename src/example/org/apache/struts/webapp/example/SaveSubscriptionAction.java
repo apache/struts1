@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.16 2003/12/21 22:43:19 husted Exp $
- * $Revision: 1.16 $
- * $Date: 2003/12/21 22:43:19 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.17 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -81,8 +81,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates and creates or
  * updates the mail subscription entered by the user.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/12/21 22:43:19 $
+ * @version $Revision: 1.17 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public final class SaveSubscriptionAction extends Action {

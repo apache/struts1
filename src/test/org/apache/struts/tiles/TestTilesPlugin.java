@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.4 2003/05/31 00:10:37 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/05/31 00:10:37 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.5 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -80,8 +80,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
  *
- * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2003/05/31 00:10:37 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class TestTilesPlugin extends TestMockBase {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.4 2003/09/13 18:40:34 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/09/13 18:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Controller.java,v 1.5 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import javax.servlet.http.HttpServletResponse;
  * A controller is a piece of code called before rendering a jsp page.
  * A controller can be associated to a tile. See &lt;insert&gt; or 
  * &lt;definition&gt; for association syntax.
- * @author Cedric Dumoulin
  */
 public interface Controller {
 

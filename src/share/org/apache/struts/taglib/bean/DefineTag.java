@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.23 2003/07/27 06:30:09 rleland Exp $
- * $Revision: 1.23 $
- * $Date: 2003/07/27 06:30:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.24 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Define a scripting variable based on the value(s) of the specified
  * bean property.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2003/07/27 06:30:09 $
+ * @version $Revision: 1.24 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class DefineTag extends BodyTagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.33 2004/01/01 19:27:19 husted Exp $
- * $Revision: 1.33 $
- * $Date: 2004/01/01 19:27:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.34 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.34 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -82,9 +82,7 @@ import org.apache.struts.util.MessageResources;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @author Michael Westbay
- * @author Craig McClanahan
- * @version $Revision: 1.33 $
+ * @version $Revision: 1.34 $
  */
 
 public class ImgTag extends BaseHandlerTag {

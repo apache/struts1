@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.6 2003/07/27 06:54:28 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/27 06:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.7 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -77,8 +77,7 @@ import org.apache.struts.taglib.TagUtils;
  * Define a scripting variable that will contain the number of elements
  * found in a specified array, Collection, or Map.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/07/27 06:54:28 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class SizeTag extends TagSupport {

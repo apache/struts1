@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.16 2003/07/04 21:33:29 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/04 21:33:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.17 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import java.io.Serializable;
  * <code>&lt;controller&gt;</code> element in a Struts
  * configuration file.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/07/04 21:33:29 $
+ * @version $Revision: 1.17 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 

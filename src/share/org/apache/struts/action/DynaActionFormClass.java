@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.15 2003/12/21 22:55:38 husted Exp $
- * $Revision: 1.15 $
- * $Date: 2003/12/21 22:55:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.16 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -83,8 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * implementation of dynamic action form beans. Application developers
  * never need to consult this documentation.</p>
  *
- * @author Craig McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/12/21 22:55:38 $
+ * @version $Revision: 1.16 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.1
  */
 

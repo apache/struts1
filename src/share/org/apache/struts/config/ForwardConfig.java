@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.9 2002/10/18 14:34:24 ekbush Exp $
- * $Revision: 1.9 $
- * $Date: 2002/10/18 14:34:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.10 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import java.io.Serializable;
  * <code>&lt;forward&gt;</code> element from a Struts
  * configuration file.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/10/18 14:34:24 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 

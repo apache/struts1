@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.10 2003/05/02 04:35:42 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2003/05/02 04:35:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.11 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -88,8 +88,7 @@ import org.apache.struts.Globals;
   * This class implements the <code>MultipartRequestHandler</code> interface
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
-  * @author Martin Cooper
-  * @version $Revision: 1.10 $ $Date: 2003/05/02 04:35:42 $
+  * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:38 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {

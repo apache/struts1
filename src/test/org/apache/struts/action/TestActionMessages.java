@@ -64,9 +64,7 @@ import junit.framework.TestSuite;
 /**
  * Unit tests for the <code>org.apache.struts.action.ActionMessages</code> class.
  *
- * @author Dominique Plante
- * @author David Graham
- * @version $Revision: 1.4 $ $Date: 2002/11/16 04:58:47 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:41 $
  */
 
 public class TestActionMessages extends TestCase {

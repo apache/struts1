@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.7 2003/12/23 19:36:42 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/12/23 19:36:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.8 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -160,13 +160,7 @@ import org.apache.struts.action.ActionMapping;
  * is not required to enable selection of the handler method. 
  * </p>
  *
- * @author Niall Pemberton <niall.pemberton@btInternet.com>
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @author Anthony Kay
- * @author Steve Raeburn
- * @author Leonardo Quijano
- * @version $Revision: 1.7 $ $Date: 2003/12/23 19:36:42 $
+ * @version $Revision: 1.8 $ $Date: 2004/01/10 21:03:36 $
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {

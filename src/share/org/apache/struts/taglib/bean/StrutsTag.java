@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.15 2003/07/27 06:54:28 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/27 06:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.16 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Define a scripting variable that exposes the requested Struts
  * internal configuraton object.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/07/27 06:54:28 $
+ * @version $Revision: 1.16 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class StrutsTag extends TagSupport {

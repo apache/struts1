@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.32 2004/01/02 11:55:38 husted Exp $
- * $Revision: 1.32 $
- * $Date: 2004/01/02 11:55:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.33 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.33 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -80,8 +80,7 @@ import org.apache.struts.util.MessageResources;
  * it to a String representation (if necessary), and writes it to the current
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.32 $ $Date: 2004/01/02 11:55:38 $
+ * @version $Revision: 1.33 $ $Date: 2004/01/10 21:03:37 $
  */
 public class WriteTag extends TagSupport {
 

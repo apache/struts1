@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ServletContextWriter.java,v 1.2 2001/02/12 00:32:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/12 00:32:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ServletContextWriter.java,v 1.3 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  * 
@@ -75,8 +75,7 @@ import javax.servlet.ServletContext;
  * is called, or until one of the <code>println()</code> methods is called.
  * Along the way, carriage return characters are skipped.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/02/12 00:32:14 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:36 $
  */
 
 public class ServletContextWriter extends PrintWriter {

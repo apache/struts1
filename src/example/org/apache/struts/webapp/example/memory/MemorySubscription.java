@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemorySubscription.java,v 1.1 2002/03/05 04:23:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/05 04:23:57 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemorySubscription.java,v 1.2 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import org.apache.struts.webapp.example.User;
  * <p>Concrete implementation of {@link Subscription} for an in-memory
  * database backed by an XML data file.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/05 04:23:57 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:41 $
  * @since Struts 1.1
  */
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.22 2003/10/06 04:16:13 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2003/10/06 04:16:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.23 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -80,8 +80,7 @@ import org.apache.struts.config.ModuleConfig;
  * Loads <code>ValidatorResources</code> based on configuration in the
  * struts-config.xml file.
  *
- * @author David Winterfeldt
- * @version $Revision: 1.22 $ $Date: 2003/10/06 04:16:13 $
+ * @version $Revision: 1.23 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {

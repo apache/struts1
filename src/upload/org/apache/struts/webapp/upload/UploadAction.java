@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.8 2003/02/28 02:18:23 dgraham Exp $
-* $Revision: 1.8 $
-* $Date: 2003/02/28 02:18:23 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.9 2004/01/10 21:03:38 dgraham Exp $
+* $Revision: 1.9 $
+* $Date: 2004/01/10 21:03:38 $
 *
 * ====================================================================
 *
@@ -85,8 +85,7 @@ import org.apache.struts.upload.FormFile;
  * and file attributes and puts them in the request for the display.jsp
  * page to display them
  *
- * @author Mike Schachter
- * @version $Revision: 1.8 $ $Date: 2003/02/28 02:18:23 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:38 $
  */
 
 

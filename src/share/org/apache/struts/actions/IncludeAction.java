@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.6 2003/10/05 17:48:57 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/10/05 17:48:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/IncludeAction.java,v 1.7 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -96,8 +96,7 @@ import org.apache.struts.util.MessageResources;
  * <p>which will include the context-relative URI specified by the
  * <code>parameter</code> attribute.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/10/05 17:48:57 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:36 $
  */
 public class IncludeAction extends Action {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/exercise/TestBean.java,v 1.1 2004/01/08 16:17:33 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/01/08 16:17:33 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/exercise/TestBean.java,v 1.2 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -78,9 +78,7 @@ import org.apache.struts.util.LabelValueBean;
 /**
  * General purpose test bean for Struts custom tag tests.
  *
- * @author Craig R. McClanahan
- * @author Martin F N Cooper
- * @version $Revision: 1.1 $ $Date: 2004/01/08 16:17:33 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:40 $
  */
 
 public class TestBean extends ActionForm {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartBoundaryInputStream.java,v 1.3 2003/11/26 05:57:06 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/11/26 05:57:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartBoundaryInputStream.java,v 1.4 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import java.io.File;
  * This class encapsulates parsing functionality for RFC1867, multipart/form-data. See MultipartBoundaryInputStreamTest
  * and MultipartIterator for usage examples.
  *
- * @author Mike Schachter
  *
  * @deprecated Use the Commons FileUpload based multipart handler instead. This
  *             class will be removed after Struts 1.2.

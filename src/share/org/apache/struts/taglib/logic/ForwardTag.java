@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.18 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.19 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Perform a forward or redirect to a page that is looked up in the
  * configuration information associated with our application.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.19 $ $Date: 2004/01/10 21:03:32 $
  */
 public class ForwardTag extends TagSupport {
 

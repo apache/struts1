@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.42 2003/12/07 17:34:51 dgraham Exp $
- * $Revision: 1.42 $
- * $Date: 2003/12/07 17:34:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.43 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.43 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -92,9 +92,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @author David Winterfeldt
- * @author David Graham
- * @version $Revision: 1.42 $ $Date: 2003/12/07 17:34:51 $
+ * @version $Revision: 1.43 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {

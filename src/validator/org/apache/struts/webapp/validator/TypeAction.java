@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeAction.java,v 1.5 2003/09/24 03:42:03 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/24 03:42:03 $
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeAction.java,v 1.6 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -74,7 +74,6 @@ import org.apache.struts.action.ActionMapping;
 /**
  * Implementation of <strong>Action</strong> that validates a different 'types'.
  *
- * @author David Wintefeldt
  */
 public final class TypeAction extends Action {
 

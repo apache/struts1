@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.7 2003/10/06 04:04:56 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2003/10/06 04:04:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.8 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -84,8 +84,7 @@ import org.apache.struts.action.ActionMapping;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @author David Winterfeldt
- * @version $Revision: 1.7 $ $Date: 2003/10/06 04:04:56 $
+ * @version $Revision: 1.8 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.1
  */
 

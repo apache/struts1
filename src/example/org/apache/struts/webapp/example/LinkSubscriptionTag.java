@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.6 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkSubscriptionTag.java,v 1.7 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -80,8 +80,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI, with
  * associated query parameters selecting a specified Subscription.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/07/31 00:34:15 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class LinkSubscriptionTag extends TagSupport {

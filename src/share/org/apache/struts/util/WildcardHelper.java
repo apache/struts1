@@ -64,12 +64,8 @@ import java.util.HashMap;
  * This class is an utility class that perform wilcard-patterns matching and
  * isolation taken from Apache Cocoon.
  *
- * @author <a href="mailto:pier@apache.org">Pierpaolo Fumagalli</a>
  *         (Apache Software Foundation)
- * @author <a href="mailto:Giacomo.Pati@pwr.ch">Giacomo Pati</a>
- * @author <a href="mailto:stefano@apache.org">Stefano Mazzocchi</a>
- * @author <a href="mailto:bloritsch@apache.org">Berin Loritsch</a>
- * @version CVS $Id: WildcardHelper.java,v 1.1 2003/09/29 01:24:21 mrdon Exp $
+ * @version CVS $Id: WildcardHelper.java,v 1.2 2004/01/10 21:03:36 dgraham Exp $
  */
 public class WildcardHelper {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.73 2003/12/19 03:20:44 husted Exp $
- * $Revision: 1.73 $
- * $Date: 2003/12/19 03:20:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.74 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.74 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -107,9 +107,7 @@ import org.apache.struts.util.TokenProcessor;
  * argument, which can be used to clean up any allocated resources in use
  * by this Action.</p>
  *
- * @author Craig R. McClanahan
- * @author David Graham
- * @version $Revision: 1.73 $ $Date: 2003/12/19 03:20:44 $
+ * @version $Revision: 1.74 $ $Date: 2004/01/10 21:03:38 $
  */
 public class Action {
 

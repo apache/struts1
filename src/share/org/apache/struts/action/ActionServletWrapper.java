@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.11 2003/12/20 12:54:10 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2003/12/20 12:54:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.12 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -72,9 +72,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * not return an object with public getters and setters that
  * could be exploited by automatic population of properties.</p>
  *
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @version $Revision: 1.11 $ $Date: 2003/12/20 12:54:10 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {

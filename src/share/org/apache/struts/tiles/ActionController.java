@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.7 2003/09/13 18:40:34 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/09/13 18:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.8 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -73,7 +73,6 @@ import org.apache.struts.action.Action;
 /**
  * Struts wrapper implementation of Controller.  This implementation wraps an 
  * <code>Action</code> in a <code>Controller</code>.
- * @author Cedric Dumoulin
  */
 public class ActionController implements Controller {
 

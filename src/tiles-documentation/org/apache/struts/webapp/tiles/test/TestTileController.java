@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestTileController.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:24:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestTileController.java,v 1.3 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -75,7 +75,6 @@ import org.apache.struts.tiles.ControllerSupport;
   /**
    * Controller example.
    * This controller modify title by adding "ok".
-   * @author Cedric Dumoulin
    */
 public class TestTileController extends ControllerSupport
 {

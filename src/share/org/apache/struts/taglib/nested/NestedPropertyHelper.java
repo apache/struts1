@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.14 2003/04/22 02:28:52 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/04/22 02:28:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.15 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -82,9 +82,8 @@ import org.apache.struts.taglib.html.FormTag;
  * next level, or parent tag, were a tag will append a dot and it's own
  * property.</p>
  *
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.14 $ $Date: 2003/04/22 02:28:52 $
+ * @version $Revision: 1.15 $ $Date: 2004/01/10 21:03:31 $
  */ 
 public class NestedPropertyHelper {
 

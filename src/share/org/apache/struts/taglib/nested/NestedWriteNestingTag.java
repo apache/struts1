@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.7 2003/10/04 06:12:32 arron Exp $
- * $Revision: 1.7 $
- * $Date: 2003/10/04 06:12:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.8 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -71,9 +71,8 @@ import org.apache.struts.taglib.TagUtils;
  * Created so developers could have a more elegant way of getting to the
  * underlying nested property their tag properties are referencing.
  *
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class NestedWriteNestingTag extends BodyTagSupport {
 

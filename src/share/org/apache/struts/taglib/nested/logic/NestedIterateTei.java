@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.5 2003/02/28 05:14:39 arron Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/28 05:14:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTei.java,v 1.6 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:32 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,10 +76,9 @@ import org.apache.struts.taglib.logic.IterateTei;
  *         Note: When done, it requires pointing the tei reference in the
  *               struts-nested.tld to org.apache.struts.taglib.logic.IterateTei
  *
- * @author Arron Bates
  *
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2003/02/28 05:14:39 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public class NestedIterateTei extends IterateTei {

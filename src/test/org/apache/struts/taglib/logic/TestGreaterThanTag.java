@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestGreaterThanTag.java,v 1.6 2003/12/26 22:10:33 germuska Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/26 22:10:33 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestGreaterThanTag.java,v 1.7 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:31 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -72,7 +72,6 @@ import org.apache.struts.util.LabelValueBean;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.GreaterThanTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestGreaterThanTag extends JspTestCase {
 

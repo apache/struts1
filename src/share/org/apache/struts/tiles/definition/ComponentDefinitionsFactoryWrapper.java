@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.9 2003/09/28 17:02:22 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/09/28 17:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.10 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -78,7 +78,6 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Wrapper from new definition factory interface to old interface.
  * This class provides mapping from the old interface's life cycle to the new life cycle.
- * @author Cedric Dumoulin
  * @since 20020708
  */
 public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory {

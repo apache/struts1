@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EqualTag.java,v 1.3 2001/02/12 21:49:55 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/12 21:49:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EqualTag.java,v 1.4 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -70,8 +70,7 @@ import javax.servlet.jsp.JspException;
  * Evaluate the nested body content of this tag if the specified variable
  * and value are equal.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/12 21:49:55 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public class EqualTag extends CompareTagBase {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.11 2003/12/20 12:54:10 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2003/12/20 12:54:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.12 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -90,8 +90,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * simplest solution is to subclass <code>DynaActionForm</code> and call
  * the <code>initialize</code> method inside it.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/12/20 12:54:10 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.1
  */
 public class DynaActionForm extends ActionForm implements DynaBean {

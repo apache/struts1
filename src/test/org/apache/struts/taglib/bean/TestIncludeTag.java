@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.9 2003/12/26 22:10:31 germuska Exp $
- * $Revision: 1.9 $
- * $Date: 2003/12/26 22:10:31 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.10 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -68,7 +68,6 @@ import org.apache.cactus.JspTestCase;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.IncludeTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestIncludeTag extends JspTestCase {
 

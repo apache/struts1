@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/RegistrationForm.java,v 1.1 2004/01/08 16:18:19 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/01/08 16:18:19 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/RegistrationForm.java,v 1.2 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import org.apache.struts.validator.ValidatorForm;
 /**
  * Form bean for the user registration page.
  *
- * @author David Wintefeldt
 */
 public final class RegistrationForm extends ValidatorForm implements Serializable {
     private String action = null;

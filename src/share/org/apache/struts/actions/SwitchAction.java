@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.13 2004/01/10 03:29:19 husted Exp $
- * $Revision: 1.13 $
- * $Date: 2004/01/10 03:29:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.14 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -92,8 +92,7 @@ import org.apache.struts.util.ModuleUtils;
  *     module.</li>
  * </ul>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2004/01/10 03:29:19 $
+ * @version $Revision: 1.14 $ $Date: 2004/01/10 21:03:36 $
  * @since Struts 1.1
  */
 public class SwitchAction extends Action {

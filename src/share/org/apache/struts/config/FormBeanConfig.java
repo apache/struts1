@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.9 2002/12/08 02:09:44 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/08 02:09:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.10 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -73,8 +73,7 @@ import org.apache.struts.action.DynaActionForm;
  * <code>&lt;form-bean&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/12/08 02:09:44 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 

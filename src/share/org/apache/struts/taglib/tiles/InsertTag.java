@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.23 2003/09/13 18:40:34 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/09/13 18:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.24 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -93,9 +93,7 @@ import org.apache.struts.tiles.TilesUtil;
  * a template. The tag's body content consists of &lt;tiles:put&gt;
  * tags, which are accessed by &lt;tiles:get&gt; in the template.
  *
- * @author David Geary
- * @author Cedric Dumoulin
- * @version $Revision: 1.23 $ $Date: 2003/09/13 18:40:34 $
+ * @version $Revision: 1.24 $ $Date: 2004/01/10 21:03:41 $
  */
 public class InsertTag
 	extends DefinitionTagSupport

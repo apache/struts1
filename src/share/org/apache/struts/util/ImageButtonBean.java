@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ImageButtonBean.java,v 1.2 2002/09/14 21:22:08 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/14 21:22:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ImageButtonBean.java,v 1.3 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -74,9 +74,7 @@ import java.io.Serializable;
  * and provide a simple means of detecting whether or not the corresponding
  * image was selected.
  *
- * @author  Ted Husted
- * @author  Martin F N Cooper
- * @version $Revision: 1.2 $ $Date: 2002/09/14 21:22:08 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:36 $
  */
 public class ImageButtonBean implements Serializable {
 

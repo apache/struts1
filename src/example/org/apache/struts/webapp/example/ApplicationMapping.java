@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/ApplicationMapping.java,v 1.2 2001/04/14 12:53:07 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:07 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/ApplicationMapping.java,v 1.3 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -78,8 +78,7 @@ import org.apache.struts.action.ActionMapping;
  *     completed.
  * </ul>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:07 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public final class ApplicationMapping extends ActionMapping {

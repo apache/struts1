@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestPageTag.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
- * $Revision: 1.7 $
- * $Date: 2003/12/26 22:10:31 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestPageTag.java,v 1.8 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -71,7 +71,6 @@ import org.apache.commons.lang.StringUtils;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.PageTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestPageTag extends JspTestCase {
 

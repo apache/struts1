@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.27 2004/01/01 19:27:19 husted Exp $
- * $Revision: 1.27 $
- * $Date: 2004/01/01 19:27:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.28 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.28 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -96,12 +96,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @author James Turner
- * @author David Graham
- * @author Rob Leland
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  * @since Struts 1.2
  */
 public class TagUtils {

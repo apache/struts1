@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.9 2003/10/05 17:45:14 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/10/05 17:45:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.10 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -66,9 +66,7 @@ import java.io.Serializable;
 /**
  * Global manifest constants for the entire Struts Framework.
  *
- * @author Craig R. McClanahan
- * @author David Graham
- * @version $Revision: 1.9 $ $Date: 2003/10/05 17:45:14 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:41 $
  */
 public class Globals implements Serializable {
 

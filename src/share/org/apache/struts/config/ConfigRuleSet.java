@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.15 2003/09/05 16:20:19 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2003/09/05 16:20:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.16 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.xml.sax.Attributes;
  * <p>The set of Digester rules required to parse a Struts
  * configuration file (<code>struts-config.xml</code>).</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/09/05 16:20:19 $
+ * @version $Revision: 1.16 $ $Date: 2004/01/10 21:03:34 $
  * @since Struts 1.1
  */
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.7 2003/09/28 17:02:22 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/09/28 17:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.8 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  *
@@ -82,7 +82,6 @@ import org.apache.struts.tiles.TilesUtil;
  * definitions of the Tiles factory.
  * Useful to check what is effectivly loaded in a
  * Tiles factory
- * @author Cedric Dumoulin
  */
 
 public class ViewDefinitionsAction extends Action {

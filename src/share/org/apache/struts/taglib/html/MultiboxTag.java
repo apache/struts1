@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.22 2003/11/15 21:33:57 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/11/15 21:33:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.23 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -78,9 +78,7 @@ import org.apache.struts.util.MessageResources;
  * "checked" if the value listed for the "value" attribute is present in the
  * values returned by the property getter.
  *
- * @author Ralph Schaer
- * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2003/11/15 21:33:57 $
+ * @version $Revision: 1.23 $ $Date: 2004/01/10 21:03:33 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UrlController.java,v 1.5 2003/09/13 18:40:34 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/13 18:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UrlController.java,v 1.6 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Tiles controller including a local URL.
- * @author Cedric Dumoulin
  */
 public class UrlController implements Controller {
 

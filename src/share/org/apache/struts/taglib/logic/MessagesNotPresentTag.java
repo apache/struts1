@@ -64,8 +64,7 @@ import javax.servlet.jsp.JspException;
  * Evalute the nested body content of this tag if the specified value
  * is not present for this request.
  *
- * @author David Winterfeldt
- * @version $Revision: 1.2 $ $Date: 2002/06/25 00:53:41 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:32 $
  * @since Struts 1.1
  */
 

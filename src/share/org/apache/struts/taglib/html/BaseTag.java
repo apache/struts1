@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.19 2003/09/20 07:31:18 mrdon Exp $
- * $Revision: 1.19 $
- * $Date: 2003/09/20 07:31:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.20 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -82,9 +82,7 @@ import org.apache.struts.util.RequestUtils;
  * CSS stylesheets  and other resources in a manner independent of the URL
  * used to call the ActionServlet.
  *
- * @author Luis Arias <luis@elysia.com>
- * @author David Graham
- * @version $Revision: 1.19 $ $Date: 2003/09/20 07:31:18 $
+ * @version $Revision: 1.20 $ $Date: 2004/01/10 21:03:33 $
  */
 
 public class BaseTag extends TagSupport {

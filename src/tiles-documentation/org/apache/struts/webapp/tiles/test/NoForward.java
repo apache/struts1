@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/NoForward.java,v 1.2 2003/05/04 22:41:13 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/05/04 22:41:13 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/NoForward.java,v 1.3 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -86,8 +86,7 @@ import org.apache.struts.tiles.ComponentContext;
  *    <forward  name="success"        path="test.action.noforward"/>
  *  </action>
  * </pre>
- * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2003/05/04 22:41:13 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:41 $
  */
 
 public final class NoForward extends Action {

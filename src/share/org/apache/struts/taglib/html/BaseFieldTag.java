@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.22 2003/11/15 23:08:54 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/11/15 23:08:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.23 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -68,8 +68,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Convenience base class for the various input tags for text fields.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2003/11/15 23:08:54 $
+ * @version $Revision: 1.23 $ $Date: 2004/01/10 21:03:33 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedMessagesNotPresentTag.java,v 1.5 2004/01/01 20:00:33 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/01 20:00:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedMessagesNotPresentTag.java,v 1.6 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:32 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -69,10 +69,8 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
 /**
  * NestedMessagesNotPresentTag.
  *
- * @author Arron Bates
- * @author David Winterfeldt
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2004/01/01 20:00:33 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:32 $
  */
 public class NestedMessagesNotPresentTag extends MessagesNotPresentTag
                                                   implements NestedPropertySupport {

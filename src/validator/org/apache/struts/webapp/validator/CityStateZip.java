@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/CityStateZip.java,v 1.2 2003/09/24 03:42:03 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/24 03:42:03 $
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/CityStateZip.java,v 1.3 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -65,7 +65,6 @@ package org.apache.struts.webapp.validator;
 /**
  * Just used to provide an indexed properties example.
  *
- * @author David Wintefeldt
 */
 public class CityStateZip implements java.io.Serializable {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.6 2003/02/08 23:31:29 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/08 23:31:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.7 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import java.io.Serializable;
  * <code>&lt;exception&gt;</code> element from a Struts
  * configuration file.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/02/08 23:31:29 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 

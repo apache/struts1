@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.22 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.23 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -75,9 +75,7 @@ import org.apache.struts.util.MessageResources;
  * in the option list, while the value attribute is the value returned to
  * the server if this option is selected.
  *
- * @author Craig R. McClanahan
- * @author David Graham
- * @version $Revision: 1.22 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.23 $ $Date: 2004/01/10 21:03:33 $
  */
 public class OptionTag extends BodyTagSupport {
 

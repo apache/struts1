@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestLessThanTag.java,v 1.3 2003/03/08 19:45:04 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/08 19:45:04 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestLessThanTag.java,v 1.4 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:31 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -72,7 +72,6 @@ import org.apache.struts.util.LabelValueBean;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.LessThanTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestLessThanTag extends JspTestCase {
 	

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.12 2003/07/26 04:24:23 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/26 04:24:23 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.13 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -88,8 +88,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  * tests included in this class are simple validations that the basic
  * environment was set up correctly.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/26 04:24:23 $
+ * @version $Revision: 1.13 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class TestMockBase extends TestCase {

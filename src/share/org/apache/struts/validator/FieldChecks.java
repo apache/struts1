@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.15 2003/10/06 04:04:06 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2003/10/06 04:04:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.16 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -88,9 +88,6 @@ import org.apache.struts.util.RequestUtils;
  * errors.
  * </p>
  *
- * @author David Winterfeldt
- * @author James Turner
- * @author Rob Leland
  * @since Struts 1.1
  */
 public class FieldChecks implements Serializable {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTei.java,v 1.1 2001/02/13 01:56:07 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/02/13 01:56:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTei.java,v 1.2 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -72,8 +72,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * Implementation of <code>TagExtraInfo</code> for the <b>size</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/02/13 01:56:07 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class SizeTei extends TagExtraInfo {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.7 2003/10/10 22:03:33 mrdon Exp $
- * $Revision: 1.7 $
- * $Date: 2003/10/10 22:03:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.8 2004/01/10 21:03:42 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:42 $
  *
  * ====================================================================
  *
@@ -85,8 +85,7 @@ import org.apache.struts.config.PlugInConfig;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/10/10 22:03:33 $
+ * @version $Revision: 1.8 $ $Date: 2004/01/10 21:03:42 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {

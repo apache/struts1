@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.18 2003/12/19 03:41:59 husted Exp $
- * $Revision: 1.18 $
- * $Date: 2003/12/19 03:41:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.19 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -98,9 +98,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * Some containers require that an object meet all JavaBean requirements
  * in order to use the introspection API upon which ActionForms rely.</p>
  *
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @version $Revision: 1.18 $ $Date: 2003/12/19 03:41:59 $
+ * @version $Revision: 1.19 $ $Date: 2004/01/10 21:03:38 $
  */
 
 public abstract class ActionForm implements Serializable {

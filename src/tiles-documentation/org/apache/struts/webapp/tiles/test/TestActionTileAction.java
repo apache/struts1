@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestActionTileAction.java,v 1.3 2003/07/21 15:18:47 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/21 15:18:47 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestActionTileAction.java,v 1.4 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -83,9 +83,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * Implementation of <strong>Action</strong> that populates an instance of
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
- * @author Craig R. McClanahan
- * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/07/21 15:18:47 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/10 21:03:41 $
  */
 
 public final class TestActionTileAction extends Action {

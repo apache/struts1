@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.19 2003/12/07 19:11:10 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/12/07 19:11:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.20 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -148,12 +148,6 @@ import org.apache.struts.util.MessageResources;
  *  was cancelled (a <code>html:cancel</code> button was pressed), the custom
  *  handler <code>cancelled</code> will be used instead.
  *
- * @author Erik Hatcher
- * @author Scott Carlson
- * @author David Graham
- * @author Leonardo Quijano
- * @author Rob Leland
- * @author Ted Husted
  */
 public abstract class LookupDispatchAction extends DispatchAction {
 

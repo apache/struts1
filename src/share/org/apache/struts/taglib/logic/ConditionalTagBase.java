@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.5 2001/02/12 21:49:54 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/12 21:49:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.6 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Abstract base class for the various conditional evaluation tags.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/12 21:49:54 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public abstract class ConditionalTagBase extends TagSupport {

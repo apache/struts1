@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.10 2003/12/19 04:48:44 husted Exp $
- * $Revision: 1.10 $
- * $Date: 2003/12/19 04:48:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.11 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -79,8 +79,7 @@ import org.apache.struts.config.FormBeanConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/12/19 04:48:44 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:38 $
  */
 public class ActionFormBean extends FormBeanConfig {
 

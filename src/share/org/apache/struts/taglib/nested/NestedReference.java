@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedReference.java,v 1.3 2003/04/19 00:03:53 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/04/19 00:03:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedReference.java,v 1.4 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,9 +65,8 @@ import java.io.Serializable;
  * So that a nested hierarchy can penetrate a dynamic JSP include, this class
  * will hold the details of a bean name and nested property.
  *
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class NestedReference implements Serializable {
 

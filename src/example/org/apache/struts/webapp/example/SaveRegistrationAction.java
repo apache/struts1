@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.19 2003/12/21 22:43:19 husted Exp $
- * $Revision: 1.19 $
- * $Date: 2003/12/21 22:43:19 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.20 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -83,8 +83,7 @@ import org.apache.struts.action.ActionMessages;
  * updates the user registration information entered by the user.  If a new
  * registration is created, the user is also implicitly logged on.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/12/21 22:43:19 $
+ * @version $Revision: 1.20 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public final class SaveRegistrationAction extends Action {

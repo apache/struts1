@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestActionMessage.java,v 1.5 2003/11/15 21:25:05 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/11/15 21:25:05 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestActionMessage.java,v 1.6 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  * 
@@ -68,8 +68,7 @@ import junit.framework.TestSuite;
 /**
  * Unit tests for the <code>org.apache.struts.action.ActionMessage</code> class.
  *
- * @author Dominique Plante
- * @version $Revision: 1.5 $ $Date: 2003/11/15 21:25:05 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:41 $
  */
 public class TestActionMessage extends TestCase {
     

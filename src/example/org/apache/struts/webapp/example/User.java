@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/User.java,v 1.3 2002/03/05 04:23:56 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/05 04:23:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/User.java,v 1.4 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -67,8 +67,7 @@ package org.apache.struts.webapp.example;
  * <p>A <strong>User</strong> which is stored, along with his or her
  * associated {@link Subscription}s, in a {@link UserDatabase}.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/03/05 04:23:56 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/10 21:03:37 $
  * @since Struts 1.1
  */
 

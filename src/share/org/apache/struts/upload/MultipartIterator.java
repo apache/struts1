@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.24 2003/11/26 05:57:06 martinc Exp $
- * $Revision: 1.24 $
- * $Date: 2003/11/26 05:57:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.25 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -89,7 +89,6 @@ import javax.servlet.http.HttpServletRequest;
  * </pre>
  *
  * @see org.apache.struts.upload.MultipartElement
- * @author Mike Schachter
  *
  * @deprecated Use the Commons FileUpload based multipart handler instead. This
  *             class will be removed after Struts 1.2.

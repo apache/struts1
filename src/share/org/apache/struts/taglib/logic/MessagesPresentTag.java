@@ -69,8 +69,7 @@ import org.apache.struts.taglib.TagUtils;
  * request scope under the specified key and there is at least one message in the
  * class or for the property specified.
  *
- * @author David Winterfeldt
- * @version $Revision: 1.11 $ $Date: 2003/11/28 01:55:40 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:32 $
  * @since Struts 1.1
  */
 public class MessagesPresentTag extends ConditionalTagBase {

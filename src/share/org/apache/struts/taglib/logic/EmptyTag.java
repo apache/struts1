@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.10 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.11 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -71,9 +71,7 @@ import org.apache.struts.taglib.TagUtils;
  * Evalute the nested body content of this tag if the specified value
  * is empty for this request.
  *
- * @author Martin Cooper
- * @author David Graham
- * @version $Revision: 1.10 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:32 $
  * @since Struts 1.1
  */
 public class EmptyTag extends ConditionalTagBase {

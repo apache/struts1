@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.9 2003/09/29 04:19:37 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/09/29 04:19:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.10 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import org.apache.struts.validator.Resources;
  * This class contains the validwhen validation that is used in the 
  * validator-rules.xml file.
  *
- * @author James Turner
  * @since Struts 1.2
  */
 public class ValidWhen {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.22 2003/07/09 02:23:54 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/07/09 02:23:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.23 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -98,7 +98,6 @@ import org.apache.struts.util.RequestUtils;
  * is always the default one if it exists.
  * The plugin should be declared in each struts-config.xml file in order to
  * properly initialize the request processor.
- * @author Cedric Dumoulin
  * @since Struts 1.1
  */
 public class TilesPlugin implements PlugIn {

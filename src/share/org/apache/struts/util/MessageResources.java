@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.20 2003/11/27 22:14:51 martinc Exp $
- * $Revision: 1.20 $
- * $Date: 2003/11/27 22:14:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.21 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  * 
@@ -88,8 +88,7 @@ import org.apache.commons.logging.LogFactory;
  * must be Serializable so that instances may be used in distributable
  * application server environments.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/11/27 22:14:51 $
+ * @version $Revision: 1.21 $ $Date: 2004/01/10 21:03:36 $
  */
 public abstract class MessageResources implements Serializable {
 

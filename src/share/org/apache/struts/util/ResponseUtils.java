@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.8 2003/07/31 00:30:21 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/31 00:30:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.9 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -70,8 +70,7 @@ import org.apache.struts.taglib.TagUtils;
  * General purpose utility methods related to generating a servlet response
  * in the Struts controller framework.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2003/07/31 00:30:21 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:36 $
  * @deprecated Use the corresponding TagUtils methods instead.  
  * This class will be removed after Struts 1.2.
  */

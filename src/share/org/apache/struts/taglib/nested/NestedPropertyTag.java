@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.10 2004/01/02 11:55:38 husted Exp $
- * $Revision: 1.10 $
- * $Date: 2004/01/02 11:55:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.11 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,9 +75,8 @@ import org.apache.struts.taglib.TagUtils;
  * It's simply recognised by the helper class and it's property is added to the
  * nesting list.
  *
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.10 $ $Date: 2004/01/02 11:55:38 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:31 $
  */
 public class NestedPropertyTag extends BodyTagSupport implements NestedNameSupport {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.8 2003/12/26 22:10:32 germuska Exp $
- * $Revision: 1.8 $
- * $Date: 2003/12/26 22:10:32 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.9 2004/01/10 21:03:35 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:35 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -83,7 +83,6 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
  *  TestCheckboxTag(3 and 4) - These test using a boolean property
  *                             set to false on our form.
  *
- * @author James Mitchell
  */
 public class TestCheckboxTag1 extends JspTestCase {
 

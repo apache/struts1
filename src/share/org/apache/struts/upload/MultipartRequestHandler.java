@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartRequestHandler.java,v 1.5 2002/12/08 07:12:16 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/08 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartRequestHandler.java,v 1.6 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.action.ActionMapping;
   * deal with file uploads from forms with enctypes of "multipart/form-data".
   * Providers must provide a no-argument constructor for initialization.
   *
-  * @author Mike Schachter
   */
 public interface MultipartRequestHandler
 {

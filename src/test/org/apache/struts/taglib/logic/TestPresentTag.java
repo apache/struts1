@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestPresentTag.java,v 1.15 2003/03/08 19:45:04 jmitchell Exp $
- * $Revision: 1.15 $
- * $Date: 2003/03/08 19:45:04 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestPresentTag.java,v 1.16 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/01/10 21:03:31 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -72,8 +72,6 @@ import org.apache.struts.util.LabelValueBean;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.PresentTag</code> class.
  *
- * @author David Winterfeldt
- * @author James Mitchell
  */
 public class TestPresentTag extends JspTestCase {
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";

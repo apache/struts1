@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/HtmlSettersAction.java,v 1.3 2003/12/21 22:54:14 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/21 22:54:14 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/HtmlSettersAction.java,v 1.4 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.action.ActionMapping;
  * bean, and then returns control to the input form (if "Save" was pressed)
  * or the main menu (if "Cancel" was pressed).
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/12/21 22:54:14 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class HtmlSettersAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.55 2003/08/10 09:14:04 sraeburn Exp $
- * $Revision: 1.55 $
- * $Date: 2003/08/10 09:14:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.56 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.56 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -85,11 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * Custom tag that represents an input form, associated with a bean whose
  * properties correspond to the various fields of the form.
  *
- * @author Craig R. McClanahan
- * @author Martin Cooper
- * @author James Turner
- * @author David Graham
- * @version $Revision: 1.55 $ $Date: 2003/08/10 09:14:04 $
+ * @version $Revision: 1.56 $ $Date: 2004/01/10 21:03:33 $
  */
 public class FormTag extends TagSupport {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartValueStream.java,v 1.5 2003/11/26 05:57:06 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2003/11/26 05:57:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartValueStream.java,v 1.6 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import javax.servlet.ServletException;
  * for details about the protocol.
  * <p>
  *
- * @author Jimmy Larsson
  *
  * @deprecated Use the Commons FileUpload based multipart handler instead. This
  *             class will be removed after Struts 1.2.

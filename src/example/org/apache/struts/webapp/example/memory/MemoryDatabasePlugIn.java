@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.9 2004/01/08 03:55:58 germuska Exp $
- * $Revision: 1.9 $
- * $Date: 2004/01/08 03:55:58 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.10 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -92,8 +92,7 @@ import org.apache.struts.webapp.example.Constants;
  * <strong>NOT</strong> assume that files written here will survive a restart
  * of your servlet container.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2004/01/08 03:55:58 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:41 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {

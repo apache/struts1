@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/UserDatabase.java,v 1.2 2003/09/04 16:03:42 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/04 16:03:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/UserDatabase.java,v 1.3 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -70,8 +70,7 @@ package org.apache.struts.webapp.example;
  * whose characteristics are not specified here.  One or more implementations
  * will be created to perform the actual I/O that is required.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/04 16:03:42 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:37 $
  * @since Struts 1.1
  */
 

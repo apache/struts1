@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.22 2003/08/02 21:18:46 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/08/02 21:18:46 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.23 2004/01/10 21:03:42 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:42 $
  *
  * ====================================================================
  *
@@ -88,8 +88,7 @@ import org.apache.struts.taglib.html.Constants;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2003/08/02 21:18:46 $
+ * @version $Revision: 1.23 $ $Date: 2004/01/10 21:03:42 $
  */
 
 public class TestRequestUtils extends TestMockBase {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.10 2003/08/10 09:14:04 sraeburn Exp $
- * $Revision: 1.10 $
- * $Date: 2003/08/10 09:14:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.11 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/10 21:03:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,9 +68,8 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
 
 /**
  * NestedFormTag.
- * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.10 $ $Date: 2003/08/10 09:14:04 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/10 21:03:31 $
  */
 public class NestedFormTag extends FormTag implements NestedNameSupport {
 

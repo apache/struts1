@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.9 2003/09/04 16:03:42 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2003/09/04 16:03:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.10 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -90,8 +90,7 @@ import org.apache.struts.validator.ValidatorForm;
  *     [REQUIRED]
  * </ul>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2003/09/04 16:03:42 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public final class RegistrationForm extends ValidatorForm  {

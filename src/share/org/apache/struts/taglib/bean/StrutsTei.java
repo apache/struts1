@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTei.java,v 1.4 2003/01/12 20:27:54 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/01/12 20:27:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTei.java,v 1.5 2004/01/10 21:03:37 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:37 $
  *
  * ====================================================================
  *
@@ -72,8 +72,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * Implementation of <code>TagExtraInfo</code> for the <b>struts</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/01/12 20:27:54 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:37 $
  */
 
 public class StrutsTei extends TagExtraInfo {

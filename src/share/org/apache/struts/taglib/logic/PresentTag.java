@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.18 2003/08/28 05:57:58 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2003/08/28 05:57:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.19 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -74,8 +74,7 @@ import org.apache.struts.taglib.TagUtils;
  * Evalute the nested body content of this tag if the specified value
  * is present for this request.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/08/28 05:57:58 $
+ * @version $Revision: 1.19 $ $Date: 2004/01/10 21:03:32 $
  */
 public class PresentTag extends ConditionalTagBase {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.30 2003/08/23 00:22:12 dgraham Exp $
- * $Revision: 1.30 $
- * $Date: 2003/08/23 00:22:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.31 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.31 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -93,8 +93,7 @@ import org.apache.struts.util.MessageResources;
  *     rendered after each individual error message.</li>
  * </ul>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.30 $ $Date: 2003/08/23 00:22:12 $
+ * @version $Revision: 1.31 $ $Date: 2004/01/10 21:03:33 $
  */
 public class ErrorsTag extends TagSupport {
 

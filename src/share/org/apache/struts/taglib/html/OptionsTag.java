@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.25 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.26 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.26 $
+ * $Date: 2004/01/10 21:03:33 $
  * 
  * ====================================================================
  *
@@ -84,8 +84,6 @@ import org.apache.struts.util.MessageResources;
  * an Iterator, or a Map.
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
- * @author Florent Carpentier
- * @author Craig McClanahan
  */
 
 public class OptionsTag extends TagSupport {

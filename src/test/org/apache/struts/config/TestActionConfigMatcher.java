@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.4 2003/11/28 08:48:29 mrdon Exp $
- * $Revision: 1.4 $
- * $Date: 2003/11/28 08:48:29 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.5 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.mock.TestMockBase;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.ActionConfigMatcher</code>.</p>
  *
- * @author Don Brown
- * @version $Revision: 1.4 $ $Date: 2003/11/28 08:48:29 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public class TestActionConfigMatcher extends TestMockBase {

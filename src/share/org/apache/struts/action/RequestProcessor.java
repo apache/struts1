@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.41 2003/12/20 19:32:46 husted Exp $
- * $Revision: 1.41 $
- * $Date: 2003/12/20 19:32:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.42 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.42 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -92,9 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * subclassing this class and overriding the method(s) whose behavior you are
  * interested in changing.</p>
  *
- * @author Craig R. McClanahan
- * @author Cedric Dumoulin
- * @version $Revision: 1.41 $ $Date: 2003/12/20 19:32:46 $
+ * @version $Revision: 1.42 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.1
  */
 public class RequestProcessor {

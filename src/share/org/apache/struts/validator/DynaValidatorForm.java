@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.13 2003/10/06 04:04:56 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/10/06 04:04:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.14 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -87,8 +87,7 @@ import org.apache.struts.action.DynaActionForm;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @author David Winterfeldt
- * @version $Revision: 1.13 $ $Date: 2003/10/06 04:04:56 $
+ * @version $Revision: 1.14 $ $Date: 2004/01/10 21:03:38 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */

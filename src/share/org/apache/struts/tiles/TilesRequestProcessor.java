@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.22 2003/09/13 18:40:34 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/09/13 18:40:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.23 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -90,7 +90,6 @@ import org.apache.struts.config.ModuleConfig;
  * <li>{@link #internalModuleRelativeInclude(String, HttpServletRequest , HttpServletResponse)}</li>
  * </ul>
  * </p>
- * @author Cedric Dumoulin
  * @since Struts 1.1
  */
 public class TilesRequestProcessor extends RequestProcessor {

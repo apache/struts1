@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.19 2003/11/28 07:25:55 martinc Exp $
- * $Revision: 1.19 $
- * $Date: 2003/11/28 07:25:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.20 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -74,9 +74,7 @@ import org.apache.struts.util.MessageResources;
  * bean property specified by our attributes.  This tag must be nested
  * inside a form tag.
  *
- * @author Craig R. McClanahan
- * @author David Graham
- * @version $Revision: 1.19 $ $Date: 2003/11/28 07:25:55 $
+ * @version $Revision: 1.20 $ $Date: 2004/01/10 21:03:33 $
  */
 public class SelectTag extends BaseHandlerTag {
 

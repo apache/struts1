@@ -60,7 +60,6 @@ import org.apache.struts.action.ActionMapping;
 /**
  *  Custom action mapping used by TestModuleConfing
  *
- * @author Don Brown
  */
 public class CustomMappingTest extends ActionMapping {
     

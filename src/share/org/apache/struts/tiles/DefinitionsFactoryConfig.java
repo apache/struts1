@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.9 2003/07/09 00:05:17 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/09 00:05:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.10 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -74,9 +74,8 @@ import org.apache.commons.beanutils.BeanUtils;
  * A TilesFactoryConfig object hold configuration attributes for a tile
  * definition factory.
  *
- * @author Cedric Dumoulin
  * @since Struts 1.1
- * @version $Revision: 1.9 $ $Date: 2003/07/09 00:05:17 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:36 $
  */
 public class DefinitionsFactoryConfig implements Serializable {
 

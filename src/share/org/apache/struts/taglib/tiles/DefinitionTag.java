@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.8 2003/07/02 02:16:39 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/02 02:16:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.9 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -73,8 +73,7 @@ import org.apache.struts.tiles.UntypedAttribute;
  * a tiles (or template / component). Definition is put in requested context and can be
  * used in &lt;tiles:insert&gt.
  *
- * @author Cedric Dumoulin
- * @version $Revision: 1.8 $ $Date: 2003/07/02 02:16:39 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:41 $
  */
 public class DefinitionTag
     extends DefinitionTagSupport

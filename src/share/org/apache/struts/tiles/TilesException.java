@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesException.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:20:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesException.java,v 1.3 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -65,7 +65,6 @@ package org.apache.struts.tiles;
 
 /**
  * Root class for all Tiles-exceptions.
- * @author Cedric Dumoulin
  */
 public class TilesException extends Exception
 {

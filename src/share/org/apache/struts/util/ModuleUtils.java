@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.4 2003/08/03 17:03:49 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/08/03 17:03:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.5 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -73,11 +73,7 @@ import org.apache.struts.config.ModuleConfig;
 /**
  * General purpose utility methods related to module processing.
  * 
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @author James Turner
- * @author David Graham
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  * @since Struts 1.2
  */
 public class ModuleUtils {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.5 2003/09/28 17:02:22 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/28 17:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.6 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import javax.servlet.http.HttpServletResponse;
  * Basic implementation of Controller.  Implementations can extend this class
  * to insulate themselves from changes in the <code>Controller</code> 
  * interface.
- * @author Cedric Dumoulin
  */
 public class ControllerSupport implements Controller {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.11 2003/07/27 07:13:05 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/27 07:13:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/MatchTag.java,v 1.12 2004/01/10 21:03:32 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/10 21:03:32 $
  *
  * ====================================================================
  *
@@ -73,8 +73,7 @@ import org.apache.struts.taglib.TagUtils;
  * Evalute the nested body content of this tag if the specified value
  * is a substring of the specified variable.
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/27 07:13:05 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:32 $
  */
 
 public class MatchTag extends ConditionalTagBase {

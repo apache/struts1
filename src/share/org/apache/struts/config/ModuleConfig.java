@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.3 2003/05/01 17:05:10 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2003/05/01 17:05:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.4 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -69,8 +69,7 @@ package org.apache.struts.config;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @author Rob Leland
- * @version $Revision: 1.3 $ $Date: 2003/05/01 17:05:10 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 public interface ModuleConfig {

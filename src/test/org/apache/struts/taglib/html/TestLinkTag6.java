@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag6.java,v 1.4 2003/12/26 22:10:32 germuska Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/26 22:10:32 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag6.java,v 1.5 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -74,7 +74,6 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.html.FrameTag</code> class.
  *
- * @author James Mitchell
  */
 public class TestLinkTag6 extends JspTestCase {
 

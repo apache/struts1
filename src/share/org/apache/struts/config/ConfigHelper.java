@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.14 2003/09/05 15:32:40 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2003/09/05 15:32:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.15 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -101,9 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * ActionServlet when the resources are created.
  *
  * @since Struts 1.1
- * @author Ted Husted
- * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.14 $ $Date: 2003/09/05 15:32:40 $
+ * @version $Revision: 1.15 $ $Date: 2004/01/10 21:03:33 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ReloadDefinitionsAction.java,v 1.6 2003/09/28 17:02:22 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/09/28 17:02:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ReloadDefinitionsAction.java,v 1.7 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  *
@@ -84,9 +84,7 @@ import org.apache.struts.tiles.TilesUtil;
  * reload its configuration information from the configuration
  * files (which have presumably been updated) dynamically.</p>
  *
- * @author Craig R. McClanahan
- * @author Cedric Dumoulin
- * @version $Revision: 1.6 $ $Date: 2003/09/28 17:02:22 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/10 21:03:34 $
  */
 
 public class ReloadDefinitionsAction extends Action {

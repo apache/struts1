@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockAction.java,v 1.1 2002/07/02 04:25:46 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/02 04:25:46 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockAction.java,v 1.2 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -69,8 +69,7 @@ import org.apache.struts.action.Action;
 /**
  * <p>General purpose Action for unit tests.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/02 04:25:46 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class MockAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.11 2003/12/21 22:56:00 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2003/12/21 22:56:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.12 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  *
@@ -73,8 +73,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * <code>&lt;form-property&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/12/21 22:56:00 $
+ * @version $Revision: 1.12 $ $Date: 2004/01/10 21:03:34 $
  * @since Struts 1.1
  */
 

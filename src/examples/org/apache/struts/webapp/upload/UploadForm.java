@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadForm.java,v 1.2 2004/01/09 21:52:46 husted Exp $
-* $Revision: 1.2 $
-* $Date: 2004/01/09 21:52:46 $
+* $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadForm.java,v 1.3 2004/01/10 21:03:41 dgraham Exp $
+* $Revision: 1.3 $
+* $Date: 2004/01/10 21:03:41 $
 *
 * ====================================================================
 *
@@ -74,8 +74,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * on the underlying impelementation of multipart request handling.  The default implementation
  * that struts uses is org.apache.struts.upload.CommonsMultipartRequestHandler.
  *
- * @author Mike Schachter
- * @version $Revision: 1.2 $ $Date: 2004/01/09 21:52:46 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:41 $
  */
 public class UploadForm extends ActionForm {
     

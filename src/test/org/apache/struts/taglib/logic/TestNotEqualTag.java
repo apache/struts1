@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestNotEqualTag.java,v 1.3 2003/03/08 19:45:04 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/08 19:45:04 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestNotEqualTag.java,v 1.4 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/10 21:03:31 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -64,7 +64,6 @@ import javax.servlet.ServletException;import javax.servlet.jsp.PageContext;imp
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.NotEqualTag</code> class.
- * @author Dominique Plante
  */
 public class TestNotEqualTag extends JspTestCase {
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";

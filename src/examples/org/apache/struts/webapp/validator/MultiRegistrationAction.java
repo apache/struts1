@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/MultiRegistrationAction.java,v 1.1 2004/01/08 16:18:19 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/01/08 16:18:19 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/MultiRegistrationAction.java,v 1.2 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import org.apache.struts.action.ActionMessages;
  * Implementation of <strong>Action</strong> that validates a multi-page
  * registration form.
  *
- * @author David Wintefeldt
  */
 public final class MultiRegistrationAction extends Action {
 

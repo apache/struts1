@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/bean/NestedDefineTei.java,v 1.1 2003/03/18 13:20:04 arron Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/18 13:20:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/bean/NestedDefineTei.java,v 1.2 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:40 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -70,10 +70,9 @@ import org.apache.struts.taglib.logic.IterateTei;
  * Currently goes to String, but for the purposes of most nested objects they
  * will benefit more from a simple Object casting.
  *
- * @author Arron Bates
  *
  * @since Struts 1.1
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class NestedDefineTei extends IterateTei {

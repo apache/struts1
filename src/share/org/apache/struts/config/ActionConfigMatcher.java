@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.5 2004/01/05 18:49:59 mrdon Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/05 18:49:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.6 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -81,7 +81,6 @@ import org.apache.struts.util.WildcardHelper;
  *  action configs. It uses the wildcard matcher from the Apache
  *  Cocoon project.
  *
- * @author    Don Brown
  */
 public class ActionConfigMatcher implements Serializable {
 

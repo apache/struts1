@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.172 2003/12/18 03:38:42 husted Exp $
- * $Revision: 1.172 $
- * $Date: 2003/12/18 03:38:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.173 2004/01/10 21:03:38 dgraham Exp $
+ * $Revision: 1.173 $
+ * $Date: 2004/01/10 21:03:38 $
  *
  * ====================================================================
  *
@@ -207,11 +207,7 @@ import org.xml.sax.SAXException;
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @author Martin Cooper
- * @author David Graham
- * @version $Revision: 1.172 $ $Date: 2003/12/18 03:38:42 $
+ * @version $Revision: 1.173 $ $Date: 2004/01/10 21:03:38 $
  */
 public class ActionServlet extends HttpServlet {
 

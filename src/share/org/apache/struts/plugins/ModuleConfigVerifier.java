@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.4 2003/12/31 01:06:53 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/31 01:06:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.5 2004/01/10 21:03:41 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/10 21:03:41 $
  *
  * ====================================================================
  *
@@ -85,8 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Under all circumstances, errors that are detected will be logged via
  * calls to <code>ServletContext.log</code>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/12/31 01:06:53 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/10 21:03:41 $
  * @since Struts 1.1
  */
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.140 2004/01/01 19:27:20 husted Exp $
- * $Revision: 1.140 $
- * $Date: 2004/01/01 19:27:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.141 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.141 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  *
@@ -102,11 +102,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @author James Turner
- * @author David Graham
- * @version $Revision: 1.140 $ $Date: 2004/01/01 19:27:20 $
+ * @version $Revision: 1.141 $ $Date: 2004/01/10 21:03:36 $
  */
 public class RequestUtils {
 

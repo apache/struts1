@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.13 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.14 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/01/10 21:03:33 $
  * 
  * ====================================================================
  *
@@ -88,8 +88,7 @@ import org.apache.struts.util.MessageResources;
  * <p>
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
- * @author Martin Cooper
- * @version $Revision: 1.13 $ $Date: 2003/07/31 00:34:15 $
+ * @version $Revision: 1.14 $ $Date: 2004/01/10 21:03:33 $
  * @since Struts 1.1
  */
 public class OptionsCollectionTag extends TagSupport {

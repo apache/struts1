@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestEqualTag.java,v 1.5 2003/03/08 19:45:04 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/03/08 19:45:04 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestEqualTag.java,v 1.6 2004/01/10 21:03:31 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/10 21:03:31 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -65,8 +65,6 @@ import javax.servlet.ServletException;import javax.servlet.jsp.JspException;im
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.EqualTag</code> class.
  *
- * @author David Winterfeldt
- * @author Dominique Plante
  */
 public class TestEqualTag extends JspTestCase {
 

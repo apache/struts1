@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockFormBean.java,v 1.1 2002/07/02 04:23:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/02 04:23:14 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockFormBean.java,v 1.2 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import org.apache.struts.action.ActionForm;
 /**
  * <p>General purpose form bean for unit tests.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/02 04:23:14 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:39 $
  */
 
 public class MockFormBean extends ActionForm {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.9 2003/09/11 04:27:21 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/09/11 04:27:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.10 2004/01/10 21:03:36 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/10 21:03:36 $
  *
  * ====================================================================
  * 
@@ -86,9 +86,7 @@ import org.apache.commons.logging.LogFactory;
  * more than once, but improves response time on subsequent requests for
  * the same locale + key combination.
  *
- * @author Craig R. McClanahan
- * @author David Graham
- * @version $Revision: 1.9 $ $Date: 2003/09/11 04:27:21 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/10 21:03:36 $
  */
 public class PropertyMessageResources extends MessageResources {
 

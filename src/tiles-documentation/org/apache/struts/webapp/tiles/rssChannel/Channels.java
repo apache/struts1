@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.8 2003/08/23 17:04:46 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/23 17:04:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.9 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -86,9 +86,7 @@ import org.apache.struts.tiles.ComponentContext;
  * beans in request scope,and forward to "continue".
  * @expects path={uri} on command line or as parameter property to ActionMapping.
  * @expects an input page or error forwarding if exception digesting RSS
- * @author Ted Husted
- * @author Cedric Dumoulin
- * @version $Revision: 1.8 $ $Date: 2003/08/23 17:04:46 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:40 $
  */
 public final class Channels extends Action {
 

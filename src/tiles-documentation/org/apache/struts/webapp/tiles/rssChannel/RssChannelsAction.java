@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.8 2003/08/23 17:04:46 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/23 17:04:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.9 2004/01/10 21:03:40 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/01/10 21:03:40 $
  *
  * ====================================================================
  *
@@ -93,9 +93,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  *   <li>channels : List of Digester Channel beans</li>
  * </ul>
  *
- * @author Ted Husted
- * @author Cedric Dumoulin
- * @version $Revision: 1.8 $ $Date: 2003/08/23 17:04:46 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/10 21:03:40 $
  */
 public final class RssChannelsAction extends TilesAction {
 

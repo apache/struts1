@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockActionServlet.java,v 1.1 2002/12/27 11:00:55 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/12/27 11:00:55 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockActionServlet.java,v 1.2 2004/01/10 21:03:39 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/10 21:03:39 $
  *
  * ====================================================================
  *
@@ -83,9 +83,7 @@ import org.apache.struts.action.ActionServlet;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @author Craig R. McClanahan
- * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/12/27 11:00:55 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/10 21:03:39 $
  */
 public class MockActionServlet extends ActionServlet
 {

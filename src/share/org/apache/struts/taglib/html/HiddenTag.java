@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.7 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HiddenTag.java,v 1.8 2004/01/10 21:03:33 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:33 $
  *
  * ====================================================================
  *
@@ -68,8 +68,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Custom tag for input fields of type "hidden".
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/07/31 00:34:15 $
+ * @version $Revision: 1.8 $ $Date: 2004/01/10 21:03:33 $
  */
 public class HiddenTag extends BaseFieldTag {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag2_fr.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
- * $Revision: 1.7 $
- * $Date: 2003/12/26 22:10:31 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag2_fr.java,v 1.8 2004/01/10 21:03:34 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/10 21:03:34 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -81,7 +81,6 @@ import org.apache.commons.lang.StringUtils;
   * All of these tests depend on a value being correctly written on the repose, then
   * checked here in endXXX method.
   *
-  * @author James Mitchell
   */
 public class TestMessageTag2_fr extends JspTestCase {
 
