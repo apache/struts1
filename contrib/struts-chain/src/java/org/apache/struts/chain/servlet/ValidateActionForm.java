@@ -1,12 +1,12 @@
 /*
  * Copyright 2003,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,6 +26,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.AbstractValidateActionForm;
 import org.apache.struts.config.ActionConfig;
+import org.apache.struts.Globals;
 
 
 /**
@@ -36,7 +37,7 @@ import org.apache.struts.config.ActionConfig;
  *
  * @author Craig R. McClanahan
  * @author Don Brown
- * @version $Revision: 1.6 $ $Date: 2004/06/24 01:27:31 $
+ * @version $Revision: 1.7 $ $Date: 2004/09/02 21:39:18 $
  */
 
 public class ValidateActionForm extends AbstractValidateActionForm {
@@ -75,6 +76,13 @@ public class ValidateActionForm extends AbstractValidateActionForm {
                 actionForm.getMultipartRequestHandler().rollback();
             }
         }
+
+        // Saving the errors is not part of the contract for this method,
+        // but the idea of the HttpServletRequest is not present in the
+        // abstract parent of this class.  Put this in now so that it
+        // at least gets done -- and then see if other developers have
+        // opinions about whether this is good, bad, or at least acceptable.
+        swcontext.getRequest().setAttribute(Globals.ERROR_KEY, errors);
 
         return errors;
 
