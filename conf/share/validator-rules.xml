@@ -287,15 +287,24 @@
 						}
                         
                         if (value.length > 0) {
+                            if (!isAllDigits(value)) {
+                                bValid = false;
+                                if (i == 0) {
+                                    focusField = field;
+                                }
+                                fields[i++] = oByte[x][1];
 
-	                        var iValue = parseInt(value);
-	                        if (isNaN(iValue) || !(iValue >= -128 && iValue <= 127)) {
-	                            if (i == 0) {
-	                                focusField = field;
+                            } else {
+
+	                            var iValue = parseInt(value);
+	                            if (isNaN(iValue) || !(iValue >= -128 && iValue <= 127)) {
+	                                if (i == 0) {
+	                                    focusField = field;
+	                                }
+	                                fields[i++] = oByte[x][1];
+	                                bValid = false;
 	                            }
-	                            fields[i++] = oByte[x][1];
-	                            bValid = false;
-	                        }
+                            }
 						}
 						
                     }
@@ -350,14 +359,23 @@
 						}
                         
                         if (value.length > 0) {
+                            if (!isAllDigits(value)) {
+                                bValid = false;
+                                if (i == 0) {
+                                    focusField = field;
+                                }
+                                fields[i++] = oShort[x][1];
+
+                            } else {
                         
-	                        var iValue = parseInt(value);
-	                        if (isNaN(iValue) || !(iValue >= -32768 && iValue <= 32767)) {
-	                            if (i == 0) {
-	                                focusField = field;
+	                            var iValue = parseInt(value);
+	                            if (isNaN(iValue) || !(iValue >= -32768 && iValue <= 32767)) {
+	                                if (i == 0) {
+	                                    focusField = field;
+	                                }
+	                                fields[i++] = oShort[x][1];
+	                                bValid = false;
 	                            }
-	                            fields[i++] = oShort[x][1];
-	                            bValid = false;
 	                       }
                        }
                     }
@@ -415,6 +433,11 @@
                         
                             if (!isAllDigits(value)) {
                                 bValid = false;
+                                if (i == 0) {
+	                                focusField = field;
+	                            }
+						        fields[i++] = oInteger[x][1];
+						        
                             } else {
 	                            var iValue = parseInt(value);
 	                            if (isNaN(iValue) || !(iValue >= -2147483648 && iValue <= 2147483647)) {
@@ -507,15 +530,23 @@
 						}
                         
                         if (value.length > 0) {
-                        
-	                        var iValue = parseFloat(value);
-	                        if (isNaN(iValue)) {
-	                            if (i == 0) {
-	                                focusField = field;
+                            if (!isAllDigits(value)) {
+                                bValid = false;
+                                if (i == 0) {
+                                    focusField = field;
+                                }
+                                fields[i++] = oFloat[x][1];
+
+                            } else {
+	                            var iValue = parseFloat(value);
+	                            if (isNaN(iValue)) {
+	                                if (i == 0) {
+	                                    focusField = field;
+	                                }
+	                                fields[i++] = oFloat[x][1];
+	                                bValid = false;
 	                            }
-	                            fields[i++] = oFloat[x][1];
-	                            bValid = false;
-	                        }
+                            }
                         }
                     }
                 }
