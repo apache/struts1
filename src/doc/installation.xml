@@ -42,6 +42,10 @@
       distribution from
       <a href="http://jakarta.apache.org/builds/jakarta-servletapi">here</a>.
       </li>
+  <li><strong>JDBC 2.0 Optional Package Classes</strong> - Struts supports
+      an optional implementation of <code>javax.sql.DataSource</code>, so it
+      requires the API classes to be compiled.  They can be downloaded from
+      <a href="http://java.sun.com/products/jdbc/download.html">http://java.sun.com/products/jdbc/download.html</a>.</li>
   <li><strong>XML Parser</strong> - Struts requires the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
       specification, 1.0 or later.  You can download and install the JAXP
