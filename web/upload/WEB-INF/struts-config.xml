@@ -10,12 +10,11 @@
 
 
 
-
   <form-beans>
 
-    
+
     <form-bean      name="uploadForm"
-                    type="org.apache.struts.example.upload.UploadForm"/>
+                    type="org.apache.struts.webapp.upload.UploadForm"/>
 
   </form-beans>
 
@@ -24,12 +23,12 @@
 
     <!-- Upload Action -->
     <action    path="/upload"
-               type="org.apache.struts.example.upload.UploadAction"
+               type="org.apache.struts.webapp.upload.UploadAction"
                name="uploadForm">
-		<forward name="display" path="/display.jsp" />
-    </action>
-    
-    
+        <forward name="display" path="/display.jsp" />
+   </action>
+
+
   </action-mappings>
 
 </struts-config>
