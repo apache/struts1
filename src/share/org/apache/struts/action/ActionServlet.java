@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.102 2002/04/06 17:12:17 craigmcc Exp $
- * $Revision: 1.102 $
- * $Date: 2002/04/06 17:12:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.103 2002/06/15 23:23:00 craigmcc Exp $
+ * $Revision: 1.103 $
+ * $Date: 2002/06/15 23:23:00 $
  *
  * ====================================================================
  *
@@ -236,7 +236,8 @@ import org.apache.struts.util.ServletContextWriter;
  *         as the ActionMapping default value).
  *     </ul>
  *     <em>DEPRECATED - Configure this using the "className" attribute of
- *     each &lt;action&gt; element.</em></li>
+ *     each &lt;action&gt; element, or globally for a subapp by using the
+ *     "type" attribute of the &lt;action-mappings&gt; element.</em></li>
  * <li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
  *     to be accepted as a file upload.  Can be expressed as a number followed
  *     by a "K" "M", or "G", which are interpreted to mean kilobytes,
@@ -270,7 +271,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.102 $ $Date: 2002/04/06 17:12:17 $
+ * @version $Revision: 1.103 $ $Date: 2002/06/15 23:23:00 $
  */
 
 public class ActionServlet
