@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.39 2002/06/24 16:56:31 husted Exp $
- * $Revision: 1.39 $
- * $Date: 2002/06/24 16:56:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.40 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.40 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.39 $ $Date: 2002/06/24 16:56:31 $
+ * @version $Revision: 1.40 $ $Date: 2002/06/24 18:53:01 $
  */
 
 public class Action {
@@ -528,6 +528,7 @@ public class Action {
      * Return the message resources for the current sub-application.
      *
      * @param request The servlet request we are processing
+     * @since Struts 1.1
      */
     protected MessageResources getResources(HttpServletRequest request) {
 

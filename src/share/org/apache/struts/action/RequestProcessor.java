@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.8 2002/03/16 02:07:11 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/03/16 02:07:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.9 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/03/16 02:07:11 $
+ * @version $Revision: 1.9 $ $Date: 2002/06/24 18:53:01 $
  * @since Struts 1.1
  */
 
@@ -141,7 +141,7 @@ public class RequestProcessor {
      */
     protected Log log = LogFactory.getLog(this.getClass());
 
-    
+
     /**
      * The controller servlet we are associated with.
      */
@@ -955,7 +955,7 @@ public class RequestProcessor {
      * @param uri Uri or Definition name to forward
      * @param request Current page request
      * @param response Current page response
-     * @since 1.1
+     * @since Struts 1.1
      * @author Cedric Dumoulin
      */
     protected void doForward(String uri, HttpServletRequest request,
@@ -979,7 +979,7 @@ public class RequestProcessor {
      * @param uri Uri of page to include
      * @param request Current page request
      * @param response Current page response
-     * @since 1.1
+     * @since Struts 1.1
      * @author Cedric Dumoulin
      */
     protected void doInclude(String uri, HttpServletRequest request,

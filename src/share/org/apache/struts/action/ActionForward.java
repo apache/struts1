@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.5 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.6 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -93,13 +93,16 @@ import org.apache.struts.config.ForwardConfig;
  *     on the associated path; otherwise <code>false</code>.  [false]</li>
  * </ul>
  *
+ * <p>Since Struts 1.1 this class extends <code>ForwardConfig</code>
+ * and inherits the <code>contextRelative</code> property.
+ *
  * <p><strong>NOTE</strong> - This class would have been deprecated and
  * replaced by <code>org.apache.struts.config.ForwardConfig</code> except
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.6 $ $Date: 2002/06/24 18:53:01 $
  */
 
 public class ActionForward extends ForwardConfig {
@@ -110,7 +113,7 @@ public class ActionForward extends ForwardConfig {
      */
     public ActionForward() {
 
-	this(null, false);
+    this(null, false);
 
     }
 
@@ -122,7 +125,7 @@ public class ActionForward extends ForwardConfig {
      */
     public ActionForward(String path) {
 
-	this(path, false);
+    this(path, false);
 
     }
 
@@ -135,10 +138,10 @@ public class ActionForward extends ForwardConfig {
      */
     public ActionForward(String path, boolean redirect) {
 
-	super();
-	setName(null);
-	setPath(path);
-	setRedirect(redirect);
+    super();
+    setName(null);
+    setPath(path);
+    setRedirect(redirect);
 
     }
 

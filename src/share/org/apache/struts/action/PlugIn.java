@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.2 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.3 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -83,7 +83,8 @@ import org.apache.struts.config.ApplicationConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/03/22 23:47:18 $
+ * @version $Revision: 1.3 $ $Date: 2002/06/24 18:53:01 $
+ * @since Struts 1.1
  */
 
 public interface PlugIn {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.7 2002/01/28 06:03:31 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/01/28 06:03:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.8 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -76,8 +76,10 @@ import java.io.Serializable;
  * syntax used by the JDK <code>MessageFormat</code> class. Thus, the first
  * placeholder is '{0}', the second is '{1}', etc.</p>
  *
+ * <p>Since Struts 1.1 <code>ActionError</code> extends <code>ActionMessage</code>.
+ *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/01/28 06:03:31 $
+ * @version $Revision: 1.8 $ $Date: 2002/06/24 18:53:01 $
  */
 
 public class ActionError extends ActionMessage implements Serializable {

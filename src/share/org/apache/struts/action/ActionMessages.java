@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.3 2001/09/17 19:58:57 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2001/09/17 19:58:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.4 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -86,11 +86,11 @@ import java.util.List;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @since 1.1
  * @author David Geary
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @revision $Revision: 1.3 $ $Date: 2001/09/17 19:58:57 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/24 18:53:01 $
+ * @since Struts 1.1
  */
 
 public class ActionMessages implements Serializable {

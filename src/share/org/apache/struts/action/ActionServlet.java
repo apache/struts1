@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.106 2002/06/23 04:05:21 craigmcc Exp $
- * $Revision: 1.106 $
- * $Date: 2002/06/23 04:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.107 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.107 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -130,7 +130,7 @@ import org.apache.struts.util.ServletContextWriter;
  * <li>Forms and hyperlinks in the user interface that require business logic
  *     to be executed will be submitted to a request URI that is mapped to the
  *     controller servlet.</li>
- * <li>There will be one instance of this servlet class,
+ * <li>There will be <b>one</b> instance of this servlet class,
  *     which receives and processes all requests that change the state of
  *     a user's interaction with the application.  This component represents
  *     the "controller" component of an MVC architecture.</li>
@@ -162,7 +162,7 @@ import org.apache.struts.util.ServletContextWriter;
  *     an instance of that class and cache it for future use.</li>
  * <li>Optionally populate the properties of an <code>ActionForm</code> bean
  *     associated with this mapping.</li>
- * <li>Call the <code>perform()</code> method of this action class, passing
+ * <li>Call the <code>execute</code> method of this action class, passing
  *     on a reference to the mapping that was used (thereby providing access
  *     to the underlying ActionServlet and ServletContext, as well as any
  *     specialized properties of the mapping itself), and the request and
@@ -174,28 +174,17 @@ import org.apache.struts.util.ServletContextWriter;
  * on the following servlet initialization parameters, which you will specify
  * in the web application deployment descriptor (<code>/WEB-INF/web.xml</code>)
  * for your application.  Subclasses that specialize this servlet are free to
- * define additional initialization parameters.</p>
+ * define additional initialization parameters. Several of these were
+ * deprecated between the 1.0 and 1.1 releases. The deprecated parameters
+ * are listed after the nominal parameters.</p>
  * <ul>
- * <li><strong>application</strong> - Java class name of the application
- *     resources bundle base class.  [NONE]
- *     <em>DEPRECATED - Configure this using the "parameter" attribute
- *     of the &lt;message-resources&gt; element.</em></li>
- * <li><strong>bufferSize</strong> - The size of the input buffer used when
- *     processing file uploads.  [4096]
- *     <em>DEPRECATED - Configure this using the "bufferSize" attribute
- *     of the &lt;controller&gt; element.</em></li>
  * <li><strong>config</strong> - Context-relative path to the XML resource
  *     containing the configuration information for the default application.
- *     [/WEB-INF/struts-config.xml]</li>
+ *     [/WEB-INF/struts-config.xml].</li>
  * <li><strong>config/foo</strong> - Context-relative path to the XML resource
  *     containing the configuration information for the sub-application that
  *     will be at prefix "/foo".  This can be repeated as many times as
  *     required for multiple sub-applications.</li>
- * <li><strong>content</strong> - Default content type and character encoding
- *     to be set on each response; may be overridden by a forwarded-to
- *     servlet or JSP page.  [text/html]
- *     <em>DEPRECATED - Configure this using the "contentType" attribute
- *     of the &lt;controller&gt; element.</em></li>
  * <li><strong>convertHack</strong> - Set to <code>true</code> to force form
  *     bean population of bean properties that are of Java wrapper class types
  *     (such as java.lang.Integer) to set the property to <code>null</code>,
@@ -207,6 +196,23 @@ import org.apache.struts.util.ServletContextWriter;
  * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize to process the application configuration files. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
+ * </ul>
+ * <p>The following parameters may still be used with the Struts 1.1 release but
+ * are <b>deprecated</b>.
+ * <ul>
+ * <li><strong>application</strong> - Java class name of the application
+ *     resources bundle base class.  [NONE]
+ *     <em>DEPRECATED - Configure this using the "parameter" attribute
+ *     of the &lt;message-resources&gt; element.</em></li>
+ * <li><strong>bufferSize</strong> - The size of the input buffer used when
+ *     processing file uploads.  [4096]
+ *     <em>DEPRECATED - Configure this using the "bufferSize" attribute
+ *     of the &lt;controller&gt; element.</em></li>
+ * <li><strong>content</strong> - Default content type and character encoding
+ *     to be set on each response; may be overridden by a forwarded-to
+ *     servlet or JSP page.  [text/html]
+ *     <em>DEPRECATED - Configure this using the "contentType" attribute
+ *     of the &lt;controller&gt; element.</em></li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.
@@ -285,7 +291,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.106 $ $Date: 2002/06/23 04:05:21 $
+ * @version $Revision: 1.107 $ $Date: 2002/06/24 18:53:01 $
  */
 
 public class ActionServlet
@@ -305,6 +311,7 @@ public class ActionServlet
     /**
      * The Digester used to produce ApplicationConfig objects from a
      * Struts configuration file.
+     * @since Struts 1.1
      */
     protected Digester configDigester = null;
 
@@ -312,6 +319,7 @@ public class ActionServlet
     /**
      * The flag to request backwards-compatible conversions for form bean
      * properties of the Java wrapper class types.
+     * @since Struts 1.1
      */
     protected boolean convertHack = false;
 
@@ -344,12 +352,14 @@ public class ActionServlet
 
     /**
      * The Java base name of our internal resources.
+     * @since Struts 1.1
      */
     protected String internalName = "org.apache.struts.action.ActionResources";
 
 
     /**
      * Commons Logging instance.
+     * @since Struts 1.1
      */
     protected Log log = LogFactory.getLog(this.getClass());
 
@@ -357,6 +367,7 @@ public class ActionServlet
     /**
      * The <code>RequestProcessor</code> instance we will use to process
      * all incoming requests.
+     * @since Struts 1.1
      */
     protected RequestProcessor processor = null;
 
@@ -605,6 +616,7 @@ public class ActionServlet
     /**
      * Return the <code>MessageResources</code> instance containing our
      * internal message strings.
+     * @since Struts 1.1
      */
     public MessageResources getInternal() {
 
@@ -652,6 +664,7 @@ public class ActionServlet
     /**
      * Gracefully terminate use of any sub-applications associated with this
      * application (if any).
+     * @since Struts 1.1
      */
     protected void destroyApplications() {
 
@@ -688,6 +701,7 @@ public class ActionServlet
 
     /**
      * Gracefully release any configDigester instance that we have created.
+     * @since Struts 1.1
      */
     protected void destroyConfigDigester() {
 
@@ -742,6 +756,7 @@ public class ActionServlet
      * sub-application.
      *
      * @param request The servlet request we are processing
+     * @since Struts 1.1
      */
     protected ApplicationConfig getApplicationConfig
         (HttpServletRequest request) {
@@ -766,6 +781,7 @@ public class ActionServlet
      *
      * @exception ServletException if we cannot instantiate a RequestProcessor
      *  instance
+     * @since Struts 1.1
      */
     protected synchronized RequestProcessor
         getRequestProcessor(ApplicationConfig config) throws ServletException {
@@ -799,6 +815,7 @@ public class ActionServlet
      *  configuration resource
      *
      * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
      */
     protected ApplicationConfig initApplicationConfig
         (String prefix, String path) throws ServletException {
@@ -866,6 +883,7 @@ public class ActionServlet
      * @param config ApplicationConfig information for this application
      *
      * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
      */
     protected void initApplicationDataSources
         (ApplicationConfig config) throws ServletException {
@@ -923,6 +941,7 @@ public class ActionServlet
      * @param config ApplicationConfig information for this application
      *
      * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
      */
     protected void initApplicationPlugIns
         (ApplicationConfig config) throws ServletException {
@@ -962,6 +981,7 @@ public class ActionServlet
      * @param config ApplicationConfig information for this application
      *
      * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
      */
     protected void initApplicationMessageResources
         (ApplicationConfig config) throws ServletException {
@@ -1006,6 +1026,8 @@ public class ActionServlet
      * initialized to process Struts application configuraiton files and
      * configure a corresponding ApplicationConfig object (which must be
      * pushed on to the evaluation stack before parsing begins).</p>
+     *
+     * @since Struts 1.1
      */
     protected Digester initConfigDigester() {
 
@@ -1208,6 +1230,7 @@ public class ActionServlet
      *
      * @param config The ApplicationConfig object for the default app
      *
+     * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
     private void defaultControllerConfig(ApplicationConfig config) {
@@ -1261,6 +1284,7 @@ public class ActionServlet
      *
      * @param config The ApplicationConfig object for the default app
      *
+     * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
     private void defaultFormBeansConfig(ApplicationConfig config) {
@@ -1285,6 +1309,7 @@ public class ActionServlet
      *
      * @param config The ApplicationConfig object for the default app
      *
+     * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
     private void defaultForwardsConfig(ApplicationConfig config) {
@@ -1309,6 +1334,7 @@ public class ActionServlet
      *
      * @param config The ApplicationConfig object for the default app
      *
+     * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
     private void defaultMappingsConfig(ApplicationConfig config) {
@@ -1333,6 +1359,7 @@ public class ActionServlet
      *
      * @param config The ApplicationConfig object for the default app
      *
+     * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
     private void defaultMessageResourcesConfig(ApplicationConfig config) {

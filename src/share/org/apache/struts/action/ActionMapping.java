@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.23 2002/01/23 21:21:09 craigmcc Exp $
- * $Revision: 1.23 $
- * $Date: 2002/01/23 21:21:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.24 2002/06/24 18:53:01 husted Exp $
+ * $Revision: 1.24 $
+ * $Date: 2002/06/24 18:53:01 $
  *
  * ====================================================================
  *
@@ -77,13 +77,15 @@ import org.apache.struts.config.ForwardConfig;
  * on to that Action, thereby providing access to any custom configuration
  * information included with the ActionMapping object.</p>
  *
+ * <p>Since Struts 1.1 this class extends <code>ActionConfig</code>.
+ *
  * <p><strong>NOTE</strong> - This class would have been deprecated and
  * replaced by <code>org.apache.struts.config.ActionConfig</code> except
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2002/01/23 21:21:09 $
+ * @version $Revision: 1.24 $ $Date: 2002/06/24 18:53:01 $
  */
 
 public class ActionMapping extends ActionConfig {
@@ -98,6 +100,7 @@ public class ActionMapping extends ActionConfig {
      * configuration can be found, return <code>null</code>.</p>
      *
      * @param type Exception class for which to find a handler
+     * @since Struts 1.1
      */
     public ExceptionConfig findException(Class type) {
 
