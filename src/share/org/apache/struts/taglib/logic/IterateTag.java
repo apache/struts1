@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.17 2002/12/16 03:41:43 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2002/12/16 03:41:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.18 2002/12/18 07:06:17 rleland Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/12/18 07:06:17 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2002/12/16 03:41:43 $
+ * @version $Revision: 1.18 $ $Date: 2002/12/18 07:06:17 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -377,7 +377,7 @@ public class IterateTag extends BodyTagSupport {
 	// Skip the leading elements up to the starting offset
 	for (int i = 0; i < offsetValue; i++) {
 	    if (iterator.hasNext()) {
-	        Object element = iterator.next();
+	        iterator.next();
 	    }
 	}
 
