@@ -232,6 +232,11 @@ org.apache.commons.logging.simplelog.defaultlog=trace</pre>
 <section href="resources" name="Tiles Resources">
 
 <p>
+<a href="http://www.oracle.com/technology/oramag/oracle/04-may/o34dev_struts.html">
+<strong>Reuse Tiles and Simplify UI</strong></a> by James Holmes. Howto article in Oracle Magazine.
+</p>
+
+<p>
 <a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
 <strong>Developing applications with Tiles</strong></a> by Cedric Dumoulin and Ted Husted.
 Sample chapter from
