@@ -74,20 +74,32 @@ public class NestedOptionsTag extends OptionsTag implements NestedNameSupport {
    *             This is in the hands of the super class.
    */
   public int doStartTag() throws JspException {
-    
-    /* singleton tag implementations will need the original property to be
+
+    /* singleton tag implementations will need the original properties to be
        set before running */
     super.setProperty(originalProperty);
-    
+    super.setLabelProperty(originalLabelProperty);
+    super.setName(NestedPropertyHelper.getNestedNameProperty(this));
+
     /* let the NestedHelper set the properties it can */
     isNesting = true;
-    NestedPropertyHelper.setNestedProperties(this);
+    Tag pTag = NestedPropertyHelper.getNestingParentTag(this);
+    setProperty(NestedPropertyHelper.getNestedProperty(getProperty(), pTag));
+
+    /* only set the label property if we're meant to */
+    if (originalLabelProperty != null) {
+      setLabelProperty(NestedPropertyHelper.getNestedProperty(getLabelProperty(),
+                                                              pTag));
+    }
+
+    /* finished setting, properties can be set as per usual. */
     isNesting = false;
-    
+
     /* do the tag */
     return super.doStartTag();
   }
-  
+
+
   /** this is overridden so that properties being set by the JSP page aren't
    * written over by those needed by the extension. If the tag instance is
    * re-used by the JSP, the tag can set the property back to that set by the
@@ -103,8 +115,25 @@ public class NestedOptionsTag extends OptionsTag implements NestedNameSupport {
       originalProperty = newProperty;
     }
   }
-  
+
+
+  /** This method is overridden for the same reasons as the
+   * <code>setProperty()</code> method above.
+   *
+   * @param newProperty new value to assign to the "labelProperty" property.
+   */
+  public void setLabelProperty(String newProperty) {
+    /* let the real tag do its thang */
+    super.setLabelProperty(newProperty);
+    /* if it's the JSP setting it, remember the value */
+    if (!isNesting) {
+      originalLabelProperty = newProperty;
+    }
+  }
+
+
   /* hold original property */
   private String originalProperty = null;
+  private String originalLabelProperty = null;
   private boolean isNesting = false;
 }
