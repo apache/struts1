@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.12 2003/07/02 03:52:01 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/02 03:52:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.13 2003/07/10 04:10:05 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/10 04:10:05 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.12 $ $Date: 2003/07/02 03:52:01 $
+ * @version $Revision: 1.13 $ $Date: 2003/07/10 04:10:05 $
  */
 public class HtmlTag extends TagSupport {
   
@@ -132,6 +132,17 @@ public class HtmlTag extends TagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
+        ResponseUtils.write(this.pageContext, this.renderHtmlStartElement());
+
+        return EVAL_BODY_INCLUDE;
+    }
+
+    /**
+     * Renders an &lt;html&gt; element with appropriate language attributes.
+     * @since Struts 1.2
+     */
+    protected String renderHtmlStartElement() {
         StringBuffer sb = new StringBuffer("<html");
 
         // Use the current Locale to set our language preferences
@@ -142,7 +153,10 @@ public class HtmlTag extends TagSupport {
         boolean validLanguage = ((lang != null) && (lang.length() > 0));
 
         if (this.xhtml) {
-            this.pageContext.setAttribute(Globals.XHTML_KEY, "true", PageContext.PAGE_SCOPE);
+            this.pageContext.setAttribute(
+                Globals.XHTML_KEY,
+                "true",
+                PageContext.PAGE_SCOPE);
             sb.append(" xmlns=\"http://www.w3.org/1999/xhtml\"");
         }
 
@@ -160,11 +174,7 @@ public class HtmlTag extends TagSupport {
 
         sb.append(">");
 
-        // Write out the beginning tag for this page
-        ResponseUtils.write(this.pageContext, sb.toString());
-
-        // Evaluate the included content of this tag
-        return (EVAL_BODY_INCLUDE);
+        return sb.toString();
     }
 
 
