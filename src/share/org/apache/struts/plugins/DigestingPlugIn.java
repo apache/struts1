@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.7 2003/11/27 05:48:07 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2003/11/27 05:48:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.8 2004/01/08 03:55:00 germuska Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/08 03:55:00 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.xml.sax.SAXException;
  *
  * @author Joe Germuska
  * @author David Graham
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @see org.apache.struts.action.PlugIn
  * @since Struts 1.2
  */
@@ -105,11 +105,11 @@ public class DigestingPlugIn implements PlugIn {
 
     protected String configPath = null;
 
-    protected String configSource = null;
+    protected String configSource = SOURCE_SERVLET;
 
     protected String digesterPath = null;
 
-    protected String digesterSource = null;
+    protected String digesterSource = SOURCE_SERVLET;
 
     protected String key = null;
 
@@ -160,10 +160,16 @@ public class DigestingPlugIn implements PlugIn {
         Digester digester = this.initializeDigester();
 
         if (this.push) {
+            log.debug("push == true; pushing plugin onto digester stack");
             digester.push(this);
         }
 
         try {
+            log.debug("XML data file: [path: " 
+                      + this.configPath
+                      + ", source: "
+                      + this.configSource + "]");
+
             URL configURL = this.getConfigURL(this.configPath, this.configSource);
 
             obj = digester.parse(configURL.openStream());
@@ -194,6 +200,10 @@ public class DigestingPlugIn implements PlugIn {
         if (this.digesterPath != null && this.digesterSource != null) {
 
             try {
+                log.debug("Initialize digester from XML [path: " 
+                          + this.digesterPath
+                          + "; source: "
+                          + this.digesterSource + "]");
                 digester =
                     this.digesterFromXml(this.digesterPath, this.digesterSource);
 
@@ -205,6 +215,7 @@ public class DigestingPlugIn implements PlugIn {
             }
 
         } else {
+            log.debug("No XML rules for digester; call newDigesterInstance()"); 
             digester = this.newDigesterInstance();
         }
 
@@ -403,6 +414,7 @@ public class DigestingPlugIn implements PlugIn {
      * @param obj The object to save.
      */
     protected void storeGeneratedObject(Object obj) {
+        log.debug("Put [" + obj + "] into application context [key:" + this.key + "]");
         this.servlet.getServletContext().setAttribute(this.getKey(), obj);
     }
 
