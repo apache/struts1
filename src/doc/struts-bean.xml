@@ -613,10 +613,11 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>If any arbitrary value for this attribute is specified, the result
-      of converting the specified bean property to a String will then be
-      filtered for characters that are sensitive in HTML, and any such
-      characters will be replaced by their entity equivalents.</p>
+      <p>If this attribute is set to <code>true</code>, the rendered property
+      value will be filtered for characters that are sensitive in HTML, and any
+      such characters will be replaced by their entity equivalents.  By
+      default, filtering is performed - to disable it, you must explicitly
+      set this attribute to <code>false</code>.</p>
       </info>
     </attribute>
 

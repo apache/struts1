@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.7 2000/12/07 01:19:11 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/12/07 01:19:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.8 2000/12/26 20:29:45 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/12/26 20:29:45 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/12/07 01:19:11 $
+ * @version $Revision: 1.8 $ $Date: 2000/12/26 20:29:45 $
  */
 
 public class WriteTag extends TagSupport {
@@ -91,16 +91,15 @@ public class WriteTag extends TagSupport {
 
 
     /**
-     * Filter the rendered output for characters that are sensitive in HTML
-     * if this property is set to any non-null value.
+     * Filter the rendered output for characters that are sensitive in HTML?
      */
-    protected String filter = null;
+    protected boolean filter = true;
 
-    public String getFilter() {
+    public boolean getFilter() {
         return (this.filter);
     }
 
-    public void setFilter(String filter) {
+    public void setFilter(boolean filter) {
         this.filter = filter;
     }
 
@@ -249,7 +248,7 @@ public class WriteTag extends TagSupport {
 	// Print this property value to our output writer, suitably filtered
 	JspWriter writer = pageContext.getOut();
 	try {
-	    if (filter != null)
+	    if (filter)
 	        writer.print(BeanUtils.filter((String) value));
 	    else
 	        writer.print((String) value);
@@ -272,7 +271,7 @@ public class WriteTag extends TagSupport {
     public void release() {
 
         super.release();
-        filter = null;
+        filter = true;
 	ignore = false;
 	name = null;
 	property = null;
