@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.3 2001/02/07 23:10:44 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/07 23:10:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.4 2001/02/15 00:01:49 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/15 00:01:49 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -568,162 +568,89 @@ public class ImgTag extends BaseHandlerTag {
             return (url);
 
         // Start with an unadorned URL as specified
-	String src = url;
+	StringBuffer  src = new StringBuffer(url);
 
 
         // Append a single-parameter name and value, if requested
         if ((paramId != null) && (paramName != null)) {
-            if (src.indexOf('?') < 0)
-                src += '?';
+            if (src.toString().indexOf('?') < 0)
+                src.append('?');
             else
-                src += '&';
-            src += paramId;
-            src += '=';
-            Object bean = RequestUtils.lookup(pageContext,
-                                              paramName, paramScope);
-            if (bean != null) {
-                if (paramProperty == null)
-                    src += bean.toString();
-                else {
-                    try {
-                        Object value =
-                            PropertyUtils.getProperty(bean, paramProperty);
-                        if (value != null)
-                            src += value.toString();
-                    } catch (IllegalAccessException e) {
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.access",
-                                                 paramProperty, paramName));
-                    } catch (InvocationTargetException e) {
-                        Throwable t = e.getTargetException();
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.result",
-                                                 paramProperty, t.toString()));
-                    } catch (NoSuchMethodException e) {
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.method",
-                                                 paramProperty, paramName));
-                    }
-                }
-            }
+                src.append('&');
+            src.append(paramId);
+            src.append('=');
+            Object value = RequestUtils.lookup(pageContext, paramName,
+                                              paramProperty, paramScope);
+            if (value != null)
+                src.append(value.toString());
         }
 
 	// Just return the URL if there is no bean to look up
 	if ((property != null) && (name == null)) {
 	    JspException e = new JspException
 		(messages.getMessage("getter.name"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 	if (name == null)
-	    return (src);
+	    return (src.toString());
 
 	// Look up the map we will be using
-	Object bean = RequestUtils.lookup(pageContext, name, scope);
-        if (bean == null) {
-	    JspException e = new JspException
-		(messages.getMessage("getter.bean", name));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
-        }
+        Object mapObject = RequestUtils.lookup(pageContext, name,
+                                               property, scope);
 	Map map = null;
-	if (property == null) {
-	    try {
-		map = (Map) bean;
-	    } catch (ClassCastException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("imgTag.type"));
-	    }
-	} else {
-	    try {
-		map = (Map) PropertyUtils.getProperty(bean, property);
-		if (map == null) {
-		    JspException e = new JspException
-			(messages.getMessage("getter.property", property));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-	    } catch (IllegalAccessException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-                pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (ClassCastException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("imgTag.type"));
-	    } catch (NoSuchMethodException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
+        try {
+            map = (Map) mapObject;
+        } catch (ClassCastException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("imgTag.type"));
 	}
 
 	// Append the required query parameters
-	StringBuffer sb = new StringBuffer(src);
-	boolean question = (src.indexOf("?") >= 0);
+	boolean question = (src.toString().indexOf("?") >= 0);
 	Iterator keys = map.keySet().iterator();
-	while (keys.hasNext()) {
+        while (keys.hasNext()) {
 	    String key = (String) keys.next();
 	    Object value = map.get(key);
             if (value == null) {
                 if (question)
-                    sb.append('&');
+                    src.append('&');
                 else {
-                    sb.append('?');
+                    src.append('?');
                     question = true;
                 }
-                sb.append(key);
-                sb.append('=');
+                src.append(key);
+                src.append('=');
                 // Interpret null as "no value specified"
 	    } else if (value instanceof String[]) {
 		String values[] = (String[]) value;
 		for (int i = 0; i < values.length; i++) {
 		    if (question)
-			sb.append('&');
+			src.append('&');
 		    else {
-			sb.append('?');
+			src.append('?');
 			question = true;
 		    }
-		    sb.append(key);
-		    sb.append('=');
-		    sb.append(URLEncoder.encode(values[i]));
+		    src.append(key);
+		    src.append('=');
+		    src.append(URLEncoder.encode(values[i]));
 		}
 	    } else {
 		if (question)
-		    sb.append('&');
+		    src.append('&');
 		else {
-		    sb.append('?');
+		    src.append('?');
 		    question = true;
 		}
-		sb.append(key);
-		sb.append('=');
-		sb.append(URLEncoder.encode(value.toString()));
+		src.append(key);
+		src.append('=');
+		src.append(URLEncoder.encode(value.toString()));
 	    }
 	}
 
 	// Return the final result
-	return (sb.toString());
+	return (src.toString());
 
     }
 
