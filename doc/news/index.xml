@@ -64,6 +64,148 @@
 </p>
 <hr/>
 -->
+        <h4 id="a20031110">10 Nov 2003 - JUnit in Action now Available </h4>
+        <p>
+            A new book offering, JUnit in Action, by Jakarta regulars Vincent Massol and Ted Husted, is now available for purchase.
+        </p>
+        <p>
+            Developers in the know are switching to a new testing strategy - unit testing - which interleaves coding and testing in an integrated way. This has proven to be a powerful combination that results in better designed software with fewer defects and faster delivery cycles.
+        </p>
+        <p>
+            JUnit in Action shows you how to benefit from this strategy using the popular open source testing framework, JUnit. It's a no fluff discussion of unit testing techniques and best practices. It gives examples of tough situations such as how to unit test EJBs, database applications, JSPs and Taglibs. It discusses unit testing of J2EE applications, and shows how to test in automated builds.
+            What's Inside
+        </p>
+        <ul>
+            <li>
+Testing in isolation with mock objects
+            </li>
+            <li>
+                In-container testing with Cactus
+            </li>
+            <li>
+                Automated builds with Ant and Maven
+            </li>
+            <li>
+                Unit testing from within Eclipse
+            </li>
+            <li>
+                Test Driven Development principles
+            </li>
+            <li>
+                Unit testing
+                <ul>
+                    <li>
+                      Java apps
+                    </li>
+                    <li>
+                      Servlets
+                    </li>
+                    <li>
+                      JSP
+                    </li>
+                    <li>
+                      Taglibs
+                    </li>
+                    <li>
+                      Filters
+                    </li>
+                    <li>
+                      EJB
+                    </li>
+                    <li>
+                      DB apps
+                     </li>
+                  </ul>
+                </li>
+            </ul>
+        <p>
+            While the book does not cover Struts-only testing, the techniques taught here are applicable to any web application.
+         </p>
+        <p>
+            For more, visit <a href="http://manning.com/massol/">http://manning.com/massol/</a>
+        </p>
+        <hr/>
+
+        <h4 id="a20031109">09 Nov 2003 - Slides available for Struts and JavaServer Faces talk by Craig McClanahan</h4>
+        <p>
+            The slides from Craig McClanahan's recent Struts/JSF talk are now available
+            here:
+        <a href="http://www.baychi.org/bof/struts/20031105a/">http://www.baychi.org/bof/struts/20031105a/</a>
+        </p>
+        <p>
+        The talk was captured on digital video too. However, it may be several weeks
+        before the video is available online.
+        </p>
+        <hr/>
+
+        <h4 id="a20031105">05 Nov 2003 - Visual Tags for Struts 2004 Released</h4>
+        <p>
+        FWA Software, Inc released Visual Tags for Struts 2004 on 03 November 2003.
+        Visual Tags for Struts 2004 is the latest release of FWA Software's
+        extension suite that integrates the Struts 1.1 tag libraries with
+        Dreamweaver.  The major new feature in Visual Tags for Struts 2004 is
+        support for modular installation of the six Struts tag libraries, providing
+        web developers the capability to install only the tag library extensions
+        they need.
+        </p>
+        <p>
+        Visual Tags for Struts is the first commercial product to fully integrate
+        the Jakarta-Struts 1.1 custom JSP tags with Dreamweaver MX.  Visual Tags for
+        Struts enables web developers to use Dreamweaver to create and maintain web
+        pages for Struts-based web applications using both visual layout and editing
+        and text-based editing of JSP pages containing Struts custom tags.
+        </p>
+        <p>
+        FWA Software also released a new version of Visual Tags for Struts -
+        Designer Edition.  This version includes enhancements for upward
+        compatibility with Dreamweaver MX 2004.
+        </p>
+        <p>
+        Visual Tags for Struts is available for Dreamweaver MX on Windows.
+        Full-function evaluation versions of the products are available for
+        immediate download from FWA Software's web site
+        (<a href="http://www.fwasi.com/products">http://www.fwasi.com/products</a>).
+        </p>
+        <hr />
+
+        <h4 id="a20031101">01 Nov 2003 - Web Application Architecture: Principles, Protocols and Practices</h4>
+        <p>
+        <a href="http://www.amazon.com/exec/obidos/tg/detail/-/0471486566/neurozen">Web Application Architecture: Principles, Protocols and Practices</a>, a new book by Leon Shklar and Rich Rosen, has just been published by John Wiley &amp; Sons. It has been released in Europe, and will be generally available in the US in December 2003. It is intended both as a textbook for advanced web development classes (such as the one taught by Dr. Shklar at Rutgers University), and as a reference for software developers and architects.
+        </p>
+        <p>
+        The book covers:
+        </p>
+        <ul>
+        <li>
+        Internet protocols in general,
+        </li>
+        <li>
+        HTTP in particular,
+        </li>
+        <li>
+        Web server and browser architecture,
+        </li>
+        <li>
+        Markup languages from SGML through XML, and
+        </li>
+        <li>
+        Web application development frameworks from CGI to J2EE.
+        </li>
+        </ul>
+        <p>
+        The authors describe and encourage best practices for web application design, advocating the use of <b>MVC</b> approaches, and offering up their own sample application -- a multiple-listing-services web site for real estate brokers. They explain their rationale for choosing <b>Struts</b> as their development platform, discuss the issues associated with building a sophisticated web application, and walk through the process of designing and implementing this application using <b>Struts</b> and <b>JSTL</b>.
+        </p>
+        <p>
+        The application source code is available on the authors' web site at <a href="http://www.WebAppBuilders.com">http://www.WebAppBuilders.com</a>, including instructions for building and deploying the application on Tomcat with a MySQL database system. For instructors wishing to use this as a course textbook, there are questions and exercises at the end of each chapter, including suggested enhancements that can be made to the sample application.
+        </p>
+        <p>
+        The book also provides extensive coverage of emerging technologies like Web Services and RDF.
+        </p>
+        <p>
+        <b>Authors' web site:</b> <a href="http://www.WebAppBuilders.com">http://www.WebAppBuilders.com</a>
+        <br /><b>Publisher's web site:</b> <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471486566.html">http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471486566.html</a>
+        </p>
+        <hr />
 
         <h4 id="a20031023">23 Oct 2003 - Struts IRC Channel: Quick, easy relief</h4>
         <p>
@@ -112,6 +254,7 @@
             Netscape.
         </p>
         <p>
+            <a href="http://www.baychi.org/bof/struts/20031105a/">Slides from the meeting are now available.</a>
             The meeting is being recorded so that it can be made available online
             sometime following the presentation.
         </p>
