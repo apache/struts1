@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.22 2003/07/27 06:54:28 rleland Exp $
+ * $Id: IncludeTag.java,v 1.23 2003/08/28 17:09:28 rleland Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.struts.taglib.TagUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2003/07/27 06:54:28 $
+ * @version $Revision: 1.23 $ $Date: 2003/08/28 17:09:28 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -241,14 +241,7 @@ public class IncludeTag extends TagSupport {
             conn.setDoOutput(false);
             // Add a session id cookie if appropriate
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            if ((conn instanceof HttpURLConnection)
-                && urlString.startsWith(request.getContextPath())
-                && (request.getRequestedSessionId() != null)
-                && request.isRequestedSessionIdFromCookie()) {
-                StringBuffer sb = new StringBuffer("JSESSIONID=");
-                sb.append(request.getRequestedSessionId());
-                conn.setRequestProperty("Cookie", sb.toString());
-            }
+            setCookie(conn, urlString, request);
             // Connect to the requested resource
             conn.connect();
         } catch (Exception e) {
@@ -282,6 +275,24 @@ public class IncludeTag extends TagSupport {
 
         // Skip any body of this tag
         return (SKIP_BODY);
+    }
+    /**
+     *  Add a session id cookie if appropriate. Can be overloaded to
+     *  support a cluster.
+     * @param conn
+     * @param urlString
+     * @param request
+     * @ since Struts 1.2.0
+     */
+    protected void setCookie(URLConnection conn, String urlString, HttpServletRequest request) {
+        if ((conn instanceof HttpURLConnection)
+            && urlString.startsWith(request.getContextPath())
+            && (request.getRequestedSessionId() != null)
+            && request.isRequestedSessionIdFromCookie()) {
+            StringBuffer sb = new StringBuffer("JSESSIONID=");
+            sb.append(request.getRequestedSessionId());
+            conn.setRequestProperty("Cookie", sb.toString());
+        }
     }
 
     /**
