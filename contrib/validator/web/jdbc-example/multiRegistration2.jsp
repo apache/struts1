@@ -14,14 +14,14 @@
   <template:put name='main'>
      <font size=+2><bean:message key="multiRegistrationForm.title"/></font><BR><BR>
      
-     <validator:errorsExist>
+     <logic:messagesPresent>
         <bean:message key="errors.header"/>
         <ul>
-        <validator:errors id="error">
+        <html:messages id="error">
            <li><bean:write name="error"/></li>
-        </validator:errors>
+        </html:messages>
         </ul><hr>
-     </validator:errorsExist>
+     </logic:messagesPresent>
      
      <html:form action="multiRegistration" onsubmit="return validateMultiRegistrationForm(this);">
        <html:hidden property="action"/>

@@ -12,14 +12,14 @@
   <template:put name='sidebar' content='/WEB-INF/templates/sidebar.jsp' />
   <template:put name='main'>
      <font size=+2><bean:message key="registrationForm.title.search"/></font><BR><BR>
-      <validator:errorsExist>
+      <logic:messagesPresent>
          <bean:message key="errors.header"/>
          <ul>
-         <validator:errors id="error">
+         <html:messages id="error">
             <li><bean:write name="error"/></li>
-         </validator:errors>
+         </html:messages>
          </ul><hr>
-      </validator:errorsExist>
+      </logic:messagesPresent>
       
       
       <validator:messagesExist>
