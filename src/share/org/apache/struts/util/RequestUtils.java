@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.145 2004/02/07 15:55:02 husted Exp $
- * $Revision: 1.145 $
- * $Date: 2004/02/07 15:55:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.146 2004/02/13 11:07:54 husted Exp $
+ * $Revision: 1.146 $
+ * $Date: 2004/02/13 11:07:54 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.145 $ $Date: 2004/02/07 15:55:02 $
+ * @version $Revision: 1.146 $ $Date: 2004/02/13 11:07:54 $
  */
 public class RequestUtils {
 
@@ -753,112 +753,120 @@ public class RequestUtils {
         return sb.toString();
 
     }
+    
+	/**
+	 * <p>Return the context-relative URL that corresponds to the specified
+	 * <code>ForwardConfig</code>. The URL is calculated based on the properties
+	 * of the {@link ForwardConfig} instance as follows:</p>
+	 * <ul>
+	 * <li>If the <code>contextRelative</code> property is set, it is
+	 *     assumed that the <code>path</code> property contains a path
+	 *     that is already context-relative:
+	 *     <ul>
+	 *     <li>If the <code>path</code> property value starts with a slash,
+	 *         it is returned unmodified.</li>
+	 *     <li>If the <code>path</code> property value does not start
+	 *         with a slash, a slash is prepended.</li>
+	 *     </ul></li>
+	 * <li>Acquire the <code>forwardPattern</code> property from the
+	 *     <code>ControllerConfig</code> for the application module used
+	 *     to process this request. If no pattern was configured, default
+	 *     to a pattern of <code>$M$P</code>, which is compatible with the
+	 *     hard-coded mapping behavior in Struts 1.0.</li>
+	 * <li>Process the acquired <code>forwardPattern</code>, performing the
+	 *     following substitutions:
+	 *     <ul>
+	 *     <li><strong>$M</strong> - Replaced by the module prefix for the
+	 *         application module processing this request.</li>
+	 *     <li><strong>$P</strong> - Replaced by the <code>path</code>
+	 *         property of the specified {@link ForwardConfig}, prepended
+	 *         with a slash if it does not start with one.</li>
+	 *     <li><strong>$$</strong> - Replaced by a single dollar sign
+	 *         character.</li>
+	 *     <li><strong>$x</strong> (where "x" is any charater not listed
+	 *         above) - Silently omit these two characters from the result
+	 *         value.  (This has the side effect of causing all other
+	 *         $+letter combinations to be reserved.)</li>
+	 *     </ul></li>
+	 * </ul>
+	 *
+	 * @param request The servlet request we are processing
+	 * @param forward ForwardConfig to be evaluated
+	 *
+	 * @return context-relative URL
+	 * @since Struts 1.1
+	 */
+	public static String forwardURL(HttpServletRequest request, ForwardConfig forward, ModuleConfig moduleConfig) {
+		//load the current moduleConfig, if null
+		if(moduleConfig == null) {
+			moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
+		}
+		      
+		String path = forward.getPath();
+		//load default prefix
+		String prefix = moduleConfig.getPrefix();
+		
+		//override prefix if supplied by forward
+		if(forward.getModule() != null) {
+			prefix = forward.getModule();
+		}
 
+		// Handle a ForwardConfig marked as context relative
+		StringBuffer sb = new StringBuffer();
+		if (forward.getContextRelative()) {
+			if (!path.startsWith("/")) {
+				sb.append("/");
+			}
+			sb.append(path);
+			return (sb.toString());
+		}
 
-    /**
-     * <p>Return the context-relative URL that corresponds to the specified
-     * <code>ForwardConfig</code>. The URL is calculated based on the properties
-     * of the {@link ForwardConfig} instance as follows:</p>
-     * <ul>
-     * <li>If the <code>contextRelative</code> property is set, it is
-     *     assumed that the <code>path</code> property contains a path
-     *     that is already context-relative:
-     *     <ul>
-     *     <li>If the <code>path</code> property value starts with a slash,
-     *         it is returned unmodified.</li>
-     *     <li>If the <code>path</code> property value does not start
-     *         with a slash, a slash is prepended.</li>
-     *     </ul></li>
-     * <li>Acquire the <code>forwardPattern</code> property from the
-     *     <code>ControllerConfig</code> for the application module used
-     *     to process this request. If no pattern was configured, default
-     *     to a pattern of <code>$M$P</code>, which is compatible with the
-     *     hard-coded mapping behavior in Struts 1.0.</li>
-     * <li>Process the acquired <code>forwardPattern</code>, performing the
-     *     following substitutions:
-     *     <ul>
-     *     <li><strong>$M</strong> - Replaced by the module prefix for the
-     *         application module processing this request.</li>
-     *     <li><strong>$P</strong> - Replaced by the <code>path</code>
-     *         property of the specified {@link ForwardConfig}, prepended
-     *         with a slash if it does not start with one.</li>
-     *     <li><strong>$$</strong> - Replaced by a single dollar sign
-     *         character.</li>
-     *     <li><strong>$x</strong> (where "x" is any charater not listed
-     *         above) - Silently omit these two characters from the result
-     *         value.  (This has the side effect of causing all other
-     *         $+letter combinations to be reserved.)</li>
-     *     </ul></li>
-     * </ul>
-     *
-     * @param request The servlet request we are processing
-     * @param forward ForwardConfig to be evaluated
-     *
-     * @return context-relative URL
-     * @since Struts 1.1
-     */
-    public static String forwardURL(HttpServletRequest request, ForwardConfig forward) {
+		// Calculate a context relative path for this ForwardConfig
+		String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
+		if (forwardPattern == null) {
+			// Performance optimization for previous default behavior
+			sb.append(prefix);
+			// smoothly insert a '/' if needed
+			if (!path.startsWith("/")) {
+				sb.append("/");
+			}
+			sb.append(path);
 
-        String path = forward.getPath();
+		} else {
+			boolean dollar = false;
+			for (int i = 0; i < forwardPattern.length(); i++) {
+				char ch = forwardPattern.charAt(i);
+				if (dollar) {
+					switch (ch) {
+						case 'M':
+							sb.append(prefix);
+							break;
+						case 'P':
+							// add '/' if needed
+							if (!path.startsWith("/")) {
+								sb.append("/");
+							}
+							sb.append(path);
+							break;
+						case '$':
+							sb.append('$');
+							break;
+						default :
+							; // Silently swallow
+					}
+					dollar = false;
+					continue;
+				} else if (ch == '$') {
+					dollar = true;
+				} else {
+					sb.append(ch);
+				}
+			}
+		}
 
-        // Handle a ForwardConfig marked as context relative
-        StringBuffer sb = new StringBuffer();
-        if (forward.getContextRelative()) {
-            if (!path.startsWith("/")) {
-                sb.append("/");
-            }
-            sb.append(path);
-            return (sb.toString());
-        }
+		return (sb.toString());
 
-        // Calculate a context relative path for this ForwardConfig
-        ModuleConfig moduleConfig =
-                ModuleUtils.getInstance().getModuleConfig(request);
-        String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
-        if (forwardPattern == null) {
-            // Performance optimization for previous default behavior
-            sb.append(moduleConfig.getPrefix());
-            // smoothly insert a '/' if needed
-            if (!path.startsWith("/")) {
-                sb.append("/");
-            }
-            sb.append(path);
-
-        } else {
-            boolean dollar = false;
-            for (int i = 0; i < forwardPattern.length(); i++) {
-                char ch = forwardPattern.charAt(i);
-                if (dollar) {
-                    switch (ch) {
-                        case 'M':
-                            sb.append(moduleConfig.getPrefix());
-                            break;
-                        case 'P':
-                            // add '/' if needed
-                            if (!path.startsWith("/")) {
-                                sb.append("/");
-                            }
-                            sb.append(path);
-                            break;
-                        case '$':
-                            sb.append('$');
-                            break;
-                        default :
-                            ; // Silently swallow
-                    }
-                    dollar = false;
-                    continue;
-                } else if (ch == '$') {
-                    dollar = true;
-                } else {
-                    sb.append(ch);
-                }
-            }
-        }
-
-        return (sb.toString());
-
-    }
+	}
 
 
     /**
@@ -1572,8 +1580,10 @@ public class RequestUtils {
      * This will be removed after Struts 1.2.
      */
     public static String pageURL(HttpServletRequest request, String page) {
-
-        return TagUtils.getInstance().pageURL(request, page);
+    	//load the current moduleConfig
+		ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
+		
+        return TagUtils.getInstance().pageURL(request, page, moduleConfig);
         //:TODO: Remove after Struts 1.2
 
     }

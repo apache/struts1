@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.11 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.12 2004/02/13 11:07:54 husted Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/02/13 11:07:54 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import java.io.Serializable;
  * <code>&lt;forward&gt;</code> element from a Struts
  * configuration file.</p>
  *
- * @version $Revision: 1.11 $ $Date: 2004/01/13 12:48:45 $
+ * @version $Revision: 1.12 $ $Date: 2004/02/13 11:07:54 $
  * @since Struts 1.1
  */
 
@@ -181,6 +181,7 @@ public class ForwardConfig implements Serializable {
      * <p>The URL to which this <code>ForwardConfig</code> entry points,
      * which must start with a slash ("/") character.  It is
      * interpreted according to the following rules:</p>
+     * <ul>
      * <li>If <code>contextRelative</code> property is <code>true</code>, the
      *     path is considered to be context-relative within the current web
      *     application (even if we are in a named module).  It will be
@@ -208,6 +209,24 @@ public class ForwardConfig implements Serializable {
         }
         this.path = path;
     }
+
+
+	/**
+	 * <p>The prefix of the module to which this <code>ForwardConfig</code> entry points,
+	 * which must start with a slash ("/") character.  </p>
+	 */
+	protected String module = null;
+
+	public String getModule() {
+		return (this.module);
+	}
+
+	public void setModule(String module) {
+		if (configured) {
+			throw new IllegalStateException("Configuration is frozen");
+		}
+		this.module = module;
+	}
 
 
     /**

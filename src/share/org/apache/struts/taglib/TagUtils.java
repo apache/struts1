@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.31 2004/02/07 15:55:02 husted Exp $
- * $Revision: 1.31 $
- * $Date: 2004/02/07 15:55:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.32 2004/02/13 11:07:54 husted Exp $
+ * $Revision: 1.32 $
+ * $Date: 2004/02/13 11:07:54 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @version $Revision: 1.31 $
+ * @version $Revision: 1.32 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -478,24 +478,24 @@ public class TagUtils {
         }
 
         // Look up the module configuration for this request
-        ModuleConfig config = instance.getModuleConfig(module, pageContext);
+        ModuleConfig moduleConfig = instance.getModuleConfig(module, pageContext);
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         if (forward != null) {
-            ForwardConfig fc = config.findForwardConfig(forward);
-            if (fc == null) {
+            ForwardConfig forwardConfig = moduleConfig.findForwardConfig(forward);
+            if (forwardConfig == null) {
                 throw new MalformedURLException(messages.getMessage("computeURL.forward", forward));
             }
-            if (fc.getRedirect()) {
+            if (forwardConfig.getRedirect()) {
                 redirect = true;
             }
-            if (fc.getPath().startsWith("/")) {
+            if (forwardConfig.getPath().startsWith("/")) {
                 url.append(request.getContextPath());
-                url.append(RequestUtils.forwardURL(request, fc));
+                url.append(RequestUtils.forwardURL(request, forwardConfig, moduleConfig));
             } else {
-                url.append(fc.getPath());
+                url.append(forwardConfig.getPath());
             }
         } else if (href != null) {
             url.append(href);
@@ -504,7 +504,7 @@ public class TagUtils {
 
         } else /* if (page != null) */ {
             url.append(request.getContextPath());
-            url.append(this.pageURL(request, page));
+            url.append(this.pageURL(request, page, moduleConfig));
         }
 
         // Add anchor if requested (replacing any existing anchor)
@@ -796,10 +796,10 @@ public class TagUtils {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(module, request, pageContext.getServletContext());
+        ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(module, request, pageContext.getServletContext());
 
-        if ((config != null) && (!contextRelative)) {
-            value.append(config.getPrefix());
+        if ((moduleConfig != null) && (!contextRelative)) {
+            value.append(moduleConfig.getPrefix());
         }
 
         // Use our servlet mapping, if one is specified
@@ -1149,10 +1149,9 @@ public class TagUtils {
      * (<strong>MUST</strong> start with a slash)
      * @return context-relative URL
      */
-    public String pageURL(HttpServletRequest request, String page) {
+    public String pageURL(HttpServletRequest request, String page, ModuleConfig moduleConfig) {
 
         StringBuffer sb = new StringBuffer();
-        ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
         String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
 
         if (pagePattern == null) {
@@ -1257,10 +1256,10 @@ public class TagUtils {
         }
 
         if (resources == null) {
-            ModuleConfig config = getModuleConfig(pageContext);
+            ModuleConfig moduleConfig = getModuleConfig(pageContext);
             resources =
                     (MessageResources) pageContext.getAttribute(
-                            bundle + config.getPrefix(),
+                            bundle + moduleConfig.getPrefix(),
                             PageContext.APPLICATION_SCOPE);
         }
         

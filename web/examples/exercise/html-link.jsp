@@ -90,35 +90,61 @@
           </td>
         </tr>
         <tr>
-          <th colspan="4" align="center">Hyperlinks To Be Tested via action attribute</th>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">
-            <html:link action="/html-link-submit">No modifications at all</html:link>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">
-            <html:link action="/html-link-submit?doubleProperty=321.321&amp;longProperty=321321">Double and long via hard coded changes</html:link>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">
-            <html:link action="/html-link-submit" paramId="stringProperty" paramName="newValue">String via paramId and paramName</html:link>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">
-            <html:link action="/html-link-submit" paramId="booleanProperty" paramName="testbean" paramProperty="nested.booleanProperty">Boolean via paramId, paramName, and paramValue</html:link>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">
-            <html:link action="/html-link-submit" name="newValues">Float, int, and stringArray via name (Map)</html:link>
-          </td>
-        </tr>
-        <tr>
-          <th colspan="4" align="center">Reset and Cancel Buttons</th>
+
+ <tr>
+   <th colspan="4" align="center">
+     Hyperlinks To Be Tested via action and module attributes
+   </th>
+ </tr>
+
+ <tr>
+   <td colspan="4" align="center">
+     <html:link action="/html-link">
+       No modifications at all, but link to the default module.
+     </html:link>
+   </td>
+ </tr>
+
+ <tr>
+   <td colspan="4" align="center">
+     <html:link action="/html-link?doubleProperty=321.321&amp;longProperty=321321"
+     			 module="/exercise">
+       Double and long via hard coded changes (module)
+     </html:link>
+   </td>
+ </tr>
+
+ <tr>
+   <td colspan="4" align="center">
+     <html:link action="/html-link"
+             paramId="stringProperty" paramName="newValue">
+       String via paramId and paramName
+     </html:link>
+   </td>
+ </tr>
+
+ <tr>
+   <td colspan="4" align="center">
+     <html:link action="/html-link"
+             paramId="booleanProperty"
+             paramName="testbean" paramProperty="nested.booleanProperty"
+     			 module="/exercise">
+       Boolean via paramId, paramName, and paramValue (module)
+     </html:link>
+   </td>
+ </tr>
+
+ <tr>
+   <td colspan="4" align="center">
+     <html:link action="/html-link"
+                name="newValues">
+       Float, int, and stringArray via name (Map)
+     </html:link>
+   </td>
+ </tr>
+
+   <tr>
+     <th colspan="4" align="center">Reset and Cancel Buttons</th>
         </tr>
         <tr>
           <td colspan="4" align="center">
@@ -128,7 +154,9 @@
         </tr>
       </table>
     </html:form>
+
     <p>The following list tests relative, context-relative, and absolute links. Press (back) to return.</p>
+    <p>Forwards</p>
     <ul>
       <li>
         <html:link forward="relative">module welcome page</html:link>
@@ -143,5 +171,38 @@
         <html:link forward="redirect-default">Redirect to the default page ("/")</html:link>
       </li>
     </ul>
+    <p>Actions</p>
+    <ul>
+      <li>
+        <html:link action="/welcome" module="/">application welcome page</html:link>
+        <!-- Test with empty string for module: <html:link action="/welcome" module="">application welcome page</html:link> -->
+      </li>
+      <li>
+        <html:link action="/welcome" module="/exercise">Exercise module welcome page</html:link>
+      </li>
+      <li>
+        <html:link action="/upload" module="/upload">Upload welcome page</html:link>
+      </li>
+      <li>
+        <html:link action="/welcome" module="/validator">Validator welcome page</html:link>
+      </li>
+      </ul>
+
+    <p>Pages</p>
+    <ul>
+      <li>
+        <html:link page="/welcome.do" module="">application welcome page</html:link>
+        <%-- FIXME: "/" slash throws NPE: <html:link page="/welcome.do" module="/">application welcome page</html:link> --%>
+      </li>
+      <li>
+        <html:link page="/welcome.do" module="/exercise">Exercise module welcome page</html:link>
+      </li>
+      <li>
+        <html:link page="/upload.do" module="/upload">Upload welcome page</html:link>
+      </li>
+      <li>
+        <html:link page="/welcome.do" module="/validator">Validator welcome page</html:link>
+      </li>
+      </ul>
   </body>
 </html:html>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.42 2004/01/10 21:03:38 dgraham Exp $
- * $Revision: 1.42 $
- * $Date: 2004/01/10 21:03:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.43 2004/02/13 11:07:54 husted Exp $
+ * $Revision: 1.43 $
+ * $Date: 2004/02/13 11:07:54 $
  *
  * ====================================================================
  *
@@ -92,7 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * subclassing this class and overriding the method(s) whose behavior you are
  * interested in changing.</p>
  *
- * @version $Revision: 1.42 $ $Date: 2004/01/10 21:03:38 $
+ * @version $Revision: 1.43 $ $Date: 2004/02/13 11:07:54 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -413,7 +413,7 @@ public class RequestProcessor {
         // paths not starting with / should be passed through without any processing
         // (ie. they're absolute)
         if (forwardPath.startsWith("/")) {
-            uri = RequestUtils.forwardURL(request, forward);    // get module relative uri
+            uri = RequestUtils.forwardURL(request, forward, null);    // get module relative uri
         } else {
             uri = forwardPath;
         }

@@ -3,7 +3,7 @@
 <!--
   Default configuration file for examples application.
   Each module also has its own struts-config under: /WEB-INF/$MODULE/
-  @version $Revision: 1.3 $ $Date: 2004/02/07 00:09:33 $
+  @version $Revision: 1.4 $ $Date: 2004/02/13 11:07:54 $
 -->
 <struts-config>
   <data-sources />
@@ -13,7 +13,7 @@
     <forward name="welcome" path="/welcome.do" />
   </global-forwards>
   <action-mappings>
-    <action path="/welcome" forward="/welcome.html" />
+    <action path="/welcome" forward="/welcome.jsp" />
   </action-mappings>
   <message-resources parameter="MessageResources" />
 </struts-config>

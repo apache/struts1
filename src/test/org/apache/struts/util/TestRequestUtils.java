@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.24 2004/01/13 12:48:57 husted Exp $
- * $Revision: 1.24 $
- * $Date: 2004/01/13 12:48:57 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.25 2004/02/13 11:07:54 husted Exp $
+ * $Revision: 1.25 $
+ * $Date: 2004/02/13 11:07:54 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.taglib.html.Constants;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
- * @version $Revision: 1.24 $ $Date: 2004/01/13 12:48:57 $
+ * @version $Revision: 1.25 $ $Date: 2004/02/13 11:07:54 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1218,7 +1218,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=false, contextRelative=false
         forward = moduleConfig.findForwardConfig("moduleForward");
         assertNotNull("moduleForward found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleForward computed", result);
         assertEquals("moduleForward value",
                      "/module/forward",
@@ -1227,7 +1227,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=true, contextRelative=false
         forward = moduleConfig.findForwardConfig("moduleRedirect");
         assertNotNull("moduleRedirect found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleRedirect computed", result);
         assertEquals("moduleRedirect value",
                      "/module/redirect",
@@ -1236,7 +1236,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=false, contextRelative=true
         forward = moduleConfig.findForwardConfig("contextForward");
         assertNotNull("contextForward found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextForward computed", result);
         assertEquals("contextForward value",
                      "/context/forward",
@@ -1245,7 +1245,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=true, contextRelative=true
         forward = moduleConfig.findForwardConfig("contextRedirect");
         assertNotNull("contextRedirect found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextRedirect computed", result);
         assertEquals("contextRedirct value",
                      "/context/redirect",
@@ -1254,7 +1254,7 @@ public class TestRequestUtils extends TestMockBase {
         // noslash, contextRelative=false
         forward = moduleConfig.findForwardConfig("moduleNoslash");
         assertNotNull("moduleNoslash found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleNoslash computed", result);
         assertEquals("moduleNoslash value",
                      "/module/noslash",
@@ -1263,7 +1263,7 @@ public class TestRequestUtils extends TestMockBase {
         // noslash, contextRelative=true
         forward = moduleConfig.findForwardConfig("contextNoslash");
         assertNotNull("contextNoslash found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextNoslash computed", result);
         assertEquals("contextNoslash value",
                      "/context/noslash",
@@ -1283,7 +1283,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=false, contextRelative=false
         forward = moduleConfig2.findForwardConfig("moduleForward");
         assertNotNull("moduleForward found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleForward computed", result);
         assertEquals("moduleForward value",
                      "/2/module/forward",
@@ -1292,7 +1292,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=true, contextRelative=false
         forward = moduleConfig2.findForwardConfig("moduleRedirect");
         assertNotNull("moduleRedirect found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleRedirect computed", result);
         assertEquals("moduleRedirect value",
                      "/2/module/redirect",
@@ -1301,7 +1301,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=false, contextRelative=true
         forward = moduleConfig2.findForwardConfig("contextForward");
         assertNotNull("contextForward found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextForward computed", result);
         assertEquals("contextForward value",
                      "/context/forward",
@@ -1310,7 +1310,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=true, contextRelative=true
         forward = moduleConfig2.findForwardConfig("contextRedirect");
         assertNotNull("contextRedirect found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextRedirect computed", result);
         assertEquals("contextRedirct value",
                      "/context/redirect",
@@ -1319,7 +1319,7 @@ public class TestRequestUtils extends TestMockBase {
         // noslash, contextRelative=false
         forward = moduleConfig2.findForwardConfig("moduleNoslash");
         assertNotNull("moduleNoslash found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleNoslash computed", result);
         assertEquals("moduleNoslash value",
                      "/2/module/noslash",
@@ -1328,7 +1328,7 @@ public class TestRequestUtils extends TestMockBase {
         // noslash, contextRelative=true
         forward = moduleConfig2.findForwardConfig("contextNoslash");
         assertNotNull("contextNoslash found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextNoslash computed", result);
         assertEquals("contextNoslash value",
                      "/context/noslash",
@@ -1348,7 +1348,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=false, contextRelative=false
         forward = moduleConfig3.findForwardConfig("moduleForward");
         assertNotNull("moduleForward found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleForward computed", result);
         assertEquals("moduleForward value",
                      "/forwarding/3/module/forward",
@@ -1357,7 +1357,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=true, contextRelative=false
         forward = moduleConfig3.findForwardConfig("moduleRedirect");
         assertNotNull("moduleRedirect found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleRedirect computed", result);
         assertEquals("moduleRedirect value",
                      "/forwarding/3/module/redirect",
@@ -1366,7 +1366,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=false, contextRelative=true
         forward = moduleConfig3.findForwardConfig("contextForward");
         assertNotNull("contextForward found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextForward computed", result);
         assertEquals("contextForward value",
                      "/context/forward",
@@ -1375,7 +1375,7 @@ public class TestRequestUtils extends TestMockBase {
         // redirect=true, contextRelative=true
         forward = moduleConfig3.findForwardConfig("contextRedirect");
         assertNotNull("contextRedirect found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextRedirect computed", result);
         assertEquals("contextRedirct value",
                      "/context/redirect",
@@ -1384,7 +1384,7 @@ public class TestRequestUtils extends TestMockBase {
         // noslash, contextRelative=false
         forward = moduleConfig3.findForwardConfig("moduleNoslash");
         assertNotNull("moduleNoslash found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleNoslash computed", result);
         assertEquals("moduleNoslash value",
                      "/forwarding/3/module/noslash",
@@ -1393,13 +1393,78 @@ public class TestRequestUtils extends TestMockBase {
         // noslash, contextRelative=true
         forward = moduleConfig3.findForwardConfig("contextNoslash");
         assertNotNull("contextNoslash found", forward);
-        result = RequestUtils.forwardURL(request, forward);
+        result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextNoslash computed", result);
         assertEquals("contextNoslash value",
                      "/context/noslash",
                      result);
 
     }
+
+
+	// Cross module forwards
+	public void testForwardURLa() {
+
+		request.setAttribute(Globals.MODULE_KEY, moduleConfig);
+		request.setPathElements("/myapp", "/action.do", null, null);
+		ForwardConfig forward = null;
+		String result = null;
+
+		// redirect=false, contextRelative=false, link to module 3
+		forward = moduleConfig3.findForwardConfig("moduleForward");
+		assertNotNull("moduleForward found", forward);
+		result = RequestUtils.forwardURL(request, forward, moduleConfig3);
+		assertNotNull("moduleForward computed", result);
+		assertEquals("moduleForward value",
+					 "/forwarding/3/module/forward",
+					 result);
+
+		// redirect=true, contextRelative=false, link to module 3
+		forward = moduleConfig3.findForwardConfig("moduleRedirect");
+		assertNotNull("moduleRedirect found", forward);
+		result = RequestUtils.forwardURL(request, forward, moduleConfig3);
+		assertNotNull("moduleRedirect computed", result);
+		assertEquals("moduleRedirect value",
+					 "/forwarding/3/module/redirect",
+					 result);
+
+		// redirect=false, contextRelative=true, link to module 3
+		forward = moduleConfig3.findForwardConfig("contextForward");
+		assertNotNull("contextForward found", forward);
+		result = RequestUtils.forwardURL(request, forward, moduleConfig3);
+		assertNotNull("contextForward computed", result);
+		assertEquals("contextForward value",
+					 "/context/forward",
+					 result);
+
+		// redirect=true, contextRelative=true, link to module 3
+		forward = moduleConfig3.findForwardConfig("contextRedirect");
+		assertNotNull("contextRedirect found", forward);
+		result = RequestUtils.forwardURL(request, forward, moduleConfig3);
+		assertNotNull("contextRedirect computed", result);
+		assertEquals("contextRedirct value",
+					 "/context/redirect",
+					 result);
+
+		// noslash, contextRelative=false, link to module 3
+		forward = moduleConfig3.findForwardConfig("moduleNoslash");
+		assertNotNull("moduleNoslash found", forward);
+		result = RequestUtils.forwardURL(request, forward, moduleConfig3);
+		assertNotNull("moduleNoslash computed", result);
+		assertEquals("moduleNoslash value",
+					 "/forwarding/3/module/noslash",
+					 result);
+
+		// noslash, contextRelative=true, link to module 3
+		forward = moduleConfig3.findForwardConfig("contextNoslash");
+		assertNotNull("contextNoslash found", forward);
+		result = RequestUtils.forwardURL(request, forward, moduleConfig3);
+		assertNotNull("contextNoslash computed", result);
+		assertEquals("contextNoslash value",
+					 "/context/noslash",
+					 result);
+
+	}
 
 
     // -------------------------------------------------------------- pageURL()

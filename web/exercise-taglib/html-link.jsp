@@ -178,6 +178,61 @@ main menu.
       </html:link>
     </td>
   </tr>
+
+  <tr>
+    <th colspan="4" align="center">
+      Hyperlinks To Be Tested via action and module attributes
+    </th>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-link"
+      			 module="">
+        No modifications at all, but link to the default module.
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-module-link?doubleProperty=321.321&amp;longProperty=321321"
+      			 module="/moduleA">
+        Double and long via hard coded changes
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-module-link"
+              paramId="stringProperty" paramName="newValue"
+              module="/moduleA">
+        String via paramId and paramName
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-module-link"
+              paramId="booleanProperty"
+              paramName="testbean" paramProperty="nested.booleanProperty"
+              module="/moduleA">
+        Boolean via paramId, paramName, and paramValue
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-module-link"
+                 name="newValues"
+                 module="/moduleA">
+        Float, int, and stringArray via name (Map)
+      </html:link>
+    </td>
+  </tr>
   
   <tr>
     <th colspan="4" align="center">Reset and Cancel Buttons</th>
