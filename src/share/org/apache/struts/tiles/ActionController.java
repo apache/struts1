@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.4 2003/07/04 21:21:05 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/04 21:21:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.5 2003/07/04 21:22:15 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/04 21:22:15 $
  *
  * ====================================================================
  *
@@ -105,6 +105,11 @@ public class ActionController implements Controller {
         ServletContext servletContext)
         throws ServletException, IOException {
             
-        action.perform(null, null, request, response);
+        try {
+            action.execute(null, null, request, response);
+            
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
     }
 }
