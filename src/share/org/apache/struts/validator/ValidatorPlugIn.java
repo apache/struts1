@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.24 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.24 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.25 2004/04/03 00:06:55 rleland Exp $
+ * $Revision: 1.25 $
+ * $Date: 2004/04/03 00:06:55 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -20,7 +20,12 @@
 
 package org.apache.struts.validator;
 
+import org.xml.sax.SAXException;
+
 import java.util.StringTokenizer;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.IOException;
@@ -30,7 +35,6 @@ import javax.servlet.UnavailableException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.commons.validator.ValidatorResourcesInitializer;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
@@ -39,7 +43,7 @@ import org.apache.struts.config.ModuleConfig;
  * Loads <code>ValidatorResources</code> based on configuration in the
  * struts-config.xml file.
  *
- * @version $Revision: 1.24 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Revision: 1.25 $ $Date: 2004/04/03 00:06:55 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -68,14 +72,15 @@ public class ValidatorPlugIn implements PlugIn {
      * Application scope key that <code>ValidatorResources</code> is stored under.
      */
     public final static String VALIDATOR_KEY =
-        "org.apache.commons.validator.VALIDATOR_RESOURCES";
+            "org.apache.commons.validator.VALIDATOR_RESOURCES";
 
     /**
      * Application scope key that <code>StopOnError</code> is stored under.
+     *
      * @since Struts 1.2
      */
     public final static String STOP_ON_ERROR_KEY =
-        "org.apache.struts.validator.STOP_ON_ERROR";
+            "org.apache.struts.validator.STOP_ON_ERROR";
 
     /**
      * The set of Form instances that have been created and initialized,
@@ -93,6 +98,7 @@ public class ValidatorPlugIn implements PlugIn {
 
     /**
      * Gets a comma delimitted list of Validator resources.
+     *
      * @return comma delimited list of Validator resource path names
      */
     public String getPathnames() {
@@ -101,6 +107,7 @@ public class ValidatorPlugIn implements PlugIn {
 
     /**
      * Sets a comma delimitted list of Validator resources.
+     *
      * @param pathnames delimited list of Validator resource path names
      */
     public void setPathnames(String pathnames) {
@@ -116,36 +123,37 @@ public class ValidatorPlugIn implements PlugIn {
 
     /**
      * Gets the value for stopOnFirstError.
+     *
      * @return A boolean indicating whether JavaScript validation should stop
-     * when it finds the first error (Struts 1.1 behaviour) or continue
-     * validation.
+     *         when it finds the first error (Struts 1.1 behaviour) or continue
+     *         validation.
      * @since Struts 1.2
      */
     public boolean isStopOnFirstError() {
-    	return this.stopOnFirstError;
+        return this.stopOnFirstError;
     }
 
     /**
      * Sets the value for stopOnFirstError.
+     *
      * @param stopOnFirstError A boolean indicating whether JavaScript
-     * validation should stop when it finds the first error
-     * (Struts 1.1 behaviour) or continue validation.
+     *                         validation should stop when it finds the first error
+     *                         (Struts 1.1 behaviour) or continue validation.
      * @since Struts 1.2
      */
     public void setStopOnFirstError(boolean stopOnFirstError) {
-    	this.stopOnFirstError = stopOnFirstError;
+        this.stopOnFirstError = stopOnFirstError;
     }
 
     /**
      * Initialize and load our resources.
      *
      * @param servlet The ActionServlet for our application
-     * @param config The ModuleConfig for our owning module
-     *
-     * @exception ServletException if we cannot configure ourselves correctly
+     * @param config  The ModuleConfig for our owning module
+     * @throws ServletException if we cannot configure ourselves correctly
      */
     public void init(ActionServlet servlet, ModuleConfig config)
-        throws ServletException {
+            throws ServletException {
 
         // Remember our associated configuration and servlet
         this.config = config;
@@ -155,18 +163,15 @@ public class ValidatorPlugIn implements PlugIn {
         try {
             this.initResources();
 
-            servlet.getServletContext().setAttribute(
-                VALIDATOR_KEY + config.getPrefix(),
-                resources);
+            servlet.getServletContext().setAttribute(VALIDATOR_KEY + config.getPrefix(),
+                                                     resources);
 
-            servlet.getServletContext().setAttribute(
-                STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
-                new Boolean(this.stopOnFirstError));
+            servlet.getServletContext().setAttribute(STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
+                                                     new Boolean(this.stopOnFirstError));
 
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            throw new UnavailableException(
-                "Cannot load a validator resource from '" + pathnames + "'");
+            throw new UnavailableException("Cannot load a validator resource from '" + pathnames + "'");
         }
 
     }
@@ -190,51 +195,52 @@ public class ValidatorPlugIn implements PlugIn {
     /**
      * Initialize the validator resources for this module.
      *
-     * @exception IOException if an input/output error is encountered, not thrown by this implementation
-     * @exception ServletException if we cannot initialize these resources, not thrown by this implementation
+     * @throws IOException      if an input/output error is encountered
+     * @throws ServletException if we cannot initialize these resources
      */
     protected void initResources() throws IOException, ServletException {
-        this.resources = new ValidatorResources();
 
         if (pathnames == null || pathnames.length() <= 0) {
             return;
         }
-
         StringTokenizer st = new StringTokenizer(pathnames, RESOURCE_DELIM);
 
-        while (st.hasMoreTokens()) {
-            String validatorRules = st.nextToken().trim();
-
-            if (log.isInfoEnabled()) {
-                log.info(
-                    "Loading validation rules file from '" + validatorRules + "'");
-            }
-
-            InputStream input =
-                servlet.getServletContext().getResourceAsStream(validatorRules);
-
-            if (input != null) {
-                BufferedInputStream bis = new BufferedInputStream(input);
-
-                try {
-                    // pass in false so resources aren't processed
-                    // until last file is loaded
-                    ValidatorResourcesInitializer.initialize(resources, bis, false);
-                } catch (IOException e) {
-                    log.error(e.getMessage(), e);
-                } finally {
-                    bis.close();
+        List streamList = new ArrayList();
+        try {
+            while (st.hasMoreTokens()) {
+                String validatorRules = st.nextToken().trim();
+                if (log.isInfoEnabled()) {
+                    log.info("Loading validation rules file from '" + validatorRules + "'");
                 }
 
-            } else {
-                log.error(
-                    "Skipping validation rules file from '"
-                        + validatorRules
-                        + "'.  No stream could be opened.");
+                InputStream input = servlet.getServletContext().getResourceAsStream(validatorRules);
+
+                if (input != null) {
+                    BufferedInputStream bis = new BufferedInputStream(input);
+                    streamList.add(bis);
+                } else {
+                    throw new ServletException("Skipping validation rules file from '"
+                              + validatorRules + "'.  No stream could be opened.");
+                }
+            }
+            int streamSize = streamList.size();
+            InputStream[] streamArray = new InputStream[streamSize];
+            for (int streamIndex = 0;streamIndex < streamSize;streamIndex++) {
+                InputStream is = (InputStream) streamList.get(streamIndex);
+                streamArray[streamIndex] = is;
+            }
+
+            this.resources = new ValidatorResources(streamArray);
+        } catch (SAXException sex) {
+            log.error("Skipping all validation",sex);
+            throw new ServletException(sex);
+        } finally {
+            Iterator streamIterator = streamList.iterator();
+            while (streamIterator.hasNext()) {
+                InputStream is = (InputStream) streamIterator.next();
+                is.close();
             }
         }
-
-        resources.process();
 
     }
 
