@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.2 2000/08/31 00:11:15 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/31 00:11:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.3 2000/10/12 23:17:15 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 23:17:15 $
  *
  * ====================================================================
  *
@@ -68,6 +68,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
@@ -78,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/31 00:11:15 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/12 23:17:15 $
  */
 
 public final class DefineTag extends TagSupport {
@@ -194,17 +195,27 @@ public final class DefineTag extends TagSupport {
                 value = PropertyUtils.getProperty(bean, property);
 
         } catch (IllegalAccessException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("getter.access", property, name));
 	} catch (IllegalArgumentException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
 	    throw new JspException
 	      (messages.getMessage("getter.scope", scope));
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
+            if (t == null)
+                t = e;
+            pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                     PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("getter.invocation",
                                      property, name, t.toString()));
         } catch (NoSuchMethodException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("getter.method", property, name));
         }

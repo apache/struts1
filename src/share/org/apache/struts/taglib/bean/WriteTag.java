@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.2 2000/09/05 21:25:45 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/09/05 21:25:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.3 2000/10/12 23:17:16 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 23:17:16 $
  *
  * ====================================================================
  * 
@@ -69,6 +69,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
@@ -80,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/09/05 21:25:45 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/12 23:17:16 $
  */
 
 public final class WriteTag extends TagSupport {
@@ -174,6 +175,8 @@ public final class WriteTag extends TagSupport {
             try {
                 bean = BeanUtils.lookup(pageContext, name, scope);
             } catch (IllegalArgumentException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
                 throw new JspException
                     (messages.getMessage("getter.scope", scope));
             }
@@ -196,17 +199,27 @@ public final class WriteTag extends TagSupport {
 	        value = value.toString();
 
         } catch (IllegalAccessException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("getter.access", property, name));
 	} catch (IllegalArgumentException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
 	    throw new JspException
 	      (messages.getMessage("getter.argument", e.toString()));
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
+            if (t == null)
+                t = e;
+            pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                     PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("getter.invocation",
                                      property, name, t.toString()));
         } catch (NoSuchMethodException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("getter.method", property, name));
         }
@@ -220,6 +233,8 @@ public final class WriteTag extends TagSupport {
 	    else
 	        writer.print((String) value);
 	} catch (IOException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
 	    throw new JspException
 		(messages.getMessage("getter.io", e.toString()));
 	}

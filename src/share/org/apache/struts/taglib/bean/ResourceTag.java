@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.2 2000/09/05 01:52:34 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/09/05 01:52:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.3 2000/10/12 23:17:16 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 23:17:16 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 
@@ -80,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/09/05 01:52:34 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/12 23:17:16 $
  */
 
 public final class ResourceTag extends TagSupport {
@@ -185,6 +186,8 @@ public final class ResourceTag extends TagSupport {
 	    reader.close();
 	    pageContext.setAttribute(id, sb.toString());
 	} catch (IOException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
 	    throw new JspException
 	      (messages.getMessage("getter.resource", name));
 	}
