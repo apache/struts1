@@ -45,6 +45,17 @@
         build.home                    Base directory into which we are building
                                       the Struts components.
 
+        commons-beanutils.jar         (required).  The path to the JAR file
+                                      of the Jakarta Commons Beanutils
+                                      package (version 1.0 or later).
+
+        commons-collections.jar       (required).  The path to the JAR file
+                                      of the Jakarta Commons Collections
+                                      package (version 1.0 or later).
+
+        commons-digester.jar          (required).  The path to the JAR file
+                                      of the Jakarta Commons Digester
+                                      package (version 1.0 or later).
 
         servlet.jar                   MUST be set to the pathname of the
                                       servlet API classes you wish to
@@ -140,6 +151,9 @@
 
 <!-- The class path used for compiling this library -->
 <path id="classpath">
+  <pathelement location="${commons-beanutils.jar}"/>
+  <pathelement location="${commons-collections.jar}"/>
+  <pathelement location="${commons-digester.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>
@@ -229,6 +243,7 @@
   </copy>
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
   <copy  todir="${webapp.target}/WEB-INF/lib">
+    <fileset dir="${struts.libs}" includes="commons-*.jar"/>
     <fileset dir="${struts.libs}" includes="struts.jar"/>
   </copy>
 </target>

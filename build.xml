@@ -24,6 +24,18 @@
                                       installation. This is required only when
                                       executing the "deploy.catalina" target.
 
+        commons-beanutils.jar         (required).  The path to the JAR file
+                                      of the Jakarta Commons Beanutils
+                                      package (version 1.0 or later).
+
+        commons-collections.jar       (required).  The path to the JAR file
+                                      of the Jakarta Commons Collections
+                                      package (version 1.0 or later).
+
+        commons-digester.jar          (required).  The path to the JAR file
+                                      of the Jakarta Commons Digester
+                                      package (version 1.0 or later).
+
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
@@ -47,6 +59,12 @@
 
     <!-- Default values for unspecified properties -->
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
+    <property name="commons-beanutils.jar"
+             value="/usr/local/commons-beanutils-1.0/commons-beanutils.jar"/>
+    <property name="commons-collections.jar"
+             value="/usr/local/commons-collections-1.0/commons-collections.jar"/>
+    <property name="commons-digester.jar"
+             value="/usr/local/commons-digester-1.0/commons-digester.jar"/>
     <property name="jdbc20ext.jar"   value="../jdbc2_0-stdext.jar"/>
     <property name="servlet.jar"     value="../jakarta-servletapi/lib/servlet.jar"/>
     <property name="tomcat.home"     value="../build/tomcat"/>
@@ -116,6 +134,9 @@
 
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
+      <pathelement location="${commons-beanutils.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
     </path>
@@ -149,6 +170,12 @@
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
             <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
         </copy>
+        <copy file="${commons-beanutils.jar}"
+            tofile="${build.home}/library/commons-beanutils.jar"/>
+        <copy file="${commons-collections.jar}"
+            tofile="${build.home}/library/commons-collections.jar"/>
+        <copy file="${commons-digester.jar}"
+            tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
     </target>
