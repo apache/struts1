@@ -109,8 +109,7 @@
             <!-- Forwards to Welcome.jsp -->
         <action
             path="/Welcome"
-            type="org.apache.struts.actions.ForwardAction"
-            parameter="/pages/Welcome.jsp"/>
+            forward="/pages/Welcome.jsp"/>
 
     <!-- sample input and input submit actions
 
