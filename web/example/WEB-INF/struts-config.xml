@@ -3,9 +3,9 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 <!--
- $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.39 2004/03/09 04:40:53 husted Exp $
- $Revision: 1.39 $
- $Date: 2004/03/09 04:40:53 $
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.40 2004/03/10 03:14:31 husted Exp $
+ $Revision: 1.40 $
+ $Date: 2004/03/10 03:14:31 $
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -50,6 +50,7 @@
 
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
+    <forward   name="welcome"              path="/welcome.do"/>
     <forward   name="logoff"               path="/logoff.do"/>
     <forward   name="logon"                path="/logon.do"/>
     <forward   name="success"              path="/mainMenu.do"/>
@@ -65,6 +66,12 @@
           <forward name="failure" path="/Error.jsp" />
           <forward name="success" path="/welcome.jsp" />
       </action>
+
+      <!-- Change locale action -->
+      <action
+          path="/locale"
+          type="org.apache.struts.webapp.example.LocaleAction"
+          parameter="welcome" />
 
       <!-- Display registration page -->
       <action    path="/registration"

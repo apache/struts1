@@ -135,7 +135,9 @@
 
     <p>Here, the "WelcomeAction" Java class executes whenever someone asks for the welcome action. As it completes, the Action class can select which page is displayed. Two pages the class can select here are "Error.jsp" and "welcome.jsp". But the Action class doesn't need to know the path to the pages. The class can select them just using the names "success" or "failure".</p>
 
-    <p>The MailReader application retains a list of users along with their email accounts. The application stores this information in a database. If the application can't connect to the database, the application can't do its job. So before displaying the welcome page, the class checks to see if the database is available. The MailReader is also internationalized application. So, the WelcomeAction checks to see if the message resources are available too. If both resources are available, the class forwards to the "success" path. Otherwise, it forwards to the "failure" path so that the appropriate error messages can be displayed.</p>
+    <p>OK ... but why would a WelcomeAction want to choose between success and failure?</p>
+
+    <p>The MailReader application retains a list of users along with their email accounts. The application stores this information in a database. If the application can't connect to the database, the application can't do its job. So before displaying the welcome page, the class checks to see if the database is available. The MailReader is also an internationalized application. So, the WelcomeAction checks to see if the message resources are available too. If both resources are available, the class forwards to the "success" path. Otherwise, it forwards to the "failure" path so that the appropriate error messages can be displayed.</p>
 
     <h4><a name="MemoryDatabasePlugIn.java" id="MemoryDatabasePlugIn.java">MemoryDatabasePlugIn.java</a></h4>
 
@@ -212,19 +214,26 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
 &lt;li>&lt;html:link action="/logon">&lt;bean:message key="index.logon"/>&lt;/html:link>&lt;/li>
 &lt;/ul>
 
-&lt;p>&lt;html:link action="/tour">&lt;bean:message key="index.tour"/>&lt;/html:link>&lt;/p>
+&lt;h3>Change Language&lt;/h3>
+&lt;ul>
+&lt;li>&lt;html:link action="/locale?language=en">English&lt;/html:link>&lt;/li>
+&lt;li>&lt;html:link action="/locale?language=ja" useLocalEncoding="true">Japanese&lt;/html:link>&lt;/li>
+&lt;li>&lt;html:link action="/locale?language=ru" useLocalEncoding="true">Russian&lt;/html:link>&lt;/li>
+&lt;/ul>
+
+&lt;hr />
 
 &lt;p>&lt;html:img bundle="alternate" pageKey="struts.logo.path" altKey="struts.logo.alt"/>&lt;/p>
+
+&lt;p>&lt;html:link action="/tour">&lt;bean:message key="index.tour"/>&lt;/html:link>&lt;/p>
 
 &lt;/body>
 &lt;/html></code></pre>
 </blockquote>
 
-    <p>At the top of the welcome.jsp page, there are several directives that load the Struts tag libraries. These are just the usual red tape that goes with any JSP file.</p>
+    <p>At the top of the welcome.jsp page, there are several directives that load the Struts tag libraries. These are just the usual red tape that goes with any JSP file. The rest of the page demonstrates three Struts JSP tags: "bean:message", "html:link", and "html:img".</p>
 
-    <p>The rest of the page demonstrates three Struts JSP tags: "bean:message", "html:link", and "html:img".</p>
-
-    <p>The bean:message tag inserts a message from the MessageResources file.</p>
+    <p>The bean:message tag inserts a message from the MessageResources file. The MailReader comes with support for three locales: English (the default), Russian, and Japanese. If the Struts locale setting is changed for a user, the bean:message tag will render messages from that locale's property bundle instead. </p>
 
     <p>The html:link tag does double duty. First, you can refer to an action or forward stored in the Struts configuration, and the tag will insert the corresponding path when the page is rendered. This makes it easy to "rewire" an application without touching all the pages. Second, the link tag will "URL encode" the hyperlink to maintain the client session. Your application can maintain client state without requiring cookies.</p>
 
@@ -244,7 +253,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
       <li>Automatically URL-encoded paths as needed.</li>
     </ul>
 
-    <p>When rendered, the welcome page lists two "options": one to register with the application and one to login in (if you have already registered). Let's follow the login link first.</p>
+    <p>When rendered, the welcome page lists two menu options: one to register with the application and one to login in (if you have already registered). Let's follow the login link first.</p>
 
     <h3><a name="logon.jsp" id="logon.jsp">logon.jsp</a></h3>
 

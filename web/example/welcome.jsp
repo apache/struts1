@@ -14,9 +14,18 @@
 <li><html:link action="/logon"><bean:message key="index.logon"/></html:link></li>
 </ul>
 
-<p><html:link action="/tour"><bean:message key="index.tour"/></html:link></p>
+<h3>Language Options</h3>
+<ul>
+<li><html:link action="/locale?language=en">English</html:link></li>
+<li><html:link action="/locale?language=ja" useLocalEncoding="true">Japanese</html:link></li>
+<li><html:link action="/locale?language=ru" useLocalEncoding="true">Russian</html:link></li>
+</ul>
+
+<hr />
 
 <p><html:img bundle="alternate" pageKey="struts.logo.path" altKey="struts.logo.alt"/></p>
+
+<p><html:link action="/tour"><bean:message key="index.tour"/></html:link></p>
 
 </body>
 </html>

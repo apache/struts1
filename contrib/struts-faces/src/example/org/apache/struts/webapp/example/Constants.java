@@ -22,7 +22,7 @@ package org.apache.struts.webapp.example;
  * Manifest constants for the example application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:49:52 $
+ * @version $Revision: 1.3 $ $Date: 2004/03/10 03:14:31 $
  */
 
 public final class Constants {
@@ -53,6 +53,5 @@ public final class Constants {
      * for the currently logged in user is stored.
      */
     public static final String USER_KEY = "user";
-
 
 }
