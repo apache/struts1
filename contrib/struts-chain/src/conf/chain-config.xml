@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
+    $Id: chain-config.xml,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
 -->
 
 
@@ -49,6 +49,54 @@
    <!-- ========== Servlet Standard Request Processor Chain ================ -->
 
    <chain      name="servlet-standard">
+
+      <!--
+           This chain attempts to emulate (most of) the standard request
+           processing in the standard org.apache.struts.action.RequestProcessor
+           class, by performing the corresponding tasks in individual Commands
+           that are composable.  The following list defines a cross reference
+           between the processXxx methods and the Commands that perform the
+           corresponding functionality:
+
+           processMultipart        NOT SUPPORTED YET (so no file upload support)
+
+           processPath             SelectAction (which also does processMapping)
+
+           processException        NOT SUPPORTED YET
+
+           processLocale           SelectLocale
+
+           processContent          NOT SUPPORTED YET
+
+           processNoCache          NOT SUPPORTED YET
+
+           processPreprocess       LookupCommand with optional="true".  Multiple
+                                   occurrences of this can easily be added, to
+                                   support additional processing hooks at any
+                                   point in the chain without modifying the
+                                   standard definition.
+
+           processMapping          SelectAction (which also does processPath)
+
+           processRoles            NOT SUPPORTED YET
+
+           processActionForm       CreateActionForm
+
+           processPopulate         PopulateActionForm
+
+           processValidate         ValidateActionForm
+
+           processForward          NOT SUPPORTED YET
+
+           processInclude          NOT SUPPORTED YET
+
+           processActionCreate     CreateAction
+
+           processActionPerform    ExecuteAction
+
+           processForwardConfig    PerformForward
+
+      -->
 
 
       <!-- Look up optional preprocess command -->

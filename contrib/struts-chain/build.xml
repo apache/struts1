@@ -131,6 +131,10 @@
     <copy   tofile="${build.home}/classes/META-INF/LICENSE.txt"
               file="LICENSE.txt"/>
 
+    <!-- Copy standard chain configuration file -->
+    <copy    todir="${build.home}/classes/org/apache/struts/chain"
+              file="src/conf/chain-config.xml"/>
+
   </target>
 
 
@@ -177,52 +181,32 @@
 
 
   <target name="example.static" depends="example.prepare">
+
+    <!-- Copy example webapp from standard build -->
     <copy    todir="${build.home}/webapps/example">
+      <fileset dir="../../target/example"/>
+    </copy>
+
+    <!-- Copy override files from our local directory -->
+    <copy    todir="${build.home}/webapps/example" overwrite="true">
       <fileset dir="web/example"/>
     </copy>
 
-    <!-- Copy required configuration files -->
-<!--
-    <copy       todir="${build.home}/webapps/example/WEB-INF">
-      <fileset    dir="${build.home}/conf">
-        <include name="*.tld"/>
-      </fileset>
-      <fileset    dir="${struts.home}/lib">
-        <include name="*.tld"/>
-        <include name="valid*.xml"/>
-      </fileset>
-    </copy>
--->
-
-    <!-- Copy required library JAR files -->
+    <!-- Copy additional library JAR files -->
     <mkdir        dir="${build.home}/webapps/example/WEB-INF/lib"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib">
-      <fileset    dir="${build.home}/lib">
-        <include name="struts-chain.jar"/>
-      </fileset>
-    </copy>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib">
-      <fileset    dir="${struts.home}/lib">
-        <include name="commons-*.jar"/>
-        <include name="struts.jar"/>
-      </fileset>
-    </copy>
     <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
                  file="${commons-chain.jar}"/>
-<!--
     <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${jstl.jar}"/>
-    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
-                 file="${standard.jar}"/>
--->
+                 file="${build.home}/lib/struts-chain.jar"/>
 
   </target>
 
 
   <target name="example.compile" depends="example.static">
+
+<!--
     <mkdir     dir="${build.home}/webapps/example/WEB-INF/classes"/>
 
-    <!-- Compile Java Sources -->
     <javac  srcdir="src/example"
            destdir="${build.home}/webapps/example/WEB-INF/classes"
              debug="${compile.debug}"
@@ -231,12 +215,13 @@
       <classpath refid="classpath" />
     </javac>
 
-    <!-- Copy non-Java Sources -->
     <copy    todir="${build.home}/webapps/example/WEB-INF/classes">
       <fileset dir="src/example">
         <exclude name="**/*.java"/>
       </fileset>
     </copy>
+
+-->
 
   </target>
 

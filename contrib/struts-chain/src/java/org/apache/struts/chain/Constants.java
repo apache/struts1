@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/30 23:18:56 $
  *
  * ====================================================================
  *
@@ -152,6 +152,14 @@ public final class Constants {
      * to create a unique key per module.</p>
      */
     public static final String ACTIONS_KEY = "actions";
+
+
+    /**
+     * <p>The context attribute under which the <code>Catalog</code> containing
+     * our defined command chains has been stored.</p>
+     */
+    public static final String CATALOG_KEY =
+        "org.apache.struts.chain.CATALOG";
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.1 2003/08/30 22:01:24 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/30 22:01:24 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/30 23:18:56 $
  *
  * ====================================================================
  *
@@ -77,6 +77,8 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -94,7 +96,7 @@ import org.apache.commons.chain.web.servlet.ServletWebContext;
  * @author Cedric Dumoulin
  * @author Greg Reddin
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/30 22:01:24 $
+ * @version $Revision: 1.2 $ $Date: 2003/08/30 23:18:56 $
  * @since Struts 1.1
  */
 
@@ -109,6 +111,13 @@ public class ComposableRequestProcessor extends RequestProcessor {
      * module.
      */
     protected Catalog catalog;
+
+
+    /**
+     * <p>The <code>Log</code> instance for this class.</p>
+     */
+    protected static final Log log =
+        LogFactory.getLog(ComposableRequestProcessor.class);
 
 
     // ---------------------------------------------------------- Public Methods
@@ -137,6 +146,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
                      ModuleConfig moduleConfig)
            throws ServletException {
 
+        log.info("Initializing composable request processor for module prefix '"
+                 + moduleConfig.getPrefix() + "'");
         super.init(servlet, moduleConfig);
         this.catalog = (Catalog)
             servlet.getServletContext().getAttribute(Constants.CATALOG_KEY);
@@ -166,12 +177,17 @@ public class ComposableRequestProcessor extends RequestProcessor {
         ServletWebContext context = new ServletWebContext();
         context.initialize(getServletContext(), request, response);
         context.getAttributes().put("catalog", this.catalog);
+        context.getAttributes().put(Constants.ACTION_SERVLET_KEY,
+                                    this.servlet);
         context.getAttributes().put(Constants.MODULE_CONFIG_KEY,
                                     this.moduleConfig);
 
         // Create and execute the command.
         Command command = this.catalog.getCommand("servlet-standard");
         try {
+            if (log.isDebugEnabled()) {
+                log.debug("Using processing chain for this request");
+            }
             command.execute(context);
         } catch (Exception e) {
             // Execute the exception processing chain??

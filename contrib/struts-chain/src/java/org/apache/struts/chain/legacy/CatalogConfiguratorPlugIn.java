@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.1 2003/08/30 22:01:24 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/30 22:01:24 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/30 23:18:56 $
  *
  * ====================================================================
  *
@@ -74,6 +74,9 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.config.ConfigParser;
 import org.apache.commons.chain.impl.CatalogBase;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 
 /**
@@ -101,6 +104,7 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
     // ------------------------------------------------------ Instance Variables
 
 
+    private static Log log = LogFactory.getLog(CatalogConfiguratorPlugIn.class);
     private String path = null;
     private String resource = null;
 
@@ -170,6 +174,7 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
         Catalog catalog = (Catalog)
             servlet.getServletContext().getAttribute(Constants.CATALOG_KEY);
         if (catalog == null) {
+            log.info("Creating new Catalog instance");
             catalog = new CatalogBase();
             servlet.getServletContext().setAttribute(Constants.CATALOG_KEY,
                                                      catalog);
@@ -180,9 +185,13 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
             ConfigParser parser = new ConfigParser();
             URL configResource = null;
             if (path != null) {
+                log.info("Loading context relative resources from '" +
+                         path + "'");
                 configResource =
                     servlet.getServletContext().getResource(path);
             } else if (resource != null) {
+                log.info("Loading classloader resources from '" +
+                         resource + "'");
                 ClassLoader loader =
                     Thread.currentThread().getContextClassLoader();
                 if (loader == null) {
@@ -192,6 +201,7 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
             }
             parser.parse(catalog, configResource);
         } catch (Exception e) {
+            log.error("Exception loading resources", e);
             throw new ServletException(e);
         }
 
