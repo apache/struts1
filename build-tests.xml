@@ -227,9 +227,13 @@
 
             <formatter type="plain" usefile="false"/>
 
-            <!-- Suite of tests -->
-            <test name="org.apache.struts.action.TestActionServlet"/>
-            
+            <!-- org.apache.struts.action package Tests -->
+            <batchtest fork="yes">
+              <fileset dir="${out.test.dir}/classes">
+                <include name="org/apache/struts/action/Test*.class" />
+              </fileset>
+            </batchtest>
+
             <!-- Logic Taglib Tests -->
             <batchtest fork="yes">
               <fileset dir="${out.test.dir}/classes">
