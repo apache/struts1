@@ -60,7 +60,7 @@
 
   <!-- BUILD:  Compile documentation application components -->
   <target name="compile.documentation"
-       depends="compile.library,prepare.documentation">
+       depends="dist.library,prepare.documentation">
 
     <!-- Compile beans and tags required by the documentation app -->
 <!--

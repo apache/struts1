@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTei.java,v 1.1 2000/08/30 02:15:05 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/30 02:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTei.java,v 1.2 2000/09/05 01:33:21 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/05 01:33:21 $
  *
  * ====================================================================
  *
@@ -69,11 +69,11 @@ import javax.servlet.jsp.tagext.VariableInfo;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>header/b>
+ * Implementation of <code>TagExtraInfo</code> for the <b>header</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/08/30 02:15:05 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/05 01:33:21 $
  */
 
 public final class HeaderTei extends TagExtraInfo {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTei.java,v 1.1 2000/08/30 02:15:07 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/30 02:15:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTei.java,v 1.2 2000/09/05 01:33:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/05 01:33:22 $
  *
  * ====================================================================
  *
@@ -70,11 +70,11 @@ import javax.servlet.jsp.tagext.VariableInfo;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>resource/b>
+ * Implementation of <code>TagExtraInfo</code> for the <b>resource</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/08/30 02:15:07 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/05 01:33:22 $
  */
 
 public final class ResourceTei extends TagExtraInfo {

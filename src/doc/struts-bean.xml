@@ -235,13 +235,14 @@
     </summary>
     <tagclass>org.apache.struts.taglib.bean.IncludeTag</tagclass>
     <teiclass>org.apache.struts.taglib.bean.IncludeTei</teiclass>
-    <bodycontent>JSP</bodycontent>
+    <bodycontent>empty</bodycontent>
     <info>
     <p>Perform an internal dispatch to the specified application component
     and make the response data from that request available as a bean of
     type <code>String</code>.  This tag has a function similar to that of
     the standard <code>&lt;jsp:include&gt;</code> tag, except that the
-    response data is always buffered if this tag is nested inside another.</p>
+    response data is stored in a page scope attribute instead of being
+    written to the output stream.</p>
     </info>
 
     <attribute>
