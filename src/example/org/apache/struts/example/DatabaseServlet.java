@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.5 2001/02/02 18:27:10 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/02 18:27:10 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.6 2001/02/12 22:51:01 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/12 22:51:01 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/02 18:27:10 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/12 22:51:01 $
  */
 
 public final class DatabaseServlet
@@ -297,7 +297,7 @@ public final class DatabaseServlet
         // Calculate the file pathname to our storage file (if any)
         String pathname =
             getServletContext().getRealPath(this.pathname);
-        if (pathname != null) {
+        if (pathname == null) {
             log("Cannot unload database to resource path " + this.pathname);
             return;
         }
