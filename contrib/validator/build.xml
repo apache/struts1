@@ -13,21 +13,17 @@
   <property name="src" value="src" />
   <property name="share" value="share" />
   <property name="example" value="example" />
-  <property name="jdbc.example" value="jdbc-example" />
   <property name="web"  value="web" />
   <property name="dist"  value="dist" />
-  <property name="webapps"  value="${dist}/webapps" />
+  <property name="webapps"  value="webapps" />
   <property name="build" value="build" />
   <property name="target" value="target" />
   <property name="web.classes" value="WEB-INF/classes" />
   <property name="tlds" value="WEB-INF/tlds" />
   <property name="docs" value="docs" />
   <property name="build.javadocs" value="${dist}/${docs}/api" />
-  <property name="package.root" value="com/wintecinc/struts"/>
-  <property name="package" value="com/wintecinc/struts/action"/>
-  <property name="package.example" value="com/wintecinc/struts/example/validator"/>
-  <property name="package.jdbc.example" value="com/wintecinc/struts/example/validator/jdbc"/>
-  <property name="package.test" value="com/wintecinc/test"/>
+  <property name="package.root" value="org/apache/struts/validator"/>
+  <property name="package.example" value="${package.root}/example"/>
 
   <target name="prepare">
     <!-- Create the time stamp -->
@@ -36,18 +32,17 @@
     <mkdir dir="${build}"/>
     <mkdir dir="${target}"/>
     <mkdir dir="${target}/${example}/${web.classes}"/>
-    <mkdir dir="${target}/${jdbc.example}/${web.classes}"/>
   </target>
   
   <!-- Setting Classpath -->
   <path id="base.classpath">
      <pathelement path="${servlet.jar}"/>
      <pathelement path="${struts.jar}"/>
+     <pathelement path="${commons-validator.jar}"/>
      <pathelement path="${commons-beanutils.jar}"/>
      <pathelement path="${commons-collections.jar}"/>
      <pathelement path="${commons-digester.jar}"/>
      <pathelement path="${regexp.jar}"/>
-     <pathelement path="${jdbc20ext.jar}"/>
   </path>
 
   <path id="main.classpath">
@@ -84,13 +79,6 @@
            destdir="${target}/${example}/${web.classes}">
        <classpath refid="main.classpath" />
     </javac>
-
-    <!-- Compile the java code from ${src}/${jdbc.example} into ${build} -->
-    <javac srcdir="${src}/${jdbc.example}" 
-           destdir="${target}/${jdbc.example}/${web.classes}">
-       <classpath refid="main.classpath" />
-    </javac>
-
   </target>
 
   <target name="copy_example" depends="compile_example">
@@ -100,23 +88,9 @@
        />
      </copy>
 
-     <copy todir="${target}/${jdbc.example}/${web.classes}" >
-       <fileset dir="${src}/${jdbc.example}" 
-                excludes="**/*.java" 
-       />
-     </copy>
-
      <copy todir="${target}/${example}/${tlds}" >
        <fileset dir="${dist}" 
-                includes="struts-validator.tld"/>
-       <fileset dir="${struts.tlds}">
-          <include name="*.tld" />
-       </fileset>
-     </copy>
-
-     <copy todir="${target}/${jdbc.example}/${tlds}" >
-       <fileset dir="${dist}" 
-                includes="struts-validator.tld"/>
+                includes="struts-validator.tld" />
        <fileset dir="${struts.tlds}">
           <include name="*.tld" />
        </fileset>
@@ -129,6 +103,7 @@
      
     <mkdir dir="lib" />
     <copy file="${struts.jar}" todir="lib"/>
+    <copy file="${commons-validator.jar}" todir="lib"/>
     <copy file="${commons-beanutils.jar}" todir="lib"/>
     <copy file="${commons-collections.jar}" todir="lib"/>
     <copy file="${commons-digester.jar}" todir="lib"/>
@@ -151,30 +126,13 @@
       <lib dir="lib" />
     </war>
 
-    <copy todir="${target}/${jdbc.example}" >
-      <fileset dir="${web}/${jdbc.example}">
-         <include name="**/**" />
-      </fileset>
-    </copy>
-
-    <war warfile="${webapps}/jdbc-validator.war" webxml="${target}/${jdbc.example}/WEB-INF/web.xml">
-      <fileset dir="${target}/${jdbc.example}">
-         <include name="**/**" />
-         <exclude name="WEB-INF/web.xml" />
-      </fileset>
-      <lib dir="lib" />
-      <lib dir="${dist}">
-         <include name="${validator.jar}" />
-      </lib>
-    </war>
-    
   </target>
 
   <target name="javadocs" depends="war" description="Creates the API documentation">
     <mkdir dir="${build.javadocs}"/>
-    <javadoc packagenames="com.wintecinc.struts.action.*, 
-                           com.wintecinc.struts.taglib.html.*,
-                           com.wintecinc.struts.validation.*"
+    <javadoc packagenames="org.apache.struts.validator.action.*, 
+                           org.apache.struts.validator.taglib.html.*,
+                           org.apache.struts.validator.util.*"
     	     sourcepath="${src}/${share}"
              destdir="${build.javadocs}"
              author="true"
@@ -189,8 +147,7 @@
     
     <mkdir dir="${dist}/${src}"/>
     <mkdir dir="${dist}/${web}"/>
-    <mkdir dir="${dist}/conf"/>
-    <mkdir dir="${dist}/sql"/>
+    <mkdir dir="${dist}/${webapps}"/>
     <mkdir dir="${dist}/${docs}"/>
     
     <copy todir="${dist}/${src}" >
@@ -205,89 +162,18 @@
       </fileset>
     </copy>
 
-    <copy todir="${dist}/conf" >
-      <fileset dir="conf">
+    <copy todir="${dist}/${webapps}" >
+      <fileset dir="${webapps}">
          <include name="**/**" />
       </fileset>
     </copy>
 
-    <copy todir="${dist}/sql" >
-      <fileset dir="sql">
-         <include name="**/**" />
-      </fileset>
-    </copy>
-            
     <copy todir="${dist}/${docs}" >
       <fileset dir="${docs}">
          <include name="**/**" />
       </fileset>
     </copy>
-
   </target>
-  
-<!--
-        Run tests on all servers not commented out in the build.properties file.
--->
-    <target name="test.all" depends="tests_tomcat_32,tests_tomcat_40">
-    </target>
-
-    <!-- 
-       ========================================================================
-         Display a warning message if the needed servlet engine home property
-         is not set
-       ========================================================================
-    -->
-    <target name="check_tests_tomcat_32" depends="war" unless="tomcat.home.32">
-
-        <echo message=""/>
-        <echo message="*********************************************************"/>
-        <echo message="WARNING : The 'tomcat.home.32' property has not been set."/>
-        <echo message="          No test will be run on that servlet engine."/>
-        <echo message="*********************************************************"/>
-        <echo message=""/>
-
-    </target>
-    
-    <target name="tests_tomcat_32" depends="check_tests_tomcat_32" if="tomcat.home.32">
-
-        <echo message="tomcat.home.32 = ${tomcat.home.32}"/>
-        
-        <ant antfile="build-test.xml" target="tests_tomcat_32"/>
-    
-    </target>
-
-    <!-- 
-       ========================================================================
-         Display a warning message if the needed servlet engine home property
-         is not set
-       ========================================================================
-    -->
-    <target name="check_tests_tomcat_40" depends="war" unless="tomcat.home.40">
-
-        <echo message=""/>
-        <echo message="*********************************************************"/>
-        <echo message="WARNING : The 'tomcat.home.40' property has not been set."/>
-        <echo message="          No test will be run on that servlet engine."/>
-        <echo message="*********************************************************"/>
-        <echo message=""/>
-
-    </target>
-    
-    <target name="tests_tomcat_40" depends="check_tests_tomcat_40" if="tomcat.home.40">
-
-        <echo message="tomcat.home.40 = ${tomcat.home.40}"/>
-        
-        <ant antfile="build-test.xml" target="tests_tomcat_40"/>
-    
-    </target>
-
-    <!-- Dist target called by struts script -->
-    <target name="compile.for.struts" depends="compile"/>
-
-    <target name="dist.for.struts" depends="dist">
-        <copy file="${dist}/${validator.jar}" todir="${dist.home}/lib"/>
-	<copy file="${dist}/struts-validator.tld" todir="${dist.home}/lib"/>
-    </target>
       
 </project>
 
