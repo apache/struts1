@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.4 2003/02/04 02:34:09 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/04 02:34:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.5 2003/02/06 03:32:10 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/06 03:32:10 $
  *
  * ====================================================================
  *
@@ -66,17 +66,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ActionConfig;
+import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.FormBeanConfig;
-import org.apache.struts.config.PlugInConfig;
-import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.config.ModuleConfigFactory;
-
+import org.apache.struts.config.MessageResourcesConfig;
+import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.PlugInConfig;
 
 /**
  * <p>The collection of static configuration information that describes a
@@ -89,7 +87,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  *
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/02/04 02:34:09 $
+ * @version $Revision: 1.5 $ $Date: 2003/02/06 03:32:10 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -100,18 +98,8 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * @param prefix Context-relative URI prefix for this module
      */
     public ModuleConfigImpl(String prefix) {
-        this(null,prefix);
-    }
-
-    /**
-     * Construct an ModuleConfigImpl object according to the specified
-     * parameter values.
-     *
-     * @param prefix Context-relative URI prefix for this module
-     */
-    public ModuleConfigImpl(ModuleConfigFactory factory,String prefix) {
-
         super();
+        this.prefix = prefix;
         this.actionConfigs = new HashMap();
         this.actionMappingClass =  "org.apache.struts.action.ActionMapping";
         this.configured = false;
@@ -122,9 +110,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         this.forwards = new HashMap();
         this.messageResources = new HashMap();
         this.plugIns = new ArrayList();
-        this.factory = factory;
-        this.prefix = prefix;
-
     }
 
     /**
@@ -665,55 +650,61 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     // ----------------------------------------------------- Instance Variables
     // Instance Variables at end to make comparing Interface and implementation easier.
 
-    /**
-     * The factory that created this class.
-     */
-    protected ModuleConfigFactory factory = null;
+    
     /**
      * The set of action configurations for this module, if any,
      * keyed by the <code>path</code> property.
      */
     protected HashMap actionConfigs = null;
+    
     /**
      * The set of JDBC data source configurations for this
      * module, if any, keyed by the <code>key</code> property.
      */
     protected HashMap dataSources = null;
+    
     /**
      * The set of exception handling configurations for this
      * module, if any, keyed by the <code>type</code> property.
      */
     protected HashMap exceptions = null;
+    
     /**
      * The set of form bean configurations for this module, if any,
      * keyed by the <code>name</code> property.
      */
     protected HashMap formBeans = null;
+    
     /**
      * The set of global forward configurations for this module, if any,
      * keyed by the <code>name</code> property.
      */
     protected HashMap forwards = null;
+    
     /**
      * The set of message resources configurations for this
      * module, if any, keyed by the <code>key</code> property.
      */
     protected HashMap messageResources = null;
+    
     /**
      * The set of configured plug-in Actions for this module,
      * if any, in the order they were declared and configured.
      */
     protected ArrayList plugIns = null;
+    
     /**
      * Has this module been completely configured yet.  Once this flag
      * has been set, any attempt to modify the configuration will return an
      * IllegalStateException.
      */
     protected boolean configured = false;
+    
     /**
      * The controller configuration object for this module.
      */
     protected ControllerConfig controllerConfig = null;
+    
     /**
      * The prefix of the context-relative portion of the request URI, used to
      * select this configuration versus others supported by the controller
@@ -721,12 +712,11 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * default configuration for this web module.
      */
     protected String prefix = null;
+    
     /**
      * The default class name to be used when creating action mapping
      * instances.
      */
-    protected String actionMappingClass =
-            "org.apache.struts.action.ActionMapping";
-
+    protected String actionMappingClass = "org.apache.struts.action.ActionMapping";
 
 }

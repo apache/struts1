@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/DefaultModuleConfigFactory.java,v 1.3 2003/02/04 02:34:09 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/04 02:34:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/DefaultModuleConfigFactory.java,v 1.4 2003/02/06 03:32:10 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/06 03:32:10 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  * @see ModuleConfigFactory
  *
  * @author Robert Leland
- * @version $Id: DefaultModuleConfigFactory.java,v 1.3 2003/02/04 02:34:09 dgraham Exp $
+ * @version $Id: DefaultModuleConfigFactory.java,v 1.4 2003/02/06 03:32:10 dgraham Exp $
  */
 public class DefaultModuleConfigFactory extends ModuleConfigFactory implements Serializable{
     // --------------------------------------------------------- Public Methods
@@ -86,7 +86,7 @@ public class DefaultModuleConfigFactory extends ModuleConfigFactory implements S
      */
     public ModuleConfig createModuleConfig(String prefix) {
 
-        return new ModuleConfigImpl(this, prefix);
+        return new ModuleConfigImpl(prefix);
 
     }
 
