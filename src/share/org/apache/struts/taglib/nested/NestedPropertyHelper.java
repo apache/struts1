@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.9 2002/10/23 17:11:42 arron Exp $
- * $Revision: 1.9 $
- * $Date: 2002/10/23 17:11:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.10 2002/11/16 04:30:03 jmitchell Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/16 04:30:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,12 +60,10 @@
 package org.apache.struts.taglib.nested;
 
 import java.util.StringTokenizer;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts.taglib.nested.html.*;
-import org.apache.struts.taglib.nested.logic.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.tagext.Tag;
+
 import org.apache.struts.taglib.html.FormTag;
 
 /** A simple helper class that does everything that needs to be done to get the
@@ -78,7 +76,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.9 $ $Date: 2002/10/23 17:11:42 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/16 04:30:03 $
  */ 
 public class NestedPropertyHelper {
   

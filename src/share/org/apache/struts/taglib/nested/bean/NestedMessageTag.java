@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/bean/NestedMessageTag.java,v 1.1 2002/04/06 18:57:44 arron Exp $
- * $Revision: 1.1 $
- * $Date: 2002/04/06 18:57:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/bean/NestedMessageTag.java,v 1.2 2002/11/16 04:32:38 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 04:32:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,16 +59,17 @@
  */
 package org.apache.struts.taglib.nested.bean;
 
-import org.apache.struts.taglib.nested.*;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
+import javax.servlet.jsp.JspException;
+
 import org.apache.struts.taglib.bean.MessageTag;
+import org.apache.struts.taglib.nested.NestedNameSupport;
+import org.apache.struts.taglib.nested.NestedPropertyHelper;
 
 /**
  * NestedWriteTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class NestedMessageTag extends MessageTag implements NestedNameSupport {
 
