@@ -41,7 +41,7 @@
     <a href="#actionForms">Whither ActionForms?</a>
     </li>
 
-	<li>
+    <li>
     <a href="#actionFormInterface">Why is ActionForm a base class rather than an interface?</a>
     </li>
 
