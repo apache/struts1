@@ -58,6 +58,8 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     public static final String MODULE_CONFIG_KEY = Constants.MODULE_CONFIG_KEY;
 
+    public static final String EXCEPTION_KEY = Constants.EXCEPTION_KEY;
+    
     public static final String DEFAULT_DATA_SOURCE_KEY = "dataSource";
 
     public static final String ERROR_ACTION_MESSAGES_KEY = "errors";
@@ -163,6 +165,14 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
         this.put(MODULE_CONFIG_KEY, config);
     }
 
+    public Exception getException() {
+        return (Exception) this.get(EXCEPTION_KEY);
+    }
+    
+    public void setException(Exception e) {
+        this.put(EXCEPTION_KEY, e);
+    }
+    
     // -------------------------------
     // ActionMessage Processing
     // -------------------------------

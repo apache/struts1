@@ -215,6 +215,18 @@ public interface ActionContext extends Context {
      */
     void setFormValid(Boolean valid);
 
+    /**
+     * Retrieve an exception which may have been caught by some code using this ActionContext.
+     * @return
+     */
+    Exception getException();
+    
+    /**
+     * Store an exception in this context for use by other handling code.
+     * @param e
+     */
+    void setException(Exception e);
+    
     // -------------------------------
     // ActionMessage Processing
     // -------------------------------
