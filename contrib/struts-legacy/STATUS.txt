@@ -1,0 +1,11 @@
+Struts Legacy Distribution
+=======================================================================
+
+This distribution contains classes which have been removed from the
+core Struts distribution but may still be of interest.
+
+These files are considered "stable" and are not actively maintained.
+
+This distribution currently requires Java 1.4.
+
+###

@@ -1,0 +1,11 @@
+# build.properties.sample -- Sample build.properties for "struts-legacy"
+# $Id: build.properties.sample,v 1.1 2003/05/09 10:14:42 husted Exp $
+
+
+# Commons Packages
+commons.home=../../jakarta-commons
+commons-logging.jar=${commons.home}/commons-logging/dist/commons-beanutils.jar"/>
+
+
+# JDBC 2.0 Standard Extensions (javax.sql) JAR File
+# jdbc20ext.jar=/classes/jdbc20ext.jar

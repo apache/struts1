@@ -1,0 +1,165 @@
+<!--
+@author Ted Husted
+@author Craig McClanahan
+@version $Revision: 1.1 $ $Date: 2003/05/09 10:14:42 $
+-->
+
+<project name="struts-legacy" default="compile">
+
+
+    <!-- ========== Initialize User Preferences =========================== -->
+    <!-- See "build.properties.sample" for the preferences you can set      -->
+
+    <property file="build.properties"/>               <!-- Component local  -->
+    <property file="../../build.properties"/>         <!-- Struts local    -->
+    <property file="${user.home}/build.properties"/>  <!-- User local       -->
+
+
+    <!-- ========== External Dependencies ================================= -->
+    <!-- These defaults may be overridden by user preferences from above    -->
+
+    <property name="commons.home"            location="../../../jakarta-commons"/>
+    <property name="commons-logging.jar"     location="${commons.home}/commons-logging/dist/commons-logging.jar"/>
+    <!--
+    <property name="jdbc20ext.jar"           value="/classes/jdbc20ext.jar"/>
+    -->
+
+    <!-- ========== Local System Paths ==================================== -->
+
+    <property name="build.home"              location="target"/>
+    <property name="conf.home"               location="src/conf"/>
+    <property name="dist.home"               location="dist"/>
+    <property name="source.home"             location="src/java"/>
+
+    <!-- ========== Java Compilation Defaults ============================= -->
+    <!-- These defaults may be overridden by user preferences from above    -->
+
+
+    <property name="build.compiler"          value="modern"/>
+    <property name="compile.debug"           value="true"/>
+    <property name="compile.deprecation"     value="false"/>
+    <property name="compile.optimize"        value="true"/>
+
+    <path id="compile.classpath">
+      <pathelement location="${build.home}/classes"/>
+      <pathelement location="${commons-logging.jar}"/>
+        <!--
+      <pathelement location="${jdbc20ext.jar}"/>
+        -->
+    </path>
+
+
+    <!-- ========== Project Settings ====================================== -->
+
+    <property name="project.title"           value="Struts Legacy Distribution"/>
+    <property name="project.version"         value="0.1"/>
+    <property name="project.distname"        value="struts-legacy"/>
+
+
+    <!-- Path settings -->
+<!--
+    <property name="doc.path" value="./doc/api"/>
+    <property name="doc.src" value="./src/java"/>
+-->
+
+    <!-- Build working classpath -->
+<!--
+    <path id="compile.classpath">
+        <pathelement path ="lib/lucene_1_2.jar"/>
+        <pathelement path ="lib/poolman_2_0_4.jar"/>
+        <pathelement path ="classes"/>
+        <pathelement path ="${classpath}"/>
+    </path>
+-->
+
+
+<!-- ========== Executable Targets ======================================== -->
+
+
+    <target name="init"
+     description="Initialize and evaluate conditionals">
+        <echo message="---------- ${project.title} ${project.version} ----------"/>
+        <filter token="name"                value="${project.title}"/>
+        <filter token="version"             value="${project.version}"/>
+    </target>
+
+
+    <target name="prepare" depends="init"
+     description="Prepare build directory">
+        <mkdir dir="${build.home}"/>
+        <mkdir dir="${build.home}/classes"/>
+        <mkdir dir="${build.home}/classes/META-INF"/>
+        <mkdir dir="${build.home}/conf"/>
+        <mkdir dir="${dist.home}"/>
+        <mkdir dir="${dist.home}/docs"/>
+        <mkdir dir="${dist.home}/docs/api"/>
+    </target>
+
+
+    <target name="resources" depends="prepare"
+     description="Copy static resources">
+        <tstamp/>
+        <copy todir="${build.home}/classes" includeEmptyDirs="false">
+            <fileset dir="${source.home}" excludes="**/*.java"/>
+        </copy>
+        <copy todir="${build.home}/classes/META-INF" file="LICENSE.txt"/>
+        <copy todir="${build.home}/conf" filtering="on">
+          <fileset dir="${conf.home}" includes="*.MF"/>
+        </copy>
+    </target>
+
+
+    <target name="compile" depends="resources"
+     description="Compile library classes">
+        <javac srcdir="${source.home}"
+              destdir="${build.home}/classes"
+                debug="${compile.debug}"
+          deprecation="${compile.deprecation}"
+             optimize="${compile.optimize}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+
+    <target name="docs" depends="prepare"
+     description="Create generated documentation and JavaDocs">
+<!--
+      <style basedir="src/conf"
+             destdir="${dist.home}/docs"
+           extension=".html"
+               style="src/conf/struts-doc.xsl"
+            includes="struts-faces.xml"/>
+
+      <javadoc
+          sourcepath="src/java"
+             destdir="${dist.home}/docs/api"
+              author="true"
+             private="true"
+             version="true"
+        packagenames="org.apache.struts.*"
+         windowtitle="${project.title} (Version ${project.version})"
+            doctitle="${project.title} (Version ${project.version})"
+              bottom="Copyright &#169; 2001-2003 - Apache Software Foundation">
+        <classpath refid="compile.classpath"/>
+      </javadoc>
+-->
+    </target>
+
+
+    <target name="dist" depends="docs"
+     description="Create binary distribution">
+        <copy  todir="${dist.home}" file="LICENSE.txt"/>
+        <jar jarfile="${dist.home}/${project.distname}.jar"
+             basedir="${build.home}/classes"
+            manifest="${build.home}/conf/MANIFEST.MF"/>
+    </target>
+
+
+    <target name="clean"
+      description="Prepare for clean build">
+      <delete dir="${build.home}"/>
+      <mkdir  dir="${dist.home}"/>
+    </target>
+
+
+</project>
