@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.11 2002/09/22 05:58:46 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/09/22 05:58:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.12 2003/02/04 01:51:47 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/02/04 01:51:47 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -126,7 +126,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.11 $ $Date: 2002/09/22 05:58:46 $
+ * @version $Revision: 1.12 $ $Date: 2003/02/04 01:51:47 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -249,7 +249,6 @@ public abstract class DispatchAction extends Action {
 
     /**
      * Dispatch to the specified method.
-     * Added to class at Revision 1.3
      * @since Struts 1.1
      */
      protected ActionForward dispatchMethod(ActionMapping mapping,
@@ -257,6 +256,12 @@ public abstract class DispatchAction extends Action {
                                             HttpServletRequest request,
                                             HttpServletResponse response,
                                             String name) throws Exception {
+                                                
+        // Make sure we have a valid method name to call.
+        // This may be null if the user hacks the query string.
+        if (name == null) {
+            return this.unspecified(mapping, form, request, response);
+        }
 
         // Identify the method object to be dispatched to
         Method method = null;
