@@ -48,7 +48,7 @@
           JSPs could focus on the nasty business of writing HTML. In due course, using JSPs and servlets
           together became known as 
           <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">Model 2</a> 
-          (meaning using JSPs alone was presumably Model 1).
+          (meaning, presumably, that using JSPs alone was Model 1).
         </p>
 
         <p>

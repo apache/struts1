@@ -459,7 +459,7 @@
       <p>Unlike requests, you need to be concerned about thread safety on
       your session attributes (the methods these beans provide, not the
       <code>getAttribute()</code> and <code>setAttribute()</code> methods
-      of the session itself).  It is surprisingly easy for there two be
+      of the session itself).  It is surprisingly easy for there to be
       multiple simultaneous requests from the same user, which will therefore
       access the same session.</p>
 
@@ -557,7 +557,7 @@
     <section name="0.9 Extensible Markup Language (XML)" href="xml">
 
     <p>The features provided by the Struts framework relies on a number of objects that are
-    usually deployed using files writing in
+    usually deployed using files written in
     <a href="http://www.w3.org/XML/">Extensible Markup Language</a>. XML is also used to
     configure Java web applications; so, this is yet another familiar approach.
     </p>
