@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.18 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.18 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.19 2004/04/16 00:08:17 husted Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/04/16 00:08:17 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -23,6 +23,7 @@ package org.apache.struts.validator;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +32,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.GenericTypeValidator;
 import org.apache.commons.validator.GenericValidator;
+import org.apache.commons.validator.UrlValidator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.struts.action.ActionMessages;
@@ -827,7 +829,23 @@ public class FieldChecks implements Serializable {
     }
 
     /**
-     *  Checks if a field has a valid url.
+     * Checks if a field has a valid url. Four optional variables can be
+     * specified to configure url validation.
+     * <ul>
+     *    <li>Variable <code>allow2slashes</code> can be set to <code>true</code> or
+     *        <code>false</code> to control whether two slashes are allowed -
+     *        default is <code>false</code> (i.e. two slashes are NOT allowed).</li>
+     *    <li>Variable <code>nofragments</code> can be set to <code>true</code> or
+     *        <code>false</code> to control whether fragments are allowed -
+     *        default is <code>false</code> (i.e. fragments ARE allowed).</li>
+     *    <li>Variable <code>allowallschemes</code> can be set to <code>true</code> or
+     *        <code>false</code> to control if all schemes are allowed - default
+     *        is <code>false</code> (i.e. all schemes are NOT allowed).</li>
+     *    <li>Variable <code>schemes</code> can be set to a comma delimited list of
+     *        valid schemes. This value is ignored if <code>allowallschemes</code>
+     *        is set to <code>true</code>. Default schemes allowed are "http",
+     *        "https" and "ftp" if this variable is not specified.</li>
+     * </ul>
      *
      * @param  bean     The bean validation is being performed on.
      * @param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -850,11 +868,55 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isUrl(value)) {
+        if (GenericValidator.isBlankOrNull(value)) {
+            return true;
+        }
+
+        // Get the options and schemes Vars
+        boolean allowallschemes = "true".equalsIgnoreCase(field.getVarValue("allowallschemes"));
+        int options = allowallschemes ? UrlValidator.ALLOW_ALL_SCHEMES : 0;
+
+        if ("true".equalsIgnoreCase(field.getVarValue("allow2slashes"))) {
+          options += UrlValidator.ALLOW_2_SLASHES;
+        }
+
+        if ("true".equalsIgnoreCase(field.getVarValue("nofragments"))) {
+          options += UrlValidator.NO_FRAGMENTS;
+        }
+
+        String schemesVar = allowallschemes ? null : field.getVarValue("schemes");
+
+        // No options or schemes - use GenericValidator as default
+        if (options == 0 && schemesVar == null) {
+            if (GenericValidator.isUrl(value)) {
+                return true;
+            } else {
+                errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
+                return false;
+            }
+        }
+
+        // Parse comma delimited list of schemes into a String[]
+        String[] schemes = null;
+        if (schemesVar != null) {
+
+          StringTokenizer st = new StringTokenizer(schemesVar, ",");
+          schemes = new String[st.countTokens()];
+
+          int i = 0;
+          while (st.hasMoreTokens()) {
+              schemes[i++] = st.nextToken().trim();
+          }
+
+        }
+
+        // Create UrlValidator and validate with options/schemes
+        UrlValidator urlValidator = new UrlValidator(schemes, options);
+        if (urlValidator.isValid(value)) {
+            return true;
+        } else {
             errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
             return false;
-        } else {
-            return true;
         }
     }
 
