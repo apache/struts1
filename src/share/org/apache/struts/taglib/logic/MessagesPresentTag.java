@@ -62,7 +62,6 @@ import javax.servlet.jsp.JspException;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Evalute to <code>true</code> if an <code>ActionMessages</code> class or a
@@ -71,7 +70,7 @@ import org.apache.struts.util.RequestUtils;
  * class or for the property specified.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2003/07/26 01:00:01 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/30 23:55:50 $
  * @since Struts 1.1
  */
 public class MessagesPresentTag extends ConditionalTagBase {
@@ -132,10 +131,11 @@ public class MessagesPresentTag extends ConditionalTagBase {
             if (Globals.ERROR_KEY.equals(name)) {
                 am = TagUtils.getInstance().getActionErrors(pageContext, name);
             } else {
-                am = RequestUtils.getActionMessages(pageContext, name);
+                am = TagUtils.getInstance().getActionMessages(pageContext, name);
             }
+            
         } catch (JspException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.14 2003/07/27 06:25:41 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2003/07/27 06:25:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.15 2003/07/30 23:55:50 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/30 23:55:50 $
  *
  * ====================================================================
  *
@@ -61,30 +61,32 @@
 
 package org.apache.struts.taglib;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Iterator;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.Globals;
-import org.apache.struts.taglib.html.Constants;
 
 /**
  * Provides helper methods for JSP tags.
@@ -94,7 +96,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -660,6 +662,51 @@ public class TagUtils {
         }
 
         return value.toString();
+    }
+    
+    /**
+     * Retrieves the value from request scope and if it isn't already an 
+     * <code>ActionMessages</code>, some classes are converted to one.
+     *
+     * @param pageContext The PageContext for the current page
+     * @param paramName Key for parameter value
+     * @return ActionErrors in page context.
+     * @throws JspException
+     */
+    public ActionMessages getActionMessages(PageContext pageContext, String paramName)
+        throws JspException {
+
+        ActionMessages am = new ActionMessages();
+
+        Object value = pageContext.findAttribute(paramName);
+
+        try {
+            if (value == null) {
+                ;
+            } else if (value instanceof String) {
+                am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage((String) value));
+                
+            } else if (value instanceof String[]) {
+                String keys[] = (String[]) value;
+                for (int i = 0; i < keys.length; i++){
+                    am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
+                }
+                    
+            } else if (value instanceof ActionMessages) {
+                am = (ActionMessages) value;
+                
+            } else {
+                throw new JspException(
+                    messages.getMessage("actionMessages.errors", value.getClass().getName()));
+            }
+            
+        } catch (JspException e) {
+            throw e;
+        } catch (Exception e) {
+            ;
+        }
+
+        return am;
     }
 
     /**

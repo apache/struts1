@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.128 2003/07/27 06:27:19 rleland Exp $
- * $Revision: 1.128 $
- * $Date: 2003/07/27 06:27:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.129 2003/07/30 23:55:50 dgraham Exp $
+ * $Revision: 1.129 $
+ * $Date: 2003/07/30 23:55:50 $
  *
  * ====================================================================
  *
@@ -70,14 +70,12 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -90,7 +88,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionServletWrapper;
@@ -113,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.128 $ $Date: 2003/07/27 06:27:19 $
+ * @version $Revision: 1.129 $ $Date: 2003/07/30 23:55:50 $
  */
 
 public class RequestUtils {
@@ -1475,37 +1472,14 @@ public class RequestUtils {
      * @param pageContext   The PageContext for the current page
      * @param paramName     Key for parameter value
      * @return ActionErros in page context.
-     * @throws JspException if
+     * @throws JspException
+     * @deprecated Use TagUtils.getActionMessages() instead.  This will be 
+     * removed after Struts 1.2.
      */
     public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
         throws JspException {
-
-        ActionMessages am = new ActionMessages();
-
-        Object value = pageContext.findAttribute(paramName);
-
-        try {
-            if (value == null) {
-                ;
-            } else if (value instanceof String) {
-                am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage((String) value));
-            } else if (value instanceof String[]) {
-                String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++)
-                    am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
-            } else if (value instanceof ActionMessages) {
-                am = (ActionMessages) value;
-            } else {
-                throw new JspException(
-                    messages.getMessage("actionMessages.errors", value.getClass().getName()));
-            }
-        } catch (JspException e) {
-            throw e;
-        } catch (Exception e) {
-            ;
-        }
-
-        return am;
+        
+        return TagUtils.getInstance().getActionMessages(pageContext,paramName);
     }
 
     /**
