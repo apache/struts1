@@ -123,7 +123,7 @@ public class MultipartIterator {
         if ((disposition != null) && (disposition.startsWith("Content-Disposition"))) {
             String name = parseDispositionName(disposition);
             String filename = parseDispositionFilename(disposition);
-                       
+                                   
             String contentType = null;
 
             byte[] data = null;
@@ -193,7 +193,7 @@ public class MultipartIterator {
             catch (UnsupportedEncodingException uee) {
                 data = textData.getBytes();
             }
-                        
+            
             MultipartElement element = new MultipartElement(name,
                                                             filename,
                                                             contentType,
@@ -358,11 +358,13 @@ public class MultipartIterator {
     public static String parseForAttribute(String attribute, String parseString) {
         int nameIndex = parseString.indexOf(attribute + "=\"");
         if (nameIndex != -1) {
+            
             int endQuoteIndex = parseString.indexOf("\"", nameIndex+attribute.length()+3);
             
             if (endQuoteIndex != -1) {
                 return parseString.substring(nameIndex+attribute.length()+2, endQuoteIndex);
             }
+            return "";
         }        
         return null;
     }

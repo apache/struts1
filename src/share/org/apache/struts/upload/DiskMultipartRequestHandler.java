@@ -59,7 +59,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         allElements = new Hashtable();
 
         while ((element = iterator.getNextElement()) != null) {
-            if (element.getContentType() == null) {
+            if ((element.getFileName() == null) && (element.getContentType() == null)) {
                 String textData;
                 try {
                     textData = new String(element.getData(), "ISO-8859-1");
