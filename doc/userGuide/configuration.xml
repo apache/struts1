@@ -707,7 +707,14 @@
         <code>ModuleConfig</code> interface. 
          [org.apache.struts.config.impl.DefaultModuleConfigFactory]
         </li>
-
+        <li>
+        <strong>chainConfig</strong> - Comma-separated list of either 
+        context-relative or classloader path(s) to load commons-chain catalog
+        definitions from.  If none specified, the default Struts catalog that is
+        provided with Struts will be used. (Since Struts 1.3)
+        </li>
+        
+ 
     </ul>
 
      <p>
