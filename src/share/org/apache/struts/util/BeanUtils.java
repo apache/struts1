@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.14 2000/11/09 20:44:19 mschachter Exp $
- * $Revision: 1.14 $
- * $Date: 2000/11/09 20:44:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.15 2000/11/13 17:31:05 mschachter Exp $
+ * $Revision: 1.15 $
+ * $Date: 2000/11/13 17:31:05 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.14 $ $Date: 2000/11/09 20:44:19 $
+ * @version $Revision: 1.15 $ $Date: 2000/11/13 17:31:05 $
  */
 
 public final class BeanUtils {
@@ -106,11 +106,11 @@ public final class BeanUtils {
      */
     public static String capitalize(String name) {
 
-	if ((name == null) || (name.length() < 1))
-	    return (name);
-	char chars[] = name.toCharArray();
-	chars[0] = Character.toUpperCase(chars[0]);
-	return new String(chars);
+        if ((name == null) || (name.length() < 1))
+        return (name);
+        char chars[] = name.toCharArray();
+        chars[0] = Character.toUpperCase(chars[0]);
+        return new String(chars);
 
     }
 
@@ -128,47 +128,47 @@ public final class BeanUtils {
      */
     public static Object convert(String value, Class clazz) {
 
-	String type = clazz.getName();
-	if ("java.lang.String".equals(type) ||
-	    "String".equals(type)) {
-	    if (value == null)
-	        return ((String) null);
-	    else
-	        return (value);
-	} else if ("java.lang.Boolean".equals(type) ||
-		   Boolean.TYPE.getName().equals(type) ||
-	           "boolean".equals(type)) {
-	    return (convertBoolean(value));
-	} else if ("java.lang.Byte".equals(type) ||
-		   Byte.TYPE.getName().equals(type) ||
-	           "byte".equals(type)) {
-	    return (convertByte(value));
+        String type = clazz.getName();
+        if ("java.lang.String".equals(type) ||
+        "String".equals(type)) {
+            if (value == null)
+            return ((String) null);
+            else
+            return (value);
+        } else if ("java.lang.Boolean".equals(type) ||
+        Boolean.TYPE.getName().equals(type) ||
+        "boolean".equals(type)) {
+            return (convertBoolean(value));
+        } else if ("java.lang.Byte".equals(type) ||
+        Byte.TYPE.getName().equals(type) ||
+        "byte".equals(type)) {
+            return (convertByte(value));
         } else if ("java.lang.Character".equals(type) ||
-		   Character.TYPE.getName().equals(type) ||
-                   "char".equals(type)) {
-	    return (convertCharacter(value));
-	} else if ("java.lang.Integer".equals(type) ||
-		   Integer.TYPE.getName().equals(type) ||
-		   "int".equals(type)) {
-	    return (convertInteger(value));
-	} else if ("java.lang.Long".equals(type) ||
-		   Long.TYPE.getName().equals(type) ||
-		   "long".equals(type)) {
-	    return (convertLong(value));
-	} else if ("java.lang.Float".equals(type) ||
-		   Float.TYPE.getName().equals(type) ||
-		   "float".equals(type)) {
-	    return (convertFloat(value));
-	} else if ("java.lang.Double".equals(type) ||
-		   Double.TYPE.getName().equals(type) ||
-		   "double".equals(type)) {
-	    return (convertDouble(value));
-	} else {
-	    if (value == null)
-	        return ((String) null);
-	    else
-	        return (value.toString());
-	}
+        Character.TYPE.getName().equals(type) ||
+        "char".equals(type)) {
+            return (convertCharacter(value));
+        } else if ("java.lang.Integer".equals(type) ||
+        Integer.TYPE.getName().equals(type) ||
+        "int".equals(type)) {
+            return (convertInteger(value));
+        } else if ("java.lang.Long".equals(type) ||
+        Long.TYPE.getName().equals(type) ||
+        "long".equals(type)) {
+            return (convertLong(value));
+        } else if ("java.lang.Float".equals(type) ||
+        Float.TYPE.getName().equals(type) ||
+        "float".equals(type)) {
+            return (convertFloat(value));
+        } else if ("java.lang.Double".equals(type) ||
+        Double.TYPE.getName().equals(type) ||
+        "double".equals(type)) {
+            return (convertDouble(value));
+        } else {
+            if (value == null)
+            return ((String) null);
+            else
+            return (value.toString());
+        }
 
     }
 
@@ -186,102 +186,102 @@ public final class BeanUtils {
      */
     public static Object convert(String values[], Class clazz) {
 
-	String type = clazz.getComponentType().getName();
-	if ("java.lang.String".equals(type) ||
-	    "String".equals(type)) {
-	    if (values == null)
-		return ((String[]) null);
-	    else
-	        return (values);
-	}
+        String type = clazz.getComponentType().getName();
+        if ("java.lang.String".equals(type) ||
+        "String".equals(type)) {
+            if (values == null)
+            return ((String[]) null);
+            else
+            return (values);
+        }
 
-	int len = values.length;
-	if ("java.lang.Boolean".equals(type)) {
-	    Boolean array[] = new Boolean[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertBoolean(values[i]);
-	    return (array);
-	} else if ("boolean".equals(type) ||
-		   Boolean.TYPE.getName().equals(type)) {
-	    boolean array[] = new boolean[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertBoolean(values[i]).booleanValue();
-	} else if ("java.lang.Byte".equals(type)) {
-	    Byte array[] = new Byte[len];
-	    for (int i = 0; i < len; i++)
-	        array[i] = convertByte(values[i]);
-	    return (array);
-	} else if ("byte".equals(type) ||
-		   Byte.TYPE.getName().equals(type)) {
-	    byte array[] = new byte[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertByte(values[i]).byteValue();
-	} else if ("java.lang.Character".equals(type)) {
-	    Character array[] = new Character[len];
-	    for (int i = 0; i < len; i++)
-	        array[i] = convertCharacter(values[i]);
-	    return (array);
-	} else if ("char".equals(type) ||
-		   Character.TYPE.getName().equals(type)) {
-	    char array[] = new char[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertCharacter(values[i]).charValue();
-	} else if ("java.lang.Integer".equals(type)) {
-	    Integer array[] = new Integer[len];
-	    for (int i = 0; i < len; i++)
-	        array[i] = convertInteger(values[i]);
-	    return (array);
-	} else if ("int".equals(type) ||
-		   Integer.TYPE.getName().equals(type)) {
-	    int array[] = new int[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertInteger(values[i]).intValue();
-	    return (array);
-	} else if ("java.lang.Long".equals(type)) {
-	    Long array[] = new Long[len];
-	    for (int i = 0; i < len; i++)
-	        array[i] = convertLong(values[i]);
-	    return (array);
-	} else if ("long".equals(type) ||
-		   Long.TYPE.getName().equals(type)) {
-	    long array[] = new long[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertLong(values[i]).longValue();
-	    return (array);
+        int len = values.length;
+        if ("java.lang.Boolean".equals(type)) {
+            Boolean array[] = new Boolean[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertBoolean(values[i]);
+            return (array);
+        } else if ("boolean".equals(type) ||
+        Boolean.TYPE.getName().equals(type)) {
+            boolean array[] = new boolean[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertBoolean(values[i]).booleanValue();
+        } else if ("java.lang.Byte".equals(type)) {
+            Byte array[] = new Byte[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertByte(values[i]);
+            return (array);
+        } else if ("byte".equals(type) ||
+        Byte.TYPE.getName().equals(type)) {
+            byte array[] = new byte[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertByte(values[i]).byteValue();
+        } else if ("java.lang.Character".equals(type)) {
+            Character array[] = new Character[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertCharacter(values[i]);
+            return (array);
+        } else if ("char".equals(type) ||
+        Character.TYPE.getName().equals(type)) {
+            char array[] = new char[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertCharacter(values[i]).charValue();
+        } else if ("java.lang.Integer".equals(type)) {
+            Integer array[] = new Integer[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertInteger(values[i]);
+            return (array);
+        } else if ("int".equals(type) ||
+        Integer.TYPE.getName().equals(type)) {
+            int array[] = new int[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertInteger(values[i]).intValue();
+            return (array);
+        } else if ("java.lang.Long".equals(type)) {
+            Long array[] = new Long[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertLong(values[i]);
+            return (array);
+        } else if ("long".equals(type) ||
+        Long.TYPE.getName().equals(type)) {
+            long array[] = new long[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertLong(values[i]).longValue();
+            return (array);
         } else if ("java.lang.Float".equals(type)) {
-	    Float array[] = new Float[len];
-	    for (int i = 0; i < len; i++)
-	        array[i] = convertFloat(values[i]);
-	    return (array);
-	} else if ("float".equals(type) ||
-		   Float.TYPE.getName().equals(type)) {
-	    float array[] = new float[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertFloat(values[i]).floatValue();
-	    return (array);
-	} else if ("java.lang.Double".equals(type)) {
-	    Double array[] = new Double[len];
-	    for (int i = 0; i < len; i++)
-	        array[i] = convertDouble(values[i]);
-	    return (array);
-	} else if ("double".equals(type) ||
-		   Double.TYPE.getName().equals(type)) {
-	    double array[] = new double[len];
-	    for (int i = 0; i < len; i++)
-		array[i] = convertDouble(values[i]).doubleValue();
-	    return (array);
-	} else {
-	    if (values == null)
-	        return ((String[]) null);
-	    else {
-		String array[] = new String[len];
-		for (int i = 0; i < len; i++)
-		    array[i] = values[i].toString();
-		return (array);
-	    }
-	}
+            Float array[] = new Float[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertFloat(values[i]);
+            return (array);
+        } else if ("float".equals(type) ||
+        Float.TYPE.getName().equals(type)) {
+            float array[] = new float[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertFloat(values[i]).floatValue();
+            return (array);
+        } else if ("java.lang.Double".equals(type)) {
+            Double array[] = new Double[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertDouble(values[i]);
+            return (array);
+        } else if ("double".equals(type) ||
+        Double.TYPE.getName().equals(type)) {
+            double array[] = new double[len];
+            for (int i = 0; i < len; i++)
+            array[i] = convertDouble(values[i]).doubleValue();
+            return (array);
+        } else {
+            if (values == null)
+            return ((String[]) null);
+            else {
+                String array[] = new String[len];
+                for (int i = 0; i < len; i++)
+                array[i] = values[i].toString();
+                return (array);
+            }
+        }
 
-	return ((String[]) null);	// Make the compiler shut up
+        return ((String[]) null);	// Make the compiler shut up
 
     }
 
@@ -295,24 +295,24 @@ public final class BeanUtils {
      */
     public static String filter(String value) {
 
-	if (value == null)
-	    return (null);
+        if (value == null)
+        return (null);
 
-	StringBuffer result = new StringBuffer();
-	for (int i = 0; i < value.length(); i++) {
-	    char ch = value.charAt(i);
-	    if (ch == '<')
-		result.append("&lt;");
-	    else if (ch == '>')
-		result.append("&gt;");
-	    else if (ch == '&')
-		result.append("&amp;");
-	    else if (ch == '"')
-		result.append("&quot;");
-	    else
-		result.append(ch);
-	}
-	return (result.toString());
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < value.length(); i++) {
+            char ch = value.charAt(i);
+            if (ch == '<')
+            result.append("&lt;");
+            else if (ch == '>')
+            result.append("&gt;");
+            else if (ch == '&')
+            result.append("&amp;");
+            else if (ch == '"')
+            result.append("&quot;");
+            else
+            result.append(ch);
+        }
+        return (result.toString());
 
     }
 
@@ -332,28 +332,28 @@ public final class BeanUtils {
      *  propety cannot be found
      */
     public static String[] getArrayProperty(Object bean, String name)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
+    throws IllegalAccessException, InvocationTargetException,
+    NoSuchMethodException {
 
-	Object value = PropertyUtils.getProperty(bean, name);
-	if (value == null) {
-	    return (null);
-	} else if (value.getClass().isArray()) {
-	    Vector values = new Vector();
-	    try {
-	        int n = Array.getLength(value);
-	        for (int i = 0; i < n; i++) {
-		    values.addElement(Array.get(value, i).toString());
-		}
-	    } catch (ArrayIndexOutOfBoundsException e) {
-	        ;
-	    }
-	    return ((String[]) values.toArray(new String[values.size()]));
-	} else {
-	    String results[] = new String[1];
-	    results[0] = value.toString();
-	    return (results);
-	}
+        Object value = PropertyUtils.getProperty(bean, name);
+        if (value == null) {
+            return (null);
+        } else if (value.getClass().isArray()) {
+            Vector values = new Vector();
+            try {
+                int n = Array.getLength(value);
+                for (int i = 0; i < n; i++) {
+                    values.addElement(Array.get(value, i).toString());
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                ;
+            }
+            return ((String[]) values.toArray(new String[values.size()]));
+        } else {
+            String results[] = new String[1];
+            results[0] = value.toString();
+            return (results);
+        }
 
     }
 
@@ -376,32 +376,32 @@ public final class BeanUtils {
      *  propety cannot be found
      */
     public static String getIndexedProperty(Object bean, String name)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
+    throws IllegalAccessException, InvocationTargetException,
+    NoSuchMethodException {
 
         // @deprecated Convert the deprecated syntax to the new format
         /*
-	int left = name.lastIndexOf("[");
-	int right = name.lastIndexOf("]");
+        int left = name.lastIndexOf("[");
+        int right = name.lastIndexOf("]");
         if ((left >= 0) && (right > left))
-            name = name.substring(0, left) + PropertyUtils.INDEXED_DELIM +
-                name.substring(left + 1, right);
-        */
+        name = name.substring(0, left) + PropertyUtils.INDEXED_DELIM +
+        name.substring(left + 1, right);
+         */
 
-	// Parse the property name and subscript expression
+        // Parse the property name and subscript expression
         int delim = PropertyUtils.INDEXED_DELIM;
         if (delim < 0)
-	    return (getScalarProperty(bean, name));
-	int index = -1;
-	try {
-	    index = Integer.parseInt(name.substring(delim + 1));
+        return (getScalarProperty(bean, name));
+        int index = -1;
+        try {
+            index = Integer.parseInt(name.substring(delim + 1));
             name = name.substring(0, delim);
-	} catch (NumberFormatException e) {
-	    return (getScalarProperty(bean, name));
-	}
+        } catch (NumberFormatException e) {
+            return (getScalarProperty(bean, name));
+        }
 
-	// Return the value at the specified index
-	return (getIndexedProperty(bean, name, index));
+        // Return the value at the specified index
+        return (getIndexedProperty(bean, name, index));
 
     }
 
@@ -424,17 +424,17 @@ public final class BeanUtils {
      *  propety cannot be found
      */
     public static String getIndexedProperty(Object bean, String name,
-					    int index)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
+    int index)
+    throws IllegalAccessException, InvocationTargetException,
+    NoSuchMethodException {
 
-	if (index < 0)
-	    return (null);
-	String values[] = getArrayProperty(bean, name);
-	if ((values == null) || (index >= values.length))
-	    return (null);
-	else
-	    return (values[index]);
+        if (index < 0)
+        return (null);
+        String values[] = getArrayProperty(bean, name);
+        if ((values == null) || (index >= values.length))
+        return (null);
+        else
+        return (values[index]);
 
     }
 
@@ -450,7 +450,7 @@ public final class BeanUtils {
      *  instead
      */
     public static PropertyDescriptor getPropertyDescriptor(Object bean,
-							   String name) {
+    String name) {
 
         try {
             return (PropertyUtils.getPropertyDescriptor(bean, name));
@@ -495,8 +495,8 @@ public final class BeanUtils {
      * @deprecated Use <code>PropertyUtils.getProperty()</code> instead.
      */
     public static Object getPropertyValue(Object bean, String name)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
+    throws IllegalAccessException, InvocationTargetException,
+    NoSuchMethodException {
 
         return (PropertyUtils.getProperty(bean, name));
 
@@ -518,21 +518,21 @@ public final class BeanUtils {
      *  propety cannot be found
      */
     public static String getScalarProperty(Object bean, String name)
-	throws IllegalAccessException, InvocationTargetException,
-	       NoSuchMethodException {
+    throws IllegalAccessException, InvocationTargetException,
+    NoSuchMethodException {
 
-	Object value = PropertyUtils.getProperty(bean, name);
-	if (value == null) {
-	    return (null);
-	} else if (value.getClass().isArray()) {
-	    String values[] = getArrayProperty(bean, name);
-	    if (values.length > 0)
-	        return (values[0]);
-	    else
-	        return (null);
-	} else {
-	    return (value.toString());
-	}
+        Object value = PropertyUtils.getProperty(bean, name);
+        if (value == null) {
+            return (null);
+        } else if (value.getClass().isArray()) {
+            String values[] = getArrayProperty(bean, name);
+            if (values.length > 0)
+            return (values[0]);
+            else
+            return (null);
+        } else {
+            return (value.toString());
+        }
 
     }
 
@@ -551,24 +551,24 @@ public final class BeanUtils {
      *  is requested
      */
     public static Object lookup(PageContext pageContext, String name,
-				String scope) {
+    String scope) {
 
         Object bean = null;
-	if (scope == null)
-	    bean = pageContext.findAttribute(name);
-	else if (scope.equalsIgnoreCase("page"))
-	    bean = pageContext.getAttribute(name, PageContext.PAGE_SCOPE);
-	else if (scope.equalsIgnoreCase("request"))
-	    bean = pageContext.getAttribute(name, PageContext.REQUEST_SCOPE);
-	else if (scope.equalsIgnoreCase("session"))
-	    bean = pageContext.getAttribute(name, PageContext.SESSION_SCOPE);
-	else if (scope.equalsIgnoreCase("application"))
-	    bean = 
-	      pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
-	else
-	    throw new IllegalArgumentException(scope);
+        if (scope == null)
+        bean = pageContext.findAttribute(name);
+        else if (scope.equalsIgnoreCase("page"))
+        bean = pageContext.getAttribute(name, PageContext.PAGE_SCOPE);
+        else if (scope.equalsIgnoreCase("request"))
+        bean = pageContext.getAttribute(name, PageContext.REQUEST_SCOPE);
+        else if (scope.equalsIgnoreCase("session"))
+        bean = pageContext.getAttribute(name, PageContext.SESSION_SCOPE);
+        else if (scope.equalsIgnoreCase("application"))
+        bean =
+        pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
+        else
+        throw new IllegalArgumentException(scope);
 
-	return (bean);
+        return (bean);
 
     }
 
@@ -588,10 +588,10 @@ public final class BeanUtils {
      *            property values
      */
     public static void populate(Object bean,
-				HttpServletRequest request)
-	throws ServletException {
+    HttpServletRequest request)
+    throws ServletException {
 
-	populate(bean, null, null, request);
+        populate(bean, null, null, request);
 
     }
 
@@ -619,65 +619,66 @@ public final class BeanUtils {
      *            property values
      */
     public static void populate(Object bean, String prefix, String suffix,
-				HttpServletRequest request)
-	throws ServletException {
+    HttpServletRequest request)
+    throws ServletException {
 
-	// Build a list of relevant request parameters from this request
+        // Build a list of relevant request parameters from this request
         Hashtable properties = new Hashtable();
         //Enumeration of parameter names
         Enumeration names = null;
         //Hashtable for multipart values
         Hashtable multipartElements = null;
-        
+
         boolean isMultipart = false;
-        
-        if (request.getContentType().startsWith("multipart/form-data")) {
+        String contentType = request.getContentType();
+        if ((contentType != null) &&
+        (contentType.startsWith("multipart/form-data"))) {
             isMultipart = true;
             //initialize a MultipartRequestHandler
             MultipartRequestHandler multipart = null;
-            
+
             //get an instance of ActionServlet
             ActionServlet servlet;
-            
+
             if (bean instanceof ActionForm) {
-                
+
                 servlet = ((ActionForm) bean).getServlet();
             }
             else {
                 throw new ServletException("bean that's supposed to be " +
-                    "populated from a multipart request is not of type " +
-                    "\"org.apache.struts.action.ActionForm\", but type " +
-                    "\"" + bean.getClass().getName() + "\"");
+                "populated from a multipart request is not of type " +
+                "\"org.apache.struts.action.ActionForm\", but type " +
+                "\"" + bean.getClass().getName() + "\"");
             }
             String multipartClass = (String)
-                                request.getAttribute("org.apache.struts.action.mapping.multipartclass");
-            
+            request.getAttribute("org.apache.struts.action.mapping.multipartclass");
+
             request.removeAttribute("org.apache.struts.action.mapping.multipartclass");
-            
+
             if (multipartClass != null) {
                 //try to initialize the mapping specific request handler
                 try {
                     multipart = (MultipartRequestHandler) Class.forName(multipartClass).newInstance();
                 }
                 catch (ClassNotFoundException cnfe) {
-                    servlet.log("MultipartRequestHandler class \"" + 
-                                 multipartClass + "\" in mapping class not found, " +
-                                 "defaulting to global multipart class");
+                    servlet.log("MultipartRequestHandler class \"" +
+                    multipartClass + "\" in mapping class not found, " +
+                    "defaulting to global multipart class");
                 }
                 catch (InstantiationException ie) {
                     servlet.log("InstantiaionException when instantiating " +
-                                "MultipartRequestHandler \"" + multipartClass + "\", " +
-                                "defaulting to global multipart class, exception: " +
-                                ie.getMessage());
+                    "MultipartRequestHandler \"" + multipartClass + "\", " +
+                    "defaulting to global multipart class, exception: " +
+                    ie.getMessage());
                 }
                 catch (IllegalAccessException iae) {
                     servlet.log("IllegalAccessException when instantiating " +
-                                "MultipartRequestHandler \"" + multipartClass + "\", " +
-                                "defaulting to global multipart class, exception: " +
-                                iae.getMessage());
+                    "MultipartRequestHandler \"" + multipartClass + "\", " +
+                    "defaulting to global multipart class, exception: " +
+                    iae.getMessage());
                 }
             }
-            
+
             if (multipart == null) {
                 //try to initialize the global multipart class
                 try {
@@ -685,78 +686,78 @@ public final class BeanUtils {
                 }
                 catch (ClassNotFoundException cnfe) {
                     throw new ServletException("Cannot find multipart class \"" +
-                                               servlet.getMultipartClass() + "\"" +
-                                               ", exception: " + cnfe.getMessage());
+                    servlet.getMultipartClass() + "\"" +
+                    ", exception: " + cnfe.getMessage());
                 }
                 catch (InstantiationException ie) {
                     throw new ServletException("InstantiaionException when instantiating " +
-                                               "multipart class \"" + servlet.getMultipartClass() +
-                                               "\", exception: " + ie.getMessage());
+                    "multipart class \"" + servlet.getMultipartClass() +
+                    "\", exception: " + ie.getMessage());
                 }
                 catch (IllegalAccessException iae) {
                     throw new ServletException("IllegalAccessException when instantiating " +
-                                               "multipart class \"" + servlet.getMultipartClass() +
-                                               "\", exception: " + iae.getMessage());
+                    "multipart class \"" + servlet.getMultipartClass() +
+                    "\", exception: " + iae.getMessage());
                 }
             }
-            
-            
+
+
             //set the multipart request handler for our ActionForm
             //if the bean isn't an ActionForm, an exception would have been
             //thrown earlier, so it's safe to assume that our bean is
             //in fact an ActionForm
             ((ActionForm) bean).setMultipartRequestHandler(multipart);
-            
-            //set servlet and mapping info            
-            multipart.setServlet(servlet);            
-            multipart.setMapping((ActionMapping) 
-                request.getAttribute("org.apache.struts.action.mapping.instance"));
+
+            //set servlet and mapping info
+            multipart.setServlet(servlet);
+            multipart.setMapping((ActionMapping)
+            request.getAttribute("org.apache.struts.action.mapping.instance"));
             request.removeAttribute("org.apache.struts.action.mapping.instance");
-            
+
             //initialize request class handler
             multipart.handleRequest(request);
-            
+
             //retrive form values and put into properties
             multipartElements = multipart.getAllElements();
             names = multipartElements.keys();
         }
-        
-        if (!isMultipart) {        
+
+        if (!isMultipart) {
             names = request.getParameterNames();
         }
-        
-        
-	while (names.hasMoreElements()) {
-	    String name = (String) names.nextElement();
-	    String stripped = name;
-	    int subscript = stripped.lastIndexOf("[");
-	    if (subscript >= 0)  // Remove subscript expression
-	        stripped = stripped.substring(0, subscript);
-	    if (prefix != null) {
-		if (!stripped.startsWith(prefix))
-		    continue;
-		stripped = stripped.substring(prefix.length());
-	    }
-	    if (suffix != null) {
-		if (!stripped.endsWith(suffix))
-		    continue;
-		stripped =
-		  stripped.substring(0, stripped.length() - suffix.length());
-	    }
+
+
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            String stripped = name;
+            int subscript = stripped.lastIndexOf("[");
+            if (subscript >= 0)  // Remove subscript expression
+            stripped = stripped.substring(0, subscript);
+            if (prefix != null) {
+                if (!stripped.startsWith(prefix))
+                continue;
+                stripped = stripped.substring(prefix.length());
+            }
+            if (suffix != null) {
+                if (!stripped.endsWith(suffix))
+                continue;
+                stripped =
+                stripped.substring(0, stripped.length() - suffix.length());
+            }
             if (isMultipart) {
                 properties.put(stripped, multipartElements.get(name));
             }
             else {
                 properties.put(stripped, request.getParameterValues(name));
             }
-	}
+        }
 
-	// Set the corresponding properties of our bean
-	try {
-	    populate(bean, properties);
-	} catch (Exception e) {
-	    throw new ServletException("BeanUtils.populate", e);
-	}
+        // Set the corresponding properties of our bean
+        try {
+            populate(bean, properties);
+        } catch (Exception e) {
+            throw new ServletException("BeanUtils.populate", e);
+        }
 
     }
 
@@ -791,75 +792,75 @@ public final class BeanUtils {
      *  throws an exception
      */
     public static void populate(Object bean, Hashtable properties)
-	throws IllegalAccessException, InvocationTargetException {
+    throws IllegalAccessException, InvocationTargetException {
 
-	if ((bean == null) || (properties == null))
-	    return;
+        if ((bean == null) || (properties == null))
+        return;
 
-	// Identify the property descriptors supported by our JavaBean
-	PropertyDescriptor descriptors[] =
-            PropertyUtils.getPropertyDescriptors(bean);
-	if (descriptors.length < 1)
-	    return;
+        // Identify the property descriptors supported by our JavaBean
+        PropertyDescriptor descriptors[] =
+        PropertyUtils.getPropertyDescriptors(bean);
+        if (descriptors.length < 1)
+        return;
 
-	// Loop through the property name/value pairs to be set
-	Enumeration names = properties.keys();
-	while (names.hasMoreElements()) {
+        // Loop through the property name/value pairs to be set
+        Enumeration names = properties.keys();
+        while (names.hasMoreElements()) {
 
-	    // Identify the property name and value(s) to be assigned
-	    String name = (String) names.nextElement();
-	    Object value = properties.get(name);	// String or String[]
-	    if (value == null)
-		continue;
+            // Identify the property name and value(s) to be assigned
+            String name = (String) names.nextElement();
+            Object value = properties.get(name);	// String or String[]
+            if (value == null)
+            continue;
 
-	    // Identify the relevant setter method (if there is one)
-	    Method setter = null;
-	    Class parameterTypes[] = null;
-	    for (int i = 0; i < descriptors.length; i++) {
-		if (!name.equals(descriptors[i].getName()))
-		    continue;
-		setter = descriptors[i].getWriteMethod();
-		if (setter == null)
-		    continue;
-		parameterTypes = setter.getParameterTypes();
-		if (parameterTypes.length != 1) {
-		    setter = null;
-		    continue;
-		}
-		break;
-	    }
-	    if (setter == null)
-		continue;
+            // Identify the relevant setter method (if there is one)
+            Method setter = null;
+            Class parameterTypes[] = null;
+            for (int i = 0; i < descriptors.length; i++) {
+                if (!name.equals(descriptors[i].getName()))
+                continue;
+                setter = descriptors[i].getWriteMethod();
+                if (setter == null)
+                continue;
+                parameterTypes = setter.getParameterTypes();
+                if (parameterTypes.length != 1) {
+                    setter = null;
+                    continue;
+                }
+                break;
+            }
+            if (setter == null)
+            continue;
 
-	    // Convert the parameter value as required for this setter method
-	    Object parameters[] = new Object[1];
-	    if (parameterTypes[0].isArray()) {
-		if (value instanceof String) {
-		    String values[] = new String[1];
-		    values[0] = (String) value;
-		    parameters[0] = convert((String[]) values,
-					    parameterTypes[0]);
-		} else {
-		    parameters[0] = convert((String[]) value,
-					    parameterTypes[0]);
-		}
-	    } else {
-		if (value instanceof String) {
-		    parameters[0] = convert((String) value,
-					    parameterTypes[0]);
+            // Convert the parameter value as required for this setter method
+            Object parameters[] = new Object[1];
+            if (parameterTypes[0].isArray()) {
+                if (value instanceof String) {
+                    String values[] = new String[1];
+                    values[0] = (String) value;
+                    parameters[0] = convert((String[]) values,
+                    parameterTypes[0]);
+                } else {
+                    parameters[0] = convert((String[]) value,
+                    parameterTypes[0]);
+                }
+            } else {
+                if (value instanceof String) {
+                    parameters[0] = convert((String) value,
+                    parameterTypes[0]);
                 }
                 else if (value instanceof FormFile) {
-		      	parameters[0] = value;
-		} else {
-		    parameters[0] = convert( ((String[]) value)[0],
-					     parameterTypes[0]);
-		}
-	    }
+                    parameters[0] = value;
+                } else {
+                    parameters[0] = convert( ((String[]) value)[0],
+                    parameterTypes[0]);
+                }
+            }
 
-	    // Invoke the setter method
-	    setter.invoke(bean, parameters);
+            // Invoke the setter method
+            setter.invoke(bean, parameters);
 
-	}
+        }
 
     }
 
@@ -874,14 +875,14 @@ public final class BeanUtils {
      */
     private static Boolean convertBoolean(String value) {
 
-	if (value == null)
-	    return (new Boolean(false));
-	else if (value.equalsIgnoreCase("yes") ||
-	         value.equalsIgnoreCase("true") ||
-	         value.equalsIgnoreCase("on"))
-	    return (new Boolean(true));
-	else
-	    return (new Boolean(false));
+        if (value == null)
+        return (new Boolean(false));
+        else if (value.equalsIgnoreCase("yes") ||
+        value.equalsIgnoreCase("true") ||
+        value.equalsIgnoreCase("on"))
+        return (new Boolean(true));
+        else
+        return (new Boolean(false));
 
     }
 
@@ -893,10 +894,10 @@ public final class BeanUtils {
      */
     private static Byte convertByte(String value) {
 
-	try {
-	    return (new Byte(value));
-	} catch (NumberFormatException e) {
-	    return (new Byte((byte) 0));
+        try {
+            return (new Byte(value));
+        } catch (NumberFormatException e) {
+            return (new Byte((byte) 0));
         }
 
     }
@@ -909,12 +910,12 @@ public final class BeanUtils {
      */
     private static Character convertCharacter(String value) {
 
-	if (value == null)
-	    return (new Character(' '));
-	else if (value.length() == 0)
-	    return (new Character(' '));
-	else
-	    return (new Character(value.charAt(0)));
+        if (value == null)
+        return (new Character(' '));
+        else if (value.length() == 0)
+        return (new Character(' '));
+        else
+        return (new Character(value.charAt(0)));
 
     }
 
@@ -926,10 +927,10 @@ public final class BeanUtils {
      */
     private static Double convertDouble(String value) {
 
-	try {
-	    return (new Double(value));
-	} catch (NumberFormatException e) {
-	    return (new Double(0.0));
+        try {
+            return (new Double(value));
+        } catch (NumberFormatException e) {
+            return (new Double(0.0));
         }
 
     }
@@ -942,10 +943,10 @@ public final class BeanUtils {
      */
     private static Float convertFloat(String value) {
 
-	try {
-	    return (new Float(value));
-	} catch (NumberFormatException e) {
-	    return (new Float(0.0));
+        try {
+            return (new Float(value));
+        } catch (NumberFormatException e) {
+            return (new Float(0.0));
         }
 
     }
@@ -958,10 +959,10 @@ public final class BeanUtils {
      */
     private static Integer convertInteger(String value) {
 
-	try {
-	    return (new Integer(value));
-	} catch (NumberFormatException e) {
-	    return (new Integer(0));
+        try {
+            return (new Integer(value));
+        } catch (NumberFormatException e) {
+            return (new Integer(0));
         }
 
     }
@@ -974,10 +975,10 @@ public final class BeanUtils {
      */
     private static Long convertLong(String value) {
 
-	try {
-	    return (new Long(value));
-	} catch (NumberFormatException e) {
-	    return (new Long(0));
+        try {
+            return (new Long(value));
+        } catch (NumberFormatException e) {
+            return (new Long(0));
         }
 
     }
