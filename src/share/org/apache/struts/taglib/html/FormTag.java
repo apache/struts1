@@ -475,7 +475,9 @@ public class FormTag extends TagSupport {
         StringBuffer results = new StringBuffer("<form");
 
         // render attributes
-        renderName(results);
+        if (!this.isXhtml()) {
+            renderName(results);
+        }
         renderAttribute(results, "method", getMethod() == null ? "post" : getMethod());
         renderAction(results);
         renderAttribute(results, "accept-charset", getAcceptCharset());
