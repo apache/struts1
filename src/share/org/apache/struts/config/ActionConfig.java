@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.8 2002/09/22 06:13:56 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/09/22 06:13:56 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ package org.apache.struts.config;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -75,7 +74,7 @@ import javax.servlet.http.HttpServletRequest;
  * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.8 $ $Date: 2002/09/22 06:13:56 $
  * @since Struts 1.1
  */
 

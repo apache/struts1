@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.16 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.16 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.17 2002/09/22 06:13:56 martinc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/09/22 06:13:56 $
  *
  * ====================================================================
  *
@@ -66,8 +66,6 @@ package org.apache.struts.config;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.servlet.ServletException;
-import javax.servlet.UnavailableException;
 
 
 
@@ -81,7 +79,7 @@ import javax.servlet.UnavailableException;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.17 $ $Date: 2002/09/22 06:13:56 $
  * @since Struts 1.1
  */
 

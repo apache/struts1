@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.2 2002/06/25 01:30:40 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/06/25 01:30:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.3 2002/09/22 06:13:56 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/09/22 06:13:56 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.action.ActionMessages;
  * @since 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.2 $ $Date: 2002/06/25 01:30:40 $
+ * @version $Revision: 1.3 $ $Date: 2002/09/22 06:13:56 $
  */
 public interface ConfigHelperInterface {
 
@@ -345,7 +345,7 @@ public interface ConfigHelperInterface {
      * Return the URL for the specified ActionMapping,
      * otherwise return <code>null</code>.
      *
-     * @param name Name given to local or global forward.
+     * @param path Name given to local or global forward.
      */
     public String getAction(String path);
 
