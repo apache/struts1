@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastArrayList.java,v 1.4 2001/05/20 01:15:17 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/05/20 01:15:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastArrayList.java,v 1.5 2001/05/20 21:08:59 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/05/20 21:08:59 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import java.util.ListIterator;
  *  an equivalent class in the Jakarta Commons Collections package.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/05/20 01:15:17 $
+ * @version $Revision: 1.5 $ $Date: 2001/05/20 21:08:59 $
  */
 
 public class FastArrayList extends ArrayList {
@@ -455,7 +455,7 @@ public class FastArrayList extends ArrayList {
 
         if (fast) {
             int hashCode = 1;
-            Iterator i = list.iterator();
+            java.util.Iterator i = list.iterator();
             while (i.hasNext()) {
                 Object o = i.next();
                 hashCode = 31 * hashCode + (o == null ? 0 : o.hashCode());
@@ -464,7 +464,7 @@ public class FastArrayList extends ArrayList {
         } else {
             synchronized (list) {
                 int hashCode = 1;
-                Iterator i = list.iterator();
+                java.util.Iterator i = list.iterator();
                 while (i.hasNext()) {
                     Object o = i.next();
                     hashCode = 31 * hashCode + (o == null ? 0 : o.hashCode());
