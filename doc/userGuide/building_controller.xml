@@ -44,7 +44,14 @@
 
     <section name="4.2 ActionForm Classes" href="action_form_classes">
 
-     <p>[:TODO: introduction paragraph ]</p>
+     <p>
+     An ActionForm represents an HTML form that the user interacts with over one
+     or more pages.  You will provide properties to hold the state of the form with
+     getters and setters to access them.  ActionForms can be stored in either the session (default)
+     or request scopes.  If they're in the session it's important to implement the form's reset
+     method to initialize the form before each use.  Struts sets the ActionForm's properties from
+     the request parameters and sends the validated form to the appropriate Action's execute method.
+     </p>
 
      <p>
         When you code your <code>ActionForm</code> beans, keep the following
