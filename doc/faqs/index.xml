@@ -57,6 +57,10 @@
     <a href="ssl.html">Using the SSL protocol</a>
     </li>
     
+    <li>
+    <a href="struts-el.html">Struts EL Extension</a>
+    </li>
+
  </ul>
 
 </section>

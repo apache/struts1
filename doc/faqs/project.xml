@@ -35,6 +35,10 @@
         <item 
             href="ssl.html" 
             name="SSL"/>
+
+        <item
+            href="struts-el.html"
+            name="Struts-EL (JSTL)"/>
     </menu>
 
     <menu name="IDE Guides">
