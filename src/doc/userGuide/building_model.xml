@@ -59,20 +59,18 @@
         a bean stored as a request attribute in a servlet like this:
       </p>
         
-<pre>
-   MyCart mycart = new MyCart(...);
-   request.setAttribute("cart", mycart);
-</pre>
+      <p><code>MyCart mycart = new MyCart(...);<br />
+        request.setAttribute("cart", mycart);
+      </code></p>
       
       <p>
         is immediately visible to a JSP page which this servlet forwards to,
         using a standard action tag like this:
       </p>
         
-      <pre>
-        &lt;jsp:useBean id="cart" scope="request"
+      <p><code>&lt;jsp:useBean id="cart" scope="request"<br />
         class="com.mycompany.MyApp.MyCart"/&gt;
-      </pre>
+      </code></p>
     </section>
     
     <section name="2.3 ActionForm Beans" href="actionform">
@@ -232,14 +230,12 @@
         from within a Action perform method. 
       </p>
       <p>
-<pre>
-  public ActionForward perform(ActionMapping mapping,
+<pre><font size="-1">public ActionForward perform(ActionMapping mapping,
                       ActionForm form,
                       HttpServletRequest request,
                       HttpServletResponse response) {
     try {
-      DataSource dataSource = servlet.findDataSource(null);
-      
+      DataSource dataSource = servlet.findDataSource(null);      
       Connection myConnection = dataSource.getConnection();
       //do what you wish with myConnection
     }
@@ -251,8 +247,7 @@
       //sure the connection is closed
       myConnection.close();
     }
-  }
-</pre>
+  }</font></pre>
       </p>
       
       <p align="center">

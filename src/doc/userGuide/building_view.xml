@@ -96,16 +96,12 @@
         <li><b>MyResources.properties</b> - Contains the messages in the default
             language for your server.  If your default language is English, you
             might have an entry like this:
-            <pre>
-          prompt.hello=Hello
-            </pre></li>
+            <code>prompt.hello=Hello</code></li>
         <li><b>MyResources_xx.properties</b> - Contains the same messages in the
             language whose ISO language code is "xx" (See the ResourceBundle
             Javadoc page for a link to the current list).  For a French version
             of the message shown above, you would have this entry:
-            <pre>
-          prompt.hello=Bonjour
-            </pre>
+            <code>prompt.hello=Bonjour</code>
             You can have resource bundle files for as many languages as you need.</li>
       </ul>
         
@@ -133,25 +129,27 @@
       <p>
         Fulfilling this expectation is tedious and cumbersome when coding with
         standard HTML and JSP pages.  For example, an input element for a
-        <code>username</code> field might look like this (in JSP)
+        <code>username</code> field might look like this (in JSP):
+       </p>
       
+      <p>
+        <code>&lt;input type="text" name="username" 
+        value="&lt;%= loginBean.getUsername() %&gt;"></code>
+      </p>
       
-<pre>
-  &lt;input type="text" name="username"
-  value="&lt;%= loginBean.getUsername() %&gt;">
-</pre>
-      
-      
+      <p>
         which is difficult to type correctly, confuses HTML developers who are
         not knowledgeable about programming concepts, and can cause problems with
         HTML editors.  Instead, Struts provides a comprehensive facility for
         building forms, based on the Custom Tag Library facility of JSP 1.1.
         The case above would be rendered like this using Struts:
+      </p>
+      
+      <p>        
+        <code>&lt;html:text property="username"/&gt;</code>
+      </p>
         
-<pre>
-  &lt;html:text property="username"/&gt;
-</pre>
-        
+      <p> 
         with no need to explicitly refer to the JavaBean from which the initial
         value is retrieved.  That is handled automatically by the framework.
       </p>
@@ -171,21 +169,15 @@
           makes dealing with forms much less painful than using straight HTML
           and standard JSP facilities.  Consider the following page (based on the
           example application included with Struts) named <code>logon.jsp</code>:
-        </p>
-        
-<pre>
-&lt;%@ page language="java" %&gt;
+        </p>       
+<pre><font size="-1">&lt;%@ page language="java" %&gt;
 &lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
 &lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
-
-
 &lt;html&gt;
 &lt;head&gt;
 &lt;title&gt;&lt;bean:message key="logon.title"/&gt;&lt;/title&gt;
 &lt;body bgcolor="white"&gt;
-
 &lt;html:errors/&gt;
-
 &lt;html:form name="logonForm" action="logon.do"&gt;
 &lt;table border="0" width="100%"&gt;
   &lt;tr&gt;
@@ -218,11 +210,8 @@
   &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/html:form&gt;
-
 &lt;/body&gt;
-&lt;/html&gt;
-</pre>
-          
+&lt;/html&gt;</font></pre>         
         <p>
           The following items illustrate the key features of form handling in Struts,
           based on this example:
@@ -291,52 +280,41 @@
         </p>
           
         <p>
-<pre>
-&lt;%@page language="java">
-
+<pre><font size="-1">&lt;%@page language="java">
 &lt;%@taglib uri="/WEB-INF/struts-html.tld" prefix="html">
-
 &lt;html:form action="uploadAction.do">
   Please Input Text: &lt;html:text property="myText">&lt;br />
   Please Input The File You Wish to Upload:&lt;br />
   &lt;html:file property="myFile">&lt;br />
   &lt;html:submit />
 &lt;/html:form>
-</pre>
+</font></pre>
         </p>
         <p>
           The next step is to create your ActionForm bean:
         </p>
         <p>
-<pre>
-import javax.servlet.http.HttpServletRequest;
+<pre><font size="-1">import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
-
 public class UploadForm extends ActionForm {
-  
   protected String myText;
   protected FormFile myFile;
-  
   public void setMyText(String text) {
     myText = text;
   }
-  
   public String getMyText() {
     return myText;
   }
-  
   public void setMyFile(FormFile file) {
     myFile = file;
   }
-  
   public FormFile getMyFile() {
     return myFile;
   }
-}
-</pre>
+}</font></pre>
         </p>
         
         <p>
@@ -419,10 +397,9 @@ public class UploadForm extends ActionForm {
           offers an additional facility to validate the input fields it has received.
           To utilize this feature, override the following method in your ActionForm 
           class:
-  <pre>
-          public ActionErrors validate(ActionMapping mapping,
+  <pre><font size="-1">public ActionErrors validate(ActionMapping mapping,
                               HttpServletRequest request)
-  </pre>
+  </font></pre>
         </p>
         
         <p>

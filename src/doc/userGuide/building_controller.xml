@@ -39,8 +39,7 @@
       
       <p>The <code>Action</code> class defines two methods that could be
         executed depending on your servlet environment:
-<pre>
-   public ActionForward perform(ActionMapping mapping,
+<pre><font size="-1">public ActionForward perform(ActionMapping mapping,
                       ActionForm form,
                       ServletRequest request,
                     ServletResponse response)
@@ -51,7 +50,7 @@
                       HttpServletRequest request,
                     HttpServletResponse response)
   throws IOException, ServletException   
-</pre>
+</font></pre>
       </p>
       
       <p>
@@ -115,10 +114,8 @@
             You should trap all such exceptions
             in the logic of your <code>perform()</code> method, and log them to the
             application logfile (along with the corresponding stack trace) by
-            calling:
-            <pre>
-          servlet.log("Error message text", exception);
-            </pre></li>
+            calling:<br />
+            <code>servlet.log("Error message text", exception);</code></li>
         <li>As a general rule, allocating scarce resources and keeping them across
             requests from the same user (in the user's session) can cause
             scalability problems.  You should strive to release such resources
@@ -268,19 +265,15 @@
         to illustrate the requirements.  Note that the entries for all the other actions
         are left out:
       </p>
-<pre>
-  &lt;struts-config>
+<pre><font size="-1">&lt;struts-config>
       &lt;form-beans>
         &lt;form-bean name="logonForm"
                 type="org.apache.struts.example.LogonForm">
-      &lt;/form-beans>
-      
+      &lt;/form-beans>      
       &lt;global-forwards type="org.apache.struts.action.ActionForward">
       &lt;forward name="logon" path="/logon.jsp" redirect="false" /> 
-    &lt;/global-forwards>
-      
-    &lt;action-mappings&gt;
-     
+    &lt;/global-forwards>      
+    &lt;action-mappings&gt;     
       &lt;action path="/logon" 
               type="org.apache.struts.example.LogonAction"
               name="logonForm"
@@ -290,8 +283,7 @@
               validate="true" />          
     &lt;/action-mappings&gt;
  &lt;/struts-config>
-</pre>
-      
+</font></pre>      
       <p>
         First the form bean is defined.  A basic bean of class "org.apache.struts.example.LogonForm"
         is mapped to the logical name "logonForm".  This name is used as a session or request attribute
@@ -318,8 +310,7 @@
         of struts-config.xml:
       </p>
       <p>
-<pre>
-  &lt;struts-config>
+<pre><font size="-1">&lt;struts-config>
     &lt;data-sources>
       &lt;data-source autoCommit="false"
                  description="Example Data Source Description"
@@ -331,7 +322,7 @@
                    user="myusername"/>
     &lt;/data-sources>
   &lt;/struts-config>
-</pre>
+</font></pre>
       </p>  
       <p>
         For information on how to retrieve the data source, see the 
@@ -354,8 +345,7 @@
         <p>
           Add an entry defining the action servlet itself, along with the appropriate
           initialization parameters.  Such an entry might look like this:
-<pre>
-   &lt;servlet&gt;
+<pre><font size="-1">&lt;servlet&gt;
      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
      &lt;servlet-class&gt;org.apache.struts.action.ActionServlet&lt;/servlet-class&gt;
      &lt;init-param&gt;
@@ -376,7 +366,7 @@
      &lt;/init-param&gt;
      &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
    &lt;/servlet&gt;
-</pre>
+</font></pre>
         </p>
         
         <p>
@@ -475,19 +465,17 @@
           path part) with a particular value to be passed to this servlet.  Such an
           entry might look like this:
         </p>
-<pre>
-   &lt;servlet-mapping&gt;
+<pre><font size="-1">&lt;servlet-mapping&gt;
      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
      &lt;url-pattern&gt;/execute/*&lt;/url-pattern&gt;
    &lt;/servlet-mapping&gt;
-</pre>
+</font></pre>
         
         <p>
           which means that a request URI to match the <code>/logon</code> path
-          described earlier might look like this:
-          <pre>
-              http://www.mycompany.com/myapplication/execute/logon
-          </pre>
+          described earlier might look like this:</p>
+        <p>
+          <code> http://www.mycompany.com/myapplication/execute/logon</code>
         </p>
         
         <p>
@@ -502,20 +490,17 @@
           to the <code>*.jsp</code> pattern so that it is called to process every
           JSP page that is requested.  To use the <code>*.do</code> extension (which
           implies "do something"), the mapping entry would look like this:
-<pre>
-   &lt;servlet-mapping&gt;
+<pre><font size="-1">&lt;servlet-mapping&gt;
      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
      &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
    &lt;/servlet-mapping&gt;
-</pre>
+</font></pre>
         </p>
         
         <p>
           and a request URI to match the <code>/logon</code> path described
-          earlier might look like this:
-          <pre>
-              http://www.mycompany.com/myapplication/logon.do
-          </pre>
+          earlier might look like this:<br />
+          <code> http://www.mycompany.com/myapplication/logon.do</code>
         </p>
       </section>
       
@@ -547,10 +532,8 @@
         
         <p>
           Below is how you would define all taglibs for use within your application,
-          in reality you would only specify the taglib's that your application will use:
-          
-<pre>
- &lt;taglib&gt;
+          in reality you would only specify the taglib's that your application will use:          
+<pre><font size="-1">&lt;taglib&gt;
    &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
    &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
  &lt;/taglib&gt;
@@ -566,7 +549,7 @@
    &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
    &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
  &lt;/taglib&gt;
-</pre>
+</font></pre>
         </p>
           
         <p>
