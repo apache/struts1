@@ -21,7 +21,7 @@ rem
 rem   TOMCAT_HOME           Build directory for "jakarta-tomcat".
 rem                         [../build/tomcat]
 rem
-rem $Id: build.bat,v 1.8 2000/11/19 01:39:51 craigmcc Exp $
+rem $Id: build.bat,v 1.9 2000/11/24 14:53:58 pierred Exp $
 rem ---------------------------------------------------------------------------
 
 
@@ -71,7 +71,7 @@ set CP=%ANT_HOME%\lib\ant.jar;%ANT_HOME%\lib\optional.jar;%JAVA_HOME%\lib\tools.
 
 rem ----- Execute The Requested Build -----------------------------------------
 
-java %ANT_OPTS% -classpath "%CP%" org.apache.tools.ant.Main -Dant.home=%ANT_HOME% -Dcatalina.home=%CATALINA_HOME% -Dservlet.jar=%SERVLETAPI_HOME%\lib\servlet.jar -Dtomcat.home=%TOMCAT_HOME% %1 %2 %3 %4 %5 %6 %7 %8 %9
+%JAVA_HOME%\bin\java %ANT_OPTS% -classpath "%CP%" org.apache.tools.ant.Main -Dant.home=%ANT_HOME% -Dcatalina.home=%CATALINA_HOME% -Dservlet.jar=%SERVLETAPI_HOME%\lib\servlet.jar -Dtomcat.home=%TOMCAT_HOME% %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 
 rem ----- Clean Up Environment Variables --------------------------------------
