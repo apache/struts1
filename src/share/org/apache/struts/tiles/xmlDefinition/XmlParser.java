@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.10 2003/02/27 19:19:42 cedric Exp $
- * $Revision: 1.10 $
- * $Date: 2003/02/27 19:19:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.11 2003/06/18 03:58:03 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/06/18 03:58:03 $
  *
  * ====================================================================
  *
@@ -92,14 +92,10 @@ public class XmlParser
     protected String registrations[] = {
           // pre 1.1
         "-//Apache Software Foundation//DTD Tiles Configuration//EN",
-        "/org/apache/struts/tiles/resources/tiles-config_1_1.dtd",
-        "-//Apache Software Foundation//DTD Tiles Configuration//EN",
         "/org/apache/struts/resources/tiles-config_1_1.dtd",
         "-//Apache Software Foundation//DTD Components Configuration//EN",
-        "/org/apache/struts/tiles/resources/tiles-config.dtd",
+        "/org/apache/struts/resources/tiles-config.dtd",
          // version 1.1
-        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN",
-        "/org/apache/struts/tiles/resources/tiles-config_1_1.dtd",
         "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN",
         "/org/apache/struts/resources/tiles-config_1_1.dtd",
     };
