@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.43 2003/10/01 15:43:11 rleland Exp $
-  $Revision: 1.43 $
-  $Date: 2003/10/01 15:43:11 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.44 2003/10/31 06:09:13 rleland Exp $
+  $Revision: 1.44 $
+  $Date: 2003/10/31 06:09:13 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -39,7 +39,7 @@
    errors.range={0} is not in the range {1} through {2}.
    errors.creditcard={0} is an invalid credit card number.
    errors.email={0} is an invalid e-mail address.
-   
+
    Note: Starting in Struts 1.2.0 the default javascript definitions have
          been consolidated to commons-validator. The default can be overridden
          by supplying a <javascript> element with a CDATA section, just as
@@ -71,13 +71,14 @@
 
                 for (x in oRequired) {
                     var field = form[oRequired[x][0]];
-                    
+
                     if (field.type == 'text' ||
                         field.type == 'textarea' ||
                         field.type == 'file' ||
+                        field.type == 'checkbox' ||
                         field.type == 'select-one' ||
                         field.type == 'password') {
-                        
+
                         var value = '';
                         // get field's value
                         if (field.type == "select-one") {
@@ -85,19 +86,23 @@
                             if (si >= 0) {
                                 value = field.options[si].value;
                             }
-                        } else {
+                        } else if (field.type == "checkbox") {
+					    	if (field.checked) {
+						    	value = field.value;
+						    } 
+                    } else {
                             value = field.value;
                         }
-                        
+
                         if (trim(value).length == 0) {
-                        
+
                             if (i == 0) {
                                 focusField = field;
                             }
                             fields[i++] = oRequired[x][1];
                             isValid = false;
                         }
-                    } else if (field.type == "select-multiple") { 
+                    } else if (field.type == "select-multiple") {
                         var numOptions = field.options.length;
                         lastSelected=-1;
                         for(loop=numOptions-1;loop>=0;loop--) {
@@ -137,12 +142,12 @@
                 }
                 return isValid;
             }
-            
+
             // Trim whitespace from left and right sides of s.
             function trim(s) {
                 return s.replace( /^\s*/, "" ).replace( /\s*$/, "" );
             }
-            
+
             ]]>
          </javascript>
 
@@ -194,7 +199,7 @@
               depends=""
                   msg="errors.invalid"/>
 
- 
+
 
       <validator name="mask"
             classname="org.apache.struts.validator.FieldChecks"
