@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag3.java,v 1.2 2003/03/08 19:31:55 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/03/08 19:31:55 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag3.java,v 1.3 2003/03/11 01:05:56 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/11 01:05:56 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -156,6 +156,30 @@ public class TestImageTag3 extends JspTestCase {
 
     public void testImagePageKeyBorder(){
         runMyTest("testImagePageKeyBorder", "");
+    }
+
+    public void testImagePageKeyDisabled1(){
+        runMyTest("testImagePageKeyDisabled1", "");
+    }
+
+    public void testImagePageKeyDisabled2(){
+        runMyTest("testImagePageKeyDisabled2", "");
+    }
+
+    public void testImagePageKeyDisabled3(){
+        runMyTest("testImagePageKeyDisabled3", "");
+    }
+
+    public void testImagePageKeyDisabled4(){
+        runMyTest("testImagePageKeyDisabled4", "");
+    }
+
+    public void testImagePageKeyDisabled5(){
+        runMyTest("testImagePageKeyDisabled5", "");
+    }
+
+    public void testImagePageKeyDisabled6(){
+        runMyTest("testImagePageKeyDisabled6", "");
     }
 
     public void testImagePageKeyLocaleDefaultBundle(){

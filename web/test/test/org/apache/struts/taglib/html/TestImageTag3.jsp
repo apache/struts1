@@ -88,7 +88,7 @@
         <html:image pageKey="default.testing.image" disabled="true"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="true">
+        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="disabled">
     </bean:define>
 </logic:equal>
 
@@ -98,7 +98,7 @@
         <html:image pageKey="default.testing.image" disabled="True"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="True">
+        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="disabled">
     </bean:define>
 </logic:equal>
 
@@ -108,7 +108,7 @@
         <html:image pageKey="default.testing.image" disabled="TRUE"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="TRUE">
+        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="disabled">
     </bean:define>
 </logic:equal>
 
@@ -118,7 +118,7 @@
         <html:image pageKey="default.testing.image" disabled="false"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="false">
+        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>">
     </bean:define>
 </logic:equal>
 
@@ -128,7 +128,7 @@
         <html:image pageKey="default.testing.image" disabled="False"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="False">
+        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>">
     </bean:define>
 </logic:equal>
 
@@ -138,7 +138,7 @@
         <html:image pageKey="default.testing.image" disabled="FALSE"/>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>" disabled="FALSE">
+        <input type="image" name="" src="<%=response.encodeURL("/test/images/default/default/myimage.gif")%>">
     </bean:define>
 </logic:equal>
 
