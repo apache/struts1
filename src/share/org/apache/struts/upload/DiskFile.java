@@ -1,6 +1,7 @@
 package org.apache.struts.upload;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,9 +27,7 @@ public class DiskFile implements FormFile {
     /**
      * The name of the file
      */
-    protected String fileName;
-    
-   
+    protected String fileName;   
     
     public DiskFile(String filePath) {
         this.filePath = filePath;
@@ -39,6 +38,9 @@ public class DiskFile implements FormFile {
      * array form.  Tries to read the entire file (using a byte array
      * the size of getFileSize()) at once, in one call to FileInputStream.read(byte[]).
      * For buffered reading, see {@link #getFileData(int) getFileData(int)}.
+     * Note that this method can be dangerous, and that the size of a file
+     * can cause an OutOfMemoryError quite easily.  You should use 
+     * {@link #getInputStream() getInputStream} and do your own thing.
      *
      * @exception ServletException If the temp file no longer exists, or if there is
      *                    some sort of IOException
@@ -56,6 +58,9 @@ public class DiskFile implements FormFile {
     
     /**
      * Attempts to read a file n bytes at a time, n being equal to "bufferSize".
+     * Note that this method can be dangerous, and that the size of a file
+     * can cause an OutOfMemoryError quite easily.  You should use 
+     * {@link #getInputStream() getInputStream} and do your own thing.
      *
      * @param bufferSize The size in bytes that are read from the file at a time
      * @exception FileNotFoundException If the temp file no longer exists
@@ -151,6 +156,10 @@ public class DiskFile implements FormFile {
         return fileSize;
     }
     
-    
-    
+    /**
+     * Returns a FileInputStream to the file
+     */
+    public InputStream getInputStream() throws FileNotFoundException, IOException {
+        return new FileInputStream(filePath);
+    }
 }

@@ -1,7 +1,10 @@
 package org.apache.struts.upload;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -72,6 +75,11 @@ public class MultipartIterator {
      * Defaults to 4 * 1024 (4 KB)
      */
     protected int bufferSize = 4 * 1024;
+    
+    /**
+     * The temporary directory to store files
+     */
+    protected String tempDir;
 
     /**
      * Constructs a MultipartIterator with a default buffer size and no file size
@@ -106,10 +114,27 @@ public class MultipartIterator {
      */
     public MultipartIterator(HttpServletRequest request, int bufferSize, long maxSize) 
                                                                  throws ServletException {
+                         
+        this(request, bufferSize, maxSize, null);                                                                 
+        
+    }
+    
+    public MultipartIterator(HttpServletRequest request,
+                             int bufferSize,
+                             long maxSize,
+                             String tempDir) throws ServletException {
+                                 
         this.request = request;
         this.maxSize = maxSize;
         if (bufferSize > -1) {
             this.bufferSize = bufferSize;
+        }
+        if (tempDir != null) {
+            this.tempDir = tempDir;
+        }
+        else {
+            //default to system-wide tempdir
+            tempDir = System.getProperty("java.io.tmpdir");
         }
         parseRequest();
     }
@@ -134,8 +159,9 @@ public class MultipartIterator {
             String filename = parseDispositionFilename(disposition);
                                    
             String contentType = null;
-
-            if (filename != null) {
+            boolean isFile = (filename != null);
+            
+            if (isFile) {
                 filename = new File(filename).getName();
                 
                 //check for windows filenames,
@@ -158,38 +184,55 @@ public class MultipartIterator {
                 contentType = parseContentType(contentType);
             }
             
-            //read data into String form, then convert to bytes
-            //for both normal text and file
-            StringBuffer textData = new StringBuffer();
-            String line;
+           
             
-            //ignore next line (whitespace)
-            readLine();
-            
-            //parse for text data
-            line = readLine();
-         
-            while ((line != null) && (!line.startsWith(boundary))) {
-                textData.append(line);
-                line = readLine();
-                
-                if (maxSize > -1) {
-                    if (totalLength > maxSize) {
-                        throw new ServletException("Multipart data size exceeds the maximum " +
-                            "allowed post size");
-                    }
-                }
+            //ignore next line (whitespace) (unless it's a file
+            //without content-type)
+	    if (! ((isFile) && contentType == null)) {
+		readLine();
             }
             
-            if (textData.length() > 1) {
-                //cut off "\r\n" from the end
-                textData.setLength(textData.length()-2);
-            }            
+            MultipartElement element = null;
             
-            MultipartElement element = new MultipartElement(name,
-                                                            filename,
-                                                            contentType,
-                                                            textData.toString().getBytes("ISO-8859-1"));
+            //process a file element
+            if (isFile) {
+                try {
+                    //create a local file on disk representing the element
+                    File elementFile = createLocalFile();
+
+                    element = new MultipartElement(name, filename, contentType, elementFile);
+                } catch (IOException ioe) {
+                    throw new ServletException("IOException while reading file element: ioe.getMessage()", ioe);
+                }
+            }
+            else {
+                 //read data into String form, then convert to bytes
+                //for text
+                StringBuffer textData = new StringBuffer();
+                String line;
+                //parse for text data
+                line = readLine();
+
+                while ((line != null) && (!line.startsWith(boundary))) {
+                    textData.append(line);
+                    line = readLine();
+
+                    if (maxSize > -1) {
+                        if (totalLength > maxSize) {
+                            throw new ServletException("Multipart data size exceeds the maximum " +
+                                "allowed post size");
+                        }
+                    }
+                }
+
+                if (textData.length() > 1) {
+                    //cut off "\r\n" from the end
+                    textData.setLength(textData.length()-2);
+                }
+                
+                //create the element
+                element = new MultipartElement(name, textData.toString());
+            }
             return element;
         }       
         //reset stream
@@ -331,10 +374,6 @@ public class MultipartIterator {
         }
         return null;
     }
-            
-        
-        
-        
     
     /**
      * Retrieves the "name" attribute from a content disposition line
@@ -416,4 +455,44 @@ public class MultipartIterator {
         totalLength += bytesRead;
         return new String(bufferByte, 0, bytesRead, "ISO-8859-1");
     }
+    
+    /**
+     * Creates a file on disk from the current mulitpart element
+     * @param fileName the name of the multipart file
+     */
+    protected File createLocalFile() throws IOException,ServletException {
+        
+        File tempFile = File.createTempFile("strts", null, new File(tempDir));
+        OutputStream fos = new FileOutputStream(tempFile);
+        
+	byte[] bufferBytes = new byte[bufferSize];
+	InputStream requestIn = new MultipartValueStream(inputStream, boundary);
+	
+	int bytesRead = 0;
+	while (bytesRead != -1) {
+            
+	    bytesRead = requestIn.read(bufferBytes);
+            
+            if (bytesRead > 0) {
+                totalLength += bytesRead;
+            }
+            
+            //check to make sure the read doesn't exceed the bounds
+	    if (bytesRead > 0) {
+                if (maxSize > -1) {
+                    if (totalLength > maxSize) {
+                        throw new ServletException("Multipart data size exceeds the maximum " +
+                            "allowed post size");
+                    }
+                }
+            }
+            if (bytesRead > 0) {
+                fos.write(bufferBytes, 0, bytesRead);
+            }
+	}
+        	
+        fos.close();
+        return tempFile;
+    }
+
 }

@@ -1,6 +1,8 @@
 package org.apache.struts.example.upload;
 
+import java.io.InputStream;
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +29,9 @@ import org.apache.struts.action.ForwardingActionForward;
 public class UploadAction extends Action {
 
 	public ActionForward perform(ActionMapping mapping,
-										  ActionForm    form,
-										  HttpServletRequest request,
-										  HttpServletResponse response) {
+				     ActionForm    form,
+				     HttpServletRequest request,
+				     HttpServletResponse response) {
 										  	
 		if (form instanceof UploadForm) {
 			
@@ -54,7 +56,13 @@ public class UploadAction extends Action {
 			
 			try {
 				//retrieve the file data
-				data = new String(file.getFileData());
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                
+                                InputStream stream = file.getInputStream();
+                                byte[] buffer = new byte[file.getFileSize()];
+                                stream.read(buffer);
+                                baos.write(buffer);
+                                data = new String(baos.toByteArray());
 			}
 			catch (FileNotFoundException fnfe) {
 				return null;

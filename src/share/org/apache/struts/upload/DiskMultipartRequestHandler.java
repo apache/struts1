@@ -47,11 +47,19 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      */
     protected Hashtable allElements;
     
+    /**
+     * The temporary directory
+     */
+    protected String tempDir;
+    
     public void handleRequest(HttpServletRequest request) throws ServletException {
+        
+        retrieveTempDir();
         
         MultipartIterator iterator = new MultipartIterator(request,
                                                             servlet.getBufferSize(),
-                                                            getMaxSizeFromServlet());
+                                                            getMaxSizeFromServlet(),
+                                                            tempDir);
         MultipartElement element;
 
         textElements = new Hashtable();
@@ -60,29 +68,21 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
         try {
             while ((element = iterator.getNextElement()) != null) {
-                if ((element.getFileName() == null) && (element.getContentType() == null)) {
-                    String textData;
-                    try {
-                        textData = new String(element.getData(), "ISO-8859-1");
-                    }
-                    catch (UnsupportedEncodingException uee) {
-                        textData = new String(element.getData());
-                    }
-
-                    textElements.put(element.getName(), textData);
-                    allElements.put(element.getName(), textData);
+                if (!element.isFile()) {                    
+                    textElements.put(element.getName(), element.getValue());
+                    allElements.put(element.getName(), element.getValue());
                 }
                 else {
-                    try {
-                        DiskFile theFile = writeFile(element);
-                        fileElements.put(element.getName(), theFile);
-                        allElements.put(element.getName(), theFile);
-                    }
-                    catch (IOException ioe) {
-                        throw new ServletException("DiskMultipartRequestHandler." +
-                        "handleRequest(), IOException: " +
-                        ioe.getMessage());
-                    }
+                    
+                     File tempFile = element.getFile();
+                     if (tempFile.exists()) {
+                         DiskFile theFile = new DiskFile(tempFile.getAbsolutePath());
+                         theFile.setContentType(element.getContentType());
+                         theFile.setFileName(element.getFileName());
+                         theFile.setFileSize((int) tempFile.length());
+                         fileElements.put(element.getName(), theFile);
+                         allElements.put(element.getName(), theFile);
+                     }             
                 }
             }
         }
@@ -90,81 +90,6 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
             throw new ServletException("Encoding \"ISO-8859-1\" not supported");
         }
 
-    }
-
-
-    protected DiskFile writeFile(MultipartElement element) throws IOException,
-    ServletException {
-        DiskFile theFile = null;
-
-        //get a handle to some temporary file and open
-        //a stream to it
-        String tempDir = servlet.getTempDir();
-        if (tempDir == null) {
-            //attempt to retrieve the servlet container's temporary directory
-            ServletContext context = servlet.getServletConfig().getServletContext();
-
-            try {
-                tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
-            }
-            catch (ClassCastException cce) {
-                tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
-            }
-            
-
-            if (tempDir == null) {
-                //default to system-wide tempdir
-                tempDir = System.getProperty("java.io.tmpdir");
-
-                if (servlet.getDebug() > 1) {
-                    servlet.log("DiskMultipartRequestHandler.handleRequest(): " +
-                    "defaulting to java.io.tmpdir directory \"" +
-                    tempDir);
-                }
-            }
-        }
-
-        File tempDirectory = new File(tempDir);
-
-        if ((!tempDirectory.exists()) || (!tempDirectory.isDirectory())) {
-            throw new ServletException("DiskMultipartRequestHandler: no " +
-            "temporary directory specified for disk write");
-        }
-
-        File tempFile = File.createTempFile("strts", null, tempDirectory);
-        FileOutputStream fos = new FileOutputStream(tempFile);
-
-        //int bufferSize = servlet.getBufferSize();
-        int bufferSize = -1;
-        if (bufferSize > 0) {
-            //buffer the write if servlet.getBufferSize() > 0
-            ByteArrayInputStream byteArray = new ByteArrayInputStream(element.getData());
-            byte[] bufferBytes = new byte[bufferSize];
-            int bytesWritten = 0;
-            int bytesRead = 0;
-            int offset = 0;
-
-            while ((bytesRead = byteArray.read(bufferBytes,
-            offset, bufferSize)) != -1) {
-                fos.write(bufferBytes, offset, bytesRead);
-                bytesWritten += bytesRead;
-                offset += bytesRead;
-            }
-            byteArray.close();
-        }
-        else {
-            //write in one big chunk
-            fos.write(element.getData());
-        }
-
-        theFile = new DiskFile(tempFile.getAbsolutePath());
-        theFile.setContentType(element.getContentType());
-        theFile.setFileName(element.getFileName());
-        theFile.setFileSize(element.getData().length);
-
-        fos.close();
-
-        return theFile;
     }
 
     public Hashtable getAllElements() {
@@ -248,4 +173,37 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 
         return (size * multiplier);
     }       
+    
+    /**
+     * Retrieves the temporary directory from either ActionServlet, a context
+     * property, or a system property, in that order
+     */
+    protected void retrieveTempDir() { 
+        //get a handle to some temporary file and open
+        //a stream to it
+        tempDir = servlet.getTempDir();
+        if (tempDir == null) {
+            //attempt to retrieve the servlet container's temporary directory
+            ServletContext context = servlet.getServletConfig().getServletContext();
+
+            try {
+                tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
+            }
+            catch (ClassCastException cce) {
+                tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
+            }
+            
+
+            if (tempDir == null) {
+                //default to system-wide tempdir
+                tempDir = System.getProperty("java.io.tmpdir");
+
+                if (servlet.getDebug() > 1) {
+                    servlet.log("DiskMultipartRequestHandler.handleRequest(): " +
+                    "defaulting to java.io.tmpdir directory \"" +
+                    tempDir);
+                }
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package org.apache.struts.upload;
 
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
@@ -45,18 +46,28 @@ public interface FormFile
     public void setFileName(String fileName);
     
     /**
-     * Get the data in byte array for
-     * for this file
+     * Get the data in byte array for for this file.  Note that this can be
+     * a very hazardous method, files can be large enough to cause 
+     * OutOfMemoryErrors.  Short of being deprecated, it's strongly recommended
+     * that you use {@link #getInputStream() getInputStream} to get the file
+     * data.
      *
      * @exception FileNotFoundException If some sort of file representation
      *                                  cannot be found for the FormFile
-     *
      * @exception IOException If there is some sort of IOException
-     *
      * @return An array of bytes representing the data contained
      *         in the form file
      */
     public byte[] getFileData() throws FileNotFoundException, IOException;
+    
+    /**
+     * Get an InputStream that represents this file.  This is the preferred
+     * method of getting file data.
+     * @exception FileNotFoundException If some sort of file representation
+     *                                  cannot be found for the FormFile
+     * @exception IOException If there is some sort of IOException
+     */
+    public InputStream getInputStream() throws FileNotFoundException, IOException;
     
     /**
      * Destroy all content for this form file.
