@@ -7,6 +7,7 @@
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <author>Ed Burns</author>
+    <author>Donald Ball</author>
     <author>Eddie Bush</author>
     <author>Yann Cebron </author>
     <author>David Graham</author>
@@ -93,12 +94,94 @@
       </section>
 
       <section name="4.2.1 DynaActionForm Classes" href="dyna_action_form_classes">
-      <p>[:TODO:]</p>
-      </section>
 
-      <section name="4.2.2 Map-backed ActionForms" href="map_action_form_classes">
-      <p>[:TODO:]</p>
-      </section>
+      <p>Maintaining a separate concrete ActionForm class for each form in your struts application is time-consuming. This can be alleviated through the use of DynaActionForm classes. Instead of creating a new ActionForm subclass and new get/set methods for each of your bean's properties, you can list its properties, type, and defaults in the struts configuration file.</p>
+      <p>For example, add the following to struts-config.xml for a UserForm bean that stores a user's given and family names:</p>
+<pre>
+<![CDATA[
+<form-bean name="UserForm" type="org.apache.struts.action.DynaActionForm">
+  <form-property name="givenName" type="java.lang.String" initial="John"/>
+  <form-property name="familyName" type="java.lang.String" initial="Smith"/>
+</form-bean>
+]]>
+</pre>
+      <p>The list of types supported by DynaActionForm beans includes:</p>
+      <ul>
+        <li>java.lang.BigDecimal</li>
+        <li>java.lang.BigInteger</li>
+        <li>boolean and java.lang.Boolean</li>
+        <li>byte and java.lang.Byte</li>
+        <li>char and java.lang.Character</li>
+        <li>java.lang.Class</li>
+        <li>double and java.lang.Double</li>
+        <li>float and java.lang.Float</li>
+        <li>int and java.lang.Integer</li>
+        <li>long and java.lang.Long</li>
+        <li>short and java.lang.Short</li>
+        <li>java.lang.String</li>
+        <li>java.sql.Date</li>
+        <li>java.sql.Time</li>
+        <li>java.sql.Timestamp</li>
+      </ul>
+      <p>If you do not supply an initial attribute, numbers will be initialized to 0 and objects to null.</p>
+     </section>
+
+    <section name="4.2.2 Map-backed ActionForms" href="map_action_form_classes">
+      <p>The DynaActionForm classes offer the ability to create ActionForm beans at initialization time, based on a list of properties enumerated in the struts configuration file. However, many HTML forms are generated dynamically at request time. Since the properties of these forms' ActionForm beans are not all known ahead of time, we need a new approach.</p>
+      <p>Struts allows you to make one or more of your ActionForm's properties' values a Map instead of a traditional atomic object. You can then store the data from your form's dynamic fields in that Map. Here is an example of a map-backed ActionForm class:</p>
+<pre>
+<![CDATA[
+public FooForm extends ActionForm {
+
+    private final Map values = new HashMap();
+
+    public void setValue(String key, Object value) {
+        values.put(key, value);
+    }
+
+    public Object getValue(String key) {
+        return values.get(key);
+    }
+
+}
+]]>
+</pre>
+      <p>In its corresponding JSP page, you can access objects stored in the values map using a special notation: <i>mapname(keyname)</i>. The parentheses in the bean property name indicate that the bean property named <i>mapname</i> is indexed using Strings (probably backed by a Map) and that struts should look for get/set methods that take a String key parameter to find the correct sub-property value. Struts will, of course, use the <i>keyname</i> value from the parentheses when it calls the get/set methods.</p>
+      <p>Here is a simple example:</p>
+<pre>
+<![CDATA[
+<html:text property="value(foo)"/>
+]]>
+</pre>
+      <p>This will call the getValue() method on FooForm with a key value of "foo" to find the property value. To create a form with dynamic field names, you could do the following:</p>
+<pre>
+<![CDATA[
+<% for (int i=0; i<10; i++) {
+  String name = "value(foo-" + i + ")";
+  <html:text property="<%=name%>"/><br/>
+%>
+]]>
+</pre>
+      <p>Note that there is nothing special about the name <i>value</i>. Your map-backed property could instead be named <i>property</i>, <i>thingy</i>, or any other bean property name you prefer. You can even have multiple map-backed properties on the same bean.</p>
+      <p>In addition to map-backed properties, you can also create list-backed properties. You do so by creating indexed get/set methods on your bean:</p>
+<pre>
+<![CDATA[
+public FooForm extends ActionForm {
+
+    private final List values = new ArrayList();
+
+    public void setValue(int key, Object value) {
+        values.set(key, value);
+    }
+
+    public Object getValue(int key) {
+        return values.get(key);
+    }
+}
+]]>
+</pre>
+      <p>In your JSP pages, you access individual entries in a list-backed property by using a different special notation: <i>listname[index]</i>. The braces in the bean property name indicate that the bean property named <i>listname</i> is indexed (probably backed by a List), and that struts should look for get/set methods that take an index parameter in order to find the correct sub-property value.</p>
+</section>
 
     <section name="4.3 Action Classes" href="action_classes">
 
