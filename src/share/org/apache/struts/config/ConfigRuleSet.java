@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.16 2004/01/10 21:03:34 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2004/01/10 21:03:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.17 2004/02/17 05:51:47 martinc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/02/17 05:51:47 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.xml.sax.Attributes;
  * <p>The set of Digester rules required to parse a Struts
  * configuration file (<code>struts-config.xml</code>).</p>
  *
- * @version $Revision: 1.16 $ $Date: 2004/01/10 21:03:34 $
+ * @version $Revision: 1.17 $ $Date: 2004/02/17 05:51:47 $
  * @since Struts 1.1
  */
 
@@ -177,11 +177,13 @@ public class ConfigRuleSet extends RuleSetBase {
             ("struts-config/controller/set-property",
              "property", "value");
 
-        digester.addObjectCreate
+        digester.addRule
+            ("struts-config/form-beans",
+             new SetActionFormBeanClassRule());
+
+        digester.addFactoryCreate
             ("struts-config/form-beans/form-bean",
-             //             "org.apache.struts.config.FormBeanConfig",
-             "org.apache.struts.action.ActionFormBean",
-             "className");
+             new ActionFormBeanFactory());
         digester.addSetProperties
             ("struts-config/form-beans/form-bean");
         digester.addSetNext
@@ -223,11 +225,13 @@ public class ConfigRuleSet extends RuleSetBase {
             ("struts-config/global-exceptions/exception/set-property",
              "property", "value");
 
-        digester.addObjectCreate
+        digester.addRule
+            ("struts-config/global-forwards",
+             new SetGlobalForwardClassRule());
+
+        digester.addFactoryCreate
             ("struts-config/global-forwards/forward",
-             //             "org.apache.struts.config.ForwardConfig",
-             "org.apache.struts.action.ActionForward",
-             "className");
+             new GlobalForwardFactory());
         digester.addSetProperties
             ("struts-config/global-forwards/forward");
         digester.addSetNext
@@ -315,6 +319,62 @@ final class PlugInSetPropertyRule extends Rule {
 
 
 /**
+ * Class that sets the name of the class to use when creating action form bean
+ * instances. The value is set on the object on the top of the stack, which
+ * must be a <code>org.apache.struts.config.ModuleConfig</code>.
+ */
+final class SetActionFormBeanClassRule extends Rule {
+
+    public SetActionFormBeanClassRule() {
+        super();
+    }
+
+    public void begin(String namespace, String name, Attributes attributes) throws Exception {
+        String className = attributes.getValue("type");
+        if (className != null) {
+            ModuleConfig mc = (ModuleConfig) digester.peek();
+            mc.setActionFormBeanClass(className);
+        }
+    }
+
+}
+
+
+/**
+ * An object creation factory which creates action form bean instances, taking
+ * into account the default class name, which may have been specified on the
+ * parent element and which is made available through the object on the top
+ * of the stack, which must be a
+ * <code>org.apache.struts.config.ModuleConfig</code>.
+ */
+final class ActionFormBeanFactory extends AbstractObjectCreationFactory {
+
+    public Object createObject(Attributes attributes) {
+
+        // Identify the name of the class to instantiate
+        String className = attributes.getValue("className");
+        if (className == null) {
+            ModuleConfig mc = (ModuleConfig) digester.peek();
+            className = mc.getActionFormBeanClass();
+        }
+
+        // Instantiate the new object and return it
+        Object actionFormBean = null;
+        try {
+            actionFormBean =
+                RequestUtils.applicationInstance(className);
+        } catch (Exception e) {
+            digester.getLogger().error(
+                    "ActionFormBeanFactory.createObject: ", e);
+        }
+
+        return actionFormBean;
+    }
+
+}
+
+
+/**
  * Class that sets the name of the class to use when creating action mapping
  * instances. The value is set on the object on the top of the stack, which
  * must be a <code>org.apache.struts.config.ModuleConfig</code>.
@@ -365,6 +425,62 @@ final class ActionMappingFactory extends AbstractObjectCreationFactory {
         }
 
         return actionMapping;
+    }
+
+}
+
+
+/**
+ * Class that sets the name of the class to use when creating global forward
+ * instances. The value is set on the object on the top of the stack, which
+ * must be a <code>org.apache.struts.config.ModuleConfig</code>.
+ */
+final class SetGlobalForwardClassRule extends Rule {
+
+    public SetGlobalForwardClassRule() {
+        super();
+    }
+
+    public void begin(String namespace, String name, Attributes attributes) throws Exception {
+        String className = attributes.getValue("type");
+        if (className != null) {
+            ModuleConfig mc = (ModuleConfig) digester.peek();
+            mc.setGlobalForwardClass(className);
+        }
+    }
+
+}
+
+
+/**
+ * An object creation factory which creates global forward instances, taking
+ * into account the default class name, which may have been specified on the
+ * parent element and which is made available through the object on the top
+ * of the stack, which must be a
+ * <code>org.apache.struts.config.ModuleConfig</code>.
+ */
+final class GlobalForwardFactory extends AbstractObjectCreationFactory {
+
+    public Object createObject(Attributes attributes) {
+
+        // Identify the name of the class to instantiate
+        String className = attributes.getValue("className");
+        if (className == null) {
+            ModuleConfig mc = (ModuleConfig) digester.peek();
+            className = mc.getGlobalForwardClass();
+        }
+
+        // Instantiate the new object and return it
+        Object globalForward = null;
+        try {
+            globalForward =
+                RequestUtils.applicationInstance(className);
+        } catch (Exception e) {
+            digester.getLogger().error(
+                    "GlobalForwardFactory.createObject: ", e);
+        }
+
+        return globalForward;
     }
 
 }

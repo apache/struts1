@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.41 2004/02/01 16:14:07 rleland Exp $
+     $Id: struts-config_1_1.dtd,v 1.42 2004/02/17 05:51:47 martinc Exp $
 -->
 
 
@@ -135,7 +135,6 @@
      type            Fully qualified Java class to use when instantiating
                      ActionFormBean objects. If specified, the object must be a
                      subclass of the default class type.
-                     DEPRECATED.
 
                      WARNING:  For Struts 1.0, this value is ignored.  You
                      can set the default implementation class name with the
@@ -282,7 +281,6 @@ The "form-bean" element describes a particular form bean, which is a
      type            Fully qualified Java class to use when instantiating
                      ActionForward objects.  If specified, the object must be a
                      subclass of the default class type.
-                     DEPRECATED.
 
                      WARNING:  For Struts 1.0, this value is ignored.  You
                      can set the default implementation class name with the

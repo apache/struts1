@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.9 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.10 2004/02/17 05:51:48 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/02/17 05:51:48 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.config.PlugInConfig;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/01/13 12:48:45 $
+ * @version $Revision: 1.10 $ $Date: 2004/02/17 05:51:48 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -100,7 +100,9 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         super();
         this.prefix = prefix;
         this.actionConfigs = new HashMap();
-        this.actionMappingClass =  "org.apache.struts.action.ActionMapping";
+        this.actionFormBeanClass = "org.apache.struts.action.ActionFormBean";
+        this.actionMappingClass = "org.apache.struts.action.ActionMapping";
+        this.globalForwardClass = "org.apache.struts.action.ActionForward";
         this.configured = false;
         this.controllerConfig = null;
         this.dataSources = new HashMap();
@@ -167,20 +169,37 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         this.prefix = prefix;
     }
 
+    /**
+     * The default class name to be used when creating action form bean
+     * instances.
+     */
+    public String getActionFormBeanClass() {
+        return this.actionFormBeanClass;
+    }
 
     /**
-     * The default class name to be used when creating action mapping
+     * The default class name to be used when creating action form bean
      * instances.
+     *
+     * @param actionFormBeanClass default class name to be used when creating 
+     *                            action form bean instances.
+     */
+    public void setActionFormBeanClass(String actionFormBeanClass) {
+        this.actionFormBeanClass = actionFormBeanClass;
+    }
+
+    /**
+     * The default class name to be used when creating action mapping instances.
      */
     public String getActionMappingClass() {
         return this.actionMappingClass;
     }
 
     /**
-     * The default class name to be used when creating action mapping
-     * instances.
-     * @param actionMappingClass  default class name to be used when creating 
-     * action mapping instances.
+     * The default class name to be used when creating action mapping instances.
+     *
+     * @param actionMappingClass default class name to be used when creating 
+     *                           action mapping instances.
      */
     public void setActionMappingClass(String actionMappingClass) {
         this.actionMappingClass = actionMappingClass;
@@ -258,6 +277,23 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         config.setModuleConfig(this);
         formBeans.put(config.getName(), config);
 
+    }
+
+    /**
+     * The default class name to be used when creating global forward instances.
+     */
+    public String getGlobalForwardClass() {
+        return this.globalForwardClass;
+    }
+
+    /**
+     * The default class name to be used when creating global forward instances.
+     *
+     * @param globalForwardClass default class name to be used when creating 
+     *                           action mapping instances.
+     */
+    public void setGlobalForwardClass(String globalForwardClass) {
+        this.globalForwardClass = globalForwardClass;
     }
 
     /**
@@ -690,10 +726,20 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     protected String prefix = null;
     
     /**
-     * The default class name to be used when creating action mapping
+     * The default class name to be used when creating action form bean
      * instances.
      */
+    protected String actionFormBeanClass = "org.apache.struts.action.ActionFormBean";
+    
+    /**
+     * The default class name to be used when creating action mapping instances.
+     */
     protected String actionMappingClass = "org.apache.struts.action.ActionMapping";
+    
+    /**
+     * The default class name to be used when creating global forward instances.
+     */
+    protected String globalForwardClass = "org.apache.struts.action.ActionForward";
     
     /**
      * Matches action config paths against compiled wildcard patterns

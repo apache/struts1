@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.5 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.6 2004/02/17 05:51:47 martinc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/02/17 05:51:47 $
  *
  * ====================================================================
  *
@@ -69,7 +69,7 @@ package org.apache.struts.config;
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/13 12:48:45 $
+ * @version $Revision: 1.6 $ $Date: 2004/02/17 05:51:47 $
  * @since Struts 1.1
  */
 public interface ModuleConfig {
@@ -107,18 +107,33 @@ public interface ModuleConfig {
      * @param prefix The prefix of the context-relative portion of the request URI.
      */
     public void setPrefix(String prefix);
+
     /**
-     * The default class name to be used when creating action mapping
+     * The default class name to be used when creating action form bean
      * instances.
+     */
+    String getActionFormBeanClass();
+
+    /**
+     * The default class name to be used when creating action form bean
+     * instances.
+     *
+     * @param actionFormBeanClass default class name to be used when creating
+     *                           action form bean instances.
+     */
+    void setActionFormBeanClass(String actionFormBeanClass);
+
+    /**
+     * The default class name to be used when creating action mapping instances.
      */
     String getActionMappingClass();
-    /**
-     * The default class name to be used when creating action mapping
-     * instances.
-     * @param actionMappingClass  default class name to be used when creating action mapping
-     * instances.
-     */
 
+    /**
+     * The default class name to be used when creating action mapping instances.
+     *
+     * @param actionMappingClass default class name to be used when creating
+     *                           action mapping instances.
+     */
     void setActionMappingClass(String actionMappingClass);
 
     /**
@@ -164,6 +179,19 @@ public interface ModuleConfig {
      *  has been frozen
      */
     void addFormBeanConfig(FormBeanConfig config);
+
+    /**
+     * The default class name to be used when creating global forward instances.
+     */
+    String getGlobalForwardClass();
+
+    /**
+     * The default class name to be used when creating global forward instances.
+     *
+     * @param globalForwardClass default class name to be used when creating
+     *                           global forward instances.
+     */
+    void setGlobalForwardClass(String globalForwardClass);
 
     /**
      * Add a new <code>ForwardConfig</code> instance to the set of global
