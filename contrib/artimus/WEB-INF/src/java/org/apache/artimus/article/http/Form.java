@@ -12,7 +12,7 @@ import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 
 /**
@@ -22,7 +22,7 @@ import org.apache.struts.util.BeanUtils;
  * to an internal object that uses native types and implements a business
  * logic interface.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/23 21:41:32 $
  */
 public class Form extends ActionForm {
 
