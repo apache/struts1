@@ -417,7 +417,7 @@
 <section name="4.3.1 DynaActionForm Classes" href="dyna_action_form_classes">
 
     <p>
-    Maintaining a separate concrete ActionForm class for each form in your 
+    Maintaining a separate concrete ActionForm class for each form in your
     Struts application is time-consuming.
     It is particularly frustrating when all the ActionForm does is gather
     and validate simple properties that are passed along to a business
@@ -603,6 +603,12 @@
     To use DynaActionForms with the Struts Validator, specify
     <code>org.apache.struts.validator.ValidatorActionForm</code>
     (or your subclass) as the form-bean class.
+    </p>
+
+    <p>
+    And, of course, while the  DynaActionForm may support various binary types,
+    properties used with the <code>html:text</code> tag should still be
+    String properties.
     </p>
 
 </section>
