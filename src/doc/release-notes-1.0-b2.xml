@@ -41,6 +41,10 @@
     <li>The <code>&lt;html:image&gt;</code> tag now accepts an optional
         <code>border</code> attribute, to define the border with around
         this image.</li>
+    <li>You can now request that the <code>&lt;html:link&gt;</code> tag
+        include any current transaction control token in the generated
+        hyperlink, by specifying the <code>transaction</code> attribute
+        with a value of <code>true</code>.</li>
     </ul>
 
     <p>The following new features have been added to the

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.5 2001/03/06 17:00:50 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/03/06 17:00:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.6 2001/03/10 23:55:38 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/03/10 23:55:38 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -86,7 +87,7 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/03/06 17:00:50 $
+ * @version $Revision: 1.6 $ $Date: 2001/03/10 23:55:38 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -285,6 +286,20 @@ public class LinkTag extends BaseHandlerTag {
     }
 
 
+    /**
+     * Include transaction token (if any) in the hyperlink?
+     */
+    protected boolean transaction = false;
+
+    public boolean getTransaction() {
+        return (this.transaction);
+    }
+
+    public void setTransaction(boolean transaction) {
+        this.transaction = transaction;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -399,6 +414,7 @@ public class LinkTag extends BaseHandlerTag {
 	property = null;
         scope = null;
 	target = null;
+        transaction = false;
 
     }
 
@@ -478,6 +494,26 @@ public class LinkTag extends BaseHandlerTag {
             if (anchor == null)
                 anchor = href.substring(hash + 1);
             href = href.substring(0, hash);
+        }
+
+        // Append the transaction token, if requested and it exists
+        if (transaction) {
+            HttpSession session = pageContext.getSession();
+            String token = null;
+            if (session != null)
+                token =
+                   (String) session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
+            if (token != null) {
+                StringBuffer sb = new StringBuffer(href);
+                if (href.indexOf('?') < 0)
+                    sb.append('?');
+                else
+                    sb.append('&');
+                sb.append(Constants.TOKEN_KEY);
+                sb.append('=');
+                sb.append(token);
+                href = sb.toString();
+            }
         }
 
         // Append a single-parameter name and value, if requested

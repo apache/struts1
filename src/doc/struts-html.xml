@@ -2042,7 +2042,11 @@
                 If a String array is specified, more than one value for the
                 same query parameter name will be created.</p>
 
-                <p>You can also request that an anchor ("#xxx") be added to the
+                <p>Additionally, you can request that the current transaction
+                control token, if any, be included in the generated hyperlink
+                by setting the <code>transaction</code> attribute to
+                <code>true</code>.
+                You can also request that an anchor ("#xxx") be added to the
                 end of the URL that is created by any of the above mechanisms,
                 by using the <code>anchor</code> attribute.</p>
 
@@ -2374,6 +2378,18 @@
                   <p>The window target in which the resource requested by this
                   hyperlink will be displayed, for example in a framed
                   presentation.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>transaction</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>If set to <code>true</code>, any current transaction
+                  control token will be included in the generated hyperlink,
+                  so that it will pass an <code>isTokenValid()</code> test
+                  in the receiving Action.</p>
                   </info>
                 </attribute>
 
