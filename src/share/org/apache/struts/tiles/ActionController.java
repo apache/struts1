@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.3 2003/02/27 19:20:52 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/27 19:20:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.4 2003/07/04 21:21:05 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/04 21:21:05 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,49 +59,52 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
-import org.apache.struts.action.Action;
-
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.Action;
 
 /**
  * Struts wrapper implementation of Controller.
  * This implementation allows to wrap a Struts Action in a Controller.
  */
-public class ActionController implements Controller
-{
-    /** Struts action wrapped. */
-  private Action action;
+public class ActionController implements Controller {
+    
+    /** 
+     * Struts action wrapped. 
+     */
+    private Action action=null;
 
-   /**
-    * Constructor.
-    * @param action Action to be wrapped.
-    */
-   public ActionController( Action action )
-   {
-    this.action = action;
-   }
+    /**
+     * Constructor.
+     * @param action Action to be wrapped.
+     */
+    public ActionController(Action action) {
+        this.action = action;
+    }
 
-   /**
-    * Method associated to a tile and called immediately before tile is included.
-    * This implementation calls a Struts Action. No servlet is set by this method.
-    *
-    * @param tileContext Current tile context.
-    * @param request Current request.
-    * @param response Current response.
-    * @param servletContext Current servlet context.
-    */
-   public void perform(ComponentContext tileContext,
-                       HttpServletRequest request, HttpServletResponse response,
-                       ServletContext servletContext)
-     throws ServletException, IOException
-   {
-   action.perform(null, null, request, response);
-   }
+    /**
+     * Method associated to a tile and called immediately before tile is included.
+     * This implementation calls a Struts Action. No servlet is set by this method.
+     *
+     * @param tileContext Current tile context.
+     * @param request Current request.
+     * @param response Current response.
+     * @param servletContext Current servlet context.
+     */
+    public void perform(
+        ComponentContext tileContext,
+        HttpServletRequest request,
+        HttpServletResponse response,
+        ServletContext servletContext)
+        throws ServletException, IOException {
+            
+        action.perform(null, null, request, response);
+    }
 }
