@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.161 2003/07/08 00:50:54 dgraham Exp $
- * $Revision: 1.161 $
- * $Date: 2003/07/08 00:50:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.162 2003/07/16 04:40:53 dgraham Exp $
+ * $Revision: 1.162 $
+ * $Date: 2003/07/16 04:40:53 $
  *
  * ====================================================================
  *
@@ -101,7 +101,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ConfigRuleSet;
-import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -230,7 +229,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.161 $ $Date: 2003/07/08 00:50:54 $
+ * @version $Revision: 1.162 $ $Date: 2003/07/16 04:40:53 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -674,7 +673,7 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Parse the configuration for this module
-        //@todo & FIXME replace with a FactoryMethod
+        // TODO Replace with a FactoryMethod
         ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
         ModuleConfig config = factoryObject.createModuleConfig(prefix);
 
@@ -698,8 +697,12 @@ public class ActionServlet extends HttpServlet {
                 break;
             }
             
-            this.parseModuleConfigFile(prefix, paths, config, digester, path);
+            this.parseModuleConfigFile(digester, path);
         }
+        
+        getServletContext().setAttribute(
+            Globals.MODULE_KEY + config.getPrefix(),
+            config);
 
         // Force creation and registration of DynaActionFormClass instances
         // for all dynamic form beans we wil be using
@@ -719,26 +722,18 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Return the completed configuration object
-        //config.freeze();  // Now done after plugins init
-        return (config);
+        return config;
 
     }
 
     /**
      * Parses one module config file.
-     * @param prefix
-     * @param paths
-     * @param config
      * @param digester Digester instance that does the parsing
      * @param path The path to the config file to parse.
      * @throws UnavailableException
+     * @since Struts 1.2
      */
-    private void parseModuleConfigFile(
-        String prefix,
-        String paths,
-        ModuleConfig config,
-        Digester digester,
-        String path)
+    protected void parseModuleConfigFile(Digester digester, String path)
         throws UnavailableException {
 
         InputStream input = null;
@@ -748,14 +743,13 @@ public class ActionServlet extends HttpServlet {
             input = getServletContext().getResourceAsStream(path);
             is.setByteStream(input);
             digester.parse(is);
-            getServletContext().setAttribute(Globals.MODULE_KEY + prefix, config);
             
         } catch (MalformedURLException e) {
-            handleConfigException(paths, e);
+            handleConfigException(path, e);
         } catch (IOException e) {
-            handleConfigException(paths, e);
+            handleConfigException(path, e);
         } catch (SAXException e) {
-            handleConfigException(paths, e);
+            handleConfigException(path, e);
         } finally {
             if (input != null) {
                 try {
@@ -769,14 +763,16 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * Simplifies exception handling in the parseModuleConfigFile() method.
-     * @param paths
+     * @param path
      * @param e
      * @throws UnavailableException
      */
-    private void handleConfigException(String paths, Exception e)
+    private void handleConfigException(String path, Exception e)
         throws UnavailableException {
-        log.error(internal.getMessage("configParse", paths), e);
-        throw new UnavailableException(internal.getMessage("configParse", paths));
+
+        String msg = internal.getMessage("configParse", path);
+        log.error(msg, e);
+        throw new UnavailableException(msg);
     }
 
     /**
