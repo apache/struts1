@@ -114,7 +114,16 @@
         <code>com.mycompany.mypackage.MyResources</code>. 
       </p>
 <pre>
-&lt;servlet><br/>  &lt;servlet-name>action&lt;/servlet-name><br/>  &lt;servlet-class>org.apache.struts.action.ActionServlet&lt;/servlet-class><br/>  &lt;init-param><br/>    &lt;param-name>application&lt;/param-name><br/>    &lt;param-value>com.mycompany.mypackage.MyResources&lt;/param-value><br/>  &lt;/init-param><br/>  &lt;.../><br/>&lt;/servlet></pre>
+&lt;servlet>
+  &lt;servlet-name>action&lt;/servlet-name>
+  &lt;servlet-class>org.apache.struts.action.ActionServlet&lt;/servlet-class>
+  &lt;init-param>
+    &lt;param-name>application&lt;/param-name>
+    &lt;param-value>com.mycompany.mypackage.MyResources&lt;/param-value>
+  &lt;/init-param>
+  &lt;.../>
+&lt;/servlet>
+</pre>
      
       <p>
         The important thing is for the resource bundle to be found on the 
@@ -144,7 +153,9 @@
        </p>
       
 <pre>
-&lt;input type="text" name="username"<br/>      value="&lt;%= loginBean.getUsername() %&gt;"/&gt;</pre>
+&lt;input type="text" name="username"
+      value="&lt;%= loginBean.getUsername() %&gt;"/&gt;
+</pre>
       
       <p>
         which is difficult to type correctly, confuses HTML developers who are
@@ -155,7 +166,8 @@
       </p>
 
 <pre>
-&lt;html:text property="username"/&gt;</pre>
+&lt;html:text property="username"/&gt;
+</pre>
 
       <p> 
         with no need to explicitly refer to the JavaBean from which the initial
@@ -180,15 +192,56 @@
         </p>       
 <hr/>
 <pre>
-&lt;%@ page language="java" %&gt;<br/>&lt;%@ taglib uri="/WEB-INF/struts-html.tld"<br/>        prefix="html" %&gt;<br/>&lt;%@ taglib uri="/WEB-INF/struts-bean.tld"<br/>        prefix="bean" %&gt;
-&lt;html:html&gt;<br/>&lt;head&gt;<br/>&lt;title&gt;<br/>  &lt;bean:message key="logon.title"/&gt;<br/>&lt;/title&gt;<br/>
-&lt;body bgcolor="white"&gt;<br/>&lt;html:errors/&gt;<br/>
-&lt;html:form name="logonForm" action="logon.do"<br/>  type="org.apache.struts.example.LogonForm"&gt;<br/>&lt;table border="0" width="100%"&gt;<br/>
-  &lt;tr&gt;<br/>    &lt;th align="right"&gt;<br/>      &lt;html:message key="prompt.username"/&gt;<br/>    &lt;/th&gt;<br/>    &lt;td align="left"&gt;<br/>      &lt;html:text property="username"<br/>                     size="16"/&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;
-  &lt;tr&gt;<br/>    &lt;th align="right"&gt;<br/>      &lt;html:message key="prompt.password"/&gt;<br/>    &lt;/th&gt;<br/>    &lt;td align="left"&gt;<br/>      &lt;html:password property="password"<br/>                         size="16"/&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;
-  &lt;tr&gt;<br/>
-    &lt;td align="right"&gt;<br/>      &lt;struts:submit&gt;<br/>        &lt;bean:message key="button.submit"/&gt;<br/>      &lt;/struts:submit&gt;<br/>    &lt;/td&gt;<br/>    &lt;td align="right"&gt;<br/>      &lt;html:reset&gt;<br/>        &lt;bean:message key="button.reset"/&gt;<br/>      &lt;/html:reset&gt;<br/>    &lt;/td&gt;<br/>  &lt;/tr&gt;<br/>&lt;/table&gt;<br/>&lt;/html:form&gt;
-&lt;/body&gt;<br/>&lt;/html:html&gt;</pre>         
+&lt;%@ page language="java" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-html.tld"
+        prefix="html" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-bean.tld"
+        prefix="bean" %&gt;
+&lt;html:html&gt;
+&lt;head&gt;
+&lt;title&gt;
+  &lt;bean:message key="logon.title"/&gt;
+&lt;/title&gt;
+&lt;body bgcolor="white"&gt;
+&lt;html:errors/&gt;
+&lt;html:form name="logonForm" action="logon.do"
+  type="org.apache.struts.example.LogonForm"&gt;
+&lt;table border="0" width="100%"&gt;
+  &lt;tr&gt;
+    &lt;th align="right"&gt;
+      &lt;html:message key="prompt.username"/&gt;
+    &lt;/th&gt;
+    &lt;td align="left"&gt;
+      &lt;html:text property="username"
+                     size="16"/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th align="right"&gt;
+      &lt;html:message key="prompt.password"/&gt;
+    &lt;/th&gt;
+    &lt;td align="left"&gt;
+      &lt;html:password property="password"
+                         size="16"/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align="right"&gt;
+      &lt;struts:submit&gt;
+        &lt;bean:message key="button.submit"/&gt;
+      &lt;/struts:submit&gt;
+    &lt;/td&gt;
+    &lt;td align="right"&gt;
+      &lt;html:reset&gt;
+        &lt;bean:message key="button.reset"/&gt;
+      &lt;/html:reset&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/html:form&gt;
+&lt;/body&gt;
+&lt;/html:html&gt;
+</pre>
 <hr/>
         <p>
           The following items illustrate the key features of form handling in Struts,
@@ -261,8 +314,17 @@
 
 <hr/>          
 <pre>
-&lt;%@page language="java"><br/>&lt;%@taglib uri="/WEB-INF/struts-html.tld"<br/>       prefix="html"><br/>
-&lt;html:form action="uploadAction.do"><br/>  Please Input Text:<br/>  &lt;html:text property="myText">&lt;br/><br/>  Please Input The File You Wish to Upload:&lt;br/><br/>  &lt;html:file property="myFile">&lt;br /><br/>  &lt;html:submit /><br/>&lt;/html:form></pre>
+&lt;%@page language="java">
+&lt;%@taglib uri="/WEB-INF/struts-html.tld"
+       prefix="html">
+&lt;html:form action="uploadAction.do">
+  Please Input Text:
+  &lt;html:text property="myText">&lt;br/>
+  Please Input The File You Wish to Upload:&lt;br/>
+  &lt;html:file property="myFile">&lt;br />
+  &lt;html:submit />
+&lt;/html:form>
+</pre>
 <hr/>
         <p>
           The next step is to create your ActionForm bean:
@@ -270,12 +332,28 @@
 
 <hr/>
 <pre>
-import javax.servlet.http.HttpServletRequest;<br/>import javax.servlet.http.HttpServletResponse;<br/>import org.apache.struts.action.ActionForm;<br/>import org.apache.struts.action.ActionMapping;<br/>import org.apache.struts.upload.FormFile;
-public class UploadForm extends ActionForm {<br/>  protected String myText;<br/>  protected FormFile myFile;
-  public void setMyText(String text) {<br/>    myText = text;<br/>  }
-  public String getMyText() {<br/>    return myText;<br/>  }
-  public void setMyFile(FormFile file) {<br/>    myFile = file;<br/>  }
-  public FormFile getMyFile() {<br/>    return myFile;<br/>  }<br/>}</pre>
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
+public class UploadForm extends ActionForm {
+  protected String myText;
+  protected FormFile myFile;
+  public void setMyText(String text) {
+    myText = text;
+  }
+  public String getMyText() {
+    return myText;
+  }
+  public void setMyFile(FormFile file) {
+    myFile = file;
+  }
+  public FormFile getMyFile() {
+    return myFile;
+  }
+}
+</pre>
 <hr/>        
         <p>
           Look at the <a href="../api/index.html">javadocs</a> for FormFile to see the
@@ -363,7 +441,10 @@ public class UploadForm extends ActionForm {<br/>  protected String myText;<br/>
           class:
         </p>
 
-<pre>public ActionErrors<br/>  validate(ActionMapping mapping,<br/>    HttpServletRequest request);</pre>
+<pre>public ActionErrors
+  validate(ActionMapping mapping,
+    HttpServletRequest request);
+</pre>
         
         <p>
           The validate() method is called by the controller servlet after the bean

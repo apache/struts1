@@ -226,10 +226,33 @@
         from within a Action perform method.
       </p>
 <pre>
-public ActionForward<br/>       perform(ActionMapping mapping,<br/>               ActionForm form,<br/>               HttpServletRequest request,<br/>               HttpServletResponse response)<br/>{<br/>
-  try {<br/>    javax.sql.DataSource dataSource =<br/>      servlet.findDataSource(null);<br/>    java.sql.Connection myConnection =<br/>      dataSource.getConnection();<br/>
-    //do what you wish with myConnection<br/>  } catch (SQLException sqle) {<br/>    getServlet().log("Connection.process", sqle);<br/>  } finally {<br/>
-    //enclose this in a finally block to make<br/>    //sure the connection is closed<br/>    try {<br/>      myConnection.close();<br/>    } catch (SQLException e) {<br/>      getServlet().log("Connection.close", e);<br/>    }<br/>  }<br/>}<br/></pre>
+public ActionForward
+       perform(ActionMapping mapping,
+               ActionForm form,
+               HttpServletRequest request,
+               HttpServletResponse response)
+{
+ try {
+   javax.sql.DataSource dataSource =
+     servlet.findDataSource(null);
+   java.sql.Connection myConnection =
+     dataSource.getConnection();
+
+   //do what you wish with myConnection
+ } catch (SQLException sqle) {
+   getServlet().log("Connection.process", sqle);
+ } finally {
+
+   //enclose this in a finally block to make
+   //sure the connection is closed
+   try {
+     myConnection.close();
+   } catch (SQLException e) {
+     getServlet().log("Connection.close", e);
+   }
+ }
+}
+</pre>
       
       <p align="center">
         Next: <a href="building_view.html">Building View Components</a>
