@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedOptionsTag.java,v 1.5 2002/11/16 04:38:36 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 04:38:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedOptionsTag.java,v 1.6 2003/02/28 05:15:06 arron Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/28 05:15:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,10 @@
  */
 package org.apache.struts.taglib.nested.html;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.Tag;
 
+import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.taglib.html.OptionsTag;
 import org.apache.struts.taglib.nested.NestedNameSupport;
 import org.apache.struts.taglib.nested.NestedPropertyHelper;
@@ -70,7 +71,7 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
  * NestedOptionsTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/11/16 04:38:36 $
+ * @version $Revision: 1.6 $ $Date: 2003/02/28 05:15:06 $
  */
 public class NestedOptionsTag extends OptionsTag implements NestedNameSupport {
 
@@ -81,66 +82,66 @@ public class NestedOptionsTag extends OptionsTag implements NestedNameSupport {
    *             This is in the hands of the super class.
    */
   public int doStartTag() throws JspException {
+    // get the original properties
+    originalName = getName();
+    originalProperty = getProperty();
+    originalLabelProperty = getLabelProperty();
 
-    /* singleton tag implementations will need the original properties to be
-       set before running */
-    super.setProperty(originalProperty);
-    super.setLabelProperty(originalLabelProperty);
-    super.setName(NestedPropertyHelper.getNestedNameProperty(this));
+    // request
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
 
-    /* let the NestedHelper set the properties it can */
-    isNesting = true;
-    Tag pTag = NestedPropertyHelper.getNestingParentTag(this);
-    setProperty(NestedPropertyHelper.getNestedProperty(getProperty(), pTag));
-
-    /* only set the label property if we're meant to */
+    // if we have a label property
     if (originalLabelProperty != null) {
-      setLabelProperty(NestedPropertyHelper.getNestedProperty(getLabelProperty(),
-                                                              pTag));
+      // do the label property first
+      if (getName() == null|| Constants.BEAN_KEY.equals(getName())) {
+        super.setLabelProperty(NestedPropertyHelper.getAdjustedProperty(request,
+                                                         originalLabelProperty));
+      } else {
+          super.setLabelProperty(originalLabelProperty);
+      }
     }
 
-    /* finished setting, properties can be set as per usual. */
-    isNesting = false;
+    // set the other properties
+    NestedPropertyHelper.setNestedProperties(request, this);
 
-    /* do the tag */
+
+
+    // let the super do it's thing
     return super.doStartTag();
   }
 
-
-  /** this is overridden so that properties being set by the JSP page aren't
-   * written over by those needed by the extension. If the tag instance is
-   * re-used by the JSP, the tag can set the property back to that set by the
-   * JSP page.
-   *
-   * @param newProperty new property value
+  /**
+   * Complete the processing of the tag. The nested tags here will restore
+   * all the original value for the tag itself and the nesting context.
+   * @return int to describe the next step for the JSP processor
+   * @throws JspException for the bad things JSP's do
    */
-  public void setProperty(String newProperty) {
-    /* let the real tag do its thang */
-    super.setProperty(newProperty);
-    /* if it's the JSP setting it, remember the value */
-    if (!isNesting) {
-      originalProperty = newProperty;
-    }
+  public int doEndTag() throws JspException {
+    // do the super's ending part
+    int i = super.doEndTag();
+
+    // reset the properties
+    setName(originalName);
+    setProperty(originalProperty);
+    setLabelProperty(originalLabelProperty);
+
+    // continue
+    return i;
   }
 
-
-  /** This method is overridden for the same reasons as the
-   * <code>setProperty()</code> method above.
-   *
-   * @param newProperty new value to assign to the "labelProperty" property.
+  /**
+   * Release the tag's resources and reset the values.
    */
-  public void setLabelProperty(String newProperty) {
-    /* let the real tag do its thang */
-    super.setLabelProperty(newProperty);
-    /* if it's the JSP setting it, remember the value */
-    if (!isNesting) {
-      originalLabelProperty = newProperty;
-    }
+  public void release() {
+    super.release();
+    // reset the originals
+    originalName = null;
+    originalProperty = null;
+    originalLabelProperty = null;
   }
 
-
-  /* hold original property */
+  /* the usual private member variables */
+  private String originalName = null;
   private String originalProperty = null;
   private String originalLabelProperty = null;
-  private boolean isNesting = false;
 }

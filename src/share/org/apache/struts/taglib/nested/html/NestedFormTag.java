@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.8 2002/11/16 04:38:36 jmitchell Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/16 04:38:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.9 2003/02/28 05:15:06 arron Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/02/28 05:15:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,30 +63,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.taglib.html.FormTag;
-import org.apache.struts.taglib.nested.NestedParentSupport;
+import org.apache.struts.taglib.nested.NestedNameSupport;
 import org.apache.struts.taglib.nested.NestedPropertyHelper;
-import org.apache.struts.taglib.nested.NestedReference;
 
 /**
  * NestedFormTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.8 $ $Date: 2002/11/16 04:38:36 $
+ * @version $Revision: 1.9 $ $Date: 2003/02/28 05:15:06 $
  */
-public class NestedFormTag extends FormTag implements NestedParentSupport {
+public class NestedFormTag extends FormTag implements NestedNameSupport {
 
   /**
-   * The only added property to the class. For use in proper nesting.
-   * @return String value of the property and the current index.
+   * Get the string value of the "property" property.
+   * @return the property property
    */
-  public String getNestedProperty() {
-    return "";
-  }
-
   public String getProperty() {
     return "";
   }
 
+  /**
+   * Setter for the "property" property
+   * @param newProperty new value for the property
+   */
   public void setProperty(String newProperty) {}
 
 
@@ -96,15 +95,19 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
    * @return int JSP continuation directive.
    */
   public int doStartTag() throws JspException {
-    /* store original result */
+    // store original result
     int temp = super.doStartTag();
 
-    /* set the details */
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-    NestedReference nr = new NestedReference(getBeanName(), getNestedProperty());
-    NestedPropertyHelper.setIncludeReference(request, nr);
+    // original nesting details
+    originalNesting = NestedPropertyHelper.getCurrentProperty(request);
+    originalNestingName = NestedPropertyHelper.getCurrentName(request, this);
 
-    /* continue */
+    // some new details
+    NestedPropertyHelper.setProperty(request, null);
+    NestedPropertyHelper.setName(request, super.getBeanName());
+
+    // continue
     return temp;
   }
 
@@ -113,14 +116,35 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
    * @return int JSP continuation directive.
    */
   public int doEndTag() throws JspException {
-    /* store original result */
+    // super result
     int temp = super.doEndTag();
 
-    /* all done. clean up */
+    // all done. clean up
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-    NestedPropertyHelper.setIncludeReference(request, null);
+    // reset the original nesting values
+    if (originalNesting == null) {
+      NestedPropertyHelper.deleteReference(request);
+    } else {
+      NestedPropertyHelper.setProperty(request, originalNesting);
+      NestedPropertyHelper.setName(request, originalNestingName);
+    }
 
-    /* return super result */
+    // return the super result
     return temp;
   }
+
+  /**
+   * Release the tag's resources and reset the values.
+   */
+  public void release() {
+    // let the super release
+    super.release();
+    // reset the original value place holders
+    originalNesting = null;
+    originalNestingName = null;
+  }
+
+  // original nesting environment
+  private String originalNesting = null;
+  private String originalNestingName = null;
 }
