@@ -38,8 +38,8 @@ import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.commons.validator.ValidatorUtil;
 import org.apache.commons.validator.Var;
+import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.component.FormComponent;
@@ -56,7 +56,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * to reflect differences in the way JavaServer Faces renders field
  * identifiers.
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.5 $ $Date: 2004/06/08 19:59:38 $
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
 
@@ -275,7 +275,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         Locale locale = RequestUtils.retrieveUserLocale(this.pageContext, null);
 
-        Form form = resources.get(locale, formName);
+        Form form = resources.getForm(locale, formName);
         if (form != null) {
             if ("true".equalsIgnoreCase(dynamicJavascript)) {
                 MessageResources messages =
@@ -419,7 +419,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                     "this."
                                         + varName
                                         + "="
-                                        + ValidatorUtil.replace(
+                                        + ValidatorUtils.replace(
                                             varValue,
                                             "\\",
                                             "\\\\")
@@ -429,7 +429,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                     "this."
                                         + varName
                                         + "=/"
-                                        + ValidatorUtil.replace(
+                                        + ValidatorUtils.replace(
                                             varValue,
                                             "\\",
                                             "\\\\")
@@ -439,7 +439,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                     "this."
                                         + varName
                                         + "='"
-                                        + ValidatorUtil.replace(
+                                        + ValidatorUtils.replace(
                                             varValue,
                                             "\\",
                                             "\\\\")
@@ -450,7 +450,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                     "this."
                                         + varName
                                         + "=/"
-                                        + ValidatorUtil.replace(
+                                        + ValidatorUtils.replace(
                                             varValue,
                                             "\\",
                                             "\\\\")
@@ -460,7 +460,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                     "this."
                                         + varName
                                         + "='"
-                                        + ValidatorUtil.replace(
+                                        + ValidatorUtils.replace(
                                             varValue,
                                             "\\",
                                             "\\\\")
