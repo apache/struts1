@@ -13,6 +13,11 @@
         <item name="TODO List"          href="todo.html"/>
     </menu>
 
+    <menu name="Developer Guides">
+        <item name="Digester"
+              href="api/org/apache/struts/digester/package-summary.html#package_description"/>
+    </menu>
+
     <menu name="New Tag Library Reference">
         <item name="Bean Tags"          href="struts-bean.html"/>
         <item name="Form Tags"          href="struts-form.html"/>
