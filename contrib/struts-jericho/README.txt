@@ -54,6 +54,6 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Integrate Tiles definitions into core configuration.
 
-* Adopt Struts Menu as an standard option, like Validator and Tiles.
+* Adopt Struts Workflow and Struts Menu as standard options, like Validator and Tiles.
 
 ###
