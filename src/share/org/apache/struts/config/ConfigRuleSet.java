@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.10 2002/03/10 01:23:30 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/03/10 01:23:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.11 2002/03/23 01:14:04 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/03/23 01:14:04 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/03/10 01:23:30 $
+ * @version $Revision: 1.11 $ $Date: 2002/03/23 01:14:04 $
  * @since Struts 1.1
  */
 
@@ -257,18 +257,17 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addObjectCreate
             ("struts-config/plug-in",
-             null, // Class name MUST be specified in the element
-             "className");
+             "org.apache.struts.config.PlugInConfig");
         digester.addSetProperties
             ("struts-config/plug-in");
         digester.addSetNext
             ("struts-config/plug-in",
-             "addPlugIn",
-             "org.apache.struts.action.PlugIn");
+             "addPlugInConfig",
+             "org.apache.struts.config.PlugInConfig");
 
-        digester.addSetProperty
+        digester.addRule
             ("struts-config/plug-in/set-property",
-             "property", "value");
+             new PlugInSetPropertyRule(digester));
 
     }
 
@@ -291,6 +290,26 @@ final class AddDataSourcePropertyRule extends Rule {
         DataSourceConfig dsc = (DataSourceConfig) digester.peek();
         dsc.addProperty(attributes.getValue("property"),
                         attributes.getValue("value"));
+    }
+
+}
+
+
+/**
+ * Class that records the name and value of a configuration property to be
+ * used in configuring a <code>PlugIn</code> instance when instantiated.
+ */
+
+final class PlugInSetPropertyRule extends Rule {
+
+    public PlugInSetPropertyRule(Digester digester) {
+        super(digester);
+    }
+
+    public void begin(Attributes attributes) throws Exception {
+        PlugInConfig plugInConfig = (PlugInConfig) digester.peek();
+        plugInConfig.addProperty(attributes.getValue("property"),
+                                 attributes.getValue("value"));
     }
 
 }

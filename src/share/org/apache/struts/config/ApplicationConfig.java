@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.13 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.14 2002/03/23 01:14:04 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/03/23 01:14:04 $
  *
  * ====================================================================
  *
@@ -68,7 +68,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
-import org.apache.struts.action.PlugIn;
  
 
 
@@ -82,7 +81,7 @@ import org.apache.struts.action.PlugIn;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/03/22 23:47:18 $
+ * @version $Revision: 1.14 $ $Date: 2002/03/23 01:14:04 $
  * @since Struts 1.1
  */
 
@@ -341,17 +340,17 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
-     * Add a newly configured {@link PlugIn} instance to the set of
+     * Add a newly configured {@link PlugInConfig} instance to the set of
      * plug in modules for this application.
      *
-     * @param plugIn The new configured plugIn module
+     * @param plugInConfig The new configuration instance to be added
      */
-    public void addPlugIn(PlugIn plugIn) {
+    public void addPlugInConfig(PlugInConfig plugInConfig) {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
-        plugIns.add(plugIn);
+        plugIns.add(plugInConfig);
 
     }
 
@@ -512,10 +511,10 @@ public class ApplicationConfig implements Serializable {
      * Return the configured plug in modules for this application.  If there
      * are none, a zero-length array is returned.
      */
-    public PlugIn[] findPlugIns() {
+    public PlugInConfig[] findPlugInConfigs() {
 
-        PlugIn results[] = new PlugIn[plugIns.size()];
-        return ((PlugIn[]) plugIns.toArray(results));
+        PlugInConfig results[] = new PlugInConfig[plugIns.size()];
+        return ((PlugInConfig[]) plugIns.toArray(results));
 
     }
 
@@ -559,6 +558,11 @@ public class ApplicationConfig implements Serializable {
         MessageResourcesConfig[] mrconfigs = findMessageResourcesConfigs();
         for (int i = 0; i < mrconfigs.length; i++) {
             mrconfigs[i].freeze();
+        }
+
+        PlugInConfig[] piconfigs = findPlugInConfigs();
+        for (int i = 0; i < piconfigs.length; i++) {
+            piconfigs[i].freeze();
         }
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.37 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.37 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.38 2002/03/23 01:14:04 craigmcc Exp $
+ * $Revision: 1.38 $
+ * $Date: 2002/03/23 01:14:04 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.37 $ $Date: 2002/03/22 23:47:18 $
+ * @version $Revision: 1.38 $ $Date: 2002/03/23 01:14:04 $
  */
 
 public class Action {
@@ -255,6 +255,16 @@ public class Action {
      */
     public static final String MULTIPART_KEY =
         "org.apache.struts.action.mapping.multipartclass";
+
+
+    /**
+     * <p>The base of the context attributes key under which an array of
+     * <code>PlugIn</code> instances will be stored.  This
+     * will be suffixed with the actual application prefix (including the
+     * leading "/" character) to form the actual attributes key.</p>
+     */
+    public static final String PLUG_INS_KEY =
+        "org.apache.struts.action.PLUG_INS";
 
 
     /**

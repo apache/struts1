@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.98 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.98 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.99 2002/03/23 01:14:04 craigmcc Exp $
+ * $Revision: 1.99 $
+ * $Date: 2002/03/23 01:14:04 $
  *
  * ====================================================================
  *
@@ -96,6 +96,7 @@ import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
+import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.GenericDataSource;
@@ -269,7 +270,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.98 $ $Date: 2002/03/22 23:47:18 $
+ * @version $Revision: 1.99 $ $Date: 2002/03/23 01:14:04 $
  */
 
 public class ActionServlet
@@ -655,10 +656,14 @@ public class ActionServlet
                 } catch (Throwable t) {
                     ;
                 }
-                PlugIn plugIns[] = config.findPlugIns();
-                for (int i = 0; i < plugIns.length; i++) {
-                    int j = plugIns.length - (i + 1);
-                    plugIns[j].destroy();
+                PlugIn plugIns[] = (PlugIn[])
+                    getServletContext().getAttribute
+                    (Action.PLUG_INS_KEY + config.getPrefix());
+                if (plugIns != null) {
+                    for (int i = 0; i < plugIns.length; i++) {
+                        int j = plugIns.length - (i + 1);
+                        plugIns[j].destroy();
+                    }
                 }
             }
         }
@@ -912,10 +917,22 @@ public class ActionServlet
                 "' plug ins");
         }
 
-        PlugIn plugIns[] = config.findPlugIns();
+        PlugInConfig plugInConfigs[] = config.findPlugInConfigs();
+        PlugIn plugIns[] = new PlugIn[plugInConfigs.length];
         for (int i = 0; i < plugIns.length; i++) {
-            plugIns[i].init(this, config);
+            try {
+                plugIns[i] = (PlugIn)
+                    RequestUtils.applicationInstance
+                    (plugInConfigs[i].getClassName());;
+                plugIns[i].init(this, config);
+            } catch (Exception e) {
+                throw new UnavailableException
+                    (internal.getMessage("plugIn.init",
+                                         plugInConfigs[i].getClassName()));
+            }
         }
+        getServletContext().setAttribute
+            (Action.PLUG_INS_KEY + config.getPrefix(), plugIns);
 
 
     }
