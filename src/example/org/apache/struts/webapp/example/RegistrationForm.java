@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.8 2003/08/16 18:29:09 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/08/16 18:29:09 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.9 2003/09/04 16:03:42 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/09/04 16:03:42 $
  *
  * ====================================================================
  *
@@ -91,7 +91,7 @@ import org.apache.struts.validator.ValidatorForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2003/08/16 18:29:09 $
+ * @version $Revision: 1.9 $ $Date: 2003/09/04 16:03:42 $
  */
 
 public final class RegistrationForm extends ValidatorForm  {
@@ -247,7 +247,7 @@ public final class RegistrationForm extends ValidatorForm  {
     /**
      * Set the confirmation password.
      *
-     * @param password The new confirmation password
+     * @param password2 The new confirmation password
      */
     public void setPassword2(String password2) {
 

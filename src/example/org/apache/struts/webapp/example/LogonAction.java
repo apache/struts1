@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.17 2003/08/23 17:04:46 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/08/23 17:04:46 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.18 2003/09/04 16:03:42 husted Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/09/04 16:03:42 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.ModuleException;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2003/08/23 17:04:46 $
+ * @version $Revision: 1.18 $ $Date: 2003/09/04 16:03:42 $
  */
 public final class LogonAction extends Action {
 
@@ -198,7 +198,7 @@ public final class LogonAction extends Action {
         }
 
         // Look up and return the specified user
-        return ((User) database.findUser(username));
+        return (database.findUser(username));
 
     }
 

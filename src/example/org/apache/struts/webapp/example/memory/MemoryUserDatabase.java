@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.3 2003/01/11 03:08:23 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/01/11 03:08:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.4 2003/09/04 16:03:43 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/09/04 16:03:43 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.xml.sax.Attributes;
  * database backed by an XML data file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/01/11 03:08:23 $
+ * @version $Revision: 1.4 $ $Date: 2003/09/04 16:03:43 $
  * @since Struts 1.1
  */
 
@@ -156,7 +156,7 @@ public final class MemoryUserDatabase implements UserDatabase {
      *
      * @param username Username of the new user
      *
-     * @exception IllegalArgumentExceptionif the specified username
+     * @exception IllegalArgumentException if the specified username
      *  is not unique
      */
     public User createUser(String username) {

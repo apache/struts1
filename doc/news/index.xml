@@ -65,7 +65,7 @@
 <hr size="1" noshade=""/>
 -->
 
-        <h3><a name=""></a>29 Aug 2003 - Core J2EE Patterns -- Expanded and Updated in Second Edition</h3>
+        <h3><a name="20030829"></a>29 Aug 2003 - Core J2EE Patterns -- Expanded and Updated in Second Edition</h3>
         <p>
             From the Back Cover:
         </p>
@@ -131,6 +131,29 @@
             Subsequent votes may reclassify the release, either to promote it or to demote it, as need be.
         </p>
         <hr size="1" noshade=""/>
+
+        <h3><a name="20030828"></a> - ASF Protest Euopean Software Patentability Rule Changes</h3>
+        <p>
+            On September 1st the European Commission is going to vote a revised version of the European Patentability
+            rules.
+            The proposed revision contains a set of serious challenges to Open Source development since regulation
+            regarding software patents will be broadly extended and might forbid independent development of innovative
+            (Open Source and not) software-based solutions.
+        </p>
+        <p>
+            The European Open Source community is very concerned about the upcoming new regulation and has organized a
+            demo protest for August 27, asking Open Source supporting sites to change their home pages to let everyone
+            know what is going on at the European Parliament.
+            The Apache Software Foundation supports this initiative.
+            To show its support, a protest announcement is being displayed on all top-level home pages from
+            Aug 28 through Sep 1.
+        </p>
+        <p>
+            For further information please see <a href="http://swpat.ffii.org">http://swpat.ffii.org</a> and
+            <a href="http://petition.eurolinux.org">http://petition.eurolinux.org</a>.
+        </p>
+        <hr size="1" noshade=""/>
+
 
         <h3><a name="20030825"></a>25 Aug 2003 - Model-driven Development for Struts/EJB</h3>
         <p>

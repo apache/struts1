@@ -20,7 +20,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * from the current session.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/10/09 21:59:03 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/04 16:03:41 $
  */
 public final class RecreateSessionAction extends BaseAction {
 
@@ -29,7 +29,7 @@ public final class RecreateSessionAction extends BaseAction {
      * Creates a new session, perserving any prior Locale attribute.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The response we are creating
      * @todo Add support for multiple attributes

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.14 2003/08/16 18:29:09 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/08/16 18:29:09 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.15 2003/09/04 16:03:42 husted Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/09/04 16:03:42 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/08/16 18:29:09 $
+ * @version $Revision: 1.15 $ $Date: 2003/09/04 16:03:42 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -104,7 +104,7 @@ public final class SaveSubscriptionAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *

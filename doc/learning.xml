@@ -112,7 +112,7 @@
     </p>
 
     <p>
-        The <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages%20">Struts Wiki</a> is a
+        The <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages%20"><b>Struts Wiki</b></a> is a
         relatively new addition to the Struts documentation.
         All members of the Struts Community are invited to post comments to the Wiki, as well as the User List.
         The Wiki is best suited for threads that you think are of lasting importance, while the mailing lists are best
@@ -156,7 +156,7 @@
         <li>
             Documentation - The Struts documentation bundle, as seen on the website.</li>
         <li>
-            <b>MailReader</b> - The original Struts example application. Try me first.</li>
+            <b>MailReader</b> - The original Struts example application. <i>Try me first!</i></li>
         <li>
             Tiles-Doc - Extensive demonstration of Tiles extension.</li>
         <li>

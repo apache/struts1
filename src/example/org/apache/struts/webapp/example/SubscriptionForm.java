@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.5 2003/08/16 18:29:09 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/08/16 18:29:09 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.6 2003/09/04 16:03:42 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/09/04 16:03:42 $
  *
  * ====================================================================
  *
@@ -85,10 +85,10 @@ import org.apache.struts.action.ActionMessage;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/08/16 18:29:09 $
+ * @version $Revision: 1.6 $ $Date: 2003/09/04 16:03:42 $
  */
 
-public final class SubscriptionForm extends ActionForm  {
+public final class SubscriptionForm extends ActionForm {
 
 
     // --------------------------------------------------- Instance Variables

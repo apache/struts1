@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/UserDatabase.java,v 1.1 2002/03/05 04:23:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/05 04:23:57 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/UserDatabase.java,v 1.2 2003/09/04 16:03:42 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/09/04 16:03:42 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ package org.apache.struts.webapp.example;
  * will be created to perform the actual I/O that is required.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/05 04:23:57 $
+ * @version $Revision: 1.2 $ $Date: 2003/09/04 16:03:42 $
  * @since Struts 1.1
  */
 
@@ -87,7 +87,7 @@ public interface UserDatabase {
      *
      * @param username Username of the new user
      *
-     * @exception IllegalArgumentExceptionif the specified username
+     * @exception IllegalArgumentException if the specified username
      *  is not unique
      */
     public User createUser(String username);
