@@ -1,7 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.5 2003/07/04 20:34:53 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/04 20:34:53 $
+ *
+ * ====================================================================
+ *
  *  The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999 The Apache Software Foundation.  All rights
+ *  Copyright (c) 2003 The Apache Software Foundation.  All rights
  *  reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -54,36 +60,36 @@
 
 package org.apache.struts.validator.validwhen;
 
-import org.apache.commons.validator.*;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionError;
-import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.validator.Resources;
 import java.io.StringReader;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.validator.Field;
+import org.apache.commons.validator.Validator;
+import org.apache.commons.validator.ValidatorAction;
+import org.apache.commons.validator.ValidatorUtil;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.validator.Resources;
+
 /**
- *  <p>
+ * This class contains the validwhen validation that is used in the 
+ * validator-rules.xml file.
  *
- *  This class contains the validwhen validation that is used in the validator-rules.xml
- *  file.</p>
- *
- *
- *@author     James Turner
- *@since      Struts 1.1
+ * @author James Turner
+ * @since Struts 1.2
  */
-
 public class ValidWhen {
-  private static Class stringClass = new String().getClass();
+    private static Class stringClass = new String().getClass();
 
-  private static boolean isString(Object o) {
-    if (o == null) return true;
-    return (stringClass.isInstance(o));
-  }
+    private static boolean isString(Object o) {
+        if (o == null)
+            return true;
+        return (stringClass.isInstance(o));
+    }
 
     /**
-     *  <p>
-     *
-     *  Checks if the field matches the boolean expression specified in <code>test</code> parameter</p>
+     * Checks if the field matches the boolean expression specified in 
+     * <code>test</code> parameter.
      *
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
@@ -94,52 +100,64 @@ public class ValidWhen {
      *@param  request  Current request object.
      *@return          True if meets stated requirements, False otherwise
      */
+    public static boolean validateValidWhen(
+        Object bean,
+        ValidatorAction va,
+        Field field,
+        ActionErrors errors,
+        Validator validator,
+        HttpServletRequest request) {
+            
+        Object form = validator.getResource(Validator.BEAN_KEY);
+        String value = null;
+        boolean valid = false;
+        int index = -1;
+        
+        if (field.isIndexed()) {
+            String key = field.getKey();
 
-  public static boolean validateValidWhen(Object bean,
-      ValidatorAction va,
-      Field field,
-      ActionErrors errors,
-      Validator validator,
-      HttpServletRequest request) {
-    Object form = validator.getResource(Validator.BEAN_KEY);
-    String value = null;
-    boolean valid = false;
-    int index = -1;
-     if (field.isIndexed()) {
-        String key = field.getKey();
-
-        if ((key.indexOf("[") > -1) &&
-            (key.indexOf("]") > -1)) {
-          index = Integer.parseInt(key.substring(key.indexOf("[")+1, key.indexOf("]")));
+            if ((key.indexOf("[") > -1) && (key.indexOf("]") > -1)) {
+                index =
+                    Integer.parseInt(
+                        key.substring(key.indexOf("[") + 1, key.indexOf("]")));
+            }
         }
-      }
-    if (isString(bean)) {
-      value = (String) bean;
-    } else {
-      value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-    }
-    String test = field.getVarValue("test");
-    if (test == null) return false;
-	ValidWhenLexer l = new ValidWhenLexer(new StringReader(test));
+        
+        if (isString(bean)) {
+            value = (String) bean;
+        } else {
+            value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+        }
+        
+        String test = field.getVarValue("test");
+        if (test == null) {
+            return false;
+        }
+        
+        ValidWhenLexer lexer = new ValidWhenLexer(new StringReader(test));
 
-       	ValidWhenParser p = new ValidWhenParser(l);
+        ValidWhenParser parser = new ValidWhenParser(lexer);
 
-	p.setForm(form);
-	p.setIndex(index);
-	p.setValue(value);
+        parser.setForm(form);
+        parser.setIndex(index);
+        parser.setValue(value);
 
-	try {
-	    p.expression();
-	    valid = p.getResult();
-    } catch  (Exception ex) {
-	ex.printStackTrace();
-        errors.add(field.getKey(), Resources.getActionError(request, va, field));
-	return false;
+        try {
+            parser.expression();
+            valid = parser.getResult();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            errors.add(field.getKey(), Resources.getActionError(request, va, field));
+            return false;
+        }
+        
+        if (!valid) {
+            errors.add(field.getKey(), Resources.getActionError(request, va, field));
+            return false;
+        }
+        
+        return true;
     }
-    if (!valid) {
-        errors.add(field.getKey(), Resources.getActionError(request, va, field));
-        return false;
-    }
-    return true;
-  }
+    
 }
