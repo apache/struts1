@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.1 2000/07/09 05:20:47 craigmcc Exp $
+$Id: INSTALL,v 1.2 2001/02/05 17:13:19 husted Exp $
 
 				Struts
 				======
@@ -60,23 +60,52 @@ ORION APPLICATION SERVER
     unpacked directory structure.
 
   - Go to the "$STRUTS_HOME/webapps/struts-example/WEB-INF" directory,
-    and copy the file "action.xml" one directory up (that is, into
+    and copy the file "struts-config.xml" one directory up (that is, into
     "$STRUTS_HOME/webapps/struts-example".
 
   - Modify the "$STRUTS_HOME/webapps/struts-example/WEB-INF/web.xml" file,
     changing the value of the "config" initialization parameter (for the
-    action servlet) from "/WEB-INF/action.xml" to "/action.xml".
+    action servlet) from "/WEB-INF/struts-config.xml" to "/struts-config.xml".
 
   - Restart Orion, and you should be able to access the example application.
 
   Note that this workaround has a negative security-related side effect:
-  your "action.xml" file can now be retrieved by remote clients at the
+  your "struts-config.xml" file can now be retrieved by remote clients at the
   following URL:
 
-	http://localhost/struts-example/action.xml
+	http://localhost/struts-example/struts-config.xml
 
   Therefore, you should be sure you do not store sensitive information
   (such as database passwords) in this file.
+
+
+RESIN STAND-ALONE
+-----------------
+
+* In the steps below, $RESIN_HOME refers to the directory in which you
+  have installed Resin, and $STRUTS_HOME is the directory in which you
+  unpacked the Struts binary distribution.
+
+* These instructions have been tested with the default resin.conf settings
+  in the 1.2.2 release (16-Jan-2001).
+
+* Copy the Struts applications (*.war) from $STRUTS_HOME/webapps to your
+  $RESIN_HOME/webapps directory.
+
+* Restart Resin if it is already running.
+
+* You should now be able to access the Struts applications (assuming you are
+  using Resin's default port number of 8080) at, for example:
+
+    http://localhost:8080/struts-documentation
+
+* When developing your own applications, you can create a new folder under
+  $RESIN_HOME/doc and modify the file "$RESIN_HOME/conf/resin.conf" to
+  recognize your application, for example:
+
+    <web-app id='/struts-myapp' />
+
+  Resin will then read your application's configuration from WEB-INF/web.xml
 
 
 TOMCAT 3.1 (OR LATER) STAND-ALONE
@@ -162,3 +191,74 @@ TOMCAT 3.1 (OR LATER) WITH APACHE
 	http://localhost/struts-documentation
 	http://localhost/struts-example
 
+
+WEBLOGIC 5.1 (service pack 8)
+-----------------------------
+
+* Obtain and install the Xerces XML parser (problems have been reported
+  with the Sun reference implementation). Put xerces.jar in your WebLogic system
+  path.
+
+* Obtain and unpack the Struts binary distribution (this procedure assumes
+  it was extracted to C:\jakarta-struts).
+
+* Add an entry to weblogic.properties for each of the Struts web
+  applications that you would like to configure. For example, to make the
+  struts-example application available, add the following line to
+  weblogic.properties:
+
+	weblogic.httpd.webApp.strutsexample=c:/jakarta-struts/webapps/struts-example.war
+
+* You do not need to include struts.jar or any of the application specific
+  classes in the WebLogic classpath, since this will be done automatically
+  (unless deploying an unpacked web archive- see below).
+
+* Start WebLogic server and point your web browser to the struts
+  application. For example, to connect to the example application added in
+  step 3:
+
+	http://localhost:7001/strutsexample
+
+* This example application depends on the Struts specific resource file
+  ApplicationResources.properties to be present on the classpath. However,
+  WebLogic only extracts *.class files from the archive so this file will not
+  be found, resulting in an error the first time it is needed- something
+  similar to: javax.servlet.ServletException: runtime failure in custom tag
+  'message'. Steps 6 & 7 will need to be performed for this application, and
+  any other that relies on ApplicationResources.properties.
+
+* Extract ApplicationResources.properties from the *.war file, and
+  manually copy it to the respective package in the _tmp_war_ directory
+  WebLogic created for this application. Again referring to the struts-example
+  application, this would be:
+
+	c:\jakarta-struts\webapps\WEB-INF\_tmp_war_strutsexample
+
+* Restart WebLogic. You will now be able to run the application:
+
+	http://localhost:7001/strutsexample
+
+* The above steps should be followed for applications deployed as *.war
+  files. For unpacked web applications, configuration involves adding both
+  struts.jar and /WEB-INF/classes to the WebLogic classpath. For this reason,
+  I would suggest deploying applications as war files to WebLogic. However,
+  the same example application can be successfully deployed in extracted
+  format by modifying weblogic.properties (assuming the war was extracted to
+  directory webapps/struts-example):
+
+	weblogic.httpd.webApp.strutsexample=c:/jakarta-struts/webapps/struts-example/
+
+	And starting WebLogic with the updated WebLogic classpath. For example:
+
+	c:\jdk1.3\bin\java -ms16m -mx64m
+		-classpath c:\weblogic\lib\weblogic510sp8boot.jar;
+			c:\weblogic\classes\boot;
+			c:\xerces\xerces.jar -Dweblogic.class.path=c:\weblogic\lib\weblogic510sp8.jar;
+			c:\weblogic\license;
+			c:\weblogic\classes;
+			c:\weblogic\myserver\serverclasses;
+			c:\weblogic\lib\weblogicaux.jar;
+			c:\jakarta-struts\lib\struts.jar;
+			c:\jakarta-struts\webapps\struts-example\WEB-INF\classes
+				-Dweblogic.system.home=c:\weblogic-Djava.security.manager
+				-Djava.security.policy=c:\weblogic\weblogic.policyweblogic.Server
