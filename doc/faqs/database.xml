@@ -6,7 +6,9 @@
    <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
     <author>Ted Husted</author>
-    <author>Martin Cooper</author>   <author>Ed Burns</author>
+    <author>Martin Cooper</author>
+    <author>Ed Burns</author>
+    <author>Anthony Kay</author>
   <title>Accessing a Database</title>
  </properties>
 
@@ -94,36 +96,35 @@
     </p>
 
 <pre><code><![CDATA[
-<data-sources>
-<!-- configuration for GenericDataSource wrapper -->
-<data-source>
-  <set-property
-    property="autoCommit"
-    value="false"/>
-  <set-property
-    property="description"
-    value="Example Data Source Configuration"/>
-  <set-property
-    property="driverClass"
-    value="org.postgresql.Driver"/>
-  <set-property
-    property="maxCount"
-    value="4"/>
-  <set-property
-    property="minCount"
-    value="2"/>
-  <set-property
-    property="password"
-    value="mypassword"/>
-  <set-property
-    property="url"
-    value="jdbc:postgresql://localhost/mydatabase"/>
-  <set-property
-    property="user"
-    value="myusername"/>
-</data-source>
-</data-sources>
-]]></code></pre>
+ <!-- configuration for GenericDataSource wrapper -->
+ <data-source>
+   <set-property
+     property="autoCommit"
+     value="false"/>
+   <set-property
+     property="description"
+     value="Example Data Source Configuration"/>
+   <set-property
+     property="driverClass"
+     value="org.postgresql.Driver"/>
+   <set-property
+     property="maxCount"
+     value="4"/>
+   <set-property
+     property="minCount"
+     value="2"/>
+   <set-property
+     property="password"
+     value="mypassword"/>
+   <set-property
+     property="url"
+     value="jdbc:postgresql://localhost/mydatabase"/>
+   <set-property
+     property="user"
+     value="myusername"/>
+ </data-source>
+ </data-sources>
+ ]]></code></pre>
 
     <p>
     This is how you would specify a DBCP BasicDataSource for your application:
@@ -140,6 +141,12 @@
       property="url"
       value="jdbc:postgresql://localhost/mydatabase" />
     <set-property
+      property="username"
+      value="me" />
+    <set-property
+      property="password"
+      value="test" />
+    <set-property
       property="maxActive"
       value="10" />
     <set-property
@@ -151,7 +158,9 @@
     <set-property
       property="defaultReadOnly"
       value="false" />
-
+    <set-property
+      property="pingQuery"
+      value="SELECT COUNT(*) FROM market" />
 </data-source>
 </data-sources>
 ]]></code></pre>
@@ -178,31 +187,28 @@ public ActionForward
 {
  javax.sql.DataSource dataSource;
  java.sql.Connection myConnection;
-
  try {
-   dataSource = getDataSource(request);
-   myConnection = dataSource.getConnection();
-
-   //do what you wish with myConnection
+  dataSource = getDataSource(request);
+  myConnection = dataSource.getConnection();
+  // do what you wish with myConnection
  } catch (SQLException sqle) {
-   getServlet().log("Connection.process", sqle);
+    getServlet().log("Connection.process", sqle);
  } finally {
-
-   //enclose this in a finally block to make
-   //sure the connection is closed
-   try {
-     myConnection.close();
-   } catch (SQLException e) {
-     getServlet().log("Connection.close", e);
+    //enclose this in a finally block to make
+    //sure the connection is closed
+    try {
+       myConnection.close();
+    } catch (SQLException e) {
+       getServlet().log("Connection.close", e);
+    }
    }
- }
 }
 </code></pre>
 
     <p>
     <i>Note: Since Struts is now using commons-dbcp for all it's data-source
-    needs, the query you provide for the pingQuery attribute must return at
-    least one row.</i>
+    needs, the query you provide for the pingQuery attribute (if you choose to
+    include it) must return at least one row.</i>
     </p>
 
     <p>
@@ -215,6 +221,44 @@ public ActionForward
     </p>
 
 </section>
+
+<section name="Using Multiple Datasources" href="multi_dsrc">
+    <p>
+    If you need more than one data source in a module, you can include a key
+    attribute in the data-source element:
+    </p>
+<pre><code><![CDATA[
+<data-sources>
+   <data-source key="A" type="org.apache.commons.dbcp.BasicDataSource">
+      ... properties as before ...
+   </data-source>
+   <data-source key="B" type="org.apache.commons.dbcp.BasicDataSource">
+      ... properties as before ...
+   </data-source>
+   ...
+</data-sources>
+]]></code></pre>
+
+    <p>
+    Which can then be accessed by including the key ("A" in this case) as an
+    additional parameter to the Action.getDataSource() method.
+    </p>
+
+<pre><code>
+   ...
+   try {
+      dataSourceA = getDataSource(request, "A");
+      dataSourceB = getDataSource(request, "B");
+   ...
+</code></pre>
+
+    <p>
+    Each module can have as many data sources as it needs. The keys only
+    need to be unique within a module since the struts module system maintains
+    a name space for the items in each module to protect you from name
+    clashes.
+    </p>
+ </section>
 
 <section href="more" name="See Also">
 
