@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.3 2003/07/04 21:41:00 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/04 21:41:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.4 2003/07/04 21:41:18 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/04 21:41:18 $
  *
  * ====================================================================
  *
@@ -92,21 +92,6 @@ public class ComponentContext implements Serializable {
      */
     public ComponentContext() {
         super();
-    }
-
-    /**
-     * Constructor.
-     * @deprecated Use {@link #ComponentContext(Map attributes)} instead.
-     */
-    public ComponentContext(ComponentDefinition instance) {
-        //    try
-        //      {
-        // instance's attributes map is never null.
-        attributes = new HashMap(instance.getAttributes());
-        //      }
-        //     catch( NullPointerException ex )
-        //      { // no attributes in instance : silently fail.
-        //      }
     }
 
     /**
