@@ -293,13 +293,13 @@
         Fixed #20750 - RequestUtils.retrieveMessageResources (really an RC2 bug)
         </li>
         <li>
-        Fixed #20835 - <html:rewrite> tag using page attribute bug
+        Fixed #20835 - &lt;html:rewrite&gt; tag using page attribute bug
         </li>
         <li>
         Fixed #20877 - MessagesTag has incorrect assignment in release()
         </li>
         <li>
-        Fixed #20949 - Tag <html:select> doesn't work well on RC2
+        Fixed #20949 - Tag &lt;html:select&gt; doesn't work well on RC2
         </li>
         <li>
         Fixed #21051 - javascript required validator accepts fields containing only whitespace
@@ -390,7 +390,7 @@
     <li>Commons BeanUtils 1.6.1</li>
     <li>Commons Collections 2.1</li>
     <li>Commons Digester 1.5</li>
-    <li>Commons FileUpload 1.0 RC1</li>
+    <li>Commons FileUpload 1.0</li>
     <li>Commons Lang 1.0.1</li>
     <li>Commons Logging 1.0.3</li>
     <li>Commons Validator 1.0.2</li>
