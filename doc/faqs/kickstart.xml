@@ -40,7 +40,7 @@ Here are answers to the usual getting-started questions. <b>For an in-depth, sea
     <li><a href="#turbine">What's the difference between Struts and Turbine?  What's the difference between Struts and Expresso?</a></li>
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
     <li><a href="#xhtml">Are the Struts tags XHTML compliant?</a></li>
-    <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
+    <li><a href="#jsf">What about JSTL and JavaServer Faces?</a></li>
     <li><a href="#ide">Is there a particularly good IDE to use with Struts?</a></li>
  </ul><ul>
     <li><a href="#digest">Is there a digest for the mailing list?</a></li>
@@ -229,7 +229,7 @@ But, if you prefer a more integrated infrastructure, then packages like Turbine 
 </section>
 
 <section href="taglibs" name="Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?">
-<p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the JavaServer Pages Standard Taglib is in active development. Once work on the JSTL stabilizes, the Struts taglibs will be revisited. Tags which are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
+<p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the JavaServer Pages Standard Taglib is in active development. Once work on JSTL stabilizes, the Struts taglibs will be revisited. Tags which are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
 </section>
 
 <section href="xhtml" name="Are the Struts tags XHTML compliant?">
@@ -258,7 +258,7 @@ WAP up your EAserver</a>.
 </p>
 </section>
 
-<section href="jsf" name="What about the JSTL and JavaServer Faces?">
+<section href="jsf" name="What about JSTL and JavaServer Faces?">
     <p>
        JSTL, the <a href="http://java.sun.com/products/jsp/jstl/">
        JavaServer Standard Tag Library</a>, is a set of JSP tags that
@@ -290,7 +290,7 @@ appear to help these technologies work as well with Struts.
     <a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">Jakarta Taglibs site</a>.
     A JSTL taglibs for Struts,
     <a href="http://jakarta.apache.org/struts/userGuide/building_view.html#struts-el"><b>Struts-El</b></a>,
-    is distributed as part of the Struts 1.1 release.
+    is available and distributed with Struts beginning with the 1.1 release.
 </p>
     <p>
         Meanwhile, the JSF specification is still under development,

@@ -55,6 +55,12 @@
     This overlaps with the Java Web Services Tutorial in some places, but the two work well together.
     </p>
 
+      <p>
+          For more about building Java application in general, see the
+          <a href="http://developer.java.sun.com/developer/onlineTraining/new2java/divelog/part1/toc.jsp">New to
+          Java</a> tutorial.
+      </p>
+
     </section>
 
     <section name="0.2 HTTP, HTML and User Agents" href="http">
@@ -528,13 +534,13 @@
       it is processed by subsequent filters (and the servlet that is ultimately
       called).</p>
 
-      <p>Struts 1.0 and 1.1 require only version 2.2 or later of the
-      Servlet Specification to be implemented by your servlet container,
-      so Struts does not itself utilize Filters at this time.  However,
-      you can still use them yourself if you are running on a 2.3 or later
-      container.  It is very likely that future versions of Struts will
-      require a Servlet 2.3 or later container, so that Struts itself
-      can utilize filters.</p>
+      <p>
+          The Struts 1.x series (versions 1.0, 1.1, and so forth) require only version 2.2 or later of the Servlet
+          Specification to be implemented by your servlet container, so Struts does not itself utilize Filters
+          at this time.
+          The next generation of Struts (the 2.x series) will be based on Servlet 2.3 or later.
+          It is likely that the Struts 2.x release series will utilize filters.
+      </p>
 
       <p>
       For more about filters, see:
@@ -676,14 +682,14 @@
 
     </section>
 
-    <section name="0.8 JavaServer Pages and JSP Tag Libraries" href="jsp">
+    <section name="0.8 JavaServer Pages, JSP Tag Libraries, and Java Server Faces" href="jsp">
     <p><a href="http://java.sun.com/products/jsp/product.html">JavaServer Pages</a> (JSPs) are
     "inside-out servlets" that make it easier to create and maintain dynamic web pages. Instead
     of putting what you want to write to the HTTP response inside of a Java <code>print</code>
     statement, everything in a JavaServer Page is written to the response, <b>except</b> what is
     placed within special Java statements.</p>
 
-    <p>With JavaServer Pages you can start by writing the page in standard HTML and then add the
+    <p>With <b>JavaServer Pages</b> you can start by writing the page in standard HTML and then add the
     dynamic features using statements in the Java language or by using
     <a href="http://java.sun.com/products/jsp/taglibraries.html">JSP tags</a>.
     The Struts distribution includes several JSP tags that make it easy to access the framework's
@@ -708,26 +714,42 @@
     in the Java Web Services Tutorial.</p>
 
     <p>Struts also works well with the new
-    <a href="http://java.sun.com/products/jsp/jstl">JavaServer Pages Standard Tag Library</a>
-    and taglibs from other sources, like
+    <a href="http://java.sun.com/products/jsp/jstl"><b>JavaServer Pages Standard Tag Library</b></a>
+    (JSTL) and taglibs from other sources, like
     <a href="http://jsptags.com/">JSP Tags</a> and
     <a href="http://jakarta.apache.org/taglibs/index.html">Jakarta Taglibs</a>.
     </p>
 
     <p>
-     One of the contributed libraries available for Struts is <strong>Struts-EL</strong>.
-     This taglib is specifically designed to work well
-     with the JavaServer Pages Standard Tag Library. In particular, it uses
-     the same "expression language" engine for evaluating tag attribute values
-     as the JSTL.  This is in contrast to the original Struts tag library, which
-     can only use "rtexprvalue"s (runtime scriptlet expressions) for dynamic
-     attribute values.
+        One of the contributed libraries available for Struts is <strong>Struts-EL</strong>.
+        This taglib is specifically designed to work well with JSTL.
+        In particular, it uses the same "expression language" engine for evaluating tag attribute values as JSTL.
+        This is in contrast to the original Struts tag library, which can only use "rtexprvalue"s (runtime scriptlet
+        expressions) for dynamic attribute values.
     </p>
 
     <p>There are also toolkits available that make Struts easy to use with
     <a href="http://www.openroad.ca/opencode/">XSLT</a> and
     <a href="http://jakarta.apache.org/velocity/index.html">Velocity Templates</a>.
     </p>
+
+        <p>
+            The newest star on the Java horizon is <b>Java Server Faces</b>.
+            <a href="http://java.sun.com/j2ee/javaserverfaces/">JavaServer Faces technology</a> simplifies building
+            user interfaces for JavaServer applications, both for the web and for the desktop.
+            The JSF specification is still under development, although an early-release reference implementation is
+            available through the <a href="http://java.sun.com/webservices/download.html">Java Web Services Developer
+            Pack</a>.
+            Likewise, an early-release JavaServer Faces taglib for Struts,
+            <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/"><b>Struts-Faces</b></a>, is
+            also in early release and available through the nightly build.
+       </p>
+
+        <p>
+            Java Server Faces is very compatible with Struts.
+            Additional Struts/JSF integration tools are sure to appear as the specification is finalized and comes into
+            widespread use.
+        </p>
 
     </section>
 
@@ -742,13 +764,18 @@
     <p>For more about XML configuration files and Java web applications, see</p>
 
     <ul>
-    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp4.html#64678">Configuring Web Applications</a> in the Java Web Services Tutorial</li>
+    <li>
+        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp4.html#64678">Configuring Web
+        Applications</a> in the Java Web Services Tutorial</li>
     </ul>
 
-    <p>For more about how XML is used with Java applications generally, see
-    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXPIntro.html">Java API for XML Processing</a> in the Java Web Services Tutorial.
-    While the framework makes good use of this API internally, it is not something most Struts developers
-    would use when writing their own applications.</p>
+    <p>
+        For more about how XML is used with Java applications generally, see
+        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXPIntro.html">Java API for XML Processing</a>
+        in the Java Web Services Tutorial.
+        While the framework makes good use of this API internally, it is not something most Struts developers would use
+        when writing their own applications.
+    </p>
 
     </section>
 
@@ -777,11 +804,11 @@
     </p>
 
         <ul>
-        <li><a href="http://castor.exolab.org/">Castor</a></li>
-        <li><a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a></li>
-        <li><a href="http://java.sun.com/products/jdbc/index.html">JDBC</a></li>
-        <li><a href="http://jakarta.apache.org/ojb">Object Relational Bridge</a></li>
-        <li><a href="http://sourceforge.net/projects/simper">Simper</a></li>
+            <li><a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a></li>
+            <li><a href="http://sourceforge.net/projects/hibernate">Hibernate</a></li>
+            <li><a href="http://sourceforge.net/projects/ibatisdb">iBATIS</a></li>
+            <li><a href="http://java.sun.com/products/jdbc/index.html">JDBC</a></li>
+            <li><a href="http://db.apache.org/ojb/">Object Relational Bridge</a></li>
         </ul>
 
     <p>
@@ -803,9 +830,11 @@
 
     <section name="0.11 JAAS" href="jaas">
 
-    <p>While Struts can work with any approach to user authentication and authorization, Struts 1.1 will offer
-    direct support for the standard Java Authentication and Authorization Service (JAAS). In Struts 1.1 (and the
-    current nightly build), you can specify security roles on an action-by-action basis.</p>
+    <p>
+        While Struts can work with any approach to user authentication and authorization, Struts 1.1 and later offers
+        direct support for the standard Java Authentication and Authorization Service (JAAS).
+        You can now specify security roles on an action-by-action basis.
+    </p>
 
     <p>For more about JAAS, see the <a href="http://java.sun.com/products/jaas/index-14.html">Javasoft product page</a>
     and the <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">

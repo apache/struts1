@@ -14,11 +14,12 @@
         <item href="extensions.html" name="Extensions"/>
         <item href="sigs.html" name="Interest Groups"/>
         <item href="hosts.html" name="ISPs"/>
+        <item href="models.html" name="Models (db)"/>
         <item href="seminars.html" name="Seminars"/>
         <item href="taglibs.html" name="Taglibs"/>
         <item href="tools.html" name="Tools (IDEs)"/>
         <item href="tutorials.html" name="Tutorials"/>
-        <item href="views.html" name="Views"/>
+        <item href="views.html" name="Views (pages)"/>
     </menu>
 
     <menu name="Other Resources">

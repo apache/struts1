@@ -10,6 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Contributor Taglibs">
+<p><a href="http://jakarta.apache.org/builds/jakarta-struts/release/struts-faces/">Struts Java Server Faces tablib (early release)</a></p>
 <p><a href="http://www.keyboardmonkey.com/next"><b>Nested Taglib</b></a> [Also included in Struts 1.1] by Arron Bates - More efficient markup of beans and their nested children (linked site provides library for previous struts versions).</p>
 <p><a href="http://www.mycgiserver.com/~eboudrant/#regexp"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side. </p>
 <p><a href="http://husted.com/struts/resources/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. <font size="1"> (For additional tips regarding Websphere 3.5 see <a href="../userGuide/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</font></p>

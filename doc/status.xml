@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.36 2003/08/29 20:14:05 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.37 2003/08/29 22:13:16 husted Exp $</font>
     </p>
 
     <p>
@@ -159,16 +159,18 @@
 
             <li>Other potential enhancements for the 1.x.x series
                 <ul>
-                    <li>Move to <a href="http://xml.apache.org/forrest/">Forrest</a> or <a href="http://maven.apache.org/">Maven</a> for project management</li>
+                    <li>Move to <a href="http://xml.apache.org/forrest/">Forrest</a> or
+                        <a href="http://maven.apache.org/">Maven</a> for project management</li>
                     <li>Consider adopting several popular extensions, including:
-                    <ul>
-                    <li><a href="http://sslext.sourceforge.net/">SSL Ext</a></li>
-                    <li><a href="http://strutstestcase.sourceforge.net/">TestCase</a></li>
-                    <li><a href="http://stxx.sourceforge.net">Stxx</a> (XLST)</li>
-                    <li><a href="http://www.livinglogic.de/Struts/">Workflow</a></li>
-                    <li><a href="http://struts.sf.net">Cocoon Plugin</a></li>
-                    <li><a href="http://struts.sf.net">Scriptable Actions using BSF</a> (Bean Scripting Framework)</li>
-                    </ul>
+                        <ul>
+                            <li><a href="http://sslext.sourceforge.net/">SSL Ext</a></li>
+                            <li><a href="http://strutstestcase.sourceforge.net/">TestCase</a></li>
+                            <li><a href="http://stxx.sourceforge.net">Stxx</a> (XLST)</li>
+                            <li><a href="http://www.livinglogic.de/Struts/">Workflow</a></li>
+                            <li><a href="http://struts.sf.net">Cocoon Plugin</a></li>
+                            <li><a href="http://struts.sf.net">Scriptable Actions using BSF</a> (Bean Scripting
+                                Framework)</li>
+                        </ul>
                     </li>
                 </ul>
             </li>
