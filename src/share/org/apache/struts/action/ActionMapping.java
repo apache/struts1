@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.13 2001/02/21 00:35:44 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2001/02/21 00:35:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.14 2001/03/06 22:15:13 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/03/06 22:15:13 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import java.io.Serializable;
  * <li><strong>input</strong> - Context-relative path of the input form
  *     to which control should be returned if a validation error is
  *     encountered.  Replaces the old <code>inputForm</code> property.
- * <em>inputForm</em> - Context-relative path of the input form
+ * <li><em>inputForm</em> - Context-relative path of the input form
  *     to which control should be returned if a validation error is
  *     encountered.  <em>DEPRECATED - use <code>input</code> instead</em>.
  * <li><strong>mappings</strong> - The <code>ActionMappings</code>
@@ -144,7 +144,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2001/02/21 00:35:44 $
+ * @version $Revision: 1.14 $ $Date: 2001/03/06 22:15:13 $
  */
 
 public class ActionMapping implements Serializable {
