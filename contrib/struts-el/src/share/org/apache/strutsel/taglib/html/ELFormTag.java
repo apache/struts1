@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.4 2002/12/13 03:52:21 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/12/13 03:52:21 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELFormTag extends FormTag {
 
@@ -137,6 +137,13 @@ public class ELFormTag extends FormTag {
             setFocus((String) evalAttr("focus", getFocus(), String.class));
         } catch (NullAttributeException ex) {
             setFocus(null);
+        }
+
+        try {
+            setFocusIndex((String) evalAttr("focusIndex", getFocusIndex(),
+                                            String.class));
+        } catch (NullAttributeException ex) {
+            setFocusIndex(null);
         }
 
         try {
