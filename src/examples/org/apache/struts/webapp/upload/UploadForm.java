@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadForm.java,v 1.1 2004/01/08 16:17:57 husted Exp $
-* $Revision: 1.1 $
-* $Date: 2004/01/08 16:17:57 $
+* $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadForm.java,v 1.2 2004/01/09 21:52:46 husted Exp $
+* $Revision: 1.2 $
+* $Date: 2004/01/09 21:52:46 $
 *
 * ====================================================================
 *
@@ -63,10 +63,7 @@ package org.apache.struts.webapp.upload;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.*;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 
@@ -78,13 +75,10 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * that struts uses is org.apache.struts.upload.CommonsMultipartRequestHandler.
  *
  * @author Mike Schachter
- * @version $Revision: 1.1 $ $Date: 2004/01/08 16:17:57 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/09 21:52:46 $
  */
 public class UploadForm extends ActionForm {
     
-    public static final String ERROR_PROPERTY_MAX_LENGTH_EXCEEDED =
-        "org.apache.struts.webapp.upload.MaxLengthExceeded";
-
     /**
      * The value of the text the user has sent as form data
      */
@@ -201,8 +195,11 @@ public class UploadForm extends ActionForm {
         if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue())) {
             errors = new ActionErrors();
             errors.add(
-                ERROR_PROPERTY_MAX_LENGTH_EXCEEDED,
+                ActionMessages.GLOBAL_MESSAGE ,
                 new ActionMessage("maxLengthExceeded"));
+            errors.add(
+                ActionMessages.GLOBAL_MESSAGE ,
+                new ActionMessage("maxLengthExplanation"));
         }
         return errors;
 
