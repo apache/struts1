@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.163 2003/07/26 04:21:06 rleland Exp $
- * $Revision: 1.163 $
- * $Date: 2003/07/26 04:21:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.164 2003/07/27 04:57:35 rleland Exp $
+ * $Revision: 1.164 $
+ * $Date: 2003/07/27 04:57:35 $
  *
  * ====================================================================
  *
@@ -234,7 +234,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.163 $ $Date: 2003/07/26 04:21:06 $
+ * @version $Revision: 1.164 $ $Date: 2003/07/27 04:57:35 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -416,7 +416,7 @@ public class ActionServlet extends HttpServlet {
      * Saves a String[] of module prefixes in the ServletContext under 
      * Globals.MODULE_PREFIXES_KEY.  <strong>NOTE</strong> -
      * the "" prefix for the default module is not included in this list.
-     * 
+     * @param context The servlet context.
      * @since Struts 1.2
      */
     protected void initModulePrefixes(ServletContext context) {
@@ -648,6 +648,7 @@ public class ActionServlet extends HttpServlet {
     /**
      * Returns the RequestProcessor for the given module or null if one does not 
      * exist.  This method will not create a RequestProcessor.
+     * @param config The ModuleConfig.
      */
     private RequestProcessor getProcessorForModule(ModuleConfig config) {
         String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
@@ -1129,13 +1130,11 @@ public class ActionServlet extends HttpServlet {
             throw new ServletException(e);
             
         } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    log.error(internal.getMessage("configWebXml"), e);
-                    throw new ServletException(e);
-                }
+            try {
+                input.close();
+            } catch (IOException e) {
+                log.error(internal.getMessage("configWebXml"), e);
+                throw new ServletException(e);
             }
         }
 
