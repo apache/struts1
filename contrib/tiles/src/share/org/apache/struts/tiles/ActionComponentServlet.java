@@ -1,29 +1,26 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.5 2002/04/15 08:09:50 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2002/04/15 08:09:50 $
- * $Author: cedric $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.6 2002/11/15 06:04:05 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/15 06:04:05 $
+ * $Author: jmitchell $
  *
  */
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.taglib.tiles.ComponentConstants;
+import java.io.IOException;
 
-import java.util.Locale;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.Action;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.FileNotFoundException;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
 

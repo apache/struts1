@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.9 2002/11/09 04:04:11 dmkarr Exp $
- * $Revision: 1.9 $
- * $Date: 2002/11/09 04:04:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.10 2002/11/15 06:02:42 jmitchell Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/15 06:02:42 $
  *
  * ====================================================================
  *
@@ -65,8 +65,7 @@ package org.apache.struts.action;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
@@ -84,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/11/09 04:04:11 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/15 06:02:42 $
  * @since Struts 1.1
  */
 
