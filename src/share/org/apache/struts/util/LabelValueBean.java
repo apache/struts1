@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.4 2003/07/02 04:34:24 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/02 04:34:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.5 2003/07/03 03:08:44 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/03 03:08:44 $
  *
  * ====================================================================
  *
@@ -71,7 +71,8 @@ import java.io.Serializable;
  *
  * @author  Craig R. McClanahan
  * @author  Martin F N Cooper
- * @version $Revision: 1.4 $ $Date: 2003/07/02 04:34:24 $
+ * @author David Graham
+ * @version $Revision: 1.5 $ $Date: 2003/07/03 03:08:44 $
  */
 public class LabelValueBean implements Serializable {
 
@@ -144,5 +145,38 @@ public class LabelValueBean implements Serializable {
         return (sb.toString());
     }
 
+    /**
+     * LabelValueBeans are equal if their values are both null or equal.
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
 
+        if (!(obj instanceof LabelValueBean)) {
+            return false;
+        }
+
+        LabelValueBean bean = (LabelValueBean) obj;
+        int nil = (this.getValue() == null) ? 1 : 0;
+        nil += (bean.getValue() == null) ? 1 : 0;
+
+        if (nil == 2) {
+            return true;
+        } else if (nil == 1) {
+            return false;
+        } else {
+            return this.getValue().equals(bean.getValue());
+        }
+
+    }
+
+    /**
+     * The hash code is based on the object's value.
+     * @see java.lang.Object#hashCode()
+     */
+    public int hashCode() {
+        return (getValue() == null) ? super.hashCode() : getValue().hashCode();
+    }
 }
