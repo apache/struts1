@@ -60,6 +60,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -143,6 +144,7 @@ import org.apache.struts.util.MessageResources;
  *  is found then an exception will be thrown.
  *
  *@author     Erik Hatcher
+ *@author     Scott Carlson
  */
 
 public abstract class LookupDispatchAction extends DispatchAction {
@@ -150,7 +152,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
     /**
      * Reverse lookup map from resource value to resource key.
      */
-    protected Map lookupMap = null;
+    protected Map localeMap = new HashMap();
 
     /**
      * Resource key to method name lookup
@@ -198,20 +200,32 @@ public abstract class LookupDispatchAction extends DispatchAction {
             throw new ServletException(message);
         }
 
-        if (lookupMap == null) {
-            // Build the key lookup map
-            lookupMap = new HashMap();
-            MessageResources resources = (MessageResources)
-                request.getAttribute(Action.MESSAGES_KEY);
-
-            keyMethodMap = getKeyMethodMap();
-
-            Iterator iter = keyMethodMap.keySet().iterator();
-            while (iter.hasNext()) {
-                String key = (String) iter.next();
-                String text = resources.getMessage(key);
-                if ((text != null) && !lookupMap.containsKey(text)) {
-                    lookupMap.put(text, key);
+        // Based on this request's Locale get the lookupMap
+        Map lookupMap = null;
+        Locale userLocale = getLocale(request);
+        boolean newLookupMap = false;
+        synchronized (localeMap) {
+            lookupMap = (Map) localeMap.get(userLocale);
+            if (lookupMap == null) {
+                newLookupMap = true;
+                lookupMap = new HashMap();
+                localeMap.put(userLocale, lookupMap);
+            }
+        }
+        synchronized (lookupMap) {
+            if (newLookupMap) {
+                // This is the first time this Locale is used
+                // Build the reverse lookup Map.
+                MessageResources resources = (MessageResources)
+                    request.getAttribute(Action.MESSAGES_KEY);
+                keyMethodMap = getKeyMethodMap();
+                Iterator iter = keyMethodMap.keySet().iterator();
+                while (iter.hasNext()) {
+                    String key = (String) iter.next();
+                    String text = resources.getMessage(userLocale, key);
+                    if ((text != null) && !lookupMap.containsKey(text)) {
+                        lookupMap.put(text, key);
+                    }
                 }
             }
         }

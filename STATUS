@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.44 2002/07/27 23:26:08 craigmcc Exp $
+$Id: STATUS,v 1.45 2002/07/27 23:49:58 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           12 open bugs to swat!!
+                           11 open bugs to swat!!
 
 
 Controller:
@@ -36,7 +36,6 @@ File Upload:
 
 Standard Actions:
 ----------------
-10322 Problems with LookupDispatchAction and other locales
 
 
 Tiles Framework:
