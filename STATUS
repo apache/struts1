@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.42 2002/07/27 21:53:13 martinc Exp $
+$Id: STATUS,v 1.43 2002/07/27 22:50:38 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           15 open bugs to swat!!
+                           13 open bugs to swat!!
 
 
 Controller:
@@ -18,7 +18,6 @@ Controller:
 Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
- 8460 using null="false" in message-resources adds alt & title element to generated html
 
 
 Documentation:
@@ -39,7 +38,6 @@ File Upload:
 Standard Actions:
 ----------------
 10322 Problems with LookupDispatchAction and other locales
-10953 sub-application loses message resource
 
 
 Tiles Framework:
