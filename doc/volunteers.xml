@@ -1,739 +1,389 @@
 <?xml version="1.0"?>
 <document url="./volunteers.xml">
+   <properties>
+      <title>Who We Are - The Apache Struts Web Application Framework</title>
 
-<properties>
-    <title>Who We Are - The Apache Struts Web Application Framework</title>
-    <author>Ted Husted</author>
-</properties>
-
-<body>
-<chapter name="Who We Are" href="whoWeAre">
-
-    <section name="Community Support" href="support">
-
-        <p>
-            In August 2003, there were 2700 subscribers to STRUTS-USER (including the digest version).
-            It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers.
-            In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed
-            mirrors and through several list archives.
-        </p>
-
-        <p>
-            According to recently released
-            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range
-            between 10,000 and 30,000 a week, roughly the same as Jakarta Tomcat.
-        </p>
-
-        <p>
-            There are a great number of third-party extensions are available for Struts, along with an equally vast
-            number of articles and several books
-            We try to list as many of these as we can in the <a href="resources/index.html">Resources area</a>.
-        </p>
-
-    </section>
-
-<section name="Source Code Contributors" href="contributors.source">
-
-    <p>
-        More than fifty developers have contributed code or documentation to Struts.
-        We've tried to list all of our volunteers on this page (and apologize to anyone we missed!).
-    </p>
-
-    <ul>
-        <li>
-            Craig R. McClanahan
-        </li>
-        
-        <li>
-            David Geary
-        </li>
-        
-        <li>
-            Mike Schachter
-        </li>
-        <li>
-            Ted Husted
-        </li>
-        
-        <li>
-            Rob Leland
-        </li>
-        
-        <li>
-            Martin Cooper
-        </li>
-        
-        <li>
-            Arron Bates
-        </li>
-        
-        <li>        
-            Cedric Dumoulin
-        </li>
-        
-        <li>
-            David Winterfeldt
-        </li>
-        
-        <li>
-            Arun M. Thomas
-        </li>
-        
-        <li>
-            Chris Audley
-        </li>
-        
-        <li>
-            Dominique Plante
-        </li>
-        
-        <li>
-            Don Clasen
-        </li>
-        
-        <li>
-            Florent Carpentier
-        </li>
-        
-        <li>
-            James Holmes
-        </li>
-        
-        <li>
-            Jeff Hutchison
-        </li>
-        
-        <li>
-            Jimmy Larsson
-        </li>
-        
-        <li>
-            Luis Arias
-        </li>
-        
-        <li>
-            Marius Barduta
-        </li>
-        
-        <li>
-            Niall Pemberton
-        </li>
-        
-        <li>
-            Ralph Schaer
-        </li>
-        
-        <li>
-            Sean M. Kelley
-        </li>
-        
-        <li>
-            David Graham
-        </li>
-        
-        <li>
-            James Turner
-        </li>
-        <li>
-            Kurt Post
-        </li>
-        <li>
-            Steve Raeburn
-        </li>
-        <li>
-            Leonardo Quijano
-        </li>
-    </ul>
-
-</section>
-
-<section name="Documentation Contributors" href="contributors.documentation">
-<ul>
-
-        <li>
-            Craig R. McClanahan
-        </li>
-
-        <li>
-            David Geary
-        </li>
-
-        <li>
-            Mike Schachter
-        </li>
-
-        <li>
-            Ted Husted
-        </li>
-
-        <li>
-            Martin Cooper
-        </li>
-
-        <li>
-            Arron Bates
-        </li>
-
-        <li>
-            Cedric Dumoulin
-        </li>
-
-        <li>
-            David Winterfeldt
-        </li>
-
-        <li>
-            Chris Assenza
-        </li>
-
-        <li>
-            dIon Gillard
-        </li>
-
-        <li>
-            Dominique Plante
-        </li>
-
-        <li>
-            Ed Burns
-        </li>
-
-        <li>
-            Eric Wu
-        </li>
-
-        <li>
-            James DeVries
-        </li>
-
-        <li>
-            John Rousseau
-        </li>
-
-        <li>
-            John Ueltzhoeffer
-        </li>
-
-        <li>
-            Larry McCay
-        </li>
-
-        <li>
-            Mark Budai
-        </li>
-
-        <li>
-            Matthias Kerkhoff
-        </li>
-
-        <li>
-            Paul Runyan
-        </li>
-
-        <li>
-            Robert Hayden
-        </li>
-
-        <li>
-            Rob Leland
-        </li>
-
-        <li>
-            Stanley Santiago
-        </li>
-
-        <li>
-            Wong Kok Kai
-        </li>
-
-        <li>
-            Donald Ball
-        </li>
-
-        <li>
-            Dan Walker
-        </li>
-
-        <li>
-            Eddie Bush
-        </li>
-
-        <li>
-            Yann Cebron
-        </li>
-
-        <li>
-            David Graham
-        </li>
-
-        <li>
-            Steve Ditlinger
-        </li>
-        
-        <li>
-            David M. Karr
-        </li>
-
-        <li>
-            Tim O'Brien
-        </li>
-
-        <li>
-            Edgar Dollin
-        </li>
-
-        <li>
-            Phil Steitz
-        </li>
-        <li>
-            Steve Raeburn
-        </li>
-
-    </ul>
-</section>
-
-<section name="Active Committers" href="committers">
-
-    <ul>
-    
-        <li>
-            <b>Craig R. McClanahan</b> (craigmcc at apache.org)
-        </li>
-
-        <li>
-            <b>Ted Husted</b> (husted at apache.org)
-        </li>
-
-        <li>
-            <b>Rob Leland</b> (rleland at apache.org)
-        </li>
-
-        <li>
-            <b>Cedric Dumoulin</b> (cedric.dumoulin at lifl.fr)
-        </li>
-
-        <li>
-            <b>Martin Cooper</b> (martinc at apache.org)
-        </li>
-
-        <li>
-            <b>Arron Bates</b> (arron at apache.org)
-        </li>
-
-        <li>
-            <b>James Holmes</b> (jholmes at apache.org)
-        </li>
-
-        <li>
-            <b>David M. Karr</b> (dmkarr at apache.org)
-        </li>
-
-        <li>
-            <b>David Graham</b> (dgraham at apache.org)
-        </li>
-
-        <li>
-            <b>James Mitchell</b> (jmitchell at apache.org)
-        </li>
-
-        <li>
-            <b>James Turner</b> (turner at blackbear.com)
-        </li>
-
-        <li>
-            <b>Steve Raeburn</b> (sraeburn at apache.org)
-        </li>
-
-    </ul>
-    
-</section>
-
-<section name="Emeritus Committers" href="comitters.emeritus">
-
-<ul>
-
-    <li>
-        David Geary
-    </li>
-    
-    <li>
-        Luis Arias
-    </li>
-    
-    <li>
-        Pierre Delilse
-    </li>
-    
-    <li>
-        Michael Schachter
-    </li>
-    <li>
-        <b>Vincent Massol</b>
-    </li>
-    <li>
-        <b>David Winterfeldt</b>
-    </li>
-
-    <li>
-        <b>Oleg Alexeev</b>
-    </li>
-
-    <li>
-        <b>Eddie Bush</b>
-    </li>
-
-</ul>
-
-</section>
-
-<section name="More About Us" href="about">
-
-    <h3><a name="craigmcc">Craig R. McClanahan -- Committer</a></h3>
-
-    <p>
-    I've been involved with servlet and JSP technology since around 1998.  
-    It started out that I needed a way to build some web applications for 
-    several projects, and liked Java a lot better than the alternatives.  
-    I also liked theprice tag of open source software, and started using 
-    Apache JServ -- later , getting involved in the project (like many 
-    people, I was whining about the twelve months it took to get from version
-    0.9 to version 1.0, and my son said "Dad, you know Java -- go help them 
-    finish it!" -- so I did :-).
-    </p>
-
-    <p>For quite a while, I was participating a lot the JSP-INTEREST and   
-    SERVLET-INTEREST <a href="http://archives.java.sun.com">mailing lists</a>, 
-    especially the topic of good architectures for web applications.  
-    I was disgusted with the hash that many beginners created when they used 
-    (or abused) scriptlets in JSP pages, and built (for my former employer) a 
-    pretty comprehensive framework that could considered ("Struts 0.01 
-    without the custom tags").  
-    It was proprietary code, but I was able to describe the concepts, and 
-    there started to a feeling the lists that this "Model 2" thing was 
-    pretty cool -- but there were no good examples to look at, so it was 
-    mostly hand waving types of discussions.
-    </p>
-
-    <p>
-    Over the same time period, I got involved as an individual contributor in 
-    the <a href="http://java.sun.com/jcp">Java Community Process</a>, and 
-    joined the expert group that defined the servlet 2.2 and JSP 1.1 specs.  
-    Sun was impressed enough to offer me a job as the technical lead the 
-    team within Sun (currently five other individuals) that works 
-    <a href="http://jakarta.apache.org/tomcat">Tomcat</a>  -- the architecture 
-    for Catalina, which is the servlet container part of Tomcat 4.0, is also 
-    mine -- so I am in the really nice position of getting paid to work 
-    open source software :-).  
-    And, participate the expert groups for Servlet 2.3 and JSP 1.2.  
-    And, speak at various conferences, including ApacheCon and JavaOne.  
-    And, talk to groups within Sun about using Struts and JSP/servlet 
-    technology.
-    And ... (there's some really interesting  things being considered for the 
-    future).
-    </p>
-
-    <p>
-    The original design of what came to Struts has been in my head for a 
-    long time, since those interesting mailing list discussions, but the first 
-    version of the actual code was written my laptop a Memorial Day 
-    weekend vacation trip (end of May, 2000) to the Oregon coast -- in between 
-    watching the surf and having the house shaken by a windstorm at night.  
-    Since then, it has gathered attention and popularity as we approach our 
-    first official release, and it delights me to see my "baby" grow up so 
-    well :-).  
-    Of course, it is no longer just me -- there have been incredible numbers 
-    of good ideas from all over, and a peek at the TODO list for 1.1 says that 
-    even more good stuff is coming in the future.
-    </p>
-
-    <p>One motivation factor was 
-    <a href="http://www.servlets.com/soapbox/problems-jsp.html"> Jason 
-    Hunter's</a> article about the Problems with JSP. 
-    Jason and I get along fine, even though we have different preferences 
-    about presentation technologies.  
-    Besides being the author of a very popular book about servlets, with a 
-    second edition coming soon, Jason is also the representative for the
-    Apache Software Foundation the Executive Committee of the Java 
-    Community Process.
-    </p>
-
-    <p>
-    Personally, I live in Portland, Oregon (even though my team at Sun is 
-    mostly in Cupertino, CA -- staying here was part of the job deal :-).  
-    I like to support Oregon sports teams (Oregon State Beavers, Oregon Ducks, 
-    Portland Trailblazers) and work cool software.
-    </p>
-
-    <p>
-    I figured out I was getting pretty old when I realized that 2000 was the 
-    25th year I had been paid to work in some aspect of software development 
-    :-).  
-    I've got a son who is a full-time software developer (primarily in PHP so
-    far, but I'm going to corrupt him with Java eventually :-), and a daughter 
-    in college.
-    I'll happily let the other committers speak for themselves.
-    </p>
-
-    <h3><a name="mschachter">Mike Schachter -- Committer</a></h3>
-
-    <p>
-    I'm currently a student of computer science at Drexel University in 
-    Philadelphia, PA.
-    I've been working at HP Middleware, formerly Bluestone Software for 3 
-    years programming in Java and recently J2EE technologies.  
-    I'm a full time worker from September until April and a student and part 
-    time worker from April until August.
-    In my spare time I've been known to run monkey-knife fights in a shady 
-    south philly warehouse.  
-    Err...
-    I mean... nothing.
-    </p>
-
-    <h3><a name="husted">Ted Husted -- Committer</a></h3>
-
-    <p>
-    My primary interest in Struts is to put it to work writing lots of
-    real-life Web applications:-) 
-    To do that effectively means having good documentation and code samples at 
-    my fingertips, so that's been my focus with the Struts product so far.
-    </p>
-
-    <p>
-    I've been writing software for hire since 1984, but only recently jumped
-    the Java bandwagon. 
-    My initial interest was with electronic publishing, and started by 
-    converting my various print projects to electronic media. 
-    The "Information Superhighway" was still the private stomping ground of 
-    Universities and government agencies then. 
-    The rest of us had to make do with diskettes and bulletin boards.
-    </p>
-
-    <p>
-    Between 1985 and 1994, I created and marketed several software products
-    for publishing disk, the most popular being "Dart" and "Iris". 
-    In 1992, Dart was awarded the Digital Quill for software excellence,
-    featured in PC Magazine (February 1992), and bundled with McGraw Hill's 
-    bookset,"Paperless Publishing" by Colin Hayes (McGraw Hill 1994). 
-    Dart won a second Digital Quill in 1993. 
-    Several titles that used Iris for a publishing system have also won awards 
-    and been widely distributed, including "Hermitville USA." 
-    I was also fortunate to find kindred souls CompuServe and America 
-    Online, who helped me pioneer resources areas there in 1993 and 1994 for 
-    the nascent electronic publishing industry.
-    </p>
-    
-    <p>
-    I finally cut loose the Internet in 1995, launching Epub News, an
-    electronic newspage about electronic publishing. After taking several
-    private contracts, I opened the Husted dot Com Website (www.husted.com)
-    in 1996. 
-    I've drifted away from electronic books, but have noticed that several 
-    products are now making their way into the consumer mainstream -- as 
-    usual, I was twenty minutes into the future:-)
-    </p>
-    
-    <p>
-    My favorite all-time project is the Hitchhikers Guide to Science Fiction. 
-    This was one of my earliest hypertext projects (it started as a print-book 
-    idea), and I had a lot of fun bringing it forward onto the Web. 
-    (Now, if I only had time to bring it current and dress it up!)
-    </p>
-
-    <p>
-    Currently, I'm working with the Department of Environmental Quality for a midwestern state.
-    We are revamping the permit application system as a web application and centralizing the database system between
-    the various DEQ divisions.
-    </p>
-
-    <h3><a name="cedric">Cedric Dumoulin -- Committer</a></h3>
-
-    <p>
-    As a dreamer / researcher I have thought a lot about a framework like 
-    Struts.
-    But, as a lazy developer I have first checked what already exists, and I 
-    have found Struts. 
-    Struts goals fulfilled nearly all I needed for my (now old) portal 
-    project, except the capability to reuse and assemble easily pieces of
-    pages or components. 
-    So, I have proposed the Components framework. 
-    This framework can seen as a superset of the Templates tag library 
-    contributed by David Geary, and contains lot of interesting features.
-    </p>
-
-    <p>
-    From a professional point of view, I have a Ph.D. in computer science. 
-    I have worked for 3 years in the R&amp;D department of a worldwide company 
-    developing Internet banking solutions. 
-    I am now a researcher at a university, and work European research 
-    projects. 
-    My main research interest is WWW, Distributed Systems and Object Oriented 
-    Design. 
-    When developing code, I always try to first propose reusable pieces of 
-    code.
-    </p>
-
-    <h3><a name="martinc">Martin Cooper -- Committer</a></h3>
-
-    <p>
-    Currently, I'm a Principal Software Engineer at Tumbleweed Communications,
-    working the Messaging Management System. 
-    Early last year (2000), I was working the architecture for a new web-
-    based administration system for the product, and headed in the direction 
-    of servlets and JSP. 
-    I joined the JSP-INTEREST and SERVLET-INTEREST mailing lists to see what 
-    was going in those respective areas.
-    </p>
-
-    <p>
-    Before too long, some interesting discussions started up around the topic
-    of Model 2 architectures. 
-    Model 2 sounded like the right way to go about things, and I followed 
-    those discussions closely. 
-    I was, however, still looking for a "leg up" - something to give me that 
-    core which to build.
-    </p>
-
-    <p>
-    Then, in May, I saw a post to JSP-INTEREST from Craig McClanahan entitled
-    something like "New Jakarta-Struts Subproject", and describing Struts, and
-    his vision for it. 
-    I hopped right over to the Jakarta web site and signed up for the mailing 
-    list. 
-    Before long, I realized this was exactly what I had been looking for.
-    </p>
-
-    <p>
-    Now, a year or so later, we have a team of people, which I am the 
-    technical lead, just finishing up our web-based administration system as 
-    Struts reaches its 1.0 release. 
-    And I am still firmly convinced that I made the right decision in going 
-    with Struts in the first place.
-    </p>
-
-    <p>
-    Like anyone else, my first postings to the struts-user list were questions
-    to help me understand how to do things, and why Struts is the way it is.
-    Over time, reading the lists and also the source code, and working my 
-    own fairly large web application, I came to the point where I could answer
-    questions too. 
-    Now, I'm glad to able to give something back to the Struts community by 
-    helping others understand, and also by contributing ideas and code to help
-    make Struts even better than it already is.
-    </p>
-
-    <h3><a name="dwinterfeldt">David Winterfeldt -- Committer</a></h3>
-
-    <p>
-    As I worked web based projects I started looking for something
-    that would really help save time during development.  
-    I ran across Struts in the Summer of 2000 and decided it was a good 
-    solution for web development.  
-    As I used Struts it really helped to remove a lot of the repetitive work,
-    but validation still seemed very repetitive.
-    I had an idea to create validation rules in an xml file and have them
-    easily integrated with Struts.  
-    It started out simple and continued to develop over time.  
-    The validation project was eventually incorporated into Struts and the 
-    core was moved to Jakarta Commons. 
-    I'm happy to see Struts continue to grow and develop.
-    </p>
-
-    <p>
-    I currently am employed at Forbes.com.  
-    I occasionally get to do some internal projects using Struts.  
-    The last interesting project was a publishing system using Message Driven 
-    EJBs in JBoss and Struts was used to display the status of each publishing 
-    process.
-    </p>
-
-    <h3><a name="rleland">Rob Leland -- Committer</a></h3>
-
-    <p>
-    I have gone from Unix -to- Windows -to- Unix based development about ever 
-    6 years now. When moving to Windows I was amazed at how primitive the OS
-    was compared  to Unix. While developing for Win32 I had the pleasure of
-    discovering Delphi and developed many GUI/databases, telephony, 
-    Internet enabled applications. I remain impressed with its design. 
-    Delphi, always enabled development of a simple  elegant solution, 
-    much like the language itself. I was convinced after 10 years of
-    development with C/C++ that it was a kinder gentler language. 
-    </p>
-
-    <p>
-    Then in July 2000 I decided to move into Java, and Web development.
-    This is after using the Internet since 1985 and occasionally teaching 
-    classes about it. I was hired as a consultant to take over a JSP based
-    application. I realized it had been written with the equivalent of 
-    "goto's"(Model 1) and had to be redesigned. 
-    I searched for a better way to design the code and by late August I had 
-    found Struts. It is also a simple elegant solution.
-    </p>
-
-    <p>
-    To date I have mainly served to pitch in where needed.  
-    I continue to amazed at the Struts committers' generous contributions of time, 
-    insight, and good will. I feel fortunate to part of the struts team. 
-    </p>
-
-    <h3><a name="dgraham">David Graham -- Committer</a></h3>
-
-    <p>
-    I, like many others, discovered Struts when contemplating writing my own
-    MVC Java framework for the web.  
-    Struts had everything I needed and more so I scrapped plans for my own and 
-    joined the mailing lists.  
-    After playing with it for several months I started submitting 
-    documentation and a few source patches.
-    I'm excited about helping Struts evolve and am continually amazed by the 
-    framework and the community surrounding it.
-    </p>
-
-    <h3><a name="jmitchell">James Mitchell -- Committer</a></h3>
-
-    <p>
-    James has been so busy answering users questions and adding test cases that
-    he hasn't taken the time to brag about himself. I thought that I would add a place
-    marker for him until and if he does decide to --blow his own horn-- ! -Rob :-D !
-    </p>
-
-    <h3><a name="jturner">James Turner -- Committer</a></h3>
-
-    <p>
-    I discovered Struts somewhat by accident.  In 2001 I began writing a
-    book for SAMS on JSP web development (MySQL and JSP Web Development),
-    and as part of it, I decided to write a chapter on Struts in the
-    advanced section.  In the process of learning enough about Struts to
-    write about it, I realized that it could simplify some of the projects
-    that I was working on for clients.</p>
-    <p>
-    After a half a year of working with Struts, I was asked by SAMS to write
-    another book, this time concentrating on Struts specifically.  That book,
-    co-authored with a former co-worker named Kevin Bedell, became Struts
-    Kick Start.</p>
-    <p>
-    In the process of writing that book, I began to realize that there were
-    things I could do to contribute to Struts beyond writing about it.  One
-    thing in particular was to clean up and add some functionality to the
-    Commons Validator project, which eventually led to me release-managing
-    (with a lot of help!) the Commons Validator 1.0 release.</p>
-    <p>
-    More generally, I've been a software developer for over 22 years, starting
-    with work as a Research Specialist at the MIT AI Lab.  I spent nearly a
-    decade working in LISP, before moving on to C/Unix, a stint managing the
-    Web Site for the Christian Science Monitor, and finally Java based
-    e-Commerce development, which has kept me busy for the last five years.</p>
-    <p>
-    In addition to the two books mentioned above, I also write for a number of
-    publications, including WIRED and the aforementioned Christian Science 
-    Monitor.  You can get a look at my portfolio 
-    <a href="http://www.blackbear.com/monitor.html">here</a></p>
-
-</section>
-
-<section>
-    <p align="right">
-    Next: <a href="status.html">Development Roadmap</a>
-    </p>
-</section>
-
-</chapter></body></document>
+      <author>Ted Husted</author>
+   </properties>
+
+   <body>
+      <chapter name="Who We Are" href="whoWeAre">
+         <section name="Community Support" href="support">
+            <p>In August 2003, there were 2700 subscribers to STRUTS-USER (including the digest version). It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers. In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed mirrors and through several list archives.</p>
+
+            <p>According to recently released 
+            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>
+
+            , Struts downloads range between 10,000 and 30,000 a week, roughly the same as Jakarta Tomcat.</p>
+
+            <p>There are a great number of third-party extensions are available for Struts, along with an equally vast number of articles and several books We try to list as many of these as we can in the 
+            <a href="resources/index.html">Resources area</a>
+
+            .</p>
+         </section>
+
+         <section name="Source Code Contributors" href="contributors.source">
+            <p>More than fifty developers have contributed code or documentation to Struts. We've tried to list all of our volunteers on this page (and apologize to anyone we missed!).</p>
+
+            <ul>
+               <li>Craig R. McClanahan</li>
+
+               <li>David Geary</li>
+
+               <li>Mike Schachter</li>
+
+               <li>Ted Husted</li>
+
+               <li>Rob Leland</li>
+
+               <li>Martin Cooper</li>
+
+               <li>Arron Bates</li>
+
+               <li>Cedric Dumoulin</li>
+
+               <li>David Winterfeldt</li>
+
+               <li>Arun M. Thomas</li>
+
+               <li>Chris Audley</li>
+
+               <li>Dominique Plante</li>
+
+               <li>Don Clasen</li>
+
+               <li>Florent Carpentier</li>
+
+               <li>James Holmes</li>
+
+               <li>Jeff Hutchison</li>
+
+               <li>Jimmy Larsson</li>
+
+               <li>Luis Arias</li>
+
+               <li>Marius Barduta</li>
+
+               <li>Niall Pemberton</li>
+
+               <li>Ralph Schaer</li>
+
+               <li>Sean M. Kelley</li>
+
+               <li>David Graham</li>
+
+               <li>James Turner</li>
+
+               <li>Kurt Post</li>
+
+               <li>Steve Raeburn</li>
+
+               <li>Leonardo Quijano</li>
+            </ul>
+         </section>
+
+         <section name="Documentation Contributors" href="contributors.documentation">
+            <ul>
+               <li>Craig R. McClanahan</li>
+
+               <li>David Geary</li>
+
+               <li>Mike Schachter</li>
+
+               <li>Ted Husted</li>
+
+               <li>Martin Cooper</li>
+
+               <li>Arron Bates</li>
+
+               <li>Cedric Dumoulin</li>
+
+               <li>David Winterfeldt</li>
+
+               <li>Chris Assenza</li>
+
+               <li>dIon Gillard</li>
+
+               <li>Dominique Plante</li>
+
+               <li>Ed Burns</li>
+
+               <li>Eric Wu</li>
+
+               <li>James DeVries</li>
+
+               <li>John Rousseau</li>
+
+               <li>John Ueltzhoeffer</li>
+
+               <li>Larry McCay</li>
+
+               <li>Mark Budai</li>
+
+               <li>Matthias Kerkhoff</li>
+
+               <li>Paul Runyan</li>
+
+               <li>Robert Hayden</li>
+
+               <li>Rob Leland</li>
+
+               <li>Stanley Santiago</li>
+
+               <li>Wong Kok Kai</li>
+
+               <li>Donald Ball</li>
+
+               <li>Dan Walker</li>
+
+               <li>Eddie Bush</li>
+
+               <li>Yann Cebron</li>
+
+               <li>David Graham</li>
+
+               <li>Steve Ditlinger</li>
+
+               <li>David M. Karr</li>
+
+               <li>Tim O'Brien</li>
+
+               <li>Edgar Dollin</li>
+
+               <li>Phil Steitz</li>
+
+               <li>Steve Raeburn</li>
+
+               <li>Tetsuo Ajima</li>
+
+               <li>Tatsuo Takahashi</li>
+
+               <li>Satoshi Hioki</li>
+
+               <li>Yoshinori Ashizawa</li>
+            </ul>
+         </section>
+
+         <section name="Active Committers" href="committers">
+            <ul>
+               <li>
+               <b>Craig R. McClanahan</b>
+
+               (craigmcc at apache.org)</li>
+
+               <li>
+               <b>Ted Husted</b>
+
+               (husted at apache.org)</li>
+
+               <li>
+               <b>Rob Leland</b>
+
+               (rleland at apache.org)</li>
+
+               <li>
+               <b>Cedric Dumoulin</b>
+
+               (cedric.dumoulin at lifl.fr)</li>
+
+               <li>
+               <b>Martin Cooper</b>
+
+               (martinc at apache.org)</li>
+
+               <li>
+               <b>Arron Bates</b>
+
+               (arron at apache.org)</li>
+
+               <li>
+               <b>James Holmes</b>
+
+               (jholmes at apache.org)</li>
+
+               <li>
+               <b>David M. Karr</b>
+
+               (dmkarr at apache.org)</li>
+
+               <li>
+               <b>David Graham</b>
+
+               (dgraham at apache.org)</li>
+
+               <li>
+               <b>James Mitchell</b>
+
+               (jmitchell at apache.org)</li>
+
+               <li>
+               <b>James Turner</b>
+
+               (turner at blackbear.com)</li>
+
+               <li>
+               <b>Steve Raeburn</b>
+
+               (sraeburn at apache.org)</li>
+            </ul>
+         </section>
+
+         <section name="Emeritus Committers" href="comitters.emeritus">
+            <ul>
+               <li>David Geary</li>
+
+               <li>Luis Arias</li>
+
+               <li>Pierre Delilse</li>
+
+               <li>Michael Schachter</li>
+
+               <li>
+                  <b>Vincent Massol</b>
+               </li>
+
+               <li>
+                  <b>David Winterfeldt</b>
+               </li>
+
+               <li>
+                  <b>Oleg Alexeev</b>
+               </li>
+
+               <li>
+                  <b>Eddie Bush</b>
+               </li>
+            </ul>
+         </section>
+
+         <section name="More About Us" href="about">
+            <h3>
+               <a name="craigmcc">Craig R. McClanahan -- Committer</a>
+            </h3>
+
+            <p>I've been involved with servlet and JSP technology since around 1998. It started out that I needed a way to build some web applications for several projects, and liked Java a lot better than the alternatives. I also liked theprice tag of open source software, and started using Apache JServ -- later , getting involved in the project (like many people, I was whining about the twelve months it took to get from version 0.9 to version 1.0, and my son said "Dad, you know Java -- go help them finish it!" -- so I did :-).</p>
+
+            <p>For quite a while, I was participating a lot the JSP-INTEREST and SERVLET-INTEREST 
+            <a href="http://archives.java.sun.com">mailing lists</a>
+
+            , especially the topic of good architectures for web applications. I was disgusted with the hash that many beginners created when they used (or abused) scriptlets in JSP pages, and built (for my former employer) a pretty comprehensive framework that could considered ("Struts 0.01 without the custom tags"). It was proprietary code, but I was able to describe the concepts, and there started to a feeling the lists that this "Model 2" thing was pretty cool -- but there were no good examples to look at, so it was mostly hand waving types of discussions.</p>
+
+            <p>Over the same time period, I got involved as an individual contributor in the 
+            <a href="http://java.sun.com/jcp">Java Community Process</a>
+
+            , and joined the expert group that defined the servlet 2.2 and JSP 1.1 specs. Sun was impressed enough to offer me a job as the technical lead the team within Sun (currently five other individuals) that works 
+            <a href="http://jakarta.apache.org/tomcat">Tomcat</a>
+
+            -- the architecture for Catalina, which is the servlet container part of Tomcat 4.0, is also mine -- so I am in the really nice position of getting paid to work open source software :-). And, participate the expert groups for Servlet 2.3 and JSP 1.2. And, speak at various conferences, including ApacheCon and JavaOne. And, talk to groups within Sun about using Struts and JSP/servlet technology. And ... (there's some really interesting things being considered for the future).</p>
+
+            <p>The original design of what came to Struts has been in my head for a long time, since those interesting mailing list discussions, but the first version of the actual code was written my laptop a Memorial Day weekend vacation trip (end of May, 2000) to the Oregon coast -- in between watching the surf and having the house shaken by a windstorm at night. Since then, it has gathered attention and popularity as we approach our first official release, and it delights me to see my "baby" grow up so well :-). Of course, it is no longer just me -- there have been incredible numbers of good ideas from all over, and a peek at the TODO list for 1.1 says that even more good stuff is coming in the future.</p>
+
+            <p>One motivation factor was 
+            <a href="http://www.servlets.com/soapbox/problems-jsp.html">Jason Hunter's</a>
+
+            article about the Problems with JSP. Jason and I get along fine, even though we have different preferences about presentation technologies. Besides being the author of a very popular book about servlets, with a second edition coming soon, Jason is also the representative for the Apache Software Foundation the Executive Committee of the Java Community Process.</p>
+
+            <p>Personally, I live in Portland, Oregon (even though my team at Sun is mostly in Cupertino, CA -- staying here was part of the job deal :-). I like to support Oregon sports teams (Oregon State Beavers, Oregon Ducks, Portland Trailblazers) and work cool software.</p>
+
+            <p>I figured out I was getting pretty old when I realized that 2000 was the 25th year I had been paid to work in some aspect of software development :-). I've got a son who is a full-time software developer (primarily in PHP so far, but I'm going to corrupt him with Java eventually :-), and a daughter in college. I'll happily let the other committers speak for themselves.</p>
+
+            <h3>
+               <a name="mschachter">Mike Schachter -- Committer</a>
+            </h3>
+
+            <p>I'm currently a student of computer science at Drexel University in Philadelphia, PA. I've been working at HP Middleware, formerly Bluestone Software for 3 years programming in Java and recently J2EE technologies. I'm a full time worker from September until April and a student and part time worker from April until August. In my spare time I've been known to run monkey-knife fights in a shady south philly warehouse. Err... I mean... nothing.</p>
+
+            <h3>
+               <a name="husted">Ted Husted -- Committer</a>
+            </h3>
+
+            <p>My primary interest in Struts is to put it to work writing lots of real-life Web applications:-) To do that effectively means having good documentation and code samples at my fingertips, so that's been my focus with the Struts product so far.</p>
+
+            <p>I've been writing software for hire since 1984, but only recently jumped the Java bandwagon. My initial interest was with electronic publishing, and started by converting my various print projects to electronic media. The "Information Superhighway" was still the private stomping ground of Universities and government agencies then. The rest of us had to make do with diskettes and bulletin boards.</p>
+
+            <p>Between 1985 and 1994, I created and marketed several software products for publishing disk, the most popular being "Dart" and "Iris". In 1992, Dart was awarded the Digital Quill for software excellence, featured in PC Magazine (February 1992), and bundled with McGraw Hill's bookset,"Paperless Publishing" by Colin Hayes (McGraw Hill 1994). Dart won a second Digital Quill in 1993. Several titles that used Iris for a publishing system have also won awards and been widely distributed, including "Hermitville USA." I was also fortunate to find kindred souls CompuServe and America Online, who helped me pioneer resources areas there in 1993 and 1994 for the nascent electronic publishing industry.</p>
+
+            <p>I finally cut loose the Internet in 1995, launching Epub News, an electronic newspage about electronic publishing. After taking several private contracts, I opened the Husted dot Com Website (www.husted.com) in 1996. I've drifted away from electronic books, but have noticed that several products are now making their way into the consumer mainstream -- as usual, I was twenty minutes into the future:-)</p>
+
+            <p>My favorite all-time project is the Hitchhikers Guide to Science Fiction. This was one of my earliest hypertext projects (it started as a print-book idea), and I had a lot of fun bringing it forward onto the Web. (Now, if I only had time to bring it current and dress it up!)</p>
+
+            <p>Currently, I'm working with the Department of Environmental Quality for a midwestern state. We are revamping the permit application system as a web application and centralizing the database system between the various DEQ divisions.</p>
+
+            <h3>
+               <a name="cedric">Cedric Dumoulin -- Committer</a>
+            </h3>
+
+            <p>As a dreamer / researcher I have thought a lot about a framework like Struts. But, as a lazy developer I have first checked what already exists, and I have found Struts. Struts goals fulfilled nearly all I needed for my (now old) portal project, except the capability to reuse and assemble easily pieces of pages or components. So, I have proposed the Components framework. This framework can seen as a superset of the Templates tag library contributed by David Geary, and contains lot of interesting features.</p>
+
+            <p>From a professional point of view, I have a Ph.D. in computer science. I have worked for 3 years in the R&amp;D department of a worldwide company developing Internet banking solutions. I am now a researcher at a university, and work European research projects. My main research interest is WWW, Distributed Systems and Object Oriented Design. When developing code, I always try to first propose reusable pieces of code.</p>
+
+            <h3>
+               <a name="martinc">Martin Cooper -- Committer</a>
+            </h3>
+
+            <p>Currently, I'm a Principal Software Engineer at Tumbleweed Communications, working the Messaging Management System. Early last year (2000), I was working the architecture for a new web- based administration system for the product, and headed in the direction of servlets and JSP. I joined the JSP-INTEREST and SERVLET-INTEREST mailing lists to see what was going in those respective areas.</p>
+
+            <p>Before too long, some interesting discussions started up around the topic of Model 2 architectures. Model 2 sounded like the right way to go about things, and I followed those discussions closely. I was, however, still looking for a "leg up" - something to give me that core which to build.</p>
+
+            <p>Then, in May, I saw a post to JSP-INTEREST from Craig McClanahan entitled something like "New Jakarta-Struts Subproject", and describing Struts, and his vision for it. I hopped right over to the Jakarta web site and signed up for the mailing list. Before long, I realized this was exactly what I had been looking for.</p>
+
+            <p>Now, a year or so later, we have a team of people, which I am the technical lead, just finishing up our web-based administration system as Struts reaches its 1.0 release. And I am still firmly convinced that I made the right decision in going with Struts in the first place.</p>
+
+            <p>Like anyone else, my first postings to the struts-user list were questions to help me understand how to do things, and why Struts is the way it is. Over time, reading the lists and also the source code, and working my own fairly large web application, I came to the point where I could answer questions too. Now, I'm glad to able to give something back to the Struts community by helping others understand, and also by contributing ideas and code to help make Struts even better than it already is.</p>
+
+            <h3>
+               <a name="dwinterfeldt">David Winterfeldt -- Committer</a>
+            </h3>
+
+            <p>As I worked web based projects I started looking for something that would really help save time during development. I ran across Struts in the Summer of 2000 and decided it was a good solution for web development. As I used Struts it really helped to remove a lot of the repetitive work, but validation still seemed very repetitive. I had an idea to create validation rules in an xml file and have them easily integrated with Struts. It started out simple and continued to develop over time. The validation project was eventually incorporated into Struts and the core was moved to Jakarta Commons. I'm happy to see Struts continue to grow and develop.</p>
+
+            <p>I currently am employed at Forbes.com. I occasionally get to do some internal projects using Struts. The last interesting project was a publishing system using Message Driven EJBs in JBoss and Struts was used to display the status of each publishing process.</p>
+
+            <h3>
+               <a name="rleland">Rob Leland -- Committer</a>
+            </h3>
+
+            <p>I have gone from Unix -to- Windows -to- Unix based development about ever 6 years now. When moving to Windows I was amazed at how primitive the OS was compared to Unix. While developing for Win32 I had the pleasure of discovering Delphi and developed many GUI/databases, telephony, Internet enabled applications. I remain impressed with its design. Delphi, always enabled development of a simple elegant solution, much like the language itself. I was convinced after 10 years of development with C/C++ that it was a kinder gentler language.</p>
+
+            <p>Then in July 2000 I decided to move into Java, and Web development. This is after using the Internet since 1985 and occasionally teaching classes about it. I was hired as a consultant to take over a JSP based application. I realized it had been written with the equivalent of "goto's"(Model 1) and had to be redesigned. I searched for a better way to design the code and by late August I had found Struts. It is also a simple elegant solution.</p>
+
+            <p>To date I have mainly served to pitch in where needed. I continue to amazed at the Struts committers' generous contributions of time, insight, and good will. I feel fortunate to part of the struts team.</p>
+
+            <h3>
+               <a name="dgraham">David Graham -- Committer</a>
+            </h3>
+
+            <p>I, like many others, discovered Struts when contemplating writing my own MVC Java framework for the web. Struts had everything I needed and more so I scrapped plans for my own and joined the mailing lists. After playing with it for several months I started submitting documentation and a few source patches. I'm excited about helping Struts evolve and am continually amazed by the framework and the community surrounding it.</p>
+
+            <h3>
+               <a name="jmitchell">James Mitchell -- Committer</a>
+            </h3>
+
+            <p>James has been so busy answering users questions and adding test cases that he hasn't taken the time to brag about himself. I thought that I would add a place marker for him until and if he does decide to --blow his own horn-- ! -Rob :-D !</p>
+
+            <h3>
+               <a name="jturner">James Turner -- Committer</a>
+            </h3>
+
+            <p>I discovered Struts somewhat by accident. In 2001 I began writing a book for SAMS on JSP web development (MySQL and JSP Web Development), and as part of it, I decided to write a chapter on Struts in the advanced section. In the process of learning enough about Struts to write about it, I realized that it could simplify some of the projects that I was working on for clients.</p>
+
+            <p>After a half a year of working with Struts, I was asked by SAMS to write another book, this time concentrating on Struts specifically. That book, co-authored with a former co-worker named Kevin Bedell, became Struts Kick Start.</p>
+
+            <p>In the process of writing that book, I began to realize that there were things I could do to contribute to Struts beyond writing about it. One thing in particular was to clean up and add some functionality to the Commons Validator project, which eventually led to me release-managing (with a lot of help!) the Commons Validator 1.0 release.</p>
+
+            <p>More generally, I've been a software developer for over 22 years, starting with work as a Research Specialist at the MIT AI Lab. I spent nearly a decade working in LISP, before moving on to C/Unix, a stint managing the Web Site for the Christian Science Monitor, and finally Java based e-Commerce development, which has kept me busy for the last five years.</p>
+
+            <p>In addition to the two books mentioned above, I also write for a number of publications, including WIRED and the aforementioned Christian Science Monitor. You can get a look at my portfolio 
+            <a href="http://www.blackbear.com/monitor.html">here</a>
+            </p>
+         </section>
+
+         <section>
+            <p align="right">Next: 
+            <a href="status.html">Development Roadmap</a>
+            </p>
+         </section>
+      </chapter>
+   </body>
+</document>
+
