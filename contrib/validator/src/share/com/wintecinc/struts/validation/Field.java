@@ -604,6 +604,8 @@ public class Field implements Cloneable, Serializable {
           }
        }
        
+       hResults.setFast(true);
+       
        return hResults;
     }
     
