@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.3 2000/06/27 01:58:29 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/27 01:58:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.4 2000/06/29 21:54:03 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/29 21:54:03 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.taglib;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/27 01:58:29 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/29 21:54:03 $
  */
 
 public class LinkTag extends TagSupport {
@@ -339,7 +340,7 @@ public class LinkTag extends TagSupport {
 		    }
 		    sb.append(key);
 		    sb.append('=');
-		    sb.append(values[i]);
+		    sb.append(URLEncoder.encode(values[i]));
 		}
 	    } else {
 		if (question)
@@ -350,7 +351,7 @@ public class LinkTag extends TagSupport {
 		}
 		sb.append(key);
 		sb.append('=');
-		sb.append(value.toString());
+		sb.append(URLEncoder.encode(value.toString()));
 	    }
 	}
 
