@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.68.2.1 2001/06/02 23:06:49 craigmcc Exp $
- * $Revision: 1.68.2.1 $
- * $Date: 2001/06/02 23:06:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.68.2.2 2001/06/13 17:07:55 mschachter Exp $
+ * $Revision: 1.68.2.2 $
+ * $Date: 2001/06/13 17:07:55 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.68.2.1 $ $Date: 2001/06/02 23:06:49 $
+ * @version $Revision: 1.68.2.2 $ $Date: 2001/06/13 17:07:55 $
  */
 
 public class ActionServlet
@@ -1828,7 +1828,11 @@ public class ActionServlet
         String forward = mapping.getForward();
         if (forward == null)
             return (true);
-
+        
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
         // Construct a request dispatcher for the specified path
         RequestDispatcher rd =
             getServletContext().getRequestDispatcher(forward);
@@ -1870,6 +1874,10 @@ public class ActionServlet
         if (include == null)
             return (true);
 
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
         // Construct a request dispatcher for the specified path
         RequestDispatcher rd =
             getServletContext().getRequestDispatcher(include);
@@ -2125,8 +2133,12 @@ public class ActionServlet
 
 	// Save our error messages and return to the input form if possible
 	if (debug >= 1)
-	    log("  Validation error(s), redirecting to: " + uri);
+	    log("  Validation error(s), redirecting to: " + uri);        
 	request.setAttribute(Action.ERROR_KEY, errors);
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
 	RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
