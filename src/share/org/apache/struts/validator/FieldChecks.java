@@ -163,17 +163,17 @@ public class FieldChecks implements Serializable {
         }
         int i = 0;
         String fieldJoin = "AND";
-        if (!GenericValidator.isBlankOrNull(field.getVarValue("field-join"))) {
-            fieldJoin = field.getVarValue("field-join");
+        if (!GenericValidator.isBlankOrNull(field.getVarValue("fieldJoin"))) {
+            fieldJoin = field.getVarValue("fieldJoin");
         }
         if (fieldJoin.equalsIgnoreCase("AND")) {
             required = true;
         }
         while (!GenericValidator.isBlankOrNull(field.getVarValue("field[" + i + "]"))) {
             String dependProp = field.getVarValue("field[" + i + "]");
-            String dependTest = field.getVarValue("field-test[" + i + "]");
-            String dependTestValue = field.getVarValue("field-value[" + i + "]");
-            String dependIndexed = field.getVarValue("field-indexed[" + i + "]");
+            String dependTest = field.getVarValue("fieldTest[" + i + "]");
+            String dependTestValue = field.getVarValue("fieldValue[" + i + "]");
+            String dependIndexed = field.getVarValue("fieldIndexed[" + i + "]");
             if (dependIndexed == null)
                 dependIndexed = "false";
             String dependVal = null;
