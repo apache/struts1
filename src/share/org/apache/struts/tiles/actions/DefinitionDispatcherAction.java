@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.4 2002/11/16 04:18:59 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:18:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.5 2003/01/31 06:33:20 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/01/31 06:33:20 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -87,7 +87,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * This action is usefull in following situations :
  * <li>
  * <ul>To associate an Url to a definition</ul>
- * <ul>To use Struts <link> tag on a definition</ul>
+ * <ul>To use Struts &lt;html:link&gt; tag on a definition</ul>
  * </li>
  * <p>To configure the use of this action in your
  * <code>struts-config.xml</code> file, create an entry like this:</p>
@@ -109,7 +109,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2002/11/16 04:18:59 $
+ * @version $Revision: 1.5 $ $Date: 2003/01/31 06:33:20 $
  */
 
 public final class DefinitionDispatcherAction extends Action {
