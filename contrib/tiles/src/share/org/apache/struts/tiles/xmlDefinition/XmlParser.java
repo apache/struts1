@@ -59,20 +59,19 @@ public class XmlParser
       */
   public XmlParser()
   {
-
 	digester = new Digester();
 	digester.setDebug(digesterDebugLevel);
 	digester.setValidating(validating);
 	digester.setNamespaceAware(true);
-        //digester.setUseContextClassLoader(true);
+  //digester.setUseContextClassLoader(true);
 	// Register our local copy of the DTDs that we can find
-        for (int i = 0; i < registrations.length; i += 2) {
-            URL url = this.getClass().getResource(registrations[i+1]);
-            if (url != null)
-                {
-                digester.register(registrations[i], url.toString());
-                }
-        }
+  for (int i = 0; i < registrations.length; i += 2) {
+      URL url = this.getClass().getResource(registrations[i+1]);
+      if (url != null)
+          {
+          digester.register(registrations[i], url.toString());
+          }
+  }
     // Init syntax rules
   initDigester( digester );
   }
@@ -277,7 +276,8 @@ public class XmlParser
      */
   public static void main(String[] args)
   {
-  String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tiles-examples-defs.xml";
+  //String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tiles-examples-defs.xml";
+  String filename = "E:/programs/jakarta-tomcat-4.0.3/webapps/wtiles-struts/WEB-INF/tiles-examples-defs.xml";
   //String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tilesDefinitions.xml";
   //String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-channel/WEB-INF/componentDefinitions.xml";
   //String filename2 = "E:/programs/jakarta-tomcat/webapps/wtiles-tutorial/WEB-INF/componentDefinitions.xml";
@@ -309,7 +309,7 @@ public class XmlParser
       {
 	    XmlParser parser = new XmlParser();
       parser.setValidating(true);
-      parser.setDetailLevel(0);
+      parser.setDetailLevel(2);
       XmlDefinitionsSet definitions = new XmlDefinitionsSet();
         System.out.println( "  Parse file" );
       parser.parse( input, definitions);
