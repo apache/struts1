@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.30 2001/12/29 00:24:46 craigmcc Exp $
- * $Revision: 1.30 $
- * $Date: 2001/12/29 00:24:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.31 2001/12/29 19:35:32 craigmcc Exp $
+ * $Revision: 1.31 $
+ * $Date: 2001/12/29 19:35:32 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.30 $ $Date: 2001/12/29 00:24:46 $
+ * @version $Revision: 1.31 $ $Date: 2001/12/29 19:35:32 $
  */
 
 public class Action {
@@ -118,10 +118,16 @@ public class Action {
 
 
     /**
-     * The base of the context attributes key under which our
+     * <p>The base of the context attributes key under which our
      * <code>ApplicationConfig</code> data structure will be stored.  This
      * will be suffixed with the actual application prefix (including the
-     * leading "/" character) to form the actual attributes key.
+     * leading "/" character) to form the actual attributes key.</p>
+     *
+     * <p>For each request processed by the controller servlet, or a JSP page
+     * using the <code>&lt;html:html&gt;</code> custom tag, the
+     * <code>ApplicationConfig</code> object for the application selected by
+     * the request URI currently being processed will also be exposed under
+     * this key as a request attribute.</p>
      */
     public static final String APPLICATION_KEY =
         "org.apache.struts.action.APPLICATION";
@@ -214,8 +220,15 @@ public class Action {
 
 
     /**
-     * The context attributes key under which our application resources are
+     * <p>The context attributes key under which our application resources are
      * normally stored, unless overridden when initializing our ActionServlet.
+     * </p>
+     *
+     * <p>For each request processed by the controller servlet, or a JSP page
+     * using the <code>&lt;html:html&gt;</code> custom tag, the
+     * <code>MessageResources</code> object for the application selected by
+     * the request URI currently being processed will also be exposed under
+     * this key as a request attribute.</p>
      */
     public static final String MESSAGES_KEY =
       "org.apache.struts.action.MESSAGE";

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.25 2001/11/21 18:48:42 oalexeev Exp $
- * $Revision: 1.25 $
- * $Date: 2001/11/21 18:48:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.26 2001/12/29 19:35:33 craigmcc Exp $
+ * $Revision: 1.26 $
+ * $Date: 2001/12/29 19:35:33 $
  *
  * ====================================================================
  *
@@ -67,12 +67,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,6 +93,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionServletWrapper;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -102,7 +105,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.25 $ $Date: 2001/11/21 18:48:42 $
+ * @version $Revision: 1.26 $ $Date: 2001/12/29 19:35:33 $
  */
 
 public class RequestUtils {
@@ -124,6 +127,13 @@ public class RequestUtils {
     MessageResources.getMessageResources
     ("org.apache.struts.util.LocalStrings");
 
+
+
+    /**
+     * The context attribute under which we store our prefixes list.
+     */
+    private static final String PREFIXES_KEY =
+        "org.apache.struts.util.PREFIXES";
 
 
     // --------------------------------------------------------- Public Methods
@@ -977,6 +987,77 @@ public class RequestUtils {
 
         pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
                                  PageContext.REQUEST_SCOPE);
+
+    }
+
+
+    /**
+     * Select the sub-application to which the specified request belongs, and
+     * add corresponding request attributes to this request.
+     *
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     */
+    public static void selectApplication(HttpServletRequest request,
+                                         ServletContext context) {
+
+        // Acquire the path used to compute the sub-application
+        String matchPath = request.getServletPath();
+
+        // Match against the list of sub-application prefixes
+        String prefix = "";
+        String prefixes[] = getApplicationPrefixes(context);
+        for (int i = 0; i < prefixes.length; i++) {
+            if (matchPath.startsWith(prefixes[i])) {
+                prefix = prefixes[i];
+                break;
+            }
+        }
+
+        // Expose the resources for this sub-application
+        ApplicationConfig config = (ApplicationConfig)
+            context.getAttribute(Action.APPLICATION_KEY + prefix);
+        if (config != null)
+            request.setAttribute(Action.APPLICATION_KEY, config);
+        MessageResources resources = (MessageResources)
+            context.getAttribute(Action.MESSAGES_KEY + prefix);
+        if (resources != null)
+            request.setAttribute(Action.MESSAGES_KEY, resources);
+
+    }
+
+
+    /**
+     * Return the list of sub-application prefixes that are defined for
+     * this web application, creating it if necessary.  <strong>NOTE</strong> -
+     * the "" prefix for the default application is not included in this list.
+     *
+     * @param context The ServletContext for this web application
+     */
+    public static String[] getApplicationPrefixes(ServletContext context) {
+
+        String prefixes[] = (String[]) context.getAttribute(PREFIXES_KEY);
+        if (prefixes != null) {
+            return (prefixes);
+        }
+
+        ArrayList list = new ArrayList();
+        Enumeration names = context.getAttributeNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            if (!name.startsWith(Action.APPLICATION_KEY)) {
+                continue;
+            }
+            ApplicationConfig config = (ApplicationConfig)
+                context.getAttribute(name);
+            String prefix = name.substring(Action.APPLICATION_KEY.length());
+            if (prefix.length() > 0) {
+                list.add(name);
+            }
+        }
+        prefixes = (String[]) list.toArray(new String[list.size()]);
+        context.setAttribute(PREFIXES_KEY, prefixes);
+        return (prefixes);
 
     }
 

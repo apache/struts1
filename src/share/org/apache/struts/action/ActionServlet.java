@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.80 2001/12/29 00:24:46 craigmcc Exp $
- * $Revision: 1.80 $
- * $Date: 2001/12/29 00:24:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.81 2001/12/29 19:35:32 craigmcc Exp $
+ * $Revision: 1.81 $
+ * $Date: 2001/12/29 19:35:32 $
  *
  * ====================================================================
  *
@@ -238,7 +238,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.80 $ $Date: 2001/12/29 00:24:46 $
+ * @version $Revision: 1.81 $ $Date: 2001/12/29 19:35:32 $
  */
 
 public class ActionServlet
@@ -1885,6 +1885,9 @@ public class ActionServlet
             request = new MultipartRequestWrapper(request);
         }
 
+        // Automatically select the sub-application for this request
+        processApplication(request);
+
         // Identify the path component we will use to select a mapping
         String path = processPath(request);
         if (path == null) {
@@ -2076,6 +2079,19 @@ public class ActionServlet
         else
             session.setAttribute(attribute, instance);
         return (instance);
+
+    }
+
+
+    /**
+     * Identify and record the sub-application that is responsible for
+     * processing this request.
+     *
+     * @param request The servlet request we are processing
+     */
+    protected void processApplication(HttpServletRequest request) {
+
+        RequestUtils.selectApplication(request, getServletContext());
 
     }
 
