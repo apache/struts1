@@ -40,6 +40,13 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020710"></a>10 July 2002 - Using Struts in Oracle JDeveloper 9i Tutorial</h3>
+<p>
+<a href="http://otn.oracle.com/products/jdev/howtos/jsp/StrutsHowTo.html">
+<b>How Do I use Jakarta Struts with Oracle9i JDeveloper?</b></a> by Oracle Corporation.
+</p>
+<hr size="1" noshade=""/>
+
 <h3><a name="20020709"></a>9 July 2002 - Struts Console version 2.0</h3>
 <p>
 Struts Console version 2.0 is now available.
@@ -81,7 +88,6 @@ Changes with Struts Console v2.0
 <li>Extensive refactorings to improve performance and reduce code size.</li>
 </ul>
 <hr size="1" noshade=""/>
-
 
 
 <h3><a name="20020709"></a>09 July 2002 - Struts Adoption article</h3>
