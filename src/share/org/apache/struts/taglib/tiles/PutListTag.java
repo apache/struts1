@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.4 2003/02/27 19:18:55 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/27 19:18:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.5 2003/07/02 02:13:53 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/02 02:13:53 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,7 +59,6 @@
  *
  */
 
-
 package org.apache.struts.taglib.tiles;
 
 import java.util.ArrayList;
@@ -71,32 +70,39 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.tiles.AttributeDefinition;
 import org.apache.struts.tiles.UntyppedAttribute;
 
+/**
+ * PutList tag implementation.
+ */
+public class PutListTag
+    extends TagSupport
+    implements ComponentConstants, AddTagParent, PutListTagParent {
 
-  /**
-   * PutList tag implementation.
-   */
-public class PutListTag extends TagSupport implements ComponentConstants, AddTagParent, PutListTagParent {
-  
+    /** 
+     * Name of this attribute. 
+     */
+    private String attributeName = null;
+    
+    /** 
+     * The list itself. 
+     */
+    private List list = null;
+    
+    /** 
+     * Role attribute. 
+     */
+    private String role = null;
 
-    /** Name of this attribute. */
-  private String attributeName = null;
-    /** The list itself. */
-  private List list = null;
-    /** Role attribute. */
-  private String role = null;
-
-  /**
-   * Default constructor.
-   */
-  public PutListTag() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public PutListTag() {
+        super();
+    }
 
     /**
      * Release all allocated resources.
      */
     public void release() {
-
         super.release();
         attributeName = null;
         role = null;
@@ -105,60 +111,56 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
     /**
      * Release all internal resources.
      */
-    protected void releaseInternal()
-      {
-      list = null;
-      }
+    protected void releaseInternal() {
+        list = null;
+    }
 
     /**
      * Set property.
      */
-  public void setName(String name)
-  {
-  this.attributeName = name;
-  }
+    public void setName(String name) {
+        this.attributeName = name;
+    }
 
     /**
      * Get property.
      */
-  public String getName()
-  {
-  return attributeName;
-  }
+    public String getName() {
+        return attributeName;
+    }
 
     /**
      * Set role attribute.
      * @param role The role the user must be in to store content.
      */
-   public void setRole(String role)
-   {
-   this.role = role;
-   }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     /**
      * Get role attribute.
      */
-   public String getRole()
-   {
-   return role;
-   }
+    public String getRole() {
+        return role;
+    }
 
     /**
      * Get list defined in tag.
      */
-   public List getList()
-   {
-   return list;
-   }
+    public List getList() {
+        return list;
+    }
 
     /**
      * Set property.
      */
-  public void addElement(Object value){
-    if(list==null)
-      list = new ArrayList();
-    list.add(value);
-  }
+    public void addElement(Object value) {
+        if (list == null) {
+            list = new ArrayList();
+        }
+        
+        list.add(value);
+    }
 
     /**
      * Process nested &lg;putList&gt; tag.
@@ -167,21 +169,20 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
      * If role is defined, nested attribute is wrapped into an untypped definition
      * containing attribute value and role.
      */
-  public void processNestedTag(PutListTag nestedTag) throws JspException
-   {
-      // Get real value and check role
-      // If role is set, add it in attribute definition if any.
-      // If no attribute definition, create untyped one, and set role.
-    Object attributeValue = nestedTag.getList();
+    public void processNestedTag(PutListTag nestedTag) throws JspException {
+        // Get real value and check role
+        // If role is set, add it in attribute definition if any.
+        // If no attribute definition, create untyped one, and set role.
+        Object attributeValue = nestedTag.getList();
 
-    if( nestedTag.getRole() != null )
-      {
-      AttributeDefinition  def = new UntyppedAttribute( attributeValue );
-      def.setRole(nestedTag.getRole());
-      attributeValue = def;
-      } // end if
-      // now add attribute to enclosing parent (i.e. : this object)
-    addElement(attributeValue);
+        if (nestedTag.getRole() != null) {
+            AttributeDefinition def = new UntyppedAttribute(attributeValue);
+            def.setRole(nestedTag.getRole());
+            attributeValue = def;
+        }
+        
+        // now add attribute to enclosing parent (i.e. : this object)
+        addElement(attributeValue);
     }
 
     /**
@@ -191,70 +192,64 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
      * If role is defined, nested attribute is wrapped into an untypped definition
      * containing attribute value and role.
      */
-  public void processNestedTag(AddTag nestedTag) throws JspException
-   {
-      // Get real value and check role
-      // If role is set, add it in attribute definition if any.
-      // If no attribute definition, create untyped one, and set role.
-    Object attributeValue = nestedTag.getRealValue();
-    AttributeDefinition def;
+    public void processNestedTag(AddTag nestedTag) throws JspException {
+        // Get real value and check role
+        // If role is set, add it in attribute definition if any.
+        // If no attribute definition, create untyped one, and set role.
+        Object attributeValue = nestedTag.getRealValue();
+        AttributeDefinition def;
 
-    if( nestedTag.getRole() != null )
-      {
-      try
-        {
-        def = ((AttributeDefinition)attributeValue);
+        if (nestedTag.getRole() != null) {
+            try {
+                def = ((AttributeDefinition) attributeValue);
+            } catch (ClassCastException ex) {
+                def = new UntyppedAttribute(attributeValue);
+            }
+            def.setRole(nestedTag.getRole());
+            attributeValue = def;
         }
-       catch( ClassCastException ex )
-        {
-        def = new UntyppedAttribute( attributeValue );
-        }
-      def.setRole(nestedTag.getRole());
-      attributeValue = def;
-      } // end if
-      // now add attribute to enclosing parent (i.e. : this object)
-    addElement(attributeValue);
+        
+        // now add attribute to enclosing parent (i.e. : this object)
+        addElement(attributeValue);
     }
 
     /**
      * Do start tag.
      */
-  public int doStartTag() throws JspException
-    {
-    return EVAL_BODY_INCLUDE;
+    public int doStartTag() throws JspException {
+        return EVAL_BODY_INCLUDE;
     }
 
     /**
      * Do end tag.
      */
-  public int doEndTag() throws JspException
-   {
-   PutListTagParent enclosingParent = findEnclosingParent();
-   enclosingParent.processNestedTag( this );
-     // Clear list to avoid reuse
-   releaseInternal();
-   return EVAL_PAGE;
-  }
+    public int doEndTag() throws JspException {
+        PutListTagParent enclosingParent = findEnclosingParent();
+        enclosingParent.processNestedTag(this);
+        // Clear list to avoid reuse
+        releaseInternal();
+        return EVAL_PAGE;
+    }
 
     /**
      * Find enclosing parent tag accepting this tag.
      * @throws JspException If we can't find an appropriate enclosing tag.
      */
-  protected PutListTagParent findEnclosingParent() throws JspException {
-    try
-      {
-      PutListTagParent parent = (PutListTagParent)findAncestorWithClass(this,PutListTagParent.class);
-      if( parent == null )
-        {
-        throw new JspException( "Error - tag putList : enclosing tag doesn't accept 'putList' tag." );
+    protected PutListTagParent findEnclosingParent() throws JspException {
+        try {
+            PutListTagParent parent =
+                (PutListTagParent) findAncestorWithClass(this,
+                    PutListTagParent.class);
+                    
+            if (parent == null) {
+                throw new JspException("Error - tag putList : enclosing tag doesn't accept 'putList' tag.");
+            }
+            
+            return parent;
+            
+        } catch (ClassCastException ex) {
+            throw new JspException("Error - tag putList : enclosing tag doesn't accept 'putList' tag.");
         }
-      return parent;
-      }
-     catch( ClassCastException ex )
-      {
-      throw new JspException( "Error - tag putList : enclosing tag doesn't accept 'putList' tag." );
-      }
-  }
-
+    }
 
 }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionNameAttribute.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionNameAttribute.java,v 1.3 2003/07/02 02:13:53 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/02 02:13:53 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,28 +59,26 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
-  /**
-   * Component attribute.
-   * Such attribute value represent an instance name.
-   */
+/**
+ * Component attribute.
+ * Such attribute value represent an instance name.
+ */
 public class DefinitionNameAttribute extends UntyppedAttribute {
+    
     /**
      * Constructor.
      */
-  public DefinitionNameAttribute( String value )
-    {
-    super( value);
+    public DefinitionNameAttribute(String value) {
+        super(value);
     }
 
     /**
      * Constructor.
      */
-  public DefinitionNameAttribute( String value ,String role)
-    {
-    super(value, role);
+    public DefinitionNameAttribute(String value, String role) {
+        super(value, role);
     }
 
 }
