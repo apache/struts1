@@ -119,6 +119,7 @@
 
 <section href="projects" name="Projects and Examples">
 
+<p><a href="http://www.basebeans.com/downloads.jsp"></a></p>
 <p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip">
 <b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
 <p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
@@ -229,6 +230,8 @@
 
 
 <section href="articles" name="Articles">
+<p><a href ="http://www.fawcette.com/javapro/mags/2002_05/magazine/columns/weblication/default.asp"><b>Applying the MVC Design Pattern Using Struts</b></a> by Peter Varhol</p>
+<p><a href ="http://www.fawcette.com/javapro/2002_04/magazine/features/tholloway/"><b>Struts: a Solid Web-App Framework</b></a> by Tim Holloway</p>
 <p><a href="http://www.husted.com/struts/resources/struts-intro.ppt"><b>Introduction to Struts</b></a> by Dave Hay. A general introduction to Struts, appropriate for team meetings. Use as-is or a basis for your own.</p>
 <p><a href="http://www.mycgiserver.com/~eboudrant/#uml11"><b>Struts1.1 UML Class diagrams</b></a> by Emmanuel Boudrant.</p>
 <p><a href="http://stealthis.athensgroup.com/presentations/Model_Layer_Framework/Struts_Whitepaper.pdf"><b>Using Struts</b></a> (PDF) by Larry Maturo</p>
@@ -297,12 +300,16 @@
 
 
 <section href="sigs" name="Special Interest Groups">
+<p><b>Local</b></p>
 <p><a href="http://www.open-tools.org/index.jsp"><b>Atlanta Struts Users Group</b></a> - The Atlanta Struts Users 
 Group (ASUG) is a free, informal, all-volunteer, technically-savvy group of Atlanta Struts enthusiasts, 
 professionals and zealots who keep each other informed about issues and innovations in the Struts Framework. 
 We meet in real space the first Tuesday of the month from 7:00 to 9:00pm to see presentations from members 
 and vendors. The rest of the time, members communicate virtually via the ASUG mailing list. Come to the 
 meetings and contribute! </p>
+<p><b>Online</b></p>
+<p><a href="http://groups.yahoo.com/group/model_struts/"><b>Model Layer in MVC (Struts)</b></a>. </p>
+<p><a href="http://www.basebeans.com:8081/mailman/listinfo/mvc-programmers"><b>MVC Programmers</b></a>. </p>
 </section>
 
 

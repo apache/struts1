@@ -39,6 +39,19 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News">
 
+<h3><a name="20020611"></a>11 June 2002 - JavaPro Articles on Struts</h3>
+<p>
+JavaPro printed some articles regarding Struts in April and May. 
+In case you missed them, here's the links: 
+</p>
+
+<ul>
+<li><a href="http://www.fawcette.com/javapro/mags/2002_05/magazine/columns/weblication/default.asp"><b>Applying the MVC Design Pattern Using Struts</b></a> by Peter Varhol</li>
+<li><a href="http://www.fawcette.com/javapro/2002_04/magazine/features/tholloway/"><b>Struts: a Solid Web-App Framework</b></a> by Tim Holloway</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020607.1"></a>07 Jun 2002 - O'Reilly Chapter 7</h3>
 <p>
 Chapter 7 of the upcoming Struts book by Chuck Cavaness is now available 
