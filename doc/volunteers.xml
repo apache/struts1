@@ -10,7 +10,7 @@
          <section name="Community Support" href="support">
             <p>In July 2004, there were almost 2700 subscribers to STRUTS-USER (including the digest version). It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers. In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed mirrors and through several list archives.</p>
 
-            <p>According to recently released 
+            <p>According to recently released
             <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range around 15,000 a month.</p>
          </section>
 
@@ -59,7 +59,7 @@
                <li>
                <strong>Steve Raeburn</strong>
                (sraeburn at apache.org)</li>
-               
+
                <li>
                <strong>Don Brown</strong>
                (mrdon at apache.org)</li>
@@ -109,22 +109,22 @@
 
             <p>I've been involved with servlet and JSP technology since around 1998. It started out that I needed a way to build some web applications for several projects, and liked Java a lot better than the alternatives. I also liked the price tag of open source software, and started using Apache JServ -- later, getting involved in the project (like many people, I was whining about the twelve months it took to get from version 0.9 to version 1.0, and my son said "Dad, you know Java -- go help them finish it!" -- so I did :-).</p>
 
-            <p>For quite a while, I was participating a lot the JSP-INTEREST and SERVLET-INTEREST 
+            <p>For quite a while, I was participating a lot the JSP-INTEREST and SERVLET-INTEREST
             <a href="http://archives.java.sun.com">mailing lists</a>
 
             , especially the topic of good architectures for web applications. I was disgusted with the hash that many beginners created when they used (or abused) scriptlets in JSP pages, and built (for my former employer) a pretty comprehensive framework that could considered ("Struts 0.01 without the custom tags"). It was proprietary code, but I was able to describe the concepts, and there started to a feeling the lists that this "Model 2" thing was pretty cool -- but there were no good examples to look at, so it was mostly hand waving types of discussions.</p>
 
-            <p>Over the same time period, I got involved as an individual contributor in the 
+            <p>Over the same time period, I got involved as an individual contributor in the
             <a href="http://java.sun.com/jcp">Java Community Process</a>
 
-            , and joined the expert group that defined the servlet 2.2 and JSP 1.1 specs. Sun was impressed enough to offer me a job as the technical lead the team within Sun (currently five other individuals) that works 
+            , and joined the expert group that defined the servlet 2.2 and JSP 1.1 specs. Sun was impressed enough to offer me a job as the technical lead the team within Sun (currently five other individuals) that works
             <a href="http://jakarta.apache.org/tomcat">Tomcat</a>
 
             -- the architecture for Catalina, which is the servlet container part of Tomcat 4.0, is also mine -- so I am in the really nice position of getting paid to work open source software :-). And, participate the expert groups for Servlet 2.3 and JSP 1.2. And, speak at various conferences, including ApacheCon and JavaOne. And, talk to groups within Sun about using Struts and JSP/servlet technology. And ... (there's some really interesting things being considered for the future).</p>
 
             <p>The original design of what came to Struts has been in my head for a long time, since those interesting mailing list discussions, but the first version of the actual code was written my laptop a Memorial Day weekend vacation trip (end of May, 2000) to the Oregon coast -- in between watching the surf and having the house shaken by a windstorm at night. Since then, it has gathered attention and popularity as we approach our first official release, and it delights me to see my "baby" grow up so well :-). Of course, it is no longer just me -- there have been incredible numbers of good ideas from all over, and a peek at the TODO list for 1.1 says that even more good stuff is coming in the future.</p>
 
-            <p>One motivation factor was 
+            <p>One motivation factor was
             <a href="http://www.servlets.com/soapbox/problems-jsp.html">Jason Hunter's</a>
 
             article about the Problems with JSP. Jason and I get along fine, even though we have different preferences about presentation technologies. Besides being the author of a very popular book about servlets, with a second edition coming soon, Jason is also the representative for the Apache Software Foundation the Executive Committee of the Java Community Process.</p>
@@ -231,7 +231,7 @@
 
             <p>More generally, I've been a software developer for over 22 years, starting with work as a Research Specialist at the MIT AI Lab. I spent nearly a decade working in LISP, before moving on to C/Unix, a stint managing the Web Site for the Christian Science Monitor, and finally Java based e-Commerce development, which has kept me busy for the last five years.</p>
 
-            <p>In addition to the two books mentioned above, I also write for a number of publications, including WIRED and the aforementioned Christian Science Monitor. You can get a look at my portfolio 
+            <p>In addition to the two books mentioned above, I also write for a number of publications, including WIRED and the aforementioned Christian Science Monitor. You can get a look at my portfolio
             <a href="http://www.blackbear.com/monitor.html">here</a>
             </p>
             <h4 id="ekbush">Eddie Bush -- Committer</h4>
@@ -248,7 +248,7 @@
               I'd been looking for a way to really do heavy-duty processing of
               web requests that was higher-level than CGI.  In particular, I
               was on a quest to find somethiong that did not involve using
-              Microsoft &trade; technologies.  A friend of mine started
+              Microsoft (tm) technologies.  A friend of mine started
               chatting up the idea of Java servlets and JSP pages.  I didn't
               really like the idea of using Java because of my previously
               formed opinion, but, having a great deal of respect for my
@@ -317,7 +317,7 @@
          </section>
 
          <section>
-            <p class="right">Next: 
+            <p class="right">Next:
             <a href="announce.html">Announcements</a>
             </p>
          </section>
