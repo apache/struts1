@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.5 2001/01/28 02:22:12 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/28 02:22:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.6 2001/02/02 02:57:50 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/02 02:57:50 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import java.lang.reflect.Array;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.5 $ $Date: 2001/01/28 02:22:12 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/02 02:57:50 $
  */
 
 public final class ConvertUtils {
@@ -89,7 +89,7 @@ public final class ConvertUtils {
     /**
      * The default value for Boolean conversions.
      */
-    private static Boolean defaultBoolean = new Boolean(false);
+    private static Boolean defaultBoolean = Boolean.FALSE;
 
     public boolean getDefaultBoolean() {
         return (defaultBoolean.booleanValue());
@@ -204,7 +204,7 @@ public final class ConvertUtils {
     /**
      * The Class object for java.lang.String.
      */
-    private static Class stringClass = "".getClass();
+    private static Class stringClass = String.class;
 
 
     // --------------------------------------------------------- Public Classes
@@ -253,21 +253,37 @@ public final class ConvertUtils {
             else
                 return (value);
         } else if (clazz == Integer.TYPE) {
-            return (convertInteger(value));
+            return (convertInteger(value, defaultInteger));
         } else if (clazz == Boolean.TYPE) {
-            return (convertBoolean(value));
+            return (convertBoolean(value, defaultBoolean));
         } else if (clazz == Long.TYPE) {
-            return (convertLong(value));
+            return (convertLong(value, defaultLong));
         } else if (clazz == Double.TYPE) {
-            return (convertDouble(value));
+            return (convertDouble(value, defaultDouble));
         } else if (clazz == Character.TYPE) {
-            return (convertCharacter(value));
+            return (convertCharacter(value, defaultCharacter));
         } else if (clazz == Byte.TYPE) {
-            return (convertByte(value));
+            return (convertByte(value, defaultByte));
         } else if (clazz == Float.TYPE) {
-            return (convertFloat(value));
+            return (convertFloat(value, defaultFloat));
         } else if (clazz == Short.TYPE) {
-            return (convertShort(value));
+            return (convertShort(value, defaultShort));
+        } else if (clazz == Integer.class) {
+            return (convertInteger(value, null));
+        } else if (clazz == Boolean.class) {
+            return (convertBoolean(value, null));
+        } else if (clazz == Long.class) {
+            return (convertLong(value, null));
+        } else if (clazz == Double.class) {
+            return (convertDouble(value, null));
+        } else if (clazz == Character.class) {
+            return (convertCharacter(value, null));
+        } else if (clazz == Byte.class) {
+            return (convertByte(value, null));
+        } else if (clazz == Float.class) {
+            return (convertFloat(value, null));
+        } else if (clazz == Short.class) {
+            return (convertShort(value, null));
         } else {
             if (value == null)
                 return ((String) null);
@@ -304,42 +320,82 @@ public final class ConvertUtils {
         if (type == Integer.TYPE) {
             int array[] = new int[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertInteger(values[i]).intValue();
+                array[i] = convertInteger(values[i], defaultInteger).intValue();
             return (array);
         } else if (type == Boolean.TYPE) {
             boolean array[] = new boolean[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertBoolean(values[i]).booleanValue();
+                array[i] = convertBoolean(values[i], defaultBoolean).booleanValue();
             return (array);
         } else if (type == Long.TYPE) {
             long array[] = new long[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertLong(values[i]).longValue();
+                array[i] = convertLong(values[i], defaultLong).longValue();
             return (array);
         } else if (type == Double.TYPE) {
             double array[] = new double[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertDouble(values[i]).doubleValue();
+                array[i] = convertDouble(values[i], defaultDouble).doubleValue();
             return (array);
         } else if (type == Character.TYPE) {
             char array[] = new char[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertCharacter(values[i]).charValue();
+                array[i] = convertCharacter(values[i], defaultCharacter).charValue();
             return (array);
         } else if (type == Byte.TYPE) {
             byte array[] = new byte[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertByte(values[i]).byteValue();
+                array[i] = convertByte(values[i], defaultByte).byteValue();
             return (array);
         } else if (type == Float.TYPE) {
             float array[] = new float[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertFloat(values[i]).floatValue();
+                array[i] = convertFloat(values[i], defaultFloat).floatValue();
             return (array);
         } else if (type == Short.TYPE) {
             short array[] = new short[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertShort(values[i]).shortValue();
+                array[i] = convertShort(values[i], defaultShort).shortValue();
+            return (array);
+        } else if (type == Integer.class) {
+            Integer array[] = new Integer[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertInteger(values[i], null);
+            return (array);
+        } else if (type == Boolean.class) {
+            Boolean array[] = new Boolean[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertBoolean(values[i], null);
+            return (array);
+        } else if (type == Long.class) {
+            Long array[] = new Long[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertLong(values[i], null);
+            return (array);
+        } else if (type == Double.class) {
+            Double array[] = new Double[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertDouble(values[i], null);
+            return (array);
+        } else if (type == Character.class) {
+            Character array[] = new Character[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertCharacter(values[i], null);
+            return (array);
+        } else if (type == Byte.class) {
+            Byte array[] = new Byte[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertByte(values[i], null);
+            return (array);
+        } else if (type == Float.class) {
+            Float array[] = new Float[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertFloat(values[i], null);
+            return (array);
+        } else if (type == Short.class) {
+            Short array[] = new Short[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertShort(values[i], null);
             return (array);
         } else {
             if (values == null)
@@ -362,21 +418,22 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Boolean value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Boolean convertBoolean(String value) {
+    private static Boolean convertBoolean(String value, Boolean defaultValue) {
 
         if (value == null)
-            return (new Boolean(false));
+            return (defaultValue);
         else if (value.equalsIgnoreCase("yes") ||
                  value.equalsIgnoreCase("true") ||
                  value.equalsIgnoreCase("on"))
-            return (new Boolean(true));
+            return (Boolean.TRUE);
         else if (value.equalsIgnoreCase("no") ||
                  value.equalsIgnoreCase("false") ||
                  value.equalsIgnoreCase("off"))
-            return (new Boolean(false));
+            return (Boolean.FALSE);
         else
-            return (defaultBoolean);
+            return (defaultValue);
 
     }
 
@@ -385,13 +442,14 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Byte value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Byte convertByte(String value) {
+    private static Byte convertByte(String value, Byte defaultValue) {
 
         try {
             return (new Byte(value));
         } catch (NumberFormatException e) {
-            return (defaultByte);
+            return (defaultValue);
         }
 
     }
@@ -401,15 +459,17 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Character value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Character convertCharacter(String value) {
+    private static Character convertCharacter(String value,
+                                              Character defaultValue) {
 
         if (value == null)
-            return (new Character(' '));
+            return (defaultValue);
         else if (value.length() == 0)
             return (new Character(' '));
         else
-            return (defaultCharacter);
+            return (defaultValue);
 
     }
 
@@ -418,13 +478,15 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Double value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Double convertDouble(String value) {
+    private static Double convertDouble(String value,
+                                        Double defaultValue) {
 
         try {
             return (new Double(value));
         } catch (NumberFormatException e) {
-            return (defaultDouble);
+            return (defaultValue);
         }
 
     }
@@ -434,13 +496,15 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Float value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Float convertFloat(String value) {
+    private static Float convertFloat(String value,
+                                      Float defaultValue) {
 
         try {
             return (new Float(value));
         } catch (NumberFormatException e) {
-            return (defaultFloat);
+            return (defaultValue);
         }
 
     }
@@ -450,13 +514,15 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Integer value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Integer convertInteger(String value) {
+    private static Integer convertInteger(String value,
+                                          Integer defaultValue) {
 
         try {
             return (new Integer(value));
         } catch (NumberFormatException e) {
-            return (defaultInteger);
+            return (defaultValue);
         }
 
     }
@@ -466,13 +532,14 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Long value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Long convertLong(String value) {
+    private static Long convertLong(String value, Long defaultValue) {
 
         try {
             return (new Long(value));
         } catch (NumberFormatException e) {
-            return (defaultLong);
+            return (defaultValue);
         }
 
     }
@@ -482,13 +549,14 @@ public final class ConvertUtils {
      * Convert a String value to a corresponding Short value.
      *
      * @param value The string value to convert
+     * @param defaultValue Default value to return on a conversion error
      */
-    private static Short convertShort(String value) {
+    private static Short convertShort(String value, Short defaultValue) {
 
         try {
             return (new Short(value));
         } catch (NumberFormatException e) {
-            return (defaultShort);
+            return (defaultValue);
         }
 
     }
