@@ -5,24 +5,6 @@
   "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 
 <web-app>
-  <!-- Validator Initialization Servlet Configuration -->
-  <servlet>
-    <servlet-name>validator</servlet-name>
-    <servlet-class>org.apache.struts.validator.action.ValidatorServlet</servlet-class>
-    <init-param>
-      <param-name>config-rules</param-name>
-      <param-value>/WEB-INF/validator-rules.xml</param-value>
-    </init-param>
-    <init-param>
-      <param-name>config</param-name>
-      <param-value>/WEB-INF/validation.xml</param-value>
-    </init-param>
-    <init-param>
-      <param-name>debug</param-name>
-      <param-value>1</param-value>
-    </init-param>
-    <load-on-startup>2</load-on-startup>
-  </servlet>
 
   <!-- Action Servlet Configuration -->
   <servlet>
@@ -34,19 +16,15 @@
     </init-param>
     <init-param>
       <param-name>debug</param-name>
-      <param-value>2</param-value>
+      <param-value>3</param-value>
     </init-param>
     <init-param>
       <param-name>detail</param-name>
-      <param-value>2</param-value>
+      <param-value>3</param-value>
     </init-param>
-    <init-param>
-      <param-name>validate</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
+    <load-on-startup>2</load-on-startup>
   </servlet>
-
+  
     <servlet>
         <servlet-name>ServletRedirector</servlet-name>
         <servlet-class>org.apache.commons.cactus.server.ServletTestRedirector</servlet-class>
