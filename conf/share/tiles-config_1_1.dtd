@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-     $Id: tiles-config_1_1.dtd,v 1.5 2003/05/03 15:47:03 jholmes Exp $
+     $Id: tiles-config_1_1.dtd,v 1.6 2003/05/03 16:19:56 jholmes Exp $
 -->
 
 
@@ -129,7 +129,7 @@
      direct          Same as type="string". For compatibility with the template
                      tag library.
 
-     name            The unique identifier for this tiles attribute.
+     name            The unique identifier for this put.
 
      type            The type of the value. Can be: string, page, template or definition.
                      By default, no type is associated to a value. If a type is
@@ -153,7 +153,7 @@
      the config file, the list elements are specified by nested <add>, <item> or
      <putList>.
 
-     name            The unique identifier for this tiles attribute.
+     name            The unique identifier for this put list.
 -->
 <!ELEMENT putList ( (add* | item* | bean* | putList*)+) >
 <!ATTLIST putList          id               ID              #IMPLIED>
