@@ -259,7 +259,7 @@ String expected = "";
 String compareTo = "";
 
 if (pageContext.getAttribute("EXPECTED_RESULTS") == null){
-    throw new JspException("No tests on this page were called.  Please verify that you've setup the tests correctly.");
+    throw new javax.servlet.jsp.JspException("No tests on this page were called.  Please verify that you've setup the tests correctly.");
 }else{
 	expected=pageContext.getAttribute("TEST_RESULTS").toString();
 }
