@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/DefaultTilesUtilImpl.java,v 1.1 2002/11/05 14:16:41 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/11/05 14:16:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/DefaultTilesUtilImpl.java,v 1.2 2002/11/16 06:04:28 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 06:04:28 $
  *
  * ====================================================================
  *
@@ -61,13 +61,17 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 
   /**
    * Default implementation of TilesUtil.

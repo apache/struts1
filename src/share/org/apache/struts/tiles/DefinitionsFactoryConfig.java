@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.4 2002/11/09 04:04:11 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/09 04:04:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.5 2002/11/16 06:04:28 jmitchell Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/16 06:04:28 $
  *
  * ====================================================================
  *
@@ -62,12 +62,11 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.*;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.Iterator;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -77,7 +76,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Cedric Dumoulin
  * @since 1.1
- * @version $Revision: 1.4 $ $Date: 2002/11/09 04:04:11 $
+ * @version $Revision: 1.5 $ $Date: 2002/11/16 06:04:28 $
  */
 public class DefinitionsFactoryConfig implements Serializable
 {

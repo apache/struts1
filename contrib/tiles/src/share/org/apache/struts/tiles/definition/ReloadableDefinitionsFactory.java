@@ -1,24 +1,27 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/definition/Attic/ReloadableDefinitionsFactory.java,v 1.2 2002/02/18 14:50:04 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/02/18 14:50:04 $
- * $Author: cedric $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/definition/Attic/ReloadableDefinitionsFactory.java,v 1.3 2002/11/16 06:04:28 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 06:04:28 $
+ * $Author: jmitchell $
  *
  */
 
 
 package org.apache.struts.tiles.definition;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Enumeration;
-
-import org.apache.struts.tiles.*;
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.ComponentDefinitionsFactory;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
 
 /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.20 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.20 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.21 2002/11/16 06:04:28 jmitchell Exp $
+ * $Revision: 1.21 $
+ * $Date: 2002/11/16 06:04:28 $
  *
  * ====================================================================
  *
@@ -61,9 +61,13 @@
 
 package org.apache.struts.upload;
 
-import java.io.*;
-import java.util.Iterator;
-import javax.servlet.ServletInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**

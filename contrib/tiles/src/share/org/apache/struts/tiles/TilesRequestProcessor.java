@@ -1,33 +1,23 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/TilesRequestProcessor.java,v 1.1 2002/02/18 14:50:04 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/02/18 14:50:04 $
- * $Author: cedric $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/TilesRequestProcessor.java,v 1.2 2002/11/16 06:04:28 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 06:04:28 $
+ * $Author: jmitchell $
  *
  */
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.taglib.tiles.ComponentConstants;
-
-import java.util.Locale;
-
-import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.Action;
-import org.apache.struts.config.ApplicationConfig;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.FileNotFoundException;
-import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.upload.MultipartRequestWrapper;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.config.ApplicationConfig;
 
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that

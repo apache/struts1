@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.5 2002/07/27 21:53:13 martinc Exp $
-* $Revision: 1.5 $
-* $Date: 2002/07/27 21:53:13 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.6 2002/11/16 06:04:29 jmitchell Exp $
+* $Revision: 1.6 $
+* $Date: 2002/11/16 06:04:29 $
 *
 * ====================================================================
 *
@@ -62,11 +62,14 @@
 package org.apache.struts.webapp.upload;
 
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
-import org.apache.struts.action.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -77,7 +80,7 @@ import javax.servlet.http.HttpServletRequest;
  * that struts uses is org.apache.struts.upload.CommonsMultipartRequestHandler.
  *
  * @author Mike Schachter
- * @version $Revision: 1.5 $ $Date: 2002/07/27 21:53:13 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/16 06:04:29 $
  */
 
 public class UploadForm extends ActionForm

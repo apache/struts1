@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactory.java,v 1.1 2002/07/11 16:20:32 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 16:20:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactory.java,v 1.2 2002/11/16 06:04:28 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 06:04:28 $
  *
  * ====================================================================
  *
@@ -62,16 +62,10 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.*;
 import java.io.Serializable;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletRequest;
-
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.NoSuchDefinitionException;
 
 /**
  * Tiles Definition factory.

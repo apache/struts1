@@ -2,26 +2,14 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import java.util.Map;
-import java.util.Collection;
-import java.util.List;
-import java.util.Iterator;
-import java.util.HashMap;
-import java.io.InputStream;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Serializable;
-import java.io.*;
+import java.io.InputStream;
 import java.net.URL;
 
 import org.apache.commons.digester.Digester;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 import org.xml.sax.SAXException;
-
-import org.apache.struts.tiles.NoSuchDefinitionException;
-
-import java.io.Reader;
 
 /**
  *Parse an XML definitions file.

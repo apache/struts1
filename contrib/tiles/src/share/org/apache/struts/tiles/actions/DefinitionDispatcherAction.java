@@ -4,18 +4,22 @@
 
 package org.apache.struts.tiles.actions;
 
-import org.apache.struts.tiles.*;
-
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.FactoryNotFoundException;
+import org.apache.struts.tiles.NoSuchDefinitionException;
 
 
 /**
@@ -48,7 +52,7 @@ import org.apache.struts.action.ActionMapping;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/06/20 16:14:13 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/16 06:04:28 $
  */
 
 public final class DefinitionDispatcherAction extends Action {
