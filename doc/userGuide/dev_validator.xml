@@ -71,10 +71,15 @@
     correspond with the <code>java.util.Locale</code> class.
     If they are not used, the <code>FormSet</code>  will be set to the default
     locale.
-    A <code>FormSet</code>  can also have constants associated with it.
-    On the same level as a <code>FormSet</code>  there can be a global element
+    A <code>FormSet</code> can also have constants associated with it.
+    On the same level as a <code>FormSet</code> there can be a global element
     which can also have constants and have validator actions that perform
     validations.
+    </p>
+    <p>
+    <strong>Note</strong>: You must declare a default <code>FormSet</code> without 
+    internationalization before your internationalized <code>FormSet</code>s.  This
+    allows the Validator to fall back to the default version if no locale is found.
     </p>
 
     <p>
