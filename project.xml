@@ -3,7 +3,7 @@
   <pomVersion>3</pomVersion>
   <name>struts</name>
   <id>struts</id>
-  <currentVersion>1.2.6</currentVersion>
+  <currentVersion>1.2.7-dev</currentVersion>
   <organization>
     <name>The Apache Software Foundation</name>
     <url>http://struts.apache.org/</url>
