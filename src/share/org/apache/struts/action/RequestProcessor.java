@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.35 2003/09/29 01:24:21 mrdon Exp $
- * $Revision: 1.35 $
- * $Date: 2003/09/29 01:24:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.36 2003/09/29 03:23:30 mrdon Exp $
+ * $Revision: 1.36 $
+ * $Date: 2003/09/29 03:23:30 $
  *
  * ====================================================================
  *
@@ -82,7 +82,6 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
-import org.apache.struts.util.ActionMappingMatcher;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -95,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.35 $ $Date: 2003/09/29 01:24:21 $
+ * @version $Revision: 1.36 $ $Date: 2003/09/29 03:23:30 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -189,7 +188,7 @@ public class RequestProcessor {
         
         this.servlet = servlet;
         this.moduleConfig = moduleConfig;
-        matcher = new ActionMappingMatcher(moduleConfig);
+        matcher = new ActionMappingMatcher(moduleConfig.findActionConfigs());
     }
 
     /**

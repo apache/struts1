@@ -54,7 +54,7 @@
  *  <http://www.apache.org/>.
  *
  */
-package org.apache.struts.util;
+package org.apache.struts.action;
 
 // Struts imports:
 import org.apache.struts.action.ActionMapping;
@@ -63,6 +63,7 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.util.WildcardHelper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -81,7 +82,7 @@ import java.util.Iterator;
  *
  * @author    Don Brown
  */
-public class ActionMappingMatcher {
+class ActionMappingMatcher {
 
     /**  
      * The logging instance 
@@ -101,11 +102,10 @@ public class ActionMappingMatcher {
      *  Struts config file. Only paths that actually contain a wildcard
      *  will be compiled.
      *
-     * @param  appConfig  The ModuleConfig we are associated with
+     * @param  configs  An array of ActionConfig's to process
      */
-    public ActionMappingMatcher(ModuleConfig appConfig) {
+    protected ActionMappingMatcher(ActionConfig[] configs) {
         compiledPaths = new ArrayList();
-        ActionConfig[] configs = appConfig.findActionConfigs();
         int[] pattern;
         String path;
         for (int x = 0; x < configs.length; x++) {
@@ -130,7 +130,7 @@ public class ActionMappingMatcher {
      *      mapping
      * @return                  The action mapping if matched, else null
      */
-    public ActionMapping match(String path) {
+    protected ActionMapping match(String path) {
 
         ActionMapping mapping = null;
         if (compiledPaths.size() > 0) {
