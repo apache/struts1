@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.90 2002/01/23 17:32:00 craigmcc Exp $
- * $Revision: 1.90 $
- * $Date: 2002/01/23 17:32:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.91 2002/01/23 18:59:12 craigmcc Exp $
+ * $Revision: 1.91 $
+ * $Date: 2002/01/23 18:59:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -86,10 +86,13 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
+import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ConfigRuleSet;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.DataSourceConfig;
+import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
@@ -264,7 +267,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.90 $ $Date: 2002/01/23 17:32:00 $
+ * @version $Revision: 1.91 $ $Date: 2002/01/23 18:59:12 $
  */
 
 public class ActionServlet
@@ -501,19 +504,41 @@ public class ActionServlet
 
 
     /**
-     * Return the global ActionForward for the specified logical name, for
-     * the default sub-application.
+     * Return the form bean definition associated with the specified
+     * logical name, if any; otherwise return <code>null</code>.
+     *
+     * @param name Logical name of the requested form bean definition
+     *
+     * @deprecated Replaced by ApplicationConfig.findFormBeanConfig()
+     */
+    public ActionFormBean findFormBean(String name) {
+
+        ActionFormBeans afb = (ActionFormBeans)
+            getServletContext().getAttribute(Action.FORM_BEANS_KEY);
+        if (afb == null) {
+            return (null);
+        }
+        return (afb.findFormBean(name));
+
+    }
+
+
+    /**
+     * Return the forwarding associated with the specified logical name,
+     * if any; otherwise return <code>null</code>.
      *
      * @param name Logical name of the requested forwarding
      *
-     * @deprecated Call ActionMapping.findForward() to get the forwarding
-     *  that is local to the current sub-application
+     * @deprecated Replaced by ApplicationConfig.findForwardConfig()
      */
     public ActionForward findForward(String name) {
 
-        ApplicationConfig appConfig = (ApplicationConfig)
-            getServletContext().getAttribute(Action.APPLICATION_KEY);
-        return ((ActionForward) appConfig.findForwardConfig(name));
+        ActionForwards af = (ActionForwards)
+            getServletContext().getAttribute(Action.FORWARDS_KEY);
+        if (af == null) {
+            return (null);
+        }
+        return (af.findForward(name));
 
     }
 
@@ -524,15 +549,17 @@ public class ActionServlet
      *
      * @param path Request path for which a mapping is requested
      *
-     * @deprecated Get the ApplicationConfig object from request attribute
-     *  key Action.APPLIATION_KEY and call findActionConfig() to get
-     *  mappings for the current sub-application
+     * @deprecated Replaced by ApplicationConfig.findActionConfig()
      */
     public ActionMapping findMapping(String path) {
 
-        ApplicationConfig appConfig = (ApplicationConfig)
-            getServletContext().getAttribute(Action.APPLICATION_KEY);
-        return ((ActionMapping) appConfig.findActionConfig(path));
+        ActionMappings am = (ActionMappings)
+            getServletContext().getAttribute(Action.MAPPINGS_KEY);
+        if (am == null) {
+            return (null);
+        }
+        return (am.findMapping(path));
+
     }
 
 
@@ -553,6 +580,22 @@ public class ActionServlet
     public MessageResources getInternal() {
 
         return (this.internal);
+
+    }
+
+
+    /**
+     * <p>Return the application resources for the default sub-application,
+     * if any.
+     *
+     * @deprecated Actions should call Action.getResources(HttpServletRequest)
+     *  instead of this method, in order to retrieve the resources for the
+     *  current sub-application
+     */
+    public MessageResources getResources() {
+
+        return ((MessageResources) getServletContext().getAttribute
+                (Action.MESSAGES_KEY));
 
     }
 
@@ -669,22 +712,6 @@ public class ActionServlet
 
 
     /**
-     * <p>Return the application resources for the default sub-application,
-     * if any.
-     *
-     * @deprecated Actions should call Action.getResources(HttpServletRequest)
-     *  instead of this method, in order to retrieve the resources for the
-     *  current sub-application
-     */
-    public MessageResources getResources() {
-
-        return ((MessageResources) getServletContext().getAttribute
-                (Action.MESSAGES_KEY));
-
-    }
-
-
-    /**
      * <p>Initialize the application configuration information for the
      * specified sub-application.</p>
      *
@@ -729,73 +756,17 @@ public class ActionServlet
             }
         }
 
-        // Is this the configuration for the default sub-application?
-        if (prefix.length() > 0) {
-            config.freeze();
-            return (config);
+        // Special handling for the default sub-application (for
+        // backwards compatibility only, will be removed later)
+        if (prefix.length() < 1) {
+            defaultControllerConfig(config);
+            defaultMessageResourcesConfig(config);
+            defaultFormBeansConfig(config);
+            defaultForwardsConfig(config);
+            defaultMappingsConfig(config);
         }
 
-        // Special handling for the default app's ControllerConfig
-        ControllerConfig cc = config.getControllerConfig();
-        value = getServletConfig().getInitParameter("bufferSize");
-        if (value != null) {
-            cc.setBufferSize(Integer.parseInt(value));
-        }
-        value = getServletConfig().getInitParameter("content");
-        if (value != null) {
-            cc.setContentType(value);
-        }
-        value = getServletConfig().getInitParameter("locale");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes")) {
-                cc.setLocale(true);
-            } else {
-                cc.setLocale(false);
-            }
-        }
-        value = getServletConfig().getInitParameter("maxFileSize");
-        if (value != null) {
-            cc.setMaxFileSize(value);
-        }
-        value = getServletConfig().getInitParameter("nocache");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes")) {
-                cc.setNocache(true);
-            } else {
-                cc.setNocache(false);
-            }
-        }
-        value = getServletConfig().getInitParameter("tempDir");
-        if (value != null) {
-            cc.setTempDir(value);
-        }
-
-        // Special handling for the default app's MessageResourcesConfig
-        MessageResourcesConfig mrc =
-            config.findMessageResourcesConfig(Action.MESSAGES_KEY);
-        if (mrc == null) {
-            mrc = new MessageResourcesConfig();
-            config.addMessageResourcesConfig(mrc);
-        }
-        value = getServletConfig().getInitParameter("application");
-        if (value != null) {
-            mrc.setParameter(value);
-        }
-        value= getServletConfig().getInitParameter("factory");
-        if (value != null) {
-            mrc.setFactory(value);
-        }
-        value = getServletConfig().getInitParameter("null");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes")) {
-                mrc.setNull(true);
-            } else {
-                mrc.setNull(false);
-            }
-        }
+        // Return the completed configuration object
         config.freeze();
         return (config);
 
@@ -1080,5 +1051,172 @@ public class ActionServlet
 
     }
 
+
+    // -------------------------------------------------------- Private Methods
+
+
+    /**
+     * Perform backwards-compatible configuration of the default application's
+     * controller configuration from servlet initialization parameters (as
+     * were used in Struts 1.0).
+     *
+     * @param config The ApplicationConfig object for the default app
+     *
+     * @deprecated Will be removed in a release after Struts 1.1.
+     */
+    private void defaultControllerConfig(ApplicationConfig config) {
+
+        String value = null;
+
+        ControllerConfig cc = config.getControllerConfig();
+        value = getServletConfig().getInitParameter("bufferSize");
+        if (value != null) {
+            cc.setBufferSize(Integer.parseInt(value));
+        }
+        value = getServletConfig().getInitParameter("content");
+        if (value != null) {
+            cc.setContentType(value);
+        }
+        value = getServletConfig().getInitParameter("locale");
+        if (value != null) {
+            if (value.equalsIgnoreCase("true") ||
+                value.equalsIgnoreCase("yes")) {
+                cc.setLocale(true);
+            } else {
+                cc.setLocale(false);
+            }
+        }
+        value = getServletConfig().getInitParameter("maxFileSize");
+        if (value != null) {
+            cc.setMaxFileSize(value);
+        }
+        value = getServletConfig().getInitParameter("nocache");
+        if (value != null) {
+            if (value.equalsIgnoreCase("true") ||
+                value.equalsIgnoreCase("yes")) {
+                cc.setNocache(true);
+            } else {
+                cc.setNocache(false);
+            }
+        }
+        value = getServletConfig().getInitParameter("tempDir");
+        if (value != null) {
+            cc.setTempDir(value);
+        }
+
+    }
+
+
+    /**
+     * Perform backwards-compatible configuration of an ActionFormBeans
+     * collection, and expose it as a servlet context attribute (as was
+     * used in Struts 1.0).  Note that the current controller code does
+     * not (and should not) reference this attribute for any reason.
+     *
+     * @param config The ApplicationConfig object for the default app
+     *
+     * @deprecated Will be removed in a release after Struts 1.1.
+     */
+    private void defaultFormBeansConfig(ApplicationConfig config) {
+
+        FormBeanConfig fbcs[] = config.findFormBeanConfigs();
+        ActionFormBeans afb = new ActionFormBeans();
+        afb.setFast(false);
+        for (int i = 0; i < fbcs.length; i++) {
+            afb.addFormBean((ActionFormBean) fbcs[i]);
+        }
+        afb.setFast(true);
+        getServletContext().setAttribute(Action.FORM_BEANS_KEY, afb);
+
+    }
+
+
+    /**
+     * Perform backwards-compatible configuration of an ActionForwards
+     * collection, and expose it as a servlet context attribute (as was
+     * used in Struts 1.0).  Note that the current controller code does
+     * not (and should not) reference this attribute for any reason.
+     *
+     * @param config The ApplicationConfig object for the default app
+     *
+     * @deprecated Will be removed in a release after Struts 1.1.
+     */
+    private void defaultForwardsConfig(ApplicationConfig config) {
+
+        ForwardConfig fcs[] = config.findForwardConfigs();
+        ActionForwards af = new ActionForwards();
+        af.setFast(false);
+        for (int i = 0; i < fcs.length; i++) {
+            af.addForward((ActionForward) fcs[i]);
+        }
+        af.setFast(true);
+        getServletContext().setAttribute(Action.FORWARDS_KEY, af);
+
+    }
+
+
+    /**
+     * Perform backwards-compatible configuration of an ActionMappings
+     * collection, and expose it as a servlet context attribute (as was
+     * used in Struts 1.0).  Note that the current controller code does
+     * not (and should not) reference this attribute for any reason.
+     *
+     * @param config The ApplicationConfig object for the default app
+     *
+     * @deprecated Will be removed in a release after Struts 1.1.
+     */
+    private void defaultMappingsConfig(ApplicationConfig config) {
+
+        ActionConfig acs[] = config.findActionConfigs();
+        ActionMappings am = new ActionMappings();
+        am.setServlet(this);
+        am.setFast(false);
+        for (int i = 0; i < acs.length; i++) {
+            am.addMapping((ActionMapping) acs[i]);
+        }
+        am.setFast(true);
+        getServletContext().setAttribute(Action.MAPPINGS_KEY, am);
+
+    }
+
+
+    /**
+     * Perform backwards-compatible configuration of the default application's
+     * message resources configuration from servlet initialization parameters
+     * (as were used in Struts 1.0).
+     *
+     * @param config The ApplicationConfig object for the default app
+     *
+     * @deprecated Will be removed in a release after Struts 1.1.
+     */
+    private void defaultMessageResourcesConfig(ApplicationConfig config) {
+
+        String value = null;
+
+        MessageResourcesConfig mrc =
+            config.findMessageResourcesConfig(Action.MESSAGES_KEY);
+        if (mrc == null) {
+            mrc = new MessageResourcesConfig();
+            config.addMessageResourcesConfig(mrc);
+        }
+        value = getServletConfig().getInitParameter("application");
+        if (value != null) {
+            mrc.setParameter(value);
+        }
+        value= getServletConfig().getInitParameter("factory");
+        if (value != null) {
+            mrc.setFactory(value);
+        }
+        value = getServletConfig().getInitParameter("null");
+        if (value != null) {
+            if (value.equalsIgnoreCase("true") ||
+                value.equalsIgnoreCase("yes")) {
+                mrc.setNull(true);
+            } else {
+                mrc.setNull(false);
+            }
+        }
+
+    }
 
 }
