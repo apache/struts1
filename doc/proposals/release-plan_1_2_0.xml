@@ -11,11 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              $Id: release-plan_1_2_0.xml,v 1.7 2003/12/16 17:13:57 martinc Exp $
-          </p>
-
-          <p>
-              THIS IS AN UNRATIFIED DRAFT DOCUMENT PROVIDED FOR DISCUSSION PURPOSES ONLY!
+              $Id: release-plan_1_2_0.xml,v 1.8 2004/02/20 14:41:23 husted Exp $
           </p>
 
           <p>
@@ -28,7 +24,7 @@
       <section name="The Plan" href="plan">
           <p>
               Since the release of version Struts 1.1 Final, we have removed many of the elements deprecated between
-              Struts 1.0 and Struts 1.1 and made several bug fixes and minor enhancements.
+              Struts 1.0 and Struts 1.1 and made several bug fixes and nominal enhancements.
           </p>
 
           <p>
@@ -37,7 +33,7 @@
 
           <ul>
               <li>
-                  <em>Tag Date</em> - Saturday, December 20, 2003, 23:59:59
+                  <em>Tag Date</em> - Saturday, February 21, 2004, 23:59:59
               </li>
               <li>
                   <em>Release Manager(s)</em> - Ted Husted, Martin Cooper
@@ -102,6 +98,7 @@
                   Bugzilla tickets</a> verified by a Struts Committer to have the Severity BLOCKER, CRITICAL, or
                   MAJOR must be "Resolved" with one of these Bugzilla resolutions: FIXED, INVALID, WONTFIX, WORKSFORME.
               </li>
+              <!--
               <li>
                   <strong>Apply patches.</strong>
                   Relevant
@@ -115,6 +112,7 @@
                       </li>
                   </ul>
               </li>
+              -->
               <li>
                   <strong>Test example applications.</strong>
                   All example applications included with the release shall operate successfully under the
