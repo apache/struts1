@@ -3,6 +3,7 @@
 <document url="./indexedprops.xml">
  <properties>
   <author>David M. Karr</author>
+  <author>David Graham</author>
   <title>Indexed Properties, Mapped Properties, and Indexed Tags</title>
  </properties>
  <body>
@@ -14,8 +15,7 @@
      the base JSP specification actually deals with the "indexing" part.  In
      truth, it allows for setting "array properties", but it doesn't do much
      for setting or even getting the actual values in each entry of the array,
-     except in explicit scriptlet expressions (which are always allowed, but
-     not recommended).
+     except with explicit JSP expressions (&lt;%=  %&gt;).
     </p>
     <p>
      The Struts framework provides much more powerful features related to
@@ -46,12 +46,15 @@
 package org.apache.struts.webapp.exercise;
 import org.apache.struts.action.ActionForm;
 public class StringBean extends ActionForm {
-    private String strAry[] =
-    { "String 0", "String 1", "String 2", "String 3", "String 4" };
+    private String strAry[] = { "String 0", "String 1", "String 2", "String 3", "String 4" };
 
-    public String getStringIndexed(int index) { return (strAry[index]); }
-    public void setStringIndexed(int index, String value)
-    { strAry[index] = value; }
+    public String getStringIndexed(int index) { 
+        return strAry[index]; 
+    }
+    
+    public void setStringIndexed(int index, String value) { 
+        strAry[index] = value; 
+    }
 }</pre>
     <p>
      First note the two methods in the StringBean class, "getStringIndexed()"
@@ -83,7 +86,7 @@ public class StringBean extends ActionForm {
    <section href="listbackedprops" name="List-Backed Indexed Properties">
     <p>
      A variation on indexed properties are properties whose type is
-     "java.util.List" or a subclass.
+     <code>java.util.List</code> or a subclass.
     </p>
     <p>
      For instance, the first example using "StringBean.java" and
@@ -93,11 +96,11 @@ public class StringBean extends ActionForm {
 package org.apache.struts.webapp.exercise;
 import org.apache.struts.action.ActionForm;
 public class StringBean2 extends ActionForm {
-    private String strAry[] =
-    { "String 0", "String 1", "String 2", "String 3", "String 4" };
+    private String strAry[] = { "String 0", "String 1", "String 2", "String 3", "String 4" };
 
-    public java.util.List getStringIndexed(int index)
-    { return (java.util.Arrays.asList(strAry)); }
+    public java.util.List getStringIndexed(int index) { 
+        return java.util.Arrays.asList(strAry);
+    }
 }</pre>
     <p>
      Note the different implementation of the "getStringIndexed()" method,
@@ -123,8 +126,8 @@ package org.apache.struts.webapp.exercise;
 import java.util.HashMap;
 import org.apache.struts.action.ActionForm;
 public class StringBean3 extends ActionForm {
-    private String strAry[] =
-    { "String 0", "String 1", "String 2", "String 3", "String 4" };
+    private String strAry[] = { "String 0", "String 1", "String 2", "String 3", "String 4" };
+    
     private HashMap map = new HashMap();
 
     public StringBean() {
@@ -135,9 +138,13 @@ public class StringBean3 extends ActionForm {
         map.put("four", strAry[4]);
     }
 
-    public Object getStringMapped(String key) { return (map.get(key)); }
-    public void setStringMapped(String key, Object value)
-    { map.put(key, value); }
+    public Object getStringMapped(String key) { 
+        return map.get(key);
+    }
+    
+    public void setStringMapped(String key, Object value) { 
+        map.put(key, value); 
+    }
 }</pre>
     <p>
      Note the "get" and "set" methods to represent the mapped property.
@@ -170,6 +177,7 @@ import org.apache.struts.util.LabelValueBean;
 import org.apache.struts.action.ActionForm;
 public class StringBean4 extends ActionForm {
     private LabelValueBean[] lvbeans;
+    
     public StringBean() {
         lvbeans   = new LabelValueBean[5];
         lvbeans[0]   = new LabelValueBean("Zero", 0+"");
@@ -179,8 +187,9 @@ public class StringBean4 extends ActionForm {
         lvbeans[4]   = new LabelValueBean("Four", 4+"");
     }
 
-    public  LabelValueBean getLabelValue(int index)
-    { return (lvbeans[index]); }
+    public  LabelValueBean getLabelValue(int index) { 
+        return lvbeans[index];
+    }
 }</pre>
     <p>
      First note the use of the class "LabelValueBean".  This is a simple class
@@ -236,8 +245,8 @@ public class StringBean4 extends ActionForm {
  &lt;/body&gt;
 &lt;/html&gt;</pre>
     <p>
-     That scriptlet expression for the "property" attribute is something we
-     want to avoid.  The syntax is somewhat messy and easy to get wrong.  One
+     The JSP expression syntax for the <code>property</code> attribute is somewhat 
+     messy and easy to get wrong so it's something we want to avoid. One
      way to make this a little cleaner is to use "indexed tags", but there's a
      wrinkle to this approach.  We'll first cover the details of indexed tags,
      then we'll talk about the wrinkle, and then finally an alternative to
@@ -325,18 +334,17 @@ public class StringBean4 extends ActionForm {
     <p>
      The "indexed tags" feature was created partially because of the awkward
      process for encoding the loop index into the property attribute, using a
-     scriptlet expression.  The creation of the JavaServer Pages Standard Tag
-     Library (JSTL) eventually resulted in a solution that makes that process
-     less painful.
+     JSP expression.  The creation of the <a href="http://java.sun.com/products/jsp/jstl/">JSTL</a> 
+     eventually resulted in a solution that makes that process less painful.
     </p>
     <p>
      The JSTL uses a string-based expression language to evaluate attribute
-     values, instead of using run-time expression scriptlets.  The engine that
+     values, instead of using a run-time JSP expression.  The engine that
      performs these evaluations is often called just "EL" (expression language)
      for short.  After the JSTL was created, a derivative of the Struts tag
      library called Struts-EL was created.  In short, this does everything that
      the Struts tag library does, but it uses the JSTL EL engine to evaluate
-     attribute values, instead of the usual runtime expression scriptlets.
+     attribute values.
     </p>
     <p>
      If you use Struts-EL, you can get back some of the flexibility of encoding
