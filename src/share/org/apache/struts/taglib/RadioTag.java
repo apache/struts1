@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.2 2000/06/12 16:00:53 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/12 16:00:53 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/12 16:00:53 $
  */
 
 public final class RadioTag extends BodyTagSupport {
@@ -188,7 +188,7 @@ public final class RadioTag extends BodyTagSupport {
 
 	// Create an appropriate "input" element based on our parameters
 	StringBuffer results = new StringBuffer("<input type=\"radio\"");
-	results.append("\" name=\"");
+	results.append(" name=\"");
 	results.append(this.name);
 	results.append("\" value=\"");
 	results.append(this.value);
