@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.13 2001/01/02 23:40:18 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2001/01/02 23:40:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.14 2001/01/23 03:35:52 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/01/23 03:35:52 $
  *
  * ====================================================================
  * 
@@ -102,7 +102,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.13 $ $Date: 2001/01/02 23:40:18 $
+ * @version $Revision: 1.14 $ $Date: 2001/01/23 03:35:52 $
  */
 
 public final class Digester extends HandlerBase {
@@ -800,6 +800,9 @@ public final class Digester extends HandlerBase {
      *  for a single parameter from the body of this element)
      * @param paramTypes Set of Java class names for the types
      *  of the expected parameters
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean</code>
+     *  for a <code>boolean</code> parameter)
      */
     public void addCallMethod(String pattern, String methodName,
     			      int paramCount, String paramTypes[]) {
@@ -895,6 +898,9 @@ public final class Digester extends HandlerBase {
      * @param pattern Element matching pattern
      * @param methodName Method name to call on the parent element
      * @param paramType Java class name of the expected parameter type
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean</code>
+     *  for a <code>boolean</code> parameter)
      */
     public void addSetNext(String pattern, String methodName,
     			   String paramType) {
@@ -953,6 +959,9 @@ public final class Digester extends HandlerBase {
      * @param pattern Element matching pattern
      * @param methodName Method name to call on the parent element
      * @param paramType Java class name of the expected parameter type
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean</code>
+     *  for a <code>boolean</code> parameter)
      */
     public void addSetTop(String pattern, String methodName,
     			  String paramType) {

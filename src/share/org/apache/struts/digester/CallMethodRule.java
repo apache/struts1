@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.5 2001/01/07 22:39:06 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/07 22:39:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.6 2001/01/23 03:35:52 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/01/23 03:35:52 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,7 @@ import org.apache.struts.util.ConvertUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/01/07 22:39:06 $
+ * @version $Revision: 1.6 $ $Date: 2001/01/23 03:35:52 $
  */
 
 public final class CallMethodRule extends Rule {
@@ -109,6 +109,9 @@ public final class CallMethodRule extends Rule {
      * @param paramCount The number of parameters to collect, or
      *  zero for a single argument from the body of ths element
      * @param paramTypes The Java class names of the arguments
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean</code>
+     *  for a <code>boolean</code> parameter)
      */
     public CallMethodRule(Digester digester, String methodName,
                           int paramCount, String paramTypes[]) {

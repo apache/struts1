@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetNextRule.java,v 1.2 2000/08/01 20:03:29 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetNextRule.java,v 1.3 2001/01/23 03:35:52 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/23 03:35:52 $
  *
  * ====================================================================
  * 
@@ -73,7 +73,7 @@ import org.xml.sax.AttributeList;
  * commonly used to establish parent-child relationships.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:29 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/23 03:35:52 $
  */
 
 public final class SetNextRule extends Rule {
@@ -103,6 +103,9 @@ public final class SetNextRule extends Rule {
      * @param digester The associated Digester
      * @param methodName Method name of the parent method to call
      * @param paramType Java class of the parent method's argument
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean</code>
+     *  for a <code>boolean</code> parameter)
      */
     public SetNextRule(Digester digester, String methodName,
                        String paramType) {
