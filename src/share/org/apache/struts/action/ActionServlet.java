@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.152 2003/07/02 03:13:16 dgraham Exp $
- * $Revision: 1.152 $
- * $Date: 2003/07/02 03:13:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.153 2003/07/02 04:02:40 dgraham Exp $
+ * $Revision: 1.153 $
+ * $Date: 2003/07/02 04:02:40 $
  *
  * ====================================================================
  *
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.action;
-
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,7 +67,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -118,7 +115,6 @@ import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
 
 /**
  * <p><strong>ActionServlet</strong> represents the "controller" in the
@@ -302,7 +298,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.152 $ $Date: 2003/07/02 03:13:16 $
+ * @version $Revision: 1.153 $ $Date: 2003/07/02 04:02:40 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -413,7 +409,6 @@ public class ActionServlet extends HttpServlet {
         }
 
         destroyModules();
-        destroyDataSources();
         destroyInternal();
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
 
@@ -537,83 +532,6 @@ public class ActionServlet extends HttpServlet {
 
     }
 
-
-    /**
-     * Return a JDBC data source associated with this module, if any.
-     *
-     * @param key The servlet context attribute key under which this data
-     *  source is stored, or <code>null</code> for the default.
-     *
-     * @deprecated Look up data sources directly in servlet context attributes
-     */
-    public DataSource findDataSource(String key) {
-        if (key == null) {
-            return ((DataSource) dataSources.get(Globals.DATA_SOURCE_KEY));
-        } else {
-            return ((DataSource) dataSources.get(key));
-        }
-    }
-
-
-    /**
-     * Return the form bean definition associated with the specified
-     * logical name, if any; otherwise return <code>null</code>.
-     *
-     * @param name Logical name of the requested form bean definition
-     *
-     * @deprecated Replaced by ModuleConfig.findFormBeanConfig()
-     */
-    public ActionFormBean findFormBean(String name) {
-
-        ActionFormBeans afb = (ActionFormBeans)
-            getServletContext().getAttribute(Globals.FORM_BEANS_KEY);
-        if (afb == null) {
-            return (null);
-        }
-        return (afb.findFormBean(name));
-
-    }
-
-
-    /**
-     * Return the forwarding associated with the specified logical name,
-     * if any; otherwise return <code>null</code>.
-     *
-     * @param name Logical name of the requested forwarding
-     *
-     * @deprecated Replaced by ModuleConfig.findForwardConfig()
-     */
-    public ActionForward findForward(String name) {
-
-        ActionForwards af = (ActionForwards)
-            getServletContext().getAttribute(Globals.FORWARDS_KEY);
-        if (af == null) {
-            return (null);
-        }
-        return (af.findForward(name));
-
-    }
-
-
-    /**
-     * Return the ActionMapping for the specified path, for the default
-     * module.
-     *
-     * @param path Request path for which a mapping is requested
-     *
-     * @deprecated Replaced by ModuleConfig.findActionConfig()
-     */
-    public ActionMapping findMapping(String path) {
-
-        ActionMappings am = (ActionMappings)
-            getServletContext().getAttribute(Globals.MAPPINGS_KEY);
-        if (am == null) {
-            return (null);
-        }
-        return (am.findMapping(path));
-
-    }
-
     /**
      * Return the <code>MessageResources</code> instance containing our
      * internal message strings.
@@ -626,34 +544,7 @@ public class ActionServlet extends HttpServlet {
     }
 
 
-    /**
-     * <p>Return the application resources for the default module,
-     * if any.
-     *
-     * @deprecated Actions should call Action.getResources(HttpServletRequest)
-     *  instead of this method, in order to retrieve the resources for the
-     *  current module.
-     */
-    public MessageResources getResources() {
-
-        return ((MessageResources) getServletContext().getAttribute
-                (Globals.MESSAGES_KEY));
-
-    }
-
-
     // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Gracefully terminate use of any modules associated with this
-     * application (if any).
-     * @since Struts 1.1
-     * @deprecated replaced by destroyModules()
-     */
-    protected void destroyApplications() {
-        destroyModules();
-    }
 
     /**
      * Gracefully terminate use of any modules associated with this
@@ -708,38 +599,6 @@ public class ActionServlet extends HttpServlet {
         configDigester = null;
 
     }
-
-
-    /**
-     * Gracefully terminate use of the data source associated with this
-     * application (if any).
-     *
-     * @deprecated Will no longer be required with module support
-     */
-    protected void destroyDataSources() {
-
-        synchronized (dataSources) {
-            Iterator keys = dataSources.keySet().iterator();
-            while (keys.hasNext()) {
-                String key = (String) keys.next();
-                getServletContext().removeAttribute(key);
-                DataSource dataSource = findDataSource(key);
-                if (dataSource instanceof GenericDataSource) {
-                    if (log.isDebugEnabled()) {
-                        log.debug(internal.getMessage("dataSource.destroy", key));
-                    }
-                    try {
-                        ((GenericDataSource) dataSource).close();
-                    } catch (SQLException e) {
-                        log.error(internal.getMessage("destroyDataSource", key), e);
-                    }
-                }
-            }
-            dataSources.clear();
-        }
-
-    }
-
 
     /**
      * Gracefully terminate use of the internal MessageResources.
@@ -955,19 +814,6 @@ public class ActionServlet extends HttpServlet {
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
-     * @deprecated use initModuleDataSources(ModuleConfig)
-     */
-    protected void initApplicationDataSources(ModuleConfig config) throws ServletException  {
-       initModuleDataSources(config);
-    }
-
-    /**
-     * <p>Initialize the data sources for the specified module.</p>
-     *
-     * @param config ModuleConfig information for this module
-     *
-     * @exception ServletException if initialization cannot be performed
-     * @since Struts 1.1
      */
     protected void initModuleDataSources(ModuleConfig config) throws ServletException {
 
@@ -1008,29 +854,11 @@ public class ActionServlet extends HttpServlet {
                 (dscs[i].getKey() + config.getPrefix(), ds);
             dataSources.put(dscs[i].getKey(), ds);
         }
+        
         dataSources.setFast(true);
 
-        // Call deprecated method for backwards compatibility
-        if ("".equals(config.getPrefix())) {
-            initDataSources();
-        }
-
     }
 
-
-    /**
-     * <p>Initialize the plug ins for the specified module.</p>
-     *
-     * @param config ModuleConfig information for this module
-     *
-     * @exception ServletException if initialization cannot be performed
-     * @deprecated use {@link #initModulePlugIns(ModuleConfig)}
-     * @since Struts 1.1
-     */
-    protected void initApplicationPlugIns
-        (ModuleConfig config) throws ServletException {
-        initModulePlugIns(config);
-    }
     /**
      * <p>Initialize the plug ins for the specified module.</p>
      *
@@ -1083,21 +911,6 @@ public class ActionServlet extends HttpServlet {
             }
         }
 
-    }
-
-
-    /**
-     * <p>Initialize the application MessageResources for the specified
-     * module.</p>
-     *
-     * @param config ModuleConfig information for this module
-     *
-     * @exception ServletException if initialization cannot be performed
-     * @since Struts 1.1
-     * @deprecated use initModuleMessageResources()
-     */
-    protected void initApplicationMessageResources(ModuleConfig config) throws ServletException {
-       initModuleMessageResources(config);
     }
     
     /**
@@ -1214,22 +1027,6 @@ public class ActionServlet extends HttpServlet {
         // Return the completely configured Digester instance
         return (configDigester);
     }
-
-
-    /**
-     * Initialize data sources for the default module.  This method
-     * signature is maintained only for backwards compatibility, and will
-     * be removed in a subsequent release.
-     *
-     * @deprecated Replaced by initApplicationDataSources() that takes
-     *  an ModuleConfig argument. This method does nothing.
-     */
-    protected void initDataSources() throws javax.servlet.ServletException {
-
-        ; // Implementation has been replaced in initApplicationDataSources()
-
-    }
-
 
     /**
      * Initialize our internal MessageResources bundle.
