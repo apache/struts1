@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeForm.java,v 1.5 2003/09/24 03:42:03 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2003/09/24 03:42:03 $
+ * $Header: /home/cvs/jakarta-struts/src/validator/org/apache/struts/webapp/validator/Attic/TypeForm.java,v 1.6 2003/10/31 06:10:17 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/10/31 06:10:17 $
  *
  * ====================================================================
  *
@@ -90,6 +90,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     private String sSatisfaction = null;
     private String[] sOsList = null;
     private String sOverallSatisfaction = null;
+    private String sWouldRecommend = null;
     private String[] sUsedLanguages = null;
 
     private List lNames = initNames();
@@ -204,6 +205,14 @@ public final class TypeForm extends ValidatorForm implements Serializable {
 
     public void setOverallSatisfaction(String anOverallSatisfaction) {
        	this.sOverallSatisfaction = anOverallSatisfaction;
+    }
+
+    public String getWouldRecommend() {
+       return sWouldRecommend;
+    }
+
+    public void setWouldRecommend(String anWouldRecommend) {
+       	this.sWouldRecommend = anWouldRecommend;
     }
 
     public String[] getUsedLanguages() {

@@ -289,6 +289,10 @@
                   depends="required">
                  <arg0 key="typeForm.radio.overall.satisfaction"/>
          </field>
+         <field   property="wouldRecommend"
+                  depends="required">
+                 <arg0 key="typeForm.checkbox.wouldrecommend"/>
+         </field>
          <field   property="usedLanguages"
                   depends="required">
                  <arg0 key="typeForm.checkbox.used.languages"/>

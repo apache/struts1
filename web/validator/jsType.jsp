@@ -140,6 +140,14 @@
   </tr>
   <tr>
     <th align="left">
+      <bean:message key="typeForm.checkbox.wouldrecommend"/>:
+    </th>
+    <td align="left">
+      <html:checkbox property="wouldRecommend" />
+    </td>
+  </tr>
+  <tr>
+    <th align="left">
       <bean:message key="typeForm.checkbox.used.languages"/>:
     </th>
     <td align="left">
