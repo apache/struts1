@@ -130,18 +130,17 @@
         for the application.  In the case described above, it would be
         <code>com.mycompany.mypackage.MyApplication</code>.
       </p>
-<pre>
-&lt;servlet>
-  &lt;servlet-name>action&lt;/servlet-name>
-  &lt;servlet-class>org.apache.struts.action.ActionServlet&lt;/servlet-class>
-  &lt;init-param>
-    &lt;param-name>application&lt;/param-name>
-    &lt;param-value>com.mycompany.mypackage.MyResources&lt;/param-value>
-  &lt;/init-param>
-  &lt;.../>
-&lt;/servlet>
-</pre>
-
+<pre><code><![CDATA[
+<servlet>
+  <servlet-name>action</servlet-name>
+  <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+  <init-param>
+    <param-name>application</param-name>
+    <param-value>com.mycompany.mypackage.MyResources</param-value>
+  </init-param>
+  <!-- ... -->
+</servlet>
+]]></code></pre>
       <p>
         The important thing is for the resource bundle to be found on the
         class path for your application. Another approach is to store
@@ -155,12 +154,12 @@
         that copies the contents of a <code>src/conf</code>
         directory to the <code>classes</code> directory:
       </p>
-       <pre>
-        &lt;!-- Copy any configuration files -->
-        &lt;copy todir="classes">
-            &lt;fileset dir="src/conf"/>
-        &lt;/copy>
-       </pre>
+<pre><code><![CDATA[
+<!-- Copy any configuration files -->
+<copy todir="classes">
+    <fileset dir="src/conf"/>
+</copy>
+]]></code></pre>
     </section>
 
     <section name="3.3 Forms and FormBean Interactions" href="form_beans">
@@ -190,12 +189,10 @@
         standard HTML and JSP pages.  For example, an input element for a
         <code>username</code> field might look like this (in JSP):
        </p>
-
-<pre>
-&lt;input type="text" name="username"
-      value="&lt;%= loginBean.getUsername() %&gt;"/&gt;
-</pre>
-
+<pre><code><![CDATA[
+<input type="text" name="username"
+  value="<%= loginBean.getUsername() >"/>
+]]></code></pre>
       <p>
         which is difficult to type correctly, confuses HTML developers who are
         not knowledgeable about programming concepts, and can cause problems with
@@ -203,11 +200,9 @@
         building forms, based on the Custom Tag Library facility of JSP 1.1.
         The case above would be rendered like this using Struts:
       </p>
-
-<pre>
-&lt;html:text property="username"/&gt;
-</pre>
-
+<pre><code><![CDATA[
+<html:text property="username"/>;
+]]></code></pre>
       <p>
         with no need to explicitly refer to the JavaBean from which the initial
         value is retrieved.  That is handled automatically by the JSP tag, using
@@ -232,57 +227,61 @@
           example application included with Struts) named <code>logon.jsp</code>:
         </p>
 <hr/>
-<pre>
-&lt;%@ page language="java" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-html.tld"
-        prefix="html" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-bean.tld"
-        prefix="bean" %&gt;
-&lt;html:html&gt;
-&lt;head&gt;
-&lt;title&gt;
-  &lt;bean:message key="logon.title"/&gt;
-&lt;/title&gt;
-&lt;/head&gt;
-&lt;body bgcolor="white"&gt;
-&lt;html:errors/&gt;
-&lt;html:form action="/logon" focus="username"&gt;
-&lt;table border="0" width="100%"&gt;
-  &lt;tr&gt;
-    &lt;th align="right"&gt;
-      &lt;bean:message key="prompt.username"/&gt;
-    &lt;/th&gt;
-    &lt;td align="left"&gt;
-      &lt;html:text property="username"
-                     size="16"/&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;th align="right"&gt;
-      &lt;bean:message key="prompt.password"/&gt;
-    &lt;/th&gt;
-    &lt;td align="left"&gt;
-      &lt;html:password property="password"
-                         size="16"/&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td align="right"&gt;
-      &lt;html:submit&gt;
-        &lt;bean:message key="button.submit"/&gt;
-      &lt;/html:submit&gt;
-    &lt;/td&gt;
-    &lt;td align="right"&gt;
-      &lt;html:reset&gt;
-        &lt;bean:message key="button.reset"/&gt;
-      &lt;/html:reset&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-&lt;/html:form&gt;
-&lt;/body&gt;
-&lt;/html:html&gt;
-</pre>
+<pre><code><![CDATA[
+<%@ page language="java" %>
+<%@ taglib 
+  uri="/WEB-INF/struts-html.tld"
+  prefix="html" %>
+<%@ 
+  taglib uri="/WEB-INF/struts-bean.tld"
+  prefix="bean" %>
+<html:html>
+<head>
+<title>
+  <bean:message key="logon.title"/>
+</title>
+</head>
+<body bgcolor="white">
+<html:errors/>
+<html:form action="/logon" focus="username">
+<table border="0" width="100%">
+<tr>
+<th align="right">
+  <bean:message key="prompt.username"/>
+</th>
+<td align="left">
+  <html:text 
+    property="username"
+    size="16"/>
+</td>
+</tr>
+<tr>
+<th align="right">
+  <bean:message key="prompt.password"/>
+</th>
+<td align="left">
+  <html:password 
+    property="password"
+    size="16"/>
+</td>
+</tr>
+<tr>
+<td align="right">
+  <html:submit>
+    <bean:message key="button.submit"/>
+  </html:submit>
+</td>
+<td align="right">
+  <html:reset>
+    <bean:message key="button.reset"/>
+  </html:reset>
+</td>
+</tr>
+</table>
+</html:form>
+</body>
+</html:html>
+]]></code></pre>
 <hr/>
         <p>
           The following items illustrate the key features of form handling in Struts,
@@ -363,25 +362,25 @@
         </p>
 
 <hr/>
-<pre>
-&lt;%@page language="java">
-&lt;%@taglib uri="/WEB-INF/struts-html.tld"
+<pre><code><![CDATA[
+<%@page language="java">
+<%@taglib uri="/WEB-INF/struts-html.tld"
        prefix="html">
-&lt;html:form action="uploadAction.do" enctype="multipart/form-data">
+<html:form action="uploadAction.do" enctype="multipart/form-data">
   Please Input Text:
-  &lt;html:text property="myText">&lt;br/>
-  Please Input The File You Wish to Upload:&lt;br/>
-  &lt;html:file property="myFile">&lt;br />
-  &lt;html:submit />
-&lt;/html:form>
-</pre>
+  <html:text property="myText">
+  Please Input The File You Wish to Upload:
+  <html:file property="myFile">
+  <html:submit />
+</html:form>
+]]></code></pre>
 <hr/>
         <p>
           The next step is to create your ActionForm bean:
         </p>
 
 <hr/>
-<pre>
+<pre><code><![CDATA[
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -403,7 +402,7 @@ public class UploadForm extends ActionForm {
     return myFile;
   }
 }
-</pre>
+]]></code></pre>
 <hr/>
         <p>
           Look at the Javadocs for <code><a href="../api/org/apache/struts/upload/FormFile.html">FormFile</a></code>
@@ -493,10 +492,10 @@ public class UploadForm extends ActionForm {
           class:
         </p>
 
-<pre>public ActionErrors
+<pre><code><![CDATA[
   validate(ActionMapping mapping,
     HttpServletRequest request);
-</pre>
+]]></code></pre>
 
         <p>
           The <code>validate</code> method is called by the controller servlet after the bean
@@ -539,29 +538,30 @@ public class UploadForm extends ActionForm {
     <p>
     Configuring the Validator to perform form validation is easy.<br/>
     <ol>
-    	<li>The ActionForm bean must extend ValidatorForm</li>
-    	<li>The form's JSP must include the <a href="struts-html.html">&lt;html:javascript&gt;</a> tag for client side validation.</li>
-    	<li>You must define the validation rules in an xml file like this:<br/>
-    <pre>
-	    &lt;form-validation>
-			&lt;formset>         	   
-      			&lt;form name="logonForm">
-         			&lt;field property="username" depends="required">
-         				&lt;msg name="required" key="error.username"/>
-         			&lt;/field>    
-    			&lt;/form>        
-			&lt;/formset>   
-		&lt;/form-validation>
-    </pre>
-    <br/>
+        <li>The ActionForm bean must extend ValidatorForm</li>
+        <li>The form's JSP must include the <a href="struts-html.html">&lt;html:javascript&gt;</a> tag for client side validation.</li>
+        <li>You must define the validation rules in an xml file like this:
+<pre><code><![CDATA[
+<form-validation>
+  <formset>             
+    <form name="logonForm">
+      <field property="username" depends="required">
+        <msg name="required" key="error.username"/>
+      </field>    
+    </form>        
+  </formset>   
+</form-validation>
+]]></code></pre>
     The msg element points to the message resource key to use when generating the error message.
     </li>
-    <li>Lastly, you must enable the ValidatorPlugin in the struts-config.xml file like this:<br/>
-	<pre>
-    &lt;plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-    	&lt;set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml"/>
-  	&lt;/plug-in>
-  	</pre>
+    <li>Lastly, you must enable the ValidatorPlugin in the struts-config.xml file like this:
+<pre><code><![CDATA[
+<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property 
+    property="pathnames" 
+    value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml"/>
+</plug-in>
+]]></code></pre>
     </li>
     </ol>
     </p>
@@ -720,12 +720,13 @@ public class UploadForm extends ActionForm {
            such as XML. If a complete page is being rendered, and can be output
            using a PrintWriter, this is very easy to do from an Action:
          </p>
-         <pre>
-           response.setContentType("text/plain"); // or text/xml
-           PrintWriter writer = response.getWriter();
-           // use writer to render text
-           return(null);
-         </pre>
+
+<pre><code><![CDATA[
+response.setContentType("text/plain"); // or text/xml
+PrintWriter writer = response.getWriter();
+// use writer to render text
+return(null);
+]]></code></pre>
 
       </section>
 
@@ -742,15 +743,13 @@ public class UploadForm extends ActionForm {
          attribute values.  For instance, to print a message from a properties
          file based on a resource key, you would use the
          <code>bean:write</code> tag, perhaps like this:
-         <pre>
-          &lt;bean:message key='&lt;%= stringvar %&gt;'/&gt;</pre>
+<pre><code><![CDATA[<bean:message key='<%= stringvar %>'/>]]></code></pre>
         </p>
         <p>
          This assumes that <code>stringvar</code> exists as a JSP scripting
          variable.  If you're using the <strong>Struts-EL</strong> library, the
          reference looks very similar, but slightly different, like this:
-         <pre>
-          &lt;bean-el:message key="${stringvar}"/&gt;&lt;/pre&gt;</pre>
+<pre><code><![CDATA[<bean-el:message key="${stringvar}"/>]]></code></pre>
         </p>
         <p>
          If you want to know how to properly use the <strong>Struts-EL</strong>
