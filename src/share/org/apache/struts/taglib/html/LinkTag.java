@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.29 2003/07/26 17:40:52 rleland Exp $
- * $Revision: 1.29 $
- * $Date: 2003/07/26 17:40:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.30 2003/07/27 06:30:10 rleland Exp $
+ * $Revision: 1.30 $
+ * $Date: 2003/07/27 06:30:10 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.taglib.TagUtils;
  *
  * @author Craig R. McClanahan
  * @author James Turner
- * @version $Revision: 1.29 $ $Date: 2003/07/26 17:40:52 $
+ * @version $Revision: 1.30 $ $Date: 2003/07/27 06:30:10 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -476,7 +476,7 @@ public class LinkTag extends BaseHandlerTag {
                // If it's not, throw exception
                JspException e = new JspException
                    (messages.getMessage("indexed.noEnclosingIterate"));
-               RequestUtils.saveException(pageContext, e);
+               TagUtils.getInstance().saveException(pageContext, e);
                throw e;
            }
 
@@ -493,10 +493,10 @@ public class LinkTag extends BaseHandlerTag {
 
         String url = null;
         try {
-            url = RequestUtils.computeURL(pageContext, forward, href,
+            url = TagUtils.getInstance().computeURL(pageContext, forward, href,
                                           page, action, params, anchor, false);
         } catch (MalformedURLException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException
                 (messages.getMessage("rewrite.url", e.toString()));
         }

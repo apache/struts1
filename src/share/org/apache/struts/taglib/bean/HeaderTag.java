@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.11 2003/07/14 00:10:49 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/14 00:10:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTag.java,v 1.12 2003/07/27 06:30:09 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/27 06:30:09 $
  *
  * ====================================================================
  *
@@ -69,14 +69,14 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Define a scripting variable based on the value(s) of the specified
  * header received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/14 00:10:49 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/27 06:30:09 $
  */
 public class HeaderTag extends TagSupport {
 
@@ -182,11 +182,11 @@ public class HeaderTag extends TagSupport {
         if (headers.length == 0) {
             JspException e =
                 new JspException(messages.getMessage("header.get", name));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         
-        pageContext.setAttribute(id, (String[]) values.toArray(headers));
+        pageContext.setAttribute(id, values.toArray(headers));
     }
 
     /**
@@ -205,7 +205,7 @@ public class HeaderTag extends TagSupport {
         if (value == null) {
             JspException e =
                 new JspException(messages.getMessage("header.get", name));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
         

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.11 2003/07/26 17:40:52 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/26 17:40:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.12 2003/07/27 06:30:10 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/27 06:30:10 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.taglib.TagUtils;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/07/26 17:40:52 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/27 06:30:10 $
  */
 public class RewriteTag extends LinkTag {
 
@@ -98,7 +98,7 @@ public class RewriteTag extends LinkTag {
             // Note that we're encoding the & character to &amp; in XHTML mode only, 
             // otherwise the & is written as is to work in javascripts. 
 			url =
-				RequestUtils.computeURL(
+				TagUtils.getInstance().computeURL(
 					pageContext,
 					forward,
 					href,

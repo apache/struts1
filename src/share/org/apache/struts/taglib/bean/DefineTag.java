@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.22 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.23 2003/07/27 06:30:09 rleland Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/07/27 06:30:09 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -77,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.23 $ $Date: 2003/07/27 06:30:09 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -258,7 +257,7 @@ public class DefineTag extends BodyTagSupport {
         if (n != 1) {
             JspException e =
                 new JspException(messages.getMessage("define.value"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 
@@ -273,7 +272,7 @@ public class DefineTag extends BodyTagSupport {
         if (value == null) {
             JspException e =
                 new JspException(messages.getMessage("define.null"));
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw e;
         }
 

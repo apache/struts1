@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.20 2003/07/26 17:40:52 rleland Exp $
+ * $Id: IncludeTag.java,v 1.21 2003/07/27 06:30:09 rleland Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.struts.taglib.TagUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/07/26 17:40:52 $
+ * @version $Revision: 1.21 $ $Date: 2003/07/27 06:30:09 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -228,7 +228,7 @@ public class IncludeTag extends TagSupport {
                 url = new URL(urlString);
             }
         } catch (MalformedURLException e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(messages.getMessage("include.url", e.toString()));
         }
 
@@ -252,7 +252,7 @@ public class IncludeTag extends TagSupport {
             // Connect to the requested resource
             conn.connect();
         } catch (Exception e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(
                 messages.getMessage("include.open", url.toString(), e.toString()));
         }
@@ -272,7 +272,7 @@ public class IncludeTag extends TagSupport {
             }
             in.close();
         } catch (Exception e) {
-            RequestUtils.saveException(pageContext, e);
+            TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException(
                 messages.getMessage("include.read", url.toString(), e.toString()));
         }
