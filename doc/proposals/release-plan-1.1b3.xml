@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.4 2002/12/27 01:49:54 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.5 2002/12/27 01:53:59 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -108,6 +108,12 @@
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=12302">12302</a></td>
 	  <td>Sporadic error in html:form action attribute</td>
+    </tr>
+    <tr>
+        <td>[ ]</td>
+        <td>
+          <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=13645">13645</a></td>
+      <td>Add action attribute to &lt;html:link&gt;</td>
     </tr>
     <tr>
         <td nowrap="nowrap">[ ]</td>
