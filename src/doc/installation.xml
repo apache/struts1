@@ -230,19 +230,20 @@ build dist         &lt;-- Windows platform
 <h3>Status of various containers</h3>
 
 <ul>
-  <li>Tomcat 3.1+ "standalone" - No additonal steps required.</li>
+  <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
+  <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Resin 2.1+ "standalone" - No additional steps required.</li>
   <li>WebLogic 6.0+ - No additional steps required.</li>
 </ul>
 
 <ul>
-  <li>Bluestone Universal Business Server - <a href="installation-ubs72.html">Additional steps required.</a></li>
-  <li>JRUN - <a href="installation-jr30.html">Additional steps required.</a></li>
+  <li>Bluestone Universal Business Server - <a href="installation-ubs.html">Additional steps required.</a></li>
+  <li>JRUN - <a href="installation-jrun.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps required.</a></li>
-  <li>Silverstream - - <a href="installation-sas371.html">Additional steps required.</a></li>
-  <li>Tomcat 3.1+ with Apache - <a href="installation-tc31.html">Additional steps required.</a></li>
-  <li>Weblogic 5.1 (sp8) - <a href="installation-wls5.html">Additional steps required.</a></li>
-  <li>WebSphere  - <a href="installation-was352.html">Additional steps required.</a></li>
+  <li>Silverstream - - <a href="installation-sas.html">Additional steps required.</a></li>
+  <li>Tomcat 3.2.1 with Apache - <a href="installation-tc.html">Additional steps required.</a></li>
+  <li>Weblogic 5.1 (sp8) - <a href="installation-wls.html">Additional steps required.</a></li>
+  <li>WebSphere - <a href="installation-was.html">Additional steps required.</a></li>
 </ul>
 
 
