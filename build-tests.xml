@@ -742,6 +742,9 @@
           </fileset>
         </batchtest>
 
+        <!-- Tests for org.apache.struts.taglib.TagUtils -->
+        <test       name="org.apache.struts.taglib.TestTagUtils"/>
+
       </junit>
 
     </target>

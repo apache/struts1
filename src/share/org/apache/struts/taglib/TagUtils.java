@@ -621,37 +621,50 @@ public class TagUtils {
      */
     public String filter(String value) {
 
-        if (value == null) {
-            return (null);
+        if (value == null || value.length() == 0) {
+            return value;
         }
 
-        char content[] = new char[value.length()];
-        value.getChars(0, value.length(), content, 0);
-        StringBuffer result = new StringBuffer(content.length + 50);
-
-        for (int i = 0; i < content.length; i++) {
-            switch (content[i]) {
+        StringBuffer result = null;
+        String filtered = null;
+        for (int i = 0; i < value.length(); i++) {
+            filtered = null;
+            switch (value.charAt(i)) {
                 case '<':
-                    result.append("&lt;");
+                    filtered = "&lt;";
                     break;
                 case '>':
-                    result.append("&gt;");
+                    filtered = "&gt;";
                     break;
                 case '&':
-                    result.append("&amp;");
+                    filtered = "&amp;";
                     break;
                 case '"':
-                    result.append("&quot;");
+                    filtered = "&quot;";
                     break;
                 case '\'':
-                    result.append("&#39;");
+                    filtered = "&#39;";
                     break;
-                default:
-                    result.append(content[i]);
+            }
+
+            if (result == null) {
+                if (filtered != null) {
+                    result = new StringBuffer(value.length() + 50);
+                    if (i > 0) {
+                        result.append(value.substring(0, i));
+                    }
+                    result.append(filtered);
+                }
+            } else {
+                if (filtered == null) {
+                    result.append(value.charAt(i));
+                } else {
+                    result.append(filtered);
+                }
             }
         }
 
-        return result.toString();
+        return result == null ? value : result.toString();
     }
 
     /**
