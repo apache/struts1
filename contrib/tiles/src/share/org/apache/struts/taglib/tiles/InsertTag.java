@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.1 2001/08/01 14:36:41 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InsertTag.java,v 1.2 2001/09/28 17:00:11 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/28 17:00:11 $
  * $Author: cedric $
  *
  */
@@ -35,13 +35,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * This is the tag handler for &lt;template:insert&gt;, which includes 
+ * This is the tag handler for &lt;template:insert&gt;, which includes
  * a template. The tag's body content consists of &lt;template:put&gt;
  * tags, which are accessed by &lt;template:get&gt; in the template.
- * 
+ *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2001/08/01 14:36:41 $
+ * @version $Revision: 1.2 $ $Date: 2001/09/28 17:00:11 $
  */
 public class InsertTag extends TagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {
@@ -317,12 +317,12 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 		 * Process the start tag by checking tag's attributes and creating appropriate handler.
 		 * Possible handlers :
 		 * <ul>
-		 * <li> URL 
+		 * <li> URL
 		 * <li> definition
 		 * <li> direct String
 		 * </ul>
 		 * Handlers also contain sub-component context.
-		 * 
+		 *
 		 */
 		public int doStartTag() throws JspException
 		{
@@ -352,7 +352,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       }
     return tagHandler.doStartTag();
 		}
-		
+
 		/**
 		 * Process the end tag by including the template.
 		 * Simply call the handler doEndTag
@@ -361,13 +361,13 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 		{
     if( !processEndTag )
       return EVAL_PAGE;
-      
+
     int res =  tagHandler.doEndTag();
       // Reset properties used by object, in order to be able to reuse object.
     releaseInternal();
     return res;
 		}
-		
+
 		/**
 		 * Process tag attribute and create corresponding tag handler.
 		 */
@@ -403,7 +403,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       throw new JspException ( "Error - Tag Insert : At least one of the following attribute must be defined : template|page|attribute|definition|name|beanName. Check tag syntax" );
       }
 		}
-		
+
 		/**
 		 * Process an object retrieved as a bean or attribute.
 		 * Object can be a typed attribute, a String, or anything else.
@@ -427,10 +427,10 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       // Value must denote a valid String
     return processAsDefinitionOrURL( value.toString() );
 		}
-		
+
 		/**
 		 * Process name.
-		 * Search in following order : 
+		 * Search in following order :
 		 * <ul>
 		 * <li>Component context -  if found, process it as value.</li>
 		 * <li>definitions factory</li>
@@ -453,7 +453,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 
     return processAsDefinitionOrURL(name);
 		}
-		
+
 		/**
 		 * Process
 		 * @roseuid 3AB4CE540211
@@ -462,7 +462,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
 		{
     return new InsertHandler(url, role );
 		}
-		
+
 		/**
 		 * Process tag attribute "definition"
      * First, search definition in the factory, then create handler from this definition.
@@ -489,9 +489,9 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       }
      catch( NoSuchDefinitionException ex )
         {
-        throw new JspException ( "Error -  Tag Insert : Can't get component definition '"
+        throw new JspException ( "Error -  Tag Insert : Can't get definition '"
                                + definitionName
-                               + "'. Check if this name exist in component definitions." );
+                               + "'. Check if this name exist in definitions factory." );
         }
      catch( FactoryNotFoundException ex )
         { // factory not found.
@@ -501,7 +501,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
         {
         if(debug)
           ex.printStackTrace( );
-          // Save exception to be able to show it later 
+          // Save exception to be able to show it later
         pageContext.setAttribute(Action.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
         throw new JspException (  ex.getMessage() );
         } // end catch
@@ -599,7 +599,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       // no definition found, try as url
     return processUrl( name );
 		}
-		
+
 		/**
 		 * Process typed attribute according to its type.
 		 * @param value Typed attribute to process.
@@ -624,14 +624,14 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
      //else if( value instanceof PathAttribute )
     return new InsertHandler( (String)value.getValue(), role );
 		}
-		
+
   /////////////////////////////////////////////////////////////////////////////
 
 		/**
      * Inner Interface
 		 * Sub handler for tag.
 		 */
-		protected interface TagHandler 
+		protected interface TagHandler
 		{
       /**
        * Create ComponentContext for type depicted by implementation class.
@@ -717,11 +717,11 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
         {
       	return EVAL_PAGE;
         } // end if
-        
+
       try {
         if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )
           System.out.println( "insert page='" + page + "'." );
-          
+
          // set new context for included component.
         pageContext.setAttribute( ComponentConstants.COMPONENT_CONTEXT, subCompContext, pageContext.REQUEST_SCOPE);
         // include requested component.
@@ -773,7 +773,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       try {
         if( msg == null )
           msg = ex.getMessage();
-          
+
         if(debug)
           {  // show full trace
           System.out.println( msg );
@@ -793,7 +793,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
         }
       }
 		}
-		
+
   /////////////////////////////////////////////////////////////////////////////
 
 		/**
@@ -811,7 +811,7 @@ public class InsertTag extends TagSupport implements PutTagParent, ComponentCons
       {
       this.value = value;
       }
-				
+
       /**
        * Do nothing are there is no context for a direct string
        */

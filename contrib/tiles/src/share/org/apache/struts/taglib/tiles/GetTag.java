@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/GetTag.java,v 1.2 2001/09/17 08:55:51 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/17 08:55:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/GetTag.java,v 1.3 2001/09/28 17:00:11 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/09/28 17:00:11 $
  * $Author: cedric $
  *
  */
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * This is the tag handler for &lt;template:get&gt;, which gets
- * content from the request scope and either includes the content or prints 
+ * content from the request scope and either includes the content or prints
  * it, depending upon the value of the content's direct attribute.
  *
  * This tag is intended to be compatible with the same tag from Templates (David Geary).
@@ -34,7 +34,7 @@ public class GetTag extends InsertTag {
      * Constructor.
      * Set default value for 'isErrorIgnored'.
      */
-    public void GetTag() {
+    public GetTag() {
         isErrorIgnored = true;
     }
 

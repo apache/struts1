@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InitDefinitionsTag.java,v 1.1 2001/08/01 14:36:40 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:40 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/InitDefinitionsTag.java,v 1.2 2001/09/28 17:00:11 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/28 17:00:11 $
  * $Author: cedric $
  *
  */
@@ -22,8 +22,11 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import javax.servlet.jsp.PageContext;
 
+  /**
+   * Init definitions factory.
+   */
 public class InitDefinitionsTag extends TagSupport implements ComponentConstants {
-  
+
 
   private String filename = null;
   private String classname = null;
@@ -71,7 +74,7 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
     // Read properties
     // Not so nice, but works for default factory ;-(
   properties.put( I18nFactorySet.DEFINITIONS_CONFIG_PARAMETER_NAME, filename);
-  
+
   try
     {
     factory = DefinitionsUtil.createDefinitionsFactory(pageContext.getServletContext(), properties, classname);
