@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.5 2000/08/01 20:03:24 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/08/01 20:03:24 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.6 2000/09/24 03:59:49 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/09/24 03:59:49 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ErrorMessages;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/08/01 20:03:24 $
+ * @version $Revision: 1.6 $ $Date: 2000/09/24 03:59:49 $
  */
 
 public final class RegistrationForm implements ValidatingActionForm  {
@@ -330,7 +330,7 @@ public final class RegistrationForm implements ValidatingActionForm  {
 	ErrorMessages errors = new ErrorMessages();
 	if ((username == null) || (username.length() < 1))
 	    errors.addError("error.username.required");
-	if (!password.equals(password))
+	if (!password.equals(password2))
 	    errors.addError("error.password.match");
 	if ((fromAddress == null) || (fromAddress.length() < 1))
 	    errors.addError("error.fromAddress.required");
