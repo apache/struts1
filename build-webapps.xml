@@ -185,6 +185,16 @@
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"/>
+    <!-- Create the FAQs -->
+    <style   basedir="${doc.dir}/faqs"
+             destdir="${build.home}/documentation/faqs"
+           extension=".html" style="${doc.dir}/stylesheets/faqs.xsl"
+            includes="*.xml"/>
+    <!-- Create the news -->
+    <style   basedir="${doc.dir}/news"
+             destdir="${build.home}/documentation/news"
+           extension=".html" style="${doc.dir}/stylesheets/news.xsl"
+            includes="*.xml"/>
     <!-- Create the proposals -->
     <style   basedir="${doc.dir}/proposals"
              destdir="${build.home}/documentation/proposals"
