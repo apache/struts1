@@ -465,12 +465,18 @@
 		</summary>
 		<tagclass>org.apache.struts.taglib.html.CheckboxTag</tagclass>
 		<info>
-			<p>
-				Renders an HTML &lt;input&gt; element of type checkbox, populated
-				from the specified value or the specified property of the bean
-				associated with our current form. This tag is only valid when
-				nested inside a form tag body.
-			</p>
+			<p>Renders an HTML &lt;input&gt; element of type
+                        <code>checkbox</code>, populated from the specified
+                        value or the specified property of the bean associated
+                        with our current form. This tag is only valid when
+                        nested inside a form tag body.</p>
+
+                        <p><strong>WARNING</strong>:  In order to correctly
+                        recognize unchecked checkboxes, the
+                        <code>ActionForm</code> bean associated with this form
+                        must include a statement setting the corresponding
+                        boolean property to <code>false</code> in the
+                        <code>reset()</code> method.</p>
 		</info>
 		
 		<attribute>
@@ -2346,15 +2352,23 @@
 		</summary>
 		<tagclass>org.apache.struts.taglib.html.MultiboxTag</tagclass>
 		<info>
-			<p>
-				Renders an HTML &lt;input&gt; element of type checkbox, whose "checked"
-				status is initialized based on whether the specified value matches
-				one of the elements of the underlying property's array of current
-				values. This element is useful when you have large numbers of
-				checkboxes, and prefer to combine the values into a single
-				array-valued property instead of multiple boolean properties.
-				This tag is only valid when nested inside a form tag body.
-			</p>
+                        <p>Renders an HTML &lt;input&gt; element of type
+                        <code>checkbox</code>, whose "checked" status is
+                        initialized based on whether the specified value
+                        matches one of the elements of the underlying
+                        property's array of current values. This element is
+                        useful when you have large numbers of checkboxes, and
+                        prefer to combine the values into a single
+                        array-valued property instead of multiple boolean
+                        properties.  This tag is only valid when nested
+                        inside a form tag body.</p>
+
+                        <p><strong>WARNING</strong>:  In order to correctly
+                        recognize cases where none of the associated checkboxes
+                        are selected, the <code>ActionForm</code> bean
+                        associated with this form must include a statement
+                        setting the corresponding array to zero length in the
+                        <code>reset()</code> method.</p>
 
                 <p>The value to be returned to the server, if this checkbox is
                 selected, must be defined by one of the following methods:</p>
@@ -3487,9 +3501,32 @@
 		<tagclass>org.apache.struts.taglib.html.SelectTag</tagclass>
 		<bodycontent>JSP</bodycontent>
 		<info>
-			Custom tag that represents an HTML select element, associated with a
-			bean property specified by our attributes.  This tag must be nested
-			inside a form tag.
+                        <p>Renders an HTML &lt;select&gt; element, associated
+                        with a bean property specified by our attributes.  This
+                        tag is only valid when nested inside a form tag body.
+                        </p>
+
+                        <p>This tag operates in two modes, depending upon the
+                        state of the <code>multiple</code> attribute, which
+                        affects the data type of the associated property you
+                        should use:</p>
+                        <ul>
+                        <li><em>multiple="true" IS NOT selected</em> -
+                            The corresponding property should be a scalar
+                            value of any supported data type.</li>
+                        <li><em>multiple="true" IS selected</em> -
+                            The corresponding property should be an array
+                            of any supported data type.</li>
+                        </ul>
+
+                        <p><strong>WARNING</strong>:  In order to correctly
+                        recognize cases where no selection at all is made, the
+                        <code>ActionForm</code> bean associated with this form
+                        must include a statement resetting the scalar property
+                        to a default value (if <code>multiple</code> is not
+                        set), or the array property to zero length (if
+                        <code>multiple</code> is set) in the
+                        <code>reset()</code> method.</p>
 		</info>
 		
 				

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.6 2001/02/22 02:53:31 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/22 02:53:31 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.7 2001/02/23 18:23:56 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/23 18:23:56 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/22 02:53:31 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/23 18:23:56 $
  */
 
 public class TestBean extends ActionForm {
@@ -314,6 +314,7 @@ public class TestBean extends ActionForm {
 
         booleanProperty = false;
         intMultibox = new int[0];
+        multipleSelect = new String[0];
         stringMultibox = new String[0];
         if (nested != null)
             nested.reset(mapping, request);
