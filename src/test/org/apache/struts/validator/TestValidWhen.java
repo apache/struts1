@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/validator/TestValidWhen.java,v 1.1 2004/09/03 18:12:26 niallp Exp $
  * $Revision: 1.1 $
- * $Date: 2004/09/03 18:12:26 $
+ * $Date$
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -176,6 +176,11 @@ public class TestValidWhen extends TestCase {
 
         // Octal
         doParse("(integerValue1 == 0173)", testBean , 0, "integerValue1", true);
+
+        // Test 'String' numbers
+        PojoBean stringBean = new PojoBean("11", "2");
+        doParse("(stringValue1 > stringValue2)", stringBean , 0, "stringValue1", true);
+        doParse("(stringValue1 < stringValue2)", stringBean , 0, "stringValue1", false);
 
     }
     
