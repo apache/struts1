@@ -65,11 +65,6 @@
 
         <ul>
             <li>
-                Remember to update the <a href="news/index.html">Status section of the News page</a> when cutting any
-                milestone.
-                For a final release, also update the /doc/project.xml with the current release number.
-            </li>
-            <li>
                 The release process can seem daunting when you review it for the first time.
                 But, essentially, it breaks down into three phases of just a few steps each:
                 <ul>
@@ -105,7 +100,7 @@
                 to take advantage of all available compiler enhancements.
             </li>
             <li>
-                Before building the final release, run the JUnit and Cactus tests using the same
+                Before building the release, run the JUnit and Cactus tests using the same
                 configuration used that will be used to build the Release distribution.
             </li>
             <li>
@@ -113,6 +108,13 @@
                 Before uploading the release, extract the sample web applications and deploy the WARs under
                 each of the "supported" containers.
                 Play test each application under each container to be sure they operate nominally.
+            </li>
+            <li>
+                Be sure to copy the pmc@jakarta.apache.org list on any release announcement.
+            </li>
+            <li>
+                Remember to update the <a href="status.html">Status section of the Roadmap page</a> 
+                once a release is available. 
             </li>
             <li>
                 By the way, the nightly builds are being created on a machine of Craig McClanahan's.
