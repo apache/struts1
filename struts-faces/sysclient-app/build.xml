@@ -66,7 +66,7 @@
                                 classname="com.sun.faces.RIConstants"
                                 classpath="${jsf-impl.jar}"/>
   <available                     property="myfaces.present"
-                                classname="net.sourceforge.myfaces.MyFacesConfig"
+                                classname="net.sourceforge.myfaces.config.MyfacesConfig"
                                 classpath="${jsf-impl.jar}"/>
 
   <!-- Build Defaults -->
