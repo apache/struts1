@@ -20,6 +20,10 @@ so much duplicate code here
 // ------------------------------------------------------------ CHANGES
 
 
+21-AUG-2002
+-----------
++ ProcessDispatchAction: Change to extend ProcessFormAction
+
 
 20-AUG-2002
 -----------

@@ -42,16 +42,16 @@ import org.apache.commons.scaffold.util.ResultListBase;
 
 
 /**
- * ProcessAction that accepts the name of a class and a method
+ * ProcessFormAction that accepts the name of a class and a method
  * with the signature "Object method(Object)" as the parameter.
  * [org.apache.cerebus.Account;store].
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.3 $ $Date: 2002/08/19 22:36:15 $
+ * @version $Revision: 1.4 $ $Date: 2002/08/23 18:30:00 $
  */
-public class ProcessDispatchAction extends ProcessAction {
+public class ProcessDispatchAction extends ProcessFormAction {
 
     /**
      * The set of argument type classes for the reflected method call.
