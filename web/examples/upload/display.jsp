@@ -1,15 +1,21 @@
-<b>The Text</b><%= request.getAttribute("text") %>
-<br />
-<b>The Query Parameter</b><%= request.getAttribute("queryValue") %>
-<br />
-<b>The File name</b><%= request.getAttribute("fileName") %>
-<br />
-<b>The File content type</b><%= request.getAttribute("contentType") %>
-<br />
-<b>The File size</b><%= request.getAttribute("size") %>
-<br />
-<b>The File data</b>
-<br />
+<p>
+<b>The Text:</b>&nbsp;<%= request.getAttribute("text") %>
+</p>
+<p>
+<b>The Query Parameter:</b>&nbsp;<%= request.getAttribute("queryValue") %>
+</p>
+<p>
+<b>The File name:</b>&nbsp;<%= request.getAttribute("fileName") %>
+</p>
+<p>
+<b>The File content type:</b>&nbsp;<%= request.getAttribute("contentType") %>
+</p>
+<p>
+<b>The File size:</b>&nbsp;<%= request.getAttribute("size") %>
+</p>
+<p>
+<b>The File data:</b>
+</p>
 <hr />
 <pre>
 <%= request.getAttribute("data") %>
