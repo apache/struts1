@@ -23,6 +23,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.List;
+
 import org.apache.struts.util.MessageResources;
 
 /**
@@ -87,7 +89,32 @@ public class TestActionServlet extends TestCase
 
     }
 
-
+    /** 
+     *  Test class loader resolution and splitting.  
+     */
+    public void testSplitAndResolvePaths() throws Exception {
+        ActionServlet servlet = new ActionServlet();
+        List list = servlet.splitAndResolvePaths("org/apache/struts/config/struts-config.xml");
+        assertNotNull(list);
+        assertTrue("List size should be 1", list.size() == 1);
+        
+        list = servlet.splitAndResolvePaths("org/apache/struts/config/struts-config.xml, "   
+            + "org/apache/struts/config/struts-config-1.1.xml");
+        assertNotNull(list);
+        assertTrue("List size should be 2, was "+list.size(), list.size() == 2);
+        
+        list = servlet.splitAndResolvePaths("META-INF/MANIFEST.MF");
+        assertNotNull(list);
+        assertTrue("Number of manifests should be more than 5, was "+list.size(), list.size() > 5);
+        
+        // test invalid path
+        try {
+            list = servlet.splitAndResolvePaths("org/apache/struts/config/struts-asdfasdfconfig.xml");
+            fail("Should have thrown an exception on bad path");
+        } catch (NullPointerException ex) {
+            // correct behavior since internal error resources aren't loaded
+        }
+    }
 
     //----- Test initApplication() method --------------------------------------
 

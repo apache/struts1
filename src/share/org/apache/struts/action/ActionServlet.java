@@ -25,6 +25,7 @@ import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.MissingResourceException;
@@ -673,26 +674,14 @@ public class ActionServlet extends HttpServlet {
         // Configure the Digester instance we will use
         Digester digester = initConfigDigester();
 
-        // Process each specified resource path
-        while (paths.length() > 0) {
+        List urls = splitAndResolvePaths(paths);
+        URL url = null;
+        for (Iterator i = urls.iterator(); i.hasNext(); ) {
+            url = (URL)i.next();
             digester.push(config);
-            String path = null;
-            int comma = paths.indexOf(',');
-            if (comma >= 0) {
-                path = paths.substring(0, comma).trim();
-                paths = paths.substring(comma + 1);
-            } else {
-                path = paths.trim();
-                paths = "";
-            }
-
-            if (path.length() < 1) {
-                break;
-            }
-
-            this.parseModuleConfigFile(digester, path);
+            this.parseModuleConfigFile(digester, url);
         }
-
+        
         getServletContext().setAttribute(
             Globals.MODULE_KEY + config.getPrefix(),
             config);
@@ -718,37 +707,51 @@ public class ActionServlet extends HttpServlet {
      *
      * @throws UnavailableException if file cannot be read or parsed
      * @since Struts 1.2
+     * @deprecated use parseModuleConfigFile(Digester digester, URL url) 
+     * instead
      */
     protected void parseModuleConfigFile(Digester digester, String path)
         throws UnavailableException {
 
+        try {
+            List paths = splitAndResolvePaths(path);
+            if (paths.size() > 0) {
+                // Get first path as was the old behavior
+                URL url = (URL)paths.get(0);
+                parseModuleConfigFile(digester, url);
+            } else {
+                throw new UnavailableException("Cannot locate path "+path);
+            }
+        } catch (UnavailableException ex) {
+            throw ex;
+        } catch (ServletException ex) {
+            handleConfigException(path, ex);
+        }
+    }
+    
+    /**
+     * <p>Parses one module config file.</p>
+     *
+     * @param digester Digester instance that does the parsing
+     * @param url The url to the config file to parse.
+     *
+     * @throws UnavailableException if file cannot be read or parsed
+     * @since Struts 1.3
+     */
+    protected void parseModuleConfigFile(Digester digester, URL url)
+        throws UnavailableException {
+
         InputStream input = null;
         try {
-            URL url = getServletContext().getResource(path);
-
-            // If the config isn't in the servlet context, try the class loader
-            // which allows the config files to be stored in a jar
-            if (url == null) {
-                url = getClass().getResource(path);
-            }
-            
-            if (url == null) {
-                String msg = internal.getMessage("configMissing", path);
-                log.error(msg);
-                throw new UnavailableException(msg);
-            }
-	    
             InputSource is = new InputSource(url.toExternalForm());
             input = url.openStream();
             is.setByteStream(input);
             digester.parse(is);
 
-        } catch (MalformedURLException e) {
-            handleConfigException(path, e);
         } catch (IOException e) {
-            handleConfigException(path, e);
+            handleConfigException(url.toString(), e);
         } catch (SAXException e) {
-            handleConfigException(path, e);
+            handleConfigException(url.toString(), e);
         } finally {
             if (input != null) {
                 try {
@@ -1020,56 +1023,14 @@ public class ActionServlet extends HttpServlet {
             if (value != null) {
                 chainConfig = value;
             }
-         
-            ClassLoader loader =
-                Thread.currentThread().getContextClassLoader();
-            if (loader == null) {    
-                loader = this.getClass().getClassLoader();
-            }
- 
-            URL resource = null;
-            String path = null;
-            int comma = 0;
-            ConfigParser parser = new ConfigParser();
             
-            // Process each specified resource path
-            while (chainConfig.length() > 0) {
-                path = null;
-                comma = chainConfig.indexOf(',');
-                if (comma >= 0) {
-                    path = chainConfig.substring(0, comma).trim();
-                    chainConfig = chainConfig.substring(comma + 1);
-                } else {
-                    path = chainConfig.trim();
-                    chainConfig = "";
-                }
-    
-                if (path.length() < 1) {
-                    break;
-                }
-   
-                if (path.charAt(0) == '/') {
-                    resource = getServletContext().getResource(path);
-                }
-
-                if (resource == null) {
-                    if (log.isDebugEnabled()) {
-                        log.debug("Unable to locate "+path+" in the servlet "
-                                + "context, trying classloader.");
-                    }
-                    resource = loader.getResource(path);
-                }
-
-                
-                
-                if (resource == null) {
-                    // TODO: this should be pulled from internal resources
-                    throw new ServletException("Unable to locate chain "+path+" but is "+getClass().getClassLoader().getResource(path));
-                } else {
-                    log.info("Loading chain catalog from "+resource);
-                    parser.parse(resource);
-                }
-                resource = null;
+            ConfigParser parser = new ConfigParser();
+            List urls = splitAndResolvePaths(chainConfig);
+            URL resource = null;
+            for (Iterator i = urls.iterator(); i.hasNext(); ) {
+                resource = (URL)i.next();
+                log.info("Loading chain catalog from "+resource);
+                parser.parse(resource);
             }
         } catch (Exception e) {
             log.error("Exception loading resources", e);
@@ -1197,6 +1158,74 @@ public class ActionServlet extends HttpServlet {
             getServletContext().setAttribute(Globals.SERVLET_KEY, servletMapping);
         }
 
+    }
+    
+    /**
+     *  Takes a comma-delimited string and splits it into paths, then resolves
+     *  those paths using the ServletContext and appropriate ClassLoader.  When
+     *  loading from the classloader, multiple resources per path are supported
+     *  to support, for example, multiple jars containing the same named config
+     *  file.
+     *
+     * @param paths A comma-delimited string of paths
+     * @return A list of resolved URL's for all found resources
+     *
+     * @exception ServletException if a servlet exception is thrown
+     */
+    protected List splitAndResolvePaths(String paths) throws ServletException {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        if (loader == null) {    
+            loader = this.getClass().getClassLoader();
+        }
+        ArrayList resolvedUrls = new ArrayList();
+        
+        URL resource = null;
+        String path = null;
+        try {
+            // Process each specified resource path
+            while (paths.length() > 0) {
+                int comma = paths.indexOf(',');
+                if (comma >= 0) {
+                    path = paths.substring(0, comma).trim();
+                    paths = paths.substring(comma + 1);
+                } else {
+                    path = paths.trim();
+                    paths = "";
+                }
+    
+                if (path.length() < 1) {
+                    break;
+                }
+                
+                if (path.charAt(0) == '/') {
+                    resource = getServletContext().getResource(path);
+                }
+    
+                if (resource == null) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("Unable to locate "+path+" in the servlet "
+                                + "context, trying classloader.");
+                    }
+                    Enumeration e = loader.getResources(path);
+                    if (!e.hasMoreElements()) {
+                        String msg = internal.getMessage("configMissing", path);
+                        log.error(msg);
+                        throw new UnavailableException(msg);
+                    } else {
+                        while (e.hasMoreElements()) {
+                            resolvedUrls.add(e.nextElement());
+                        }
+                    }
+                } else {
+                    resolvedUrls.add(resource);
+                }
+            }
+        } catch (MalformedURLException e) {
+            handleConfigException(path, e);
+        } catch (IOException e) {
+            handleConfigException(path, e);
+        }
+        return resolvedUrls;
     }
 
 
