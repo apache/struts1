@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.12 2003/09/11 01:18:45 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/09/11 01:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.13 2003/09/28 17:21:51 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/09/28 17:21:51 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.12 $ $Date: 2003/09/11 01:18:45 $
+ * @version $Revision: 1.13 $ $Date: 2003/09/28 17:21:51 $
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {
@@ -128,7 +128,7 @@ public class ActionMessages implements Serializable {
     /**
      * The current number of the property/key being added.  This is used
      * to maintain the order messages are added.
-    */
+     */
     protected int iCount = 0;
 
     // --------------------------------------------------------- Public Methods
@@ -327,32 +327,27 @@ public class ActionMessages implements Serializable {
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      */
-    public int size(String property) {
+	public int size(String property) {
 
-        ActionMessageItem ami = (ActionMessageItem) messages.get(property);
+		ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
-        if (ami == null) {
-            return (0);
-        } else {
-            return (ami.getList().size());
-        }
-
-    }
+		return (item == null) ? 0 : item.getList().size();
+	}
 
     /**
      * This class is used to store a set of messages associated with a
      * property/key and the position it was initially added to list.
-    */
+     */
     protected class ActionMessageItem implements Serializable {
 
         /**
          * The list of <code>ActionMessage</code>s.
-        */
+         */
         protected List list = null;
 
         /**
          * The position in the list of messages.
-        */
+         */
         protected int iOrder = 0;
 
         public ActionMessageItem(List list, int iOrder) {
