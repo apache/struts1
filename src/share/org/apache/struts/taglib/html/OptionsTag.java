@@ -295,7 +295,7 @@ public class OptionsTag extends TagSupport {
         if (matched)
             sb.append(" selected");
         sb.append(">");
-        sb.append(label);
+        sb.append(ResponseUtils.filter(label));
         sb.append("</option>\r\n");
 
     }
