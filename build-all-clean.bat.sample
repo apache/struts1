@@ -1,0 +1,73 @@
+@echo on
+
+rem This is an example "build-all-clean.bat" file, used to build struts from 
+rem a clean commons. It uses Cygwin to remove build directories since 
+rem commons doesn't have an ant clean target. (HINT for COMMONS COMITTERS!)
+rem Make any changes you need, and rename this file
+rem to "build-all-clean.bat" and in the same directory that contains the Struts
+rem "build.xml" file.
+rem assumes jakarta-commons, 
+rem         jakarta-commons-sandbox,
+rem         jakarta-struts-current
+rem are checked out in the same directory.
+rem Also assumes uses of 
+rem           maven beta 7,
+rem           ant 1.5.1
+rem           cactus v 1.2 & v1.3
+rem              Because the commons (resources) use an old version
+rem              of cactus for units test, that maven doesn't precompile 
+rem              anymore, you'll need to copy the cactus.jar into the 
+rem              maven repository directoty. I filed a bug report for this.
+rem              
+rem
+rem $Id: build-all-clean.bat.sample,v 1.1 2002/10/16 15:04:47 rleland Exp $
+
+cd ..
+
+rem 
+rm -rf */*/dist
+rm -rf */*/target
+rm -rf */*/build
+rm -rf jakarta-struts-current/dist
+rm -rf jakarta-struts-current/target
+
+cd jakarta-commons
+
+cd logging
+call ant clean dist
+
+cd ..\collections
+call ant clean dist
+
+cd ..\beanutils
+call ant clean dist
+
+cd ..\lang
+call ant clean dist
+
+cd ..\pool
+call ant clean dist
+
+cd ..\dbcp
+call ant clean dist
+
+cd ..\digester
+call ant clean dist
+
+cd ..\validator
+call ant clean dist
+
+cd ..\..\jakarta-commons-sandbox
+cd fileupload
+call maven
+
+cd ..\resources
+call maven
+
+cd ..\services
+call ant clean dist
+
+cd ..\..\jakarta-struts-current
+call ant clean dist
+
+pause
