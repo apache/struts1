@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.21 2002/09/22 06:32:46 martinc Exp $
- * $Revision: 1.21 $
- * $Date: 2002/09/22 06:32:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.22 2002/12/18 07:03:35 rleland Exp $
+ * $Revision: 1.22 $
+ * $Date: 2002/12/18 07:03:35 $
  *
  * ====================================================================
  *
@@ -62,21 +62,19 @@
 
 package org.apache.struts.taglib.bean;
 
-import java.sql.Timestamp;
-import java.sql.Date;
-import java.sql.Time;
+
 import java.util.Locale;
 import java.text.SimpleDateFormat;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.Format;
-import java.text.DateFormat;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
+
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.commons.beanutils.PropertyUtils;
+
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -88,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2002/09/22 06:32:46 $
+ * @version $Revision: 1.22 $ $Date: 2002/12/18 07:03:35 $
  */
 
 public class WriteTag extends TagSupport {
@@ -279,7 +277,6 @@ public class WriteTag extends TagSupport {
     public int doStartTag() throws JspException {
 
         // Look up the requested bean (if necessary)
-        Object bean = null;
         if (ignore) {
             if (RequestUtils.lookup(pageContext, name, scope) == null)
                 return (SKIP_BODY);  // Nothing to output
