@@ -2718,8 +2718,8 @@
                 <p>Renders a set of HTML <code>&lt;option&gt;</code> elements,
                 representing possible choices for a <code>&lt;select&gt;</code>
                 element.  This tag can be used multiple times within a single
-                <code>&lt;form:select&gt;</code> element, either in conjunction
-                with or instead of one or more <code>&lt;form:option&gt;</code>
+                <code>&lt;html:select&gt;</code> element, either in conjunction
+                with or instead of one or more <code>&lt;html:option&gt;</code>
                 elements.</p>
 
                 <p>This tag operates in one of two major modes, depending on
