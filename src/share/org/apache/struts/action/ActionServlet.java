@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.137 2002/12/22 05:31:14 rleland Exp $
- * $Revision: 1.137 $
- * $Date: 2002/12/22 05:31:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.138 2002/12/27 10:52:22 cedric Exp $
+ * $Revision: 1.138 $
+ * $Date: 2002/12/27 10:52:22 $
  *
  * ====================================================================
  *
@@ -302,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.137 $ $Date: 2002/12/22 05:31:14 $
+ * @version $Revision: 1.138 $ $Date: 2002/12/27 10:52:22 $
  */
 
 public class ActionServlet
@@ -1093,7 +1093,11 @@ public class ActionServlet
                 plugIns[i] =
                     (PlugIn)RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
                 BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
-                    plugIns[i].init(this, (ModuleConfig) config);
+                  // Pass the current plugIn config object to the PlugIn.
+                  // The property is set only if the plugin declares it.
+                  // This plugin config object is needed by Tiles
+                BeanUtils.copyProperty( plugIns[i], "currentPlugInConfigObject", plugInConfigs[i]);
+                plugIns[i].init(this, (ModuleConfig) config);
             } catch (ServletException e) {
                 // Lets propagate
                 throw e;
