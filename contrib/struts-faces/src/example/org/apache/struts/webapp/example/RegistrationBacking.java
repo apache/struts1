@@ -19,12 +19,9 @@ package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
-
 import javax.faces.FacesException;
 import javax.faces.component.UIData;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -20,12 +20,10 @@ package org.apache.struts.webapp.example2;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,7 +39,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:49:53 $
+ * @version $Revision: 1.3 $ $Date: 2004/04/29 03:58:40 $
  */
 
 public final class SaveSubscriptionAction extends Action {

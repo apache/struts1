@@ -20,7 +20,6 @@ package org.apache.struts.webapp.example2;
 
 import java.io.IOException;
 import javax.faces.FacesException;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 

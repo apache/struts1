@@ -19,7 +19,6 @@ package org.apache.struts.webapp.example2;
 
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
@@ -46,7 +45,7 @@ import org.apache.struts.validator.ValidatorForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:49:53 $
+ * @version $Revision: 1.3 $ $Date: 2004/04/29 03:58:40 $
  */
 
 public final class RegistrationForm extends ValidatorForm  {

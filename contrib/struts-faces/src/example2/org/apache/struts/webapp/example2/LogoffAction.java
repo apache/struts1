@@ -20,8 +20,8 @@ package org.apache.struts.webapp.example2;
 
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
@@ -36,7 +36,7 @@ import org.apache.struts.util.MessageResources;
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:49:53 $
+ * @version $Revision: 1.3 $ $Date: 2004/04/29 03:58:40 $
  */
 
 public final class LogoffAction extends Action {

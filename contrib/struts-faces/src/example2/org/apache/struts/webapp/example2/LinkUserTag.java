@@ -19,13 +19,11 @@ package org.apache.struts.webapp.example2;
 
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
-
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -35,7 +33,7 @@ import org.apache.struts.util.ResponseUtils;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:49:53 $
+ * @version $Revision: 1.3 $ $Date: 2004/04/29 03:58:40 $
  */
 
 public class LinkUserTag extends TagSupport {
