@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.4 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -87,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
  */
 
 public final class EditRegistrationAction extends Action {
@@ -108,14 +108,14 @@ public final class EditRegistrationAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);

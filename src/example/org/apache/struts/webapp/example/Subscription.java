@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Subscription.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Subscription.java,v 1.3 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,70 +63,24 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.Serializable;
-
-
 /**
- * Object that represents a subscription of a registered user on a
- * specific mail server.
+ * <p>A <strong>Subscription</strong> which is stored, along with the
+ * associated {@link User}, in a {@link UserDatabase}.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 04:23:56 $
  */
 
-public final class Subscription implements Serializable {
+public interface Subscription {
 
 
-    // =================================================== Instance Variables
-
-
-    /**
-     * Should we auto-connect at startup time?
-     */
-    private boolean autoConnect = false;
-
-
-    /**
-     * The mail host for this subscription.
-     */
-    private String host = null;
-
-
-    /**
-     * The password (in clear text).
-     */
-    private String password = null;
-
-
-    /**
-     * The subscription type ("imap" or "pop3").
-     */
-    private String type = "imap";
-
-
-    /**
-     * The User owning this Subscription.
-     */
-    private User user = null;
-
-
-    /**
-     * The username (must be unique).
-     */
-    private String username = null;
-
-
-    // =========================================================== Properties
+    // ------------------------------------------------------------- Properties
 
 
     /**
      * Return the auto-connect flag.
      */
-    public boolean getAutoConnect() {
-
-        return (this.autoConnect);
-
-    }
+    public boolean getAutoConnect();
 
 
     /**
@@ -134,47 +88,19 @@ public final class Subscription implements Serializable {
      *
      * @param autoConnect The new auto-connect flag
      */
-    public void setAutoConnect(boolean autoConnect) {
-
-        this.autoConnect = autoConnect;
-
-    }
+    public void setAutoConnect(boolean autoConnect);
 
 
     /**
      * Return the host name.
      */
-    public String getHost() {
-
-	return (this.host);
-
-    }
-
-
-    /**
-     * Set the host name.
-     *
-     * @param host The new host name
-     */
-    public void setHost(String host) {
-
-	if ((this.host != null) && (user != null))
-	    user.removeSubscription(this);
-	this.host = host;
-	if ((this.host != null) && (user != null))
-	    user.addSubscription(this);
-
-    }
+    public String getHost();
 
 
     /**
      * Return the password.
      */
-    public String getPassword() {
-
-	return (this.password);
-
-    }
+    public String getPassword();
 
 
     /**
@@ -182,21 +108,13 @@ public final class Subscription implements Serializable {
      *
      * @param password The new password
      */
-    public void setPassword(String password) {
-
-	this.password = password;
-
-    }
+    public void setPassword(String password);
 
 
     /**
      * Return the subscription type.
      */
-    public String getType() {
-
-	return (this.type);
-
-    }
+    public String getType();
 
 
     /**
@@ -204,47 +122,19 @@ public final class Subscription implements Serializable {
      *
      * @param type The new subscription type
      */
-    public void setType(String type) {
-
-	this.type = type;
-
-    }
+    public void setType(String type);
 
 
     /**
-     * Return the User owning this Subscription.
+     * Return the {@link User} owning this Subscription.
      */
-    public User getUser() {
-
-	return (this.user);
-
-    }
-
-
-    /**
-     * Set the User owning this Subscription.
-     *
-     * @param user The new User
-     */
-    public void setUser(User user) {
-
-	if ((this.host != null) && (this.user != null))
-	    this.user.removeSubscription(this);
-	this.user = user;
-	if ((this.host != null) && (this.user != null))
-	    this.user.addSubscription(this);
-
-    }
+    public User getUser();
 
 
     /**
      * Return the username.
      */
-    public String getUsername() {
-
-	return (this.username);
-
-    }
+    public String getUsername();
 
 
     /**
@@ -252,37 +142,7 @@ public final class Subscription implements Serializable {
      *
      * @param username The new username
      */
-    public void setUsername(String username) {
-
-	this.username = username;
-
-    }
-
-
-    // ======================================================= Public Methods
-
-
-    /**
-     * Return a String representation of this object.
-     */
-    public String toString() {
-
-        StringBuffer sb = new StringBuffer("Subscription[username=");
-        sb.append(username);
-        if (host != null) {
-            sb.append(", host=");
-            sb.append(host);
-        }
-        if (user != null) {
-            sb.append(", user=");
-            sb.append(user.getUsername());
-        }
-        sb.append(", autoConnect=");
-        sb.append(autoConnect);
-        sb.append("]");
-        return (sb.toString());
-
-    }
+    public void setUsername(String username);
 
 
 }

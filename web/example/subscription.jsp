@@ -51,7 +51,15 @@
       <bean:message key="prompt.mailHostname"/>
     </th>
     <td align="left">
-      <html:textarea property="host" cols="50" rows="1"/>
+      <logic:equal name="subscriptionForm" property="action"
+                  scope="request" value="Create">
+        <html:text property="host" size="50"/>
+      </logic:equal>
+      <logic:notEqual name="subscriptionForm" property="action"
+                     scope="request" value="Create">
+        <bean:write   name="subscriptionForm" property="host"/>
+        <html:hidden property="host"/>
+      </logic:notEqual>
     </td>
   </tr>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.4 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -87,7 +86,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
  */
 
 public final class LogonAction extends Action {
@@ -127,13 +126,13 @@ public final class LogonAction extends Action {
             PropertyUtils.getSimpleProperty(form, "username");
         String password = (String)
             PropertyUtils.getSimpleProperty(form, "password");
-	Hashtable database = (Hashtable)
+	UserDatabase database = (UserDatabase)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)
             errors.add(ActionErrors.GLOBAL_ERROR,
                        new ActionError("error.database.missing"));
 	else {
-	    user = getUser(database, username, password);
+	    user = getUser(database, username);
 	    if ((user != null) && !user.getPassword().equals(password))
 		user = null;
 	    if (user == null)
@@ -177,11 +176,10 @@ public final class LogonAction extends Action {
      *
      * @param database Database in which to look up the user
      * @param username Username specified on the logon form
-     * @param password Password specified on the logon form
      *
      * @exception AppException if a business logic rule is violated
      */
-    public User getUser(Hashtable database, String username, String password)
+    public User getUser(UserDatabase database, String username)
         throws AppException {
 
         // Force an ArithmeticException which can be handled explicitly
@@ -195,7 +193,7 @@ public final class LogonAction extends Action {
         }
 
         // Look up and return the specified user
-        return ((User) database.get(username));
+        return ((User) database.findUser(username));
 
     }
 

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.4 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,7 +66,6 @@ package org.apache.struts.webapp.example;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -88,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -109,14 +108,14 @@ public final class SaveSubscriptionAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
 	// Extract attributes and parameters we will need
 	Locale locale = getLocale(request);
@@ -124,11 +123,13 @@ public final class SaveSubscriptionAction extends Action {
 	HttpSession session = request.getSession();
 	SubscriptionForm subform = (SubscriptionForm) form;
 	String action = request.getParameter("action");
-	if (action == null)
+	if (action == null) {
 	    action = "?";
-        if (servlet.getDebug() >= 1)
+        }
+        if (servlet.getDebug() >= 1) {
             servlet.log("SaveSubscriptionAction:  Processing " + action +
                         " action");
+        }
 
 	// Is there a currently logged on user?
 	User user = (User) session.getAttribute(Constants.USER_KEY);
@@ -139,9 +140,23 @@ public final class SaveSubscriptionAction extends Action {
 	    return (mapping.findForward("logon"));
         }
 
+	// Was this transaction cancelled?
+	if (isCancelled(request)) {
+	    if (servlet.getDebug() >= 1) {
+	        servlet.log(" Transaction '" + action +
+	                    "' was cancelled");
+            }
+            session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+	    return (mapping.findForward("success"));
+	}
+
 	// Is there a related Subscription object?
 	Subscription subscription =
 	  (Subscription) session.getAttribute(Constants.SUBSCRIPTION_KEY);
+        if ("Create".equals(action)) {
+            subscription =
+                user.createSubscription(request.getParameter("host"));
+        }
 	if (subscription == null) {
 	    servlet.log(" Missing subscription for user '" +
 	                 user.getUsername() + "'");
@@ -150,27 +165,15 @@ public final class SaveSubscriptionAction extends Action {
 	    return (null);
 	}
 
-	// Was this transaction cancelled?
-	if (isCancelled(request)) {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log(" Transaction '" + action +
-	                    "' was cancelled");
-	    if (mapping.getAttribute() != null)
-	        session.removeAttribute(mapping.getAttribute());
-	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	    return (mapping.findForward("success"));
-	}
-
 	// Was this transaction a Delete?
 	if (action.equals("Delete")) {
-	    if (servlet.getDebug() >= 1)
+	    if (servlet.getDebug() >= 1) {
 	        servlet.log(" Deleting mail server '" +
 	                    subscription.getHost() + "' for user '" +
 	                    user.getUsername() + "'");
-	    subscription.setHost(null);
-	    subscription.setUser(null);
-	    if (mapping.getAttribute() != null)
-	        session.removeAttribute(mapping.getAttribute());
+            }
+            user.removeSubscription(subscription);
+            user.getDatabase().save();
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 	    return (mapping.findForward("success"));
 	}
@@ -178,10 +181,12 @@ public final class SaveSubscriptionAction extends Action {
 	// All required validations were done by the form itself
 
 	// Update the persistent subscription information
-        if (servlet.getDebug() >= 1)
+        if (servlet.getDebug() >= 1) {
             servlet.log(" Populating database from form bean");
+        }
         try {
             PropertyUtils.copyProperties(subscription, subform);
+            user.getDatabase().save();
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
             if (t == null)
@@ -203,8 +208,9 @@ public final class SaveSubscriptionAction extends Action {
 	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 
 	// Forward control to the specified success URI
-        if (servlet.getDebug() >= 1)
+        if (servlet.getDebug() >= 1) {
             servlet.log(" Forwarding to success page");
+        }
 	return (mapping.findForward("success"));
 
     }

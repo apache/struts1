@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Constants.java,v 1.3 2002/03/05 04:23:56 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/05 04:23:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/UserDatabase.java,v 1.1 2002/03/05 04:23:57 craigmcc Exp $
+ * $Revision: 1.1 $
+ * $Date: 2002/03/05 04:23:57 $
  *
  * ====================================================================
  *
@@ -64,40 +64,83 @@ package org.apache.struts.webapp.example;
 
 
 /**
- * Manifest constants for the example application.
+ * <p>A <strong>Data Access Object</strong> (DAO) interface describing
+ * the available operations for retrieving and storing {@link User}s
+ * (and their associated {@link Subscription}s) in some persistence layer
+ * whose characteristics are not specified here.  One or more implementations
+ * will be created to perform the actual I/O that is required.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/03/05 04:23:56 $
+ * @version $Revision: 1.1 $ $Date: 2002/03/05 04:23:57 $
+ * @since Struts 1.1
  */
 
-public final class Constants {
+public interface UserDatabase {
+
+
+    // --------------------------------------------------------- Public Methods
 
 
     /**
-     * The package name for this application.
+     * <p>Create and return a new {@link User} defined in this user database.
+     * </p>
+     *
+     * @param username Username of the new user
+     *
+     * @exception IllegalArgumentExceptionif the specified username
+     *  is not unique
      */
-    public static final String Package = "org.apache.struts.webapp.example";
+    public User createUser(String username);
 
 
     /**
-     * The application scope attribute under which our user database
-     * is stored.
+     * <p>Finalize access to the underlying persistence layer.</p>
+     *
+     * @exception Exception if a database access error occurs
      */
-    public static final String DATABASE_KEY = "database";
+    public void close() throws Exception;
 
 
     /**
-     * The session scope attribute under which the Subscription object
-     * currently selected by our logged-in User is stored.
+     * <p>Return the existing {@link User} with the specified username,
+     * if any; otherwise return <code>null</code>.</p>
+     *
+     * @param username Username of the user to retrieve
      */
-    public static final String SUBSCRIPTION_KEY = "subscription";
+    public User findUser(String username);
 
 
     /**
-     * The session scope attribute under which the User object
-     * for the currently logged in user is stored.
+     * <p>Return the set of {@link User}s defined in this user database.</p>
      */
-    public static final String USER_KEY = "user";
+    public User[] findUsers();
+
+
+    /**
+     * <p>Initiate access to the underlying persistence layer.</p>
+     *
+     * @exception Exception if a database access error occurs
+     */
+    public void open() throws Exception;
+
+
+    /**
+     * Remove the specified {@link User} from this database.
+     *
+     * @param user User to be removed
+     *
+     * @exception IllegalArgumentException if the specified user is not
+     *  associated with this database
+     */
+    public void removeUser(User user);
+
+
+    /**
+     * <p>Save any pending changes to the underlying persistence layer.</p>
+     *
+     * @exception Exception if a database access error occurs
+     */
+    public void save() throws Exception;
 
 
 }

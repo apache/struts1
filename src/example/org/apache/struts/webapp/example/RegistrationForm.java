@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.3 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -71,18 +71,18 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * Form bean for the user registration page.  This form has the following fields,
- * with default values in square brackets:
+ * Form bean for the user registration page.  This form has the following
+ * fields, with default values in square brackets:
  * <ul>
- * <li><b>action</b> - The maintenance action we are performing (Create, Delete,
- *     or Edit).
+ * <li><b>action</b> - The maintenance action we are performing (Create,
+ *     Delete, or Edit).
  * <li><b>fromAddress</b> - The EMAIL address of the sender, to be included
  *     on sent messages.  [REQUIRED]
  * <li><b>fullName</b> - The full name of the sender, to be included on
  *     sent messages.  [REQUIRED]
  * <li><b>password</b> - The password used by this user to log on.
- * <li><b>password2</b> - The confirmation password, which must match the password
- *     when changing or setting.
+ * <li><b>password2</b> - The confirmation password, which must match
+ *     the password when changing or setting.
  * <li><b>replyToAddress</b> - The "Reply-To" address to be included on
  *     sent messages.  [Same as from address]
  * <li><b>username</b> - The registered username, which must be unique.
@@ -90,13 +90,13 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 04:23:56 $
  */
 
 public final class RegistrationForm extends ActionForm  {
 
 
-    // --------------------------------------------------- Instance Variables
+    // ----------------------------------------------------- Instance Variables
 
 
     /**

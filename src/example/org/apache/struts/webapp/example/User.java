@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/User.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/User.java,v 1.3 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,71 +63,31 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.Serializable;
-import java.util.Enumeration;
-import java.util.Hashtable;
-
-
 /**
- * Object that represents a registered user of the mail reader application.
+ * <p>A <strong>User</strong> which is stored, along with his or her
+ * associated {@link Subscription}s, in a {@link UserDatabase}.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 04:23:56 $
+ * @since Struts 1.1
  */
 
-public final class User implements Serializable {
+public interface User {
 
 
-    // =================================================== Instance Variables
-
-
-    /**
-     * The EMAIL address from which messages are sent.
-     */
-    private String fromAddress = null;
+    // ------------------------------------------------------------- Properties
 
 
     /**
-     * The full name of this user, included in from addresses.
+     * Return the {@link UserDatabase} with which we are associated.
      */
-    private String fullName = null;
-
-
-    /**
-     * The password (in clear text).
-     */
-    private String password = null;
-
-
-    /**
-     * The EMAIL address to which replies should be sent.
-     */
-    private String replyToAddress = null;
-
-
-    /**
-     * The set of Subscriptions associated with this User.
-     */
-    private Hashtable subscriptions = new Hashtable();
-
-
-    /**
-     * The username (must be unique).
-     */
-    private String username = null;
-
-
-    // =========================================================== Properties
+    public UserDatabase getDatabase();
 
 
     /**
      * Return the from address.
      */
-    public String getFromAddress() {
-
-	return (this.fromAddress);
-
-    }
+    public String getFromAddress();
 
 
     /**
@@ -135,22 +95,13 @@ public final class User implements Serializable {
      *
      * @param fromAddress The new from address
      */
-    public void setFromAddress(String fromAddress) {
-
-	this.fromAddress = fromAddress;
-
-    }
-
+    public void setFromAddress(String fromAddress);
 
 
     /**
      * Return the full name.
      */
-    public String getFullName() {
-
-	return (this.fullName);
-
-    }
+    public String getFullName();
 
 
     /**
@@ -158,21 +109,13 @@ public final class User implements Serializable {
      *
      * @param fullName The new full name
      */
-    public void setFullName(String fullName) {
-
-	this.fullName = fullName;
-
-    }
+    public void setFullName(String fullName);
 
 
     /**
      * Return the password.
      */
-    public String getPassword() {
-
-	return (this.password);
-
-    }
+    public String getPassword();
 
 
     /**
@@ -180,21 +123,13 @@ public final class User implements Serializable {
      *
      * @param password The new password
      */
-    public void setPassword(String password) {
-
-	this.password = password;
-
-    }
+    public void setPassword(String password);
 
 
     /**
      * Return the reply-to address.
      */
-    public String getReplyToAddress() {
-
-	return (this.replyToAddress);
-
-    }
+    public String getReplyToAddress();
 
 
     /**
@@ -202,119 +137,56 @@ public final class User implements Serializable {
      *
      * @param replyToAddress The new reply-to address
      */
-    public void setReplyToAddress(String replyToAddress) {
+    public void setReplyToAddress(String replyToAddress);
 
-	this.replyToAddress = replyToAddress;
 
-    }
+    /**
+     * Find and return all {@link Subscription}s associated with this user.
+     * If there are none, a zero-length array is returned.
+     */
+    public Subscription[] getSubscriptions();
 
 
     /**
      * Return the username.
      */
-    public String getUsername() {
+    public String getUsername();
 
-	return (this.username);
 
-    }
+    // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Set the username.
+     * Create and return a new {@link Subscription} associated with this
+     * User, for the specified host name.
      *
-     * @param username The new username
+     * @param host Host name for which to create a subscription
+     *
+     * @exception IllegalArgumentException if the host name is not unique
+     *  for this user
      */
-    public void setUsername(String username) {
-
-	this.username = username;
-
-    }
-
-
-    // ======================================================= Public Methods
+    public Subscription createSubscription(String host);
 
 
     /**
-     * Find and return the Subscription associated with the specified host.
-     * If none is found, return <code>null</code>.
+     * Find and return the {@link Subscription} associated with the specified
+     * host.  If none is found, return <code>null</code>.
      *
      * @param host Host name to look up
      */
-    public Subscription findSubscription(String host) {
-
-	if (host == null)
-	    return (null);
-	return ((Subscription) subscriptions.get(host));
-
-    }
+    public Subscription findSubscription(String host);
 
 
     /**
-     * Find and return all Subscriptions associated with this user.  If there
-     * are none, a zero-length array is returned.
-     */
-    public Subscription[] getSubscriptions() {
-
-	synchronized (subscriptions) {
-	    Subscription results[] = new Subscription[subscriptions.size()];
-	    Enumeration subs = subscriptions.elements();
-	    int n = 0;
-	    while (subs.hasMoreElements()) {
-		results[n++] = (Subscription) subs.nextElement();
-	    }
-	    return (results);
-	}
-
-    }
-
-
-    /**
-     * Return a String representation of this object.
-     */
-    public String toString() {
-
-        StringBuffer sb = new StringBuffer("User[username=");
-        sb.append(username);
-        if (fullName != null) {
-            sb.append(", fullName=");
-            sb.append(fullName);
-        }
-        if (replyToAddress != null) {
-            sb.append(", replyToAddres=");
-            sb.append(replyToAddress);
-        }
-        sb.append("]");
-        return (sb.toString());
-
-    }
-
-
-    // ====================================================== Package Methods
-
-
-    /**
-     * Add the specified Subscription to the set associated with this User.
+     * Remove the specified {@link Subscription} from being associated
+     * with this User.
      *
-     * @param subscription The subscription to add
-     */
-    void addSubscription(Subscription subscription) {
-
-	subscriptions.put(subscription.getHost(), subscription);
-
-    }
-
-
-    /**
-     * Remove the specified Subscription from the set associated with
-     * this User.
+     * @param subscription Subscription to be removed
      *
-     * @param subscription The subscription to remove
+     * @exception IllegalArgumentException if the specified subscription is not
+     *  associated with this User
      */
-    void removeSubscription(Subscription subscription) {
-
-	subscriptions.remove(subscription.getHost());
-
-    }
+    public void removeSubscription(Subscription subscription);
 
 
 }

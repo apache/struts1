@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.4 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.5 2002/03/05 04:23:56 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/05 04:23:56 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,7 +66,6 @@ package org.apache.struts.webapp.example;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -89,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/05 04:23:56 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -110,14 +109,14 @@ public final class SaveRegistrationAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
 	// Extract attributes and parameters we will need
 	Locale locale = getLocale(request);
@@ -125,13 +124,15 @@ public final class SaveRegistrationAction extends Action {
 	HttpSession session = request.getSession();
 	RegistrationForm regform = (RegistrationForm) form;
 	String action = request.getParameter("action");
-	if (action == null)
+	if (action == null) {
 	    action = "Create";
-	Hashtable database = (Hashtable)
+        }
+        UserDatabase database = (UserDatabase)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
-        if (servlet.getDebug() >= 1)
+        if (servlet.getDebug() >= 1) {
             servlet.log("SaveRegistrationAction:  Processing " + action +
                         " action");
+        }
 
 	// Is there a currently logged on user (unless creating)?
 	User user = (User) session.getAttribute(Constants.USER_KEY);
@@ -144,11 +145,10 @@ public final class SaveRegistrationAction extends Action {
 
 	// Was this transaction cancelled?
 	if (isCancelled(request)) {
-	    if (servlet.getDebug() >= 1)
+	    if (servlet.getDebug() >= 1) {
 	        servlet.log(" Transaction '" + action +
 	                    "' was cancelled");
-	    if (mapping.getAttribute() != null)
-	        session.removeAttribute(mapping.getAttribute());
+            }
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 	    return (mapping.findForward("success"));
 	}
@@ -158,30 +158,35 @@ public final class SaveRegistrationAction extends Action {
         if (servlet.getDebug() >= 1) {
             servlet.log(" Checking transactional control token");
         }
-        if (!isTokenValid(request))
+        if (!isTokenValid(request)) {
             errors.add(ActionErrors.GLOBAL_ERROR,
                        new ActionError("error.transaction.token"));
+        }
         resetToken(request);
 
 	// Validate the request parameters specified by the user
-        if (servlet.getDebug() >= 1)
+        if (servlet.getDebug() >= 1) {
             servlet.log(" Performing extra validations");
+        }
 	String value = null;
 	value = regform.getUsername();
 	if (("Create".equals(action)) &&
-	    (database.get(value) != null))
+            (database.findUser(value) != null)) {
             errors.add("username",
                        new ActionError("error.username.unique",
                                        regform.getUsername()));
+        }
 	if ("Create".equals(action)) {
 	    value = regform.getPassword();
-	    if ((value == null) || (value.length() <1))
+	    if ((value == null) || (value.length() <1)) {
                 errors.add("password",
                            new ActionError("error.password.required"));
+            }
 	    value = regform.getPassword2();
-	    if ((value == null) || (value.length() < 1))
+	    if ((value == null) || (value.length() < 1)) {
                 errors.add("password2",
                            new ActionError("error.password2.required"));
+            }
 	}
 
 	// Report any errors we have discovered back to the original form
@@ -192,20 +197,22 @@ public final class SaveRegistrationAction extends Action {
 	}
 
 	// Update the user's persistent profile information
-	if ("Create".equals(action)) {
-	    user = new User();
-	    user.setUsername(regform.getUsername());
-	}
         try {
+            if ("Create".equals(action)) {
+                user = database.createUser(regform.getUsername());
+            }
             String oldPassword = user.getPassword();
             PropertyUtils.copyProperties(user, regform);
             if ((regform.getPassword() == null) ||
-                (regform.getPassword().length() < 1))
+                (regform.getPassword().length() < 1)) {
                 user.setPassword(oldPassword);
+            }
+            database.save();
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
-            if (t == null)
+            if (t == null) {
                 t = e;
+            }
             servlet.log("Registration.populate", t);
             throw new ServletException("Registration.populate", t);
         } catch (Throwable t) {
@@ -216,11 +223,11 @@ public final class SaveRegistrationAction extends Action {
 
         // Log the user in if appropriate
 	if ("Create".equals(action)) {
-	    database.put(user.getUsername(), user);
 	    session.setAttribute(Constants.USER_KEY, user);
-	    if (servlet.getDebug() >= 1)
+	    if (servlet.getDebug() >= 1) {
 		servlet.log(" User '" + user.getUsername() +
 	                    "' logged on in session " + session.getId());
+            }
 	}
 
 	// Remove the obsolete form bean
@@ -232,8 +239,9 @@ public final class SaveRegistrationAction extends Action {
         }
 
 	// Forward control to the specified success URI
-        if (servlet.getDebug() >= 1)
+        if (servlet.getDebug() >= 1) {
             servlet.log(" Forwarding to success page");
+        }
 	return (mapping.findForward("success"));
 
     }
