@@ -263,9 +263,15 @@ public class MultipartIterator {
         
         //read first line
         try {
-            if (!readLine().startsWith(boundary)) {
+	    String firstLine = readLine();
+
+	    if (firstLine == null) {
+		throw new ServletException("MultipartIterator: no multipart request data " +
+					   "sent");
+	    }
+            if (!firstLine.startsWith(boundary)) {
                 throw new ServletException("MultipartIterator: invalid multipart request " +
-                                           "data");
+                                           "data, doesn't start with boundary");
             }
         }
         catch (UnsupportedEncodingException uee) {
@@ -371,7 +377,7 @@ public class MultipartIterator {
     /**
      * Reads the input stream until it reaches a new line
      */
-    protected String readLine() throws UnsupportedEncodingException {
+    protected String readLine() throws ServletException, UnsupportedEncodingException {
        
         byte[] bufferByte = new byte[bufferSize];
         int bytesRead;
@@ -386,7 +392,8 @@ public class MultipartIterator {
                                              bufferSize);
         }
         catch (IOException ioe) {
-            return null;
+            throw new ServletException("IOException while reading multipart request: " + 
+				       ioe.getMessage());
         }
         if (bytesRead == -1) {
             return null;
