@@ -78,7 +78,7 @@ import org.apache.commons.validator.Var;
 import org.apache.struts.action.Action;
 import org.apache.struts.validator.ValidatorPlugIn;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.StrutsValidatorUtil;
+import org.apache.struts.validator.Resources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.config.ApplicationConfig;
 
@@ -89,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.6 $ $Date: 2002/10/16 20:55:07 $
+ * @version $Revision: 1.7 $ $Date: 2002/10/18 01:35:02 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -357,7 +357,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     // Skip indexed fields for now until there is
                     // a good way to handle error messages (and the length of the list (could retrieve from scope?))
                     if (!field.isIndexed() && field.getPage() == page && field.isDependency(va.getName())) {
-                        String message = StrutsValidatorUtil.getMessage(messages, locale, va, field);
+                        String message = Resources.getMessage(messages, locale, va, field);
                         message = (message != null ? message : "");
 
                         jscriptVar = getNextVar(jscriptVar);
@@ -393,16 +393,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 }
                 results.append("    } \n\n");
             }
-        } else {
-            results.append("<script language=\"Javascript1.1\">");
         }
 
         if ("true".equals(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
 
-        results.append(getJavascriptEnd());
-
+        if ("true".equals(dynamicJavascript)) {
+            results.append(getJavascriptEnd());
+        }
 
         // Print this field to our output writer
         JspWriter writer = pageContext.getOut();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.5 2002/10/16 22:41:42 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/16 22:41:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.6 2002/10/18 01:35:02 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/18 01:35:02 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.StrutsValidatorUtil;
 
 
 /**
@@ -85,7 +84,7 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.5 $ $Date: 2002/10/16 22:41:42 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/18 01:35:02 $
  * @since Struts 1.1
  */
 
@@ -113,7 +112,7 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
-        Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
+        Validator validator = Resources.initValidator(mapping.getPath(),
                              this,
                              application, request,
                              errors, page);
