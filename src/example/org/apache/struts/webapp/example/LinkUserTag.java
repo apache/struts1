@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.3 2002/12/12 17:36:41 ekbush Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/12 17:36:41 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**
@@ -79,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/12 17:36:41 $
  */
 
 public class LinkUserTag extends TagSupport {
@@ -166,9 +167,12 @@ public class LinkUserTag extends TagSupport {
     public int doStartTag() throws JspException {
 
 	// Generate the URL to be encoded
+        ModuleConfig config = (ModuleConfig) pageContext.getRequest()
+            .getAttribute(org.apache.struts.Globals.MODULE_KEY);
         HttpServletRequest request =
             (HttpServletRequest) pageContext.getRequest();
         StringBuffer url = new StringBuffer(request.getContextPath());
+	url.append(config.getPrefix());
         url.append(page);
 	User user = null;
 	try {
