@@ -13,6 +13,314 @@
 
 <section name="News &amp; Status">
 
+<h3><a name="20020522.1"></a>22 May 2002 - O'Reilly Chapter 10</h3>
+<p>
+Chapter 10 of the upcoming Struts book by Chuck Cavaness is now available 
+on The ServerSide for community review. 
+</p>
+<p>
+<a href="http://www.theserverside.com/resources/strutsreview.jsp">http://www.theserverside.com/resources/strutsreview.jsp</a>
+</p>
+<p>
+Chapter 10 - Exception Handling <br/>
+This chapter will look at how you can properly use the Java exception handling mechanism
+within your Struts applications to help make your applications more industrial-strength and
+allow them to gracefully respond when things don't go as expected. Special attention will be
+given to the differences between performing the exception handling programmatically and
+using the new declarative feature added to the new version of Struts. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020522"></a>22 May 2002 - Struts Console v1.10</h3>
+<p>
+Struts Console version 1.10 is now available.
+</p>
+<p>
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a><br/>
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+</p>
+<p> 
+This release adds more support for 1.1 config files and updates some of the help documentation.
+</p>
+<p>
+Changes with Struts Console v1.10
+</p>
+<ul>
+<li>Added ability to specify new config file versionin stand-alone app when creating new config files from scratch.</li>
+<li>Added support for &lt;controller> element in 1.1config files.</li>
+<li>Removed unnecessary duplicate of JDOM classes from console.jar thus making downloads smaller.</li>
+<li>Updated help/installation documentation.</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020513.1"></a>13 May 2002 - Struts Wizard v1.0.2 for JBuilder</h3>
+<p>
+The Struts Wizard v1.0.2 for JBuilder is now available. <br/>
+Updated in 1.0.2 release:
+</p>
+<ul>
+<li>Re-add a deleted property fixed.</li>
+<li>Some JBuilder 6 problems (about jbuilder test path) with java code generation fixed. </li>
+<li>String initializer don't need quotes (except null).</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020513"></a>13 May 2002 - Struts SOS Service</h3>
+<p>
+As part of the recent Supporting Open Source announcements, the Struts Support area is now open for public access.
+</p>
+<p>
+See <a href="http://sos.multitask.com.au/">http://sos.multitask.com.au</a>
+</p>
+<p>
+Support requests can be placed after purchasing support, however the rest of the information is available for free.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020510"></a>10 May 2002 - ReviewAlert - Powered by Struts</h3>
+<p>
+Ever want to watch the reviews on amazon for a little while before you buy 
+something?... how about a group of items before you pick one?...
+...well here's the tool to use. Simply register items on Amazon 
+against your email address, and they'll watch the item's review listing. When 
+a new review is posted, they'll email you about it and tell you what's going 
+on, and a link to get you there.
+</p>
+<p>
+<a href="http://www.reviewalert.com/">www.reviewalert.com/</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020522.1"></a>10 May 2002 - O'Reilly Chapters 5 and 6</h3>
+<p>
+Chapters 5 and 6 of the upcoming Struts book by Chuck Cavaness are now 
+available on The ServerSide for community review. 
+</p>
+<p>
+<a href="http://www.theserverside.com/resources/strutsreview.jsp">http://www.theserverside.com/resources/strutsreview.jsp</a>
+</p>
+<p>
+Chapter 5 - Struts Controller Components <br/>
+The Struts framework uses a servlet to process incoming requests, however it relies on many
+other components that are part of the controller domain, to help it carry out its
+responsibilities. The Struts controller components have been briefly mentioned in previous
+chapters, but it's time to take in-depth look at what components have responsibility for the
+controller functionality in the framework. 
+</p>
+<p>
+Chapter 6 - Struts Model Components <br/>
+This chapter introduces the components that make up the model portion of a Struts
+application. The model represents the business data for an application and should closely
+resemble the real-world entities and business processes for the organization. We will explore
+the roles and responsibilities of the model components within the Struts framework and focus on building an architecturally correct
+implementation for the storefront application. Special attention will be given to using a persistence framework that can be easily and effortlessly
+integrated into a Struts application. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020502"></a>02 May 2002 - Struts Wizard v1.0 final for JBuilder</h3>
+<p>
+StrutsWizard v1.0 is an opentool for JBuilder IDE. This gallery wizard can create ActionForm, Action
+and fully JSP input page. Update in 1.0 release:
+</p>
+<ul>
+<li>Work with Struts Console (JBuilder opentool mode) by James Holmes, now struts wizard update struts-config.xml via Struts Console..</li>
+<li>7 Types added in form properties creation (String, int, float, boolean...) </li>
+<li>You can now choose the input tag type foreach properties. </li>
+<li>You can now set the initializer foreach properties. </li>
+<li>Class generation based on Borland JOT (Java Object Toolkit), so syntax errors are detected (and commented;). </li>
+</ul>
+<p>
+More info: <a href="http://www.mycgiserver.com/~eboudrant/">http://www.mycgiserver.com/~eboudrant/</a>
+</p>
+<p>
+You can download it at: <a href="http://codecentral.borland.com/codecentral/ccweb.exe/listing?id=17849">http://codecentral.borland.com/codecentral/ccweb.exe/listing?id=17849</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020501"></a>01 May 2002 - stxx 0.9.5 is available</h3>
+<p>
+The latest update to stxx is available at<br/>
+<a href="http://www.openroad.ca/opencode/">www.openroad.ca/opencode/</a>
+</p>
+<p>
+The biggest change in this version is the ability to have your transform 
+tags do xsl:fo transformations (for example to PDF or SVG).
+</p>
+<p>
+There are also bug fixes and updates to the examples.
+</p>
+<p>
+Struts for transforming XML with XSL (stxx) is an extension of the 
+Struts framework to support XML and XSL without changing the 
+functionality of Struts .
+</p>
+<p>
+stxx sits on top of Struts, extending it's existing functionality to 
+allow Action classes to return XML that will be transformed by an XSL file.
+</p>
+<p>
+The idea of stxx is to remove the need to be use JSP and TagLibs for the 
+presentation layer of this framework. However, stxx does not force you 
+to go the XML/XSL route, both technologies work side by side.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020428"></a>28 Apr 2002 - StrutsTestCase v1.7 Released</h3>
+<p>
+StrutsTestCase v1.7 introduces support for Struts 1.1,
+provides several requested enhancements, and fixes many 
+reported defects.
+</p>
+<p>
+The project home page can be found here:<br/>
+<a href="http://strutstestcase.sourceforge.net">strutstestcase.sourceforge.net</a>
+</p>
+<p>
+Notes for this release can be found here:<br/>
+<a href="http://sourceforge.net/project/shownotes.php?release_id=87036">http://sourceforge.net/project/shownotes.php?release_id=87036</a>
+</p>
+<p>
+Questions and comments are always welcome!
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020425"></a>25 Apr 2002 - O'Reilly Chapters 1 and 2</h3>
+<p>
+Chapters 1 and 2 of the upcoming Struts book by Chuck Cavaness are now available on 
+The ServerSide for community review. 
+</p>
+<p>
+<a href="http://www.theserverside.com/resources/strutsreview.jsp">http://www.theserverside.com/resources/strutsreview.jsp</a>
+</p>
+<p>
+Chapter 1 - Introduction
+This introduction chapter discusses some preliminary concepts such as MVC, Model 2, and the idea of a software framework. Although many
+developers may understand some or all of the ideas presented here, the inclusion of the material is necessary to ensure all readers are starting
+from the same place. The concepts presented in this chapter help to lay the foundation for the rest of the book. 
+</p>
+<p>
+Chapter 2 - Inside the Web Tier
+The Struts framework is based on the Java Servlet Technology and to a lesser extent, JavaServer Pages, and therefore is tightly coupled to a
+web container. For Struts developers, understanding how the web container processes client requests is fundamental to having a deeper
+understanding of the framework itself. This chapter illustrates the various components that are part of the web container and what each
+component's responsibilities are.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020424"></a>24 Apr 2002  - Struts1.1 UML Class diagrams</h3>
+<p>
+UML diagrams representing the main classes from Struts 1.1 Framework, and also showing depreciation
+from Strut 1.0, are available at:</p>
+<p>
+<a href="http://www.mycgiserver.com/~eboudrant/">http://www.mycgiserver.com/~eboudrant/</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020423"></a>23 Apr 2002 - JForms: a visual tool for Struts-based Web forms</h3>
+<p>
+SolanaSoft JForms is a visual tool for rapid creation of
+Struts-based Web forms.  JForms let you define the properties to capture in
+a form, along with data types, and basic validation, then generates all of
+the required Struts actions, forms, JSPs, application resources, error
+messages, and configuration files.  Finally, JForms compiles, packages, and
+deploys a WAR file to an embedded Tomcat app server for easy testing of the
+form.
+</p>
+<p>
+Its currently in beta, and we're still looking for a few volunteers to try
+it out.
+</p>
+<p>
+There is an online demonstration available at the website, and you can send
+an email to sales@solanasoft.com to sign up for the beta program.
+</p>
+<p>
+The site address is:<br/>
+<a href="http://www.solanasoft.com">http://www.solanasoft.com</a>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020422"></a>22 Apr 2002 - Expresso 4.1 rc2</h3>
+<p>
+A new release is available onsite for download for the open source Expresso
+Framework which builds on and extends the Struts framework. </p>
+<p>Download at:
+<a href="http://www.jcorporate.com/product/expresso.html">http://www.jcorporate.com/product/expresso.html</a>.
+</p>
+<p>
+4.1 early access release candidate 2 of Expresso includes new features such
+as integration with Struts ActionForm, basic workflow capabilities,
+type-safe schema definitions and transition objects, ActionForm support in
+Unit Tests, and more Unit tests.  A couple performance enhancements have
+been made including to reduce lookup CPU cycles, and reduce locking
+time/contention. In addition, maintanence changes included removing
+depreciated testable interface and depreciated setup values, updated French
+message bundle, updated Sybase support, separate test suites, as well as
+refactoring ListBase and createTable. Various corrections and bug fixes have
+also been made. This release includes some new user documentation including
+on workflow which is onsite. Addionally there are EDG updates such as the
+section on XML Viewhandler. The EDG documents are not yet updated onsite but
+will be soon.</p>
+<p>
+This release is the second early access candidate which is intended to
+prepare the way for a production quality stable 4.1. There will probably one
+more release candidate before the final release. Expresso is an
+architectural framework which has more than 91,000 downloads and ~4700
+people on it's listserv.</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020416"></a>16 Apr 2002  - Struts Console v1.8</h3>
+<p>
+Struts Console version 1.8 is now available.</p>
+<p>
+This release adds support for the most commonly used new 1.1 config file elements and fixes an outstanding JDeveloper bug.
+</p>
+<p>
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a><br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-1.8.zip">http://www.jamesholmes.com/struts/struts-console-1.8.zip</a><br/>
+</p>
+<p>
+Changes with Struts Console v1.8</p>
+<ul>
+<li>
+Added support for new 1.1 config file elements: 
+&lt;global-exceptions>, &lt;exception> and &lt;form-property>.
+</li>
+<li>Fixed Oracle JDeveloper Addin to support JDeveloper 9i RC2 and future versions.</li>
+</ul>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020404"></a>04 Apr 2002  - struts-layout 0.4 released</h3>
+<p>
+struts-layout is a specialized and open source taglib for struts that allows 
+fast UI development by providing tags to insert usual components (form, fields, 
+lists etc.) in a page. The tags deal with the layout and the developer don't 
+have to write HTML code any more.
+</p>
+<p>
+struts-layout 0.4 supports value formatting and the display of input fields 
+read-write or read only according to the user profile or the type of action 
+done (creation of data, edition of data, inspection of data).
+</p>
+<p>
+For more information about struts-layout please visit<br/> 
+<a href="http://struts.application-servers.com">http://struts.application-servers.com</a>
+</p>
+<hr size="1" noshade=""/>
+
 
 <h3><a name="20020319"></a>19 March 2002 - Struts 1.1 Beta 1 Released</h3>
 <p>
@@ -36,6 +344,29 @@ available
 <b>here</b></a>. 
 </p>
 <hr size="1" noshade=""/>
+
+
+<h3><a name="200204"></a>12 Mar 2002  - Chiki v0.27 released (now with Revision Control)</h3>
+<p>
+Chiki v0.27 released and ready for download.
+</p>
+<p>
+This released includes:
+</p>
+<ul>
+<li> 
+Simple Revision Control: providing Revision History and Tracking and the option to 
+Revert to a previous revision. ('diff' not included in this release). Uses Xml binding 
+(via Castor) to provide 'out-of-the-box' behaviour. Future version will integrate with 
+CVS.</li>
+<li>some Content Translation bugs fixed</li>
+<li>other minor bug fixes</li>
+</ul>
+<p> 
+Full details can be found on the website <a href="http://chiki.emaho.org">http://chiki.emaho.org</a>.
+</p>
+<hr size="1" noshade=""/>
+
 
 
 <h3><a name="20020304"></a>04 March 2002 - Best Practice with Expresso-Struts Framework</h3>

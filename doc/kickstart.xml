@@ -28,6 +28,7 @@
 
     <li><a href="#turbine">Whats the difference between Struts and Turbine?</a></li>
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
+    <li><a href="#xhmtl">Are the Struts tags XHTML compliant?</a></li>
     <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
   
     <li><a href="#bugs">Where can I report bugs or make feature requests?</a></li>
@@ -150,10 +151,10 @@ links.
 
 <section href="jsf" name="What about the JSTL and JavaServer Faces?">
 <p>
-The lead developer of Struts, Craig McClanahan, is a member of the 
-expert group for the JavaServer Standard Tag Library (JSR 052) and for 
-JavaServer Faces (JSR 127). He reports that good progress is being 
-made on both fronts. 
+The lead developer of Struts, Craig McClanahan, was a member of the 
+expert group for the JavaServer Standard Tag Library (JSR 052) and 
+now the specification lead for JavaServer Faces (JSR 127). Both 
+technologies are complementary to Struts. 
 </p>
 <p>
 The mainstay of the Struts framework is the controller components, which 
@@ -163,13 +164,6 @@ appear to help these technologies work as well with Struts as the
 bundled JSP tags. This would apply to both the JSTL and JSF.
 </p>
 <p>
-It is possible that Faces will also provide some flow-control functionality. 
-But what shape that functionality will take is still unclear. No
-matter what happens, we strongly believe that there is a need for higher
-level application control than something like Faces would provide. At 
-least for the non-trivial applications most Struts developers write.
-</p>
-<p>
 At some point, we would not be surprised to see Faces become the
 preferred UI implementation technology once it is standardized and 
 available. You can be assured that any future migration will be 
@@ -177,10 +171,14 @@ made as painless as possible, and maximize your investment in
 Struts. 
 </p>
 <p>
-The JSTL has made several early releases, which are available 
-through the 
-<a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">
-Jakarta Taglibs</a> site.
+The JSTL is available through the Jakarta Taglibs site: <br/>
+<a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html</a>
+</p>
+<p>
+The JavaServer Faces specification is still being finalized. Public release of 
+the specification is scheduled for Summer 2002, and an implementation may be 
+available in Fall of 2002. A presentation was given at 
+JavaOne 2002 with some additional background.
 </p>
 </section>
 

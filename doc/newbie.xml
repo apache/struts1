@@ -8,31 +8,76 @@
 <chapter href="faq" name="Newbie FAQ"> 
 <section href="contents" name="Table of Contents">
 <p><font color="red"><b>UNDER CONSTRUCTION</b></font> (contributions welcome)</p>
-<p>Here are answers to 21 common questions people ask when using Struts on 
+<p>Here are answers to 25 common questions people ask when using Struts on 
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
+
+    <li><a href="#naming">Why are some of the class and element names counter-intuitive?</a></li>
+
     <li>Why is ActionForm a base class rather than an interface?</li>
+
     <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
+
     <li>Can I use other beans or hashmaps with ActionForms?</li>
+
     <li>How can I prepopulate a form?</li>
-    <li>Can I use multiple HTML form elements with the same name?</li>
+
+    <li><a href="#multiple">Can I use multiple HTML form elements with the same name?</a></li>
+
     <li><a href="#actionforms">Why are my checkboxes not being set from ON to OFF?</a></li>
+
     <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
+
     <li>Why do my option lists disappear when validation fails?</li>
+
     <li><a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP using a scriptlet?</a></li>
+
     <li>When is the best time to validate input?</li>
+
     <li>How can I avoid validating a form before data is entered?</li>
+
     <li>How can I create a "wizard" workflow?</li>
+
     <li>How can I "chain" Actions?</li>
+
     <li>Can I have an Action without a form?</li>
+
     <li>How do I access my database?</li>
+
     <li>How can I authenticate my users?</li>
+
+    <li>How can I scroll through list of pages like the search results in google?</li>
+    
     <li>Can I have multiple submit buttons on the same form?</li>
+
     <li>Why can't my Javascript submit a form?</li>
-    <li>Can I create dynamic ActionFowards?</li>
+
+    <li><a href="minimization">Why does the option tag render selected="selected" instead of just "selected"?</a></li>
+
+    <li>Can I create dynamic ActionForwards?</li>
+
     <li>How can I use my own (ActionForm, ActionForward, ActionMapping, ActionServlet) class?</li>
+
     <li>Do I have to use JSPs with my application?</li>
+
   </ul>
+</section>
+
+
+<section href="naming" name="Why are some of the class and element names countere-intuitive?">
+<p>
+The framework grew in the telling and as it evolved some of the names
+drifted.
+</p>
+<p>The good thing about a nightly build, is that everything becomes
+available to the community as soon as it is written. The bad thing about 
+a nightly build is that things like classnames get locked down early and 
+then become difficult to change.
+</p>
+<p>
+To retain backward compatability, it is not likely that issues like this
+woule be addressed in anywhere in a Struts 1.* release. 
+</p>
 </section>
 
 
@@ -41,6 +86,23 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html<br/>
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html<br/>
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html<br/>
+</p>
+</section>
+
+
+<section href="multiple" name="Can I use multiple HTML form elements with the same name?">
+<p>
+Yes. Define the element as an array and Struts will autopopulate it like any other. 
+</p>
+<pre>
+<code>
+private String[] id= {};
+public String[] getId() { return this.id; } 
+public void setItem(String id[]) {this.id = id;}
+</code>
+</pre>
+<p>
+And so forth
 </p>
 </section>
 
@@ -138,5 +200,23 @@ http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html
 </p>
 </section>
 
+
+<section href="pager" name="How can I scroll through list of pages like the search results in google?">
+<p>Many Struts developers use the Pager from the JSPTags site.</p>
+<p><a href="http://jsptags.com/tags/navigation/pager/">http://jsptags.com/tags/navigation/pager/</a></p>
+</section>
+
+
+<section href="minimization" name="Why does the option tag render selected=selected instead of just selected?">
+<p>
+Attribute minimization (that is, specifying an attribute with no value) is
+a place where HTML violates standard XML syntax rules. This matters a lot
+for people writing to browsers that support XHTML, where doing so makes
+the page invalid.It's much better for Struts to use the expanded syntax,
+which works the same on existing browsers interpreting HTML, and newer
+browsers that expect XHTML-compliant syntax. Struts is following the 
+behavior recommended by the <a href="http://www.w3.org/TR/xhtml1/#h-4.5">
+XHTML specification</a></p>
+</section>
 
 </chapter></body></document>
