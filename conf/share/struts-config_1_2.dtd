@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 
-     $Id: struts-config_1_2.dtd,v 1.3 2003/07/04 21:33:29 dgraham Exp $
+     $Id: struts-config_1_2.dtd,v 1.4 2003/08/09 08:50:52 rleland Exp $
 -->
 
 
@@ -82,9 +82,18 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
+<!ELEMENT struts-config (description-short?, description-long?, data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
+<!-- The "description-short" element is a short descriptive phrase that summarize the purpose of this
+     struts-config. It is not used or read by struts and is only for documentation or automated tools.
+-->
+<!ELEMENT description-short (#PCDATA)>
+
+<!-- The "description-long" element is a long descriptive phrase that details the purpose of this
+     struts-config. It is not used or read by struts and is only for documentation or automated tools.
+-->
+<!ELEMENT description-long (#PCDATA)>
 
 <!-- The "data-sources" element describes a set of DataSource objects [JDBC 2.0
      Standard Extension]. The individual DataSource objects are configured through

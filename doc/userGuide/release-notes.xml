@@ -131,53 +131,28 @@
     <p> The Struts Configuration 1.1 DTD has been deprecated in favor of the
     <code><a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">struts-config_1_2.dtd</a></code>.
     In the Struts 1.2 release, existing Struts configuration files can be
-    loaded using either DTD version.
+    loaded using either DTD version. The new DTD adds two new elements &lt;description-short&gt;
+    and &lt;description-long&gt; for use by struts config file tools and document generation. 
     </p>
 
     <p><strong>New Dependencies on Commons packages</strong></p>
-    <p>Several components of Struts 1.0 have been found to be useful in
+    <p>The resource components of Struts 1.1 has been found to be useful in
     general Java development (and not just useful for building Struts-based
     web applications), and have been migrated into the
     <a href="http://jakarta.apache.org/commons/">Jakarta Commons Project</a>.
     As a result, the current development version of Struts has been modified
-    to rely on the Commons packages containing these classes, rather than the
-    Struts internal versions.  In nearly every case, this involved changing
+    to rely on this Commons package, rather than the
+    Struts internal version.  In nearly every case, this involved changing
     only the <code>import</code> statements at the top of your classes.  Any
     applications that utilize these classes will need to be modified in the
     same way.  </p>
     <p>The following Commons packages contain the replacements for the
-    corresponding Struts 1.0 classes:</p>
+    corresponding Struts 1.1 classes:</p>
     <ul>
     <li><strong>BeanUtils Package</strong>
-        [<a href="http://jakarta.apache.org/commons/beanutils.html"><code>org.apache.commons.beanutils</code></a>] -
-        <code>org.apache.struts.utils.BeanUtils</code>,
-        <code>org.apache.struts.utils.ConvertUtils</code>, and
-        <code>org.apache.struts.utils.PropertyUtils</code>.</li>
-    <li><strong>Collections Package</strong>
-        [<a href="http://jakarta.apache.org/commons/collections.html"><code>org.apache.commons.collections</code></a>]  -
-        <code>org.apache.struts.util.ArrayStack</code>,
-        <code>org.apache.struts.util.FastArrayList</code>,
-        <code>org.apache.struts.util.FastHashMap</code>,
-        <code>org.apache.struts.util.FastTreeMap</code>.</li>
-    <li><strong>Digester Package</strong> -
-        [<a href="http://jakarta.apache.org/commons/digester.html"><code>org.apache.commons.digester</code></a>] -
-        <code>org.apache.struts.digester.*</code>.</li>
+        [<a href="http://jakarta.apache.org/commons/resources.html"><code>org.apache.commons.resources</code></a>] -
+        <code>org.apache.struts.utils.MessageResources</code></li>
     </ul>
-    <p>The following Commons packages are also now used by various components
-    of the Struts framework:</p>
-    <ul>
-    <li><strong>Database Connection Pool Package</strong>
-    [<a href="http://jakarta.apache.org/commons/dbcp.html"><code>org.apache.commons.dbpc</code></a>]</li>
-    <li><strong>FileUpload Package</strong>
-    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/fileupload/"><code>org.apache.commons.fileupload</code></a>]</li>
-    <li><strong>Logging Package</strong>
-    [<a href="http://jakarta.apache.org/commons/logging.html"><code>org.apache.commons.logging</code></a>]</li>
-    <li><strong>Pool Package</strong>
-    [<a href="http://jakarta.apache.org/commons/pool/index.html"><code>org.apache.commons.pool</code></a>]</li>
-    <li><strong>Validator Package</strong>
-    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons/validator/"><code>org.apache.commons.validator</code></a>]</li>
-    </ul>
-
 
     <p><strong>NOTE! XML Parser Prerequisite Updated</strong></p>
 

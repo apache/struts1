@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <!DOCTYPE struts-config PUBLIC
-          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
-
-<!--
-     This is the Struts configuration file for the registration 
-     portion of the example application, using the proposed new syntax.
--->
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 
 <struts-config>
+  <description-short><![CDATA[
+     registration
+  ]]>
+  </description-short>
+    <description-long><![CDATA[
+     This is the Struts configuration file for the registration 
+     portion of the example application, using the proposed new syntax.
+  ]]>
+  </description-long>
 
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
