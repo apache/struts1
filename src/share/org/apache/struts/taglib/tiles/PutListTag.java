@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.5 2003/07/02 02:13:53 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/02 02:13:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.6 2003/07/02 02:16:39 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/02 02:16:39 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.tiles.AttributeDefinition;
-import org.apache.struts.tiles.UntyppedAttribute;
+import org.apache.struts.tiles.UntypedAttribute;
 
 /**
  * PutList tag implementation.
@@ -176,7 +176,7 @@ public class PutListTag
         Object attributeValue = nestedTag.getList();
 
         if (nestedTag.getRole() != null) {
-            AttributeDefinition def = new UntyppedAttribute(attributeValue);
+            AttributeDefinition def = new UntypedAttribute(attributeValue);
             def.setRole(nestedTag.getRole());
             attributeValue = def;
         }
@@ -203,7 +203,7 @@ public class PutListTag
             try {
                 def = ((AttributeDefinition) attributeValue);
             } catch (ClassCastException ex) {
-                def = new UntyppedAttribute(attributeValue);
+                def = new UntypedAttribute(attributeValue);
             }
             def.setRole(nestedTag.getRole());
             attributeValue = def;

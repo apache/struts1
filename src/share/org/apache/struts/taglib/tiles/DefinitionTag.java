@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.7 2003/07/02 02:13:53 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/02 02:13:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.8 2003/07/02 02:16:39 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/02 02:16:39 $
  *
  * ====================================================================
  *
@@ -66,7 +66,7 @@ import javax.servlet.jsp.JspException;
 import org.apache.struts.taglib.tiles.util.TagUtils;
 import org.apache.struts.tiles.AttributeDefinition;
 import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.UntyppedAttribute;
+import org.apache.struts.tiles.UntypedAttribute;
 
 /**
  * This is the tag handler for &lt;tiles:definition&gt;, which defines
@@ -74,7 +74,7 @@ import org.apache.struts.tiles.UntyppedAttribute;
  * used in &lt;tiles:insert&gt.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.7 $ $Date: 2003/07/02 02:13:53 $
+ * @version $Revision: 1.8 $ $Date: 2003/07/02 02:16:39 $
  */
 public class DefinitionTag
     extends DefinitionTagSupport
@@ -149,7 +149,7 @@ public class DefinitionTag
             try {
                 def = ((AttributeDefinition) attributeValue);
             } catch (ClassCastException ex) {
-                def = new UntyppedAttribute(attributeValue);
+                def = new UntypedAttribute(attributeValue);
             }
             def.setRole(nestedTag.getRole());
             attributeValue = def;
@@ -173,7 +173,7 @@ public class DefinitionTag
         Object attributeValue = nestedTag.getList();
 
         if (nestedTag.getRole() != null) {
-            AttributeDefinition def = new UntyppedAttribute(attributeValue);
+            AttributeDefinition def = new UntypedAttribute(attributeValue);
             def.setRole(nestedTag.getRole());
             attributeValue = def;
         }

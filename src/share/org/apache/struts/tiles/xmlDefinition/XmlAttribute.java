@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlAttribute.java,v 1.3 2003/07/02 02:13:53 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/02 02:13:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlAttribute.java,v 1.4 2003/07/02 02:16:39 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/02 02:16:39 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.tiles.xmlDefinition;
 import org.apache.struts.tiles.DefinitionNameAttribute;
 import org.apache.struts.tiles.DirectStringAttribute;
 import org.apache.struts.tiles.PathAttribute;
-import org.apache.struts.tiles.UntyppedAttribute;
+import org.apache.struts.tiles.UntypedAttribute;
 
 /**
  * A property key-value pair.  This class is used to read configuration files.
@@ -269,13 +269,13 @@ public class XmlAttribute {
 
             // Set realValue's role value if needed
             if (role != null) {
-                ((UntyppedAttribute) realValue).setRole(role);
+                ((UntypedAttribute) realValue).setRole(role);
             }
         }
 
         // Create attribute wrapper to hold role if role is set and no type specified
         if (role != null && value != null && valueType == null) {
-            realValue = new UntyppedAttribute(value.toString(), role);
+            realValue = new UntypedAttribute(value.toString(), role);
         }
 
         return realValue;

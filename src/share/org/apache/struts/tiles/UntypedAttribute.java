@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/UntyppedAttribute.java,v 1.2 2003/02/27 19:20:50 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UntypedAttribute.java,v 1.1 2003/07/02 02:16:39 dgraham Exp $
+ * $Revision: 1.1 $
+ * $Date: 2003/07/02 02:16:39 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,27 +59,26 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
 /**
  * Common implementation of attribute definition. 
  */
-public class UntyppedAttribute implements AttributeDefinition {
+public class UntypedAttribute implements AttributeDefinition {
 
     /**
      * Role associated to this attribute.
      */
-  protected String role;
-  protected Object value;
+    protected String role = null;
+    
+    protected Object value=null;
 
     /**
      * Constructor.
      * @param value Object to store.
      */
-  public UntyppedAttribute( Object value )
-    {
-    this.value = value;
+    public UntypedAttribute(Object value) {
+        this.value = value;
     }
 
     /**
@@ -87,52 +86,46 @@ public class UntyppedAttribute implements AttributeDefinition {
      * @param value Object to store.
      * @param role Asociated role.
      */
-  public UntyppedAttribute( Object value, String role )
-    {
-    this.value = value;
-    this.role = role;
+    public UntypedAttribute(Object value, String role) {
+        this.value = value;
+        this.role = role;
     }
 
     /**
      * Get role.
      */
-  public String getRole()
-    {
-    return role;
+    public String getRole() {
+        return role;
     }
 
     /**
      * Set role.
      * @param role Associated role.
      */
-  public void setRole(String role)
-    {
-    this.role = role;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-  /**
-   * Get value.
-   */
-  public Object getValue()
-    {
-    return value;
+    /**
+     * Get value.
+     */
+    public Object getValue() {
+        return value;
     }
 
-  /**
-   * Set value.
-   * @param value New value.
-   */
-  public void setValue( Object value )
-    {
-    this.value = value;
+    /**
+     * Set value.
+     * @param value New value.
+     */
+    public void setValue(Object value) {
+        this.value = value;
     }
-    
+
     /**
      * Get String representation of this object.
      */
-  public String toString()
-    {
-    return value.toString();
+    public String toString() {
+        return value.toString();
     }
 
 }

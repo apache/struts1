@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DirectStringAttribute.java,v 1.3 2003/07/02 02:13:53 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/02 02:13:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DirectStringAttribute.java,v 1.4 2003/07/02 02:16:39 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/02 02:16:39 $
  *
  * ====================================================================
  *
@@ -65,7 +65,7 @@ package org.apache.struts.tiles;
  * Component attribute.
  * Such attribute value represent a path used to include a JSP.
  */
-public class DirectStringAttribute extends UntyppedAttribute {
+public class DirectStringAttribute extends UntypedAttribute {
 
     public DirectStringAttribute(String value) {
         super(value);
