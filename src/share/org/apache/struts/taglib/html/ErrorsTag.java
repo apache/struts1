@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.28 2003/08/16 17:39:11 dgraham Exp $
- * $Revision: 1.28 $
- * $Date: 2003/08/16 17:39:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.29 2003/08/19 23:36:54 dgraham Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/08/19 23:36:54 $
  *
  * ====================================================================
  *
@@ -68,8 +68,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -94,7 +94,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.28 $ $Date: 2003/08/16 17:39:11 $
+ * @version $Revision: 1.29 $ $Date: 2003/08/19 23:36:54 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -181,7 +181,7 @@ public class ErrorsTag extends TagSupport {
     public int doStartTag() throws JspException {
 
         // Were any error messages specified?
-        ActionErrors errors = null;
+        ActionMessages errors = null;
         try {
             errors = TagUtils.getInstance().getActionErrors(pageContext, name);
         } catch (JspException e) {
