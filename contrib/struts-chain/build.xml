@@ -14,13 +14,15 @@
   <!-- Dependency home defaults -->
   <property name="chain.home"       value="../../../jakarta-commons-sandbox/commons-chain/dist"/>
   <property name="servlet.home"     value="/usr/local/tomcat-4.1/common/lib"/>
+  <property name="struts.home"      value="../../dist/lib"/>
+
 
   <!-- The Commons Chain Of Responsibility Library -->
   <property name="commons-chain.jar" value="${chain.home}/commons-chain.jar"/>
 
+
   <!-- Dependency JAR defaults -->
   <property name="servlet.jar"      value="${servlet.home}/servlet.jar"/>
-  <property name="struts.jar"       value="../../dist/lib/struts.jar"/>
 
 
   <!-- Build Defaults -->
@@ -39,7 +41,7 @@
 
   <!-- Construct Classpath -->
   <path id="classpath">
-    <fileset          dir="../../dist/lib">
+    <fileset          dir="${struts.home}/lib">
       <include       name="*.jar"/>
     </fileset>
     <pathelement location="${commons-chain.jar}"/>
@@ -48,7 +50,7 @@
   </path>
 
 
-  <!-- Custom Tomcat Integration -->
+  <!-- Custom Tomcat Integration   -->
   <taskdef  name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
   <taskdef  name="install"  classname="org.apache.catalina.ant.InstallTask"/>
   <taskdef  name="list"     classname="org.apache.catalina.ant.ListTask"/>
