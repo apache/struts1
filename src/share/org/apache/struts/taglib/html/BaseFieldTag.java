@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.2 2001/01/08 00:48:17 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/08 00:48:17 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/08 00:48:17 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -178,9 +178,9 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	    try {
                 String value = "";
                 Object objvalue = PropertyUtils.getProperty(bean, property);
-                
-                if (!(objvalue instanceof FormFile)) {
-                    value = (String) objvalue;
+                if ((objvalue != null) &&
+                    !(objvalue instanceof FormFile)) {
+                    value = objvalue.toString();
                 }
                 if (value == null) {
                     value = "";

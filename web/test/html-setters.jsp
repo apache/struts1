@@ -12,12 +12,9 @@
 <h1>Test struts-html Property Setters</h1>
 </div>
 
-<jsp:useBean id="setold" scope="session"
-          class="org.apache.struts.test.TestBean"/>
-
 Whatever changes you make to properties should be reflected when the page
-is redisplayed.  Submit the form to update, or go back to the
-<a href="index.jsp">index.jsp</a> page.
+is redisplayed.  Press "Save" to update, or "Cancel" to return to the
+main menu.
 
 <html:form action="html-setters.do">
 <table border="0" width="100%">
