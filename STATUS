@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.25 2002/07/17 11:24:08 jholmes Exp $
+$Id: STATUS,v 1.26 2002/07/17 15:40:23 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -42,7 +42,6 @@ File Upload:
 Standard Actions:
 ----------------
 10322 Problems with LookupDispatchAction and other locales
-10881 PATCH: DynaActionForm throws unhelpful NPE on invalid form-property type
 
 
 Tiles Framework:

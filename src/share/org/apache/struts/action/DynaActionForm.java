@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.2 2002/01/18 03:46:52 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/18 03:46:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.3 2002/07/17 15:40:23 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/17 15:40:23 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * developer to create a Java class for each type of form bean.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/18 03:46:52 $
+ * @version $Revision: 1.3 $ $Date: 2002/07/17 15:40:23 $
  * @since Struts 1.1
  */
 
@@ -198,6 +198,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @exception IllegalArgumentException if there is no property
      *  of the specified name
+     * @exception NullPointerException if the type specified for the
+     *  property is invalid
      */
     public Object get(String name) {
 
@@ -209,6 +211,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
         // Return a null value for a non-primitive property
         Class type = getDynaProperty(name).getType();
+        if (type == null) {
+            throw new NullPointerException
+                ("The type for property " + name + " is invalid");
+        }
         if (!type.isPrimitive()) {
             return (value);
         }
@@ -349,12 +355,18 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *  converted to the type required for this property
      * @exception IllegalArgumentException if there is no property
      *  of the specified name
+     * @exception NullPointerException if the type specified for the
+     *  property is invalid
      * @exception NullPointerException if an attempt is made to set a
      *  primitive property to null
      */
     public void set(String name, Object value) {
 
         DynaProperty descriptor = getDynaProperty(name);
+        if (descriptor.getType() == null) {
+            throw new NullPointerException
+                ("The type for property " + name + " is invalid");
+        }
         if (value == null) {
             if (descriptor.getType().isPrimitive()) {
                 throw new NullPointerException
