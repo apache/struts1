@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.2 2001/05/04 21:49:27 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/05/04 21:49:27 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.3 2001/07/08 04:15:12 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/07/08 04:15:12 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/05/04 21:49:27 $
+ * @version $Revision: 1.3 $ $Date: 2001/07/08 04:15:12 $
  */
 
 public class TestBean extends ActionForm {
@@ -315,6 +315,19 @@ public class TestBean extends ActionForm {
 
     public void setStringProperty(String stringProperty) {
         this.stringProperty = stringProperty;
+    }
+
+    /**
+     * An empty String property.
+     */
+    private String emptyStringProperty = "";
+
+    public String getEmptyStringProperty() {
+        return (this.emptyStringProperty);
+    }
+
+    public void setEmptyStringProperty(String emptyStringProperty) {
+        this.emptyStringProperty = emptyStringProperty;
     }
 
 

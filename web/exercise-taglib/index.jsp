@@ -34,6 +34,7 @@
 <li><a href="logic-iterate.jsp">Iterate Tag</a></li>
 <li><a href="logic-match.jsp?param1=value1">Match Tags</a></li>
 <li><a href="logic-present.jsp?param1=value1">Presence Tags</a></li>
+<li><a href="logic-empty.jsp">Emptiness Tags</a></li>
 </ul>
 
 </body>

@@ -69,6 +69,57 @@
 
   <tag>
 
+    <name>empty</name>
+    <summary>
+    Evaluate the nested body content of this tag if the requested variable is
+    either <code>null</code> or an empty string.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.EmptyTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>This tag evaluates its nested body content only if the specified value
+    is either absent (i.e. <code>null</code>) or an empty string (i.e. a
+    <code>java.lang.String</code> with a length of zero).</p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be compared is the JSP bean specified by this
+      attribute, if <code>property</code> is not specified, or the value
+      of the specified property of this bean, if <code>property</code>
+      is specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be compared is the property (of the bean specified
+      by the <code>name</code> attribute) specified by this attribute.
+      The property reference can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
     <name>equal</name>
     <summary>
     Evaluate the nested body content of this tag if the requested
@@ -834,6 +885,57 @@
       <info>
       <p>The constant value which is checked for existence as a substring
       of the specified variable.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
+    <name>notEmpty</name>
+    <summary>
+    Evaluate the nested body content of this tag if the requested variable is
+    neither <code>null</code> nor an empty string.
+    </summary>
+    <tagclass>org.apache.struts.taglib.logic.NotEmptyTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+    <p>This tag evaluates its nested body content only if the specified value
+    is present (i.e. not <code>null</code>) and is not an empty string (i.e. a
+    <code>java.lang.String</code> with a length of zero).</p>
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be compared is the JSP bean specified by this
+      attribute, if <code>property</code> is not specified, or the value
+      of the specified property of this bean, if <code>property</code>
+      is specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The variable to be compared is the property (of the bean specified
+      by the <code>name</code> attribute) specified by this attribute.
+      The property reference can be simple, nested, and/or indexed.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the bean named by the
+      <code>name</code> property, or "any scope" if not specified.</p>
       </info>
     </attribute>
 
