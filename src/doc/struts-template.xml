@@ -60,7 +60,7 @@
     Puts content into request scope.
     </summary>
     <tagclass>org.apache.struts.taglib.template.PutTag</tagclass>
-    <bodycontent>empty</bodycontent>
+    <bodycontent>JSP</bodycontent>
     <info>
     Put content into request scope.
     </info>
@@ -76,7 +76,7 @@
 
     <attribute>
       <name>content</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
       Content that's put into request scope.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.3 2000/10/12 23:05:21 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/12 23:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.4 2000/12/12 17:11:33 dgeary Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/12/12 17:11:33 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ import java.util.Hashtable;
 import java.util.Stack;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.taglib.template.util.Content;
@@ -72,9 +73,9 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.3 $ $Date: 2000/10/12 23:05:21 $
+ * @version $Revision: 1.4 $ $Date: 2000/12/12 17:11:33 $
  */
-public class PutTag extends TagSupport {
+public class PutTag extends BodyTagSupport {
 
 // ----------------------------------------------------- Instance Variables
 
@@ -88,14 +89,14 @@ public class PutTag extends TagSupport {
    /**
      * The content's URI (or text).
      */
-   private String content;
+   private String content = null;
 
 
    /**
      * Determines whether content is included (false) or printed (true).
      * Content is included (false) by default.
      */
-   private String direct="false";
+   private String direct = null;
 
 // --------------------------------------------------------- Public Methods
 
@@ -148,7 +149,8 @@ public class PutTag extends TagSupport {
          throw new JspException("PutTag.doStartTag(): " +
                                 "No InsertTag ancestor");
 
-      insertTag.put(name, new Content(content, direct));
+      insertTag.put(name, new Content(getContent(), getDirect()));
+
       return EVAL_PAGE;
 
    }
@@ -161,6 +163,48 @@ public class PutTag extends TagSupport {
 
       name = content = direct = null;
 
+   }
+
+
+   /**
+     * Returns the content associated with this tag.
+     */
+   private String getContent() throws JspException {
+
+      String bodyAndContentMismatchError = 
+                      "Please specify template content in this tag's body " +
+                      "or with the content attribute, but not both.",
+             bodyAndDirectMismatchError = 
+                      "If content is specified in the tag body, the " +
+                      "direct attribute must be true.";
+
+      boolean hasBody = hasBody(), contentSpecified = (content != null);
+
+      if((hasBody && contentSpecified) || (!hasBody && !contentSpecified))
+         throw new JspException(bodyAndContentMismatchError);
+
+      if(hasBody && direct != null && direct.equalsIgnoreCase("false"))
+         throw new JspException(bodyAndDirectMismatchError);
+
+      return hasBody ? bodyContent.getString() : content;
+
+   }
+
+
+   /**
+     * Returns a boolean indicating whether this tag has a body.
+     */
+   private boolean hasBody() {
+      return ! bodyContent.getString().equals("");
+   }
+
+
+   /**
+     * Returns the direct attribute associated with this tag.
+     */
+   private String getDirect() {
+      if(hasBody()) return "true";
+      else            return direct == null ? "false" : "true";
    }
 
 
