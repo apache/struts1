@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.22 2002/12/08 07:12:16 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2002/12/08 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.23 2003/05/13 16:09:22 turner Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/05/13 16:09:22 $
  *
  * ====================================================================
  *
@@ -251,7 +251,7 @@ public class MultipartIterator
         //don't let the stream read past the content length
         this.inputStream.setMaxLength(this.contentLength+1);
         //just stop now if the content length is bigger than the maximum allowed size
-        if (this.contentLength > this.maxSize)
+        if ((this.maxSize > -1) && (this.contentLength > this.maxSize))
         {
             this.maxLengthExceeded = true;
         }
