@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.20 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.20 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.21 2002/11/02 00:28:12 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2002/11/02 00:28:12 $
  *
  * ====================================================================
  *
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import java.net.URLEncoder;
 import java.util.Iterator;
@@ -75,30 +73,23 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Generate an IMG tag to the specified image URI.
  * <p>
  * TODO:
  * <ul>
- *   <li>make the <strong>alt</strong>, <strong>src</strong>, and
+ *   <li>Make the <strong>alt</strong>, <strong>src</strong>, and
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
- *   <li>handle <strong>onLoad</strong>, <strong>onAbort</strong>, and
- *       <strong>onError</strong> events (my JavaScript book is very old,
- *       there may be more unsupported events in the past couple of IE
- *       versions)
  * </ul>
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 
 public class ImgTag extends BaseHandlerTag {
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The property to specify where to align the image.
@@ -113,7 +104,6 @@ public class ImgTag extends BaseHandlerTag {
         this.align = align;
     }
 
-
     /**
      * The border size around the image.
      */
@@ -126,7 +116,6 @@ public class ImgTag extends BaseHandlerTag {
     public void setBorder(String border) {
         this.border = border;
     }
-
 
     /**
      * The image height.
@@ -141,7 +130,6 @@ public class ImgTag extends BaseHandlerTag {
         this.height = height;
     }
 
-
     /**
      * The horizontal spacing around the image.
      */
@@ -154,7 +142,6 @@ public class ImgTag extends BaseHandlerTag {
     public void setHspace(String hspace) {
         this.hspace = hspace;
     }
-
 
     /**
      * The image name for named images.
@@ -169,7 +156,6 @@ public class ImgTag extends BaseHandlerTag {
         this.imageName = imageName;
     }
 
-
     /**
      * Server-side image map declaration.
      */
@@ -183,27 +169,30 @@ public class ImgTag extends BaseHandlerTag {
         this.ismap = ismap;
     }
 
-
     /**
      * The low resolution image source URI.
+     * @deprecated This is not defined in the HTML 4.01 spec and will be removed in a
+     * future version of Struts.
      */
     protected String lowsrc = null;
 
+    /**
+     * @deprecated This is not defined in the HTML 4.01 spec and will be removed in a
+     * future version of Struts.
+     */
     public String getLowsrc() {
-    return (this.lowsrc);
+        return (this.lowsrc);
     }
 
     public void setLowsrc(String lowsrc) {
-    this.lowsrc = lowsrc;
+        this.lowsrc = lowsrc;
     }
-
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The JSP bean name for query parameters.
@@ -211,13 +200,12 @@ public class ImgTag extends BaseHandlerTag {
     protected String name = null;
 
     public String getName() {
-    return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-    this.name = name;
+        this.name = name;
     }
-
 
     /**
      * The module-relative path, starting with a slash character, of the
@@ -233,7 +221,6 @@ public class ImgTag extends BaseHandlerTag {
         this.page = page;
     }
 
-
     /**
      * The message resources key under which we should look up the
      * <code>page</code> attribute for this generated tag, if any.
@@ -247,7 +234,6 @@ public class ImgTag extends BaseHandlerTag {
     public void setPageKey(String pageKey) {
         this.pageKey = pageKey;
     }
-
 
     /**
      * In situations where an image is dynamically generated (such as to create
@@ -264,7 +250,6 @@ public class ImgTag extends BaseHandlerTag {
         this.paramId = paramId;
     }
 
-
     /**
      * The single-parameter JSP bean name.
      */
@@ -277,7 +262,6 @@ public class ImgTag extends BaseHandlerTag {
     public void setParamName(String paramName) {
         this.paramName = paramName;
     }
-
 
     /**
      * The single-parameter JSP bean property.
@@ -292,7 +276,6 @@ public class ImgTag extends BaseHandlerTag {
         this.paramProperty = paramProperty;
     }
 
-
     /**
      * The single-parameter JSP bean scope.
      */
@@ -306,20 +289,18 @@ public class ImgTag extends BaseHandlerTag {
         this.paramScope = paramScope;
     }
 
-
     /**
      * The JSP bean property name for query parameters.
      */
     protected String property = null;
 
     public String getProperty() {
-    return (this.property);
+        return (this.property);
     }
 
     public void setProperty(String property) {
-    this.property = property;
+        this.property = property;
     }
-
 
     /**
      * The scope of the bean specified by the name property, if any.
@@ -334,20 +315,18 @@ public class ImgTag extends BaseHandlerTag {
         this.scope = scope;
     }
 
-
     /**
      * The image source URI.
      */
     protected String src = null;
 
     public String getSrc() {
-    return (this.src);
+        return (this.src);
     }
 
     public void setSrc(String src) {
-    this.src = src;
+        this.src = src;
     }
-
 
     /**
      * The message resources key under which we should look up the
@@ -363,7 +342,6 @@ public class ImgTag extends BaseHandlerTag {
         this.srcKey = srcKey;
     }
 
-
     /**
      * Client-side image map declaration.
      */
@@ -376,7 +354,6 @@ public class ImgTag extends BaseHandlerTag {
     public void setUsemap(String usemap) {
         this.usemap = usemap;
     }
-
 
     /**
      * The vertical spacing around the image.
@@ -391,7 +368,6 @@ public class ImgTag extends BaseHandlerTag {
         this.vspace = vspace;
     }
 
-
     /**
      * The image width.
      */
@@ -405,9 +381,7 @@ public class ImgTag extends BaseHandlerTag {
         this.width = width;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Render the beginning of the IMG tag.
@@ -416,11 +390,10 @@ public class ImgTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-    // Evaluate the body of this tag
-    return (EVAL_BODY_TAG);
+        // Evaluate the body of this tag
+        return (EVAL_BODY_TAG);
 
     }
-
 
     /**
      * Render the end of the IMG tag.
@@ -429,10 +402,9 @@ public class ImgTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-    // Generate the name definition or image element
-    HttpServletResponse response =
-      (HttpServletResponse) pageContext.getResponse();
-    StringBuffer results = new StringBuffer("<img");
+        // Generate the name definition or image element
+        HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
+        StringBuffer results = new StringBuffer("<img");
         String tmp = src();
         String srcurl = url(tmp);
         if (srcurl != null) {
@@ -503,7 +475,6 @@ public class ImgTag extends BaseHandlerTag {
 
     }
 
-
     /**
      * Release any acquired resources.
      */
@@ -534,9 +505,7 @@ public class ImgTag extends BaseHandlerTag {
 
     }
 
-
     // ------------------------------------------------------ Protected Methods
-
 
     /**
      * Return the base source URL that will be rendered in the <code>src</code>
@@ -549,53 +518,47 @@ public class ImgTag extends BaseHandlerTag {
 
         // Deal with a direct context-relative page that has been specified
         if (this.page != null) {
-            if ((this.src != null) || (this.srcKey != null) ||
-                (this.pageKey != null)) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.src"));
+            if ((this.src != null) || (this.srcKey != null) || (this.pageKey != null)) {
+                JspException e = new JspException(messages.getMessage("imgTag.src"));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            ApplicationConfig config = (ApplicationConfig)
-                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
+            ApplicationConfig config =
+                (ApplicationConfig) pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
                 return (request.getContextPath() + this.page);
             } else {
-                return (request.getContextPath() + config.getPrefix() +
-                        this.page);
+                return (request.getContextPath() + config.getPrefix() + this.page);
             }
         }
 
         // Deal with an indirect context-relative page that has been specified
         if (this.pageKey != null) {
             if ((this.src != null) || (this.srcKey != null)) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.src"));
+                JspException e = new JspException(messages.getMessage("imgTag.src"));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            ApplicationConfig config = (ApplicationConfig)
-                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
+            ApplicationConfig config =
+                (ApplicationConfig) pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
-                return (request.getContextPath() +
-                        RequestUtils.message(pageContext, getBundle(),
-                                             getLocale(), this.pageKey));
+                return (
+                    request.getContextPath()
+                        + RequestUtils.message(pageContext, getBundle(), getLocale(), this.pageKey));
             } else {
-                return (request.getContextPath() + config.getPrefix() +
-                        RequestUtils.message(pageContext, getBundle(),
-                                             getLocale(), this.pageKey));
+                return (
+                    request.getContextPath()
+                        + config.getPrefix()
+                        + RequestUtils.message(pageContext, getBundle(), getLocale(), this.pageKey));
             }
         }
 
         // Deal with an absolute source that has been specified
         if (this.src != null) {
             if (this.srcKey != null) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.src"));
+                JspException e = new JspException(messages.getMessage("imgTag.src"));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
@@ -604,16 +567,13 @@ public class ImgTag extends BaseHandlerTag {
 
         // Deal with an indirect source that has been specified
         if (this.srcKey == null) {
-            JspException e = new JspException
-                (messages.getMessage("imgTag.src"));
+            JspException e = new JspException(messages.getMessage("imgTag.src"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        return (RequestUtils.message(pageContext, getBundle(),
-                                     getLocale(), this.srcKey));
+        return (RequestUtils.message(pageContext, getBundle(), getLocale(), this.srcKey));
 
     }
-
 
     /**
      * Return the specified src URL, modified as necessary with optional
@@ -629,8 +589,7 @@ public class ImgTag extends BaseHandlerTag {
             return (url);
 
         // Start with an unadorned URL as specified
-        StringBuffer  src = new StringBuffer(url);
-
+        StringBuffer src = new StringBuffer(url);
 
         // Append a single-parameter name and value, if requested
         if ((paramId != null) && (paramName != null)) {
@@ -640,40 +599,36 @@ public class ImgTag extends BaseHandlerTag {
                 src.append('&');
             src.append(paramId);
             src.append('=');
-            Object value = RequestUtils.lookup(pageContext, paramName,
-                                              paramProperty, paramScope);
+            Object value = RequestUtils.lookup(pageContext, paramName, paramProperty, paramScope);
             if (value != null)
                 src.append(URLEncoder.encode(value.toString()));
         }
 
-    // Just return the URL if there is no bean to look up
-    if ((property != null) && (name == null)) {
-        JspException e = new JspException
-        (messages.getMessage("getter.name"));
+        // Just return the URL if there is no bean to look up
+        if ((property != null) && (name == null)) {
+            JspException e = new JspException(messages.getMessage("getter.name"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-    if (name == null)
-        return (src.toString());
+        if (name == null)
+            return (src.toString());
 
-    // Look up the map we will be using
-        Object mapObject = RequestUtils.lookup(pageContext, name,
-                                               property, scope);
-    Map map = null;
+        // Look up the map we will be using
+        Object mapObject = RequestUtils.lookup(pageContext, name, property, scope);
+        Map map = null;
         try {
             map = (Map) mapObject;
         } catch (ClassCastException e) {
             RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("imgTag.type"));
-    }
+            throw new JspException(messages.getMessage("imgTag.type"));
+        }
 
-    // Append the required query parameters
-    boolean question = (src.toString().indexOf("?") >= 0);
-    Iterator keys = map.keySet().iterator();
+        // Append the required query parameters
+        boolean question = (src.toString().indexOf("?") >= 0);
+        Iterator keys = map.keySet().iterator();
         while (keys.hasNext()) {
-        String key = (String) keys.next();
-        Object value = map.get(key);
+            String key = (String) keys.next();
+            Object value = map.get(key);
             if (value == null) {
                 if (question)
                     src.append('&');
@@ -684,34 +639,34 @@ public class ImgTag extends BaseHandlerTag {
                 src.append(key);
                 src.append('=');
                 // Interpret null as "no value specified"
-        } else if (value instanceof String[]) {
-        String values[] = (String[]) value;
-        for (int i = 0; i < values.length; i++) {
-            if (question)
-            src.append('&');
-            else {
-            src.append('?');
-            question = true;
+            } else if (value instanceof String[]) {
+                String values[] = (String[]) value;
+                for (int i = 0; i < values.length; i++) {
+                    if (question)
+                        src.append('&');
+                    else {
+                        src.append('?');
+                        question = true;
+                    }
+                    src.append(key);
+                    src.append('=');
+                    src.append(URLEncoder.encode(values[i]));
+                }
+            } else {
+                if (question)
+                    src.append('&');
+                else {
+                    src.append('?');
+                    question = true;
+                }
+                src.append(key);
+                src.append('=');
+                src.append(URLEncoder.encode(value.toString()));
             }
-            src.append(key);
-            src.append('=');
-            src.append(URLEncoder.encode(values[i]));
         }
-        } else {
-        if (question)
-            src.append('&');
-        else {
-            src.append('?');
-            question = true;
-        }
-        src.append(key);
-        src.append('=');
-        src.append(URLEncoder.encode(value.toString()));
-        }
-    }
 
-    // Return the final result
-    return (src.toString());
+        // Return the final result
+        return (src.toString());
 
     }
 
