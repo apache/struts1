@@ -26,6 +26,9 @@
         servlet.jar                   The pathname of the servlet API classes
                                       that you wish to compile against.
 
+        commons-lib.home              The path to the JAR files
+                                      of the Jakarta Commons 
+                                      package (version 1.0 or later).
         struts.libs                   The directory containing struts.jar and
                                       the associated TLD files.
 
@@ -98,6 +101,11 @@
     <property name="webapp.name"      value="channel"/>
     <property name="webapp.web"      value="web/channel"/>
   </ant>
+  <ant  antfile="build-webapp.xml"    target="static">
+    <property name="webapp.name"      value="blank"/>
+    <property name="webapp.web"      value="web/blank"/>
+    <property name="struts.libs"    value="false"/>
+  </ant>
 </target>
 
 <!--
@@ -119,7 +127,7 @@
         The "static" target causes non-generic static activity required
         for specific tag libraries to be executed.
 -->
-<target name="static.optional" if="make.optional.webapps"  
+<target name="static.optional" if="make.optional.webapps"
         description="Copy optional static resources for individual web applications">
 </target>
 
@@ -154,6 +162,11 @@
 	  <!-- Channel sources are the same as tutorial, so use tutorial sources -->
     <property name="webapp.src"      value="src/tutorial/"/>
   </ant>
+  <ant  antfile="build-webapp.xml"    target="compile">
+    <property name="webapp.name"      value="blank"/>
+    <property name="webapp.web"      value="web/blank"/>
+    <property name="struts.libs"    value="false"/>
+  </ant>
 </target>
 
 <!--
@@ -179,9 +192,6 @@
 -->
 <target name="compile" depends="compile.generic"
         description="Compile individual web applications">
-    <!-- Create the taglib documentation -->
-    <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
-           extension="Tags.html" style="stylesheets/struts.xsl" includes="*.xml"/>
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation/doc">
       <fileset   dir="${doc.dir}/html">
@@ -200,6 +210,12 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
+    <!-- Create the taglib documentation -->
+    <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
+           extension="Tags.html" style="stylesheets/tiles.xsl" includes="tiles*.xml"/>
+    <!-- Create the xml documentation -->
+    <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
+           extension="Xml.html" style="stylesheets/tiles.xsl" includes="*.xml" excludes="tiles*.xml" />
 </target>
 
 
@@ -220,6 +236,12 @@
     <property name="webapp.name"      value="channel"/>
     <property name="webapp.web"       value="web/channel"/>
     <property name="webapp.war"       value="tiles-channel.war"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="dist">
+    <property name="webapp.name"      value="blank"/>
+    <property name="webapp.web"       value="web/blank"/>
+    <property name="webapp.war"       value="tiles-blank.war"/>
+    <property name="struts.libs"    value="false"/>
   </ant>
 </target>
 
@@ -262,6 +284,10 @@
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="channel"/>
     <property name="webapp.web"      value="web/channel"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="blank"/>
+    <property name="webapp.web"      value="web/blank"/>
   </ant>
 </target>
 

@@ -45,16 +45,8 @@
         build.home                    Base directory into which we are building
                                       the Struts tiles.
 
-        commons-beanutils.jar         (required).  The path to the JAR file
-                                      of the Jakarta Commons Beanutils
-                                      package (version 1.0 or later).
-
-        commons-collections.jar       (required).  The path to the JAR file
-                                      of the Jakarta Commons Collections
-                                      package (version 1.0 or later).
-
-        commons-digester.jar          (required).  The path to the JAR file
-                                      of the Jakarta Commons Digester
+        commons-lib.home              (required).  The path to the JAR files
+                                      of the Jakarta Commons 
                                       package (version 1.0 or later).
 
         servlet.jar                   MUST be set to the pathname of the
@@ -72,7 +64,7 @@
         tiles.libs                    If specified, must be the pathname of a
                                       directory from which "tiles.jar" will be
                                       copied to your WEB-INF/lib directory, and
-                                      from which all tilesv TLD files will be copied
+                                      from which all tiles TLD files will be copied
                                       to your WEB-INF directory.  Also, the
                                       tiles.jar file will automatically be
                                       added to your compile classpath.
@@ -160,9 +152,10 @@
 
 <!-- The class path used for compiling this library -->
 <path id="classpath">
-  <pathelement location="${commons-beanutils.jar}"/>
-  <pathelement location="${commons-collections.jar}"/>
-  <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-beanutils.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>
@@ -256,7 +249,7 @@
   </copy>
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
   <copy  todir="${webapp.target}/WEB-INF/lib">
-    <fileset dir="${struts.libs}" includes="commons-*.jar"/>
+    <fileset dir="${commons-lib.home}" includes="commons-*.jar"/>
     <fileset dir="${struts.libs}" includes="struts.jar"/>
   </copy>
 </target>
@@ -273,7 +266,7 @@
   </copy>
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
   <copy  todir="${webapp.target}/WEB-INF/lib">
-    <fileset dir="${struts.libs}" includes="commons-*.jar"/>
+    <fileset dir="${commons-lib.home}" includes="commons-*.jar"/>
     <fileset dir="${tiles.libs}" includes="*.jar"/>
   </copy>
 </target>

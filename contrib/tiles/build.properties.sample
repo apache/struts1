@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.3 2001/12/27 17:44:12 cedric Exp $
+# $Id: build.properties.sample,v 1.4 2002/02/18 14:52:21 cedric Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -24,23 +24,41 @@ catalina.home=../jakarta-tomcat-4.0/build
 # (CVS module "jakarta-servletapi" at jakarta.apache.org).
 servletapi.home=../jakarta-servletapi
 
-# The directory containing your binary distribution of Struts
-# (CVS module "jakarta-servletapi" at jakarta.apache.org).
+# The directories containing your binary distribution of Struts
+# struts.home is used to build library and webapps (so all distribution)
+# struts1.0.home is used to build struts1.0.x compatible jar file only
+# To build all distribution with a particular Struts version, set struts.home
+# to point to the Struts version you want
+# Comment struts1.0.home if you don't want to build the extra compatible jar file
+# Any struts home should contains a subdir called 'lib' and containing the
+# struts jar file.
 struts.home=../struts
 #struts1.0.home=../struts1.0
 
-# The directory containing your binary distribution of Tomcat 3.2, from CVS
-# module "jakarta-tomcat" (and branch "TOMCAT_32") at jakarta.apache.org.
-# This is only required if you are going to execute the "deploy.tomcat" target.
-tomcat.home=../build/tomcat
+# The directory containing JAR files
+# from the Jakarta Commons project.
+commons-lib.home=../commons/lib
+
+# The directory containing your binary distribution of Tomcat 4.0 ("Catalina"
+# is the servlet container part of this distribution), from CVS module
+# "jakarta-tomcat-4.0" at jakarta.apache.org).  This is only required
+# if you are going to execute the "deploy.catalina" target.
+catalina.home=../jakarta-tomcat-4.0/build
+
+# The directory containing your binary distribution of the Servlet API classes
+# (CVS module "jakarta-servletapi" at jakarta.apache.org).
+servlet.jar=${tomcat.home}/lib/servlet.jar
 
 # The directory containing your binary distribution of the Xerces XML parser,
 # from CVS module "xerces-j" at xml.apache.org.  This is only required
 # if you are going to execute the "deploy.catalina" target.
 xerces.home=../xml-xerces
 
+build.home=../target
+dist.home=../dist
 
 # Flag indicating if we want to build additional war files.
 # If true, build them.
 make.optional.webapps=true
+
 

@@ -19,21 +19,13 @@
         These properties MUST be set on the "ant" command line, a
         "build.properties" file in the base directory, or a
         "build.properties" file in your user home directory.
-      
+
         servlet.jar                   (required).  The path to the Servlet API
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
 
-        commons-beanutils.jar         (required).  The path to the JAR file
-                                      of the Jakarta Commons Beanutils
-                                      package (version 1.0 or later).
-
-        commons-collections.jar       (required).  The path to the JAR file
-                                      of the Jakarta Commons Collections
-                                      package (version 1.0 or later).
-
-        commons-digester.jar          (required).  The path to the JAR file
-                                      of the Jakarta Commons Digester
+        commons-lib.home              The path to the JAR files
+                                      of the Jakarta Commons 
                                       package (version 1.0 or later).
 
         struts.libs                   (required). The path to the Struts
@@ -111,7 +103,7 @@
 
     <!-- Directory where test configurations files are stored -->
     <property name="conf.test.dir" value="conf/test"/>
-    
+
     <!-- Doc directory -->
     <property name="doc.dir" value="doc"/>
 
@@ -121,10 +113,28 @@
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${servlet.jar}"/>
+	  <fileset dir="${commons-lib.home}">
+        <include name="commons-*.jar"/>
+      </fileset>
+      <pathelement location="${commons-lib.home}"/>
+    </path>
+
+    <path id="compile.classpath.struts1.1">
+      <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts.libs}/struts.jar"/>
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
+    </path>
+
+    <path id="compile.classpath.struts1.1">
+      <pathelement location="${servlet.jar}"/>
+      <pathelement location="${struts1.0.home}/lib/struts.jar"/>
+      <pathelement location="${commons-beanutils.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
     </path>
 
 
@@ -153,40 +163,156 @@
 
     </target>
 
-<!-- 
-        Create directories and copy files for the core component library
--->
-    <target name="prepare.library" depends="init">
-        <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
-        <mkdir dir="${build.home}/library/classes/org/apache/struts/tiles/resources"/>
-        <copy todir="${build.home}/library/classes/org/apache/struts/tiles/resources">
-            <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
-        </copy>
-    </target>
-
-<!-- 
+<!--
         Prepare static directories for web applications
 -->
     <target name="static.webapps">
         <ant antfile="build-webapps.xml" target="static"/>
     </target>
 
-<!-- 
-        Compile core struts library directory tiles
+<!--
+        Compile Libraries for each target
 -->
-    <target name="compile.library" depends="prepare.library"
-     description="Compile Tiles library files">
+    <target name="compile.library" depends="init"
+    description="Compile Tiles libraries">
+
+        <!-- for struts1.1 -->
+	    <antcall target="compile.clean.library.classes" />
+	    <antcall target="compile.library.struts1.1" />
+        <!-- for struts1.0.X -->
+	    <antcall target="compile.clean.library.classes" />
+	    <antcall target="compile.library.struts1.0" />
+    </target>
+
+
+<!--
+        Create directories and copy files required for building library
+-->
+    <target name="prepare.library" depends="init">
+        <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
+        <mkdir dir="${build.home}/library/classes/org/apache/struts/tiles/resources"/>
+          <!-- copy resources -->
+        <copy todir="${build.home}/library/classes/org/apache/struts/tiles/resources">
+            <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
+        </copy>
+          <!-- copy properties, dtds -->
+        <copy todir="${build.home}/library/classes">
+            <fileset dir="${src.share.dir}" includes="**/*.properties"/>
+            <fileset dir="${src.share.dir}" includes="**/*.dtd"/>
+         </copy>
+          <!-- copy additional dtd, tld in library -->
+        <copy todir="${build.home}/library">
+            <fileset dir="${conf.share.dir}" includes="*.dtd"/>
+            <fileset dir="${conf.share.dir}" includes="*.tld"/>
+        </copy>
+          <!-- create and copy tld for application -->
+        <style basedir="${doc.dir}"
+            destdir="${build.home}/library"
+            extension=".tld"
+            style="stylesheets/tld.xsl"
+            includes="tiles*.xml"/>
+        <copy todir="${build.home}/library/classes/META-INF/tlds">
+            <fileset dir="${build.home}/library" includes="*.tld"/>
+        </copy>
+    </target>
+
+<!--
+        Create directories and copy files required for building library
+-->
+    <target name="compile.clean.library.classes" depends="prepare.library" >
+		  <delete quiet="true">
+		    <fileset dir="${build.home}/library/classes" includes="**/*.class"/>
+		  </delete>
+    </target>
+
+<!--
+        Compile  Tiles library for Struts1.1
+-->
+    <target name="compile.library.struts1.1" if="struts.home"
+     depends="prepare.library"
+     description="Compile Tiles library for Struts1.1">
+
+        <antcall target="prepare.library" />
         <javac srcdir="${src.share.dir}"
             destdir="${build.home}/library/classes"
             debug="${compile.debug}"
             optimize="${compile.optimize}"
             deprecation="${compile.deprecation}">
           <classpath refid="compile.classpath"/>
+          <classpath>
+            <pathelement location="${struts.libs}/struts.jar"/>
+          </classpath>
         </javac>
-        <copy todir="${build.home}/library/classes">
+        <jar jarfile="${build.home}/library/${app.name}.jar"
+            manifest="${conf.share.dir}/MANIFEST.MF"
+            basedir="${build.home}/library/classes"
+            includes="**"/>
+    </target>
+
+<!--
+        Compile  Tiles library for Struts1.0.x
+-->
+    <target name="compile.library.struts1.0" if="struts1.0.home"
+     depends="prepare.library"
+     description="Compile Tiles library for Struts1.0.x">
+
+        <antcall target="prepare.library" />
+
+        <property name="jar.name" value="${app.name}ForStruts1-0"/>
+
+        <javac srcdir="${src.share.dir}"
+            destdir="${build.home}/library/classes"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}">
+          <exclude name="org/apache/struts/tiles/TilesRequestProcessor.java" />
+          <classpath refid="compile.classpath"/>
+          <classpath>
+            <pathelement location="${struts1.0.home}/lib/struts.jar"/>
+          </classpath>
+        </javac>
+        <jar jarfile="${build.home}/library/${jar.name}.jar"
+            manifest="${conf.share.dir}/MANIFEST.MF"
+            basedir="${build.home}/library/classes"
+            includes="**"/>
+
+		  <move file="${build.home}/library/${jar.name}.jar" todir="${build.home}/library/struts1.0" />
+    </target>
+
+<!--
+        Procedure to compile library with struts1.0, if set
+-->
+    <target name="proc.compile.library1.0" if="struts1.0.home" >
+	      <!-- delete classes to ensure new classes are compiled -->
+		  <delete>
+		    <fileset dir="${build.home}/library/classes" includes="**/*.class"/>
+		  </delete>
+  	    <antcall target="proc.compile.library" >
+		  <param name="build.lib.classes" value="${build.home}/library/classes" />
+		  <param name="compile.classpath" value="compile.classpath1.0" />
+		  <param name="app.name" value="${app.name}ForStruts1-0" />
+		</antcall>
+		<move file="${build.home}/library/${app.name}ForStruts1-0.jar" todir="${build.home}/library/struts1.0" />
+	</target>
+
+<!--
+        Procedure to compile library
+		@param build.lib.classes directory where classes are compiled
+		@param compile.classpath refid of classpath
+		@param app.name name use for the resulting .jar
+-->
+    <target name="proc.compile.library" >
+        <javac srcdir="${src.share.dir}"
+            destdir="${build.lib.classes}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}">
+          <classpath refid="${compile.classpath}"/>
+        </javac>
+        <copy todir="${build.lib.classes}">
             <fileset dir="${src.share.dir}" includes="**/*.properties"/>
         </copy>
-        <copy todir="${build.home}/library/classes">
+        <copy todir="${build.lib.classes}">
             <fileset dir="${src.share.dir}" includes="**/*.dtd"/>
         </copy>
         <copy todir="${build.home}/library">
@@ -198,12 +324,12 @@
             extension=".tld"
             style="stylesheets/tld.xsl"
             includes="*.xml"/>
-        <copy todir="${build.home}/library/classes/META-INF/tlds">
+        <copy todir="${build.lib.classes}/META-INF/tlds">
             <fileset dir="${build.home}/library" includes="*.tld"/>
         </copy>
         <jar jarfile="${build.home}/library/${app.name}.jar"
             manifest="${conf.share.dir}/MANIFEST.MF"
-            basedir="${build.home}/library/classes"
+            basedir="${build.lib.classes}"
             includes="**"/>
     </target>
 
@@ -251,7 +377,7 @@
     <target name="dist.library" depends="prepare.dist,compile.library">
         <copy todir="${dist.home}/lib">
             <fileset dir="${build.home}/library" includes="*.dtd"/>
-            <fileset dir="${build.home}/library" includes="*.jar"/>
+            <fileset dir="${build.home}/library" includes="**/*.jar"/>
             <fileset dir="${build.home}/library" includes="*.tld"/>
         </copy>
     </target>
@@ -306,7 +432,7 @@
 	  <!-- Remove extra webapps from struts -->
 	  <delete dir="${dist.home}/webapps/tiles-channel.war" />
 	  <delete dir="${dist.home}/webapps/tiles-template.war" />
-	  <move file="${dist.home}/webapps/tiles-doc.war" 
+	  <move file="${dist.home}/webapps/tiles-doc.war"
 	      tofile="${dist.home}/webapps/struts-${app.name}.war"/>
 	</target>
 
