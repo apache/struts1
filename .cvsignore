@@ -9,3 +9,6 @@ cactus_server.log
 struts.ipr
 struts.iws
 struts.jpx*
+.classpath
+.project
+maven.log
