@@ -218,13 +218,16 @@ public class BufferedMultipartInputStream extends InputStream {
 
         int read = read();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        while (read != -1) {
-            if (read == '\n') {
-                return baos.toByteArray();
-            }
+
+         // return null if there are no more bytes to read
+        if( -1 == read )
+            return null;
+
+        while ((read != -1) && (read != '\n')) {
             baos.write(read);
             read = read();
         }
+
         return baos.toByteArray();
     }
 
