@@ -81,7 +81,7 @@ main menu.
 
   <tr>
     <th colspan="4" align="center">
-      Hyperlinks To Be Tested
+      Hyperlinks To Be Tested via page attribute
     </th>
   </tr>
 
@@ -129,6 +129,56 @@ main menu.
     </td>
   </tr>
 
+  <tr>
+    <th colspan="4" align="center">
+      Hyperlinks To Be Tested via action attribute
+    </th>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-link">
+        No modifications at all
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-link?doubleProperty=321.321&amp;longProperty=321321">
+        Double and long via hard coded changes
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-link"
+              paramId="stringProperty" paramName="newValue">
+        String via paramId and paramName
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-link"
+              paramId="booleanProperty"
+            paramName="testbean" paramProperty="nested.booleanProperty">
+        Boolean via paramId, paramName, and paramValue
+      </html:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html:link action="/html-link"
+                 name="newValues">
+        Float, int, and stringArray via name (Map)
+      </html:link>
+    </td>
+  </tr>
+  
   <tr>
     <th colspan="4" align="center">Reset and Cancel Buttons</th>
   </tr>
