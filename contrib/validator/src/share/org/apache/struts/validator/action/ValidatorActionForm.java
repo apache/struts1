@@ -59,6 +59,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -82,6 +84,11 @@ import org.apache.commons.validator.ValidatorResources;
 public class ValidatorActionForm extends ValidatorForm implements Serializable {
 
     /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
+
+    /**
      * Validate the properties that have been set from this HTTP request,
      * and return an <code>ActionErrors</code> object that encapsulates any
      * validation errors that have been found.  If no errors are found, return
@@ -100,7 +107,7 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
 	try {
 	   validator.validate();
         } catch (ValidatorException e) {
-	   log("ValidatorActionForm::validate() - " + e.getMessage(), e);
+	   log.error("ValidatorActionForm::validate() - " + e.getMessage(), e);
 	}
 
         return errors;

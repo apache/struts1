@@ -61,6 +61,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -75,6 +77,10 @@ import org.apache.struts.util.MessageResources;
 */
 public final class TypeAction extends Action {
 
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -106,7 +112,9 @@ public final class TypeAction extends Action {
 	
 	// Was this transaction cancelled?
 	if (isCancelled(request)) {
-	    log(" " + mapping.getAttribute() + " - Type transaction was cancelled");
+	    if (log.isInfoEnabled()) {
+	       log.info(" " + mapping.getAttribute() + " - Type transaction was cancelled");
+	    }
 	    
 	    removeFormBean(mapping, request);
 
@@ -114,31 +122,6 @@ public final class TypeAction extends Action {
 	}
 
 	return mapping.findForward("success");	
-    }
-
-    /**
-     * Convenience method that call the comparable servlet log method and writes 
-     * an explanatory message and a stack trace for a given Throwable exception to the 
-     * servlet log file.
-     *
-     * @param 	message		String that describes the error or exception
-    */
-    protected void log(String message) {
-       if (servlet.getDebug() >= 1)
-           servlet.log(message);
-    }
-    
-    /**
-     * Convenience method that call the comparable servlet log method and writes 
-     * an explanatory message and a stack trace for a given Throwable exception to the 
-     * servlet log file.
-     *
-     * @param 	message		String that describes the error or exception
-     * @param 	throwable	Throwable error or exception
-    */
-    protected void log(String message, Throwable throwable) {
-       if (servlet.getDebug() >= 1)
-           servlet.log(message, throwable);
     }
 
     /**

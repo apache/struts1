@@ -59,6 +59,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -82,6 +84,12 @@ import org.apache.struts.validator.util.StrutsValidatorUtil;
 */
 
 public class ValidatorForm extends ActionForm implements Serializable {
+
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
+
     /**
      * Used to indicate the current page of a multi-page form.
     */
@@ -120,7 +128,7 @@ public class ValidatorForm extends ActionForm implements Serializable {
 	try {
 	   validator.validate();
         } catch (ValidatorException e) {
-	   log("ValidatorForm::validate() - " + e.getMessage(), e);
+	   log.error("ValidatorForm::validate() - " + e.getMessage(), e);
 	}
 
         return errors;

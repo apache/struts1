@@ -59,12 +59,14 @@ import java.io.Serializable;
 import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionErrors;
-import org.apache.regexp.RESyntaxException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.GenericValidator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorUtil;
+import org.apache.regexp.RESyntaxException;
+import org.apache.struts.action.ActionErrors;
 
 
 /**
@@ -75,6 +77,11 @@ import org.apache.commons.validator.ValidatorUtil;
 */
 public class StrutsValidator implements Serializable {
 
+    /**
+     * Commons Logging instance.
+    */
+    private static Log LOG = LogSource.getInstance(StrutsValidator.class.getName());
+    
     /**
      * <p>Checks if the field isn't null and length of the field is greater than zero not 
      * including whitespace.</p>
@@ -137,9 +144,9 @@ public class StrutsValidator implements Serializable {
                   return true;	
                }
 	    } catch (RESyntaxException e) {
-	       StrutsValidatorUtil.log(application, "Validator::validateMask() - " + e.getMessage(), e);
+	       LOG.error(e.getMessage(), e);
 	    } catch (Exception e) {
-	       StrutsValidatorUtil.log(application, "Validator::validateMask() - " + e.getMessage(), e);
+	       LOG.error(e.getMessage(), e);
 	    }
          }
          

@@ -63,6 +63,8 @@ import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogSource;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorResourcesInitializer;
 
@@ -74,6 +76,16 @@ import org.apache.commons.validator.ValidatorResourcesInitializer;
  */
 
 public class ValidatorServlet extends HttpServlet {
+    
+    /**
+     * Commons Logging instance.
+    */
+    private Log log = LogSource.getInstance(this.getClass().getName());
+
+
+    /**
+     * Application scope key that <code>ValidatorResources</code> is stored under.
+    */
     public final static String VALIDATOR_KEY = "org.apache.struts.validator.action.VALIDATOR";
 
     /**
@@ -106,8 +118,9 @@ public class ValidatorServlet extends HttpServlet {
      */
     public void destroy() {
 
-	if (debug >= 1)
-	    log("Destroying ValidatorServlet");
+	if (log.isDebugEnabled()) {
+	    log.debug("Destroying ValidatorServlet");
+	}
 
         destroyMapping();
 
@@ -183,8 +196,9 @@ public class ValidatorServlet extends HttpServlet {
      */
     public void reload() throws IOException, ServletException {
 
-        if (debug >= 1)
-            log("Reloading ValidatorServlet");
+        if (log.isDebugEnabled()) {
+            log.debug("Reloading ValidatorServlet");
+        }
 
 
         // Restart from our confirmation files
@@ -215,8 +229,8 @@ public class ValidatorServlet extends HttpServlet {
 	if (value != null) {
 	   configRules = value;
 	}
-	if (debug >= 1) {
-	   log("Loading validation rules file from '" + configRules + "'");
+	if (log.isDebugEnabled()) {
+	   log.debug("Loading validation rules file from '" + configRules + "'");
 	}
 
 	InputStream input = null;
@@ -230,10 +244,10 @@ public class ValidatorServlet extends HttpServlet {
               // until second file is loaded
               ValidatorResourcesInitializer.initialize(resources, bis, false);
            } catch (Exception e) {
-              log("ValidatorServlet::initMapping - " + e.getMessage(), debug);
+              log.error("ValidatorServlet::initMapping - " + e.getMessage(), e);
            }
 	} else {
-	   log("Skipping validation rules file from '" + configRules + "'.  No stream could be opened.");	
+	   log.error("Skipping validation rules file from '" + configRules + "'.  No stream could be opened.");	
 	}
 
 
@@ -241,8 +255,8 @@ public class ValidatorServlet extends HttpServlet {
 	if (value != null) {
 	   config = value;
 	}
-	if (debug >= 1) {
-	   log("Loading validation file from '" + config + "'");
+	if (log.isDebugEnabled()) {
+	   log.debug("Loading validation file from '" + config + "'");
 	}
 
 	input = getServletContext().getResourceAsStream(config);
@@ -256,7 +270,7 @@ public class ValidatorServlet extends HttpServlet {
            // pass in true so resources are processed
            ValidatorResourcesInitializer.initialize(resources, bis, true);
         } catch (Exception e) {
-           log("ValidatorServlet::initMapping - " + e.getMessage(), debug);
+           log.error("ValidatorServlet::initMapping - " + e.getMessage(), e);
         }
 
     }
@@ -295,8 +309,9 @@ public class ValidatorServlet extends HttpServlet {
      */
     public void log(String message, int level) {
 
-        if (debug >= level)
+        if (debug >= level) {
             log(message);
+        }
 
     }
 

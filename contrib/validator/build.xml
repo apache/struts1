@@ -43,6 +43,7 @@
      <pathelement path="${commons-beanutils.jar}"/>
      <pathelement path="${commons-collections.jar}"/>
      <pathelement path="${commons-digester.jar}"/>
+     <pathelement path="${commons-logging.jar}"/>
      <pathelement path="${regexp.jar}"/>
   </path>
 
@@ -109,6 +110,7 @@
     <copy file="${commons-collections.jar}" todir="lib"/>
     <copy file="${commons-digester.jar}" todir="lib"/>
     <copy file="${commons-logging.jar}" todir="lib"/>
+    <copy file="${log4j-core.jar}" todir="lib"/>
     <copy file="${regexp.jar}" todir="lib"/>
     
     <!-- default validation rules -->
@@ -178,6 +180,21 @@
          <include name="**/**" />
       </fileset>
     </copy>
+  </target>
+
+  <!-- Clean -->
+  <target name="clean" description="Delete build, dist, and doc directories">
+     <delete dir="${build}" />
+     <delete dir="${target}" />
+     <delete dir="${lib}" />
+     <delete dir="${webapps}" />
+     <delete dir="${build.javadocs}" />
+
+     <delete dir="${dist}/${src}"/>
+     <delete dir="${dist}/${web}"/>
+     <delete dir="${dist}/${webapps}"/>
+     <delete dir="${dist}/${docs}"/>
+     <delete file="${dist}/${validator.jar}"/>
   </target>
       
 </project>

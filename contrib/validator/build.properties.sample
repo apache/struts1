@@ -21,6 +21,10 @@ commons-digester.jar=d:/java/lib/commons-digester.jar
 # from the Jakarta Commons project.
 commons-logging.jar=e:/software/commons-logging/commons-logging.jar
 
+# The JAR file containing version 1.1 (or later) of the Logging package
+# from the Jakarta Log4J core.
+log4j-core.jar=d:/java/lib/log4j-core.jar
+
 struts.jar=d:/office/struts/jakarta-struts/target/library/struts.jar
 struts.tlds=d:/office/struts/jakarta-struts/target/library
 

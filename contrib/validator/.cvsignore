@@ -1,0 +1,10 @@
+build
+lib
+target
+webapps
+build.properties
+dist/docs
+dist/src
+dist/web
+dist/webapps
+dist/struts-validator.jar
