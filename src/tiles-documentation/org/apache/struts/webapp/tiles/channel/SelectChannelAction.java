@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/SelectChannelAction.java,v 1.1 2002/07/11 15:35:21 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:21 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/SelectChannelAction.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:24:46 $
  *
  * ====================================================================
  *
@@ -61,22 +61,17 @@
 
 package org.apache.struts.webapp.tiles.channel;
 
-import org.apache.struts.taglib.tiles.ComponentConstants;
-
 import java.io.IOException;
-import java.util.Locale;
-import java.util.Vector;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.MessageResources;
 
 public final class SelectChannelAction extends Action {
 

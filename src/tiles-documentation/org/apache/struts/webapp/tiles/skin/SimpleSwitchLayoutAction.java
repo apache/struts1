@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/SimpleSwitchLayoutAction.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/SimpleSwitchLayoutAction.java,v 1.2 2003/02/28 02:23:05 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:23:05 $
  *
  * ====================================================================
  *
@@ -61,31 +61,21 @@
 
 package org.apache.struts.webapp.tiles.skin;
 
-import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.definition.ReloadableDefinitionsFactory;
-
-import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.tiles.actions.TilesAction;
-import org.apache.struts.tiles.ComponentDefinition;
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.FactoryNotFoundException;
-
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Map;
-import java.util.HashMap;
 
-import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.RequestDispatcher;
-import org.apache.struts.action.Action;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.actions.TilesAction;
 
   /**
    * Simple Switch Layout

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.1 2002/07/11 15:35:21 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:21 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:24:46 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@
 package org.apache.struts.webapp.tiles.rssChannel;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,20 +69,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.commons.digester.rss.Channel;
-
-import org.apache.struts.tiles.actions.TilesAction;
-
-import org.apache.struts.action.Action;
+import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-
 import org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.tiles.actions.TilesAction;
 
 /**
  * Read and parse RSS files found at on a given
@@ -101,7 +95,7 @@ import org.apache.struts.tiles.ComponentContext;
  *
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/07/11 15:35:21 $
+ * @version $Revision: 1.2 $ $Date: 2003/02/28 02:24:46 $
  */
 public final class RssChannelsAction extends TilesAction {
 
@@ -219,9 +213,9 @@ public final class RssChannelsAction extends TilesAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.1 2002/07/11 15:35:21 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:21 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:24:46 $
  *
  * ====================================================================
  *

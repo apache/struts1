@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/tutorial/ForwardExampleAction.java,v 1.1 2002/07/11 15:35:21 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:21 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/tutorial/ForwardExampleAction.java,v 1.2 2003/02/28 02:24:49 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:24:49 $
  *
  * ====================================================================
  *
@@ -62,9 +62,11 @@
 package org.apache.struts.webapp.tiles.tutorial;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;

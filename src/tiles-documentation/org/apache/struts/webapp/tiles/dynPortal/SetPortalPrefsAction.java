@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/SetPortalPrefsAction.java,v 1.2 2002/11/16 04:58:47 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:58:47 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/SetPortalPrefsAction.java,v 1.3 2003/02/28 02:22:57 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/28 02:22:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -80,7 +80,7 @@ import org.apache.struts.tiles.ComponentContext;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/11/16 04:58:47 $
+ * @version $Revision: 1.3 $ $Date: 2003/02/28 02:22:57 $
  */
 
 public final class SetPortalPrefsAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/invoice/InvoiceForm.java,v 1.1 2002/07/11 15:35:21 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:21 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/invoice/InvoiceForm.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:24:46 $
  *
  * ====================================================================
  *
@@ -61,8 +61,6 @@
 
 package org.apache.struts.webapp.tiles.invoice;
 
-import java.util.Vector;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 
 

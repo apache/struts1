@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/DefinitionCatalog.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/DefinitionCatalog.java,v 1.2 2003/02/28 02:23:05 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:23:05 $
  *
  * ====================================================================
  *
@@ -61,23 +61,20 @@
 
 package org.apache.struts.webapp.tiles.skin;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.FactoryNotFoundException;
-import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletContext;
 
 /**
  * A catalog of available definitions.

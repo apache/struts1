@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/LayoutSettingsAction.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/LayoutSettingsAction.java,v 1.2 2003/02/28 02:23:05 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:23:05 $
  *
  * ====================================================================
  *
@@ -61,15 +61,17 @@
 
 package org.apache.struts.webapp.tiles.skin;
 
-import org.apache.struts.tiles.actions.TilesAction;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.tiles.ComponentContext;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionForm;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import javax.servlet.ServletException;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.tiles.actions.TilesAction;
 
 /**
  * Action used to set user skin.

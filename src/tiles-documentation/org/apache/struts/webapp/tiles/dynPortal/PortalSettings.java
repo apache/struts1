@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/PortalSettings.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/PortalSettings.java,v 1.2 2003/02/28 02:22:57 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:22:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,11 +61,9 @@
 
 package org.apache.struts.webapp.tiles.dynPortal;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.List;
 
   /**
    * Objects of this class hold portal settings for one user.

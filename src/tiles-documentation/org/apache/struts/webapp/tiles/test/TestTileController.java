@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestTileController.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestTileController.java,v 1.2 2003/02/28 02:24:46 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:24:46 $
  *
  * ====================================================================
  *
@@ -61,14 +61,15 @@
 
 package org.apache.struts.webapp.tiles.test;
 
-import org.apache.struts.tiles.ControllerSupport;
-import org.apache.struts.tiles.ComponentContext;
-
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletContext;
+
+import org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.tiles.ControllerSupport;
 
 
   /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.2 2002/12/29 21:22:03 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/29 21:22:03 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.3 2003/02/28 02:24:46 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/28 02:24:46 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@
 package org.apache.struts.webapp.tiles.rssChannel;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,23 +69,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.apache.portlet.PortletDataHashMap;
-
-import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.commons.digester.rss.Channel;
-
+import org.apache.commons.digester.rss.RSSDigester;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-
 import org.apache.struts.tiles.ComponentContext;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Read and parse RSS files found at on a given
@@ -96,7 +89,7 @@ import org.apache.commons.logging.LogFactory;
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/12/29 21:22:03 $
+ * @version $Revision: 1.3 $ $Date: 2003/02/28 02:24:46 $
  */
 public final class Channels extends Action {
 

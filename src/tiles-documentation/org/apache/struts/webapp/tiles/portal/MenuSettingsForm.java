@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/MenuSettingsForm.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/MenuSettingsForm.java,v 1.2 2003/02/28 02:23:01 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 02:23:01 $
  *
  * ====================================================================
  *
@@ -61,8 +61,6 @@
 
 package org.apache.struts.webapp.tiles.portal;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.apache.struts.action.ActionForm;
 
 
