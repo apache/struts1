@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/PasswordTag.java,v 1.2 2002/10/05 22:52:13 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/05 22:52:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/PasswordTag.java,v 1.3 2003/05/17 03:45:43 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/05/17 03:45:43 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,31 +57,24 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */ 
-
+ */
 
 package org.apache.struts.taglib.html;
-
 
 /**
  * Custom tag for input fields of type "password".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/10/05 22:52:13 $
+ * @version $Revision: 1.3 $ $Date: 2003/05/17 03:45:43 $
  */
-
 public class PasswordTag extends BaseFieldTag {
-
 
     /**
      * Construct a new instance of this tag.
      */
     public PasswordTag() {
-
-	super();
-	this.type = "password";
-
+        super();
+        this.type = "password";
     }
-
 
 }

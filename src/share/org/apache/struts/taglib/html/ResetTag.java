@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.11 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.12 2003/05/17 03:45:43 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/05/17 03:45:43 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,65 +59,53 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.12 $ $Date: 2003/05/17 03:45:43 $
  */
-
 public class ResetTag extends BaseHandlerTag {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The name of the generated input field.
      */
     protected String property = null;
 
-
     /**
      * The body content of this tag (if any).
      */
     protected String text = null;
-
 
     /**
      * The value of the button label.
      */
     protected String value = null;
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * Return the field name.
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
-
 
     /**
      * Set the field name.
@@ -126,20 +114,18 @@ public class ResetTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-	this.property = property;
+        this.property = property;
 
     }
-
 
     /**
      * Return the label value.
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
-
 
     /**
      * Set the label value.
@@ -148,13 +134,11 @@ public class ResetTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the start of this tag.
@@ -163,13 +147,11 @@ public class ResetTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Do nothing until doEndTag() is called
+        // Do nothing until doEndTag() is called
         this.text = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
-
-
 
     /**
      * Save the associated label from the body content.
@@ -180,13 +162,13 @@ public class ResetTag extends BaseHandlerTag {
 
         if (bodyContent != null) {
             String value = bodyContent.getString().trim();
-            if (value.length() > 0)
+            if (value.length() > 0) {
                 text = value;
+            }
         }
         return (SKIP_BODY);
 
     }
-
 
     /**
      * Process the end of this tag.
@@ -195,58 +177,59 @@ public class ResetTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	// Acquire the label value we will be generating
-	String label = value;
-	if ((label == null) && (text != null))
-	    label = text;
-	if ((label == null) || (label.length() < 1))
-	    label = "Reset";
+        // Acquire the label value we will be generating
+        String label = value;
+        if ((label == null) && (text != null)) {
+            label = text;
+        }
+    
+        if ((label == null) || (label.length() < 1)) {
+            label = "Reset";
+        }
 
-	// Generate an HTML element
-	StringBuffer results = new StringBuffer();
-	results.append("<input type=\"reset\"");
+        // Generate an HTML element
+        StringBuffer results = new StringBuffer();
+        results.append("<input type=\"reset\"");
         if (property != null) {
             results.append(" name=\"");
             results.append(property);
             results.append("\"");
         }
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(" value=\"");
-	results.append(label);
-	results.append("\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(getElementClose());
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
+        results.append(label);
+        results.append("\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(getElementClose());
 
-	// Render this element to our writer
+        // Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());
 
         // Evaluate the remainder of this page
-	return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release any acquired resources.
      */
     public void release() {
 
-	super.release();
-	property = null;
+        super.release();
+        property = null;
         text = null;
-	value = null;
+        value = null;
 
     }
-
 
 }
