@@ -99,8 +99,8 @@
   
   <!-- Add multiple validator resource files by setting the pathname property -->
   <plug-in className="org.apache.struts.validator.action.ValidatorPlugIn">
-    <set-property property="pathname" value="/WEB-INF/validator-rules.xml"/>
-    <set-property property="pathname" value="/WEB-INF/validation.xml"/>
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                              /WEB-INF/validation.xml"/>
   </plug-in>
       
 </struts-config>
