@@ -16,7 +16,7 @@
     <p><img src="doc-files/image001.gif" height="169" width="145" alt="doc-files/image001"></p>
     <p>Each Tiles (header, menu, body, ...) is a JSP page and can itself be build 
       by assembling other Tiles.</p>
-<p>Using Tiles can be compared as using Java methods:  You need to define the Tiles (the method body), and then you can "call" this body anywhere you want, passing it some parameters. In Tiles, parameters are called "attributes" in order to avoid confusion with the request parameters.</p>
+<p>Using Tiles can be compared as using Java methods:  You need to define the Tiles (the method body), and then you can &quot;call&quot; this body anywhere you want, passing it some parameters. In Tiles, parameters are called &quot;attributes&quot; in order to avoid confusion with the request parameters.</p>
     <p>The Tiles body can be a simple JSP page, a Struts action or any URI pointing 
       to a resource inside the current web site.</p>
     <p>Inserting the body, or calling it, is done with the tag &lt;tiles:insert 
@@ -26,10 +26,10 @@
     <p>Tiles bodies are used to create layouts, reusable parts, ... Tiles insertions 
       are used to insert Tiles. The same Tiles can be reused several times in 
       the same site, or even in the same page.</p>
-<p>Insertion of a Tiles body can be associated to a logical name in what Tiles calls a "definition". A definition contains a logical name, a page used as body and some attribute values. The definition declaration doesn't insert the associated Tiles body. It just associates it with the name. A definition name can be used anywhere insertion of a Tiles body can occur. The associated Tiles body is then inserted with associated attributes.</p>
+<p>Insertion of a Tiles body can be associated to a logical name in what Tiles calls a &quot;definition&quot;. A definition contains a logical name, a page used as body and some attribute values. The definition declaration doesn't insert the associated Tiles body. It just associates it with the name. A definition name can be used anywhere insertion of a Tiles body can occur. The associated Tiles body is then inserted with associated attributes.</p>
     <p>The definition declarations can be done in JSP pages or in one or more 
       centralized files. A definition can extend another one, overload some attributes, 
-      add new attributes ... This allows the declaration of a "master" definition 
+      add new attributes ... This allows the declaration of a &quot;master&quot; definition 
       declaring the common layout, header, menu and footer. All other definitions 
       extend this master layout thereby making it possible to change the entire 
       site look &amp; feel simply by changing the master definition. </p>
@@ -38,20 +38,20 @@
 <h2>Simple Examples</h2>
 <div class="subsection1">
       <h3>Insert a JSP page</h3>
-      <pre>&lt;tiles:insert <strong>page</strong>="/layouts/commonLayout.jsp" flush="true" /&gt;
+      <pre>&lt;tiles:insert <strong>page</strong>=&quot;/layouts/commonLayout.jsp&quot; flush=&quot;true&quot; /&gt;
 </pre>
 <p>This example inserts the specified page in place of the tag. The page attribute is any valid URL pointing to a resource inside the current site.</p>
 </div>
 <div class="subsection1">
-<a name="doc.InsertPageWithAttributes">
+<a name="doc.InsertPageWithAttributes"></a>
 <h3>Insert a Tiles passing some attributes</h3>
 <pre>
-&lt;tiles:insert page="/layouts/classicLayout.jsp" flush="true"&gt;
-  &lt;tiles:put name="title"  value="Page Title" /&gt;
-  &lt;tiles:put name="header" value="/common/header.jsp" /&gt;
-  &lt;tiles:put name="footer" value="/common/footer.jsp" /&gt;
-  &lt;tiles:put name="menu"   value="/common/menu.jsp" /&gt;
-  &lt;tiles:put name="body"   value="/tiles/mainBody.jsp" /&gt;
+&lt;tiles:insert page=&quot;/layouts/classicLayout.jsp&quot; flush=&amp;quot;true&quot;&gt;
+  &lt;tiles:put name=&quot;title&quot;  value=&quot;Page Title&quot; /&gt;
+  &lt;tiles:put name=&quot;header&quot; value=&quot;/common/header.jsp&quot; /&gt;
+  &lt;tiles:put name=&quot;footer&quot; value=&quot;/common/footer.jsp&quot; /&gt;
+  &lt;tiles:put name=&quot;menu&quot;   value=&quot;/common/menu.jsp&quot; /&gt;
+  &lt;tiles:put name=&quot;body&quot;   value=&quot;/tiles/mainBody.jsp&quot; /&gt;
 &lt;/tiles:insert&gt;
 </pre>
       <p>This example inserts the specified page, passing it the attributes. Attributes 
@@ -61,16 +61,16 @@
 <div class="subsection1">
 <h3>Retrieve an attribute value as String</h3>
 <pre>
-&lt;tiles:getAsString name="title" /&gt;
+&lt;tiles:getAsString name=&quot;title&quot; /&gt;
 </pre>
-<p>This example retrieves the value of the attribute "title" and prints it as a String in the current output stream. The method toString() is applied on the attribute value, allowing to pass any kind of object as value.</p>
+<p>This example retrieves the value of the attribute &quot;title&quot; and prints it as a String in the current output stream. The method toString() is applied on the attribute value, allowing to pass any kind of object as value.</p>
 </div>
 <div class="subsection1">
 <h3>Insert Tiles referenced by an attribute</h3>
 <pre>
 &lt;tiles:insert attribute='menu' /&gt;
 </pre>
-      <p>This inserts the Tiles referenced by the attribute "menu" value. The 
+      <p>This inserts the Tiles referenced by the attribute &quot;menu&quot; value. The 
         specified attribute value is first retrieved from current Tiles's context, 
         and then the value is used as a page target to insert.</p>
 </div>
@@ -79,29 +79,29 @@
       <p>This example is a layout assembling a page in the classic header-footer-menu-body 
         fashion.</p>
       <pre>
-&lt;%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %&gt;
+&lt;%@ taglib uri=&quot;/WEB-INF/struts-tiles.tld&quot; prefix=&quot;tiles&quot; %&gt;
 &lt;HTML&gt;
   &lt;HEAD&gt;
-    &lt;link rel="stylesheet" href="&lt;%=request.getContextPath()%&gt;/layouts/stylesheet.css" 
-                  type="text/css"/&gt;
-    &lt;title&gt;&lt;tiles:getAsString name="title"/&gt;&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%=request.getContextPath()%&gt;/layouts/stylesheet.css&quot; 
+                  type=&quot;text/css&quot;/&gt;
+    &lt;title&gt;&lt;tiles:getAsString name=&quot;title&quot;/&gt;&lt;/title&gt;
   &lt;/HEAD&gt;
 &lt;body&gt;
-&lt;table border="0" width="100%" cellspacing="5"&gt;
+&lt;table border=&quot;0&quot; width=&quot;100%&quot; cellspacing=&quot;5&quot;&gt;
 &lt;tr&gt;
-  &lt;td colspan="2"&gt;&lt;tiles:insert attribute="header" /&gt;&lt;/td&gt;
+  &lt;td colspan=&quot;2&quot;&gt;&lt;tiles:insert attribute=&quot;header&quot; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-  &lt;td width="140" valign="top"&gt;
+  &lt;td width=&quot;140&quot; valign=&quot;top&quot;&gt;
     &lt;tiles:insert attribute='menu' /&gt;
   &lt;/td&gt;
-  &lt;td valign="top"  align="left"&gt;
+  &lt;td valign=&quot;top&quot;  align=&quot;left&quot;&gt;
     &lt;tiles:insert attribute='body' /&gt;
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-  &lt;td colspan="2"&gt;
-    &lt;tiles:insert attribute="footer" /&gt;
+  &lt;td colspan=&quot;2&quot;&gt;
+    &lt;tiles:insert attribute=&quot;footer&quot; /&gt;
   &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -109,8 +109,8 @@
 &lt;/html&gt;
 </pre>
       <p>The layout is declared in a JSP page (ex: /layouts/classicLayout.jsp). 
-        It can be used in conjunction with the tag described in "<a href="#doc.InsertPageWithAttributes">Insert 
-        a page passing some attributes</a>". </p>
+        It can be used in conjunction with the tag described in &quot;<a href="#doc.InsertPageWithAttributes">Insert
+        a page passing some attributes</a>&quot;. </p>
 </div>
 </div>
 <div class="section">
@@ -127,7 +127,7 @@
       the body.</p>
     <p>Definitions can be declared in a JSP page, or in one or more centralized 
       files. To enable the definitions from centralized files, you need to initialize 
-      the "definitions factory" which will parse the definitions from the files 
+      the &quot;definitions factory&amp;&amp;quot; which will parse the definitions from the files
       and provide them to the Tiles framework.</p>
 <div class="subsection1">
 <h3>Enabling Definition Factory</h3>
@@ -144,13 +144,13 @@
           are optional and can be omitted. The plug-in should be declared in each 
           struts-config file:</p>
 <pre>
-  &lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
-    &lt;set-property property="definitions-config" 
-	                 value="/WEB-INF/tiles-defs.xml,
+  &lt;plug-in className=&amp;&amp;quot;org.apache.struts.tiles.TilesPlugin&amp;&amp;quot; &gt;
+    &lt;set-property property=&amp;&amp;quot;definitions-config&amp;&amp;quot; 
+	                 value=&amp;&amp;quot;/WEB-INF/tiles-defs.xml,
                             /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
-                            /WEB-INF/tiles-examples-defs.xml" /&gt;
-    &lt;set-property property="moduleAware" value="true" /&gt;
-    &lt;set-property property="definitions-parser-validate" value="true" /&gt;
+                            /WEB-INF/tiles-examples-defs.xml&amp;&amp;quot; /&gt;
+    &lt;set-property property=&amp;&amp;quot;moduleAware&amp;&amp;quot; value=&amp;&amp;quot;true&amp;&amp;quot; /&gt;
+    &lt;set-property property=&amp;&amp;quot;definitions-parser-validate&amp;&amp;quot; value=&amp;&amp;quot;true&amp;&amp;quot; /&gt;
   &lt;/plug-in&gt;
 </pre>
 <ul>
@@ -191,8 +191,8 @@
  <ul>
     <li>Specify The classname of the TilesUtil implementation to use. The specified class should
 	be a subclass of TilesUtilStrutsImpl. This option disable the moduleAware option.
-	<br>Specifying "TilesUtilStrutsImpl" is equivalent to moduleAware = false.</br>
-	<br>Specifying "TilesUtilStrutsModuleImpl" is equivalent to moduleAware = true.</br>
+	<br>Specifying &amp;&amp;quot;TilesUtilStrutsImpl&amp;&amp;quot; is equivalent to moduleAware = false.</br>
+	<br>Specifying &amp;&amp;quot;TilesUtilStrutsModuleImpl&amp;&amp;quot; is equivalent to moduleAware = true.</br>
 	This option is taken into account only once, when it is first encountered. To avoid problems,
 	it is advice to specify the same values in all TilesPlugin declaration.
     </li>
@@ -272,8 +272,8 @@
 <p>Following is a simple example:</p>
       <pre>
 &lt;!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
-       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd"&gt;
+       &amp;&amp;quot;-//Apache Software Foundation//DTD Tiles Configuration//EN&amp;&amp;quot;
+       &amp;&amp;quot;http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd&amp;&amp;quot;&gt;
 
 &lt;!-- Definitions for Tiles documentation   --&gt;
 &lt;tiles-definitions&gt;
@@ -283,12 +283,12 @@
   &lt;!-- ========================================================== --&gt;
   &lt;!-- Main page layout used as a root for other page definitions --&gt;
 
-  &lt;definition name="site.mainLayout" path="/layouts/classicLayout.jsp"&gt;
-	  &lt;put name="title"  value="Tiles Blank Site" /&gt;
-	  &lt;put name="header" value="/tiles/common/header.jsp" /&gt;
-	  &lt;put name="menu"   value="site.menu.bar" /&gt;
-	  &lt;put name="footer" value="/tiles/common/footer.jsp" /&gt;
-	  &lt;put name="body"   value="/tiles/body.jsp" /&gt;
+  &lt;definition name=&amp;&amp;quot;site.mainLayout&amp;&amp;quot; path=&amp;&amp;quot;/layouts/classicLayout.jsp&amp;&amp;quot;&gt;
+	  &lt;put name=&amp;&amp;quot;title&amp;&amp;quot;  value=&amp;&amp;quot;Tiles Blank Site&amp;&amp;quot; /&gt;
+	  &lt;put name=&amp;&amp;quot;header&amp;&amp;quot; value=&amp;&amp;quot;/tiles/common/header.jsp&amp;&amp;quot; /&gt;
+	  &lt;put name=&amp;&amp;quot;menu&amp;&amp;quot;   value=&amp;&amp;quot;site.menu.bar&amp;&amp;quot; /&gt;
+	  &lt;put name=&amp;&amp;quot;footer&amp;&amp;quot; value=&amp;&amp;quot;/tiles/common/footer.jsp&amp;&amp;quot; /&gt;
+	  &lt;put name=&amp;&amp;quot;body&amp;&amp;quot;   value=&amp;&amp;quot;/tiles/body.jsp&amp;&amp;quot; /&gt;
   &lt;/definition&gt;
 
   &lt;!-- ========================================================== --&gt;
@@ -300,9 +300,9 @@
 	  properties (here header, menu, footer, layout)
 	--&gt;
 
-  &lt;definition name="site.index.page" extends="site.mainLayout" &gt;
-	  &lt;put name="title"  value="Tiles Blank Site Index" /&gt;
-	  &lt;put name="body"   value="/tiles/body.jsp" /&gt;
+  &lt;definition name=&amp;&amp;quot;site.index.page&amp;&amp;quot; extends=&amp;&amp;quot;site.mainLayout&amp;&amp;quot; &gt;
+	  &lt;put name=&amp;&amp;quot;title&amp;&amp;quot;  value=&amp;&amp;quot;Tiles Blank Site Index&amp;&amp;quot; /&gt;
+	  &lt;put name=&amp;&amp;quot;body&amp;&amp;quot;   value=&amp;&amp;quot;/tiles/body.jsp&amp;&amp;quot; /&gt;
   &lt;/definition&gt;
 
 &lt;/tiles-definition&gt;
