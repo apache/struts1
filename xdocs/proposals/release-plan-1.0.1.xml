@@ -2,7 +2,6 @@
 <document url="./release-plan-1.0.1.xml">
 
   <properties>
-    <author>Martin F N Cooper</author>
     <title>Struts Release Plan (Version 1.0.1)</title>
   </properties>
 
@@ -11,7 +10,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p>$Id: release-plan-1.0.1.xml,v 1.1 2003/11/29 07:27:33 sraeburn Exp $</p>
+  <p>$Id$</p>
 
   <p>The objective of the <strong>Struts 1.0.1</strong> release is to provide
   an official release of all the bug fixes and documentation updates that have

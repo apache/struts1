@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <document url="./kickstart.xml">
 <properties>
-<author>Ted Husted</author>
-<author>Craig R. McClanahan</author>
-<author>James DeVries</author>
-<author>James Holmes</author>
 <title>Kickstart FAQ - Apache Struts</title>
 </properties>
 <body>

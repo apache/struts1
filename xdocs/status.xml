@@ -7,9 +7,6 @@
 
 <properties>
     <title>Status - The Apache Struts Web Application Framework</title>
-    <author>Craig R. McClanahan</author>
-    <author>Ted Husted</author>
-    <author>Steve Byrne</author>
 </properties>
 
 <body>
@@ -52,7 +49,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.1 2003/11/29 07:27:33 sraeburn Exp $
+    $Id$
     </p>
 
     <p>

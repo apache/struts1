@@ -3,12 +3,6 @@
 <document url="./database.xml">
 
  <properties>
-   <author>Craig R. McClanahan</author>
-    <author>Mike Schachter</author>
-    <author>Ted Husted</author>
-    <author>Martin Cooper</author>
-    <author>Ed Burns</author>
-    <author>Anthony Kay</author>
   <title>Accessing a Database</title>
  </properties>
 

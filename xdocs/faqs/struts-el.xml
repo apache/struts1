@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <document url="./struts-el.xml">
 <properties>
-<author>David Karr</author>
 <title>Struts EL Extension - Apache Struts</title>
 </properties>
 <body>

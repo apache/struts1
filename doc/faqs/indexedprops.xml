@@ -2,8 +2,6 @@
 
 <document url="./indexedprops.xml">
  <properties>
-  <author>David M. Karr</author>
-  <author>David Graham</author>
   <title>Indexed Properties, Mapped Properties, and Indexed Tags</title>
  </properties>
  <body>

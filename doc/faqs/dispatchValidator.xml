@@ -3,7 +3,6 @@
 <document url="./disValidate.xml">
 
  <properties>
-   <author>Nick Afshartous</author>
   <title> Using the DispatchAction and Validator</title>
  </properties>
 

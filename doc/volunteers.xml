@@ -2,7 +2,6 @@
 <document url="./volunteers.xml">
    <properties>
       <title>Who We Are - The Apache Struts Web Application Framework</title>
-      <author>Ted Husted</author>
    </properties>
 
    <body>
@@ -102,6 +101,66 @@
                <li>David Winterfeldt</li>
 
                <li>Oleg Alexeev</li>
+
+            </ul>
+         </section>
+
+         <section name="Contributors" href="contributors">
+            <ul>
+               <li>Anthony Kay</li>
+			   
+			   <li>Chris Assenza</li>
+			   
+			   <li>Dan Walker</li>
+			   
+			   <li>dIon Gillard</li>
+			   
+			   <li>Dominique Plante</li>
+			   
+			   <li>Donald Ball</li>
+			   
+			   <li>Ed Burns</li>
+			   
+			   <li>Edgar Dollin</li>
+			   
+			   <li>Eric Wu</li>
+			   
+			   <li>Geertjan Wielenga</li>
+			   
+			   <li>James DeVries</li>
+			   
+			   <li>John Berry</li>
+			   
+			   <li>John Rousseau</li>
+			   
+			   <li>John Ueltzhoeffer</li>
+			   
+			   <li>Larry McCay</li>
+			   
+			   <li>Mark Budai</li>
+			   
+			   <li>Matthias Kerkhoff</li>
+			   
+			   <li>Nick Afshartous</li>
+			   
+			   <li>Paul Runyan</li>
+			   
+			   <li>Phil Steitz</li>
+			   
+			   <li>Robert Hayden</li>
+			   
+			   <li>Stanley Santiago</li>
+			   
+			   <li>Steve Byrne</li>
+			   
+			   <li>Steve Ditlinger</li>
+			   
+			   <li>Tim O'Brien</li>
+			   
+			   <li>Wong Kok Kai</li>
+			   
+			   <li>Yann Cebron</li>
+
 
             </ul>
          </section>

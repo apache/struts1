@@ -2,7 +2,6 @@
 <document url="./release-plan-1.0b1.xml">
 
   <properties>
-    <author>Craig R. McClanahan</author>
     <title>Struts Release Plan (Version 1.0-beta-1)</title>
   </properties>
 
@@ -11,7 +10,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p>$Id: release-plan-1.0b1.xml,v 1.2 2004/01/08 17:13:01 rleland Exp $</p>
+  <p>$Id$</p>
 
   <p>The objective of the <strong>Struts 1.0-beta-1</strong> release is to
   create a milestone release against which a final series of bug fixes and

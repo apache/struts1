@@ -2,8 +2,6 @@
 <document url="./release-plan-1.1rc2.xml">
 
     <properties>
-       <author>Martin F N Cooper</author>
-       <author>Ted Husted</author>
        <title>Struts Release Plan (Version 1.1)</title>
      </properties>
 
@@ -12,7 +10,7 @@
       <section name="Objective" href="Objective">
 
           <p>
-              $Id: release-plan-1.1.xml,v 1.2 2003/09/09 17:49:21 sraeburn Exp $
+              $Id$
           </p>
 
           <p>
