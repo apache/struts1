@@ -54,6 +54,18 @@
 
 
   <tag>
+    <name>forward</name>
+    <tagclass>org.apache.struts.taglib.ForwardTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+  <tag>
     <name>iterate</name>
     <tagclass>org.apache.struts.taglib.IterateTag</tagclass>
     <teiclass>org.apache.struts.taglib.IterateTei</teiclass>
@@ -228,6 +240,18 @@
       <name>value</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+  <tag>
+    <name>include</name>
+    <tagclass>org.apache.struts.taglib.IncludeTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
     </attribute>
   </tag>
 

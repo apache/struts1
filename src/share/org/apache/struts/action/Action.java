@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.2 2000/06/16 07:12:17 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 07:12:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.3 2000/06/30 00:46:35 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/30 00:46:35 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import javax.servlet.http.HttpServletResponse;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 07:12:17 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/30 00:46:35 $
  */
 
 public interface Action {
@@ -111,6 +111,15 @@ public interface Action {
 
 
     /**
+     * The context attributes key under which our ActionForwards collection
+     * are normally stored, unless overridden when initializing our
+     * ActionServlet.
+     */
+    public static final String FORWARDS_KEY =
+      "org.apache.struts.action.FORWARDS";
+
+
+    /**
      * The session attribute key under which the user's selected Locale is
      * stored, if any.  If no such attribute is found, the system default locale
      * will be used when retrieving internationalized messages.  If used, this
@@ -118,6 +127,15 @@ public interface Action {
      */
     public static final String LOCALE_KEY =
       "org.apache.struts.action.LOCALE";
+
+
+    /**
+     * The context attributes key under which our ActionMappings collection
+     * are normally stored, unless overridden when initializing our
+     * ActionServlet.
+     */
+    public static final String MAPPINGS_KEY =
+      "org.apache.struts.action.MAPPINGS";
 
 
     /**

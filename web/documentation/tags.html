@@ -672,6 +672,30 @@ the input fields with the current property values from the bean.</p>
 <a href="#Top">Top</a>
 
 
+<a name="forward"></a>
+<h1><i>forward</i> - Forward or Redirect to a Logically Named Page</h1>
+
+<p>Looks up a logical name in the collection of global
+<code>ActionForward</code> entries configured for our controller servlet,
+and performs either a forward or redirect to the corresponding actual
+path (based on the value of the <code>redirect</code> property.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Logical name of the <code>ActionForward</code> entry to be looked up.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="getProperty"></a>
 <h1><i>getProperty</i> - Expose Bean Property as an Attribute</h1>
 
@@ -945,6 +969,29 @@ was not included in this request, or is present with a length of zero.</p>
       Name of the request parameter whose value must not be
       present for conditional evaluation of the tag body
       to take place.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="include"></a>
+<h1><i>include</i> - Include a Logically Named Page</h1>
+
+<p>Looks up a logical name in the collection of global
+<code>ActionForward</code> entries configured for our controller servlet,
+and performs an include of the content of the corresponding actual path.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Logical name of the <code>ActionForward</code> entry to be looked up.
     </td>
   </tr>
 </table>

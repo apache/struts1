@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.5 2000/06/29 21:36:09 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/29 21:36:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.6 2000/06/30 00:46:39 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/06/30 00:46:39 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 
 
@@ -91,7 +92,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/29 21:36:09 $
+ * @version $Revision: 1.6 $ $Date: 2000/06/30 00:46:39 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -160,6 +161,10 @@ public final class ErrorsTag extends TagSupport {
 		errors[0] = (String) value;
 	    } else if (value instanceof String[]) {
 		errors = (String[]) value;
+	    } else if (value instanceof ErrorMessages) {
+		errors = ((ErrorMessages) value).getErrors();
+		if (errors == null)
+		    errors = new String[0];
 	    } else {
 		errors = new String[1];
 		errors[0] = value.toString();

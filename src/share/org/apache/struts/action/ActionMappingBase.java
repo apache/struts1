@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.4 2000/06/20 16:34:05 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/20 16:34:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.5 2000/06/30 00:46:35 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/30 00:46:35 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.util.Hashtable;
  * subclassing this class and adding new "getter" and "setter" methods.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/20 16:34:05 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/30 00:46:35 $
  */
 
 public class ActionMappingBase implements ActionMapping {
@@ -132,7 +132,7 @@ public class ActionMappingBase implements ActionMapping {
      * The set of <code>ActionForward</code> instances associated with
      * this <code>ActionMapping</code>.
      */
-    protected Hashtable forwards = new Hashtable();
+    protected ActionForwards forwards = new ActionForwards();
 
 
     /**
@@ -315,7 +315,7 @@ public class ActionMappingBase implements ActionMapping {
      */
     public void addForward(ActionForward forward) {
 
-	forwards.put(forward.getName(), forward);
+	forwards.addForward(forward);
 
     }
 
@@ -369,7 +369,7 @@ public class ActionMappingBase implements ActionMapping {
      */
     public ActionForward findForward(String name) {
 
-	return ((ActionForward) forwards.get(name));
+	return (forwards.findForward(name));
 
     }
 
@@ -381,7 +381,7 @@ public class ActionMappingBase implements ActionMapping {
      */
     public void removeForward(ActionForward forward) {
 
-	forwards.remove(forward.getName());
+	forwards.removeForward(forward);
 
     }
 

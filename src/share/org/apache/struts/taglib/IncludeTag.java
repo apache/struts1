@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RedirectTag.java,v 1.2 2000/06/30 00:46:41 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/30 00:46:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IncludeTag.java,v 1.1 2000/06/30 00:46:39 craigmcc Exp $
+ * $Revision: 1.1 $
+ * $Date: 2000/06/30 00:46:39 $
  *
  * ====================================================================
  *
@@ -64,33 +64,28 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.BeanUtils;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
 
 
 /**
- * Perform a sendRedirect() to the specified URL, and skip evaluating
- * the remainder of the current page.
+ * Perform an include of a page that is looked up in the global
+ * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/30 00:46:41 $
+ * @version $Revision: 1.1 $ $Date: 2000/06/30 00:46:39 $
  */
 
-public class RedirectTag extends TagSupport {
+public final class IncludeTag extends TagSupport {
 
 
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The hyperlink URI.
-     */
-    protected String href = null;
+    // --------------------------------------------------- Instance Variables
 
 
     /**
@@ -101,32 +96,38 @@ public class RedirectTag extends TagSupport {
 	("org.apache.struts.taglib.LocalStrings");
 
 
-    // ------------------------------------------------------------- Properties
+    /**
+     * The logical name of the global ActionForward we will look up
+     */
+    private String name = null;
+
+
+    // ----------------------------------------------------------- Properties
 
 
     /**
-     * Return the hyperlink URI.
+     * Return the logical name.
      */
-    public String getHref() {
+    public String getName() {
 
-	return (this.href);
+	return (this.name);
 
     }
 
 
     /**
-     * Set the hyperlink URI.
+     * Set the logicl name.
      *
-     * @param href Set the hyperlink URI
+     * @param name The new logical name
      */
-    public void setHref(String href) {
+    public void setName(String name) {
 
-	this.href = href;
+	this.name = name;
 
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ------------------------------------------------------- Public Methods
 
 
     /**
@@ -142,25 +143,35 @@ public class RedirectTag extends TagSupport {
 
 
     /**
-     * Render a redirect to the specified hyperlink, and skip the
-     * remainder of the current page.
+     * Look up the ActionForward associated with the specified name,
+     * and perform an include of the corresponding actual path.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
 
-	// Perform the requested redirect
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
-	try {
-	    response.sendRedirect(response.encodeRedirectURL(href));
-	} catch (IOException e) {
+	// Look up the desired ActionForward entry
+	ActionForward forward = null;
+	ActionForwards forwards =
+	    (ActionForwards) pageContext.getAttribute
+	      (Action.FORWARDS_KEY, PageContext.APPLICATION_SCOPE);
+	if (forwards != null)
+	    forward = forwards.findForward(name);
+	if (forward == null)
 	    throw new JspException
-		(messages.getMessage("baseFieldTag.io", e.toString()));
+		(messages.getMessage("includeTag.lookup", name));
+
+	// Include the contents of the corresponding actual page
+	try {
+	    pageContext.include(forward.getPath());
+	} catch (Exception e) {
+	    throw new JspException
+		(messages.getMessage("includeTag.include",
+				     name, e.toString()));
 	}
 
-	// Skip the remainder of the current page
-	return (SKIP_PAGE);
+	// Evaluate the remainder of this page
+	return (EVAL_PAGE);
 
     }
 

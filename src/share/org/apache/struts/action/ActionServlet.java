@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.13 2000/06/29 22:24:33 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2000/06/29 22:24:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.14 2000/06/30 00:46:36 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2000/06/30 00:46:36 $
  *
  * ====================================================================
  *
@@ -164,7 +164,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2000/06/29 22:24:33 $
+ * @version $Revision: 1.14 $ $Date: 2000/06/30 00:46:36 $
  */
 
 public class ActionServlet
@@ -200,10 +200,9 @@ public class ActionServlet
 
 
     /**
-     * The global ActionForward collection for this controller, keyed
-     * by logical name.
+     * The global ActionForward collection for this controller.
      */
-    protected Hashtable forwards = new Hashtable();
+    protected ActionForwards forwards = new ActionForwards();
 
 
     /**
@@ -228,7 +227,7 @@ public class ActionServlet
     /**
      * The configured mappings for this web application, keyed by path.
      */
-    protected Hashtable mappings = new Hashtable();
+    protected ActionMappings mappings = new ActionMappings();
 
 
     /**
@@ -250,7 +249,6 @@ public class ActionServlet
 	    log(internal.getMessage("finalizing"));
 
 	destroyApplication();
-	destroyMapping();
 	destroyInternal();
 
     }
@@ -367,7 +365,7 @@ public class ActionServlet
      */
     public void addForward(ActionForward forward) {
 
-	forwards.put(forward.getName(), forward);
+	forwards.addForward(forward);
 
     }
 
@@ -379,7 +377,7 @@ public class ActionServlet
      */
     public void addMapping(ActionMapping mapping) {
 
-	mappings.put(mapping.getPath(), mapping);
+	mappings.addMapping(mapping);
 
     }
 
@@ -392,7 +390,7 @@ public class ActionServlet
      */
     public ActionForward findForward(String name) {
 
-	return ((ActionForward) forwards.get(name));
+	return (forwards.findForward(name));
 
     }
 
@@ -405,7 +403,7 @@ public class ActionServlet
      */
     public ActionMapping findMapping(String path) {
 
-	return ((ActionMapping) mappings.get(path));
+	return (mappings.findMapping(path));
 
     }
 
@@ -417,7 +415,7 @@ public class ActionServlet
      */
     public void removeForward(ActionForward forward) {
 
-	forwards.remove(forward.getName());
+	forwards.removeForward(forward);
 
     }
 
@@ -429,7 +427,7 @@ public class ActionServlet
      */
     public void removeMapping(ActionMapping mapping) {
 
-	mappings.remove(mapping.getPath());
+	mappings.removeMapping(mapping);
 
     }
 
@@ -455,17 +453,6 @@ public class ActionServlet
     protected void destroyInternal() {
 
 	internal = null;
-
-    }
-
-
-    /**
-     * Gracefully terminate use of the mapping information for this
-     * application.
-     */
-    protected void destroyMapping() {
-
-	mappings.clear();
 
     }
 
@@ -620,10 +607,15 @@ public class ActionServlet
      */
     protected void initOther() throws ServletException {
 
+	// Process the "nocache" initialization parameter
 	String value = getServletConfig().getInitParameter("nocache");
 	if ("true".equalsIgnoreCase(value) ||
 	    "yes".equalsIgnoreCase(value))
 	    nocache = true;
+
+	// Publish our ActionForwards and ActionMappings collections
+	getServletContext().setAttribute(Action.FORWARDS_KEY, forwards);
+	getServletContext().setAttribute(Action.MAPPINGS_KEY, mappings);
 
     }
 
