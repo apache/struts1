@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ReloadDefinitionsAction.java,v 1.4 2003/02/04 02:23:08 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/04 02:23:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ReloadDefinitionsAction.java,v 1.5 2003/07/31 03:43:13 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/31 03:43:13 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.tiles.actions;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsFactory;
+import org.apache.struts.tiles.TilesUtil;
 
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
@@ -85,7 +86,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2003/02/04 02:23:08 $
+ * @version $Revision: 1.5 $ $Date: 2003/07/31 03:43:13 $
  */
 
 public class ReloadDefinitionsAction extends Action {
@@ -115,7 +116,7 @@ public class ReloadDefinitionsAction extends Action {
 
         try {
           ServletContext context = getServlet().getServletContext();
-            DefinitionsFactory factory = DefinitionsUtil.getDefinitionsFactory(context );
+            DefinitionsFactory factory = TilesUtil.getDefinitionsFactory(request, context);
             factory.setConfig(factory.getConfig(), context);
             writer.println("OK");
         } catch (ClassCastException e) {
