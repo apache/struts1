@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.21 2003/08/02 21:38:16 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/08/02 21:38:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.22 2003/08/02 22:19:37 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/08/02 22:19:37 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -708,7 +708,7 @@ public class TagUtils {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config = ModuleUtils.getInstance().getRequestModuleConfig(request);
+        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request);
         
         if (config != null) {
             value.append(config.getPrefix());
@@ -1034,7 +1034,7 @@ public class TagUtils {
     public String pageURL(HttpServletRequest request, String page) {
 
         StringBuffer sb = new StringBuffer();
-        ModuleConfig moduleConfig = ModuleUtils.getInstance().getRequestModuleConfig(request);
+        ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
         String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
         
         if (pagePattern == null) {

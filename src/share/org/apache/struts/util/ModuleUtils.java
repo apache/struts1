@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.2 2003/08/02 21:04:42 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/02 21:04:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.3 2003/08/02 22:19:37 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/08/02 22:19:37 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.config.ModuleConfig;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ModuleUtils {
 
@@ -110,6 +110,22 @@ public class ModuleUtils {
     protected ModuleUtils() {
         super();
     }
+    
+    /**
+     * Return the current ModuleConfig object stored in request, if it exists,
+     * null otherwise.
+     * This method can be used by plugin to retrieve the current module config
+     * object. If no moduleConfig is found, this means that the request haven't
+     * hit the server throught the struts servlet. The appropriate module config
+     * can be set and found with
+     * <code>{@link RequestUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
+     * @param request The servlet request we are processing
+     * @return the ModuleConfig object from request, or null if none is set in
+     * the request.
+     */
+    public ModuleConfig getModuleConfig(HttpServletRequest request) {
+        return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+    }
 
     /**
      * Return the ModuleConfig object is it exists, null otherwise.
@@ -121,7 +137,7 @@ public class ModuleUtils {
         HttpServletRequest request,
         ServletContext context) {
 
-        ModuleConfig moduleConfig = this.getRequestModuleConfig(request);
+        ModuleConfig moduleConfig = this.getModuleConfig(request);
 
         if (moduleConfig == null) {
             moduleConfig = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
@@ -201,22 +217,6 @@ public class ModuleUtils {
      */
     public String[] getModulePrefixes(ServletContext context) {
         return (String[]) context.getAttribute(Globals.MODULE_PREFIXES_KEY);
-    }
-
-    /**
-     * Return the current ModuleConfig object stored in request, if it exists,
-     * null otherwise.
-     * This method can be used by plugin to retrieve the current module config
-     * object. If no moduleConfig is found, this means that the request haven't
-     * hit the server throught the struts servlet. The appropriate module config
-     * can be set and found with
-     * <code>{@link RequestUtils#selectModule(HttpServletRequest, ServletContext)} </code>.
-     * @param request The servlet request we are processing
-     * @return the ModuleConfig object from request, or null if none is set in
-     * the request.
-     */
-    public ModuleConfig getRequestModuleConfig(HttpServletRequest request) {
-        return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
     }
 
     /**

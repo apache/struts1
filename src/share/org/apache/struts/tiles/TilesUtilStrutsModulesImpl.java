@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.6 2003/08/02 21:16:54 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/08/02 21:16:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.7 2003/08/02 22:19:37 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/08/02 22:19:37 $
  *
  * ====================================================================
  *
@@ -199,12 +199,12 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
         ServletContext servletContext) {
 
         ModuleConfig moduleConfig =
-            ModuleUtils.getInstance().getRequestModuleConfig(request);
+            ModuleUtils.getInstance().getModuleConfig(request);
 
         if (moduleConfig == null) {
             // ModuleConfig not found in current request. Select it.
             ModuleUtils.getInstance().selectModule(request, servletContext);
-            moduleConfig = ModuleUtils.getInstance().getRequestModuleConfig(request);
+            moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
         }
 
         return moduleConfig;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.133 2003/08/02 21:16:54 dgraham Exp $
- * $Revision: 1.133 $
- * $Date: 2003/08/02 21:16:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.134 2003/08/02 22:19:37 dgraham Exp $
+ * $Revision: 1.134 $
+ * $Date: 2003/08/02 22:19:37 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.133 $ $Date: 2003/08/02 21:16:54 $
+ * @version $Revision: 1.134 $ $Date: 2003/08/02 22:19:37 $
  */
 public class RequestUtils {
 
@@ -900,7 +900,7 @@ public class RequestUtils {
         }
 
         ModuleConfig moduleConfig =
-            ModuleUtils.getInstance().getRequestModuleConfig(request);
+            ModuleUtils.getInstance().getModuleConfig(request);
             
         multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
@@ -1057,7 +1057,7 @@ public class RequestUtils {
             
         } else if (pattern.startsWith("*.")) {
             ModuleConfig appConfig =
-                ModuleUtils.getInstance().getRequestModuleConfig(request);
+                ModuleUtils.getInstance().getModuleConfig(request);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
             sb.append(pattern.substring(1));
@@ -1127,7 +1127,7 @@ public class RequestUtils {
 
         // Calculate a context relative path for this ForwardConfig
         ModuleConfig moduleConfig =
-            ModuleUtils.getInstance().getRequestModuleConfig(request);
+            ModuleUtils.getInstance().getModuleConfig(request);
         String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
@@ -1331,11 +1331,11 @@ public class RequestUtils {
      * @return the ModuleConfig object from request, or null if none is set in
      * the request.
      * @since Struts 1.1
-     * @deprecated Use ModuleUtils.getRequestModuleConfig() instead.  This will be
+     * @deprecated Use ModuleUtils.getModuleConfig() instead.  This will be
      * removed after Struts 1.2.
      */
     public static ModuleConfig getRequestModuleConfig( HttpServletRequest request) {
-        return ModuleUtils.getInstance().getRequestModuleConfig(request);
+        return ModuleUtils.getInstance().getModuleConfig(request);
     }
 
     /**
