@@ -45,15 +45,15 @@ and proven design patterns.
     /www/jakarta.apache.org/struts
   </siteDirectory>
   <distributionDirectory>
-    /www/jakarta.apache.org/builds/jakarta-turbine-maven/
+    /www/apache.mirrors.pair.com/jakarta/struts/
   </distributionDirectory>
 
   <repository>
     <connection>
-      scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:maven
+      scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts
     </connection>
     <url>
-      http://cvs.apache.org/viewcvs/maven/
+      http://cvs.apache.org/viewcvs/jakarta-struts/
     </url>
   </repository>
 
