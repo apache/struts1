@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalSettingsAction.java,v 1.3 2003/07/21 15:18:46 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/21 15:18:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalSettingsAction.java,v 1.4 2003/08/16 18:21:31 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/08/16 18:21:31 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,9 +61,6 @@
 
 package org.apache.struts.webapp.tiles.portal;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -72,7 +69,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.tiles.ComponentContext;
 import org.apache.struts.tiles.actions.TilesAction;
-
 
 /**
  * Implementation of <strong>Action</strong> that populates an instance of
@@ -88,14 +84,9 @@ import org.apache.struts.tiles.actions.TilesAction;
  * </ul>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/07/21 15:18:46 $
+ * @version $Revision: 1.4 $ $Date: 2003/08/16 18:21:31 $
  */
-
 public final class UserPortalSettingsAction extends TilesAction {
-
-
-    // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -120,42 +111,38 @@ public final class UserPortalSettingsAction extends TilesAction {
         ActionForm form,
         HttpServletRequest request,
         HttpServletResponse response)
-        throws Exception
-  {
-  //System.out.println("Enter action UserPortalSettingsAction");
-  PortalSettingsForm prefsForm = (PortalSettingsForm)form;
+        throws Exception {
 
-      // Get user portal settings from user context
-  PortalSettings settings = UserPortalAction.getSettings( request, context);
-  PortalCatalog catalog = UserPortalAction.getPortalCatalog( context, getServlet().getServletContext() );
+        PortalSettingsForm prefsForm = (PortalSettingsForm) form;
 
-  if( prefsForm.isSubmitted() )
-    {  // read arrays
-    //System.out.println("form submitted");
+        // Get user portal settings from user context
+        PortalSettings settings = UserPortalAction.getSettings(request, context);
+        PortalCatalog catalog =
+            UserPortalAction.getPortalCatalog(
+                context,
+                getServlet().getServletContext());
 
-      // Set settings cols according to user choice
-    for( int i=0;i<prefsForm.getNumCol(); i++)
-      {
-      settings.setListAt( i, catalog.getTiles( prefsForm.getNewCol(i)) );
-      } // end loop
+        if (prefsForm.isSubmitted()) { // read arrays
 
-    //System.out.println( "settings : " +settings.toString() );
-    prefsForm.reset();
-	  //return null; // (mapping.findForward("viewPortal"));
-    }
+            // Set settings cols according to user choice
+            for (int i = 0; i < prefsForm.getNumCol(); i++) {
+                settings.setListAt(i, catalog.getTiles(prefsForm.getNewCol(i)));
+            }
 
-      // Set lists values to be shown
-    for( int i=0;i<settings.getNumCols(); i++ )
-      {
-      prefsForm.addCol(settings.getListAt(i) );
-      prefsForm.addColLabels(catalog.getTileLabels( settings.getListAt(i)) );
-      } // end loop
+            prefsForm.reset();
 
-    prefsForm.setChoices(catalog.getTiles() );
-    prefsForm.setChoiceLabels(catalog.getTilesLabels() );
+        }
 
-    //System.out.println("Exit action UserPortalSettingsAction");
-	  return null; //(mapping.findForward("editPortal"));
+        // Set lists values to be shown
+        for (int i = 0; i < settings.getNumCols(); i++) {
+            prefsForm.addCol(settings.getListAt(i));
+            prefsForm.addColLabels(catalog.getTileLabels(settings.getListAt(i)));
+        }
+
+        prefsForm.setChoices(catalog.getTiles());
+        prefsForm.setChoiceLabels(catalog.getTilesLabels());
+
+        return null;
     }
 
 }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalAction.java,v 1.3 2003/07/21 15:18:46 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/07/21 15:18:46 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserPortalAction.java,v 1.4 2003/08/16 18:21:31 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/08/16 18:21:31 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,11 +61,9 @@
 
 package org.apache.struts.webapp.tiles.portal;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -76,33 +74,47 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.tiles.ComponentContext;
 import org.apache.struts.tiles.actions.TilesAction;
 
-
 /**
  * This controller load user portal settings and put them in tile context.
  * If portal settings are not defined for user, defined them based on tiles
  * attributes used as default.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/07/21 15:18:46 $
+ * @version $Revision: 1.4 $ $Date: 2003/08/16 18:21:31 $
  */
-
 public final class UserPortalAction extends TilesAction {
 
-      /** Default name used to store settings in session context */
-    public static String DEFAULT_USER_SETTINGS_NAME = "tiles.examples.portal.USER_PORTAL_SETTINGS";
-      /** Tile attribute containing number of columns in portal */
+    /** 
+     * Default name used to store settings in session context.
+     */
+    public static String DEFAULT_USER_SETTINGS_NAME =
+        "tiles.examples.portal.USER_PORTAL_SETTINGS";
+
+    /** 
+     * Tile attribute containing number of columns in portal.
+     */
     public static String NUMCOLS_ATTRIBUTE = "numCols";
-      /** Tile attribute containing list prefix name */
+
+    /** 
+     * Tile attribute containing list prefix name.
+     */
     public static String LIST_ATTRIBUTE = "list";
-      /** Tile attribute containing list of labels prefix name */
+
+    /** 
+     * Tile attribute containing list of labels prefix name.
+     */
     public static String LIST_LABELS_ATTRIBUTE = "labels";
-      /** Tile attribute containing name used to store user settings in session context */
+
+    /** 
+     * Tile attribute containing name used to store user settings in session 
+     * context. 
+     */
     public static String USER_SETTINGS_NAME_ATTRIBUTE = "userSettingsName";
-      /** Name used to store portal catalog in application scope */
+
+    /** 
+     * Name used to store portal catalog in application scope. 
+     */
     public static String PORTAL_CATALOG_NAME = "tiles.examples.portal.PortalCatalog";
-
-    // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -127,77 +139,93 @@ public final class UserPortalAction extends TilesAction {
         ActionForm form,
         HttpServletRequest request,
         HttpServletResponse response)
-        throws Exception
-   {
-    //System.out.println("Enter action UserPortalAction");
+        throws Exception {
 
-      // Get user portal list from user context
-    PortalSettings settings = getSettings( request, context);
-      // Set parameters for tiles
-    context.putAttribute( "numCols", Integer.toString(settings.getNumCols()) );
-    for( int i=0; i<settings.getNumCols(); i++ )
-      context.putAttribute( "list"+i, settings.getListAt(i) );
+        // Get user portal list from user context
+        PortalSettings settings = getSettings(request, context);
 
-    //System.out.println( "settings=" + settings );
-    //System.out.println("Exit action UserPortalAction");
-	  return null;
+        // Set parameters for tiles
+        context.putAttribute("numCols", Integer.toString(settings.getNumCols()));
+
+        for (int i = 0; i < settings.getNumCols(); i++) {
+            context.putAttribute("list" + i, settings.getListAt(i));
+        }
+
+        return null;
     }
 
     /**
      * Retrieve user setting from session.
      * If settings are not found, initialized them.
      */
-  public static PortalSettings getSettings( HttpServletRequest request, ComponentContext context )
-  {
-      // Get current session.
-	  HttpSession session = request.getSession();
-      // Retrieve user context id used to store settings
-    String userSettingsId = (String)context.getAttribute( USER_SETTINGS_NAME_ATTRIBUTE );
-    if( userSettingsId == null )
-      userSettingsId = DEFAULT_USER_SETTINGS_NAME;
+    public static PortalSettings getSettings(
+        HttpServletRequest request,
+        ComponentContext context) {
 
-      // Get user portal list from user context
-    PortalSettings settings = (PortalSettings)session.getAttribute( userSettingsId );
+        // Get current session.
+        HttpSession session = request.getSession();
 
-    if( settings == null )
-      { // List doesn't exist, create it and initialize it from Tiles parameters
-      settings = new PortalSettings();
-      settings.setNumCols( (String)context.getAttribute( NUMCOLS_ATTRIBUTE ) );
-      for( int i=0; i<settings.getNumCols(); i++ )
-        {
-        List tiles = (List)context.getAttribute( ((String)LIST_ATTRIBUTE+i) );
-        settings.setListAt( i, tiles );
-        } // end loop
+        // Retrieve user context id used to store settings
+        String userSettingsId =
+            (String) context.getAttribute(USER_SETTINGS_NAME_ATTRIBUTE);
 
-        // Save user settings in session
-      session.setAttribute( userSettingsId, settings);
-      } // end if
+        if (userSettingsId == null) {
+            userSettingsId = DEFAULT_USER_SETTINGS_NAME;
+        }
 
-  return settings;
-  }
+        // Get user portal list from user context
+        PortalSettings settings =
+            (PortalSettings) session.getAttribute(userSettingsId);
 
-      /**
-       * Retrieve portal choices object.
-       * Create it from default values if needed.
-       */
-    static public PortalCatalog getPortalCatalog( ComponentContext context, ServletContext servletContext)
-      {
-      PortalCatalog catalog = (PortalCatalog)servletContext.getAttribute( PORTAL_CATALOG_NAME );
-      if( catalog == null )
-        { // Initialize catalog
-        catalog = new PortalCatalog();
-        int numCols = Integer.parseInt( (String)context.getAttribute( NUMCOLS_ATTRIBUTE ) );
-        for( int i=0; i<numCols; i++ )
-          {
-          List tiles = (List)context.getAttribute( ((String)LIST_ATTRIBUTE+i) );
-          List labels = (List)context.getAttribute( ((String)LIST_LABELS_ATTRIBUTE+i) );
-          catalog.addTiles( tiles, labels );
-          } // end loop
-        servletContext.setAttribute( PORTAL_CATALOG_NAME, catalog );
-        } // end if
+        if (settings == null) {
+            // List doesn't exist, create it and initialize it from Tiles parameters
+            settings = new PortalSettings();
+            settings.setNumCols((String) context.getAttribute(NUMCOLS_ATTRIBUTE));
 
-      return catalog;
-      }
+            for (int i = 0; i < settings.getNumCols(); i++) {
+                List tiles =
+                    (List) context.getAttribute(((String) LIST_ATTRIBUTE + i));
+
+                settings.setListAt(i, tiles);
+            }
+
+            // Save user settings in session
+            session.setAttribute(userSettingsId, settings);
+        }
+
+        return settings;
+    }
+
+    /**
+     * Retrieve portal choices object.
+     * Create it from default values if needed.
+     */
+    static public PortalCatalog getPortalCatalog(
+        ComponentContext context,
+        ServletContext servletContext) {
+
+        PortalCatalog catalog =
+            (PortalCatalog) servletContext.getAttribute(PORTAL_CATALOG_NAME);
+
+        if (catalog == null) { // Initialize catalog
+            catalog = new PortalCatalog();
+            int numCols =
+                Integer.parseInt((String) context.getAttribute(NUMCOLS_ATTRIBUTE));
+
+            for (int i = 0; i < numCols; i++) {
+                List tiles =
+                    (List) context.getAttribute(((String) LIST_ATTRIBUTE + i));
+
+                List labels =
+                    (List) context.getAttribute(
+                        ((String) LIST_LABELS_ATTRIBUTE + i));
+
+                catalog.addTiles(tiles, labels);
+            }
+            servletContext.setAttribute(PORTAL_CATALOG_NAME, catalog);
+        }
+
+        return catalog;
+    }
 
 }
-
