@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.16 2003/02/25 04:30:45 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/02/25 04:30:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.17 2003/05/17 03:40:27 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/05/17 03:40:27 $
  *
  * ====================================================================
  *
@@ -77,9 +77,9 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/02/25 04:30:45 $
+ * @author David Graham
+ * @version $Revision: 1.17 $ $Date: 2003/05/17 03:40:27 $
  */
-
 public class OptionTag extends BodyTagSupport {
 
     // ----------------------------------------------------- Instance Variables
@@ -267,23 +267,25 @@ public class OptionTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
 
-        // Acquire the select tag we are associated with
-        SelectTag selectTag = (SelectTag) pageContext.getAttribute(Constants.SELECT_KEY);
-        if (selectTag == null) {
-            JspException e = new JspException(messages.getMessage("optionTag.select"));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
+        ResponseUtils.write(pageContext, this.renderOptionElement());
 
-        // Generate an HTML <option> element
-        StringBuffer results = new StringBuffer();
-        results.append("<option value=\"");
-        results.append(value);
+        return (EVAL_PAGE);
+    }
+
+    /**
+     * Generate an HTML %lt;option&gt; element.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String renderOptionElement() throws JspException {
+        StringBuffer results = new StringBuffer("<option value=\"");
+        
+        results.append(this.value);
         results.append("\"");
         if (disabled) {
             results.append(" disabled=\"disabled\"");
         }
-        if (selectTag.isMatched(value)) {
+        if (this.selectTag().isMatched(value)) {
             results.append(" selected=\"selected\"");
         }
         if (style != null) {
@@ -302,20 +304,35 @@ public class OptionTag extends BodyTagSupport {
             results.append("\"");
         }
         results.append(">");
+        
         String text = text();
         if (text == null) {
             results.append(value);
         } else {
             results.append(text);
         }
+        
         results.append("</option>");
+        return results.toString();
+    }
 
-        // Render this element to our writer
-        ResponseUtils.write(pageContext, results.toString());
-
-        // Continue evaluating this page
-        return (EVAL_PAGE);
-
+    /**
+     * Acquire the select tag we are associated with.
+     * @throws JspException
+     */
+    private SelectTag selectTag() throws JspException {
+        SelectTag selectTag =
+            (SelectTag) pageContext.getAttribute(Constants.SELECT_KEY);
+            
+        if (selectTag == null) {
+            JspException e =
+                new JspException(messages.getMessage("optionTag.select"));
+                
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+        
+        return selectTag;
     }
 
     /**
