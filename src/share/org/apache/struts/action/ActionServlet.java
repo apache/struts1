@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.169 2003/09/29 04:35:26 rleland Exp $
- * $Revision: 1.169 $
- * $Date: 2003/09/29 04:35:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.170 2003/11/27 05:38:53 husted Exp $
+ * $Revision: 1.170 $
+ * $Date: 2003/11/27 05:38:53 $
  *
  * ====================================================================
  *
@@ -232,7 +232,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.169 $ $Date: 2003/09/29 04:35:26 $
+ * @version $Revision: 1.170 $ $Date: 2003/11/27 05:38:53 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -965,7 +965,7 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * Add any custom RuleSet instances to configDigester that have 
-     * been specified in the <code>rulesets</code> init. parameter.
+     * been specified in the <code>rulesets</code> init parameter.
      * @throws ServletException
      */
     private void addRuleSets() throws ServletException {

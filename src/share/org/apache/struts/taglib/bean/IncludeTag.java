@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.24 2003/08/28 17:37:04 rleland Exp $
+ * $Id: IncludeTag.java,v 1.25 2003/11/27 05:38:54 husted Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.struts.taglib.TagUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2003/08/28 17:37:04 $
+ * @version $Revision: 1.25 $ $Date: 2003/11/27 05:38:54 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -282,7 +282,7 @@ public class IncludeTag extends TagSupport {
      * @param conn
      * @param urlString
      * @param request
-     * @ since Struts 1.2.0
+     * @since Struts 1.2.0
      */
     protected void addCookie(URLConnection conn, String urlString, HttpServletRequest request) {
         if ((conn instanceof HttpURLConnection)

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.5 2003/07/09 00:14:00 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/07/09 00:14:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.6 2003/11/27 05:38:54 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/11/27 05:38:54 $
  *
  * ====================================================================
  *
@@ -134,9 +134,7 @@ public class TilesUtilImpl implements Serializable {
      * This method is used by the Tiles package when an include is required.
      * The Tiles package can use indifferently any form of this method.
      * @param uri Uri or Definition name to forward.
-     * @param request Current page request.
-     * @param response Current page response.
-     * @param servletContext Current servlet context.
+     * @param pageContext Current page context.
      */
     public static void doInclude(String uri, PageContext pageContext)
         throws IOException, ServletException {

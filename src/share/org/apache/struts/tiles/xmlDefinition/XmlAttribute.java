@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlAttribute.java,v 1.4 2003/07/02 02:16:39 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/02 02:16:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlAttribute.java,v 1.5 2003/11/27 05:38:54 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/11/27 05:38:54 $
  *
  * ====================================================================
  *
@@ -131,7 +131,7 @@ public class XmlAttribute {
     /**
      * Sets the value of the name property.
      *
-     * @param aName the new value of the name property
+     * @param role the new value of the name property
      */
     public void setRole(String role) {
         this.role = role;
@@ -210,7 +210,7 @@ public class XmlAttribute {
     /**
      * Sets the value of the value property.
      *
-     * @param aValue the new value of the value property
+     * @param body the new value of the value property
      */
     public void setBody(String body) {
         if (body.length() == 0) {
@@ -223,7 +223,7 @@ public class XmlAttribute {
     /**
      * Sets the value of the value property.
      *
-     * @param aValue the new value of the value property
+     * @param value the new value of the value property
      */
     public void setDirect(String value) {
         this.direct = value;
@@ -232,7 +232,7 @@ public class XmlAttribute {
     /**
      * Sets the value of the value property.
      *
-     * @param aValue the new value of the value property
+     * @param value the new value of the value property
      */
     public void setType(String value) {
         this.valueType = value;

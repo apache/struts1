@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.5 2003/08/14 03:19:43 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/08/14 03:19:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.6 2003/11/27 05:38:54 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/11/27 05:38:54 $
  *
  * ====================================================================
  *
@@ -86,8 +86,8 @@ import org.xml.sax.SAXException;
  * 
  * @author Joe Germuska
  * @author David Graham
- * @version $Revision: 1.5 $
- * @see org.apache.struts.PlugIn
+ * @version $Revision: 1.6 $
+ * @see org.apache.struts.action.PlugIn
  * @since Struts 1.2
  */
 public class DigestingPlugIn implements PlugIn {
@@ -478,7 +478,8 @@ public class DigestingPlugIn implements PlugIn {
 
     /**
      * <p>If set to <code>true</code>, this PlugIn will be pushed onto
-     * the Digester stack before <code>digester.parse()</code> is called.</p>
+     * the Digester stack before the digester <code>parse</code> method is
+     * called.</p>
      * <p>Defaults to <code>false</code></p>
      * @param push
      */

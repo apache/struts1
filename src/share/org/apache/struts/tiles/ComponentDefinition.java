@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.8 2003/07/09 02:37:20 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/09 02:37:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.9 2003/11/27 05:38:54 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/11/27 05:38:54 $
  *
  * ====================================================================
  *
@@ -213,7 +213,7 @@ public class ComponentDefinition implements Serializable {
     /**
      * Sets the value of the path property.
      *
-     * @param aPath the new value of the path property
+     * @param page the new value of the path property
      */
     public void setPage(String page) {
         path = page;
