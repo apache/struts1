@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.11 2002/11/12 03:53:31 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/12 03:53:31 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.12 2002/12/08 06:04:42 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/12/08 06:04:42 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.AppException;
+import org.apache.struts.util.ModuleException;
 import org.apache.struts.util.MessageResources;
 import org.apache.commons.beanutils.PropertyUtils;
 
@@ -84,7 +84,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/11/12 03:53:31 $
+ * @version $Revision: 1.12 $ $Date: 2002/12/08 06:04:42 $
  */
 
 public final class LogonAction extends Action {
@@ -111,7 +111,7 @@ public final class LogonAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
@@ -186,10 +186,10 @@ public final class LogonAction extends Action {
      * @param database Database in which to look up the user
      * @param username Username specified on the logon form
      *
-     * @exception AppException if a business logic rule is violated
+     * @exception ModuleException if a business logic rule is violated
      */
     public User getUser(UserDatabase database, String username)
-        throws AppException {
+        throws ModuleException {
 
         // Force an ArithmeticException which can be handled explicitly
         if ("arithmetic".equals(username)) {

@@ -60,7 +60,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.Globals;
 import org.apache.struts.config.ExceptionConfig;
-import org.apache.struts.util.AppException;
+import org.apache.struts.util.ModuleException;
 
 /**
  * An ExceptionHandler is configured in the Struts configuration file to handle a specific
@@ -111,9 +111,9 @@ public class ExceptionHandler {
         forward = new ActionForward(path);
 
         // Figure out the error
-        if (ex instanceof AppException) {
-            error = ((AppException) ex).getError();
-            property = ((AppException) ex).getProperty();
+        if (ex instanceof ModuleException) {
+            error = ((ModuleException) ex).getError();
+            property = ((ModuleException) ex).getProperty();
         } else {
             error = new ActionError(ae.getKey());
             property = error.getKey();

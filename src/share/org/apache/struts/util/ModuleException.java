@@ -54,21 +54,24 @@
  */
 package org.apache.struts.util;
 
-/**
- * @deprecated use {@link ModuleException}
- */
-public class AppException extends ModuleException {
+import org.apache.struts.action.ActionError;
 
-    // ----------------------------------------------------------- Constructors
+/**
+ * Used for specialized exception handling.
+ */
+public class ModuleException extends Exception {
+    protected String property = null;
+    protected ActionError error = null;
 
 	/**
 	 * Construct an module exception with no replacement values.
 	 *
 	 * @param key Message key for this error message
 	 */
-	public AppException(String key) {
-		super(key);
-	}
+    public ModuleException(String key) {
+        super(key);
+		error = new ActionError(key);
+    }
 
 	/**
 	 * Construct an module exception with the specified replacement values.
@@ -76,8 +79,9 @@ public class AppException extends ModuleException {
 	 * @param key Message key for this error message
 	 * @param value First replacement value
 	 */
-	public AppException(String key, Object value) {
-		super(key,value);
+	public ModuleException(String key, Object value) {
+		super(key);
+		error = new ActionError(key, value);
 	}
 
 	/**
@@ -87,8 +91,9 @@ public class AppException extends ModuleException {
 	 * @param value0 First replacement value
 	 * @param value1 Second replacement value
 	 */
-	public AppException(String key, Object value0, Object value1) {
-		super(key,value0,value1);
+	public ModuleException(String key, Object value0, Object value1) {
+		super(key);
+		error = new ActionError(key, value0, value1);
 	}
 
 	/**
@@ -99,8 +104,9 @@ public class AppException extends ModuleException {
 	 * @param value1 Second replacement value
 	 * @param value2 Third replacement value
 	 */
-	public AppException(String key, Object value0, Object value1, Object value2) {
-		super(key, value0, value1, value2);
+	public ModuleException(String key, Object value0, Object value1, Object value2) {
+		super(key);
+		error = new ActionError(key, value0, value1, value2);
 	}
 
 	/**
@@ -112,8 +118,9 @@ public class AppException extends ModuleException {
 	 * @param value2 Third replacement value
 	 * @param value3 Fourth replacement value
 	 */
-	public AppException(String key, Object value0, Object value1, Object value2, Object value3) {
-		super(key, value0, value1, value2, value3);
+	public ModuleException(String key, Object value0, Object value1, Object value2, Object value3) {
+		super(key);
+		error = new ActionError(key, value0, value1, value2, value3);
 	}
 
 	/**
@@ -122,9 +129,31 @@ public class AppException extends ModuleException {
 	 * @param key Message key for this message
 	 * @param values Array of replacement values
 	 */
-	public AppException(String key, Object[] values) {
-        super(key,values);
+	public ModuleException(String key, Object[] values) {
+		error = new ActionError(key, values);
+	}
+	// -------------------------------------------------------- Public Methods
+    /**
+	 * Returns the property associated with the exception.
+	 * @return Value of property.
+	 */
+	public String getProperty() {
+		return (property != null) ? property : error.getKey();
 	}
 
+    /**
+	 * Set the property associated with the exception.
+	 * It can be a name of the edit field, which 'caused' the exception.
+	 */
+	public void setProperty(String property) {
+		this.property = property;
+	}
 
+    /**
+	 * Returns the error associated with the exception.
+	 * @return Value of property error.
+	 */
+	public ActionError getError() {
+		return error;
+	}
 }
