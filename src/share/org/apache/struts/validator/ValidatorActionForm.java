@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.4 2002/06/30 03:28:47 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/30 03:28:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.5 2002/10/16 22:41:42 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/16 22:41:42 $
  *
  * ====================================================================
  *
@@ -62,16 +62,14 @@
 package org.apache.struts.validator;
 
 import java.io.Serializable;
-import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
-import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.StrutsValidatorUtil;
 
@@ -87,9 +85,9 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.4 $ $Date: 2002/06/30 03:28:47 $
+ * @version $Revision: 1.5 $ $Date: 2002/10/16 22:41:42 $
  * @since Struts 1.1
-*/
+ */
 
 public class ValidatorActionForm extends ValidatorForm implements Serializable {
 
@@ -107,6 +105,7 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
+     * @return  <code>ActionErrors</code> object that encapsulates any validation errors
      */
     public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {
@@ -114,16 +113,16 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
-    Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
-                                                            this,
-                                                            application, request,
-                                                            errors, page);
+        Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
+                             this,
+                             application, request,
+                             errors, page);
 
-    try {
-       validatorResults = validator.validate();
+        try {
+            validatorResults = validator.validate();
         } catch (ValidatorException e) {
-       log.error(e.getMessage(), e);
-    }
+            log.error(e.getMessage(), e);
+        }
 
         return errors;
     }
