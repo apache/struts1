@@ -58,8 +58,7 @@
     Availability" status and may be made the "Best Available" release.
     </p>
     <p>
-    With the recent promotion of Struts 1.2.4 to General Availability, there
-    are no more recent development builds at this time.
+    The current development build is Struts v1.2.5 and is available <a href="http://cvs.apache.org/dist/struts/v1.2.5/">here</a>
     </p>
 
 </section>
