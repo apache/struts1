@@ -3,21 +3,15 @@
 <%@ taglib uri="/tags/struts-bean" prefix="bean" %>
 <%@ taglib uri="/tags/struts-html" prefix="html" %>
 <app:checkLogon/>
-<jsp:useBean id="user" scope="session" type="org.apache.struts.webapp.example.User"/>
-
-<html:html>
+<html>
 <head>
 <title><bean:message key="mainMenu.title"/></title>
-<html:base/>
+<link rel="stylesheet" type="text/css" href="base.css" />
 </head>
-<body bgcolor="white">
-
-<h3><bean:message key="mainMenu.heading"/>
-<jsp:getProperty name="user" property="username"/></h3>
+<h3><bean:message key="mainMenu.heading"/> <bean:write name="user" property="fullName" /></h3>
 <ul>
 <li><html:link action="/EditRegistration?action=Edit"><bean:message key="mainMenu.registration"/></html:link></li>
 <li><html:link forward="logoff"><bean:message key="mainMenu.logoff"/></html:link></li>
 </ul>
-
 </body>
-</html:html>
+</html>

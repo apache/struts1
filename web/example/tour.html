@@ -110,33 +110,33 @@
 
     <p>Unfortunately, actions cannot be specified as a welcome page. Since there can be a list of pages, the web server looks for each page on the list before selecting one. The web server doesn't see actions as pages and will never select one as a welcome page. So, in the case of a welcome page, how do we follow the Struts best practice of navigating through actions rather than pages?</p>
 
-    <p>One solution is to use a server page to "bootstrap" a Struts action. A Java web application recognizes the idea of "forwarding" from one page to another page (or action). We can register the usual "index.jsp" as the welcome page and have it forward to a "welcome" action. Here's the MailReader's index.jsp:</p>
+    <p>One solution is to use a server page to "bootstrap" a Struts action. A Java web application recognizes the idea of "forwarding" from one page to another page (or action). We can register the usual "index.jsp" as the welcome page and have it forward to a "Welcome" action. Here's the MailReader's index.jsp:</p>
     <hr />
     <pre>
 <code>&lt;%@ taglib uri="/tags/struts-logic" prefix="logic" %&gt;
-&lt;logic:redirect action="/welcome"/&gt;</code>
+&lt;logic:redirect action="/Welcome"/&gt;</code>
 </pre>
     <hr />
 
-    <p>At the top of the page, we import the "struts-logic" JSP tag library. (Again, see the <a href="http://jakarta.apache.org/struts/userGuide/preface.html">Preface to the Struts User Guide</a> for more about the technologies underlying Struts.) The page itself consists of a single tag that redirects to the "welcome" action. The tag inserts the actual web address for the redirect when the page is rendered. But, where does the tag find the actual address to insert?</p>
+    <p>At the top of the page, we import the "struts-logic" JSP tag library. (Again, see the <a href="http://jakarta.apache.org/struts/userGuide/preface.html">Preface to the Struts User Guide</a> for more about the technologies underlying Struts.) The page itself consists of a single tag that redirects to the "Welcome" action. The tag inserts the actual web address for the redirect when the page is rendered. But, where does the tag find the actual address to insert?</p>
 
     <p>The list of actions, along with other Struts components, are registered through one or more Struts configuration files. The configuration files are written as XML documents and processed when the application starts. If we just wanted to forward to the welcome page, we could use a configuration element like this:</p>
     <hr />
     <pre>
 <code>&lt;!-- Display welcome page --&gt;
-&lt;action path="/welcome" forward="/welcome.jsp" /&gt;</code>
+&lt;action path="/Welcome" forward="/welcome.jsp" /&gt;</code>
 </pre>
     <hr />
 
-    <p>If someone asked for the welcome action ("/Welcome.do"), the welcome.jsp page would be displayed in return.</p>
+    <p>If someone asked for the Welcome action ("/Welcome.do"), the welcome.jsp page would be displayed in return.</p>
 
     <h4><a name="WelcomeAction.java" id="WelcomeAction.java">WelcomeAction.java</a></h4>
 
-    <p>But if we peek at the configuration file for the MailReader, we find a slightly more complicated XML element for the welcome action:</p>
+    <p>But if we peek at the configuration file for the MailReader, we find a slightly more complicated XML element for the Welcome action:</p>
     <hr />
     <pre>
 <code>&lt;!-- Display welcome page --&gt;
-&lt;action path="/welcome"
+&lt;action path="/Welcome"
   type="org.apache.struts.webapp.example.WelcomeAction"&gt;
   &lt;forward name="failure" path="/Error.jsp" /&gt;
   &lt;forward name="success" path="/welcome.jsp" /&gt;
@@ -144,7 +144,7 @@
 </pre>
     <hr />
 
-    <p>Here, the "WelcomeAction" Java class executes whenever someone asks for the welcome action. As it completes, the Action class can select which page is displayed. Two pages the class can select here are "Error.jsp" and "welcome.jsp". But the Action class doesn't need to know the path to the pages. The class can select them just using the names "success" or "failure".</p>
+    <p>Here, the "WelcomeAction" Java class executes whenever someone asks for the Welcome action. As it completes, the Action class can select which page is displayed. Two pages the class can select here are "Error.jsp" and "welcome.jsp". But the Action class doesn't need to know the path to the pages. The class can select them just using the names "success" or "failure".</p>
 
     <p>OK ... but why would a WelcomeAction want to choose between success and failure?</p>
 
@@ -223,23 +223,23 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
 &lt;h3&gt;&lt;bean:message key="index.heading"/&gt;&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;html:link action="/editRegistration?action=Create"&gt;<br />
+&lt;li&gt;&lt;html:link action="/EditRegistration?action=Create"&gt;<br />
 &lt;bean:message key="index.registration"/&gt;&lt;/html:link&gt;&lt;/li&gt;
-&lt;li&gt;&lt;html:link action="/logon"&gt;&lt;bean:message key="index.logon"/&gt;&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/Logon"&gt;&lt;bean:message key="index.logon"/&gt;&lt;/html:link&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;Change Language&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;html:link action="/locale?language=en"&gt;English&lt;/html:link&gt;&lt;/li&gt;
-&lt;li&gt;&lt;html:link action="/locale?language=ja" useLocalEncoding="true"&gt;Japanese&lt;/html:link&gt;&lt;/li&gt;
-&lt;li&gt;&lt;html:link action="/locale?language=ru" useLocalEncoding="true"&gt;Russian&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/Locale?language=en"&gt;English&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/Locale?language=ja" useLocalEncoding="true"&gt;Japanese&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/Locale?language=ru" useLocalEncoding="true"&gt;Russian&lt;/html:link&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;html:img bundle="alternate" pageKey="struts.logo.path" altKey="struts.logo.alt"/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;html:link action="/tour"&gt;&lt;bean:message key="index.tour"/&gt;&lt;/html:link&gt;&lt;/p&gt;
+&lt;p&gt;&lt;html:link action="/Tour"&gt;&lt;bean:message key="index.tour"/&gt;&lt;/html:link&gt;&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</code>
@@ -253,7 +253,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
     <p>The html:link tag does double duty. First, you can refer to an action or forward stored in the Struts configuration, and the tag will insert the corresponding path when the page is rendered. This makes it easy to "rewire" an application without touching all the pages. Second, the link tag will "URL encode" the hyperlink to maintain the client session. Your application can maintain client state without requiring cookies.</p>
 
     <blockquote>
-      <p><i>If you turn cookies off in your browser, and then reload your browser and this page, you will see the links with the Java session id information attached. (If you are using Internet Explorer and try this, be sure you reset cookies for the appropriate security zone, and that you disallow "per-session" cookies.)</i></p>
+      <p><font class="hint">If you turn cookies off in your browser, and then reload your browser and this page, you will see the links with the Java session id information attached. (If you are using Internet Explorer and try this, be sure you reset cookies for the appropriate security zone, and that you disallow "per-session" cookies.)</font></p>
     </blockquote>
 
     <p>The html:img tag renders an img tag. When necessary, the src URI is encoded as it is with the link tag. In this case, the tag inserts the src path from the "alternate" MessageResource bundle, along with the text for the alt element.</p>
@@ -289,7 +289,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 
 &lt;html:errors/&gt;
 
-&lt;html:form action="/submitLogon" focus="username"
+&lt;html:form action="/SubmitLogon" focus="username"
          onsubmit="return validateLogonForm(this);"&gt;
 &lt;table border="0" width="100%"&gt;
 
@@ -351,7 +351,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
     <p>Following the form is a "html:javascript" tag. This tag works with the Struts Validator component to generate a JavaScript that can validate input before it is submitted to the LogonAction.</p>
 
     <blockquote>
-      <p><font class="note">Most of these tags have many more options than the ones we use in this application. For the complete documentation for each tag, see the Tag Developers Guides in the Struts documentation bundle.</font></p>
+      <p><font class="hint">Most of these tags have many more options than the ones we use in this application. For the complete documentation for each tag, see the Tag Developers Guides in the Struts documentation bundle.</font></p>
     </blockquote>
 
     <p>But, how do these tags know so much? How does the Javascript tag know what scripts to write? How do the text and password tags know what values to redisplay?</p>
@@ -364,7 +364,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
     <hr />
     <pre>
 <code>&lt;!-- Process a user logon --&gt;
-&lt;action    path="/submitLogon"
+&lt;action    path="/SubmitLogon"
                   type="org.apache.struts.webapp.example.LogonAction"
                   name="LogonForm"
                  scope="request"
@@ -377,7 +377,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
 </pre>
     <hr />
 
-    <p>We saw the path and type attributes in the welcome action. Let's look at the new attributes.</p>
+    <p>We saw the path and type attributes in the Welcome action. Let's look at the new attributes.</p>
 
     <p>The "name" attribute specifies something Struts calls an "ActionForm". The ActionForm buffers input from a form and delivers it to an Action class as an object. The ActionForm can also validate the input. If validation fails, the tags can rewrite the input values from the ActionForm.</p>
 
@@ -397,7 +397,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</code>
     <p>Struts creates the ActionForms automatically. The "scope" attribute in the action element tells the controller wether to store the ActionForm in the request or in the user's session.</p>
 
     <blockquote>
-      <p><font class="note">The Struts best practice is to use request scope for single-page forms that contain all the properties needed by the Action. There is usually no need to maintain form data across requests.</font></p>
+      <p><font class="hint">The Struts best practice is to use request scope for single-page forms that contain all the properties needed by the Action. There is usually no need to maintain form data across requests.</font></p>
     </blockquote>
 
     <p>Struts can also validate the ActionForm automatically. If validation fails, Struts looks for the forward specified by the "input" attribute. In this case, the "logon" forward sends control back to the input.jsp page.</p>
@@ -531,9 +531,9 @@ public final class LogonAction extends BaseAction {
 </pre>
     <hr />
 
-    <h4><a name="mainMenu.jsp" id="mainMenu.jsp">mainMenu.jsp</a></h4>
+    <h4><a name="MainMenu.do" id="MainMenu.do">MainMenu.do and mainMenu.jsp</a></h4>
 
-    <p>On a successful logon, the main menu page displays, offering the choices</p>
+    <p>On a successful logon, the Main Menu page displays. If you logged in using the default account, the page title should be "Main Menu Options for John Q. User". Below this legend should be two links:
 
     <ul>
       <li>Edit your user registration profile</li>
@@ -541,41 +541,113 @@ public final class LogonAction extends BaseAction {
       <li>Log off MailReader Demonstration Application</li>
     </ul>
 
-    <p>If you check the page path shown by your browser, you will see that it shows "Logon.do" not "mainMenu.jsp". This is because the page was loaded as the ultimate result of the Logon.do request, so for all the browser knows, that's where you are. This is why the base custom tag is important. If your page included relative links to images, your browser would be trying to make them based on the path to "Logon.do". So the Struts base tag saves the day by telling the browser to resolve relative links based on the path to the file Struts returned, rather than on the "file" the browser requested.</p>
+    <p>If you check the address shown by your browser, you will see that it shows "/SubmitLogon.do" not "/MainMenu.do". The Java servlet platform supports the idea of server-side forwards. When control passed from the SubmitLogon action to the MainMenu action, everything occured server-side. All the browser knows is that we are looking at the result of submitting a form to "/LogonSubmit.do", so that's the address that shows. It doesn't know control passed from one action to another. The difference between server-side forwards and client-side redirects is subtle and often confuses new developers. </p>
 
-    <blockquote>
-      <p><i>If you have a sharp eye, you also may have noticed that logon.do is not followed by any parameters from the login form (Logon.do?username=user). The default method for a from created with the Struts form tag is POST, which does not append form parameters to the request path, as GET does. This is the opposite of the HTML form tag, which uses GET by default.</i></p>
-    </blockquote>
+    <p>If you change the address to "/MainMenu.do" and press enter, the same page will display again.</p>
 
-    <h3><a name="mainMenu.jsp" id="mainMenu.jsp">mainMenu.jsp</a></h3>
+    <p>Here's the JSP source for the "MainMenu" action and the "mainMenu.jsp".</p>
 
-    <p>If you check the source for mainMenu.jsp, you will find some interesting new tags. The first is app:checkLogon. This is not a standard Struts custom tag, but one designed for the Example application. The directive at the top of the file tells us that the app tags are defined in app.tld. Tracing through app.tld, we find that source for this tag is (surprise!) CheckLogonTag.</p>
+    <hr />
 
-    <h4><a name="CheckLoginTag.java" id="CheckLoginTag.java">CheckLoginTag.java</a></h4>
+    <blockquote><pre><code>&lt;action path="/MainMenu" forward="/mainMenu.jsp"/></blockquote></code></pre>
 
-    <p>This is an excellent example of using custom tags to encapsulate application logic. CheckLoginTag.java looks to see if the user is logged in by checking for an object named "User" in the session context. If not, control is forwarded to "/login.jsp". So, whenever you want to be sure someone is logged in before they access a page, just put "&lt;app:checkLogon/&gt;" at the top of the JSP.</p>
+    <hr />
 
-    <blockquote>
-      <p><i>If you take a good look at the CheckLoginTag source, you will probably see a quick and easy way the code could be made easier to maintain.</i></p>
+    <blockquote><pre><code>&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %>
+&lt;%@ taglib uri="/tags/app" prefix="app" %>
+&lt;%@ taglib uri="/tags/struts-bean" prefix="bean" %>
+&lt;%@ taglib uri="/tags/struts-html" prefix="html" %>
+&lt;app:checkLogon/>
+&lt;html>
+&lt;head>
+&lt;title>&lt;bean:message key="mainMenu.title"/>&lt;/title>
+&lt;link rel="stylesheet" type="text/css" href="base.css" />
+&lt;/head>
+&lt;h3>&lt;bean:message key="mainMenu.heading"/> &lt;bean:write name="user" property="fullName" />&lt;/h3>
+&lt;ul>
+&lt;li>&lt;html:link action="/EditRegistration?action=Edit">&lt;bean:message key="mainMenu.registration"/>&lt;/html:link>&lt;/li>
+&lt;li>&lt;html:link forward="logoff">&lt;bean:message key="mainMenu.logoff"/>&lt;/html:link>&lt;/li>
+&lt;/ul>
+&lt;/body>
+&lt;/html></blockquote></code></pre>
 
-      <p><i>Hint: 'Consistency is Key'.</i></p>
-    </blockquote>
+    <hr />
 
-    <p>You may not have noticed, but the heading on the mainMenu page is customized for the current user. If I were to create a new login for myself and come back to the mainMenu page, instead of saying "Main Menu Options for user" it would say "Main Menu Options for thusted". In doing this, the mainMenu.jsp demonstrates using regular jsp:bean tags alongside Struts custom tags. (No worries mate!) It simply uses a standard jsp:useBean jsp:getProperty tags to snag your username from the User bean and display it in the HTML heading.</p>
+    <p>If you check the source for mainMenu.jsp, you will find two new tags: "app:checkLogon" and "bean:write". Let's look at the bean tag first.</p>
 
-    <blockquote>
-      <p><i>Unfortunately, some of the application's model is exposed by this page view. Struts goes a long way toward minimizing this sort of thing, but in some cases it is unavoidable.</i></p>
-    </blockquote>
+
+    <p>When control passed through the LogonAction, it retrieved a "User" object from the database and stored a reference in "session" scope. This object is a JavaBean with several properties. One property is "fullName". The bean:write tag can find the User bean and print the fullName property for us.</p>
+
+    <p>But how can the page be sure that we are logged in and that the User object exists?</p>
+
+	<p>At the top of the page, above the "html" tag, is the other new tag, checkLogon. This tag, true to its name, checks to see of the user is logged on. If not, the tag forwards to the LogonAction. Let's have a look:
+
+    <hr />
+
+    <blockquote><pre><code>package org.apache.struts.webapp.example;
+import ...
+
+public final class CheckLogonTag extends TagSupport {
+
+    private String name = Constants.USER_KEY;
+    private static String LOGIN_PATH = "/Logon.do";
+    private String page = LOGIN_PATH;
+
+    public int doStartTag() throws JspException {
+	   return (SKIP_BODY);
+    }
+
+    public int doEndTag() throws JspException {
+    	boolean valid = false;
+    	HttpSession session = pageContext.getSession();
+    	if ((session != null) && (session.getAttribute(name) != null)) {
+    	    valid = true;
+        }
+        if (valid) {
+            return (EVAL_PAGE);
+        } else {
+            ModuleConfig config =
+                (ModuleConfig) pageContext.getServletContext().getAttribute(
+                    org.apache.struts.Globals.MODULE_KEY);
+
+                try {
+                    pageContext.forward(config.getPrefix() + page);
+                } catch (ServletException e) {
+                    throw new JspException(e.toString());
+                } catch (IOException e) {
+                    throw new JspException(e.toString());
+                }
+
+            return (SKIP_PAGE);
+        }
+    }
+
+    public void release() {
+        super.release();
+        this.name = Constants.USER_KEY;
+        this.page = LOGIN_PATH;
+    }
+}</blockquote></code></pre>
+
+	<hr />
+
+		<p>As tags go, CheckLogon is quite simple. It takes no attributes. It's just hardwired to check for a User object in session scope and forward to the LogonAction if the object is missing. </p>
+
+		<p>Simple but effective. Try following the logout link and then putting in the "/MainMenu.do" address by hand. If you do, the tag will automatically forward you to the logon page. For any page that requires a login, we simply need to add a checkLogon tag at the top (before any of the page is written).</p>
+
+		<blockquote>
+		<p><font class="hint">Many Struts developers would frown on the CheckLogon tag solution. They might argue that a page should not need to know about logons. We shouldn't rely on people remembering to put a CheckLogon tag on every protected page. <em>And "they" would be right!</em> We do recommend that most applications use standard JAAS. Perhaps in the next iteration, the MailReader developers will do just that. But for now, the CheckLogon tag is a simple solution to a simple problem.</font></p>
+		</blockquote>
 
     <p>The other links we've seen have either gone directly to a JSP file, or to a Struts action path, like Login.do. The "Edit your user registration profile" link is a little different, since it also uses a parameter, as in EditRegistration.do?action=Edit. When the Struts ActionServlet processes this link, it will ignore the parameter for the purpose of matching the request, but still pass the parameter along to action's object.</p>
 
     <blockquote>
-      <p><i>This means that in Struts, an action object must be able to handle every valid parameter for it's base path. (In the Example, editRegistration <b>must</b> handle both Edit and Create.)</i></p>
+      <p><i>This means that in Struts, an action object must be able to handle every valid parameter for it's base path. (In the Example, EditRegistration <b>must</b> handle both Edit and Create.)</i></p>
 
       <p><i>You may want to check for invalid parameters too. (And be careful of differences in case if your comparisons are not case insensitive!)</i></p>
     </blockquote>
 
-    <p>If you check the struts-config.xml, you'll see that the editRegistration action is mapped to the (surprise again!), the EditRegistrationAction; it uses a RegistrationForm bean, and registration.jsp for input.</p>
+    <p>If you check the struts-config.xml, you'll see that the EditRegistration action is mapped to the (surprise again!), the EditRegistrationAction; it uses a RegistrationForm bean, and registration.jsp for input.</p>
 
     <blockquote>
       <p><code>&lt;!-- Registration form bean --&gt;<br />
@@ -583,7 +655,7 @@ public final class LogonAction extends BaseAction {
       type="org.apache.struts.webapp.example.RegistrationForm"/&gt;</code></p>
 
       <p><code>&lt;!-- Edit user registration --&gt;<br />
-      &lt;action path="/editRegistration"<br />
+      &lt;action path="/EditRegistration"<br />
       type="org.apache.struts.webapp.example.EditRegistrationAction"<br />
       name="RegistrationForm"<br />
       scope="request"<br />
@@ -595,7 +667,7 @@ public final class LogonAction extends BaseAction {
       <p><i>Hint: Consistent naming conventions, like the ones used throughout the Example, make applications much easier to write and understand. Save your creativity for the things that matter, and follow an established standard for source code formatting, like the <a href="www.amazon.com/exec/obidos/ISBN=0521777682/">Elements of Java Style</a>.</i></p>
     </blockquote>
 
-    <h4><a name="editRegistrationAction.java" id="editRegistrationAction.java">EditRegistrationAction.java</a></h4>
+    <h4><a name="EditRegistrationAction.java" id="EditRegistrationAction.java">EditRegistrationAction.java</a></h4>
 
     <p>Many objects in an application may do double-duty. For example, EditRegistrationAction not only lets you update a registration, but is also used to create a new one. Which task the object performs is determined by the action passed to it. In the case of EditRegistrationAction, it can either edit or create a registration, the default being create if a task is not specified. To select between tasks, simply add ?create or ?edit to the hyperlink or form action.</p>
 
@@ -712,7 +784,7 @@ public final class LogonAction extends BaseAction {
 
     <h4><a name="LinkSubscriptionTag.java" id="LinkSubscriptionTag.java">LinkSubscriptionTag.java</a></h4>
 
-    <p>The Example application uses a subscription's host name (e.g. yahoo.com) as a primary key, which means you can only have one subscription for each host. It also means that to edit a subscription, all you need to know is the user and host. In fact, the editSubscription action is designed to create, edit, or delete a subscription if provided a user and host names in the request. The goal of LinkSubscriptionTag is then to output a block like:</p>
+    <p>The Example application uses a subscription's host name (e.g. yahoo.com) as a primary key, which means you can only have one subscription for each host. It also means that to edit a subscription, all you need to know is the user and host. In fact, the EditSubscription action is designed to create, edit, or delete a subscription if provided a user and host names in the request. The goal of LinkSubscriptionTag is then to output a block like:</p>
 
     <blockquote>
       <p><code>&lt;A HREF=[path]EditSubscription.do?action=[action]&amp;username=[user]&amp;host=[host]"&gt;[action]<br />
@@ -774,7 +846,7 @@ public final class LogonAction extends BaseAction {
       <p><i>Note that anchor links with ampersands should use the character entity &amp;amp; as the LinkUserTag has done here (<a href="http://www.w3.org/TR/html401/appendix/notes.html#h-B.2.2">http://www.w3.org/TR/html401/appendix/notes.html#h-B.2.2</a>).</i></p>
     </blockquote>
 
-    <p>Let's follow that "Add" link now and see what's up with the editSubcription action anyway.</p>
+    <p>Let's follow that "Add" link now and see what's up with the EditSubcription action anyway.</p>
 
     <h4><a name="EditSubscriptionAction.java" id="EditSubscriptionAction.java">EditSubscriptionAction.java</a></h4>
 
@@ -788,7 +860,7 @@ public final class LogonAction extends BaseAction {
       /&gt;</code></p>
 
       <p><code>&lt;!-- Edit mail subscription --&gt;<br />
-      &lt;action path="/editSubscription"<br />
+      &lt;action path="/EditSubscription"<br />
       type="org.apache.struts.webapp.example.EditSubscriptionAction"<br />
       name="SubscriptionForm"<br />
       scope="request"<br />
@@ -801,7 +873,7 @@ public final class LogonAction extends BaseAction {
       <p><i>When we've introduced these type of mappings before, and mentioned that the struts-config.xml was parsed when the ActionServlet was initialized. But we should make it clear that when the Struts digester parsed this file, it actually created standard Java objects, linked as properties to the controller. This means you don't have to edit Java source files just to add a bunch of "new" statements. (How cool is that?)</i></p>
     </blockquote>
 
-    <p>Following what was specified by struts-config.xml, the controller makes sure that a SubscriptionForm bean exists, along with the SubscriptionAction object, and then calls the action object's perform method. The perform method first checks to see that the user is logged-in. If not, control is forwarded to the login action. EditSubscriptionAction.perform then either creates a new subscription object (if the task is Create), or searches the user's subscription hashtable for a matching hostname (if the task is Edit).</p>
+    <p>Following what was specified by struts-config.xml, the controller makes sure that a SubscriptionForm bean exists, along with the SubscriptionAction object, and then calls the action object's perform method. The perform method first checks to see that the user is logged-in. If not, control is forwarded to the Login action. EditSubscriptionAction.perform then either creates a new subscription object (if the task is Create), or searches the user's subscription hashtable for a matching hostname (if the task is Edit).</p>
 
     <p>Finally, EditSubscriptionAction conforms the ActionForm bean with the database bean. There may be several subscriptions in the database, but in EditSubscriptionAction we expose the one selected (or just created) for this request to use. Once the Action form (called "subform" in the code) is created and populated from the database, the bean's action is set to either Create or Edit, and control is forwarded to our "success" form, subscription.jsp .</p>
 
