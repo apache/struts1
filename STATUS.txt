@@ -1,0 +1,102 @@
+-[STATUS LOG] 30-Dec-2003 Jakarta Struts-
+
+* Releases
+* Showstappers
+* Recent Changes
+* Roadmap
+* Bugzilla
+* Subscriptions
+* Threads
+* CVS Activity
+* Committers
+
+----
+
+-Releases-
+
+* Stable release: 1.1 (29 June 2003).
+
+* Next anticipated release: 1.2.0
+
+* Anticipated time-frame (if any): Next thirty days, if pending issues can be resolved.
+
+
+-Showstoppers-
+
+* The 1.2.0 candidate should resolve Bugzilla [#233255, #23292, #25134, #28524, #25855, #25861] before release.
+
+
+-Recent Changes-
+
+* 2003-12-30 - struts-nested: Added write attribute, and styleClass for completeness.
+
+* 2003-12-29 - struts-faces: Various updates regarding the JSF Final Draft and to prepare for Tiles support.
+
+* 2003-12-22 - DispatchAction: Add detection of recursive calls.
+
+* 2003-12-21 - Change to use typical welcome.do - welcome.jsp approach; Use "name" rather than "attribute" in configuration, per documented and common practice; Use action form of html:link
+
+* 2003-12-21 - Add rest of form to fr.CA formset to correct operation.
+
+* 2003-12-17 - struts-jericho: Whiteboard directory for Struts-Jericho, a working proposal for Struts 2.x.
+
+* See also: http://jakarta.apache.org/struts/userGuide/release-notes.html
+
+
+-Roadmap-
+
+* Struts 1.x will remain based on Servlet 1.2/JSP 1.1 (evolution).
+
+* Struts 2.x will be based on Servlet / JSP 2.0 (revolution).
+
+* For more see <http://jakarta.apache.org/struts/status.html>.
+
+
+-Bugzilla-
+
+* Open "problem" reports:       6 [#23255 .. #25861]
+* Open "enhancement" reports: 210 [#  866 .. #25860]
+* Open "LATER" reports:        17 [#17977 .. #25759]
+
+
+-Mailing list subscriptions-
+
+* User 1955
+
+* user digest: 923
+
+* Dev: 719
+
+
+-Significant threads-
+
+* Dev list discussions of whether and when to apply to the ASF for top-level project status <http://tinyurl.com/2kkcq>.
+
+* Several threads regarding Struts 2.0 feature set. A preliminary whiteboard has been posted <http://cvs.apache.org/viewcvs.cgi/jakarta-struts/contrib/struts-jericho/>.
+
+
+-CVS Activity-
+
+* Total Commits: 89 Total Number of Files Changed: 401
+
+
+-Active Committers-
+
+    * Craig R. McClanahan (craigmcc at apache.org)
+    * Ted Husted (husted at apache.org)
+    * Rob Leland (rleland at apache.org)
+    * Cedric Dumoulin (cedric.dumoulin at lifl.fr)
+    * Martin Cooper (martinc at apache.org)
+    * Arron Bates (arron at apache.org)
+    * James Holmes (jholmes at apache.org)
+    * David M. Karr (dmkarr at apache.org)
+    * David Graham (dgraham at apache.org)
+    * James Mitchell (jmitchell at apache.org)
+    * James Turner (turner at blackbear.com)
+    * Steve Raeburn (sraeburn at apache.org)
+    * Don Brown (mrdon at apache.org)
+    * Joe Germuska (germuska at apache.org)
+
+
+$Id: STATUS.txt,v 1.1 2004/01/08 16:55:56 husted Exp $
+###
