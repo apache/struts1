@@ -2,6 +2,15 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 20 Jun. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>Update DefinitionDispatcherAction. It now works again</FONT></LI>
+	  </UL>
+	</TD>
+  </TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 13 Jun. 2002</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
