@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.9 2001/02/13 18:59:36 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.10 2001/02/13 19:25:40 craigmcc Exp $
 -->
 
 
@@ -154,7 +154,12 @@
      for this application.  The following attributes are defined:
 
      type            Fully qualified Java class name of the implementation
-                     class used for ActionFormBean objects.
+                     class used for ActionFormBean objects.  DEPRECATED.
+
+                     WARNING:  For Struts 1.0, this value is ignored.  You
+                     can set the default implementation class name with the
+                     "formBean" initialization parameter to the Struts
+                     controller servlet.
 -->
 <!ELEMENT form-beans (form-bean*)>
 <!ATTLIST form-beans     id             ID              #IMPLIED>
@@ -190,7 +195,12 @@
      an "action" element.  The following attribute are defined:
 
      type            Fully qualified Java class name of the implementation
-                     class used for ActionForward objects.
+                     class used for ActionForward objects.  DEPRECATED.
+
+                     WARNING:  For Struts 1.0, this value is ignored.  You
+                     can set the default implementation class name with the
+                     "forward" initialization parameter to the Struts
+                     controller servlet.
 -->
 <!ELEMENT global-forwards (forward*)>
 <!ATTLIST global-forwards id            ID              #IMPLIED>
@@ -229,11 +239,16 @@
      defined:
 
      type           Fully qualified Java class name of the ActionMapping
-                    implementation class to be used.
+                    implementation class to be used.  DEPRECATED.
+
+                     WARNING:  For Struts 1.0, this value is ignored.  You
+                     can set the default implementation class name with the
+                     "mapping" initialization parameter to the Struts
+                     controller servlet.
 -->
 <!ELEMENT action-mappings (action*)>
 <!ATTLIST action-mappings id             ID              #IMPLIED>
-<!ATTLIST action-mappings type           %ClassName;     "org.apache.struts.action.ActionMappingBase">
+<!ATTLIST action-mappings type           %ClassName;     "org.apache.struts.action.ActionMapping">
 
 
 <!-- The "action" element describes a mapping from a request paths to the

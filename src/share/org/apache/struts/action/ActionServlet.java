@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.56 2001/01/28 03:04:32 craigmcc Exp $
- * $Revision: 1.56 $
- * $Date: 2001/01/28 03:04:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.57 2001/02/13 19:25:41 craigmcc Exp $
+ * $Revision: 1.57 $
+ * $Date: 2001/02/13 19:25:41 $
  *
  * ====================================================================
  *
@@ -228,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.56 $ $Date: 2001/01/28 03:04:32 $
+ * @version $Revision: 1.57 $ $Date: 2001/02/13 19:25:41 $
  */
 
 public class ActionServlet
@@ -1048,8 +1048,6 @@ public class ActionServlet
 
 	// Configure the processing rules
 
-        // FIXME "struts-config/action-mappings" type attribute
-
         digester.addObjectCreate("struts-config/data-sources/data-source",
                                  "org.apache.struts.util.GenericDataSource",
                                  "type");
@@ -1084,8 +1082,6 @@ public class ActionServlet
             ("struts-config/action-mappings/action/forward/set-property",
              "property", "value");
 
-        // FIXME "struts-config/form-beans" type attribute
-
         digester.addObjectCreate("struts-config/form-beans/form-bean",
                                  formBeanClass, "className");
         digester.addSetProperties("struts-config/form-beans/form-bean");
@@ -1096,8 +1092,6 @@ public class ActionServlet
         digester.addSetProperty
             ("struts-config/form-beans/form-bean/set-property",
              "property", "value");
-
-        // FIXME "struts-config/global-forwards" type attribute
 
         digester.addObjectCreate("struts-config/global-forwards/forward",
                                  forwardClass, "className");
