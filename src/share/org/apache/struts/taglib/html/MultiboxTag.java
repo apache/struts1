@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.3 2001/02/10 23:31:50 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/10 23:31:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.4 2001/04/03 19:23:15 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/04/03 19:23:15 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import javax.servlet.jsp.JspWriter;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -82,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/10 23:31:50 $
+ * @version $Revision: 1.4 $ $Date: 2001/04/03 19:23:15 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -246,7 +247,7 @@ public class MultiboxTag extends BaseHandlerTag {
                                      PageContext.REQUEST_SCOPE);
             throw e;
         }
-        results.append(BeanUtils.filter(value));
+        results.append(ResponseUtils.filter(value));
 	results.append("\"");
 	Object bean = pageContext.findAttribute(name);
 	String values[] = null;

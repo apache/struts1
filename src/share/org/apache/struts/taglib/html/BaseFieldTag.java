@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.4 2001/02/14 00:39:52 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/14 00:39:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.5 2001/04/03 19:23:15 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/04/03 19:23:15 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.upload.FormFile;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
@@ -81,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/14 00:39:52 $
+ * @version $Revision: 1.5 $ $Date: 2001/04/03 19:23:15 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -185,7 +184,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	}
 	results.append(" value=\"");
 	if (value != null) {
-	    results.append(BeanUtils.filter(value));
+	    results.append(ResponseUtils.filter(value));
 	} else if (redisplay || !"password".equals(type)) {
             /*
 	    Object bean = pageContext.findAttribute(name);
@@ -202,7 +201,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
                 if (value == null) {
                     value = "";
                 }
-		results.append(BeanUtils.filter(value));
+		results.append(ResponseUtils.filter(value));
 	    } catch (IllegalAccessException e) {
 		throw new JspException
 		    (messages.getMessage("getter.access", property, name));
