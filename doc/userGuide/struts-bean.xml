@@ -65,7 +65,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -176,7 +176,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -285,7 +285,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -410,7 +410,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -612,7 +612,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated
       page scope attribute) that will be made available with the value of
@@ -659,7 +659,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -725,7 +725,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated page
       scope attribute) that will be made available with the value of the
@@ -794,7 +794,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>The name of a page scope JSP bean, of type
       <code>java.lang.Integer</code>, that will be created to contain the
@@ -864,7 +864,7 @@
     <attribute>
       <name>id</name>
       <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
+      <rtexprvalue>false</rtexprvalue>
       <info>
       <p>Specifies the name of the scripting variable (and associated
       page scope attribute) that will be made available with the value of

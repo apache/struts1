@@ -3858,7 +3858,7 @@
                 <attribute>
                   <name>id</name>
                   <required>true</required>
-                  <rtexprvalue>true</rtexprvalue>
+                  <rtexprvalue>false</rtexprvalue>
                   <info>
                   The name of a page scope JSP bean that will contain the current
                   element of the collection of messages on each iteration, if it is not
