@@ -10,7 +10,7 @@
   <body>
     <section name="Introduction" href="Introduction">
       <p>This section contains release notes for
-      <strong>nightly build</strong>of the Struts Framework, for changes that have taken place since
+      <strong>nightly build</strong> of the Struts Framework, for changes that have taken place since
       <a href="release-notes-1.1.html">Version 1.1</a>was released.</p>
     </section>
     <section name="What's Included?" href="Included">
@@ -76,14 +76,14 @@
       </ul>
       <p>All of the forgoing libraries are a stable release and are distributed under an Apache-style license.</p>
       <p>The following libraries are
-      <strong>not</strong>at stable release stage, and are distributed only as part of Struts own unstable development build.</p>
+      <strong>not</strong> at stable release stage, and are distributed only as part of Struts own unstable development build.</p>
       <ul>
         <li>Commons Validator 1.1.1-dev</li>
       </ul>
     </section>
     <section name="What's new?" href="New">
       <p>This section highlights new features added and critical changes made since the last release. Other interesting changes are listed in the
-      <a href="#Changes">What Changed?</a>section. For a complete review of all changes, see the
+      <a href="#Changes">What Changed?</a> section. For a complete review of all changes, see the
       <a href="../reports/changelog-report.html">changelog reports</a>. Subscribers to the
       <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
       <p>
@@ -99,12 +99,12 @@
       </ul>
       <p>Although not removed, in many cases
       <strong>you should replace</strong> the deprecated
-      <code>ActionErrors</code>with the preferred
-      <code>ActionMessages</code>to ensure correct operation.</p>
+      <code>ActionErrors</code> with the preferred
+      <code>ActionMessages</code> to ensure correct operation.</p>
         <p>
         <strong>TagUtils and ModuleUtils</strong>&#160;- Many utility methods previously found in
         <code>org.apache.struts.utils.RequestUtils</code> have been moved to
-        <code>org.apache.struts.taglibs.TagUtils</code> or 0
+        <code>org.apache.struts.taglibs.TagUtils</code> or 
         <code>org.apache.struts.utils.ModuleUtils</code>.</p>
         <p>
         <strong>GenericDataSource / GenericConnection implementations removed</strong>&#160;- The datasources manager is still supported, but our own datasource
@@ -138,11 +138,11 @@
       <p>
       <strong>Cancel handlers</strong>&#160;- DispatchAction, LookupDispatchAction, and MappingDispatchAction - Now provide default cancel handler that can be overridden. It also also possible to specify the default handler name.</p>
       <p>
-      <strong>Session-scoped ActionMessages</strong>- You can now save ActionMessages in the session and have them cleaned up after the first use. There is now an alternate form of Action.saveMessages() that stores messages in the session. ActionMessages.isAccessed() returns true after the messages have been retrieved one time. RequestProcessor.processCachedMessages() queries isAccessed() to determine if it should remove the messages from the session.</p>
+      <strong>Session-scoped ActionMessages</strong> - You can now save ActionMessages in the session and have them cleaned up after the first use. There is now an alternate form of Action.saveMessages() that stores messages in the session. ActionMessages.isAccessed() returns true after the messages have been retrieved one time. RequestProcessor.processCachedMessages() queries isAccessed() to determine if it should remove the messages from the session.</p>
       <p>
-      <strong>JA Mailreader</strong>- The Struts Mailreader Example application now includes a Japanese resource file.</p>
+      <strong>JA Mailreader</strong> - The Struts Mailreader Example application now includes a Japanese resource file.</p>
       <p>
-      <strong>Tiles EL</strong>- The Tiles tags are now avaiable through the Struts EL taglib, which is based on JSTL.</p>
+      <strong>Tiles EL</strong> - The Tiles tags are now avaiable through the Struts EL taglib, which is based on JSTL.</p>
       <p>
       <strong>Wildcard Mappings</strong>&#160;- You can now use wildcards in your action-mappings. For details see
       <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a> as well as the Struts Mailreader Example application.</p>
@@ -152,7 +152,7 @@
       <a href="../reports/changelog-report.html">changelog reports</a>. Subscribers to the
       <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
       <p>
-        <strong>Build Changes</strong>
+        <strong>Build Changes</strong> 
       </p>
       <ul>
         <li>2003-08-09 - build.xml: Adjust loading order of properties files to go from most local (current directory) to most global (${user.home}/build.properties).</li>
@@ -165,7 +165,7 @@
         <li>2003-08-09 - Add two new elements &lt;description-short%gt; and &lt;description-long&gt; for use by struts config file tools and document generation.</li>
       </ul>
       <ul>
-        <li>2003-07-04 struts-config_1_2.dtd: Added 1.2 struts-config.dtd. This is a copy of the 1.1 DTD except that the &lt;data-source&gt; "type" attribute is now required because Struts does not supply a default DataSource implementation.</li>
+        <li>2003-07-04 - struts-config_1_2.dtd: Added 1.2 struts-config.dtd. This is a copy of the 1.1 DTD except that the &lt;data-source&gt; "type" attribute is now required because Struts does not supply a default DataSource implementation.</li>
       </ul>
       <p>
       <strong>Default Package Changes</strong>&#160;[
@@ -259,7 +259,7 @@
         <li>2003-08-16 - TagUtils: Replaced ActionError with ActionMessage.</li>
       </ul>
       <ul>
-        <li>2003-08-02 LocalStrings.properties,TagUtils: Move message resources from util package.</li>
+        <li>2003-08-02 - LocalStrings.properties,TagUtils: Move message resources from util package.</li>
       </ul>
       <ul>
         <li>2003-07-26 - TagUtils,RequestUtils: Added TagUtils class for taglibs to use instead of RequestUtils. We should migrate any method in RequestUtils that takes a PageContext parameter and/or throws JspException. A clean separation will help keep RequestUtils smaller and allow the taglibs to be easily split off of the core Struts distribution.</li>
@@ -268,7 +268,7 @@
       <strong>Bean Taglib Package Changes</strong>&#160;[
       <code>org.apache.struts.taglib.bean</code>]</p>
       <ul>
-        <li>2003-08-28 IncludeTag: Rename setCookie to addCookie since it isn't a bean setter</li>
+        <li>2003-08-28 - IncludeTag: Rename setCookie to addCookie since it isn't a bean setter</li>
       </ul>
       <ul>
         <li>2003-07-13 - MessageTag: Simplified args[] creation, deprecated unused defaultLocale variable.</li>
@@ -327,7 +327,7 @@
         <li>2003-09-13 - Controller: Added execute() method to Tiles Controller interface.</li>
       </ul>
       <ul>
-        <li>2003-08-16 portal.UserMenuAction: Replaced hardcoded debugging with commons logging.</li>
+        <li>2003-08-16 - portal.UserMenuAction: Replaced hardcoded debugging with commons logging.</li>
       </ul>
       <ul>
         <li>2003-07-31 - xmlDefinition/I18nFactorySet: Replace deprecated constant reference with it's base interface equal.</li>
@@ -349,7 +349,7 @@
       <strong>Upload Package Changes</strong>&#160;[
       <code>org.apache.struts.upload</code>]:</p>
         <ul>
-            <li>2003-11-26 DiskMultipartRequestHandler: Deprecate DiskMultipartRequestHandler and friends, which is the buggy old upload implementation, no longer used as the default as of Struts 1.1. This will be removed after 1.2 (meaning as of 1.3/2.0).</li>
+            <li>2003-11-26 - DiskMultipartRequestHandler: Deprecate DiskMultipartRequestHandler and friends, which is the buggy old upload implementation, no longer used as the default as of Struts 1.1. This will be removed after 1.2 (meaning as of 1.3/2.0).</li>
         </ul>
       <ul>
         <li>2003-07-31 - MultipartElement: Remove deprecated methods.</li>
@@ -358,7 +358,7 @@
       <strong>Utility Package Changes</strong>&#160;[
       <code>org.apache.struts.util</code>]:</p>
       <ul>
-        <li>2003-09-22 LabelValueBean: Implement Comparable interface.</li>
+        <li>2003-09-22 - LabelValueBean: Implement Comparable interface.</li>
       </ul>
       <ul>
         <li>2003-08-16 - ModuleException: Added getActionMessage() to replace the getError() method.</li>
@@ -378,9 +378,7 @@
       <strong>Validator Package Changes</strong>&#160;[
       <code>org.apache.struts.validator</code>]</p>
         <ul>
-            <li>
-                2003-10-06 FieldChecks - Add validateUrl. Remove deprecated validateRange.
-            </li>
+        <li>2003-10-06 - FieldChecks - Add validateUrl. Remove deprecated validateRange.</li>
         </ul>
       <ul>
         <li>2003-09-26 - FieldChecks,ValidWhen: Changed validator signatures to use ActionMessages rather than ActionErrors, was breaking validations.</li>
@@ -407,7 +405,7 @@
       <strong>MailReader Example Application Changes</strong>&#160;[
       <code>struts-example.war</code>]:</p>
         <ul>
-            <li>2003-10-25 - Updated to include the usage of wildcards in action mappings</li>
+        <li>2003-10-25 - Updated to include the usage of wildcards in action mappings</li>
         </ul>
       <ul>
         <li>2003-08-30 - AlternateApplicationResources_ja.properties,ApplicationResources_ja.properties: Provide Japanese resources.</li>
