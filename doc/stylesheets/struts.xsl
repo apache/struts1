@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.10 2003/09/05 23:02:40 sraeburn Exp $ -->
+<!-- Content Stylesheet for Struts User's Guide -->
+<!-- $Id: struts.xsl,v 1.11 2003/09/08 01:35:53 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
+
 
   <!-- Output method -->
   <xsl:output method="xml" 
@@ -15,11 +16,24 @@
   	      indent="yes" 
   	      media-type="text/html"/>
 
+
+  <!-- Defined parameters (overrideable) -->
+  <xsl:param    name="home-logo"         select="'/images/jakarta-logo.gif'"/>
+  <xsl:param    name="powered-logo"      select="'/images/struts-power.gif'"/>
+  <xsl:param    name="project-logo"      select="'/images/struts.gif'"/>
+  <xsl:param    name="project-name"      select="'Struts Framework'"/>
+  <xsl:param    name="relative-path"     select="'..'"/>
+  <xsl:param    name="css-path"          select="'/struts.css'"/>
+  <xsl:param    name="project-path"      select="'../project.xml'"/>
+  
+
+  <!-- Import project information document -->
+  <xsl:variable name="project"
+                select="document($project-path)/project"/>  
+
+
   <!-- Process an entire document into an HTML page -->
   <xsl:template match="document">
-    <xsl:variable name="project"
-                select="document('../project.xml')/project"/>
-
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
     <xsl:choose>
@@ -33,22 +47,44 @@
         <title><xsl:value-of select="$project/title"/></title>
       </xsl:otherwise>
     </xsl:choose>
+
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />   
-    <meta name="author" content="{properties/author/.}"/>
-    <link rel="stylesheet" type="text/css" href="struts.css"/>
+
+    <xsl:for-each select="properties/author">
+    <xsl:variable name="author">
+      <xsl:value-of select="."/>
+    </xsl:variable>
+    <meta name="author" content="{$author}"/>
+    </xsl:for-each>
+
+    <xsl:variable name="css">
+      <xsl:value-of select="$relative-path"/>/struts.css
+    </xsl:variable>	    
+    <link rel="stylesheet" type="text/css" href="{$css}"/>
     </head>
 
     <body>
-
+ 
     <table border="0" width="100%" cellspacing="5">
 
       <tr><td colspan="2">
-        <a href="http://jakarta.apache.org">
-        <img src="images/jakarta-logo.gif" align="left" border="0" alt="The Apache Jakarta Project"/>
+
+        <xsl:comment>JAKARTA LOGO</xsl:comment>
+        <xsl:variable name="src">
+          <xsl:value-of select="$relative-path"/><xsl:value-of select="$home-logo"/>
+        </xsl:variable>
+        <a href="http://jakarta.apache.org/">
+        <img src="{$src}" align="left" alt="The Jakarta Project" border="0" id="jakarta-logo"/>
         </a>
-        <a href="http://jakarta.apache.org/struts">
-        <img src="images/struts.gif" align="right" border="0" alt="Struts"/>
+
+        <xsl:comment>STRUTS LOGO</xsl:comment>
+        <xsl:variable name="src">
+          <xsl:value-of select="$relative-path"/><xsl:value-of select="$project-logo"/>
+        </xsl:variable>
+        <a href="http://jakarta.apache.org/struts/">
+        <img src="{$src}" align="right" alt="Struts Framework" border="0"/>
         </a>
+
       </td></tr>
 
       <tr><td colspan="2">
@@ -56,9 +92,9 @@
       </td></tr>
 
       <tr>
-        <td width="120" valign="top">
-          <xsl:apply-templates select="$project"/>
-        </td>
+          <td width="120" valign="top" class="menu">
+            <xsl:apply-templates select="$project"/>
+          </td>
 
         <td valign="top">
           <xsl:apply-templates select="body"/>
@@ -71,9 +107,13 @@
 
       <tr><td colspan="2">
         <div class="footer">
-        Copyright (c) 2000-2003, Apache Software Foundation - <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a>
+        Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
         </div>
-        <img src="images/struts-power.gif" align="right" border="0" alt="Powered by Struts"/>
+
+          <xsl:variable name="src">
+            <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
+          </xsl:variable>
+          <img src="{$src}" alt="Powered by Struts" align="right" border="0"/>
       </td></tr>
 
     </table>
@@ -82,13 +122,16 @@
 
   </xsl:template>
 
+
   <!-- Process the project element for the navigation bar -->
   <xsl:template match="project">
     <xsl:apply-templates/>
   </xsl:template>
-  
+
+
   <!-- Silently skip title element in project.xml -->
   <xsl:template match="title"/> 
+
 
   <!-- Process a menu for the navigation bar -->
   <xsl:template match="menu">
@@ -125,6 +168,7 @@
   <xsl:template match="body">
     <xsl:apply-templates/>
   </xsl:template>
+  
 
   <!-- Process an entire chapter (assumes one chapter per page) -->
   <xsl:template match="chapter">
@@ -149,6 +193,7 @@
     </table>
     <xsl:apply-templates select="section" />
   </xsl:template>
+  
 
   <!-- Process a documentation section -->
   <xsl:template match="section">
@@ -172,6 +217,7 @@
     </table>
   </xsl:template>
 
+
   <!-- Process a documentation subsection -->
   <xsl:template match="subsection">
     <xsl:choose>
@@ -193,6 +239,7 @@
       </td></tr>
     </table>
   </xsl:template>
+
 
   <!-- Process a tag library section -->
   <xsl:template match="taglib">
@@ -290,6 +337,13 @@
     </td></tr>
   </xsl:template>
 
+
+  <!-- Process an tag info section -->
+  <xsl:template match="info">
+     <xsl:apply-templates/>
+  </xsl:template>
+  
+
   <!-- Process a task list section -->
   <xsl:template match="task-list">
     <xsl:choose>
@@ -321,6 +375,7 @@
     </table>
   </xsl:template>
 
+
   <!-- Process an individual task (in a TODO list) -->
   <xsl:template match="task">
     <tr>
@@ -335,6 +390,7 @@
       <td><xsl:value-of select="assigned"/></td>
     </tr>
   </xsl:template>
+
 
   <!-- Process everything else by just passing it through -->
   <xsl:template match="*|@*">

@@ -25,6 +25,7 @@ q {
 	font-size: 1.1em;
 	font-weight: bold;
 }
+
 .chapter-title a {
 	color: #FFFFFF;
 }
@@ -36,6 +37,7 @@ q {
 	font-size: 1.1em;
 	font-weight: bold;
 }
+
 .section-title a {
 	color: #FFFFFF;
 }
@@ -47,6 +49,7 @@ q {
 	font-size: 1em;
 	font-weight: bold;
 }
+
 .subsection-title a {
 	color: #FFFFFF;
 }
@@ -58,10 +61,10 @@ q {
 	font-size: 1.1em;
 	font-weight: bold;
 }
+
 .taglib-title a {
 	color: #FFFFFF;
 }
-
 
 .tag-title{
 	background: #023264;
@@ -69,10 +72,10 @@ q {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: medium;
 }
+
 .tag-title a {
 	color: #FFFFFF;
 }
-
 
 .tasklist{
 	background: #023264;
@@ -95,15 +98,19 @@ q {
 }
 
 .warning {
-	color: #f00;
+	color: #FF0000;
 	font-weight: bold;
 }
+
 
 @media print {
 .menu {
 	display: none;
 }	
-#apache-logo {
+#jakarta-logo {
+	display: none;
+}
+.noprint{
 	display: none;
 }
 }

@@ -173,49 +173,99 @@
         The "compile" target causes non-generic compile activity required
         for specific tag libraries to be executed.
 -->
-<target name="compile" depends="compile.generic"
+<target name="compile" depends="compile.generic,compile.docs"
         description="Compile individual web applications">
+
+    <!-- Create the Tiles documentation -->
+    <style   basedir="${doc.dir}/tiles"
+             destdir="${build.home}/tiles-documentation"
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="relative-path" expression="."/>
+      <param name="project-path" expression="../tiles/project.xml"/>
+    </style>            
+
+    <!-- Copy the tiles documentation files -->
+    <copy      todir="${build.home}/tiles-documentation">
+      <fileset   dir="${doc.dir}">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+
+    <!-- Compile Tiles contrib -->
+    <!--
+    <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
+      <property name="struts.home"      value="${struts.home}"/>
+      <property name="struts.libs"      value="${struts.libs}"/>
+      <property name="build.home"       value="${build.home}/tiles"/>
+      <property name="dist.home"        value="${dist.home}"/>
+      <property name="app.name"         value="tiles"/>
+      <property name="project.name"     value="Tiles"/>
+    </ant>  
+    -->
+    
+    
+</target>
+
+
+<!--
+        The "compile.docs" target transforms the documentation using XSLT
+-->
+<target name="compile.docs" 
+        description="Perform XSLT transformations">
     <!-- Create the taglib documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
-            includes="*.xml"/>
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="relative-path" expression="."/>
+    </style>            
     <!-- Create the FAQs -->
     <style   basedir="${doc.dir}/faqs"
              destdir="${build.home}/documentation/faqs"
-           extension=".html" style="${doc.dir}/stylesheets/faqs.xsl"
-            includes="*.xml"/>
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="project-path" expression="../faqs/project.xml"/>
+    </style>            
     <!-- Create the news -->
     <style   basedir="${doc.dir}/news"
              destdir="${build.home}/documentation/news"
-           extension=".html" style="${doc.dir}/stylesheets/news.xsl"
-            includes="*.xml"/>
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="project-path" expression="../news/project.xml"/>
+    </style>            
     <!-- Create the proposals -->
     <style   basedir="${doc.dir}/proposals"
              destdir="${build.home}/documentation/proposals"
-           extension=".html" style="${doc.dir}/stylesheets/proposals.xsl"
-            includes="*.xml"/>
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="project-path" expression="../proposals/project.xml"/>
+    </style>            
     <!-- Create the resources -->
     <style   basedir="${doc.dir}/resources"
              destdir="${build.home}/documentation/resources"
-           extension=".html" style="${doc.dir}/stylesheets/resources.xsl"
-            includes="*.xml"/>
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="project-path" expression="../resources/project.xml"/>
+    </style>            
     <!-- Create the user guide -->
-    <!--   ... browser version ... -->
     <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
-           extension=".html" style="../stylesheets/userGuide.xsl"
-            includes="*.xml">
-      <param name="relative-path" expression=".."/>
-    </style>
-    <!--   ... printer version ... -->
-    <mkdir       dir="${build.home}/documentation/userGuide/printer"/>
-    <style   basedir="${doc.dir}/userGuide"
-             destdir="${build.home}/documentation/userGuide/printer"
-           extension=".html" style="../stylesheets/userGuide.xsl"
-            includes="*.xml">
-      <param name="relative-path" expression="../.."/>
-      <param name="project-menu" expression="nomenu"/>
-    </style>
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"
+            excludes="project.xml">
+      <param name="project-path" expression="../userGuide/project.xml"/>
+    </style>  
+
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation">
       <fileset   dir="${doc.dir}">
@@ -246,26 +296,8 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
-    <!-- Create the Tiles documentation -->
-    <style   basedir="${doc.dir}/tiles"
-             destdir="${build.home}/tiles-documentation"
-           extension=".html" style="${doc.dir}/stylesheets/tiles.xsl"
-            includes="*.xml"/>
     
-    <!-- Compile Tiles contrib -->
-<!--
-    <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
-      <property name="struts.home"      value="${struts.home}"/>
-      <property name="struts.libs"      value="${struts.libs}"/>
-      <property name="build.home"       value="${build.home}/tiles"/>
-      <property name="dist.home"        value="${dist.home}"/>
-      <property name="app.name"         value="tiles"/>
-      <property name="project.name"     value="Tiles"/>
-    </ant>  
--->
-
 </target>
-
 
 <!--
         The "dist.generic" target causes the "dist" target of each
