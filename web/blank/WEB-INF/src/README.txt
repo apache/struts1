@@ -29,12 +29,13 @@ Where are the binary distributions placed?
 
 - By default, under /projects/lib on your default drive. You can change these through the "distpath.project" variable in the build file.
 
-Where's the Application Resources?
+Where's the Message Resources (fka Application Resources)?
 
-- It's named application.properties. The original is under WEB-INF/src/java/resources. The resource bundle is copied under classes during a build.
+- It's named MessageResources.properties. The original is under WEB-INF/src/java/. The resource bundle is copied under classes during a build.
 
-Why did the changes to my application.properties or other resource file disappear?
+Why did the changes to my classes/MessageResources.properties or other resource file disappear?
+Why didn't the changes to my java/MessageResources.properties or other resource file appear?
 
-- The original configuration files are under WEB-INF/src/java and copied under classes during a build. Change the WEB-INF/src/java versions and rebuild before deploying.
+- The original resource files are under WEB-INF/src/java and copied under classes during a build. Change the WEB-INF/src/java versions and rebuild before redeploying.
 
 ###
