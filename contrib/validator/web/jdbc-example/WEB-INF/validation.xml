@@ -677,7 +677,7 @@
          	     <arg0 key="registrationForm.email.displayname"/>
                      <var>
                        <var-name>mask</var-name>
-                       <var-value>^\w+@\w+.\w{3}$</var-value>
+                       <var-value>^\w+@\w+\.\w{3}$</var-value>
                      </var>
          </field>
       </form>
@@ -740,7 +740,7 @@
          	     <arg0 key="registrationForm.email.displayname"/>
                      <var>
                        <var-name>mask</var-name>
-                       <var-value>^\w+@\w+.\w{3}$</var-value>
+                       <var-value>^\w+@\w+\.\w{3}$</var-value>
                      </var>
          </field>
       </form>
@@ -811,7 +811,7 @@
          	     <arg0 key="registrationForm.email.displayname"/>
                      <var>
                        <var-name>mask</var-name>
-                       <var-value>^\w+@\w+.\w{3}$</var-value>
+                       <var-value>^\w+@\w+\.\w{3}$</var-value>
                      </var>
          </field>
       </form>
@@ -906,7 +906,7 @@
          	     <arg0 key="registrationForm.email.displayname"/>
                      <var>
                        <var-name>mask</var-name>
-                       <var-value>^\w+@\w+.\w{3}$</var-value>
+                       <var-value>^\w+@\w+\.\w{3}$</var-value>
                      </var>    
          </field>
       </form>
@@ -959,7 +959,7 @@
          	     <arg0 key="registrationForm.email.displayname"/>
                      <var>
                        <var-name>mask</var-name>
-                       <var-value>^\w+@\w+.\w{3}$</var-value>
+                       <var-value>^\w+@\w+\.\w{3}$</var-value>
                      </var>
          </field>
       </form>
@@ -1020,7 +1020,7 @@
          	     <arg0 key="registrationForm.email.displayname"/>
                      <var>
                        <var-name>mask</var-name>
-                       <var-value>^\w+@\w+.\w{3}$</var-value>
+                       <var-value>^\w+@\w+\.\w{3}$</var-value>
                      </var>
          </field>
       </form>
