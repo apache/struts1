@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.2 2002/07/07 23:15:36 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/07 23:15:36 $
  *
  * ====================================================================
  *
@@ -160,7 +160,7 @@ public class ActionComponentServlet extends ActionServlet
                     path = request.getContextPath() + path;
 		response.sendRedirect(response.encodeRedirectURL(path));
 	    } else {
-        doForward( path, request, response );
+        doForward(path, request, response);
 	    }
 	}
 
@@ -242,11 +242,7 @@ public class ActionComponentServlet extends ActionServlet
 	if (debug >= 1)
 	    log("  Validation error(s), redirecting to: " + uri);
 	request.setAttribute(Action.ERROR_KEY, errors);
-        //unwrap the multipart request if there is one
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
-  doForward( uri, request, response);
+    doForward(uri, request, response);
 	return (false);
 
     }
@@ -280,12 +276,8 @@ public class ActionComponentServlet extends ActionServlet
         if (forward == null)
             return (true);
 
-        //unwrap the multipart request if there is one
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
         // process forward and give Tiles a chance to catch definition names
-        doForward( forward, request, response);
+        doForward(forward, request, response);
         return (false);
 
     }
@@ -320,12 +312,8 @@ public class ActionComponentServlet extends ActionServlet
         if (include == null)
             return (true);
 
-        //unwrap the multipart request if there is one
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
         // process forward and give Tiles a chance to catch definition names
-        doForward( include, request, response);
+        doForward(include, request, response);
         return (false);
 
     }
@@ -434,6 +422,11 @@ public class ActionComponentServlet extends ActionServlet
                                internal.getMessage("requestDispatcher", uri));
       return;
       } // end if
+
+    // Unwrap the multipart request, if there is one.
+    if (request instanceof MultipartRequestWrapper) {
+        request = ((MultipartRequestWrapper) request).getRequest();
+    }
 
       // If request comes from a previous Tile, do an include.
       // This allows to insert an action in a Tile.

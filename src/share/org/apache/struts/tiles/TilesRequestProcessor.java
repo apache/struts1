@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.2 2002/07/07 23:15:36 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/07 23:15:36 $
  *
  * ====================================================================
  *
@@ -226,6 +226,11 @@ public class TilesRequestProcessor extends RequestProcessor
                                ("requestDispatcher", uri));
       return;
       } // end if
+
+    // Unwrap the multipart request, if there is one.
+    if (request instanceof MultipartRequestWrapper) {
+        request = ((MultipartRequestWrapper) request).getRequest();
+    }
 
       // If request comes from a previous Tile, do an include.
       // This allows to insert an action in a Tile.

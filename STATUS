@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.5 2002/07/07 22:18:45 husted Exp $
+$Id: STATUS,v 1.6 2002/07/07 23:15:36 martinc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -34,8 +34,6 @@ File Upload:
 -----------
  4170 MaxLengthExceeded doesn't stop file upload
  5274 OutOfMemoryError when uploading big files
- 7663 FileUpload example throws exception on JBoss 3.0
- 8732 RequestProcessor doesn't uncast the Request properly
  9198 First line feed in text parameters lost
 10388 ServletException: Multipart data doesn't start with boundary
 

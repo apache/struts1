@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.13 2002/07/05 22:09:21 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2002/07/05 22:09:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.14 2002/07/07 23:15:36 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/07/07 23:15:36 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.13 $ $Date: 2002/07/05 22:09:21 $
+ * @version $Revision: 1.14 $ $Date: 2002/07/07 23:15:36 $
  * @since Struts 1.1
  */
 
@@ -392,11 +392,6 @@ public class RequestProcessor {
             return;
         }
 
-        //unwrap the multipart request if there is one
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
-
         String uri = RequestUtils.forwardURL(request, forward);
         if (forward.getRedirect()) {
             response.sendRedirect
@@ -529,11 +524,6 @@ public class RequestProcessor {
             return (true);
         }
 
-        // Unwrap the multipart request (if any)
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
-
         // Construct a request dispatcher for the specified path
         String uri = appConfig.getPrefix() + forward;
 
@@ -566,11 +556,6 @@ public class RequestProcessor {
         String include = mapping.getInclude();
         if (include == null) {
             return (true);
-        }
-
-        // Unwrap the multipart request (if any)
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
         }
 
         // Construct a request dispatcher for the specified path
@@ -937,9 +922,6 @@ public class RequestProcessor {
             log.debug(" Validation failed, returning to '" + input + "'");
         }
         request.setAttribute(Action.ERROR_KEY, errors);
-        if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper) request).getRequest();
-        }
         String uri = null;
         if (appConfig.getControllerConfig().getInputForward()) {
             ForwardConfig forward = mapping.findForward(input);
@@ -964,6 +946,10 @@ public class RequestProcessor {
                              HttpServletResponse response)
         throws IOException, ServletException
     {
+        // Unwrap the multipart request, if there is one.
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
@@ -988,6 +974,11 @@ public class RequestProcessor {
                              HttpServletResponse response)
         throws IOException, ServletException
     {
+        // Unwrap the multipart request, if there is one.
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
+
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
