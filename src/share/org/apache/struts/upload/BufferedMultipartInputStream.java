@@ -204,7 +204,11 @@ public class BufferedMultipartInputStream extends InputStream {
             b[offset] = (byte) read;
             count++;
             offset++;
-            read = read();
+            //make sure that we don't ignore the last character if a
+            //newline isn't encountered
+            if (count < length) {
+                read = read();
+            }
         }
         return count;
     }
