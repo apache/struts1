@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.11 2003/05/22 01:11:16 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/05/22 01:11:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.12 2003/07/02 02:46:12 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/02 02:46:12 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.11 $ $Date: 2003/05/22 01:11:16 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/02 02:46:12 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -102,18 +102,6 @@ public class Resources  {
     */
    public static String ACTION_ERRORS_KEY = "org.apache.struts.action.ActionErrors";
 
-   /**
-    * Retrieve <code>ValidatorResources</code> for the module.
-    * @param application servlet context
-    *
-    * @deprecated In Struts 1.1 This method can only return the resources for the default
-    *  module.  Use getValidatorResources(HttpServletRequest, ServletContext)
-    *  to get the resources for the current application module.
-    */
-   public static ValidatorResources getValidatorResources(ServletContext application) {
-      return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY);
-   }
-
   /**
    * Retrieve <code>ValidatorResources</code> for the current module.
    * @param application  Application Context
@@ -129,18 +117,6 @@ public class Resources  {
         return (ValidatorResources) application.getAttribute(
             ValidatorPlugIn.VALIDATOR_KEY + prefix);
     }
-
-   /**
-    * Retrieve <code>MessageResources</code> for the application module.
-    * @param  application servlet context
-    *
-    * @deprecated This method can only return the resources for the default
-    *  module.  Use getMessageResources(HttpServletRequest) to get the
-    *  resources for the current module.
-    */
-   public static MessageResources getMessageResources(ServletContext application) {
-      return (MessageResources) application.getAttribute(Globals.MESSAGES_KEY);
-   }
 
    /**
     * Retrieve <code>MessageResources</code> for the module.
