@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.1 2001/03/22 13:17:10 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2001/03/22 13:17:10 $
+ * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.2 2001/04/11 22:56:23 mschachter Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/04/11 22:56:23 $
  *
  * ====================================================================
  *
@@ -64,6 +64,8 @@ package org.apache.struts.webapp.upload;
 
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
@@ -85,7 +87,7 @@ import org.apache.struts.action.ForwardingActionForward;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.1 $ $Date: 2001/03/22 13:17:10 $
+ * @version $Revision: 1.2 $ $Date: 2001/04/11 22:56:23 $
  */
 
 
@@ -111,6 +113,8 @@ public class UploadAction extends Action {
 
                         //retrieve the content type
                         String contentType = file.getContentType();
+                        
+                        boolean writeFile = theForm.getWriteFile();
 
                         //retrieve the file size
                         String size = (file.getFileSize() + " bytes");
@@ -120,12 +124,37 @@ public class UploadAction extends Action {
                         try {
                                 //retrieve the file data
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
                                 InputStream stream = file.getInputStream();
-                                byte[] buffer = new byte[file.getFileSize()];
-                                stream.read(buffer);
-                                baos.write(buffer);
-                                data = new String(baos.toByteArray());
+                                if (!writeFile) {
+                                    //only write files out that are less than 1MB
+                                    if (file.getFileSize() < (4*1024000)) {
+
+                                        byte[] buffer = new byte[8192];
+                                        int bytesRead = 0;
+                                        while ((bytesRead = stream.read(buffer, 0, 8192)) != -1) {
+                                            baos.write(buffer, 0, bytesRead);
+                                        }
+                                        data = new String(baos.toByteArray());
+                                    }
+                                    else {
+                                        data = new String("The file is greater than 4MB, " +
+                                            " and has not been written to stream." +
+                                            " File Size: " + file.getFileSize() + " bytes. This is a" +
+                                            " limitation of this particular web application, hard-coded" +
+                                            " in org.apache.struts.upload.UploadAction");
+                                    }
+                                }
+                                else {
+                                    //write the file to the file specified
+                                    OutputStream bos = new FileOutputStream(theForm.getFilePath());
+                                    int bytesRead = 0;
+                                    byte[] buffer = new byte[8192];
+                                    while ((bytesRead = stream.read(buffer, 0, 8192)) != -1) {
+                                        bos.write(buffer, 0, bytesRead);
+                                    }
+                                    bos.close();
+                                    data = "The file has been written to \"" + theForm.getFilePath() + "\"";
+                                }
                         }
                         catch (FileNotFoundException fnfe) {
                                 return null;

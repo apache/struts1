@@ -68,9 +68,22 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
         try {
             while ((element = iterator.getNextElement()) != null) {
-                if (!element.isFile()) {                    
-                    textElements.put(element.getName(), element.getValue());
-                    allElements.put(element.getName(), element.getValue());
+                if (!element.isFile()) {
+                    
+                    String[] textValues = (String[]) textElements.get(element.getName());
+                    if (textValues != null) {                        
+                        String[] textValues2 = new String[textValues.length + 1];
+                        System.arraycopy(textValues, 0, textValues2, 0, textValues.length);
+                        textValues2[textValues.length] = element.getValue();
+                        textValues = textValues2;
+                    }
+                    else {
+                        textValues = new String[1];
+                        textValues[0] = element.getValue();
+                    }
+                    
+                    textElements.put(element.getName(), textValues);
+                    allElements.put(element.getName(), textValues);
                 }
                 else {
                     

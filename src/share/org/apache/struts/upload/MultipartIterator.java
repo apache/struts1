@@ -1,9 +1,8 @@
 package org.apache.struts.upload;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.ServletException;
@@ -34,6 +33,11 @@ import javax.servlet.http.HttpServletRequest;
 public class MultipartIterator {
     
     /**
+     * The maximum size in bytes of the buffer used to read lines [4K]
+     */
+    public static int MAX_LINE_SIZE = 4096;
+    
+    /**
      * The request instance for this class
      */
     protected HttpServletRequest request;
@@ -41,12 +45,17 @@ public class MultipartIterator {
     /**
      * The input stream instance for this class
      */
-    protected ServletInputStream inputStream;
+    protected BufferedMultipartInputStream inputStream;
     
     /**
      * The boundary for this multipart request
      */
     protected String boundary;
+    
+    /**
+     * The byte array representing the boundary for this multipart request
+     */
+    protected byte[] boundaryBytes;
     
     /**
      * Whether or not the input stream is finished
@@ -69,12 +78,16 @@ public class MultipartIterator {
     protected int contentLength;
     
     /**
+     * The size in bytes written to the filesystem at a time [20K]
+     */
+    protected int diskBufferSize = 2 * 10240;
+    
+    /**
      * The amount of data read from a request at a time.
      * This also represents the maximum size in bytes of
-     * a line read from the request
-     * Defaults to 4 * 1024 (4 KB)
+     * a line read from the request [4KB]
      */
-    protected int bufferSize = 4 * 1024;
+    protected int bufferSize = 4096;
     
     /**
      * The temporary directory to store files
@@ -154,6 +167,7 @@ public class MultipartIterator {
         //and parse
         String disposition = readLine();
         
+        
         if ((disposition != null) && (disposition.startsWith("Content-Disposition"))) {
             String name = parseDispositionName(disposition);
             String filename = parseDispositionFilename(disposition);
@@ -176,9 +190,7 @@ public class MultipartIterator {
                     //to retrieve just the file name
                     filename = filename.substring(slashIndex+1, filename.length());
                 }
-                
-                
-                
+            
                 //get the content type
                 contentType = readLine();
                 contentType = parseContentType(contentType);
@@ -225,9 +237,11 @@ public class MultipartIterator {
                     }
                 }
 
-                if (textData.length() > 1) {
-                    //cut off "\r\n" from the end
-                    textData.setLength(textData.length()-2);
+                if (textData.length() > 0) {
+                    //cut off "\r" from the end if necessary
+                    if (textData.charAt(textData.length()-1) == '\r') {
+                        textData.setLength(textData.length()-1);
+                    }
                 }
                 
                 //create the element
@@ -235,6 +249,7 @@ public class MultipartIterator {
             }
             return element;
         }       
+        
         //reset stream
         if (inputStream.markSupported()) {
             try {
@@ -292,10 +307,14 @@ public class MultipartIterator {
         
         //set boundary
         boundary = parseBoundary(request.getContentType());
+        boundaryBytes = boundary.getBytes();
         
         try {
             //set the input stream
-            inputStream = request.getInputStream();
+            inputStream = new BufferedMultipartInputStream(request.getInputStream(),
+                                                           bufferSize,
+                                                           contentLength,
+                                                           maxSize);
             //mark the input stream to allow multiple reads
             if (inputStream.markSupported()) {
                 inputStream.mark(contentLength+1);
@@ -368,9 +387,10 @@ public class MultipartIterator {
         
         if (nameIndex != -1) {
             int endLineIndex = contentTypeString.indexOf("\n");
-            if (endLineIndex != -1) {
-                return contentTypeString.substring(nameIndex+14, endLineIndex);
+            if (endLineIndex == -1) {
+                endLineIndex = contentTypeString.length()-1;
             }
+            return contentTypeString.substring(nameIndex+14, endLineIndex);
         }
         return null;
     }
@@ -460,39 +480,68 @@ public class MultipartIterator {
      * Creates a file on disk from the current mulitpart element
      * @param fileName the name of the multipart file
      */
-    protected File createLocalFile() throws IOException,ServletException {
+    protected File createLocalFile() throws IOException {
         
         File tempFile = File.createTempFile("strts", null, new File(tempDir));
-        OutputStream fos = new FileOutputStream(tempFile);
+        BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(tempFile),
+                                                            diskBufferSize);
+        byte[] lineBuffer = new byte[MAX_LINE_SIZE];
+	int bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
         
-	byte[] bufferBytes = new byte[bufferSize];
-	InputStream requestIn = new MultipartValueStream(inputStream, boundary);
-	
-	int bytesRead = 0;
-	while (bytesRead != -1) {
-            
-	    bytesRead = requestIn.read(bufferBytes);
-            
-            if (bytesRead > 0) {
-                totalLength += bytesRead;
-            }
-            
-            //check to make sure the read doesn't exceed the bounds
-	    if (bytesRead > 0) {
-                if (maxSize > -1) {
-                    if (totalLength > maxSize) {
-                        throw new ServletException("Multipart data size exceeds the maximum " +
-                            "allowed post size");
+        boolean cutCarriage = false;
+        boolean cutNewline = false;
+        
+        while ((bytesRead != -1) && (!equals(lineBuffer, 0, boundaryBytes.length,
+                boundaryBytes))) {
+         
+                    if (cutCarriage) {
+                        fos.write('\r');
                     }
-                }
-            }
-            if (bytesRead > 0) {
-                fos.write(bufferBytes, 0, bytesRead);
-            }
-	}
-        	
+                    if (cutNewline) {
+                        fos.write('\n');
+                    }
+                    if (bytesRead > 0) {
+                        if (lineBuffer[bytesRead-1] == '\r') {
+                            bytesRead--;
+                            cutCarriage = true;
+                        }
+                        else {
+                            cutCarriage = false;
+                        }
+                    }
+                    cutNewline = true;
+                    fos.write(lineBuffer, 0, bytesRead);
+                    bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
+        }
+        
+        fos.flush();	
         fos.close();
         return tempFile;
     }
+    
+   /**
+    * Checks bytes for equality.  Two byte arrays are equal if
+    * each of their elements are the same.  This method checks
+    * comp[offset] with source[0] to source[length-1] with
+    * comp[offset + length - 1]
+    * @param comp The byte to compare to <code>source</code>
+    * @param offset The offset to start at in <code>comp</code>
+    * @param length The length of <code>comp</code> to compare to
+    * @param source The reference byte to test for equality
+    */
+   public static boolean equals(byte[] comp, int offset, int length,
+                                byte[] source) {
+    
+       if (length != source.length) {
+         return false;
+       }
+    
+       for (int i = 0; i < length; i++) {
+           if (comp[offset+i] != source[i]) {
+               return false;
+           }
+       }
+       return true;    
+   }
 
 }

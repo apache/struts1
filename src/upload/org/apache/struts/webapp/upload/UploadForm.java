@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.1 2001/03/22 13:17:10 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2001/03/22 13:17:10 $
+ * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.2 2001/04/11 22:56:24 mschachter Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/04/11 22:56:24 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.action.ActionForm;
  * that struts uses is org.apache.struts.upload.DiskMultipartRequestHandler.
  *
  * @author Mike Schachter
- * @version $Revision: 1.1 $ $Date: 2001/03/22 13:17:10 $
+ * @version $Revision: 1.2 $ $Date: 2001/04/11 22:56:24 $
  */
 
 public class UploadForm extends ActionForm {
@@ -83,11 +83,21 @@ public class UploadForm extends ActionForm {
          * The value of the text the user has sent as form data
          */
         protected String theText;
+        
+        /**
+         * Whether or not to write to a file
+         */
+        protected boolean writeFile;
 
         /**
          * The file that the user has uploaded
          */
         protected FormFile theFile;
+        
+        /**
+         * The file path to write to
+         */
+        protected String filePath;
 
 
 
@@ -117,5 +127,37 @@ public class UploadForm extends ActionForm {
          */
         public void setTheFile(FormFile theFile) {
                 this.theFile = theFile;
+        }
+        
+        /**
+         * Set whether or not to write to a file
+         */
+        public void setWriteFile(boolean writeFile) {
+            this.writeFile = writeFile;
+        } 
+        
+        /**
+         * Get whether or not to write to a file
+         */
+        public boolean getWriteFile() {
+            return writeFile;
+        }
+        
+        /**
+         * Set the path to write a file to
+         */
+        public void setFilePath(String filePath) {
+            this.filePath = filePath;
+        }
+        
+        /**
+         * Get the path to write a file to
+         */
+        public String getFilePath() {
+            return filePath;
+        }
+        
+        public void reset() {
+            writeFile = false;
         }
 }
