@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.14 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.15 2003/05/16 12:34:50 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/05/16 12:34:50 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Luis Arias <luis@elysia.com>
  * @author David Graham
- * @version $Revision: 1.14 $ $Date: 2003/03/08 19:23:49 $
+ * @version $Revision: 1.15 $ $Date: 2003/05/16 12:34:50 $
  */
 
 public class BaseTag extends TagSupport {
@@ -118,52 +118,83 @@ public class BaseTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        String serverName = request.getServerName();
-        String scheme = request.getScheme();
-        int port = request.getServerPort();
+        String serverName = (this.server == null) ? request.getServerName() : this.server;
         
-        StringBuffer buf = new StringBuffer("<base href=\"");
-        buf.append(scheme);
-        buf.append("://");
-
-        if (this.server != null) {
-            serverName = this.server;
-        }
-
-        buf.append(serverName);
-        if ("http".equals(scheme) && (80 == port)) {
-            ;
-        } else if ("https".equals(scheme) && (443 == port)) {
-            ;
-        } else {
-            buf.append(":");
-            buf.append(port);
-        }
-        buf.append(request.getRequestURI());
-        buf.append("\"");
-        if (target != null) {
-            buf.append(" target=\"");
-            buf.append(target);
-            buf.append("\"");
-        }
-
-        String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
-
-        if ("true".equalsIgnoreCase(xhtml)) {
-            buf.append(" />");
-        } else {
-            buf.append(">");
-        }
+        String baseTag =
+            renderBaseElement(
+                request.getScheme(),
+                serverName,
+                request.getServerPort(),
+                request.getRequestURI());
 
         JspWriter out = pageContext.getOut();
         try {
-            out.write(buf.toString());
+            out.write(baseTag);
         } catch (IOException e) {
             pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
             throw new JspException(messages.getMessage("common.io", e.toString()));
         }
+        
         return EVAL_BODY_INCLUDE;
+    }
+
+    /**
+     * Render a fully formed HTML &lt;base&gt; element and return it as a String.
+     * @param scheme The scheme used in the url (ie. http or https).
+     * @param serverName
+     * @param port
+     * @param uri  The portion of the url from the protocol name up to the query 
+     * string.
+     * @return String An HTML &lt;base&gt; element.
+     */
+    protected String renderBaseElement(
+        String scheme,
+        String serverName,
+        int port,
+        String uri) {
+            
+        StringBuffer tag = new StringBuffer("<base href=\"");
+        tag.append(scheme);
+        tag.append("://");
+        
+        tag.append(serverName);
+        if ("http".equals(scheme) && (port == 80)) {
+            ;
+        } else if ("https".equals(scheme) && (port == 443)) {
+            ;
+        } else {
+            tag.append(":");
+            tag.append(port);
+        }
+        
+        tag.append(uri);
+        tag.append("\"");
+        
+        if (this.target != null) {
+            tag.append(" target=\"");
+            tag.append(this.target);
+            tag.append("\"");
+        }
+        
+        if (this.isXhtml()) {
+            tag.append(" />");
+        } else {
+            tag.append(">");
+        }
+        
+        return tag.toString();
+    }
+
+    /**
+     * Returns true if the tag is in XHTML mode.
+     */
+    protected boolean isXhtml() {
+        String xhtml =
+            (String) this.pageContext.getAttribute(
+                Globals.XHTML_KEY,
+                PageContext.PAGE_SCOPE);
+
+        return "true".equalsIgnoreCase(xhtml);
     }
     
     /**
@@ -171,7 +202,7 @@ public class BaseTag extends TagSupport {
      * @return String
      */
     public String getServer() {
-        return server;
+        return this.server;
     }
 
     /**
