@@ -1,12 +1,12 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
-<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 
-<form:html locale="true">
+<html:html locale="true">
 <head>
 <title><bean:message key="index.title"/></title>
-<form:base/>
+<html:base/>
 </head>
 <body bgcolor="white">
 
@@ -27,9 +27,9 @@
 
 <h3><bean:message key="index.heading"/></h3>
 <ul>
-<li><form:link page="/editRegistration.do?action=Create"><bean:message key="index.registration"/></form:link></li>
-<li><form:link page="/logon.jsp"><bean:message key="index.logon"/></form:link></li>
+<li><html:link page="/editRegistration.do?action=Create"><bean:message key="index.registration"/></html:link></li>
+<li><html:link page="/logon.jsp"><bean:message key="index.logon"/></html:link></li>
 </ul>
 
 </body>
-</form:html>
+</html:html>

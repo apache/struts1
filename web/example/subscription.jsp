@@ -1,7 +1,7 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
-<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <app:checkLogon/>
 
@@ -13,7 +13,7 @@
   pageContext.setAttribute("serverTypes", list);
 %>
 
-<form:html>
+<html:html>
 <head>
 <logic:equal name="subscriptionForm" property="action"
             scope="request" value="Create">
@@ -27,14 +27,14 @@
             scope="request" value="Edit">
   <title><bean:message key="subscription.title.edit"/></title>
 </logic:equal>
-<form:base/>
+<html:base/>
 </head>
 <body bgcolor="white">
 
-<form:errors/>
+<html:errors/>
 
-<form:form action="saveSubscription.do" focus="host">
-<form:hidden property="action"/>
+<html:form action="saveSubscription.do" focus="host">
+<html:hidden property="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -51,7 +51,7 @@
       <bean:message key="prompt.mailHostname"/>
     </th>
     <td align="left">
-      <form:textarea property="host" cols="50" rows="1"/>
+      <html:textarea property="host" cols="50" rows="1"/>
     </td>
   </tr>
 
@@ -60,7 +60,7 @@
       <bean:message key="prompt.mailUsername"/>
     </th>
     <td align="left">
-      <form:text property="username" size="50"/>
+      <html:text property="username" size="50"/>
     </td>
   </tr>
 
@@ -69,7 +69,7 @@
       <bean:message key="prompt.mailPassword"/>
     </th>
     <td align="left">
-      <form:password property="password" size="50"/>
+      <html:password property="password" size="50"/>
     </td>
   </tr>
 
@@ -78,10 +78,10 @@
       <bean:message key="prompt.mailServerType"/>
     </th>
     <td align="left">
-      <form:select property="type">
-        <form:options collection="serverTypes" property="value"
+      <html:select property="type">
+        <html:options collection="serverTypes" property="value"
                    labelProperty="label"/>
-      </form:select>
+      </html:select>
     </td>
   </tr>
 
@@ -90,7 +90,7 @@
       <bean:message key="prompt.autoConnect"/>
     </th>
     <td align="left">
-      <form:checkbox property="autoConnect"/>
+      <html:checkbox property="autoConnect"/>
     </td>
   </tr>
 
@@ -98,40 +98,40 @@
     <td align="right">
       <logic:equal name="subscriptionForm" property="action"
                   scope="request" value="Create">
-        <form:submit>
+        <html:submit>
           <bean:message key="button.save"/>
-        </form:submit>
+        </html:submit>
       </logic:equal>
       <logic:equal name="subscriptionForm" property="action"
                   scope="request" value="Delete">
-        <form:submit>
+        <html:submit>
           <bean:message key="button.confirm"/>
-        </form:submit>
+        </html:submit>
       </logic:equal>
       <logic:equal name="subscriptionForm" property="action"
                   scope="request" value="Edit">
-        <form:submit>
+        <html:submit>
           <bean:message key="button.save"/>
-        </form:submit>
+        </html:submit>
       </logic:equal>
     </td>
     <td align="left">
       <logic:notEqual name="subscriptionForm" property="action"
                      scope="request" value="Delete">
-        <form:reset>
+        <html:reset>
           <bean:message key="button.reset"/>
-        </form:reset>
+        </html:reset>
       </logic:notEqual>
       &nbsp;
-      <form:cancel>
+      <html:cancel>
         <bean:message key="button.cancel"/>
-      </form:cancel>
+      </html:cancel>
     </td>
   </tr>
 
 </table>
 
-</form:form>
+</html:form>
 
 </body>
-</form:html>
+</html:html>

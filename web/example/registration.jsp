@@ -1,14 +1,14 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
-<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <logic:equal name="registrationForm" property="action"
             scope="request" value="Edit">
   <app:checkLogon/>
 </logic:equal>
 
-<form:html>
+<html:html>
 <head>
 <logic:equal name="registrationForm" property="action"
             scope="request" value="Create">
@@ -18,14 +18,14 @@
             scope="request" value="Edit">
   <title><bean:message key="registration.title.edit"/></title>
 </logic:equal>
-<form:base/>
+<html:base/>
 </head>
 <body bgcolor="white">
 
-<form:errors/>
+<html:errors/>
 
-<form:form action="saveRegistration.do">
-<form:hidden property="action"/>
+<html:form action="saveRegistration.do">
+<html:hidden property="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -35,13 +35,13 @@
     <td align="left">
       <logic:equal name="registrationForm" property="action"
                   scope="request" value="Create">
-        <form:text property="username" size="16" maxlength="16"/>
+        <html:text property="username" size="16" maxlength="16"/>
       </logic:equal>
       <logic:equal name="registrationForm" property="action"
                   scope="request" value="Edit">
         <bean:write name="registrationForm" property="username"
                    scope="request" filter="true"/>
-	<form:hidden property="username"/>
+	<html:hidden property="username"/>
       </logic:equal>
     </td>
   </tr>
@@ -51,7 +51,7 @@
       <bean:message key="prompt.password"/>
     </th>
     <td align="left">
-      <form:password property="password" size="16" maxlength="16"/>
+      <html:password property="password" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -60,7 +60,7 @@
       <bean:message key="prompt.password2"/>
     </th>
     <td align="left">
-      <form:password property="password2" size="16" maxlength="16"/>
+      <html:password property="password2" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -69,7 +69,7 @@
       <bean:message key="prompt.fullName"/>
     </th>
     <td align="left">
-      <form:text property="fullName" size="50"/>
+      <html:text property="fullName" size="50"/>
     </td>
   </tr>
 
@@ -78,7 +78,7 @@
       <bean:message key="prompt.fromAddress"/>
     </th>
     <td align="left">
-      <form:text property="fromAddress" size="50"/>
+      <html:text property="fromAddress" size="50"/>
     </td>
   </tr>
 
@@ -87,29 +87,29 @@
       <bean:message key="prompt.replyToAddress"/>
     </th>
     <td align="left">
-      <form:text property="replyToAddress" size="50"/>
+      <html:text property="replyToAddress" size="50"/>
     </td>
   </tr>
 
   <tr>
     <td align="right">
-      <form:submit>
+      <html:submit>
         <bean:message key="button.save"/>
-      </form:submit>
+      </html:submit>
     </td>
     <td align="left">
-      <form:reset>
+      <html:reset>
         <bean:message key="button.reset"/>
-      </form:reset>
+      </html:reset>
       &nbsp;
-      <form:cancel>
+      <html:cancel>
         <bean:message key="button.cancel"/>
-      </form:cancel>
+      </html:cancel>
     </td>
   </tr>
 
 </table>
-</form:form>
+</html:form>
 
 <logic:equal name="registrationForm" property="action"
             scope="request" value="Edit">
@@ -172,4 +172,4 @@
 </logic:equal>
 
 </body>
-</form:html>
+</html:html>

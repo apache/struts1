@@ -215,7 +215,7 @@
       </copy>
       <copy file="${dist.home}/lib/${app.name}.jar"
             tofile="${build.home}/upload/WEB-INF/lib/${app.name}.jar"/>
-      <copy file="${dist.home}/lib/${app.name}-form.tld"
+      <copy file="${dist.home}/lib/${app.name}-html.tld"
             todir="${build.home}/upload/WEB-INF" />
   </target>
 
