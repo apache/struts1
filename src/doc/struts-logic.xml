@@ -12,7 +12,7 @@
 
   <tlibversion>1.0</tlibversion>
   <jspversion>1.1</jspversion>
-  <shortname>Struts Logic Tags</shortname>
+  <shortname>logic</shortname>
   <display-name>Struts Logic Tags</display-name>
   <uri>http://jakarta.apache.org/struts/tags-logic-1.0</uri>
   <info>

@@ -13,7 +13,7 @@
 
   <tlibversion>1.0</tlibversion>
   <jspversion>1.1</jspversion>
-  <shortname>Struts Bean Tags</shortname>
+  <shortname>bean</shortname>
   <display-name>Struts Bean Tags</display-name>
   <uri>http://jakarta.apache.org/struts/tags-bean-1.0</uri>
   <info>
