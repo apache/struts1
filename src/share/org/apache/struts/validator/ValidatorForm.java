@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.8 2002/11/08 19:46:35 martinc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/08 19:46:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.9 2003/05/01 17:47:55 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/05/01 17:47:55 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2002/11/08 19:46:35 $
+ * @version $Revision: 1.9 $ $Date: 2003/05/01 17:47:55 $
  * @see org.apache.struts.action.ActionForm
  * @since Struts 1.1
  */
@@ -163,6 +163,7 @@ public class ValidatorForm extends ActionForm implements Serializable {
      * servlet log file.
      *
      * @param   message     String that describes the error or exception
+     * @deprecated Use common-logging to log debug messages.
      */
     protected void log(String message) {
         if (getServlet().getDebug() >= 1) {
@@ -177,6 +178,7 @@ public class ValidatorForm extends ActionForm implements Serializable {
      *
      * @param   message     String that describes the error or exception
      * @param   throwable   Throwable error or exception
+     * @deprecated Use common-logging to log debug messages.
      */
     protected void log(String message, Throwable throwable) {
         if (getServlet().getDebug() >= 1) {
