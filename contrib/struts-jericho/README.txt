@@ -60,4 +60,6 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Load all configuration defaults form a core.properties file so that less is hardcoded, including a PlugIn class to bootstrap loading the core configuraiton.
 
+* Ensure that all framework objects in 2.0 have consistent factory-based mechanisms to instantiate instances. <http://nagoya.apache.org/bugzilla/show_bug.cgi?id=15604>
+
 ###
