@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.11 2003/02/01 21:56:33 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/02/01 21:56:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.12 2003/07/03 02:42:58 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/03 02:42:58 $
  * 
  *  ====================================================================
  *
@@ -201,46 +201,14 @@ public abstract class LookupDispatchAction extends DispatchAction {
 
         // Based on this request's Locale get the lookupMap
         Map lookupMap = null;
-        Locale userLocale = getLocale(request);
-        boolean newLookupMap = false;
-        synchronized (localeMap) {
-            lookupMap = (Map) this.localeMap.get(userLocale);
-            if (lookupMap == null) {
-                newLookupMap = true;
-                lookupMap = new HashMap();
-                this.localeMap.put(userLocale, lookupMap);
-            }
-        }
         
-        synchronized (lookupMap) {
-            if (newLookupMap) {
-                /*
-                 * This is the first time this Locale is used so build the reverse lookup Map.
-                 * Search for message keys in all configured MessageResources for
-                 * the current module.
-                 */
-                this.keyMethodMap = this.getKeyMethodMap();
-                
-                ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
-                MessageResourcesConfig[] mrc = moduleConfig.findMessageResourcesConfigs();
-                
-                // Look through all module's MessageResources
-                for (int i = 0; i < mrc.length; i++) {
-                    MessageResources resources =
-                        this.getResources(request, mrc[i].getKey());
-
-                    // Look for key in MessageResources
-                    Iterator iter = this.keyMethodMap.keySet().iterator();
-                    while (iter.hasNext()) {
-                        String key = (String) iter.next();
-                        String text = resources.getMessage(userLocale, key);
-                        
-                        // Found key and haven't added to Map yet, so add the text
-                        if ((text != null) && !lookupMap.containsKey(text)) {
-                            lookupMap.put(text, key);
-                        }
-                    }
-                }
+        synchronized (localeMap) {
+            Locale userLocale = this.getLocale(request);
+            lookupMap = (Map) this.localeMap.get(userLocale);
+            
+            if (lookupMap == null) {
+                lookupMap = this.initLookupMap(request, userLocale);
+                this.localeMap.put(userLocale, lookupMap);
             }
         }
 
@@ -249,7 +217,41 @@ public abstract class LookupDispatchAction extends DispatchAction {
 
         String methodName = (String) keyMethodMap.get(key);
 
-        return dispatchMethod(mapping, form, request, response, methodName);
+        return this.dispatchMethod(mapping, form, request, response, methodName);
+    }
+
+    /**
+     * This is the first time this Locale is used so build the reverse lookup Map.
+     * Search for message keys in all configured MessageResources for
+     * the current module.
+     */
+    private Map initLookupMap(HttpServletRequest request, Locale userLocale) {
+        Map lookupMap = new HashMap();
+        this.keyMethodMap = this.getKeyMethodMap();
+
+        ModuleConfig moduleConfig =
+            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+
+        MessageResourcesConfig[] mrc = moduleConfig.findMessageResourcesConfigs();
+
+        // Look through all module's MessageResources
+        for (int i = 0; i < mrc.length; i++) {
+            MessageResources resources = this.getResources(request, mrc[i].getKey());
+
+            // Look for key in MessageResources
+            Iterator iter = this.keyMethodMap.keySet().iterator();
+            while (iter.hasNext()) {
+                String key = (String) iter.next();
+                String text = resources.getMessage(userLocale, key);
+
+                // Found key and haven't added to Map yet, so add the text
+                if ((text != null) && !lookupMap.containsKey(text)) {
+                    lookupMap.put(text, key);
+                }
+            }
+        }
+        
+        return lookupMap;
     }
 
     /**
