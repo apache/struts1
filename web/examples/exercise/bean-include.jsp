@@ -7,8 +7,8 @@
     <div align="center">
       <h1>Test struts-bean:include Tag</h1>
     </div>
-    <bean:include id="welcome" page="/welcome.html" />
-    <p>Display the contents returned by invoking 
+    <bean:include id="welcome" page="/welcome.jsp" />
+    <p>Display the contents returned by invoking
     <code>/welcome.html</code>directly, with no filtering.</p>
     <hr />
     <pre>
