@@ -91,6 +91,12 @@
     validator's name attribute.
     </p>
 
+    <p>
+    For an example of creating a"twofields" validator, see
+    <a href="http://tinyurl.com/6jnv">"Struts Validator: Validating Two Fields Match"</a>
+    by Matt Raible.
+    </p>
+
 <pre><code><![CDATA[
 <field
     property="lastName"
