@@ -182,7 +182,7 @@
 
     <!-- Portal Body declaration-->
   <definition name="examples.portal.body" path="/layouts/columnsLayout.jsp"
-              controllerUrl="/portal/myPortal.do" >
+              controllerUrl="/examples/myPortal.do" >
 	  <put name="numCols" value="2" />
 	  <putList name="list0" >
 	    <add value="/examples/tiles/portal/login.jsp" />

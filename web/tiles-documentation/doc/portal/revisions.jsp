@@ -2,6 +2,21 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 19 Jul. 2002</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+	  <FONT size=2>
+      <UL>
+        <LI>TilesPlugin available for Struts1.1</LI>
+		<li>Blank war files have been updated</li>
+		<li>Definition factory interface has change. A new life cycle is introduce</li>
+		<li>Struts multi-modules feature works with the Tiles</li>
+	  </UL>
+	  </FONT>
+	</TD>
+  </TR> 
+  <TR>
+  <TR>
     <TD><FONT size=2><STRONG> 20 Jun. 2002</STRONG> </FONT></TD></TR>
   <TR>
     <TD>

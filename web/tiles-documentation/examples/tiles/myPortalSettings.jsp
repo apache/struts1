@@ -68,7 +68,7 @@ function down( col1 )
 </script>
 
 
-<html:form action="/examples/myPortalSettings.do"  >
+<html:form action="/myPortalSettings.do"  >
 
 
   

@@ -34,6 +34,16 @@
       <param-value>/WEB-INF/struts-config.xml</param-value>
     </init-param>
     <init-param>
+      <param-name>config/examples</param-name>
+      <param-value>/WEB-INF/struts-examples-config.xml</param-value>
+    </init-param>
+    <!--
+    <init-param>
+      <param-name>config/tutorial</param-name>
+      <param-value>/WEB-INF/struts-tutorial-config.xml</param-value>
+    </init-param>
+    -->
+    <init-param>
       <param-name>validate</param-name>
       <param-value>true</param-value>
     </init-param>

@@ -212,10 +212,10 @@
 </definition>
 
     <!-- Dynamic portal main page (use common layout) -->
-<definition name="rssLocalChannelTile"  path="/actions/rssChannel.do" >
+<definition name="rssLocalChannelTile"  path="/tutorial/actions/rssChannel.do" >
       <putList name="urls" >
-	    <add value="/rss/rss-example.xml" />
-	    <add value="/rss/apacheweek-headlines.xml" />
+	    <add value="/tutorial/rss/rss-example.xml" />
+	    <add value="/tutorial/rss/apacheweek-headlines.xml" />
 	  </putList>
 </definition>
 
@@ -231,7 +231,7 @@
   <!-- =======================================================  -->
   
     <!-- Dynamic portal body (Define default list) -->
-<definition name="dynamic.portal.body" path="/actions/myPortal.do" >
+<definition name="dynamic.portal.body" path="/tutorial/actions/myPortal.do" >
 	  <put name="numCols" value="2" />
 	  <putList name="list0" >
 	    <add value="/tutorial/portal/login.jsp" />
@@ -263,7 +263,7 @@
 </definition>
 
     <!-- Dynamic portal preferences body (extends portal.body to inherit default list) -->
-<definition name="dynamic.portal.prefs.body" path="/actions/myPortalPrefs.tile.do" extends="dynamic.portal.body" >
+<definition name="dynamic.portal.prefs.body" path="/tutorial/actions/myPortalPrefs.tile.do" extends="dynamic.portal.body" >
 </definition>
 
   

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+
+     NOTE:  You would only flesh out the details in the "form-bean"
+     declarations if you had a generator tool that used them to create
+     the corresponding Java classes for you.  Otherwise, you would
+     need only the "form-bean" element itself, with the corresponding
+     "name" and "type" attributes.
+-->
+
+
+<struts-config>
+
+
+  
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <!-- Logon form bean -->
+    <form-bean      name="invoiceForm"
+                    type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
+    <form-bean      name="myPortalSettingsForm"
+                    type="org.apache.struts.webapp.tiles.portal.PortalSettingsForm"/>
+    <form-bean      name="myMenuSettingsForm"
+                    type="org.apache.struts.webapp.tiles.portal.MenuSettingsForm"/>
+    <form-bean      name="mySkinSettingsForm"
+                    type="org.apache.struts.webapp.tiles.skin.LayoutSettingsForm"/>
+
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward   name="failure"              path="forward.example.failure.page"/>
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+  
+  <!-- =======================================================  -->
+  <!-- Examples Portal 1.1 actions  -->
+  <!-- =======================================================  -->
+    <!-- Dynamic Portal user lists retrieving action -->
+  <action     path="/myPortal"
+       		  type="org.apache.struts.webapp.tiles.portal.UserPortalAction">
+  </action>
+
+    <!-- Tiles Action associated to portal settings -->
+  <action     path="/controller/myPortalSettings"
+       		  type="org.apache.struts.webapp.tiles.portal.UserPortalSettingsAction"
+			  name="myPortalSettingsForm" >
+  </action>
+
+    <!-- Portal settings page entrance : forward to appropriate page definition -->
+  <action     path="/myPortalSettings"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="myPortalSettingsForm" >
+      <forward  name="success"    	       path="examples.portal.settings.page"/>
+  </action>
+
+    <!-- Tiles Action associated to Tile myMenuSettings -->
+  <action     path="/controller/myMenuSettings"
+       		  type="org.apache.struts.webapp.tiles.portal.UserMenuSettingsAction"
+			  name="myMenuSettingsForm" >
+  </action>
+
+    <!-- Menu Settings page entrance : forward to appropriate page definition -->
+  <action     path="/myMenuSettings"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="myMenuSettingsForm" >
+      <forward  name="success"    	       path="examples.userMenu.settings.page"/>
+  </action>
+
+  <!-- =======================================================  -->
+  <!-- Tiles 1.1 Skin Settings -->
+  <!-- =======================================================  -->
+    <!-- Skin Settings page entrance : forward to appropriate page definition -->
+  <action     path="/mySkinSettings"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="mySkinSettingsForm" >
+      <forward  name="success"    	       path="examples.skin.settings.page"/>
+  </action>
+
+    <action     path="/controller/mySkinSettings"
+                type="org.apache.struts.webapp.tiles.skin.LayoutSettingsAction"
+				name="mySkinSettingsForm" >
+   </action>
+
+    <action     path="/controller/layoutSwitch"
+                type="org.apache.struts.webapp.tiles.skin.LayoutSwitchAction"  >
+   </action>
+
+
+  <!-- =======================================================  -->
+  <!-- Tiles 1.1 Rss Channel -->
+  <!-- =======================================================  -->
+    <action     path="/controller/rssChannel"
+                type="org.apache.struts.webapp.tiles.rssChannel.RssChannelsAction">
+   </action>
+			   
+  </action-mappings>
+
+  
+  <!-- ========== Tiles plug-in setting settings =================== -->
+  <!-- Here we specified the tiles plug-in.
+       This plug-in register appropriate Request Processor -->
+  <!--  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"  />  -->
+
+  <!-- ========== Associated Messages Ressource settings =================== -->
+  <!-- Not used by tiles or this website, but needed due to a bug in actual Struts version -->
+  <message-resources parameter="org.apache.struts.webapp.tiles.dev1-1.ApplicationResources" null="false" />
+
+  
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml,
+                            /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
+                            /WEB-INF/tiles-examples-defs.xml" />
+    <set-property property="definitions-debug" value="1" />
+    <set-property property="definitions-parser-details" value="0" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+
+</struts-config>

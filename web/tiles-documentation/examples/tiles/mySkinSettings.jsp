@@ -5,7 +5,7 @@
 <tiles:importAttribute name="catalog" />
 <tiles:useAttribute name="selected" />
 
-<html:form action="/examples/mySkinSettings.do"  >
+<html:form action="/mySkinSettings.do"  >
 
 
   

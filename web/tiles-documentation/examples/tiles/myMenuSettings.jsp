@@ -75,7 +75,7 @@ function down( col1 )
 <tiles:importAttribute name="catalog" />
 <tiles:importAttribute name="userItems" />
 
-<html:form action="/examples/myMenuSettings.do"  >
+<html:form action="/myMenuSettings.do"  >
  
 	  <ul>
 	    <li>Choose an item from "Items Choice" colomn, and add it to "my Items" using the '>' button.</li>

@@ -101,20 +101,20 @@
   <!-- Tutorial Dynamic portal actions  -->
   <!-- =======================================================  -->
     <!-- Dynamic Portal user lists retrieving action -->
-  <action     path="/actions/myPortal"
+  <action     path="/tutorial/actions/myPortal"
        		  type="org.apache.struts.webapp.tiles.dynPortal.RetrievePortalAction">
       <forward  name="success"        path="main.portal.body"/>
   </action>
 
     <!-- Dynamic Portal user lists set action : no op action forwarding to tile -->
-  <action     path="/actions/myPortalPrefs"
+  <action     path="/tutorial/actions/myPortalPrefs"
        		  type="org.apache.struts.tiles.actions.NoOpAction"
 			  name="portalPrefsForm">
       <forward  name="success"        path="myDynamicPortalPreferences"/>
   </action>
 
     <!-- Dynamic Portal user lists set tile-action : -->
-  <action     path="/actions/myPortalPrefs.tile"
+  <action     path="/tutorial/actions/myPortalPrefs.tile"
        		  type="org.apache.struts.webapp.tiles.dynPortal.SetPortalPrefsAction"
 			  name="portalPrefsForm">
       <forward  name="preferences"    path="/tutorial/dynPortal/myPortalPrefTile.jsp"/>
@@ -187,7 +187,7 @@
   <!-- =======================================================  -->
   <!-- Rss Channel -->
   <!-- =======================================================  -->
-    <action     path="/actions/rssChannel"
+    <action     path="/tutorial/actions/rssChannel"
                 type="org.apache.struts.webapp.tiles.rssChannel.Channels">
       <forward  name="continue"        path="/tutorial/dynPortal/Channels.jsp"/>
       <forward  name="error"           path="/tutorial/dynPortal/Errors.jsp"/>

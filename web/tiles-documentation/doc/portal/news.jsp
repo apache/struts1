@@ -3,6 +3,13 @@
 <th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
+      <p><FONT size=2>19 Jul. 2002</FONT></P>
+      <P><STRONG><EM><FONT color=#ff0000>Tiles is now in the main branch of
+	   Struts1.1 distribution</FONT></EM></STRONG>
+	  <br><FONT color=#000000 size=2>
+	  A Tiles plug-in is available for Struts1.1.
+	  </FONT></P>
+	  
       <p><FONT size=2>13 Jun. 2002</FONT></P>
       <P><STRONG><EM><FONT color=#ff0000>Vote for Tiles and Struts</FONT></EM></STRONG>
 	  <br><FONT color=#000000 size=2>
