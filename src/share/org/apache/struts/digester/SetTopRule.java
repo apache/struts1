@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetTopRule.java,v 1.3 2001/01/23 03:35:52 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/23 03:35:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetTopRule.java,v 1.4 2001/01/23 03:50:02 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/23 03:50:02 $
  *
  * ====================================================================
  * 
@@ -72,7 +72,7 @@ import org.xml.sax.AttributeList;
  * object, passing the (top-1) (child) object as an argument.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/23 03:35:52 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/23 03:50:02 $
  */
 
 public final class SetTopRule extends Rule {
@@ -107,7 +107,7 @@ public final class SetTopRule extends Rule {
      *  for a <code>boolean</code> parameter)
      */
     public SetTopRule(Digester digester, String methodName,
-                         String argument) {
+                         String paramType) {
 
 	super(digester);
 	this.methodName = methodName;
