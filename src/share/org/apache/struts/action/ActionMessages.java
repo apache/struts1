@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.18 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.18 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.19 2004/04/25 02:58:43 husted Exp $
+ * $Revision: 1.19 $
+ * $Date: 2004/04/25 02:58:43 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -42,7 +42,7 @@ import java.util.List;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @version $Revision: 1.18 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.19 $ $Date: 2004/04/25 02:58:43 $
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {
@@ -140,7 +140,7 @@ public class ActionMessages implements Serializable {
 
         if (item == null) {
             list = new ArrayList();
-            item = new ActionMessageItem(list, iCount++);
+            item = new ActionMessageItem(list, iCount++, property);
 
             messages.put(property, item);
         } else {
@@ -290,8 +290,28 @@ public class ActionMessages implements Serializable {
      */
     public Iterator properties() {
 
-        return this.messages.keySet().iterator();
+        if (messages.isEmpty()) {
+            return Collections.EMPTY_LIST.iterator();
+        }
 
+        ArrayList results = new ArrayList();
+        ArrayList actionItems = new ArrayList();
+
+        for (Iterator i = messages.values().iterator(); i.hasNext();) {
+            actionItems.add(i.next());
+        }
+
+        // Sort ActionMessageItems based on the initial order the
+        // property/key was added to ActionMessages.
+        Collections.sort(actionItems, actionItemComparator);
+
+        for (Iterator i = actionItems.iterator(); i.hasNext();) {
+            ActionMessageItem ami = (ActionMessageItem) i.next();
+            results.add(ami.getProperty());
+        }
+
+        return results.iterator();
+ 
     }
 
 
@@ -357,9 +377,16 @@ public class ActionMessages implements Serializable {
         protected int iOrder = 0;
 
 
-        public ActionMessageItem(List list, int iOrder) {
+        /**
+         * <p>The property associated with <code>ActionMessage</code>.</p>
+         */
+        protected String property = null;
+
+
+        public ActionMessageItem(List list, int iOrder, String property) {
             this.list = list;
             this.iOrder = iOrder;
+            this.property = property;
         }
 
 
@@ -380,6 +407,16 @@ public class ActionMessages implements Serializable {
 
         public void setOrder(int iOrder) {
             this.iOrder = iOrder;
+        }
+
+
+        public String getProperty() {
+            return property;
+        }
+
+
+        public void setProperty(String property) {
+            this.property = property;
         }
 
 
