@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.13 2002/07/09 06:41:44 martinc Exp $
+$Id: STATUS,v 1.14 2002/07/09 11:26:53 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -69,6 +69,7 @@ Validator Framework:
 10348 Validator is not available under sub-application
 10349 Validator: date validation does not allow blank input?
 10432 DynaValidatorActionForm does not validate data
+10584 Not all validation files are read in Validation PlugIn
 
 
 Web Site:
