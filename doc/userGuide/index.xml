@@ -66,18 +66,7 @@
                     <li><a href="building_controller.html#config_add">4.6 Add Struts Components To Your Application</a></li>
                     </ul></li>
                 </ul></li>
-            <li><a href="taglib.html">5. Struts Tag Libraries</a>
-                <ul>
-                <li>5.1 The Struts Bean Tag Library
-                <ul>
-                <li><a href="taglib_struts-bean-dev.html">5.1.1 The Struts Bean Overview</a></li>
-                <li><a href="taglib_struts-bean-ref.html">5.1.2 The Struts Bean Reference</a></li>
-                </ul></li>
-                <li><a href="struts-html.html">5.2 The Struts HTML Tag Library</a></li>
-                <li><a href="struts-logic.html">5.3 The Struts Logic Tag Library</a></li>
-                <li><a href="struts-template.html">5.4 The Struts Template Tag Library</a></li>
-                </ul></li>
-             <li><a href="resources.html">6. Resources</a>
+             <li><a href="resources.html">5. Resources</a>
                     <ul>
                     <li><a href="resources.html#taglibs">6.1 Contributor Taglibs</a></li>
                     <li><a href="resources.html#extensions">6.2 Contributor Extensions</a></li>
@@ -93,8 +82,8 @@
                     <li><a href="resources.html#consultants">6.12 Struts Consultants</a></li>
                     </ul></li>
 
-            <li><a href="kickstart.html">7. Kickstart FAQ</a></li>
-            <li><a href="volunteers.html">8. Who We Are</a></li>
+            <li><a href="kickstart.html">6. Kickstart FAQ</a></li>
+            <li><a href="volunteers.html">7. Who We Are</a></li>
         </ul>
 
       </section>
