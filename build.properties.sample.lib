@@ -285,11 +285,11 @@ ant.jar=${apache.home}/apache-ant-1.5.3-1/lib/ant.jar
 
 # Note: If you don't want to run the test on a given servlet engine, just
 #       comment it's home property. For example, if you don't want to run the
-#       tests on Tomcat 4.0, comment the "tomcat.home.40" property.
+#       tests on Tomcat 4.1, comment the "tomcat.home.41" property.
 
-tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
-tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6
 tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.30
+tomcat.home.50 = ${apache.home}/jakarta-tomcat-5.0.28
+tomcat.home.55 = ${apache.home}/jakarta-tomcat-5.5.4
 # use value of tomcat.home.41 to set equivalent property for Maven-Cactus plug-in
 cactus.home.tomcat4x=${tomcat.home.41}
 
@@ -297,21 +297,21 @@ cactus.home.tomcat4x=${tomcat.home.41}
 # Properties related to optional Tomcat tasks
 # ------------------------------------
 
-# The directory containing your binary distribution of Tomcat 4.0 ("Catalina"
+# The directory containing your binary distribution of Tomcat 4.1 ("Catalina"
 # is the servlet container part of this distribution), from CVS module
-# "jakarta-tomcat-4.0" at jakarta.apache.org).  This is only required
+# "jakarta-tomcat-4.1" at jakarta.apache.org).  This is only required
 # if you are going to execute the "deploy.catalina" target.
-catalina.home=${apache.home}/jakarta-tomcat-4.0.6
+catalina.home=${tomcat.home.41}
 
 # The JAR file containing the JSP API classes to compile against if you are
 # using JSP 2.0 or later (where these classes are separated from servlet.jar).
 # If you are using JSP 1.1 or 1.2, leave this property unset
 #jsp.jar=${apache.home}/jakarta-servletapi/lib/jsp.jar
 
-# The directory containing your binary distribution of Tomcat 3.3, from CVS
-# module "jakarta-tomcat" (and branch "TOMCAT_32") at jakarta.apache.org.
-# This is only required if you are going to execute the "deploy.tomcat" target.
-tomcat.home=${apache.home}/jakarta-tomcat-3.3.1
+# The directory containing your binary distribution of Tomcat 4.1, from CVS
+# module "jakarta-tomcat-4.0" at jakarta.apache.org. This is only required
+# if you are going to execute the "deploy.tomcat" target.
+tomcat.home=${apache.home}/jakarta-tomcat-4.1.30
 
 # The JAR file containing the Xerces parser.  This is only required if you are
 # going to execute the "deploy.catalina" target.

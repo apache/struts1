@@ -125,7 +125,7 @@
     <target name="init">
 
         <taskdef name="runservertests"
-            classname="org.apache.cactus.ant.RunServerTestsTask">
+            classname="org.apache.cactus.integration.ant.RunServerTestsTask">
 
             <classpath>
                 <pathelement location="${cactus.ant.jar}"/>
@@ -288,261 +288,6 @@
             </batchtest>
 
         </junit>
-
-    </target>
-
-<!--
-        Prepare test directory structure for Tomcat 3.2 servlet engine
--->
-    <target name="prepare.test.tomcat.32" depends="prepare.test.war" if="tomcat.home.32">
-
-        <property name="out.tomcat.32.dir" value="${out.test.dir}/servers/tomcat32"/>
-        <filter token="out.tomcat.32.dir" value="${out.tomcat.32.dir}"/>
-        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
-
-        <mkdir dir="${out.tomcat.32.dir}/webapps"/>
-        <mkdir dir="${out.tomcat.32.dir}/conf"/>
-
-	<!-- Delete old directory so new war is unzipped -->
-        <delete dir="${out.tomcat.32.dir}/webapps/test"/>
-
-        <!-- Copy war file -->
-        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.32.dir}/webapps"/>
-
-        <!-- Copy configuration files -->
-        <copy file="${conf.test.dir}/tomcat32/server.xml"
-            todir="${out.tomcat.32.dir}/conf" filtering="on"/>
-
-    </target>
-
-<!--
-        Run unit tests on Tomcat 3.2 servlet engine
--->
-    <target name="test.tomcat.32" depends="prepare.test.tomcat.32">
-
-        <!-- Start the servlet engine, wait for it to be started, run the
-             unit tests, stop the servlet engine, wait for it to be stopped.
-             The servlet engine is automatically stopped if the tests fail for
-             any reason.-->
-
-        <runservertests testURL="${cactus.contextURL}"
-            startTarget="start.tomcat.32"
-            stopTarget="stop.tomcat.32"
-            testTarget="run.test"/>
-
-    </target>
-
-<!--
-        Start Tomcat 3.2 servlet engine
--->
-    <target name="start.tomcat.32">
-
-        <java classname="org.apache.tomcat.startup.Tomcat" fork="yes">
-            <arg value="-config"/>
-            <arg value="${out.tomcat.32.dir}/conf/server.xml"/>
-            <classpath>
-                <pathelement location="${java.home}/../lib/tools.jar"/>
-                <fileset dir="${tomcat.home.32}/lib">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
-        Stop Tomcat 3.2 servlet engine
--->
-    <target name="stop.tomcat.32">
-
-        <java classname="org.apache.tomcat.startup.Tomcat" fork="yes">
-            <jvmarg value="-Dtomcat.home=${tomcat.home.32}"/>
-            <arg value="-stop"/>
-            <classpath>
-                <pathelement location="${java.home}/../lib/tools.jar"/>
-                <fileset dir="${tomcat.home.32}/lib">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
-        Prepare test directory structure for Tomcat 3.3 servlet engine
--->
-    <target name="prepare.test.tomcat.33" depends="prepare.test.war" if="tomcat.home.33">
-
-        <property name="out.tomcat.33.dir" value="${out.test.dir}/servers/tomcat33"/>
-        <filter token="out.tomcat.33.dir" value="${out.tomcat.33.dir}"/>
-        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
-
-        <mkdir dir="${out.tomcat.33.dir}/webapps"/>
-        <mkdir dir="${out.tomcat.33.dir}/conf"/>
-
-       <!-- Delete old directory so new war is unzipped -->
-        <delete dir="${out.tomcat.33.dir}/webapps/test"/>
-
-        <!-- Copy war file -->
-        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.33.dir}/webapps"/>
-
-        <!-- Copy configuration files -->
-        <copy file="${conf.test.dir}/tomcat33/server.xml"
-            todir="${out.tomcat.33.dir}/conf" filtering="on"/>
-        <copy file="${conf.test.dir}/tomcat33/modules.xml"
-            todir="${out.tomcat.33.dir}/conf" filtering="on"/>
-
-    </target>
-
-<!--
-        Run unit tests on Tomcat 3.3 servlet engine
--->
-    <target name="test.tomcat.33" depends="prepare.test.tomcat.33">
-
-        <!-- Start the servlet engine, wait for it to be started, run the
-             unit tests, stop the servlet engine, wait for it to be stopped.
-             The servlet engine is automatically stopped if the tests fail for
-             any reason.-->
-
-        <runservertests testURL="${cactus.contextURL}"
-            startTarget="start.tomcat.33"
-            stopTarget="stop.tomcat.33"
-            testTarget="run.test"/>
-
-    </target>
-
-<!--
-        Start Tomcat 3.3 servlet engine
--->
-    <target name="start.tomcat.33">
-
-        <java classname="org.apache.tomcat.startup.Main" fork="yes">
-            <arg value="-home"/>
-            <arg value="${out.tomcat.33.dir}"/>
-            <arg value="-config"/>
-            <arg value="${out.tomcat.33.dir}/conf/server.xml"/>
-            <arg value="run"/>
-            <classpath>
-                <pathelement location="${java.home}/../lib/tools.jar"/>
-                <fileset dir="${tomcat.home.33}/lib">
-                    <include name="*.jar"/>
-                </fileset>
-                <fileset dir="${tomcat.home.33}/lib/common">
-                    <include name="*.jar"/>
-                </fileset>
-                <fileset dir="${tomcat.home.33}/lib/container">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
-        Stop Tomcat 3.3 servlet engine
--->
-    <target name="stop.tomcat.33">
-
-        <java classname="org.apache.tomcat.startup.Main" fork="yes">
-            <jvmarg value="-Dtomcat.home=${out.tomcat.33.dir}"/>
-            <arg value="stop"/>
-            <classpath>
-                <pathelement location="${java.home}/../lib/tools.jar"/>
-                <fileset dir="${tomcat.home.33}/lib">
-                    <include name="*.jar"/>
-                </fileset>
-                <fileset dir="${tomcat.home.33}/lib/common">
-                    <include name="*.jar"/>
-                </fileset>
-                <fileset dir="${tomcat.home.33}/lib/container">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
-        Prepare test directory structure for Tomcat 4.0 servlet engine
--->
-    <target name="prepare.test.tomcat.40" depends="prepare.test.war" if="tomcat.home.40">
-
-        <property name="out.tomcat.40.dir" value="${out.test.dir}/servers/tomcat40"/>
-        <filter token="out.tomcat.40.full.dir" value="${out.tomcat.40.dir}"/>
-        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
-
-        <mkdir dir="${out.tomcat.40.dir}/webapps"/>
-        <mkdir dir="${out.tomcat.40.dir}/conf"/>
-
-	<!-- Delete old directory so new war is unzipped -->
-        <delete dir="${out.tomcat.40.dir}/webapps/test"/>
-
-        <!-- Copy war file -->
-        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.40.dir}/webapps"/>
-
-        <!-- Copy configuration files -->
-        <copy file="${conf.test.dir}/tomcat40/server.xml"
-            todir="${out.tomcat.40.dir}/conf" filtering="on"/>
-
-    </target>
-
-<!--
-        Run unit tests on Tomcat 4.0 servlet engine
--->
-    <target name="test.tomcat.40" depends="prepare.test.tomcat.40">
-
-        <!-- Start the servlet engine, wait for it to be started, run the
-             unit tests, stop the servlet engine, wait for it to be stopped.
-             The servlet engine is automatically stopped if the tests fail for
-             any reason.-->
-
-        <runservertests testURL="${cactus.contextURL}"
-            startTarget="start.tomcat.40"
-            stopTarget="stop.tomcat.40"
-            testTarget="run.test"/>
-
-    </target>
-
-<!--
-        Start Tomcat 4.0 servlet engine
--->
-    <target name="start.tomcat.40">
-
-        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
-            <jvmarg value="-Dcatalina.home=${tomcat.home.40}"/>
-            <jvmarg value="-Dcatalina.base=${tomcat.home.40}"/>
-            <arg value="-config"/>
-            <arg value="${out.tomcat.40.dir}/conf/server.xml"/>
-            <arg value="start"/>
-            <classpath>
-              <pathelement location="${java.home}/../lib/tools.jar"/>
-              <fileset dir="${tomcat.home.40}">
-                  <include name="bin/bootstrap.jar"/>
-<!--                  <include name="server/catalina.jar"/> -->
-              </fileset>
-            </classpath>
-        </java>
-
-    </target>
-
-<!--
-        Stop Tomcat 4.0 servlet engine
--->
-    <target name="stop.tomcat.40">
-
-        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
-            <jvmarg value="-Dcatalina.home=${tomcat.home.40}"/>
-            <jvmarg value="-Dcatalina.base=${tomcat.home.40}"/>
-            <arg value="-config"/>
-            <arg value="${out.tomcat.40.dir}/conf/server.xml"/>
-            <arg value="stop"/>
-            <classpath>
-              <fileset dir="${tomcat.home.40}">
-                  <include name="bin/bootstrap.jar"/>
-<!--                  <include name="server/catalina.jar"/> -->
-              </fileset>
-            </classpath>
-        </java>
 
     </target>
 
@@ -713,6 +458,91 @@
         </java>
 
     </target>
+
+<!--
+        Prepare test directory structure for Tomcat 5.5 servlet engine
+-->
+    <target name="prepare.test.tomcat.55" depends="prepare.test.war" if="tomcat.home.55">
+
+        <property name="out.tomcat.55.dir" value="${out.test.dir}/servers/tomcat55"/>
+        <filter token="out.tomcat.55.full.dir" value="${out.tomcat.55.dir}"/>
+        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
+
+        <mkdir dir="${out.tomcat.55.dir}/webapps"/>
+        <mkdir dir="${out.tomcat.55.dir}/conf"/>
+
+	<!-- Delete old directory so new war is unzipped -->
+        <delete dir="${out.tomcat.55.dir}/webapps/test"/>
+
+        <!-- Copy war file -->
+        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.55.dir}/webapps"/>
+
+        <!-- Copy configuration files -->
+        <copy file="${conf.test.dir}/tomcat55/server.xml"
+            todir="${out.tomcat.55.dir}/conf" filtering="on"/>
+
+    </target>
+
+<!--
+        Run unit tests on Tomcat 5.5 servlet engine
+-->
+    <target name="test.tomcat.55" depends="prepare.test.tomcat.55">
+
+        <!-- Start the servlet engine, wait for it to be started, run the
+             unit tests, stop the servlet engine, wait for it to be stopped.
+             The servlet engine is automatically stopped if the tests fail for
+             any reason.-->
+
+        <runservertests testURL="${cactus.contextURL}"
+            startTarget="start.tomcat.55"
+            stopTarget="stop.tomcat.55"
+            testTarget="run.test"/>
+
+    </target>
+
+<!--
+        Start Tomcat 5.5 servlet engine
+-->
+    <target name="start.tomcat.55">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.55}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.55}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.55.dir}/conf/server.xml"/>
+            <arg value="start"/>
+            <classpath>
+              <pathelement location="${java.home}/../lib/tools.jar"/>
+              <fileset dir="${tomcat.home.55}">
+                  <include name="bin/bootstrap.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+<!--
+        Stop Tomcat 5.5 servlet engine
+-->
+    <target name="stop.tomcat.55">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.55}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.55}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.55.dir}/conf/server.xml"/>
+            <arg value="stop"/>
+            <classpath>
+              <fileset dir="${tomcat.home.55}">
+                  <include name="bin/bootstrap.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
 
 <!-- ================ Non-Cactus JUnit Based Tests ======================== -->
 
