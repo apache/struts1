@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.2 2002/07/07 21:51:55 jholmes Exp $
+$Id: STATUS,v 1.3 2002/07/07 22:08:53 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -15,6 +15,7 @@ Controller:
 
 Custom Tags:
 -----------
+ 1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 10534 <html:link forward> does not add servlet context correctly
 10536 Closing tag is whitespace-sensitive
 
@@ -22,10 +23,13 @@ Custom Tags:
 Example Webapps:
 ---------------
  9709 Does not work with BEA Weblogic 7.0
+10501 Error running struts under JRun 3.1
 
 
 File Upload:
 -----------
+ 4170 MaxLengthExceeded doesn't stop file upload
+ 5274 OutOfMemoryError when uploading big files
  7663 FileUpload example throws exception on JBoss 3.0
  8732 RequestProcessor doesn't uncast the Request properly
  9198 First line feed in text parameters lost
