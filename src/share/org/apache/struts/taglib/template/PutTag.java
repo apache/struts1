@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.7 2001/01/22 19:45:59 dgeary Exp $
- * $Revision: 1.7 $
- * $Date: 2001/01/22 19:45:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.8 2001/02/26 16:44:16 dgeary Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/02/26 16:44:16 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.7 $ $Date: 2001/01/22 19:45:59 $
+ * @version $Revision: 1.8 $ $Date: 2001/02/26 16:44:16 $
  */
 public class PutTag extends BodyTagSupport {
 
@@ -146,6 +146,40 @@ public class PutTag extends BodyTagSupport {
 
    }
 
+   /**
+     * Get the name attribute.
+     */
+   public String getName() { 
+
+      return name; 
+
+   }
+
+   /**
+     * Get the role attribute.
+     */
+   public String getRole() { 
+
+      return role; 
+
+   }
+
+   /**
+     * Get the content attribute.
+     */
+   public String getContent() { 
+
+      return content; 
+
+   }
+
+   /**
+     * Returns the direct attribute associated with this tag.
+     */
+   public String getDirect() {
+      if(hasBody()) return "true";
+      else          return direct == null ? "false" : "true";
+   }
 
    /**
      * Process the end tag by putting content into the enclosing
@@ -168,7 +202,7 @@ public class PutTag extends BodyTagSupport {
          throw new JspException("PutTag.doEndTag(): " +
                                 "No InsertTag ancestor");
 
-      insertTag.put(name, new Content(getContent(), getDirect()));
+      insertTag.put(name, new Content(getActualContent(), getDirect()));
 
       return EVAL_PAGE;
 
@@ -190,7 +224,7 @@ public class PutTag extends BodyTagSupport {
    /**
      * Returns the content associated with this tag.
      */
-   private String getContent() throws JspException {
+   private String getActualContent() throws JspException {
 
       String bodyAndContentMismatchError = 
                       "Please specify template content in this tag's body " +
@@ -219,15 +253,6 @@ public class PutTag extends BodyTagSupport {
       if (bodyContent == null)
          return (false);
       return ! bodyContent.getString().equals("");
-   }
-
-
-   /**
-     * Returns the direct attribute associated with this tag.
-     */
-   private String getDirect() {
-      if(hasBody()) return "true";
-      else            return direct == null ? "false" : "true";
    }
 
 

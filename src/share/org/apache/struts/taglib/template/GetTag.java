@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.6 2001/01/22 19:45:57 dgeary Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/22 19:45:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.7 2001/02/26 16:44:16 dgeary Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/26 16:44:16 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.6 $ $Date: 2001/01/22 19:45:57 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/26 16:44:16 $
  */
 public class GetTag extends TagSupport {
 
@@ -112,6 +112,24 @@ public class GetTag extends TagSupport {
 
    }
 
+   /**
+     * Get the name attribute.
+     */
+   public String getName() { 
+
+      return name; 
+
+   }
+
+   /**
+     * Get the role attribute.
+     */
+   public String getRole() { 
+
+      return role; 
+
+   }
+
 // --------------------------------------------------------- Public Methods
 
    /**
@@ -125,7 +143,7 @@ public class GetTag extends TagSupport {
       if(role != null && !request.isUserInRole(role))
       	return SKIP_BODY;
 
-      ContentMap map = ContentMapStack.peek(pageContext);
+      ContentMap  map = ContentMapStack.peek(pageContext);
       Content content = map.get(name);
 
       if(content != null) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.5 2001/02/23 17:15:00 dgeary Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/23 17:15:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.6 2001/02/26 16:44:16 dgeary Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/26 16:44:16 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.5 $ $Date: 2001/02/23 17:15:00 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/26 16:44:16 $
  */
 public class InsertTag extends TagSupport {
 
@@ -97,11 +97,29 @@ public class InsertTag extends TagSupport {
 
 
    /**
-     * Setter for the template attribute. 
+     * Set the template attribute. 
      */
    public void setTemplate(String template) {
 
       this.template = template;
+
+   }
+
+   /**
+     * Get the template attribute. 
+     */
+   public String getTemplate() {
+
+      return template;
+
+   }
+
+   /**
+     * Get the map attribute. 
+     */
+   public ContentMap getContentMap() {
+
+      return map;
 
    }
 
