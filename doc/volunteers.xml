@@ -141,6 +141,9 @@
         <li>
             James Turner
         </li>
+        <li>
+            Kurt Post
+        </li>
 
     </ul>
 
@@ -305,23 +308,11 @@
         </li>
 
         <li>
-            <b>Vincent Massol</b> (vmassol at apache.org)
-        </li>
-
-        <li>
             <b>Cedric Dumoulin</b> (cedric.dumoulin at lifl.fr)
         </li>
 
         <li>
             <b>Martin Cooper</b> (martinc at apache.org)
-        </li>
-
-        <li>
-            <b>David Winterfeldt</b> (dwinterfeldt at apache.org)
-        </li>
-
-        <li>
-            <b>Oleg Alexeev</b> (oalexeev at apache.org)
         </li>
 
         <li>
@@ -375,6 +366,18 @@
     <li>
         Michael Schachter
     </li>
+    <li>
+        <b>Vincent Massol</b>
+    </li>
+    <li>
+        <b>David Winterfeldt</b>
+    </li>
+
+    <li>
+        <b>Oleg Alexeev</b>
+    </li>
+
+
 
 </ul>
 
