@@ -2,7 +2,7 @@
 
 <!DOCTYPE struts-config PUBLIC
           "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 
 <!--
      This is a blank Struts configuration file with an example
@@ -20,42 +20,44 @@
 
 <struts-config>
 
-<!-- ==================================== Data Source Configuration -->
+<!-- ============================================ Data Source Configuration -->
 <!--
- <data-sources>
-   <data-source>
-     <set-property
-        property="autoCommit"
-        value="false"/>
-     <set-property
-        property="description"
-        value="Example Data Source Configuration"/>
-     <set-property
-        property="driverClass"
-        value="org.postgresql.Driver"/>
-     <set-property
-        property="maxCount"
-        value="4"/>
-     <set-property
-        property="minCount"
-        value="2"/>
-     <set-property
-        property="password"
-        value="mypassword"/>
-     <set-property
-        property="url"
-        value="jdbc:postgresql://localhost/mydatabase"/>
-     <set-property
-        property="user"
-        value="myusername"/>
-   </data-source>
- </data-sources>
+<data-sources>
+<data-source type="org.apache.commons.dbcp.BasicDataSource">
+    <set-property
+      property="driverClassName"
+      value="org.postgresql.Driver" />
+    <set-property
+      property="url"
+      value="jdbc:postgresql://localhost/mydatabase" />
+    <set-property
+      property="username"
+      value="me" />
+    <set-property
+      property="password"
+      value="test" />
+    <set-property
+      property="maxActive"
+      value="10" />
+    <set-property
+      property="maxWait"
+      value="5000" />
+    <set-property
+      property="defaultAutoCommit"
+      value="false" />
+    <set-property
+      property="defaultReadOnly"
+      value="false" />
+    <set-property
+      property="validationQuery"
+      value="SELECT COUNT(*) FROM market" />
+</data-source>
+</data-sources>
 -->
 
-<!-- ======================================== Form Bean Definitions -->
+<!-- ================================================ Form Bean Definitions -->
 
     <form-beans>
-
     <!-- sample form bean descriptor for an ActionForm
         <form-bean
             name="inputForm"
@@ -74,12 +76,10 @@
                 type="java.lang.String"/>
        </form-bean>
     end sample -->
-
-
     </form-beans>
 
 
-<!-- ================================= Global Exception Definitions -->
+<!-- ========================================= Global Exception Definitions -->
 
     <global-exceptions>
         <!-- sample exception handler
@@ -91,7 +91,7 @@
     </global-exceptions>
 
 
-<!-- =================================== Global Forward Definitions -->
+<!-- =========================================== Global Forward Definitions -->
 
     <global-forwards>
         <!-- Default forward to "Welcome" action -->
@@ -102,10 +102,9 @@
     </global-forwards>
 
 
-<!-- =================================== Action Mapping Definitions -->
+<!-- =========================================== Action Mapping Definitions -->
 
     <action-mappings>
-
             <!-- Default "Welcome" action -->
             <!-- Forwards to Welcome.jsp -->
         <action
@@ -128,59 +127,60 @@
             validate="true"
             input="/pages/Input.jsp"/>
 
-    end samples -->
+            <action
+                path="/edit*"
+                type="app.Edit{1}Action"
+                name="inputForm"
+                scope="request"
+                validate="true"
+                input="/pages/Edit{1}.jsp"/>
 
+    end samples -->
     </action-mappings>
 
 
-<!-- ===================================== Controller Configuration -->
+<!-- ============================================= Controller Configuration -->
 
     <controller
        processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
 
 
-<!-- ================================ Message Resources Definitions -->
+<!-- ======================================== Message Resources Definitions -->
 
-    <message-resources parameter="resources.application"/>
+    <message-resources parameter="MessageResources"/>
 
 
-<!-- ======================================= Plug Ins Configuration -->
+<!-- =============================================== Plug Ins Configuration -->
 
-  <!-- ========== Tiles plugin ===================  -->
-  <!--												-->
+  <!-- ======================================================= Tiles plugin -->
   <!--
      This plugin initialize Tiles definition factory. This later can takes some
-	 parameters explained here after. The plugin first read parameters from web.xml, then
-	 overload them with parameters defined here. All parameters are optional.
-	 The plugin should be declared in each struts-config file.
-       - definitions-config: (optional) 
-            Specify configuration file names. There can be several comma 
+	 parameters explained here after. The plugin first read parameters from
+	 web.xml, thenoverload them with parameters defined here. All parameters
+	 are optional.
+     The plugin should be declared in each struts-config file.
+       - definitions-config: (optional)
+            Specify configuration file names. There can be several comma
 		    separated file names (default: ?? )
-       - moduleAware: (optional - struts1.1) 
-            Specify if the Tiles definition factory is module aware. If true (default), 
-			there will be one factory for each Struts module. 
-			If false, there will be one common factory for all module. In this later case, 
-			it is still needed to declare one plugin per module. The factory will be 
-			initialized with parameters found in the first initialized plugin (generally the
-			one associated with the default module).
+       - moduleAware: (optional - struts1.1)
+            Specify if the Tiles definition factory is module aware. If true
+            (default), there will be one factory for each Struts module.
+			If false, there will be one common factory for all module. In this
+            later case, it is still needed to declare one plugin per module.
+            The factory will be initialized with parameters found in the first
+            initialized plugin (generally the one associated with the default
+            module).
 			  true : One factory per module. (default)
 			  false : one single shared factory for all modules
 	   - definitions-parser-validate: (optional)
 	        Specify if xml parser should validate the Tiles configuration file.
-			  true : validate. DTD should be specified in file header. (default)
+			  true : validate. DTD should be specified in file header (default)
 			  false : no validation
-			  
+
 	  Paths found in Tiles definitions are relative to the main context.
   -->
-  <!-- comment following if struts1.0.x -->
-  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
-    <set-property property="definitions-config" 
-	                 value="/WEB-INF/tiles-defs.xml" />
-    <set-property property="moduleAware" value="true" />
-    <set-property property="definitions-parser-validate" value="true" />
-  </plug-in>
 
-  <!-- end comment if struts1.0.x -->
+  <!-- =================================================== Validator plugin -->
 
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
     <set-property
