@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: proposals.xsl,v 1.1 2002/09/26 04:54:38 dmkarr Exp $ -->
+<!-- $Id: proposals.xsl,v 1.2 2003/01/07 05:50:11 martinc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
