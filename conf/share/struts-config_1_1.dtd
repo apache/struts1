@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.20 2002/07/04 00:05:47 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.21 2002/07/05 22:05:58 craigmcc Exp $
 -->
 
 
@@ -440,11 +440,10 @@
      debug           Debugging detail level for this application.  [0]
 
      forwardPattern  Replacement pattern defining how the "path" attribute of
-                     a "forward" element is mapped to a server-relative URL
+                     a "forward" element is mapped to a context-relative URL
                      when it starts with a slash (and when the contextRelative
                      property is false).  This value may consist of any
                      combination of the following:
-                     - "$C" - Replaced by the context path of this webapp
                      - "$A" - Replaced by the app prefix of this subapp
                      - "$P" - Replaced by the "path" attribute of the
                               selected "forward" element
@@ -452,8 +451,15 @@
                      - "$x" - (Where "x" is any character not defined above)
                               Silently swallowed, reserved for future use
                      If not specified, the default forwardPattern is
-                     "$C$A$P", which is consistent with previous hard coded
+                     "$A$P", which is consistent with previous hard coded
                      behavior of forwards.
+
+     inputForward    Set to true if you want the "input" parameter of
+                     "action" elements to be the name of a local or global
+                     "forward" element used to calculate the ultimate URL.
+                     Set to false (the default) to treat the "input" parameter
+                     of "action" elements as a subapp-relative path to the
+                     resource used for the input form.
 
      locale          Set to true if you want a Locale object stored in the
                      user's session if not already present.  [true]
@@ -472,17 +478,16 @@
                      [false]
 
      pagePattern     Replacement pattern defining how the "page" attribute of
-                     custom tags that use it is mapped to a server-relative URL
+                     custom tags using it is mapped to a context-relative URL
                      of the corresponding resource.  This value may consist of
                      any combination of the following:
-                     - "$C" - Replaced by the context path of this webapp
                      - "$A" - Replaced by the app prefix of this subapp
                      - "$P" - Replaced by the value of the "page" attribute
                      - "$$" - Causes a literal dollar sign to be rendered
                      - "$x" - (Where "x" is any character not defined above)
                               Silently swallowed, reserved for future use
                      If not specified, the default forwardPattern is
-                     "$C$A$P", which is consistent with previous hard coded
+                     "$A$P", which is consistent with previous hard coded
                      behavior of URL evaluation for "page" attributes.
 
      processorClass  The fully qualified Java class name of the
@@ -499,6 +504,7 @@
 <!ATTLIST controller     contentType    CDATA           #IMPLIED>
 <!ATTLIST controller     debug          %Integer;       #IMPLIED>  
 <!ATTLIST controller     forwardPattern CDATA           #IMPLIED>
+<!ATTLIST controller     inputForward   %Boolean;       #IMPLIED>
 <!ATTLIST controller     locale         %Boolean;       #IMPLIED>
 <!ATTLIST controller     maxFileSize    CDATA           #IMPLIED>
 <!ATTLIST controller     multipartClass %ClassName;     #IMPLIED>

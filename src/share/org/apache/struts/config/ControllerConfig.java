@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.5 2002/07/04 00:05:48 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/07/04 00:05:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.6 2002/07/05 22:05:58 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/07/05 22:05:58 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/07/04 00:05:48 $
+ * @version $Revision: 1.6 $ $Date: 2002/07/05 22:05:58 $
  * @since Struts 1.1
  */
 
@@ -143,12 +143,10 @@ public class ControllerConfig implements Serializable {
 
 
     /**
-     * <p>The replacement pattern used to determine a server-relative URL
+     * <p>The replacement pattern used to determine a context-relative URL
      * from a {@link ForwardConfig} element.  The pattern may consist of any
      * combination of the following markers and characters:</p>
      * <ul>
-     * <li><code><strong>$C</strong></code> - Replaced by the context path
-     *     of the current web-application.</li>
      * <li><code><strong>$A</strong></code> - Replaced by the application
      *     prefix for the current subapplication.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>path</code>
@@ -162,7 +160,7 @@ public class ControllerConfig implements Serializable {
      * </ul>
      *
      * <p>If this property is set to <code>null</code>, a default pattern of
-     * <code>$C$A$P</code> is utilized, which is backwards compatible with
+     * <code>$A$P</code> is utilized, which is backwards compatible with
      * the hard coded functionality in prior versions.</p>
      */
     protected String forwardPattern = null;
@@ -173,6 +171,26 @@ public class ControllerConfig implements Serializable {
 
     public void setForwardPattern(String forwardPattern) {
         this.forwardPattern = forwardPattern;
+    }
+
+
+    /**
+     * <p>Should the <code>input</code> property of {@link ActionConfig}
+     * instances associated with this sub-application be treated as the
+     * name of a corresponding {@link ForwardConfig}.  A <code>false</code>
+     * value treats them as a sub-application relative path (consistent
+     * with the hard coded behavior of earlier versions of Struts.</p>
+     *
+     * @since 1.1b2
+     */
+    protected boolean inputForward = false;
+
+    public boolean getInputForward() {
+        return (this.inputForward);
+    }
+
+    public void setInputForward(boolean inputForward) {
+        this.inputForward = inputForward;
     }
 
 
@@ -247,13 +265,11 @@ public class ControllerConfig implements Serializable {
 
 
     /**
-     * <p>The replacement pattern used to determine a server-relative URL
+     * <p>The replacement pattern used to determine a context-relative URL
      * from the <code>page</code> attribute of Struts tags and configuration
      * properties.  The pattern may consist of any combination of the
      * following markers and characters:</p>
      * <ul>
-     * <li><code><strong>$C</strong></code> - Replaced by the context path
-     *     of the current web-application.</li>
      * <li><code><strong>$A</strong></code> - Replaced by the application
      *     prefix for the current subapplication.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>page</code>
@@ -267,7 +283,7 @@ public class ControllerConfig implements Serializable {
      * </ul>
      *
      * <p>If this property is set to <code>null</code>, a default pattern of
-     * <code>$C$A$P</code> is utilized, which is backwards compatible with
+     * <code>$A$P</code> is utilized, which is backwards compatible with
      * the hard coded functionality in prior versions.</p>
      */
     protected String pagePattern = null;
