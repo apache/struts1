@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <project>
   <pomVersion>3</pomVersion>
-  <name>struts</name>
-  <id>struts</id>
-  <currentVersion>1.2.6</currentVersion>
+  <id>struts-core</id>
+  <name>Struts Core</name>
+  <groupId>struts</groupId>
+  <currentVersion>1.3.0-dev</currentVersion>
   <organization>
     <name>The Apache Software Foundation</name>
-    <url>http://struts.apache.org/</url>
-    <logo>http://struts.apache.org/images/jakarta-logo.gif</logo>
+    <url>http://www.apache.org/</url>
+    <logo>http://www.apache.org/images/asf-logo.gif</logo>
   </organization>
-  <!-- <logo>/images/struts-blue.gif</logo>-->
-  <logo>http://struts.apache.org/struts/images/struts.gif</logo>
   <inceptionYear>2000</inceptionYear>
   <package>org.apache.struts</package>
-  <shortDescription>MVC Web Application Framework</shortDescription>
-  <!-- Gump integration -->
-  <gumpRepositoryId>jakarta</gumpRepositoryId>
+  <logo>http://struts.apache.org/images/struts.gif</logo>
+  <gumpRepositoryId>struts-svn</gumpRepositoryId>
   <description>The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language (XML), as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic Model-View-Controller (MVC) design paradigm. Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with any standard data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems. The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</description>
+  <shortDescription>MVC Web Application Framework</shortDescription>
   <url>http://struts.apache.org/</url>
   <issueTrackingUrl>http://issues.apache.org/bugzilla/</issueTrackingUrl>
-  <siteAddress>struts.apache.org</siteAddress>
-  <siteDirectory>/www/jakarta.apache.org/struts</siteDirectory>
-  <distributionDirectory>/www/apache.mirrors.pair.com/jakarta/struts/</distributionDirectory>
+  <siteAddress>www.apache.org</siteAddress>
+  <siteDirectory>/www/struts.apache.org</siteDirectory>
+  <distributionSite>www.apache.org</distributionSite>
+  <distributionDirectory>/www/www.apache.org/dist/java-repository/</distributionDirectory>
   <repository>
     <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/core/trunk</connection>
     <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/core/trunk</developerConnection>
@@ -69,114 +69,131 @@
       <tag>STRUTS_1_2_5</tag>
     </version>
   </versions>
+  <branches>
+    <branch>
+      <tag>STRUTS_1_0_BRANCH</tag>
+    </branch>
+    <branch>
+      <tag>STRUTS_1_1_BRANCH</tag>
+    </branch>
+    <branch>
+      <tag>STRUTS_1_2_BRANCH</tag>
+    </branch>
+  </branches>
   <mailingLists>
     <mailingList>
       <name>Struts User List</name>
       <subscribe>user-subscribe@struts.apache.org</subscribe>
       <unsubscribe>user-unsubscribe@struts.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42</archive>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=241</archive>
     </mailingList>
     <mailingList>
       <name>Struts Developer List</name>
       <subscribe>dev-subscribe@struts.apache.org</subscribe>
       <unsubscribe>dev-unsubscribe@struts.apache.org</unsubscribe>
-      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41</archive>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=240</archive>
+    </mailingList>
+    <mailingList>
+      <name>Struts Announcements List</name>
+      <subscribe>announcements-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>announcements-unsubscribe@struts.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=239</archive>
     </mailingList>
   </mailingLists>
   <developers>
     <developer>
-      <id>craigmcc</id>
       <name>Craig R. McClanahan</name>
+      <id>craigmcc</id>
       <email>craigmcc at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>husted</id>
       <name>Ted Husted</name>
+      <id>husted</id>
       <email>husted at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>rleland</id>
       <name>Rob Leland</name>
+      <id>rleland</id>
       <email>rleland at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>cedric</id>
       <name>Cedric Dumoulin</name>
+      <id>cedric</id>
       <email>cedric.dumoulin at lifl.fr</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>martinc</id>
       <name>Martin Cooper</name>
+      <id>martinc</id>
       <email>martinc at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>arron</id>
       <name>Arron Bates</name>
+      <id>arron</id>
       <email>arron at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>jholmes</id>
       <name>James Holmes</name>
+      <id>jholmes</id>
       <email>jholmes at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>dmkarr</id>
       <name>David M. Karr</name>
+      <id>dmkarr</id>
       <email>dmkarr at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>ekbush</id>
       <name>Eddie Bush</name>
+      <id>ekbush</id>
       <email>ekbush at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>dgraham</id>
       <name>David Graham</name>
+      <id>dgraham</id>
       <email>dgraham at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>jmitchell</id>
       <name>James Mitchell</name>
+      <id>jmitchell</id>
       <email>jmitchell at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>turner</id>
       <name>James Turner</name>
+      <id>turner</id>
       <email>turner at blackbear.com</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>sraeburn</id>
       <name>Steve Raeburn</name>
+      <id>sraeburn</id>
       <email>sraeburn at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>mrdon</id>
       <name>Don Brown</name>
+      <id>mrdon</id>
       <email>mrdon at apache.org</email>
       <organization></organization>
     </developer>
     <developer>
-      <id>germuska</id>
       <name>Joe Germuska</name>
+      <id>germuska</id>
       <email>germuska at apache.org</email>
       <organization></organization>
     </developer>
       <developer>
-        <id>niallp</id>
         <name>Niall Pemberton</name>
+        <id>niallp</id>
         <email>niallp at apache.org</email>
         <organization></organization>
       </developer>
@@ -187,17 +204,21 @@
       <id></id>
       <email>tchen at ampabay.rr.com</email>
       <organization></organization>
-      <roles>
-        <role></role>
-      </roles>
     </contributor>
   </contributors>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
   <dependencies>
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.7.0</version>
-      <url>http://jakarta.apache.org/commons/beanutils.html</url>
+      <url>http://jakarta.apache.org/commons/beanutils</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
@@ -207,7 +228,7 @@
       <groupId>commons-digester</groupId>
       <artifactId>commons-digester</artifactId>
       <version>1.6</version>
-      <url>http://jakarta.apache.org/commons/digester.html</url>
+      <url>http://jakarta.apache.org/commons/digester</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
@@ -217,7 +238,7 @@
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
       <version>1.0</version>
-      <url>http://jakarta.apache.org/commons/fileupload/</url>
+      <url>http://jakarta.apache.org/commons/fileupload</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
@@ -227,7 +248,7 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <version>1.0.4</version>
-      <url>http://jakarta.apache.org/commons/logging.html</url>
+      <url>http://jakarta.apache.org/commons/logging</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
@@ -236,8 +257,8 @@
     <dependency>
       <groupId>commons-validator</groupId>
       <artifactId>commons-validator</artifactId>
-      <version>1.1.3</version>
-      <url>http://jakarta.apache.org/commons/validator/</url>
+      <version>1.1.4</version>
+      <url>http://jakarta.apache.org/commons/validator</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
@@ -247,7 +268,7 @@
       <groupId>commons-chain</groupId>
       <artifactId>commons-chain</artifactId>
       <version>1.0</version>
-      <url>http://jakarta.apache.org/commons/chain/</url>
+      <url>http://jakarta.apache.org/commons/chain</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
@@ -256,20 +277,11 @@
     <dependency>
       <groupId>oro</groupId>
       <artifactId>oro</artifactId>
-      <version>2.0.7</version>
-      <url>http://jakarta.apache.org/oro/</url>
+      <version>2.0.8</version>
+      <url>http://jakarta.apache.org/oro</url>
       <properties>
         <war.bundle>true</war.bundle>
         <cactus.bundle>true</cactus.bundle>
-      </properties>
-    </dependency>
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-      <version>2.0.2</version>
-      <url>http://xml.apache.org/commons/</url>
-      <properties>
-        <war.bundle>true</war.bundle>
       </properties>
     </dependency>
     <dependency>
@@ -306,6 +318,15 @@
     </dependency>
     <!-- for tld generation -->
     <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+      <url>http://xml.apache.org/commons/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+    </dependency>
+    <dependency>
       <groupId>xalan</groupId>
       <artifactId>xalan</artifactId>
       <version>2.5.1</version>
@@ -313,23 +334,16 @@
     </dependency>
   </dependencies>
   <build>
-    <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
+    <nagEmailAddress>dev@struts.apache.org</nagEmailAddress>
     <sourceDirectory>src/share</sourceDirectory>
-    <!-- Unit test cases -->
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
-    <integrationUnitTestSourceDirectory />
-    <aspectSourceDirectory />
     <unitTest>
       <includes>
-        <include>org/apache/struts/action/TestDynaActionForm.java</include>
-        <include>org/apache/struts/action/TestDynaActionFormClass.java</include>
-        <include>org/apache/struts/config/TestModuleConfig.java</include>
-        <include>org/apache/struts/config/TestActionConfigMatcher.java</include>
-        <include>org/apache/struts/util/Test*.java</include>
+        <include>**/Test*.java</include>
       </includes>
       <resources>
         <resource>
-          <directory>${basedir}/conf/share</directory>
+          <directory>conf/share</directory>
           <targetPath>org/apache/struts/resources</targetPath>
           <includes>
             <include>**/*.xml</include>
@@ -337,38 +351,47 @@
           </includes>
         </resource>
         <resource>
-          <directory>${basedir}/src/test</directory>
+          <directory>src/test</directory>
           <includes>
             <include>**/*.xml</include>
           </includes>
         </resource>
       </resources>
     </unitTest>
-    <!-- J A R  R E S O U R C E S -->
-    <!-- Resources that are packaged up inside the JAR file -->
     <resources>
       <resource>
-        <directory>${basedir}/src/share</directory>
+        <directory>src/share</directory>
         <includes>
           <include>**/*.properties</include>
         </includes>
       </resource>
+      <resource>
+        <directory>conf/share</directory>
+        <targetPath>org/apache/struts/resources</targetPath>
+        <includes>
+          <include>**/*.dtd</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>conf/share</directory>
+        <targetPath>org/apache/struts/chain</targetPath>
+        <includes>
+          <include>chain-config.xml</include>
+        </includes>
+      </resource>
     </resources>
-    <!-- Integration unit test cases -->
-    <integrationUnitTest />
-    <jars></jars>
   </build>
   <reports>
     <!--
-             |
-             | These should all be completely self contained. You should be able
-             | to generate each of them individually without needing the final
-             | xdoc transformation.
-             |
-             | Each report plugin with it's POM and plugin.jelly logic should
-             | contain everything needed to produced the report.
-             |
-            -->
+     |
+     | These should all be completely self contained. You should be able
+     | to generate each of them individually without needing the final
+     | xdoc transformation.
+     |
+     | Each report plugin with it's POM and plugin.jelly logic should
+     | contain everything needed to produced the report.
+     |
+    -->
     <report>maven-jdepend-plugin</report>
     <report>maven-checkstyle-plugin</report>
     <report>maven-changes-plugin</report>
