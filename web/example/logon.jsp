@@ -28,7 +28,8 @@
       <bean:message key="prompt.password"/>
     </th>
     <td align="left">
-      <html:password property="password" size="16" maxlength="16"/>
+      <html:password property="password" size="16" maxlength="16"
+                    redisplay="false"/>
     </td>
   </tr>
 

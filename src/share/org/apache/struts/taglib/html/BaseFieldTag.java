@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.3 2001/02/01 00:48:07 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/01 00:48:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.4 2001/02/14 00:39:52 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/14 00:39:52 $
  *
  * ====================================================================
  *
@@ -71,15 +71,17 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/01 00:48:07 $
+ * @version $Revision: 1.4 $ $Date: 2001/02/14 00:39:52 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -116,6 +118,20 @@ public abstract class BaseFieldTag extends BaseInputTag {
 
     public void setName(String name) {
 	this.name = name;
+    }
+
+
+    /**
+     * The "redisplay contents" flag (used only on <code>password</code>).
+     */
+    protected boolean redisplay = true;
+
+    public boolean getRedisplay() {
+        return (this.redisplay);
+    }
+
+    public void setRedisplay(boolean redisplay) {
+        this.redisplay = redisplay;
     }
 
 
@@ -170,7 +186,8 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	results.append(" value=\"");
 	if (value != null) {
 	    results.append(BeanUtils.filter(value));
-	} else if (!"password".equals(type)) {
+	} else if (redisplay || !"password".equals(type)) {
+            /*
 	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 		throw new JspException
@@ -199,6 +216,12 @@ public abstract class BaseFieldTag extends BaseInputTag {
 		throw new JspException
 		    (messages.getMessage("getter.method", property, name));
 	    }
+            */
+            Object value = RequestUtils.lookup(pageContext, name, property,
+                                               null);
+            if (value == null)
+                value = "";
+            results.append(ResponseUtils.filter(value.toString()));
 	}
 	results.append("\"");
 	results.append(prepareEventHandlers());
@@ -228,6 +251,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	super.release();
 	accept = null;
 	name = Constants.BEAN_KEY;
+        redisplay = true;
 
     }
 

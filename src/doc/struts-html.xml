@@ -2781,6 +2781,23 @@
 			</info>
 		</attribute>
 		
+                <attribute>
+                        <name>redisplay</name>
+                        <required>false</required>
+                        <rtexprvalue>true</rtexprvalue>
+                        <info>
+                        Boolean flag indicating whether or not existing values
+                        will be redisplayed if they exist.  Even though the
+                        redisplayed value will be shown as asterisks on the
+                        visible HTML page, the cleartext of the actual password
+                        value will be visible though the "Show Page Source"
+                        menu option of the client browser.  You may wish to
+                        set this value to <code>false</code> on login pages.
+                        Defaults to <code>true</code> for consistency with
+                        all other form tags that redisplay their contents.
+                        </info>
+                </attribute>
+
 		<attribute>
 			<name>style</name>
 			<required>false</required>
