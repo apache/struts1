@@ -22,7 +22,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.5 2004/03/08 03:15:16 craigmcc Exp $
+# $Id: build.properties.sample,v 1.6 2004/07/17 01:47:52 craigmcc Exp $
 #
 # In order to build with Tomcat integration you must have the catalina-ant.jar
 # in your CLASSPATH.  This file is located under the jakarta-tomcat/server/lib
@@ -40,5 +40,5 @@ struts.home=/usr/local/jakarta-struts
 
 # The absolute or relative pathname of the Commons Chain
 # distribution
-chain.home=/usr/local/jakarta-commons-sandbox/commons-chain/dist
+chain.home=/usr/local/jakarta-commons/chain/dist
 

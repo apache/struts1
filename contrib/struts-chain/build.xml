@@ -31,9 +31,11 @@
 
 
   <!-- Dependency home defaults -->
-  <property name="chain.home"       value="../../../jakarta-commons-sandbox/commons-chain/dist"/>
+
+
+  <property name="chain.home"       value="../../../jakarta-commons/chain/dist"/>
   <property name="servlet.home"     value="/usr/local/tomcat-4.1/common/lib"/>
-  <property name="struts.home"      value="../../dist/lib"/>
+  <property name="struts.home"      value="../../dist"/>
 
 
   <!-- The Commons Chain Of Responsibility Library -->
