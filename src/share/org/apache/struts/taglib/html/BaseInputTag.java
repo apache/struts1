@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.2 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.3 2003/05/18 18:37:20 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/05/18 18:37:20 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,26 +59,20 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.MessageResources;
-
 
 /**
  * Abstract base class for the various input tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.3 $ $Date: 2003/05/18 18:37:20 $
  */
-
 public abstract class BaseInputTag extends BaseHandlerTag {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The number of character columns for this field, or negative
@@ -86,31 +80,26 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     protected String cols = null;
 
-
     /**
      * The maximum number of characters allowed, or negative for no limit.
      */
     protected String maxlength = null;
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The name of the field (and associated property) being processed.
      */
     protected String property = null;
 
-
     /**
      * The number of rows for this field, or negative for no limit.
      */
     protected String rows = null;
-
 
     /**
      * The value for this field, or <code>null</code> to retrieve the
@@ -118,19 +107,16 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     protected String value = null;
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * Return the number of columns for this field.
      */
     public String getCols() {
 
-	return (this.cols);
+        return (this.cols);
 
     }
-
 
     /**
      * Set the number of columns for this field.
@@ -139,20 +125,18 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setCols(String cols) {
 
-	this.cols = cols;
+        this.cols = cols;
 
     }
-
 
     /**
      * Return the maximum length allowed.
      */
     public String getMaxlength() {
 
-	return (this.maxlength);
+        return (this.maxlength);
 
     }
-
 
     /**
      * Set the maximum length allowed.
@@ -161,20 +145,18 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setMaxlength(String maxlength) {
 
-	this.maxlength = maxlength;
+        this.maxlength = maxlength;
 
     }
-
 
     /**
      * Return the property name.
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
-
 
     /**
      * Set the property name.
@@ -183,20 +165,18 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-	this.property = property;
+        this.property = property;
 
     }
-
 
     /**
      * Return the number of rows for this field.
      */
     public String getRows() {
 
-	return (this.rows);
+        return (this.rows);
 
     }
-
 
     /**
      * Set the number of rows for this field.
@@ -205,20 +185,18 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setRows(String rows) {
 
-	this.rows = rows;
+        this.rows = rows;
 
     }
-
 
     /**
      * Return the size of this field (synonym for <code>getCols()</code>).
      */
     public String getSize() {
 
-	return (getCols());
+        return (getCols());
 
     }
-
 
     /**
      * Set the size of this field (synonym for <code>setCols()</code>).
@@ -227,20 +205,18 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setSize(String size) {
 
-	setCols(size);
+        setCols(size);
 
     }
-
 
     /**
      * Return the field value (if any).
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
-
 
     /**
      * Set the field value (if any).
@@ -250,13 +226,11 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the start of this tag.  The default implementation does nothing.
@@ -265,11 +239,9 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
-
-
 
     /**
      * Process the end of this tag.  The default implementation does nothing.
@@ -278,24 +250,22 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release any acquired resources.
      */
     public void release() {
 
-	super.release();
-	cols = null;
-	maxlength = null;
-	property = null;
-	rows = null;
-	value = null;
+        super.release();
+        cols = null;
+        maxlength = null;
+        property = null;
+        rows = null;
+        value = null;
 
     }
-
 
 }
