@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.4 2000/06/22 19:23:35 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/22 19:23:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.5 2000/06/26 16:44:58 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/26 16:44:58 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/22 19:23:35 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/26 16:44:58 $
  */
 
 public final class FormTag extends TagSupport {
@@ -136,6 +136,18 @@ public final class FormTag extends TagSupport {
      * is stored.
      */
     private String scope = "session";
+
+
+    /**
+     * The style attribute associated with this tag.
+     */
+    private String style = null;
+
+
+    /**
+     * The style class associated with this tag.
+     */
+    private String styleClass = null;
 
 
     /**
@@ -308,6 +320,50 @@ public final class FormTag extends TagSupport {
 
 
     /**
+     * Return the style attribute for this tag.
+     */
+    public String getStyle() {
+
+	return (this.style);
+
+    }
+
+
+    /**
+     * Set the style attribute for this tag.
+     *
+     * @param style The new style attribute
+     */
+    public void setStyle(String style) {
+
+	this.style = style;
+
+    }
+
+
+    /**
+     * Return the style class for this tag.
+     */
+    public String getStyleClass() {
+
+	return (this.styleClass);
+
+    }
+
+
+    /**
+     * Set the style class for this tag.
+     *
+     * @param styleClass The new style class
+     */
+    public void setStyleClass(String styleClass) {
+
+	this.styleClass = styleClass;
+
+    }
+
+
+    /**
      * Return the window target.
      */
     public String getTarget() {
@@ -376,6 +432,11 @@ public final class FormTag extends TagSupport {
 	    results.append(response.encodeURL(BeanUtils.filter(action)));
 	    results.append("\"");
 	}
+        if (styleClass != null) {
+            results.append(" class=\"");
+            results.append(styleClass);
+            results.append("\"");
+        }
 	if (onReset != null) {
 	    results.append(" onreset=\"");
 	    results.append(onReset);
@@ -386,6 +447,11 @@ public final class FormTag extends TagSupport {
 	    results.append(onSubmit);
 	    results.append("\"");
 	}
+        if (style != null) {
+            results.append(" style=\"");
+            results.append(style);
+            results.append("\"");
+        }
 	if (target != null) {
 	    results.append(" target=\"");
 	    results.append(target);

@@ -50,6 +50,11 @@
   </servlet-mapping>
 
 
+  <!-- The Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
   <!-- Application Tag Library Descriptor -->
   <taglib>
     <taglib-uri>/WEB-INF/app.tld</taglib-uri>
