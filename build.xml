@@ -259,6 +259,8 @@
         <mkdir dir="${build.home}/library/classes/org/apache/struts/resources"/>
         <copy file="LICENSE.txt"
             tofile="${build.home}/library/classes/META-INF/LICENSE"/>
+        <copy file="NOTICE.txt"
+            tofile="${build.home}/library/classes/META-INF/NOTICE"/>
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
             <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
         </copy>
@@ -411,6 +413,7 @@
     <target name="dist.source" depends="prepare.dist">
         <copy file="INSTALL" tofile="${dist.home}/INSTALL"/>
         <copy file="LICENSE.txt" tofile="${dist.home}/LICENSE"/>
+        <copy file="NOTICE.txt" tofile="${dist.home}/NOTICE"/>
         <copy file="README" tofile="${dist.home}/README"/>
     </target>
 
@@ -454,7 +457,7 @@
             <fileset dir="${dist.home}"/>
         </copy>
         <copy todir="${stage.lib.dir}/${upload.file.base}-lib">
-            <fileset dir="${dist.home}" includes="LICENSE"/>
+            <fileset dir="${dist.home}" includes="LICENSE NOTICE"/>
             <fileset dir="${dist.home}/lib"/>
         </copy>
         <copy todir="${stage.src.dir}/${upload.file.base}-src">
