@@ -941,7 +941,7 @@
     <bodycontent>empty</bodycontent>
     <info>
     <p>Retrieve the value of the specified bean property, and render it to the
-    current JspWriter as a String by the ways:
+    current JspWriter as a String by the ways:</p>
      <ul>
      <li>If <code>format</code> attribute exists then value will be formatted on base of format
      string from <code>format</code> attribute and default system locale.</li>
@@ -954,7 +954,6 @@
      <code>getAsText()</code> method will be called.</li>
      <li>Otherwise, the usual <code>toString()</code> conversions will be applied.</li>
      </ul>
-     </p>
 
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>

@@ -1029,12 +1029,10 @@
                 attribute, and "multipart/form-data" for the <code>enctype</code>
                 attribute. For example:
             </p>
-            <p>
     <pre>
     &lt;html:form method="POST" enctype="multipart/form-data"&gt;
         &lt;html:file property="theFile" /&gt;
     &lt;/html:form&gt;</pre>
-            </p>
         </info>
 
         <attribute>
@@ -3185,8 +3183,8 @@
                 The set of validation rules that should be generated is based
                 on the formName attribute passed in, which should match
                 the name attribute of the form element in the xml file.
-            <p>
             </p>
+            <p>
                 The dynamicJavascript and staticJavascript attributes
                 default to true, but if dynamicJavascript is set to <code>true</code>
                 and staticJavascript is set to <code>false</code> then only

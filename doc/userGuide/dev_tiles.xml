@@ -115,7 +115,6 @@ Layouts
 
 <li>
   Internationalization (I18N)
-</li>
 
 <ul>
 <li>
@@ -126,10 +125,10 @@ Layouts
 A mechanism similar to Java properties files is used for definition files: you can have one definition file per Locale, the appropriate definition is loaded according to the current Locale
 </li>
 </ul>
+</li>
 
 <li>
   Multi-channels
-</li>
 
 <ul>
 <li>
@@ -144,6 +143,7 @@ A mechanism similar to Java properties files is used for definition files: you c
   A mechanism similar to Java properties files is used for definition files: you can have one definition file per key, the appropriate definition is loaded according to the key
 </li>
 </ul>
+</li>
 </ul>
 
 </section>
@@ -177,7 +177,6 @@ The Tiles framework is bundled with Struts but not enabled by default. To enable
 <ul>
 <li>
   If you plan to use Tiles definitions defined in a centralized file, you need to create this file and instruct Struts to load the Tiles plugin which will create the factory corresponding to the file. You can have more than one definitions file.
-</li>
 
 <ul>
 <li>
@@ -201,6 +200,7 @@ Create a file containing your definitions (e.g. <code>WEB-INF/tiles-defs.xml</co
   <strong>Note:</strong> This plugin creates one factory for each Struts modules. The plugin first reads the factory parameters from <code>web.xml</code> and then overloads them with the ones defined in the first <code>struts-config.xml</code> file.
 </li>
 </ul>
+</li>
 </ul>
 
 <ul>

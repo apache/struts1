@@ -91,13 +91,13 @@
       but there is no logic for iterating or otherwise.
       </p>
       <p>
-      Example...<br />
+      Example...</p>
       <pre>
 &lt;nested:write property="myNestedLevel.propertyOne" /&gt;
 &lt;nested:write property="myNestedLevel.propertyTwo" /&gt;
 &lt;nested:write property="myNestedLevel.propertyThree" /&gt;
       </pre>
-      Can instead become...
+      <p>Can instead become...</p>
       <pre>
 &lt;nested:nest property="myNestedLevel" &gt;
   &lt;nested:write property="propertyOne" /&gt;
@@ -105,7 +105,6 @@
   &lt;nested:write property="propertyThree" /&gt;
 &lt;/nested:nest &gt;
       </pre>
-      </p>
     </info>
     <attribute>
       <name>property</name>
@@ -1957,6 +1956,7 @@
       to access the title and value parts of the html option tag. You can use
       this in a nested context (the list is a property of a nested bean) by
       using the nested define tag and the original options tag.
+      </p>
 <pre>
 &lt;nested:nest property="myNestedLevel" /&gt;
   &lt;nested:define property="collectionList" /&gt;
@@ -1965,7 +1965,6 @@
              valueProperty="valueProperty" /&gt;
 &lt;/nested:nest &gt;
 </pre>
-      </p>
     </info>
 
     <attribute>

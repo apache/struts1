@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.15 2003/09/05 23:02:40 sraeburn Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.16 2003/09/05 23:58:23 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -372,6 +372,11 @@
     </td></tr>
   </xsl:template>
 
+  <!-- Process an tag info section -->
+  <xsl:template match="info">
+     <xsl:apply-templates/>
+  </xsl:template>
+  
   <!-- Process a task list section -->
   <xsl:template match="task-list">
     <xsl:choose>

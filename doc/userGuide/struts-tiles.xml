@@ -19,14 +19,12 @@
   <display-name>Tiles Tag Library</display-name>
   <uri>http://jakarta.apache.org/struts/tags-tiles</uri>
   <info>
-    This tag library provides tiles tags.
-    <br></br>
-    <br></br>
-    Tiles were previously called Components. For historical reasons, names, pages, components and templates
+    <p>This tag library provides tiles tags.</p>
+    <p>Tiles were previously called Components. For historical reasons, names, pages, components and templates
     are used indifferently to design a tile. Also, a lot of tags and attribute names are
-    left for backward compatibility.
-    <br></br>To know more about tags defined in this library, check the associated documentation:
-    tiles-doc.
+    left for backward compatibility.</p>
+    <p>To know more about tags defined in this library, check the associated documentation:
+    tiles-doc.</p>
   </info>
 
  <!-- ===================== Include Tags ====================== -->
@@ -37,32 +35,34 @@
     Insert a tiles/component/template.
     </summary>
     <info>
-    Insert a tiles/component/template with the possibility to pass parameters
+    <p>Insert a tiles/component/template with the possibility to pass parameters
     (called attribute).
     A tile can be seen as a procedure that can take parameters or attributes.
     <code>&lt;template:insert&gt;</code> allows to define these attributes and pass them to the inserted jsp page,
     called template.
     Attributes are defined using nested tag <code>&lt;template:put&gt;</code> or
     <code>&lt;template:putList&gt;</code>.
-    <br></br>
+    </p>
+    <p>
     You must specify one of this tag attribute :
+    </p>
       <ul>
       <li><code>template</code>, for inserting a tiles/component/template page,</li>
       <li><code>component</code>, for inserting a tiles/component/template page, (same as template)</li>
       <li><code>page</code> for inserting a JSP page, (same as template)</li>
       <li><code>definition</code>, for inserting a definition from definitions factory</li>
       <li><code>attribute</code>, surrounding tiles's attribute name whose value is used.
-        <br>If attribute is associated to 'direct' flag (see put), and flag is true, write
+        <br/>If attribute is associated to 'direct' flag (see put), and flag is true, write
         attribute value (no insertion).
-        </br></li>
+      </li>
       <li><code>name</code>, to let 'insert' determine the type of entities to insert. In this later
       case, search is done in this order : definitions, tiles/components/templates, pages.
       </li>
       </ul>
-      <br></br>
+      <p>
       In fact, Page, component and template, are equivalent as a tile, component or template are jsp page.
-      <br></br>
-      <STRONG>Example : </STRONG>
+      </p>
+      <p><strong>Example : </strong></p>
         <pre><code>
           &lt;template:insert page="/basic/myLayout.jsp" flush="true"&gt;
             &lt;template:put name="title"  value="My first page" /&gt;
@@ -80,8 +80,8 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-        A string representing the URI of a tile or template (a JSP page).
-        <br></br>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.
+        <p>A string representing the URI of a tile or template (a JSP page).</p>
+        <p>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.</p>
       </info>
     </attribute>
 
@@ -90,8 +90,8 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-        Path (relative or absolute to webapps) of the component to insert.
-        <br></br>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.
+        <p>Path (relative or absolute to webapps) of the component to insert.</p>
+        <p>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.</p>
       </info>
    </attribute>
 
@@ -100,8 +100,8 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-        Path (relative or absolute to webapps) of the page to insert.
-        <br></br>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.
+        <p>Path (relative or absolute to webapps) of the page to insert.</p>
+        <p>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.</p>
       </info>
     </attribute>
 
@@ -141,12 +141,12 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      Name of the bean used as value. Bean is retrieved from specified context, if any. Otherwise,
+      <p>Name of the bean used as value. Bean is retrieved from specified context, if any. Otherwise,
       method pageContext.findAttribute is used.
-      If beanProperty is also specified, retrieve value from the corresponding bean property.
-      <br></br>If found bean (or property value) is instance of one of Attribute class (Direct,
+      If beanProperty is also specified, retrieve value from the corresponding bean property.</p>
+      <p>If found bean (or property value) is instance of one of Attribute class (Direct,
       Instance, ...), insertion is done according to the class type. Otherwise, the toString method is
-      called on the bean, and returned String is used as name to insert (see 'name' attribute).
+      called on the bean, and returned String is used as name to insert (see 'name' attribute).</p>
       </info>
     </attribute>
 
@@ -206,11 +206,12 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      Url of a controller called immediately before page is inserted.<br></br>
+      <p>Url of a controller called immediately before page is inserted.</p>
+      <p>
       Url usually denote a Struts action. Controller (action) is used to prepare data
       to be render by inserted Tile.
-      <br></br>
-      See also controlerClass. Only one of controllerUrl or controllerClass should be used.
+      </p>
+      <p>See also controlerClass. Only one of controllerUrl or controllerClass should be used.</p>
       </info>
     </attribute>
 
@@ -219,19 +220,18 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      Class type of a controller called immediately before page is inserted.<br></br>
-      Controller is used to prepare data to be render by inserted Tile.
-      <br></br>
-      See also controlerUrl
-      <br></br>
-      Class must implements or extends one of the following :
+      <p>Class type of a controller called immediately before page is inserted.</p>
+      <p>Controller is used to prepare data to be render by inserted Tile.</p>
+      <p>See also controlerUrl</p>
+      <p>Class must implements or extends one of the following :</p>
       <ul>
         <li>org.apache.struts.tiles.Controller</li>
         <li>org.apache.struts.tiles.ControllerSupport</li>
         <li>org.apache.struts.action.Action (wrapper org.apache.struts.action.ActionController is used)</li>
       </ul>
-      <br></br>
+      <p>
       See also controllerUrl. Only one of controllerUrl or controllerClass should be used.
+      </p>
       </info>
     </attribute>
 
@@ -327,8 +327,8 @@
       <li>definition : Content come from specified definition (from factory). Name is used as definition name.</li>
       </ul>
       If type is specified, it is taken into account by 'get' or 'insert' inside the inserted tile.
-      <br></br>If 'type' attribute is not specified, content is 'untyped', unless it comes from a typed bean.
-      <br></br>Note that using 'direct="true"' is equivalent to 'type="string"'.
+      <p>If 'type' attribute is not specified, content is 'untyped', unless it comes from a typed bean.</p>
+      <p>Note that using 'direct="true"' is equivalent to 'type="string"'.</p>
     </info>
     <tagclass>org.apache.struts.taglib.tiles.PutTag</tagclass>
     <bodycontent>JSP</bodycontent>
@@ -563,10 +563,10 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      If the user is in the specified role, the tag is taken into account;
-      otherwise, the tag is ignored (skipped).
-      <br></br>
-      The role isn't taken into account if &lt;add&gt; tag is used in a definition.
+      <p>If the user is in the specified role, the tag is taken into account;
+      otherwise, the tag is ignored (skipped).</p>
+      <p>
+      The role isn't taken into account if &lt;add&gt; tag is used in a definition.</p>
       </info>
     </attribute>
 
@@ -582,8 +582,8 @@
     <tagclass>org.apache.struts.taglib.tiles.GetTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>
-    Retrieve content from tile context and include it.
-    <br></br>Take into account the 'type' attribute.
+    <p>Retrieve content from tile context and include it.</p>
+    <p>Take into account the 'type' attribute.</p>
     </info>
 
     <attribute>
@@ -635,7 +635,7 @@
     <info>
       Retrieve the value of the specified tile/component/template attribute property, and render it to the current JspWriter as a String.
       The usual toString() conversions is applied on found value.
-      <br></br>Throw a JSPException if named value is not found.
+      <p>Throw a JSPException if named value is not found.</p>
     </info>
     <tagclass>org.apache.struts.taglib.tiles.GetAttributeTag</tagclass>
     <bodycontent>empty</bodycontent>
@@ -677,11 +677,13 @@
       Use attribute value inside page.
     </summary>
     <info>
+      <p>
       Declare a Java variable, and an attribute in the specified scope, using tile attribute value.
-      <br>
+      </p>
+      <p>
       Java variable and attribute will have the name specified by 'id', or the original name if not
       specified.
-      </br>
+      </p>
     </info>
     <tagclass>org.apache.struts.taglib.tiles.UseAttributeTag</tagclass>
     <teiclass>org.apache.struts.taglib.tiles.UseAttributeTei</teiclass>
@@ -781,8 +783,8 @@
       Initialize Tile/Component definitions factory.
     </summary>
     <info>
-      Initialize Tile/Components definitions factory.
-      <br>
+      <p>Initialize Tile/Components definitions factory.</p>
+      <p>
       In order to use Tile/Component definitions factory, you need to initialize the factory.
       This is generally done in a initializing servlet. In particular, it is done in
       "ComponentActionServlet" if you use it.
@@ -790,7 +792,7 @@
       to provide the description file name, and optionally the factory classname.
       Initialization is done only once, at the first call of this tag. Subsequent calls
       are ignored (tag checks existence of the factory.
-      </br>
+      </p>
     </info>
     <tagclass>org.apache.struts.taglib.tiles.InitDefinitionsTag</tagclass>
     <bodycontent>empty</bodycontent>
