@@ -42,7 +42,7 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 -Also under consideration-
 
-* Services framework. Utilize Spring IoC, HiveMind, Avalon, orPico, et cetera, to configure services.
+* Services framework. Utilize Spring IoC, HiveMind, Avalon, Pico, Cornerstone, et cetera, to configure services.
 
 * Configuration testing. Integrate utility of Struts TestCase, ideally configured from an XML configuration (a la Canoo Webtest).
 
