@@ -48,9 +48,12 @@
   <p>A new beta release, <strong>Struts 1.0-beta-2</strong> has been
   created and made available at
   <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2</a>.  This
-  release is considered to be of production quality, and only bug fixes will
-  occur between this release and an upcoming <strong>Struts 1.0</strong>
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2</a>.  The
+  source code for this version of Struts can also be downloaded at
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2/src">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2/src</a>.
+  This release is considered to be of production quality, and only bug fixes
+  will occur between this release and an upcoming <strong>Struts 1.0</strong>
   final release.</p>
 
   <p>Check the <a href="release-notes-1.0-b2.html">Release Notes</a>
