@@ -1143,6 +1143,96 @@ valid when nested inside a <code>select</code> tag body.</p>
 <a href="#Top">Top</a>
 
 
+<a name="options"></a>
+<h1><i>options</i> - Render a Collection of Select Options</h1>
+
+<p>Renders a set of HTML <code>&lt;option&gt;</code> elements, representing
+possible choices for a <code>&lt;select&gt;</code> element.  This tag can be
+used multiple times within a particular <code>&lt;struts:select&gt;</code>
+element, either in conjunction with or instead of one or more
+<code>&lt;struts:option&gt;</code> tags.<p>
+
+<p>The collection of values actually selected depends on the presence or
+absence of the <code>name</code> and <code>property</code> attributes.  The
+following combinations are allowed:<p>
+<ul>
+<li><i>Only <code>name</code> is specified</i> - The value of this attribute
+    is the name of a JSP bean in some scope that is the
+    collection.</li>
+<li><i>Only <code>property</code> is specified</i> - The value of this
+    attribute is the name of a property of the ActionForm bean associated
+    with our form, which will return the collection.</li>
+<li><i>Both <code>name</code> and <code>property</code> are specified</i> -
+    The value of the <code>name</code> attribute identifies a JSP bean
+    in some scope.  The value of the <code>property</code> attribute is the
+    name of some property of that bean which will return the collection.
+</ul>
+
+<p>The collection of labels displayed to the user can be the same as the
+option values themselves, or can be different, depending on the presence or
+absence of the <code>labelName</code> and <code>labelProperty</code>
+attributes.  If this feature is used, the collection of labels must contain
+the same number of elements as the corresponding collection of values.
+The following combinations are allowed:</p>
+<ul>
+<li><i>Neither <code>labelName</code> nor <code>labelProperty</code> is
+    specified</i> - The labels will be the same as the option values
+    themselves.
+<li><i>Only <code>labelName</code> is specified</i> - The value of this
+    attribute is the name of a JSP bean in some scope that is the
+    collection.</li>
+<li><i>Only <code>labelProperty</code> is specified</i> - The value of this
+    attribute is the name of a property of the ActionForm bean associated
+    with our form, which will return the collection.</li>
+<li><i>Both <code>labelName</code> and <code>labelProperty</code> are
+    specified</i> - The value of the <code>labelName</code> attribute
+    identifies a JSP bean in some scope.  The value of the
+    <code>labelProperty</code> attribute is the name of some property of
+    that bean which will return the collection.
+</ul>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">labelName</td>
+    <td>
+      Name of the JSP bean (in some scope) containing the collection
+      of labels to be displayed to the user for these options.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">labelProperty</td>
+    <td>
+      Property of the form bean, or the bean specified by the
+      <code>labelName</code> attribute, that will return the
+      collection of labels to be displayed to the user for these
+      options.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the JSP bean (in some scope) containing the collection
+      of values to be returned to the server for these options.  If not
+      specified, the form bean associated with our form is assumed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Property of the form bean, or the bean specified by the
+      <code>name</code> attribute, that will return the collection
+      of values to returned to the server for these options.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="parameter"></a>
 <h1><i>parameter</i> - Render Request Parameter</h1>
 

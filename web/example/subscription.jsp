@@ -2,6 +2,14 @@
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
 
+<%-- In real life, these would be loaded from a database --%>
+<%
+  pageContext.setAttribute("serverTypeValues",
+    new String[] { "imap", "pop3" });
+  pageContext.setAttribute("serverTypeLabels",
+    new String[] { "IMAP Protocol", "POP3 Protocol" });
+%>
+
 <html>
 <head>
 <struts:ifPropertyEquals name="subscriptionForm"
@@ -69,21 +77,9 @@
     </th>
     <td align="left">
       <struts:select property="type">
-        <struts:option value="pop3">
-          <struts:message key="option.pop3"/>
-        </struts:option>
-        <struts:option value="imap">
-          <struts:message key="option.imap"/>
-        </struts:option>
+        <struts:options name="serverTypeValues"
+                   labelName="serverTypeLabels"/>
       </struts:select>
-<%--
-      <struts:radio property="type" value="imap">
-        <struts:message key="option.imap"/>
-      </struts:radio>
-      <struts:radio property="type" value="pop3">
-        <struts:message key="option.pop3"/>
-      </struts:radio>
---%>
     </td>
   </tr>
 
