@@ -42,7 +42,7 @@
       Preparation Guide] is a helpful preparation backgrounder, but Commons
       uses the "beta/release-candidate/final" process.
 
-      Likewise, the [http://jakarta.apache.org/commons/releases/prepare.html 
+      Likewise, the [http://httpd.apache.org/dev/release.html 
       HTTPD Release Guidelines] is a helpful "overall process" backgrounder,
       but HTTPD does not use a test-build stage.
 
