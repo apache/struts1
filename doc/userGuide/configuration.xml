@@ -401,96 +401,13 @@
     whatever DataSource implementation works best with your container or 
     database. 
     </p>
+    
+    <p>
+    For examples of specifying a data-sources element and using the 
+    DataSource with an Action, see the 
+    <a href="../faqs/database.html">Accessing a Database HowTo</a>.
+    </p>
       
-    <p>
-    This is how you would specify a default data source for your application
-    inside of struts-config.xml:
-    </p>
-
-<pre><code><![CDATA[
-<data-sources>
-<!-- configuration for GenericDataSource wrapper -->
-<data-source>
-  <set-property
-    property="autoCommit"
-    value="false"/>
-  <set-property
-    property="description"
-    value="Example Data Source Configuration"/>
-  <set-property
-    property="driverClass"
-    value="org.postgresql.Driver"/>
-  <set-property
-    property="maxCount"
-    value="4"/>
-  <set-property
-    property="minCount"
-    value="2"/>
-  <set-property
-    property="password"
-    value="mypassword"/>
-  <set-property
-    property="url"
-    value="jdbc:postgresql://localhost/mydatabase"/>
-  <set-property
-    property="user"
-    value="myusername"/>
-</data-source>
-</data-sources>
-]]></code></pre>
-
-    <p>
-    This is how you would specify a DBCP BasicDataSource for your application:
-    </p>
-
-<pre><code><![CDATA[
-<data-sources>
-<!-- configuration for commons BasicDataSource -->
-<data-source type="org.apache.commons.dbcp.BasicDataSource">
-    <set-property
-      property="driverClassName"
-      value="org.postgresql.Driver" />
-    <set-property
-      property="url"
-      value="jdbc:postgresql://localhost/mydatabase" />
-    <set-property
-      property="maxActive"
-      value="10" />
-    <set-property
-      property="maxWait"
-      value="5000" />
-    <set-property
-      property="defaultAutoCommit"
-      value="false" />
-    <set-property
-      property="defaultReadOnly"
-      value="false" />
-
-</data-source>
-</data-sources>
-]]></code></pre>
-
-    <p>
-    For information on how to retrieve the data source, see the
-    <a href="building_model.html#databases">Accessing Relational Databases</a>
-    section.
-    </p>
-
-    <p>
-    <i>Note: Since Struts is now using commons-dbcp for all it's data-source
-    needs, the query you provide for the pingQuery attribute must return at
-    least one row.</i>
-    </p>
-
-    <p>
-    <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code>
-    </p>
-
-    <p>
-    Just be sure you to replace "VALIDTABLE" with the name of a valid table
-    in your database.
-    </p>
-
 </section>
 
 <section 

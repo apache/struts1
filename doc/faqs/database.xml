@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+
+<document url="./database.xml">
+
+ <properties>
+   <author>Craig R. McClanahan</author>
+    <author>Mike Schachter</author>
+    <author>Ted Husted</author>
+    <author>Martin Cooper</author>   <author>Ed Burns</author>
+  <title>Accessing a Database</title>
+ </properties>
+
+<body>
+<chapter href="actionForm" name="How to Access a Database">
+           
+<section name="Accessing a Database" href="database">
+
+    <p>
+    Ideally, the business logic layer should encapsulate the data access
+    details, including acquiring a database connection. 
+    However, some application designs expect that the caller able to provide a
+    with a database connection or DataSource instance. 
+    When this is the case, the Struts DataSource manager can make it easy for 
+    your Action to produce these resources on demand.
+    </p>
+    
+    <p>
+    The Struts DataSource manager is configured as an element in the
+    <a href="../userGuide/configuration.html#data-source_config">
+    Struts configuration file</a> (struts-config.xml). 
+    The manager can used to deploy any connection pool that implements the
+    <code>javax.sql.DataSource</code> interface and is configurable totally
+    from JavaBean properties. 
+    If your DBMS or container provides a connection pool that meets these 
+    requirements, then that component might your first choice.
+    </p>
+
+    <p>
+    The Jakarta Commons dbcp's BasicDataSource 
+    [<code>org.apache.commons.dbcp.BasicDataSource</code>] also works well 
+    with the DataSource manager, if a native component is not available. 
+    The Struts distribution includes a Generic DataSource class in its util
+    package, but this is now only a wrapper around the BasicDataSource. 
+    The GenericDataSource class is deprecated as of Struts 1.1 and replaced 
+    by direct use of the BasicDataSource.
+    </p>
+
+    <p>
+    This is how you would specify a default data source for your application
+    from the struts-config.xml:
+    </p>
+
+<pre><code><![CDATA[
+<data-sources>
+<!-- configuration for GenericDataSource wrapper -->
+<data-source>
+  <set-property
+    property="autoCommit"
+    value="false"/>
+  <set-property
+    property="description"
+    value="Example Data Source Configuration"/>
+  <set-property
+    property="driverClass"
+    value="org.postgresql.Driver"/>
+  <set-property
+    property="maxCount"
+    value="4"/>
+  <set-property
+    property="minCount"
+    value="2"/>
+  <set-property
+    property="password"
+    value="mypassword"/>
+  <set-property
+    property="url"
+    value="jdbc:postgresql://localhost/mydatabase"/>
+  <set-property
+    property="user"
+    value="myusername"/>
+</data-source>
+</data-sources>
+]]></code></pre>
+
+    <p>
+    This is how you would specify a DBCP BasicDataSource for your application:
+    </p>
+
+<pre><code><![CDATA[
+<data-sources>
+<!-- configuration for commons BasicDataSource -->
+<data-source type="org.apache.commons.dbcp.BasicDataSource">
+    <set-property
+      property="driverClassName"
+      value="org.postgresql.Driver" />
+    <set-property
+      property="url"
+      value="jdbc:postgresql://localhost/mydatabase" />
+    <set-property
+      property="maxActive"
+      value="10" />
+    <set-property
+      property="maxWait"
+      value="5000" />
+    <set-property
+      property="defaultAutoCommit"
+      value="false" />
+    <set-property
+      property="defaultReadOnly"
+      value="false" />
+
+</data-source>
+</data-sources>
+]]></code></pre>
+
+    <p>
+    Note that you can define as many datasource objects as your application 
+    requires and refer to each using a logical name. 
+    This can be useful in providing better security or scalability, or even 
+    to test datasource implementations against each other.
+    </p>
+
+    <p>
+    After a DataSource is defined, here is an example of using the
+    manager to establish a connection from within an Action's 
+    <code>execute</code> method.
+    </p>
+
+<pre><code>
+public ActionForward
+       execute(ActionMapping mapping,
+               ActionForm form,
+               HttpServletRequest request,
+               HttpServletResponse response) throws Exception
+{
+ javax.sql.DataSource dataSource;
+ java.sql.Connection myConnection;
+
+ try {
+   dataSource = getDataSource(request);
+   myConnection = dataSource.getConnection();
+
+   //do what you wish with myConnection
+ } catch (SQLException sqle) {
+   getServlet().log("Connection.process", sqle);
+ } finally {
+
+   //enclose this in a finally block to make
+   //sure the connection is closed
+   try {
+     myConnection.close();
+   } catch (SQLException e) {
+     getServlet().log("Connection.close", e);
+   }
+ }
+}
+</code></pre>
+
+    <p>
+    <i>Note: Since Struts is now using commons-dbcp for all it's data-source
+    needs, the query you provide for the pingQuery attribute must return at
+    least one row.</i>
+    </p>
+
+    <p>
+    <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code>
+    </p>
+
+    <p>
+    Just be sure you to replace "VALIDTABLE" with the name of a valid table
+    in your database.
+    </p>
+
+</section>
+
+</chapter>
+</body>
+</document>
+

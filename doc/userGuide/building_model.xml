@@ -11,7 +11,6 @@
     <author>Mike Schachter</author>
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
-    <author>Ed Burns</author>
     <title>The Struts User's Guide - Building Model Components</title>
 </properties>
 
@@ -265,82 +264,10 @@
     For larger applications, these beans will often be stateful or stateless 
     Enterprise JavaBeans (EJBs) instead.
     </p>
-
-</section>
-
-<section name="2.6 Accessing Relational Databases" href="databases">
-
-    <p>
-    Ideally, the business logic beans should encapsulate the data access
-    details, including acquiring a database connection. 
-    However, some application designs expect that the caller able to provide a
-    with a database connection or datasource instance. 
-    When this is the case, the Struts datasource manager can make it easy for 
-    your Action to produce these resources on demand.
-    </p>
     
     <p>
-    The Struts datasource manager is configured as an element in the
-    <a href="configuration.html#data-source_config">
-    Struts configuration file</a> (struts-config.xml). 
-    The manager can used to deploy any connection pool that implements the
-    <code>javax.sql.DataSource</code> interface and is configurable totally
-    from JavaBean properties. 
-    If your DBMS or container provides a connection pool that meets these 
-    requirements, then that component might your first choice.
-    </p>
-
-    <p>
-    The Jakarta Commons dbcp's BasicDataSource 
-    [<code>org.apache.commons.dbcp.BasicDataSource</code>] also works well 
-    with the datasource manager, if a native component is not available. 
-    The Struts distribution includes a Generic DataSource class in its util
-    package, but this is now only a wrapper around the BasicDataSource. 
-    The GenericDataSource class is deprecated as of Struts 1.1 and replaced 
-    by direct use of the BasicDataSource.
-    </p>
-    
-    <p>
-    After the datasource is defined, here is an example of using the
-    manger to establishing a connection from within an Action's 
-    <code>execute</code> method.
-    </p>
-
-<pre><code>
-public ActionForward
-       execute(ActionMapping mapping,
-               ActionForm form,
-               HttpServletRequest request,
-               HttpServletResponse response) throws Exception
-{
- javax.sql.DataSource dataSource;
- java.sql.Connection myConnection;
-
- try {
-   dataSource = getDataSource(request);
-   myConnection = dataSource.getConnection();
-
-   //do what you wish with myConnection
- } catch (SQLException sqle) {
-   getServlet().log("Connection.process", sqle);
- } finally {
-
-   //enclose this in a finally block to make
-   //sure the connection is closed
-   try {
-     myConnection.close();
-   } catch (SQLException e) {
-     getServlet().log("Connection.close", e);
-   }
- }
-}
-</code></pre>
-
-    <p>
-    Note that you can define as many datasource objects as your application 
-    requires and refer to each using a logical name. 
-    This can be useful in providing better security or scalability, or even 
-    to test datasource implementations against each other.
+    For more about using a database with your application, see the 
+    <a href="../faqs/database.html">Accessing a Database HowTo</a>.
     </p>
 
     <p align="center">
