@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.6 2000/10/12 21:51:00 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/10/12 21:51:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.7 2000/10/12 22:31:32 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/10/12 22:31:32 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/10/12 21:51:00 $
+ * @version $Revision: 1.7 $ $Date: 2000/10/12 22:31:32 $
  */
 
 public class Action {
@@ -123,6 +123,16 @@ public class Action {
      */
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";
+
+
+    /**
+     * The request attribute key under which Struts custom tags might store a
+     * <code>Throwable</code> that caused them to report a JspException at
+     * runtime.  This value can be used on an error page to provide more
+     * detailed information about what really went wrong.
+     */
+    public static final String EXCEPTION_KEY =
+        "org.apache.struts.action.EXCEPTION";
 
 
     /**
