@@ -145,10 +145,10 @@
     <property name="app.name" value="struts"/>
 
     <!-- Name of the project -->
-    <property name="project.name" value="jakarta-struts"/>
+    <property name="project.name" value="struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.2.4"/>
+    <property name="project.version" value="1.2.5"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
