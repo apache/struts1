@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.8 2003/07/26 05:48:02 dmkarr Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/26 05:48:02 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.9 2003/08/09 19:29:30 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/08/09 19:29:30 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ELFormTag extends FormTag {
 
@@ -386,9 +386,9 @@ public class ELFormTag extends FormTag {
                                             this, pageContext)) != null)
             setScope(string);
 
-        if ((bool = EvalHelper.evalBoolean("scriptLanguage", getScriptLanguageExpr(),
-                                           this, pageContext)) != null)
-            setScriptLanguage(bool.booleanValue());
+        if ((string = EvalHelper.evalString("scriptLanguage", getScriptLanguageExpr(),
+                                            this, pageContext)) != null)
+            setScriptLanguageExpr(string);
 
         if ((string = EvalHelper.evalString("style", getStyleExpr(),
                                             this, pageContext)) != null)

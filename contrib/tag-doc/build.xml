@@ -1,9 +1,10 @@
 <project name="TaglibDoc" default="compile" basedir=".">
 
   <!-- Load local and user build preferences -->
-  <property file="${user.home}/build.properties"/>
-  <property file="../build.properties"/>
   <property file="build.properties"/>
+  <property file="../../build.properties"/>
+  <property file="../../../build.properties"/>
+  <property file="${user.home}/build.properties"/>
 
   <property name="src.dir"           value="src"/>
   <property name="classes.dir"       value="classes"/>

@@ -51,10 +51,10 @@
  -->
 
  <!-- Load local and user build preferences -->
- <property file="${user.home}/build.properties"/>
- <property file="../../../build.properties"/>
- <property file="../../build.properties"/>
  <property file="build.properties"/>
+ <property file="../../build.properties"/>
+ <property file="../../../build.properties"/>
+ <property file="${user.home}/build.properties"/>
 
  <!-- Default values for unspecified properties -->
  <property name="jdbc20ext.jar" value="../jdbc2_0-stdext.jar"/>
@@ -219,7 +219,7 @@
 -->
   <copy todir="${build.home}/library">
    <fileset dir="${jstl.home}/tld" includes="*.tld"/>
-   <fileset dir="${struts.home}/dist/lib" includes="*.tld"/>
+   <fileset dir="../../dist/lib" includes="*.tld"/>
   </copy>
  </target>
 

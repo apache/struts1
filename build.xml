@@ -113,9 +113,9 @@
 -->
 
     <!-- Load local and user build preferences -->
-    <property file="${user.home}/build.properties"/>
-    <property file="../build.properties"/>
     <property file="build.properties"/>
+    <property file="../build.properties"/>
+    <property file="${user.home}/build.properties"/>
 
     <!-- Default values for unspecified properties -->
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
@@ -204,6 +204,9 @@
 
     <!-- Web directory -->
     <property name="web.dir" value="web"/>
+
+    <!-- Pointer to struts-legacy.jar -->
+    <property name="struts-legacy.jar" value="${basedir}/contrib/struts-legacy/dist/struts-legacy.jar"/>
 
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
