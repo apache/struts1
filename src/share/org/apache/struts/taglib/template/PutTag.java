@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.1 2000/10/08 01:20:50 dgeary Exp $
- * $Revision: 1.1 $
- * $Date: 2000/10/08 01:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.2 2000/10/08 21:10:31 dgeary Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/08 21:10:31 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.1 $ $Date: 2000/10/08 01:20:50 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/08 21:10:31 $
  */
 public class PutTag extends TagSupport {
 
@@ -141,7 +141,8 @@ public class PutTag extends TagSupport {
    public int doEndTag() throws JspException {
 
       InsertTag insertTag = (InsertTag)getAncestor(
-                              "tags.templates.InsertTag");
+                              "org.apache.struts.taglib.template.InsertTag");
+
       if(insertTag == null)
          throw new JspException("PutTag.doStartTag(): " +
                                 "No InsertTag ancestor");
