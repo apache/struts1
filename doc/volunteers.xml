@@ -219,7 +219,7 @@
         </li>
 
         <li>
-            Robert Leland
+            Rob Leland
         </li>
 
         <li>
@@ -655,36 +655,29 @@
 
     <p>
     I have gone from Unix -to- Windows -to- Unix based development about ever 
-    6 years now. 
-    When moving to Windows I was amazed at how primitive the OS was compared 
-    to Unix. 
-    While developing for Win32 I had the pleasure of discovering Delphi and 
-    developed many GUI/databases, and a few telephony, Internet enabled
-    applications. 
-    I remain impressed with its design. 
-    I am always able to develop a simple  elegant solution with the language, 
-    much like the language itself. 
-    I was convinced after 10 years of development with C/C++ that it was a 
-    kinder gentler language. 
-    When I recently returned to Unix the platform hadn't changed one bit.
+    6 years now. When moving to Windows I was amazed at how primitive the OS
+    was compared  to Unix. While developing for Win32 I had the pleasure of
+    discovering Delphi and developed many GUI/databases, telephony, 
+    Internet enabled applications. I remain impressed with its design. 
+    Delphi, always enabled development of a simple  elegant solution, 
+    much like the language itself. I was convinced after 10 years of
+    development with C/C++ that it was a kinder gentler language. 
     </p>
 
     <p>
-    Then in July 2000 I decided to move into Java, and the Web development.
-    This is after using the web since 1992/1985 and occasionally teaching 
-    classes it since 1994.
-    I came as a consultant to take over a JSP based application. I realized
-    it had been written with the equivalent of "goto's"(Model 1) and had to 
-    redesigned. 
+    Then in July 2000 I decided to move into Java, and Web development.
+    This is after using the Internet since 1985 and occasionally teaching 
+    classes about it. I was hired as a consultant to take over a JSP based
+    application. I realized it had been written with the equivalent of 
+    "goto's"(Model 1) and had to be redesigned. 
     I searched for a better way to design the code and by late August I had 
-    found Struts.
+    found Struts. It is also a simple elegant solution.
     </p>
 
     <p>
-    To date I have mainly served to pitch in odds and ends.  
-    I continue to amazed at the committers' generous contributions of time, 
-    insight, and good will. 
-    I am fortunate to part of the struts team. 
+    To date I have mainly served to pitch in with odds and ends.  
+    I continue to amazed at the Struts committers' generous contributions of time, 
+    insight, and good will. I feel fortunate to part of the struts team. 
     </p>
 
     <h3><a name="dgraham">David Graham -- Committer</a></h3>
@@ -698,6 +691,14 @@
     documentation and a few source patches.
     I'm excited about helping Struts evolve and am continually amazed by the 
     framework and the community surrounding it.
+    </p>
+
+    <h3><a name="jmitchell">James Mitchell -- Committer</a></h3>
+
+    <p>
+    James has been so busy answering users questions and adding test cases that
+    he hasn't taken the time to brag about himself. I thought that I would add a place
+    marker for him until and if he does decide to --blow his own horn-- ! -Rob :-D !
     </p>
 
     <h3><a name="jturner">James Turner -- Committer</a></h3>
