@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.7 2003/07/26 17:40:20 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/26 17:40:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.8 2003/07/26 18:28:03 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/26 18:28:03 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -171,7 +171,7 @@ public class TagUtils {
      * @exception JspException if a class cast exception occurs on a
      *  looked-up bean or property
      */
-    public static Map computeParameters(
+    public Map computeParameters(
         PageContext pageContext,
         String paramId,
         String paramName,
@@ -373,7 +373,7 @@ public class TagUtils {
      * @exception JspException if an invalid scope name
      *  is requested
      */
-    public static Object lookup(PageContext pageContext, String name, String scopeName)
+    public Object lookup(PageContext pageContext, String name, String scopeName)
         throws JspException {
 
         if (scopeName == null) {
@@ -409,9 +409,8 @@ public class TagUtils {
      * @exception JspException if accessing this property causes an
      *  IllegalAccessException, IllegalArgumentException,
      *  InvocationTargetException, or NoSuchMethodException
-     * @since Struts 1.2
      */
-    public static Object lookup(
+    public Object lookup(
         PageContext pageContext,
         String name,
         String property,
@@ -464,9 +463,12 @@ public class TagUtils {
      * @param pageContext The PageContext for the current page
      * @param exception The exception to be saved
      */
-    public static void saveException(PageContext pageContext, Throwable exception) {
+    public void saveException(PageContext pageContext, Throwable exception) {
 
-        pageContext.setAttribute(Globals.EXCEPTION_KEY, exception, PageContext.REQUEST_SCOPE);
+        pageContext.setAttribute(
+            Globals.EXCEPTION_KEY,
+            exception,
+            PageContext.REQUEST_SCOPE);
 
     }
 
