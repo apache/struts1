@@ -231,19 +231,19 @@ LogonAction object where it can pass control to get information from the user.</
 <p>Before passing the request to LogonAction, the ActionServlet looks for the
 LogonForm bean. If it finds it, the ActionServlet updates the bean by matching
 properties named in the HTTP request with properties named in the form bean. If
-it doesn't find the bean, ActionServlet creates it, so ActionLogon can assume
+it doesn't find the bean, ActionServlet creates it, so LogonAction can assume
 that it already exists.</p>
 <p>When called by the ActionServlet, LogonAction retrieves the username and
 password from the LogonForm bean. (If just created, the bean will return default
 values.)</p>
-<p>In the example, LoginAction then checks with the DatabaseServlet to see if
+<p>In the example, LogonAction then checks with the DatabaseServlet to see if
 the logon matches a registered user. If the logon doesn't match, LogonAction
 adds a message key to an error list. At the end of the routine, if the error
 list is not empty, LogonAction adds a User bean to the session context, and forwards
 control to its input form (login.jsp).</p>
 <blockquote>
 <p><i>Note that direct access to the DatabaseServlet should really be handled by a
-business-logic bean, and NOT by LoginAction. To quote the example's author
+business-logic bean, and NOT by LogonAction. To quote the example's author
 &quot;This should be considered a bug in the example.&quot;&nbsp;</i></p>
 </blockquote>
 <p>If there are no errors, LogonAction places a user bean into the
