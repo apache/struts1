@@ -95,8 +95,8 @@
                         <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-fileupload">Nightly Build</a>
                         )</li>
       <li><em>Lang</em> (Version 1.1 or later)</li>
-      <li><em>Logging</em> (Version 1.02 or later)</li>
-      <li><em>Pool</em> (Version 1.01 or later)</li>
+      <li><em>Logging</em> (Version 1.0.2 or later)</li>
+      <li><em>Pool</em> (Version 1.0.1 or later)</li>
       <li><em>Services</em> (No official release, obtain current
                         <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-services">Nightly Build</a>
                         )</li>
