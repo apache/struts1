@@ -132,6 +132,11 @@ public class XmlDefinition extends ComponentDefinition
       setPath( parent.getPath() );
     if( role == null )
       setRole( parent.getRole() );
+    if( controller==null )
+      {
+      setController( parent.getController());
+      setControllerType( parent.getControllerType());
+      }
     }
 
   /**
@@ -154,6 +159,11 @@ public class XmlDefinition extends ComponentDefinition
     if( child.getRole() != null )
       {
       role = child.getRole();
+      }
+    if( child.getController()!=null )
+      {
+      controller = child.getController();
+      controllerType =  child.getControllerType();
       }
       // put all child attributes in parent.
     attributes.putAll( child.getAttributes());

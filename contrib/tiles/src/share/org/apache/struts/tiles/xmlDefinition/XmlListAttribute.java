@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlListAttribute.java,v 1.2 2001/12/27 17:35:38 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/27 17:35:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlListAttribute.java,v 1.3 2002/04/15 08:22:44 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/04/15 08:22:44 $
  * $Author: cedric $
  *
  */
@@ -60,7 +60,16 @@ public class XmlListAttribute extends XmlAttribute
      */
   public void add( Object value )
     {
-    list.add( value );
+    //list.add( value );
+      // To correct a bug in digester, we need to check the object type
+      // Digester doesn't call correct method according to object type ;-(
+    if(value instanceof XmlAttribute)
+      {
+      add((XmlAttribute)value);
+      return;
+      }
+     else
+      list.add( value );
     }
 
     /**
