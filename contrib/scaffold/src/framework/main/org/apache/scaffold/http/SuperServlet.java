@@ -1,172 +1,98 @@
 package org.apache.scaffold.http;
 
+import java.io.IOException;
 
-import java.util.Locale;
-import java.util.Map;
-
+import javax.servlet.ServletException;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionFormBean;
+import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionServlet;
 
 
 /**
- * Enhanced base ActionForm.
+ * Enhanced base ActionServlet.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/02/22 10:14:16 $
  */
-// public class ScaffoldForm extends ValidatorForm {
-public class SuperForm extends ActionForm {
 
-// --------------------------------------------------- Instance Variables
-// ----------------------------------------------------------- Properties
+// public class SuperServlet extends TilesServlet
+public class SuperServlet extends ActionServlet {
 
-
-    /**
-     * The locale property.
-     */
-    private Locale locale = null;
-
+// ---------------------------------------------------------- Utilities
 
     /**
-     * Set the locale.
+     * Return an instance of the ActionForm associated with the specified
+     * path, if any; otherwise return <code>null</code>.
+     * May be used to create an ActionForm for InvokeAction.
+     *
+     * @param name path of the Action using the ActionForm bean
      */
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
+    protected ActionForm createActionForm(String path) {
 
+        ActionMapping mapping = findMapping(path);
+        String name = mapping.getName();
 
-    /**
-     * Retrieve the mutable.
-     */
-    public Locale getLocal() {
-        return this.locale;
-    }
+        ActionForm form = null;
 
-
-
-    /**
-     * The map for field properties.
-     * Can be used since 1.1 as an alternative
-     * to individual properties for each field.
-     */
-    private Map properties = null;
-
-
-    /**
-     * Set the properties map.
-     */
-    public void setProperties(Map properties) {
-        this.properties = properties;
-    }
-
-
-    /**
-     * Get the properties map.
-     */
-    public Map getProperties() {
-        return this.properties;
-    }
-
-
-    /**
-     * Reset the locale to the current session.
-     */
-    protected void resetLocale(HttpServletRequest request) {
-
-        this.locale = null;
-
-        HttpSession session = request.getSession();
-        if (session!=null) {
-            this.locale = (Locale)
-                session.getAttribute(Action.LOCALE_KEY);
+        ActionFormBean formBean = findFormBean(name);
+        if (formBean != null) {
+            String className = null;
+            className = formBean.getType();
+            try {
+                Class clazz = Class.forName(className);
+                form = (ActionForm) clazz.newInstance();
+            } catch (Throwable t) {
+                form = null;
+            }
         }
 
-        if (this.locale==null) {
-            this.locale= Locale.getDefault();
-        }
+        return form;
     }
 
 
     /**
-     * The mutable property for properites
-     * subject to autopopulation.
-     */
-    private boolean mutable = true;
-
-
-    /**
-     * Set the mutable.
-     */
-    public void setMutable(boolean mutable) {
-        this.mutable = mutable;
-    }
-
-
-    /**
-     * Retrieve the mutable.
-     */
-    public boolean isMutable() {
-        return this.mutable;
-    }
-
-
-    /**
-     * The action task property.
-     */
-    public String actionTask = null;
-
-
-    /**
-     * Set the action task.
-     */
-    public void setActionTask(String actionTask) {
-        if (isMutable()) this.actionTask = actionTask;
-    }
-
-
-    /**
-     * Get the action task.
-     */
-    public String getActionTask() {
-        return this.actionTask;
-    }
-
-
-// --------------------------------------------------------- Public Methods
-
-
-    /**
-     */
-    public void setProperty(String key, Object value) {
-        if (isMutable()) getProperties().put(key,value);
-    }
-
-
-    /**
-     */
-    public Object getProperty(String key) {
-        return getProperties().get(key);
-    }
-
-
-
-    /**
-     * @param mapping The mapping used to select this instance
+     * Directly process the Action perform associated with the
+     * given path.
+     * Return the <code>ActionForward</code> instance (if any)
+     * returned by the called <code>Action</code>.
+     * <code>createActionForm</code> may be used to create an
+     * ActionForm instance to pass to the Action invoked.
+     *
+     * @param action The path to the Action to invoke
+     * @param form The ActionForm we are processing
      * @param request The servlet request we are processing
-     */
-    public void reset(ActionMapping mapping, HttpServletRequest request) {
+     * @param response The servlet response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+    **/
+    protected ActionForward invokeAction(
+            String path,
+            ActionForm form,
+            HttpServletRequest request,
+            HttpServletResponse response)
+        throws IOException, ServletException {
 
-        resetLocale(request);
+        ActionMapping mapping =
+            processMapping(path,request);
 
-        // if (isMutable()) ...
+        Action action =
+            processActionCreate(mapping,request);
 
+        ActionForward forward =
+            processActionPerform(
+                action,mapping,form,request,response);
+
+        return forward;
     }
 
-
-// ----- end SuperForm -----
+// ----- end SuperServlet -----
 
 }
 

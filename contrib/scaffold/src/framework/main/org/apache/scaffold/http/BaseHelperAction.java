@@ -41,90 +41,12 @@ import org.apache.scaffold.lang.Tokens;
  * and an error condition is detected.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/23 21:40:52 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/22 10:14:16 $
 **/
-public class BaseHelperAction extends Action {
+public class BaseHelperAction extends SuperAction {
 
 
 // --------------------------------------------------------- Public Methods
-
-    /**
-     * Return the locale for the given request. If no session is set,
-     * or if the session has no locale set, the default locale
-     * is returned.
-     * @author  François Rey (FREY - francois.rey@capco.com)
-     * @author  Eric Bariaux (EBRX - eric.bariaux@capco.com)
-    **/
-    protected Locale getLocale(HttpServletRequest request) {
-        Locale result = null;
-        HttpSession session = request.getSession();
-        if (session!=null) {
-            result = (Locale) session.getAttribute(Action.LOCALE_KEY);
-            if (result == null) result = Locale.getDefault();
-        } else {
-            result = Locale.getDefault();
-        }
-        return result;
-    }
-
-
-    /**
-     * Return the application resources for this web application, if any.
-    **/
-    public MessageResources getMessageResources() {
-        return servlet.getResources();
-    }
-
-
-    /**
-     * Number of replacement parameters permitted in Struts 1.0.
-     * See also saveConfirm.
-    **/
-    public static int CONFIRM_MAX = 5; // (Message Key, plus 1..4)
-
-
-    /**
-     * Retrieves a base messages and up to four replaceable
-     * parameters from a List, and adds them as an ActionError.
-    **/
-    protected boolean saveMessage(ActionErrors errors, List messages) {
-        if ((messages==null) || (messages.size()==0)) {
-            return false;
-        }
-        int size = messages.size();
-            // Struts 1.0 allows up to 4 parameters, 1..4
-        if (size > CONFIRM_MAX) size = CONFIRM_MAX;
-        String[] confirm = new String[size];
-        for (int i=0; i<size; i++) {
-            confirm[i] = (String) messages.get(i);
-        }
-        switch (size) {
-           case 5:
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                    new ActionError(confirm[0],
-                        confirm[1],confirm[2],confirm[3],confirm[4]));
-                break;
-           case 4:
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                    new ActionError(confirm[0],
-                        confirm[1],confirm[2],confirm[3]));
-                break;
-           case 3:
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                    new ActionError(confirm[0],
-                        confirm[1],confirm[2]));
-                break;
-           case 2:
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                    new ActionError(confirm[0],
-                        confirm[1]));
-                break;
-           case 1:
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                    new ActionError(confirm[0]));
-        }
-        return true;
-    }
 
 
     /**
@@ -188,6 +110,10 @@ public class BaseHelperAction extends Action {
             return (forward);
         }
 
+        // Create new token, in case it is needed
+        resetToken(request);
+        saveToken(request);
+
         // This creates a helper for each request.
         // Using data fields in the helper object is thread safe.
         StringTokenizer helperClasses =
@@ -219,9 +145,9 @@ public class BaseHelperAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/BaseHelperAction.java,v 1.3 2002/01/23 21:40:52 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/23 21:40:52 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/BaseHelperAction.java,v 1.4 2002/02/22 10:14:16 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/22 10:14:16 $
  *
  * ====================================================================
  *
