@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.149 2003/06/19 00:11:54 dgraham Exp $
- * $Revision: 1.149 $
- * $Date: 2003/06/19 00:11:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.150 2003/06/28 06:16:34 dgraham Exp $
+ * $Revision: 1.150 $
+ * $Date: 2003/06/28 06:16:34 $
  *
  * ====================================================================
  *
@@ -309,7 +309,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.149 $ $Date: 2003/06/19 00:11:54 $
+ * @version $Revision: 1.150 $ $Date: 2003/06/28 06:16:34 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -581,7 +581,7 @@ public class ActionServlet extends HttpServlet {
     public ActionFormBean findFormBean(String name) {
 
         ActionFormBeans afb = (ActionFormBeans)
-            getServletContext().getAttribute(Action.FORM_BEANS_KEY);
+            getServletContext().getAttribute(Globals.FORM_BEANS_KEY);
         if (afb == null) {
             return (null);
         }
@@ -601,7 +601,7 @@ public class ActionServlet extends HttpServlet {
     public ActionForward findForward(String name) {
 
         ActionForwards af = (ActionForwards)
-            getServletContext().getAttribute(Action.FORWARDS_KEY);
+            getServletContext().getAttribute(Globals.FORWARDS_KEY);
         if (af == null) {
             return (null);
         }
@@ -621,7 +621,7 @@ public class ActionServlet extends HttpServlet {
     public ActionMapping findMapping(String path) {
 
         ActionMappings am = (ActionMappings)
-            getServletContext().getAttribute(Action.MAPPINGS_KEY);
+            getServletContext().getAttribute(Globals.MAPPINGS_KEY);
         if (am == null) {
             return (null);
         }
@@ -1570,7 +1570,7 @@ public class ActionServlet extends HttpServlet {
             afb.addFormBean((ActionFormBean) fbcs[i]);
         }
         afb.setFast(true);
-        getServletContext().setAttribute(Action.FORM_BEANS_KEY, afb);
+        getServletContext().setAttribute(Globals.FORM_BEANS_KEY, afb);
 
     }
 
@@ -1595,7 +1595,7 @@ public class ActionServlet extends HttpServlet {
             af.addForward((ActionForward) fcs[i]);
         }
         af.setFast(true);
-        getServletContext().setAttribute(Action.FORWARDS_KEY, af);
+        getServletContext().setAttribute(Globals.FORWARDS_KEY, af);
 
     }
 
@@ -1621,7 +1621,7 @@ public class ActionServlet extends HttpServlet {
             am.addMapping((ActionMapping) acs[i]);
         }
         am.setFast(true);
-        getServletContext().setAttribute(Action.MAPPINGS_KEY, am);
+        getServletContext().setAttribute(Globals.MAPPINGS_KEY, am);
 
     }
 

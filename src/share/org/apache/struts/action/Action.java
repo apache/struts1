@@ -1,8 +1,7 @@
-
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.60 2003/04/25 04:23:28 dgraham Exp $
- * $Revision: 1.60 $
- * $Date: 2003/04/25 04:23:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.61 2003/06/28 06:16:34 dgraham Exp $
+ * $Revision: 1.61 $
+ * $Date: 2003/06/28 06:16:34 $
  *
  * ====================================================================
  *
@@ -60,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.action;
-
 
 import java.io.IOException;
 import java.util.Locale;
@@ -81,7 +78,6 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.TokenProcessor;
-
 
 /**
  * An <strong>Action</strong> is an adapter between the contents of an incoming
@@ -114,7 +110,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.60 $ $Date: 2003/04/25 04:23:28 $
+ * @version $Revision: 1.61 $ $Date: 2003/06/28 06:16:34 $
  */
 public class Action {
 
@@ -514,7 +510,7 @@ public class Action {
      */
     protected DataSource getDataSource(HttpServletRequest request) {
 
-        return (getDataSource(request, DATA_SOURCE_KEY));
+        return (getDataSource(request, Globals.DATA_SOURCE_KEY));
 
     }
 
@@ -702,12 +698,12 @@ public class Action {
 
         // Remove any error messages attribute if none are required
         if ((errors == null) || errors.isEmpty()) {
-            request.removeAttribute(ERROR_KEY);
+            request.removeAttribute(Globals.ERROR_KEY);
             return;
         }
 
         // Save the error messages we need
-        request.setAttribute(ERROR_KEY, errors);
+        request.setAttribute(Globals.ERROR_KEY, errors);
 
     }
 
@@ -727,12 +723,12 @@ public class Action {
 
         // Remove any messages attribute if none are required
         if ((messages == null) || messages.isEmpty()) {
-            request.removeAttribute(MESSAGE_KEY);
+            request.removeAttribute(Globals.MESSAGE_KEY);
             return;
         }
 
         // Save the messages we need
-        request.setAttribute(MESSAGE_KEY, messages);
+        request.setAttribute(Globals.MESSAGE_KEY, messages);
 
     }
 
