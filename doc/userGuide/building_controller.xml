@@ -525,7 +525,14 @@
         </li>
     
     </ul>
-    
+
+    <p>
+        You may also specify Arrays of these types (e.g. <code>String[]</code>).
+        You may also specify a concrete implementation of the Map Interface,
+        such as <code>java.util.HashMap</code>,
+        or a List implementation, such as <code>java.util.ArrayList</code>.
+    </p>
+
     <p>
     If you do not supply an initial attribute, numbers will be initialized to 
     0 and objects to <code>null</code>.
