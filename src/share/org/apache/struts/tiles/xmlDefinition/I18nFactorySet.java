@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.7 2003/03/16 16:02:11 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/16 16:02:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.8 2003/07/08 01:03:43 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/08 01:03:43 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,31 +59,29 @@
  *
  */
 
-
 package org.apache.struts.tiles.xmlDefinition;
 
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.FactoryNotFoundException;
-import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.Map;
-import java.util.Locale;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.StringTokenizer;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.FactoryNotFoundException;
 import org.xml.sax.SAXException;
 
 /**
@@ -97,68 +95,93 @@ import org.xml.sax.SAXException;
  *
  * A definition factory file is loaded using main filename extended with locale code
  * (ex : <code>templateDefinitions_fr.xml</code>). If no file is found under this name, use default file.
-*/
-public class I18nFactorySet extends FactorySet
-{
-    /** Commons Logging instance. */
-  protected static Log log = LogFactory.getLog(I18nFactorySet.class);
+ */
+public class I18nFactorySet extends FactorySet {
 
-    /** Config file parameter name.
-     * @deprecated use DEFINITIONS_CONFIG_PARAMETER_NAME
+    /** 
+     * Commons Logging instance. 
      */
-  public static final String INSTANCES_CONFIG_PARAMETER_NAME = "instances-config";
+    protected static Log log = LogFactory.getLog(I18nFactorySet.class);
 
-    /** Default name */
-  //public static final String DEFAULT_DEFINITIONS_FILE_NAME = "/WEB-INF/componentDefinitions.xml";
-    /** Config file parameter name. */
-  public static final String DEFINITIONS_CONFIG_PARAMETER_NAME = "definitions-config";
-    /** Config file parameter name. */
-  public static final String PARSER_DETAILS_PARAMETER_NAME = "definitions-parser-details";
-    /** Config file parameter name. */
-  public static final String PARSER_VALIDATE_PARAMETER_NAME = "definitions-parser-validate";
+    /** 
+     * Config file parameter name. 
+     */
+    public static final String DEFINITIONS_CONFIG_PARAMETER_NAME =
+        "definitions-config";
 
-    /** Possible definition filenames. */
-  public static final String DEFAULT_DEFINITION_FILENAMES[] = {
-                      "/WEB-INF/tileDefinitions.xml",
-                      "/WEB-INF/componentDefinitions.xml",
-                      "/WEB-INF/instanceDefinitions.xml"};
-    /** Default factory. */
-  protected DefinitionsFactory defaultFactory;
-    /** Xml parser used.
-     *  Attribute is transient to allow serialization. In this implementaiton,
-     *  xmlParser is created each time we need it ;-(.
+    /** 
+     * Config file parameter name. 
      */
-  protected transient XmlParser xmlParser;
-    /** Do we want validating parser. Default is <code>false</code>.
-     *  Can be set from servlet config file.
+    public static final String PARSER_DETAILS_PARAMETER_NAME =
+        "definitions-parser-details";
+
+    /** 
+     * Config file parameter name. 
      */
-  protected boolean isValidatingParser = false;
-    /** Parser detail level. Default is 0.
-     *  Can be set from servlet config file.
+    public static final String PARSER_VALIDATE_PARAMETER_NAME =
+        "definitions-parser-validate";
+
+    /** 
+     * Possible definition filenames. 
      */
-  protected int parserDetailLevel = 0;
+    public static final String DEFAULT_DEFINITION_FILENAMES[] =
+        {
+            "/WEB-INF/tileDefinitions.xml",
+            "/WEB-INF/componentDefinitions.xml",
+            "/WEB-INF/instanceDefinitions.xml" };
 
     /**
      * Maximum length of one branch of the resource search path tree.
      * Used in getBundle().
      */
-  private static final int MAX_BUNDLES_SEARCHED = 2;
-    /** Default filenames extension. */
-  public static final String FILENAME_EXTENSION = ".xml";
+    private static final int MAX_BUNDLES_SEARCHED = 2;
 
-    /** Names of files containing instances descriptions. */
-  private List filenames;
-    /** Collection of already loaded definitions set, referenced by their suffix. */
-  private Map loaded;
+    /** 
+     * Default filenames extension. 
+     */
+    public static final String FILENAME_EXTENSION = ".xml";
 
+    /** 
+     * Default factory. 
+     */
+    protected DefinitionsFactory defaultFactory = null;
+
+    /** 
+     * XML parser used.
+     * Attribute is transient to allow serialization. In this implementaiton,
+     * xmlParser is created each time we need it ;-(.
+     */
+    protected transient XmlParser xmlParser;
+
+    /** 
+     * Do we want validating parser. Default is <code>false</code>.
+     * Can be set from servlet config file.
+     */
+    protected boolean isValidatingParser = false;
+
+    /** 
+     * Parser detail level. Default is 0.
+     * Can be set from servlet config file.
+     */
+    protected int parserDetailLevel = 0;
+
+    /** 
+     * Names of files containing instances descriptions. 
+     */
+    private List filenames = null;
+
+    /** 
+     * Collection of already loaded definitions set, referenced by their suffix. 
+     */
+    private Map loaded = null;
 
     /**
      * Parameterless Constructor.
      * Method {@link #initFactory} must be called prior to any use of created factory.
      */
-  public I18nFactorySet()
-  {
-  }
+    public I18nFactorySet() {
+        super();
+    }
 
     /**
      * Constructor.
@@ -167,11 +190,11 @@ public class I18nFactorySet extends FactorySet
      * @param properties Map containing all properties.
      * @throws FactoryNotFoundException Can't find factory configuration file.
      */
-  public I18nFactorySet(ServletContext servletContext, Map properties )
-         throws DefinitionsFactoryException
-  {
-  initFactory( servletContext, properties);
-  }
+    public I18nFactorySet(ServletContext servletContext, Map properties)
+        throws DefinitionsFactoryException {
+
+        initFactory(servletContext, properties);
+    }
 
     /**
      * Initialization method.
@@ -183,67 +206,61 @@ public class I18nFactorySet extends FactorySet
      * more properties than requested.
      * @throws DefinitionsFactoryException An error occur during initialization.
      */
-  public void initFactory(ServletContext servletContext, Map properties )
-         throws DefinitionsFactoryException
-  {
-    // Set some property values
-  String value = (String)properties.get(PARSER_VALIDATE_PARAMETER_NAME);
-  if( value != null )
-    {
-    isValidatingParser = Boolean.valueOf( value ).booleanValue();
-    }  // end if
-  value = (String)properties.get(PARSER_DETAILS_PARAMETER_NAME);
-  if( value != null )
-    {
-    try {
-      parserDetailLevel = Integer.valueOf( value ).intValue();
-      }
-     catch( NumberFormatException ex )
-      {
-      log.error( "Bad format for parameter '"
+    public void initFactory(ServletContext servletContext, Map properties)
+        throws DefinitionsFactoryException {
+
+        // Set some property values
+        String value = (String) properties.get(PARSER_VALIDATE_PARAMETER_NAME);
+        if (value != null) {
+            isValidatingParser = Boolean.valueOf(value).booleanValue();
+        }
+
+        value = (String) properties.get(PARSER_DETAILS_PARAMETER_NAME);
+        if (value != null) {
+            try {
+                parserDetailLevel = Integer.valueOf(value).intValue();
+
+            } catch (NumberFormatException ex) {
+                log.error(
+                    "Bad format for parameter '"
                         + PARSER_DETAILS_PARAMETER_NAME
                         + "'. Integer expected.");
-      }
-    }  // end if
-
-    // init factory withappropriate configuration file
-    // Try to use provided filename, if any.
-    // If no filename are provided, try to use default ones.
-  String filename = (String)properties.get(DEFINITIONS_CONFIG_PARAMETER_NAME);
-  if( filename != null )
-    { // Use provided filename
-    try
-      {
-      initFactory( servletContext, filename );
-          if(log.isDebugEnabled())
-            log.debug( "Factory initialized from file '" + filename + "'." );
-      }
-     catch( FileNotFoundException ex )
-        { // A filename is specified, throw appropriate error.
-          log.error( ex.getMessage() + " : Can't find file '" +filename + "'" );
-          throw new FactoryNotFoundException( ex.getMessage() + " : Can't find file '" +filename + "'" ) ;
-        } // end catch
-      }
-     else
-      { // try each default file names
-      for( int i=0; i<DEFAULT_DEFINITION_FILENAMES.length; i++ )
-        {
-        filename = DEFAULT_DEFINITION_FILENAMES[i];
-        try
-          {
-          initFactory( servletContext, filename );
-          if(log.isInfoEnabled())
-            {
-            log.info( "Factory initialized from file '" + filename + "'." );
             }
-          }
-         catch( FileNotFoundException ex )
-          { // Do nothing
-          } // end catch
-        } // end loop
-      } // end if
+        }
 
-   }
+        // init factory withappropriate configuration file
+        // Try to use provided filename, if any.
+        // If no filename are provided, try to use default ones.
+        String filename = (String) properties.get(DEFINITIONS_CONFIG_PARAMETER_NAME);
+        if (filename != null) { // Use provided filename
+            try {
+                initFactory(servletContext, filename);
+                if (log.isDebugEnabled()) {
+                    log.debug("Factory initialized from file '" + filename + "'.");
+                }
+
+            } catch (FileNotFoundException ex) { // A filename is specified, throw appropriate error.
+                log.error(ex.getMessage() + " : Can't find file '" + filename + "'");
+                throw new FactoryNotFoundException(
+                    ex.getMessage() + " : Can't find file '" + filename + "'");
+            }
+
+        } else { // try each default file names
+            for (int i = 0; i < DEFAULT_DEFINITION_FILENAMES.length; i++) {
+                filename = DEFAULT_DEFINITION_FILENAMES[i];
+                try {
+                    initFactory(servletContext, filename);
+                    if (log.isInfoEnabled()) {
+                        log.info(
+                            "Factory initialized from file '" + filename + "'.");
+                    }
+                } catch (FileNotFoundException ex) {
+                    // Do nothing
+                }
+            }
+        }
+
+    }
 
     /**
      * Initialization method.
@@ -254,154 +271,162 @@ public class I18nFactorySet extends FactorySet
      * @param proposedFilename File names, comma separated, to use as  base file names.
      * @throws DefinitionsFactoryException An error occur during initialization.
      */
-  protected void initFactory(ServletContext servletContext, String proposedFilename )
-         throws DefinitionsFactoryException, FileNotFoundException
-  {
-      // Init list of filenames
-    StringTokenizer tokenizer = new StringTokenizer( proposedFilename, "," );
-    this.filenames = new ArrayList(tokenizer.countTokens());
-    while( tokenizer.hasMoreTokens() )
-      {
-      this.filenames.add(tokenizer.nextToken().trim());
-      }
+    protected void initFactory(
+        ServletContext servletContext,
+        String proposedFilename)
+        throws DefinitionsFactoryException, FileNotFoundException {
 
-    loaded = new HashMap();
-    defaultFactory = createDefaultFactory( servletContext );
-    if(log.isDebugEnabled())
-      log.debug( "default factory:" + defaultFactory );
-  }
+        // Init list of filenames
+        StringTokenizer tokenizer = new StringTokenizer(proposedFilename, ",");
+        this.filenames = new ArrayList(tokenizer.countTokens());
+        while (tokenizer.hasMoreTokens()) {
+            this.filenames.add(tokenizer.nextToken().trim());
+        }
 
-  /**
-   * Get default factory.
-   * @return Default factory
-   */
-  protected DefinitionsFactory getDefaultFactory()
-  {
-  return defaultFactory;
-  }
-
-   /**
-    * Create default factory .
-   * Create InstancesMapper for specified Locale.
-   * If creation failes, use default mapper and log error message.
-   * @param servletContext Current servlet context. Used to open file.
-   * @return Created default definition factory.
-   * @throws DefinitionsFactoryException If an error occur while creating factory.
-   * @throws FileNotFoundException if factory can't be loaded from filenames.
-    */
-  protected DefinitionsFactory createDefaultFactory(ServletContext servletContext)
-    throws DefinitionsFactoryException, FileNotFoundException
-    {
-    XmlDefinitionsSet rootXmlConfig = parseXmlFiles( servletContext, "", null );
-    if( rootXmlConfig == null )
-      throw new FileNotFoundException();
-
-    rootXmlConfig.resolveInheritances();
-
-    if(log.isDebugEnabled())
-      log.debug( rootXmlConfig );
-
-    DefinitionsFactory factory = new DefinitionsFactory( rootXmlConfig );
-    if(log.isDebugEnabled())
-      log.debug( "factory loaded : " + factory );
-
-    return factory;
+        loaded = new HashMap();
+        defaultFactory = createDefaultFactory(servletContext);
+        if (log.isDebugEnabled())
+            log.debug("default factory:" + defaultFactory);
     }
 
-  /**
-   * Extract key that will be used to get the sub factory.
-   * @param name Name of requested definition
-   * @param request Current servlet request.
-   * @param servletContext Current servlet context.
-   * @return the key or <code>null</code> if not found.
-   */
-  protected Object getDefinitionsFactoryKey(String name, ServletRequest request, ServletContext servletContext)
-  {
-  Locale locale = null;
-  try
-    {
-    HttpSession session = ((HttpServletRequest)request).getSession(false);
-    if (session != null)
-      locale = (Locale)session.getAttribute(DefinitionsUtil.LOCALE_KEY);
-    }
-   catch( ClassCastException ex )
-    { //
-    log.error( "I18nFactorySet.getDefinitionsFactoryKey" );
-    ex.printStackTrace();
+    /**
+     * Get default factory.
+     * @return Default factory
+     */
+    protected DefinitionsFactory getDefaultFactory() {
+        return defaultFactory;
     }
 
-  return locale;
-  }
+    /**
+     * Create default factory .
+     * Create InstancesMapper for specified Locale.
+     * If creation failes, use default mapper and log error message.
+     * @param servletContext Current servlet context. Used to open file.
+     * @return Created default definition factory.
+     * @throws DefinitionsFactoryException If an error occur while creating factory.
+     * @throws FileNotFoundException if factory can't be loaded from filenames.
+     */
+    protected DefinitionsFactory createDefaultFactory(ServletContext servletContext)
+        throws DefinitionsFactoryException, FileNotFoundException {
 
-   /**
-    * Create a factory for specified key.
-   * If creation failes, return default factory and log an error message.
-   * @param key The key.
-   * @param request Servlet request.
-   * @param servletContext Servlet context.
-   * @return Definition factory for specified key.
-   * @throws DefinitionsFactoryException If an error occur while creating factory.
-    */
-  protected DefinitionsFactory createFactory(Object key, ServletRequest request, ServletContext servletContext)
-    throws DefinitionsFactoryException
-    {
-    if( key == null )
-      return getDefaultFactory();
+        XmlDefinitionsSet rootXmlConfig = parseXmlFiles(servletContext, "", null);
+        if (rootXmlConfig == null) {
+            throw new FileNotFoundException();
+        }
 
+        rootXmlConfig.resolveInheritances();
 
-      // Build possible postfixes
-    List possiblePostfixes = calculatePostixes( "", (Locale)key );
+        if (log.isDebugEnabled()) {
+            log.debug(rootXmlConfig);
+        }
 
+        DefinitionsFactory factory = new DefinitionsFactory(rootXmlConfig);
+        if (log.isDebugEnabled()) {
+            log.debug("factory loaded : " + factory);
+        }
 
-      // Search last postix corresponding to a config file to load.
-      // First check if something is loaded for this postfix.
-      // If not, try to load its config.
-    XmlDefinitionsSet lastXmlFile = null;
-    DefinitionsFactory factory = null;
-    String curPostfix = null;
-    int i;
-
-    for(i=possiblePostfixes.size()-1; i>=0; i-- )
-      {
-      curPostfix = (String)possiblePostfixes.get(i);
-        // Already loaded ?
-      factory = (DefinitionsFactory)loaded.get( curPostfix );
-      if( factory != null )
-        { // yes, stop search
         return factory;
-        } // end if
-        // Try to load it. If success, stop search
-      lastXmlFile = parseXmlFiles( servletContext, curPostfix, null );
-      if( lastXmlFile != null )
-        break;
-      } // end loop
+    }
 
-      // Have we found a description file ?
-      // If no, return default one
-    if( lastXmlFile == null )
-      {
-      return getDefaultFactory();
-      }
+    /**
+     * Extract key that will be used to get the sub factory.
+     * @param name Name of requested definition
+     * @param request Current servlet request.
+     * @param servletContext Current servlet context.
+     * @return the key or <code>null</code> if not found.
+     */
+    protected Object getDefinitionsFactoryKey(
+        String name,
+        ServletRequest request,
+        ServletContext servletContext) {
 
-      // We found something. Need to load base and intermediate files
-    String lastPostfix = curPostfix;
-    XmlDefinitionsSet rootXmlConfig = parseXmlFiles( servletContext, "", null );
-    for( int j=0; j<i; j++ )
-      {
-      curPostfix = (String)possiblePostfixes.get(j);
-      parseXmlFiles( servletContext, curPostfix, rootXmlConfig);
-      } // end loop
+        Locale locale = null;
+        try {
+            HttpSession session = ((HttpServletRequest) request).getSession(false);
+            if (session != null) {
+                locale = (Locale) session.getAttribute(DefinitionsUtil.LOCALE_KEY);
+            }
 
-    rootXmlConfig.extend( lastXmlFile );
-    rootXmlConfig.resolveInheritances();
+        } catch (ClassCastException ex) {
+            log.error("I18nFactorySet.getDefinitionsFactoryKey");
+            ex.printStackTrace();
+        }
 
-    factory = new DefinitionsFactory(rootXmlConfig);
-    loaded.put( lastPostfix, factory );
-      // User help
-    if(log.isDebugEnabled())
-      log.debug( "factory loaded : " + factory );
-      // return last available found !
-    return factory;
+        return locale;
+    }
+
+    /**
+     * Create a factory for specified key.
+    * If creation failes, return default factory and log an error message.
+    * @param key The key.
+    * @param request Servlet request.
+    * @param servletContext Servlet context.
+    * @return Definition factory for specified key.
+    * @throws DefinitionsFactoryException If an error occur while creating factory.
+     */
+    protected DefinitionsFactory createFactory(
+        Object key,
+        ServletRequest request,
+        ServletContext servletContext)
+        throws DefinitionsFactoryException {
+
+        if (key == null) {
+            return getDefaultFactory();
+        }
+
+        // Build possible postfixes
+        List possiblePostfixes = calculatePostixes("", (Locale) key);
+
+        // Search last postix corresponding to a config file to load.
+        // First check if something is loaded for this postfix.
+        // If not, try to load its config.
+        XmlDefinitionsSet lastXmlFile = null;
+        DefinitionsFactory factory = null;
+        String curPostfix = null;
+        int i = 0;
+
+        for (i = possiblePostfixes.size() - 1; i >= 0; i--) {
+            curPostfix = (String) possiblePostfixes.get(i);
+
+            // Already loaded ?
+            factory = (DefinitionsFactory) loaded.get(curPostfix);
+            if (factory != null) { // yes, stop search
+                return factory;
+            }
+
+            // Try to load it. If success, stop search
+            lastXmlFile = parseXmlFiles(servletContext, curPostfix, null);
+            if (lastXmlFile != null) {
+                break;
+            }
+        }
+
+        // Have we found a description file ?
+        // If no, return default one
+        if (lastXmlFile == null) {
+            return getDefaultFactory();
+        }
+
+        // We found something. Need to load base and intermediate files
+        String lastPostfix = curPostfix;
+        XmlDefinitionsSet rootXmlConfig = parseXmlFiles(servletContext, "", null);
+        for (int j = 0; j < i; j++) {
+            curPostfix = (String) possiblePostfixes.get(j);
+            parseXmlFiles(servletContext, curPostfix, rootXmlConfig);
+        }
+
+        rootXmlConfig.extend(lastXmlFile);
+        rootXmlConfig.resolveInheritances();
+
+        factory = new DefinitionsFactory(rootXmlConfig);
+        loaded.put(lastPostfix, factory);
+
+        if (log.isDebugEnabled()) {
+            log.debug("factory loaded : " + factory);
+        }
+
+        // return last available found !
+        return factory;
     }
 
     /**
@@ -424,11 +449,12 @@ public class I18nFactorySet extends FactorySet
             //The locale is "", "", "".
             return result;
         }
+
         final StringBuffer temp = new StringBuffer(baseName);
         temp.append('_');
         temp.append(language);
 
-        if(languageLength > 0)
+        if (languageLength > 0)
             result.add(temp.toString());
 
         if (countryLength + variantLength == 0)
@@ -437,10 +463,10 @@ public class I18nFactorySet extends FactorySet
         temp.append('_');
         temp.append(country);
 
-        if(countryLength > 0)
+        if (countryLength > 0)
             result.add(temp.toString());
 
-        if(variantLength == 0) {
+        if (variantLength == 0) {
             return result;
         } else {
             temp.append('_');
@@ -465,20 +491,24 @@ public class I18nFactorySet extends FactorySet
      * @return XmlDefinitionsSet The definitions set created or passed as parameter.
      * @throws DefinitionsFactoryException On errors parsing file.
      */
-  private XmlDefinitionsSet parseXmlFiles( ServletContext servletContext, String postfix, XmlDefinitionsSet xmlDefinitions )
-      throws DefinitionsFactoryException
-    {
-    if( postfix != null && postfix.length() == 0 )
-      postfix = null;
+    private XmlDefinitionsSet parseXmlFiles(
+        ServletContext servletContext,
+        String postfix,
+        XmlDefinitionsSet xmlDefinitions)
+        throws DefinitionsFactoryException {
 
-      // Iterate throw each file name in list
-    Iterator i = filenames.iterator();
-    while( i.hasNext() )
-      {
-      String filename = concatPostfix((String)i.next(), postfix) ;
-      xmlDefinitions = parseXmlFile( servletContext, filename, xmlDefinitions );
-      } // end loop
-    return xmlDefinitions;
+        if (postfix != null && postfix.length() == 0) {
+            postfix = null;
+        }
+
+        // Iterate throw each file name in list
+        Iterator i = filenames.iterator();
+        while (i.hasNext()) {
+            String filename = concatPostfix((String) i.next(), postfix);
+            xmlDefinitions = parseXmlFile(servletContext, filename, xmlDefinitions);
+        }
+
+        return xmlDefinitions;
     }
 
     /**
@@ -493,69 +523,66 @@ public class I18nFactorySet extends FactorySet
      * @return XmlDefinitionsSet The definitions set created or passed as parameter.
      * @throws DefinitionsFactoryException On errors parsing file.
      */
-  private XmlDefinitionsSet parseXmlFile( ServletContext servletContext, String filename , XmlDefinitionsSet xmlDefinitions)
-      throws DefinitionsFactoryException
-    {
-    try
-      {
-	    InputStream input = servletContext.getResourceAsStream(filename);
-        // Try to load using real path.
-        // This allow to load config file under websphere 3.5.x
-        // Patch proposed Houston, Stephen (LIT) on 5 Apr 2002
-      if (null == input)
-      {
-        try
-         {
-         input = new java.io.FileInputStream(servletContext.getRealPath(filename));
-         }
-         catch (Exception e)
-         {
-         }
-     }
-        // If still nothing found, this mean no config file is associated
-	    if(input == null )
-        {
-        if(log.isDebugEnabled())
-          log.debug( "Can't open file '" + filename + "'" );
+    private XmlDefinitionsSet parseXmlFile(
+        ServletContext servletContext,
+        String filename,
+        XmlDefinitionsSet xmlDefinitions)
+        throws DefinitionsFactoryException {
+
+        try {
+            InputStream input = servletContext.getResourceAsStream(filename);
+            // Try to load using real path.
+            // This allow to load config file under websphere 3.5.x
+            // Patch proposed Houston, Stephen (LIT) on 5 Apr 2002
+            if (null == input) {
+                try {
+                    input =
+                        new java.io.FileInputStream(
+                            servletContext.getRealPath(filename));
+                } catch (Exception e) {
+                }
+            }
+
+            // If still nothing found, this mean no config file is associated
+            if (input == null) {
+                if (log.isDebugEnabled()) {
+                    log.debug("Can't open file '" + filename + "'");
+                }
+                return xmlDefinitions;
+            }
+
+            // Check if parser already exist.
+            // Doesn't seem to work yet.
+            //if( xmlParser == null )
+            if (true) {
+                xmlParser = new XmlParser();
+                xmlParser.setValidating(isValidatingParser);
+                xmlParser.setDetailLevel(parserDetailLevel);
+            }
+
+            // Check if definition set already exist.
+            if (xmlDefinitions == null) {
+                xmlDefinitions = new XmlDefinitionsSet();
+            }
+
+            xmlParser.parse(input, xmlDefinitions);
+
+        } catch (SAXException ex) {
+            if (log.isDebugEnabled()) {
+                log.debug("Error while parsing file '" + filename + "'.");
+                ex.printStackTrace();
+            }
+            throw new DefinitionsFactoryException(
+                "Error while parsing file '" + filename + "'. " + ex.getMessage(),
+                ex);
+
+        } catch (IOException ex) {
+            throw new DefinitionsFactoryException(
+                "IO Error while parsing file '" + filename + "'. " + ex.getMessage(),
+                ex);
+        }
+
         return xmlDefinitions;
-        }
-
-        // Check if parser already exist.
-        // Doesn't seem to work yet.
-      //if( xmlParser == null )
-      if( true )
-        {  // create it
-        //if(log.isDebugEnabled())
-          //log.debug( "Create xmlParser");
-        xmlParser = new XmlParser();
-        xmlParser.setValidating(isValidatingParser);
-        xmlParser.setDetailLevel(parserDetailLevel);
-        }
-        // Check if definition set already exist.
-      if( xmlDefinitions == null )
-        {  // create it
-        //if(log.isDebugEnabled())
-          //log.debug( "Create xmlDefinitions");
-        xmlDefinitions = new XmlDefinitionsSet();
-        }
-
-      xmlParser.parse( input, xmlDefinitions );
-	    }
-	   catch( SAXException ex )
-	    {
-      if(log.isDebugEnabled())
-        {
-        log.debug( "Error while parsing file '"  + filename + "'.");
-        ex.printStackTrace();
-        }
-	    throw new DefinitionsFactoryException( "Error while parsing file '" + filename + "'. " + ex.getMessage(), ex );
-	    }
-	   catch( IOException ex )
-	    {
-	    throw new DefinitionsFactoryException( "IO Error while parsing file '" + filename + "'. " + ex.getMessage(), ex);
-	    }
-
-    return xmlDefinitions;
     }
 
     /**
@@ -566,40 +593,38 @@ public class I18nFactorySet extends FactorySet
      * @param postfix Postfix to add.
      * @return Concatenated filename.
      */
-  private String concatPostfix( String name, String postfix )
-    {
-    if( postfix == null )
-      return name;
+    private String concatPostfix(String name, String postfix) {
+        if (postfix == null) {
+            return name;
+        }
 
-      // Search file name extension.
-      // take care of Unix files starting with .
-    int dotIndex = name.lastIndexOf( "." );
-    int lastNameStart = name.lastIndexOf( java.io.File.pathSeparator );
-    if( dotIndex < 1 || dotIndex < lastNameStart )
-      return name + postfix;
+        // Search file name extension.
+        // take care of Unix files starting with .
+        int dotIndex = name.lastIndexOf(".");
+        int lastNameStart = name.lastIndexOf(java.io.File.pathSeparator);
+        if (dotIndex < 1 || dotIndex < lastNameStart) {
+            return name + postfix;
+        }
 
-    String ext = name.substring( dotIndex );
-    name = name.substring( 0, dotIndex);
-    return name + postfix + ext;
+        String ext = name.substring(dotIndex);
+        name = name.substring(0, dotIndex);
+        return name + postfix + ext;
     }
 
     /**
      * Return String representation.
      * @return String representation.
      */
-  public String toString()
-    {
-    StringBuffer buff = new StringBuffer( "I18nFactorySet : \n" );
-    buff.append( "--- default factory ---\n" );
-    buff.append( defaultFactory.toString() );
-    buff.append( "\n--- other factories ---\n" );
-    Iterator i = factories.values().iterator();
-    while( i.hasNext() )
-      {
-      buff.append( i.next().toString() ).append("---------- \n");
-      }
-    return buff.toString();
+    public String toString() {
+        StringBuffer buff = new StringBuffer("I18nFactorySet : \n");
+        buff.append("--- default factory ---\n");
+        buff.append(defaultFactory.toString());
+        buff.append("\n--- other factories ---\n");
+        Iterator i = factories.values().iterator();
+        while (i.hasNext()) {
+            buff.append(i.next().toString()).append("---------- \n");
+        }
+        return buff.toString();
     }
-
 
 }
