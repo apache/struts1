@@ -132,13 +132,23 @@
   </developers>
 
   <dependencies>
+
+   <dependency>
+	   <groupId>tomcat</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>5.0.28</version>
+	    <url>http://jakarta.apache.org/tomcat/</url>
+	     <properties>
+	    <war.bundle>false</war.bundle>
+	   </properties>
+   </dependency>
+    
+    <!--
     <dependency>
       <groupId>servletapi</groupId>
       <artifactId>servletapi</artifactId>
       <version>2.4</version>
     </dependency>
-    
-    <!--
     <dependency>
       <groupId>myfaces</groupId>
       <artifactId>myfaces-jsf-api</artifactId>

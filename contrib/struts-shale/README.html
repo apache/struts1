@@ -1,11 +1,11 @@
 <html>
   <head>
-    <title>Struts 2.0 'Shale' Proposal</title>
+    <title>Struts 2.x 'Shale' Proposal</title>
   </head>
   <body>
 
 <div align="center">
-  <h1>Struts 2.0 'Shale' Proposal</h1>
+  <h1>Struts 2.x 'Shale' Proposal</h1>
   <h3>$Id$</h3>
   [<a href="#Introduction">Introduction</a>]
   [<a href="#ProposalDetails">Proposal Details</a>]
@@ -82,7 +82,7 @@ and revolution in software designs.  Revolutions are
 typically assigned code names while they are still under
 discussion, and only gain access to the branding of the
 overall project once they are accepted.  Other proposals
-for Struts 2 have talked about tearing down the walls
+for Struts 2.x have talked about tearing down the walls
 inside the framework, and those are Good Things.  This
 proposal, on the other hand, suggests that we fundamentally
 divide the notion of a web application framework into
@@ -107,7 +107,7 @@ incoming request.  While this paradigm is very powerful, it creates
 usability and understandability problems for some application developers,
 because it requires artificial separation of portions of the application
 logic that (from the viewpoint of the developer) belong together.  The
-most common scenario in a Struts based application, for example, is the
+most common scenario in a Struts-based application, for example, is the
 following pattern:</p>
 <ol>
 <li>User fills out and submits the form requesting a transaction.</li>
@@ -124,7 +124,7 @@ a particular business transaction, the following pieces of functionality
 are tightly coupled:</p>
 <ul>
 <li>The setup logic for that transaction (such as retrieving
-    information from the model that is required to complete
+    information from the model) that is required to complete
     the presentation to the user.</li>
 <li>The presentation logic in the view tier technology that
     actually generates your user interface.</li>
@@ -194,7 +194,7 @@ yet currently require individual integration by application developers.</p>
 <p>The briefest way to state the proposed architecture is to fulfill the
 following goal statement:</p>
 <blockquote><em>
-Divide the current monolithic controller into individual layers,
+Divide the responsibilities of the monolithic Struts 1.x controller into individual layers,
 whose features may be composed in appropriate combinations based
 on the requirements of a particular application.
 </em></blockquote>
@@ -223,7 +223,7 @@ in the following sections.</p>
 
 <p>There continue to be framework responsibilities that are best discharged
 by preprocessing (and/or postprocessing) every request, or every request that
-meets certain criteria.  Struts will leverage the <code>Filter</code> APIs of
+meets certain criteria.  Shale will leverage the <code>Filter</code> APIs of
 the servlet container to provide mechanisms to plug in individual application
 level functionality for purposes such as:<p>
 <ul>
@@ -242,7 +242,7 @@ used a customizable "chain of responsibility" design pattern (like that
 provided by Commons Chain) to implement the actual behavior performed for
 each incoming request.</p>
 
-<p>In the specific case of authentication and authorization, Struts must
+<p>In the specific case of authentication and authorization, Shale must
 interoperate both with applications wishing to utilize container managed
 security, as well as those providing their own technology.  In both cases,
 it is expected that the outcome of performing authentication and
@@ -251,7 +251,7 @@ values of the (potentially wrapped) servlet/portlet request methods
 <code>getRemoteUser()</code>, <code>getUserPrincipal()</code>, and
 <code>isUserInRole()</code>.</p>
 
-<p>Separate from the core of Struts 2, we should consider supporting a
+<p>Separate from the core of Shale, we should consider supporting a
 subproject that provides functionally complete plug-ins that implement
 functionalities of the types described above.  In particular, a complete
 user administration system (with support for "remember me" cookies) would
@@ -266,7 +266,7 @@ described in the previous section, as well as the "view controller" capabilities
 described next.  However, relatively few of them deal with an intermediate
 requirement to manage a "dialog" or "conversation" with the application user
 that spans multiple HTTP requests.  Dealing with this complexity is left as
-an "exercise left for the reader" -- a state of affairs that Struts 2 should
+an "exercise left for the reader" -- a state of affairs that Struts 2.x should
 change.</p>
 
 <p>Although this portion of the "Shale" proposal is the least fleshed out in
@@ -309,7 +309,7 @@ must be met by an implementation of a controller for dialogs:</p>
 
 <h3>2.4 View Controller</h3>
 
-<p>Struts will support a mechanism that provides a 1:1 relationship between
+<p>Shale will support a mechanism that provides a 1:1 relationship between
 a view tier presentation technology responsible for creating an HTTP response
 (such as a JSP page), and a corresponding Java class containing event handling
 logic, (optionally) values used in the dynamic rendering of the response, and
@@ -319,7 +319,7 @@ the response page.  Such a Java class is known (in JSF terminology) as a
 bean in the JSF configuration resources.</p>
 
 <p>JSF does not require that a backing bean implement any particular interface,
-or extend any particular base class.  Therefore, Struts should not impose any
+or extend any particular base class.  Therefore, Shale should not impose any
 such restriction either.  It should merely promise to ensure that a bean of the
 appropriate class (selected by a pluggable mapper that translates the JSF
 view identifier into a class name) will be present -- normally in request
@@ -327,7 +327,7 @@ scope -- when needed to process an incoming form submit, or to render a newly
 created view.</p>
 
 <p>However, if an application's backing bean happens to implement a lightweight
-<code>ViewController</code> interface defined by Struts, several lifecycle
+<code>ViewController</code> interface defined by Shale, several lifecycle
 related methods will be called by the framework:</p>
 <ul>
 <li>The backing bean will possess the following properties useful in
@@ -356,19 +356,19 @@ related methods will be called by the framework:</p>
         responded to a form submit.  As such, it is a useful place to acquire
         references to model data that is required in the rendering of
         this view.</li>
-    <li><strong>destroy()</strong> = Called after rendering has been completed,
+    <li><strong>destroy()</strong> - Called after rendering has been completed,
         for all <code>ViewController</code>s that have had their
         <code>init()</code> method called during this request.</li>
     </ul></li>
 </ul>
 
-<p>Other than implementing a Struts-defined interface, a
+<p>Other than implementing a Shale-defined interface, a
 <code>ViewController</code> need not have any other dependence on the
 framework.  Thus, it remains easy to unit test such a bean outside of
 a servlet container environment.</p>
 
 <p>When coding the action method corresponding to a form's submit button,
-Struts should encourage best practices in terms of delegating business
+Shale should encourage best practices in terms of delegating business
 logic to the model tier, rather than implementing it directly in the action
 method.  One approach to this might be to provide helper methods that make
 it easy to encapsulate the current request state (including the current
@@ -386,7 +386,7 @@ needs to be stored elsewhere (because the backing bean will be thrown away
 at the end of the request).</p>
 
 
-<h3>2.5 Functionality Not Included In Struts 2.0 Core</h3>
+<h3>2.5 Functionality Not Included In The Shale Core</h3>
 
 <p>Compared to Struts 1.x, support for client side validation and layout
 management (Tiles) are explicitly excluded from the core controller framework.
@@ -401,7 +401,7 @@ subproject.</p>
 <p>A key aspect of designing a framework is to choose which features it
 implements itself, and which capabilities it imports as dependencies.  The
 "Shale" proposal contemplates the following dependency choices, with
-individual implementations proposed for some of them.  Struts will then
+individual implementations proposed for some of them.  Shale will then
 provide its own APIs in the controller tier that leverage these capabilities.
 </p>
 
@@ -413,7 +413,7 @@ provide its own APIs in the controller tier that leverage these capabilities.
 the latest and greatest features of the most recent platform (for the
 purposes of this discussion, JDK 5.0) and the realities of how many
 developers will have the possibility of deploying applications based on
-that platform when we release the initial version of Struts 2.  Currently,
+that platform when we release the initial version of Shale.  Currently,
 Struts 1.x requires a minimum of JDK 1.2 (because it uses the collection
 classes extensively).</p>
 
