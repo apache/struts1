@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.16 2002/03/23 00:08:01 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.17 2002/06/28 01:09:07 jholmes Exp $
 -->
 
 
@@ -366,6 +366,9 @@
                      property names, if any.  Optional if "name" is specified,
                      else not allowed.
 
+     roles           Comma-delimited list of security role names allowed to
+                     request this Action.
+
      scope           Identifier of the scope ("request" or "session") within
                      which our form bean is accessed, if any.  Optional if
                      "name" is specified, else not allowed.
@@ -400,6 +403,7 @@
 <!ATTLIST action         parameter      CDATA           #IMPLIED>
 <!ATTLIST action         path           %RequestPath;   #REQUIRED>
 <!ATTLIST action         prefix         CDATA           #IMPLIED>
+<!ATTLIST action         roles          CDATA           #IMPLIED>
 <!ATTLIST action         scope          %RequestScope;  #IMPLIED>
 <!ATTLIST action         suffix         CDATA           #IMPLIED>
 <!ATTLIST action         type           %ClassName;     #IMPLIED>
