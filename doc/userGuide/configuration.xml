@@ -859,7 +859,7 @@
 <pre><code><![CDATA[
 <taglib>
      <taglib-uri>
-     http://jakarta.apache.org/struts/tags-bean
+     http://struts.apache.org/tags-bean
      </taglib-uri>
      <taglib-location>
      /WEB-INF/struts-bean.tld
@@ -867,7 +867,7 @@
 </taglib>
 <taglib>
      <taglib-uri>
-     http://jakarta.apache.org/struts/tags-html
+     http://struts.apache.org/tags-html
      </taglib-uri>
      <taglib-location>
      /WEB-INF/struts-html.tld
@@ -875,7 +875,7 @@
 </taglib>
 <taglib>
      <taglib-uri>
-     http://jakarta.apache.org/struts/tags-logic
+     http://struts.apache.org/tags-logic
      </taglib-uri>
      <taglib-location>
      /WEB-INF/struts-logic.tld
@@ -883,7 +883,7 @@
 </taglib>
 <taglib>
      <taglib-uri>
-     http://jakarta.apache.org/struts/tags-tiles
+     http://struts.apache.org/tags-tiles
      </taglib-uri>
      <taglib-location>
      /WEB-INF/struts-tiles.tld
@@ -891,7 +891,7 @@
 </taglib>
 <taglib>
      <taglib-uri>
-     http://jakarta.apache.org/struts/tags-nested
+     http://struts.apache.org/tags-nested
      </taglib-uri>
      <taglib-location>
      /WEB-INF/struts-nested.tld
