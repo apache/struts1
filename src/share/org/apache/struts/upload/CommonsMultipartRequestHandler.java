@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.12 2004/01/13 12:48:52 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2004/01/13 12:48:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.13 2004/01/21 03:53:49 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/01/21 03:53:49 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.Globals;
   * This class implements the <code>MultipartRequestHandler</code> interface
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
-  * @version $Revision: 1.12 $ $Date: 2004/01/13 12:48:52 $
+  * @version $Revision: 1.13 $ $Date: 2004/01/21 03:53:49 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -214,6 +214,9 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
 
         // Create and configure a DIskFileUpload instance.
         DiskFileUpload upload = new DiskFileUpload();
+        // The following line is to support an "EncodingFilter"
+        // see http://nagoya.apache.org/bugzilla/show_bug.cgi?id=23255
+        upload.setHeaderEncoding(request.getCharacterEncoding());
         // Set the maximum size before a FileUploadException will be thrown.
         upload.setSizeMax((int) getSizeMax(ac));
         // Set the maximum size that will be stored in memory.
