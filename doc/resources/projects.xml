@@ -10,7 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Projects and Examples">
-<!-- <p><a href="http://www.basebeans.com/downloads.jsp"></a></p> -->
+<p><a href="http://http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - Struts lessons and examples.</p>
 <p><a href="http://www.ajug.org/meetings/download/struts_demo.zip"><b>AJUG Presentation Demo Application</b></a> by Chuck Cavaness - The demo application uses OJB and Hypersonic.</p>
 <p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip"><b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
 <p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
