@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.7 2002/07/10 20:36:23 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/10 20:36:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.8 2002/07/19 04:42:21 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/07/19 04:42:21 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.action.DynaActionForm;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/10 20:36:23 $
+ * @version $Revision: 1.8 $ $Date: 2002/07/19 04:42:21 $
  * @since Struts 1.1
  */
 
@@ -284,7 +284,7 @@ public class FormBeanConfig implements Serializable {
         ClassLoader classLoader =
             Thread.currentThread().getContextClassLoader();
         if (classLoader == null) {
-            this.getClass().getClassLoader();
+            classLoader = this.getClass().getClassLoader();
         }
         try {
             return (classLoader.loadClass(getType()));
