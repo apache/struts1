@@ -72,12 +72,13 @@
     </p>
         <ul>
         <li>
-            <a href="http://cvs.apache.org/dist/struts/v1.2.1">Struts Development
-                Releases - Not yet rated "General Availability" - Struts 1.2.1 (Beta) is the most recent.</a>
+            <a href="http://cvs.apache.org/dist/struts/v1.2.2">Struts Development
+                Releases - Not yet rated "General Availability" - Struts 1.2.2 (Alpha) 
+                is the most recent.</a>
         </li>
             <li>
                 <a href="http://cvs.apache.org/repository/struts/jars">Struts Development
-                    Repository (Maven) - Not yet rated "General Availability" -  Struts 1.2.1 (Beta) is the most recent.</a>
+                    Repository (Maven) - Not yet rated "General Availability" -  Struts 1.2.2 (Alpha) is the most recent.</a>
             </li>
         </ul>
 
