@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.6 2003/10/05 17:48:57 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/10/05 17:48:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/MappingDispatchAction.java,v 1.7 2003/12/23 19:36:42 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/23 19:36:42 $
  *
  * ====================================================================
  *
@@ -122,7 +122,7 @@ import org.apache.struts.action.ActionMapping;
  *  &lt;/action&gt;
  * 
  *  &lt;action path="/editSubscription" 
- *          type="org.example.Subscription"
+ *          type="org.example.SubscriptionAction"
  *          parameter="edit"&gt;
  *      &lt;forward name="success" path="/editSubscription.jsp"/&gt;
  *  &lt;/action&gt;
@@ -166,7 +166,7 @@ import org.apache.struts.action.ActionMapping;
  * @author Anthony Kay
  * @author Steve Raeburn
  * @author Leonardo Quijano
- * @version $Revision: 1.6 $ $Date: 2003/10/05 17:48:57 $
+ * @version $Revision: 1.7 $ $Date: 2003/12/23 19:36:42 $
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {
