@@ -436,13 +436,13 @@
 
             function isAllDigits(argvalue) {
                 argvalue = argvalue.toString();
-                var validchars = "0123456789";
+                var validChars = "0123456789";
                 var startFrom = 0;
                 if (argvalue.substring(0, 2) == "0x") {
-                   validchars = "0123456789abcdefABCDEF";
+                   validChars = "0123456789abcdefABCDEF";
                    startFrom = 2;
                 } else if (argvalue.charAt(0) == "0") {
-                   validchars = "01234567";
+                   validChars = "01234567";
                    startFrom = 1;
                 }
                 for (var n = 0; n < argvalue.length; n++) {
