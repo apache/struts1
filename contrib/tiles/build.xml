@@ -20,10 +20,6 @@
         "build.properties" file in the base directory, or a
         "build.properties" file in your user home directory.
       
-        catalina.home                 (optional). The path to the Tomcat 4.0
-                                      installation. This is required only when
-                                      executing the "deploy.catalina" target.
-
         servlet.jar                   (required).  The path to the Servlet API
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
@@ -39,10 +35,6 @@
         commons-digester.jar          (required).  The path to the JAR file
                                       of the Jakarta Commons Digester
                                       package (version 1.0 or later).
-
-        tomcat.home                   (optional). The path to the Tomcat 3.x
-                                      installation. This is required only when
-                                      executing the "deploy.tomcat" target.
 
         struts.libs                   (required). The path to the Struts
                                       library installation. .
@@ -62,7 +54,6 @@
     <property name="jdbc20ext.jar"   value="../jdbc2_0-stdext.jar"/>
     <property name="servlet.jar"     value="../jakarta-servletapi/lib/servlet.jar"/>
     <property name="struts.libs"     value="${struts.home}/lib"/>
-    <property name="tomcat.home"     value="../build/tomcat"/>
     <property name="xerces.jar"      value="../xml-xerces/xerces.jar"/>
 
 
@@ -154,9 +145,10 @@
         <echo message="java.class.path = ${java.class.path}"/>
         <echo message="java.home = ${java.home}"/>
         <echo message="user.home = ${user.home}"/>
-        <echo message="tomcat.home     = ${tomcat.home}"/>
+        <echo message="struts.home     = ${struts.home}"/>
         <echo message="struts.libs     = ${struts.libs}"/>
         <echo message="dist.home       = ${dist.home}"/>
+        <echo message="build.home      = ${build.home}"/>
         <echo message="basedir         = ${basedir}"/>
 
     </target>
