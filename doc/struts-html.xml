@@ -1055,6 +1055,15 @@
         </attribute>
 
         <attribute>
+            <name>size</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Size of the file selection box to be displayed.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>style</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
