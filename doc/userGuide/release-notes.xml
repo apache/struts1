@@ -193,14 +193,17 @@
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
         <ul>
-          <li>2004-04-01 - ActionConfigMatcher - Added support for multiple wildcard replacements.</li>
+           <li>2004-06-26 - Action: Add getErrors, getMessages, addErrors, and AddMessages methods, to better manage error handling. </li>
         </ul>
         <ul>
-           <li>2004-03-16 - ActionForward -  Add "copy constructor".</li>
+          <li>2004-04-01 - ActionConfigMatcher: Added support for multiple wildcard replacements.</li>
         </ul>
         <ul>
-          <li>2004-01-24 - Enhance DynaActionForm so that it can be initialized using a FormBeanConfig object. Add corresponding method to RequestUtils to create an ActionForm by passing only a FormBeanConfig and an ActionServlet object.</li>
-          <li>2004-01-19 - Push "findException" from ActionMapping up to ActionConfig so that everyone can take advantage of the superclass search logic.</li>
+           <li>2004-03-16 - ActionForward: Add "copy constructor".</li>
+        </ul>
+        <ul>
+          <li>2004-01-24 - DynaActionForm: Enhance so that it can be initialized using a FormBeanConfig object. Add corresponding method to RequestUtils to create an ActionForm by passing only a FormBeanConfig and an ActionServlet object.</li>
+          <li>2004-01-19 - ActionMapping, ActionConfig: Push "findException" from ActionMapping up to ActionConfig so that everyone can take advantage of the superclass search logic.</li>
         </ul>
         <ul>
           <li>2003-09-29 - RequestProcessor,ActionMappingMatcher,WildcardHelper: Added optional wildcard support for action mappings.</li>
@@ -208,8 +211,8 @@
         </ul>
         <ul>
           <li>2003-08-23 - Action: Deprecate saveErrors(HttpServletRequest, ActionErrors) in favor of saveErrors(HttpServletRequest, ActionMessages).</li>
-          <li>2003-08-23 - RequestProcessor - Replaced ActionErrors reference with ActionMessages.</li>
-          <li>2003-08-23 - Deprecated ActionErrors.GLOBAL_ERROR in favor of ActionMessages.GLOBAL_MESSAGE.</li>
+          <li>2003-08-23 - RequestProcessor: Replaced ActionErrors reference with ActionMessages.</li>
+          <li>2003-08-23 - ActionMessages, ActionErrors: Deprecated ActionErrors.GLOBAL_ERROR in favor of ActionMessages.GLOBAL_MESSAGE.</li>
           <li>2003-08-16 - ExceptionHandler: Added storeException() method that takes an ActionMessage instead of ActionError.</li>
           <li>2003-08-13 - ActionError: Deprecate ActionError in favor of ActionMessage</li>
           <li>2003-08-08 - ActionServlet,ActionFormBeans,ActionForwards,ActionMappings.java v 1.13 : Removed references to ActionMappings, ActionFormBeans, and ActionForwards.</li>
@@ -230,6 +233,9 @@
         <p>
         <strong>Actions Package Changes</strong> [
         <code>org.apache.struts.actions</code>]</p>
+        <ul>
+          <li>2004-06-24 - RedeployableActionServlet: Provides support for WebLogi hot-deploy.</li>
+        </ul>
         <ul>
           <li>2003-12-22 - DispatchAction: Add detection of recursive calls.</li>
         </ul>
@@ -303,7 +309,10 @@
         <strong>Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib</code>]</p>
         <ul>
-            <li>2004-02-24 - Move test for null validator form inside "createDynamicJavascript" so that those who use the tag to generate static javascript don't get a JspException.</li>
+            <li>2004-06-26 - EmptyTag: Add support for arrays.</li>
+        </ul>
+        <ul>
+            <li>2004-02-24 - createDynamicJavascript: Move test for null validator form inside "createDynamicJavascript" so that those who use the tag to generate static javascript don't get a JspException.</li>
         </ul>
         <ul>
           <li>2003-09-09 - TagUtils: Log error message when keys or bundles are missing.</li>
@@ -334,6 +343,9 @@
         <p>
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
+        <ul>
+          <li>2004-05-17 - OptionsCollectionTag,OptionsTag: Filter values as well as labels.</li>
+        </ul>
         <ul>
             <li>2004-03-08 - JavascriptValidatorTag - Allow multiple forms to be on the same page by generating a unique variable name based on form name. </li>
         </ul>
@@ -392,6 +404,9 @@
         <p>
         <strong>Tiles Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.tiles</code>]:</p>
+        <ul>
+          <li>2004-05-17 - PutTag: Manage tag body content more carefully to ensure pooled tags do not display old content with empty tiles.</li>
+        </ul>
         <ul>
           <li>2003-09-07 - ImportAttributeTag,UseAttributeTag: Removing "final" from class declaration, to allow class to be extended in "tiles-el" (or other classes).</li>
         </ul>
@@ -471,16 +486,19 @@
         <strong>Validator Package Changes</strong> [
         <code>org.apache.struts.validator</code>]</p>
         <ul>
+          <li>2004-06-24 - ValidWhen: "allow '_' (underscore) in identifiers.</li>
+        </ul>
+        <ul>
          <li>2004-04-16 - FieldChecks: Add optional variables to configure various aspects of URL validation.</li>
          <li>2004-04-03 - ValidatorPlugIn: Modify Validator PlugIn to validate XML file and errros now throw an exception to loudly flag an error. Remove deprecated classes, now in Commons Validator.</li>
          <li>2004-04-02 - Add a getValidationKey method to make it eaiser for subclasses to use different rules for finding the Validator form. </li>
         </ul>
         <ul>
-            <li>2004-02-20 - Changed FieldCheck so that it examines all indexed fields and does not stop on the first failure.</li>
+          <li>2004-02-20 - Changed FieldCheck so that it examines all indexed fields and does not stop on the first failure.</li>
         </ul>
         <ul>
-            <li>2004-01-17 - Changed initValidator() to accept an ActionMessages object instead of ActionErrors; changed ACTION_ERRORS_PARAM name to ACTION_MESSAGES_PARAM.</li>
-            <li>2004-01-17 - Add section to Validator User Guide listing standard validations.</li>
+          <li>2004-01-17 - Changed initValidator() to accept an ActionMessages object instead of ActionErrors; changed ACTION_ERRORS_PARAM name to ACTION_MESSAGES_PARAM.</li>
+          <li>2004-01-17 - Add section to Validator User Guide listing standard validations.</li>
         </ul>
         <ul>
           <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation; Use action form of html:link;</li>
@@ -561,6 +579,9 @@
         <p>
           <strong>Validator Example module Changes</strong>
         </p>
+          <ul>
+            <li>2004-06-25 - Update arg elements to use new dynamic feature, that does not requiring numbering. </li>
+          </ul>
         <ul>
           <li>2004-03-25 - Modify example to test proper behaviour is a property is named 'name'.</li>
         </ul>
