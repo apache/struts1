@@ -55,6 +55,15 @@
       <code>start</code>), at the end (if location is set to
       <code>end</code>), or anywhere (if location is not specified).</li>
   </ul>
+
+  <p>Many of the tags in this tag library will throw a
+  <code>JspException</code> at runtime when they are utilized incorrectly
+  (such as when you specify an invalid combination of tag attributes).  JSP
+  allows you to declare an "error page" in the <code>&lt;%@ page %&gt;</code>
+  directive.  If you wish to process the actual exception that caused the
+  problem, it is passed to the error page as a request attribute under key
+  <code>org.apache.struts.action.EXCEPTION</code>.</p>
+
   </info>
 
 
