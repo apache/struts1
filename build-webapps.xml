@@ -125,6 +125,9 @@
     <!-- Copy validator-rules.xml for the Struts examples application -->
     <copy tofile="${build.home}/examples/WEB-INF/validator-rules.xml"
             file="${basedir}/conf/share/validator-rules.xml"/>
+     <!-- Copy required image for the Struts examples exercise module -->
+    <copy tofile="${build.home}/examples/exercise/struts-power.gif"
+            file="${doc.dir}/images/struts-power.gif"/>
      <!-- Copy required image for the Struts examples validator module -->
     <copy tofile="${build.home}/examples/validator/struts-power.gif"
             file="${doc.dir}/images/struts-power.gif"/>
