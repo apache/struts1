@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.2 2001/01/07 04:37:06 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/07 04:37:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.3 2001/01/26 19:27:23 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/26 19:27:23 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/07 04:37:06 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/26 19:27:23 $
  */
 
 public class FormTag extends TagSupport {
@@ -609,7 +609,8 @@ public class FormTag extends TagSupport {
 	StringBuffer results = new StringBuffer("</form>");
 	if (focus != null) {
 	    results.append("\r\n");
-	    results.append("<script language=\"JavaScript\">\r\n");
+	    results.append("<script language=\"JavaScript\"");
+            results.append(" type=\"text/javascript\">\r\n");
 	    results.append("  <!--\r\n");
 	    results.append("    document.");
 	    results.append(name);
