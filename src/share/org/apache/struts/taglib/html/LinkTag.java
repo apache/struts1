@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.30 2003/07/27 06:30:10 rleland Exp $
- * $Revision: 1.30 $
- * $Date: 2003/07/27 06:30:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.31 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.31 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,28 +59,25 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
 import java.net.MalformedURLException;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.taglib.logic.IterateTag;
+
 import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.taglib.logic.IterateTag;
+import org.apache.struts.util.MessageResources;
 
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
  * @author James Turner
- * @version $Revision: 1.30 $ $Date: 2003/07/27 06:30:10 $
+ * @version $Revision: 1.31 $ $Date: 2003/07/31 00:19:04 $
  */
-
 public class LinkTag extends BaseHandlerTag {
 
 
@@ -344,7 +341,7 @@ public class LinkTag extends BaseHandlerTag {
             StringBuffer results = new StringBuffer("<a name=\"");
             results.append(linkName);
             results.append("\">");
-            ResponseUtils.write(pageContext, results.toString());
+            TagUtils.getInstance().write(pageContext, results.toString());
             return (EVAL_BODY_TAG);
         }
 
@@ -372,8 +369,7 @@ public class LinkTag extends BaseHandlerTag {
         results.append(prepareEventHandlers());
         results.append(">");
 
-        // Print this element to our output writer
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         // Evaluate the body of this tag
         this.text = null;
@@ -409,14 +405,13 @@ public class LinkTag extends BaseHandlerTag {
 
         // Prepare the textual content and ending element of this hyperlink
         StringBuffer results = new StringBuffer();
-        if (text != null)
+        if (text != null) {
             results.append(text);
+        }
         results.append("</a>");
 
-        // Render the remainder to the output stream
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
-        // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
     }

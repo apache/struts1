@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.14 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.15 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,21 +59,18 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.ResponseUtils;
 
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.14 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.15 $ $Date: 2003/07/31 00:19:04 $
  */
-
 public class ButtonTag extends BaseHandlerTag {
 
 
@@ -210,7 +207,7 @@ public class ButtonTag extends BaseHandlerTag {
         results.append(getElementClose());
 
         // Render this element to our writer
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         // Evaluate the remainder of this page
         return (EVAL_PAGE);

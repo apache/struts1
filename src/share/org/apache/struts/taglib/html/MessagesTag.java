@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.19 2003/07/30 23:55:50 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/30 23:55:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.20 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that iterates the elements of a message collection.
@@ -82,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.19 $ $Date: 2003/07/30 23:55:50 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/31 00:19:04 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -279,7 +278,7 @@ public class MessagesTag extends BodyTagSupport {
                 TagUtils.getInstance().message(pageContext, bundle, locale, header);
                 
             if (headerMessage != null) {
-                ResponseUtils.write(pageContext, headerMessage);
+                TagUtils.getInstance().write(pageContext, headerMessage);
             }
         }
 
@@ -299,7 +298,7 @@ public class MessagesTag extends BodyTagSupport {
     public int doAfterBody() throws JspException {
         // Render the output from this iteration to the output stream
         if (bodyContent != null) {
-            ResponseUtils.writePrevious(pageContext, bodyContent.getString());
+            TagUtils.getInstance().writePrevious(pageContext, bodyContent.getString());
             bodyContent.clearBody();
         }
 
@@ -336,7 +335,7 @@ public class MessagesTag extends BodyTagSupport {
             TagUtils.getInstance().message(pageContext, bundle, locale, footer);
             
           if (footerMessage != null) {
-             ResponseUtils.write(pageContext, footerMessage);
+             TagUtils.getInstance().write(pageContext, footerMessage);
           }
        }
 

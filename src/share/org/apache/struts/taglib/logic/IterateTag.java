@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.23 2003/07/27 07:13:05 rleland Exp $
- * $Revision: 1.23 $
- * $Date: 2003/07/27 07:13:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.24 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -73,9 +73,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.commons.collections.IteratorUtils;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.MessageResources;
 
 /**
  * Custom tag that iterates the elements of a collection, which can be
@@ -85,7 +84,7 @@ import org.apache.struts.taglib.TagUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2003/07/27 07:13:05 $
+ * @version $Revision: 1.24 $ $Date: 2003/07/31 00:19:04 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -388,7 +387,7 @@ public class IterateTag extends BodyTagSupport {
 
         // Render the output from this iteration to the output stream
         if (bodyContent != null) {
-            ResponseUtils.writePrevious(pageContext, bodyContent.getString());
+            TagUtils.getInstance().writePrevious(pageContext, bodyContent.getString());
             bodyContent.clearBody();
         }
 

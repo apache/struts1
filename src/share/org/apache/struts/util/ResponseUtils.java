@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.6 2002/12/08 07:12:17 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/08 07:12:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.7 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -63,11 +63,10 @@
 package org.apache.struts.util;
 
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.BodyContent;
+
+import org.apache.struts.taglib.TagUtils;
 
 
 /**
@@ -75,7 +74,7 @@ import javax.servlet.jsp.tagext.BodyContent;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/12/08 07:12:17 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/31 00:19:04 $
  */
 
 public class ResponseUtils {
@@ -148,18 +147,13 @@ public class ResponseUtils {
      * @param text The text to be written
      *
      * @exception JspException if an input/output error occurs (already saved)
+     * @deprecated Use TagUtils.write() instead.  This will be 
+     * removed after Struts 1.2.
      */
     public static void write(PageContext pageContext, String text)
         throws JspException {
 
-        JspWriter writer = pageContext.getOut();
-        try {
-            writer.print(text);
-        } catch (IOException e) {
-            RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("write.io", e.toString()));
-        }
+        TagUtils.getInstance().write(pageContext, text);
 
     }
 
@@ -172,20 +166,13 @@ public class ResponseUtils {
      * @param text The text to be written
      *
      * @exception JspException if an input/output error occurs (already saved)
+     * @deprecated Use TagUtils.writePrevious() instead.  This will be 
+     * removed after Struts 1.2.
      */
     public static void writePrevious(PageContext pageContext, String text)
         throws JspException {
 
-        JspWriter writer = pageContext.getOut();
-        if (writer instanceof BodyContent)
-            writer = ((BodyContent) writer).getEnclosingWriter();
-        try {
-            writer.print(text);
-        } catch (IOException e) {
-            RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("write.io", e.toString()));
-        }
+        TagUtils.getInstance().writePrevious(pageContext, text);
 
     }
 

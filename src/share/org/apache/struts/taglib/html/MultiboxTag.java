@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.19 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.20 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -70,7 +70,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -82,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.20 $ $Date: 2003/07/31 00:19:04 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -257,10 +256,8 @@ public class MultiboxTag extends BaseHandlerTag {
         results.append(prepareStyles());
         results.append(getElementClose());
 
-        // Render this element to our response
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
-        // Continue evaluating this page
         return (EVAL_PAGE);
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.15 2003/07/30 23:55:50 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/30 23:55:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.16 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -61,6 +61,7 @@
 
 package org.apache.struts.taglib;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
@@ -72,7 +73,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.BodyContent;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
@@ -96,7 +99,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -1018,6 +1021,63 @@ public class TagUtils {
             Globals.EXCEPTION_KEY,
             exception,
             PageContext.REQUEST_SCOPE);
+
+    }
+    
+    /**
+     * Write the specified text as the response to the writer associated with
+     * this page.  <strong>WARNING</strong> - If you are writing body content
+     * from the <code>doAfterBody()</code> method of a custom tag class that
+     * implements <code>BodyTag</code>, you should be calling
+     * <code>writePrevious()</code> instead.
+     *
+     * @param pageContext The PageContext object for this page
+     * @param text The text to be written
+     *
+     * @exception JspException if an input/output error occurs (already saved)
+     */
+    public void write(PageContext pageContext, String text)
+        throws JspException {
+
+        JspWriter writer = pageContext.getOut();
+        
+        try {
+            writer.print(text);
+            
+        } catch (IOException e) {
+            TagUtils.getInstance().saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("write.io", e.toString()));
+        }
+
+    }
+
+
+    /**
+     * Write the specified text as the response to the writer associated with
+     * the body content for the tag within which we are currently nested.
+     *
+     * @param pageContext The PageContext object for this page
+     * @param text The text to be written
+     *
+     * @exception JspException if an input/output error occurs (already saved)
+     */
+    public void writePrevious(PageContext pageContext, String text)
+        throws JspException {
+
+        JspWriter writer = pageContext.getOut();
+        if (writer instanceof BodyContent){
+            writer = ((BodyContent) writer).getEnclosingWriter();
+        }
+        
+        try {
+            writer.print(text);
+            
+        } catch (IOException e) {
+            TagUtils.getInstance().saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("write.io", e.toString()));
+        }
 
     }
 

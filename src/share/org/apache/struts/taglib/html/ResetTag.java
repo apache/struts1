@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.13 2003/05/18 19:06:14 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/05/18 19:06:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.14 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -62,15 +62,16 @@
 package org.apache.struts.taglib.html;
 
 import javax.servlet.jsp.JspException;
+
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.13 $ $Date: 2003/05/18 19:06:14 $
+ * @version $Revision: 1.14 $ $Date: 2003/07/31 00:19:04 $
  */
 public class ResetTag extends BaseHandlerTag {
 
@@ -178,7 +179,7 @@ public class ResetTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-        ResponseUtils.write(pageContext, renderResetElement(label()));
+        TagUtils.getInstance().write(pageContext, renderResetElement(label()));
 
         return (EVAL_PAGE);
     }

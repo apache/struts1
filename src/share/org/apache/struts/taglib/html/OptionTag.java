@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.21 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.21 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.22 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Tag for select options.  The body of this tag is presented to the user
@@ -78,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.21 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.22 $ $Date: 2003/07/31 00:19:04 $
  */
 public class OptionTag extends BodyTagSupport {
 
@@ -268,7 +267,7 @@ public class OptionTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
 
-        ResponseUtils.write(pageContext, this.renderOptionElement());
+        TagUtils.getInstance().write(pageContext, this.renderOptionElement());
 
         return (EVAL_PAGE);
     }

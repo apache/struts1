@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.18 2003/07/26 17:22:27 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/26 17:22:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.19 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,36 +59,28 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
 import javax.servlet.jsp.JspException;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.taglib.TagUtils;
 
+import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.MessageResources;
 
 /**
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2003/07/26 17:22:27 $
+ * @version $Revision: 1.19 $ $Date: 2003/07/31 00:19:04 $
  */
-
 public class CheckboxTag extends BaseHandlerTag {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The name of the bean containing our underlying property.
@@ -103,27 +95,22 @@ public class CheckboxTag extends BaseHandlerTag {
         this.name = name;
     }
 
-
     /**
      * The property name for this field.
      */
     protected String property = null;
-
 
     /**
      * The body content of this tag (if any).
      */
     protected String text = null;
 
-
     /**
      * The server value for this option.
      */
     protected String value = null;
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * Return the property name.
@@ -133,7 +120,6 @@ public class CheckboxTag extends BaseHandlerTag {
         return (this.property);
 
     }
-
 
     /**
      * Set the property name.
@@ -146,7 +132,6 @@ public class CheckboxTag extends BaseHandlerTag {
 
     }
 
-
     /**
      * Return the server value.
      */
@@ -155,7 +140,6 @@ public class CheckboxTag extends BaseHandlerTag {
         return (this.value);
 
     }
-
 
     /**
      * Set the server value.
@@ -168,9 +152,7 @@ public class CheckboxTag extends BaseHandlerTag {
 
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Generate the required input tag.
@@ -184,9 +166,11 @@ public class CheckboxTag extends BaseHandlerTag {
         // Create an appropriate "input" element based on our parameters
         StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
         results.append(" name=\"");
-        // * @since Struts 1.1
-        if( indexed )
-                prepareIndex( results, name );
+
+        if (indexed) {
+            prepareIndex(results, name);
+        }
+
         results.append(this.property);
         results.append("\"");
         if (accesskey != null) {
@@ -194,43 +178,55 @@ public class CheckboxTag extends BaseHandlerTag {
             results.append(accesskey);
             results.append("\"");
         }
+
         if (tabindex != null) {
             results.append(" tabindex=\"");
             results.append(tabindex);
             results.append("\"");
         }
+
         results.append(" value=\"");
-        if (value == null)
+
+        if (value == null) {
             results.append("on");
-        else
+        } else {
             results.append(value);
+        }
+
         results.append("\"");
-        Object result = TagUtils.getInstance().lookup(pageContext, name,
-                                            property, null);
-        if (result == null)
+
+        Object result =
+            TagUtils.getInstance().lookup(pageContext, name, property, null);
+
+        if (result == null) {
             result = "";
-        if (!(result instanceof String))
+        }
+
+        if (!(result instanceof String)) {
             result = result.toString();
+        }
+
         String checked = (String) result;
         if (checked.equalsIgnoreCase(value)
             || checked.equalsIgnoreCase("true")
             || checked.equalsIgnoreCase("yes")
-            || checked.equalsIgnoreCase("on"))
+            || checked.equalsIgnoreCase("on")) {
+
             results.append(" checked=\"checked\"");
+        }
+
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(getElementClose());
 
         // Print this field to our output writer
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         // Continue processing this page
         this.text = null;
         return (EVAL_BODY_TAG);
 
     }
-
-
 
     /**
      * Save the associated label from the body content.
@@ -241,13 +237,13 @@ public class CheckboxTag extends BaseHandlerTag {
 
         if (bodyContent != null) {
             String value = bodyContent.getString().trim();
-            if (value.length() > 0)
+            if (value.length() > 0) {
                 text = value;
+            }
         }
         return (SKIP_BODY);
 
     }
-
 
     /**
      * Process the remainder of this page normally.
@@ -257,14 +253,14 @@ public class CheckboxTag extends BaseHandlerTag {
     public int doEndTag() throws JspException {
 
         // Render any description for this checkbox
-        if (text != null)
-            ResponseUtils.write(pageContext, text);
+        if (text != null) {
+            TagUtils.getInstance().write(pageContext, text);
+        }
 
         // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release any acquired resources.
@@ -278,6 +274,5 @@ public class CheckboxTag extends BaseHandlerTag {
         value = null;
 
     }
-
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.23 2003/05/18 18:57:13 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/05/18 18:57:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.24 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -63,8 +63,8 @@ package org.apache.struts.taglib.html;
 
 import javax.servlet.jsp.JspException;
 
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Tag for input fields of type "radio".
@@ -72,7 +72,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author David Graham
- * @version $Revision: 1.23 $ $Date: 2003/05/18 18:57:13 $
+ * @version $Revision: 1.24 $ $Date: 2003/07/31 00:19:04 $
  */
 public class RadioTag extends BaseHandlerTag {
 
@@ -211,7 +211,7 @@ public class RadioTag extends BaseHandlerTag {
 
         String radioTag = renderRadioElement(serverValue(), currentValue());
 
-        ResponseUtils.write(pageContext, radioTag);
+        TagUtils.getInstance().write(pageContext, radioTag);
 
         this.text = null;
         return (EVAL_BODY_TAG);
@@ -315,7 +315,7 @@ public class RadioTag extends BaseHandlerTag {
 
         // Render any description for this radio button
         if (this.text != null) {
-            ResponseUtils.write(pageContext, text);
+            TagUtils.getInstance().write(pageContext, text);
         }
         
         return (EVAL_PAGE);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.16 2003/07/26 01:17:55 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/26 01:17:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.17 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Renders an HTML <html> element with appropriate language attributes if
@@ -80,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.16 $ $Date: 2003/07/26 01:17:55 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/31 00:19:04 $
  */
 public class HtmlTag extends TagSupport {
   
@@ -157,7 +156,7 @@ public class HtmlTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-        ResponseUtils.write(this.pageContext, this.renderHtmlStartElement());
+        TagUtils.getInstance().write(this.pageContext, this.renderHtmlStartElement());
 
         return EVAL_BODY_INCLUDE;
     }
@@ -228,7 +227,7 @@ public class HtmlTag extends TagSupport {
      */
     public int doEndTag() throws JspException {
 
-        ResponseUtils.write(pageContext, "</html>");
+        TagUtils.getInstance().write(pageContext, "</html>");
 
         // Evaluate the remainder of this page
         return (EVAL_PAGE);

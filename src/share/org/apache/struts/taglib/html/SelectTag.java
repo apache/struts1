@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.17 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.18 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
@@ -62,11 +62,12 @@
 package org.apache.struts.taglib.html;
 
 import java.lang.reflect.InvocationTargetException;
+
 import javax.servlet.jsp.JspException;
+
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.MessageResources;
 
 /**
  * Custom tag that represents an HTML select element, associated with a
@@ -75,7 +76,7 @@ import org.apache.struts.taglib.TagUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.17 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/31 00:19:04 $
  */
 public class SelectTag extends BaseHandlerTag {
 
@@ -236,7 +237,7 @@ public class SelectTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-        ResponseUtils.write(pageContext, renderSelectStartElement());
+        TagUtils.getInstance().write(pageContext, renderSelectStartElement());
 
         // Store this tag itself as a page attribute
         pageContext.setAttribute(Constants.SELECT_KEY, this);
@@ -369,7 +370,7 @@ public class SelectTag extends BaseHandlerTag {
         }
         results.append("</select>");
 
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         return (EVAL_PAGE);
     }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.12 2002/12/22 04:55:30 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2002/12/22 04:55:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.13 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,15 +64,16 @@ package org.apache.struts.taglib.html;
 
 
 import javax.servlet.jsp.JspException;
+
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Tag for input fields of type "cancel".
  *
  * @author Jeff Hutchinson
- * @version $Revision: 1.12 $ $Date: 2002/12/22 04:55:30 $
+ * @version $Revision: 1.13 $ $Date: 2003/07/31 00:19:04 $
  */
 
 public class CancelTag extends BaseHandlerTag {
@@ -219,7 +220,7 @@ public class CancelTag extends BaseHandlerTag {
         results.append(getElementClose());
 
         // Render this element to our writer
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
         // Evaluate the remainder of this page
         return (EVAL_PAGE);

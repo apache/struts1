@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.30 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.30 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.31 2003/07/31 00:19:04 dgraham Exp $
+ * $Revision: 1.31 $
+ * $Date: 2003/07/31 00:19:04 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -69,11 +69,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.Globals;
-import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -86,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -469,10 +468,8 @@ public class ImgTag extends BaseHandlerTag {
         results.append(prepareEventHandlers());
         results.append(getElementClose());
 
-        // Print this element to our output writer
-        ResponseUtils.write(pageContext, results.toString());
+        TagUtils.getInstance().write(pageContext, results.toString());
 
-        // Evaluate the reaminder of this page
         return (EVAL_PAGE);
 
     }
