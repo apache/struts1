@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.7 2000/08/14 20:19:45 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/08/14 20:19:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.8 2000/08/14 22:12:14 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/08/14 22:12:14 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
@@ -82,7 +83,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.7 $ $Date: 2000/08/14 20:19:45 $
+ * @version $Revision: 1.8 $ $Date: 2000/08/14 22:12:14 $
  */
 
 public final class BeanUtils {
@@ -341,11 +342,16 @@ public final class BeanUtils {
 	if (value == null) {
 	    return (null);
 	} else if (value.getClass().isArray()) {
-	    Object values[] = (Object[]) value;
-	    String results[] = new String[values.length];
-	    for (int i = 0; i < values.length; i++)
-		results[i] = values[i].toString();
-	    return (results);
+	    Vector values = new Vector();
+	    try {
+	        int n = Array.getLength(value);
+	        for (int i = 0; i < n; i++) {
+		    values.addElement(Array.get(value, i).toString());
+		}
+	    } catch (ArrayIndexOutOfBoundsException e) {
+	        ;
+	    }
+	    return ((String[]) values.toArray(new String[values.size()]));
 	} else {
 	    String results[] = new String[1];
 	    results[0] = value.toString();
