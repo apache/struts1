@@ -467,38 +467,102 @@ public ActionForward execute(ActionMapping mapping,
       </section>
 
       <section name="4.6.3 Message Resources Configuration" href="resources_config">
-      <p>
-        [:TODO:]
-      </p>
+        <p>
+        Very little is required in order to start taking advantage of the Struts
+        sub-application feature.  Just go through the following steps:
+        </p>
+        <ol>
+          <li>Prepare a config file for each sub-application.</li>
+          <li>Inform the controller of your sub-applications.</li>
+          <li>Use actions to refer to your pages.</li>
+        </ol>
       </section>
-
+      <section name="4.6.3.1 Sub-Application Configuration Files" href="module_config-files">
+        <p>
+          Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml file,
+          and the bulk of the configuration was done in a single struts-config.xml file.
+          Obviously, this wasn't ideal for a team environment, since multiple users had
+          to share the same configuration file.  Sub-applications to the rescue!
+        </p>
+        <p>
+          With the advent of sub-applications, a given module (sub-application) has it's
+          own configuration file.  This means each team (each module would presumably be
+          developed by a single team) has their own configuration file, and there should
+          be a lot less contention when trying to modify it.
+        </p>
+      </section>
+      <section name="4.6.3.2 Informing the Controller" href="module_config-inform_conroller">
+        <p>
+          In struts 1.0, you listed your configuration file as an initialization parameter
+          to the action servlet in web.xml.  This is still done in 1.1, but it's augmented
+          a little.  In order to tell the Struts machinery about your different
+          sub-applications, you specify multiple config initialization parameters, with a
+          slight twist.  You'll still use "config" to tell the action servlet about your
+          "default" sub-application, however, for each additional sub-application, you will
+          list an initialization parameter named "config/module", where module is the name
+          of your sub-application (this gets used when determining which URIs fall under a
+          given sub-application, so choose something meaningful!).  For example:
+        </p>
+        <pre>
+            ...
+            &lt;init-param&gt;
+              &lt;param-name&gt;config&lt;/param-name&gt;
+              &lt;param-value&gt;/WEB-INF/conf/struts-default.xml&lt;/param-value&gt;
+            &lt;/init-param&gt;
+            &lt;init-param&gt;
+              &lt;param-name&gt;config/module1&lt;/param-name&gt;
+              &lt;param-value&gt;/WEB-INF/conf/struts-module1.xml&lt;/param-value&gt;
+            &lt;/init-param&gt;
+            ...
+        </pre>
+        <p>
+          This says I have two sub-applications.  One happens to be the "default" sub-application,
+          which has no "/module" in it's name, and one named "module1" (config/module1).  I've told
+          the controller it can find their respective configurations under /WEB-INF/conf (which is
+          where I put all my configuration files).  Pretty simple!
+        </p>
+        <p>
+          (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
+          like the symmety of having all my Struts module files being named struts-&lt;module&gt;.xml)
+        </p>
+      </section>
+      <section name="4.6.3.3 Using Actions for Pages" href="module_config-use_actions">
+        <p>
+          Fronting your pages with actions is <i>essential</i> when using sub-applications,
+          since doing so is the only way you involve the controller in the request -- and
+          you want to!  The controller puts the application configuration in the request,
+          which makes available all of your sub-application-specific configuration data (including
+          which plug-ins you are using, message resources, datasources, etc).
+        </p>
+      </section>
+                
       <section name="4.6.4 PlugIn Configuration" href="plugin_config">
-      <p>
+      <p>       
         Struts PlugIns are configured using the &lt;plug-in&gt; element within
         the Struts configuration file. This element has only one valid attribute,
         'className', which is the fully qualified name of the Java class which
         implements the <code>PlugIn</code> interface.
-      </p>
-      <p>
+      </p>      
+      <p>       
         For PlugIns that require configuration themselves, the nested
         &lt;set-property&gt; element is available.
-      </p>
+      </p>      
       </section>
-
+                
       <section name="4.6.5 Other Configuration Objects" href="other_config">
-
-      <p>
+                
+      <p>       
         Besides the objects related to defining ActionMappings, the Struts configuration may 
         contain elements that create other useful objects.
-      </p>
-
-      <p>
+      </p>      
+                
+      <p>       
         The <code>&lt;data-sources></code> section, which 
         specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
         of struts-config.xml:
-      </p>
-
-    <pre>
+      </p>      
+                
+    <pre>       
     &lt;struts-config>
       &lt;data-sources>
 	&lt;!-- configuration for GenericDataSource wrapper -->
@@ -520,7 +584,7 @@ public ActionForward execute(ActionMapping mapping,
           &lt;set-property property="user"
                            value="myusername"/>
         &lt;/data-source>
-
+                
         &lt;!-- configuration for commons BasicDataSource -->
         &lt;data-source type="org.apache.commons.dbcp.BasicDataSource">
             &lt;set-property property="driverClassName" 
@@ -535,7 +599,7 @@ public ActionForward execute(ActionMapping mapping,
             				value="false" />
             &lt;set-property property="defaultReadOnly" 
             				value="false" />
-
+                
         &lt;/data-source>
       &lt;/data-sources>
     &lt;/struts-config>
