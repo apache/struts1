@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.9 2002/06/23 03:45:07 jholmes Exp $
- * $Revision: 1.9 $
- * $Date: 2002/06/23 03:45:07 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.10 2002/06/23 04:59:33 jholmes Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/06/23 04:59:33 $
  *
  * ====================================================================
  *
@@ -63,10 +63,8 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -89,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/06/23 03:45:07 $
+ * @version $Revision: 1.10 $ $Date: 2002/06/23 04:59:33 $
  */
 
 public final class SaveRegistrationAction extends Action {

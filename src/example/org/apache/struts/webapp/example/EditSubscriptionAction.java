@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.7 2002/03/11 06:13:13 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/03/11 06:13:13 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.8 2002/06/23 04:59:33 jholmes Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/06/23 04:59:33 $
  *
  * ====================================================================
  *
@@ -63,11 +63,8 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-import java.util.Vector;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -79,7 +76,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
 
 
@@ -88,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/03/11 06:13:13 $
+ * @version $Revision: 1.8 $ $Date: 2002/06/23 04:59:33 $
  */
 
 public final class EditSubscriptionAction extends Action {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.8 2002/06/16 05:32:50 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/06/16 05:32:50 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.9 2002/06/23 04:59:33 jholmes Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/06/23 04:59:33 $
  *
  * ====================================================================
  *
@@ -63,10 +63,8 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -80,7 +78,6 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
 
 
@@ -89,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/06/16 05:32:50 $
+ * @version $Revision: 1.9 $ $Date: 2002/06/23 04:59:33 $
  */
 
 public final class SaveSubscriptionAction extends Action {
