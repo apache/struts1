@@ -462,7 +462,13 @@
     struts-config.xml file.
     Obviously, this wasn't ideal for a team environment, since multiple users 
     had to share the same configuration file.
-    Modules to the rescue!
+    </p>
+    
+    <p>
+    In Struts 1.1, you have two options: you can list 
+    <a href="dd_config_servlet">multiple struts-config files</a> as a 
+    comma-delimited list, or you can subdivide a larger application into 
+    modules.
     </p>
 
     <p>
@@ -674,7 +680,13 @@
         <li>
         <strong>config</strong> - Context-relative path to the XML resource
         containing the configuration information for the default module.
-        [/WEB-INF/struts-config.xml].
+        This may also be a comma-delimited list of configuration files. 
+        Each file is loaded in turn, and its objects are appended to the 
+        internal data structure. [/WEB-INF/struts-config.xml].<br/>
+        <font color="red"><strong>WARNING</strong></font> - If you define 
+        an object of the same name in more than one configuration file, 
+        the last one loaded quietly wins.
+        
         </li>
 
         <li>
@@ -989,7 +1001,7 @@
         </p>
 
         <p>
-        The struts-bean taglib contains tags useful in accessingbeans and their
+        The struts-bean taglib contains tags useful in accessing beans and their
         properties,  as well as defining new beans (based on these accesses)
         that are accessible to the remainder of the page via scripting
         variables and page scope attributes.
@@ -1007,7 +1019,7 @@
         The struts-logic taglib contains tags that are useful in managing
         conditional generation of output text,
         looping over object collections for repetitive generation of output
-        text,and application flow management.
+        text,  and application flow management.
         </p>
 
         <p>
