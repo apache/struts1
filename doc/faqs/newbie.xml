@@ -708,11 +708,6 @@ XHTML specification</a></p>
     like PHP, into the same web application.
     </p>
 
-    <p>
-    For some links, see <a href="../resources/views.html">Presentation
-    Systems</a> in the Resource area.
-    </p>
-
 </section>
 
 <section href="formbeans" name="Do ActionForms have to be true JavaBeans?">

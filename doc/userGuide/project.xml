@@ -64,13 +64,7 @@
         <item 
             name="Welcome"                 
             href="../index.html"/>
-        <item 
-            name="News and Status"         
-            href="../news/index.html"/>
-        <item 
-            name="Resources"         
-            href="../resources/index.html"/>
-        <item 
+        <item
             name="User and Developer Guides *" 
             href="index.html"/>
         <item 

@@ -834,11 +834,6 @@
         <li><a href="http://www.w3.org/TR/xslt">XSL Transformations </a></li>
         </ul>
 
-    <p>
-      Other <a href="../resources/models.html">data access</a> and <a href="../resources/views.html">presentation</a>
-      systems are listed in the Struts <a href="../resources/">Resource Guide</a>.
-    </p>
-
     </section>
 
     <section name="0.11 JAAS" href="jaas">

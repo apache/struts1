@@ -213,15 +213,13 @@ org.apache.struts.action.ActionServlet
 
 <section name="3.3 Forms and FormBean Interactions" href="form_beans">
 
-    
+<p>
     <strong>Note:</strong> While the examples given here use JSP and custom tags,
     the ActionForm beans and the other Struts controller components are
     View neutral. 
     Struts can be used with Velocity Templates, XSL, and any other 
     presentation technology that can be rendered via a Java servlet. 
-    See the <a href="../resources/index.html">Resources page</a> for 
-    links to additional information.
-    
+</p>
 
     <p>
     At one time or another, most web developers have built forms using

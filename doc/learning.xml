@@ -190,11 +190,6 @@
         </li>
     </ul>
 
-    <p>
-        See the <a href="resources/examples.html">Resources section</a> for a complete listing of freely-available
-        Struts examples.
-    </p>
-
 </section>
 
 <section name="Learning More About Struts" href="More">
@@ -219,7 +214,7 @@
     OR THE <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">
     USER LIST DIGEST</a> BEFORE POSTING</strong>. </p>
 
-    
+    <p>
         Please note that the Struts User list enjoys a "casual friday" policy. 
         More off-topic  messages are tolerated on Fridays so long as the 
         message is prefixed with the token [FRIDAY]. 
@@ -228,45 +223,6 @@
         Posting [FRIDAY] articles on any other weekday is <strong>strongly 
         discouraged</strong>. 
         We thank you for your cooperation.
-    
-
-    <p>
-    The Struts <a href="resources/index.html"><strong>Resources</strong></a> page 
-    provides links to other material published about Struts, including:
-    </p>
-    
-    <ul>
-    
-    <li>
-        <a href="resources/books.html">books</a>,
-    </li>
-    
-    <li>
-        <a href="resources/articles.html">articles</a>,
-    </li>
-    
-    <li>
-        <a href="resources/tutorials.html">tutorials</a>,
-    </li>
-    
-    <li> 
-        <a href="resources/seminars.html">seminars</a>, and
-    </li>
-    
-    <li>
-        <a href="resources/examples.html">sample applications</a>. 
-    </li>
-    
-    </ul>
-    
-    <p>
-    The Struts <a href="news/index.html"><strong>News &amp; Status</strong></a> page 
-    highlights current events affecting the framework and overvies the current 
-    project status. 
-    </p>
-
-    <p>
-    The <a href="status.html"><strong>Roadmap</strong></a> page outlines our tentative plans for future development.
     </p>
 
     <p>
@@ -275,7 +231,7 @@
         Any member of the community (that means you!) is invited to post new material to the Wiki.
         However, the Wiki is not the place to ask incidental questions.
         <strong>All support questions should be directed to the <a href="using.html#Lists">Struts User list</a> or
-        <a href="resources/resources.html">other support forum</a></strong>.
+        other support forum</strong>.
     </p>
 
     <p>
@@ -283,7 +239,52 @@
         To comment on the documentation, follow the "Comments?" link at the bottom of any page.
     </p>
 
+    <p>
+    The <a href="status.html#roadmap"><strong>Roadmap</strong></a> page outlines our tentative plans for future development.
+    </p>
+
 </section>
+
+    <section name="Struts Community Resources" href="resources">
+
+    <p>
+        Struts has attracted a large and robust community of developers.
+        Some of these developers have a created an independant SourceForge site to promote new extensions to the Struts framework.
+        As a service to our community, the Struts SourceForge site maintains an
+        <a href="http://struts.sf.net/community/index.html">extensive directory of Struts resources</a>. including.
+    </p>
+
+    <ul>
+        <li>
+            <a href="http://struts.sf.net/community/articles.html">articles</a>,
+        </li>
+
+    <li>
+        <a href="http://struts.sf.net/community/books.html">books</a>,
+    </li>
+
+        <li>
+            <a href="http://struts.sf.net/community/examples.html">sample applications</a>,
+        </li>
+
+        <li>
+            <a href="http://struts.sf.net/community/tutorials.html">tutorials</a>, and more!
+        </li>
+
+    </ul>
+
+</section>
+
+    <section name="Books about Struts" href="books">
+
+       <p>
+       The Apache Software Foundation does not provide printed manuals,
+       but several third-party books about Struts are available.
+       A current list of books about Struts is maintained by the
+       <a href="http://struts.sf.net/community/index.html">Struts Community Resources area</a>.
+       </p>
+
+    </section>
 
     <section>
         <p class="right">

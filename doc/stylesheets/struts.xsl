@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.17 2003/09/30 00:17:05 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.18 2003/11/27 04:06:52 husted Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -92,14 +92,15 @@
         <div id="content">
         <div id="menu">
         
-            <!-- to be removed after ApacheCon 2003 ends 20th of November 2003 -->
+            <!-- to be removed after ApacheCon 2003 ends 20th of November 2003
             <a href="http://apachecon.com/2003/US/index.html" style="text-decoration: none">
             <img src="http://jakarta.apache.org/images/logos/ac2003-150.gif" alt="ApacheCon 2003"/>
-            </a>   
-        
+            </a>
+            -->
+
             <xsl:apply-templates select="$project"/>
 
-            <!-- 
+            <!--
                  Output contributors list if the project 'authors' attribute 
                  is true and the document level 'authors' attribute is either
                  true or not specified.

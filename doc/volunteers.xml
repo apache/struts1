@@ -12,14 +12,8 @@
             <p>In August 2003, there were 2700 subscribers to STRUTS-USER (including the digest version). It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers. In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed mirrors and through several list archives.</p>
 
             <p>According to recently released 
-            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>
+            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range between 10,000 and 30,000 a week, roughly the same as Jakarta Tomcat.</p>
 
-            , Struts downloads range between 10,000 and 30,000 a week, roughly the same as Jakarta Tomcat.</p>
-
-            <p>There are a great number of third-party extensions are available for Struts, along with an equally vast number of articles and several books We try to list as many of these as we can in the 
-            <a href="resources/index.html">Resources area</a>
-
-            .</p>
          </section>
 
          <section name="Source Code Contributors" href="contributors.source">
@@ -384,7 +378,7 @@
 
          <section>
             <p class="right">Next: 
-            <a href="status.html">Development Roadmap</a>
+            <a href="announce.html">Announcements</a>
             </p>
          </section>
       </chapter>

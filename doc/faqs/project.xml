@@ -58,13 +58,7 @@
         <item 
             name="News and Status"         
             href="../news/index.html"/>
-        <item 
-            name="Resources"         
-            href="../resources/index.html"/>
-        <item 
-            name="User and Developer Guides" 
-            href="../userGuide/index.html"/>
-        <item 
+        <item
             name="FAQs and HowTos *"         
             href="index.html"/>
     </menu>
