@@ -284,6 +284,8 @@
     application (and corresponding contents on the Struts web site):</p>
     <ul>
     <li>Version Differences: New section in Release Notes to link to the JavaDocs for all Struts classes and members added or changed between versions.</li>
+    <li>FAQ/HowTos: New documentation category organizes our FAQs and example-driven howTos. 
+    New HowTos include "Building Applications", "Using SSL", and using Struts with Eclipse or NetBeans.</li>
     <li>User Guide Preface: New section to overview the enabling technologies behind Struts.</li>
     <li>Developer Guides: Added "cover page" to guides. These then link to the Package Descriptions and the API guides.</li>
     <li>HTML tag documentation: expanded to cover using indexed properties with iterate.</li>
@@ -317,6 +319,7 @@
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>Dyna*Form: In Struts 1.1. beta 3, the reset method was changed so that it conforms to the original ActionForm implementation.</li>
     <li>ActionMapping: input property may now refer to an ActionForward rather than a module-relative path if inputForward is set to true on the module's ControllerConfig bean [org.apache.struts.config.ControllerConfig.</li>
     <li>ActionServlet: Added convertNull parameter to simulate the Struts 1.0 behavior when populating forms. If set to true, the numeric Java wrapper class types (like java.lang.Integer) will default to null (rather than 0).</li>
     <li>ActionServlet: Added "config/$foo" parameter and deprecated several others in favor of components in the new config package. </li>
@@ -430,6 +433,7 @@
     <p>The following changes and bug fixes to the Struts Exercise Taglib Example
     Application have occurred:</p>
     <ul>
+    <li>Added test case for &lt;html:link> using "action" attribute. </li>
     <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
     saved in the page context.</li>
     </ul>
