@@ -152,7 +152,10 @@
           <strong>General Changes</strong>
         </p>
         <ul>
-          <li>Add inital STATUS LOG, as of 30-Dec-2003.</li>
+          <li>2003-03-14 - Move license on all source code files to ASL 2.0.</li>
+        </ul>
+        <ul>
+          <li>2003-12-30 - Add inital STATUS LOG.</li>
         </ul>
         <p>
           <strong>Build Changes</strong>
@@ -187,6 +190,9 @@
         <p>
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
+        <ul>
+           <li>2004-03-16 - ActionForward -  Add "copy constructor".</li>
+        </ul>
         <ul>
           <li>2004-01-24 - Enhance DynaActionForm so that it can be initialized using a FormBeanConfig object. Add corresponding method to RequestUtils to create an ActionForm by passing only a FormBeanConfig and an ActionServlet object.</li>
           <li>2004-01-19 - Push "findException" from ActionMapping up to ActionConfig so that everyone can take advantage of the superclass search logic.</li>
@@ -254,10 +260,14 @@
         <strong>Contrib Packages</strong> [
         <code>/contrib</code>]</p>
         <ul>
+            <li>2004-02-29 - struts-chain: Fix problem with large uploads being deleted if validation failed.</li>
+        </ul>
+        <ul>
             <li>2004-01-15 - struts-chain: Add Tiles support. Add null check for type, to support forward actions; also add commons loggging</li>
             <li>2004-01-14 - struts-chain: Add support for 'unknown' actions.</li>
         </ul>
         <ul>
+          <li>2004-03-08 - Struts-Faces updated for JSF 1.0 final release.</li>
           <li>2003-12-31 - struts-faces: Initial support for Tiles; partial "Tilesization" of example app; *not* ready for prime time but comments definately welcome.</li>
           <li>2003-12-29 - struts-faces: Various updates regarding the JSF Final Draft and to prepare for Tiles support.</li>
           <li>2003-12-17 - struts-jericho: Whiteboard directory for Struts-Jericho, a working proposal for Struts 2.x.</li>
@@ -283,6 +293,9 @@
         <p>
         <strong>Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib</code>]</p>
+        <ul>
+            <li>2004-02-24 - Move test for null validator form inside "createDynamicJavascript" so that those who use the tag to generate static javascript don't get a JspException.</li>
+        </ul>
         <ul>
           <li>2003-09-09 - TagUtils: Log error message when keys or bundles are missing.</li>
         </ul>
@@ -313,6 +326,9 @@
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
         <ul>
+            <li>2003-03-08 - JavascriptValidatorTag - Allow multiple forms to be on the same page by generating a unique variable name based on form name. </li>
+        </ul>
+        <ul>
           <li>2004-02-14 - Substitute "-" for "/" in JavaScript function name when form is subclass of ValidatorActionForm.</li>
           <li>2004-02-07 - Add "module" attribute to IncludeTag, ImgTag, LinkTag, and RewriteTag, as well as to Forward.
               This permits a module to be referenced by name (or "prefix) for direct cross-linking between modules.</li>
@@ -326,7 +342,7 @@
           <li>2004-01-01 - In link-related tags, allow LocalCharacterEncoding to be specified conditionally.</li>
         </ul>
         <ul>
-          <li>2003-11-28 JavascriptValidatorTag - Removed getNextVar() and replaceChar() methods and use a simpler javascript identifier naming scheme. All variables with be named a0, a1, etc. to prevent using reserved words as variable names.</li>
+          <li>2003-11-28 - JavascriptValidatorTag - Removed getNextVar() and replaceChar() methods and use a simpler javascript identifier naming scheme. All variables with be named a0, a1, etc. to prevent using reserved words as variable names.</li>
         </ul>
         <ul>
           <li>2003-08-19 - Remove "request scope" references from messages tag. The messages are searched for in all scopes.</li>
@@ -352,6 +368,9 @@
         <p>
         <strong>Nested Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.nested</code>]:</p>
+        <ul>
+            <li>2004-03-22 - Add missing filter attribute to nested:options and nested:optionsCollection.</li>
+        </ul>
         <ul>
           <li>2004-01-01 - Correct operation of NestedMessage* tags by implementing NestedPropertySupport rather than NestedNameSupport.</li>
         </ul>
@@ -401,6 +420,10 @@
         <p>
         <strong>Upload Package Changes</strong> [
         <code>org.apache.struts.upload</code>]:</p>
+
+        <ul>
+            <li>2004-03-22 - Allow MultipartPost with latin1 characters over Linux.</li>
+        </ul>
         <ul>
           <li>2004-01-21 - Add support for an "EncodingFilter" to handle multibyte file names.</li>
         </ul>
@@ -471,6 +494,9 @@
         <p>
         <strong>MailReader Example Application Changes</strong> [
         <code>struts-example.war</code>]:</p>
+         <ul>
+             <li>2004-03-07 - Various refactorings to JSP pages, welcome and login action.</li>
+         </ul>
         <ul>
           <li>2004-01-08 - Use (new) DigestingPlugIn to create the menu of server types.</li>
         </ul>
