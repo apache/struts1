@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/BaseFieldTag.java,v 1.1 2000/11/03 18:44:57 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/BaseFieldTag.java,v 1.2 2000/11/18 20:04:42 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/18 20:04:42 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.taglib.Constants;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -78,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:57 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/18 20:04:42 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {

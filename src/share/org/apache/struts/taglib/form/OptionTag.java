@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/OptionTag.java,v 1.2 2000/11/04 01:26:59 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/11/04 01:26:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/OptionTag.java,v 1.3 2000/11/18 20:04:47 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/18 20:04:47 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.struts.taglib.Constants;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -80,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:59 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/18 20:04:47 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -93,8 +92,7 @@ public class OptionTag extends BodyTagSupport {
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.LocalStrings");
+     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
 
     /**

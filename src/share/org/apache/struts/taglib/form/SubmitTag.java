@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SubmitTag.java,v 1.2 2000/11/04 01:27:00 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/11/04 01:27:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SubmitTag.java,v 1.3 2000/11/18 20:04:49 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/18 20:04:49 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/11/04 01:27:00 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/18 20:04:49 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -89,8 +89,7 @@ public class SubmitTag extends BaseHandlerTag {
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.LocalStrings");
+     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/TextareaTag.java,v 1.2 2000/11/04 01:27:00 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/11/04 01:27:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/TextareaTag.java,v 1.3 2000/11/18 20:04:49 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/18 20:04:49 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.taglib.Constants;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -78,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/11/04 01:27:00 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/18 20:04:49 $
  */
 
 public class TextareaTag extends BaseInputTag {
