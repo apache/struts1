@@ -1205,72 +1205,72 @@
             </info>
           </attribute> 
           <attribute> 
-            <name>accessKey</name> 
+            <name>accesskey</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onBlur</name> 
+            <name>onblur</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onChange</name> 
+            <name>onchange</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onClick</name> 
+            <name>onclick</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onDblClick</name> 
+            <name>ondblclick</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onFocus</name> 
+            <name>onfocus</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onKeyDown</name> 
+            <name>onkeydown</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onKeyPress</name> 
+            <name>onkeypress</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onKeyUp</name> 
+            <name>onkeyup</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onMouseDown</name> 
+            <name>onmousedown</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onMouseMove</name> 
+            <name>onmousemove</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onMouseOut</name> 
+            <name>onmouseout</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onMouseOver</name> 
+            <name>onmouseover</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>onMouseUp</name> 
+            <name>onmouseup</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute>
@@ -1307,7 +1307,7 @@
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
           <attribute> 
-            <name>tabIndex</name> 
+            <name>tabindex</name> 
             <required>false</required> 
             <rtexprvalue>true</rtexprvalue> 
           </attribute> 
