@@ -61,9 +61,11 @@
       <a href="#Building">building</a> and <a href="#Installing">installing</a>
       Struts, below.</li>
   <li><strong>Xalan XSLT Processor</strong> - If you are building Struts from
-      the source distribution, you must download and install version 1_2_D01
-      (or later) of the <a href="http://xml.apache.org/xalan">Xalan</a>
-      XSLT processor (which also includes the Xerces XML parser).  This
+      the source distribution, you must download and install version 1.2
+      (problems have been reported with current versions of Xalan 2.0)
+      of the <a href="http://xml.apache.org/xalan">Xalan</a>
+      XSLT processor (which also includes the Xerces XML parser), or use the
+      version of Xalan included in the JAXP 1.1 release.  This
       processor is used to convert the Struts documentation from its internal
       XML-based format into the HTML that is presented in the Struts
       documentation application.</li>
