@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.apache.shale.impl;
+package org.apache.shale.faces;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,20 +42,20 @@ import org.apache.shale.ViewControllerMapper;
  * $Id$
  */
 
-public class ImplViewHandler extends ViewHandler {
+public class ShaleViewHandler extends ViewHandler {
     
 
     // ------------------------------------------------------------- Constructor
 
 
     /**
-     * <p>Create a {@link ImplViewHandler} instance that decorates the
+     * <p>Create a {@link ShaleViewHandler} instance that decorates the
      * specified <code>ViewHandler</code> provided by the JSF runtime
      * implementation.</p>
      *
      * @param original Original <code>ViewHandler</code> to be decorated
      */
-    public ImplViewHandler(ViewHandler original) {
+    public ShaleViewHandler(ViewHandler original) {
         this.original = original;
         if (log.isDebugEnabled()) {
             log.debug("ImplViewHandler instance is decorating " +
@@ -70,7 +70,7 @@ public class ImplViewHandler extends ViewHandler {
     /**
      * <p>Log instance for this class.</p>
      */
-    private static final Log log = LogFactory.getLog(ImplViewHandler.class);
+    private static final Log log = LogFactory.getLog(ShaleViewHandler.class);
 
 
     // ------------------------------------------------------ Instance Variables
@@ -174,7 +174,7 @@ public class ImplViewHandler extends ViewHandler {
     private ViewControllerMapper getViewControllerMapper(FacesContext context) {
         if (mapper != null) {
             Map map = context.getExternalContext().getApplicationMap();
-            mapper = (ViewControllerMapper) map.get(ImplConstants.VIEW_MAPPER);
+            mapper = (ViewControllerMapper) map.get(ShaleConstants.VIEW_MAPPER);
         }
         return mapper;
     }
@@ -235,11 +235,11 @@ public class ImplViewHandler extends ViewHandler {
 
         // Schedule this instance for later processing as needed
         Map map = context.getExternalContext().getRequestMap();
-        map.put(ImplConstants.VIEW_RENDERED, vc);
-        List list = (List) map.get(ImplConstants.VIEWS_INITIALIZED);
+        map.put(ShaleConstants.VIEW_RENDERED, vc);
+        List list = (List) map.get(ShaleConstants.VIEWS_INITIALIZED);
         if (list == null) {
             list = new ArrayList();
-            map.put(ImplConstants.VIEWS_INITIALIZED, list);
+            map.put(ShaleConstants.VIEWS_INITIALIZED, list);
         }
         list.add(vc);
 

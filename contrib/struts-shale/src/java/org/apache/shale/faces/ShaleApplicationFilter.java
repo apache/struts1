@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.apache.shale.impl;
+package org.apache.shale.faces;
 
 import java.io.IOException;
 
@@ -42,7 +42,7 @@ import org.apache.shale.view.DefaultViewControllerMapper;
  * $Id$
  */
 
-public class ImplApplicationFilter implements Filter {
+public class ShaleApplicationFilter implements Filter {
 
 
     // ------------------------------------------------------ Instance Variables
@@ -110,10 +110,10 @@ public class ImplApplicationFilter implements Filter {
 
         this.config = config;
         context = config.getServletContext();
-        phaseListener = new ImplPhaseListener();
+        phaseListener = new ShalePhaseListener();
         getLifecycle().addPhaseListener(phaseListener);
         // FIXME - make the mapper pluggable
-        context.setAttribute(ImplConstants.VIEW_MAPPER,
+        context.setAttribute(ShaleConstants.VIEW_MAPPER,
           new DefaultViewControllerMapper());
 
     }

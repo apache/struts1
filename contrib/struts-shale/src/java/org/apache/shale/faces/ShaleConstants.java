@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.apache.shale.impl;
+package org.apache.shale.faces;
 
 import org.apache.shale.ViewController;
 import org.apache.shale.ViewControllerMapper;
@@ -26,7 +26,7 @@ import org.apache.shale.ViewControllerMapper;
  *
  * $Id$
  */
-public interface ImplConstants {
+public interface ShaleConstants {
     
     
     /**

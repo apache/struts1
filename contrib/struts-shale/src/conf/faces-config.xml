@@ -35,7 +35,7 @@
   <!-- Custom JSF Lifecycle and Evaluator Objects -->
   <application>
     <view-handler>
-      org.apache.shale.impl.ImplViewHandler
+      org.apache.shale.faces.ShaleViewHandler
     </view-handler>
   </application>
 

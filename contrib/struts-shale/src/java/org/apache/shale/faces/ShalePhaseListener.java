@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.apache.shale.impl;
+package org.apache.shale.faces;
 
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +33,7 @@ import org.apache.shale.ViewController;
  * $Id$
  */
 
-public class ImplPhaseListener implements PhaseListener {
+public class ShalePhaseListener implements PhaseListener {
     
 
     // --------------------------------------------------- PhaseListener Methods
@@ -94,7 +94,7 @@ public class ImplPhaseListener implements PhaseListener {
     private void afterRenderResponse(PhaseEvent event) {
 
         Map map = event.getFacesContext().getExternalContext().getRequestMap();
-        List list = (List) map.get(ImplConstants.VIEWS_INITIALIZED);
+        List list = (List) map.get(ShaleConstants.VIEWS_INITIALIZED);
         if (list == null) {
             return;
         }
@@ -103,7 +103,7 @@ public class ImplPhaseListener implements PhaseListener {
             ViewController vc = (ViewController) vcs.next();
             vc.destroy();
         }
-        map.remove(ImplConstants.VIEWS_INITIALIZED);
+        map.remove(ShaleConstants.VIEWS_INITIALIZED);
 
     }
 
@@ -119,12 +119,12 @@ public class ImplPhaseListener implements PhaseListener {
 
         Map map = event.getFacesContext().getExternalContext().getRequestMap();
         ViewController vc = (ViewController)
-          map.get(ImplConstants.VIEW_RENDERED);
+          map.get(ShaleConstants.VIEW_RENDERED);
         if (vc == null) {
             return;
         }
         vc.prepare();
-        map.remove(ImplConstants.VIEW_RENDERED);
+        map.remove(ShaleConstants.VIEW_RENDERED);
 
     }
 
