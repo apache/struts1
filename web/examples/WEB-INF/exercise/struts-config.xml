@@ -16,7 +16,9 @@
     <forward name="relative" path="/welcome.do" />
     <forward name="redirect-default" path="/" redirect="true" />
     <forward name="logic-forward" path="/logic-forward.do" />
+      <!--
     <forward name="cross-module" module="" path="/welcome.do" />
+      -->
   </global-forwards>
   <action-mappings>
     <action path="/welcome" forward="/index.html" />

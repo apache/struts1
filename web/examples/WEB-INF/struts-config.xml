@@ -3,20 +3,25 @@
 <!--
   Default configuration file for examples application.
   Each module also has its own struts-config under: /WEB-INF/$MODULE/
-  @version $Revision: 1.5 $ $Date: 2004/02/14 20:51:56 $
+  @version $Revision: 1.6 $ $Date: 2004/02/19 00:09:37 $
 -->
 <struts-config>
   <data-sources />
-  <form-beans />
+  <form-beans type="org.apache.struts.webapp.examples.CustomFormBean">
+      <form-bean name="example" type="org.apache.struts.webapp.examples.CustomFormBean" />
+      <set-property property="example" value="EXAMPLE" />
+  </form-beans>
   <global-exceptions />
-  <global-forwards>
+  <global-forwards type="org.apache.struts.webapp.examples.CustomActionForward">
       <!-- utilize a custom ActionForward as an example only -->
-    <forward name="welcome" path="/welcome.do" className="org.apache.struts.webapp.examples.CustomActionForward">
+    <forward name="welcome" path="/welcome.do">
          <set-property property="example" value="EXAMPLE" />
      </forward>
    </global-forwards>
-  <action-mappings>
-    <action path="/welcome" forward="/welcome.jsp" />
+  <action-mappings type="org.apache.struts.webapp.examples.CustomActionMapping">
+    <action path="/welcome" forward="/welcome.jsp" >
+        <set-property property="example" value="EXAMPLE" />
+    </action>
   </action-mappings>
   <message-resources parameter="MessageResources" />
 </struts-config>
