@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.18 2002/03/06 09:11:10 oalexeev Exp $
- * $Revision: 1.18 $
- * $Date: 2002/03/06 09:11:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.19 2002/03/07 00:24:34 martinc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/03/07 00:24:34 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/03/06 09:11:10 $
+ * @version $Revision: 1.19 $ $Date: 2002/03/07 00:24:34 $
  */
 
 public class WriteTag extends TagSupport {
@@ -336,6 +336,7 @@ public class WriteTag extends TagSupport {
         Object value = valueToFormat;
         Locale locale = RequestUtils.retrieveUserLocale( pageContext, this.localeKey );
         boolean formatStrFromResources = false;
+        String formatString = formatStr;
 
         // Return String object as is.
         if ( value instanceof java.lang.String ) {
@@ -343,39 +344,39 @@ public class WriteTag extends TagSupport {
         } else {
 
             // Try to retrieve format string from resources by the key from formatKey.
-            if( ( formatStr==null ) && ( formatKey!=null ) ) {
-                    formatStr = retrieveFormatString( this.formatKey );
-                    if( formatStr!=null )
+            if( ( formatString==null ) && ( formatKey!=null ) ) {
+                    formatString = retrieveFormatString( this.formatKey );
+                    if( formatString!=null )
                             formatStrFromResources = true;
             }
 
             // Prepare format object for numeric values.
             if ( value instanceof Number ) {
 
-                if( formatStr==null ) {
+                if( formatString==null ) {
                         if( ( value instanceof Byte )    ||
                             ( value instanceof Short )   ||
                             ( value instanceof Integer ) ||
                             ( value instanceof Long )    ||
                             ( value instanceof BigInteger ) )
-                                formatStr = retrieveFormatString( INT_FORMAT_KEY );
+                                formatString = retrieveFormatString( INT_FORMAT_KEY );
                         else if( ( value instanceof Float ) ||
                                  ( value instanceof Double ) ||
                                  ( value instanceof BigDecimal ) )
-                                formatStr = retrieveFormatString( FLOAT_FORMAT_KEY );
-                        if( formatStr!=null ) 
+                                formatString = retrieveFormatString( FLOAT_FORMAT_KEY );
+                        if( formatString!=null ) 
                                 formatStrFromResources = true;
                 }
 
-                if( formatStr!=null ) {
+                if( formatString!=null ) {
                         try {
                                 format = NumberFormat.getNumberInstance( locale );
                                 if( formatStrFromResources ) 
-                                        ( ( DecimalFormat ) format ).applyLocalizedPattern( formatStr );
+                                        ( ( DecimalFormat ) format ).applyLocalizedPattern( formatString );
                                 else
-                                        ( ( DecimalFormat ) format ).applyPattern( formatStr );                                        
+                                        ( ( DecimalFormat ) format ).applyPattern( formatString );                                        
                         } catch( IllegalArgumentException _e ) {
-                                JspException e = new JspException(messages.getMessage("write.format", formatStr));
+                                JspException e = new JspException(messages.getMessage("write.format", formatString));
                                 RequestUtils.saveException(pageContext, e);
                                 throw e;
                         }
@@ -383,28 +384,28 @@ public class WriteTag extends TagSupport {
 
             } else if (  value instanceof java.util.Date ) {
 
-                if( formatStr==null ) {
+                if( formatString==null ) {
 
                         if (  value instanceof java.sql.Timestamp ) {
-                                formatStr = retrieveFormatString( SQL_TIMESTAMP_FORMAT_KEY );
+                                formatString = retrieveFormatString( SQL_TIMESTAMP_FORMAT_KEY );
                         } else if (  value instanceof java.sql.Date ) {
-                                formatStr = retrieveFormatString( SQL_DATE_FORMAT_KEY );
+                                formatString = retrieveFormatString( SQL_DATE_FORMAT_KEY );
                         } else if (  value instanceof java.sql.Time ) {
-                                formatStr = retrieveFormatString( SQL_TIME_FORMAT_KEY );
+                                formatString = retrieveFormatString( SQL_TIME_FORMAT_KEY );
                         } else if (  value instanceof java.util.Date ) {
-                                formatStr = retrieveFormatString( DATE_FORMAT_KEY );
+                                formatString = retrieveFormatString( DATE_FORMAT_KEY );
                         }
 
-                        if( formatStr!=null ) 
+                        if( formatString!=null ) 
                                 formatStrFromResources = true;
 
                 }
                 
-                if( formatStr!=null ) {
+                if( formatString!=null ) {
                         if( formatStrFromResources ) {
-                                format = new SimpleDateFormat( formatStr, locale );
+                                format = new SimpleDateFormat( formatString, locale );
                         } else {
-                                format = new SimpleDateFormat( formatStr );
+                                format = new SimpleDateFormat( formatString );
                         }
                 }
 
