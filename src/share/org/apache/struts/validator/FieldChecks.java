@@ -835,7 +835,7 @@ public class FieldChecks implements Serializable {
         }
         String sMaxLength = field.getVarValue("maxlength");
 
-        if (value != null) {
+        if (!GenericValidator.isBlankOrNull(value)) {
             try {
                 int max = Integer.parseInt(sMaxLength);
 
@@ -882,7 +882,7 @@ public class FieldChecks implements Serializable {
         }
         String sMinLength = field.getVarValue("minlength");
 
-        if (value != null) {
+        if (!GenericValidator.isBlankOrNull(value)) {
             try {
                 int min = Integer.parseInt(sMinLength);
 
