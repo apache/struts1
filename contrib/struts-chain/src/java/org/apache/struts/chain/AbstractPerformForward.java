@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPerformForward.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractPerformForward.java,v 1.3 2004/02/29 13:21:34 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/02/29 13:21:34 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.config.ForwardConfig;
  * <code>ForwardConfig</code> (if any).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2004/02/29 13:21:34 $
  */
 
 public abstract class AbstractPerformForward implements Command {
@@ -84,6 +84,8 @@ public abstract class AbstractPerformForward implements Command {
 
 
     private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
+
+    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
 
 
     // -------------------------------------------------------------- Properties
@@ -111,6 +113,31 @@ public abstract class AbstractPerformForward implements Command {
     public void setForwardConfigKey(String forwardConfigKey) {
 
         this.forwardConfigKey = forwardConfigKey;
+
+    }
+
+    /**
+     * <p>Return the context attribute key under which the
+     * <code>ModuleConfig</code> for the currently selected application
+     * module will be stored.</p>
+     */
+    public String getModuleConfigKey() {
+
+        return (this.moduleConfigKey);
+
+    }
+
+
+    /**
+     * <p>Set the context attribute key under which the
+     * <code>ModuleConfig</code> for the currently selected application
+     * module will be stored.</p>
+     *
+     * @param moduleConfigKey The new context attribute key
+     */
+    public void setModuleConfigKey(String moduleConfigKey) {
+
+        this.moduleConfigKey = moduleConfigKey;
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PerformForward.java,v 1.3 2004/01/18 13:43:10 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2004/01/18 13:43:10 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PerformForward.java,v 1.4 2004/02/29 13:21:34 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/02/29 13:21:34 $
  *
  * ====================================================================
  *
@@ -72,13 +72,14 @@ import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**
  * <p>Perform forwarding or redirection based on the specified
  * <code>ForwardConfig</code> (if any).</p>
  *
- * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
+ * @version $Revision: 1.4 $ $Date: 2004/02/29 13:21:34 $
  */
 
 public class PerformForward extends AbstractPerformForward {
@@ -101,14 +102,16 @@ public class PerformForward extends AbstractPerformForward {
         String forwardPath = forwardConfig.getPath();
         String uri = null;
 
+        ModuleConfig moduleConfig  = (ModuleConfig) context.get(getModuleConfigKey());
         // Resolve module-relative paths
         if (forwardPath.startsWith("/")) {
             uri = RequestUtils.forwardURL(swcontext.getRequest(),
-                                          forwardConfig);
+                                          forwardConfig,
+                                          moduleConfig);
         } else {
             uri = forwardPath;
         }
-        
+
         // Get the underlying request in the case of a multipart wrapper
         HttpServletRequest request = swcontext.getRequest();
         if (request instanceof MultipartRequestWrapper) {
