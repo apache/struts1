@@ -58,12 +58,70 @@
     <section name="Recent News" href="news">
 
 <!--
-<h4 id="S"> - </h4>
+<h4 id="a"> - </h4>
 <p>
 <a href=""></a>
 </p>
 <hr/>
 -->
+
+        <h4 id="a20030912">2003-09-12 - Oracle JDeveloper 10g Preview (Struts-savvy IDE)</h4>
+        <p>
+            Anyone doing Java and Struts development should download and checkout the new developer preview release of
+            JDeveloper 10g. It's a major new release with new features like:
+        </p>
+        <ul>
+        <li>
+            Visual Struts Page Flow Diagramming
+        </li>
+        <li>
+            Visual JSP/HTML Editor
+        </li>
+        <li>
+            Many new Java code-level productivity features.
+            [<a href="http://radio.weblogs.com/0128037/stories/2003/08/11/topTenToysForJavaCodersIn905.html">Check out
+            this developers top ten list</a>]
+        </li>
+        <li>
+            New neutral data binding architecture and productive visual design time to binding any kind of front end to
+            any kind of backend.
+            [<a href="http://radio.weblogs.com/0118231/2003/09/08.html#a149">Checkout the article posted here for an
+            overview</a>]
+        </li>
+        <li>
+            Much much more.
+        </li>
+        </ul>
+        <p>
+            Longer list of new features is at: <a href="http://otn.oracle.com/products/jdev/collateral/jdev10g_fo.html">
+            http://otn.oracle.com/products/jdev/collateral/jdev10g_fo.html</a>
+        </p>
+        <p>
+            Download and product tour is at: <a href="http://otn.oracle.com/products/jdev/collateral/prodtour10g.html">
+            http://otn.oracle.com/products/jdev/collateral/prodtour10g.html</a>
+        </p>
+        <hr/>
+
+        <h4 id="a20030909">2003-09-09 - Java Frameworks and Components: Accelerate Your Web Application Development</h4>
+        <p>
+            Now available from Cambridge University Press: <br />
+            <a href="http://www.amazon.com/exec/obidos/ISBN=0521520592/hitchhikeguidetoA/">Java Frameworks and
+            Components: Accelerate Your Web Application Development</a> by Michael Nash (ISBN 0521520592).
+        </p>
+        <p>
+            Struts is covered in Chapter 5 as well as in the Case Study section.
+        </p>
+        <p>
+            This is a book for web-application developers using or considering frameworks and/or component
+            architectures. Provides the necessary information for finding, evaluating and selecting an application
+            framework (both commercial and open source), and explains in plain language the benefits of frameworks and
+            component technologies, specifically in relation to web application development. Uses examples from several
+            different frameworks to explain the underlying principles.
+        </p>
+        <p>
+            A <a href="http://us.cambridge.org/titles/catalogue.asp?ISBN=0521520592">sample chapter</a> is available.
+        </p>
+        <hr/>
 
         <h4 id="S20030829">29 Aug 2003 - Core J2EE Patterns -- Expanded and Updated in Second Edition</h4>
         <p>
@@ -102,6 +160,57 @@
         <p>
             Find links to <strong>Core J2EE Patterns</strong> and other great books in the
             <a href="../resources/related_books.html">Struts Resource section</a>.
+        </p>
+        <hr/>
+
+        <h4 id="a20030908">2003-09-08 - Netspread Carrier 2.0 b2 </h4>
+        <p>
+            A solid release of Netspread Carrier 2.0 b2 is available today.
+            The Carrier client, a visual design environment on Internet, is
+            tested with JRE 1.4.2 with performance surprising my VB
+            friends.
+        </p>
+        <p>
+           Enhancements include:
+        </p>
+        <p>
+            1) A Form Token Facility is introduced to automatically protect
+            every web form and every hyper link in application modules with
+            no-cache turned on. The facility is completely hidden from
+            the views of designers and can be turned on/off programmatically.
+        </p>
+        <p>
+            2) The Carrier Developer's Guide is near completed in which
+            the LocalizedDate class is examined in details. The four
+            key attributes, input format, output format, format pattern
+            (or a key to the localized pattern), and error key, are completely
+            encapsulated in the class. Therefore designers only need to
+            register this class in a form bean property descriptor with
+            desired format pattern or its key in ONE place. I see other
+            methodologies make the designers to register input format here,
+            output format there, pattern in another configuration file...
+            causing endless troubles just for a simple Date property.
+            Now the problem is solved in the cleanest way. It is a
+            complete i18n java.sql.Date property to my knowledge and
+            it tells us almost any other complex properties could be
+            designed this way. See it with composing screen shots at
+            <a href="http://www.netspread.com/developer.html#FormBeanValidations">
+            http://www.netspread.com/developer.html#FormBeanValidations</a>.
+        </p>
+        <p>
+            Carrier is designed to be used by sloppy users like many of
+            us on the Struts lists. It doesn't tell you "How easy to write codes
+            to do it", instead, it tells you "How easy to compose web
+            forms to do it" with the capability of CRUD operations for hierarchical
+            and/or tabular data entries. It also tells you "Where you put
+            wrong things" in case configuration errors occur. It is a solid
+            commercial grade product for you to enjoy, no suffering.
+        </p>
+        <p>
+            If you complain any parts of it, tell us. User experience is on
+            top of the priority list. Do not forget to follow the 24 tips
+            on Wheels and Struts when you play it
+            <a href="http://www.netspread.com/help.html">http://www.netspread.com/help.html</a>
         </p>
         <hr/>
 

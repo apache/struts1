@@ -27,7 +27,8 @@
 
     <p>
         In RC2, the <strong>Commons-DBCP and Commons-Pool dependencies have been removed</strong>.
-        These are replaced with a dependency on the Struts-Legacy package,
+        These are replaced with a dependency on the
+        <a href="http://archive.apache.org/dist/jakarta/struts/old/release/struts-legacy/">Struts-Legacy package</a>,
         containing the GenericDataSource and GenericConnection classes from Struts 1.0.2.
         These are distributed for J2SE 1.3 but may be recompiled for J2SE 1.4.
         Other DataSource implementations may be plugged in (recommended).

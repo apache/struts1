@@ -16,7 +16,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.42 2003/09/11 09:49:37 husted Exp $
+    $Id: status.xml,v 1.43 2003/09/15 00:33:03 husted Exp $
     </p>
 
     <p>
@@ -267,7 +267,25 @@
         </li>
 
         <li>
-        Enchanced support for other presentation layers, such as XLST
+        Enhanced support for other presentation layers, such as XLST
+        </li>
+
+        <li>
+
+There will definitely be such gaps.  Two of them we can already fill
+(Tiles and the Validator Framework).  Others will involve frameworks for
+multi-request transactions, non-HTML markup languages (building on top of
+Faces for things like XUL or XForms or SVG is easy), non-JSP rendering
+technologies (pretty much anything that has a way to mark where
+dynamically created output goes can be adapted), libraries of prebuilt
+components above and beyond the built-in standard ones (such components
+work equally well in JSP and non-JSP environments), and all the
+non-human-UI things based on XML technologies.  To say nothing of the fact
+that we could start to provide useful design patterns and implementations
+for the business logic tier as well as the presentation tier (like what
+Ted has done with Scaffold).
+
+
         </li>
 
     </ul>
@@ -362,8 +380,8 @@
 </section>
 
 <section>
-    <p class="version">Website updated from CVS: 2003 SEP 11 by husted.</p>
-    <p class="version">Javadocs updated from CVS: 2003 JUN 29 by mcooper.</p>
+    <p class="version">Website updated from CVS: 2003 SEP 14 by husted.</p>
+    <p class="version">Javadocs updated from CVS: 2003 SEP 14 by husted.</p>
 </section>
 
 </body></document>

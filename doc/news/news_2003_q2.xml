@@ -192,8 +192,8 @@
            available at: </p>
      <p>
         <a href=
-        "http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/"
-        >http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/
+        "http://archive.apache.org/dist/jakarta/struts/old/release/struts-faces/"
+        >http://archive.apache.org/dist/jakarta/struts/old/release/struts-faces/
         </a> </p>
      <p>(Versions up through and including 20030604 are for the EA3 release of
         Faces.)</p>

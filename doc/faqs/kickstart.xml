@@ -297,7 +297,7 @@ appear to help these technologies work as well with Struts.
         although an early-release reference implementation is available through the
         <a href="http://java.sun.com/webservices/download.html">Java Web Services Developer Pack</a>.
         An early-release JavaServer Faces taglib for Struts,
-        <a href="http://cvs.apache.org/builds/jakarta-struts/nightly/struts-faces/">
+        <a href="http://archive.apache.org/dist/jakarta/struts/old/release/struts-faces/">
         <strong>Struts-Faces</strong></a>, is also in early release and available
         through the nightly build.
     </p>

@@ -19,7 +19,7 @@
 </a>
 </td>
 <td>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0596005199/hitchhikeguidetoA/"><strong>Jakarta Struts Pocket Reference</strong></a> 
+<a href="http://www.amazon.com/exec/obidos/ISBN=0596005199/hitchhikeguidetoA/"><strong>Jakarta Struts Pocket Reference</strong></a>
 by Chuck Cavaness, Brian Keeton. May 2003.
 </td>
 </tr>
@@ -44,7 +44,7 @@ by John Carnell, Jeff Linwood, Maciej Zawadzki - March 2003.
 </a>
 </td>
 <td>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/"><strong>Struts Kick Start</strong></a> 
+<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/"><strong>Struts Kick Start</strong></a>
 by James Turner and Kevin Bedell - December 2002. [<a href="http://www.strutskickstart.com/">Sample chapter available</a>]
 </td>
 </tr>
@@ -56,7 +56,7 @@ by James Turner and Kevin Bedell - December 2002. [<a href="http://www.strutskic
 </a>
 </td>
 <td>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/"><strong>Programming Jakarta Struts</strong></a> 
+<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/"><strong>Programming Jakarta Struts</strong></a>
 by Chuck Cavaness. November 2002. [<a href="http://www.oreilly.com/catalog/jakarta/">beta chapter available</a>]
 </td>
 </tr>
@@ -69,7 +69,7 @@ by Chuck Cavaness. November 2002. [<a href="http://www.oreilly.com/catalog/jakar
 </td>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1558608621/hitchhikeguidetoA/">
-<strong>The Struts Framework: Practical Guide for Programmers</strong></a> 
+<strong>The Struts Framework: Practical Guide for Programmers</strong></a>
 by Sue Spielman. November 2002.
 </td>
 </tr>
@@ -82,7 +82,7 @@ by Sue Spielman. November 2002.
 </td>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
-<strong>Struts in Action</strong></a> 
+<strong>Struts in Action</strong></a>
 by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Foreword by Craig R. McClanahan. November 2002. [<a href="http://www.manning.com/husted/">sample chapters available</a>]
 </td>
 </tr>
@@ -95,7 +95,7 @@ by Ted Husted, Cedric Dumoulin, George Franciscus, and David Winterfeldt; Forewo
 </td>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0471213020/hitchhikeguidetoA/">
-<strong>Mastering Jakarta Struts</strong></a> 
+<strong>Mastering Jakarta Struts</strong></a>
 by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,0471213020,00.html">excerpt available</a>]
 </td>
 </tr>
@@ -108,7 +108,7 @@ by James Goodwill. August 2002. [<a href="http://wiley.com/cda/product/0,,047121
 </td>
 <td>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/">
-<strong>Struts Fast Track: J2EE / JSP Framework</strong></a> 
+<strong>Struts Fast Track: J2EE / JSP Framework</strong></a>
 by Victor Cekvenich - Practical Application with Database Access and Struts Extensions. November 2001.
 </td>
 </tr>
@@ -118,6 +118,12 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 
 <section name="Books with Struts coverage">
 
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0521520592/hitchhikeguidetoA/">Java Frameworks and Components: Accelerate Your Web Application Development</a> by Michael Nash, June 2003
+</p>
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0131422464/hitchhikeguidetoA/">Core J2EE Patterns: Best Practices and Design Strategies, Second Edition</a> by Deepak Alur, Dan Malks, John Crupi, June 2003
+</p>
 <p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=1861008317/hitchhikeguidetoA/"><strong>Beginning JSP 2.0</strong></a> by Galbraith et al. Wrox Press February 2003 - Chapters 15 and 16 cover web development using Struts.
 </p>

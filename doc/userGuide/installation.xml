@@ -36,7 +36,7 @@
       your operating system platform.
       A good starting point for locating Java Development Kit distributions is
       <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.
-      To build Struts, Java 1.4.2 or later is recommended. </li>
+      To build Struts, Java 1.4.2 or later is suggested. </li>
 
   <li><strong>Servlet Container</strong> - You <strong>must</strong> download and install a
       servlet container that is compatible with the Servlet API Specification,
