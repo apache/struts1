@@ -21,11 +21,17 @@ contributed by David Winterfeldt</p>
 <ul>
 <li> Conditionally required fields</li>
 <li> intRange() &amp; floatRange() methods in both JavaScript and Java</li>
-<li> Do <strong>not</strong> use the &lt;script/&gt; to include static java script
-as in the old validator example.
- </li>
-<li> deprecation of range() methods in both JavaScript and Java</li>
-<li> deprecation of StrutsVlaidator &amp; StrutsValidatorUtil</li>
+</ul>
+<p> There have also been changes in the validator behavior and deprecation of functionality
+</p>
+<ul>
+<li> The validator xml files now validate against the DTD stored in the commons-validator.jar. </li>
+<li> The default valiator-rules.xml now ignores blank fields for all the basic validation types.
+If you require a field to be present then to your applications validator.xml 
+field definition add "required" to the depends attribute.</li>
+<li> The Javascript Tag has new attributes defined. </li>
+<li> Deprecation of range() methods in both JavaScript and Java</li>
+<li> Deprecation of StrutsVlaidator &amp; StrutsValidatorUtil</li>
 </ul>
 
 <p>
