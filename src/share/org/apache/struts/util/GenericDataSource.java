@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.1 2000/11/26 05:11:31 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/26 05:11:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.2 2000/12/29 19:16:37 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/29 19:16:37 $
  *
  * ====================================================================
  *
@@ -73,15 +73,90 @@ import javax.sql.DataSource;
 
 
 /**
- * Generic data source implementation of the <code>DataSource</code>
+ * <p>Generic data source implementation of the <code>DataSource</code>
  * interface.  <b>WARNING</b> - This implementation does not know how to
  * provide connections with different username/password combinations.  It
  * always returns connections based on the username and password configured
- * with <code>setUsername()</code> and <code>setPassword()</code>,
- * respectively.
+ * with <code>setUser()</code> and <code>setPassword()</code>,
+ * respectively.</p>
+ *
+ * <p>The following properties are supported by the standard
+ * <code>GenericDataSource</code> implementation:</p>
+ * <table>
+ * <tr>
+ *   <th width="15%">Property</th>
+ *   <th width="85%">Description</th>
+ * </tr>
+ * <tr>
+ *   <td align="center">autoCommit</td>
+ *   <td>Set to <code>true</code> if you want the connections returned to you
+ *       by calling <code>getConnection()</code> to be configured in
+ *       "auto-commit after every statement" mode.  The default value is
+ *       <code>true</code>, to conform to JDBC standard conventions.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">description</td>
+ *   <td>A short textual description of this data source.  This property is
+ *       required by the <code>javax.sql.DataSource</code> interface, but is
+ *       not used within this implementation.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">driverClass</td>
+ *   <td>The fully qualified class name of the JDBC driver to be utilized for
+ *       the connections created by this data source.  Consult the
+ *       documentation for your JDBC driver to identify the value to be
+ *       configured for this property.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">maxCount</td>
+ *   <td>The maximum number of JDBC connections that will be created by this
+ *       data source.  This value must be greater than or equal to the value
+ *       specified for the <code>minCount</count> property.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">minCount</td>
+ *   <td>The minimum number of JDBC connections to establish when this data
+ *       source is first opened.  This value must be less than or equal to the
+ *       value specified for the <code>maxCount</code> property.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">password</td>
+ *   <td>The database password used to establish the connections created by
+ *       this connection pool, in conjunction with the username specified in
+ *       the <code>user</code> property.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">readOnly</td>
+ *   <td>Set to <code>true</code> if you want the connections returned to you
+ *       by calling <code>getConnection()</code> to be configured for read only
+ *       operations.  This can result in more efficient database access,
+ *       because the database will know it does not need to retain undo logs
+ *       for rolling back the transaction.  The default value is
+ *       <code>false</code>.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">url</td>
+ *   <td>The connection URL to be passed to our JDBC driver when establishing
+ *       a new connection.  The value specified typically starts with
+ *       <code>jdbc:</code>, and includes a reference to the host (and,
+ *       optionally, the port number) at which the database server is listening
+ *       for connections, plus the name of the database to be opened.  Consult
+ *       the documentation for your JDBC driver to identify the value to be
+ *       configured for this property.</td>
+ * </tr>
+ * <tr>
+ *   <td align="center">user</td>
+ *   <td>The database username used to establish the connections created by
+ *       this connection pool, in conjunction with the password specified in
+ *       the <code>password</code> property.</td>
+ * </tr>
+ * </table>
+ *
+ * <p>In addition, you can add to the set of <code>Properties</code> passed to
+ * the JDBC driver by calling <code>addProperty()</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/26 05:11:31 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/29 19:16:37 $
  */
 
 public class GenericDataSource implements DataSource {
