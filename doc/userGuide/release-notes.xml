@@ -250,6 +250,7 @@
     <p>The following changes and bug fixes have occurred in the configuration
     files related to Struts:</p>
     <ul>
+        Japanese resources updates for Struts, its example, upload, tiles-documentation.
     </ul>
     <p><strong>Config Package</strong></p>
     <ul>
