@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.6 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.7 2003/10/04 06:12:32 arron Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/10/04 06:12:32 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -73,7 +73,7 @@ import org.apache.struts.taglib.TagUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class NestedWriteNestingTag extends BodyTagSupport {
 
@@ -89,6 +89,21 @@ public class NestedWriteNestingTag extends BodyTagSupport {
    */
   public void setProperty(String newProperty) {
     this.property = newProperty;
+  }
+
+
+  /** Getter method for the <i>id</i> property
+   * @return String value for the id property
+   */
+  public String getId() {
+        return id;
+  }
+
+  /** Setter method for the <i>id</i> property
+   * @param id new value for the id property
+   */
+  public void setId(String id) {
+    this.id = id;
   }
 
 
@@ -120,11 +135,17 @@ public class NestedWriteNestingTag extends BodyTagSupport {
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
     String nesting = NestedPropertyHelper.getAdjustedProperty(request, property);
 
-    /* write output, filtering if required */
-    if (this.filter) {
-      TagUtils.getInstance().write(pageContext, TagUtils.getInstance().filter(nesting));
+    if (id != null) {
+      // use it as a scripting variable instead
+      pageContext.setAttribute(id, nesting);
+
     } else {
-      TagUtils.getInstance().write(pageContext, nesting);
+      /* write output, filtering if required */
+      if (this.filter) {
+        TagUtils.getInstance().write(pageContext, TagUtils.getInstance().filter(nesting));
+      } else {
+        TagUtils.getInstance().write(pageContext, nesting);
+      }
     }
 
     /* continue with page processing */
@@ -154,5 +175,6 @@ public class NestedWriteNestingTag extends BodyTagSupport {
   /* the usual private member variables */
   private boolean filter = false;
   private String property = null;
+  private String id = null;
   private String originalProperty = null;
 }

@@ -120,9 +120,10 @@
   <tag>
     <name>writeNesting</name>
     <summary>
-      Writes out the current nesting level, or that defined by a property
+      Writes or makes a scripting variable of the current nesting level.
     </summary>
     <tagclass>org.apache.struts.taglib.nested.NestedWriteNestingTag</tagclass>
+    <teiclass>org.apache.struts.taglib.nested.NestedWriteNestingTei</teiclass>
     <bodycontent>JSP</bodycontent>
     <info>
       This tag provides a way of accessing the nested property reference used by
@@ -135,6 +136,16 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
         If not supplied, will simply write out as if "./" or "this/" was supplied.
+      </info>
+    </attribute>
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+        If <i>id</i> is supplied, then what would have been written out into the
+        response stream, will instead be made available as a String object
+        defined by the variable name provided.
       </info>
     </attribute>
     <attribute>
