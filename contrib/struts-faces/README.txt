@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 1.0) README File
-$Id: README.txt,v 1.13 2004/07/07 19:40:29 craigmcc Exp $
+$Id: README.txt,v 1.14 2004/07/07 22:08:56 craigmcc Exp $
 
 
 ============
@@ -74,6 +74,12 @@ following new features relative to the previous (0.4) release:
 * You can leverage advanced JavaServer Faces features in a Struts based
   web application.  For example, the converted "Mail Reader" example includes
   using the <h:dataTable> for multi-row input as well as output.
+
+* If your Struts application stores a Locale in the session attribute
+  named Globals.LOCALE_KEY (i.e. using the usual Struts technique for
+  establishing a user specific locale), this setting will be copied to
+  the UIViewRoot of the corresponding JSF view, which will therefore
+  cause it to change the Locale used by JSF components and renderers also.
 
 This release of the Struts-Faces Integration Library (Version 1.0) has the
 following revised features relative to the previous (0.4) release:

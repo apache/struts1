@@ -31,7 +31,7 @@
 <faces-config>
 
 
-  <!-- Custom Application ActionListener and PropertyResolver -->
+  <!-- Custom JSF Lifecycle and Evaluator Objects -->
 
   <application>
     <action-listener>
@@ -40,6 +40,9 @@
     <property-resolver>
       org.apache.struts.faces.application.PropertyResolverImpl
     </property-resolver>
+    <view-handler>
+      org.apache.struts.faces.application.ViewHandlerImpl
+    </view-handler>
   </application>
 
 
