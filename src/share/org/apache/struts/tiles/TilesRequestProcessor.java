@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.13 2002/11/16 04:15:40 jmitchell Exp $
- * $Revision: 1.13 $
- * $Date: 2002/11/16 04:15:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.14 2002/11/28 07:21:57 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/11/28 07:21:57 $
  *
  * ====================================================================
  *
@@ -107,21 +107,7 @@ public class TilesRequestProcessor extends RequestProcessor
      * Initialize this request processor instance.
      *
      * @param servlet The ActionServlet we are associated with
-     * @param appConfig The ApplicationConfig we are associated with.
-     * @throws ServletException If an error occur during initialization
-     * @deprecated   use {@link #init(ActionServlet, ModuleConfig) }
-     */
-    public void init(ActionServlet servlet, ApplicationConfig appConfig)
-      throws ServletException
-    {
-       init(servlet,(ModuleConfig)appConfig);
-    }
-
-    /**
-     * Initialize this request processor instance.
-     *
-     * @param servlet The ActionServlet we are associated with
-     * @param moduleConfig The ApplicationConfig we are associated with.
+     * @param moduleConfig The ModuleConfig we are associated with.
      * @throws ServletException If an error occur during initialization
      */
     public void init(ActionServlet servlet, ModuleConfig moduleConfig)
