@@ -8,8 +8,12 @@
 </properties>
 <body>
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
-
+<!--
+<p><a href=""></a> by . </p>
+-->
 <section name="Contributor Extensions">
+<p><a href="http://dynclass.sourceforge.net/">dynclass.sourceforge.net</a> by John Raley. A Class-creation API with very simple but powerful Map-to-JavaBeans translation</p>
+<p><a href="http://otn.oracle.com/products/jdev/content.html">JDeveloper9i 9.0.3 w/ Struts, J2EE 1.3, et. al.</a> by Oracle. Developer's Preview of interest to Struts users who might be using (or might want to evaluate) Oracle's JDeveloper Java IDE</p>
 <p><a href="http://www.asqdotcom.be/struts/"><b>Struts Action Plug-in Extension 1.0 (for Struts 1.1b)</b></a> by ASQ dot COM. Provides a clean and transparent way to plug-in common controller logic (such as authentication, workflow, etc.) for all Struts actions in an application</p>
 <p><a href="http://struts.ditlinger.com/"><b>SSL Ext</b></a> by eBuilt, Inc.<b> </b>- Switch between using the http &amp; https protocols on a page by page basis. See README.txt.</p>
 <p><a href="http://sourceforge.net/projects/htmltable/"><b>HTMLTable framework for Struts framework</b></a> by Yuriy Zubarev - Incorporate look and feel and behaviour (in terms of columns order) of tables in XML configuration file with capabilities of properties inheritance. </p>
