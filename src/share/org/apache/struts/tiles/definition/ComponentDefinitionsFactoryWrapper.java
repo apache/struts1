@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.4 2003/02/27 19:19:54 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/27 19:19:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.5 2003/03/08 19:23:50 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/03/08 19:23:50 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -237,13 +237,13 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
   {
    Map map = new HashMap(config.getAttributes());
      // Add property attributes using old names
-   map.put(config.DEFINITIONS_CONFIG_PARAMETER_NAME, config.getDefinitionConfigFiles());
-   map.put(config.TILES_DETAILS_PARAMETER_NAME, Integer.toString(config.getDebugLevel()) );
-   map.put(config.PARSER_DETAILS_PARAMETER_NAME, Integer.toString(config.getParserDebugLevel()) );
-   map.put(config.PARSER_VALIDATE_PARAMETER_NAME, new Boolean(config.getParserValidate()).toString() );
+   map.put(DefinitionsFactoryConfig.DEFINITIONS_CONFIG_PARAMETER_NAME, config.getDefinitionConfigFiles());
+   map.put(DefinitionsFactoryConfig.TILES_DETAILS_PARAMETER_NAME, Integer.toString(config.getDebugLevel()) );
+   map.put(DefinitionsFactoryConfig.PARSER_DETAILS_PARAMETER_NAME, Integer.toString(config.getParserDebugLevel()) );
+   map.put(DefinitionsFactoryConfig.PARSER_VALIDATE_PARAMETER_NAME, new Boolean(config.getParserValidate()).toString() );
 
    if( ! "org.apache.struts.tiles.xmlDefinition.I18nFactorySet".equals(config.getFactoryClassname()) )
-     map.put(config.FACTORY_CLASSNAME_PARAMETER_NAME, config.getFactoryClassname());
+     map.put(DefinitionsFactoryConfig.FACTORY_CLASSNAME_PARAMETER_NAME, config.getFactoryClassname());
 
   return map;
   }

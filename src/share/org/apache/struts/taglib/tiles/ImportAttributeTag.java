@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.6 2003/02/27 19:18:55 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/27 19:18:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.7 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -183,7 +183,7 @@ public final class ImportAttributeTag extends TagSupport {
   public int doStartTag() throws JspException
     {
       // retrieve component context
-    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
+    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
     if( compContext == null )
         throw new JspException ( "Error - tag importAttribute : no tiles context found." );
 

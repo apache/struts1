@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.11 2003/02/27 19:18:55 cedric Exp $
- * $Revision: 1.11 $
- * $Date: 2003/02/27 19:18:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.12 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.11 $ $Date: 2003/02/27 19:18:55 $
+ * @version $Revision: 1.12 $ $Date: 2003/03/08 19:23:49 $
  */
 public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent {
 
@@ -397,7 +397,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
             cachedCurrentContext =
                 (ComponentContext) pageContext.getAttribute(
                     ComponentConstants.COMPONENT_CONTEXT,
-                    pageContext.REQUEST_SCOPE);
+                    PageContext.REQUEST_SCOPE);
         }
         return cachedCurrentContext;
     }
@@ -803,7 +803,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
                 pageContext.setAttribute(
                     ComponentConstants.COMPONENT_CONTEXT,
                     subCompContext,
-                    pageContext.REQUEST_SCOPE);
+                    PageContext.REQUEST_SCOPE);
                 // Call controller if any
                 if (controller != null)
                     controller.perform(
@@ -844,7 +844,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
                     pageContext.setAttribute(
                         ComponentConstants.COMPONENT_CONTEXT,
                         currentContext,
-                        pageContext.REQUEST_SCOPE);
+                        PageContext.REQUEST_SCOPE);
             }
             return EVAL_PAGE;
         }

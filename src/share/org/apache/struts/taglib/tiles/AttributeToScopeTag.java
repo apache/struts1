@@ -1,13 +1,13 @@
 /*
-  *  $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/AttributeToScopeTag.java,v 1.4 2003/02/27 19:18:55 cedric Exp $
-  *  $Revision: 1.4 $
-  *  $Date: 2003/02/27 19:18:55 $
+  *  $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/AttributeToScopeTag.java,v 1.5 2003/03/08 19:23:49 dgraham Exp $
+  *  $Revision: 1.5 $
+  *  $Date: 2003/03/08 19:23:49 $
   *
   *  ====================================================================
   *
   *  The  Apache  Software  License,  Version  1.1
   *
-  *  Copyright  (c)  1999-2002  The  Apache  Software  Foundation.    All  rights
+  *  Copyright  (c)  1999-2003  The  Apache  Software  Foundation.    All  rights
   *  reserved.
   *
   *  Redistribution  and  use  in  source  and  binary  forms,  with  or  without
@@ -74,7 +74,6 @@ import  org.apache.struts.tiles.ComponentContext;
   *  Custom  tag  that  puts  component's  attributes  in  a  scope  (request,  page,  ...).
   *  @deprecated  Is  it  still  in  use  ?
   */
-
 public  final  class  AttributeToScopeTag  extends  TagSupport  {
 
 
@@ -145,7 +144,7 @@ public  final  class  AttributeToScopeTag  extends  TagSupport  {
         if(  id==null  )
             id=property;
             
-        ComponentContext  compContext  =  (ComponentContext)pageContext.getAttribute(  ComponentConstants.COMPONENT_CONTEXT,  pageContext.REQUEST_SCOPE);
+        ComponentContext  compContext  =  (ComponentContext)pageContext.getAttribute(  ComponentConstants.COMPONENT_CONTEXT,  PageContext.REQUEST_SCOPE);
 
         if(  compContext  ==  null  )
             throw  new  JspException  (  "Error  -  tag.useProperty  :  component  context  is  not  defined.  Check  tag  syntax"  );

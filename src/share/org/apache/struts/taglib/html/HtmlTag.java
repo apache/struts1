@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.10 2003/02/26 04:51:09 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/02/26 04:51:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.11 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
@@ -80,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.10 $ $Date: 2003/02/26 04:51:09 $
+ * @version $Revision: 1.11 $ $Date: 2003/03/08 19:23:49 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -143,7 +144,7 @@ public class HtmlTag extends TagSupport {
         boolean validLanguage = ((lang != null) && (lang.length() > 0));
 
         if (this.xhtml) {
-            this.pageContext.setAttribute(Globals.XHTML_KEY, "true", this.pageContext.PAGE_SCOPE);
+            this.pageContext.setAttribute(Globals.XHTML_KEY, "true", PageContext.PAGE_SCOPE);
             sb.append(" xmlns=\"http://www.w3.org/1999/xhtml\"");
         }
 

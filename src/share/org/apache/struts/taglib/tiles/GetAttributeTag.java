@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.7 2003/02/27 19:18:55 cedric Exp $
- * $Revision: 1.7 $
- * $Date: 2003/02/27 19:18:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.8 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,6 +66,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.tiles.ComponentContext;
@@ -191,7 +192,7 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
       } // end if
 
       // Get context
-    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
+    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
 
     if( compContext == null )
       throw new JspException ( "Error - tag.getAsString : component context is not defined. Check tag syntax" );

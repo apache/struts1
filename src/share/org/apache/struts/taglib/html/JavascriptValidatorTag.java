@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.22 2003/01/20 06:00:48 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/01/20 06:00:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.23 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.22 $ $Date: 2003/01/20 06:00:48 $
+ * @version $Revision: 1.23 $ $Date: 2003/03/08 19:23:49 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -686,7 +686,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     private boolean isXhtml() {
         String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
 
         return ("true".equalsIgnoreCase(xhtml));
     }

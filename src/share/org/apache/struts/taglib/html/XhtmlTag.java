@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.4 2003/01/17 05:27:52 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/01/17 05:27:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.5 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  * 
@@ -62,6 +62,7 @@
 package org.apache.struts.taglib.html;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
@@ -89,7 +90,7 @@ public class XhtmlTag extends TagSupport {
      * @see javax.servlet.jsp.tagext.Tag#doEndTag()
      */
     public int doEndTag() throws JspException {
-        this.pageContext.setAttribute(Globals.XHTML_KEY, "true", this.pageContext.PAGE_SCOPE);
+        this.pageContext.setAttribute(Globals.XHTML_KEY, "true", PageContext.PAGE_SCOPE);
         return EVAL_PAGE;
     }
 

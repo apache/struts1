@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.23 2003/01/05 01:44:08 turner Exp $
- * $Revision: 1.23 $
- * $Date: 2003/01/05 01:44:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.24 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,19 +61,20 @@
 
 package org.apache.struts.taglib.html;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.logic.IterateTag;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Base class for tags that render form elements capable of including JavaScript
@@ -83,7 +84,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.23 $ $Date: 2003/01/05 01:44:08 $
+ * @version $Revision: 1.24 $ $Date: 2003/03/08 19:23:49 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -855,20 +856,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     protected boolean isXhtml() {
         String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
         
         if ("true".equalsIgnoreCase(xhtml)) {
             return true;
         } else {
             return false;
         }
-        
-//        HtmlTag htmlTag = (HtmlTag) findAncestorWithClass(tag, HtmlTag.class);
-//        if (htmlTag == null) {
-//            return false;
-//        }
-//
-//        return htmlTag.getXhtml();
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.43 2003/01/28 05:18:03 dgraham Exp $
- * $Revision: 1.43 $
- * $Date: 2003/01/28 05:18:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.44 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.44 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Craig R. McClanahan
  * @author Martin Cooper
  * @author James Turner
- * @version $Revision: 1.43 $ $Date: 2003/01/28 05:18:03 $
+ * @version $Revision: 1.44 $ $Date: 2003/03/08 19:23:49 $
  */
 
 public class FormTag extends TagSupport {
@@ -778,7 +778,7 @@ public class FormTag extends TagSupport {
      */
     private boolean isXhtml() {
         String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
 
         return ("true".equalsIgnoreCase(xhtml));
     }

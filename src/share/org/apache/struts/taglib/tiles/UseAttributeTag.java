@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.8 2003/02/27 19:18:55 cedric Exp $
- * $Revision: 1.8 $
- * $Date: 2003/02/27 19:18:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.9 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -74,7 +74,6 @@ import org.apache.struts.tiles.ComponentContext;
  * Custom tag exposing a component attribute to page.
  *
  */
-
 public final class UseAttributeTag extends TagSupport {
 
 
@@ -215,7 +214,7 @@ public final class UseAttributeTag extends TagSupport {
     if( localId==null )
       localId=attributeName;
 
-    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
+    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
     if( compContext == null )
       throw new JspException ( "Error - tag useAttribute : no tiles context found." );
 

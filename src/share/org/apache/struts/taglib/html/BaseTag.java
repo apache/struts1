@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.13 2003/01/30 05:38:41 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/01/30 05:38:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.14 2003/03/08 19:23:49 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/03/08 19:23:49 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Luis Arias <luis@elysia.com>
  * @author David Graham
- * @version $Revision: 1.13 $ $Date: 2003/01/30 05:38:41 $
+ * @version $Revision: 1.14 $ $Date: 2003/03/08 19:23:49 $
  */
 
 public class BaseTag extends TagSupport {
@@ -148,7 +148,7 @@ public class BaseTag extends TagSupport {
         }
 
         String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
 
         if ("true".equalsIgnoreCase(xhtml)) {
             buf.append(" />");
