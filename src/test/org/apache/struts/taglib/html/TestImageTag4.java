@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag4.java,v 1.4 2003/03/23 04:08:29 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/03/23 04:08:29 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag4.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/11 05:14:48 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -116,8 +116,7 @@ public class TestImageTag4 extends JspTestCase {
 			pageContext.forward("/test/org/apache/struts/taglib/html/TestImageTag4.jsp");
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("There is a problem that is preventing the tests to continue!");
+			fail("" + e.getMessage());
 		}
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag3.java,v 1.1 2003/06/07 03:44:04 jmitchell Exp $
- * $Revision: 1.1 $
- * $Date: 2003/06/07 03:44:04 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag3.java,v 1.2 2003/12/11 05:14:48 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/12/11 05:14:48 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -139,8 +139,7 @@ public class TestMultiboxTag3 extends JspTestCase {
 			pageContext.forward("/test/org/apache/struts/taglib/html/TestMultiboxTag3.jsp");
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("There is a problem that is preventing the tests to continue!");
+			fail("" + e.getMessage());
 		}
     }
 

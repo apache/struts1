@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag4.java,v 1.5 2003/05/13 18:21:13 turner Exp $
- * $Revision: 1.5 $
- * $Date: 2003/05/13 18:21:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag4.java,v 1.6 2003/12/11 05:14:50 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/11 05:14:50 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -117,8 +117,7 @@ public class TestMessageTag4 extends JspTestCase {
 			pageContext.forward("/test/org/apache/struts/taglib/bean/TestMessageTag4.jsp");
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("There is a problem that is preventing the tests to continue!");
+			fail("" + e.getMessage());
 		}
     }
     

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.6 2003/05/31 00:10:37 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/05/31 00:10:37 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.7 2003/12/11 05:14:48 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/11 05:14:48 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -122,8 +122,7 @@ public class TestCheckboxTag1 extends JspTestCase {
 			pageContext.forward("/test/org/apache/struts/taglib/html/TestCheckboxTag1.jsp");
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("There is a problem that is preventing the tests to continue!");
+			fail("" + e.getMessage());
 		}
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag2.java,v 1.6 2003/03/23 04:08:28 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/23 04:08:28 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag2.java,v 1.7 2003/12/11 05:14:48 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/11 05:14:48 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -114,8 +114,7 @@ public class TestButtonTag2 extends JspTestCase {
 			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag2.jsp");
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("There is a problem that is preventing the tests to continue!");
+			fail("" + e.getMessage());
 		}
     }
 

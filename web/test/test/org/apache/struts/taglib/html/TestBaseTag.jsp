@@ -7,6 +7,7 @@
 <%
 String server = request.getServerName();
 int port      = request.getServerPort();
+String portString = (port == 80 ? "" : ":" + port);
 %>
 
 
@@ -15,7 +16,7 @@ int port      = request.getServerPort();
 		<html:base/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://<%=server%>:<%=port%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
+		<base href="http://<%=server%><%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
 	</bean:define>
 </logic:equal>
 
@@ -24,7 +25,7 @@ int port      = request.getServerPort();
 		<html:base target="My-Other-Frame"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://<%=server%>:<%=port%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
+		<base href="http://<%=server%><%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
 	</bean:define>
 </logic:equal>
 
@@ -33,7 +34,7 @@ int port      = request.getServerPort();
 		<html:base server="www.my-server-name.com"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://www.my-server-name.com:<%=port%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
+		<base href="http://www.my-server-name.com<%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp">
 	</bean:define>
 </logic:equal>
 
@@ -42,7 +43,7 @@ int port      = request.getServerPort();
 		<html:base server="www.my-server-name.com" target="My-Other-Frame"/>
 	</bean:define>
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
-		<base href="http://www.my-server-name.com:<%=port%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
+		<base href="http://www.my-server-name.com<%=portString%>/test/test/org/apache/struts/taglib/html/TestBaseTag.jsp" target="My-Other-Frame">
 	</bean:define>
 </logic:equal>
 

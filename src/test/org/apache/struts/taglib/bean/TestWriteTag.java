@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestWriteTag.java,v 1.7 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestWriteTag.java,v 1.8 2003/12/11 05:14:50 jmitchell Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/12/11 05:14:50 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -70,7 +70,6 @@ import org.apache.cactus.WebResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.SimpleBeanForTesting;
 import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.ResponseUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -128,8 +127,7 @@ public class TestWriteTag extends JspTestCase {
 			pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("There is a problem that is preventing the tests to continue!");
+			fail("" + e.getMessage());
 		}
     }
 
