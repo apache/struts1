@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.8 2002/07/23 01:02:51 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/07/23 01:02:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.9 2002/11/09 04:04:11 dmkarr Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/09 04:04:11 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/07/23 01:02:51 $
+ * @version $Revision: 1.9 $ $Date: 2002/11/09 04:04:11 $
  * @since Struts 1.1
  */
 
@@ -349,7 +349,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     /**
      * Return the implementation class we are using to construct new
      * instances, re-introspecting our {@link FormBeanConfig} if necessary
-     * (i.e. after being deserialized, since <code>beanClass</code> is
+     * (that is, after being deserialized, since <code>beanClass</code> is
      * marked transient.
      */
     protected Class getBeanClass() {
