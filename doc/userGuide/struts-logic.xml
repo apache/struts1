@@ -77,7 +77,7 @@
     <tagclass>org.apache.struts.taglib.logic.EmptyTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-    <p>This tag evaluates its nested body content only if the specified value
+    <p>[Since 1.1] This tag evaluates its nested body content only if the specified value
     is either absent (i.e. <code>null</code>) or an empty string (i.e. a
     <code>java.lang.String</code> with a length of zero).</p>
     </info>
@@ -900,7 +900,7 @@
     <tagclass>org.apache.struts.taglib.logic.MessagesNotPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-    <p>Evaluates the nested body content of this tag if 
+    <p>[since 1.1] Evaluates the nested body content of this tag if 
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is not in request scope.  If
@@ -956,7 +956,7 @@
     <tagclass>org.apache.struts.taglib.logic.MessagesPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-    <p>Evaluates the nested body content of this tag if 
+    <p>[since 1.1] Evaluates the nested body content of this tag if 
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is in request scope.  If
@@ -1434,10 +1434,10 @@
       <info>
       <p>Checks whether the currently authenticated user (if any) has been
       associated with any of the specified security roles. Use a comma-delimited
-	  list to check for multiple roles. Example:
-	  <code>&lt;logic:present role="role1,role2,role3"&gt;
-	            code.....
-			&lt;/logic:present&gt;</code></p>
+      list to check for multiple roles. Example:
+      <code>&lt;logic:present role="role1,role2,role3"&gt;
+                code.....
+            &lt;/logic:present&gt;</code></p>
       </info>
     </attribute>
 

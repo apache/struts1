@@ -244,7 +244,7 @@ each individual web app!  Doing so will cause problems with
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
   <li>iPortal Application Server - <a href="installation-ipas.html">Additional steps required.</a></li>
   <li>Jetty - <a href="installation-jetty.html">Additional steps required.</a></li>
-  <li>JRun - <a href="installation-jrun.html">Additional steps required.</a></li>
+  <li>JRun - <a href="installation-jr30.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
     required.</a></li>
   <li>Resin 1.2+ "standalone" - No additional steps required.</li>
@@ -329,6 +329,10 @@ each individual web app!  Doing so will cause problems with
     </p>
 
   </section>
+
+    <p>
+            Next: <a href="../index.html">Struts Home</a>
+    </p>
 
 </body>
 </document>

@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="craigmcc@apache.org">Craig McClanahan</author>
+    <author email="mcooper@apache.org">Martin Cooper</author>
+    <author email="husted@apache.org">Ted Husted</author>
+
+    <title>New and Status</title>
+  </properties>
+
+<body>
+
+<section name="News &amp; Status">
+
+<h3><a name="20020212"></a>12 February 2002 - Stxx for transforming XML</h3>
+
+<p>
+<a href="http://www.oroad.com/opencode/">
+<b>Struts for transforming XML with XSL</b></a> (stxx) is an extension of 
+the Struts framework to enhance support for XML and XSL.
+</p>
+<p>
+stxx sits on top of Struts, extending it's existing functionality to allow
+Action classes to return XML that will be transformed by an XSL file.
+</p>
+<p>
+The idea of stxx is to remove the need to be use JSP and TagLibs for the
+presentation layer of this framework. However, stxx does not force you to go the
+XML/XSL route, both technologies should work side by side.
+</p>
+<p>
+So, adding XSL support to struts is ALMOST as simple as adding the following
+tags to your struts-config.xml file:
+</p>
+<pre>
+&lt;action path="/welcome"
+        type="com.oroad.stxx.example.ExampleWelcomeAction"
+        scope="request">
+        &lt;forward name="success">
+&lt;!-- 
+    the transform tags take the XML returned by the Action
+    and transform them. The transform tag used is determined
+    by matching the user agent against the name attribute (or
+    default if nothing matches)
+-->
+                &lt;transform name="default" path="/login.xsl"/>
+                &lt;transform name="Mozilla" path="/login_netscape.xsl"/>
+                &lt;transform name="MSIE" path="/login_msie.xsl"/>
+        &lt;/forward>
+&lt;/action>
+</pre>
+<p>
+stxx features:
+</p>
+<ul>
+<li>
+Enhances the &lt;forward> tag in the struts-config.xml file to allow
+one to many &lt;transform> tags. These &lt;transform> tags represent 
+the XSL file to be used depending on the user-agent of the 
+browser accessing struts
+</li><li>
+A new class variable for the Action class, A JDOM Document, which 
+you use to append your data in your Action class too. This 
+Document object will be transformed by the XSL file in your 
+&lt;transform> tag.
+</li><li>
+stxx automatically flattens the ApplicationResources file to XML 
+and attaches it to the Document object returned by the new Action   
+class.
+</li><li>
+stxx also automatically appends the request parameters and 
+attributes, as well as ActionErrors as XML to the Document 
+object.
+</li>
+</ul>
+<p> 
+Please note: stxx is a work in progress, however, at this point I've been using
+it for about 4 months and it works great for me, I realize it might not fit
+everyone elses needs. Please send me feedback, opinions, complains, etc.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020211"></a>11 February 2002 - Struts 1.0.2 Released</h3>
+<p>
+The Struts team announces the release of Struts 1.0.2. This release is a
+bug fix only release, which fixes a compatibility problem inadvertently introduced
+with the previous 1.0.1 release. 
+</p>
+<p>
+The binary distribution for this release is available 
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">
+<b>here</b></a>
+and the source distribution
+is available 
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src/">
+<b>here</b></a>. 
+In addition, a library distribution, which consists of a minimal
+binary distribution, without sample web applications or additional code, is
+available 
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.2/src/">
+<b>here</b></a>. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020118"></a>18 Jan 2002 - Nested Taglib added to nightly build</h3>
+<p>
+Struts tags support a dotted notation to refer to a nested beans. The Nested 
+Talib extends this notation to automatically include a parent tag. Instead of 
+referring to a property as parent<strong>.</strong>child, "parent" can be 
+defined with the <code>nest</code> tag, and other Struts tags within that 
+tag can simply refer to the "child" property. Tags can be nested arbitarily 
+deep. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3>14 January 2002 - New Committer, Arron Bates </h3>
+<p>
+Arron Bates, known for his interesting and popular nesting extension to 
+the Struts taglibs has been elected as a Struts Committer. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020112.2"></a>12 Jan 2002 - MultiApp Capability Added</h3>
+<p>
+Support for multiple application modules has been added to the nightly build. 
+Developers can now provide multiple Struts configuration files, each of which 
+can defines its own "module prefix". All of the "context-relative" values in 
+the Struts configuration are now "module-relative". Struts components which '
+handle context-relative URIs now transparently handle module-relative URIs. 
+</p>
+<p>
+Existing configuration files, JavaServer Pages, or Actions do not need to be 
+changed to use this capability. The only change is to specify the module 
+prefix to be used with each additional configuration. 
+</p>
+<p>
+This feature allows different teams to work on different parts of an 
+application at the same time, without conflict over the configuration file. 
+It also allows Struts applications that were developed independantly to be 
+easily merged. 
+</p>
+<p>
+Formal documentation is pending. See the Mailing List Archive for details. 
+<ul>
+<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04354.html">
+The BIG Check-In for Multi-App Support</a></li>
+<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04773.html">
+Action mappings and The BIG Check-In</a></li>
+<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04740.html">
+[proposal] Multi-app sources modifications</a></li>
+<li><a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04460.html">
+Struts Next</a></li>
+</ul>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020112"></a>12 Jan 2002 - Struts 1.0.1 Released</h3>
+<p>
+  The Struts team is proud to announce the release of Struts 1.0.1. This
+  release is primarily a bug fix release, which fixes a number of known
+  problems with the previous 1.0 release.
+</p>
+<p>
+  The binary distribution for this release is available
+  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/">here</a>
+  and the source distribution is available
+  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/src/">here</a>.
+  In addition, a library distribution, which consists of a minimal binary distribution,
+  without sample web applications or additional code, is available
+  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1/lib/">here</a>.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020103"></a>03 Jan 2002 - Struts + Velocity + Tools</h3>
+<p>
+The first code for the new 
+<a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">
+Velocity Tool Subproject</a> is in and
+can be found in CVS as jakarta-velocity-tools. The first 
+functionality includes integration with Jakarta Struts as well as a
+generic template-rendering servlet with tool support.
+</p>
+<hr size="1" noshade=""/>
+
+<p align="center">
+<a href="news_2001.html">
+<b>MORE NEWS</b></a>
+</p>
+
+  </section>
+
+
+</body>
+</document>

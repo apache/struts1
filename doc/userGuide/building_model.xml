@@ -80,16 +80,22 @@
     
     <section name="2.3 ActionForm Beans" href="actionform">
       
-      <p>
-        Note: ActionForm beans are actually closer to the <i>View</i>
-        than the <i>Model</i>.
-      </p>
+      <blockquote>
+        <b>Note:</b> While ActionForm beans often have properties that correspond 
+        to properties in your Model beans, the form beans themselves should 
+        be considered part of the view.
+      </blockquote>
       <p>
         The Struts framework generally assumes that you have defined an
         <code>ActionForm</code> bean (that is, a Java class extending the
-        <code>ActionForm</code> class) for each input form required in your
+        <code>ActionForm</code> class) for the input forms in your
         application. <code>ActionForm</code> beans are sometimes just called
-        "form beans". If you declare such beans in your <code>ActionMapping</code>
+        "form beans". These may be finely-grained objects, so that there is one
+        bean for each form, or coarsely-grained so that one bean serves 
+        several forms, or even an entire application.
+       </p>
+       <p>
+        If you declare such beans in your <code>ActionMapping</code>
         configuration file (see "<a href="building_controller.html#config">
         Building the Controller Components</a>"), the Struts  controller servlet 
         will automatically perform the following services for you, before 
@@ -135,6 +141,10 @@
             to the usual JavaBeans conventions.  For example, an input field named
             <code>username</code> will cause the <code>setUsername()</code> method
             to be called.</li>
+        <li>Buttons and other controls on your form can also be defined as properties. 
+            This can help determine which button or control was selected when the 
+            form was submitted. Remember, the ActionForm is meant to represent your 
+            data-entry form, not just the data beans.</li>
         <li>Think of your ActionForm beans as a firewall between HTTP and the Action. 
             Use the validate method to ensure all required properties are present, and 
             that they contain reasonable values. An ActionForm that fails validation 

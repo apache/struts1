@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="craigmcc@apache.org">Craig McClanahan</author>
+    <author email="mcooper@apache.org">Martin Cooper</author>
+    <author email="husted@apache.org">Ted Husted</author>
+
+    <title>New and Status</title>
+  </properties>
+
+<body>
+
+<section name="News &amp; Status - 2001">
+
+<h3><a name="20011220"></a>20 Dec 2001 - New version of ISValidator in English</h3>
+<p>
+Inigo Serrano has released a new version of 
+<a href="http://isvalidator.sourceforge.net/en/exampleStrutsFull0010.htm">
+<b>ISValidator</b></a>, a collection of Java routines to 
+validate data Struts forms, is now available in English. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20011217"></a>17 Dec 2001 - Mapper ActionForm-to-Value Object and back</h3>
+<p>
+Andrej Sobkowski has 
+<a href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg04028.html">
+released an extension</a> to help map ActionForm 
+properties to more business-oriented value objects.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20011210"></a>10 Dec 3001 - eContent 2.0 released</h3>
+<p>
+Now with Struts integrated, Jcorporate (www.jcorporate.com) has today
+released a new version of its web content management system (CMS), 
+<a href="http://www.jcorporate.com/html/news/Press/eContentRelease2.0.html">
+eContentversion 2.0</a>:.
+</p>
+<p>
+eContent is a sophisticated application built using Expresso/Struts. 
+Full Java source code is available.  eContent integrates web content 
+management, scalable content delivery, workflow, collaboration
+and personalization and more. It also integrates with several open source
+projects including eForum - delivering context-sensitive forums to resources
+such as articles or financial reports. With enhanced support for managing
+content stored in databases, XML repositories, and static files, eContent
+provides team-based enterprise-wide collaboration.
+</p>
+<p>
+A full list of 
+<a href="http://www.jcorporate.com/econtent/Content.do?state=resource&amp;resource=732">
+2.0 enhancements is available</a>. A  
+<a href="http://www.jcorporate.com/product/econtent.html">
+new demo is also available online</a>.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20011113"></a>13 Nov 2001 - Expresso version 4.0 released</h3>
+<p>
+Expresso version 4.0 is now available at 
+<a href="www.jcorporate.com">
+<b>www.jcorporate.com</b></a>. For more
+information and to download the expresso4-00-complete.jar see
+<a href="http://www.jcorporate.com/product/expresso.html">
+http://www.jcorporate.com/product/expresso.html.
+</a>
+</p>
+<p>
+      Expresso 4.0 integrates
+      with Struts, and provides capabilities for database-stored
+      security, robust object-relational mapping, background job handling and
+      scheduling, self-tests, log4j logging integration, automated table
+      manipulation, database connection pooling, email connectivity, event
+      notification, caching, internationalization, XML automation, testing,
+      registration objects, configuration management, automatic database
+      maintenance...and so on.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20011130"></a>30 Nov 2001 - Struts/MVC Book and Training Seminars</h3>
+<p>
+[PUBLIC/PRIVATE TRAINING]
+</p>
+<p>
+      BaseBeans Engineering offers both public and private training classes in 
+      developing MVC applications using the Struts framework and other open 
+      standards software.  Please visit the BaseBeans web site for more 
+      information (http://www.basebeans.com).
+</p>
+<p>
+      [BOOK]
+</p>
+<p>
+      BaseBeans Engineering is announcing the widespread availability of the book 
+      "Struts Fast Track: J2EE/JSP Framework", covering the necessities of 
+      developing open standards, MVC, Struts-based applications, including open 
+      standard software overviews, database CRUD, object orientation, tiles, 
+      menus, security, refactoring, and deployment.
+</p>
+<p>
+      "Struts Fast Track" may be purchased at Atlas Books 
+      (http://www.atlasbooks.com/marktplc/00670.htm).
+</p>
+<p>
+      TABLE OF CONTENTS
+</p>
+<pre>
+      Chapter 1: Orientation
+      Chapter 2: Warm Up
+      Chapter 3: Requirements
+      Chapter 4: Framework Installation
+      Chapter 5: Support
+      Chapter 6: Application Architecture
+      Chapter 7: Searching
+      Chapter 8: Setup RDBMS
+      Chapter 9: Data Retrieval
+      Chapter 10: Object Orientation
+      Chapter 11: XML from JSP
+      Chapter 12: Drill Down
+      Chapter 13: Debugging
+      Chapter 14: Data Entry
+      Chapter 15: Master-Detail Processing
+      Chapter 16: Security
+      Chapter 17: Demo
+      Chapter 18: Data Validation
+      Chapter 19: Administration
+      Chapter 20: Portal Tiles
+      Chapter 21: Refactoring
+      Chapter 22: Menus
+      Chapter 23: Deployment
+      Chapter 24: Performance Assurance
+      Chapter 25: Audit Queue
+      Chapter 26: Content Syndication
+      Chapter 27: Review
+
+      Appendix A: Downloads
+      Appendix B: Technology Architecture
+      Appendix C: Struts Tiles
+      Appendix D: Struts Validation
+      Appendix E: WebLogic Deployment
+      Appendix F: Why not use ... ?
+</pre>
+<p>
+      [MORE INFORMATION]
+</p>
+<p>
+      For more information, please visit the 
+      <a href="http://www.basebeans.com">BaseBeans Engineering</a> web site. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20011127"></a>27 Nov 2001 - Routines to validate Data in Struts</h3>
+<p>
+The 
+<a href="http://www.inigoserrano.com/ISValidator/en/ejemploStrutsCompleto0010ISValidator.htm">
+<b>ISValidator</b></a> is a set of routines designed to help validate data 
+in diferents scenarios, command line argumets, Servlets Parameters, 
+and so forth. Support has now been added to use ISValidator with
+Struts 1.0. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3>27 Nov 2001 - Struts 1.0.1-rc1 Released</h3>
+<p>
+  The first <strong>Release Candidate</strong> for Struts 1.0.1 is now
+  available. This release fixes a number of known problems with the
+  Struts 1.0 release.
+</p>
+<p>
+  The binary distribution for this release candidate is available
+  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1-rc1/">here</a>
+  and the source distribution is available
+  <a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.1-rc1/src/">here</a>.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20011005"></a>05 Oct 2001 - Free remote JSP/java debugger for Tomcat</h3>
+<p>
+Day Corp.'s 
+<a href="http://www.day.com/devnet">
+<b>Communiqué JSP Debugger</b></a> is a remote java/jsp debugger for
+Tomcat. it's based on JPDA 1.0 (Java Platform Debugger Architecture),
+which is the official debugging support for the Java 2 platform.
+</p>
+<hr noshade="" size="1"/>
+
+
+<h3><a name="20010615"></a>15 Jun 2001 - Struts 1.0 Released</h3>
+<p>
+As promised at JavaOne, the
+<a href="http://jakarta.apache.org/struts/">Struts</a> project team is proud
+to announce the availability of <strong>Version 1.0</strong> of the
+Struts Framework.  The binary distribution for Struts 1.0 is available
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0/">here</a>
+and the source distribution is available
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0/src/">here</a>. 
+A <a href="press.html">press release</a> is also available.
+</p>
+<hr noshade="" size="1"/>
+
+
+<h3><a name="20010602"></a>02 Jun 2001 - Struts 1.0-beta-3 Released </h3>
+<p><strong>Struts 1.0-beta-3</strong> is a release candidate version of the
+Struts Framework, likely to be the final beta prior to the Struts 1.0 Final
+Release, which is currently scheduled for <strong>June 15, 2001</strong>.
+Please help identify any remaining bugs that need to be fixed prior to
+final release, and report them to our bug tracking system at
+<a href="http://nagoya.apache.org/bugzilla/">http://nagoya.apache.org/bugzilla/</a>.
+</p>
+<p>The binary distribution of Struts 1.0-beta-3 is available
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b3/">here</a>,
+and the source distribution of Struts 1.0-beta-3 is available
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b3/src/">here</a>.
+</p>
+<hr noshade="" size="1"/>
+
+
+<h3><a name="20010519"></a>19 May 2001 - Jakarta Struts 1.0-b2 Released</h3>
+<p><strong>Struts 1.0-b2</strong> is an update release in preparation for a
+final release of Struts 1.0 prior to JavaOne 2001.  The changes included are
+documented in the
+<a href="http://jakarta.apache.org/struts/release-notes-1.0-b2.html">Release
+Notes</a>.  Get your copy of this latest release
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0-b2/">here</a>.
+</p>
+<hr noshade="" size="1"/>
+
+
+<h3><a name="20010223"></a>23 Feb 2001 - Struts 1.0 Beta 1 Released </h3>
+<p>
+  <a href="http://jakarta.apache.org/struts/">Version 1.0-beta-1 of the Struts 
+  Framework is now available for download.</a>
+</p>
+<p>
+  Struts is an open source project, under the sponsorship of the Apache
+  Software Foundation, to produce framework useful in building web
+  applications with Java Servlet and JavaServer Pages (JSP) technology.
+  Struts encourages application architectures based on the
+  Model-View-Controller (MVC) design paradigm.
+</p>
+<hr noshade="" size="1"/>
+
+
+<h3><a name="20010107"></a>07 Jan 2001 - MySQL Database Admin Tool</h3>
+<p>
+A database administration tool based on STRUTS 0.5 is 
+available online at
+<a href="http://www.webappcabaret.com/teatimej">
+<b>www.webappcabaret.com/teatimej</b></a>
+</p>
+<p>
+      You will be asked to provide a user id and password.
+      Use the following logon details
+</p>
+<p>
+      userid : teatimej<br/>
+      password : yyyyyy
+</p>
+<p>
+      The application demonstrates several features of STRUTS including the
+      iterate tag, indexed properties, template, form:select, jdbc connection
+      and so forth.
+</p>
+<hr noshade="" size="1"/>
+
+  </section>
+
+
+</body>
+</document>

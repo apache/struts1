@@ -67,24 +67,32 @@
                     <li><a href="building_controller.html#config_add">4.6 Add Struts Components To Your Application</a></li>
                     </ul></li>
                 </ul></li>
-             <li><a href="resources.html">5. Resources</a>
-                    <ul>
-                    <li><a href="resources.html#taglibs">6.1 Contributor Taglibs</a></li>
-                    <li><a href="resources.html#extensions">6.2 Contributor Extensions</a></li>
-                    <li><a href="resources.html#examples">6.3 Projects and Examples</a></li>
-                    <li><a href="resources.html#tutorials">6.4 Tutorials</a></li>
-                    <li><a href="resources.html#articles">6.5 Articles</a></li>
-                    <li><a href="resources.html#books">6.6 Books</a></li>
-                    <li><a href="resources.html#apis">6.7 Selected APIs</a></li>
-                    <li><a href="resources.html#other">6.8 Other Resource Pages</a></li>
-                    <li><a href="resources.html#other">6.9 Mailing List Archives</a></li>
-                    <li><a href="resources.html#powered">6.10 Powered by Struts </a></li>
-                    <li><a href="resources.html#hosts">6.11 Java / Struts ISPs</a></li>
-                    <li><a href="resources.html#consultants">6.12 Struts Consultants</a></li>
-                    </ul></li>
-
-            <li><a href="kickstart.html">6. Kickstart FAQ</a></li>
-            <li><a href="volunteers.html">7. Who We Are</a></li>
+             <li>5. Getting Started</li>
+                <ul>
+                <li><a href="release-notes.html">Release Notes</a></li>
+                <ul>
+                <li><a href="release-notes-1.0.2.html">Release Notes 1.0.2</a></li>
+                <li><a href="release-notes-1.0.1.html">Release Notes 1.0.1</a></li>
+                <li><a href="release-notes-1.0.html">Release Notes 1.0</a></li>
+                <li><a href="release-notes-1.0-b3.html">Release Notes 1.0-b3</a></li>
+                <li><a href="release-notes-1.0-b2.html">Release Notes 1.0-b2</a></li>
+                <li><a href="release-notes-1.0-b1.html">Release Notes 1.0-b1</a></li>
+                </ul>
+                <li><a href="installation.html">Installation</a></li>
+                <ul>
+                <li><a href="installation-ip.html">iPlanet</a></li>
+                <li><a href="installation-ipas.html">Portal Application Server</a></li>
+                <li><a href="installation-jetty.html">Jetty</a></li>
+                <li><a href="installation-jr30.html">JRun 3.0</a></li>
+                <li><a href="installation-oas.html">Orion Application Server</a></li>
+                <li><a href="installation-sas.html">SilverStream Application Server 3.7.1 and later</a></li>
+                <li><a href="installation-tc.html">Tomcat with Apache</a></li>
+                <li><a href="installation-ubs72.html">Bluestone Universal Business Server 7.2</a></li>
+                <li><a href="installation-was352.html">WebSphere Application Server 3.5 FixPack 2</a></li>
+                <li><a href="installation-was352-x.html">WAS with the Example Applcation</a></li>
+                <li><a href="installation-wls5.html">Weblogic 5.1 sp8</a></li>
+                </ul>
+                </ul>
         </ul>
 
       </section>

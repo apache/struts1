@@ -7,14 +7,47 @@
 
     <menu name="User's Guide">
       <item name="Table of Contents"     href="index.html"/>
-      <item name="Kickstart FAQ"         href="kickstart.html"/>
       <item name="Introduction"          href="introduction.html"/>
       <item name="Model Components"      href="building_model.html"/>
       <item name="View Components"       href="building_view.html"/>
       <item name="Controller Components" href="building_controller.html"/>
-      <item name="Resources"             href="resources.html"/>
-      <item name="Who We Are"            href="volunteers.html"/>
-      <item name="Struts Home"           href="../index.html"/>
+    </menu>
+
+    <menu name="Developer Guides">
+        <item name="Bean Tags"
+              href="../api/org/apache/struts/taglib/bean/package-summary.html#package_description"/>
+        <item name="HTML Tags"
+              href="../api/org/apache/struts/taglib/html/package-summary.html#package_description"/>
+        <item name="Logic Tags"
+              href="../api/org/apache/struts/taglib/logic/package-summary.html#package_description"/>
+        <item name="Nested Tags"
+              href="../api/org/apache/struts/taglib/nested/package-summary.html#package_description"/>
+        <item name="Template Tags"
+              href="../api/org/apache/struts/taglib/template/package-summary.html#package_description"/>
+        <item name="Utilities"
+              href="../api/org/apache/struts/util/package-summary.html#package_description"/>
+    </menu>
+
+    <menu name="TagLib Documentation">
+        <item name="Bean Tags"
+              href="struts-bean.html"/>
+        <item name="HTML Tags"
+              href="struts-html.html"/>
+        <item name="Logic Tags"
+              href="struts-logic.html"/>
+        <item name="Nested Tags"
+              href="struts-nested.html"/>
+        <item name="Template Tags"
+              href="struts-template.html"/>
+    </menu>
+
+    <menu name="Getting Started">
+      <item name="Release Notes"           
+        href="release-notes.html"/>
+      <item name="Installation"           
+        href="installation.html"/>
+      <item name="Struts Home"
+        href="../index.html"/>
     </menu>
 
 </project>

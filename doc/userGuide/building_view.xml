@@ -157,6 +157,17 @@
     </section>
 
     <section name="3.3 Forms and FormBean Interactions" href="form_beans">    
+
+      <blockquote> 
+        <b>Note:</b> While the examples given here use JSP and custom tags, 
+        the ActionForm beans and the other Struts controller components are 
+        view neutral. Struts can be used with Velocity Templates, XLST, and 
+        any other presentation technology that can be rendered via a Java 
+        servlet. See the 
+        <a href="../resources.html">
+        Resources page</a> for links to additional information.
+      </blockquote>
+
       <p>
         At one time or another, most web developers have built forms using
         the standard capabilities of HTML, such as the <code>&lt;input&gt;</code>
@@ -192,7 +203,8 @@
 
       <p> 
         with no need to explicitly refer to the JavaBean from which the initial
-        value is retrieved.  That is handled automatically by the framework.
+        value is retrieved.  That is handled automatically by the JSP tag, using 
+        facilities provided by the framework.
       </p>
       <p>
         HTML forms are sometimes used to upload other files. Most browsers 

@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<document url="./kickstart.xml">
+<properties>
+<author>Ted Husted</author> 
+<title>The Struts User's Guide - Kickstart FAQ</title>
+</properties>
+<body> 
+<chapter href="faq" name="Kickstart FAQ"> 
+<section href="contents" name="Table of Contents">
+<p>Here are answers to the usual getting-started questions. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
+  <ul>
+    <li><a href="#why">Why do we need Struts?</a></li>
+    <li><a href="#how">How does Struts work?</a></li>
+    <li><a href="#compat">Is Struts compatible with other Java technologies?</a></li>
+    <li><a href="#who">Who wrote Struts?</a></li>
+    <li><a href="#struts">Why is it called Struts?</a></li>
+    <li><a href="#license">How is Struts licensed?</a></li>
+    <li><a href="#usage">Can Struts be used in a commercial application?</a></li>
+
+    <li><a href="#where">Where can I get a copy of Struts?</a></li>
+    <li><a href="#install">How do I install Struts?</a></li>
+    <li><a href="#jar">When do I need the struts.jar on my classpath?</a></li>
+
+    <li><a href="#help">Where can I get help with Struts?</a></li>
+    <li><a href="#consultants">Is commercial support available for Struts?</a></li>
+    <li><a href="#hosts">Are there ISPs that will host my Struts application?</a></li>
+    <li><a href="#powered">What Web sites are already Powered by Struts?</a></li>
+
+    <li><a href="#turbine">Whats the difference between Struts and Turbine?</a></li>
+    <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
+  
+    <li><a href="#bugs">Where can I report bugs or make feature requests?</a></li>
+    <li><a href="#contribute">How can I contribute to the development of Struts?</a></li>
+    <li><a href="#release">When is the next release coming out?</a></li>
+    <li><a href="#unsubscribe">How do I unsubscribe from the mailing list?</a></li>
+    <li><a href="#digest">Is there a digest for the mailing list?</a></li>
+    <li><a href="#newsgroup">Is there a Struts Newsgroup?</a></li>
+    <li><a href="#more">Are there any other FAQs?</a></li>
+  </ul>
+</section>
+
+<section href="why" name="Why do we need Struts?">
+<p>Java technologies give developers a serious boost when creating and maintaining applications to meet the demands of today's public Web sites and enterprise intranets. Struts combines Java Servlets, Java ServerPages, custom tags, and message resources into a unified framework. The end result is a cooperative, synergistic platform, suitable for development teams, independent developers, and everyone in between.</p>
+</section>
+
+<section href="how" name="How does Struts work?">
+<p>Java Servlets are designed to handle requests made by Web browsers. Java ServerPages are designed to create dynamic Web pages that can turn billboard sites into live applications. Struts uses a special Servlet as a switchboard to route requests from Web browsers to the appropriate ServerPage. This makes Web applications much easier to design, create, and maintain.</p>
+</section>
+
+<section href="javasoft" name="Is Struts compatible with other Java technologies?">
+<p>Yes. Struts is committed to supporting industry standards. Our lead developer is a member of <a href="http://java.sun.com/aboutJava/communityprocess/jsr/jsr_052_jsptaglib.html">JSR052</a>, Sun's Expert group for developing a standard library of custom JSP tags. A primary design criteria is that Struts must be compatible with Sun's J2EE platform for corporate enterprises. In fact, Struts really acts as an integrator of Java technologies, so that they can be used in the &quot;real world&quot;.</p>
+</section>
+
+<section href="who" name="Who wrote Struts?">
+<p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig is the primary developer of both Struts and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>, the official reference implementation for a Java servlet container. With stable releases of Struts and Tomcat 4 in circulation, Craig is now working as the Implementation Engineer for Sun's new <a href="http://java.sun.com/pr/2001/06/pr010604-03.html">Web Services Pack</a>. </p>
+
+<p>There are now many active committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;. All told, 17 individual developers and committers contributed to the Struts 1.0 codebase.</p>
+</section>
+
+<section href="struts" name="Why is it called Struts?">
+<p>It's a reference to struts in the architectural sense, a reminder of the nearly invisible pieces that hold up buildings, houses, and bridges.</p>
+</section>
+
+<section href="license" name="How is Struts licensed?">
+<p>Struts is copyrighted software available under a &quot;free-to-use-license&quot; by the Apache Software Foundation. The license appears at the head of every source code file. A reference copy of the license is available <a href="http://www.apache.org/LICENSE-1.1">here</a>.</p>
+</section>
+
+<section href="usage" name="Can Struts be used in a commercial product?">
+<p>Yes. The only requirements you must meet are those listed in the Apache Software Foundation license, which is included at the top of each source file and in the file LICENSE in the top-level directory of the distribution.</p>
+<p>In addition, contributions of patches, improved code, new features, or even just requests for features are also welcome.</p>
+</section>
+
+<section href="where" name="Where can I get a copy of Struts?">
+<p>The best place to download Struts is at <a href="http://jakarta.apache.org/struts/">jakarta.apache.org/struts</a>. The nightly builds are very stable, and recommended as the best place to start today.</p>
+</section>
+
+<section href="install" name="How do I install Struts?">
+<p>To develop applications with Struts, you can usually just add the Struts JAR file to your Java development environment. You can then start using the Struts classes as part of your own application. A <a href="struts-blank.war">blank Struts application</a> is provided, which you can just copy to get a quick-start on your own brainchild.</p>
+<p>Since the full source code for Struts is available, we also provide <a href="http://jakarta.apache.org/struts/installation.html">complete instructions</a> for compiling your own Struts JAR from scratch. (This is actually easier that it looks!)</p>
+<p>Your Struts application can be usually be deployed using a standard WAR file. In most cases, you simply deposit the WAR file on your application server, and it is installed automatically. If not, step-by-step installation instructions for <a href="http://jakarta.apache.org/struts/installation.html#Containers">various servlet containers</a> are available.</p>
+</section>
+
+<section href="jar" name="When do I need &quot;struts.jar&quot; on my classpath?">
+<p>When you are compiling an application that uses the Struts classes, you must have the &quot;struts.jar&quot; on the classpath your <b>compiler</b> sees -- it does not <i> have</i> to be on your CLASSPATH environment variable.</p>
+<p>Why is that an important distinction? Because if you are using a servlet container on your development machine to test your application, the &quot;struts.jar&quot; <b>must not</b> be on your CLASSPATH environment variable when running the container. (This is because each Web application must also have their own copy of the Struts classes, and the container will become confused if it is on the environment path as well.)</p>
+<p>There are several general approaches to this issue:</p>
+<ul>
+<li><b>Use ANT</b> for building your projects -- it can easily assemble  classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
+<li><b>Use an IDE</b> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
+<li><b>Use a shell script</b> that temporarily adds struts.jar  to the classpath just for compilation, for example<br/> 
+<i>javac -classpath /path/to/struts.jar:$CLASSPATH $@</i></li>
+</ul>
+</section>
+
+<section href="help" name="Where can I get help with Struts?">
+<p>The Struts package comes complete with a <a href="http://jakarta.apache.org/struts/userGuide/index.html">users guide</a> to introduce people to the framework and its underlying technologies. Various components also have their own in-depth developers guide, to cover more advanced topics. Comprehesive <a href="http://jakarta.apache.org/struts/api-1.0/index.html">Javadocs</a> are included along with the <b>full source code</b>. The <a href="http://jakarta.apache.org/site/mail.html">Strut's mailing list</a> is also very active, and welcomes posts from new users.</p>
+<p>There are also many third-party tutorials, articles, and books that cover Struts. See our <a href="resources.html#tutorials">Resources page</a> for current listings and links. Two very useful resources are the <a href="http://www.mail-archive.com/index.php3?hunt=struts">mailing list archives</a> and the <a href="http://www.jguru.com/forums/Struts">Struts Forum at JGuru</a>.</p>
+</section>
+
+<section href="support" name="Is commercial support available?">
+<p>There is no official, commercial support for Struts, though third parties may offer different degrees of support. A list of Struts consultants is available on our <a href="resources.html#consultants">Resources page</a></p>
+</section>
+
+<section href="providers" name="Are there ISPs that will host my Struts application?">
+<p>For a listing of some Java and Struts ISPs, visit our <a href="resources.html#hosts">Resources page</a>.</p>
+</section>
+
+<section href="powered" name="What Web sites are already Powered by Struts?">
+<p>For a listing of some Struts-powered Web sites available to the public, visit our <a href="resources.html#powered">Resources page</a>.</p>
+</section>
+
+<section href="turbine" name="What's the difference between Jakarta Struts and Jakarta Turbine?">
+<p>See</p>
+<ul><li>&lt; <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg03206.html">http://www.mail-archive.com/struts-user@jakarta.apache.org/msg03206.html</a> ></li>
+<li>&lt; <a href="http://www.mail-archive.com/general@jakarta.apache.org/msg00495.html">http://www.mail-archive.com/general@jakarta.apache.org/msg00495.html</a> ></li>
+<li>&lt; <a href="http://jakarta.apache.org/velocity/ymtd/ymtd.html">http://jakarta.apache.org/velocity/ymtd/ymtd.html</a> &gt;</li>
+</ul>
+</section>
+
+<section href="taglibs" name="Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?">
+<p>Development of both products began about the same time. Leading up to the release of 1.0, it was thought better to continue to develop the taglibs alongside the controller. Now that 1.0 is out, the Java ServerPages Standard Taglib is in active development. Once work on the JSPTL stabilizes, the Struts taglibs will be revisited. Tags which are are not linked directly to the framework may be hosted at Jakarta Taglibs instead.</p>
+</section>
+
+<section href="bugs" name="Where can I report bugs or make feature requests?">
+<p>You can research and report outstanding fixes and feature requests using <a href="http://jakarta.apache.org/site/bugs.html">Jakarta Bugzilla</a>.</p>
+<p>If you are unsure if this is in actual problem, feel free to bring it up on the list first. But to be sure an issue is resolved, always report it to <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>.</p>
+<p>Struts also maintains a <a href="../todo-1.1.html">TODO list</a> outlining features being planned or developed.</p>
+</section>
+
+<section href="contribute" name="How can I contribute to the development of Struts?">
+<p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>. These are the same people who distribute the Apache Web server. Like all ASF projects, Struts is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>, <a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and <a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can contribute patches, new code, and documentation. The most active Developers may become <a href="http://jakarta.apache.org/site/roles.html">Committers</a>, who make the actual decisions about the Strut's codebase.</p>
+<p>You can start by joining the Struts User list. If you enjoy participating there, then sign up for the Struts Developer list too. If you find any problems with Struts, or find a missing feature, you can enter a record to our <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> database.</p>
+</section>
+
+<section href="release" name="When is the next release coming out?">
+<p>Here is the truth regarding releases:</p>
+<p>Jakarta products are released on the basis of merit, and ~not~ according
+to a strict timetable. The volunteers devote whatever time they can to working
+on the product. But all volunteers have real jobs and real lives, that 
+do take precedence. Since Struts does have have paid personnel working 
+on the project, we simply cannot make date-orientated commitments.</p>
+<p>All Jakarta products must circulate a public beta before release. If a
+beta is not in circulation, then it's a good bet that a release is not
+forthcoming any time soon. Products sometimes go through several betas
+before final release. So if this is beta 1, then it still may not be
+released any time soon.</p>
+<p>The bottom line is that Jakarta takes releases very seriously. We do not
+compromise the quality of our software by watching the calendar (and
+then ship something ready or not). A release is ready when it is ready.</p>
+<p>That may sound flip, but it ~is~ the truth. The delivery of
+production-quality, leading-edge software is not something anyone can 
+prognasticate. If anyone tries, they are lying to you. That, we won't 
+do ;-)</p>
+<p>What we ~will~ do is release all of our development software as soon as it
+is developed. This way you can judge for yourself how quickly the
+development is proceeding, and whether what is being developed will meet
+your needs. If you need a feature right now, you can use the nightly
+build, or roll your own patch. There are no private CVS's or a private
+development lists. What you see is what we got. If you are following the
+DEV list, then you know everything the developers know. Really, you do.</p>
+
+</section>
+
+<section href="unsubscribe" name="How do I unsubscribe from the mailing list?">
+<p><b>From the email account used to subscribe to the list,</b> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.</p>
+</section>
+
+<section href="digest" name="Is there a digest for the User list?">
+<p>Yes. <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">struts-user-digest-subscribe@jakarta.apache.org</a>&gt;.</p>
+</section>
+
+<section href="newsgroup" name="Is there a Struts newsgroup?">
+
+<p>Not a usenet group, but the Struts User list can be accessed with your 
+favorite newsgroup reader from the 
+<a href="http://news.basebeans.com/forums.jsp">
+BaseBeans Engineering</a> site.
+</p>
+
+</section>
+
+<section href="more" name="Are there any other FAQs?">
+<p>Yes. For questions new developers commonly ask, visit the <a href="newbie.html">Struts Newbie FAQ</a>. For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</p>
+</section>
+
+<section>
+  <p>Next: <a href="userGuide/introduction.html">Introduction to the Users Guide</a></p>
+
+</section>
+
+</chapter></body></document>

@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
-<document url="./installation-jrun.xml">
+<document url="./installation-jr30.xml">
 
   <properties>
     <author>Eric Wu</author>
-    <title>The Struts Framework Project - Installation - JRun</title>
+    <author>Mark Budai</author>
+    <title>The Struts Framework Project - Installation - JRun 3.0</title>
   </properties>
 
   <body>
 
 <section name="Installing Struts with your servlet container" href="Containers"> 
 
-<h3><a name="jr30">JRUN 3.0 SP2A, VERSION 3.02A.11614</a></h3>
+<h3><a name="jrun">JRUN 3.0 SP2A, VERSION 3.02A.11614</a></h3>
 
 <b>Tested with: Microsoft IIS 5.0, Windows 2000</b>
 
@@ -173,10 +174,11 @@ to be made:</p>
 
 <ul>
 <li>index.jsp, logon.jsp: Change &lt;html:html locale="true"> to <br/>&lt;html:html locale=&lt;%= true %>></li>
+<li>logon.jsp: Change &lt;html:html redisplay="true"> to <br/>&lt;html:html redisplay=&lt;%= true %>></li>
 <li>registration.jsp, subscription.jsp: Change all instances of filter="true" to <br/>filter=&lt;%= true %></li>
 </ul> 
   <hr/>
-  <ul><li>Author: Eric Wu</li></ul>
+  <ul><li>Author: Eric Wu, Mark Budai</li></ul>
   <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>

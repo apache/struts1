@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.0b1.xml,v 1.1 2001/03/18 17:48:58 vmassol Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.0b1.xml,v 1.1 2002/02/20 00:49:36 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.0-beta-1</strong> release is to
   create a milestone release against which a final series of bug fixes and

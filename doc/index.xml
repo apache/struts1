@@ -3,6 +3,7 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <title>The Struts Framework Project</title>
   </properties>
@@ -12,29 +13,49 @@
 
   <section name="Welcome to Struts" href="Welcome">
 
-  <p>Welcome to the Struts Framework!  The goal of this project
-  is to provide an open source framework useful in building web applications
-  with Java <a href="http://java.sun.com/products/servlet">Servlet</a> and
-  <a href="http://java.sun.com/products/jsp">JavaServer Pages</a> (JSP)
-  technology.  Struts encourages application architectures based on the
-  Model-View-Controller (MVC) design paradigm, colloquially known as
-  <i>Model 2</i> in discussions on various servlet and JSP related
-  mailing lists.</p>
+  <p>
+  Welcome to the Struts Framework!  The goal of this project
+  is to provide an open source framework for building Web applications 
+  that integrates standard technologies like 
+  <a href="http://java.sun.com/products/servlet"> Java Servlets</a>, 
+  <a href="http://java.sun.com/products/javabeans/">JavaBeans</a>, 
+  and <a href="http://java.sun.com/products/jsp">JavaServer 
+  Pages</a> (JSP). 
+  </p>
+  <p>
+  Struts encourages application architectures based the
+  <b>Model-View-Controller</b> (MVC) design paradigm, colloquially known as
+  <i>Model 2</i> in discussions on various Java mailing lists. Struts 
+  provides its own <b>Controller</b> component and integrates 
+  with other technologies to provide the Model and the View. 
+  For the <b>Model</b>, Struts can interact with any standard data 
+  access technology, including 
+  <a href="http://java.sun.com/products/ejb/index.html">
+  Enterprise Java Beans</a>, 
+  <a href="http://java.sun.com/products/jdbc/index.html"> 
+  JDBC</a>, and 
+  <a href="http://java.sun.com/products/jndi/index.html"> 
+  JNDI</a>. 
+  For the <b>View</b>, Struts works well with 
+  <a href="http://java.sun.com/products/jsp">JavaServer 
+  Pages</a>, 
+  <a href="http://jakarta.apache.org/velocity/index.html">
+  Velocity Templates</a>, 
+  XSLT, and 
+  <a href="resources.html#views">
+  other presentation systems
+  </a>.
+  </p>
 
-  <p>Struts includes the following primary areas of functionality:</p>
-  <ul>
-  <li>A controller servlet that dispatches requests to appropriate
-      <strong>Action</strong> classes provided by the application
-      developer.</li>
-  <li>JSP custom tag libraries, and associated support in the controller
-      servlet, that assists developers in creating interactive form-based
-      applications.</li>
-  <li>Utility classes to support XML parsing, automatic population of
-      JavaBeans properties based on the Java reflection APIs, and
-      internationalization of prompts and messages.</li>
-  </ul>
+  <p>
+  The Struts framework provides the invisible underpinnings every 
+  professional Web application needs to survive. Struts helps you 
+  create an extensible development environment for your application, 
+  based on published standards and proven design patterns.
+  </p>
 
-  <p>Struts is part of the <a href="http://jakarta.apache.org">Jakarta
+  <p>
+  Struts is part of the <a href="http://jakarta.apache.org">Jakarta
   Project</a>, sponsored by the
   <a href="http://www.apache.org">Apache Software Foundation</a>.  The
   official Struts home page is at
@@ -45,46 +66,84 @@
 
   <section name="Learning About Struts" href="Docs">
 
-  <p>The <a href="userGuide/kickstart.html"><b>Kickstart FAQ</b></a> quickly answers 
-  the most common questions about Struts.</p>
-
-  <p>A concise <a href="userGuide/index.html"><b>Users Guide</b></a> is also provided 
-  with the distribution. The User Guide introduces the Model View Controller 
-  architecture, and how it relates to the major components of Struts. Several Developer 
-  Guides are also provided, to help you get started with the Struts tag extensions and 
-  utility packages.</p>
-
-  <p>For more detail about a specific class or package, the Struts 
-  <a href="http://jakarta.apache.org/struts/api-1.0/index.html"><b>Javadocs</b></a>
-  are comprehensive and carefully maintained. It is strongly recommended that 
-  you refer to the <a href="http://jakarta.apache.org/struts/api-1.0/index.html">Javadoc</a> 
-  for each class as you begin to use it, to be sure important features and options 
-  are not overlooked. What you don't know, can't help you.</p>
-
-  <p>Of course, the only true documentation is the code itself. If you have any questions 
-  about how Struts actually works, do not hestate to <i>use the source</i>. For the 
-  complete, buildable source code to the entire Struts framework, see the "src" folder in 
-  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src/"><b>Struts 1.0.2 source distribution</b></a>.</p>
-
-  <p>The Struts <a href="userGuide/resources.html"><b>Resources</b></a> page provides links to 
-  everything else written about  Struts, including books, articles, tutorials, and sample 
-  applications. There are also links to public sites "Powered by Struts". </p>
+  <blockquote>
+  Note: Most of the links in this section refer to the <b>Nightly Build</b>. 
+  When learning about Struts, <b>be sure to refer to the documentation for the 
+  version you are actually using</b>. The documentation is bundled with each 
+  distribution as an application that you can install locally. Links to the 
+  documentation for the current stable release (1.0.2) are also provided on the 
+  menu bar. Whenever possible, please help conserve our bandwidth, and install 
+  the documentation locally.
+  </blockquote>
 
   <p>
-  The Struts <a href="news.html"><b>News &amp; Status</b></a> page tracks changes to the 
-  Struts package, including proposals for new features and the latest additions to the 
-  resources page.
+  The <a href="kickstart.html"><b>Kickstart FAQ</b></a> quickly answers 
+  the most common questions about Struts. More technical questions are 
+  covered by the <a href="newbie.html">Struts Newbie FAQ</a>, and online in the Struts 
+  <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and 
+  <a href="http://jguru.com/forums/Struts">Forum</a>.
+  </p>
+
+  <p>
+  A concise <a href="userGuide/index.html"><b>Users Guide</b></a> is also provided 
+  with the distribution. The User Guide introduces the Model-View-Controller 
+  architecture, and how it relates to the major components of Struts. Several <b>Developer 
+  Guides</b> are provided with the User Guide, to help you get started with the Struts JSP 
+  tag extensions and utility packages. The User Guide also includes detailed installation 
+  instructions and release notes for each version of the framework.
+  </p>
+
+  <p>
+  For more detail about a specific class or package, the Struts 
+  <a href="api/index.html"><b>Javadocs</b></a>
+  are <b>surprisingly comprehensive and carefully maintained</b>. It is <i>strongly</i> recommended that 
+  you refer to the 
+  <a href="api/index.html">
+  Javadoc</a> for each class as you begin to use it, to be sure important features 
+  and options are not overlooked. <i>What you don't know, can't help you.</i>
+  </p>
+
+  <p>
+  Of course, the only true documentation is the code itself. If you have any questions 
+  about how Struts actually works, do not hesitate to <i>use the source</i>. For the 
+  complete, buildable source code to the entire Struts framework, see the "src" folder in 
+  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src/">
+  <b>Struts 1.0.2 source distribution</b></a>.
+  </p>
+
+  <p>
+  The Struts <a href="#Involved">Mailing Lists</a> are an treasure trove of useful, 
+  interactive information. The list tends to carry a high volume, so always check the 
+  published documentation and 
+  the <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
+  <b>MAILING LIST ARCHIVE</b></a> before posting a new question. Like as not, it's 
+  already been asked and answered.
+  </p>
+
+  <p>
+  The Struts <a href="resources.html"><b>Resources</b></a> page provides links to 
+  everything else published about  Struts, including books, articles, tutorials, seminars, 
+  and sample applications. There are also links to public sites "Powered by Struts" and
+  a directory of professional Struts consultants.
+  </p>
+
+  <p>
+  The Struts <a href="news.html"><b>News &amp; Status</b></a> page highlights current 
+  events affecting framework, including new releases, proposals for new features, 
+  and additions to the Resources page.
   </p>
 
   </section>
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>The <i>production release</i> of <strong>Struts 1.0.2</strong> is available in
+  <p>
+  The <i>production release</i> of <strong>Struts 1.0.2</strong> is available in
   a convenient binary distribution and also with complete source code. In
   addition, a library distribution is available, which contains the latest
   Struts binaries without the sample applications, providing a smaller,
-  faster download.</p>
+  faster download.
+  </p>
 
   <ul>
   <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2">
@@ -95,25 +154,33 @@
   <b>Struts 1.0.2 Source Code Distribution</b></a></li>
   </ul>
   
-  <p>Check the <a href="release-notes-1.0.2.html">Release Notes</a>
-  for a summary of the changes since the Struts 1.0.1 release.</p>
+  <p>
+  Check the 
+  <a href="http://jakarta.apache.org/doc-1.0.2/release-notes-1.0.2.html">
+  </a> for a summary of the changes since the Struts 1.0.1 release.
+  </p>
 
-  <p><b>In addition to a Struts distribution,</b> you will need to ensure that
+  <p>
+  <b>In addition to a Struts distribution,</b> you will need to ensure that
   you have downloaded and installed all of the
-  <a href="installation.html#Prerequisites">prerequisite</a> software
-  applications. Then, follow the appropriate instructions to
-  <a href="installation.html#Installing">install and use a Struts binary 
+  <a href="http://jakarta.apache.org/doc-1.0.2/installation.html#Prerequisites">
+  prerequisite</a> software applications. Then, follow the appropriate instructions to
+  <a href="http://jakarta.apache.org/doc-1.0.2/installation.html#Installing">
+  install and use a Struts binary 
   distribution</a> in your web application or for
-  <a href="installation.html#Building">building Struts from the source
-  distribution</a>.</p>
+  <a href="http://jakarta.apache.org/doc-1.0.2/installation.html#Building">
+  building Struts from the source  distribution</a>.
+  </p>
 
   </section>
 
   <section name="Nightly Builds" href="Builds">
 
-  <p>For developers who are helping to develop Struts, or who just want 
+  <p>
+  For developers who are helping to develop Struts, or who just want 
   "the latest bits", the latest development version is made available each 
-  morning. Use at your own risk!</p>
+  morning. Use at your own risk!
+  </p>
 
   <ul>
   <li>Nightly builds - Download the source directly via
@@ -127,33 +194,43 @@
       here</a>.</li>
   </ul>
 
-  <p>Be sure to check the <a href="release-notes.html">Release Notes</a> for the nightly 
-  builds so you know what you are getting!</p>
+  <p>
+  Be sure to check the 
+  <a href="http://jakarta.apache.org/release-notes.html">
+  Release Notes</a> for the nightly builds so you know what you are getting!
+  </p>
 
-  <p>Access to the CVS source repository for Struts is available through both
+  <p>
+  Access to the CVS source repository for Struts is available through both
   <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">web
   browser</a> and
   <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">CVS client</a>
-  interfaces.</p>
+  interfaces.
+  </p>
 
   </section>
 
   <section name="Reporting Bugs and Feature Requests" href="Bugs">
 
-  <p>Tracking of bug reports and enhancement requests for Struts is handled through 
-  the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a>.
-  Please select <strong>Struts</strong> from the product list, along with the
-  details of which component of Struts you feel this report relates to,
-  and details of your operating environment. You will automatically be
-  notified by email as the status of your bug or enhancement report changes.</p>
+  <p>
+  Tracking of bug reports and enhancement requests for Struts is handled 
+  through the 
+  <a href="http://jakarta.apache.org/site/bugs.html">
+  Apache Bug Database</a>. Please select <strong>Struts</strong> from the product 
+  list, along with the details of which component of Struts you feel this report 
+  relates to, and details of your operating environment. You will automatically be
+  notified by email as the status of your bug or enhancement report changes.
+  </p>
 
   </section>
 
   <section name="Getting Involved" href="Involved">
 
-  <p>There are a number of ways to get more involved in the Struts
+  <p>
+  There are a number of ways to get more involved in the Struts
   community, including contributing to the future development of Struts.
-  Check out the following resources:</p>
+  Check out the following resources:
+  </p>
   <ul>
   <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
       to communicate with other developers that are using
@@ -167,6 +244,17 @@
       and improving the functionality supported by Struts itself.
       [<a href="mailto:struts-dev-subscribe@jakarta.apache.org">Subscribe</a>]
       [<a href="mailto:struts-dev-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-USER Digest</strong> - Subscribe to this list
+      to receive a daily digest of the Struts USER list. 
+      [<a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-USER Newgroup</strong> - The User list is also mirrored online, 
+      so that you can participate <b>without</b> subscribing to the regular mailing 
+      list.<br/>
+      [<a href="http://news.basebeans.com/forums.jsp">Struts Newsgroup</a>]<br/>
+      Our thanks to BaseBeans Engineering for providing this much-needed service!
       </li>
   <li><strong>Bug Reports and Feature Requests</strong> Use the
       <a href="#Bugs">Bug Reporting System</a> to submit these reports.</li>

@@ -13,7 +13,7 @@
   <section name="Introduction" href="Introduction">
 
     <p>This document contains the release notes for
-    <strong>nightly release</strong> of the Struts Framework,
+    <strong>nightly build</strong> of the Struts Framework,
     and covers changes that have taken place since
     <a href="release-notes-1.0.1.html">Version 1.0.1</a>
     was released.  The following sections cover
@@ -332,6 +332,10 @@ multipart requests.</li>
     <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
   saved in the page context.</li>
     </ul> 
+
+    <p>
+            Next: <a href="installation.html">Installation</a>
+    </p>
 
 </section>  
 
