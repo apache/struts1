@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.3 2000/08/01 20:03:22 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/08/01 20:03:22 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.4 2000/10/15 03:34:51 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/10/15 03:34:51 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:22 $
+ * @version $Revision: 1.4 $ $Date: 2000/10/15 03:34:51 $
  */
 
 public final class DatabaseServlet
@@ -318,21 +318,36 @@ public final class DatabaseServlet
 	Enumeration users = database.elements();
 	while (users.hasMoreElements()) {
 	    User user = (User) users.nextElement();
-	    writer.println("  <user" +
-	      " username=\"" + user.getUsername() + "\"" +
-	      " password=\"" + user.getPassword() + "\"" +
-	      " fullName=\"" + user.getFullName() + "\"" +
-	      " fromAddress=\"" + user.getFromAddress() + "\"" +
-	      " replyToAddress=\"" + user.getReplyToAddress() + "\"" +
-	      ">");
+	    writer.print("  <user");
+            if (user.getUsername() != null)
+                writer.print(" username=\"" + user.getUsername() + "\"");
+            if (user.getPassword() != null)
+                writer.print(" password=\"" + user.getPassword() + "\"");
+            if (user.getFullName() != null)
+                writer.print(" fullName=\"" + user.getFullName() + "\"");
+            if (user.getFromAddress() != null)
+                writer.print(" fromAddress=\"" + user.getFromAddress() + "\"");
+            if (user.getReplyToAddress() != null)
+                writer.print(" replyToAddress=\"" + user.getReplyToAddress() + "\"");
+            writer.println(">");
 	    Subscription subscriptions[] = user.getSubscriptions();
 	    for (int i = 0; i < subscriptions.length; i++) {
-		writer.println("    <subscription" +
-		  " host=\"" + subscriptions[i].getHost() + "\"" +
-		  " type=\"" + subscriptions[i].getType() + "\"" +
-		  " username=\"" + subscriptions[i].getUsername() + "\"" +
-		  " password=\"" + subscriptions[i].getPassword() + "\"" +
-		  "/>");
+		writer.print("    <subscription");
+                writer.print(" autoConnect=\"" +
+                             subscriptions[i].getAutoConnect() + "\"");
+                if (subscriptions[i].getHost() != null)
+                    writer.print(" host=\"" + subscriptions[i].getHost() +
+                                 "\"");
+                if (subscriptions[i].getType() != null)
+                    writer.print(" type=\"" + subscriptions[i].getType() +
+                                 "\"");
+                if (subscriptions[i].getUsername() != null)
+                    writer.print(" username=\"" +
+                                 subscriptions[i].getUsername() + "\"");
+                if (subscriptions[i].getPassword() != null)
+                    writer.print(" password=\"" +
+                                 subscriptions[i].getPassword() + "\"");
+                writer.println("/>");
 	    }
 	    writer.println("  </user>");
 	}

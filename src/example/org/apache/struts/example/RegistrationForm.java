@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.7 2000/10/12 21:53:42 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/10/12 21:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.8 2000/10/15 03:34:53 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/10/15 03:34:53 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/10/12 21:53:42 $
+ * @version $Revision: 1.8 $ $Date: 2000/10/15 03:34:53 $
  */
 
 public final class RegistrationForm extends ActionForm  {
@@ -108,38 +108,38 @@ public final class RegistrationForm extends ActionForm  {
     /**
      * The from address.
      */
-    private String fromAddress = "";
+    private String fromAddress = null;
 
 
     /**
      * The full name.
      */
-    private String fullName = "";
+    private String fullName = null;
 
 
     /**
      * The password.
      */
-    private String password = "";
+    private String password = null;
 
 
     /**
      * The confirmation password.
      */
-    private String password2 = "";
+    private String password2 = null;
 
 
     /**
      * The reply to address.
      */
-    private String replyToAddress = "";
+    private String replyToAddress = null;
 
 
 
     /**
      * The username.
      */
-    private String username = "";
+    private String username = null;
 
 
     // ----------------------------------------------------------- Properties
@@ -162,10 +162,7 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setAction(String action) {
 
-	if (action == null)
-	    this.action = "";
-	else
-	    this.action = action;
+        this.action = action;
 
     }
 
@@ -187,10 +184,7 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setFromAddress(String fromAddress) {
 
-	if (fromAddress == null)
-	    this.fromAddress = "";
-	else
-	    this.fromAddress = fromAddress;
+        this.fromAddress = fromAddress;
 
     }
 
@@ -212,10 +206,7 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setFullName(String fullName) {
 
-	if (fullName == null)
-	    this.fullName = "";
-	else
-	    this.fullName = fullName;
+        this.fullName = fullName;
 
     }
 
@@ -237,10 +228,7 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setPassword(String password) {
 
-	if (password == null)
-	    this.password = "";
-	else
-	    this.password = password;
+        this.password = password;
 
     }
 
@@ -262,10 +250,7 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setPassword2(String password2) {
 
-	if (password2 == null)
-	    this.password2 = "";
-	else
-	    this.password2 = password2;
+        this.password2 = password2;
 
     }
 
@@ -287,10 +272,7 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setReplyToAddress(String replyToAddress) {
 
-	if (replyToAddress == null)
-	    this.replyToAddress = "";
-	else
-	    this.replyToAddress = replyToAddress;
+        this.replyToAddress = replyToAddress;
 
     }
 
@@ -312,15 +294,31 @@ public final class RegistrationForm extends ActionForm  {
      */
     public void setUsername(String username) {
 
-	if (username == null)
-	    this.username = "";
-	else
-	    this.username = username;
+        this.username = username;
 
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Reset all properties to their default values.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
+
+        this.action = "Create";
+        this.fromAddress = null;
+        this.fullName = null;
+        this.password = null;
+        this.password2 = null;
+        this.replyToAddress = null;
+        this.username = null;
+
+    }
 
 
     /**
@@ -330,7 +328,7 @@ public final class RegistrationForm extends ActionForm  {
      * <code>null</code> or an <code>ActionErrors</code> object with no
      * recorded error messages.
      *
-     * @param mapping The ActionMapping used to select this instance
+     * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
     public ActionErrors validate(ActionMapping mapping,

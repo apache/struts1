@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.9 2000/10/12 21:53:42 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/10/12 21:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.10 2000/10/15 03:34:54 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/10/15 03:34:54 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.example;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
@@ -79,6 +80,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
 
 
 /**
@@ -86,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/10/12 21:53:42 $
+ * @version $Revision: 1.10 $ $Date: 2000/10/15 03:34:54 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -124,18 +126,24 @@ public final class SaveSubscriptionAction extends Action {
 	String action = request.getParameter("action");
 	if (action == null)
 	    action = "?";
+        if (servlet.getDebug() >= 1)
+            servlet.log("SaveSubscriptionAction:  Processing " + action +
+                        " action");
 
 	// Is there a currently logged on user?
 	User user = (User) session.getAttribute(Constants.USER_KEY);
-	if (user == null)
+	if (user == null) {
+            if (servlet.getDebug() >= 1)
+                servlet.log(" User is not logged on in session "
+                            + session.getId());
 	    return (servlet.findForward("logon"));
+        }
 
 	// Is there a related Subscription object?
 	Subscription subscription =
 	  (Subscription) session.getAttribute(Constants.SUBSCRIPTION_KEY);
 	if (subscription == null) {
-	    servlet.log("SaveSubscriptionAction:  " +
-	                "Missing subscription for user '" +
+	    servlet.log(" Missing subscription for user '" +
 	                 user.getUsername() + "'");
 	    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
 	                       messages.getMessage("error.noSubscription"));
@@ -145,7 +153,7 @@ public final class SaveSubscriptionAction extends Action {
 	// Was this transaction cancelled?
 	if (isCancelled(request)) {
 	    if (servlet.getDebug() >= 1)
-	        servlet.log("SaveSubscriptionAction:  Transaction '" + action +
+	        servlet.log(" Transaction '" + action +
 	                    "' was cancelled");
 	    if (mapping.getAttribute() != null)
 	        session.removeAttribute(mapping.getAttribute());
@@ -156,7 +164,7 @@ public final class SaveSubscriptionAction extends Action {
 	// Was this transaction a Delete?
 	if (action.equals("Delete")) {
 	    if (servlet.getDebug() >= 1)
-	        servlet.log("SaveSubscriptionAction:  Deleting mail server '" +
+	        servlet.log(" Deleting mail server '" +
 	                    subscription.getHost() + "' for user '" +
 	                    user.getUsername() + "'");
 	    subscription.setHost(null);
@@ -170,14 +178,20 @@ public final class SaveSubscriptionAction extends Action {
 	// All required validations were done by the form itself
 
 	// Update the persistent subscription information
-	if (subform.getHost().length() > 0)
-	    subscription.setHost(subform.getHost());
-	if (subform.getUsername().length() > 0)
-	    subscription.setUsername(subform.getUsername());
-	if (subform.getPassword().length() > 0)
-	    subscription.setPassword(subform.getPassword());
-	if (subform.getType().length() > 0)
-	    subscription.setType(subform.getType());
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Populating database from form bean");
+        try {
+            PropertyUtils.copyProperties(subscription, subform);
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            if (t == null)
+                t = e;
+            servlet.log("Subscription.populate", t);
+            throw new ServletException("Subscription.populate", t);
+        } catch (Throwable t) {
+            servlet.log("Subscription.populate", t);
+            throw new ServletException("Subscription.populate", t);
+        }
 
 	// Remove any obsolete session objects
 	if (mapping.getAttribute() != null)
@@ -185,6 +199,8 @@ public final class SaveSubscriptionAction extends Action {
 	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 
 	// Forward control to the specified success URI
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Forwarding to success page");
 	return (mapping.findForward("success"));
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.7 2000/10/12 21:53:43 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/10/12 21:53:43 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.8 2000/10/15 03:34:55 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/10/15 03:34:55 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/10/12 21:53:43 $
+ * @version $Revision: 1.8 $ $Date: 2000/10/15 03:34:55 $
  */
 
 public final class SubscriptionForm extends ActionForm  {
@@ -100,27 +100,33 @@ public final class SubscriptionForm extends ActionForm  {
 
 
     /**
+     * Should we auto-connect at startup time?
+     */
+    private boolean autoConnect = false;
+
+
+    /**
      * The host name.
      */
-    private String host = "";
+    private String host = null;
 
 
     /**
      * The password.
      */
-    private String password = "";
+    private String password = null;
 
 
     /**
      * The subscription type.
      */
-    private String type = "";
+    private String type = null;
 
 
     /**
      * The username.
      */
-    private String username = "";
+    private String username = null;
 
 
     // ----------------------------------------------------------- Properties
@@ -143,11 +149,29 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public void setAction(String action) {
 
-	if (action == null)
-	    this.action = "";
-	else
-	    this.action = action;
+        this.action = action;
 
+    }
+
+
+    /**
+     * Return the auto-connect flag.
+     */
+    public boolean getAutoConnect() {
+
+        return (this.autoConnect);
+
+    }
+
+
+    /**
+     * Set the auto-connect flag.
+     *
+     * @param autoConnect The new auto-connect flag
+     */
+    public void setAutoConnect(boolean autoConnect) {
+
+        this.autoConnect = autoConnect;
     }
 
 
@@ -168,10 +192,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public void setHost(String host) {
 
-	if (host == null)
-	    this.host = "";
-	else
-	    this.host = host;
+        this.host = host;
 
     }
 
@@ -193,10 +214,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public void setPassword(String password) {
 
-	if (password == null)
-	    this.password = "";
-	else
-	    this.password = password;
+        this.password = password;
 
     }
 
@@ -218,10 +236,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public void setType(String type) {
 
-	if (type == null)
-	    this.type = "";
-	else
-	    this.type = type;
+        this.type = type;
 
     }
 
@@ -243,15 +258,30 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public void setUsername(String username) {
 
-	if (username == null)
-	    this.username = "";
-	else
-	    this.username = username;
+        this.username = username;
 
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Reset all properties to their default values.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
+
+        this.action = "Create";
+        this.autoConnect = false;
+        this.host = null;
+        this.password = null;
+        this.type = null;
+        this.username = null;
+
+    }
 
 
     /**
@@ -261,7 +291,7 @@ public final class SubscriptionForm extends ActionForm  {
      * <code>null</code> or an <code>ActionErrors</code> object with no
      * recorded error messages.
      *
-     * @param mapping The ActionMapping used to select this instance
+     * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
     public ActionErrors validate(ActionMapping mapping,

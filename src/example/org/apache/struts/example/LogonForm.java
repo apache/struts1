@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.4 2000/10/12 21:53:41 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/12 21:53:41 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.5 2000/10/15 03:34:53 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/10/15 03:34:53 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/12 21:53:41 $
+ * @version $Revision: 1.5 $ $Date: 2000/10/15 03:34:53 $
  */
 
 public final class LogonForm extends ActionForm {
@@ -91,13 +91,13 @@ public final class LogonForm extends ActionForm {
     /**
      * The password.
      */
-    private String password = "";
+    private String password = null;
 
 
     /**
      * The username.
      */
-    private String username = "";
+    private String username = null;
 
 
     // ----------------------------------------------------------- Properties
@@ -120,10 +120,7 @@ public final class LogonForm extends ActionForm {
      */
     public void setPassword(String password) {
 
-	if (password == null)
-	    this.password = "";
-	else
-	    this.password = password;
+        this.password = password;
 
     }
 
@@ -145,15 +142,26 @@ public final class LogonForm extends ActionForm {
      */
     public void setUsername(String username) {
 
-	if (username == null)
-	    this.username = "";
-	else
-	    this.username = username;
+        this.username = username;
 
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Reset all properties to their default values.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
+
+        this.password = null;
+        this.username = null;
+
+    }
 
 
     /**
@@ -163,7 +171,7 @@ public final class LogonForm extends ActionForm {
      * <code>null</code> or an <code>ActionErrors</code> object with no
      * recorded error messages.
      *
-     * @param mapping The ActionMapping used to select this instance
+     * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
     public ActionErrors validate(ActionMapping mapping,

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/Subscription.java,v 1.2 2000/08/01 20:03:24 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:24 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/Subscription.java,v 1.3 2000/10/15 03:34:54 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/15 03:34:54 $
  *
  * ====================================================================
  *
@@ -71,13 +71,19 @@ import java.io.Serializable;
  * specific mail server.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:24 $
+ * @version $Revision: 1.3 $ $Date: 2000/10/15 03:34:54 $
  */
 
 public final class Subscription implements Serializable {
 
 
     // =================================================== Instance Variables
+
+
+    /**
+     * Should we auto-connect at startup time?
+     */
+    private boolean autoConnect = false;
 
 
     /**
@@ -111,6 +117,28 @@ public final class Subscription implements Serializable {
 
 
     // =========================================================== Properties
+
+
+    /**
+     * Return the auto-connect flag.
+     */
+    public boolean getAutoConnect() {
+
+        return (this.autoConnect);
+
+    }
+
+
+    /**
+     * Set the auto-connect flag.
+     *
+     * @param autoConnect The new auto-connect flag
+     */
+    public void setAutoConnect(boolean autoConnect) {
+
+        this.autoConnect = autoConnect;
+
+    }
 
 
     /**
@@ -232,6 +260,29 @@ public final class Subscription implements Serializable {
 
 
     // ======================================================= Public Methods
+
+
+    /**
+     * Return a String representation of this object.
+     */
+    public String toString() {
+
+        StringBuffer sb = new StringBuffer("Subscription[username=");
+        sb.append(username);
+        if (host != null) {
+            sb.append(", host=");
+            sb.append(host);
+        }
+        if (user != null) {
+            sb.append(", user=");
+            sb.append(user.getUsername());
+        }
+        sb.append(", autoConnect=");
+        sb.append(autoConnect);
+        sb.append("]");
+        return (sb.toString());
+
+    }
 
 
 }

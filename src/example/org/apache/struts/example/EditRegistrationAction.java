@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.7 2000/10/12 21:53:40 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/10/12 21:53:40 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.8 2000/10/15 03:34:52 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/10/15 03:34:52 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.example;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.Vector;
 import javax.servlet.RequestDispatcher;
@@ -77,6 +78,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
 
 
 /**
@@ -85,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/10/12 21:53:40 $
+ * @version $Revision: 1.8 $ $Date: 2000/10/15 03:34:52 $
  */
 
 public final class EditRegistrationAction extends Action {
@@ -122,6 +124,9 @@ public final class EditRegistrationAction extends Action {
 	String action = request.getParameter("action");
 	if (action == null)
 	    action = "Create";
+        if (servlet.getDebug() >= 1)
+            servlet.log("EditRegistrationAction:  Processing " + action +
+                        " action");
 
 	// Is there a currently logged on user?
 	User user = null;
@@ -129,7 +134,7 @@ public final class EditRegistrationAction extends Action {
 	    user = (User) session.getAttribute(Constants.USER_KEY);
 	    if (user == null) {
 		if (servlet.getDebug() >= 1)
-		    servlet.log("EditRegistrationAction: User is not logged on in session "
+		    servlet.log(" User is not logged on in session "
 	                        + session.getId());
 		return (servlet.findForward("logon"));
 	    }
@@ -137,21 +142,36 @@ public final class EditRegistrationAction extends Action {
 
 	// Populate the user registration form
 	if (form == null) {
+            if (servlet.getDebug() >= 1)
+                servlet.log(" Creating new RegistrationForm bean under key "
+                            + mapping.getAttribute());
 	    form = new RegistrationForm();
 	    session.setAttribute(mapping.getAttribute(), form);
 	}
 	RegistrationForm regform = (RegistrationForm) form;
-	regform.setAction(action);
 	if (user != null) {
-	    regform.setUsername(user.getUsername());
-	    regform.setPassword(null);
-	    regform.setPassword2(null);
-	    regform.setFullName(user.getFullName());
-	    regform.setFromAddress(user.getFromAddress());
-	    regform.setReplyToAddress(user.getReplyToAddress());
+            if (servlet.getDebug() >= 1)
+                servlet.log(" Populating form from " + user);
+            try {
+                PropertyUtils.copyProperties(regform, user);
+                regform.setAction(action);
+                regform.setPassword(null);
+                regform.setPassword2(null);
+            } catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
+                if (t == null)
+                    t = e;
+                servlet.log("RegistrationForm.populate", t);
+                throw new ServletException("RegistrationForm.populate", t);
+            } catch (Throwable t) {
+                servlet.log("RegistrationForm.populate", t);
+                throw new ServletException("RegistrationForm.populate", t);
+            }
 	}
 
 	// Forward control to the edit user registration page
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Forwarding to 'success' page");
 	return (mapping.findForward("success"));
 
     }

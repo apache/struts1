@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.9 2000/10/12 21:53:42 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/10/12 21:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.10 2000/10/15 03:34:53 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/10/15 03:34:53 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.example;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
@@ -79,6 +80,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
 
 
 /**
@@ -87,7 +89,7 @@ import org.apache.struts.util.MessageResources;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/10/12 21:53:42 $
+ * @version $Revision: 1.10 $ $Date: 2000/10/15 03:34:53 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -127,16 +129,23 @@ public final class SaveRegistrationAction extends Action {
 	    action = "Create";
 	Hashtable database = (Hashtable)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
+        if (servlet.getDebug() >= 1)
+            servlet.log("SaveRegistrationAction:  Processing " + action +
+                        " action");
 
 	// Is there a currently logged on user (unless creating)?
 	User user = (User) session.getAttribute(Constants.USER_KEY);
-	if (!"Create".equals(action) && (user == null))
+	if (!"Create".equals(action) && (user == null)) {
+            if (servlet.getDebug() >= 1)
+                servlet.log(" User is not logged on in session "
+                            + session.getId());
 	    return (servlet.findForward("logon"));
+        }
 
 	// Was this transaction cancelled?
 	if (isCancelled(request)) {
 	    if (servlet.getDebug() >= 1)
-	        servlet.log("SaveRegistrationAction:  Transaction '" + action +
+	        servlet.log(" Transaction '" + action +
 	                    "' was cancelled");
 	    if (mapping.getAttribute() != null)
 	        session.removeAttribute(mapping.getAttribute());
@@ -144,9 +153,9 @@ public final class SaveRegistrationAction extends Action {
 	    return (mapping.findForward("success"));
 	}
 
-	// All required validations were done in the form bean
-
 	// Validate the request parameters specified by the user
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Performing extra validations");
 	String value = null;
 	ActionErrors errors = new ActionErrors();
 	value = regform.getUsername();
@@ -177,26 +186,26 @@ public final class SaveRegistrationAction extends Action {
 	    user = new User();
 	    user.setUsername(regform.getUsername());
 	}
-	if (regform.getPassword().length() > 0)
-	    user.setPassword(regform.getPassword());
-	if (regform.getFullName().length() > 0)
-	    user.setFullName(regform.getFullName());
-	else
-	    user.setFullName(null);
-	if (regform.getFromAddress().length() > 0)
-	    user.setFromAddress(regform.getFromAddress());
-	else
-	    user.setFromAddress(null);
-	if (regform.getReplyToAddress().length() > 0)
-	    user.setReplyToAddress(regform.getReplyToAddress());
-	else
-	    user.setReplyToAddress(null);
+        try {
+            PropertyUtils.copyProperties(user, regform);
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            if (t == null)
+                t = e;
+            servlet.log("Registration.populate", t);
+            throw new ServletException("Registration.populate", t);
+        } catch (Throwable t) {
+            servlet.log("Registration.populate", t);
+            throw new ServletException("Subscription.populate", t);
+        }
+
+
+        // Log the user in if appropriate
 	if ("Create".equals(action)) {
 	    database.put(user.getUsername(), user);
 	    session.setAttribute(Constants.USER_KEY, user);
 	    if (servlet.getDebug() >= 1)
-		servlet.log("SaveRegisrationAction: User '" +
-		            user.getUsername() +
+		servlet.log(" User '" + user.getUsername() +
 	                    "' logged on in session " + session.getId());
 	}
 
@@ -205,6 +214,8 @@ public final class SaveRegistrationAction extends Action {
 	    session.removeAttribute(mapping.getAttribute());
 
 	// Forward control to the specified success URI
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Forwarding to success page");
 	return (mapping.findForward("success"));
 
     }
