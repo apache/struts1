@@ -91,27 +91,12 @@
 
   <section name="Reporting Bugs and Feature Requests" href="Bugs">
 
-  <p>Thanks to the gracious efforts of
-  <a href="mailto:nick@cortexity.com">Nick Bauman</a> and his employer,
-  Cortexity, there is now an interim bug tracking system available for
-  all of the Jakarta projects (including Struts).  To report a bug, or
-  request a feature enhancement, simply point your browser at:
-  <a href="http://znutar.cortexity.com">
-  http://znutar.cortexity.com</a>.  When filling out a bug report
-  or feature request, please follow these simple rules:</p>
-  <ul>
-  <li>From the list of projects and categories, select one of the following
-      entries:
-      <ul>
-      <li>Struts / Feature Requests / New Features</li>
-      <li>Struts / Feature Requests / Enhancement</li>
-      <li>Struts / Bug Report / New Bug Report</li>
-      </ul></li>
-  <li>For the <code>Project Release</code> field, enter the Struts version
-      number (such as <strong>0.5</strong>) if you are using a released
-      version, or the date included in the filename of a nightly distribution
-      (such as <strong>20000922</strong>) if you are using that.</li>
-  </ul>
+  <p>Tracking of bug reports and new feature requests for Struts is hosted
+  at <a href="http://nagoya.apache.org/bugzilla/">http://nagoya.apache.org/bugzilla/</a>.
+  Please select <strong>Struts</strong> from the product list, along with the
+  details of which component of Struts you feel this report relates to,
+  and details of your operating environment.  You will automatically be
+  notified by Email as the status of your bug report changes.</p>
 
   </section>
 
