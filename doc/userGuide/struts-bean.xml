@@ -364,6 +364,14 @@
     </ul>
     </info>
 
+    <p><strong>WARNING</strong> - Accessing resources protected by security
+    constraints, or resources under the <code>/WEB-INF</code> subdirectory,
+     with this tag is not supported.  Consider using the
+    <code>&lt;jsp:include ... flush="false"&gt;</code> tag on a JSP 1.2
+    or later container, or the
+    <code>&lt;c:import&gt;</code> tag from the JSP Standard Tag Library
+    to accomplish this.</p>
+
     <attribute>
       <name>anchor</name>
       <required>false</required>
