@@ -42,9 +42,9 @@
   
   <ul>
   <li><a href="proposal-workflow.html">Workflow</a></li>
-  <li><a href="http://husted.com/about/struts/struts-security.htm">Role Based Actions</a></li>
-  <li><a href="http://husted.com/about/struts/logic-niallp.htm">If/Else/Switch tags</a></li>
-  <li><a href="http://husted.com/about/struts/codemaker.htm">Code generator</a></li>
+  <li><a href="http://husted.com/struts/resources/struts-security.htm">Role Based Actions</a></li>
+  <li><a href="http://husted.com/struts/resources/logic-niallp.htm">If/Else/Switch tags</a></li>
+  <li><a href="http://husted.com/struts/resources/codemaker.htm">Code generator</a></li>
   </ul>
  
   <p>See also the Tiles, Validator, and Service Manager packages in the contrib folder.</p>
@@ -228,7 +228,7 @@
         security role before they can execute a particular action.
         </p>
         <p>
-        <a href="http://husted.com/about/struts/struts-security.htm"><b>A proposed extension is available.</b></a>
+        <a href="http://husted.com/struts/resources/struts-security.htm"><b>A proposed extension is available.</b></a>
         </p>
         <p>
         [STRUTS-DEV, James W., 01/23/2001]
@@ -393,7 +393,7 @@
         capability of many programming languages.</p>
         <p>NOTE: Pending the outcome of the JSPTL, this functionality will 
         <b>not</b> be added to the Struts-Logic tags. However, a 
-        <a href="http://husted.com/about/struts/logic-niallp.htm"><b>contributor 
+        <a href="http://husted.com/struts/resources/logic-niallp.htm"><b>contributor 
          taglib</b></a> is available.</p>
       </info>
       <assigned>
@@ -471,7 +471,7 @@
         <p>Create a tool that takes an XML-based description of the
         properties of the form bean, and automatically generates
         the corresponding Java class.</p>
-        <p><a href="http://husted.com/about/struts/codemaker.htm"><b>A 
+        <p><a href="http://husted.com/struts/resources/codemaker.htm"><b>A 
         contributor extension is now available.</b></a></p>
         <p>
         [STRUTS-DEV, Mark Wutka, 06/01/2000 and 06/16/2000]
