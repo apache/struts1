@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.20 2003/09/26 06:22:05 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/09/26 06:22:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.21 2003/09/26 06:28:05 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/09/26 06:28:05 $
  *
  * ====================================================================
  *
@@ -70,7 +70,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/09/26 06:22:05 $
+ * @version $Revision: 1.21 $ $Date: 2003/09/26 06:28:05 $
  */
 public class CheckboxTag extends BaseHandlerTag {
 
@@ -194,24 +194,10 @@ public class CheckboxTag extends BaseHandlerTag {
         }
 
         results.append("\"");
-
-        Object result =
-            TagUtils.getInstance().lookup(pageContext, name, property, null);
-
-        if (result == null) {
-            result = "";
-        }
-
-        result = result.toString();
         
-        String checked = (String) result;
-        if (checked.equalsIgnoreCase(value)
-            || checked.equalsIgnoreCase("true")
-            || checked.equalsIgnoreCase("yes")
-            || checked.equalsIgnoreCase("on")) {
-
-            results.append(" checked=\"checked\"");
-        }
+		if (this.isChecked()) {
+			results.append(" checked=\"checked\"");
+		}
 
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
@@ -225,6 +211,31 @@ public class CheckboxTag extends BaseHandlerTag {
         return (EVAL_BODY_TAG);
 
     }
+    
+    /**
+     * Determines if the checkbox should be checked.
+     * @return true if checked="checked" should be rendered.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+	protected boolean isChecked() throws JspException {
+		Object result =
+			TagUtils.getInstance().lookup(pageContext, name, property, null);
+
+		if (result == null) {
+			result = "";
+		}
+
+		result = result.toString();
+
+		String checked = (String) result;
+		return (
+			checked.equalsIgnoreCase(this.value)
+				|| checked.equalsIgnoreCase("true")
+				|| checked.equalsIgnoreCase("yes")
+				|| checked.equalsIgnoreCase("on"));
+
+	}
 
     /**
      * Save the associated label from the body content.
