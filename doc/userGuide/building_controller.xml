@@ -417,15 +417,16 @@ public ActionForward execute(ActionMapping mapping,
       Your execute method should process the Exception and return an ActionForward
       object to tell Struts where to forward to next.  Then you configure your 
       handler in struts-config.xml like this:<br/>
-      <pre>
-      	<global-exceptions>
-    		<exception key="some.key" type="java.io.IOException" handler="com.yourcorp.ExceptionHandler"/>
-    	</global-exceptions>
-      </pre>
+		&lt;global-exceptions&gt;
+    		&lt;exception key="some.key" type="java.io.IOException" handler="com.yourcorp.ExceptionHandler"/&gt;
+    	&lt;/global-exceptions&gt;
       <br/>
       That configuration says that com.yourcorp.ExceptionHandler.execute() will be called 
       when any IOException is thrown by an Action.  The key is a key from your message resources
       properties file that can be used to display an error message.
+      </p>
+      <p>
+      You can override global exception handlers by defining a handler inside an action definition.
       </p>
       <p>
       A common use of ExceptionHandler's is to configure one for java.lang.Exception so it's called
