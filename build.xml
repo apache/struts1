@@ -199,13 +199,7 @@
     <!-- Web directory -->
     <property name="web.dir" value="web"/>
 	
-	<!-- Default value for building mailreader -->
-    <property name="mailreader.inherit" value="false" />
-
-	<!-- Default value for building contrib/el/ -->
-    <property name="el.inherit"         value="false"/>
-    
-	<!-- This is only used if you execute "ant download-dependencies" -->
+    <!-- This is only used if you execute "ant download-dependencies" -->
     <property name="libdir" value="${basedir}/lib" />
 
     <path id="downloaded.lib.classpath">
@@ -280,7 +274,9 @@
 
 
 	-->
+
 		<mkdir dir="${libdir}"/>
+		<mkdir dir="${libdir}/tld"/>
 
 		<get dest="${libdir}/commons-beanutils.jar" 
 			usetimestamp="true" ignoreerrors="true" 
@@ -335,9 +331,11 @@
 		<property name="xerces.jar"             value="${libdir}/xerces.jar"/>
 		<property name="antlr.jar"              value="${libdir}/antlr.jar"/>
 		<property name="servlet.jar"            value="${libdir}/servlet.jar"/>
-		
+		<property name="jstl.jar"               value="${libdir}/jstl-1.0.6.jar"/>
+                <property name="jstl-standard.jar"      value="${libdir}/standard-1.0.6.jar"/>
+
 		<property name="mailreader.inherit"     value="true"/>
-                <property name="el.inherit"             value="true"/>
+	        <property name="jstl.tld.dir"           value="${libdir}/tld"/>
 
 	
     </target>
@@ -466,7 +464,7 @@
         <ant    dir="${basedir}/contrib/tag-doc"
              target="clean" inheritAll="false"/>
         <ant    dir="${basedir}/contrib/tag-doc"
-             target="dist" inheritAll="false"/>
+             target="dist" inheritAll="true"/>
         <ant    dir="${basedir}/contrib/tag-doc"
              target="generate-reports" inheritAll="false"/>
         <mkdir  dir="${dist.home}/contrib/tag-doc"/>
@@ -526,9 +524,9 @@
 	<!-- The STRUTS-EL Tag Library  -->
 
         <ant    dir="${struts.el.home}"
-             target="clean" inheritAll="true"/>
+             target="clean" inheritAll="false"/>
         <ant    dir="${struts.el.home}"
-             target="dist" inheritAll="true"/>
+             target="dist" inheritAll="false"/>
         <mkdir  dir="${dist.home}/contrib/struts-el"/>
         <copy todir="${dist.home}/contrib/struts-el">
            <fileset dir="${struts.el.home}/dist"/>
