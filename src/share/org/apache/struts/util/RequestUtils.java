@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.122 2003/07/26 18:44:54 dgraham Exp $
- * $Revision: 1.122 $
- * $Date: 2003/07/26 18:44:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.123 2003/07/26 18:45:24 dgraham Exp $
+ * $Revision: 1.123 $
+ * $Date: 2003/07/26 18:45:24 $
  *
  * ====================================================================
  *
@@ -84,7 +84,6 @@ import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.DynaBean;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -103,7 +102,6 @@ import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
@@ -115,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.122 $ $Date: 2003/07/26 18:44:54 $
+ * @version $Revision: 1.123 $ $Date: 2003/07/26 18:45:24 $
  */
 
 public class RequestUtils {
