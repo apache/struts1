@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.63 2003/07/04 21:23:12 dgraham Exp $
- * $Revision: 1.63 $
- * $Date: 2003/07/04 21:23:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.64 2003/07/04 21:27:24 dgraham Exp $
+ * $Revision: 1.64 $
+ * $Date: 2003/07/04 21:27:24 $
  *
  * ====================================================================
  *
@@ -61,11 +61,9 @@
 
 package org.apache.struts.action;
 
-import java.io.IOException;
 import java.util.Locale;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -110,7 +108,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.63 $ $Date: 2003/07/04 21:23:12 $
+ * @version $Revision: 1.64 $ $Date: 2003/07/04 21:27:24 $
  */
 public class Action {
 
@@ -305,22 +303,6 @@ public class Action {
 
     }
 
-
-    /**
-     * Return the message resources for the default module.
-     *
-     * @deprecated This method can only return the resources for the default
-     *  module.  Use getResources(HttpServletRequest) to get the
-     *  resources for the current module.
-     */
-    protected MessageResources getResources() {
-
-        return ((MessageResources)
-                servlet.getServletContext().getAttribute(Globals.MESSAGES_KEY));
-
-    }
-
-
     /**
      * Return the default message resources for the current module.
      *
@@ -332,8 +314,6 @@ public class Action {
         return ((MessageResources) request.getAttribute(Globals.MESSAGES_KEY));
 
     }
-
-
 
     /**
      * Return the specified message resources for the current module.
