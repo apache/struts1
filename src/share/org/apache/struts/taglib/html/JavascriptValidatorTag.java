@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.27 2003/05/18 22:26:08 rleland Exp $
- * $Revision: 1.27 $
- * $Date: 2003/05/18 22:26:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.28 2003/05/22 01:29:47 dgraham Exp $
+ * $Revision: 1.28 $
+ * $Date: 2003/05/22 01:29:47 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.27 $ $Date: 2003/05/18 22:26:08 $
+ * @version $Revision: 1.28 $ $Date: 2003/05/22 01:29:47 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -107,6 +107,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
     /**
      * The default locale on our server.
+     * @deprecated This variable is no longer used.
      */
     protected static Locale defaultLocale = Locale.getDefault();
 
@@ -164,6 +165,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     private String htmlBeginComment = "\n<!-- Begin \n";
 
     private String htmlEndComment = "//End --> \n";
+    
     /**
      * Gets the key (form name) that will be used
      * to retrieve a set of validation rules to be
@@ -308,21 +310,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             (ValidatorResources) pageContext.getAttribute(
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
-        Locale locale = null;
-        try {
-            locale =
-                (Locale) pageContext.getAttribute(Globals.LOCALE_KEY, PageContext.SESSION_SCOPE);
-        } catch (IllegalStateException e) { // Invalidated session
-            locale = null;
-        }
 
-        if (locale == null) {
-            locale = defaultLocale;
-        }
+        Locale locale = RequestUtils.retrieveUserLocale(this.pageContext, null);
 
         Form form = resources.get(locale, formName);
         if (form != null) {
-            if ("true".equals(dynamicJavascript)) {
+            if ("true".equalsIgnoreCase(dynamicJavascript)) {
                 MessageResources messages =
                     (MessageResources) pageContext.getAttribute(
                         bundle + config.getPrefix(),
@@ -416,110 +409,132 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     for (Iterator x = form.getFields().iterator(); x.hasNext();) {
                         Field field = (Field) x.next();
 
-                        // Skip indexed fields for now until there is
-                        // a good way to handle error messages (and the length of the list (could retrieve from scope?))
-                        if (!field.isIndexed()
-                            && field.getPage() == page
-                            && field.isDependency(va.getName())) {
-                            String message = Resources.getMessage(messages, locale, va, field);
-                            message = (message != null ? message : "");
-
-                            jscriptVar = getNextVar(jscriptVar);
-
-                            results.append(
-                                "     this."
-                                    + jscriptVar
-                                    + " = new Array(\""
-                                    + field.getKey()
-                                    + "\", \""
-                                    + message
-                                    + "\", ");
-
-                            results.append("new Function (\"varName\", \"");
-
-                            Map vars = field.getVars();
-                            // Loop through the field's variables.
-                            for (Iterator varsIterator = vars.keySet().iterator(); varsIterator.hasNext();) {
-                                String varName = (String) varsIterator.next();
-                                Var var = (Var) vars.get(varName);
-                                String varValue = var.getValue();
-                                String jsType = var.getJsType();
+                        // Skip indexed fields for now until there is a good way to handle 
+                        // error messages (and the length of the list (could retrieve from scope?))
+                        if (field.isIndexed()
+                            || field.getPage() != page
+                            || !field.isDependency(va.getName())) {
                                 
-                                // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
-                                if (varName.startsWith("field")){
-                                    continue;
-                                }
+                            continue;
+                        }
+                        
+                        String message =
+                            Resources.getMessage(messages, locale, va, field);
+                        
+                        message = (message != null) ? message : "";
 
-                                if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
-                                    results.append(
-                                        "this."
-                                            + varName
-                                            + "="
-                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
-                                            + "; ");
-                                } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
-                                    results.append(
-                                        "this."
-                                            + varName
-                                            + "=/"
-                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
-                                            + "/; ");
-                                } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
-                                    results.append(
-                                        "this."
-                                            + varName
-                                            + "='"
-                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
-                                            + "'; ");
-                                    // So everyone using the latest format doesn't need to change their xml files immediately.
-                                } else if ("mask".equalsIgnoreCase(varName)) {
-                                    results.append(
-                                        "this."
-                                            + varName
-                                            + "=/"
-                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
-                                            + "/; ");
-                                } else {
-                                    results.append(
-                                        "this."
-                                            + varName
-                                            + "='"
-                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
-                                            + "'; ");
-                                }
+                        jscriptVar = this.getNextVar(jscriptVar);
+
+                        results.append(
+                            "     this."
+                                + jscriptVar
+                                + " = new Array(\""
+                                + field.getKey()
+                                + "\", \""
+                                + message
+                                + "\", ");
+
+                        results.append("new Function (\"varName\", \"");
+
+                        Map vars = field.getVars();
+                        // Loop through the field's variables.
+                        Iterator varsIterator = vars.keySet().iterator();
+                        while (varsIterator.hasNext()) {
+                            String varName = (String) varsIterator.next();
+                            Var var = (Var) vars.get(varName);
+                            String varValue = var.getValue();
+                            String jsType = var.getJsType();
+
+                            // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
+                            if (varName.startsWith("field")) {
+                                continue;
                             }
 
-                            results.append(" return this[varName];\"));\n");
+                            if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
+                                results.append(
+                                    "this."
+                                        + varName
+                                        + "="
+                                        + ValidatorUtil.replace(
+                                            varValue,
+                                            "\\",
+                                            "\\\\")
+                                        + "; ");
+                            } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
+                                results.append(
+                                    "this."
+                                        + varName
+                                        + "=/"
+                                        + ValidatorUtil.replace(
+                                            varValue,
+                                            "\\",
+                                            "\\\\")
+                                        + "/; ");
+                            } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
+                                results.append(
+                                    "this."
+                                        + varName
+                                        + "='"
+                                        + ValidatorUtil.replace(
+                                            varValue,
+                                            "\\",
+                                            "\\\\")
+                                        + "'; ");
+                                // So everyone using the latest format doesn't need to change their xml files immediately.
+                            } else if ("mask".equalsIgnoreCase(varName)) {
+                                results.append(
+                                    "this."
+                                        + varName
+                                        + "=/"
+                                        + ValidatorUtil.replace(
+                                            varValue,
+                                            "\\",
+                                            "\\\\")
+                                        + "/; ");
+                            } else {
+                                results.append(
+                                    "this."
+                                        + varName
+                                        + "='"
+                                        + ValidatorUtil.replace(
+                                            varValue,
+                                            "\\",
+                                            "\\\\")
+                                        + "'; ");
+                            }
                         }
+
+                        results.append(" return this[varName];\"));\n");
                     }
                     results.append("    } \n\n");
                 }
-            } else if ("true".equals(staticJavascript)) {
+            } else if ("true".equalsIgnoreCase(staticJavascript)) {
                 results.append(this.getStartElement());
-                if ("true".equals(htmlComment)) {
+                if ("true".equalsIgnoreCase(htmlComment)) {
                     results.append(htmlBeginComment);
                 }
             }
         }
-        if ("true".equals(staticJavascript)) {
+        
+        if ("true".equalsIgnoreCase(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
 
         if (form != null
-            && ("true".equals(dynamicJavascript) || "true".equals(staticJavascript))) {
+            && ("true".equalsIgnoreCase(dynamicJavascript)
+                || "true".equalsIgnoreCase(staticJavascript))) {
+                    
             results.append(getJavascriptEnd());
         }
 
-        // Print this field to our output writer
+
         JspWriter writer = pageContext.getOut();
         try {
             writer.print(results.toString());
         } catch (IOException e) {
             throw new JspException(e.getMessage());
-            //throw new JspException(messages.getMessage("common.io", e.toString()));
         }
 
-        // Continue processing this page
         return (EVAL_BODY_TAG);
 
     }
@@ -546,7 +561,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     protected String getJavascriptBegin(String methods) {
         StringBuffer sb = new StringBuffer();
         String name =
-            formName.substring(0, 1).toUpperCase() + formName.substring(1, formName.length());
+            formName.substring(0, 1).toUpperCase()
+                + formName.substring(1, formName.length());
 
         sb.append(this.getStartElement());
         
@@ -591,8 +607,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         sb.append("\n\n");
 
-        for (Iterator i = resources.getValidatorActions().values().iterator(); i.hasNext();) {
-            ValidatorAction va = (ValidatorAction) i.next();
+        Iterator actions = resources.getValidatorActions().values().iterator();
+        while (actions.hasNext()) {
+            ValidatorAction va = (ValidatorAction) actions.next();
             if (va != null) {
                 String javascript = va.getJavascript();
                 if (javascript != null && javascript.length() > 0) {
