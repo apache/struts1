@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.36 2002/11/17 00:57:07 dgraham Exp $
- * $Revision: 1.36 $
- * $Date: 2002/11/17 00:57:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.37 2002/11/20 05:36:50 dgraham Exp $
+ * $Revision: 1.37 $
+ * $Date: 2002/11/20 05:36:50 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.36 $ $Date: 2002/11/17 00:57:07 $
+ * @version $Revision: 1.37 $ $Date: 2002/11/20 05:36:50 $
  */
 
 public class FormTag extends TagSupport {
@@ -626,7 +626,11 @@ public class FormTag extends TagSupport {
             }
             results.append("\r\n");
             results.append(this.getJsStartElement());
-            results.append("  <!--\r\n");
+            
+            // xhtml script content shouldn't use the browser hiding trick
+            if (!this.isXhtml()) {
+                results.append("  <!--\r\n");
+            } 
             results.append("  if (document.forms[\"");
             results.append(beanName);
             results.append("\"].elements[\"");
@@ -636,8 +640,7 @@ public class FormTag extends TagSupport {
                 results.append(refocus.toString());
             }
             results.append(".type != \"hidden\") \r\n");
-            
-            
+                   
             results.append("     var focusControl = document.forms[\"");
             results.append(beanName);
             results.append("\"].elements[\"");
@@ -653,7 +656,10 @@ public class FormTag extends TagSupport {
             results.append("     }\r\n");
             results.append("     focusControl.focus();\r\n");
             
-            results.append("  // -->\r\n");
+             if (!this.isXhtml()) {
+                results.append("  // -->\r\n");
+            }
+            
             results.append("</script>\r\n");
         }
 
@@ -841,14 +847,22 @@ public class FormTag extends TagSupport {
      */
     private String getJsStartElement() {
         String start = "<script type=\"text/javascript\"";
-        String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
-
-        if (!("true".equalsIgnoreCase(xhtml))) {
+        
+        if (!this.isXhtml()) {
             start += " language=\"JavaScript\"";
         }
         start += ">\r\n";
 
         return start;
+    }
+    
+    /**
+     * Returns true if this tag should render as xhtml.
+     */
+    private boolean isXhtml() {
+        String xhtml =
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+
+        return ("true".equalsIgnoreCase(xhtml));
     }
 }
