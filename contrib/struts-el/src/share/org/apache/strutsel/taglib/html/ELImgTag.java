@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.4 2002/10/03 05:08:14 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/03 05:08:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.5 2002/11/09 04:02:24 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/09 04:02:24 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,7 +85,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELImgTag extends ImgTag {
 
@@ -197,6 +197,8 @@ public class ELImgTag extends ImgTag {
             setLocale(null);
         }
 
+        //  The "lowsrc" attribute is deprecated.  This needs to be removed
+        //  when the "lowsrc" attribute is finally removed.
         try {
             setLowsrc((String) evalAttr("lowsrc", getLowsrc(), String.class));
         } catch (NullAttributeException ex) {
