@@ -1,0 +1,12 @@
+CREATE TABLE `wizard` (
+	`wizard` int(11) NOT NULL auto_increment,
+	`id` int(10) unsigned,
+	`date` timestamp(14),
+	`amount` decimal(9,2),
+	`check` tinyint(1),
+	`phone` varchar(15),
+	`zip` varchar(15),
+	`email`  varchar(63),
+	`text` varchar(255),
+	PRIMARY KEY (`wizard`)
+	);

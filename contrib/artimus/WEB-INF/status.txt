@@ -1,0 +1,466 @@
+    /**
+     * Alernate mutator for key property.
+     * Used to override ancestor setKey method.
+     */
+    public void setArticleString(String article) {
+        if (isBlank(article))
+            setArticle(null);
+        else
+            setArticle(Integer.valueOf(article));
+    }
+
+
+    /**
+     * Alernate accessor for key property.
+     * Used to override ancestor getKey method.
+     */
+    public String getArticleString() {
+        Integer article = getArticle();
+        if (article==null)
+            return null;
+        return article.toString();
+    }
+
+
+[ARTIMUS]
+
+[Ordering is LIFO. Last thing done for a day is the first item listed.]
+
+TODO:
+- Add now string for articleInsert
+- Check with HypersonicSQL
+- Unit tests
+
+
+06-NOV-01
+---------
++ Rename article/Model,key/Model to Access (i.e. Data Access).
++ Update README.txt
++ Rename ApplicationResources to Resources
+
+
+30-OCT-01
+---------
++ article/SearchHours,SearchLast,SearchTitle,SearchProperty: Change check for parameters to occur before call to Model.
+
+
+27-OCT-01
+---------
++ wizard/*: Expand additional example code.
++ */Model,*/sql/Statement: update to use Scaffold StatementUtils, ConnectionPool.
++ classes/poolman.xml: update for new default resource name.
++ ConnectionPool, StatementUtils: move to Scaffolding.
+
+
+26-OCT-01
+---------
++ keys: add package.
++ http/ArticleForm: move to article/http/Form.
++ http/ModelHelper: Move to Scaffold.
++ sql/ConnectionPool: Move to Scaffold, and add wrapper.
+
+
+25-OCT-01
+---------
++ wizard/*: Initial version to test data access routines.
++ Search/*: Refactor most to subclass SearchProperties.
++ articles/SearchProperty: initial version.
++ sql/Statements: rename as StatementUtils.
++ articles/sql/Commands,Statements: initial versions.
++ sql/Data: Move most methods to articles/Model
++ articles/*: Refactor names from "query" to "model.
+
+
+24-OCT-01
+---------
++ search/Engine: update to throw QueryExceptions (per LuceneUtil changes).
++ articles/*: Refactor for changes in Scaffold.
++ *.jsp: Correct usage of html:html tag.
++ build.xml: Add WAR to deployment target.
+
+
+23-OCT-01
+---------
++ Store: let insert/update exceptions pass thru. 
++ HelperAction: Enhance exception handling to use new ChainedException methods.
++ Refactor to use Scaffold query package (instead of util).
++ change "sql.*" tokens to "data.*"
+
+
+21-OCT-01
+---------
++ Refactor to use new Scaffold Query* and HelperAction class.
+
+
+09-OCT-01
+---------
++ Rename articles to artimus.
++ Rename ext to scaffold. 
+
+
+08-OCT-01
+---------
++ AccessBean: refactor getMap(int) method.
++ AccessBean,AccessBeanList: Add first() method
++ client: refactor to call performCrud on ancestor.
++ ext.http.Access: add performCrud method.
+
+27-SEP-01
+---------
++ Access,AccessBean: General refactoring.
++ ArticleForm: Remove toMap method in favor of ancestor.
++ AccessBean: Conform to new DataBeanBase source.
++ DataBeanBase: Add default behavior for toMap using BeanUtil.describe
++ Convert MapAccess to DataBean, and refactor. Add getKeyInt,setKeyInt methods.
++ *: Review and revise Javadoc.
+
+
+26-SEP-01
+---------
++ AccessBeanMap: Remove unused class.
++ AccessBean,AccessBeanList: Remove methods not used in current version of application.
++ Access,Client: Refactor SaveConfirm method from ancestor Client class.
++ ArticleHelper: Move call to allocateKey from Access.crud.
++ ArticleHelper: Add loops around update,insert for multiple forms.
++ README.TXT: Update for Tomcat 4.0 production release.
++ ConnectionPool: Eliminate unnecessary statics
++ build.xml: Add Javadoc targete
++ com/*: Shorten package name to proweb
++ src/*: Move source under java, per new conventions.
++ WEB-INF/pages/*: Move pages to root; add stylesheet.
+
+
+18-SEP-01
+---------
++ ApplicationResources: Add missingHTML markup to error tags.
++ Engine: Update path for index (/var/lucene/articles)
++ poolman.xml
+
+
+13-SEP-01
+---------
++ LuceneUtils
+
+
+10-SEP-01
+---------
+
++ Menu.jsp: Add Create Index button for Lucene.
++ CreateIndex,Data,Statements,Commands: Add support for Lucene.
++ ConnectionPool: Add check for null connection.
++ README.TXT
+
+
+09-SEP-01
+---------
++ Render.java: intial version.
++ ArticleHelper,build.xml,strut.xml,: Add Lucene support.
++ ArticleForm, CreateTables, web.xml,
+
+
+26-AUG-01
+---------
++ ext.search.LucineUtils: initial version.
++ search.Engine: initial version.
++ Data: add selectArticle(target) method.
++ CreateIndex: initial version.
++ Add lucene.jar to lib
+
+
+22-AUG-01
+---------
++ Statements,Data,ArticleHelper: refactor.
++ ListForm: remove as redundant.
++ RequestUtils.getCollection: initial version.
+
+
+20-AUG-01
+---------
++ AccessBeanMap - initial version
++ Change ListAccessBean to AccessBeanList
++ Refactor ResultList as ResultCollection
++ Change package name to org.apache.struts.artimus
+
+
+03-AUG-01
+---------
++ ArticleHelper,Menu: Add support for title, author, content search.
++ ArticleList: initial version.
++ Commands: add SQL statments for title,author search.
++ Statements.getResultsLike: initial version.
+
+
+02-AUG-01
+---------
+
++ TASK: Test revised pages and control flow. All OK, but text search (need to recreate tables).
++ Access.setDispatch: initial version to maintain DispatchBean property.
++ Menu.jsp: initial version (should have done this first!). 
++ config: Refactor to implement only what's needed for "Artimus-1".
++ ext: General refactoring and clean-up.
+
+01-AUG-01
+---------
++ : Refactor to use DispatchBean interface.
++ TASK: Refactor classes to use "dispatch" rather than "task"
++ Data,Statement: Add ResultList version of Select, to return a List.
++ Data,Statement: Add all String signatures for insert,update.
++ ListAccessBean: initial version.
++ TASK: Refactor DataAccess/AccessBean/Access/Helper classes to implement a List rather than a RowSet. Remove dependancies on Iterators for now, since this was causing ConcurrentModificationException's.
++ DispatchBean,ResultList: intial versions.
+
+31-JUL-01
+---------
++ TASK: Test input/output.
++ pages/List,Article: Enable bean, logic, and dbTags libs.
++ struts-config: update to use Client for Entry mappings.
++ Helper,Data,Commands: Add CRUD for Entry form. 
++ Form: Update to declare AccessMap interface (methods already implemented).
++ Helper,Access,AccessMap: Initial version
++ CreateTables: Revise to call Data.object methods. Remove obsolete dependancies on SQL packages.
++ Data: initial version. Create high-level wrappers around calls to Statement.
++ CreateTables: Refactor DAO code into sql/Statements class.
++ CreateTables: Add insert of starter keys for other tables. Drop, create, test.
++ CreateTables: Change text to blob and varchar to char, for better compatability. 
+We will be using Lucene for full-text search, and MySQL will change char to varchar anyway.
++ TASK: test CreateTables. 
++ mysql: create database artimus.
+
+
+30-JUL-01
+---------
++ struts-config: Add mapping for CreateTables.
++ CreateTables,Commands,ConnectionPool,RowSets,Statements: initial versions.
++ struts-config: update mappings for Form, including welcome and done.
++ pages/Article,Entry,List: update for Article properties, including field types and lengths. Add data-entry comments from spec.
++ http/Form: initial version.
++ Update "spec" (chapter 17) to reflect development changes.
+
+
+29-JUL-01
+---------
++ Extended headbanging session with Validator library. The client-side scripts are present but broken. Server-side validation is fine. Posted query to Struts list. Will proceed and return to this later
++ Draft Article, List, and Entry skeletons.
++ Test building javadoc (not working?)
++ Setup build.xml. Create src/build folder. Build skeleton classes.
++ Setup skeleton pages, forwards, mappings, Form, and Action.
++ struts-config.xml: Config for MySql, and ready alternate configs for hSQL and postgres.
++ web.xml: Add default config for validator, validator tags, dbTags.
++ lib: Place validator.jar, dbTags.jar, and hsqldb.jar under lib.
++ WEB-INF: Move *.tld's under tablibs; update web.xml
++ WEB-INF: Create src,doc,taglibs, and pages folders.
++ ROOT: Create artimus from Struts blank.
+
+
+28-JUL-01
+---------
++ doc: Second draft of "spec" as Chapter 17 text.
+
+
+
+[]
+
+dc:
+
+ title
+ creator
+ subject
+ description
+ contributor
+ date
+
+publisher
+type
+format
+identifier (url)
+source
+language
+relation
+coverage
+rights
+
+ocs:
+ image 88x31
+format
+contentType
+updatePeriod
+updateFrequency
+updateBasis
+
+ical:
+
+COMPLETED
+DTEND
+DUE
+DTSTART
+DURATION
+
+DTSTAMP
+LAST-MODIFIED
+
+RECUR
+
+VEVENT
+VTODO
+VJOURNAL
+
+eventDateStart
+eventDateEnd
+
+alarmDateStart
+alarmDataEnd
+
+
+
+
+[]
+
+// Using Skeletons files with Struts.
+
+Integrating Artimus in your own application (artimus.jar)
+
+Internationalizing Artimus
+
+[]
+
+copy skel/View.jsp as ../Article.jsp
+
+comment include for bean and logic tags at the top, and browser will ignore them.
+
+insert {placeholders} next to bean:write tages where runtime content will go. update the property setting so these will be ready-to-go later.
+
+remove right and left columns, so this is a one-column table.
+
+add filter="false" to bean:write tag for article. this will output HTML as is, so we can use it in our article. 
+
+remove form buttons; body onload
+
+change paths for local forwards on /Skel mapping to "/WEB-INF/pages/Article.jsp"
+
+load and test.
+
+reloading mappings.
+
+[]
+
+copy skel/Result.jsp as ../List.jsp
+
+link date,topic,article as plain forwards
+
+add forwards,actions to mappings
+
+[]
+
+copy skel/Form.jsp as ../Entry.jsp
+
+change labels, but leave property1..0
+
+adding fowards, actions to mappings.
+
+[]
+
+package naming - callout box
+
+error handlng - log
+
+
+[]
+
+Thanks, Hans. We're on the same page now ;-)
+
+I imagine you've also looked at the Oracle Portlet?
+
+http://otn.oracle.com/products/iportal/htdocs/3_0_8_qt/qt_home.htm
+
+http://otn.oracle.com/products/iportal/htdocs/3_0_8_qt/qt_frm.htm
+
+http://otn.oracle.com/products/iportal/htdocs/kci/kcihome.html
+
+In this context, I was thinking of creating backend "Providers" for things like RSS, and exposing this resource using Tiles as the actual "Portlet" part. 
+
+
+
+
+==
+
+Provides a communication link between the portal services and portlets. 
+Implements session startup and provider login. 
+Acts as a proxy to all portlet calls. 
+Manages the portlet repository list. 
+
+==
+
+I think what I wanted to look at first was an API for what Oracle calls "Providers". 
+
+http://portalstudio.oracle.com/servlet/page?_pageid=475&_dad=ops&_schema=OPSTUDIO&_mode=3
+
+The idea being that a Provider could be plugged into an Action as a helper class, and wrap up what's needed into a bean to be displayed in a Tile.
+
+The Providers could be setup as application resources, the way the Struts ActionMappings are setup, and the way the ValidatorForm configurations and Tiles definitions are setup. 
+
+At this point, I would look to container-managed security for the users, extending the idea of a database or JDBCRealm to provide single logon for the Providers, and as the basis for a user profile object to store customization options for the view.
+
+
+At this point, some questions occur:
+
+Does this intersect with the workflow API proposed to the commons and struts-dev last week? What's the difference between a portlet and a persistant workflow?
+
+Are Jakarta portlets to be servlets, the way JSPs are servlets? If not, should they be?
+
+Or, from a patterns perspective, are portlets just some kind of helper object?
+
+Could some kind of porlet be packaged as a set of ActionMappings, Actions, JSPs, and associated classes, and plunked into the middle of a Struts application?
+
+Oracle Portlet Provider -> Struts Action
+
+
+What essential services does a portlet API need to provide? 
+
+* Discovery
+* Authorization
+* Profiles (user customization, skins)
+* Presentation fragments (scrape)
+* Resource configuration, application and user (profiles?)
+
+Could an abstract PortletProfile object (or interface) be used to manage 
+
+My initial feeling is that, in a Java MVC environment, a Portlet should be a specialized controller servlet that exposes services to the application's controller servlet through a specific API. The Portlet would expose itself through the ServletContext, where it can be called upon by other servlets in the application. We should be able to load a portlet servlet into any arbitrary application, just as we can load a JSP servlet into any arbitrary application, without modifying the container. 
+
+[]
+
+select donor,fullName,street,postOffice,postalCode,item,name,qtyReceived,market from gavel_donor D,gavel_item I where D.donor=I.donor order by donor;
+
+SELECT I.donor,fullName,item,name FROM gavel_item I LEFT OUTER JOIN gavel_donor D ON (I.donor=D.donor) ORDER BY fullName,donor;
+
+[]
+
+/*
+    public void setNext(Object source) {
+        // java.lang.IllegalAccessException
+        // pop: IllegalAccessException, InvocationTargetException
+        // des: + NoSuchMethodException
+        BeanUtils.populate(
+            this.rows.next(),
+            BeanUtils.describe(source)
+        );
+    }
+
+    public void getNext(Object target) {
+        BeanUtils.populate(
+            target,
+            BeanUtils.describe(this.rows.next())
+        );
+    }
+
+    public Map nextToMap() {
+        return BeanUtils.describe(this.rows.next());
+    }
+
+    public static void populateBean(Object target, Object source) {
+        BeanUtils.populate(
+            target,
+            BeanUtils.describe(source)
+        );
+    }
+*/
+

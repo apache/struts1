@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+  "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+
+<web-app>
+
+  <!-- Standard Action Servlet Configuration -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>application</param-name>
+      <param-value>ApplicationResources</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/conf/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <!-- makes request scope the default -->
+    <init-param>
+      <param-name>mapping</param-name>
+      <param-value>org.apache.struts.action.RequestActionMapping</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <!-- Standard Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>/do/*</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- The Usual Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+
+  <!-- Struts Tag Library Descriptors -->
+  <taglib>
+    <taglib-uri>/tags/struts-bean</taglib-uri>
+    <taglib-location>/WEB-INF/lib/struts-bean.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-html</taglib-uri>
+    <taglib-location>/WEB-INF/lib/struts-html.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-logic</taglib-uri>
+    <taglib-location>/WEB-INF/lib/struts-logic.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-validator</taglib-uri>
+    <taglib-location>/WEB-INF/lib/struts-validator.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/request</taglib-uri>
+    <taglib-location>/WEB-INF/lib/request.tld</taglib-location>
+  </taglib>
+
+  <!-- Declarative Security -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Administrative</web-resource-name>
+        <!-- Define the context-relative URL(s) to be protected -->
+        <url-pattern>/do/admin/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+        <!-- Anyone with one of the listed roles may access this area -->
+        <role-name>manager</role-name>
+        <role-name>editor</role-name>
+        <role-name>contributor</role-name>
+      </auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>EBasic Authentication Area</realm-name>
+  </login-config>
+
+</web-app>

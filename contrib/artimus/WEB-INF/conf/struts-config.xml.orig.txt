@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+<!--
+/**
+ * Struts configuration for Artimus application.
+ *
+ * @author Ted Husted
+ * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:12 $
+*/
+-->
+
+<struts-config>
+
+  <!-- ========== Data Source Configuration =============================== -->
+
+  <!-- ========== Form Bean Definitions =================================== -->
+
+  <form-beans>
+
+     <!-- Article Form bean -->
+     <form-bean
+        name="articleForm"
+        type="org.apache.artimus.http.ArticleForm"/>
+
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+
+  <global-forwards>
+
+     <forward
+        name="welcome"
+        path="/do/Menu"/>
+
+     <forward
+        name="logon"
+        path="/do/admin/Menu"/>
+
+     <forward
+        name="article"
+        path="/do/View"/>
+
+     <forward
+        name="reload"
+        path="/do/admin/Reload"/>
+
+     <forward
+        name="done"
+        path="/do/Menu"/>
+
+     <forward
+        name="exit"
+        redirect="true"
+        path="http://jakarta.apache.org/"/>
+
+     <forward
+        name="createTables"
+        path="/do/admin/CreateTables"/>
+
+     <forward
+        name="createIndex"
+        path="/do/admin/CreateIndex"/>
+
+     <forward
+        name="reload"
+        path="/do/admin/Reload"/>
+
+     <forward
+        name="error"
+        path="/pages/Menu.jsp"/>
+
+     <forward
+        name="cancel"
+        path="/pages/Menu.jsp"/>
+
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+
+  <action-mappings>
+
+
+    <!-- Article Menu (guests) -->
+    <action 
+        path="/Menu"
+        forward="/pages/Menu.jsp">
+    </action>
+
+
+    <!-- Article Menu (admin) -->
+    <action 
+        path="/admin/Menu"
+        forward="/pages/Menu.jsp">
+    </action>
+
+
+    <!-- Input Article (admin) -->
+    <!-- This is used with a button, hence the name property -->
+    <action 
+        path="/admin/Input"
+        forward="/pages/Entry.jsp"
+        name="articleForm"    
+        validate="false"/>
+    
+    <!-- List action mapping -->
+    <action 
+        path="/List"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.Search">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+
+    <!-- View Article action mapping -->
+    <action 
+        path="/View"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchKey">
+       <forward 
+            name="continue"  
+            path="/pages/Article.jsp"/>
+    </action>
+
+
+    <!-- Article Edit action mapping (admin) -->
+    <action 
+        path="/admin/Edit"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchKey">
+       <forward 
+            name="continue"  
+            path="/pages/Entry.jsp"/>
+    </action>
+
+
+    <!-- Article Store action mapping (admin) -->
+    <action 
+        path="/admin/Store"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="true"
+        input="/pages/Entry.jsp"
+        parameter="org.apache.artimus.article.Store">
+       <forward 
+            name="continue"  
+            path="/pages/Article.jsp"/>
+    </action>
+
+
+    <!-- Article Search action mappings -->
+    <action 
+        path="/Search"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.Search">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+    <action 
+        path="/search/Last"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchLast">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+    <action 
+        path="/search/Hours"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchHours">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+    <action 
+        path="/search/Title"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchTitle">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+    <action 
+        path="/search/Author"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchCreator">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+    <action 
+        path="/search/Content"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.SearchContent">
+       <forward 
+            name="continue"  
+            path="/pages/List.jsp"/>
+    </action>
+
+
+    <!-- Search and Render as RSS Channel -->
+    <action 
+        path="/rss/Search"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.Search">
+       <forward 
+            name="continue"  
+            path="/do/rss/Render"/>
+    </action>
+
+    <action 
+        path="/rss/Render"
+        type="org.apache.artimus.http.Render"
+        scope="request"
+        validate="false">
+    </action>
+
+
+    <!-- Article Edit action mapping (admin) -->
+    <action 
+        path="/admin/Delete"
+        type="org.apache.artimus.http.QueryHelper"
+        name="articleForm"
+        scope="request"
+        validate="false"
+        parameter="org.apache.artimus.article.Delete">
+       <forward 
+            name="continue"  
+            path="/pages/Menu.jsp"/>
+    </action>
+
+
+    <!-- Create Tables action mapping (admin) -->
+    <action 
+        path="/admin/CreateTables"
+        type="org.apache.artimus.http.CreateTables"/>
+    
+
+    <!-- Create Index action mapping (admin) -->
+    <action 
+        path="/admin/CreateIndex"
+        type="org.apache.artimus.http.CreateIndex"/>
+
+    
+    <!-- The standard administrative actions available with Struts -->
+    <!-- These are protected by security -->
+    <action
+        path="/admin/AddFormBean"
+        type="org.apache.struts.actions.AddFormBeanAction"/>
+    <action
+        path="/admin/AddForward"
+        type="org.apache.struts.actions.AddForwardAction"/>
+    <action
+        path="/admin/AddMapping"
+        type="org.apache.struts.actions.AddMappingAction"/>
+    <action
+        path="/admin/Reload"
+        type="org.apache.struts.actions.ReloadAction"/>
+    <action
+        path="/admin/RemoveFormBean"
+        type="org.apache.struts.actions.RemoveFormBeanAction"/>
+    <action
+        path="/admin/RemoveForward"
+        type="org.apache.struts.actions.RemoveForwardAction"/>
+    <action
+        path="/admin/RemoveMapping"
+        type="org.apache.struts.actions.RemoveMappingAction"/>
+
+  </action-mappings>
+
+</struts-config>
