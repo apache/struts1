@@ -173,7 +173,6 @@
   <pathelement location="${commons-fileupload.jar}"/>
   <pathelement location="${commons-logging.jar}"/>
   <pathelement location="${commons-validator.jar}"/>
-  <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>
   <pathelement location="${webapp.libs}"/>

@@ -6,20 +6,20 @@
   <currentVersion>1.2.1-dev</currentVersion>
   <organization>
     <name>The Apache Software Foundation</name>
-    <url>http://jakarta.apache.org/</url>
-    <logo>http://jakarta.apache.org/images/jakarta-logo.gif</logo>
+    <url>http://struts.apache.org/</url>
+    <logo>http://struts.apache.org/images/jakarta-logo.gif</logo>
   </organization>
   <!-- <logo>/images/struts-blue.gif</logo>-->
-  <logo>http://jakarta.apache.org/struts/images/struts.gif</logo>
+  <logo>http://struts.apache.org/struts/images/struts.gif</logo>
   <inceptionYear>2000</inceptionYear>
   <package>org.apache.struts</package>
   <shortDescription>MVC Web Application Framework</shortDescription>
   <!-- Gump integration -->
   <gumpRepositoryId>jakarta</gumpRepositoryId>
   <description>The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language (XML), as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic Model-View-Controller (MVC) design paradigm. Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with any standard data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems. The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</description>
-  <url>http://jakarta.apache.org/</url>
+  <url>http://struts.apache.org/</url>
   <issueTrackingUrl>http://issues.apache.org/bugzilla/</issueTrackingUrl>
-  <siteAddress>jakarta.apache.org/struts</siteAddress>
+  <siteAddress>struts.apache.org</siteAddress>
   <siteDirectory>/www/jakarta.apache.org/struts</siteDirectory>
   <distributionDirectory>/www/apache.mirrors.pair.com/jakarta/struts/</distributionDirectory>
   <repository>
@@ -43,18 +43,23 @@
       <name>1.2.0</name>
       <tag>STRUTS_1_2_0</tag>
     </version>
+      <version>
+        <id>1.2.1</id>
+        <name>1.2.1</name>
+        <tag>STRUTS_1_2_1</tag>
+      </version>
   </versions>
   <mailingLists>
     <mailingList>
       <name>Struts User List</name>
-      <subscribe>struts-user-subscribe@jakarta.apache.org</subscribe>
-      <unsubscribe>struts-user-unsubscribe@jakarta.apache.org</unsubscribe>
+      <subscribe>user-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>user-unsubscribe@struts.apache.org</unsubscribe>
       <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42</archive>
     </mailingList>
     <mailingList>
       <name>Struts Developer List</name>
-      <subscribe>struts-dev-subscribe@jakarta.apache.org</subscribe>
-      <unsubscribe>struts-dev-unsubscribe@jakarta.apache.org</unsubscribe>
+      <subscribe>dev-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@struts.apache.org</unsubscribe>
       <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41</archive>
     </mailingList>
   </mailingLists>
@@ -149,6 +154,12 @@
       <email>germuska at apache.org</email>
       <organization></organization>
     </developer>
+      <developer>
+        <id>niallp</id>
+        <name>Niall Pemberton</name>
+        <email>niallp at apache.org</email>
+        <organization></organization>
+      </developer>
   </developers>
   <contributors>
     <contributor>
@@ -205,7 +216,7 @@
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
-      <version>1.0.3</version>
+      <version>1.0.4</version>
       <url>http://jakarta.apache.org/commons/logging.html</url>
       <properties>
         <war.bundle>true</war.bundle>

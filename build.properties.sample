@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.52 2004/03/08 23:27:34 rleland Exp $
+# $Id: build.properties.sample,v 1.53 2004/07/08 13:22:23 husted Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -32,31 +32,31 @@ apache.home=D:/Java/Programs/Apache
 # if you are going to execute the "deploy.catalina" target.
 catalina.home=${apache.home}/jakarta-tomcat-4.0.6
 
-# The JAR file containing the Beanutils package (Version 1.6.1 or later)
+# The JAR file containing the Beanutils package (see Installation page)
 # from the Jakarta Commons project.
 commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 
-# The JAR file containing the Collections package (Version 2.1 or later)
+# The JAR file containing the Collections package (see Installation page)
 # from the Jakarta Commons project.
 commons-collections.jar=${commons-lib.home}/collections/dist/commons-collections.jar
 
-# The JAR file containing the Digester package (Version 1.5 or later)
+# The JAR file containing the Digester package (see Installation page)
 # from the Jakarta Commons project.
 commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
 
-# The JAR file containing the FileUpload package (Version 1.0 or later)
+# The JAR file containing the FileUpload package (see Installation page)
 # from the Jakarta Commons project.
 commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload-1.0.jar
 
-# The JAR file containing the Lang package (Version 1.0.1 or later)
+# The JAR file containing the Lang package (see Installation page)
 # from the Jakarta Commons project.
 commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-2.0.jar
 
-# The JAR file containing the Logging package (Version 1.0.3 or later)
+# The JAR file containing the Logging package (see Installation page)
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
-# The JAR file containing the Validator package (Version 1.1.2 or later)
+# The JAR file containing the Validator package (see Installation page)
 # from the Jakarta Commons project.
 commons-validator.jar=${commons-lib.home}/validator/dist/commons-validator.jar
 
@@ -106,16 +106,6 @@ checkstyle.jar = /Java/checkstyle-2.4/checkstyle-all-2.4.jar
 # you do not have PMD installed, do not set this property.
 pmd.home = /Java/Programs/SourceForge/pmd-1.2.1
 
-#############################Maven Variables #######################################
-# CVS Start Change Log date
-cvs.start=17 April 2003
-
-
-# If you are using ssh tunneling & have a .cvspass file setup
-cvs.developer.host=localhost
-cvs.developer.id=rleland
-
-#############################End of Maven Variables #######################################
 
 # Properties related to Struts Contrib
 # -----------------------------------------
