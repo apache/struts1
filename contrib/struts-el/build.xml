@@ -29,7 +29,12 @@
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
 
+        struts.home                   Base directory of your Struts binary
+                                      distribution (or of the "dist" directory
+                                      of a build environment)
+
         struts.jar                    The path to the base Struts jar file.
+
         struts-el.jar                 The path to the base Struts-EL jar file.
 
         jstl.home                     The path to the root of the JSTL
@@ -220,7 +225,7 @@
 -->
   <copy todir="${build.home}/library">
    <fileset dir="${jstl.home}/tld" includes="*.tld"/>
-   <fileset dir="${struts.home}/dist/lib" includes="*.tld"/>
+   <fileset dir="${struts.home}/lib" includes="*.tld"/>
   </copy>
  </target>
 
