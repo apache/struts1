@@ -9,6 +9,7 @@
         <item name="Welcome" href="index.html"/>
         <item name="What's New" href="index.html#new"/>
         <item name="Requirements" href="index.html#requirements"/>
+        <item name="Java Enhancements" href="extensions.html"/>
         <item name="Examples" href="index.html#examples"/>
         <item name="Download (Sourceforge)" href="http://sourceforge.net/project/showfiles.php?group_id=49385&amp;package_id=120079"/>
     </menu>

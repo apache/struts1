@@ -17,7 +17,25 @@ components like Actions and ActionForms.
 
         </p>
         <p>
-        While the initial target of the extracted Control Flow is Struts, the Flow code is reusable from other 
+        Since continuations are best implemented in Javascript, Struts Flow also focuses on making Javascript
+        easier to use and better integrated into the Java environment borrowing several ideas from <a 
+        href="http://groovy.codehaus.org">Groovy</a>.  First, information in Collections classes
+        can be accessed using Javascript array (<code>foo[1]</code>) and object (<code>foo["bar"]</code>) notations.
+        Also, Struts Flow uses <a href="http://www.json.org">JSON</a> to allow client-side Javascript running
+        in a browser to call server-side Javascript flow functions.  Finally, core Java API classes like <code>java.io.File</code> have additonal methods and properties
+        added to them.  For example, to process each line of a text file, you can use the following closure:
+        </p>
+<pre>
+  file = new java.io.File("foo.txt");
+  file.eachLine(
+    function(line) {
+      print(line);
+    }
+  );
+</pre>
+        <p>
+        While the initial target of the extracted Control Flow is Struts, the Flow code and Javascript extensions
+        are reusable from other 
         non-Struts environments.  This means Control Flow could be used to drive non-Struts JSP applications, portlets, or even complex web services.
         </p>
     </section>  
@@ -27,12 +45,24 @@ components like Actions and ActionForms.
               <li>Full access to Struts features</li>
               <li>Can exist side-by-side regular Struts actions</li>
               <li>Ability to run in non-Struts environments (uses Jakarta's Commons-Chain)</li>
+              <li><a href="extensions.html">Enhanced Java API methods</a> and Collections integration</li>
+              <li>Remote RPC support for calling flow methods from the client</li>
               <li>Includes Wizard library to help easily create complex wizards</li> 
-              <li>Includes Wizard example</li> 
-              <li>Includes Cocoon's number guessing game example</li> 
+              <li>Includes number guessing, remote rpc, and wizard examples</li> 
             </ul>
       </section>
       <section name="What's New" href="new">
+        <section name="0.3 - Unreleased">
+            <ul>
+              <li>Added better Collections support within Javascript</li>
+              <li>Upgraded Rhino library to 1.6 which features native continuations support</li>
+              <li>Added framework for adding methods and properties to core Java API classes</li>
+              <li>Added JSON support</li>
+              <li>Added client Javascript library and server-side support for calling flow functions from the brower</li>
+              <li>Moved project to Apache Struts</li>
+              <li>Added new remote number guessing game example</li>
+            </ul>
+        </section>
         <section name="0.2 - September 10, 2004">
             <ul>
               <li>Added wizard library to make wizard creation easy</li>
@@ -71,6 +101,7 @@ components like Actions and ActionForms.
         </p>
         <ul>
             <li><a href="guess-example.html">Number Guess Game Example</a></li>
+            <li><a href="remote-example.html">Number Guess Game Example - Remote Edition</a></li>
             <li><a href="wizard-example.html">Wizard Example</a></li>
         </ul>
       </section>
