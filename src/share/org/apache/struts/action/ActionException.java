@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionException.java,v 1.2 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionException.java,v 1.3 2002/06/24 17:10:35 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/24 17:10:35 $
  *
  * ====================================================================
  *
@@ -93,8 +93,9 @@ import org.apache.struts.config.ExceptionConfig;
  * </ul>
  *
  * @author ldonlan
- * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.3 $ $Date: 2002/06/24 17:10:35 $
  *
+ * @since Struts 1.1
  * @deprecated Replaced by org.apache.struts.config.ExceptionConfig
  */
 public class ActionException extends ExceptionConfig {
