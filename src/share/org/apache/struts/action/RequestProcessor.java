@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.11 2002/06/26 18:49:17 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2002/06/26 18:49:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.12 2002/06/30 03:38:29 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/06/30 03:38:29 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.11 $ $Date: 2002/06/26 18:49:17 $
+ * @version $Revision: 1.12 $ $Date: 2002/06/30 03:38:29 $
  * @since Struts 1.1
  */
 
@@ -140,7 +140,7 @@ public class RequestProcessor {
     /**
      * Commons Logging instance.
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log = LogFactory.getLog(RequestProcessor.class);
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.13 2002/03/09 22:26:35 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2002/03/09 22:26:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.14 2002/06/30 03:38:30 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/06/30 03:38:30 $
  *
  * ====================================================================
  * 
@@ -91,7 +91,7 @@ import org.apache.commons.logging.LogFactory;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/03/09 22:26:35 $
+ * @version $Revision: 1.14 $ $Date: 2002/06/30 03:38:30 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -102,7 +102,7 @@ public abstract class MessageResources implements Serializable {
     /**
      * Commons Logging instance.
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log = LogFactory.getLog(MessageResources.class);
 
 
     /**

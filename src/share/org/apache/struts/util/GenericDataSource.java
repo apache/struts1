@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.12 2002/03/14 06:15:55 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/03/14 06:15:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.13 2002/06/30 03:38:30 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/06/30 03:38:30 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.12 $ $Date: 2002/03/14 06:15:55 $
+ * @version $Revision: 1.13 $ $Date: 2002/06/30 03:38:30 $
  * @deprecated Use a <code>BasicDataSource</code> directly, or indirectly
  *  acquire a data source provided by your container
  */
@@ -100,7 +100,7 @@ public class GenericDataSource implements DataSource {
     /**
      * Commons Logging instance.
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log = LogFactory.getLog(GenericDataSource.class);
 
 
     // ------------------------------------------------------------- Properties

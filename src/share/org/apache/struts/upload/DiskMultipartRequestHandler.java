@@ -28,7 +28,8 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     /**
      * Commons Logging instance.
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log =
+        LogFactory.getLog(DiskMultipartRequestHandler.class);
     
     /**
      * The ActionServlet instance used for this class.

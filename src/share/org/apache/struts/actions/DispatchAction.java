@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.7 2002/06/25 18:26:15 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2002/06/25 18:26:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.8 2002/06/30 03:38:30 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/06/30 03:38:30 $
  *
  * ====================================================================
  *
@@ -128,7 +128,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.7 $ $Date: 2002/06/25 18:26:15 $
+ * @version $Revision: 1.8 $ $Date: 2002/06/30 03:38:30 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -146,7 +146,7 @@ public abstract class DispatchAction extends Action {
     /**
      * Commons Logging instance.
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log = LogFactory.getLog(DispatchAction.class);
 
 
     /**

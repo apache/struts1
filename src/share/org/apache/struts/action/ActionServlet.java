@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.107 2002/06/24 18:53:01 husted Exp $
- * $Revision: 1.107 $
- * $Date: 2002/06/24 18:53:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.108 2002/06/30 03:38:29 craigmcc Exp $
+ * $Revision: 1.108 $
+ * $Date: 2002/06/30 03:38:29 $
  *
  * ====================================================================
  *
@@ -291,7 +291,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.107 $ $Date: 2002/06/24 18:53:01 $
+ * @version $Revision: 1.108 $ $Date: 2002/06/30 03:38:29 $
  */
 
 public class ActionServlet
@@ -361,7 +361,7 @@ public class ActionServlet
      * Commons Logging instance.
      * @since Struts 1.1
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log = LogFactory.getLog(ActionServlet.class);
 
 
     /**

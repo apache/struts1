@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.3 2002/06/25 18:26:15 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/25 18:26:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.4 2002/06/30 03:38:30 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/30 03:38:30 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/06/25 18:26:15 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/30 03:38:30 $
  * @since Struts 1.1
  */
 
@@ -108,7 +108,7 @@ public class SwitchAction extends Action {
     /**
      * Commons Logging instance.
      */
-    protected Log log = LogFactory.getLog(this.getClass());
+    protected static Log log = LogFactory.getLog(SwitchAction.class);
 
 
     /**
