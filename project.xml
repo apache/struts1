@@ -3,7 +3,7 @@
   <pomVersion>3</pomVersion>
   <name>struts</name>
   <id>struts</id>
-  <currentVersion>1.2.5</currentVersion>
+  <currentVersion>1.2.6</currentVersion>
   <organization>
     <name>The Apache Software Foundation</name>
     <url>http://struts.apache.org/</url>
@@ -57,6 +57,16 @@
       <id>1.2.3</id>
       <name>1.2.3</name>
       <tag>STRUTS_1_2_3</tag>
+    </version>
+    <version>
+      <id>1.2.4</id>
+      <name>1.2.4</name>
+      <tag>STRUTS_1_2_4</tag>
+    </version>
+    <version>
+      <id>1.2.5</id>
+      <name>1.2.5</name>
+      <tag>STRUTS_1_2_5</tag>
     </version>
   </versions>
   <mailingLists>
