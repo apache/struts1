@@ -99,6 +99,7 @@
     </th>
     <td align="left">
       <html:text property="creditCard" size="16" maxlength="16"/>
+       (e.g. 4111111111111111, 5500000000000004)
     </td>
   </tr>
   <tr>
