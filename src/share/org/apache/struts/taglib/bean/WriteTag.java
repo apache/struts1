@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.14 2001/12/12 14:11:30 oalexeev Exp $
- * $Revision: 1.14 $
- * $Date: 2001/12/12 14:11:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.15 2001/12/12 16:11:00 oalexeev Exp $
+ * $Revision: 1.15 $
+ * $Date: 2001/12/12 16:11:00 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/12/12 14:11:30 $
+ * @version $Revision: 1.15 $ $Date: 2001/12/12 16:11:00 $
  */
 
 public class WriteTag extends TagSupport {
@@ -318,9 +318,7 @@ public class WriteTag extends TagSupport {
                         if( formatStr!=null ) 
                                 formatStrFromResources = true;
                 }
-                if( formatStr==null )
-                        format = NumberFormat.getInstance( locale );
-                else {
+                if( formatStr!=null ) {
                         try {
                                 format = NumberFormat.getNumberInstance( locale );
                                 if( formatStrFromResources ) 
