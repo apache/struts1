@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.26 2003/02/15 12:50:51 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.27 2003/02/15 13:53:53 husted Exp $</font>
     </p>
 
     <p>
@@ -399,8 +399,8 @@
 </section>
 
 <section>
-    <p><font size="-2">Website updated from CVS: 2002 DEC 29 by husted.</font></p>
-    <p><font size="-2">Javadocs updated from CVS: 2002 DEC 29 by husted.</font></p>
+    <p><font size="-2">Website updated from CVS: 2003 FEB 15 by husted.</font></p>
+    <p><font size="-2">Javadocs updated from CVS: 2003 FEB 15 by husted.</font></p>
 </section>
 
 </chapter></body></document>
