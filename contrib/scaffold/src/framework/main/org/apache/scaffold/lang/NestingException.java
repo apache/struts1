@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 /**
  * http://www.javaworld.com/javaworld/javatips/jw-javatip91.html
  * @author Terren Suydam
- * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:51 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/05 02:29:24 $
  */
 public class NestingException extends Exception {
      // the nested exception
@@ -103,6 +103,7 @@ traceBuffer.append("-------- nested by:\n");
              return theMsg.toString();
 
      }
+
      // overrides Exception.toString()
 
      public String toString() {

@@ -22,7 +22,7 @@ import org.apache.scaffold.lang.Tokens;
  * Useful for workflow loops where bean should be
  * reset, but request context not cleared.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/01/24 15:22:56 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/05 02:28:54 $
 **/
 public final class ResetAction extends Action {
 
@@ -41,7 +41,7 @@ public final class ResetAction extends Action {
     throws IOException, ServletException {
 
         form.reset(mapping, request);
-        return mapping.findForward(Tokens.CONTINUE);
+        return mapping.findForward(Tokens.SUCCESS);
 
     }
 
@@ -49,9 +49,9 @@ public final class ResetAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ResetAction.java,v 1.1 2002/01/24 15:22:56 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/24 15:22:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ResetAction.java,v 1.2 2002/03/05 02:28:54 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/05 02:28:54 $
  *
  * ====================================================================
  *

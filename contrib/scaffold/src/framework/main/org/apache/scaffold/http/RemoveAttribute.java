@@ -20,7 +20,7 @@ import org.apache.scaffold.lang.Tokens;
  * Remove an object from the user's session.
  * The name of the attribute is passed via the parameter property.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/01/01 13:44:04 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/05 02:28:54 $
 **/
 public final class RemoveAttribute extends Action {
 
@@ -43,7 +43,7 @@ public final class RemoveAttribute extends Action {
 
        request.getSession().removeAttribute(
            mapping.getParameter());
-       return mapping.findForward(Tokens.CONTINUE);
+       return mapping.findForward(Tokens.SUCCESS);
 
     }
 
@@ -51,9 +51,9 @@ public final class RemoveAttribute extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/RemoveAttribute.java,v 1.1 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/01 13:44:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/RemoveAttribute.java,v 1.2 2002/03/05 02:28:54 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/05 02:28:54 $
  *
  * ====================================================================
  *

@@ -28,7 +28,7 @@ import org.apache.scaffold.lang.ChainedException;
 /**
  * Enhanced base Action.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/02/22 10:14:16 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 02:28:54 $
  */
 public class SuperAction extends Action {
 
@@ -183,7 +183,7 @@ public class SuperAction extends Action {
             return (new ActionForward(mapping.getInput()));
 
         // If no input page, use error forwarding
-        return mapping.findForward(Tokens.ERROR);
+        return mapping.findForward(Tokens.FAILURE);
 
     }
 
@@ -292,7 +292,7 @@ public class SuperAction extends Action {
          ActionErrors errors
          ) {
 
-        return mapping.findForward(Tokens.CONTINUE);
+        return mapping.findForward(Tokens.SUCCESS);
 
     }
 
@@ -344,9 +344,9 @@ public class SuperAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/SuperAction.java,v 1.2 2002/02/22 10:14:16 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2002/02/22 10:14:16 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/SuperAction.java,v 1.3 2002/03/05 02:28:54 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/05 02:28:54 $
  *
  * ====================================================================
  *

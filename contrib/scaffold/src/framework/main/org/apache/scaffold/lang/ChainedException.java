@@ -8,7 +8,7 @@ package org.apache.scaffold.lang;
     /**
      * http://www.javaworld.com/javaworld/jw-08-2001/jw-0803-exceptions.html
      * @author Brian Geotz
-     * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
+     * @version $Revision: 1.3 $ $Date: 2002/03/05 02:29:24 $
      */
     public class ChainedException extends Exception {
 
@@ -24,6 +24,11 @@ package org.apache.scaffold.lang;
 
          public ChainedException(String message, Throwable cause) {
              super(message);
+             this.cause = cause;
+         }
+
+         public ChainedException(Throwable cause) {
+             super();
              this.cause = cause;
          }
 

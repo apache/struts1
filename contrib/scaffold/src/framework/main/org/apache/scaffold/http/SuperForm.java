@@ -7,15 +7,19 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+
+import org.apache.scaffold.lang.ChainedException;
 
 
 /**
  * Enhanced base ActionForm.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/02/22 10:14:16 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 02:28:54 $
  */
 // public class ScaffoldForm extends ValidatorForm {
 public class SuperForm extends ActionForm {
@@ -163,6 +167,69 @@ public class SuperForm extends ActionForm {
 
         // if (isMutable()) ...
 
+    }
+
+
+// --------------------------------------------------------- Public Methods
+
+
+    /**
+     * A static, empty String used by isBlank.
+     */
+     private static String EMPTY = "";
+
+
+    /**
+     * Convenience method to check for a null or empty String.
+     */
+    protected boolean isBlank(String s) {
+        return ((s==null) || (EMPTY.equals(s)));
+    }
+
+
+    /**
+     * Return map of properties for tihs bean.
+     * Base method uses <code>BeanUtils.describe</code>.
+     * Override if some properties should not be transfered
+     * this way, or a property name should be altered.
+     * @exception Throws Exception on any error.
+     */
+    public Map describe() throws Exception {
+        try {
+            return BeanUtils.describe(this);
+        } catch (Throwable t) {
+            throw new ChainedException(t);
+      }
+    }
+
+
+    /**
+     * Set properties from given object.
+     * Base method uses <code>BeanUtils.populate</code> and
+     * <code>BeanUtils.describe</code>.
+     * @exception Throws Exception on any error.
+     */
+    public void set(Object o) throws Exception {
+        try {
+            BeanUtils.populate(this,BeanUtils.describe(o));
+        } catch (Throwable t) {
+            throw new ChainedException(t);
+      }
+    }
+
+
+    /**
+     * Populate matching properties on given object.
+     * Base method uses <code>BeanUtils.populate</code> and
+     * <code>describe()</code>.
+     * @exception Throws ModelPopulateException on any error.
+     */
+    public void populate(Object o) throws Exception {
+        try {
+            BeanUtils.populate(o,describe());
+        } catch (Throwable t) {
+            throw new ChainedException(t);
+      }
     }
 
 

@@ -3,7 +3,7 @@ package org.apache.scaffold.lang;
 
 /**
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/05 02:29:24 $
  */
 public final class Tokens {
 
@@ -16,12 +16,14 @@ public final class Tokens {
     public static final String EMPTY    = "empty";
     public static final String ERROR    = "error";
     public static final String EXIT     = "exit";
+    public static final String FAILURE  = "failure";
     public static final String FORWARD  = "forward";
     public static final String LOGON    = "logon";
     public static final String LOGOFF   = "logoff";
     public static final String MENU     = "menu";
     public static final String NEXT     = "next";
     public static final String PREVIOUS = "previous";
+    public static final String SUCCESS  = "success";
     public static final String TOKEN    = "token";
     public static final String WELCOME  = "welcome";
 
@@ -48,6 +50,12 @@ public final class Tokens {
 
     public static final String DATA_RECORD_ =
         "data.access.denied";
+
+
+    // ---- Common Application Resource tokens ---
+
+    public static final String DATA_TRANSFER_ERROR =
+        "data.transfer.error";
 
 
 // ---- End Tokens ----

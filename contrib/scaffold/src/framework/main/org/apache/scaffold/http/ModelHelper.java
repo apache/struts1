@@ -25,7 +25,7 @@ import org.apache.scaffold.model.ModelResult;
 /**
  * Standard Action to manage helper objects.
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:04 $
+ * @version $Revision: 1.4 $ $Date: 2002/03/05 02:28:54 $
 **/
 public class ModelHelper extends BaseHelperAction {
 
@@ -64,7 +64,7 @@ public class ModelHelper extends BaseHelperAction {
      * @exception ServletException if a servlet exception occurs
      * :FIXME: is there any valid use of the response here?
     **/
-     protected ActionForward getContinue(
+     protected ActionForward getSuccess(
          ActionMapping mapping,
          ActionForm form,
          HttpServletRequest request,
@@ -73,7 +73,7 @@ public class ModelHelper extends BaseHelperAction {
          ) throws IOException, ServletException {
 
         // return mapping.findForward(request.getParameter(Tokens.FORWARD));
-        return mapping.findForward(Tokens.CONTINUE);
+        return mapping.findForward(Tokens.SUCCESS);
 
     }
 
@@ -123,7 +123,7 @@ public class ModelHelper extends BaseHelperAction {
             if (mapping.getInput()!=null)
                 return (new ActionForward(mapping.getInput()));
             // If no input page, use error forwarding
-            return (mapping.findForward(Tokens.ERROR));
+            return (mapping.findForward(Tokens.FAILURE));
         }
 
         // -- Check for confirmation message
@@ -145,16 +145,16 @@ public class ModelHelper extends BaseHelperAction {
             return forward;
 
         // -- Return forward for successful outcome
-        return getContinue(mapping,form,request,response,helpers);
+        return getSuccess(mapping,form,request,response,helpers);
     }
 
 } // end ModelResultHelper
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ModelHelper.java,v 1.3 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/01 13:44:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ModelHelper.java,v 1.4 2002/03/05 02:28:54 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/03/05 02:28:54 $
  *
  * ====================================================================
  *
