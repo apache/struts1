@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.2 2002/12/22 05:31:14 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/22 05:31:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.3 2003/05/01 17:05:10 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/05/01 17:05:10 $
  *
  * ====================================================================
  *
@@ -70,7 +70,7 @@ package org.apache.struts.config;
  * previous Struts behavior that only supported one module.</p>
  *
  * @author Rob Leland
- * @version $Revision: 1.2 $ $Date: 2002/12/22 05:31:14 $
+ * @version $Revision: 1.3 $ $Date: 2003/05/01 17:05:10 $
  * @since Struts 1.1
  */
 public interface ModuleConfig {
@@ -105,6 +105,7 @@ public interface ModuleConfig {
      * select this configuration versus others supported by the controller
      * servlet.  A configuration with a prefix of a zero-length String is the
      * default configuration for this web module.
+     * @param prefix The prefix of the context-relative portion of the request URI.
      */
     public void setPrefix(String prefix);
     /**
