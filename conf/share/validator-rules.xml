@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.38 2003/08/15 19:33:52 rleland Exp $
-  $Revision: 1.38 $
-  $Date: 2003/08/15 19:33:52 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.39 2003/09/09 06:20:43 rleland Exp $
+  $Revision: 1.39 $
+  $Date: 2003/09/09 06:20:43 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -63,6 +63,7 @@
                 var i = 0;
                 var fields = new Array();
                 oRequired = new required();
+
                 for (x in oRequired) {
                 	var field = form[oRequired[x][0]];
                 	
@@ -70,7 +71,6 @@
                         field.type == 'textarea' ||
                         field.type == 'file' ||
                         field.type == 'select-one' ||
-                        field.type == 'radio' ||
                         field.type == 'password') {
                         
                         var value = '';
@@ -91,6 +91,20 @@
 	                        }
 	                        fields[i++] = oRequired[x][1];
 	                        isValid = false;
+                        }
+                    } else if ((field.length > 0) && (field[0].type == 'radio')) {
+                        isChecked=-1;
+                        for (loop=0;loop < field.length;loop++) {
+                            if (field[loop].checked) {
+                                isChecked=loop;
+                            }
+                        }
+                        if (isChecked < 0) {
+                            if (i == 0) {
+                                focusField = field[0];
+                            }
+                            fields[i++] = oRequired[x][1];
+                            isValid=false;
                         }
                     }
                 }
