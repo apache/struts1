@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.1 2000/08/30 02:15:06 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/08/30 02:15:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.2 2000/09/05 01:52:34 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/09/05 01:52:34 $
  *
  * ====================================================================
  *
@@ -80,13 +80,19 @@ import org.apache.struts.util.PropertyUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/08/30 02:15:06 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/05 01:52:34 $
  */
 
 public final class ResourceTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Buffer size to use when reading the input stream.
+     */
+    private static final int BUFFER_SIZE = 256;
 
 
     /**
@@ -168,7 +174,7 @@ public final class ResourceTag extends TagSupport {
 	    StringBuffer sb = new StringBuffer();
 	    InputStreamReader reader =
 	      new InputStreamReader(stream);
-	    char buffer[] = new char[256];
+	    char buffer[] = new char[BUFFER_SIZE];
 	    int n = 0;
 	    while (true) {
 	        n = reader.read(buffer);

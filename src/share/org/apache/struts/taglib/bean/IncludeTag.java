@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.1 2000/09/05 01:33:21 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.2 2000/09/05 01:52:34 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -80,13 +80,19 @@ import org.apache.struts.util.MessageResources;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/05 01:33:21 $
+ * @version $Revision: 1.2 $ $Date: 2000/09/05 01:52:34 $
  */
 
 public class IncludeTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Buffer size to use when reading the input stream.
+     */
+    private static final int BUFFER_SIZE = 256;
 
 
     /**
@@ -175,11 +181,13 @@ public class IncludeTag extends TagSupport {
 	    BufferedInputStream is =
 		new BufferedInputStream(conn.getInputStream());
 	    InputStreamReader in = new InputStreamReader(is); // FIXME - encoding
+            char buffer[] = new char[BUFFER_SIZE];
+            int n = 0;
 	    while (true) {
-		int ch = in.read();
-		if (ch < 0)
-		    break;
-		sb.append(ch);
+                n = in.read(buffer);
+                if (n < 1)
+                    break;
+                sb.append(buffer, 0, n);
 	    }
             in.close();
 	} catch (Exception e) {
@@ -192,6 +200,17 @@ public class IncludeTag extends TagSupport {
 
 	// Skip any body of this tag
 	return (SKIP_BODY);
+
+    }
+
+
+    /**
+     * Reset custom attributes to their default values.
+     */
+    public void releaseCustomAttributes() {
+
+        id = null;
+        name = null;
 
     }
 
