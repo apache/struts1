@@ -1,0 +1,142 @@
+
+<TABLE>
+	<TR>
+		<TD><A name="Prerequisites"></A>
+			<TABLE border="0" cellspacing="5" cellpadding="5" width="100%">
+				<TR>
+					<TD bgcolor="#023264"><FONT color="#ffffff" face="arial,helvetica,sanserif" size="+1"><STRONG>Prerequisite Software</STRONG></FONT>
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+					<BLOCKQUOTE>
+<P>Copyright : This page is largely inspired 
+              from the original<A href="http://www.apache.com/struts/installation.html">Struts 
+              installation page</A>. For those familiar with Struts, there is 
+              nothing realy new.</P>
+<P>In order to install and use   a binary distribution, you will need to acquire and install several   other software packages, as follows:<BR></P>
+						<UL>
+							<LI><STRONG>Java Development Kit</STRONG>- You must download and install       a version 1.1 (or later) Java Development Kit implementation for your       operating system platform.  You<EM>must</EM>have a Java2 version       (JDK 1.2 or later) to build the Struts source distribution, and several       of the custom tags in the Struts library require Java2 to execute.       A good starting point for locating Java Development Kit distributions is<A href="http://java.sun.com/j2se">http://java.sun.com/j2se</A>. 
+                
+							<LI><STRONG>Struts</STRONG>- You must download and install <A href="http://jakarta.apache.org/struts">Struts</A> , with release greater than 0.5. 
+                A compatible release of Struts is attached with examples. 
+                
+							<LI><STRONG>Servlet Container</STRONG>- You must download and install a       servlet container that is compatible with the Servlet API Specification,       version 2.2 or later, and the JavaServer Pages (JSP) Specification,       version 1.1 or later.  One popular choice is to download Apache's<A href="http://jakarta.apache.org/tomcat">Tomcat</A>(version 3.1 or later required, 
+                version 3.2 or later recommended).
+							<LI><STRONG>Servlet API Classes</STRONG>- In order to compile Struts itself,       or applications that use Struts, you will need a
+						<CODE>servlet.jar</CODE>file containing the Servlet and JSP API classes.  Most servlet containers       include this JAR file.  Otherwise, you can get the Servlet API classes       distribution from<A href="http://jakarta.apache.org/builds/jakarta-servletapi">here</A>.
+							<LI><STRONG>XML Parser</STRONG>- Struts requires the presence of an XML       parser that is compatible with the Java API for XML Parsing (JAXP)       specification.  You can download and install the JAXP<A href="http://java.sun.com/xml">reference implementation</A>,       which is required for building the Struts source distribution.  In       Struts-based web applications, you may replace the reference       implementation classes with any other JAXP compliant parser, such as<A href="http://xml.apache.org/xerces-j">Xerces</A>.  See detailed       instructions related to the parser in the instructions for<A href="#Building">building</A>and<A href="#Installing">installing</A>Struts, below.</LI>
+						</UL></BLOCKQUOTE>
+					</TD>
+				</TR>
+			</TABLE><A name="Building"></A>
+			<TABLE border="0" cellspacing="5" cellpadding="5" width="100%">
+				<TR>
+					<TD bgcolor="#023264"><FONT color="#ffffff" face="arial,helvetica,sanserif" size="+1"><STRONG>Building Components Library From Source</STRONG></FONT>
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+					<BLOCKQUOTE>
+<P>For now, There is no tools facility to 
+              build the Components Library.</P></BLOCKQUOTE>
+					</TD>
+				</TR>
+			</TABLE><A name="Installing"></A>
+			<TABLE border="0" cellspacing="5" cellpadding="5" width="100%">
+				<TR>
+					<TD bgcolor="#023264"><FONT color="#ffffff" face="arial,helvetica,sanserif" size="+1"><STRONG>Install A Binary Distribution</STRONG></FONT>
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+					<BLOCKQUOTE>
+<P>First, download a binary 
+              distribution.&nbsp;  Then, make sure     you have downloaded and installed all of the<A href="#Prerequisites">prerequisite</A>&nbsp;software packages described     above.<BR></P>
+<P>Unpack the binary distribution into a convenient directory.  The     distribution consists of the following contents:<BR></P>
+						<UL>
+							<LI><STRONG>lib/components.jar</STRONG>- This JAR file contains all of the         Java classes included in components.  It should be copied into the
+						<CODE>WEB-INF/lib</CODE>directory of your web application.
+							<LI><STRONG>lib/components.tld</STRONG>- This is the "tag library descriptor"         file that describes the custom tags in the Components library.  It should         be copied into the
+						<CODE>WEB-INF</CODE>directory of your web 
+                application.
+							<LI><STRONG>lib/extension.tld</STRONG>- This is the "extension 
+                tag library descriptor" file that describes the extension tags 
+                which are basically Struts tags, with additional useful 
+                functionalities for components. It should be copied into the
+						<CODE>WEB-INF</CODE>directory of your 
+                web application.
+							<LI><STRONG>webapps/comp-struts-portal.war</STRONG>- 
+                This is a "web application archive" file containing all of the 
+                documentation and examples. Start from this  example.&nbsp;You can install this web application         on any servlet container compatible with Servlet API 2.2 or later.
+							<LI><STRONG>webapps/comp-struts.war</STRONG>- This is 
+                an example web application that         uses a large percentage of Struts features, revisited with Components.         You can install this web application on any servlet container         compatible with the Servlet 2.2 (or later) and JSP 1.1 (or later)         specifications.
+							<LI><STRONG>webapps/comp-struts-instances.war</STRONG>- 
+                This is an example web application that uses a large percentage 
+                of Struts features, revisited with Components and instances. You 
+                can install this web application on any servlet container 
+                compatible with the Servlet 2.2 (or later) and JSP 1.1 (or 
+                later) specifications.</LI>
+						</UL></BLOCKQUOTE>
+<P>To use Components in your own application, you will need to follow     these steps:<BR></P>
+					<BLOCKQUOTE>
+						<UL>
+							<LI>Copy the file
+						<CODE>lib/components.jar</CODE>from the Struts distribution         into the
+						<CODE>WEB-INF/lib</CODE>directory of your web application.
+							<LI>Copy
+						<CODE>lib/components.tld and 
+                lib/extensions.</CODE><FONT face="Courier New">tld</FONT>from the Components distribution into the
+						<CODE>WEB-INF</CODE>directory         of your web application.
+							<LI>Modify the
+						<CODE>WEB-INF/web.xml</CODE>file for your web application         to include a
+						<CODE>&lt;servlet&gt;</CODE>element to define the         controller servlet, and a
+						<CODE>&lt;servlet-mapping&gt;</CODE>element         to establish which request URIs are mapped to this servlet.  Use the
+						<CODE>WEB-INF/web.xml</CODE>file from the 
+                Struts example application for a detailed example         of the required syntax.
+							<LI>If you want to use <EM>instances</EM>, 
+                use the modified version of <EM>ActionServlet</EM>        
+                   , by adding following lines in the
+						<CODE>WEB-INF/web.xml</CODE>file :
+						<CODE><BR>&lt;servlet&gt;<BR>&nbsp;&nbsp;&nbsp; 
+                &lt;servlet-name&gt;action&lt;/servlet-name&gt;<BR>&nbsp;&nbsp;&nbsp; 
+                &lt;servlet-class&gt;org.apache.struts.tiles.ActionComponentServlet&lt;/servlet-class<BR>&nbsp;&nbsp;&nbsp; 
+                &lt;init-param&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &lt;param-name&gt;instances-config&lt;/param-name&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &lt;param-value&gt;/WEB-INF/componentInstances.xml&lt;/param-value&gt;<BR>&nbsp;&nbsp;&nbsp; 
+                &lt;/init-param&gt;<BR>...<BR>&nbsp;</CODE>
+							<LI>If you use <EM>instances</EM>   , but don't want to 
+                use modified servlet, you must initialize instances list, either 
+                in your own servlet (see ComponentActionServlet.java) or at 
+                begining of page (see tags).
+							<LI>Modify the
+						<CODE>WEB-INF/web.xml</CODE>file of your web 
+                application to include the following tag library 
+                declarations:<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &lt;taglib&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &lt;taglib-uri&gt;/WEB-INF/components.tld&lt;/taglib-uri&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &lt;taglib-location&gt;/WEB-INF/components.tld&lt;/taglib-location&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &lt;/taglib&gt;
+							<LI>Create a file
+						<CODE>WEB-INF/struts-config.xml</CODE>that defines the action         mappings for your specific application.  You can use the
+						<CODE>struts-config.xml</CODE>file from the portal example application         for a detailed example of the required syntax.
+							<LI>At the top of each JSP page that will 
+                use the Component custom tags, add line(s) declaring the 
+                Component custom tag librariesused onthis particular page, like 
+                this:&lt; PRE&gt; &lt;@ taglib uri="/WEB-INF/components.tld" 
+                prefix="comp" %&gt;
+						<PRE></PRE>
+							<LI>When compiling the Java classes that comprise your application, be sure         to include the
+						<CODE>components.jar</CODE>file (copied earlier) 
+                on the CLASSPATH that is submitted to the compiler.</LI>
+						</UL></BLOCKQUOTE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</TD>
+</TR>
+</TABLE>
