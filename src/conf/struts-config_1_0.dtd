@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.3 2000/11/28 18:37:44 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.4 2000/11/29 23:16:42 craigmcc Exp $
 -->
 
 
@@ -79,7 +79,7 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (data-source, form-beans?, global-forwards?, action-mappings?)>
+<!ELEMENT struts-config (data-source?, form-beans?, global-forwards?, action-mappings?)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
 
