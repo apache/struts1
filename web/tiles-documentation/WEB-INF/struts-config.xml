@@ -4,28 +4,20 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 <!--
-     This is the Struts configuration file for the example application,
-     using the proposed new syntax.
-
-     NOTE:  You would only flesh out the details in the "form-bean"
-     declarations if you had a generator tool that used them to create
-     the corresponding Java classes for you.  Otherwise, you would
-     need only the "form-bean" element itself, with the corresponding
-     "name" and "type" attributes.
+     This is the Struts configuration file for the
+     Tiles-documentation application
 -->
 
 
 <struts-config>
 
-  <!-- ========== Action Mapping Definitions ============================== -->
+  <!-- ========== Action Mapping Definitions =============================== -->
   <action-mappings>
 
-  <!-- =======================================================  -->
-  <!-- Admin -->
-  <!-- =======================================================  -->
-    <!-- The standard administrative actions available with Struts -->
-    <!-- These would be either omitted or protected by security -->
+    <!-- The standard administrative actions available with Tiles -->
+    <!-- These would be either omitted or protected by security constraints -->
     <!-- in a real application deployment -->
+
     <action    path="/admin/tiles/reload"
                type="org.apache.struts.tiles.actions.ReloadDefinitionsAction"/>
     <action    path="/admin/tiles/view"
@@ -34,19 +26,29 @@
   </action-mappings>
 
   
-  <!-- ========== Tiles plug-in setting settings =================== -->
-  <!-- Here we specified the tiles plug-in.
-       This plug-in register appropriate Request Processor -->
-  <!--  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"  />  -->
+  <!-- ========== Request Processor Declaration =================== -->
+  <!-- The Tiles framework use a special request processor. YOU DON'T -->
+  <!-- NEED TO DECLARE IT yourself (The TilesPlugin do it for you), unless -->
+  <!-- you have created your own request processor. In this later case, -->
+  <!-- your request processor should extend the org.apache.struts.tiles.TilesRequestProcessor -->
+  <!-- and be declared here -->
+  <!--  <controller processorClass="your.RequestProcessor"  />  -->
 
   <!-- ========== Associated Messages Ressource settings =================== -->
-  <!-- Not used by tiles or this website, but needed due to a bug in actual Struts version -->
-  <message-resources parameter="org.apache.struts.webapp.tiles.dev1-1.ApplicationResources" null="false" />
+  <!-- Uncomment the following if your webserver complains about a missing resources. -->
+  <!-- This resource is not needed by Tiles or this example. It is just a trick to make -->
+  <!-- Struts happy with some web server. -->
+  <!-- <message-resources parameter="org.apache.struts.webapp.tiles.dev1-1.ApplicationResources" null="false" /> -->
 
   
+ <!-- ========== TilesPlugin settings ===================================== -->
+ <!-- You should declare this plugin if you want to use Tiles with an XML definition file. -->
   <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+    <!-- Path to XML definition file -->
     <set-property property="definitions-config" 
 	                 value="/WEB-INF/tiles-defs.xml" />
+    <!-- Set Module-awareness to true -->
     <set-property property="moduleAware" value="true" />
   </plug-in>
 
