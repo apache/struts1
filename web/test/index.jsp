@@ -16,6 +16,7 @@
 <li><a href="bean-include.jsp">&lt;bean:include&gt;</a></li>
 <li><a href="bean-parameter.jsp?param1=value1&param2=value2">&lt;bean:parameter&gt;</a></li>
 <li><a href="bean-resource.jsp">&lt;bean:resource&gt;</a></li>
+<li><a href="bean-size.jsp">&lt;bean:size&gt;</a></li>
 <li><a href="bean-write.jsp">&lt;bean:write&gt;</a></li>
 </ul>
 

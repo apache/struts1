@@ -662,6 +662,88 @@
 
   <tag>
 
+    <name>size</name>
+    <summary>
+    Define a bean containing the number of elements in a Collection or Map.
+    </summary>
+    <tagclass>org.apache.struts.taglib.bean.SizeTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.SizeTei</teiclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Given a reference to an array, Collection or Map, creates a new bean, of
+    type <code>java.lang.Integer</code>, whose value is the number of elements
+    in that collection.  You can specify the collection to be counted in any
+    one of the following ways:</p>
+    <ul>
+    <li>As a runtime expression specified as the value of the
+        <code>collection</code> attribute.</li>
+    <li>As a JSP bean specified by the <code>name</code> attribute.</li>
+    <li>As the property, specified by the <code>property</code> attribute,
+        of the JSP bean specified by the <code>bean</code> attribute.</li>
+    </ul>
+    </info>
+
+    <attribute>
+      <name>collection</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>A runtime expression that evaluates to an array, a Collection, or
+      a Map.</p>
+      </info>
+    </attribute>     
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of a page scope JSP bean, of type
+      <code>java.lang.Integer</code>, that will be created to contain the
+      size of the underlying collection being counted.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the JSP bean (optionally constrained to the scope
+      specified by the <code>scope</code> attribute) that contains the
+      collection to be counted (if <code>property</code> is not specified),
+      or whose property getter is called to return the collection to be
+      counted (if <code>property</code> is specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the property, of the bean specified by the
+      <code>name</code> attribute, whose getter method will return the
+      collection to be counted.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The bean scope within which to search for the JSP bean specified
+      by the <code>name</code> attribute.  If not specified, the available
+      scopes are searched in ascending sequence.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
     <name>struts</name>
     <summary>
     Expose a named Struts internal configuration object as a bean.
