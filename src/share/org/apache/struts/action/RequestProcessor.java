@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.29 2003/04/19 01:13:54 dgraham Exp $
- * $Revision: 1.29 $
- * $Date: 2003/04/19 01:13:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.30 2003/04/19 01:16:29 dgraham Exp $
+ * $Revision: 1.30 $
+ * $Date: 2003/04/19 01:16:29 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.29 $ $Date: 2003/04/19 01:13:54 $
+ * @version $Revision: 1.30 $ $Date: 2003/04/19 01:16:29 $
  * @since Struts 1.1
  */
 
@@ -989,25 +989,27 @@ public class RequestProcessor {
      * Uri is relative to the current module. The real uri is compute by prefixing
      * the module name.
      * This method is used internally and is not part of the public API. It is
-     * advice to not use it in subclasses.
+     * advised to not use it in subclasses.
      * @param uri Module-relative URI to forward to
      * @param request Current page request
      * @param response Current page response
      * @since Struts 1.1
      */
-    protected void internalModuleRelativeForward(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-        throws IOException, ServletException
-    {
-    // Construct a request dispatcher for the specified path
-    uri = moduleConfig.getPrefix() + uri;
+    protected void internalModuleRelativeForward(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws IOException, ServletException {
+            
+        // Construct a request dispatcher for the specified path
+        uri = moduleConfig.getPrefix() + uri;
 
-    // Delegate the processing of this request
-    // FIXME - exception handling?
-    if (log.isDebugEnabled()) {
-        log.debug(" Delegating via forward to '" + uri + "'");
-    }
-    doForward(uri, request, response);
+        // Delegate the processing of this request
+        // FIXME - exception handling?
+        if (log.isDebugEnabled()) {
+            log.debug(" Delegating via forward to '" + uri + "'");
+        }
+        doForward(uri, request, response);
     }
 
     /**
@@ -1015,25 +1017,27 @@ public class RequestProcessor {
      * Uri is relative to the current module. The real uri is compute by prefixing
      * the module name.
      * This method is used internally and is not part of the public API. It is
-     * advice to not use it in subclasses.
+     * advised to not use it in subclasses.
      * @param uri Module-relative URI to include
      * @param request Current page request
      * @param response Current page response
      * @since Struts 1.1
      */
-    protected void internalModuleRelativeInclude(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-        throws IOException, ServletException
-    {
-    // Construct a request dispatcher for the specified path
-    uri = moduleConfig.getPrefix() + uri;
+    protected void internalModuleRelativeInclude(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws IOException, ServletException {
+            
+        // Construct a request dispatcher for the specified path
+        uri = moduleConfig.getPrefix() + uri;
 
-    // Delegate the processing of this request
-    // FIXME - exception handling?
-    if (log.isDebugEnabled()) {
-        log.debug(" Delegating via include to '" + uri + "'");
-    }
-    doInclude(uri, request, response);
+        // Delegate the processing of this request
+        // FIXME - exception handling?
+        if (log.isDebugEnabled()) {
+            log.debug(" Delegating via include to '" + uri + "'");
+        }
+        doInclude(uri, request, response);
     }
 
     /**
@@ -1044,10 +1048,12 @@ public class RequestProcessor {
      * @param response Current page response
      * @since Struts 1.1
      */
-    protected void doForward(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-        throws IOException, ServletException
-    {
+    protected void doForward(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws IOException, ServletException {
+            
         // Unwrap the multipart request, if there is one.
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
@@ -1055,9 +1061,9 @@ public class RequestProcessor {
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               getInternal().getMessage
-                               ("requestDispatcher", uri));
+            response.sendError(
+                HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                getInternal().getMessage("requestDispatcher", uri));
             return;
         }
         rd.forward(request, response);
@@ -1072,10 +1078,12 @@ public class RequestProcessor {
      * @param response Current page response
      * @since Struts 1.1
      */
-    protected void doInclude(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-        throws IOException, ServletException
-    {
+    protected void doInclude(
+        String uri,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws IOException, ServletException {
+            
         // Unwrap the multipart request, if there is one.
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
@@ -1083,9 +1091,9 @@ public class RequestProcessor {
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               getInternal().getMessage
-                               ("requestDispatcher", uri));
+            response.sendError(
+                HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                getInternal().getMessage("requestDispatcher", uri));
             return;
         }
         rd.include(request, response);
