@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.126 2003/07/26 19:04:07 dgraham Exp $
- * $Revision: 1.126 $
- * $Date: 2003/07/26 19:04:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.127 2003/07/26 19:15:49 dgraham Exp $
+ * $Revision: 1.127 $
+ * $Date: 2003/07/26 19:15:49 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.126 $ $Date: 2003/07/26 19:04:07 $
+ * @version $Revision: 1.127 $ $Date: 2003/07/26 19:15:49 $
  */
 
 public class RequestUtils {
@@ -1447,11 +1447,11 @@ public class RequestUtils {
      *
      * @param pageContext The PageContext for the current page
      * @param exception The exception to be saved
+     * @deprecated Use TagUtils.saveException() instead. This will be removed 
+     * after Struts 1.2.
      */
     public static void saveException(PageContext pageContext, Throwable exception) {
-
-        pageContext.setAttribute(Globals.EXCEPTION_KEY, exception, PageContext.REQUEST_SCOPE);
-
+        TagUtils.getInstance().saveException(pageContext, exception);
     }
 
     /**
