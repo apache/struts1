@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.8 2002/09/10 16:07:59 arron Exp $
- * $Revision: 1.8 $
- * $Date: 2002/09/10 16:07:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.9 2002/10/23 17:11:42 arron Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/10/23 17:11:42 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -78,7 +78,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.8 $ $Date: 2002/09/10 16:07:59 $
+ * @version $Revision: 1.9 $ $Date: 2002/10/23 17:11:42 $
  */ 
 public class NestedPropertyHelper {
   
@@ -153,7 +153,10 @@ public class NestedPropertyHelper {
    * @return String of the fully qualified nesting property
    */
   public static String getNestedProperty(String property, Tag parentTag) {
-    
+
+    // return if there's nothing to play with.
+    if (property == null) { return null; }
+
     /* if we're just under a root tag no work required */
     if (parentTag instanceof FormTag) {
       /* don't forget to take care of the relative properties */
@@ -169,14 +172,16 @@ public class NestedPropertyHelper {
     }
     
     NestedParentSupport nestedParent = (NestedParentSupport)parentTag;
-    
-    /* return dot notated property from the parent */    
-    if (property.indexOf('/') == -1) {
-      property = nestedParent.getNestedProperty() +"."+ property;
-    } else {
-      property = getRelativeProperty(property,nestedParent.getNestedProperty());
+
+    if (nestedParent != null) {
+      /* return dot notated property from the parent */
+      if (property.indexOf('/') == -1) {
+        property = nestedParent.getNestedProperty() +"."+ property;
+      } else {
+        property = getRelativeProperty(property,nestedParent.getNestedProperty());
+      }
     }
-    
+
     /* Some properties may be at the start of their hierarchy */
     if (property.startsWith(".")) {
       return property.substring(1, property.length());
@@ -208,7 +213,16 @@ public class NestedPropertyHelper {
   public static String getNestedNameProperty(NestedTagSupport tag) {
     
     Tag namedTag = (Tag)tag;
-    
+
+    // see if we're already in the right location
+    if (namedTag instanceof NestedNameSupport) {
+	    String name = ((NestedNameSupport)namedTag).getName();
+	    // return if we already have a name
+	    if (name != null) {
+	      return name;
+	    }
+    }
+
     /* loop all parent tags until we get one which
        gives a reliable bean name  */
     do {
@@ -244,7 +258,7 @@ public class NestedPropertyHelper {
     ((NestedPropertySupport)tag).setProperty(property);
    
     /* if the tag implements NestedNameSupport, set the name for the tag also */
-    if (tag instanceof NestedNameSupport) {
+    if (tag instanceof NestedNameSupport && property != null) {
       String name = getNestedNameProperty(tag);
       ((NestedNameSupport)tag).setName(name);
     }
