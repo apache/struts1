@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.50 2002/08/02 20:50:38 jholmes Exp $
+$Id: STATUS,v 1.51 2002/08/02 21:25:14 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           14 open bugs to swat!!
+                           13 open bugs to swat!!
 
 
 Controller:
@@ -60,7 +60,6 @@ Validator Framework:
 10349 Validator: date validation does not allow blank input?
 10432 DynaValidatorActionForm does not validate data
 10584 Not all validation files are read in Validation PlugIn
-11339 Validator DTD incorrect for msg, args, etc.
 
 
 Web Site:
