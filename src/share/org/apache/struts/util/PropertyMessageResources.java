@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.6 2002/10/17 02:56:58 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/10/17 02:56:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.7 2003/03/13 01:44:47 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/13 01:44:47 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,15 +62,14 @@
 
 package org.apache.struts.util;
 
-
 import java.io.InputStream;
-import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Properties;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 
 /**
  * Concrete subclass of <code>MessageResources</code> that reads message keys
@@ -87,9 +86,8 @@ import org.apache.commons.logging.LogFactory;
  * the same locale + key combination.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/10/17 02:56:58 $
+ * @version $Revision: 1.7 $ $Date: 2003/03/13 01:44:47 $
  */
-
 public class PropertyMessageResources extends MessageResources {
 
 
@@ -196,8 +194,9 @@ public class PropertyMessageResources extends MessageResources {
             synchronized (messages) {
                 message = (String) messages.get(messageKey);
                 if (message != null) {
-                    if (addIt)
+                    if (addIt) {
                         messages.put(originalKey, message);
+                    }
                     return (message);
                 }
             }
@@ -205,8 +204,9 @@ public class PropertyMessageResources extends MessageResources {
             // Strip trailing modifiers to try a more general locale key
             addIt = true;
             underscore = localeKey.lastIndexOf("_");
-            if (underscore < 0)
+            if (underscore < 0) {
                 break;
+            }
             localeKey = localeKey.substring(0, underscore);
 
         }
@@ -238,10 +238,11 @@ public class PropertyMessageResources extends MessageResources {
         }
 
         // Return an appropriate error indication
-        if (returnNull)
+        if (returnNull) {
             return (null);
-        else
+        } else {
             return ("???" + messageKey(locale, key) + "???");
+        }
 
     }
 
@@ -260,23 +261,23 @@ public class PropertyMessageResources extends MessageResources {
      *
      * @param localeKey Locale key for the messages to be retrieved
      */
-    protected void loadLocale(String localeKey) {
+    protected synchronized void loadLocale(String localeKey) {
 
         if (log.isTraceEnabled()) {
             log.trace("loadLocale(" + localeKey + ")");
         }
-
+        
         // Have we already attempted to load messages for this locale?
-        synchronized (locales) {
-            if (locales.get(localeKey) != null)
-                return;
-            locales.put(localeKey, localeKey);
+        if (locales.get(localeKey) != null) {
+            return;
         }
+        locales.put(localeKey, localeKey);
 
         // Set up to load the property resource for this locale key, if we can
         String name = config.replace('.', '/');
-        if (localeKey.length() > 0)
+        if (localeKey.length() > 0) {
             name += "_" + localeKey;
+        }
         name += ".properties";
         InputStream is = null;
         Properties props = new Properties();
@@ -311,18 +312,17 @@ public class PropertyMessageResources extends MessageResources {
         }
 
         // Copy the corresponding values into our cache
-        if (props.size() < 1)
+        if (props.size() < 1) {
             return;
+        }
         synchronized (messages) {
-            Enumeration names = props.keys();
-            while (names.hasMoreElements()) {
-                String key = (String) names.nextElement();
+            Iterator names = props.keySet().iterator();
+            while (names.hasNext()) {
+                String key = (String) names.next();
                 if (log.isTraceEnabled()) {
-                    log.trace("  Saving message key '" +
-                              messageKey(localeKey, key));
+                    log.trace("  Saving message key '" + messageKey(localeKey, key));
                 }
-                messages.put(messageKey(localeKey, key),
-                             props.getProperty(key));
+                messages.put(messageKey(localeKey, key), props.getProperty(key));
             }
         }
 
