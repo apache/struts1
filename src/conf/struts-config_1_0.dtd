@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.8 2001/01/03 19:22:51 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.9 2001/02/13 18:59:36 craigmcc Exp $
 -->
 
 
@@ -165,6 +165,11 @@
      JavaBean that implements the org.apache.struts.action.ActionForm
      class.  The following attributes are defined:
 
+     className       Fully qualified Java class name of the ActionFormBean
+                     implementation class to use.  Defaults to the value
+                     configured as the "formBean" initialization parameter
+                     to the Struts controller servlet.
+
      name            Unique identifier of this bean, used to reference it
                      in corresponding action mappings.
 
@@ -173,6 +178,7 @@
 -->
 <!ELEMENT form-bean (icon?, display-name?, description?, set-property*)>
 <!ATTLIST form-bean      id             ID              #IMPLIED>
+<!ATTLIST form-bean      className      %ClassName;     #IMPLIED>
 <!ATTLIST form-bean      name           %BeanName;      #REQUIRED>
 <!ATTLIST form-bean      type           %ClassName;     #REQUIRED>
 
@@ -195,6 +201,11 @@
      the application) to a mappable resource identified by a context-relative
      URI path.  The following attributes are defined:
 
+     className       Fully qualified Java class name of the ActionForward
+                     implementation class to use.  Defaults to the value
+                     configured as the "forward" initialization parameter
+                     to the Struts controller servlet.
+
      name            Unique identifier of this forward, used to reference it
                      in application action classes.
 
@@ -206,6 +217,7 @@
 -->
 <!ELEMENT forward (icon?, display-name?, description?, set-property*)>
 <!ATTLIST forward        id             ID              #IMPLIED>
+<!ATTLIST forward        className      %ClassName;     #IMPLIED>
 <!ATTLIST forward        name           CDATA           #REQUIRED>
 <!ATTLIST forward        path           %RequestPath;   #REQUIRED>
 <!ATTLIST forward        redirect       %Boolean;       "false">
@@ -232,6 +244,11 @@
                      under which our form bean is accessed, if it is other
                      than the bean's specified "name".  Optional if
                      "name" is specified, else not allowed.
+
+     className       Fully qualified Java class name of the ActionMapping
+                     implementation class to use.  Defaults to the value
+                     configured as the "mapping" initialization parameter
+                     to the Struts controller servlet.
 
      input           Context-relative path of the input form to which control
                      should be returned if a validation error is encountered.
@@ -275,6 +292,7 @@
 <!ELEMENT action (icon?, display-name?, description?, set-property*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
 <!ATTLIST action         attribute      %BeanName;      #IMPLIED>
+<!ATTLIST action         className      %ClassName;     #IMPLIED>
 <!ATTLIST action         input          %RequestPath;   #IMPLIED>
 <!ATTLIST action         name           %BeanName;      #IMPLIED>
 <!ATTLIST action         path           %RequestPath;   #REQUIRED>
