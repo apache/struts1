@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.20 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.20 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.21 2004/04/24 06:36:59 rleland Exp $
+ * $Revision: 1.21 $
+ * $Date: 2004/04/24 06:36:59 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -57,7 +57,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * Some containers require that an object meet all JavaBean requirements
  * in order to use the introspection API upon which ActionForms rely.</p>
  *
- * @version $Revision: 1.20 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.21 $ $Date: 2004/04/24 06:36:59 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -166,7 +166,7 @@ public abstract class ActionForm implements Serializable {
         try {
             reset(mapping, (HttpServletRequest) request);
         } catch (ClassCastException e) {
-            ;
+            ;//FFIXME: Why would this every happen except a null
         }
 
     }

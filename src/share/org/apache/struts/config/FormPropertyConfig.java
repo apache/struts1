@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.14 2004/03/14 06:23:47 sraeburn Exp $
- * $Revision: 1.14 $
- * $Date: 2004/03/14 06:23:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.15 2004/04/24 06:37:00 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/04/24 06:37:00 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,6 +25,8 @@ package org.apache.struts.config;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -32,11 +34,17 @@ import org.apache.commons.beanutils.ConvertUtils;
  * <code>&lt;form-property&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @version $Revision: 1.14 $ $Date: 2004/03/14 06:23:47 $
+ * @version $Revision: 1.15 $ $Date: 2004/04/24 06:37:00 $
  * @since Struts 1.1
  */
 
 public class FormPropertyConfig implements Serializable {
+
+    /**
+     * The logging instance
+     */
+    private static final Log log =
+        LogFactory.getLog(FormPropertyConfig.class);
 
 
     // ----------------------------------------------------------- Constructors
@@ -285,7 +293,8 @@ public class FormPropertyConfig implements Serializable {
                             Array.set(initialValue, i,
                                       clazz.getComponentType().newInstance());
                         } catch (Throwable t) {
-                            ; // Probably does not have a zero-args constructor
+                            log.error("Unable to create instance of "+clazz.getName()+" there is probably no zero-arg constructor");
+                            //FIXME: Should we just dump the entire application/module ?
                         }
                     }
                 }

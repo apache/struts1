@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.26 2004/03/14 06:23:45 sraeburn Exp $
- * $Revision: 1.26 $
- * $Date: 2004/03/14 06:23:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.27 2004/04/24 06:37:00 rleland Exp $
+ * $Revision: 1.27 $
+ * $Date: 2004/04/24 06:37:00 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,16 +28,23 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
  * Define a scripting variable based on the value(s) of the specified
  * bean property.
  *
- * @version $Revision: 1.26 $ $Date: 2004/03/14 06:23:45 $
+ * @version $Revision: 1.27 $ $Date: 2004/04/24 06:37:00 $
  */
 
 public class DefineTag extends BodyTagSupport {
+
+    /**
+      * Commons logging instance.
+      */
+     private static final Log log = LogFactory.getLog(DefineTag.class);
 
     // ---------------------------------------------------- Protected variables
 
@@ -241,7 +248,7 @@ public class DefineTag extends BodyTagSupport {
 				inScope = TagUtils.getInstance().getScope(toScope);
 			}
 		} catch (JspException e) {
-			//  toScope was invalid name so we default to PAGE_SCOPE
+            log.warn("toScope was invalid name so we default to PAGE_SCOPE",e);
 		}
             
         pageContext.setAttribute(id, value, inScope);

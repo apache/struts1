@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.14 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.14 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.15 2004/04/24 06:37:00 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/04/24 06:37:00 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -49,7 +49,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * simplest solution is to subclass <code>DynaActionForm</code> and call
  * the <code>initialize</code> method inside it.</p>
  *
- * @version $Revision: 1.14 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.15 $ $Date: 2004/04/24 06:37:00 $
  * @since Struts 1.1
  */
 public class DynaActionForm extends ActionForm implements DynaBean {
@@ -122,13 +122,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, ServletRequest request) {
-
-        try {
-            reset(mapping, (HttpServletRequest) request);
-        } catch (ClassCastException e) {
-            ;
-        }
-
+        super.reset(mapping,request);
     }
 
 
@@ -147,9 +141,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param request The servlet request we are processing
      */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
-
-        ;       // Default implementation does nothing
-
+        super.reset(mapping,request);
     }
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.33 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.33 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.34 2004/04/24 06:37:00 rleland Exp $
+ * $Revision: 1.34 $
+ * $Date: 2004/04/24 06:37:00 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -55,7 +55,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @version $Revision: 1.33 $
+ * @version $Revision: 1.34 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -673,41 +673,38 @@ public class TagUtils {
         ActionErrors errors = new ActionErrors();
 
         Object value = pageContext.findAttribute(paramName);
-
-        try {
-            if (value == null) {
-                ;
-
-            } else if (value instanceof String) {
-                errors.add(
-                        ActionMessages.GLOBAL_MESSAGE,
-                        new ActionMessage((String) value));
-
-            } else if (value instanceof String[]) {
-                String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++) {
+        if (value != null) {
+            try {
+                if (value instanceof String) {
                     errors.add(
                             ActionMessages.GLOBAL_MESSAGE,
-                            new ActionMessage(keys[i]));
+                            new ActionMessage((String) value));
+
+                } else if (value instanceof String[]) {
+                    String keys[] = (String[]) value;
+                    for (int i = 0; i < keys.length; i++) {
+                        errors.add(
+                                ActionMessages.GLOBAL_MESSAGE,
+                                new ActionMessage(keys[i]));
+                    }
+
+                } else if (value instanceof ActionErrors) {
+                    errors = (ActionErrors) value;
+
+                } else {
+                    throw new JspException(
+                            messages.getMessage(
+                                    "actionErrors.errors",
+                                    value.getClass().getName()));
                 }
 
-            } else if (value instanceof ActionErrors) {
-                errors = (ActionErrors) value;
+            } catch (JspException e) {
+                throw e;
 
-            } else {
-                throw new JspException(
-                        messages.getMessage(
-                                "actionErrors.errors",
-                                value.getClass().getName()));
+            } catch (Exception e) {
+                log.debug(e, e);
             }
-
-        } catch (JspException e) {
-            throw e;
-
-        } catch (Exception e) {
-            log.debug(e, e);
         }
-
         return errors;
     }
 
@@ -822,44 +819,42 @@ public class TagUtils {
         ActionMessages am = new ActionMessages();
 
         Object value = pageContext.findAttribute(paramName);
-
-        try {
-            if (value == null) {
-                ;
-            } else if (value instanceof String) {
-                am.add(
-                        ActionMessages.GLOBAL_MESSAGE,
-                        new ActionMessage((String) value));
-
-            } else if (value instanceof String[]) {
-                String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++) {
+        if (value != null) {
+            try {
+               if (value instanceof String) {
                     am.add(
                             ActionMessages.GLOBAL_MESSAGE,
-                            new ActionMessage(keys[i]));
+                            new ActionMessage((String) value));
+
+                } else if (value instanceof String[]) {
+                    String keys[] = (String[]) value;
+                    for (int i = 0; i < keys.length; i++) {
+                        am.add(
+                                ActionMessages.GLOBAL_MESSAGE,
+                                new ActionMessage(keys[i]));
+                    }
+
+                } else if (value instanceof ActionErrors) {
+                    ActionMessages m = (ActionMessages) value;
+                    am.add(m);
+
+                } else if (value instanceof ActionMessages) {
+                    am = (ActionMessages) value;
+
+                } else {
+                    throw new JspException(
+                            messages.getMessage(
+                                    "actionMessages.errors",
+                                    value.getClass().getName()));
                 }
 
-            } else if (value instanceof ActionErrors) {
-                ActionMessages m = (ActionMessages) value;
-                am.add(m);
+            } catch (JspException e) {
+                throw e;
 
-            } else if (value instanceof ActionMessages) {
-                am = (ActionMessages) value;
-
-            } else {
-                throw new JspException(
-                        messages.getMessage(
-                                "actionMessages.errors",
-                                value.getClass().getName()));
+            } catch (Exception e) {
+                log.warn("Unable to retieve ActionMessage for paramName : "+paramName,e);
             }
-
-        } catch (JspException e) {
-            throw e;
-
-        } catch (Exception e) {
-            ;
         }
-
         return am;
     }
 
