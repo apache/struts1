@@ -678,7 +678,18 @@ public ActionForward execute(ActionMapping mapping,
 
       <section name="4.6.2 Controller Configuration" href="controller_config">
       <p>
-        [:TODO:]
+        The &lt;controller&gt; element allows you to configure the ActionServlet.  Many of the controller
+        parameters were previously defined by servlet init. parameters in your web.xml file but have been
+        moved to this section of struts-config.xml.  For full details on available parameters see the
+        struts-config_1_1.dtd.
+      </p>
+      <p>
+      	This example uses the default values for several controller parameters.  If you only want default
+      	behavior you can omit the controller section altogether.<br/>
+      	&lt;controller 
+      		processorClass="org.apache.struts.action.RequestProcessor"
+      		debug="0"
+      		contentType="text/html"/&gt;
       </p>
       </section>
 
@@ -737,6 +748,12 @@ public ActionForward execute(ActionMapping mapping,
     <p>
     For PlugIns that require configuration themselves, the nested
     <code>&lt;set-property&gt;</code> element is available.
+        </p>
+        <p>
+        	This is an example using the Tiles plugin:<br/>
+        	&lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
+   				&lt;set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/&gt;
+			&lt;/plug-in&gt;
         </p>
     </section>
 
@@ -805,7 +822,7 @@ public ActionForward execute(ActionMapping mapping,
            data-source needs, the query you provide for the pingQuery
            attribute must return at least one row.</i><br/>
 	<br/>
-        <b>Example:</b><code>SELECT COUNT(*) FROM VALIDTABLE</code><br/>
+        <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code><br/>
 	<br/>
 	Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
       </p>
