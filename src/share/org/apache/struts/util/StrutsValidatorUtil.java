@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.7 2002/10/18 01:35:02 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/10/18 01:35:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.8 2002/11/22 05:15:39 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/22 05:15:39 $
  *
  * ====================================================================
  *
@@ -78,10 +78,10 @@ import org.apache.commons.validator.ValidatorResources;
  * <p>This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.</p>
  *
-{@link org.apache.struts.validator.Resources}
+ * @deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources}
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.7 $ $Date: 2002/10/18 01:35:02 $
+ * @version $Revision: 1.8 $ $Date: 2002/11/22 05:15:39 $
  * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
