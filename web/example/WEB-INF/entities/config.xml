@@ -1,0 +1,6 @@
+          <config
+             host="localhost"
+             port="8080"
+             protocol="http"
+             basepath="example" />
+

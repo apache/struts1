@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE project SYSTEM "WebTest.dtd" [
+    <!ENTITY config     SYSTEM "entities/config.xml">
+    <!ENTITY taskdef-webtest SYSTEM "entities/taskdef-webtest.xml">
+]>
+<!--
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/webtest.xml,v 1.1 2004/03/09 04:43:12 husted Exp $
+ $Revision: 1.1 $
+ $Date: 2004/03/09 04:43:12 $
+
+ Copyright 2000-2004 Apache Software Foundation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<project name="MailReader Storyboard - Exercise navigation and database logic - Canoo WebTests" basedir="." default="default">
+    <!--
+     Canoo WebTest configuration file to test navigating between pages and creating and editing an account.
+
+     To run this test, first install the Canoo Webtest package on your local system ().
+
+     The default location is under "/opt/Canoo/build_379". See the webtest.properties.sample to use another location. 
+
+     Once Canoo is installed, the webtest.xml file can be run as an Ant build file.
+
+     The tests are written for a container running at port 8080 using the Struts "/target" directory as the 
+     web root. 
+
+     Use the standard Struts "build.webapps" target to create the example application. Start your web container. 
+     Then use Ant to run the webtest.xml.
+     
+     @version $Revision: 1.1 $ $Date: 2004/03/09 04:43:12 $
+     */
+    -->
+    
+    <!-- Load local preferences, if any -->
+    <property file="webtest.properties"/>
+  
+    <property name="webtest.home"
+        location="/opt/Canoo/build_379" />
+
+    <!-- Load application resources -->
+    <property file="../../../src/example/org/apache/struts/webapp/example/ApplicationResources.properties"/>
+
+    <taskdef file="${webtest.home}/webtestTaskdefs.properties">
+       <classpath>
+          <fileset dir="${webtest.home}" includes="**/lib/*.jar"/>
+       </classpath>
+    </taskdef>
+
+    <target name="default" depends="welcome" />
+
+    <target name="welcome"
+        description="Welcome page">
+
+        <testSpec name="Open welcome action">
+        &config;
+           <steps>
+               <invoke
+                  stepid="Open welcome action"
+                  url="/welcome.do" />
+               <verifytitle
+                   stepid="Welcome page title"
+                   text="${index.title}" />
+               <clicklink label="${index.registration}" />
+               <verifytitle
+                   stepid="Registration page title"
+                   text="${registration.title.create}" />
+               <clicklink label="${index.title}" />
+               <clicklink label="${index.logon}" />
+               <verifytitle
+                   stepid="Logon page title"
+                   text="${logon.title}" />
+               <clicklink label="${index.title}" />
+            </steps>
+        </testSpec>
+
+    </target>
+
+</project>

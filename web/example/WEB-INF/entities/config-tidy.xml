@@ -1,0 +1,11 @@
+          <config
+             host="localhost"
+             port="8080"
+             protocol="http"
+             basepath="example"
+             summary="false"
+             saveresponse="false"
+             resultpath="results"
+             resultfile="result.txt"
+             showhtmlparseroutput="true"
+             verbose="false"/>
