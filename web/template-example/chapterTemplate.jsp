@@ -1,4 +1,4 @@
-<%@ taglib uri='/WEB-INF/tlds/struts-template.tld' prefix='template' %>
+<%@ taglib uri='/WEB-INF/struts-template.tld' prefix='template' %>
 
 <html><head><title><template:get name='title'/></title></head>
 <body background='graphics/blueAndWhiteBackground.gif'>

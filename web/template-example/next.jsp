@@ -1,4 +1,4 @@
-<%@ taglib uri='/WEB-INF/tlds/struts-template.tld' 
+<%@ taglib uri='/WEB-INF/struts-template.tld' 
        prefix='template' %>
 
 <% String msg = "In your application, you could insert some clever functionality into the file next.jsp, and then link to it from footer.html."; %>

@@ -1,4 +1,4 @@
-<%@ taglib uri='/WEB-INF/tlds/struts-template.tld' 
+<%@ taglib uri='/WEB-INF/struts-template.tld' 
 	 	  prefix='template' %>
 
 <template:insert template='/chapterTemplate.jsp'>
