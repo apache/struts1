@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.12 2003/08/16 18:37:33 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/08/16 18:37:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.13 2003/08/23 00:12:40 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/08/23 00:12:40 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import java.io.Serializable;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/08/16 18:37:33 $
+ * @version $Revision: 1.13 $ $Date: 2003/08/23 00:12:40 $
  */
 public class ActionErrors extends ActionMessages implements Serializable {
 
@@ -92,6 +92,8 @@ public class ActionErrors extends ActionMessages implements Serializable {
     /**
      * The "property name" marker to use for global errors, as opposed to
      * those related to a specific property.
+     * @deprecated Use ActionMessages.GLOBAL_MESSAGE instead.  This will be 
+     * removed after Struts 1.2.
      */
     public static final String GLOBAL_ERROR = "org.apache.struts.action.GLOBAL_ERROR";
 

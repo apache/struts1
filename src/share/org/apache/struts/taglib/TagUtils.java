@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.23 2003/08/16 18:35:41 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/08/16 18:35:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.24 2003/08/23 00:12:40 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/08/23 00:12:40 $
  *
  * ====================================================================
  *
@@ -101,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -643,13 +643,13 @@ public class TagUtils {
 
             } else if (value instanceof String) {
                 errors.add(
-                    ActionErrors.GLOBAL_ERROR,
+                    ActionMessages.GLOBAL_MESSAGE,
                     new ActionMessage((String) value));
 
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++) {
-                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionMessage(keys[i]));
+                    errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
                 }
 
             } else if (value instanceof ActionErrors) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.6 2003/08/16 18:07:41 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/08/16 18:07:41 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.7 2003/08/23 00:12:39 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/08/23 00:12:39 $
  *
  * ====================================================================
  *
@@ -78,6 +78,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.tiles.ComponentContext;
 
 /**
@@ -88,7 +89,7 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.6 $ $Date: 2003/08/16 18:07:41 $
+ * @version $Revision: 1.7 $ $Date: 2003/08/23 00:12:39 $
  */
 public final class Channels extends Action {
 
@@ -165,7 +166,7 @@ public final class Channels extends Action {
             }
         } catch (Throwable t) {
             errors.add(
-                ActionErrors.GLOBAL_ERROR,
+                ActionMessages.GLOBAL_MESSAGE,
                 new ActionMessage("rss.access.error"));
 
             servlet.log(t.toString());

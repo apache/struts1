@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.15 2003/08/16 18:29:09 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/08/16 18:29:09 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveRegistrationAction.java,v 1.16 2003/08/23 00:12:39 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/08/23 00:12:39 $
  *
  * ====================================================================
  *
@@ -77,6 +77,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 
 /**
  * Implementation of <strong>Action</strong> that validates and creates or
@@ -84,7 +85,7 @@ import org.apache.struts.action.ActionMessage;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/08/16 18:29:09 $
+ * @version $Revision: 1.16 $ $Date: 2003/08/23 00:12:39 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -162,7 +163,7 @@ public final class SaveRegistrationAction extends Action {
         
         if (!isTokenValid(request)) {
             errors.add(
-                ActionErrors.GLOBAL_ERROR,
+                ActionMessages.GLOBAL_MESSAGE,
                 new ActionMessage("error.transaction.token"));
         }
         

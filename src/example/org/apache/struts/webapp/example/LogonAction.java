@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.15 2003/08/16 18:29:09 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/08/16 18:29:09 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.16 2003/08/23 00:12:39 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/08/23 00:12:39 $
  *
  * ====================================================================
  *
@@ -74,13 +74,14 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.ModuleException;
 
 /**
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/08/16 18:29:09 $
+ * @version $Revision: 1.16 $ $Date: 2003/08/23 00:12:39 $
  */
 public final class LogonAction extends Action {
 
@@ -125,18 +126,22 @@ public final class LogonAction extends Action {
             (UserDatabase) servlet.getServletContext().getAttribute(
                 Constants.DATABASE_KEY);
                 
-        if (database == null)
+        if (database == null){
             errors.add(
-                ActionErrors.GLOBAL_ERROR,
+                ActionMessages.GLOBAL_MESSAGE,
                 new ActionMessage("error.database.missing"));
-        else {
+        } else {
             user = getUser(database, username);
-            if ((user != null) && !user.getPassword().equals(password))
+            
+            if ((user != null) && !user.getPassword().equals(password)){
                 user = null;
-            if (user == null)
+            }
+                
+            if (user == null) {
                 errors.add(
-                    ActionErrors.GLOBAL_ERROR,
+                    ActionMessages.GLOBAL_MESSAGE,
                     new ActionMessage("error.password.mismatch"));
+            }
         }
 
         // Report any errors we have discovered back to the original form
