@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.18 2002/06/28 01:57:27 jholmes Exp $
+     $Id: struts-config_1_1.dtd,v 1.19 2002/06/30 04:37:32 craigmcc Exp $
 -->
 
 
@@ -143,6 +143,11 @@
      occur during Action delegation and should be handled by the
      ActionServlet.
 
+    bundle           Servlet context attribute under which the message
+                     resources bundle from which this message should be
+                     acquired.  Default is the value specified by the
+                     string constant Action.MESSAGES_KEY.
+
     className        Implementation subclass of the standard configuration
                      bean, if you do not want to use the standard value.
                      [org.apache.struts.config.ExceptionConfig]
@@ -166,6 +171,7 @@
 -->
 <!ELEMENT exception (icon?, display-name?, description?, set-property*)>
 <!ATTLIST exception      id             ID              #IMPLIED>
+<!ATTLIST exception      bundle         %AttributeName; #IMPLIED>
 <!ATTLIST exception      className      %ClassName;     #IMPLIED>
 <!ATTLIST exception      handler        %ClassName;     #IMPLIED>
 <!ATTLIST exception      key            CDATA           #REQUIRED>

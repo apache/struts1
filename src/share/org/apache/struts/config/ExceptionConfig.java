@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.3 2002/02/23 23:53:29 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/02/23 23:53:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.4 2002/06/30 04:37:32 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/30 04:37:32 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/02/23 23:53:29 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/30 04:37:32 $
  * @since Struts 1.1
  */
 
@@ -89,6 +89,25 @@ public class ExceptionConfig implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The servlet context attribute under which the message resources bundle
+     * to be used for this exception is located.  If not set, the default
+     * message resources for the current subapp is assumed.
+     */
+    protected String bundle = null;
+
+    public String getBundle() {
+        return (this.bundle);
+    }
+
+    public void setBundle(String bundle) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.bundle = bundle;
+    }
 
 
     /**
@@ -202,6 +221,10 @@ public class ExceptionConfig implements Serializable {
         StringBuffer sb = new StringBuffer("ExceptionConfig[");
         sb.append("type=");
         sb.append(this.type);
+        if (this.bundle != null) {
+            sb.append(",bundle=");
+            sb.append(this.bundle);
+        }
         sb.append(",key=");
         sb.append(this.key);
         sb.append(",path=");
