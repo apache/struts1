@@ -11,6 +11,8 @@
 
 <section name="Other Development Books"> 
 <p><b>Java Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110995/hitchhikeguidetoA/">JUnit in Action</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=047120708X/hitchhikeguidetoA/">Java Tools for Extreme Programming</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=193011043X/hitchhikeguidetoA/">Bitter Java</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0521777682/hitchhikeguidetoA/">Elements of Java Style</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0201310058/hitchhikeguidetoA/">Effective Java</a></p>
@@ -18,20 +20,21 @@
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0130819336/hitchhikeguidetoA/">Core Java 2, Volume 1 Fundamentals</a></p>
 
 <p><b>Java Web Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0131422464/hitchhikeguidetoA/">Core J2EE Patterns: Best Practices and Design Strategies, Second Edition</a> <i>- Recommended!</i></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110588/hitchhikeguidetoA/">Java Development with Ant</a> by Erik Hatcher and Steve Loughran <i>- To be released in July 2002</i></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110529/hitchhikeguidetoA/">JSTL in Action</a> by Shawn Bayern <i>- Released in June 2002</i></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/">Core J2EE Patterns</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1930110529/hitchhikeguidetoA/">JSTL in Action</a> by Shawn Bayern</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=193011009X/hitchhikeguidetoA/">JSP Tag Libraries</a></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=1893115364/hitchhikeguidetoA/">Apache-Jakarta Tomcat by James Goodwill</a></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777996/hitchhikeguidetoA/">Web Development with JavaServer Pages 2nd Edition</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1893115364/hitchhikeguidetoA/">Apache-Jakarta Tomcat</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777996/hitchhikeguidetoA/">Web Development with JavaServer Pages, 2nd Edition</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0130882488/hitchhikeguidetoA/">Core JSP</a></p>
 
 <p><b>Software Development</b></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=158880173X/hitchhikeguidetoA/">Open Source Development with CVS</a></p>
 
 <p><b>Software Engineering</b></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=0321146530/hitchhikeguidetoA/">Test Driven Development</a></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=0321127420/hitchhikeguidetoA/">Patterns in Enterprise Application Architecturee</a> <i>- Highly recommended!</i></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0321146530/hitchhikeguidetoA/">Test Driven Development by Example</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=020161622X/hitchhikeguidetoA/">The Pragmatic Programmer: From Journeyman to Master</a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=0321127420/hitchhikeguidetoA/">Patterns in Enterprise Application Architecture</a> <i>- Highly recommended!</i></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring: Improving the Design of Existing Code</a> <i>- Read me second!</i></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0672316498/hitchhikeguidetoA/">The Inmates Are Running the Asylum: Why High Tech Products Drive Us Crazy and How To Restore The Sanity</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777597/hitchhikeguidetoA/">Practical Software Requirements</a></p>

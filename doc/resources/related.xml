@@ -10,38 +10,40 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Other Struts-Related Articles">
-<p><b>Web DbForms by Joachim Peer</b><br/>
+<p><b>Web DbForms by Joachim Peer</b><br />
   - <a href="http://www.onjava.com/lpt/a//onjava/2001/07/18/dbforms.html">http://www.onjava.com/lpt/a//onjava/2001/07/18/dbforms.html</a></p>
-<p><b>Expresso Extends Struts through Integration Roadmap</b><br/>
-  - <a href="http://www.jcorporate.com/html/products/expresso.html">http://www.jcorporate.com/html/products/expresso.html</a> <br/>
+<p><b>Expresso Extends Struts through Integration Roadmap</b><br />
+  - <a href="http://www.jcorporate.com/html/products/expresso.html">http://www.jcorporate.com/html/products/expresso.html</a> <br />
   - <a href="http://www.jcorporate.com/doc/roadmap.html">http://www.jcorporate.com/doc/roadmap.html</a></p>
-<p><b>Dynamic Value Object</b>  by raffaele spazzoli <br/>
+<p><b>Dynamic Value Object</b>  by raffaele spazzoli <br />
   - <a href="http://www.theserverside.com/patterns/thread.jsp?thread_id=2722">http://www.theserverside.com/patterns/thread.jsp?thread_id=2722</a></p>
-<p><b>Coarse Grained BMP beans with Dependent Value Objects</b> by Floyd Marinescu<br/>
+<p><b>Coarse Grained BMP beans with Dependent Value Objects</b> by Floyd Marinescu<br />
   - <a href="http://www.theserverside.com/patterns/depbmp.jsp">http://www.theserverside.com/patterns/depbmp.jsp</a></p>
-<p><b>View Helper</b> - Design patterns<br/>
+<p><b>View Helper</b> - Design patterns<br />
   - <a href="http://developer.java.sun.com/developer/restricted/patterns/ViewHelper.html">http://developer.java.sun.com/developer/restricted/patterns/ViewHelper.html</a></p>
-<p><b>Ruby Web Application Framework</b> - A framework for developing web/wap applications founded in the Ruby programming language, based on the Jakarta Struts project.<br/>
+<p><b>Ruby Web Application Framework</b> - A framework for developing web/wap applications founded in the Ruby programming language, based on the Jakarta Struts project.<br />
   - <a href="http://sourceforge.net/projects/ruby-waf/">http://sourceforge.net/projects/ruby-waf/</a></p>
-<p><b>Building Web Applications in Java </b> - by Brad Cox<br/>
-  - <a href="http://virtualschool.edu/wap/html/problem.html">http://virtualschool.edu/wap/index.html</a><br/>
+<p><b>Building Web Applications in Java </b> - by Brad Cox<br />
+  - <a href="http://virtualschool.edu/wap/html/problem.html">http://virtualschool.edu/wap/index.html</a><br />
   - overview of article: <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg08555.html">http://www.mail-archive.com/struts-user%40jakarta.apache.org/msg08555.html</a></p>
-<p><b>Doclet your Servlet</b> by Jeremy Roschelle </p>
-<p>- <a href="http://www.javaworld.com/javaworld/jw-03-2001/jw-0302-doclets.html">http://www.javaworld.com/javaworld/jw-03-2001/jw-0302-doclets.html</a></p>
-<p><b>You make the decision</b>  (JSP/Struts or Velocity/Turbine) by Jon Stevens.</p>
-<p>- <a href="http://jakarta.apache.org/velocity/ymtd/ymtd.html">http://jakarta.apache.org/velocity/ymtd/ymtd.html</a></p>
-<p><b>Get disconnected with CachedRowSet</b> by Taylor G. Cowan <br/>
+<p><b>Doclet your Servlet</b> by Jeremy Roschelle<br />
+  - <a href="http://www.javaworld.com/javaworld/jw-03-2001/jw-0302-doclets.html">http://www.javaworld.com/javaworld/jw-03-2001/jw-0302-doclets.html</a></p>
+<p><b>You make the decision</b> (JSP/Struts or Velocity/Turbine) by Jon Stevens.<br />
+  - <a href="http://jakarta.apache.org/velocity/ymtd/ymtd.html">http://jakarta.apache.org/velocity/ymtd/ymtd.html</a></p>
+<p><b>Get disconnected with CachedRowSet</b> by Taylor G. Cowan <br />
   - <a href="http://www.javaworld.com/javaworld/jw-02-2001/jw-0202-cachedrow.html">http://www.javaworld.com/javaworld/jw-02-2001/jw-0202-cachedrow.html</a></p>
-<p><b>Incremental development with Ant and JUnit</b> by Malcolm Davis<br/>
+<p><b>Incremental development with Ant and JUnit</b> by Malcolm Davis<br />
   - <a href="http://www-106.ibm.com/developerworks/library/j-ant/?dwzone=java">http://www-106.ibm.com/developerworks/library/j-ant/?dwzone=java</a></p>
-<p><b>A MVC Framework from Kevin Duffy<br/>
-  </b><a href="http://www.brainopolis.com/jsp/mvc/KDuffey_MVC.html">http://www.brainopolis.com/jsp/mvc/KDuffey_MVC.html</a></p>
-<p><b>Encapsulate reusable functionality in JSP</b> by Simon Brown<br/>
-  <a href="http://www.javaworld.com/javaworld/jw-08-2000/jw-0811-jsptags.html">http://www.javaworld.com/javaworld/jw-08-2000/jw-0811-jsptags.html</a></p>
-<p>[ opinion ] <b>Freeware: Is it really worth it? </b>by Anil Hemrajani - <a href="http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-soapbox.html#resources">http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-soapbox.html#resources</a></p>
-<p><b>Solve your servlet-based presentation problems </b>by Kevin Unger <br/>
+<p><b>A MVC Framework from Kevin Duffy<br />
+  - </b><a href="http://www.brainopolis.com/jsp/mvc/KDuffey_MVC.html">http://www.brainopolis.com/jsp/mvc/KDuffey_MVC.html</a></p>
+<p><b>Encapsulate reusable functionality in JSP</b> by Simon Brown<br />
+  - <a href="http://www.javaworld.com/javaworld/jw-08-2000/jw-0811-jsptags.html">http://www.javaworld.com/javaworld/jw-08-2000/jw-0811-jsptags.html</a></p>
+<p>[ opinion ] <b>Freeware: Is it really worth it? </b>by Anil Hemrajani<br />
+  - <a href="http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-soapbox.html#resources">http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-soapbox.html#resources</a></p>
+<p><b>Solve your servlet-based presentation problems </b>by Kevin Unger <br />
   - <a href="http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-presentation_p.html">http://www.javaworld.com/javaworld/jw-11-2000/jw-1103-presentation_p.html</a></p>
-<p><b>Template Resolution in XML/HTML</b> by Anders Kristensen<b> - </b><a href="http://www-uk.hpl.hp.com/people/ak/doc/trix-tr.html">http://www-uk.hpl.hp.com/people/ak/doc/trix-tr.html</a></p>
+<p><b>Template Resolution in XML/HTML</b> by Anders Kristensen<b> <br />
+  - </b><a href="http://www-uk.hpl.hp.com/people/ak/doc/trix-tr.html">http://www-uk.hpl.hp.com/people/ak/doc/trix-tr.html</a></p>
 <p><a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html"><b>Understanding JavaServer Pages Model 2 architecture</b></a> by Govind Seshadri</p>
 <p><a href="http://www.servlets.com/soapbox/problems-jsp.html"><b>The Problem with JSP</b></a> by Jason Hunter</p>
 </section>

@@ -9,14 +9,16 @@
 <body> 
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
-<section name="Other Resource Pages"> 
-<p><a href="http://www.multitask.com.au/default.html?page=mtSOS"><b>Struts SOS</b> (fee-based)</a></p>
-<p><a href="http://www.ingrid.org/jajakarta/struts/"><b>Japanese Translation of Struts documentation</b></a> as well as the other Jakarta projects).</p>
-<p><b>Struts and Jakarta mailing lists in Japanese</b> - <a href="mailto:struts-user@freeml.com">struts-user@freeml.com</a> and <a href="mailto:jajakarta-general@jajakarta.good-day.net">jajakarta-general@jajakarta.good-day.net</a></p>
-<p><a href="http://www.jguru.com/faq/home.jsp?topic=Struts"><b>JGuru FAQ</b></a></p>
-<p><a href="http://husted.com/struts/"><b>More About Struts</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
-<p><a href="http://java.sun.com/docs/books/tutorial/"><b>Javasoft Tutorials</b></a></p>
-<p><a href="http://archives.java.sun.com"><b>Javasoft Mailing Lists</b></a></p>
+<section name="Other Resource Pages">
+
+    <p><a href="http://www.ingrid.org/jajakarta/struts/"><b>Japanese Translation of Struts documentation</b></a> (as well as the other Jakarta projects).</p>
+    <p><a href="http://archives.java.sun.com"><b>Javasoft Mailing Lists</b></a></p>
+    <p><a href="http://java.sun.com/docs/books/tutorial/"><b>Javasoft Tutorials</b></a></p>
+    <p><a href="http://www.jguru.com/faq/home.jsp?topic=Struts"><b>JGuru FAQ</b></a> and <a href="http://www.jguru.com/forums/Struts">Forum</a></p>
+    <p><b>Struts and Jakarta mailing lists in Japanese</b> - <a href="mailto:struts-user@freeml.com">struts-user@freeml.com</a> and <a href="mailto:jajakarta-general@jajakarta.good-day.net">jajakarta-general@jajakarta.good-day.net</a></p>
+    <p><a href="http://www.multitask.com.au/default.html?page=mtSOS"><b>Struts SOS</b> (fee-based)</a></p>
+    <p><a href="http://husted.com/struts/"><b>More About Struts</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
+
 </section>
 
 </chapter></body></document>

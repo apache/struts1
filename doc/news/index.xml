@@ -33,6 +33,9 @@
     <li>
       See the <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">Struts CVS</a> for the current development codebase.
       </li>
+    <li>
+       See the <a href="../releases.html">Release Guides</a> for our release process and coding conventions.
+    </li>
     </ul>
 
     <hr size="1" noshade=""/>
