@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/util/ClassUtils.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/util/ClassUtils.java,v 1.2 2004/01/15 13:43:36 germuska Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/15 13:43:36 $
  *
  * ====================================================================
  *
@@ -61,12 +61,11 @@
 
 package org.apache.struts.chain.util;
 
-
 /**
  * <p>Utility methods to load application classes and create instances.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/15 13:43:36 $
  */
 
 public final class ClassUtils {
@@ -86,6 +85,10 @@ public final class ClassUtils {
      */
     public static Class getApplicationClass(String className)
         throws ClassNotFoundException {
+
+        if (className == null) {
+            throw new NullPointerException("getApplicationClass called with null className");
+        }
 
         ClassLoader classLoader =
             Thread.currentThread().getContextClassLoader();
