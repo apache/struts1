@@ -442,6 +442,11 @@
             <info>
                 Name of the request parameter that will be included with this
                 submission, set to the specified value.
+                <strong>WARNING</strong> - If you set this attribute to a
+                value other than the default, this will <em>NOT</em> be
+                recognized as the cancel key by the Struts controller servlet
+                or the <code>Action.isCancelled()</code> method.  You will
+                need to do your own cancel detection.
             </info>
         </attribute>
 
