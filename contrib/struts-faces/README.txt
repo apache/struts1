@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.3 2003/11/27 23:01:22 martinc Exp $
+$Id: README.txt,v 1.4 2003/12/24 04:47:55 craigmcc Exp $
 
 
 ============
@@ -13,7 +13,7 @@ includes the canonical "struts-example" example web application, converted
 to use JavaServer Faces tags, as well as tags from the JSP Standard Tag
 Library (JSTL), version 1.0 or later.
 
-Note that this software is based on the Early Access 4 release of
+Note that this software is based on the Beta release of
 JavaServer Faces technology, and is itself very new.  Therefore, it is
 appropriate only for evaluation and learning, and not yet appropriate
 for production application deployments.
@@ -29,8 +29,28 @@ JAR files into the example app, which is required before it will run.
 NEW AND REVISED FEATURES:
 ========================
 
-This release of the Struts-Faces Integration Library (Version 0.4) has the
-following new features relative to the previous (0.3) release:
+This release of the Struts-Faces Integration Library (Version 0.5) has the
+following new features relative to the previous (0.4) release:
+
+* It is now possible to mix pure JavaServer Faces pages, and those
+  using the struts-faces integration library, in the same webapp.  Previously,
+  it was required to use only Stuts-based handlers for form submts.
+
+* All attributes of the component tags in the Struts-Faces integration library
+  have been "value binding enabled", meaning you can use value binding
+  expressions ("#{...}") to calculate attribute values dynamically.
+
+This release of the Struts-Faces Integration Library (Version 0.5) has the
+following revised features relative to the previous (0.4) release:
+
+* The "focus" attribute on the <s:form> tag should work properly
+  in all cases now.
+
+* Integration with the Validator Framework should work properly
+  in all cases now.
+
+The previous release of the Struts-Faces Integration Library (Version 0.4)
+had the following new features relative to the previous (0.3) release:
 
 * Value reference expressions in "valueRef" attributes of UI component tags
   can now recognize and support the properties of DynaBeans directly, thanks
@@ -38,8 +58,8 @@ following new features relative to the previous (0.3) release:
   JavaServer Faces 1.0ea4.  For backwards compatibility, the ".map"
   pseudo-property on DynaActionForm and its subclasses is still recognized.
 
-This release of the Struts-Faces Integration Library (Version 0.4) has the
-following revised features relative to the previous (0.3) release:
+The previous release of the Struts-Faces Integration Library (Version 0.4)
+had the following revised features relative to the previous (0.3) release:
 
 * In all UI tags for input and output components, the "modelReference"
   attribute has been replaced with "valueRef", for consistency with
@@ -185,58 +205,69 @@ Install A Java Development Kit:
 
 The Struts-Faces integration library requires a Java Development Kit (not
 the Java Runtime Environment), version 1.3 or later.  It was tested against
-Sun's JDK 1.4.1_01 release, available at:
+Sun's JDK 1.4.2 release, available at:
 
     http://java.sun.com/j2se/
 
-Install the Java Web Services Developer Pack 1.2ea Release:
-----------------------------------------------------------
+Install a Servlet Container:
+---------------------------
 
-The JavaServer Faces reference implementation EA4 release is included in the
-overall Java Web Services Developer Pack (1.2ea) release that may be downloaded
-from:
+The JavaServer Faces reference implementation beta release has been tested
+against Tomcat 5.0.16, but should run in any container that supports the
+Servlet 2.3 and JSP 1.2 specifications.
 
-    http://java.sun.com/webservices/webservicespack.html
+If you attempt to run the example program in a servlet container that has a
+version of JavaServer Faces installed already (such as the Java Web Services
+Developer Pack, version 1.2 or 1.3), you must take one of the following two
+actions before you can successfully use the new Struts-Faces Integration Library
+and the corresponding beta release of JavaServer Faces.  Either:
 
-Follow the directions on this page to execute the included installer, which
-will install the JWSDP release into a convenient directory.  You should select
-the configuration option to install the included Tomcat servlet and JSP
-container.
+* Replace any existing (EA4) version of JavaServer Faces in your container,
+  following the container's specific instructions for this process (and leave
+  the JavaServer Faces JARs out of your web application); or
 
-The JavaServer Faces release is located in the "jsf" subdirectory of this
-distribution.  It has also been integrated into the servlet container that
-is provided by the JWSDP, along with several example applications that
-illustrate the use of JavaServer Faces APIs and tag libraries.
+* Remove any existing (EA4) version of JavaServer Faces in your container,
+  following the container's specific instructions for this process (and plan
+  on including the JavaServer Faces JARs with your webapp.  If you plan to
+  build the example application from scratch, be sure to include the property
+  setting "build.standalone=true" in your local "build.properties" file.
 
 
-Install The Struts-Faces Integration Library 0.4 Distribution:
+Install The Struts-Faces Integration Library 0.5 Distribution:
 -------------------------------------------------------------
 
-Download the Struts-Faces Integration Library (Version 0.4) distribution from:
+Download a nightly build of the Struts-Faces Integration Library (what will
+eventually be version 0.5) from:
 
-  http://jakarta.apache.org/builds/jakarta-struts/release/struts-faces-0.4/
+  http://jakarta.apache.org/builds/jakarta-struts/nightly/struts-faces/
 
-and unpack it into a convenient directory.
+Note that the source code for this distribution is included in the nightly
+builds of the jakarta-struts repository, in directory:
+
+  http://jakarta.apache.org/builds/jakarta-struts/nightly/src/
 
 
 Add JavaServer Faces JAR Files To Example WAR:
 ---------------------------------------------
 
-If you are planning to execute the sample application on the JWSDP 1.2ea
-servlet container, you can skip this step (because the JavaServer Faces
-API and RI classes have been integrated into the container).  However, if
-you want to execute the application on a different Servlet 2.4 (or later)
-container, you will need to manually integrate the required libraries into
-the WAR file.  You can do this by executing the following steps from the
-command line, where $JWSDP_HOME is the path of the directory into which
-you installed JWSDP 1.2ea, and $STRUTS_FACES_HOME is the path of the directory
-into which you installed the Struts-Faces Integration Library.
+If you are planning to execute the sample application on a servlet container
+containing a previous version of JavaServer Faces (such as EA4), be sure to
+replace that version with the beta version, following the container provided
+instructions.
+
+If you are planning to execute the example application on a servlet container
+that does not include JavaServer Faces (such as Tomcat 5.0.16 or later),
+you will need to manually integrate the required JAR fles into the WAR file.
+Yo can do this by executing the following steps from the command line, where
+$JSF_HOME is the directory into which you have downloaded the beta release
+of JavaServer Faces 1.0, and $STRUTS_FACES_HOME is the directory into which
+you have downloaded the Struts-Faces Integration Library binary release:
 
   mkdir temp
   cd temp
   jar xvf $STRUTS_FACES_HOME/webapps/struts-faces.war
-  cp $JWSDP_HOME/jsf/lib/jsf-api.jar WEB-INF/lib
-  cp $JWSDP_HOME/jsf/lib/jsf-ri.jar WEB-INF/lib
+  cp $JSF_HOME/lib/jsf-api.jar WEB-INF/lib
+  cp $JSF_HOME/lib/jsf-impl.jar WEB-INF/lib
   jar cvf ../struts-faces.war *
   cd ..
 
@@ -249,7 +280,7 @@ to execute on any Servlet 2.4 / JSP 2.0 (or later) container.
     and standard.jar), and is therefore dependent upon
     JSP 2.0.  You can easily make a version of the webapp that
     runs on a Servlet 2.3 / JSP 1.2 container (such as
-    Tomcat 4.1.24) by replacing these two JAR with the
+    Tomcat 4.1.27) by replacing these two JAR with the
     corresponding JARs from a JSTL 1.0 release.
 
 
@@ -257,11 +288,11 @@ Deploy The Example Application:
 ------------------------------
 
 Follow the standard instructions for your container to deploy the
-struts-faces.war web application archive.  For the JWSDP 1.2 release,
-you have the following choices:
+struts-faces.war web application archive.  For the JWSDP 1.2 or 1.3 release,
+or for any standard Tomcat 5.0.x release, you have the following choices:
 
 * Drop the "struts-faces.war" file into the "webapps" subdirectory
-  of the JWSDP 1.2 release, and wait a few moments for the container
+  of the servlet container release, and wait a few moments for the container
   to recognize the new application and deploy it for you.
 
 * Use the dynamic deployment Ant commands, as described below.
@@ -293,8 +324,8 @@ Follow these steps:
 Install An Ant Distribution:
 ---------------------------
 
-If you have downloaded the JWSDP 1.2ea release described above, Ant is already
-included.  Otherwise, download Apache Ant, version 1.5.2 or later, from:
+If you have downloaded the JWSDP 1.2 or 1.3 release described above, Ant is
+already included.  Otherwise, download Apache Ant, version 1.5.2 or later, from:
 
     http://jakarta.apache.org/site/binindex.cgi
 
@@ -333,7 +364,7 @@ applications is straightforward, and requires the following steps:
 
 * Add the following JAR files from the JavaServer Faces reference
   implementation's "lib" directory to your application's
-  "/WEB-INF/lib" directory:  jsf-api.jar, jsf-ri.jar.
+  "/WEB-INF/lib" directory:  jsf-api.jar, jsf-impl.jar.
 
 * Add the following JAR files, containing the JSTL release (or
   from the JavaServer Faces release) to your application's
@@ -359,6 +390,10 @@ applications is straightforward, and requires the following steps:
       <servlet-name>faces</servlet-name>
       <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+
+  NOTE:  Although JavaServer Faces no longer requires ths mapping,
+  the Struts-Faces Integration Library currently still requires it.
+  This isse will be addessed before a final 1.0 release.
 
 * The tag library in the Struts-Faces integration library (as well
   as those in the JavaServer Faces reference implementation) are
@@ -404,12 +439,7 @@ applications is straightforward, and requires the following steps:
     to the following JavaServer Faces Component tag:
 
       <h:input_text id="username" size="16" maxlength="18"
-              valueRef="logonForm.username"/>
-
-  - In the previous (0.3) release of this integration library, it was
-    required to modify the reference expression to include ".map." if
-    your Struts form bean was actually a DynaActionForm.  This is no
-    longer required.
+              value="#{logonForm.username}"/>
 
   - JavaServer Faces provides its own mechanisms for internationalizing
     user interfaces.  These can be used directly; however, to ease the
@@ -441,6 +471,14 @@ applications is straightforward, and requires the following steps:
   ActionForward (or null) defining what view layer technology
   should be invoked next.
 
+    NOTE:  If you have a command component that is *not* nested in
+    an <s:form> tag, or a command component whose "immediate" property
+    is set to "true", it will be processed as it would in a pure
+    JavaServer Faces based application.  Only submit buttons with
+    immediate="false" (which is the default value) that are nested
+    inside a Struts-Faces <s:form> tag will be forwarded through the
+    normal Struts request processing lifecycle.
+
 * If your application itself provides additional UIComponent and/or
   Renderer implementations, you must register them with the default
   JavaServer Faces RenderKit before they can be used.  The simplest
@@ -448,7 +486,7 @@ applications is straightforward, and requires the following steps:
   the declaration for your custom classes.  Such a file can be included
   either in the "/WEB-INF" directory of your web application, or in the
   "META-INF" directory of a JAR file included in "/WEB-INF/lib".
-  (The Struts-Faces integration library itself uses the latter technique
+  (The Struts-Faces Integration Library itself uses the latter technique
   to register its custom components automatically for any web application
   that includes "struts-faces.jar" in its "/WEB-INF/lib" directory.)
 
@@ -477,5 +515,4 @@ fully implemented or tested:
   library provides its own custom subclass
   (org.apache.struts.faces.application.FacesRequestProcessor), which must
   be used (or subclassed) for the integration to operate successfuly.
-
 
