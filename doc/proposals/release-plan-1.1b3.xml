@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.2 2002/12/17 05:46:14 martinc Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.3 2002/12/23 22:26:34 martinc Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -33,7 +33,7 @@
   <p>Therefore, the following release plan is proposed for Struts 1.1 Beta 3:
   </p>
   <ul>
-  <li><em>Code Freeze / Tag Date</em> - Saturday, December 21, 2002</li>
+  <li><em>Code Freeze / Tag Date</em> - Sunday, December 29, 2002</li>
   <li><em>Release Manager</em> - Martin Cooper</li>
   <li><em>Release Announcement</em> - To the following mailing lists:
       <ul>
@@ -60,7 +60,7 @@
       <ul>
       <li><a href="http://jakarta.apache.org/tomcat">Tomcat 3.3.1</a></li>
       <li><a href="http://jakarta.apache.org/tomcat">Tomcat 4.0.6</a></li>
-      <li><a href="http://jakarta.apache.org/tomcat">Tomcat 4.1.12</a></li>
+      <li><a href="http://jakarta.apache.org/tomcat">Tomcat 4.1.18</a></li>
       </ul></li>
   <li>A release vote shall take place on the STRUTS-DEV mailing list to
       approve this plan.  The release vote MUST pass by "Majority Approval"
@@ -102,16 +102,20 @@
 	  <td>Sporadic error in html:form action attribute</td>
     </tr>
     <tr>
-      <td width="75">12470</td>
-      <td>Web Site Cancel does not work correctly when using dynamic validation</td>
-    </tr>
-    <tr>
       <td width="75">15044</td>
       <td>Taglib - Index Attribute in html:Checkbox doesn't set correctly</td>
     </tr>
     <tr>
       <td width="75">15196</td>
       <td>Bug on the RequestUtils.computeParameters using a DynaValidatorForm as map of the parameter</td>
+    </tr>
+    <tr>
+      <td width="75">15451</td>
+      <td>Multiple mapped properties not possible / Direct maps and indexes not possible</td>
+    </tr>
+    <tr>
+      <td width="75">15601</td>
+      <td>tile examples to move to standard webapp location</td>
     </tr>
 
     <!-- Controller -->
@@ -125,10 +129,6 @@
     <tr>
       <td width="75">14054</td>
 	  <td>Rename "Application" components to "Module"</td>
-    </tr>
-    <tr>
-      <td width="75">14669</td>
-	  <td>reset() in DynaActionForm act the same as ActionForm</td>
     </tr>
     <tr>
       <td width="75">14749</td>
@@ -148,15 +148,6 @@
 	  <td>Updated Action documentation</td>
     </tr>
 
-    <!-- File Upload -->
-    <tr>
-      <td colspan="2"><strong>File Upload</strong></td>
-    </tr>
-    <tr>
-      <td width="75">2017</td>
-	  <td>Text entered in forms using multi-part/formdata cannot be utf8</td>
-    </tr>
-
     <!-- Utilities -->
     <tr>
       <td colspan="2"><strong>Utilities</strong></td>
@@ -164,10 +155,6 @@
     <tr>
       <td width="75">11932</td>
 	  <td>(Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment</td>
-    </tr>
-    <tr>
-      <td width="75">14800</td>
-	  <td>Fix initialization bug and add size parameter to form-property</td>
     </tr>
 
     <!-- Unknown -->
