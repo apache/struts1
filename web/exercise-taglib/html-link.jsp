@@ -9,8 +9,10 @@
   String newValue = "New string value";
   pageContext.setAttribute("newValue", newValue);
   java.util.HashMap newValues = new java.util.HashMap();
-  newValues.put("floatProperty", "444.0");
-  newValues.put("intProperty", "555");
+  newValues.put("floatProperty", new Float(444.0));
+  newValues.put("intProperty", new Integer(555));
+  newValues.put("stringArray", new String[]
+   { "Value 1", "Value 2", "Value 3" });
   pageContext.setAttribute("newValues", newValues);
 %>
 </head>
@@ -66,6 +68,14 @@ main menu.
   </tr>
 
   <tr>
+    <th align="right">stringArray</th>
+    <td align="left" colspan="3">
+      <html:text property="stringArray[0]" size="16"/>
+      <html:text property="stringArray[1]" size="16"/>
+    </td>
+  </tr>
+
+  <tr>
     <th colspan="4" align="center">
       Hyperlinks To Be Tested
     </th>
@@ -110,7 +120,7 @@ main menu.
     <td colspan="4" align="center">
       <html:link page="/html-link.do"
                  name="newValues">
-        Float and int via name (Map)
+        Float, int, and stringArray via name (Map)
       </html:link>
     </td>
   </tr>
