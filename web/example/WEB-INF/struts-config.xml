@@ -112,6 +112,7 @@
               scope="request"
               input="/logon.jsp">
       <exception
+                key="expired.password"
                type="org.apache.struts.webapp.example.ExpiredPasswordException"
                path="/changePassword.jsp"/>
     </action>

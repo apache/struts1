@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.1 2001/11/08 03:34:39 martinc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/11/08 03:34:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.2 2002/03/12 06:30:56 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/12 06:30:56 $
  *
  * ====================================================================
  *
@@ -63,6 +63,9 @@
 package org.apache.struts.util;
 
 
+import java.io.Serializable;
+
+
 /**
  * A simple JavaBean to represent label-value pairs. This is most commonly used
  * when constructing user interface elements which have a label to be displayed
@@ -71,10 +74,10 @@ package org.apache.struts.util;
  *
  * @author  Craig R. McClanahan
  * @author  Martin F N Cooper
- * @version $Revision: 1.1 $ $Date: 2001/11/08 03:34:39 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/12 06:30:56 $
  */
 
-public class LabelValueBean {
+public class LabelValueBean implements Serializable {
 
 
     // ----------------------------------------------------------- Constructors

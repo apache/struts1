@@ -23,6 +23,11 @@
   options.add(new LabelValueBean("Label 8", "Value 8"));
   options.add(new LabelValueBean("Label 9", "Value 9"));
   pageContext.setAttribute("options", options);
+
+  String withNulls[] =
+   { "String 0", null, "String 2" };
+  pageContext.setAttribute("withNulls", withNulls);
+
 %>
 </head>
 <body bgcolor="white">
@@ -92,6 +97,17 @@ main menu.
     <td align="left">
       <html:select property="beanCollectionSelect" size="10" multiple="true">
         <html:optionsCollection name="testbean" property="beanCollection"/>
+      </html:select>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Collection with null labels and values:
+    </th>
+    <td align="left">
+      <html:select property="withNulls" size="3">
+        <html:options name="withNulls" labelName="withNulls"/>
       </html:select>
     </td>
   </tr>

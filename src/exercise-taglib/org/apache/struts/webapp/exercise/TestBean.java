@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.5 2002/02/23 07:10:30 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/02/23 07:10:30 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.6 2002/03/12 06:30:56 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/03/12 06:30:56 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.LabelValueBean;
  *
  * @author Craig R. McClanahan
  * @author Martin F N Cooper
- * @version $Revision: 1.5 $ $Date: 2002/02/23 07:10:30 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/12 06:30:56 $
  */
 
 public class TestBean extends ActionForm {
@@ -394,6 +394,20 @@ public class TestBean extends ActionForm {
 
     public void setEmptyStringProperty(String emptyStringProperty) {
         this.emptyStringProperty = emptyStringProperty;
+    }
+
+
+    /**
+     * A property that allows a null value but is still used in a SELECT.
+     */
+    private String withNulls = null;
+
+    public String getWithNulls() {
+        return (this.withNulls);
+    }
+
+    public void setWithNulls(String withNulls) {
+        this.withNulls = withNulls;
     }
 
 
