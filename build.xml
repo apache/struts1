@@ -484,6 +484,19 @@
                 <exclude name="release/**"/>
             </fileset>
         </copy>
+
+        <!-- struts-el source -->
+        <mkdir dir="${stage.src.dir}/${upload.file.base}-src/contrib"/>
+        <mkdir dir="${stage.src.dir}/${upload.file.base}-src/contrib/struts-el"/>
+        <copy todir="${stage.src.dir}/${upload.file.base}-src/contrib/struts-el">
+            <fileset dir="${struts.el.home}">
+                <exclude name="build.properties"/>
+                <exclude name="target/**"/>
+                <exclude name="dist/**"/>
+                <exclude name="release/**"/>
+            </fileset>
+        </copy>
+
         <mkdir dir="${upload.dir}"/>
         <zip  zipfile="${upload.dir}/${upload.file.base}.zip"
               basedir="${stage.bin.dir}"/>
