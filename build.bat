@@ -11,7 +11,10 @@ rem   ANT_OPTS              Command line options to pass to the JVM when
 rem                         executing Ant. [none]
 rem
 rem   CATALINA_HOME         Build directory for "jakarta-tomcat-4.0".
-rem                         [../build/tomcat-4.0]
+rem                         [../jakarta-tomcat-4.0/build]  This is required
+rem                         only if you wish to deploy Struts directly to the
+rem                         Tomcat 4.0 build directory - otherwise it is
+rem                         optional
 rem
 rem   JAVA_HOME             Java Development Kit directory. [REQUIRED]
 rem
@@ -19,9 +22,12 @@ rem   SERVLETAPI_HOME       Distribution directory for "jakarta-servletapi".
 rem                         [../jakarta-servletapi]
 rem
 rem   TOMCAT_HOME           Build directory for "jakarta-tomcat".
-rem                         [../build/tomcat]
+rem                         [../build/tomcat]  This is required only
+rem                         if you wish to deploy Struts directly to the
+rem                         Tomcat 3.2 build directory - otherwise it is
+rem                         optional
 rem
-rem $Id: build.bat,v 1.10 2001/02/02 02:26:05 craigmcc Exp $
+rem $Id: build.bat,v 1.11 2001/02/14 17:27:18 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 

@@ -11,7 +11,10 @@
 #                         executing Ant. [none]
 #
 #   CATALINA_HOME         Build directory for "jakarta-tomcat-4.0".
-#                         [../build/tomcat-4.0]
+#                         [../jakarta-tomcat-4.0/build]  This is required only
+#                         if you wish to deploy Struts directly to the
+#                         Tomcat 4.0 build directory - otherwise it is
+#                         optional
 #
 #   JAVA_HOME             Java Development Kit directory. [REQUIRED]
 #
@@ -19,9 +22,12 @@
 #                         [../jakarta-servletapi]
 #
 #   TOMCAT_HOME           Build directory for "jakarta-tomcat".
-#                         [../build/tomcat]
+#                         [../build/tomcat]  This is required only
+#                         if you wish to deploy Struts directly to the
+#                         Tomcat 3.x build directory - otherwise it is
+#                         optional
 #
-# $Id: build.sh,v 1.5 2001/02/02 02:26:05 craigmcc Exp $
+# $Id: build.sh,v 1.6 2001/02/14 17:27:19 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 
