@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.117 2003/07/26 01:17:55 dgraham Exp $
- * $Revision: 1.117 $
- * $Date: 2003/07/26 01:17:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.118 2003/07/26 01:22:31 dgraham Exp $
+ * $Revision: 1.118 $
+ * $Date: 2003/07/26 01:22:31 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.117 $ $Date: 2003/07/26 01:17:55 $
+ * @version $Revision: 1.118 $ $Date: 2003/07/26 01:22:31 $
  */
 
 public class RequestUtils {
@@ -1821,6 +1821,8 @@ public class RequestUtils {
      * @param pageContext The page context.
      * @return the ModuleConfig object
      * @since Struts 1.1
+     * @deprecated Use TagUtils.getModuleConfig() instead.  This will be removed
+     * after Struts 1.2.
      */
     public static ModuleConfig getModuleConfig(PageContext pageContext) {
         return getModuleConfig(

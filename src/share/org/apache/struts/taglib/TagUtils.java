@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.4 2003/07/26 01:17:55 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/26 01:17:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.5 2003/07/26 01:22:31 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 01:22:31 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -83,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -104,13 +105,13 @@ public class TagUtils {
      */
     private static final MessageResources messages =
         MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
-        
+
     /**
      * Maps lowercase JSP scope names to their PageContext integer constant 
      * values. 
      */
     private static final Map scopes = new HashMap();
-    
+
     /**
      * Initialize the scope names map.
      */
@@ -184,7 +185,18 @@ public class TagUtils {
 
         return errors;
     }
-    
+
+    /**
+     * Return the ModuleConfig object if it exists, null if otherwise.
+     * @param pageContext The page context.
+     * @return the ModuleConfig object
+     */
+    public ModuleConfig getModuleConfig(PageContext pageContext) {
+        return RequestUtils.getModuleConfig(
+            (HttpServletRequest) pageContext.getRequest(),
+            pageContext.getServletContext());
+    }
+
     /**
      * Converts the scope name into its corresponding PageContext constant value.
      * @param scopeName Can be "page", "request", "session", or "application" in any
@@ -201,7 +213,7 @@ public class TagUtils {
 
         return scope.intValue();
     }
-    
+
     /**
      * Look up and return current user locale, based on the specified parameters.
      *

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.33 2003/07/26 01:17:55 dgraham Exp $
- * $Revision: 1.33 $
- * $Date: 2003/07/26 01:17:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.34 2003/07/26 01:22:30 dgraham Exp $
+ * $Revision: 1.34 $
+ * $Date: 2003/07/26 01:22:30 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.33 $ $Date: 2003/07/26 01:17:55 $
+ * @version $Revision: 1.34 $ $Date: 2003/07/26 01:22:30 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -361,7 +361,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     protected String renderJavascript() {
         StringBuffer results = new StringBuffer();
         
-        ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
+        ModuleConfig config = TagUtils.getInstance().getModuleConfig(pageContext);
         ValidatorResources resources =
             (ValidatorResources) pageContext.getAttribute(
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),

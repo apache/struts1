@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.50 2003/07/08 00:05:10 dgraham Exp $
- * $Revision: 1.50 $
- * $Date: 2003/07/08 00:05:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.51 2003/07/26 01:22:30 dgraham Exp $
+ * $Revision: 1.51 $
+ * $Date: 2003/07/26 01:22:30 $
  *
  * ====================================================================
  *
@@ -77,6 +77,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -89,7 +90,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Martin Cooper
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.50 $ $Date: 2003/07/08 00:05:10 $
+ * @version $Revision: 1.51 $ $Date: 2003/07/26 01:22:30 $
  */
 public class FormTag extends TagSupport {
 
@@ -799,7 +800,7 @@ public class FormTag extends TagSupport {
     protected void lookup() throws JspException {
 
         // Look up the module configuration information we need
-        moduleConfig = RequestUtils.getModuleConfig(pageContext);
+        moduleConfig = TagUtils.getInstance().getModuleConfig(pageContext);
 
         if (moduleConfig == null) {
             JspException e = new JspException(messages.getMessage("formTag.collections"));
