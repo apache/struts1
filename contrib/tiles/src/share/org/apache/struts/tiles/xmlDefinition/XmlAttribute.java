@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlAttribute.java,v 1.1 2001/08/01 14:36:42 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/xmlDefinition/Attic/XmlAttribute.java,v 1.2 2001/09/10 12:57:26 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/10 12:57:26 $
  * $Author: cedric $
  *
  */
@@ -14,6 +14,7 @@ import org.apache.struts.tiles.DirectStringAttribute;
 import org.apache.struts.tiles.PathAttribute;
 import org.apache.struts.tiles.DefinitionAttribute;
 import org.apache.struts.tiles.DefinitionNameAttribute;
+import org.apache.struts.tiles.UntyppedAttribute;
 
 /**
  * A property key-value pair.
@@ -200,7 +201,7 @@ public class XmlAttribute
        else
         valueType = "path";
       }  // end if
-    if( value != null && valueType!=null && !(value instanceof AttributeDefinition) )
+    if( value != null && valueType!=null /* && !(value instanceof AttributeDefinition) */ )
       {
       String strValue = value.toString();
         if( valueType.equalsIgnoreCase( "string" ) )
@@ -219,7 +220,17 @@ public class XmlAttribute
           {
           realValue = new DefinitionNameAttribute( strValue );
           }  // end if
+        // Set realValue's role value if needed
+      if( role !=null )
+        ((UntyppedAttribute)realValue).setRole( role );
       } //  end  if
+
+      // Create attribute wrapper to hold role if role is set and no type specified
+    if( role!=null && value != null && valueType==null )
+      {
+      realValue = new UntyppedAttribute( value.toString(), role );
+      } // end if
+
     return realValue;
     }
 }
