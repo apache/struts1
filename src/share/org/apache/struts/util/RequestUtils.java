@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.90 2003/02/26 04:48:56 dgraham Exp $
- * $Revision: 1.90 $
- * $Date: 2003/02/26 04:48:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.91 2003/03/02 00:22:40 dgraham Exp $
+ * $Revision: 1.91 $
+ * $Date: 2003/03/02 00:22:40 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.90 $ $Date: 2003/02/26 04:48:56 $
+ * @version $Revision: 1.91 $ $Date: 2003/03/02 00:22:40 $
  */
 
 public class RequestUtils {
@@ -142,6 +142,24 @@ public class RequestUtils {
      * The context attribute under which we store our prefixes list.
      */
     private static final String PREFIXES_KEY = "org.apache.struts.util.PREFIXES";
+    
+    /**
+     * Java 1.4 encode method to use instead of deprecated 1.3 version.
+     */
+    private static Method encode = null;
+    
+    /**
+     * Initialize the encode variable with the 1.4 method if available
+     */
+    static {
+        try {
+            // get version of encode method with two String args 
+            Class[] args = new Class[] { String.class, String.class };
+            encode = URLEncoder.class.getMethod("encode", args);
+        } catch (NoSuchMethodException e) {
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        }
+    }
 
     // --------------------------------------------------------- Public Methods
 
@@ -1904,27 +1922,20 @@ public class RequestUtils {
      * @return String - the encoded url.
      */
     public static String encodeURL(String url) {
-        // default to old version
-        String encodedURL = URLEncoder.encode(url);
-        Class encoderClass = URLEncoder.class;
-
         try {
-            // get version of encode method with two String args
-            Class[] args = new Class[] { String.class, String.class };
-            Method encode = encoderClass.getMethod("encode", args);
 
             // encode url with new 1.4 method and UTF-8 encoding
-            encodedURL = (String) encode.invoke(null, new Object[] { url, "UTF-8" });
+            if (encode != null) {
+                return (String) encode.invoke(null, new Object[] { url, "UTF-8" });
+            }
 
         } catch (IllegalAccessException e) {
             log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         } catch (InvocationTargetException e) {
             log.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
-        } catch (NoSuchMethodException e) {
-            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         }
 
-        return encodedURL;
+        return URLEncoder.encode(url);
     }
 
 }
