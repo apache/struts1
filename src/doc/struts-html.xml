@@ -1419,8 +1419,10 @@
                 generation of an image where the content displayed for this
                 image will be taken from the attributes of this tag.</p>
 
-                <p>The base URL for this image is calculated based on
-                the value specified in <code>src</code> or <code>page</code>.
+                <p>The base URL for this image is calculated directly based on
+                the value specified in <code>src</code> or <code>page</code>,
+                or indirectly by looking up a message resource string based on
+                the <code>srcKey</code> or <code>pageKey</code> attributes.
                 You <strong>must</strong> specify exactly one of these
                 attributes.</p>
 
@@ -1477,6 +1479,13 @@
                 one value for the same query parameter name will be
                 created.</p>
 
+                <p>You can specify the alternate text for this image (which
+                most browsers display as pop-up text block when the user
+                hovers the mouse over this image) either directly, through
+                the <code>alt</code> attribute, or indirectly from a message
+                resources bundle, using the <code>bundle</code> and
+                <code>altKey</code> attributes.</p>
+
                 </info>
 
                 <attribute>
@@ -1527,11 +1536,33 @@
                 </attribute>
 
                 <attribute>
+                  <name>altKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message key, in the message resources bundle named by
+                  the <code>bundle</code> attribute, of the String to be
+                  displayed as the alternate text for this image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>border</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The width of the border surrounding the image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>bundle</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The servlet context attribute key for the MessageResources
+                  instance to use.  If not specified, defaults to the
+                  application resources configured for our action servlet.</p>
                   </info>
                 </attribute>
 
@@ -1563,7 +1594,7 @@
                   <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The scriptable name to be defined within this page, so 
-                  thatyou can reference it with intra-page scripts.  In other
+                  that you can reference it with intra-page scripts.  In other
                   words, the value specified here will render a "name" element
                   in the generated image tag.</p>
                   </info>
@@ -1576,6 +1607,16 @@
                   <info>
                   <p>The name of the server-side map that this image belongs
                      to.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>locale</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of the request or session Locale attribute used
+                  to look up internationalized messages.</p>
                   </info>
                 </attribute>
 
@@ -1662,6 +1703,17 @@
                 </attribute>
 
                 <attribute>
+                  <name>pageKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message key, in the message resources bundle named by
+                  the <code>bundle</code> attribute, of the String to be
+                  used as the context-relative path for this image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>paramName</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1738,6 +1790,17 @@
                   attribute in the rendered tag.  You <strong>must</strong>
                   specify either the <code>page</code> attribute or the
                   the <code>src</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>srcKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message key, in the message resources bundle named by
+                  the <code>bundle</code> attribute, of the String to be
+                  used as the URL of this image.</p>
                   </info>
                 </attribute>
 

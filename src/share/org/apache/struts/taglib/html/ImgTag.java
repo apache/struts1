@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.4 2001/02/15 00:01:49 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/15 00:01:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.5 2001/02/20 00:18:52 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/20 00:18:52 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -134,6 +135,20 @@ public class ImgTag extends BaseHandlerTag {
 
 
     /**
+     * The message lookup key used to look up internationalized messages.
+     */
+    protected String altKey = null;
+
+    public String getAltKey() {
+        return (this.altKey);
+    }
+
+    public void setAltKey(String altKey) {
+        this.altKey = altKey;
+    }
+
+
+    /**
      * The border size around the image.
      */
     protected String border = null;
@@ -145,6 +160,27 @@ public class ImgTag extends BaseHandlerTag {
     public void setBorder(String border) {
         this.border = border;
     }
+
+
+    /**
+     * The name of the servlet context attribute containing our message
+     * resources.
+     */
+    protected String bundle = Action.MESSAGES_KEY;
+
+    public String getBundle() {
+        return (this.bundle);
+    }
+
+    public void setBundle(String bundle) {
+        this.bundle = bundle;
+    }
+
+
+    /**
+     * The default Locale for our server.
+     */
+    protected static final Locale defaultLocale = Locale.getDefault();
 
 
     /**
@@ -204,6 +240,21 @@ public class ImgTag extends BaseHandlerTag {
 
 
     /**
+     * The name of the attribute containing the Locale to be used for
+     * looking up internationalized messages.
+     */
+    protected String locale = Action.LOCALE_KEY;
+
+    public String getLocale() {
+        return (this.locale);
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+
+    /**
      * The low resolution image source URI.
      */
     protected String lowsrc = null;
@@ -250,6 +301,21 @@ public class ImgTag extends BaseHandlerTag {
 
     public void setPage(String page) {
         this.page = page;
+    }
+
+
+    /**
+     * The message resources key under which we should look up the
+     * <code>page</code> attribute for this generated tag, if any.
+     */
+    protected String pageKey = null;
+
+    public String getPageKey() {
+        return (this.pageKey);
+    }
+
+    public void setPageKey(String pageKey) {
+        this.pageKey = pageKey;
     }
 
 
@@ -354,6 +420,21 @@ public class ImgTag extends BaseHandlerTag {
 
 
     /**
+     * The message resources key under which we should look up the
+     * <code>src</code> attribute for this generated tag, if any.
+     */
+    protected String srcKey = null;
+
+    public String getSrcKey() {
+        return (this.srcKey);
+    }
+
+    public void setSrcKey(String srcKey) {
+        this.srcKey = srcKey;
+    }
+
+
+    /**
      * Client-side image map declaration.
      */
     protected String usemap = null;
@@ -424,32 +505,23 @@ public class ImgTag extends BaseHandlerTag {
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<img");
-	String srcurl = null;
-	if (this.src != null)
-	    srcurl = url(this.src);
-	else if (this.page != null)
-	    srcurl = url(request.getContextPath() + this.page);
-	else {
-	    JspException e = new JspException
-	      (messages.getMessage("imgTag.source"));
-	    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-				     PageContext.REQUEST_SCOPE);
-	    throw e;
-	}
-        String lowsrcurl = url(this.lowsrc);
+        String tmp = src();
+        String srcurl = url(tmp);
         if (srcurl != null) {
             results.append(" src=\"");
             results.append(response.encodeURL(BeanUtils.filter(srcurl)));
             results.append("\"");
         }
-        if (lowsrc != null) {
+        String lowsrcurl = url(this.lowsrc);
+        if (lowsrcurl != null) {
             results.append(" lowsrc=\"");
             results.append(response.encodeURL(BeanUtils.filter(lowsrcurl)));
             results.append("\"");
         }
-        if (alt != null) {
+        tmp = alt();
+        if (tmp != null) {
             results.append(" alt=\"");
-            results.append(alt);
+            results.append(tmp);
             results.append("\"");
         }
         if (imageName != null) {
@@ -524,14 +596,18 @@ public class ImgTag extends BaseHandlerTag {
 
 	super.release();
         alt = null;
+        altKey = null;
         border = null;
+        bundle = Action.MESSAGES_KEY;
         height = null;
         hspace = null;
         imageName = null;
         ismap = null;
+        locale = Action.LOCALE_KEY;
         lowsrc = null;
 	name = null;
         page = null;
+        pageKey = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
@@ -539,6 +615,7 @@ public class ImgTag extends BaseHandlerTag {
 	property = null;
         scope = null;
 	src = null;
+        srcKey = null;
         usemap = null;
         vspace = null;
         width = null;
@@ -547,6 +624,147 @@ public class ImgTag extends BaseHandlerTag {
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the alternate text to be included on this generated element,
+     * or <code>null</code> if there is no such text.
+     *
+     * @exception JspException if an error occurs
+     */
+    protected String alt() throws JspException {
+
+        if (this.alt != null) {
+            if (this.altKey != null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.alt"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            } else {
+                return (this.alt);
+            }
+        } else if (this.altKey != null) {
+            MessageResources resources = (MessageResources)
+                pageContext.getAttribute(this.bundle,
+                                         PageContext.APPLICATION_SCOPE);
+            if (resources == null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.bundle", this.bundle));
+                throw e;
+            }
+            Locale locale = null;
+            try {
+                locale = (Locale)
+                    pageContext.getAttribute(this.locale,
+                                             PageContext.SESSION_SCOPE);
+            } catch (IllegalStateException e) {
+                locale = null; // Invalidated session
+            }
+            if (locale == null)
+                locale = defaultLocale;
+            return (resources.getMessage(locale, this.altKey));
+        } else {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * Return the base source URL that will be rendered in the <code>src</code>
+     * property for this generated element, or <code>null</code> if there is
+     * no such URL.
+     *
+     * @exception JspException if an error occurs
+     */
+    protected String src() throws JspException {
+
+        // Deal with a direct context-relative page that has been specified
+        if (this.page != null) {
+            if ((this.src != null) || (this.srcKey != null) ||
+                (this.pageKey != null)) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.src"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            return (request.getContextPath() + this.page);
+        }
+
+        // Deal with an indirect context-relative page that has been specified
+        if (this.pageKey != null) {
+            if ((this.src != null) || (this.srcKey != null)) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.src"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            MessageResources resources = (MessageResources)
+                pageContext.getAttribute(this.bundle,
+                                         PageContext.APPLICATION_SCOPE);
+            if (resources == null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.bundle", this.bundle));
+                RequestUtils.saveException(pageContext, e);
+            }
+            Locale locale = null;
+            try {
+                locale = (Locale)
+                    pageContext.getAttribute(this.locale,
+                                             PageContext.SESSION_SCOPE);
+            } catch (IllegalStateException e) {
+                locale = null; // Invalidated session
+            }
+            if (locale == null)
+                locale = defaultLocale;
+            return (request.getContextPath() +
+                    resources.getMessage(locale, this.pageKey));
+        }
+
+        // Deal with an absolute source that has been specified
+        if (this.src != null) {
+            if (this.srcKey != null) {
+                JspException e = new JspException
+                    (messages.getMessage("imgTag.src"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            return (this.src);
+        }
+
+        // Deal with an indirect source that has been specified
+        if (this.srcKey == null) {
+            JspException e = new JspException
+                (messages.getMessage("imgTag.src"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+        MessageResources resources = (MessageResources)
+            pageContext.getAttribute(this.bundle,
+                                     PageContext.APPLICATION_SCOPE);
+        if (resources == null) {
+            JspException e = new JspException
+                (messages.getMessage("imgTag.bundle", this.bundle));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+        Locale locale = null;
+        try {
+            locale = (Locale)
+                pageContext.getAttribute(this.locale,
+                                         PageContext.SESSION_SCOPE);
+        } catch (IllegalStateException e) {
+            locale = null; // Invalidated session
+        }
+        if (locale == null)
+            locale = defaultLocale;
+        return (resources.getMessage(locale, this.srcKey));
+
+    }
 
 
     /**
