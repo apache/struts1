@@ -483,27 +483,34 @@ public class MultipartIterator {
         boolean cutCarriage = false;
         boolean cutNewline = false;
         
-        while ((bytesRead != -1) && (!equals(lineBuffer, 0, boundaryBytes.length,
-                boundaryBytes))) {
-         
-                    if (cutCarriage) {
-                        fos.write('\r');
-                    }
-                    if (cutNewline) {
-                        fos.write('\n');
-                    }
-                    if (bytesRead > 0) {
-                        if (lineBuffer[bytesRead-1] == '\r') {
-                            bytesRead--;
-                            cutCarriage = true;
+        try {
+            while ((bytesRead != -1) && (!equals(lineBuffer, 0, boundaryBytes.length,
+                    boundaryBytes))) {
+
+                        if (cutCarriage) {
+                            fos.write('\r');
                         }
-                        else {
-                            cutCarriage = false;
+                        if (cutNewline) {
+                            fos.write('\n');
                         }
-                    }
-                    cutNewline = true;
-                    fos.write(lineBuffer, 0, bytesRead);
-                    bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
+                        if (bytesRead > 0) {
+                            if (lineBuffer[bytesRead-1] == '\r') {
+                                bytesRead--;
+                                cutCarriage = true;
+                            }
+                            else {
+                                cutCarriage = false;
+                            }
+                        }
+                        cutNewline = true;
+                        fos.write(lineBuffer, 0, bytesRead);
+                        bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
+            }
+        }
+        catch (IOException ioe) {
+            fos.close();
+            tempFile.delete();
+            throw ioe;
         }
         
         fos.flush();	

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.3 2001/04/14 12:54:09 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/14 12:54:09 $
+ * $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.4 2001/04/18 14:21:23 mschachter Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/04/18 14:21:23 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.action.ForwardingActionForward;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.3 $ $Date: 2001/04/14 12:54:09 $
+ * @version $Revision: 1.4 $ $Date: 2001/04/18 14:21:23 $
  */
 
 
@@ -155,6 +155,8 @@ public class UploadAction extends Action {
                                     bos.close();
                                     data = "The file has been written to \"" + theForm.getFilePath() + "\"";
                                 }
+                                //close the stream
+                                stream.close();
                         }
                         catch (FileNotFoundException fnfe) {
                                 return null;

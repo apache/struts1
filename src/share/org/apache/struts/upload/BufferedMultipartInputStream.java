@@ -82,8 +82,7 @@ public class BufferedMultipartInputStream extends InputStream {
         this.maxSize = maxSize;
         
         if (maxSize < contentLength) {
-            throw new IOException("Posted Content-Length of " + contentLength +
-                " bytes exceeds maximum post size of " + maxSize + " bytes");
+            throw new MaxLengthExceededException(maxSize);
         }
         buffer = new byte[bufferSize];
         fill();
@@ -141,12 +140,10 @@ public class BufferedMultipartInputStream extends InputStream {
     public int read() throws IOException {
         
         if (maxLengthMet) {
-            throw new IOException("Maximum post length of " + maxSize + " bytes " +
-                "has been reached");
+            throw new MaxLengthExceededException(maxSize);
         }
         if (contentLengthMet) {
-            throw new IOException("Content-Length of " + contentLength + " bytes " +
-                "has been exceeded");
+            throw new ContentLengthExceededException(contentLength);
         }
         if (buffer == null) {
             return -1;
