@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.17 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.18 2003/07/04 20:23:10 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/04 20:23:10 $
  *
  * ====================================================================
  *
@@ -69,7 +69,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/04 20:23:10 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -134,14 +134,27 @@ public abstract class BaseFieldTag extends BaseInputTag {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+        
+        ResponseUtils.write(this.pageContext, this.renderInputElement());
 
-        // Create an appropriate "input" element based on our parameters
+        return (EVAL_BODY_TAG);
+
+    }
+
+    /**
+     * Renders a fully formed &lt;input&gt; element.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected String renderInputElement() throws JspException {
         StringBuffer results = new StringBuffer("<input type=\"");
-        results.append(type);
+        results.append(this.type);
         results.append("\" name=\"");
-        // * @since Struts 1.1
-        if (indexed)
-            prepareIndex(results, name);
+
+        if (indexed) {
+            this.prepareIndex(results, name);
+        }
+
         results.append(property);
         results.append("\"");
         if (accesskey != null) {
@@ -149,46 +162,50 @@ public abstract class BaseFieldTag extends BaseInputTag {
             results.append(accesskey);
             results.append("\"");
         }
+
         if (accept != null) {
             results.append(" accept=\"");
             results.append(accept);
             results.append("\"");
         }
+
         if (maxlength != null) {
             results.append(" maxlength=\"");
             results.append(maxlength);
             results.append("\"");
         }
+
         if (cols != null) {
             results.append(" size=\"");
             results.append(cols);
             results.append("\"");
         }
+
         if (tabindex != null) {
             results.append(" tabindex=\"");
             results.append(tabindex);
             results.append("\"");
         }
+
         results.append(" value=\"");
         if (value != null) {
             results.append(ResponseUtils.filter(value));
+
         } else if (redisplay || !"password".equals(type)) {
             Object value = RequestUtils.lookup(pageContext, name, property, null);
-            if (value == null)
+            if (value == null) {
                 value = "";
+            }
+            
             results.append(ResponseUtils.filter(value.toString()));
         }
+
         results.append("\"");
-        results.append(prepareEventHandlers());
-        results.append(prepareStyles());
-        results.append(getElementClose());
+        results.append(this.prepareEventHandlers());
+        results.append(this.prepareStyles());
+        results.append(this.getElementClose());
 
-        // Print this field to our output writer
-        ResponseUtils.write(pageContext, results.toString());
-
-        // Continue processing this page
-        return (EVAL_BODY_TAG);
-
+        return results.toString();
     }
 
     /**
