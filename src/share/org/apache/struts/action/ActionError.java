@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.3 2001/02/21 00:35:41 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/21 00:35:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.3.2.1 2001/11/01 07:08:41 martinc Exp $
+ * $Revision: 1.3.2.1 $
+ * $Date: 2001/11/01 07:08:41 $
  *
  * ====================================================================
  *
@@ -73,8 +73,12 @@ import java.io.Serializable;
  * message resources database) plus up to four placeholder objects that can
  * be used for parametric replacement in the message text.
  *
+ * The placeholder objects are referenced in the message text using the same
+ * syntax used by the JDK <code>MessageFormat</code> class. Thus, the first
+ * placeholder is '{0}', the second is '{1}', etc.
+ *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/21 00:35:41 $
+ * @version $Revision: 1.3.2.1 $ $Date: 2001/11/01 07:08:41 $
  */
 
 public class ActionError implements Serializable {

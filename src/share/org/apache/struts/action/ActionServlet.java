@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.69 2001/05/18 17:11:37 mschachter Exp $
- * $Revision: 1.69 $
- * $Date: 2001/05/18 17:11:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.68.2.4 2001/10/07 04:49:15 martinc Exp $
+ * $Revision: 1.68.2.4 $
+ * $Date: 2001/10/07 04:49:15 $
  *
  * ====================================================================
  *
@@ -88,6 +88,7 @@ import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ServletContextWriter;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
@@ -171,7 +172,8 @@ import org.xml.sax.SAXException;
  *     instead of the servlet log.  [0]</li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
- *     <code>MessageResources</code> object.</li>
+ *     <code>MessageResources</code> object.
+ *     [org.apache.struts.util.PropertyMessageResourcesFactory]</li>
  * <li><strong>formBean</strong> - The Java class name of the ActionFormBean
  *     implementation to use [org.apache.struts.action.ActionFormBean].
  * <li><strong>forward</strong> - The Java class name of the ActionForward
@@ -191,7 +193,7 @@ import org.xml.sax.SAXException;
  *     user session, identify and store an appropriate
  *     <code>java.util.Locale</code> object (under the standard key
  *     identified by <code>Action.LOCALE_KEY</code>) in the user's session
- *     if there is not a Locale object there already.</li>
+ *     if there is not a Locale object there already. [true]</li>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMapping].
  *     Two convenient classes you may wish to use are:
@@ -229,7 +231,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.69 $ $Date: 2001/05/18 17:11:37 $
+ * @version $Revision: 1.68.2.4 $ $Date: 2001/10/07 04:49:15 $
  */
 
 public class ActionServlet
@@ -1054,11 +1056,21 @@ public class ActionServlet
      */
     protected void initDataSources() throws ServletException {
 
+        ServletContextWriter scw =
+            new ServletContextWriter(getServletContext());
+
         synchronized (dataSources) {
             Iterator keys = dataSources.keySet().iterator();
             while (keys.hasNext()) {
                 String key = (String) keys.next();
                 DataSource dataSource = findDataSource(key);
+                try {
+                    dataSource.setLogWriter(scw);
+                } catch (SQLException e) {
+                    log(internal.getMessage("initDataSource", key), e);
+                    throw new ServletException
+                        (internal.getMessage("initDataSource", key), e);
+                }
                 if (dataSource instanceof GenericDataSource) {
                     if (debug >= 1)
                         log(internal.getMessage("dataSource.init", key));
@@ -1817,7 +1829,7 @@ public class ActionServlet
         String forward = mapping.getForward();
         if (forward == null)
             return (true);
-
+        
         //unwrap the multipart request if there is one
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
@@ -1928,6 +1940,8 @@ public class ActionServlet
         ActionMapping mapping = findMapping(path);
         if (mapping == null)
             mapping = mappings.getUnknown(request);
+        if (mapping != null)
+            request.setAttribute(Action.MAPPING_KEY, mapping);
         return (mapping);
 
     }
@@ -2044,9 +2058,6 @@ public class ActionServlet
         if (mapping.getMultipartClass() != null)
             request.setAttribute(Action.MULTIPART_KEY,
                                 mapping.getMultipartClass());
-        //also pass the mapping through the request
-        request.setAttribute(Action.MAPPING_KEY,
-                             mapping);
         RequestUtils.populate(formInstance, mapping.getPrefix(),
                               mapping.getSuffix(), request);
 
@@ -2122,7 +2133,7 @@ public class ActionServlet
 
 	// Save our error messages and return to the input form if possible
 	if (debug >= 1)
-	    log("  Validation error(s), redirecting to: " + uri);
+	    log("  Validation error(s), redirecting to: " + uri);        
 	request.setAttribute(Action.ERROR_KEY, errors);
         //unwrap the multipart request if there is one
         if (request instanceof MultipartRequestWrapper) {

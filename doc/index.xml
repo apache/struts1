@@ -3,13 +3,14 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>Ted Husted</author>
+    <author>Martin Cooper</author>
     <title>The Struts Framework Project</title>
   </properties>
 
   <body>
 
-
-  <section name="Welcome to Struts" href="Welcome">
+  <section name="Welcome to Struts 1.0.1" href="Welcome">
 
   <p>Welcome to the Struts Framework!  The goal of this project
   is to provide an open source framework useful in building web applications
@@ -42,25 +43,58 @@
 
   </section>
 
+  <section name="Learning About Struts" href="Docs">
+
+  <p>The <a href="userGuide/kickstart.html"><b>Kickstart FAQ</b></a> quickly answers 
+  the most common questions about Struts.</p>
+
+  <p>A concise <a href="userGuide/index.html"><b>Users Guide</b></a> is also provided 
+  with the distribution. The User Guide introduces the Model View Controller 
+  architecture, and how it relates to the major components of Struts. Several Developer 
+  Guides are also provided, to help you get started with the Struts tag extensions and 
+  utility packages.</p>
+
+  <p>For more detail about a specific class or package, the Struts 
+  <a href="api/index.html"><b>Javadocs</b></a>
+  are comprehensive and carefully maintained. It is strongly recommended that 
+  you refer to the <a href="api/index.html">Javadoc</a> 
+  for each class as you begin to use it, to be sure important features and options 
+  are not overlooked. What you don't know, can't help you.</p>
+
+  <p>Of course, the only true documentation is the code itself. If you have any questions 
+  about how Struts actually works, do not hestate to <i>use the source</i>. For the 
+  complete, buildable source code to the entire Struts framework, see the "src" folder in 
+  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1/src/"><b>Struts 1.0 source distribution</b></a>.</p>
+
+  <p>The Struts <a href="userGuide/resources.html"><b>Resources</b></a> page provides links to 
+  everything else written about  Struts, including books, articles, tutorials, and sample 
+  applications. There are also links to public sites "Powered by Struts". </p>
+
+  </section>
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>A new beta release, <strong>Struts 1.0-beta-2</strong> has been
-  created and made available at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b2</a>.  This
-  release is considered to be of production quality, and only bug fixes will
-  occur between this release and an upcoming <strong>Struts 1.0</strong>
-  final release.</p>
+  <p>The <i>production release</i> of <strong>Struts 1.0.1</strong> is available in
+  in convenient binary distribution and also with complete source code.</p>
 
-  <p>Check the <a href="release-notes-1.0-b2.html">Release Notes</a>
-  for a summary of what new features have been added, and other significant
-  changes, since the Struts 1.0-beta-1 release.</p>
-
-  <hr width="75%"/>
+  <ul>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1">
+  <b>Struts 1.0.1 Binary Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1/src">
+  <b>Struts 1.0.1 Source Code Distribution</b></a></li>
+  </ul>
   
-  <p>You can acquire interim binary and source distributions of Struts from the
-  following locations:</p>
+  <p>Check the <a href="release-notes-1.0.1.html">Release Notes</a>
+  for a summary of what new features have been added, and other significant
+  changes, since the Struts 1.0 release.</p>
+
+  </section>
+
+  <section name="Nightly Builds" href="Builds">
+
+  <p>For developers who are helping to develop Struts, or who just want 
+  "the latest bits", the latest development version is made available each 
+  morning. Use at your own risk!</p>
   
   <ul>
   <li>Download the source directly via
@@ -75,7 +109,7 @@
   </ul>
 
   <p>Access to the CVS source repository for Struts is available through both
-  <a href="http://jakarta.apache.org/cvsweb/index.cgi/jakarta-struts/">web
+  <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">web
   browser</a> and
   <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">CVS client</a>
   interfaces.</p>
@@ -109,17 +143,23 @@
   community, including contributing to the future development of Struts.
   Check out the following resources:</p>
   <ul>
-  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to the
-      <a href="mailto:struts-user-subscribe@jakarta.apache.org">STRUTS-USER</a>
+  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
+      to communicate with other developers that are using
       mailing list to communicate with other developers that are using
       Struts for their own applications, including questions about the
-      installation of Struts, and the usage of particular Struts features.</li>
-  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to the
-      <a href="mailto:struts-dev-subscribe@jakarta.apache.org">STRUTS-DEV</a>
+      installation of Struts, and the usage of particular Struts features.
+      [<a href="mailto:struts-user-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-user-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to this
       mailing list to communicate with other developers interested in expanding
-      and improving the functionality supported by Struts itself.</li>
+      and improving the functionality supported by Struts itself.
+      [<a href="mailto:struts-dev-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-dev-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
   <li><strong>Bug Reports and Feature Requests</strong> Use the
-      <a href="#Bugs">Bug Reporting System</a> to submit these reports.</li>
+      <a href="http://nagoya.apache.org/bugzilla/">Bug Reporting System</a>
+      to submit these reports.</li>
   <li><strong>Patches and Modules</strong> - You can contribute patches and
       new modules to Struts by posting them to the STRUTS-DEV mailing list.
       After discussion and acceptance, one of the existing Committers will

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.28 2001/05/20 01:18:27 craigmcc Exp $
- * $Revision: 1.28 $
- * $Date: 2001/05/20 01:18:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.28.2.1 2001/05/21 04:23:48 craigmcc Exp $
+ * $Revision: 1.28.2.1 $
+ * $Date: 2001/05/21 04:23:48 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.28 $ $Date: 2001/05/20 01:18:27 $
+ * @version $Revision: 1.28.2.1 $ $Date: 2001/05/21 04:23:48 $
  */
 
 public class BeanUtils {
@@ -162,7 +162,8 @@ public class BeanUtils {
                NoSuchMethodException {
 
         if (bean == null)
-            return (Collections.EMPTY_MAP);
+            //            return (Collections.EMPTY_MAP);
+            return (new HashMap());
         PropertyDescriptor descriptors[] =
             PropertyUtils.getPropertyDescriptors(bean);
         Map description = new HashMap(descriptors.length);

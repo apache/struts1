@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTei.java,v 1.4 2001/02/12 21:49:56 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/12 21:49:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTei.java,v 1.4.2.1 2001/06/14 04:24:27 martinc Exp $
+ * $Revision: 1.4.2.1 $
+ * $Date: 2001/06/14 04:24:27 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/12 21:49:56 $
+ * @version $Revision: 1.4.2.1 $ $Date: 2001/06/14 04:24:27 $
  */
 
 public class IterateTei extends TagExtraInfo {
@@ -87,13 +87,26 @@ public class IterateTei extends TagExtraInfo {
         String type = data.getAttributeString("type");
         if (type == null)
             type = "java.lang.Object";
+        VariableInfo typeInfo = new VariableInfo(
+                data.getAttributeString("id"),
+	        type,
+	        true,
+	        VariableInfo.NESTED);
 
-	return new VariableInfo[] {
-	  new VariableInfo(data.getAttributeString("id"),
-	                   type,
-	                   true,
-	                   VariableInfo.NESTED)
-	};
+        String indexId = data.getAttributeString("indexId");
+        VariableInfo indexIdInfo = null;
+        if (indexId != null)
+            indexIdInfo = new VariableInfo(
+                indexId,
+	        "java.lang.Integer",
+	        true,
+	        VariableInfo.NESTED);
+
+        if (indexIdInfo == null) {
+            return new VariableInfo[] { typeInfo };
+        } else {
+            return new VariableInfo[] { typeInfo, indexIdInfo };
+        }
 
     }
 

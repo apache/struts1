@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.8 2001/05/20 01:18:27 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/05/20 01:18:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.8.2.1 2001/09/15 05:02:20 martinc Exp $
+ * $Revision: 1.8.2.1 $
+ * $Date: 2001/09/15 05:02:20 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import java.lang.reflect.Array;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.8 $ $Date: 2001/05/20 01:18:27 $
+ * @version $Revision: 1.8.2.1 $ $Date: 2001/09/15 05:02:20 $
  */
 
 public class ConvertUtils {
@@ -467,12 +467,10 @@ public class ConvertUtils {
     private static Character convertCharacter(String value,
                                               Character defaultValue) {
 
-        if (value == null)
+        if (value == null || value.length() == 0)
             return (defaultValue);
-        else if (value.length() == 0)
-            return (new Character(' '));
         else
-            return (defaultValue);
+            return (new Character(value.charAt(0)));
 
     }
 
