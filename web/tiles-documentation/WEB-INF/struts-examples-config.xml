@@ -2,7 +2,7 @@
 
 <!DOCTYPE struts-config PUBLIC
           "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 <!--
      This is the Struts configuration file for the
      Tiles-documentation "examples" application

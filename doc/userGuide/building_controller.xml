@@ -1099,7 +1099,7 @@ throws Exception;
     your application. 
     This format of this document is described by the Document Type Definition
     (DTD) maintained at
-    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+    <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">
     http://struts.apache.org/dtds/struts-config_1_2.dtd</a>.
     This chapter covers the configuration elements that you will typically 
     write as part of developing your application.

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE struts-config PUBLIC
           "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 <!--
- $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config-registration.xml,v 1.7 2004/03/12 05:19:46 husted Exp $
- $Revision: 1.7 $
- $Date: 2004/03/12 05:19:46 $
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config-registration.xml,v 1.8 2004/09/02 03:43:15 niallp Exp $
+ $Revision: 1.8 $
+ $Date: 2004/09/02 03:43:15 $
 
  Copyright 2000-2004 Apache Software Foundation
 

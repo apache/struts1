@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE struts-config SYSTEM "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<!DOCTYPE struts-config SYSTEM "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 <struts-config>
   <!--============================================== Form Bean Definitions  -->
   <form-beans>

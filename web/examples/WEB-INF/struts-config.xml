@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE struts-config SYSTEM "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<!DOCTYPE struts-config SYSTEM "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 <!--
   Default configuration file for examples application.
   Each module also has its own struts-config under: /WEB-INF/$MODULE/
-  @version $Revision: 1.7 $ $Date: 2004/02/19 01:10:33 $
+  @version $Revision: 1.8 $ $Date: 2004/09/02 03:43:15 $
 -->
 <struts-config>
   <data-sources />
