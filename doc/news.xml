@@ -40,6 +40,23 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020708"></a>08 July 2002 - Struts article in e-Promagazine</h3>
+<p>
+The e-Promag.com site is featuring a new article entitled 
+"<a href="http://www.e-promag.com/eparchive/index.cfm?fuseaction=viewarticle&amp;ContentID=1742">
+<b>Struts: A Standard Architecture for Web Applications</b></a>" by Don Denoncourt.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020708"></a>08 July 2002 - JAAS article highlighting Authorization and Authentication with Struts</h3>
+<p>
+<a href="http://www.mooreds.com/jaas.html">
+<b>Using JAAS for Authorization and Authentication</b></a> by Dan Moore.
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020629"></a>29 June 2002 - Struts Newsletter</h3>
 <p>
 <b>Path-based action mapping in 1.1</b><br/>
@@ -118,7 +135,7 @@ further contributions.
 
 <h3><a name="20020624"></a>24 June 2002 - Tiles article in DeveloperWorks</h3>
 <p>
-The IBM DeveloperWorks site is feature a new article entitled 
+The IBM DeveloperWorks site is featuring a new article entitled 
 "<a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">
 <b>Struts and Tiles aid component-based development</b></a>" by Wellie Chao.
 </p>
