@@ -309,8 +309,8 @@ each individual web app!  Doing so will cause problems with
   <li>JRUN - <a href="installation-jrun.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
     required.</a></li>
-  <li>Resin 2.1+ "standalone" - No additional steps required.</li>
-  <li>Silverstream - - <a href="installation-sas.html">Additional steps required.</a></li>
+  <li>Resin 1.2+ "standalone" - No additional steps required.</li>
+  <li>SilverStream 3.7.1 and later - <a href="installation-sas.html">Additional steps required.</a></li>
   <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
   <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
   <li>Tomcat 3.2.1 with Apache - <a href="installation-tc.html">Additional steps 

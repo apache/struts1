@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.6 2001/02/13 17:11:34 husted Exp $
+$Id: INSTALL,v 1.7 2001/07/21 06:19:14 martinc Exp $
 
                 Struts
                 ======
@@ -17,7 +17,7 @@ For most containers, you need only to:
 Status of various containers -- as reported by volunteers on the Struts-User list.
 
 * Tomcat 3.1+ Standalone - No additonal steps required.
-* Resin 2.1+ Standalone - No additional steps required.
+* Resin 1.2+ Standalone - No additional steps required.
 * WebLogic 6.0+ - No additional steps required.
 
 * Bluestone Universal Business Server - Additional steps provided below.
@@ -304,8 +304,8 @@ ORION APPLICATION SERVER
   (such as database passwords) in this file.
 
 
-SILVERSTREAM APPLICATION SERVER 3.7.1
--------------------------------------
+SILVERSTREAM APPLICATION SERVER 3.7.1 AND LATER
+-----------------------------------------------
 
 Start the SilverStream application server. 
 
@@ -344,7 +344,7 @@ following contents for the file:
       "deploy_war.dtd">
     <warJarOptions>
     <warJar>
-    <warJarName>struts-example.war</warJarName>
+    <warJarName>struts-documentation.war</warJarName>
     <isEnabled>true</isEnabled>
     <urls><el>struts-documentation</el></urls>
     </warJar>
