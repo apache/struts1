@@ -69,14 +69,14 @@ import org.apache.struts.Globals;
  *
  * @author James Mitchell
  */
-public class TestButtonTag extends JspTestCase {
+public class TestButtonTag2 extends JspTestCase {
 
     /**
      * Defines the testcase name for JUnit.
      *
      * @param theName the testcase's name.
      */
-    public TestButtonTag(String theName) {
+    public TestButtonTag2(String theName) {
         super(theName);
     }
 
@@ -86,7 +86,7 @@ public class TestButtonTag extends JspTestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[] {TestButtonTag.class.getName()});
+        junit.awtui.TestRunner.main(new String[] {TestButtonTag2.class.getName()});
     }
 
     /**
@@ -95,14 +95,14 @@ public class TestButtonTag extends JspTestCase {
      */
     public static Test suite() {
         // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestButtonTag.class);
+        return new TestSuite(TestButtonTag2.class);
     }
 
     private void runMyTest(String whichTest, String locale){
     	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
 		request.setAttribute("runTest", whichTest);
         try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag.jsp");
+			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag2.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -113,86 +113,52 @@ public class TestButtonTag extends JspTestCase {
     /*
      * Testing ButtonTag.
      */
-    public void testButtonProperty(){ 
-    	runMyTest("testButtonProperty", "");
-	}
-    public void testButtonPropertyAccesskey(){ 
-    	runMyTest("testButtonPropertyAccesskey", "");
-	}
-    public void testButtonPropertyAlt(){ 
-    	runMyTest("testButtonPropertyAlt", "");
-	}
-    public void testButtonPropertyAltKey1(){ 
-    	runMyTest("testButtonPropertyAltKey1", "");
-	}
-    public void testButtonPropertyAltKey2(){ 
-    	runMyTest("testButtonPropertyAltKey2", "");
-	}
-    public void testButtonPropertyAltKey_fr1(){ 
-    	runMyTest("testButtonPropertyAltKey1_fr", "fr");
-	}
-    public void testButtonPropertyAltKey_fr2(){ 
-    	runMyTest("testButtonPropertyAltKey2_fr", "fr");
-	}
-    public void testButtonPropertyDisabled_True(){ 
-    	runMyTest("testButtonPropertyDisabled_True", "");
-	}
-    public void testButtonPropertyDisabled_False1(){ 
-    	runMyTest("testButtonPropertyDisabled_False1", "");
-	}
-    public void testButtonPropertyDisabled_False2(){ 
-    	runMyTest("testButtonPropertyDisabled_False2", "");
-	}
-    public void testButtonPropertyOnblur(){ 
-    	runMyTest("testButtonPropertyOnblur", "");
+
+    public void testButtonPropertyStyle(){ 
+    	runMyTest("testButtonPropertyStyle", "");
 	}
 
-    public void testButtonPropertyOnchange(){ 
-    	runMyTest("testButtonPropertyOnchange", "");
+    public void testButtonPropertyStyleClass(){ 
+    	runMyTest("testButtonPropertyStyleClass", "");
 	}
 
-    public void testButtonPropertyOnclick(){ 
-    	runMyTest("testButtonPropertyOnclick", "");
+    public void testButtonPropertyStyleId(){ 
+    	runMyTest("testButtonPropertyStyleId", "");
 	}
 
-    public void testButtonPropertyOndblclick(){ 
-    	runMyTest("testButtonPropertyOndblclick", "");
+    public void testButtonPropertyTabindex(){ 
+    	runMyTest("testButtonPropertyTabindex", "");
 	}
 
-    public void testButtonPropertyOnfocus(){ 
-    	runMyTest("testButtonPropertyOnfocus", "");
+    public void testButtonPropertyTitle(){ 
+    	runMyTest("testButtonPropertyTitle", "");
 	}
 
-    public void testButtonPropertyOnkeydown(){ 
-    	runMyTest("testButtonPropertyOnkeydown", "");
+    public void testButtonPropertyTitleKey(){ 
+    	runMyTest("testButtonPropertyTitleKey", "");
 	}
 
-    public void testButtonPropertyOnkeypress(){ 
-    	runMyTest("testButtonPropertyOnkeypress", "");
+    public void testButtonPropertyTitleKey_fr(){ 
+    	runMyTest("testButtonPropertyTitleKey_fr", "fr");
 	}
 
-    public void testButtonPropertyOnkeyup(){ 
-    	runMyTest("testButtonPropertyOnkeyup", "");
+    public void testButtonPropertyValue(){ 
+    	runMyTest("testButtonPropertyValue", "");
 	}
 
-    public void testButtonPropertyOnmousedown(){ 
-    	runMyTest("testButtonPropertyOnmousedown", "");
+    public void testButtonPropertyBodyContent(){ 
+    	runMyTest("testButtonPropertyBodyContent", "");
 	}
 
-    public void testButtonPropertyOnmousemove(){ 
-    	runMyTest("testButtonPropertyOnmousemove", "");
+    public void testButtonPropertyBodyContentMessageKey(){ 
+    	runMyTest("testButtonPropertyBodyContentMessageKey", "");
 	}
 
-    public void testButtonPropertyOnmouseout(){ 
-    	runMyTest("testButtonPropertyOnmouseout", "");
+    public void testButtonPropertyBodyContentMessageKey_fr(){ 
+    	runMyTest("testButtonPropertyBodyContentMessageKey_fr", "fr");
 	}
 
-    public void testButtonPropertyOnmouseover(){ 
-    	runMyTest("testButtonPropertyOnmouseover", "");
-	}
 
-    public void testButtonPropertyOnmouseup(){ 
-    	runMyTest("testButtonPropertyOnmouseup", "");
-	}
+
 
 }
