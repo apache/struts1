@@ -232,6 +232,11 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
+    <!-- Create the Tiles documentation -->
+    <style   basedir="${doc.dir}/tiles"
+             destdir="${build.home}/tiles-documentation"
+           extension=".html" style="${doc.dir}/stylesheets/tiles.xsl"
+            includes="*.xml"/>
     
     <!-- Compile Tiles contrib -->
 <!--
