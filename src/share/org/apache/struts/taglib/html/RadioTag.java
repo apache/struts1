@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.24 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.25 2003/09/17 15:31:35 rleland Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/09/17 15:31:35 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.util.MessageResources;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author David Graham
- * @version $Revision: 1.24 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.25 $ $Date: 2003/09/17 15:31:35 $
  */
 public class RadioTag extends BaseHandlerTag {
 
@@ -328,6 +328,7 @@ public class RadioTag extends BaseHandlerTag {
     public void release() {
 
         super.release();
+        idName = null;
         name = Constants.BEAN_KEY;
         property = null;
         text = null;
