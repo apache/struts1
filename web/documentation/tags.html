@@ -926,6 +926,55 @@ was not included in this request, or is present with a length of zero.</p>
 <a href="#Top">Top</a>
 
 
+<a name="iterate"></a>
+<h1><i>iterate</i> - Repeat Tag Body For Elements of a Collection</h1>
+
+<p>Repeats the body of this tag once for each element of a collection, which
+must be an <code>Iterator</code>, a <code>Collection</code> (which includes
+Lists, Sets, and Vectors), a <code>Map</code> (which includes Hashtables)
+whose elements will be interated over, or an array of objects.  The collection
+to be iterated over
+is identified by the <code>name</code> or <code>name</code> and
+<code>property</code> attributes, and the element being processed is exposed
+as a page scope bean named by the <code>id</code> attribute.</p>
+
+<p><em>This tag requires a Java2 (JDK 1.2 or later) platform.</em></p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">id</td>
+    <td>
+      Attribute name of the page scope bean that will be made visible to
+      the body of the <code>iterate</code> tag, containing the current
+      element of the enumeration.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Attribute name of the collection bean itself (if <code>property</code>
+      is not specified), or the bean whose property is retrieved (if
+      <code>property</code> is specified).  The collection may be in
+      any scope, but must be one of the Java types described above.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of a property of the bean identified by <code>name</code>
+      that is retrieved to provide the collection to be enumerated.
+      [Use the bean identified by <code>name</code> itself]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="link"></a>
 <h1><i>link</i> - Render HTML Hyperlink</h1>
 
