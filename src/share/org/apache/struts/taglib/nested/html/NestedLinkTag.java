@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.3 2002/02/20 01:30:23 arron Exp $
- * $Revision: 1.3 $
- * $Date: 2002/02/20 01:30:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.4 2002/02/20 04:01:57 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/20 04:01:57 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,7 +68,7 @@ import org.apache.struts.taglib.html.LinkTag;
  * NestedLinkTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/02/20 01:30:23 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/20 04:01:57 $
  */
 public class NestedLinkTag extends LinkTag implements NestedNameSupport {
   
@@ -87,7 +87,7 @@ public class NestedLinkTag extends LinkTag implements NestedNameSupport {
     /* if paramId is the way, set the name according to our bean */
     if (getParamName() == null || "".equals(getParamName().trim())) {
       if (doParam) {
-        setParamName(getName());
+        setParamName(NestedPropertyHelper.getNestedNameProperty(this));
       }
     }
     
