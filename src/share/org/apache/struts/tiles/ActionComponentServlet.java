@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.8 2003/02/27 19:20:52 cedric Exp $
- * $Revision: 1.8 $
- * $Date: 2003/02/27 19:20:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.9 2003/03/18 02:25:11 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/03/18 02:25:11 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -89,6 +89,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * This new method could now be overiden in order to dispatch request before
  * forwarding.
  * Compliant to ActionServlet from struts 2001/06/25 00:02:27
+ * @deprecated Tiles now uses ActionServlet with TilesPlugin and TilesRequestProcessor.
  */
 public class ActionComponentServlet extends ActionServlet {
       /** Definitions factory */
