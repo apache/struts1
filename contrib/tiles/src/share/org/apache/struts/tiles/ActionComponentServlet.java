@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.1 2001/08/01 14:36:41 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.2 2001/09/10 12:50:45 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/10 12:50:45 $
  * $Author: cedric $
  *
  */
@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import org.apache.struts.taglib.html.Constants;
+import org.apache.struts.upload.MultipartRequestWrapper;
 
 /**
  * This servlet extends struts one. It adds channels and screens dispatching
@@ -29,7 +30,7 @@ import org.apache.struts.taglib.html.Constants;
  * now call 'processForward()'. Rest of the method is unchanged.
  * This new method could now be overiden in order to dispatch request before
  * forwarding.
- * Compliant to ActionServlet from struts 2001/03/13 22:31:50
+ * Compliant to ActionServlet from struts 2001/06/25 00:02:27
  */
 public class ActionComponentServlet extends ActionServlet
 {
@@ -143,14 +144,14 @@ public class ActionComponentServlet extends ActionServlet
                 log("  No errors detected, accepting input");
             return (true);
         }
-        
+
         //does our form have a multipart request?
         if (formInstance.getMultipartRequestHandler() != null) {
             //rollback the request
             if (debug > 1) {
                 log("  Rolling back the multipart request");
             }
-            
+
             formInstance.getMultipartRequestHandler().rollback();
         }
 
@@ -169,6 +170,10 @@ public class ActionComponentServlet extends ActionServlet
 	if (debug >= 1)
 	    log("  Validation error(s), redirecting to: " + uri);
 	request.setAttribute(Action.ERROR_KEY, errors);
+        //unwrap the multipart request if there is one
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
   processForward( uri, request, response);
 	return (false);
 
@@ -183,34 +188,51 @@ public class ActionComponentServlet extends ActionServlet
   protected void processForward(String uri, HttpServletRequest request, HttpServletResponse response)
  	  throws IOException, ServletException
     {
-      // Do we do a forward (original) or an include.
-    boolean hasParentComponent = false;
+      // Do we do a forward (original behavior) or an include ?
+    boolean doInclude = false;
 
      try
         {
 
-          // Check if request comes from a parent component
-          // This will be used to do an include rather than a forward
-        Object parentContext = request.getAttribute( ComponentConstants.COMPONENT_CONTEXT );
-        hasParentComponent = (parentContext!=null );
+          // Get current tile context if any.
+          // If context exist, we will do an include
+        ComponentContext tileContext = ComponentContext.getContext( request );
+        doInclude = (tileContext!=null );
+        ComponentDefinition definition;
 
-      // Process instance names only if an instances description exist.
-    if( definitionsFactory != null )
-      {
-      // Get definition of component corresponding to uri.
-      // If definition is found, replace uri with path defined in definition.
-      ComponentDefinition instance = definitionsFactory.getDefinition(uri, request, getServletContext());
+          // Process tiles definition names only if a definition factory exist.
+        if( definitionsFactory != null )
+          { // Get definition of tiles/component corresponding to uri.
+          definition = definitionsFactory.getDefinition(uri, request, getServletContext());
+          if( definition != null )
+            { // We have a definition.
+              // We use it to complete missing attribute in context.
+            uri = definition.getPath();
+            if( tileContext == null )
+              {
+              tileContext = new ComponentContext( definition.getAttributes() );
+              ComponentContext.setContext( tileContext, request);
+              }
+             else
+              tileContext.addMissing( definition.getAttributes() );
+            } // end if
+          } // end if
+          // Check if there is a definition set in jsp context.
+        definition = DefinitionsUtil.getActionDefinition(request);
+        if( definition != null )
+          { // We have a definition.
+            // We use it to complete missing attribute in context.
+            // We also overload uri.
+          uri = definition.getPath();
+          if( tileContext == null )
+            {
+            tileContext = new ComponentContext( definition.getAttributes() );
+            ComponentContext.setContext( tileContext, request);
+            }
+          else
+            tileContext.addMissing( definition.getAttributes() );
+          } // end if
 
-      if( instance != null )
-        { // use component / template definition
-
-          // Create component context, put it in request scope, and forward to url.
-        ComponentContext context = new ComponentContext( instance );
-        request.setAttribute( ComponentConstants.COMPONENT_CONTEXT, context);
-        uri = instance.getPath();
-        } // end if
-      } // end if
-      
         }
        catch( DefinitionsFactoryException ex )
         {
@@ -228,7 +250,7 @@ public class ActionComponentServlet extends ActionServlet
 
       // If request comes from a previous component, do an include.
       // This allows to insert an action in a components.
-    if( hasParentComponent )
+    if( doInclude )
       rd.include(request, response);
      else
       rd.forward(request, response);   // original behavior
