@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.4 2002/01/12 21:30:37 martinc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.5 2002/02/16 16:12:56 arron Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -221,36 +221,47 @@
           <xsl:apply-templates select="info"/>
         </blockquote>
       </td></tr>
-      <tr><td>
-        <blockquote>
-          <table border="1" cellspacing="2" cellpadding="2">
-            <tr>
-              <th width="15%">Attribute Name</th>
-              <th>Description</th>
-            </tr>
-            <xsl:for-each select="attribute">
-              <tr>
-                <td align="center">
-                  <xsl:value-of select="name"/>
-                </td>
-                <td>
-                  <xsl:apply-templates select="info"/>
-                  <xsl:variable name="required">
-                    <xsl:value-of select="required"/>
-                  </xsl:variable>
-                  <xsl:if test="required='true'">
-                    [Required]
-                  </xsl:if>
-                  <xsl:if test="rtexprvalue='true'">
-                    [RT Expr]
-                  </xsl:if>
-                </td>
-              </tr>
-            </xsl:for-each>
-          </table>
-        </blockquote>
-      </td></tr>
+      <xsl:if test="not(@document-attributes)">
+        <xsl:call-template name="document-tag-attributes" />
+      </xsl:if>
+      <xsl:if test="@document-attributes='true'">
+        <xsl:call-template name="document-tag-attributes" />
+      </xsl:if>
     </table>
+  </xsl:template>
+
+
+  <!-- Create the table of documentation for a tag -->
+  <xsl:template name="document-tag-attributes">
+    <tr><td>
+      <blockquote>
+        <table border="1" cellspacing="2" cellpadding="2">
+          <tr>
+            <th width="15%">Attribute Name</th>
+            <th>Description</th>
+          </tr>
+          <xsl:for-each select="attribute">
+            <tr>
+              <td align="center">
+                <xsl:value-of select="name"/>
+              </td>
+              <td>
+                <xsl:apply-templates select="info"/>
+                <xsl:variable name="required">
+                  <xsl:value-of select="required"/>
+                </xsl:variable>
+                <xsl:if test="required='true'">
+                  [Required]
+                </xsl:if>
+                <xsl:if test="rtexprvalue='true'">
+                  [RT Expr]
+                </xsl:if>
+              </td>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </blockquote>
+    </td></tr>
   </xsl:template>
 
 
