@@ -17,7 +17,7 @@
     <li><a href="#license">How is Struts licensed?</a></li>
     <li><a href="#usage">Can Struts be used in a commercial application?</a></li>
 
-    <li><a href="#where">Where I can I get a copy of Struts?</a></li>
+    <li><a href="#where">Where can I get a copy of Struts?</a></li>
     <li><a href="#install">How do I install Struts?</a></li>
     <li><a href="#jar">When do I need the struts.jar on my classpath?</a></li>
 
@@ -65,7 +65,7 @@
 <p>In addition, contributions of patches, improved code, new features, or even just requests for features are also welcome.</p>
 </section>
 
-<section href="where" name="Where I can I get a copy of Struts?">
+<section href="where" name="Where can I get a copy of Struts?">
 <p>The best place to download Struts is at <a href="http://jakarta.apache.org/struts/">jakarta.apache.org/struts</a>. The nightly builds are very stable, and recommended as the best place to start today.</p>
 </section>
 
