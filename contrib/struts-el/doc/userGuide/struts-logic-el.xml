@@ -15,7 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>logic</shortname>
   <display-name>Struts Logic Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-logic-el</uri>
+  <uri>http://struts.apache.org/tags-logic-el</uri>
   <info>
   <p>This tag library contains tags that are useful in managing conditional
   generation of output text, looping over object collections for

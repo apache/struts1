@@ -16,7 +16,7 @@
   <jspversion>1.1</jspversion>
   <shortname>bean</shortname>
   <display-name>Struts Bean Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-bean-el</uri>
+  <uri>http://struts.apache.org/tags-bean-el</uri>
   <info>
   <p>This tag library contains tags useful in accessing beans and their
   properties, as well as defining new beans (based on these accesses)
