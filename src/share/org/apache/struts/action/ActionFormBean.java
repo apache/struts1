@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.9 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.10 2003/12/19 04:48:44 husted Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/12/19 04:48:44 $
  *
  * ====================================================================
  *
@@ -67,27 +67,26 @@ import org.apache.struts.config.FormBeanConfig;
 
 
 /**
- * An <strong>ActionFormBean</strong> is the definition of a form bean that
+ * <p>An <strong>ActionFormBean</strong> is the definition of a form bean that
  * is loaded from a <code>&lt;form-bean&gt;</code> element in the Struts
- * configuration file.  It can be subclassed as necessary to add additional
- * properties.
+ * configuration file. It can be subclassed as necessary to add additional
+ * properties.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2003/09/29 04:26:23 $
- *
- * Since Struts 1.1 <code>ActionFormBean</code> extends <code>FormBeanConfig</code>.
+ * <p>Since Struts 1.1 <code>ActionFormBean</code> extends <code>FormBeanConfig</code>.</p>
  *
  * <p><strong>NOTE</strong> - This class would have been deprecated and
  * replaced by <code>org.apache.struts.config.FormBeanConfig</code> except
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
+ *
+ * @author Craig R. McClanahan
+ * @version $Revision: 1.10 $ $Date: 2003/12/19 04:48:44 $
  */
-
 public class ActionFormBean extends FormBeanConfig {
 
 
     /**
-     * Construct an instance with default vaslues.
+     * <p>Construct an instance with default vaslues.</p>
      */
     public ActionFormBean() {
 
@@ -97,7 +96,7 @@ public class ActionFormBean extends FormBeanConfig {
 
 
     /**
-     * Construct an instance with the specified values.
+     * <p>Construct an instance with the specified values.</p>
      *
      * @param name Form bean name
      * @param type Fully qualified class name

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.28 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.28 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.29 2003/12/19 04:48:44 husted Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/12/19 04:48:44 $
  *
  * ====================================================================
  *
@@ -71,11 +71,12 @@ import org.apache.struts.config.ForwardConfig;
 
 /**
  * <p>An <strong>ActionMapping</strong> represents the information that the
- * controller servlet, <code>ActionServlet</code>, knows about the mapping
- * of a particular request to an instance of a particular action class.
- * The ActionMapping instance used to select a particular Action is passed
- * on to that Action, thereby providing access to any custom configuration
- * information included with the ActionMapping object.</p>
+ * controller, <code>RequestProcessor</code>, knows about the mapping
+ * of a particular request to an instance of a particular <code>Action</code> class.
+ * The <code>ActionMapping</code> instance used to select a particular
+ * <code>Action</code> is passed on to that <code>Action</code>, thereby providing
+ * access to any custom configuration information included with the
+ * <code>ActionMapping</code> object.</p>
  *
  * <p>Since Struts 1.1 this class extends <code>ActionConfig</code>.
  *
@@ -85,7 +86,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.28 $ $Date: 2003/09/29 04:26:23 $
+ * @version $Revision: 1.29 $ $Date: 2003/12/19 04:48:44 $
  */
 
 public class ActionMapping extends ActionConfig {
@@ -93,10 +94,10 @@ public class ActionMapping extends ActionConfig {
 
     /**
      * <p>Find and return the <code>ExceptionConfig</code> instance defining
-     * how exceptions of the specified type should be handled.  This is
-     * performed by checking local and then global configurations for the
-     * specified exception's class, and then looking up the superclass chain
-     * (again checking local and then global configurations).  If no handler
+     * how <code>Exceptions</code> of the specified type should be handled.
+     * This is performed by checking local and then global configurations for
+     * the specified exception's class, and then looking up the superclass chain
+     * (again checking local and then global configurations). If no handler
      * configuration can be found, return <code>null</code>.</p>
      *
      * @param type Exception class for which to find a handler
@@ -135,9 +136,9 @@ public class ActionMapping extends ActionConfig {
 
     /**
      * <p>Find and return the <code>ForwardConfig</code> instance defining
-     * how forwarding to the specified logical name should be handled.  This is
+     * how forwarding to the specified logical name should be handled. This is
      * performed by checking local and then global configurations for the
-     * specified forwarding configuration.  If no forwarding configuration
+     * specified forwarding configuration. If no forwarding configuration
      * can be found, return <code>null</code>.</p>
      *
      * @param name Logical name of the forwarding instance to be returned
@@ -155,8 +156,8 @@ public class ActionMapping extends ActionConfig {
 
     /**
      * <p>Return the logical names of all locally defined forwards for this
-     * mapping.  If there are no such forwards, a zero-length array
-     * is returned.
+     * mapping. If there are no such forwards, a zero-length array
+     * is returned.</p>
      */
     public String[] findForwards() {
 
@@ -172,7 +173,7 @@ public class ActionMapping extends ActionConfig {
 
     /**
      * <p>Create (if necessary) and return an {@link ActionForward} that
-     * corresponds to the <code>input</code> property of this Action.
+     * corresponds to the <code>input</code> property of this Action.</p>
      *
      * @since Struts 1.1
      */

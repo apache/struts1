@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.11 2003/09/29 04:26:23 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2003/09/29 04:26:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.12 2003/12/19 04:48:44 husted Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/12/19 04:48:44 $
  *
  * ====================================================================
  *
@@ -67,17 +67,17 @@ import org.apache.struts.config.ForwardConfig;
 
 
 /**
- * An <strong>ActionForward</strong> represents a destination to which the
- * controller servlet, <code>ActionServlet</code>, might be directed to
- * perform a <code>RequestDispatcher.forward()</code> or
- * <code>HttpServletResponse.sendRedirect()</code> to, as a result of
- * processing activities of an <code>Action</code> class.  Instances of this
+ * <p>An <strong>ActionForward</strong> represents a destination to which the
+ * controller, <code>RequestProcessor</code>, might be directed to
+ * perform a <code>RequestDispatcher.forward</code> or
+ * <code>HttpServletResponse.sendRedirect</code> to, as a result of
+ * processing activities of an <code>Action</code> class. Instances of this
  * class may be created dynamically as necessary, or configured in association
  * with an <code>ActionMapping</code> instance for named lookup of potentially
- * multiple destinations for a particular mapping instance.
- * <p>
- * An <code>ActionForward</code> has the following minimal set of properties.
- * Additional properties can be provided as needed by subclassses.
+ * multiple destinations for a particular mapping instance.</p>
+ *
+ * <p>An <code>ActionForward</code> has the following minimal set of properties.
+ * Additional properties can be provided as needed by subclassses.</p>
  * <ul>
  * <li><strong>contextRelative</strong> - Should the <code>path</code>
  *     value be interpreted as context-relative (instead of
@@ -102,14 +102,14 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2003/09/29 04:26:23 $
+ * @version $Revision: 1.12 $ $Date: 2003/12/19 04:48:44 $
  */
 
 public class ActionForward extends ForwardConfig {
 
 
     /**
-     * Construct a new instance with default values.
+     * <p>Construct a new instance with default values.</p>
      */
     public ActionForward() {
 
@@ -119,7 +119,7 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
-     * Construct a new instance with the specified path.
+     * <p>Construct a new instance with the specified path.</p>
      *
      * @param path Path for this instance
      */
@@ -131,7 +131,8 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
-     * Construct a new instance with the specified path and redirect flag.
+     * <p>Construct a new instance with the specified
+     * <code>path</code> and <code>redirect</code> flag.</p>
      *
      * @param path Path for this instance
      * @param redirect Redirect flag for this instance
@@ -147,7 +148,8 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
-     * Construct a new instance with the specified path and redirect flag.
+     * <p>Construct a new instance with the specified <code>name</code>,
+     * <code>path</code> and <code>redirect</code> flag.</p>
      *
      * @param name Name of this instance
      * @param path Path for this instance
@@ -164,7 +166,7 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
-     * Construct a new instance with the specified values.
+     * <p>Construct a new instance with the specified values.</p>
      *
      * @param name Name of this instance
      * @param path Path for this instance

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.9 2003/10/05 17:45:14 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/10/05 17:45:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.10 2003/12/19 04:48:44 husted Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/12/19 04:48:44 $
  *
  * ====================================================================
  *
@@ -65,7 +65,7 @@ import java.io.Serializable;
 
 /**
  * <p>An encapsulation of an individual message returned by the
- * <code>validate()</code> method of an <code>ActionForm</code>, consisting
+ * <code>validate</code> method of an <code>ActionForm</code>, consisting
  * of a message key (to be used to look up message text in an appropriate
  * message resources database) plus up to four placeholder objects that can
  * be used for parametric replacement in the message text.</p>
@@ -73,7 +73,7 @@ import java.io.Serializable;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.9 $ $Date: 2003/10/05 17:45:14 $
+ * @version $Revision: 1.10 $ $Date: 2003/12/19 04:48:44 $
  * @since Struts 1.1
  */
 public class ActionMessage implements Serializable {
@@ -83,7 +83,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action message with no replacement values.
+     * <p>Construct an action message with no replacement values.</p>
      *
      * @param key Message key for this message
      */
@@ -93,7 +93,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action message with the specified replacement values.
+     * <p>Construct an action message with the specified replacement values.</p>
      *
      * @param key Message key for this message
      * @param value0 First replacement value
@@ -104,7 +104,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action message with the specified replacement values.
+     * <p>Construct an action message with the specified replacement values.</p>
      *
      * @param key Message key for this message
      * @param value0 First replacement value
@@ -116,7 +116,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action message with the specified replacement values.
+     * <p>Construct an action message with the specified replacement values.</p>
      *
      * @param key Message key for this message
      * @param value0 First replacement value
@@ -131,7 +131,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action message with the specified replacement values.
+     * <p>Construct an action message with the specified replacement values.</p>
      *
      * @param key Message key for this message
      * @param value0 First replacement value
@@ -147,7 +147,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Construct an action message with the specified replacement values.
+     * <p>Construct an action message with the specified replacement values.</p>
      *
      * @param key Message key for this message
      * @param values Array of replacement values
@@ -164,13 +164,13 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * The message key for this message.
+     * <p>The message key for this message.</p>
      */
     protected String key = null;
 
 
     /**
-     * The replacement values for this mesasge.
+     * <p>The replacement values for this mesasge.</p>
      */
     protected Object values[] = null;
 
@@ -179,7 +179,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Get the message key for this message.
+     * <p>Get the message key for this message.</p>
      */
     public String getKey() {
 
@@ -189,7 +189,7 @@ public class ActionMessage implements Serializable {
 
 
     /**
-     * Get the replacement values for this message.
+     * <p>Get the replacement values for this message.</p>
      */
     public Object[] getValues() {
 
@@ -198,7 +198,8 @@ public class ActionMessage implements Serializable {
     }
     
     /**
-     * Returns a String in the format: key[value1, value2, etc].
+     * <p>Returns a String in the format: key[value1, value2, etc].</p>
+     *
      * @see java.lang.Object#toString()
      */
 	public String toString() {
