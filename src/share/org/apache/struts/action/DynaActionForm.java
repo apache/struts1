@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.3 2002/07/17 15:40:23 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/17 15:40:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionForm.java,v 1.4 2002/10/27 06:10:59 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/27 06:10:59 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * developer to create a Java class for each type of form bean.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/07/17 15:40:23 $
+ * @version $Revision: 1.4 $ $Date: 2002/10/27 06:10:59 $
  * @since Struts 1.1
  */
 
@@ -165,8 +165,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Does the specified mapped property contain a value for the specified
-     * key value?
+     * Indicates if the specified mapped property contain a value for the specified
+     * key value.
      *
      * @param name Name of the property to check
      * @param key Name of the key to check
@@ -176,7 +176,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      */
     public boolean contains(String name, String key) {
 
-        DynaProperty descriptor = getDynaProperty(name);
         Object value = dynaValues.get(name);
         if (value == null) {
             throw new NullPointerException
@@ -260,7 +259,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      */
     public Object get(String name, int index) {
 
-        DynaProperty descriptor = getDynaProperty(name);
         Object value = dynaValues.get(name);
         if (value == null) {
             throw new NullPointerException
@@ -291,7 +289,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      */
     public Object get(String name, String key) {
 
-        DynaProperty descriptor = getDynaProperty(name);
         Object value = dynaValues.get(name);
         if (value == null) {
             throw new NullPointerException
@@ -330,7 +327,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      */
     public void remove(String name, String key) {
 
-        DynaProperty descriptor = getDynaProperty(name);
         Object value = dynaValues.get(name);
         if (value == null) {
             throw new NullPointerException
@@ -402,7 +398,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      */
     public void set(String name, int index, Object value) {
 
-        DynaProperty descriptor = getDynaProperty(name);
         Object prop = dynaValues.get(name);
         if (prop == null) {
             throw new NullPointerException
@@ -439,7 +434,6 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      */
     public void set(String name, String key, Object value) {
 
-        DynaProperty descriptor = getDynaProperty(name);
         Object prop = dynaValues.get(name);
         if (prop == null) {
             throw new NullPointerException
@@ -559,7 +553,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
 
     /**
-     * Is an object of the source class assignable to the destination class?
+     * Indicates if an object of the source class is assignable to the destination class.
      *
      * @param dest Destination class
      * @param source Source class
