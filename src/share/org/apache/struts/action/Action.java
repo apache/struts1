@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.18 2001/02/21 00:35:41 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2001/02/21 00:35:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.19 2001/02/23 21:13:09 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2001/02/23 21:13:09 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2001/02/21 00:35:41 $
+ * @version $Revision: 1.19 $ $Date: 2001/02/23 21:13:09 $
  */
 
 public class Action {
@@ -463,7 +463,8 @@ public class Action {
      */
     protected boolean isCancelled(HttpServletRequest request) {
 
-	return (request.getParameter(Constants.CANCEL_PROPERTY) != null);
+	return ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
+                (request.getParameter(Constants.CANCEL_PROPERTY_X) != null));
 
     }
 

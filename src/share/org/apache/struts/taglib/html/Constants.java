@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/Constants.java,v 1.2 2001/01/07 04:37:06 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/07 04:37:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/Constants.java,v 1.3 2001/02/23 21:13:10 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/23 21:13:10 $
  *
  * ====================================================================
  *
@@ -86,6 +86,13 @@ public class Constants {
      * The property under which a Cancel button press is reported.
      */
     public static final String CANCEL_PROPERTY = Package + ".CANCEL";
+
+
+    /**
+     * The property under which a Cancel button press is reported, if the
+     * Cancel button is rendered as an image.
+     */
+    public static final String CANCEL_PROPERTY_X = Package + ".CANCEL.x";
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.61 2001/02/23 19:57:38 craigmcc Exp $
- * $Revision: 1.61 $
- * $Date: 2001/02/23 19:57:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.62 2001/02/23 21:13:09 craigmcc Exp $
+ * $Revision: 1.62 $
+ * $Date: 2001/02/23 21:13:09 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.61 $ $Date: 2001/02/23 19:57:38 $
+ * @version $Revision: 1.62 $ $Date: 2001/02/23 21:13:09 $
  */
 
 public class ActionServlet
@@ -1940,7 +1940,8 @@ public class ActionServlet
             log(" Validating input form properties");
 
         // Was this submit cancelled?
-	if (request.getParameter(Constants.CANCEL_PROPERTY) != null) {
+	if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
+            (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
             if (debug >= 1)
                 log("  Cancelled transaction, no validation");
             return (true);
