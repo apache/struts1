@@ -29,10 +29,7 @@
     Struts img tag via action attribute
     </td>
     <td>
-    [:TODO:]
-    <%--
-    <html:img action="/struts-power" />
-    --%>
+    <html:img action="/html-img-action" />
     </td>
     </tr>
   </body>

@@ -2645,21 +2645,22 @@
                 <p>Renders an HTML <code>&lt;img&gt;</code> element with
                 the image at the specified URL.  Like the link tag, URL
                 rewriting will be applied automatically to the value
-                specified in <code>src</code> or <code>page</code>,
-                to maintain session state
+                specified in <code>src</code>, <code>page</code>, or
+                <code>action</code> to maintain session state
                 in the absence of cookies.  This will allow dynamic
                 generation of an image where the content displayed for this
                 image will be taken from the attributes of this tag.</p>
 
                 <p>The base URL for this image is calculated directly based on
-                the value specified in <code>src</code> or <code>page</code>,
+                the value specified in <code>src</code>, <code>page</code>, or
+                <code>action</code> or <code>page</code>,
                 or indirectly by looking up a message resource string based on
                 the <code>srcKey</code> or <code>pageKey</code> attributes.
                 You <strong>must</strong> specify exactly one of these
                 attributes.</p>
 
-                <p>Normally, the <code>src</code> or <code>page</code> that
-                you specify will be left
+                <p>Normally, the <code>src</code>, <code>page</code>, or
+                <code>action</code> that you specify will be left
                 unchanged (other than URL rewriting if necessary).  However,
                 there are two ways you can append one or more dynamically
                 defined query parameters to the <code>src</code> URL --
@@ -3009,6 +3010,23 @@
                   used as the module-relative path for this image.</p>
                   </info>
                 </attribute>
+
+            <attribute>
+              <name>action</name>
+              <required>false</required>
+              <rtexprvalue>true</rtexprvalue>
+              <info>
+              <p>The action, starting with a slash, that will render
+              the image to be displayed by this tag.  The rendered
+              URL for this image will automatically prepend the context
+              path of this web application (in the same manner as the
+              <code>action</code> attribute on the link tag works),
+              in addition to any necessary URL rewriting.  You
+              <strong>must</strong> specify the <code>action</code>,
+              <code>page</code>
+                  attribute or the <code>src</code> attribute.</p>
+              </info>
+            </attribute>
 
                 <attribute>
                   <name>paramName</name>

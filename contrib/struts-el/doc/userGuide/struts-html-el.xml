@@ -2721,6 +2721,23 @@
 
                 </info>
 
+            <attribute>
+              <name>action</name>
+              <required>false</required>
+              <rtexprvalue>true</rtexprvalue>
+              <info>
+              <p>The action, starting with a slash, that will render
+              the image to be displayed by this tag.  The rendered
+              URL for this image will automatically prepend the context
+              path of this web application (in the same manner as the
+              <code>action</code> attribute on the link tag works),
+              in addition to any necessary URL rewriting.  You
+              <strong>must</strong> specify the <code>action</code>,
+              <code>page</code>
+                  attribute or the <code>src</code> attribute.</p>
+              </info>
+            </attribute>
+
                 <attribute>
                   <name>align</name>
                   <required>false</required>

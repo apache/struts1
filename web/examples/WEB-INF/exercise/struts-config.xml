@@ -21,6 +21,8 @@
     <action path="/welcome" forward="/index.html" />
     <action path="/bean-write-2" forward="/bean-write-2.jsp" />
     <action path="/html-img" forward="/html-img.jsp" />
+     <!-- :FIXME: ImageAction should compute module prefix -->
+    <action path="/html-img-action" type="org.apache.struts.webapp.exercise.ImageAction" parameter="/exercise/struts-power.gif"/>
     <action path="/html-link" forward="/html-link.jsp" />
     <action path="/html-link-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
       <forward name="input" path="/html-link.do" />
