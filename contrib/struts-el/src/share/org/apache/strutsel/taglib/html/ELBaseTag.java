@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELBaseTag.java,v 1.3 2002/10/01 04:25:49 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:49 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELBaseTag.java,v 1.4 2002/11/17 20:53:31 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/11/17 20:53:31 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -80,7 +80,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELBaseTag extends BaseTag {
 
@@ -129,6 +129,12 @@ public class ELBaseTag extends BaseTag {
             setTarget((String) evalAttr("target", getTarget(), String.class));
         } catch (NullAttributeException ex) {
             setTarget(null);
+        }
+
+        try {
+            setServer((String) evalAttr("server", getServer(), String.class));
+        } catch (NullAttributeException ex) {
+            setServer(null);
         }
     }
 }

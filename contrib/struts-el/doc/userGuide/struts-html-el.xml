@@ -61,6 +61,14 @@
               <p>The window target for this base reference.</p>
             </info>
           </attribute>
+          <attribute>
+            <name>server</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+              <p>The server name to use instead of request.getServerName().</p>
+            </info>
+          </attribute>
 
         </tag>
 
@@ -2569,7 +2577,7 @@
                 <attribute>
                     <name>onclick</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element receives a
                         mouse click.
@@ -2579,7 +2587,7 @@
                 <attribute>
                     <name>ondblclick</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element receives a
                         mouse double click.
@@ -2619,7 +2627,7 @@
                 <attribute>
                     <name>onmousedown</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element is under the mouse
                         pointer and a mouse button is depressed.
@@ -2629,7 +2637,7 @@
                 <attribute>
                     <name>onmousemove</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element is under the
                         mouse pointer and the pointer is moved.
@@ -2639,7 +2647,7 @@
                 <attribute>
                     <name>onmouseout</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element was under the
                         mouse pointer but the pointer was moved outside the element.
@@ -2649,7 +2657,7 @@
                 <attribute>
                     <name>onmouseover</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element was not under
                         the mouse pointer but the pointer is moved inside the element.
@@ -2659,7 +2667,7 @@
                 <attribute>
                     <name>onmouseup</name>
                     <required>false</required>
-                    <rtexprvalue>true</rtexprvalue>
+                    <rtexprvalue>false</rtexprvalue>
                     <info>
                         JavaScript event handler executed when this element is under the
                         mouse pointer and a mouse button is released.
@@ -6564,6 +6572,23 @@
 
 
     </tag>
+
+    <tag>
+          <name>xhtml</name>
+          <summary>Render HTML tags as XHTML</summary>
+          <tagclass>org.apache.struts.taglib.html.XhtmlTag</tagclass>
+          <bodycontent>empty</bodycontent>
+          <info>
+          <p>
+          	Using this tag in a page tells all other html taglib tags
+          	to render themselves as XHTML.  This is really only useful
+          	when composing pages with jsp includes.  Using 
+          	&lt;html-el:html xhtml="true"&gt; will accomplish the same thing
+          	as this tag but only works for complete pages or tiles.
+          </p>
+          </info>
+
+        </tag>
 
 </taglib>
 </body>
