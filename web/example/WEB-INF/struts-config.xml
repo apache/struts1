@@ -19,6 +19,20 @@
 <struts-config>
 
 
+  <!-- ========== Data Source Configuration =============================== -->
+<!--
+  <data-source
+     autoCommit="false"
+    description="Example Data Source Configuration"
+    driverClass="org.postgresql.Driver"
+       maxCount="4"
+       minCount="2"
+       password="mypassword"
+            url="jdbc:postgresql://localhost/mydatabase"
+           user="myusername"
+  />
+-->
+
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
 
