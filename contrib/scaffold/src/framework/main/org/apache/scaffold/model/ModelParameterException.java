@@ -1,3 +1,37 @@
+package org.apache.scaffold.model;
+
+
+/**
+ * Exception for error accessing a resource needed for a model
+ * (index file, data file).
+ * @author Ted Husted
+ * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:51 $
+ */
+public class ModelParameterException extends ModelException {
+
+   public static final String MESSAGE =
+        "Required input is missing or invalid.";
+
+    public ModelParameterException (String message) {
+        super (message);
+    }
+
+    public ModelParameterException (String message, Throwable cause) {
+        super (message, cause);
+    }
+
+    public ModelParameterException (Throwable cause) {
+        super (MESSAGE,cause);
+    }
+
+    public ModelParameterException () {
+        super (MESSAGE);
+    }
+
+}
+
+
+
 /*
  * ====================================================================
  *
@@ -25,7 +59,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

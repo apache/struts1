@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+
+<!--
+  =============================================================================
+    Build file for Scaffold.
+
+    The following properties need to be set in either a ./build.properties or
+    a ${user.home}/build.properties one or in a calling Ant script :
+
+       digester.jar     [REQUIRED] Location of the Jakarta Commons Digester jar
+       beanutils.jar    [REQUIRED] Location of the Jakarta Commons Beanutils jar
+       struts.jar       [REQUIRED] Location of the Jakarta Struts jar
+       lucene.jar       [REQUIRED] Location of the Jakarta Lucene jar
+       poolman.jar      [REQUIRED] Location of the CodeStudio.com Poolman jar
+       servlet.jar      [REQUIRED] Location of the Servlet API (2.2 or 2.3) jar
+       jdbc20ext.jar    [REQUIRED] Location of the JDBC 2.0 Optional Package
+                                   extensions API jar (javax.sql)
+
+       struts-bean.tld  [OPTIONAL] Location of the Struts Bean tag library.
+                                   Needed to generate the sample application.
+       struts-logic.tld [OPTIONAL] Location of the Struts Logic tag library.
+                                   Needed to generate the sample application.
+       struts-html.tld  [OPTIONAL] Location of the Struts HTML tag library.
+                                   Needed to generate the sample application.
+
+    This script should be started with the following command line :
+
+        ant <target>
+
+    Run "ant -projecthelp" to get a list of available targets. The default
+    target is "dist"
+
+    @author <a href="mailto:ted@husted.com">Ted Husted</a>
+    @author <a href="mailto:vmassol@apache.org">Vincent Massol</a>
+    @version $Id: build.xml,v 1.1 2001/12/23 19:32:50 vmassol Exp $
+  =============================================================================
+-->
+<project name="Scaffold" default="dist" basedir=".">
+
+    <!-- Give user a chance to override without editing this file
+         (and without typing -D each time it compiles it) -->
+    <property file="build.properties" />
+    <property file="${user.home}/build.properties" />
+
+    <!-- Global project properties -->
+    <property name="project.name.text" value="Scaffold"/>
+    <property name="project.name.file" value="scaffold"/>
+    <property name="project.version" value="1.0dev"/>
+    <property name="project.name.prefix" value="jakarta-"/>
+
+    <!--
+       ========================================================================
+         Default values for properties not defined in build.properties or in
+         a higher level calling Ant script
+       ========================================================================
+    -->
+    <property name="year" value="2001"/>
+    <property name="debug" value="on"/>
+    <property name="optimize" value="off"/>
+    <property name="deprecation" value="off"/>
+
+    <!--
+       ========================================================================
+         Set the properties related to the source tree
+       ========================================================================
+    -->
+    <!-- Source locations for the build -->
+    <property name="src.dir" value="src"/>
+    <property name="src.framework.dir" value="${src.dir}/framework"/>
+    <property name="src.framework.main.dir" value="${src.framework.dir}/main"/>
+    <property name="src.sample.dir" value="${src.dir}/sample"/>
+    <property name="src.sample.web.dir" value="${src.sample.dir}/web"/>
+    <property name="conf.dir" value="conf"/>
+    <property name="conf.framework.dir" value="${conf.dir}/framework"/>
+    <property name="conf.sample.dir" value="${conf.dir}/sample"/>
+
+    <!--
+       ========================================================================
+         Set the properties related to the target area
+       ========================================================================
+    -->
+    <!-- Destination locations for the build -->
+    <property name="target.dir" value="target"/>
+    <property name="target.classes.dir" value="${target.dir}/classes"/>
+    <property name="target.classes.framework.dir"
+      value="${target.classes.dir}/framework"/>
+    <property name="target.conf.dir" value="${target.dir}/conf"/>
+    <property name="target.conf.framework.dir"
+      value="${target.conf.dir}/framework"/>
+    <property name="target.conf.sample.dir"
+      value="${target.conf.dir}/sample"/>
+    <property name="target.lib.dir" value="${target.dir}/lib"/>
+    <property name="target.doc.dir" value="${target.dir}/doc"/>
+    <property name="target.javadoc.dir" value="${target.doc.dir}/api"/>
+
+    <!-- The scaffold library jar -->
+    <property name="target.framework.name" value="${project.name.file}"/>
+    <property name="target.framework.dir" value="${target.dir}"/>
+
+    <!-- The sample war application -->
+    <property name="target.sample.name" value="${project.name.file}-sample"/>
+    <property name="target.sample.dir" value="${target.dir}"/>
+
+    <!--
+       ========================================================================
+        Names of deliverables
+       ========================================================================
+    -->
+
+    <!-- Distribution directory -->
+    <property name="dist.dir" value="dist"/>
+
+    <!-- The scaffold zip containing the library jar + javadoc -->
+    <property name="dist.main.name"
+      value="${project.name.prefix}${project.name.file}"/>
+    <property name="dist.main.dir" value="${dist.dir}"/>
+
+    <!--
+       ========================================================================
+         Useful patterns for targets
+       ========================================================================
+    -->
+    <!-- Compilation classpath -->
+    <path id="compile.classpath">
+        <pathelement path="${digester.jar}"/>
+        <pathelement path="${beanutils.jar}"/>
+        <pathelement path="${lucene.jar}"/>
+        <pathelement path="${poolman.jar}"/>
+        <pathelement path="${struts.jar}"/>
+        <pathelement path="${servlet.jar}"/>
+        <pathelement path="${jdbc20ext.jar}"/>
+    </path>
+
+    <!--
+       ========================================================================
+         Initialize the build. Must be called by all targets
+       ========================================================================
+    -->
+    <target name="init">
+
+        <tstamp/>
+
+        <echo message="----- ${project.name.text} ${project.version} -----"/>
+        <echo message=""/>
+        <echo message="java.class.path = ${java.class.path}"/>
+        <echo message=""/>
+        <echo message="java.home = ${java.home}"/>
+        <echo message="user.home = ${user.home}"/>
+        <echo message="ant.home = ${ant.home}"/>
+        <echo message=""/>
+        <echo message="servlet.jar = ${servlet.jar}"/>
+        <echo message="beanutils.jar = ${beanutils.jar}"/>
+        <echo message="lucene.jar = ${lucene.jar}"/>
+        <echo message="poolman.jar = ${poolman.jar}"/>
+        <echo message="struts.jar = ${struts.jar}"/>
+        <echo message="digester.jar = ${digester.jar}"/>
+        <echo message="jdbc20ext.jar = ${jdbc20ext.jar}"/>
+        <echo message=""/>
+
+        <!-- Filters -->
+        <filter token="version" value="${project.version}"/>
+        <filter token="project.name.text" value="${project.name.text}"/>
+        <filter token="project.name.file" value="${project.name.file}"/>
+    </target>
+
+    <!--
+       ========================================================================
+         Compiles the sources
+       ========================================================================
+    -->
+    <target name="compile" depends="init" description="Compile the sources">
+
+        <mkdir dir="${target.classes.framework.dir}"/>
+
+        <javac srcdir="${src.framework.main.dir}"
+          destdir="${target.classes.framework.dir}"
+          deprecation="${deprecation}" optimize="${optimize}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+
+        <!-- Copy non-java resource file that need to be in the target classes
+             directory (because the javac command only compiles java files -->
+        <copy todir="${target.classes.framework.dir}">
+            <fileset dir="${src.framework.main.dir}">
+                <include name="**/*.properties"/>
+            </fileset>
+        </copy>
+
+        <!-- Copy the license file as part of the classes tree -->
+        <copy todir="${target.classes.framework.dir}" file="LICENSE"/>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Create the runtime jar file
+       ========================================================================
+    -->
+    <target name="jar" depends="compile"
+      description="Generate the library jar">
+
+        <mkdir dir="${target.conf.framework.dir}"/>
+
+        <!-- Copy the manifest in order to replace the version token filter -->
+        <copy todir="${target.conf.framework.dir}"
+          file="${conf.framework.dir}/manifest" filtering="on"/>
+
+        <jar jarfile="${target.framework.dir}/${target.framework.name}.jar"
+          manifest="${target.conf.framework.dir}/manifest">
+            <fileset dir="${target.classes.framework.dir}"/>
+        </jar>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Generate documentation (javadoc)
+       ========================================================================
+    -->
+    <target name="javadoc" depends="init"
+      description="Generate JavaDoc API docs">
+
+        <mkdir dir="${target.javadoc.dir}"/>
+
+        <javadoc
+            sourcepath="${src.framework.main.dir}"
+            packagenames="org.apache.${project.name.file}.*"
+            destdir="${target.javadoc.dir}"
+            author="true"
+            public="true"
+            version="true"
+            use="true"
+            windowtitle="${project.name.text} ${project.version} API Documentation"
+            doctitle="&lt;h1&gt;${project.name.text} Documentation (Version ${project.version})&lt;/h1&gt;"
+            bottom="Copyright &amp;copy; ${year} Apache Software Foundation. All Rights Reserved.">
+
+            <classpath refid="compile.classpath"/>
+
+        </javadoc>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Generate the sample application
+       ========================================================================
+    -->
+    <target name="sample" depends="jar"
+      description="Generate the sample application">
+
+        <mkdir dir="${target.lib.dir}"/>
+
+        <!-- Copy required libraries. Note: We don't copy servlet.jar nor
+             jdbc20ext.jar as these are jars that are present in the servlet
+             engine where this sample war will be dropped -->
+        <copy todir="${target.lib.dir}" file="${struts.jar}"/>
+        <copy todir="${target.lib.dir}" file="${beanutils.jar}"/>
+        <copy todir="${target.lib.dir}" file="${digester.jar}"/>
+        <copy todir="${target.lib.dir}" file="${lucene.jar}"/>
+        <copy todir="${target.lib.dir}" file="${poolman.jar}"/>
+
+        <!-- Copy the manifest in order to replace the version token filter -->
+        <copy todir="${target.conf.sample.dir}"
+          file="${conf.sample.dir}/manifest" filtering="on"/>
+
+        <war warfile="${target.sample.dir}/${target.sample.name}.war"
+          manifest="${target.conf.sample.dir}/manifest"
+          webxml="${conf.sample.dir}/web.xml">
+            <lib dir="${target.lib.dir}"/>
+            <classes dir="${conf.sample.dir}">
+                <include name="Resources.properties"/>
+            </classes>
+            <webinf dir=".">
+                <include name="LICENSE"/>
+            </webinf>
+            <webinf dir="${conf.sample.dir}">
+                <include name="conf/struts-config.xml"/>
+            </webinf>
+            <fileset dir="${src.sample.web.dir}"/>
+        </war>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Clean generated files (including distributables)
+       ========================================================================
+    -->
+    <target name="clean" depends="init"
+      description="Clean generated files (including distributables)">
+
+        <delete dir="${target.dir}"/>
+        <delete dir="${dist.dir}"/>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Generate distributables
+       ========================================================================
+    -->
+    <target name="dist" depends="jar,javadoc,sample">
+
+        <mkdir dir="${dist.main.dir}"/>
+
+        <zip zipfile="${dist.main.dir}/${dist.main.name}.zip">
+            <zipfileset dir="${target.framework.dir}" prefix="lib">
+                <include name="${target.framework.name}.jar"/>
+            </zipfileset>
+            <zipfileset dir="${target.sample.dir}" prefix="sample">
+                <include name="${target.sample.name}.war"/>
+            </zipfileset>
+            <zipfileset dir="${target.javadoc.dir}" prefix="doc/api"/>
+            <zipfileset dir="." prefix="doc">
+                <include name="LICENSE"/>
+            </zipfileset>
+        </zip>
+
+    </target>
+
+</project>

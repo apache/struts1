@@ -1,3 +1,28 @@
+package org.apache.scaffold.model;
+
+
+import org.apache.scaffold.lang.ChainedException;
+
+
+/**
+ * Exceptions for Model classes.
+ * @author Ted Husted
+ * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:51 $
+ */
+public class ModelException extends ChainedException {
+
+    public ModelException (String message) {
+        super (message);
+    }
+
+    public ModelException (String message, Throwable cause) {
+        super (message, cause);
+    }
+
+}
+
+
+
 /*
  * ====================================================================
  *
@@ -25,7 +50,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

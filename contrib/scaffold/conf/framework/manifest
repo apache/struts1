@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Created-By: Ant
+
+Name: @project.name.file@/
+Specification-Title: @project.name.text@
+Specification-Vendor: Apache Software Foundation
+Implementation-Vendor: Apache Software Foundation
+Specification-Version: @version@
+Implementation-Version: @version@
+Implementation-Title: @project.name.file@

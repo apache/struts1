@@ -1,3 +1,59 @@
+package org.apache.scaffold.lang;
+
+
+/**
+ * @author Ted Husted
+ * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:51 $
+ */
+public final class Tokens {
+
+
+    // ---- Common Action Mapping tokens ---
+
+    public static final String CANCEL   = "cancel";
+    public static final String CONTINUE = "continue";
+    public static final String DONE     = "done";
+    public static final String EMPTY    = "empty";
+    public static final String ERROR    = "error";
+    public static final String EXIT     = "exit";
+    public static final String FORWARD  = "forward";
+    public static final String LOGON    = "logon";
+    public static final String LOGOFF   = "logoff";
+    public static final String MENU     = "menu";
+    public static final String NEXT     = "next";
+    public static final String PREVIOUS = "previous";
+    public static final String TOKEN    = "token";
+    public static final String WELCOME  = "welcome";
+
+
+    // ---- Common Application Resource tokens ---
+
+    public static final String DATA_ACCESS_DENIED =
+        "data.access.denied";
+
+    public static final String DATA_ACCESS_ERROR =
+        "data.access.error";
+
+    public static final String DATA_ACCESS_EMPTY =
+        "data.access.empty"; // not found
+
+    public static final String DATA_RECORD_INSERTED =
+        "data.record.inserted";
+
+    public static final String DATA_RECORD_UPDATED =
+        "data.record.updated";
+
+    public static final String DATA_RECORD_DELETED =
+        "data.record.deleted";
+
+    public static final String DATA_RECORD_ =
+        "data.access.denied";
+
+
+// ---- End Tokens ----
+
+}
+
 /*
  * ====================================================================
  *
@@ -25,7 +81,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

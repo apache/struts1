@@ -1,0 +1,54 @@
+# -----------------------------------------------------------------------------
+# build.properties.sample
+#
+# This is an example "build.properties" file, used to customize building
+# Scaffold for your local environment.  Make any changes you need, and
+# rename this file to "build.properties" in the same directory that contains the
+# "build.xml" file.
+#
+# $Id: build.properties.sample,v 1.1 2001/12/23 19:32:50 vmassol Exp $
+# -----------------------------------------------------------------------------
+
+# WARNING:  The relative paths below are relative to the directory where the
+# build.xml file is located.
+
+# -----------------------------------------------------------------------------
+# Mandatory properties
+# -----------------------------------------------------------------------------
+
+# Location of the Jakarta Commons Digester jar
+digester.jar=../../../jakarta-commons/digester/dist/commons-digester.jar
+
+# Location of the Jakarta Commons Beanutils jar
+beanutils.jar=../../../jakarta-commons/beanutils/dist/commons-beanutils.jar
+
+# Location of the Jakarta Struts jar
+struts.jar=../../dist/lib/struts.jar
+
+# Location of the Jakarta Lucene jar
+lucene.jar=../../../jakarta-lucene/bin/lucene-1.2-rc3-dev.jar
+
+# Location of the CodeStudio.com Poolman jar
+poolman.jar=../../../poolman/poolman.jar
+
+# Location of the Servlet API (2.2 or 2.3) jar
+servlet.jar=../../../jakarta-servletapi-4/lib/servlet.jar
+
+# Location of the JDBC 2.0 Optional Package extensions API jar (javax.sql)
+jdbc20ext.jar=../../../jdbc20/jdbc2_0-stdext.jar
+
+# -----------------------------------------------------------------------------
+# Optional properties
+# -----------------------------------------------------------------------------
+
+# Location of the Struts Bean tag library. Needed to generate the sample
+# application
+struts-bean.tld=../../dist/lib/struts-bean.tld
+
+# Location of the Struts Logic tag library. Needed to generate the sample
+# application
+struts-logic.tld=../../dist/lib/struts-html.tld
+
+# Location of the Struts HTML tag library. Needed to generate the sample
+# application
+struts-html.tld=../../dist/lib/struts-html.tld

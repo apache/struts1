@@ -1,3 +1,41 @@
+package org.apache.scaffold.model;
+
+
+import org.apache.commons.beanutils.BeanUtils;
+
+
+/**
+ * Convenience method for transfering data to model beans
+ * if not based on QuerBean or ModelBeanBase.
+ * @author Ted Husted
+ * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:51 $
+ */
+public class ModelUtils {
+
+// --------------------------------------------------- Instance Variables
+// ----------------------------------------------------------- Properties
+// --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Populate the JavaBeans properties of the target bean,
+     * based on the public accessors of the source bean.
+     * @exception Throws ModelException on any error.
+     */
+    public static void populate(Object target, Object source) throws ModelException {
+        try {
+            BeanUtils.populate(target,BeanUtils.describe(source));
+        } catch (Throwable t) {
+            throw new ModelPopulateException(t);
+      }
+    }
+
+
+
+// ----- end ModelUtils -----
+
+}
+
 /*
  * ====================================================================
  *
@@ -25,7 +63,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -54,3 +92,4 @@
  * <http://www.apache.org/>.
  *
  */
+
