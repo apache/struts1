@@ -117,6 +117,31 @@
       </info>
     </attribute>
   </tag>
+  
+  <tag>
+    <name>writeNesting</name>
+    <summary>
+      Writes out the current nesting level, or that defined by a property
+    </summary>
+    <tagclass>org.apache.struts.taglib.nested.NestedWriteNestingTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info> </info>
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info> If not supplied, will simply write out as if "./" or "this/" was
+        supplied.
+      </info>
+    </attribute>
+    <attribute>
+      <name>filter</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info> Do you want the result URLEncoded?
+      </info>
+    </attribute>
+  </tag>
   <tag>
     <name>root</name>
     <summary>To start off a nested hierarchy without the need for a form</summary>
@@ -651,18 +676,6 @@
 
     <attribute>
       <name>target</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
-
-    <attribute>
-      <name>title</name>
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
-
-    <attribute>
-      <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
