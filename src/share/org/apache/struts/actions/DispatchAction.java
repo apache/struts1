@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.2 2001/03/29 18:41:52 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/03/29 18:41:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.3 2001/11/28 17:22:58 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/11/28 17:22:58 $
  *
  * ====================================================================
  *
@@ -127,7 +127,8 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/03/29 18:41:52 $
+ * @author Ted Husted
+ * @version $Revision: 1.3 $ $Date: 2001/11/28 17:22:58 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -168,52 +169,17 @@ public abstract class DispatchAction extends Action {
         HttpServletRequest.class, HttpServletResponse.class };
 
 
-    // --------------------------------------------------------- Public Methods
-
 
     /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * Dispatch to the specified method.
+     * Added to class at Revision 1.3
+     * @since 1.1
      */
-    public ActionForward perform(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws IOException, ServletException {
-
-        // Identify the request parameter containing the method name
-        String parameter = mapping.getParameter();
-        if (parameter == null) {
-            String message =
-                messages.getMessage("dispatch.handler", mapping.getPath());
-            servlet.log(message);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               message);
-            return (null);
-        }
-
-        // Identify the method name to be dispatched to
-        String name = request.getParameter(parameter);
-        if (name == null) {
-            String message =
-                messages.getMessage("dispatch.parameter", mapping.getPath(),
-                                    parameter);
-            servlet.log(message);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                               message);
-            return (null);
-        }
+     protected ActionForward dispatchMethod(ActionMapping mapping,
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response,
+                 String name) throws IOException {
 
         // Identify the method object to be dispatched to
         Method method = null;
@@ -229,7 +195,6 @@ public abstract class DispatchAction extends Action {
             return (null);
         }
 
-        // Dispatch to the specified method
         ActionForward forward = null;
         try {
             Object args[] = { mapping, form, request, response };
@@ -262,6 +227,58 @@ public abstract class DispatchAction extends Action {
 
         // Return the returned ActionForward instance
         return (forward);
+    }
+
+
+// --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    public ActionForward perform(ActionMapping mapping,
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws IOException, ServletException {
+
+        // Identify the request parameter containing the method name
+        String parameter = mapping.getParameter();
+        if (parameter == null) {
+            String message =
+                messages.getMessage("dispatch.handler", mapping.getPath());
+            servlet.log(message);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               message);
+            return (null);
+        }
+
+        // Identify the method name to be dispatched to
+        String name = request.getParameter(parameter);
+        if (name == null) {
+            String message =
+                messages.getMessage("dispatch.parameter", mapping.getPath(),
+                                    parameter);
+            servlet.log(message);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                               message);
+            return (null);
+        }
+
+        // Invoke the named method, and return the result
+        return dispatchMethod(mapping,form,request,response,name);
 
     }
 
