@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.4 2002/03/10 01:55:49 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/03/10 01:55:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.5 2002/03/13 18:10:40 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/03/13 18:10:40 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/03/10 01:55:49 $
+ * @version $Revision: 1.5 $ $Date: 2002/03/13 18:10:40 $
  * @since Struts 1.1
  */
 
@@ -323,7 +323,7 @@ public class DynaActionFormClass implements DynaClass {
                 ("Cannot instantiate ActionFormBean class '" +
                  config.getType() + "': " + t);
         }
-        if (DynaActionForm.class.isAssignableFrom(beanClass)) {
+        if (!DynaActionForm.class.isAssignableFrom(beanClass)) {
             throw new IllegalArgumentException
                 ("Class '" + config.getType() + "' is not a subclass of " +
                  "'org.apache.struts.action.DynaActionForm'");
