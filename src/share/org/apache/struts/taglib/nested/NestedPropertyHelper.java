@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.12 2003/02/06 00:26:11 arron Exp $
- * $Revision: 1.12 $
- * $Date: 2003/02/06 00:26:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.13 2003/02/28 05:14:01 arron Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/02/28 05:14:01 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,245 +59,217 @@
  */
 package org.apache.struts.taglib.nested;
 
-import java.util.StringTokenizer;
-
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.tagext.Tag;
 
-import org.apache.struts.taglib.html.FormTag;
 import org.apache.struts.taglib.html.Constants;
+import org.apache.struts.taglib.html.FormTag;
 
-/** A simple helper class that does everything that needs to be done to get the
- * nested tag extension to work. Knowing what tags can define the lineage of
- * other tags, a tag asks of it to look up to the next nested tag and get it's
- * relative nested property.
+/**
+ * <p>A simple helper class that does everything that needs to be done to get
+ * the nested tag extension to work. The tags will pass in their relative
+ * properties and this class will leverage the accessibility of the request
+ * object to calculate the nested references and manage them from a central
+ * place.</p>
  *
- * With all tags keeping track of themselves, we only have to seek to the next
- * level, or parent tag, were a tag will append a dot and it's own property.
+ * <p>The helper method {@link #setNestedProperties} takes a reference to the
+ * tag itself so all the simpler tags can have their references managed from a
+ * central location. From here, the reference to a provided name is also
+ * preserved for use.</p>
+ *
+ * <p>With all tags keeping track of themselves, we only have to seek to the
+ * next level, or parent tag, were a tag will append a dot and it's own
+ * property.</p>
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.12 $ $Date: 2003/02/06 00:26:11 $
+ * @version $Revision: 1.13 $ $Date: 2003/02/28 05:14:01 $
  */ 
 public class NestedPropertyHelper {
-  
+
   /* key that the tags can rely on to set the details against */
   public static final String NESTED_INCLUDES_KEY = "<nested-includes-key/>";
-  
-  /** Sets the passed reference to the session object, and returns any reference
-   * that was already there
-   * @param request User's request object
-   * @param reference New reference to put into the session
+
+
+  /**
+   * Returns the current nesting property from the request object.
+   * @param request object to fetch the property reference from
+   * @return String of the bean name to nest against
    */
-  public static final NestedReference setIncludeReference(HttpServletRequest request,
-          NestedReference reference) {
-    /* get the old one if any */
-    NestedReference nr = (NestedReference)
-            request.getAttribute(NESTED_INCLUDES_KEY);
-    if (reference != null) {
-      /* put in the new one */
-      request.setAttribute(NESTED_INCLUDES_KEY, reference);
+  public static final String getCurrentProperty(HttpServletRequest request) {
+    // get the old one if any
+    NestedReference nr = (NestedReference) request.getAttribute(NESTED_INCLUDES_KEY);
+    // return null or the property
+    return (nr == null) ? null : nr.getNestedProperty();
+  }
+
+
+  /**
+   * <p>Returns the bean name from the request object that the properties are
+   * nesting against.</p>
+   *
+   * <p>The requirement of the tag itself could be removed in the future, but is
+   * required if support for the <html:form> tag is maintained.</p>
+   * @param request object to fetch the bean reference from
+   * @param nested tag from which to start the search from
+   * @return the string of the bean name to be nesting against
+   */
+  public static final String getCurrentName(HttpServletRequest request,
+                                            NestedNameSupport nested) {
+    // get the old one if any
+    NestedReference nr = (NestedReference) request.getAttribute(NESTED_INCLUDES_KEY);
+    // return null or the property
+    if (nr != null) {
+      return nr.getBeanName();
+
     } else {
-      /* null target, just remove it */
-      request.removeAttribute(NESTED_INCLUDES_KEY);
+      // need to look for a form tag...
+      Tag tag = (Tag) nested;
+      Tag formTag = null;
+
+      // loop all parent tags until we get one that can be nested against
+      do {
+        tag = tag.getParent();
+        if (tag != null && tag instanceof FormTag) {
+          formTag = tag;
+        }
+      } while (formTag == null && tag != null);
+
+      if (formTag == null) {
+        return "";
+      }
+      // return the form's name
+      return ((FormTag) formTag).getBeanName();
     }
-    /* return the old */
+  }
+
+  /**
+   * Get the adjusted property. ie: apply the provided property, to the property
+   * already stored in the request object.
+   * @param request to pull the reference from
+   * @param property to retrieve the evaluated nested property with
+   * @return String of the final nested property reference.
+   */
+  public static final String getAdjustedProperty(HttpServletRequest request,
+                                                 String property) {
+    // get the old one if any
+    String parent = getCurrentProperty(request);
+    return calculateRelativeProperty(property, parent);
+  }
+
+  /**
+   * Sets the provided property into the request object for reference by the
+   * other nested tags.
+   * @param request object to set the new property into
+   * @param property String to set the property to
+   */
+  public static final void setProperty(HttpServletRequest request,
+                                       String property) {
+    // get the old one if any
+    NestedReference nr = referenceInstance(request);
+    nr.setNestedProperty(property);
+  }
+
+  /**
+   * Sets the provided name into the request object for reference by the
+   * other nested tags.
+   * @param request object to set the new name into
+   * @param name String to set the name to
+   */
+  public static final void setName(HttpServletRequest request, String name) {
+    // get the old one if any
+    NestedReference nr = referenceInstance(request);
+    nr.setBeanName(name);
+  }
+
+  /**
+   * Deletes the nested reference from the request object.
+   * @param request object to remove the reference from
+   */
+  public static final void deleteReference(HttpServletRequest request) {
+    // delete the reference
+    request.removeAttribute(NESTED_INCLUDES_KEY);
+  }
+
+  /**
+   * Helper method that will set all the relevant nesting properties for the
+   * provided tag reference depending on the implementation.
+   * @param request object to pull references from
+   * @param tag to set the nesting values into
+   */
+  public static void setNestedProperties(HttpServletRequest request,
+                                         NestedPropertySupport tag) {
+    boolean adjustProperty = true;
+    /* if the tag implements NestedNameSupport, set the name for the tag also */
+    if (tag instanceof NestedNameSupport) {
+      NestedNameSupport nameTag = (NestedNameSupport)tag;
+      if (nameTag.getName() == null|| Constants.BEAN_KEY.equals(nameTag.getName())) {
+        nameTag.setName(getCurrentName(request, (NestedNameSupport) tag));
+      } else {
+        adjustProperty = false;
+      }
+    }
+
+    /* get and set the relative property, adjust if required */
+    String property = tag.getProperty();
+    if (adjustProperty) {
+      property = getAdjustedProperty(request, property);
+    }
+    tag.setProperty(property);
+  }
+
+
+  /**
+   * Pulls the current nesting reference from the request object, and if there
+   * isn't one there, then it will create one and set it.
+   * @param request object to manipulate the reference into
+   * @return current nesting reference as stored in the request object
+   */
+  private static final NestedReference referenceInstance(HttpServletRequest request) {
+    /* get the old one if any */
+    NestedReference nr = (NestedReference) request.getAttribute(NESTED_INCLUDES_KEY);
+    // make a new one if required
+    if (nr == null) {
+      nr = new NestedReference();
+      request.setAttribute(NESTED_INCLUDES_KEY, nr);
+    }
+    // return the reference
     return nr;
   }
-  
-  
-  
-  /** 
-   * The working horse method.
-   * This method works its way back up though the tag tree until it reaches
-   * a nested tag from which we're meant to be nesting against.
-   * It identifies nested tags by their implementing interfaces and via this
-   * mechanism might not have to traverse the entire way up the tree to get
-   * to the root tag.
-   *
-   * @param tag The tag to start with
-   * @return The parent tag to which we're nesting against
-   */
-  public static Tag getNestingParentTag(NestedTagSupport tag) {
-    Tag namedTag = (Tag)tag;
-    Tag parentTag = null;
-    
-    /* loop all parent tags until we get one that can be nested against  */
-    do {
-      namedTag = namedTag.getParent();
-      if (namedTag instanceof NestedParentSupport ||
-          namedTag instanceof FormTag) {
-        parentTag = namedTag;
-      }
-    } while (parentTag == null && namedTag != null);
-    
-    if (namedTag == null) {
-      // need to spit some chips
-    }
-    
-    return parentTag;
-  }
-  
-  
-  
-  /**
-   * Providing a property and the nested tag's parent, this method will return
-   * the qualified nested name. It also checks for a relative property to make
-   * sure it's handled correctly.
-   *
-   * @param property String of the property to get the nesting version of
-   * @param parentTag the nested tag's nesting parent.
-   * @return String of the fully qualified nesting property
-   */
-  public static String getNestedProperty(String property, Tag parentTag) {
 
-    // return if there's nothing to play with.
-    if (property == null) { return null; }
-
-    /* if we're just under a root tag no work required */
-    if (parentTag instanceof FormTag) {
-      /* don't forget to take care of the relative properties */
-      if (property.indexOf('/') == -1) {
-        return property;
-      } else {
-        return property.substring(property.indexOf('/')+1, property.length());
-      }
-    }
-    
-    if (!(parentTag instanceof NestedParentSupport)) {
-      // need to spit chips
-    }
-    
-    NestedParentSupport nestedParent = (NestedParentSupport)parentTag;
-
-    if (nestedParent != null) {
-      /* return dot notated property from the parent */
-      if (property.indexOf('/') == -1) {
-        property = nestedParent.getNestedProperty() +"."+ property;
-      } else {
-        property = getRelativeProperty(property,nestedParent.getNestedProperty());
-      }
-    }
-
-    /* Some properties may be at the start of their hierarchy */
-    if (property.startsWith(".")) {
-      return property.substring(1, property.length());
-    }
-    return property;
-  }
-  
-  
-  /** A convenience method to provide the property straight from a tag using
-   * its getProperty() method
-   *
-   * @param tag the whose property property is to be qualified by nesting
-   * @return String of the fully qualified nesting property
-   */
-  public static String getNestedProperty(NestedPropertySupport tag) {
-    Tag parentTag = getNestingParentTag(tag);
-    return getNestedProperty(tag.getProperty(), parentTag);
-  }
-  
-  
-  
-  /**
-   * This method works its way back up though the tag tree until it reaches
-   * a nested tag which we can get a reliable source of the bean name.
-   *
-   * @param tag The tag to start with
-   * @return name of the nesting bean we're using
-   */
-  public static String getNestedNameProperty(NestedTagSupport tag) {
-    
-    Tag namedTag = (Tag)tag;
-    String defaultName = null;
-    // see if we're already in the right location
-    if (namedTag instanceof NestedNameSupport) {
-	    String name = ((NestedNameSupport)namedTag).getName();
-        // return if we already have a name and not just default
-        if (name != null) {
-            if (name.equals(Constants.BEAN_KEY)) {
-                defaultName = name;
-            } else {
-                return name;
-            }
-        }
-    }
-
-    /* loop all parent tags until we get one which
-       gives a reliable bean name  */
-    do {
-      namedTag = namedTag.getParent();
-    } while ( namedTag != null &&
-              !(namedTag instanceof FormTag) &&
-              !(namedTag instanceof NestedParentSupport) );
-    
-    if (namedTag == null) {
-        if (defaultName != null) {
-            return defaultName;
-        }
-        // now there's an issue
-    }
-    
-    String nameTemp = null;
-    if (namedTag instanceof FormTag) {
-      nameTemp = ((FormTag)namedTag).getBeanName();
-    } else if (namedTag instanceof NestedParentSupport) {
-      nameTemp = ((NestedParentSupport)namedTag).getName();
-    }
-    return nameTemp;
-  }
-  
-  
-  /**
-   * A convenience method by which a tag can just pass itself in and have all of
-   * its relevant properties set for it.
-   *
-   * @param tag The nested tag whose properties are to be set
-   */
-  public static void setNestedProperties(NestedPropertySupport tag) {
-    
-    /* get and set the relative property */
-    String property = getNestedProperty(tag);
-    tag.setProperty(property);
-   
-    /* if the tag implements NestedNameSupport, set the name for the tag also */
-    if (tag instanceof NestedNameSupport && property != null) {
-      String name = getNestedNameProperty(tag);
-      ((NestedNameSupport)tag).setName(name);
-    }
-  }
-  
-  
-    
   /* This property, providing the property to be appended, and the parent tag
    * to append the property to, will calculate the stepping of the property
-   * and return the qualified nested property 
+   * and return the qualified nested property
    *
    * @param property the property which is to be appended nesting style
    * @param parent the "dot notated" string representing the structure
    * @return qualified nested property that the property param is to the parent
    */
-  private static String getRelativeProperty(String property, String parent) {
-    
+  private static String calculateRelativeProperty(String property,
+                                                  String parent) {
+    if (parent == null) { parent = ""; }
+    if (property == null) { property = ""; }
+
     /* Special case... reference my parent's nested property.
        Otherwise impossible for things like indexed properties */
     if ("./".equals(property) || "this/".equals(property)) {
       return parent;
     }
+
     /* remove the stepping from the property */
     String stepping;
-    
+
     /* isolate a parent reference */
     if (property.endsWith("/")) {
       stepping = property;
       property = "";
     } else {
-      stepping = property.substring(0,property.lastIndexOf('/')+1);
+      stepping = property.substring(0, property.lastIndexOf('/') + 1);
       /* isolate the property */
-      property = property.substring(property.lastIndexOf('/')+1,property.length());
+      property = property.substring(property.lastIndexOf('/') + 1, property.length());
     }
-    
+
     if (stepping.startsWith("/")) {
       /* return from root */
       return property;
@@ -309,11 +281,11 @@ public class NestedPropertyHelper {
       /* tokenize the stepping */
       StringTokenizer strT = new StringTokenizer(stepping, "/");
       int count = strT.countTokens();
-      
+
       if (count >= propCount) {
         /* return from root */
         return property;
-        
+
       } else {
         /* append the tokens up to the token difference */
         count = propCount - count;
@@ -323,7 +295,7 @@ public class NestedPropertyHelper {
           result.append('.');
         }
         result.append(property);
-        
+
         /* parent reference will have a dot on the end. Leave it off */
         if (result.charAt(result.length()-1) == '.') {
           return result.substring(0,result.length()-1);

@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedNameSupport.java,v 1.3 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedNameSupport.java,v 1.4 2003/02/28 05:14:01 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/28 05:14:01 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,7 +67,7 @@ package org.apache.struts.taglib.nested;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.4 $ $Date: 2003/02/28 05:14:01 $
  */
 public interface NestedNameSupport extends NestedPropertySupport {
   

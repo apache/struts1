@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.3 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.4 2003/02/28 05:14:01 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/28 05:14:01 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,9 @@
  */
 package org.apache.struts.taglib.nested;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.Tag;
 
 import org.apache.struts.util.ResponseUtils;
 
@@ -73,10 +73,10 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
-public class NestedWriteNestingTag extends BodyTagSupport implements NestedPropertySupport {
-  
+public class NestedWriteNestingTag extends BodyTagSupport {
+
   /** Getter method for the <i>property</i> property
    * @return String value of the property property
    */
@@ -90,8 +90,8 @@ public class NestedWriteNestingTag extends BodyTagSupport implements NestedPrope
   public void setProperty(String newProperty) {
     this.property = newProperty;
   }
-  
-  
+
+
   /** Getter method for the <i>filter</i> property
    * @return String value of the filter property
    */
@@ -105,8 +105,8 @@ public class NestedWriteNestingTag extends BodyTagSupport implements NestedPrope
   public void setFilter(boolean newFilter) {
     this.filter = newFilter;
   }
-  
-  
+
+
   /**
    * Overriding method of the heart of the tag. Gets the relative property
    * and tells the JSP engine to evaluate its body content.
@@ -114,45 +114,45 @@ public class NestedWriteNestingTag extends BodyTagSupport implements NestedPrope
    * @return int JSP continuation directive.
    */
   public int doStartTag() throws JspException {
-    
-    /* qualified nested property */
-    String nProperty = null;
-    /* property which we can process against */
-    String usableProperty = null;
-    
-    /* make sure we're working against good property */
-    if (this.property == null || this.property.trim().length() <= 0) {
-      usableProperty = "./";
-    } else {
-      usableProperty = this.property;
-    }
-    
-    Tag pTag = NestedPropertyHelper.getNestingParentTag(this);
-    /* set the nested property value */
-    nProperty = NestedPropertyHelper.getNestedProperty(usableProperty, pTag);
-    
+    // set the original property
+    originalProperty = property;
+
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+    String nesting = NestedPropertyHelper.getAdjustedProperty(request, property);
+
     /* write output, filtering if required */
     if (this.filter) {
-      ResponseUtils.write(pageContext, ResponseUtils.filter(nProperty));
+      ResponseUtils.write(pageContext, ResponseUtils.filter(nesting));
     } else {
-      ResponseUtils.write(pageContext, nProperty);
+      ResponseUtils.write(pageContext, nesting);
     }
-    
+
     /* continue with page processing */
     return (SKIP_BODY);
   }
-  
-  
+
+  public int doEndTag() throws JspException {
+    // do the super thing
+    int i = super.doEndTag();
+    // reset the property
+    property = originalProperty;
+    // complete
+    return i;
+  }
+
+
   /**
    * JSP method to release all resources held by the tag.
    */
   public void release() {
     super.release();
-    this.property = null;
     this.filter = false;
+    this.property = null;
+    this.originalProperty = null;
   }
-  
-  /* the usual private member variable */
-  private String property = null;
+
+  /* the usual private member variables */
   private boolean filter = false;
+  private String property = null;
+  private String originalProperty = null;
 }

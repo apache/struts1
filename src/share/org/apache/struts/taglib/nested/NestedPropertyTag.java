@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.6 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.7 2003/02/28 05:14:01 arron Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/28 05:14:01 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -77,10 +77,13 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.7 $ $Date: 2003/02/28 05:14:01 $
  */
-public class NestedPropertyTag extends BodyTagSupport implements NestedParentSupport, NestedNameSupport {
-  
+public class NestedPropertyTag extends BodyTagSupport implements NestedNameSupport {
+
+  public String getName() { return null; }
+  public void setName(String newNamed) {}
+
   /** Getter method for the <i>property</i> property
    * @return String value of the property property
    */
@@ -95,32 +98,8 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
    */
   public void setProperty(String newProperty) {
     property = newProperty;
-    if (!isNesting) {
-      originalProperty = newProperty;
-    }
   }
-  
-  /** Getter method for the <i>name</i> property
-   * @return String value of the name property
-   */
-  public String getName() {
-    return this.name;
-  }
-  /** Setter method for the <i>name</i> property
-   * @param name new value for the name property
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
-  
-  
-  /** Getter method for the nestedProperty property
-   * @return String value of the nestedProperty property
-   */
-  public String getNestedProperty() {
-    return property;
-  }
-  
+
   /**
    * Overriding method of the heart of the tag. Gets the relative property
    * and tells the JSP engine to evaluate its body content.
@@ -128,74 +107,71 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
    * @return int JSP continuation directive.
    */
   public int doStartTag() throws JspException {
-    
-    /* Set back to the original property */
-    property = originalProperty;
-    
-    /* let the NestedHelper set the properties it can */
-    isNesting = true;
-    NestedPropertyHelper.setNestedProperties(this);
-    isNesting = false;
-    
-    /* make the current reference */
-    NestedReference nr = new NestedReference(getName(), getNestedProperty());
-    /* replace and store old session */
+    originalProperty = property;
+
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-    originalReference = NestedPropertyHelper.setIncludeReference(request, nr);
-    
-    return (EVAL_BODY_TAG);
+    originalNest = NestedPropertyHelper.getCurrentProperty(request);
+    originalName = NestedPropertyHelper.getCurrentName(request, this);
+
+    String nested = NestedPropertyHelper.getAdjustedProperty(request, originalProperty);
+    NestedPropertyHelper.setProperty(request, nested);
+    NestedPropertyHelper.setName(request, originalName);
+
+    // run the body part
+    return (EVAL_BODY_AGAIN);
   }
-  
-  
+
+
   /**
    * Render the resulting content evaluation.
    *
    * @return int JSP continuation directive.
    */
   public int doAfterBody() throws JspException {
+
     /* Render the output */
     if (bodyContent != null) {
       ResponseUtils.writePrevious(pageContext, bodyContent.getString());
       bodyContent.clearBody();
     }
-    
+
     return (SKIP_BODY);
   }
-  
-  
+
+
   /**
    * Evaluate the rest of the page
    *
    * @return int JSP continuation directive.
    */
   public int doEndTag() throws JspException {
-    
     /* set the reference back */
-    HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-    NestedPropertyHelper.setIncludeReference(request, originalReference);
-    originalReference = null;
-    
+    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+    if (originalNest == null) {
+      NestedPropertyHelper.deleteReference(request);
+    } else {
+      NestedPropertyHelper.setName(request, originalName);
+      NestedPropertyHelper.setProperty(request, originalNest);
+    }
+    property = originalProperty;
     return (EVAL_PAGE);
   }
-  
-  
+
+
   /**
    * JSP method to release all resources held by the tag.
    */
   public void release() {
     super.release();
     this.property = null;
-    this.name = null;
+    this.originalNest = null;
+    this.originalName = null;
+    this.originalProperty = null;
   }
-  
+
   /* the usual private member variable */
   private String property = null;
-  private String name = null;
-    
-  /* hold original property */
+  private String originalNest = null;
+  private String originalName = null;
   private String originalProperty = null;
-  private boolean isNesting = false;
-  
-  /* includes nested references */
-  private NestedReference originalReference;
 }

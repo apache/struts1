@@ -1,12 +1,12 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedReference.java,v 1.1 2002/03/13 13:13:28 arron Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/13 13:13:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedReference.java,v 1.2 2003/02/28 05:14:01 arron Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/28 05:14:01 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +57,6 @@
  * <http://www.apache.org/>.
  *
  */
-
 package org.apache.struts.taglib.nested;
 
 /**
@@ -66,9 +65,14 @@ package org.apache.struts.taglib.nested;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class NestedReference {
+
+  /**
+   * Empty constructor.
+   */
+  public NestedReference() {}
   
   
   /**
