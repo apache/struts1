@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.4 2000/09/23 23:19:33 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/09/23 23:19:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.5 2000/10/15 03:25:14 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/10/15 03:25:14 $
  *
  * ====================================================================
  *
@@ -117,7 +117,7 @@ import java.util.Hashtable;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.4 $ $Date: 2000/09/23 23:19:33 $
+ * @version $Revision: 1.5 $ $Date: 2000/10/15 03:25:14 $
  */
 
 public final class PropertyUtils {
@@ -187,7 +187,11 @@ public final class PropertyUtils {
 	    String name = origDescriptors[i].getName();
 	    if (getPropertyDescriptor(dest, name) != null) {
 		Object value = getSimpleProperty(orig, name);
-		setSimpleProperty(dest, name, value);
+                try {
+                    setSimpleProperty(dest, name, value);
+                } catch (NoSuchMethodException e) {
+                    ;   // Skip non-matching property
+                }
 	    }
 	}
 
