@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.5 2002/10/14 03:18:38 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/14 03:18:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.6 2002/12/31 04:17:26 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/31 04:17:26 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELLinkTag extends LinkTag {
 
@@ -169,6 +169,13 @@ public class ELLinkTag extends LinkTag {
                                            String.class));
         } catch (NullAttributeException ex) {
             setAccesskey(null);
+        }
+
+        try {
+            setAction((String) evalAttr("action", getAction(),
+                                        String.class));
+        } catch (NullAttributeException ex) {
+            setAction(null);
         }
 
         try {

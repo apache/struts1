@@ -162,6 +162,69 @@ main menu.
   </tr>
 
   <tr>
+    <td colspan="4" align="center">
+      <html-el:link action="html-link" accesskey="1" tabindex="5"
+                    title="No modifications at all" styleId="def">
+        No modifications at all
+      </html-el:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html-el:link action="html-link?doubleProperty=321.321&amp;longProperty=321321"
+                    accesskey="2" tabindex="4"
+                    title="Double and long via hard coded changes">
+        Double and long via hard coded changes
+      </html-el:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html-el:link action="html-link" accesskey="3" tabindex="3"
+                    paramId="stringProperty" paramName="newValue"
+                    title="String via paramId and paramName">
+        String via paramId and paramName
+      </html-el:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html-el:link action="html-link" accesskey="4" tabindex="2"
+                    paramId="booleanProperty"
+                    paramName="testbean" paramProperty="nested.booleanProperty"
+                    title="Boolean via paramId, paramName, and paramValue">
+        Boolean via paramId, paramName, and paramValue
+      </html-el:link>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4" align="center">
+      <html-el:link action="html-link" accesskey="5" tabindex="1"
+                    name="newValues"
+                    title="Float, int, and stringArray via name (Map)"
+                    onblur="showevent(event)"
+                    onclick="showevent(event)"
+                    ondblclick="showevent(event)"
+                    onfocus="showevent(event)"
+                    onkeydown="showevent(event)"
+                    onkeypress="showevent(event)"
+                    onkeyup="showevent(event)"
+                    onmousedown="showevent(event)"
+                    onmousemove="showevent(event)"
+                    onmouseout="showevent(event)"
+                    onmouseover="showevent(event)"
+                    onmouseup="showevent(event)"
+      >
+        Float, int, and stringArray via name (Map)
+      </html-el:link>
+    </td>
+  </tr>
+
+  <tr>
     <th colspan="4" align="center">Reset and Cancel Buttons</th>
   </tr>
 

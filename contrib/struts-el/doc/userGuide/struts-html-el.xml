@@ -3039,6 +3039,10 @@
                     name of a global <code>ActionForward</code> to be looked
                     up, and use the application-relative or context-relative
                     URI found there.</li>
+                <li><em>action</em> - Use the value of this attribute as the
+                    name of a <code>Action</code> to be looked
+                    up, and use the application-relative or context-relative
+                    URI found there.</li>
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
                 <li><em>page</em> - Use the value of this attribute as a
@@ -3120,6 +3124,23 @@
                   </info>
                 </attribute>
 
+                 <attribute>
+                  <name>action</name>
+                  <required>false</required>
+                  <rtexprvalue>false</rtexprvalue>
+                  <info>
+                  <p>Logical name of a <code>Action</code> that
+                  contains the actual content-relative URI of the destination
+                  of this transfer.  This hyperlink may be dynamically
+                  modified by the inclusion of query parameters, as described
+                  in the tag description.  You <strong>must</strong> specify
+                  exactly one of the <code>action</code> attribute, the
+                  <code>forward</code> attribute, the
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
+                  </info>
+                </attribute>
+
                 <attribute>
                   <name>anchor</name>
                   <required>false</required>
@@ -3138,12 +3159,13 @@
                   <info>
                   <p>Logical name of a global <code>ActionForward</code> that
                   contains the actual content-relative URI of the destination
-                  of this transfer.  This hyperlink may be dynamically
-                  modified by the inclusion of query parameters, as described
-                  in the tag description.  You <strong>must</strong> specify
-                  exactly one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, the <code>linkName</code>
-                  attribute, or the <code>page</code> attribute.</p>
+                  of this transfer.  This hyperlink may be dynamically modified
+                  by the inclusion of query parameters, as described in the tag
+                  description.  You <strong>must</strong> specify exactly one
+                  of the <code>action</code> attribute, the
+                  <code>forward</code> attribute, the <code>href</code>
+                  attribute, the <code>linkName</code> attribute, or the
+                  <code>page</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -3152,13 +3174,14 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>The URL to which this hyperlink will transfer control
-                  if activated.  This hyperlink may be dynamically modified
-                  by the inclusion of query parameters, as described in the
-                  tag description.  You <strong>must</strong> specify
-                  exactly one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, the <code>linkName</code>
-                  attribute, or the <code>page</code> attribute.</p>
+                  <p>The URL to which this hyperlink will transfer control if
+                  activated.  This hyperlink may be dynamically modified by the
+                  inclusion of query parameters, as described in the tag
+                  description.  You <strong>must</strong> specify exactly one
+                  of the <code>action</code> attribute, the
+                  <code>forward</code> attribute, the <code>href</code>
+                  attribute, the <code>linkName</code> attribute, or the
+                  <code>page</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -3167,11 +3190,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then indexed parameter with name from indexId attribute
-                will be added to the query string. Indexed parameter looks like
-                "index[32]". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of logic:iterate tag.  If <code>true</code>
+                then indexed parameter with name from indexId attribute will be
+                added to the query string. Indexed parameter looks like
+                "index[32]". Number in brackets will be generated for every
+                iteration and taken from ancestor logic:iterate tag.
             </info>
         </attribute>
 
@@ -3335,14 +3358,15 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>The applicaiton-relative path (beginning with a "/"
-                  character) to which this hyperlink will transfer control
-                  if activated.  This hyperlink may be dynamically modified
-                  by the inclusion of query parameters, as described in the
-                  tag description.  You <strong>must</strong> specify exactly
-                  one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, the <code>linkName</code>
-                  attribute, or the <code>page</code> attribute.</p>
+                  <p>The application-relative path (beginning with a "/"
+                  character) to which this hyperlink will transfer control if
+                  activated.  This hyperlink may be dynamically modified by the
+                  inclusion of query parameters, as described in the tag
+                  description.  You <strong>must</strong> specify exactly one
+                  of the <code>action</code> attribute, the
+                  <code>forward</code> attribute, the <code>href</code>
+                  attribute, the <code>linkName</code> attribute, or the
+                  <code>page</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -3437,7 +3461,8 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>CSS stylesheet class to be applied to this element.</p>
+                  <p>CSS stylesheet class to be applied to this element
+                  (renders a "class" attribute).</p>
                   </info>
                 </attribute>
 
