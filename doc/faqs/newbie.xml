@@ -40,6 +40,10 @@
     <a href="#actionForms">Whither ActionForms?</a>
     </li>
 
+	<li>
+    <a href="#actionFormInterface">Why is ActionForm a base class rather than an interface?</a>
+    </li>
+
     <li>
     <a href="#multiple">Can I use multiple HTML form elements with the same 
     name?</a>
@@ -227,6 +231,33 @@ then become difficult to change.
 </p>
 </section>
 
+
+<section href="actionFormInterface" name="Why is ActionForm a base class rather than an interface?">
+<p>
+The MVC design pattern is very simple to understand but much more difficult 
+to live with.  You just need this little bit of Business Logic in the View 
+logic or you need just that little bit of View logic in the Business tier and 
+pretty soon you have a real mess.
+</p>
+<p> 
+Making ActionForm a class takes advantage of the single 
+inheritance restriction of Java to it makes it more difficult for people to do 
+things that they should not do. 
+</p>
+<p>
+ActionForms implemented as interfaces encourage making the property types match 
+the underlying business tier instead of Strings, which violates one of the 
+primary purposes for ActionForms in the first place (the ability to reproduce 
+invalid input, which is a fundamental user expectation).  
+ActionForms as an interface would also encourage using existing DAO objects as 
+ActionForms by adding ‘implements ActionForm’ to the class.  This violates 
+the MVC design pattern goal of separation of the view and business logic.
+</p>
+<p>
+Since the goal of struts is to enforce this separation, it just makes more sense 
+for Struts to own the ActionForm.
+</p>
+</section>
 
 <section href="JavaBeans" name="Do ActionForms have to be true JavaBeans?">
 <p>
@@ -787,8 +818,6 @@ XHTML specification</a></p>
     popular but undocumented questions">
     
     <ul>
-    
-    <li>Why is ActionForm a base class rather than an interface?</li>
 
     <li>Can I use other beans or hashmaps with ActionForms?</li>
 
