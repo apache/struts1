@@ -35,7 +35,7 @@
                                       application's WEB-INF/lib directory.
 -->
 
-<property name="build.home"           value="target"/>
+<property name="build.home"           value="${basedir}/target"/>
 <property name="servlet.jar"          value="../jakarta-servletapi/lib/servlet.jar"/>
 <property name="struts.libs"          value="${build.home}/library"/>
 
@@ -62,13 +62,13 @@
 <property name="compile.optimize"      value="true" />
 
 <!-- The base directory for distribution targets -->
-<property name="dist.home"             value="dist" />
+<property name="dist.home"             value="${basedir}/dist" />
 
 <!-- The directory into which Struts JAR and TLD files have been created -->
 <property name="struts.home"           value="${build.home}/library" />
 
 <!-- Directory where core struts library configurations files are stored -->
-<property name="conf.share.dir" value="conf/share"/>
+<property name="conf.share.dir" value="${basedir}/conf/share"/>
 
 <!-- Doc directory -->
 <property name="doc.dir" value="doc"/>
@@ -229,9 +229,10 @@
     
     <!-- Compile Tiles contrib -->
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
-      <property name="struts.libs"      value="../../${struts.libs}"/>
-      <property name="build.home"       value="../../${build.home}/tiles"/>
-      <property name="dist.home"        value="../../${dist.home}"/>
+      <property name="struts.home"      value="${struts.home}"/>
+      <property name="struts.libs"      value="${struts.libs}"/>
+      <property name="build.home"       value="${build.home}/tiles"/>
+      <property name="dist.home"        value="${dist.home}"/>
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
     </ant>  
@@ -288,9 +289,10 @@
         
     <!-- Compile Tiles dist -->
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="dist.for.struts">
-      <property name="struts.libs"      value="../../${struts.libs}"/>
-      <property name="build.home"       value="../../${build.home}/tiles"/>
-      <property name="dist.home"        value="../../${dist.home}"/>
+      <property name="struts.home"      value="${struts.home}"/>
+      <property name="struts.libs"      value="${struts.libs}"/>
+      <property name="build.home"       value="${build.home}/tiles"/>
+      <property name="dist.home"        value="${dist.home}"/>
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
     </ant>

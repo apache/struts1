@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.2 2002/03/22 23:47:18 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/22 23:47:18 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.3 2002/06/15 23:12:31 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/15 23:12:31 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.webapp.example.UserDatabase;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/03/22 23:47:18 $
+ * @version $Revision: 1.3 $ $Date: 2002/06/15 23:12:31 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {
@@ -202,7 +202,6 @@ public final class MemoryDatabasePlugIn implements PlugIn {
             }
             database.setPathname(path);
             database.open();
-            database.save();
         } catch (Exception e) {
             log.error("Opening memory database", e);
             throw new ServletException("Cannot load database from '" +
