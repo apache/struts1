@@ -33,8 +33,8 @@
       <code>name</code>, <code>parameter</code>, <code>property</code>)
       present on this tag.  It will be converted to the appropriate type
       for the comparison, as determined above.</li>
-  <li>A request time exception will be thrown if the specified variable
-      cannot be retrieved, or has a null value.</li>
+  <li>If the specified variable or property returns null, it will be
+      coerced to a zero-length string before the comparison occurs.</li>
   <li>The specific comparison for this tag will be performed, and the nested
       body content of this tag will be evaluated if the comparison returns
       a <code>true</code> result.</li>
