@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.9 2002/10/17 03:32:29 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2002/10/17 03:32:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.10 2002/10/27 06:44:00 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/10/27 06:44:00 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.config.ApplicationConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.9 $ $Date: 2002/10/17 03:32:29 $
+ * @version $Revision: 1.10 $ $Date: 2002/10/27 06:44:00 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -191,8 +191,8 @@ public class ValidatorPlugIn implements PlugIn {
     /**
      * Initialize the validator resources for this module.
      *
-     * @exception IOException if an input/output error is encountered
-     * @exception ServletException if we cannot initialize these resources
+     * @exception IOException if an input/output error is encountered, not thrown by this implementation
+     * @exception ServletException if we cannot initialize these resources, not thrown by this implementation
      */
     protected void initResources() throws IOException, ServletException {
         resources = new ValidatorResources();
@@ -220,8 +220,10 @@ public class ValidatorPlugIn implements PlugIn {
                         // pass in false so resources aren't processed
                         // until last file is loaded
                         ValidatorResourcesInitializer.initialize(resources, bis, false);
+                        bis.close();
                     } catch (Exception e) {
                         log.error(e.getMessage(), e);
+                        bis.close();
                     }
                 } else {
                     log.error("Skipping validation rules file from '" + validatorRules + "'.  No stream could be opened.");

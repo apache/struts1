@@ -135,8 +135,7 @@ public class FieldChecks implements Serializable {
 
     /**
      *  <p>
-     *
-     *  Checks if the field isn't null based on the values of other fields
+     *  Checks if the field isn't null based on the values of other fields.
      *  </p>
      *
      *@param  bean     The bean validation is being performed on.
