@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.14 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.14 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.15 2004/03/16 21:06:03 husted Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/03/16 21:06:03 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -60,7 +60,7 @@ import org.apache.struts.config.ForwardConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @version $Revision: 1.14 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.15 $ $Date: 2004/03/16 21:06:03 $
  */
 
 public class ActionForward extends ForwardConfig {
@@ -142,5 +142,15 @@ public class ActionForward extends ForwardConfig {
 
     }
 
+
+    /**
+     * <p>Construct a new instance based on the values of another ActionForward.</p>
+     *
+     * @param copyMe An ActionForward instance to copy
+     * @since Struts 1.2.1
+     */
+    public ActionForward(ActionForward copyMe) {
+        this(copyMe.getName(),copyMe.getPath(),copyMe.getRedirect(),copyMe.getContextRelative());
+    }
 
 }
