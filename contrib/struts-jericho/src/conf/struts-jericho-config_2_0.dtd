@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
        "http://jakarta.apache.org/struts/dtds/struts-jericho-config_2_0.dtd">
 
-     $Id: struts-jericho-config_2_0.dtd,v 1.3 2003/12/18 17:59:29 husted Exp $
+     $Id: struts-jericho-config_2_0.dtd,v 1.4 2003/12/19 02:31:14 husted Exp $
 -->
 
 
@@ -98,7 +98,7 @@
  description?,
  property*,
  catalog*,
- forms?,
+ inputs?,
  locations?,
  exceptions?,
  processors?,
@@ -147,7 +147,7 @@
 <!ATTLIST property           resource    %Resource;      #REQUIRED>
 
 
-<!-- The "forms" element describes the set of form descriptors.
+<!-- The <inputs> element describes the set of input descriptors.
 The following attribute is defined:
 
      config          Fully qualified Java class to use when instantiating
@@ -160,58 +160,58 @@ The following attribute is defined:
                      org.apache.struts.core.FormHandler.
                      ["org.apache.struts.core.DynaFormHandlerBase"]
 -->
-<!ELEMENT forms (form*)>
-<!ATTLIST forms id              ID              #IMPLIED>
-<!ATTLIST forms config          %ClassName;     #IMPLIED>
-<!ATTLIST forms handler         %ClassName;     #IMPLIED>
+<!ELEMENT inputs (input*)>
+<!ATTLIST inputs id              ID              #IMPLIED>
+<!ATTLIST inputs config          %ClassName;     #IMPLIED>
+<!ATTLIST inputs handler         %ClassName;     #IMPLIED>
 
 
-<!-- The "form" element describes a FormHandler (org.apache.struts.core.FormHandler)
+<!-- The <input> element describes an InputHandler (org.apache.struts.core.InputHandler)
      instance that can be referenced by a Mapping instance.
 
-     name            The unique identifier for this form descriptor.
+     name            The unique identifier for this input descriptor.
                      Referenced by the "form" attribute of the <mapping> element
                      to specify which form to use with a matching request. May also
-                     be referenced by an "extends" attribute in another <form> element.
+                     be referenced by an "extends" attribute in another <input> element.
 
-     extends         Name of a form descriptor that is used as a value template for
+     extends         Name of an input descriptor that is used as a value template for
                      this element. All attributes from the template are available to
                      the new element. Any attribute inherited from the template can
                      be overloaded by providing a new value.
 
      config          Fully qualified class name of the Form class to use with
-                     this form that implements org.apache.struts.core.Form.
-                     ["org.apache.struts.core.FormBase"]
+                     this form that implements org.apache.struts.core.Input.
+                     ["org.apache.struts.core.InputBase"]
 
-     handler         Fully qualified class name of the FormHandler class to use with
-                     this form that implements org.apache.struts.core.FormHandler.
-                     ["org.apache.struts.core.DynaFormHandlerBase"]
+     handler         Fully qualified class name of the InputHandler class to use with
+                     this form that implements org.apache.struts.core.InputHandler.
+                     ["org.apache.struts.core.DynaInputHandlerBase"]
 
 -->
-<!ELEMENT form (icon?, display-name?, description?, set-property*, form-property*)>
-<!ATTLIST form      id              ID              #IMPLIED>
-<!ATTLIST form      name            CDATA           #REQUIRED>
-<!ATTLIST form      extends         CDATA           #IMPLIED>
-<!ATTLIST form      config          %ClassName;     #IMPLIED>
-<!ATTLIST form      handler         %ClassName;     #REQUIRED>
+<!ELEMENT input (icon?, display-name?, description?, set-property*, input-property*)>
+<!ATTLIST input     id              ID              #IMPLIED>
+<!ATTLIST input     name            CDATA           #REQUIRED>
+<!ATTLIST input     extends         CDATA           #IMPLIED>
+<!ATTLIST input     config          %ClassName;     #IMPLIED>
+<!ATTLIST input     handler         %ClassName;     #REQUIRED>
 
 
-<!-- The "form-property" element describes an object property that can be used to
-     configure an instance of a DynaFormHandler. This element is only utilized when the
-     "handler" attribute of the enclosing <form> element implements
-     org.apache.struts.core.DynaFormHandler.
+<!-- The <input-property> element describes an object property that can be used to
+     configure an instance of a DynaInputHandler. This element is only utilized when the
+     "handler" attribute of the enclosing <input> element implements
+     org.apache.struts.core.DynaInputHandler.
 
      name            The name of the object property described by this element.
 
-     extends         Name of a form descriptor that is used as a value template for
+     extends         Name of an input descriptor that is used as a value template for
                      this element. All attributes from the template are available to
                      the new element. Any attribute inherited from the template can
                      be overloaded by providing a new value.
 
      config          Fully qualified Java class to use when instantiating
-                     DynaFormProperty objects. If specified, the object must implement
-                     org.apache.struts.core.DynaFormProperty.
-                     ["org.apache.struts.core.DynaFormPropertyBase"]
+                     DynaInputProperty objects. If specified, the object must implement
+                     org.apache.struts.core.DynaInputProperty.
+                     ["org.apache.struts.core.DynaInputPropertyBase"]
 
      handler         Fully qualified class name of the field that will handle this
                      property, optionally followed by "[]" to indicate that the
@@ -226,13 +226,13 @@ The following attribute is defined:
                      "handler" attribute specifies an array, but there is no value
                      specified for the "initial" attribute.
 -->
-<!ELEMENT form-property  (set-property*)>
-<!ATTLIST form-property  name            CDATA          #REQUIRED>
-<!ATTLIST form-property  extends         CDATA          #IMPLIED>
-<!ATTLIST form-property  config         %ClassName;     #IMPLIED>
-<!ATTLIST form-property  handler        %ClassName;     #REQUIRED>
-<!ATTLIST form-property  initial        CDATA           #IMPLIED>
-<!ATTLIST form-property  size           %Integer;       #IMPLIED>
+<!ELEMENT input-property  (set-property*)>
+<!ATTLIST input-property  name            CDATA          #REQUIRED>
+<!ATTLIST input-property  extends         CDATA          #IMPLIED>
+<!ATTLIST input-property  config         %ClassName;     #IMPLIED>
+<!ATTLIST input-property  handler        %ClassName;     #REQUIRED>
+<!ATTLIST input-property  initial        CDATA           #IMPLIED>
+<!ATTLIST input-property  size           %Integer;       #IMPLIED>
 
 
 <!-- The <locations> element describes a set of Location objects
@@ -521,7 +521,7 @@ The following attribute is defined:
 
      name            A unique identifier for this exception element so that it
                      can be referenced by an "extends" attribute. (This is *not*
-                     a reference to a <form> element!)
+                     a reference to an <input> element!)
 
      extends         Name of an <mapping> element that is used as a value template
                      for this element. All attributes from the template are available
@@ -578,31 +578,32 @@ The following attribute is defined:
                      the object's default "form". Optional if "form" is specified,
                      else not valid.
 
-     form            Name of the form, if any, to use with this mapping.
+     input           Name of the input descriptor, if any, to use with this mapping.
+                     (This is *not* the dispatch Location if validate fails.)
 
      scope           The scope ("request" or "session") that is used to
-                     access our FormHandler, if any. Optional if "form" is
+                     access our FormHandler, if any. Optional if <input> is
                      specified, else not valid.
 
-     populate        Set to "false" if the populate method of the FormHandler
+     populate        Set to "false" if the populate method of the InputHandler
+                     should not be called prior to calling the MappingHandler for
+                     this request. If "false", the reset method is also bypassed.
+                     [true]
+
+     validate        Set to "false" if the validate method of the InputHandler
                      should not be called prior to calling the MappingHandler for
                      this request.
                      [true]
 
-     validate        Set to "false" if the validate method of the FormHandler
-                     should not be called prior to calling the MappingHandler for
-                     this request.
-                     [true]
-
-     invalid         Name of a local or global Location that should handle the
+     onInvalid       Name of a local or global Location that should handle the
                      response if a validation message is generated.
-                     Valid only when "form" is specified.
-                     Required if "form" is specified and the FormHandler returns
+                     Valid only when "input" is specified.
+                     Required if "input" is specified and the InputHandler returns
                      validation messages.
-                     Optional if "form" is specified and the
-                     FormHandler does not return validation messages.
+                     Optional if "input" is specified and the
+                     InputHandler does not return validation messages.
 
-     cancel          Name of a local or global Location that should handle the
+     onCancel        Name of a local or global Location that should handle the
                      response if "cancel" is signaled in the request.
  -->
 <!ELEMENT mapping (icon?, display-name?, description?, set-property*, exception*, location*)>
@@ -620,12 +621,12 @@ The following attribute is defined:
 <!ATTLIST mapping         roles          CDATA           #IMPLIED>
 <!ATTLIST mapping         parameter      CDATA           #IMPLIED>
 <!ATTLIST mapping         attribute      %PropName;      #IMPLIED>
-<!ATTLIST mapping         form           CDATA;          #IMPLIED>
+<!ATTLIST mapping         input          CDATA;          #IMPLIED>
 <!ATTLIST mapping         scope          %Scope;         #IMPLIED>
 <!ATTLIST mapping         populate       %Boolean;       #IMPLIED>
 <!ATTLIST mapping         validate       %Boolean;       #IMPLIED>
-<!ATTLIST mapping         invalid        CDATA           #IMPLIED>
-<!ATTLIST mapping         cancel         CDATA           #IMPLIED>
+<!ATTLIST mapping         onInvalid      CDATA           #IMPLIED>
+<!ATTLIST mapping         onCancel       CDATA           #IMPLIED>
 
 
 <!-- The <bundles> element describes a set of Bundle objects

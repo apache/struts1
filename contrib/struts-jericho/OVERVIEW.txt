@@ -29,7 +29,7 @@ Processor
   * NoCache
   * PreProcess
   * Roles
-  * FormHandler
+  * InputHandler
     * Cancel
     * Reset
     * Populate
