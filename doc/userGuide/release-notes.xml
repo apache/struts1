@@ -104,9 +104,11 @@
                 <li>A standard <code>validateUrl</code> rule lets you check if a property contains a well-formed URL.</li>
            </ul>
       <p>
-      <strong>DigestingPlugIn</strong>&#160;- [:TODO:]</p>
+      <strong>DigestingPlugIn</strong>&#160;- A new standard PlugIn that helps you create your own object graph in application scope. This is handy way to create business objects for Actions to call. </p>
       <p>
-      <strong>Maven project files</strong>&#160;- While still under development, significant progress has been made toward putting the Struts build process under
+          <strong>ModuleConfigVerifier</strong>&#160;- While not exactly new, a standard class for verifying module configurations is also available in the PlugIn packages. As it stands, the <code>ModuleConfigVerifier</code> mainly confirms that various components of the Struts object graph were loaded. However, ambitious developers could extend this class with additional checks to ensure the Struts configuration is internally consistent.</p>
+      <p>
+          <strong>Maven project files</strong>&#160;- While still under development, significant progress has been made toward putting the Struts build process under
       <a href="http://maven.apache.org">Maven</a>. The core JAR and TLDs can be built using Maven, leveraging the shared Maven repository for our many dependencies. You can find the current maven.xml and project.xml in the root directory of the Struts source distribution. However, at this time, the original Ant build files are still the official mechanism for building Struts.</p>
       <p>
       <strong>New Configuration DTD</strong>&#160;- The
@@ -130,8 +132,8 @@
       <p>
       <strong>Wildcard Mappings</strong>&#160;- You can now use wildcards in your action-mappings. For details see
       <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a> as well as the Struts Mailreader Example application.</p>
-    </section>
-    <section name="What Changed?" href="Changes">
+      </section>
+      <section name="What Changed?" href="Changes">
       <p>This section highlights some of the changes that have taken place since the last release. For a complete review of all changes, see the
       <a href="../reports/changelog-report.html">changelog reports</a>. Subscribers to the
       <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
@@ -190,6 +192,9 @@
       <strong>Actions Package Changes</strong>&#160;[
       <code>org.apache.struts.actions</code>]</p>
       <ul>
+          <li>2003-12-22 - DispatchAction: Add detection of recursive calls.</li>
+      </ul>
+      <ul>
         <li>2003-08-13 - DispatchAction,LookupDispatchAction: Add 'default' and a 'cancel' handlers to DispatchAction and LookupDispatchAction.</li>
         <li>2003-08-12 - MappingDispatchAction: Addition of MappingDispatchAction that dispatches to a method named by the ActionMapping parameter.</li>
       </ul>
@@ -213,6 +218,10 @@
       <p>
       <strong>Contrib Packages</strong>&#160;[
       <code>/contrib</code>]</p>
+        <ul>
+            <li>2003-12-29 - struts-faces: Various updates regarding the JSF Final Draft and to prepare for Tiles support. </li>
+            <li>2003-12-17 - struts-jericho: Whiteboard directory for Struts-Jericho, a working proposal for Struts 2.x.</li>
+        </ul>
       <ul>
         <li>2003-09-07 - strutsel.taglib.tiles: Addition of "tiles-el" library</li>
       </ul>
@@ -362,6 +371,7 @@
       <strong>Validator Package Changes</strong>&#160;[
       <code>org.apache.struts.validator</code>]</p>
         <ul>
+        <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation; Use action form of html:link; </li>
         <li>2003-10-06 - FieldChecks - Add validateUrl. Remove deprecated validateRange.</li>
         </ul>
       <ul>
@@ -389,7 +399,8 @@
       <strong>MailReader Example Application Changes</strong>&#160;[
       <code>struts-example.war</code>]:</p>
         <ul>
-        <li>2003-10-25 - Updated to include the usage of wildcards in action mappings</li>
+        <li>2003-12-21 - Change to use typical welcome.do - welcome.jsp approach; Use "name" rather than "attribute" in configuration, per documented and common practice; Use action form of html:link</li>
+            <li>2003-10-25 - Updated to include the usage of wildcards in action mappings.</li>
         </ul>
       <ul>
         <li>2003-08-30 - AlternateApplicationResources_ja.properties,ApplicationResources_ja.properties: Provide Japanese resources.</li>
@@ -411,6 +422,7 @@
       <strong>Validator Example Application Changes</strong>&#160;[
       <code>struts-upload.war</code>]:</p>
       <ul>
+        <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation.</li>
         <li>2003-09-24 - Modify Validator example to show use of 'required' for checkboxes, radio,select-one, and select-multiple field types.</li>
       </ul>
     </section>
