@@ -549,7 +549,7 @@
   <task-list name="Unit Test Suites" href="Unit Tests">
 
     <info>
-      <p>Unit test components compatible with the JUnit and J2EEUnit testing
+      <p>Unit test components compatible with the JUnit and Cactus testing
       frameworks, to test and validate internal APIs of the Struts framework.
       Volunteers will typically agree to develop tests for an entire package
       within the Java source code of Struts.
