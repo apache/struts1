@@ -140,6 +140,7 @@
 
 <!-- The class path used for compiling this library -->
 <path id="classpath">
+  <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>
   <pathelement location="${webapp.libs}"/>
@@ -228,7 +229,7 @@
   </copy>
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
   <copy  todir="${webapp.target}/WEB-INF/lib">
-    <fileset dir="${struts.libs}" includes="*.jar"/>
+    <fileset dir="${struts.libs}" includes="struts.jar"/>
   </copy>
 </target>
 

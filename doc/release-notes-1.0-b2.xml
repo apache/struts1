@@ -21,6 +21,84 @@
   </section>
 
 
+  <section name="What's Included?" href="Included">
+
+    <p>The binary distribution of this release includes the following
+    files relevant to Struts 1.0:</p>
+    <ul>
+    <li><code>INSTALL</code> - </li>
+    <li><code>LICENSE</code> - The Apache Software Foundation license that
+        defines the terms under which you can use Struts (and other software
+        licensed by Apache).</li>
+    <li><code>README</code> - </li>
+    <li><code>etc/</code> - Directory containing the Ant build scripts
+        used to construct the Struts binary release.  These are useful
+        as examples of how Ant can be used, but are not required to use
+        Struts in your own applications.</li>
+    <li><code>lib/</code> - Directory containing files you will need in
+        your own applications.  The individual files of interest are:
+        <ul>
+        <li><code>struts.jar</code> - JAR file that contains the compiled
+            Java classes for both version 0.5 and 1.0 of Struts.  You must
+            place this file in the <code>/WEB-INF/lib</code> directory of
+            your web application.</li>
+        <li><code>struts-xxxxx.tld</code> - The tag library descriptor files
+            for the Struts 1.0 tag libraries (bean, html, logic, and
+            template).  You must place these files in the <code>/WEB-INF</code>
+            directory of your web application, and reference them with
+            appropriate <code>&lt;taglib&gt;</code> directives in your
+            web.xml file.  <strong>NOTE</strong> - The struts-form.tld
+            file is deprecated; you should use the struts-html.tld file
+            instead.</li>
+        <li><code>jdbc2_0-stdext.jar</code> - The JDBC 2.0 Optional Package
+            API classes (package <code>javax.sql</code>).  You will need to
+            include this file in the <code>/WEB-INF/lib</code> directory
+            of your application, if it is not already made visible to web
+            applications by your servlet container.</li>
+        <li><code>struts-config_1_0.dtd</code> - The document type descriptor
+            (DTD) for the Struts configuration file (which is typically named
+            <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
+            will be validated against an internal copy of this DTD -- this
+            copy is available for reference purposes only.</li>
+        <li><code>web-app_2_2.dtd</code> - The document type descriptor (DTD)
+            for web.xml files conforming to the Servlet 2.2 specification.
+            This copy is for reference purposes only.</li>
+        <li><code>web-app_2_3.dtd</code> - The document type descriptor (DTD)
+            for web.xml files conforming to the Servlet 2.3 specification.
+            This copy is for reference purposes only.</li>
+        </ul></li>
+    <li><code>src/</code> - Directory containing the Java source code for the
+        entire Struts framework, for reference purposes.  <strong>NOTE</strong>
+        - if you wish to build Struts from scratch, you should download and
+        install the Struts Source Distribution instead of trying to build
+        from this directory.</li>
+    <li><code>webapps/</code> - Web Application Archive (WAR) files for the
+        web applications that are included with Struts.</li>
+    </ul>
+
+    <p>For backwards compatibility only, the binary distribution also
+    includes the following files that conform to the Struts 0.5 milestone
+    release APIs.  Usage of these files and APIs is deprecated, and they
+    will be removed from releases after Struts 1.0:</p>
+    <ul>
+    <li><code>lib/</code> - Directory containing files you will need in
+        your own applications.  The individual files of interest are:
+        <ul>
+        <li><code>struts.jar</code> - JAR file that contains the compiled
+            Java classes for both version 0.5 and 1.0 of Struts.  You must
+            place this file in the <code>/WEB-INF/lib</code> directory of
+            your web application.</li>
+        <li><code>struts.tld</code> - The tag library descriptor file for
+            the 0.5 version of the Struts tags.  You must place this file
+            in the <code>/WEB-INF</code> directory of your web application,
+            and reference it with appropriate <code>&lt;taglib&gt;</code>
+            directives in your web.xml file.</li>
+        </ul></li>
+    </ul>
+
+  </section>
+
+
   <section name="What's New?" href="New">
 
     <p><strong>DEPRECATIONS</strong> - The entire custom tag library

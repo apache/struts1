@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.1 2001/03/23 19:23:55 craigmcc Exp $
+# $Id: build.properties.sample,v 1.2 2001/04/23 20:35:35 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -19,6 +19,11 @@
 # "jakarta-tomcat-4.0" at jakarta.apache.org).  This is only required
 # if you are going to execute the "deploy.catalina" target.
 catalina.home=../jakarta-tomcat-4.0/build
+
+# The JAR file containing the JDBC 2.0 Optional Package extensions API
+# (javax.sql).  This file will automatically be added to your class path
+# when you compile Struts
+jdbc20ext.jar=../jdbc20/jdbc2_0-stdext.jar
 
 # The directory containing your binary distribution of the Servlet API classes
 # (CVS module "jakarta-servletapi" at jakarta.apache.org).
@@ -33,6 +38,4 @@ tomcat.home=../build/tomcat
 # from CVS module "xerces-j" at xml.apache.org.  This is only required
 # if you are going to execute the "deploy.catalina" target.
 xerces.home=../xml-xerces
-
-
 
