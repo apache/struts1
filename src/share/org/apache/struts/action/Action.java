@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.31 2001/12/29 19:35:32 craigmcc Exp $
- * $Revision: 1.31 $
- * $Date: 2001/12/29 19:35:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.32 2001/12/29 19:37:28 craigmcc Exp $
+ * $Revision: 1.32 $
+ * $Date: 2001/12/29 19:37:28 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.31 $ $Date: 2001/12/29 19:35:32 $
+ * @version $Revision: 1.32 $ $Date: 2001/12/29 19:37:28 $
  */
 
 public class Action {
@@ -123,8 +123,7 @@ public class Action {
      * will be suffixed with the actual application prefix (including the
      * leading "/" character) to form the actual attributes key.</p>
      *
-     * <p>For each request processed by the controller servlet, or a JSP page
-     * using the <code>&lt;html:html&gt;</code> custom tag, the
+     * <p>For each request processed by the controller servlet, the
      * <code>ApplicationConfig</code> object for the application selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
@@ -224,8 +223,7 @@ public class Action {
      * normally stored, unless overridden when initializing our ActionServlet.
      * </p>
      *
-     * <p>For each request processed by the controller servlet, or a JSP page
-     * using the <code>&lt;html:html&gt;</code> custom tag, the
+     * <p>For each request processed by the controller servlet, the
      * <code>MessageResources</code> object for the application selected by
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
