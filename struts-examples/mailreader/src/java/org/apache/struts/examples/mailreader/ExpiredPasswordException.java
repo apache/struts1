@@ -18,14 +18,12 @@
 
 package org.apache.struts.examples.mailreader;
 
-import org.apache.struts.util.ModuleException;
-
 /**
  * Example of an application-specific exception for which a handler
  * can be configured.
  */
 
-public class ExpiredPasswordException extends ModuleException {
+public class ExpiredPasswordException extends IllegalArgumentException {
 
 
     /**
@@ -34,7 +32,7 @@ public class ExpiredPasswordException extends ModuleException {
      * @param username Username whose password has expired
      */
     public ExpiredPasswordException(String username) {
-        super("error.password.expired", username);
+        super("Password expired for user '" + username + "'");
     }
 
 
