@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.7 2001/03/06 22:09:52 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/03/06 22:09:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.8 2001/04/03 18:06:18 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/04/03 18:06:18 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/03/06 22:09:52 $
+ * @version $Revision: 1.8 $ $Date: 2001/04/03 18:06:18 $
  */
 
 public class FormTag extends TagSupport {
@@ -450,8 +450,7 @@ public class FormTag extends TagSupport {
 	results.append(" method=\"");
 	results.append(method);
         results.append("\" action=\"");
-        results.append
-            (response.encodeURL(ResponseUtils.filter(getActionMappingURL())));
+        results.append(response.encodeURL(getActionMappingURL()));
         results.append("\"");
         if (styleClass != null) {
             results.append(" class=\"");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.6 2001/03/10 23:55:38 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/03/10 23:55:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.7 2001/04/03 18:06:19 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/04/03 18:06:19 $
  *
  * ====================================================================
  *
@@ -77,7 +77,6 @@ import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
@@ -87,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/03/10 23:55:38 $
+ * @version $Revision: 1.7 $ $Date: 2001/04/03 18:06:19 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -317,7 +316,7 @@ public class LinkTag extends BaseHandlerTag {
         String hyperlink = hyperlink();
         if (hyperlink != null) {
             results.append(" href=\"");
-            results.append(response.encodeURL(BeanUtils.filter(hyperlink)));
+            results.append(response.encodeURL(hyperlink));
             results.append("\"");
         }
         if (linkName != null) {

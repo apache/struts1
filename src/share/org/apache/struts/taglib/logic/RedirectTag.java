@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.6 2001/02/12 21:49:58 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/12 21:49:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.7 2001/04/03 18:06:23 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/04/03 18:06:23 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/12 21:49:58 $
+ * @version $Revision: 1.7 $ $Date: 2001/04/03 18:06:23 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -269,7 +269,7 @@ public class RedirectTag extends TagSupport {
         // Perform the redirection
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
-        String hyperlink = ResponseUtils.filter(hyperlink());
+        String hyperlink = hyperlink();
         try {
             response.sendRedirect(response.encodeRedirectURL(hyperlink));
         } catch (IOException e) {
