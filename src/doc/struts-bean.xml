@@ -101,6 +101,9 @@
     unless it is a Java primitive type, in which case it is wrapped in the
     appropriate wrapper class (i.e. int is wrapped by java.lang.Integer).</p>
 
+    <p>If you specify a "value" attribute, the exposed bean will be of type
+    <code>java.lang.String</code> and initialized to the specified value.</p>
+
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
     </info>
@@ -118,14 +121,15 @@
 
     <attribute>
       <name>name</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the attribute name of the bean whose property is accessed
       to define a new page scope attribute (if <code>property</code> is also
       specified) or the attribute name of the bean that is duplicated with
       the new reference created by this tag (if <code>property</code> is not
-      also specified).</p>
+      also specified).  This attribute is required unless you specify
+      a <code>value</code> attribute.</p>
       </info>
     </attribute>
 
@@ -160,7 +164,19 @@
       <info>
       <p>Specifies the fully qualified class name of the value to be exposed
       as the <code>id</code> attribute.  If not specified, the default type
-      is <code>java.lang.Object</code>.</p>
+      is <code>java.lang.String</code> (if you specify a <code>value</code>
+      attribute), or <code>java.lang.Object</code> otherwise.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The <code>java.lang.String</code> value to which the exposed bean
+      should be set.  This attribute is required unless you specify the
+      <code>name</code> attribute.</p>
       </info>
     </attribute>
 

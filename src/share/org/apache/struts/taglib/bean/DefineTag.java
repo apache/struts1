@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.6 2000/10/30 06:02:10 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/10/30 06:02:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.7 2000/12/30 21:15:36 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/12/30 21:15:36 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:10 $
+ * @version $Revision: 1.7 $ $Date: 2000/12/30 21:15:36 $
  */
 
 public class DefineTag extends TagSupport {
@@ -167,6 +167,20 @@ public class DefineTag extends TagSupport {
     }
 
 
+    /**
+     * The (String) value to which the defined bean will be set.
+     */
+    protected String value = null;
+
+    public String getValue() {
+        return (this.value);
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -179,24 +193,28 @@ public class DefineTag extends TagSupport {
 
         // Retrieve the required property value
         Object bean = null;
-        Object value = null;
+        Object value = this.value;
         try {
 
-            // Locate the specified bean
-	    bean = BeanUtils.lookup(pageContext, name, scope);
+            if (value == null) {
 
-            // Locate the specified property
-            if (bean == null) {
-                JspException e = new JspException
-                    (messages.getMessage("getter.bean", name));
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-                throw e;
+                // Locate the specified bean
+                bean = BeanUtils.lookup(pageContext, name, scope);
+
+                // Locate the specified property
+                if (bean == null) {
+                    JspException e = new JspException
+                        (messages.getMessage("getter.bean", name));
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                             PageContext.REQUEST_SCOPE);
+                    throw e;
+                }
+                if (property == null)
+                    value = bean;
+                else
+                    value = PropertyUtils.getProperty(bean, property);
+
             }
-            if (property == null)
-                value = bean;
-            else
-                value = PropertyUtils.getProperty(bean, property);
 
         } catch (IllegalAccessException e) {
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,

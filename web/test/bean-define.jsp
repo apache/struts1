@@ -20,6 +20,7 @@
 <bean:define id="test1_int" name="test1" property="intProperty"/>
 <bean:define id="test1_long" name="test1" property="longProperty"/>
 <bean:define id="test1_string" name="test1" property="stringProperty"/>
+<bean:define id="test1_value" value="ABCDE"/>
 
 <table border="1">
   <tr>
@@ -56,6 +57,11 @@
     <td>string</td>
     <td><jsp:getProperty name="test1" property="stringProperty"/></td>
     <td><%= test1_string %></td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td><bean:write name="test1_value"/></td>
+    <td><%= test1_value %></td>
   </tr>
 </table>
 
