@@ -135,6 +135,9 @@ public class I18nFactorySet extends FactorySet
       System.out.println( "Bad format for parameter '"
                         + PARSER_DETAILS_PARAMETER_NAME
                         + "'. Integer expected.");
+      servletContext.log( "Tiles factory init : Bad format for parameter '"
+                        + PARSER_DETAILS_PARAMETER_NAME
+                        + "'. Integer expected.");
       }
     }  // end if
 
@@ -165,7 +168,9 @@ public class I18nFactorySet extends FactorySet
           {
           initFactory( servletContext, filename );
           if( DefinitionsUtil.userDebugLevel > 0)
+            {
             System.out.println( "Factory initialized from file '" + filename + "'." );
+            }
           }
          catch( FileNotFoundException ex )
           { // Do nothing
@@ -197,6 +202,8 @@ public class I18nFactorySet extends FactorySet
 
     loaded = new HashMap();
     defaultFactory = createDefaultFactory( servletContext );
+    if(debug)
+      System.out.println( "default factory:" + defaultFactory );
   }
 
   /**
@@ -224,8 +231,16 @@ public class I18nFactorySet extends FactorySet
     XmlDefinitionsSet rootXmlConfig = parseXmlFiles( servletContext, "", null );
     if( rootXmlConfig == null )
       throw new FileNotFoundException();
+    if(debug)
+      System.out.println( rootXmlConfig );
+
     rootXmlConfig.resolveInheritances();
-    return new DefinitionsFactory( rootXmlConfig );
+
+    DefinitionsFactory factory = new DefinitionsFactory( rootXmlConfig );
+    if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )
+      System.out.println( "factory loaded : " + factory );
+
+    return factory;
     }
 
   /**
@@ -319,7 +334,7 @@ public class I18nFactorySet extends FactorySet
     loaded.put( lastPostfix, factory );
       // User help
     if( DefinitionsUtil.userDebugLevel > DefinitionsUtil.NO_DEBUG )
-      System.out.println( factory );
+      System.out.println( "factory loaded : " + factory );
       // return last available found !
     return factory;
     }
@@ -409,7 +424,11 @@ public class I18nFactorySet extends FactorySet
       {
 	    InputStream input = servletContext.getResourceAsStream(filename);
 	    if(input == null )
+        {
+        //if(debug)
+          //System.out.println( "Can't open file '" + filename + "'" );
         return xmlDefinitions;
+        }
 
         // Check if parser already exist.
         // Doesn't seem to work yet.
@@ -470,5 +489,7 @@ public class I18nFactorySet extends FactorySet
     name = name.substring( 0, dotIndex);
     return name + postfix + ext;
     }
+
+
 
 }

@@ -50,7 +50,7 @@ public class XmlParser
         "-//Apache Software Foundation//DTD Tiles Configuration//EN",
         "/org/apache/struts/tiles/resources/tiles-config.dtd",
         "-//Apache Software Foundation//DTD Components Configuration//EN",
-        "/org/apache/struts/tiles/resources/components-config.dtd",
+        "/org/apache/struts/tiles/resources/tiles-config.dtd",
     };
 
      /**
@@ -241,7 +241,7 @@ public class XmlParser
 	try
     {
       // set first object in stack
-    digester.clear();
+    //digester.clear();
     digester.push(definitions);
       // parse
 	  digester.parse(in);
@@ -260,7 +260,7 @@ public class XmlParser
      */
   public static void main(String[] args)
   {
-  String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-tutorial/WEB-INF/componentDefinitions.xml";
+  String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-struts/WEB-INF/tilesDefinitions.xml";
   //String filename = "E:/programs/jakarta-tomcat/webapps/wtiles-channel/WEB-INF/componentDefinitions.xml";
   //String filename2 = "E:/programs/jakarta-tomcat/webapps/wtiles-tutorial/WEB-INF/componentDefinitions.xml";
 
@@ -290,6 +290,8 @@ public class XmlParser
     try
       {
 	    XmlParser parser = new XmlParser();
+      parser.setValidating(true);
+      parser.setDetailLevel(1);
       XmlDefinitionsSet definitions = new XmlDefinitionsSet();
         System.out.println( "  Parse file" );
       parser.parse( input, definitions);

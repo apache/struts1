@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.2 2001/09/10 12:50:45 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/10 12:50:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.3 2001/09/28 17:05:23 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/09/28 17:05:23 $
  * $Author: cedric $
  *
  */
@@ -12,7 +12,13 @@ import org.apache.struts.taglib.tiles.ComponentConstants;
 
 import java.util.Locale;
 
-import org.apache.struts.action.*;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.Action;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.InputStream;
@@ -60,8 +66,10 @@ public class ActionComponentServlet extends ActionServlet
       }
      catch( DefinitionsFactoryException ex )
       {
+      log( "Fail to load Tiles definition factory", ex);
       throw new ServletException( ex.getMessage(), ex );
       }
+    log( "Tiles definition factory loaded" );
     }
 
 

@@ -12,14 +12,15 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Component Definitions factory.
- * This factory contains several factories identified by a key. The 
- * getDefinition() method first look for the factory key, retrieve or create this 
+ * This factory contains several factories identified by a key. The
+ * getDefinition() method first look for the factory key, retrieve or create this
  * factory and then call getDefinition() on the found factory.
  */
-public abstract class FactorySet implements ComponentDefinitionsFactory 
+public abstract class FactorySet implements ComponentDefinitionsFactory
 {
 
     /** Loaded factories */
@@ -73,10 +74,10 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
     } // end if
   return (DefinitionsFactory)factory;
   }
-  
+
   /**
    * Get a definition by its name.
-   * @throws DefinitionsFactoryException An error occur while getting 
+   * @throws DefinitionsFactoryException An error occur while getting
    * definition.
    * @param name Name of requested definition
    * @param request Current servlet request.
@@ -94,9 +95,9 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
   DefinitionsFactory factory = getFactory( key, request, servletContext);
   return factory.getDefinition( name, request, servletContext );
   }
-  
+
   /**
-   * Create a factory for specified key. 
+   * Create a factory for specified key.
    * This method is called by getFactory() when the requested factory doesn't already exist.
    * Must return a factory, even a default one.
    * Real implementation need to provide this method.
@@ -107,7 +108,7 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
    */
   abstract protected DefinitionsFactory createFactory(Object key, ServletRequest request, ServletContext servletContext)
           throws DefinitionsFactoryException;
-  
+
   /**
    * Init factory set.
    * @param servletContext Current servlet context
@@ -119,8 +120,23 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
   /**
    * @roseuid 3AFA4BEF038F
    */
-  public FactorySet() 
+  public FactorySet()
   {
   factories = new HashMap();
   }
+
+    /**
+     *
+     */
+  public String toString()
+    {
+    Iterator i = factories.values().iterator();
+    StringBuffer buff = new StringBuffer( "all FactorySet's factory : \n" );
+    while( i.hasNext() )
+      {
+      buff.append( i.next().toString() ).append("\n");
+      }
+    return buff.toString();
+    }
+
 }

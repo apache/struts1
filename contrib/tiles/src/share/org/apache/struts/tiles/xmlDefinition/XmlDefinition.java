@@ -13,7 +13,7 @@ A definition red from an XML definitions file.
 public class XmlDefinition extends ComponentDefinition
 {
     /** Debug flag */
-  static public final boolean debug = true;
+  static public final boolean debug = false;
   /**
    * Extends attribute value.
    */

@@ -21,17 +21,17 @@ import javax.servlet.http.HttpServletRequest;
  * A factory for definitions.
  * This factory allows to retrieve definitions by their keys.
  */
-public class DefinitionsFactory  
+public class DefinitionsFactory
 {
      /** */
    protected Map definitions;
 
    /**
      * Get a definition by its name.
-     * @throws DefinitionsFactoryException An error occur while getting 
+     * @throws DefinitionsFactoryException An error occur while getting
      * definition.
      * @throws NoSuchDefinitionException No definition found for specified name
-     * Implementation can throw more accurate exception as a subclass of this 
+     * Implementation can throw more accurate exception as a subclass of this
      * exception
      */
    public ComponentDefinition getDefinition(String name, ServletRequest request, ServletContext servletContext)
@@ -39,7 +39,7 @@ public class DefinitionsFactory
    {
    return (ComponentDefinition)definitions.get(name);
    }
-   
+
   /**
    * Put definition in set
    * @param definition
@@ -61,7 +61,7 @@ public class DefinitionsFactory
 
       // First, resolve inheritance
     xmlDefinitions.resolveInheritances();
-    
+
       // Walk thru xml set and copy each definitions.
     Iterator i = xmlDefinitions.getDefinitions().values().iterator();
     while( i.hasNext() )
@@ -70,6 +70,13 @@ public class DefinitionsFactory
       putDefinition( new ComponentDefinition( xmlDefinition) );
       }  // end loop
    }
-   
+    /**
+     *
+     */
+  public String toString()
+    {
+    return definitions.toString();
+    }
+
 }
 
