@@ -61,7 +61,6 @@ import java.util.Iterator;
 import javax.servlet.jsp.JspException;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.RequestUtils;
 
@@ -73,7 +72,7 @@ import org.apache.struts.util.RequestUtils;
  * class or for the property specified.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.5 $ $Date: 2002/11/12 03:56:10 $
+ * @version $Revision: 1.6 $ $Date: 2003/01/05 00:40:04 $
  * @since Struts 1.1
  */
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.4 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.5 2003/01/05 00:40:04 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/01/05 00:40:04 $
  *
  * ====================================================================
  *
@@ -80,9 +80,6 @@ import org.apache.struts.action.ActionForwards;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
 
-// since 1.1
-import org.apache.struts.action.ActionMessages;
-
 
 /**
  * NOTE: THIS CLASS IS UNDER ACTIVE DEVELOPMENT.
@@ -110,7 +107,7 @@ import org.apache.struts.action.ActionMessages;
  * @since 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.4 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.5 $ $Date: 2003/01/05 00:40:04 $
  */
 public interface ConfigHelperInterface {
 

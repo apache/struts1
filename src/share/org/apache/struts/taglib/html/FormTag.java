@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.41 2002/12/29 17:00:15 husted Exp $
- * $Revision: 1.41 $
- * $Date: 2002/12/29 17:00:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.42 2003/01/05 00:40:04 martinc Exp $
+ * $Revision: 1.42 $
+ * $Date: 2003/01/05 00:40:04 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@
 package org.apache.struts.taglib.html;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -87,7 +86,7 @@ import org.apache.struts.Globals;
  * @author Craig R. McClanahan
  * @author Martin Cooper
  * @author James Turner
- * @version $Revision: 1.41 $ $Date: 2002/12/29 17:00:15 $
+ * @version $Revision: 1.42 $ $Date: 2003/01/05 00:40:04 $
  */
 
 public class FormTag extends TagSupport {
