@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.15 2003/04/29 02:55:24 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/04/29 02:55:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.16 2003/05/01 16:16:49 rleland Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/05/01 16:16:49 $
  *
  * ====================================================================
  *
@@ -100,7 +100,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.15 $ $Date: 2003/04/29 02:55:24 $
+ * @version $Revision: 1.16 $ $Date: 2003/05/01 16:16:49 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -117,7 +117,7 @@ public abstract class ActionForm implements Serializable {
 
     /**
      * The MultipartRequestHandler for this form, can be
-     * <code>null</code>
+     * <code>null</code>.
      */
     protected transient MultipartRequestHandler multipartRequestHandler;
 
@@ -176,7 +176,10 @@ public abstract class ActionForm implements Serializable {
 
     }
 
-
+    /**
+     * Set the Handler provides to use in dealing with file uploads.
+     * @param multipartRequestHandler   The Handler to use for fileuploads.
+     */
     public void setMultipartRequestHandler(MultipartRequestHandler multipartRequestHandler) {
         this.multipartRequestHandler = multipartRequestHandler;
     }
@@ -214,8 +217,8 @@ public abstract class ActionForm implements Serializable {
      * </p>
      * <p>
      * This method is <strong>not</strong> the appropriate place to initialize form values
-     * for an "update" type page (this should be done in a setup Action).  You mainly 
-     * need to worry about setting checkbox values to false; most of the time you 
+     * for an "update" type page (this should be done in a setup Action).  You mainly
+     * need to worry about setting checkbox values to false; most of the time you
      * can leave this method unimplemented.
      * </p>
      *

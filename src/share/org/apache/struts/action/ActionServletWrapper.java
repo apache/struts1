@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.7 2003/04/15 00:18:45 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/04/15 00:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.8 2003/05/01 16:16:49 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/05/01 16:16:49 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * could be exploited by automatic population of properties.
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.7 $ $Date: 2003/04/15 00:18:45 $
+ * @version $Revision: 1.8 $ $Date: 2003/05/01 16:16:49 $
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {
@@ -93,6 +93,7 @@ public class ActionServletWrapper {
      *
      * @param message Message to be logged
      * @param level Debugging detail level of this message
+     * @deprecated  Logging should now use the commons logging
      */
     public void log(String message, int level) {
 
@@ -101,7 +102,7 @@ public class ActionServletWrapper {
     }
 
     /**
-     * Log message
+     * Log message.
      * @param message
      */
     public void log(String message) {
