@@ -77,21 +77,24 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
         }
     }
 
-    // ------------------- Public Methods ----------------------------------
+    // ------------------- Protected Methods ----------------------------------
 
    /**
     * <p>Set whether this form should validate based on the <code>ActionMapping</code>'s path.</p>
     */
-    public void setPathValidation(boolean pathValidation) {
+    protected void setPathValidation(boolean pathValidation) {
         this.pathValidation = pathValidation;
     }
 
    /**
     * <p>Indicates whether this form should validate based on the <code>ActionMapping</code>'s path.</p>
     */
-    public boolean isPathValidation() {
+    protected boolean isPathValidation() {
         return pathValidation;
     }
+
+
+    // ------------------- Public Methods ----------------------------------
 
    /**
     * <p>Return the <code>DynaBean</code> that this <code>ActionForm</code> is backed by.</p>
