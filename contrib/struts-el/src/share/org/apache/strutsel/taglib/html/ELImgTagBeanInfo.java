@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.6 2004/01/24 18:48:33 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2004/01/24 18:48:33 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.7 2004/02/14 19:43:14 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/02/14 19:43:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -80,6 +80,10 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("action", ELImgTag.class,
                                                 null, "setActionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("module", ELImgTag.class,
+                                                null, "setModuleExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("align", ELImgTag.class,

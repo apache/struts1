@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.12 2004/01/24 18:48:17 dmkarr Exp $
- * $Revision: 1.12 $
- * $Date: 2004/01/24 18:48:17 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.13 2004/02/14 19:43:14 dmkarr Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/02/14 19:43:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -83,7 +83,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class ELImgTag extends ImgTag {
 
@@ -92,6 +92,11 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String actionExpr;
+    /**
+     * Instance variable mapped to "module" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String moduleExpr;
     /**
      * Instance variable mapped to "align" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -309,6 +314,11 @@ public class ELImgTag extends ImgTag {
      */
     public String getActionExpr() { return (actionExpr); }
     /**
+     * Getter method for "module" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getModuleExpr() { return (moduleExpr); }
+    /**
      * Getter method for "align" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -524,6 +534,11 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
+    /**
+     * Setter method for "module" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setModuleExpr(String moduleExpr) { this.moduleExpr = moduleExpr; }
     /**
      * Setter method for "align" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -742,6 +757,7 @@ public class ELImgTag extends ImgTag {
     {
         super.release();
         setActionExpr(null);
+        setModuleExpr(null);
         setAlignExpr(null);
         setAltExpr(null);
         setAltKeyExpr(null);
@@ -809,6 +825,10 @@ public class ELImgTag extends ImgTag {
         if ((string = EvalHelper.evalString("action", getActionExpr(),
                                             this, pageContext)) != null)
             setAction(string);
+
+        if ((string = EvalHelper.evalString("module", getModuleExpr(),
+                                            this, pageContext)) != null)
+            setModule(string);
 
         if ((string = EvalHelper.evalString("align", getAlignExpr(),
                                             this, pageContext)) != null)

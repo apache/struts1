@@ -1617,6 +1617,21 @@
            </info>
        </attribute>
 
+         <attribute>
+		   <name>module</name>
+		   <required>false</required>
+		   <rtexprvalue>true</rtexprvalue>
+		   <info>
+			   <p>Prefix name of a <code>Module</code> that
+		       contains the action mapping for the <code>Action</code>
+		       that is specified by the <code>action</code> attribute.
+		       You <strong>must</strong> specify an <code>action</code> 
+		       attribute for this to have an effect.</p>
+		
+		       <p><strong>Note: </strong>Use "" to map to the default module.</p>
+		  </info>
+         </attribute>
+
        <attribute>
             <name>anchor</name>
             <required>false</required>
@@ -2719,23 +2734,6 @@
 
                 </info>
 
-            <attribute>
-              <name>action</name>
-              <required>false</required>
-              <rtexprvalue>true</rtexprvalue>
-              <info>
-              <p>The action, starting with a slash, that will render
-              the image to be displayed by this tag.  The rendered
-              URL for this image will automatically prepend the context
-              path of this web application (in the same manner as the
-              <code>action</code> attribute on the link tag works),
-              in addition to any necessary URL rewriting.  You
-              <strong>must</strong> specify the <code>action</code>,
-              <code>page</code>
-                  attribute or the <code>src</code> attribute.</p>
-              </info>
-            </attribute>
-
                 <attribute>
                   <name>align</name>
                   <required>false</required>
@@ -3035,6 +3033,38 @@
                   used as the module-relative path for this image.</p>
                   </info>
                 </attribute>
+
+            <attribute>
+              <name>action</name>
+              <required>false</required>
+              <rtexprvalue>true</rtexprvalue>
+              <info>
+              <p>The action, starting with a slash, that will render
+              the image to be displayed by this tag.  The rendered
+              URL for this image will automatically prepend the context
+              path of this web application (in the same manner as the
+              <code>action</code> attribute on the link tag works),
+              in addition to any necessary URL rewriting.  You
+              <strong>must</strong> specify the <code>action</code>,
+              <code>page</code>
+                  attribute or the <code>src</code> attribute.</p>
+              </info>
+            </attribute>
+
+			 <attribute>
+			   <name>module</name>
+			   <required>false</required>
+			   <rtexprvalue>true</rtexprvalue>
+			   <info>
+				   <p>Prefix name of a <code>Module</code> that
+				   contains the action mapping for the <code>Action</code>
+				   that is specified by the <code>action</code> attribute.
+				   You <strong>must</strong> specify an <code>action</code> 
+				   attribute for this to have an effect.</p>
+			
+				   <p><strong>Note: </strong>Use "" to map to the default module.</p>
+			  </info>
+			 </attribute>
 
                 <attribute>
                   <name>paramName</name>
@@ -3486,6 +3516,21 @@
                   attribute, or the <code>page</code> attribute.</p>
                   </info>
                 </attribute>
+
+			 <attribute>
+			   <name>module</name>
+			   <required>false</required>
+			   <rtexprvalue>true</rtexprvalue>
+			   <info>
+				   <p>Prefix name of a <code>Module</code> that
+				   contains the action mapping for the <code>Action</code>
+				   that is specified by the <code>action</code> attribute.
+				   You <strong>must</strong> specify an <code>action</code> 
+				   attribute for this to have an effect.</p>
+			
+				   <p><strong>Note: </strong>Use "" to map to the default module.</p>
+			  </info>
+			 </attribute>
 
                 <attribute>
                   <name>anchor</name>
@@ -5634,6 +5679,21 @@
                  attribute.</p>
                  </info>
                 </attribute>
+
+			 <attribute>
+			   <name>module</name>
+			   <required>false</required>
+			   <rtexprvalue>true</rtexprvalue>
+			   <info>
+				   <p>Prefix name of a <code>Module</code> that
+				   contains the action mapping for the <code>Action</code>
+				   that is specified by the <code>action</code> attribute.
+				   You <strong>must</strong> specify an <code>action</code> 
+				   attribute for this to have an effect.</p>
+			
+				   <p><strong>Note: </strong>Use "" to map to the default module.</p>
+			  </info>
+			 </attribute>
 
                 <attribute>
                   <name>anchor</name>

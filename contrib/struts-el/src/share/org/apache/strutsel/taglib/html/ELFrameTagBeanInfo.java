@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTagBeanInfo.java,v 1.5 2003/04/23 03:11:18 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/04/23 03:11:18 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTagBeanInfo.java,v 1.6 2004/02/14 19:43:14 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/02/14 19:43:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -87,6 +87,10 @@ public class ELFrameTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("action", ELFrameTag.class,
                                                 null, "setActionExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("module", ELFrameTag.class,
+                                                null, "setModuleExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("anchor", ELFrameTag.class,

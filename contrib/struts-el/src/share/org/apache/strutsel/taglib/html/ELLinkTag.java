@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.10 2004/01/18 13:43:11 husted Exp $
- * $Revision: 1.10 $
- * $Date: 2004/01/18 13:43:11 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.11 2004/02/14 19:43:14 dmkarr Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/02/14 19:43:14 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -73,7 +73,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class ELLinkTag extends LinkTag {
 
@@ -87,6 +87,11 @@ public class ELLinkTag extends LinkTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String actionExpr;
+    /**
+     * Instance variable mapped to "module" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String moduleExpr;
     /**
      * Instance variable mapped to "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -274,6 +279,11 @@ public class ELLinkTag extends LinkTag {
      */
     public String getActionExpr() { return (actionExpr); }
     /**
+     * Getter method for "module" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getModuleExpr() { return (moduleExpr); }
+    /**
      * Getter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -460,6 +470,11 @@ public class ELLinkTag extends LinkTag {
      */
     public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
     /**
+     * Setter method for "module" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setModuleExpr(String moduleExpr) { this.moduleExpr = moduleExpr; }
+    /**
      * Setter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -643,6 +658,7 @@ public class ELLinkTag extends LinkTag {
         super.release();
         setAccesskeyExpr(null);
         setActionExpr(null);
+        setModuleExpr(null);
         setAnchorExpr(null);
         setForwardExpr(null);
         setHrefExpr(null);
@@ -707,6 +723,10 @@ public class ELLinkTag extends LinkTag {
         if ((string = EvalHelper.evalString("action", getActionExpr(),
                                             this, pageContext)) != null)
             setAction(string);
+
+        if ((string = EvalHelper.evalString("module", getModuleExpr(),
+                                            this, pageContext)) != null)
+            setModule(string);
 
         if ((string = EvalHelper.evalString("anchor", getAnchorExpr(),
                                             this, pageContext)) != null)
