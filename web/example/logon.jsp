@@ -50,7 +50,7 @@
 <html:javascript formName="logonForm"
         dynamicJavascript="true"
          staticJavascript="false"/>
-<script language="Javascript1.1" src="staticJavascript.jsp"/>
+<script language="Javascript1.1" src="staticJavascript.jsp"></script>
 
 </body>
 </html:html>
