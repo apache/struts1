@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.12 2003/02/04 01:51:47 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/02/04 01:51:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.13 2003/02/05 01:03:28 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/02/05 01:03:28 $
  *
  * ====================================================================
  *
@@ -126,7 +126,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.12 $ $Date: 2003/02/04 01:51:47 $
+ * @version $Revision: 1.13 $ $Date: 2003/02/05 01:03:28 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -228,7 +228,7 @@ public abstract class DispatchAction extends Action {
      * "Bad Request" error.
      *
      */
-    public ActionForward unspecified(ActionMapping mapping,
+    protected ActionForward unspecified(ActionMapping mapping,
                                      ActionForm form,
                                      HttpServletRequest request,
                                      HttpServletResponse response)
