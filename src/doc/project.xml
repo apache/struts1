@@ -28,15 +28,14 @@
 
     <menu name="Tag Library Reference">
         <item name="Bean Tags"          href="struts-bean.html"/>
-        <item name="Form Tags"          href="struts-form.html"/>
+        <item name="HTML Tags"          href="struts-html.html"/>
         <item name="Logic Tags"         href="struts-logic.html"/>
         <item name="Template Tags"      href="struts-template.html"/>
     </menu>
 
     <menu name="Old Documents">
         <item name="Tag Library (Old)"  href="tags.html"/>
-        <item name="TODO (Old)"         href="todo.txt"/>
-        <item name="User's Guide"       href="users_guide.html"/>
+        <item name="User's Guide (Old)" href="users_guide.html"/>
     </menu>
 
 </project>
