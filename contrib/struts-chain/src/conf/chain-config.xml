@@ -204,6 +204,23 @@
           className="org.apache.struts.chain.servlet.ExecuteAction"/>
 
 
+      <!--
+      If you want to use Tiles, uncomment this command, and modify your 
+      Struts Configuration to use this PlugIn:
+      "org.apache.struts.chain.legacy.TilesPlugin"
+      
+      This PlugIn is required because the basic TilesPlugIn tests at initialization
+      time to make sure that you are specific using the TilesRequestProcessor 
+      (or a subclass), and the struts-chain ComposableRequestProcessor fails that test.  
+      In every other respect, the struts-chain TilesPlugin is identical to the normal 
+      TilesPlugIn, and is configured in the same way.
+
+      <command
+          className="org.apache.struts.chain.servlet.TilesPreProcessor"/>
+      
+      -->
+
+
       <!-- Follow the returned ForwardConfig (if any) -->
       <command
           className="org.apache.struts.chain.servlet.PerformForward"/>
