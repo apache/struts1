@@ -125,20 +125,26 @@
     </summary>
     <tagclass>org.apache.struts.taglib.nested.NestedWriteNestingTag</tagclass>
     <bodycontent>JSP</bodycontent>
-    <info> </info>
+    <info>
+      This tag provides a way of accessing the nested property reference used by
+      the nested tags. Can expose a scripting variable, or simply write out the
+      value.
+    </info>
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info> If not supplied, will simply write out as if "./" or "this/" was
-        supplied.
+      <info>
+        If not supplied, will simply write out as if "./" or "this/" was supplied.
       </info>
     </attribute>
     <attribute>
       <name>filter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info> Do you want the result URLEncoded?
+      <info>
+        true/false vaule, describing to the tag if the result if to be URLEncoded.
+        Helps JavaScript along if the result is required for URL hacking.
       </info>
     </attribute>
   </tag>
