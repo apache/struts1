@@ -46,6 +46,8 @@
         href="release-notes.html"/>
       <item name="Installation"           
         href="installation.html"/>
+      <item name="Newbie FAQ"           
+        href="../newbie.html"/>
       <item name="Struts Home"
         href="../index.html"/>
     </menu>
