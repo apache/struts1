@@ -11,7 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              $Id: release-plan_1_2_0.xml,v 1.8 2004/02/20 14:41:23 husted Exp $
+              $Id: release-plan_1_2_0.xml,v 1.9 2004/02/20 17:03:20 husted Exp $
           </p>
 
           <p>
@@ -94,7 +94,7 @@
               <li>
                   <strong>Resolve showstoppers.</strong>
                   Relevant
-                  <a href="http://issues.apache.org/bugzilla/buglist.cgi?email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=1.1RC2&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Bug+Number">
+                  <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=bugs.bug_i">
                   Bugzilla tickets</a> verified by a Struts Committer to have the Severity BLOCKER, CRITICAL, or
                   MAJOR must be "Resolved" with one of these Bugzilla resolutions: FIXED, INVALID, WONTFIX, WORKSFORME.
               </li>

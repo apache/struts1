@@ -10,13 +10,13 @@
   <body>
     <section href="status" name="Release Guidelines">
       <p>This document describes the Struts 
-      <a href="#Releases">release process</a>and our 
+      <a href="#Releases">release process</a> and our
       <a href="#Coding">coding conventions</a>. Both stable and development releases are 
       <a href="acquiring.html">available for download</a>.</p>
     </section>
     <section href="Releases" name="Release Guidelines">
       <p>A 
-      <a href="http://jakarta.apache.org/commons/versioning.html">point release</a>should be made before and after any product change that is not a "fully-compatible change" (see link). This includes moving a dependency from an internal package to an external product, including products distributed through the Jakarta Commons. We should place any fully-compatible changes in the hands of the community before starting on a change that is only "interface" or "external-interface" compatible.</p>
+      <a href="http://jakarta.apache.org/commons/versioning.html">point release</a> should be made before and after any product change that is not a "fully-compatible change" (see link). This includes moving a dependency from an internal package to an external product, including products distributed through the Jakarta Commons. We should place any fully-compatible changes in the hands of the community before starting on a change that is only "interface" or "external-interface" compatible.</p>
       <p>A fully-compatible point release does not always need a "preview" beta or milestone release. If appropriate, a Release Candidate can be cut, uploaded to the Release Manager's home directory on cvs.apache.org (~/public_html), and voted to be released to the general public from there.</p>
       <p>Any release should follow the same general process used by the Jakarta Commons and the Apache HTTP Server project.</p>
       <ul>
@@ -52,7 +52,7 @@
         <li>There is a "release" target in the buildfile that will zip and tar the releases. Before uploading the release, extract the sample web applications and deploy the WARs under each of the "supported" containers. Play test each application under each container to be sure they operate nominally.</li>
         <li>Be sure to copy the pmc@jakarta.apache.org list on any release announcement.</li>
         <li>Remember to update the 
-        <a href="status.html">Status section of the Roadmap page</a>once a release is available.</li>
+        <a href="status.html">Status section of the Roadmap page</a> once a release is available.</li>
         <li>By the way, the nightly builds are being created on a machine of Craig McClanahan's. If there are problems with a nightly build that seem infrastructure related, Craig is the one to contact.</li>
       </ul>
     </section>
@@ -90,14 +90,14 @@
         <small>// ------------------------------------------------------------------------ 78</small></li>
         <li>Please do your best to provide high-quality Javadocs for all source code elements. Package overviews (aka "Developer Guides") are also encouraged.</li>
         <li>When working on a bugfix, please first write a 
-        <a href="http://www.junit.org">JUnit</a>test that proves the bug exists, and then use the test to prove the bug is fixed. =:0)</li>
+        <a href="http://www.junit.org">JUnit</a> test that proves the bug exists, and then use the test to prove the bug is fixed. =:0)</li>
         <li>When working on an enhancement, please feel free to use test-driven design and write the test first &lt;head-slap/&gt;. For more about TDD, see the 
         <a href="http://sourceforge.net/projects/mockobjects">MockObjects project</a>.</li>
         <li>As files are updated from year to year, the copyright on each file should be extended to include the current year. 
         <b>You do not need to change the copyright year unless you change the file.</b>Every source file should include the ASF copyright notice and current Apache License and copyright.</li>
         <li>Provide high-level API compatibility for any changes made within the same major release series (#.x). Changes which adversely affect compatibility should be slotted for the next major release series (++#.x).</li>
         <li>Our favorite books about programming are 
-        <a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns</a>and 
+        <a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns</a> and
         <a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring</a>.</li>
         <li>Our favorite book about open source development is the 
         <a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">The Cathedral and the Bazaar</a>.</li>
@@ -111,7 +111,7 @@
     </section>
     <section>
       <p class="right">Next: 
-      <a href="news/index.html">News and Status</a></p>
+      <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS Repository</a></p>
     </section>
   </body>
 </document>

@@ -16,7 +16,7 @@
     <section name="Status" href="status">
 
     <p class="version">
-      $Id: status.xml,v 1.59 2004/02/20 14:47:01 husted Exp $
+      $Id: status.xml,v 1.60 2004/02/20 17:03:19 husted Exp $
      </p>
 
     <p>
@@ -472,7 +472,7 @@
 
 
         <li>
-        <a href="proposals/release-plan_1_2_0.html">Release Plan 1.2.0</a> -- unratified DRAFT document
+        <a href="proposals/release-plan_1_2_0.html">Release Plan 1.2.0</a>
         </li>
 
         <li>

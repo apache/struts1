@@ -86,16 +86,16 @@
 
     <menu name="Development">
         <item
-            name="CVS Repository"
-            href="http://cvs.apache.org/viewcvs/jakarta-struts/"
+            name="Roadmap"
+            href="status.html"
             />
         <item
             name="Release Guidelines"
             href="releases.html"
             />
         <item
-            name="Roadmap"
-            href="status.html"
+            name="CVS Repository"
+            href="http://cvs.apache.org/viewcvs/jakarta-struts/"
             />
     </menu>
 
