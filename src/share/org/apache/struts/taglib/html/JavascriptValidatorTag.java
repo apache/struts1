@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.51 2004/07/01 00:40:24 husted Exp $
- * $Revision: 1.51 $
- * $Date: 2004/07/01 00:40:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.52 2004/08/07 04:17:52 martinc Exp $
+ * $Revision: 1.52 $
+ * $Date: 2004/08/07 04:17:52 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -54,7 +54,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.51 $ $Date: 2004/07/01 00:40:24 $
+ * @version $Revision: 1.52 $ $Date: 2004/08/07 04:17:52 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -200,18 +200,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         this.formName = formName;
     }
 
-	/**
-	 * @return Returns the jsFormName.
-	 */
-	public String getJsFormName() {
-		return jsFormName;
-	}
-	/**
-	 * @param jsFormName The jsFormName to set.
-	 */
-	public void setJsFormName(String jsFormName) {
-		this.jsFormName = jsFormName;
-	}
+    /**
+     * @return Returns the jsFormName.
+     */
+    public String getJsFormName() {
+        return jsFormName;
+    }
+    /**
+     * @param jsFormName The jsFormName to set.
+     */
+    public void setJsFormName(String jsFormName) {
+        this.jsFormName = jsFormName;
+    }
     /**
      * Gets the current page number of a multi-part form.
      * Only field validations with a matching page numer
@@ -422,8 +422,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         String formName = form.getName();
         jsFormName = formName;
                 if(jsFormName.charAt(0) == '/') {
-                	String mappingName = TagUtils.getInstance().getActionMappingName(jsFormName);
-                	ActionMapping mapping = (ActionMapping) config.findActionConfig(mappingName);
+                    String mappingName = TagUtils.getInstance().getActionMappingName(jsFormName);
+                    ActionMapping mapping = (ActionMapping) config.findActionConfig(mappingName);
                     if (mapping == null) {
                         JspException e = new JspException(messages.getMessage("formTag.mapping", mappingName));
                         pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
@@ -589,21 +589,21 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * @return JavaScript methods.
      */
     private String createMethods(List actions, boolean stopOnError) {
-        String methods = null;
+        StringBuffer methods = new StringBuffer();
         final String methodOperator = stopOnError ? " && " : " & ";
 
         Iterator iter = actions.iterator();
         while (iter.hasNext()) {
             ValidatorAction va = (ValidatorAction) iter.next();
 
-            if (methods == null) {
-                methods = va.getMethod() + "(form)";
-            } else {
-                methods += methodOperator + va.getMethod() + "(form)";
+            if (methods.length() > 0) {
+                methods.append(methodOperator);
             }
+            methods.append(va.getMethod())
+                   .append("(form)");
         }
 
-        return methods;
+        return methods.toString();
     }
 
     /**
