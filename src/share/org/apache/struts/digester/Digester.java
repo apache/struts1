@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.2 2000/06/21 19:58:24 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/21 19:58:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.3 2000/06/22 01:07:01 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/22 01:07:01 $
  *
  * ====================================================================
  * 
@@ -137,7 +137,7 @@ import org.xml.sax.SAXParseException;
  * hard code the configuration logic.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/21 19:58:24 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/22 01:07:01 $
  */
 
 public final class Digester extends HandlerBase {
@@ -837,13 +837,13 @@ public final class Digester extends HandlerBase {
 
 
     /**
-     * Add an "call parameter" rule for the specified parameters.
+     * Add a "call parameter" rule for the specified parameters.
      *
      * @param pattern Element matching pattern
-     * @param paramCount Zero-relative parameter index to set
+     * @param paramIndex Zero-relative parameter index to set
      *  (from the body of this element)
      */
-    public void addCallMethod(String pattern, int paramIndex) {
+    public void addCallParam(String pattern, int paramIndex) {
 
 	addRule(pattern,
 	        new CallParamRule(this, paramIndex));
@@ -852,13 +852,15 @@ public final class Digester extends HandlerBase {
 
 
     /**
-     * Add an "call parameter" rule for the specified parameters.
+     * Add a "call parameter" rule for the specified parameters.
      *
      * @param pattern Element matching pattern
-     * @param paramCount Zero-relative parameter index to set
+     * @param paramIndex Zero-relative parameter index to set
      *  (from the specified attribute)
+     * @param attributeName Attribute whose value is used as the
+     *  parameter value
      */
-    public void addCallMethod(String pattern, int paramIndex,
+    public void addCallParam(String pattern, int paramIndex,
     			      String attributeName) {
 
 	addRule(pattern,
