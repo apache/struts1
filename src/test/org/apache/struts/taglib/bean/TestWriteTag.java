@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestWriteTag.java,v 1.12 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,22 +22,22 @@ package org.apache.struts.taglib.bean;
 import java.util.Locale;
 
 import javax.servlet.jsp.PageContext;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.SimpleBeanForTesting;
 import org.apache.struts.taglib.TagUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.WriteTag</code> class.
  *
  */
-public class TestWriteTag extends JspTestCase {
+public class TestWriteTag extends TaglibTestBase {
         protected final static String TEST_STRING_VAL = "Test Value";
         protected final static Integer TEST_INTEGER_VAL = new Integer("1234");
         protected final static Double  TEST_DOUBLE_VAL  = new Double("1234.5961");
@@ -72,8 +72,8 @@ public class TestWriteTag extends JspTestCase {
 
         private void formatAndTest(String compare, String output) {
                 //fix for introduced carriage return / line feeds
-                output = StringUtils.replace(output,"\r","");
-                output = StringUtils.replace(output,"\n","");
+                output = replace(output,"\r","");
+                output = replace(output,"\n","");
                 output = output.trim();
                 //System.out.println("Testing [" + compare + "] == [" + output + "]");
             assertEquals(compare, output);

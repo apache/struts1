@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag_fr.java,v 1.10 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,14 +22,14 @@ package org.apache.struts.taglib.bean;
 import java.util.Locale;
 
 import javax.servlet.jsp.PageContext;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.SimpleBeanForTesting;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
   * These tests attempt to cover every single possible configuration of the
@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringUtils;
   * checked here in endXXX method.
   *
   */
-public class TestMessageTag_fr extends JspTestCase {
+public class TestMessageTag_fr extends TaglibTestBase {
 
     protected final static String TEST_KEY = "BeanKey";
     protected final static String TEST_VAL_FR = "Message D'Essai";
@@ -77,8 +77,8 @@ public class TestMessageTag_fr extends JspTestCase {
 
         private void formatAndTest(String compare, String output) {
                 //fix for introduced carriage return / line feeds
-                output = StringUtils.replace(output,"\r","");
-                output = StringUtils.replace(output,"\n","");
+                output = replace(output,"\r","");
+                output = replace(output,"\n","");
                 output = output.trim();
                 //System.out.println("Testing [" + compare + "] == [" + output + "]");
             assertEquals(compare, output);

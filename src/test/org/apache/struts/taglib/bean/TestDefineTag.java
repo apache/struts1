@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestDefineTag.java,v 1.10 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,20 +20,20 @@
 package org.apache.struts.taglib.bean;
 
 import javax.servlet.jsp.PageContext;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
 import org.apache.struts.util.LabelValueBean;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.DefineTag</code> class.
  *
  */
-public class TestDefineTag extends JspTestCase {
+public class TestDefineTag extends TaglibTestBase {
 
         protected final static String TEST_KEY   = "TestDefineTag";
         protected final static String TEST_VALUE = "Test Value";
@@ -72,8 +72,8 @@ public class TestDefineTag extends JspTestCase {
 
         private void formatAndTest(String compare, String output) {
                 //fix for introduced carriage return / line feeds
-                output = StringUtils.replace(output,"\r","");
-                output = StringUtils.replace(output,"\n","");
+                output = replace(output,"\r","");
+                output = replace(output,"\n","");
                 output = output.trim();
             assertEquals(compare, output);
         }

@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestHeaderTag.java,v 1.10 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,17 +22,16 @@ package org.apache.struts.taglib.bean;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebRequest;
 import org.apache.cactus.WebResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.HeaderTag</code> class.
  *
  */
-public class TestHeaderTag extends JspTestCase {
+public class TestHeaderTag extends TaglibTestBase {
 
     protected final static String HEADER_KEY = "HEADER_KEY";
     protected final static String HEADER_VAL = "HEADER_VAL";
@@ -71,8 +70,8 @@ public class TestHeaderTag extends JspTestCase {
 
         private void formatAndTest(String compare, String output) {
                 //fix for introduced carriage return / line feeds
-                output = StringUtils.replace(output,"\r","");
-                output = StringUtils.replace(output,"\n","");
+                output = replace(output,"\r","");
+                output = replace(output,"\n","");
                 output = output.trim();
             assertEquals(compare, output);
         }

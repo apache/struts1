@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestResourceTag.java,v 1.8 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,19 +22,19 @@ package org.apache.struts.taglib.bean;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.ResourceTag</code> class.
  *
  */
-public class TestResourceTag extends JspTestCase {
+public class TestResourceTag extends TaglibTestBase {
 	
     /**
      * Defines the testcase name for JUnit.
@@ -66,8 +66,8 @@ public class TestResourceTag extends JspTestCase {
     
 	private void formatAndTest(String compare, String output) {
 		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\n","");
+		output = replace(output,"\r","");
+		output = replace(output,"\n","");
 		output = output.trim();
 		//System.out.println("Testing [" + compare + "] == [" + output + "]");
 	    assertEquals(compare, output);
