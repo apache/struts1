@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14 2001/05/12 22:35:43 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2001/05/12 22:35:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.15 2001/06/01 18:58:39 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2001/06/01 18:58:39 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/05/12 22:35:43 $
+ * @version $Revision: 1.15 $ $Date: 2001/06/01 18:58:39 $
  */
 
 public class RequestUtils {
@@ -376,7 +376,7 @@ public class RequestUtils {
                     url.append(URLEncoder.encode(key));
                     url.append('=');
                     url.append(URLEncoder.encode((String) value));
-                } else /* if (value instanceof String[]) */ {
+                } else if (value instanceof String[]) {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
                         if (!question) {
@@ -388,6 +388,15 @@ public class RequestUtils {
                         url.append('=');
                         url.append(URLEncoder.encode(values[i]));
                     }
+                } else /* Convert other objects to a string */ {
+                    if (!question) {
+                        url.append('?');
+                        question = true;
+                    } else
+                        url.append('&');
+                    url.append(URLEncoder.encode(key));
+                    url.append('=');
+                    url.append(URLEncoder.encode(value.toString()));
                 }
             }
 
