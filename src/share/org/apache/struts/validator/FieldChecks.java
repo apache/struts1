@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.9 2003/06/04 02:50:58 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/06/04 02:50:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.10 2003/06/25 01:32:31 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/06/25 01:32:31 $
  *
  * ====================================================================
  *
@@ -810,7 +810,7 @@ public class FieldChecks implements Serializable {
             value = ValidatorUtil.getValueAsString(bean, field.getProperty());
         }
 
-        if (!GenericValidator.isBlankOrNull(value)) {
+        if (value != null) {
             try {
                 int max = Integer.parseInt(field.getVarValue("maxlength"));
 
