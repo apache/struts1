@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.11 2003/07/10 04:01:47 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/10 04:01:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.12 2003/08/16 18:56:20 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/08/16 18:56:20 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.action.DynaActionForm;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.11 $ $Date: 2003/07/10 04:01:47 $
+ * @version $Revision: 1.12 $ $Date: 2003/08/16 18:56:20 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */
@@ -98,44 +98,44 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
      */
     private static Log log = LogFactory.getLog(DynaValidatorForm.class);
 
-   /**
+    /**
      * The results returned from the validation performed
      * by the <code>Validator</code>.
      */
     protected ValidatorResults validatorResults = null;
 
-   /**
+    /**
      * Used to indicate the current page of a multi-page form.
      */
     protected int page = 0;
 
-   /**
+    /**
      * Gets page.
-    * @return page number.
+     * @return page number.
      */
     public int getPage() {
         return page;
     }
 
-   /**
+    /**
      * Sets page.
-    * @param page page number
+     * @param page page number
      */
     public void setPage(int page) {
         this.page = page;
     }
 
     /**
-      * Validate the properties that have been set from this HTTP request,
-      * and return an <code>ActionErrors</code> object that encapsulates any
-      * validation errors that have been found.  If no errors are found, return
-      * <code>null</code> or an <code>ActionErrors</code> object with no
-      * recorded error messages.
-      *
-      * @param mapping The mapping used to select this instance.
-      * @param request The servlet request we are processing.
-      * @return <code>ActionErrors</code> object that encapsulates any validation errors.
-      */
+     * Validate the properties that have been set from this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     *
+     * @param mapping The mapping used to select this instance.
+     * @param request The servlet request we are processing.
+     * @return <code>ActionErrors</code> object that encapsulates any validation errors.
+     */
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         this.setPageFromDynaProperty();
 
@@ -172,7 +172,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         }
     }
 
-   /**
+    /**
      * Reset all properties to their default values.
      *
      * @param mapping The mapping used to select this instance
@@ -184,30 +184,30 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         validatorResults = null;
     }
 
-   /**
+    /**
      * Get results of the validation performed by the
      * <code>Validator</code>.
-    * @return validator results as ValidatorResults object
+     * @return validator results as ValidatorResults object
      */
     public ValidatorResults getValidatorResults() {
         return validatorResults;
     }
 
-   /**
+    /**
      * Set results of the validation performed by the
      * <code>Validator</code>.
-    * @param validatorResults  Set results of the validation performed
+     * @param validatorResults  Set results of the validation performed
      */
     public void setValidatorResults(ValidatorResults validatorResults) {
         this.validatorResults = validatorResults;
     }
 
-   /**
+    /**
      * Returns a <code>Map</code> of values returned
      * from any validation that returns a value other than
      * <code>null</code> or <code>Boolean</code> with the
      * key the full property path of the field.
-    * @return Returns a <code>Map</code> of values, otherwise returns null if no results.
+     * @return Returns a <code>Map</code> of values, otherwise returns null if no results.
      */
     public Map getResultValueMap() {
         return (validatorResults != null ? validatorResults.getResultValueMap() : null);
