@@ -136,7 +136,7 @@ public abstract class ActionForm implements Serializable {
 
 
     /**
-     * <p>Set the Handler provides to use in dealing with file uploads.</p>
+     * <p>Set the Handler provided for use in dealing with file uploads.</p>
      *
      * @param multipartRequestHandler The Handler to use for fileuploads.
      */
