@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,56 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Generate an HTML <code>&lt;frame&gt;</code> tag with similar capabilities
+ * as those the <code>&lt;html:link&gt;</code> tag provides for hyperlink
+ * elements.  The <code>src</code> element is rendered using the same technique
+ * that {@link LinkTag} uses to render the <code>href</code> attribute of a
+ * hyperlink.  Additionall, the HTML 4.0
+ * frame tag attributes <code>noresize</code>, <code>scrolling</code>,
+ * <code>marginheight</code>, <code>marginwidth</code>,
+ * <code>frameborder</code>, and <code>longdesc</code> are supported.
+ * The frame
+ * <code>name</code> attribute is rendered based on the <code>frameName</code>
+ * property.
+ *<p>
+ * Note that the value of <code>longdesc</code> is intended to be a URI, but
+ * currently no rewriting is supported.  The attribute is set directly from
+ * the property value.
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.html.FrameTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELFrameTag extends FrameTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
 
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,6 +124,14 @@ public class ELFrameTag extends FrameTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
             setAnchor((String) evalAttr("anchor", getAnchor(), String.class));
@@ -89,19 +140,22 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setForward((String) evalAttr("forward", getForward(), String.class));
+            setForward((String) evalAttr("forward", getForward(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setForward(null);
         }
 
         try {
-            setFrameborder((String) evalAttr("frameborder", getFrameborder(), String.class));
+            setFrameborder((String) evalAttr("frameborder", getFrameborder(),
+                                             String.class));
         } catch (NullAttributeException ex) {
             setFrameborder(null);
         }
 
         try {
-            setFrameName((String) evalAttr("frameName", getFrameName(), String.class));
+            setFrameName((String) evalAttr("frameName", getFrameName(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setFrameName(null);
         }
@@ -113,19 +167,26 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setLongdesc((String) evalAttr("longdesc", getLongdesc(), String.class));
+            setLongdesc((String) evalAttr("longdesc", getLongdesc(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setLongdesc(null);
         }
 
         try {
-            setMarginheight(((Integer) evalAttr("marginheight", getMarginheight() + "", Integer.class)).intValue());
+            setMarginheight(((Integer) evalAttr("marginheight",
+                                                getMarginheight() + "",
+                                                Integer.class)).
+                            intValue());
         } catch (NullAttributeException ex) {
             setMarginheight(0);
         }
 
         try {
-            setMarginwidth(((Integer) evalAttr("marginwidth", getMarginwidth() + "", Integer.class)).intValue());
+            setMarginwidth(((Integer) evalAttr("marginwidth",
+                                               getMarginwidth() + "",
+                                               Integer.class)).
+                           intValue());
         } catch (NullAttributeException ex) {
             setMarginwidth(0);
         }
@@ -137,7 +198,8 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setNoresize(((Boolean) evalAttr("noresize", getNoresize() + "", Boolean.class)).
+            setNoresize(((Boolean) evalAttr("noresize", getNoresize() + "",
+                                            Boolean.class)).
                         booleanValue());
         } catch (NullAttributeException ex) {
             setNoresize(false);
@@ -150,31 +212,37 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setParamId((String) evalAttr("paramId", getParamId(), String.class));
+            setParamId((String) evalAttr("paramId", getParamId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setParamId(null);
         }
 
         try {
-            setParamName((String) evalAttr("paramName", getParamName(), String.class));
+            setParamName((String) evalAttr("paramName", getParamName(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setParamName(null);
         }
 
         try {
-            setParamProperty((String) evalAttr("paramProperty", getParamProperty(), String.class));
+            setParamProperty((String) evalAttr("paramProperty",
+                                               getParamProperty(),
+                                               String.class));
         } catch (NullAttributeException ex) {
             setParamProperty(null);
         }
 
         try {
-            setParamScope((String) evalAttr("paramScope", getParamScope(), String.class));
+            setParamScope((String) evalAttr("paramScope", getParamScope(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setParamScope(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
@@ -186,7 +254,8 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setScrolling((String) evalAttr("scrolling", getScrolling(), String.class));
+            setScrolling((String) evalAttr("scrolling", getScrolling(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setScrolling(null);
         }
@@ -198,13 +267,15 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(), String.class));
+            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(), String.class));
+            setStyleId((String) evalAttr("styleId", getStyleId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setStyleId(null);
         }
@@ -216,13 +287,17 @@ public class ELFrameTag extends FrameTag {
         }
 
         try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKey(), String.class));
+            setTitleKey((String) evalAttr("titleKey", getTitleKey(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setTitleKey(null);
         }
 
         try {
-            setTransaction(((Boolean) evalAttr("transaction", getTransaction() + "", Boolean.class)).booleanValue());
+            setTransaction(((Boolean) evalAttr("transaction",
+                                               getTransaction() + "",
+                                               Boolean.class)).
+                           booleanValue());
         } catch (NullAttributeException ex) {
             setTransaction(false);
         }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,42 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Generate a URL-encoded hyperlink to the specified URI.
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.html.LinkTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELLinkTag extends LinkTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
 
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,9 +110,18 @@ public class ELLinkTag extends LinkTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
-            setAccesskey((String) evalAttr("accessKey", getAccesskey(), String.class));
+            setAccesskey((String) evalAttr("accessKey", getAccesskey(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setAccesskey(null);
         }
@@ -95,7 +133,8 @@ public class ELLinkTag extends LinkTag {
         }
 
         try {
-            setForward((String) evalAttr("forward", getForward(), String.class));
+            setForward((String) evalAttr("forward", getForward(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setForward(null);
         }
@@ -107,20 +146,23 @@ public class ELLinkTag extends LinkTag {
         }
 
         try {
-            setIndexed(((Boolean) evalAttr("indexed", getIndexed() + "", Boolean.class)).
+            setIndexed(((Boolean) evalAttr("indexed", getIndexed() + "",
+                                           Boolean.class)).
                        booleanValue());
         } catch (NullAttributeException ex) {
             setIndexed(false);
         }
 
         try {
-            setIndexId((String) evalAttr("indexId", getIndexId(), String.class));
+            setIndexId((String) evalAttr("indexId", getIndexId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setIndexId(null);
         }
 
         try {
-            setLinkName((String) evalAttr("linkName", getLinkName(), String.class));
+            setLinkName((String) evalAttr("linkName", getLinkName(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setLinkName(null);
         }
@@ -144,77 +186,85 @@ public class ELLinkTag extends LinkTag {
 //         }
 
         try {
-            setOnclick((String) evalAttr("onclick", getOnclick(), String.class));
+            setOnclick((String) evalAttr("onclick", getOnclick(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setOnclick(null);
         }
 
         try {
-            setOndblclick((String) evalAttr("ondblclick", getOndblclick(), String.class));
+            setOndblclick((String) evalAttr("ondblclick", getOndblclick(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setOndblclick(null);
         }
 
         try {
-            setOnfocus((String) evalAttr("onfocus", getOnfocus(), String.class));
+            setOnfocus((String) evalAttr("onfocus", getOnfocus(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setOnfocus(null);
         }
 
         try {
-            setOnkeydown((String) evalAttr("onkeydown", getOnkeydown(), String.class));
+            setOnkeydown((String) evalAttr("onkeydown", getOnkeydown(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setOnkeydown(null);
         }
 
         try {
-            setOnkeypress((String) evalAttr("onkeypress", getOnkeypress(), String.class));
+            setOnkeypress((String) evalAttr("onkeypress", getOnkeypress(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setOnkeypress(null);
         }
 
         try {
-            setOnkeyup((String) evalAttr("onkeyup", getOnkeyup(), String.class));
+            setOnkeyup((String) evalAttr("onkeyup", getOnkeyup(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setOnkeyup(null);
         }
 
         try {
-            setOnmousedown((String) evalAttr("onmousedown", getOnmousedown(), String.class));
+            setOnmousedown((String) evalAttr("onmousedown", getOnmousedown(),
+                                             String.class));
         } catch (NullAttributeException ex) {
             setOnmousedown(null);
         }
 
         try {
-            setOnmousemove((String) evalAttr("onmousemove",
-                                             getOnmousemove(), 
+            setOnmousemove((String) evalAttr("onmousemove", getOnmousemove(), 
                                              String.class));
         } catch (NullAttributeException ex) {
             setOnmousemove(null);
         }
 
         try {
-            setOnmouseout((String) evalAttr("onmouseout", getOnmouseout(), String.class));
+            setOnmouseout((String) evalAttr("onmouseout", getOnmouseout(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setOnmouseout(null);
         }
 
         try {
-            setOnmouseover((String) evalAttr("onmouseover",
-                                             getOnmouseover(), 
+            setOnmouseover((String) evalAttr("onmouseover", getOnmouseover(), 
                                              String.class));
         } catch (NullAttributeException ex) {
             setOnmouseover(null);
         }
 
         try {
-            setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(), String.class));
+            setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setOnmouseup(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
@@ -226,31 +276,37 @@ public class ELLinkTag extends LinkTag {
         }
 
         try {
-            setParamId((String) evalAttr("paramId", getParamId(), String.class));
+            setParamId((String) evalAttr("paramId", getParamId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setParamId(null);
         }
 
         try {
-            setParamName((String) evalAttr("paramName", getParamName(), String.class));
+            setParamName((String) evalAttr("paramName", getParamName(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setParamName(null);
         }
 
         try {
-            setParamProperty((String) evalAttr("paramProperty", getParamProperty(), String.class));
+            setParamProperty((String) evalAttr("paramProperty",
+                                               getParamProperty(),
+                                               String.class));
         } catch (NullAttributeException ex) {
             setParamProperty(null);
         }
 
         try {
-            setParamScope((String) evalAttr("paramScope", getParamScope(), String.class));
+            setParamScope((String) evalAttr("paramScope", getParamScope(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setParamScope(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
@@ -268,19 +324,22 @@ public class ELLinkTag extends LinkTag {
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(), String.class));
+            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(), String.class));
+            setStyleId((String) evalAttr("styleId", getStyleId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setStyleId(null);
         }
 
         try {
-            setTabindex((String) evalAttr("tabindex", getTabindex(), String.class));
+            setTabindex((String) evalAttr("tabindex", getTabindex(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setTabindex(null);
         }
@@ -298,7 +357,8 @@ public class ELLinkTag extends LinkTag {
         }
 
         try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKey(), String.class));
+            setTitleKey((String) evalAttr("titleKey", getTitleKey(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setTitleKey(null);
         }

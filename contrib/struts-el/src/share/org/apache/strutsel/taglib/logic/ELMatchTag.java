@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchTag.java,v 1.2 2002/09/28 04:43:05 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchTag.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,23 +65,69 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Evalute the nested body content of this tag if the specified value
+ * is a substring of the specified variable.
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.logic.MatchTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELMatchTag extends MatchTag {
 
+    /**
+     * String value of expression to be evaluated.
+     */
     private String   expr;
 
+    /**
+     * Returns the string value of the expression.  This value will be
+     * evaluated by the JSTL EL engine.
+     */
     public  String   getExpr() {
         return (expr);
     }
     
+    /**
+     * Sets the string value of the expression.  This expression will be
+     * evaluated by the JSTL EL engine.
+     */
     public  void  setExpr(String expr) {
         this.expr = expr;
     }
     
+    /**
+     * Releases state of custom tag so this instance can be reused.
+     */
+    public void release()
+    {
+        super.release();
+        setExpr(null);
+    }
+    
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
 
+    /**
+     * Evaluates the condition that is being tested by this particular tag,
+     * and returns <code>true</code> if the nested body content of this tag
+     * should be evaluated, or <code>false</code> if it should be skipped.
+     *
+     * @param desired Desired value for a true result
+     * @exception JspException if a JSP exception occurs
+     */
     protected boolean condition(boolean desired) throws JspException {
         boolean   result   = false;
         if (getExpr() != null) {
@@ -95,6 +141,18 @@ public class ELMatchTag extends MatchTag {
         return (result);
     }
     
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -104,6 +162,14 @@ public class ELMatchTag extends MatchTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
 
         try {
@@ -125,7 +191,8 @@ public class ELMatchTag extends MatchTag {
         }
 
         try {
-            setLocation((String) evalAttr("location", getLocation(), String.class));
+            setLocation((String) evalAttr("location", getLocation(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setLocation(null);
         }
@@ -137,13 +204,15 @@ public class ELMatchTag extends MatchTag {
         }
 
         try {
-            setParameter((String) evalAttr("parameter", getParameter(), String.class));
+            setParameter((String) evalAttr("parameter", getParameter(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setParameter(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }

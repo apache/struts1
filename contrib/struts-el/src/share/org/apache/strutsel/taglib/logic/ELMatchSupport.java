@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchSupport.java,v 1.2 2002/09/28 04:43:05 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchSupport.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,7 +65,32 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.util.RequestUtils;
 
+/**
+ * This class is used as a helper class for both the
+ * <code>org.apache.strutsel.taglib.logic.ELMatchTag</code> and
+ * <code>org.apache.strutsel.taglib.logic.ELNotMatchTag</code> classes.  It's
+ * <code>condition</code> method encapsulates the common logic needed to
+ * examine the <code>location</code> attribute to determine how to do the
+ * comparison.
+ */
 class ELMatchSupport {
+    /**
+     * Performs a comparison of an expression and a value, with an optional
+     * location specifier in the expression (start or end).
+     *
+     * @param desired Indication of whether the "truth" value of the comparison
+     * is whether the expression and value are equal, or not equal.
+     * @param expr Expression to test against a value.
+     * @param value Value to test against an expression.
+     * @param location if set, is "start" or "end" to indicate to look at the
+     * start or end of the expression for the value.  If null, look anywhere in
+     * the expression.
+     * @param messages <code>MessageResources</code> object to reference for
+     * error message text.
+     * @param pageContext used to save exception information, if needed.
+     * @return true if comparison result equals desired value, false
+     * otherwise.
+     */
     public static boolean condition(boolean           desired,
                                     String            expr,
                                     String            value,

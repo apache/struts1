@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.2 2002/09/28 04:43:05 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,6 +65,23 @@ import java.beans.IntrospectionException;
 import java.beans.SimpleBeanInfo;
 import java.lang.reflect.Method;
 
+/**
+ * This is the <code>BeanInfo</code> descriptor for the
+ * <code>org.apache.strutsel.taglib.bean.ELIterateTag</code> class.  It is
+ * needed to override the default mapping of custom tag attribute names to
+ * class attribute names.
+ *<p>
+ * In particular, it provides for the mapping of the custom tag attribute
+ * <code>collection</code> to the class attribute <code>collectionExpr</code>.
+ *<p>
+ * This is necessary because the base class,
+ * <code>org.apache.struts.taglib.bean.IterateTag</code> already defines a
+ * <code>collection</code> attribute of type <code>java.lang.Object</code>.
+ * The <code>org.apache.strutsel.taglib.bean.ELIterateTag</code> subclass cannot
+ * use this attribute because the custom tag attribute <code>collection</code>
+ * has to be of type <code>java.lang.String</code> in order to be evaluated by
+ * the JSTL EL engine.
+ */
 public class ELIterateTagBeanInfo extends SimpleBeanInfo
 {
     public  PropertyDescriptor[] getPropertyDescriptors()

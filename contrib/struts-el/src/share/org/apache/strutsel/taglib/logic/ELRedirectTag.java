@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTag.java,v 1.2 2002/09/28 04:43:05 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTag.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,42 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Generate a URL-encoded redirect to the specified URI.
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.logic.RedirectTag</code> which
+ * provides most of the described functionality.  This subclass allows all
+ * attribute values to be specified as expressions utilizing the JavaServer
+ * Pages Standard Library expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELRedirectTag extends RedirectTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
 
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,6 +110,14 @@ public class ELRedirectTag extends RedirectTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
             setAnchor((String) evalAttr("anchor", getAnchor(), String.class));
@@ -89,7 +126,8 @@ public class ELRedirectTag extends RedirectTag {
         }
 
         try {
-            setForward((String) evalAttr("forward", getForward(), String.class));
+            setForward((String) evalAttr("forward", getForward(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setForward(null);
         }
@@ -113,7 +151,8 @@ public class ELRedirectTag extends RedirectTag {
         }
 
         try {
-            setParamName((String) evalAttr("paramName", getParamName(), String.class));
+            setParamName((String) evalAttr("paramName", getParamName(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setParamName(null);
         }
@@ -127,13 +166,15 @@ public class ELRedirectTag extends RedirectTag {
         }
 
         try {
-            setParamScope((String) evalAttr("paramScope", getParamScope(), String.class));
+            setParamScope((String) evalAttr("paramScope", getParamScope(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setParamScope(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }

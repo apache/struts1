@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMessagesTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMessagesTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,46 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Custom tag that iterates the elements of a message collection.
+ * It defaults to retrieving the messages from <code>Action.ERROR_KEY</code>,
+ * but if the message attribute is set to true then the messages will be
+ * retrieved from <code>Action.MESSAGE_KEY</code>. This is an alternative
+ * to the default <code>ErrorsTag</code>.
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.html.MessagesTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELMessagesTag extends MessagesTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
 
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,6 +114,14 @@ public class ELMessagesTag extends MessagesTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
             setId((String) evalAttr("id", getId(), String.class));
@@ -107,7 +148,8 @@ public class ELMessagesTag extends MessagesTag {
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
@@ -125,7 +167,8 @@ public class ELMessagesTag extends MessagesTag {
         }
 
         try {
-            setMessage((String) evalAttr("message", getMessage(), String.class));
+            setMessage((String) evalAttr("message", getMessage(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setMessage(null);
         }

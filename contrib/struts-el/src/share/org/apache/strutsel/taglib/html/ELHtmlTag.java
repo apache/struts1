@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,43 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Renders an HTML <html> element with appropriate language attributes if
+ * there is a current Locale available in the user's session.
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.html.HtmlTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELHtmlTag extends HtmlTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
 
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,16 +111,26 @@ public class ELHtmlTag extends HtmlTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
-            setLocale(((Boolean) evalAttr("locale", getLocale() + "", Boolean.class)).
+            setLocale(((Boolean) evalAttr("locale", getLocale() + "",
+                                          Boolean.class)).
                       booleanValue());
         } catch (NullAttributeException ex) {
             setLocale(false);
         }
 
         try {
-            setXhtml(((Boolean) evalAttr("xhtml", getXhtml() + "", Boolean.class)).
+            setXhtml(((Boolean) evalAttr("xhtml", getXhtml() + "",
+                                         Boolean.class)).
                      booleanValue());
         } catch (NullAttributeException ex) {
             setXhtml(false);

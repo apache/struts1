@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELErrorsTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELErrorsTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,59 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Custom tag that renders error messages if an appropriate request attribute
+ * has been created.  The tag looks for a request attribute with a reserved
+ * key, and assumes that it is either a String, a String array, containing
+ * message keys to be looked up in the module's MessageResources, or
+ * an object of type <code>org.apache.struts.action.ActionErrors</code>.
+ * <p>
+ * The following optional message keys will be utilized if corresponding
+ * messages exist for them in the application resources:
+ * <ul>
+ * <li><b>errors.header</b> - If present, the corresponding message will be
+ *     rendered prior to the individual list of error messages.</li>
+ * <li><b>errors.footer</b> - If present, the corresponding message will be
+ *     rendered following the individual list of error messages.</li>
+ * <li><b>errors.prefix</b> - If present, the corresponding message will be
+ *     rendered before each individual error message.</li>
+ * <li><b>errors.suffix</b> - If present, the corresponding message will be
+ *     rendered after each individual error message.</li>
+ * </ul>
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.html.ErrorsTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELErrorsTag extends ErrorsTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return(super.doStartTag());
     }
 
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,6 +127,14 @@ public class ELErrorsTag extends ErrorsTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
             setBundle((String) evalAttr("bundle", getBundle(), String.class));
@@ -101,7 +155,8 @@ public class ELErrorsTag extends ErrorsTag {
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }

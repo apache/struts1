@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/01 04:25:50 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,13 +65,52 @@ import javax.servlet.jsp.JspException;
 import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
+/**
+ * Generate an IMG tag to the specified image URI.
+ * <p>
+ * TODO:
+ * <ul>
+ *   <li>make the <strong>alt</strong>, <strong>src</strong>, and
+ *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
+ *   <li>handle <strong>onLoad</strong>, <strong>onAbort</strong>, and
+ *       <strong>onError</strong> events (my JavaScript book is very old,
+ *       there may be more unsupported events in the past couple of IE
+ *       versions)
+ * </ul>
+ *<p>
+ * This class is a subclass of the class
+ * <code>org.apache.struts.taglib.html.ImgTag</code> which provides most of
+ * the described functionality.  This subclass allows all attribute values to
+ * be specified as expressions utilizing the JavaServer Pages Standard Library
+ * expression language.
+ *
+ * @author David M. Karr
+ * @version $Revision: 1.3 $
+ */
 public class ELImgTag extends ImgTag {
 
+    /**
+     * Process the start tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
         evaluateExpressions();
         return (super.doStartTag());
     }
     
+    /**
+     * Evaluates and returns a single attribute value, given the attribute
+     * name, attribute value, and attribute type.  It uses
+     * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
+     * it passes to this the name of the current tag, the <code>this</code>
+     * pointer, and the current pageContext.
+     *
+     * @param attrName attribute name being evaluated
+     * @param attrValue String value of attribute to be evaluated using EL
+     * @param attrType Required resulting type of attribute value
+     * @return Resulting attribute value
+     */
     private Object   evalAttr(String   attrName,
                               String   attrValue,
                               Class    attrType)
@@ -81,9 +120,18 @@ public class ELImgTag extends ImgTag {
                                            attrType, this, pageContext));
     }
     
+    /**
+     * Processes all attribute values which use the JSTL expression evaluation
+     * engine to determine their values.  If any evaluation fails with a
+     * <code>NullAttributeException</code> it will just use <code>null</code>
+     * as the value.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     private void evaluateExpressions() throws JspException {
         try {
-            setAccesskey((String) evalAttr("accessKey", getAccesskey(), String.class));
+            setAccesskey((String) evalAttr("accessKey", getAccesskey(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setAccesskey(null);
         }
@@ -131,7 +179,8 @@ public class ELImgTag extends ImgTag {
         }
 
         try {
-            setImageName((String) evalAttr("imageName", getImageName(), String.class));
+            setImageName((String) evalAttr("imageName", getImageName(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setImageName(null);
         }
@@ -190,19 +239,22 @@ public class ELImgTag extends ImgTag {
 //             setOnfocus(null);
 //         }
         try {
-            setOnkeydown((String) evalAttr("onkeydown", getOnkeydown(), String.class));
+            setOnkeydown((String) evalAttr("onkeydown", getOnkeydown(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setOnkeydown(null);
         }
 
         try {
-            setOnkeypress((String) evalAttr("onkeypress", getOnkeypress(), String.class));
+            setOnkeypress((String) evalAttr("onkeypress", getOnkeypress(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setOnkeypress(null);
         }
 
         try {
-            setOnkeyup((String) evalAttr("onkeyup", getOnkeyup(), String.class));
+            setOnkeyup((String) evalAttr("onkeyup", getOnkeyup(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setOnkeyup(null);
         }
@@ -246,37 +298,44 @@ public class ELImgTag extends ImgTag {
         }
 
         try {
-            setPageKey((String) evalAttr("pageKey", getPageKey(), String.class));
+            setPageKey((String) evalAttr("pageKey", getPageKey(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setPageKey(null);
         }
 
         try {
-            setParamId((String) evalAttr("paramId", getParamId(), String.class));
+            setParamId((String) evalAttr("paramId", getParamId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setParamId(null);
         }
 
         try {
-            setParamName((String) evalAttr("paramName", getParamName(), String.class));
+            setParamName((String) evalAttr("paramName", getParamName(),
+                                           String.class));
         } catch (NullAttributeException ex) {
             setParamName(null);
         }
 
         try {
-            setParamProperty((String) evalAttr("paramProperty", getParamProperty(), String.class));
+            setParamProperty((String) evalAttr("paramProperty",
+                                               getParamProperty(),
+                                               String.class));
         } catch (NullAttributeException ex) {
             setParamProperty(null);
         }
 
         try {
-            setParamScope((String) evalAttr("paramScope", getParamScope(), String.class));
+            setParamScope((String) evalAttr("paramScope", getParamScope(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setParamScope(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), String.class));
+            setProperty((String) evalAttr("property", getProperty(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
@@ -306,13 +365,15 @@ public class ELImgTag extends ImgTag {
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(), String.class));
+            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+                                            String.class));
         } catch (NullAttributeException ex) {
             setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(), String.class));
+            setStyleId((String) evalAttr("styleId", getStyleId(),
+                                         String.class));
         } catch (NullAttributeException ex) {
             setStyleId(null);
         }
@@ -324,7 +385,8 @@ public class ELImgTag extends ImgTag {
         }
 
         try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKey(), String.class));
+            setTitleKey((String) evalAttr("titleKey", getTitleKey(),
+                                          String.class));
         } catch (NullAttributeException ex) {
             setTitleKey(null);
         }
