@@ -220,7 +220,7 @@ public class SubmitTag extends BaseHandlerTag {
         String label = value;
         if ((label == null) && (text != null))
             label = text;
-        if ((label == null) || (label.trim().length() < 1))
+        if ((label == null) || (label.length() < 1))
             label = getDefaultValue();
 
         prepareAttribute(results, "value", label);
