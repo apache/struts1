@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.30 2004/01/01 19:27:19 husted Exp $
- * $Revision: 1.30 $
- * $Date: 2004/01/01 19:27:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.31 2004/01/01 22:39:59 husted Exp $
+ * $Revision: 1.31 $
+ * $Date: 2004/01/01 22:39:59 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.30 $ $Date: 2004/01/01 19:27:19 $
+ * @version $Revision: 1.31 $ $Date: 2004/01/01 22:39:59 $
  */
 public class WriteTag extends TagSupport {
 
@@ -316,7 +316,14 @@ public class WriteTag extends TagSupport {
     /**
      * Format value according to specified format string (as tag attribute or
      * as string from message resources) or to current user locale.
-     * 
+     *
+     * When a format string is retrieved from the message resources,
+     * <code>applyLocalizedPattern</code> is used. For more about localized
+     * patterns, see <http://tinyurl.com/33y54>. (To obtain the correct
+     * value for some characters, you may need to view the file in a
+     * hex editor and then use the Unicode escape form in the
+     * property resources file.)
+     *
      * @param valueToFormat value to process and convert to String
      * @exception JspException if a JSP exception has occurred
      */
