@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * <code>ContextWrapper</code> is meant as a base class for any Context Implementation which
  * is primarily intended for use in a subchain.  Classes which extend <code>ContextWrapper</code>
- * may implement typesafe property methods which also leave their 
+ * may implement typesafe property methods which also leave their values in the underlying context.
  */
 public class ContextWrapper implements Context {
 
