@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.37 2003/02/08 23:31:29 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.38 2003/02/08 23:41:59 craigmcc Exp $
 -->
 
 
@@ -374,7 +374,7 @@ The "form-bean" element describes a particular form bean, which is a
 
      forward         Module-relative path of the servlet or other resource that
                      will process this request, instead of the Action class
-                     specified by "type".  The specified path will be processed
+                     specified by "type".  The path WILL NOT be processed
                      through the "forwardPattern" attribute that is configured
                      on the "controller" element for this application module.
                      Exactly one of "forward", "include", or "type" must be
@@ -382,8 +382,8 @@ The "form-bean" element describes a particular form bean, which is a
 
      include         Module-relative path of the servlet or other resource that
                      will process this request, instead of the Action class
-                     specified by "type".  The specified path will be processed
-                     through the "includePattern" attribute that is configured
+                     specified by "type".  The path WILL NOT be processed
+                     through the "forwardPattern" attribute that is configured
                      on the "controller" element for this application module.
                      Exactly one of "forward", "include", or "type" must be
                      specified.
