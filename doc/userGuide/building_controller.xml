@@ -972,6 +972,79 @@ http://www.mycompany.com/myapplication/logon.do
          </pre>
       </section>
 
+     <section name="4.7.4.4 Switching Modules" href="module_config-switching">
+       <p>
+        There are two basic methods to switching from one module to another.
+         You can either use a forward (global or local) and specify the
+         contextRelative attribute with a value of true, or you can use
+         the built-in <code>org.apache.struts.actions.SwitchAction</code>.
+       </p>
+       <p>
+         Here's an example of a global forward:
+       </p>
+       <p>
+        <pre>
+           ...
+           &lt;struts-config&gt;
+             ...
+             &lt;global-forwards&gt;
+               &lt;forward name="toModuleB"
+                           contextRelative="true"
+                           path="/moduleB/index.do"
+                           redirect="true"/&gt;
+               ...
+             &lt;/global-forwards&gt;
+             ...
+           &lt;/struts-config&gt;
+         </pre>
+       </p>
+       <p>
+         You could do the same thing with a local forward declared in an
+         ActionMapping:
+       </p>
+       <p>
+        <pre>
+           ...
+           &lt;struts-config&gt;
+             ...
+             &lt;action-mappings&gt;
+               ...
+               &lt;action ... &gt;
+                 &lt;forward name="success"
+                             contextRelative="true"
+                             path="/moduleB/index.do"
+                             redirect="true"/&gt;
+              &lt;/action&gt;
+               ...
+             &lt;/action-mappingss&gt;
+             ...
+           &lt;/struts-config&gt;
+         </pre>
+       </p>
+       <p>
+         Finally, you could use <code>org.apache.struts.actions.SwitchAction
+         </code>, like so:
+       </p>
+       <p>
+             ...
+             &lt;action-mappings&gt;
+               &lt;action path="/toModule"
+                          type="org.apache.struts.actions.SwitchAction"/&gt;
+               ...
+             &lt;/action-mappingss&gt;
+             ...
+       </p>
+       <p>
+         Now, to change to ModuleB, we would use a URI like this:
+       </p>
+      <p>
+        <code>http://localhost:8080/toModule.do?prefix=moduleB&amp;page=index.do</code>
+      </p>
+      <p>
+        That's all there is to it!  Happy module-switching!
+      </p>
+      </section>
+
       <section name="4.8 Add Struts Components To Your Application" href="config_add">
 
         <p>
@@ -985,8 +1058,66 @@ http://www.mycompany.com/myapplication/logon.do
 
       <section name="4.9 Commons Logging Interface" href="logging">
       <p>
-        [:TODO:]
+        The commons-logging interface is an <i>ultra-thin</i> bridge to
+        many different logging implementations.  The intent is to remove
+        compile- and run-time dependencies on any single logging
+        implementation.  For more information about the currently-supported
+        implementations, please refer to the
+        <a href="http://jakarta.apache.org/commons/logging/api/index.html">
+        the description for the org.apache.commons.logging package</a>.
       </p>
+      <p>
+        Because Struts uses commons-logging and, therefore, includes the
+        necessary JAR files for <b>you</b> to use commons-logging, you've
+        probably had the occassional fleeting thought, <i>"Should I use
+        commons-logging?"</i> The answer (surprise!) depends on the
+        requirements for your particular project. If one of your requirements
+        is the ability to easily change logging implementations with zero
+        impact on your application, then commons-logging is a very good option.
+      </p>
+      <p>
+        <i>"Great!  What do I do to get started using commons-logging in
+        my own code?"</i>
+      </p>
+      <p>
+        Using commons-logging in your own code is very simple - all you need
+        are two imports and a declaration for a logger.  Let's take a look:
+      </p>
+      <p>
+        <pre>
+          package com.foo;
+          ...
+          import org.apache.commons.logging.Log;
+          import org.apache.commons.logging.LogFactory;
+          ...
+          public class Foo {
+            ...
+            private static Log log = LogFactory.getLog(Foo.class);
+           ...
+           public void setBar(Bar bar)
+           {
+             if (log.isTraceEnabled())
+               log.trace("Setting bar to " + bar);
+
+             this.bar = bar;
+           }
+           ...
+          }
+        </pre>
+      </p>
+      <p>
+        The general idea is to instantiate a single logger per class and to
+        use a name for the logger which reflects where it's being used.  The
+        example is constructed with the class itself.  This gives the
+        logger the name of com.foo.Foo.  Doing things this way lets you
+        easily see where the output is coming from, so you can quickly
+        pin-point problem areas.  In additon, you are able to enable/disable
+        logging in a very fine-grained way.
+       </p>
+       <p>
+        For examples of using logging in Struts classes, see the
+        Action classes in the Struts MailReader example application.
+       </p>
 
       <p>
       Next: <a href="building_apps.html">Building Applications</a>
