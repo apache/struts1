@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.136 2002/12/18 07:39:45 craigmcc Exp $
- * $Revision: 1.136 $
- * $Date: 2002/12/18 07:39:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.137 2002/12/22 05:31:14 rleland Exp $
+ * $Revision: 1.137 $
+ * $Date: 2002/12/22 05:31:14 $
  *
  * ====================================================================
  *
@@ -105,6 +105,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
+import org.apache.struts.config.ModuleConfigFactory;
 import org.apache.struts.config.impl.ModuleConfigImpl;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
@@ -301,7 +302,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.136 $ $Date: 2002/12/18 07:39:45 $
+ * @version $Revision: 1.137 $ $Date: 2002/12/22 05:31:14 $
  */
 
 public class ActionServlet
@@ -798,7 +799,8 @@ public class ActionServlet
      */
     protected ApplicationConfig getApplicationConfig
         (HttpServletRequest request) {
-        /* Since Struts 1.1 only has one implementation for
+        /* FIXME for Struts 1.2
+           Since Struts 1.1 only has one implementation for
            ModuleConfig casting is safe here. Used only for
            transition purposes !
         */
@@ -874,7 +876,8 @@ public class ActionServlet
      */
     protected ApplicationConfig initApplicationConfig
         (String prefix, String path) throws ServletException {
-        /* Since Struts 1.1 only has one implementation for
+        /* FIXME for Struts 1.2
+           Since Struts 1.1 only has one implementation for
            ModuleConfig casting is safe here. Used only for
            transition purposes !
         */
@@ -905,7 +908,9 @@ public class ActionServlet
         String mapping = null;
         try {
             //@todo & FIXME replace with a FactoryMethod
-            config = new ModuleConfigImpl(prefix);
+            ModuleConfigFactory factoryObject =
+                ModuleConfigFactory.createFactory();
+            config = factoryObject.createModuleConfig(prefix);
 
             // Support for module-wide ActionMapping type override
             mapping = getServletConfig().getInitParameter("mapping");

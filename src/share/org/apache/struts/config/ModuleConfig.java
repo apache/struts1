@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.1 2002/11/06 04:48:29 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2002/11/06 04:48:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfig.java,v 1.2 2002/12/22 05:31:14 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/22 05:31:14 $
  *
  * ====================================================================
  *
@@ -62,15 +62,15 @@ package org.apache.struts.config;
 
 /**
  * <p>The collection of static configuration information that describes a
- * Struts-based module.  Multiple modules are identified by a
- * <em>prefix</em> at the beginning of the context
+ * Struts-based module.  Multiple modules are identified by
+ * a <em>prefix</em> at the beginning of the context
  * relative portion of the request URI.  If no module prefix can be
  * matched, the default configuration (with a prefix equal to a zero-length
  * string) is selected, which is elegantly backwards compatible with the
  * previous Struts behavior that only supported one module.</p>
  *
  * @author Rob Leland
- * @version $Revision: 1.1 $ $Date: 2002/11/06 04:48:29 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/22 05:31:14 $
  * @since Struts 1.1
  */
 public interface ModuleConfig {
@@ -87,6 +87,7 @@ public interface ModuleConfig {
     ControllerConfig getControllerConfig();
     /**
      * The controller configuration object for this module.
+     * @param cc   The controller configuration object for this module.
      */
 
     void setControllerConfig(ControllerConfig cc);
@@ -100,12 +101,21 @@ public interface ModuleConfig {
     String getPrefix();
 
     /**
+     * The prefix of the context-relative portion of the request URI, used to
+     * select this configuration versus others supported by the controller
+     * servlet.  A configuration with a prefix of a zero-length String is the
+     * default configuration for this web module.
+     */
+    public void setPrefix(String prefix);
+    /**
      * The default class name to be used when creating action mapping
      * instances.
      */
     String getActionMappingClass();
     /**
      * The default class name to be used when creating action mapping
+     * instances.
+     * @param actionMappingClass  default class name to be used when creating action mapping
      * instances.
      */
 
@@ -178,7 +188,7 @@ public interface ModuleConfig {
     void addMessageResourcesConfig(MessageResourcesConfig config);
 
     /**
-     * Add a newly configured {@link PlugInConfig} instance to the set of
+     * Add a newly configured {@link org.apache.struts.config.PlugInConfig} instance to the set of
      * plug-in Actions for this module.
      *
      * @param plugInConfig The new configuration instance to be added
@@ -287,7 +297,7 @@ public interface ModuleConfig {
      *
      * @param config ActionConfig instance to be removed
      *
-     * @exception IllegalStateException if this module configuration
+     * @exception java.lang.IllegalStateException if this module configuration
      *  has been frozen
      */
     void removeActionConfig(ActionConfig config);
@@ -297,7 +307,7 @@ public interface ModuleConfig {
      *
      * @param config ActionConfig instance to be removed
      *
-     * @exception IllegalStateException if this module configuration
+     * @exception java.lang.IllegalStateException if this module configuration
      *  has been frozen
      */
     void removeExceptionConfig(ExceptionConfig config);
@@ -307,7 +317,7 @@ public interface ModuleConfig {
      *
      * @param config DataSourceConfig instance to be removed
      *
-     * @exception IllegalStateException if this module configuration
+     * @exception java.lang.IllegalStateException if this module configuration
      *  has been frozen
      */
     void removeDataSourceConfig(DataSourceConfig config);
