@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.validator.Arg;
 import org.apache.commons.validator.Field;
+import org.apache.commons.validator.Msg;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
@@ -35,6 +36,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.config.ModuleConfig;
 
 /**
  * This class helps provides some useful methods for retrieving objects
@@ -108,6 +110,41 @@ public class Resources {
     }
 
     /**
+     * Retrieve <code>MessageResources</code> for the module and bundle.
+     * @param application the servlet context
+     * @param request the servlet request
+     * @param bundle the bundle key
+     */
+    public static MessageResources getMessageResources(
+        ServletContext application,
+        HttpServletRequest request,
+        String bundle) {
+
+        if (bundle == null) {
+            bundle = Globals.MESSAGES_KEY;
+        }
+
+        MessageResources resources = (MessageResources)request.getAttribute(bundle);
+
+        if (resources == null) {
+            ModuleConfig moduleConfig = ModuleUtils.getInstance()
+                                         .getModuleConfig(request, application);
+            resources = (MessageResources)application.getAttribute(bundle + moduleConfig.getPrefix());
+        }
+
+        if (resources == null) {
+            resources = (MessageResources)application.getAttribute(bundle);
+        }
+
+        if (resources == null) {
+            throw new NullPointerException("No message resources found for bundle: " + bundle);
+        }
+
+        return resources;
+
+    }
+
+    /**
      * Get the <code>Locale</code> of the current user.
      * @param request servlet request
      * @deprecated Use RequestUtils.getUserLocale() instead.  This will be removed
@@ -170,6 +207,52 @@ public class Resources {
 
         return messages.getMessage(locale, msg, args);
     }
+    /**
+     * Gets the <code>Locale</code> sensitive value based on the key passed in.
+     * @param application the servlet context
+     * @param request the servlet request
+     * @param defaultMessages The default Message resources
+     * @param locale The locale
+     * @param va The Validator Action
+     * @param field The Validator Field
+     */
+    public static String getMessage(ServletContext application,
+                                    HttpServletRequest request,
+                                    MessageResources defaultMessages,
+                                    Locale locale,
+                                    ValidatorAction va,
+                                    Field field) {
+
+        Msg msg = field.getMessage(va.getName());
+        if (msg != null && !msg.isResource()) {
+            return msg.getKey();
+        }
+
+        String msgKey    = null;
+        String msgBundle = null;
+        MessageResources messages = defaultMessages;
+        if (msg == null) {
+           msgKey = va.getMsg();
+        } else {
+           msgKey    = msg.getKey();
+           msgBundle = msg.getBundle();
+           if (msg.getBundle() != null) {
+               messages = getMessageResources(application, request, msg.getBundle());
+           }
+        }
+
+        if (msgKey == null || msgKey.length() == 0) {
+            return "??? " + va.getName() + "." + field.getProperty() + " ???";
+        }
+
+        // Get the arguments
+        Arg[] args = field.getArgs(va.getName());
+        String[] argValues = getArgValues(application, request, messages, locale, args);
+
+        // Return the message
+        return messages.getMessage(locale, msgKey, argValues);
+
+    }
 
     /**
      * Gets the <code>ActionError</code> based on the 
@@ -230,6 +313,58 @@ public class Resources {
     }
 
     /**
+     * Gets the <code>ActionMessage</code> based on the 
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * arg objects.
+     * @param validator the Validator
+     * @param request the servlet request
+     * @param va Validator action
+     * @param field the validator Field
+     */
+    public static ActionMessage getActionMessage(
+        Validator validator,
+        HttpServletRequest request,
+        ValidatorAction va,
+        Field field) {
+
+        Msg msg = field.getMessage(va.getName());
+        if (msg != null && !msg.isResource()) {
+            return new ActionMessage(msg.getKey(), false);
+        }
+
+        String msgKey    = null;
+        String msgBundle = null;
+        if (msg == null) {
+           msgKey = va.getMsg();
+        } else {
+           msgKey    = msg.getKey();
+           msgBundle = msg.getBundle();
+        }
+
+        if (msgKey == null || msgKey.length() == 0) {
+            return new ActionMessage("??? " + va.getName() + "." + field.getProperty() + " ???", false);
+        }
+
+        ServletContext application = (ServletContext)validator.getParameterValue(SERVLET_CONTEXT_PARAM);
+        MessageResources messages = getMessageResources(application, request, msgBundle);
+        Locale locale = RequestUtils.getUserLocale(request, null);
+
+        Arg[] args = field.getArgs(va.getName());
+        String[] argValues = getArgValues(application, request, messages, locale, args);
+
+        ActionMessage actionMessage = null;
+        if (msgBundle == null) {
+            actionMessage = new ActionMessage(msgKey, argValues);
+        } else {
+            String message = messages.getMessage(locale, msgKey, argValues);
+            actionMessage = new ActionMessage(message, false);
+        }
+        return actionMessage;
+
+    }
+
+
+    /**
      * Gets the message arguments based on the current 
      * <code>ValidatorAction</code> and <code>Field</code>.
      * @param actionName action name
@@ -266,6 +401,49 @@ public class Resources {
         }
 
         return argMessages;
+    }
+
+    /**
+     * Gets the message arguments based on the current 
+     * <code>ValidatorAction</code> and <code>Field</code>.
+     * @param application the servlet context
+     * @param request the servlet request
+     * @param defaultMessages Default message resources
+     * @param locale the locale
+     * @param args The arguments for the message
+     */
+    private static String[] getArgValues(
+        ServletContext application,
+        HttpServletRequest request,
+        MessageResources defaultMessages,
+        Locale locale,
+        Arg[] args) {
+
+        if (args == null || args.length == 0) {
+            return null;
+        }
+
+        String[] values = new String[args.length];
+        for (int i = 0; i < args.length; i++) {
+            if (args[i] != null) {
+                if (args[i].isResource()) {
+
+                    MessageResources messages = defaultMessages;
+                    if (args[i].getBundle() != null) {
+                        messages = getMessageResources(application, request, args[i].getBundle());
+                    }
+                    values[i] = messages.getMessage(locale, args[i].getKey());
+
+                } else {
+
+                    values[i] = args[i].getKey();
+
+                }
+            }
+        }
+
+        return values;
+
     }
 
     /**
