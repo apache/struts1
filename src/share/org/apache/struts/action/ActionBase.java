@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.2 2000/06/15 18:00:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 18:00:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.3 2000/06/16 07:12:18 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 07:12:18 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * useful utility methods for use by Action classes.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:05 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:18 $
  */
 
 public abstract class ActionBase implements Action {
@@ -99,6 +99,9 @@ public abstract class ActionBase implements Action {
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
      *
      * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
@@ -109,11 +112,11 @@ public abstract class ActionBase implements Action {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    public abstract void perform(ActionServlet servlet,
-				 ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
+    public abstract ActionForward perform(ActionServlet servlet,
+					  ActionMapping mapping,
+					  ActionForm form,
+					  HttpServletRequest request,
+					  HttpServletResponse response)
 	throws IOException, ServletException;
 
 

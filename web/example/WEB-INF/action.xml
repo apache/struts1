@@ -3,55 +3,61 @@
 <action-mappings>
 
   <!-- Edit user registration -->
-  <action   path="/editRegistration"
-     actionClass="org.apache.struts.example.EditRegistrationAction"
-   formAttribute="registrationForm"
-       formClass="org.apache.struts.example.RegistrationForm"
-         success="/registration.jsp"
-         failure="/logon.jsp"
-  />
+  <action    path="/editRegistration"
+      actionClass="org.apache.struts.example.EditRegistrationAction"
+    formAttribute="registrationForm"
+        formClass="org.apache.struts.example.RegistrationForm">
+    <forward name="failure"    path="/logon.jsp"/>
+    <forward name="logon"      path="/logon.jsp"/>
+    <forward name="success"    path="/registration.jsp"/>
+  </action>
 
   <!-- Edit mail subscription -->
-  <action   path="/editSubscription"
-     actionClass="org.apache.struts.example.EditSubscriptionAction"
-   formAttribute="subscriptionForm"
-       formClass="org.apache.struts.example.SubscriptionForm"
-         success="/subscription.jsp"
-         failure="/mainMenu.jsp"
-  />
+  <action    path="/editSubscription"
+      actionClass="org.apache.struts.example.EditSubscriptionAction"
+    formAttribute="subscriptionForm"
+        formClass="org.apache.struts.example.SubscriptionForm">
+    <forward name="failure"    path="/mainMenu.jsp"/>
+    <forward name="logon"      path="/logon.jsp"/>
+    <forward name="success"    path="/subscription.jsp"/>
+  </action>
 
   <!-- Process a user logoff -->
-  <action   path="/logoff"
-     actionClass="org.apache.struts.example.LogoffAction"
-         success="/index.jsp"
-         failure="/index.jsp"
-  />
+  <action    path="/logoff"
+      actionClass="org.apache.struts.example.LogoffAction">
+    <forward name="failure"    path="/index.jsp"/>
+    <forward name="logon"      path="/logon.jsp"/>
+    <forward name="success"    path="/index.jsp"/>
+  </action>
 
   <!-- Process a user logon -->
-  <action   path="/logon"
-     actionClass="org.apache.struts.example.LogonAction"
-   formAttribute="logonForm"
-       formClass="org.apache.struts.example.LogonForm"
-         success="/mainMenu.jsp"
-       inputForm="/logon.jsp"
-  />
+  <action    path="/logon"
+      actionClass="org.apache.struts.example.LogonAction"
+    formAttribute="logonForm"
+        formClass="org.apache.struts.example.LogonForm"
+        inputForm="/logon.jsp">
+    <forward name="logon"      path="/logon.jsp"/>
+    <forward name="success"    path="/mainMenu.jsp"/>
+  </action>
 
   <!-- Save user registration -->
-  <action   path="/saveRegistration"
-     actionClass="org.apache.struts.example.SaveRegistrationAction"
-   formAttribute="registrationForm"
-       formClass="org.apache.struts.example.RegistrationForm"
-         success="/mainMenu.jsp"
-       inputForm="/registration.jsp"
-  />
+  <action    path="/saveRegistration"
+      actionClass="org.apache.struts.example.SaveRegistrationAction"
+    formAttribute="registrationForm"
+        formClass="org.apache.struts.example.RegistrationForm"
+        inputForm="/registration.jsp">
+    <forward name="logon"      path="/logon.jsp"/>
+    <forward name="success"    path="/mainMenu.jsp"/>
+  </action>
 
   <!-- Save mail subscription -->
-  <action   path="/saveSubscription"
-     actionClass="org.apache.struts.example.SaveSubscriptionAction"
-   formAttribute="subscriptionForm"
-       formClass="org.apache.struts.example.SubscriptionForm"
-         success="/editRegistration.do?action=Edit"
-       inputForm="/subscription.jsp"
-  />
+  <action    path="/saveSubscription"
+      actionClass="org.apache.struts.example.SaveSubscriptionAction"
+    formAttribute="subscriptionForm"
+        formClass="org.apache.struts.example.SubscriptionForm"
+        inputForm="/subscription.jsp">
+    <forward name="logon"      path="/logon.jsp"/>
+    <forward name="success"    path="/editRegistration.do?action=Edit"/>
+  </action>
 
 </action-mappings>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.2 2000/06/16 07:12:17 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 07:12:17 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import javax.servlet.http.HttpServletResponse;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 07:12:17 $
  */
 
 public interface Action {
@@ -134,6 +134,9 @@ public interface Action {
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
      *
      * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
@@ -144,11 +147,11 @@ public interface Action {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    public void perform(ActionServlet servlet,
-			ActionMapping mapping,
-			ActionForm form,
-			HttpServletRequest request,
-			HttpServletResponse response)
+    public ActionForward perform(ActionServlet servlet,
+				 ActionMapping mapping,
+				 ActionForm form,
+				 HttpServletRequest request,
+				 HttpServletResponse response)
 	throws IOException, ServletException;
 
 

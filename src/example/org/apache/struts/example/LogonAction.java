@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.3 2000/06/16 01:32:21 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 01:32:21 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.4 2000/06/16 07:12:16 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/16 07:12:16 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionBase;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
@@ -83,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 01:32:21 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/16 07:12:16 $
  */
 
 public final class LogonAction extends ActionBase {
@@ -95,6 +96,9 @@ public final class LogonAction extends ActionBase {
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
      *
      * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
@@ -105,13 +109,12 @@ public final class LogonAction extends ActionBase {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    public void perform(ActionServlet servlet,
-			ActionMapping mapping,
-			ActionForm form,
-			HttpServletRequest request,
-			HttpServletResponse response)
+    public ActionForward perform(ActionServlet servlet,
+				 ActionMapping mapping,
+				 ActionForm form,
+				 HttpServletRequest request,
+				 HttpServletResponse response)
 	throws IOException, ServletException {
-
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
@@ -137,11 +140,7 @@ public final class LogonAction extends ActionBase {
 	// Report any errors we have discovered back to the original form
 	if (errors.size() > 0) {
 	    saveErrors(request, errors);
-	    String uri = mapping.getInputForm();
-	    RequestDispatcher rd =
-	      servlet.getServletContext().getRequestDispatcher(uri);
-	    rd.forward(request, response);
-	    return;
+	    return (new ActionForward(mapping.getInputForm()));
 	}
 
 	// Save our logged-in user in the session
@@ -152,11 +151,7 @@ public final class LogonAction extends ActionBase {
 	                "' logged on in session " + session.getId());
 
 	// Forward control to the specified success URI
-	String uri = ((ApplicationMapping) mapping).getSuccess();
-	RequestDispatcher rd =
-	  servlet.getServletContext().getRequestDispatcher(uri);
-	rd.forward(request, response);
-
+	return (mapping.findForward("success"));
 
     }
 

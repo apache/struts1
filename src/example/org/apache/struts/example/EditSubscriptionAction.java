@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 01:32:21 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.3 2000/06/16 07:12:16 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 07:12:16 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionBase;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
@@ -83,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:16 $
  */
 
 public final class EditSubscriptionAction extends ActionBase {
@@ -95,6 +96,9 @@ public final class EditSubscriptionAction extends ActionBase {
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
      * response (or forward to another web component that will create it).
+     * Return an <code>ActionForward</code> instance describing where and how
+     * control should be forwarded, or <code>null</code> if the response has
+     * already been completed.
      *
      * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
@@ -105,13 +109,12 @@ public final class EditSubscriptionAction extends ActionBase {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    public void perform(ActionServlet servlet,
-			ActionMapping mapping,
-			ActionForm form,
-			HttpServletRequest request,
-			HttpServletResponse response)
+    public ActionForward perform(ActionServlet servlet,
+				 ActionMapping mapping,
+				 ActionForm form,
+				 HttpServletRequest request,
+				 HttpServletResponse response)
 	throws IOException, ServletException {
-
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
@@ -128,11 +131,7 @@ public final class EditSubscriptionAction extends ActionBase {
 	    if (servlet.getDebug() >= 1)
 	        servlet.log("EditSubscriptionAction: User is not logged on in session "
 	                    + session.getId());
-	    String uri = Constants.LOGON_PAGE;
-	    RequestDispatcher rd =
-	      servlet.getServletContext().getRequestDispatcher(uri);
-	    rd.forward(request, response);
-	    return;
+	    return (mapping.findForward("logon"));
 	}
 
 	// Identify the relevant subscription
@@ -147,11 +146,7 @@ public final class EditSubscriptionAction extends ActionBase {
 	    if (servlet.getDebug() >= 1)
 		servlet.log("EditSubscriptionAction: No subscription for user " +
 			    user.getUsername() + " and host " + host);
-	    String uri = ((ApplicationMapping) mapping).getFailure();
-	    RequestDispatcher rd =
-	      servlet.getServletContext().getRequestDispatcher(uri);
-	    rd.forward(request, response);
-	    return;
+	    return (mapping.findForward("failure"));
 	}
 	session.setAttribute(Constants.SUBSCRIPTION_KEY, subscription);
 
@@ -168,12 +163,7 @@ public final class EditSubscriptionAction extends ActionBase {
 	subform.setType(subscription.getType());
 
 	// Forward control to the edit subscription page
-	String uri = ((ApplicationMapping) mapping).getSuccess();
-	if (servlet.getDebug() >= 1)
-	    servlet.log("EditSubscriptionAction:  Forwarding to '" + uri + "'");
-	RequestDispatcher rd =
-	  servlet.getServletContext().getRequestDispatcher(uri);
-	rd.forward(request, response);
+	return (mapping.findForward("success"));
 
     }
 

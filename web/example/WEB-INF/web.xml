@@ -35,10 +35,6 @@
       <param-name>debug</param-name>
       <param-value>2</param-value>
     </init-param>
-    <init-param>
-      <param-name>mapping</param-name>
-      <param-value>org.apache.struts.example.ApplicationMapping</param-value>
-    </init-param>
     <load-on-startup>2</load-on-startup>
   </servlet>
 

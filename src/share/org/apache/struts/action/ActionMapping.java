@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.2 2000/06/16 01:32:23 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 01:32:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.3 2000/06/16 07:12:18 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 07:12:18 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:23 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:18 $
  */
 
 public interface ActionMapping {
@@ -208,6 +208,14 @@ public interface ActionMapping {
 
 
     /**
+     * Add a new <code>ActionForward</code> associated with this mapping.
+     *
+     * @param forward The ActionForward to be added
+     */
+    public void addForward(ActionForward forward);
+
+
+    /**
      * Return an initialized instance of our Action class for this mapping.
      * If instantiation fails for any reason, <code>null</code> is returned.
      */
@@ -219,6 +227,15 @@ public interface ActionMapping {
      * instantiation fails for any reason, <code>null</code> is returned.
      */
     public ActionForm createFormInstance();
+
+
+    /**
+     * Return the <code>ActionForward</code> with the specified name,
+     * if any; otherwise return <code>null</code>.
+     *
+     * @param name Name of the forward entry to be returned
+     */
+    public ActionForward findForward(String name);
 
 
 }

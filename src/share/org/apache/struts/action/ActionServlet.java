@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.7 2000/06/16 01:32:23 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/06/16 01:32:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.8 2000/06/16 07:12:18 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/06/16 07:12:18 $
  *
  * ====================================================================
  *
@@ -146,12 +146,14 @@ import org.xml.sax.SAXException;
  *     containing our configuration information.  [/WEB-INF/action.xml]
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged.  [0]
+ * <li><strong>forward</strong> - The Java class name of the ActionForward
+ *     implementation to use [org.apache.struts.action.ActionForward]
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMappingBase]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/06/16 01:32:23 $
+ * @version $Revision: 1.8 $ $Date: 2000/06/16 07:12:18 $
  */
 
 public class ActionServlet
@@ -165,6 +167,13 @@ public class ActionServlet
      * The resources object for our application resources (if any).
      */
     protected MessageResources application = null;
+
+
+    /**
+     * The Java class name of the ActionForward implementation class to use.
+     */
+    protected String forwardClass =
+	"org.apache.struts.action.ActionForward";
 
 
     /**
@@ -438,6 +447,11 @@ public class ActionServlet
 
 	String value = null;
 
+	// Initialize the name of our ActionForward implementation class
+	value = getServletConfig().getInitParameter("forward");
+	if (value != null)
+	    forwardClass = value;
+
 	// Initialize the name of our ActionMapping implementation class
 	value = getServletConfig().getInitParameter("mapping");
 	if (value != null)
@@ -465,6 +479,12 @@ public class ActionServlet
 	digester.addSetProperties("action-mappings/action");
 	digester.addSetNext("action-mappings/action", "addMapping",
 			    "org.apache.struts.action.ActionMapping");
+	digester.addObjectCreate("action-mappings/action/forward",
+				 forwardClass);
+	digester.addSetProperties("action-mappings/action/forward");
+	digester.addSetNext("action-mappings/action/forward", "addForward",
+			    "org.apache.struts.action.ActionForward");
+
 
 	// Parse the input stream to configure our mappings
 	try {
@@ -589,6 +609,7 @@ public class ActionServlet
 					 HttpServletResponse response)
 	throws IOException, ServletException {
 
+	// Identify the action class we will be using
 	Action actionInstance = mapping.createActionInstance();
 	if (actionInstance == null) {
 	    if (debug >= 1)
@@ -599,8 +620,21 @@ public class ActionServlet
 						   mapping.getPath()));
 	    return;
 	}
-	actionInstance.perform(this, mapping, formInstance,
-			       request, response);
+
+	// Perform the requested action
+	ActionForward forward =
+	    actionInstance.perform(this, mapping, formInstance,
+				   request, response);
+	if (forward != null) {
+	    String path = forward.getPath();
+	    if (forward.getRedirect())
+		response.sendRedirect(path);
+	    else {
+		RequestDispatcher rd =
+		    getServletContext().getRequestDispatcher(path);
+		rd.forward(request, response);
+	    }
+	}
 
     }
 

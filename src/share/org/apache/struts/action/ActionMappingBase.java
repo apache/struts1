@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.2 2000/06/16 01:32:23 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 01:32:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.3 2000/06/16 07:12:18 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 07:12:18 $
  *
  * ====================================================================
  *
@@ -63,13 +63,16 @@
 package org.apache.struts.action;
 
 
+import java.util.Hashtable;
+
+
 /**
  * A minimal implementation of <strong>ActionMapping</strong> that contains
  * only the required properties.  Additional properties can be provided by
  * subclassing this class and adding new "getter" and "setter" methods.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:23 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 07:12:18 $
  */
 
 public class ActionMappingBase implements ActionMapping {
@@ -123,6 +126,13 @@ public class ActionMappingBase implements ActionMapping {
      * against form instance properties (if any).
      */
     protected String formSuffix = null;
+
+
+    /**
+     * The set of <code>ActionForward</code> instances associated with
+     * this <code>ActionMapping</code>.
+     */
+    protected Hashtable forwards = new Hashtable();
 
 
     /**
@@ -299,6 +309,18 @@ public class ActionMappingBase implements ActionMapping {
 
 
     /**
+     * Add a new <code>ActionForward</code> associated with this mapping.
+     *
+     * @param forward The ActionForward to be added
+     */
+    public void addForward(ActionForward forward) {
+
+	forwards.put(forward.getName(), forward);
+
+    }
+
+
+    /**
      * Return an initialized instance of our Action class for this mapping.
      */
     public Action createActionInstance() {
@@ -335,6 +357,19 @@ public class ActionMappingBase implements ActionMapping {
 	    formInstance = null;
 	}
 	return (formInstance);
+
+    }
+
+
+    /**
+     * Return the <code>ActionForward</code> with the specified name,
+     * if any; otherwise return <code>null</code>.
+     *
+     * @param name Name of the forward entry to be returned
+     */
+    public ActionForward findForward(String name) {
+
+	return ((ActionForward) forwards.get(name));
 
     }
 
