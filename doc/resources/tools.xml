@@ -10,13 +10,31 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Integrated Development Environments">
-<p><a href="http://www.synthis.com/products/adalon/overview.jsp"><b>Adalon</b></a> - Adalon is a next generation functional design tool that fills the gaps left by today's market leading software design products. </p>
-<p>Struts Tools in <b><a href="http://www.ibm.com/software/ad/">IBM WebSphere
-Studio</a></b> - A full-featured environment for rapid Struts application
+<p>
+<a href="http://www.synthis.com/products/adalon/overview.jsp"><strong>Adalon</strong></a> - 
+Adalon is a next generation functional design tool that fills the gaps left by today's market leading 
+software design products. 
+</p>
+
+<p>
+Struts Tools in <strong><a href="http://www.ibm.com/software/ad/">IBM WebSphere
+Studio</a></strong> - A full-featured environment for rapid Struts application
 development, providing specialized and graphical editors, viewers, and wizards
 enabling you to build and manipulate Struts artifacts including JSPs, Java
 classes, configuration files and mappings, even entire projects, with
-Struts-specific validation.</p>
+Struts-specific validation.
+</p>
+
+<p>
+<a href="http://www.metanology.com/MDEforStruts.html"><strong>MDE for
+Struts</strong></a> - Graphically develop Struts 1.1 applications using industry
+standard UML. From simple class diagrams, MDE for Struts generates JSPs,
+Java classes, struts-config.xml, validator.xml, application resource files,
+ant build scripts and J2EE deployment files.  Take control of architecture
+by changing Java MetaPrograms that translate the model into code. Just write
+your business logic and deploy. Also available as an Eclipse plugin.
+</p>
+
 </section>
 
 <section name="IDE Plugins (Eclipse)">
@@ -27,7 +45,6 @@ Struts-specific validation.</p>
 <p><a href="http://sourceforge.net/projects/tinman">Tinman Project:</a> Essential Java Documentation</p>
 <p><a href="http://www.sysdeo.com/eclipse/tomcatPlugin.html">Tomcat Launcher Plugin</a> by Sysdeo</p>	
 <p><a href="http://eclipse-plugins.2y.net/eclipse/">More plugins for Eclipse ...</a></p>
-<p><a href="http://www.metanology.com/MDEforStruts.html"><b>MDE for Struts</b></a> - MDE for Struts is an Eclipse-based IDE that lets you graphically develop Struts 1.1 applications using industry standard UML.</p>
 </section>
 
 <section name="IDE Plugins (other)">
