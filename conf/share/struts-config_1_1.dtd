@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.22 2002/07/06 01:09:20 jholmes Exp $
+     $Id: struts-config_1_1.dtd,v 1.23 2002/07/06 01:12:56 jholmes Exp $
 -->
 
 
@@ -452,7 +452,7 @@
                               Silently swallowed, reserved for future use
                      If not specified, the default forwardPattern is
                      "$A$P", which is consistent with previous hard coded
-                     behavior of forwards.
+                     behavior of forwards.  [$A$P]
 
      inputForward    Set to true if you want the "input" parameter of
                      "action" elements to be the name of a local or global
@@ -488,7 +488,7 @@
                               Silently swallowed, reserved for future use
                      If not specified, the default forwardPattern is
                      "$A$P", which is consistent with previous hard coded
-                     behavior of URL evaluation for "page" attributes.
+                     behavior of URL evaluation for "page" attributes.  [$A$P]
 
      processorClass  The fully qualified Java class name of the
                      RequestProcessor class to be used.
