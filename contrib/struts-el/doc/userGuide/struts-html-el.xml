@@ -3193,8 +3193,6 @@
                   </info>
                 </attribute>
 
-               <!-- No "onchange" attribute? -->
-
                 <attribute>
                   <name>onclick</name>
                   <required>false</required>
