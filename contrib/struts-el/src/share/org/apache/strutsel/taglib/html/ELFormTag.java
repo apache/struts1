@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.13 2004/03/14 07:15:01 sraeburn Exp $
- * $Revision: 1.13 $
- * $Date: 2004/03/14 07:15:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.14 2004/07/24 02:40:53 niallp Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/07/24 02:40:53 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +34,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class ELFormTag extends FormTag {
 
@@ -98,6 +98,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String targetExpr;
+    /**
+     * Instance variable mapped to "acceptCharset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String acceptCharsetExpr;
 
     /**
      * Getter method for "action" tag attribute.
@@ -159,6 +164,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getTargetExpr() { return (targetExpr); }
+    /**
+     * Getter method for "acceptCharset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getAcceptCharsetExpr() { return (acceptCharsetExpr); }
 
     /**
      * Setter method for "action" tag attribute.
@@ -220,6 +230,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setTargetExpr(String targetExpr) { this.targetExpr = targetExpr; }
+    /**
+     * Setter method for "acceptCharset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setAcceptCharsetExpr(String acceptCharsetExpr) { this.acceptCharsetExpr = acceptCharsetExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -239,6 +254,7 @@ public class ELFormTag extends FormTag {
         setStyleClassExpr(null);
         setStyleIdExpr(null);
         setTargetExpr(null);
+        setAcceptCharsetExpr(null);
     }
     
     /**
@@ -308,6 +324,10 @@ public class ELFormTag extends FormTag {
         if ((string = EvalHelper.evalString("target", getTargetExpr(),
                                             this, pageContext)) != null)
             setTarget(string);
+
+        if ((string = EvalHelper.evalString("acceptCharset", getAcceptCharsetExpr(),
+                                            this, pageContext)) != null)
+            setAcceptCharset(string);
 
     }
 }

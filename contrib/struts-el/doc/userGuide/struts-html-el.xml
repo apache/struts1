@@ -1390,6 +1390,17 @@
         </attribute>
 
         <attribute>
+            <name>acceptCharset</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The list of character encodings for input data that the server should
+                accept.
+            </info>
+            <since>Struts 1.2.2</since>
+        </attribute>
+
+        <attribute>
             <name>enctype</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
