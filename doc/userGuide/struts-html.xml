@@ -4759,14 +4759,14 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Name of the bean (in some scope) that will return the
+                <p>Name of the bean (in some scope) that will return the
                 value of the radio tag. Usually exposed
                 by an iterator. When the idName attribute is
                 present, the valueattribute is used as the name of the
                 property on the idName bean that will return the
-                value of the radio tag for this iteration.
-                Since Struts 1.1.
+                value of the radio tag for this iteration.</p>
             </info>
+            <since>Struts 1.1</since>
         </attribute>
 
 

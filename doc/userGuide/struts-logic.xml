@@ -76,8 +76,9 @@
     </summary>
     <tagclass>org.apache.struts.taglib.logic.EmptyTag</tagclass>
     <bodycontent>JSP</bodycontent>
+    <since>Struts 1.1</since>
     <info>
-    <p>[Since 1.1] This tag evaluates its nested body content only if the specified value
+    <p>This tag evaluates its nested body content only if the specified value
     is either absent (i.e. <code>null</code>), an empty string (i.e. a
     <code>java.lang.String</code> with a length of zero) or an empty java.util.Collection
     (tested by the .isEmpty() method on the java.util.Collection interface).</p>
@@ -897,8 +898,9 @@
     </summary>
     <tagclass>org.apache.struts.taglib.logic.MessagesNotPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
+    <since>Struts 1.1</since>
     <info>
-    <p>[since 1.1] Evaluates the nested body content of this tag if 
+    <p>Evaluates the nested body content of this tag if 
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is not in request scope.  If
@@ -953,8 +955,9 @@
     </summary>
     <tagclass>org.apache.struts.taglib.logic.MessagesPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
+    <since>Struts 1.1</since>
     <info>
-    <p>[since 1.1] Evaluates the nested body content of this tag if 
+    <p>Evaluates the nested body content of this tag if 
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is in request scope.  If

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.7 2002/08/03 18:20:03 craigmcc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.8 2002/08/03 18:43:40 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -221,6 +221,13 @@
       </td></tr>
       <tr><td>
         <blockquote>
+          <xsl:if test="deprecated">
+            <p><font color="red"><strong>DEPRECATED: </strong></font>
+            <xsl:value-of select="deprecated"/></p>
+          </xsl:if>
+          <xsl:if test="since">
+            <p>Since:  <xsl:value-of select="since"/></p>
+          </xsl:if>
           <xsl:apply-templates select="info"/>
         </blockquote>
       </td></tr>
@@ -250,6 +257,13 @@
                 <xsl:value-of select="name"/>
               </td>
               <td>
+                <xsl:if test="deprecated">
+                  <p><font color="red"><strong>DEPRECATED: </strong></font>
+                  <xsl:value-of select="deprecated"/></p>
+                </xsl:if>
+                <xsl:if test="since">
+                  <p>Since:  <xsl:value-of select="since"/></p>
+                </xsl:if>
                 <xsl:apply-templates select="info"/>
                 <xsl:variable name="required">
                   <xsl:value-of select="required"/>
