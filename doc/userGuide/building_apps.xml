@@ -131,8 +131,8 @@ needs:
 <li>Deployment</li>
 <ol>
 <li>Build script should create a war file containing the files developed
-    above, along with files that make up the Struts framework. <!-- [:TODO: describe this -->
-    further, look for doc to link to]</li>
+    above, along with files that make up the Struts framework. <!-- [:TODO: describe this further, look for doc to link to] -->
+</li>
 </ol>
 </ol>
 </ol>
