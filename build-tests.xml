@@ -333,6 +333,99 @@
     </target>
 
 <!--
+        Prepare test directory structure for Tomcat 3.3 servlet engine
+-->
+    <target name="prepare.test.tomcat.33" depends="prepare.test.war" if="tomcat.home.33">
+
+        <property name="out.tomcat.33.dir" value="${out.test.dir}/servers/tomcat33"/>
+        <filter token="out.tomcat.33.dir" value="${out.tomcat.33.dir}"/>
+
+        <mkdir dir="${out.tomcat.33.dir}/webapps"/>
+        <mkdir dir="${out.tomcat.33.dir}/conf"/>
+
+       <!-- Delete old directory so new war is unzipped -->
+        <delete dir="${out.tomcat.33.dir}/webapps/test"/>
+
+        <!-- Copy war file -->
+        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.33.dir}/webapps"/>
+
+        <!-- Copy configuration files -->
+        <copy file="${conf.test.dir}/tomcat33/server.xml"
+            todir="${out.tomcat.33.dir}/conf" filtering="on"/>
+        <copy file="${conf.test.dir}/tomcat33/modules.xml"
+            todir="${out.tomcat.33.dir}/conf" filtering="on"/>
+
+    </target>
+
+<!--
+        Run unit tests on Tomcat 3.3 servlet engine
+-->
+    <target name="test.tomcat.33" depends="prepare.test.tomcat.33">
+
+        <!-- Start the servlet engine, wait for it to be started, run the
+             unit tests, stop the servlet engine, wait for it to be stopped.
+             The servlet engine is automatically stopped if the tests fail for
+             any reason.-->
+
+        <runservertests testURL="http://localhost:8080/test"
+            startTarget="start.tomcat.33"
+            stopTarget="stop.tomcat.33"
+            testTarget="run.test"/>
+
+    </target>
+
+<!--
+        Start Tomcat 3.3 servlet engine
+-->
+    <target name="start.tomcat.33">
+
+        <java classname="org.apache.tomcat.startup.Main" fork="yes">
+            <arg value="-home"/>
+            <arg value="${out.tomcat.33.dir}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.33.dir}/conf/server.xml"/>
+            <arg value="run"/>
+            <classpath>
+                <pathelement location="${java.home}/../lib/tools.jar"/>
+                <fileset dir="${tomcat.home.33}/lib">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${tomcat.home.33}/lib/common">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${tomcat.home.33}/lib/container">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+<!--
+        Stop Tomcat 3.3 servlet engine
+-->
+    <target name="stop.tomcat.33">
+
+        <java classname="org.apache.tomcat.startup.Main" fork="yes">
+            <jvmarg value="-Dtomcat.home=${out.tomcat.33.dir}"/>
+            <arg value="stop"/>
+            <classpath>
+                <pathelement location="${java.home}/../lib/tools.jar"/>
+                <fileset dir="${tomcat.home.33}/lib">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${tomcat.home.33}/lib/common">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${tomcat.home.33}/lib/container">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+<!--
         Prepare test directory structure for Tomcat 4.0 servlet engine
 -->
     <target name="prepare.test.tomcat.40" depends="prepare.test.war" if="tomcat.home.40">

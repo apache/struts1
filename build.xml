@@ -26,6 +26,7 @@
         remove.catalina   Dynamically install struts-example on Catalina (Tomcat 4.1)
         test.junit        Run non-Cactus JUnit tests
         test.tomcat.32    Run Cactus-based unit tests on Tomcat 3.2
+        test.tomcat.33    Run Cactus-based unit tests on Tomcat 3.3
         test.tomcat.40    Run Cactus-based unit tests on Tomcat 4.0
         test.tomcat.41    Run unit tests on Tomcat 4.1
         test.tomcat.all   Run Cactus-based unit tests on all servlet engines
@@ -40,6 +41,7 @@
         prepare.dist
         prepare.library
         skip.tomcat.32
+        skip.tomcat.33
         skip.tomcat.40
         skip.tomcat.41
         static.webapps
@@ -846,11 +848,11 @@
 
     <target name="test.tomcat.all"
          depends="skip.tomcat.32,test.tomcat.32,
+                  skip.tomcat.33,test.tomcat.33,
                   skip.tomcat.40,test.tomcat.40,
                   skip.tomcat.41,test.tomcat.41"
      description="Run Cactus-based unit tests on all servlet engines">
     </target>
-
 
     <target name="skip.tomcat.32" unless="tomcat.home.32">
         <echo message="*****************************************************"/>
@@ -867,6 +869,21 @@
         <ant antfile="build-tests.xml" target="test.tomcat.32"/>
     </target>
 
+
+    <target name="skip.tomcat.33" unless="tomcat.home.33">
+        <echo message="*****************************************************"/>
+        <echo message="WARNING : Property 'tomcat.home.33' has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*****************************************************"/>
+        <echo message=""/>
+    </target>
+
+    <target name="test.tomcat.33" if="tomcat.home.33"
+         depends="skip.tomcat.33,compile.library"
+     description="Run Cactus-based unit tests on Tomcat 3.2">
+        <echo message="tomcat.home.33 = ${tomcat.home.33}"/>
+        <ant antfile="build-tests.xml" target="test.tomcat.33"/>
+    </target>
 
     <target name="skip.tomcat.40" unless="tomcat.home.40">
         <echo message="*****************************************************"/>
