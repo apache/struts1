@@ -1,15 +1,60 @@
 <project name="Struts" default="compile.library" basedir=".">
 
 <!--
-        Struts main build.xml file for building everything related to Struts :
-        - core Struts library
-        - documentation
-        - Struts web apps
-        - run unit tests
-        - ...
+        Struts main build.xml file for building everything related to Struts.
 
         This script will delegate some of it's tasks to the other build*.xml
-        scripts (build-webapps.xml, build-tests.xml, ...)
+        scripts (build-webapps.xml, build-tests.xml, ...
+
+
+        Primary Targets:
+
+        * compile.libary - Compile core struts library directory components
+
+        * clean.website - Compile Website documenation
+
+        * dist - Construct complete binary distribution
+
+        * dist.webapps - Construct distributable web applications
+
+        * release - Construct complete release distributions
+
+        * deploy.catalina - Deploy these applications on Catalina
+
+        * deploy.tomcat - Deploy these applications on Tomcat
+
+
+
+        Unit Tests:
+
+        * test.tomcat.all - Run Cactus-based unit tests on all servlet engines
+
+        * test.junit - Run non-Cactus JUnit tests
+
+
+
+        Utility Targets:
+
+        * static - Prepare static directories for web applications
+
+        * compile.webapps - Compile code for web applications
+
+        * compile.javadoc - Create Javadoc documentation
+
+        * dist.libary - Construct library distributables
+
+        * install.catalina - Dynamic installation commands on Catalina (Tomcat 4.1.x required)
+
+        * clean - Clean up build and distribution directories
+
+        * all - All-in-one build target
+
+        * test.tomcat.32 - Run Cactus-based unit tests on Tomcat 3.2
+
+        * test.tomcat.40 - Run Cactus-based unit tests on Tomcat 4.0
+
+        * test.tomcat.41 - Run unit tests on Tomcat 4.1
+
 -->
 
 
@@ -19,7 +64,7 @@
         These properties MUST be set on the "ant" command line, a
         "build.properties" file in the base directory, or a
         "build.properties" file in your user home directory.
-      
+
         catalina.home                 (optional). The path to the Tomcat 4.0
                                       installation. This is required only when
                                       executing the "deploy.catalina" target.
@@ -77,7 +122,7 @@
                                       of the Jakarta Commons VALIDATOR
                                       package (version 1.0 or later).
 
-        jakarta-oro.jar        	      (required).  The path to the JAR file
+        jakarta-oro.jar               (required).  The path to the JAR file
                                       of the Jakarta ORO
                                       package (version 2.06 or later).
 
@@ -181,7 +226,7 @@
 
     <!-- Base file name for upload files -->
     <property name="upload.file.base" value="${project.name}-${project.version}"/>
-    
+
     <!-- Doc directory -->
     <property name="doc.dir" value="doc"/>
 
@@ -227,7 +272,7 @@
 
     </target>
 
-<!-- 
+<!--
         Create directories and copy files for the core struts library
 -->
     <target name="prepare.library" depends="init">
@@ -267,14 +312,14 @@
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
     </target>
 
-<!-- 
+<!--
         Prepare static directories for web applications
 -->
     <target name="static.webapps">
         <ant antfile="build-webapps.xml" target="static"/>
     </target>
 
-<!-- 
+<!--
         Compile core struts library directory components
 -->
     <target name="compile.library" depends="prepare.library"
@@ -559,7 +604,7 @@
 -->
 
 <target name="clean.website" depends="clean,compile.website"/>
-<target name="compile.website" 
+<target name="compile.website"
         description="Compile main website">
     <!-- Create the taglib documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
@@ -674,7 +719,7 @@
     <target name="test.tomcat.40" if="tomcat.home.40"
          depends="skip.tomcat.40,compile.library"
      description="Run Cactus-based unit tests on Tomcat 4.0">
-        <echo message="tomcat.home.40 = ${tomcat.home.40}"/>        
+        <echo message="tomcat.home.40 = ${tomcat.home.40}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.40"/>
     </target>
 
@@ -690,7 +735,7 @@
     <target name="test.tomcat.41" if="tomcat.home.41"
          depends="skip.tomcat.41,compile.library"
      description="Run unit tests on Tomcat 4.1">
-        <echo message="tomcat.home.41 = ${tomcat.home.41}"/>        
+        <echo message="tomcat.home.41 = ${tomcat.home.41}"/>
         <ant antfile="build-tests.xml" target="test.tomcat.41"/>
     </target>
 
