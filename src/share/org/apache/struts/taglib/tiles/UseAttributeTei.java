@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTei.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTei.java,v 1.2 2002/06/26 20:58:09 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/06/26 20:58:09 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ public final class UseAttributeTei extends TagExtraInfo {
         classname = "java.lang.Object";
       String id = data.getAttributeString("id");
       if( id == null )
-        id = data.getAttributeString("name");;
+        id = data.getAttributeString("name");
 
 	return new VariableInfo[] {
 	  new VariableInfo(id,

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.2 2002/06/26 20:58:19 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/06/26 20:58:19 $
  *
  * ====================================================================
  *
@@ -354,7 +354,7 @@ public class I18nFactorySet extends FactorySet
       // Search last postix corresponding to a config file to load.
       // First check if something is loaded for this postfix.
       // If not, try to load its config.
-    XmlDefinitionsSet lastXmlFile = null;;
+    XmlDefinitionsSet lastXmlFile = null;
     DefinitionsFactory factory = null;
     String curPostfix = null;
     int i;
