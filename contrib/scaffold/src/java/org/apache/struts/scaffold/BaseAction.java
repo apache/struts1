@@ -29,9 +29,10 @@ import org.apache.struts.taglib.html.Constants;
 
 import org.apache.struts.util.MessageResources;
 
-import org.apache.commons.scaffold.lang.ChainedException;
+import org.apache.commons.scaffold.lang.BaseException;
 import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
+import org.apache.commons.scaffold.text.ConvertUtils;
 
 
 /**
@@ -42,7 +43,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * compatibility with 1_0.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:09 $
+ * @version $Revision: 1.2 $ $Date: 2002/08/19 22:36:15 $
  */
 public class BaseAction extends Action {
 
@@ -668,9 +669,22 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
 
 
     /**
+     * Token to print before short description
+     * of an exception.
+     */
+    private static final String ERROR = " ERROR: ";
+
+    /**
+     * Token to print between short and long description
+     * of an exception.
+     */
+    private static final String DETAILS = " DETAILS: ";
+
+
+    /**
      * Process the exception handling for this Action.
      *
-     * If Exception is subclass of ChainedException, will
+     * If Exception is subclass of BaseException, will
      * report on everything in chain.
      *
      * Default behaviour should suffice for most circumstances.
@@ -684,12 +698,14 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
      * @param response The response we are creating
      * @param errors Our ActionErrors collection
      * @param exception The exception we are catching
+     * @todo Use a StringBufferOUTPUTStream to capture trace for error queue
      */
     protected void catchException(
                 ActionMapping mapping,
                 ActionForm form,
                 HttpServletRequest request,
                 HttpServletResponse response) {
+
 
             // Retrieve, log and print to error console
         Exception exception = getException(request);
@@ -705,12 +721,22 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
             // If chained, descend down chain
             // appending messages to StringBuffer
         StringBuffer sb = new StringBuffer();
-        if (exception instanceof ChainedException) {
-           ChainedException e = (ChainedException) exception;
+        if (exception instanceof BaseException) {
+           BaseException e = (BaseException) exception;
            e.getMessage(sb);
         }
         else {
-            sb.append(exception.getMessage());
+            sb.append(ConvertUtils.LINE_FEED);
+            sb.append(ERROR);
+            sb.append(exception.toString());
+            String message = exception.getMessage();
+            if (null!=message) {
+                sb.append(ConvertUtils.LINE_FEED);
+                sb.append(DETAILS);
+                sb.append(message);
+                sb.append(ConvertUtils.LINE_FEED);
+            }
+            // :TODO: Use a StringBufferOUTPUTStream to capture trace
         }
 
         errors.add(ActionErrors.GLOBAL_ERROR,
@@ -875,6 +901,7 @@ return servlet.getServletContext().getAttribute(getRemoteServerName());
         if ((isStruts_1_0()) && (isMessages(request))) {
             saveErrors(request,getMessages(request,false));
         }
+
         return findSuccess(mapping,form,request,response);
 
     } // end execute()

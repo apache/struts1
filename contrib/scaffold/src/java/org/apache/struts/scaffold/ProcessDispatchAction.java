@@ -4,6 +4,7 @@ package org.apache.struts.scaffold;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.util.Collection;
@@ -35,6 +36,7 @@ import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
 import org.apache.commons.scaffold.util.ProcessBean;
 import org.apache.commons.scaffold.util.ProcessResult;
+import org.apache.commons.scaffold.util.ProcessResultBase;
 import org.apache.commons.scaffold.util.ResultList;
 import org.apache.commons.scaffold.util.ResultListBase;
 
@@ -47,7 +49,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.2 $ $Date: 2002/08/16 22:29:24 $
+ * @version $Revision: 1.3 $ $Date: 2002/08/19 22:36:15 $
  */
 public class ProcessDispatchAction extends ProcessAction {
 
@@ -56,6 +58,19 @@ public class ProcessDispatchAction extends ProcessAction {
      * These are the same for all calls, so calculate them only once.
      */
     private static final Class types[] = { Object.class };
+
+
+    /**
+     * Error handler.
+     * Posts a message template and two parameters in a ProcessResult.
+     */
+    public void processError(ProcessResult result, String template,
+        ActionMapping mapping) {
+        result = new ProcessResultBase(this);
+        result.addMessage(template);
+        result.addMessage(mapping.getPath());
+        result.addMessage(mapping.getParameter());
+    }
 
 
 // --------------------------------------------------------- Public Methods
@@ -128,7 +143,36 @@ public class ProcessDispatchAction extends ProcessAction {
 
         Method method = dataBean.getClass().getMethod(tokens[1],types);
         Object args[] = { properties };
-        ProcessResult result = (ProcessResult) method.invoke(dataBean,args);
+
+        ProcessResult result = null;
+
+        try {
+
+            result = (ProcessResult) method.invoke(dataBean,args);
+
+        }
+
+        catch (ClassCastException e) {
+
+            processError(result,Tokens.ERROR_DISPATCH_RETURN,mapping);
+        }
+
+        catch (IllegalAccessException e) {
+
+            processError(result,Tokens.ERROR_DISPATCH_RETURN,mapping);
+        }
+
+        catch (InvocationTargetException e) {
+
+            // Rethrow the target exception if possible so that the
+            // exception handling machinery can deal with it
+            Throwable t = e.getTargetException();
+            if (t instanceof Exception) {
+                throw ((Exception) t);
+            } else {
+                processError(result,Tokens.ERROR_DISPATCH,mapping);
+            }
+        }
 
         // Execute business logic, using  map
         checkOutcome(mapping,request,result);
