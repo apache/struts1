@@ -14,9 +14,12 @@
     <forward name="absolute" path="http://jakarta.apache.org/struts" />
     <forward name="context-relative" path="/welcome.do" contextRelative="true" />
     <forward name="relative" path="/welcome.do" />
+    <forward name="logic-forward" path="/logic-forward.do" />
   </global-forwards>
   <action-mappings>
     <action path="/welcome" forward="/index.html" />
+    <action path="/bean-write-2" forward="/bean-write-2.jsp" />
+    <action path="/html-img" forward="/html-img.jsp" />
     <action path="/html-link" forward="/html-link.jsp" />
     <action path="/html-link-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
       <forward name="input" path="/html-link.do" />
@@ -33,9 +36,13 @@
     <action path="/html-setters-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
       <forward name="input" path="/html-setters.do" />
     </action>
-    <action path="/bean-write-2" forward="/bean-write-2.jsp" />
+    <action path="/logic-forward" forward="/logic-forward.jsp" />
+    <action path="/logic-forward-test-forward" forward="/logic-forward-test-forward.jsp" />
+    <action path="/logic-redirect-test-forward" forward="/logic-redirect-test-forward.jsp" />
+    <action path="/logic-redirect-test-page" forward="/logic-redirect-test-page.jsp" />
+
     <!-- Locale Action -->
-    <action path="/locale" type="org.apache.struts.webapps.validator.LocaleAction" name="localeForm" scope="request">
+    <action path="/locale" type="org.apache.struts.webapp.validator.LocaleAction" name="localeForm" scope="request">
       <forward name="success" path="/welcome.do" />
     </action>
   </action-mappings>
