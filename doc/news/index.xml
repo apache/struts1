@@ -56,8 +56,33 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
 
 <section name="Community Support" href="community">
 
+    <p>
+        More than forty developers have contributed code or documentation to Struts.
+        We've tried to list all of our volunteers on the <a href="../volunteers.html">Who We Are</a> page
+        (and apologize to anyone we missed!).
+    </p>
+
+    <p>
+        Since the release of Struts 1.1 RC1 (20/Feb/2003) through 30/May/2003,
+        there were 741 commit events to the Struts CVS
+        (which may have affected multiple files).
+    </p>
+
+    <p>
+       On 30/May/2003, the mailing list counts were:
+    </p>
+
+    <pre>
+  User    1929
+  Digest   806
+  Dev      740
+        ------
+  Total   3475
+        ======
+    </pre>
+
 <p>
-Download counts for Struts binary distributions in October 2002:
+In October 2002, the download counts for Struts binary distributions were:
 </p>
 
 <pre>
