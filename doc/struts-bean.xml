@@ -444,6 +444,10 @@
     <p>Retrieves an internationalized message for the specified locale,
     using the specified message key, and write it to the output stream.
     Up to five parametric replacements (such as "{0}") may be specified.</p>
+
+    <p>The message key may be specified directly, using the <code>key</code>
+    attribute, or indirectly, using the <code>name</code> and
+    <code>property</code> attributes to obtain it from a bean.</p>
     </info>
 
     <attribute>
@@ -505,11 +509,13 @@
 
     <attribute>
       <name>key</name>
-      <required>true</required>
+      <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The message key of the requested message, which must have
-      a corresponding value in the message resources.</p>
+      a corresponding value in the message resources. If not specified,
+      the key is obtained from the <code>name</code> and
+      <code>property</code> attributes.</p>
       </info>
     </attribute>
 
@@ -522,6 +528,42 @@
       selected <code>Locale</code> object is stored.  If not specified,
       the default name (the value of the <code>Action.LOCALE_KEY</code>
       constant string) is used.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the attribute name of the bean whose property is accessed
+      to retrieve the value specified by <code>property</code> (if
+      specified).  If <code>property</code> is not specified, the value of
+      this bean itself will be used as the message resource key.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the name of the property to be accessed on the bean
+      specified by <code>name</code>.  This value may be a simple, indexed,
+      or nested property reference expression.  If not specified, the value
+      of the bean identified by <code>name</code> will itself be used as the
+      message resource key.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the variable scope searched to retrieve the bean specified
+      by <code>name</code>.  If not specified, the default rules applied by
+      <code>PageContext.findAttribute()</code> are applied.</p>
       </info>
     </attribute>
 

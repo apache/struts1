@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.4 2001/02/20 01:48:45 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/20 01:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.5 2001/06/26 05:18:25 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/06/26 05:18:25 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/20 01:48:45 $
+ * @version $Revision: 1.5 $ $Date: 2001/06/26 05:18:25 $
  */
 
 public class MessageTag extends TagSupport {
@@ -196,6 +196,48 @@ public class MessageTag extends TagSupport {
 
 
     /**
+     * Name of the bean that contains the message key.
+     */
+    protected String name = null;
+
+    public String getName() {
+        return (this.name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    /**
+     * Name of the property to be accessed on the specified bean.
+     */
+    protected String property = null;
+
+    public String getProperty() {
+        return (this.property);
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+
+    /**
+     * The scope to be searched to retrieve the specified bean.
+     */
+    protected String scope = null;
+
+    public String getScope() {
+        return (this.scope);
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+
+    /**
      * The session scope key under which our Locale is stored.
      */
     protected String localeKey = Action.LOCALE_KEY;
@@ -227,6 +269,20 @@ public class MessageTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
+        String key = this.key;
+        if (key == null) {
+            // Look up the requested property value
+            Object value =
+                RequestUtils.lookup(pageContext, name, property, scope);
+            if (value != null && !(value instanceof String)) {
+                JspException e = new JspException
+                    (messages.getMessage("message.property", key));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
+            key = (String)value;
+        }
+
 	// Construct the optional arguments array we will be using
 	Object args[] = new Object[5];
 	args[0] = arg0;
@@ -237,7 +293,7 @@ public class MessageTag extends TagSupport {
 
 	// Retrieve the message string we are looking for
 	String message = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, this.key, args);
+                                              this.localeKey, key, args);
 	if (message == null) {
 	    JspException e = new JspException
 		(messages.getMessage("message.message", key));
@@ -267,6 +323,9 @@ public class MessageTag extends TagSupport {
 	arg4 = null;
 	bundle = Action.MESSAGES_KEY;
 	key = null;
+	name = null;
+	property = null;
+	scope = null;
 	localeKey = Action.LOCALE_KEY;
 
     }
