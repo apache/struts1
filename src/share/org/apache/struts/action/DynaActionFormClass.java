@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.5 2002/03/13 18:10:40 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/13 18:10:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.6 2002/06/29 03:14:19 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/06/29 03:14:19 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/03/13 18:10:40 $
+ * @version $Revision: 1.6 $ $Date: 2002/06/29 03:14:19 $
  * @since Struts 1.1
  */
 
@@ -121,6 +121,12 @@ public class DynaActionFormClass implements DynaClass {
      * we will use to create new bean instances.
      */
     protected Class beanClass = null;
+
+
+    /**
+     * The form bean configuration information for this class.
+     */
+    protected FormBeanConfig config = null;
 
 
     /**
@@ -206,14 +212,11 @@ public class DynaActionFormClass implements DynaClass {
 
 
     /**
-     * <p>Instantiate and return a new DynaBean instance, associated
-     * with this DynaClass.  <strong>NOTE</strong> - This operation is not
-     * supported, and throws an exception.  You should create new
-     * <code>WrapDynaBean</code> instances by calling its constructor:</p>
-     * <pre>
-     *   Object javaBean = ...;
-     *   DynaBean wrapper = new WrapDynaBean(javaBean);
-     * </pre>
+     * <p>Instantiate and return a new {@link DynaActionForm} instance,
+     * associated with this <code>DynaActionFormClass</code>.  The
+     * properties of the returned {@link DynaActionForm} will have been
+     * initialized to the default values specified in the form bean
+     * configuration information.</p>
      *
      * @exception IllegalAccessException if the Class or the appropriate
      *  constructor is not accessible
@@ -226,6 +229,10 @@ public class DynaActionFormClass implements DynaClass {
 
         DynaActionForm dynaBean = (DynaActionForm) beanClass.newInstance();
         dynaBean.setDynaActionFormClass(this);
+        FormPropertyConfig props[] = config.findFormPropertyConfigs();
+        for (int i = 0; i < props.length; i++) {
+            dynaBean.set(props[i].getName(), props[i].initial());
+        }
         return (dynaBean);
 
     }
@@ -314,6 +321,8 @@ public class DynaActionFormClass implements DynaClass {
      *  of DynaActionForm)
      */
     protected void introspect(FormBeanConfig config) {
+
+        this.config = config;
 
         // Validate the ActionFormBean implementation class
         try {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/02/23 23:53:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.5 2002/06/29 03:14:19 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/06/29 03:14:19 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import java.util.HashMap;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
+ * @version $Revision: 1.5 $ $Date: 2002/06/29 03:14:19 $
  * @since Struts 1.1
  */
 
@@ -166,11 +166,19 @@ public class FormBeanConfig implements Serializable {
      * with this application.
      *
      * @param config The new configuration instance to be added
+     *
+     * @exception IllegalArgumentException if this property name has already
+     *  been defined
      */
     public void addFormPropertyConfig(FormPropertyConfig config) {
 
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
+        if (formProperties.containsKey(config.getName())) {
+            throw new IllegalArgumentException("Property " +
+                                               config.getName() +
+                                               " already defined");
         }
         formProperties.put(config.getName(), config);
 

@@ -56,6 +56,7 @@ package org.apache.struts.action;
 
 import javax.servlet.*;
 import junit.framework.*;
+import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
@@ -119,6 +120,7 @@ public class TestDynaActionFormClass extends TestCase
      * The set of <code>FormPropertyConfig</code> objects to use when
      * creating our <code>FormBeanConfig</code>.
      */
+    // FIXME - initial values for arrays/lists/maps?
     protected static final FormPropertyConfig[] dynaProperties = {
         new FormPropertyConfig("booleanProperty", "boolean", "true"),
         new FormPropertyConfig("booleanSecond", "boolean", "true"),
@@ -156,15 +158,19 @@ public class TestDynaActionFormClass extends TestCase
             beanConfig.addFormPropertyConfig(dynaProperties[i]);
         }
 
-        // FIXME - initial values for arrays/lists/maps?
+        // Construct a corresponding DynaActionFormClass
+        dynaClass =
+            DynaActionFormClass.createDynaActionFormClass(beanConfig);
 
     }
 
 
     public void tearDown() {
 
+        dynaClass.clear();
         dynaClass = null;
         beanConfig = null;
+        DynaActionFormClass.clear();
 
     }
 
@@ -172,16 +178,106 @@ public class TestDynaActionFormClass extends TestCase
     // -------------------------------------------------- Verify FormBeanConfig
 
 
+    // Check for ability to add a property before and after freezing
+    public void testConfigAdd() {
+
+        FormPropertyConfig prop = null;
+
+        // Before freezing
+        prop = beanConfig.findFormPropertyConfig("fooProperty");
+        assertNull("fooProperty not found", prop);
+        beanConfig.addFormPropertyConfig
+            (new FormPropertyConfig("fooProperty", "java.lang.String", ""));
+        prop = beanConfig.findFormPropertyConfig("fooProperty");
+        assertNotNull("fooProperty found", prop);
+
+        // after freezing
+        beanConfig.freeze();
+        prop = beanConfig.findFormPropertyConfig("barProperty");
+        assertNull("barProperty not found", prop);
+        try {
+            beanConfig.addFormPropertyConfig
+                (new FormPropertyConfig("barProperty", "java.lang.String", ""));
+            fail("barProperty add not prevented");
+        } catch (IllegalStateException e) {
+            ; // Expected result
+        }
+
+    }
+
+
+    // Check basic FormBeanConfig properties
     public void testConfigCreate() {
 
-        // Check FormBeanConfig properties
         assertTrue("dynamic is correct", beanConfig.getDynamic());
         assertEquals("name is correct", "dynaForm", beanConfig.getName());
         assertEquals("type is correct",
                      "org.apache.struts.action.DynaActionForm",
                      beanConfig.getType());
 
-        // Check the configured FormPropertyConfig element properties
+    }
+
+
+    // Check attempts to add a duplicate property name
+    public void testConfigDuplicate() {
+
+        FormPropertyConfig prop = null;
+        assertNull("booleanProperty is found", prop);
+        try {
+            beanConfig.addFormPropertyConfig
+                (new FormPropertyConfig("booleanProperty", "java.lang.String",
+                                        ""));
+            fail("Adding duplicate property not prevented");
+        } catch (IllegalArgumentException e) {
+            ; // Expected result
+        }
+
+    }
+
+
+    // Check the configured FormPropertyConfig element initial values
+    public void testConfigInitialValues() {
+
+        assertEquals("booleanProperty value",
+                     Boolean.TRUE,
+                     beanConfig.findFormPropertyConfig("booleanProperty").initial());
+        assertEquals("booleanSecond value",
+                     Boolean.TRUE,
+                     beanConfig.findFormPropertyConfig("booleanSecond").initial());
+        assertEquals("doubleProperty value",
+                     new Double(321.0),
+                     beanConfig.findFormPropertyConfig("doubleProperty").initial());
+        assertEquals("floatProperty value",
+                     new Float((float) 123.0),
+                     beanConfig.findFormPropertyConfig("floatProperty").initial());
+        // FIXME - intArray
+        // FIXME - intIndexed
+        assertEquals("intProperty value",
+                     new Integer(123),
+                     beanConfig.findFormPropertyConfig("intProperty").initial());
+        // FIXME - listProperty
+        assertEquals("longProperty value",
+                     new Long(321),
+                     beanConfig.findFormPropertyConfig("longProperty").initial());
+        // FIXME - mappedProperty
+        // FIXME - mappedIntProperty
+        assertNull("nullProperty value",
+                   beanConfig.findFormPropertyConfig("nullProperty").initial());
+        assertEquals("shortProperty value",
+                     new Short((short) 987),
+                     beanConfig.findFormPropertyConfig("shortProperty").initial());
+        // FIXME - stringArray
+        // FIXME - stringIndexed
+        assertEquals("stringProperty value",
+                     "This is a string",
+                     beanConfig.findFormPropertyConfig("stringProperty").initial());
+
+    }
+
+
+    // Check the configured FormPropertyConfig element properties
+    public void testConfigProperties() {
+
         for (int i = 0; i < dynaProperties.length; i++) {
             FormPropertyConfig dynaProperty =
                 beanConfig.findFormPropertyConfig(dynaProperties[i].getName());
@@ -201,30 +297,52 @@ public class TestDynaActionFormClass extends TestCase
                          dynaProperty.getInitial());
         }
 
-        // Check the configured FormPropertyConfig element initial values
-        assertEquals("booleanProperty value",
-                     Boolean.TRUE,
-                     beanConfig.findFormPropertyConfig("booleanProperty").initial());
-        assertEquals("booleanSecond value",
-                     Boolean.TRUE,
-                     beanConfig.findFormPropertyConfig("booleanSecond").initial());
-        assertEquals("doubleProperty value",
-                     new Double(321.0),
-                     beanConfig.findFormPropertyConfig("doubleProperty").initial());
-
-
     }
 
 
+    // Check for ability to remove a property before and after freezing
+    public void testConfigRemove() {
 
+        FormPropertyConfig prop = null;
+
+        // Before freezing
+        prop = beanConfig.findFormPropertyConfig("booleanProperty");
+        assertNotNull("booleanProperty found", prop);
+        beanConfig.removeFormPropertyConfig(prop);
+        prop = beanConfig.findFormPropertyConfig("booleanProperty");
+        assertNull("booleanProperty not deleted", prop);
+
+        // after freezing
+        beanConfig.freeze();
+        prop = beanConfig.findFormPropertyConfig("booleanSecond");
+        assertNotNull("booleanSecond found", prop);
+        try {
+            beanConfig.removeFormPropertyConfig(prop);
+            fail("booleanSecond remove not prevented");
+        } catch (IllegalStateException e) {
+            ; // Expected result
+        }
+
+    }
 
 
     // --------------------------------------------- Create DynaActionFormClass
 
 
+    // Test basic DynaActionFormClass name and properties
     public void testClassCreate() {
 
-
+        assertEquals("name", "dynaForm", dynaClass.getName());
+        for (int i = 0; i < dynaProperties.length; i++) {
+            DynaProperty prop =
+                dynaClass.getDynaProperty(dynaProperties[i].getName());
+            assertNotNull("Found property " +
+                          dynaProperties[i].getName());
+            assertEquals("Class for property " +
+                         dynaProperties[i].getName(),
+                         dynaProperties[i].getTypeClass(),
+                         prop.getType());
+        }
 
     }
 

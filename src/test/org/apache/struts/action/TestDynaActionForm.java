@@ -116,6 +116,13 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
     public void setUp() {
 
         super.setUp();
+        try {
+            dynaForm = (DynaActionForm) dynaClass.newInstance();
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e.getMessage());
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
     }
 
@@ -132,9 +139,34 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
     // --------------------------------------------- Create New DynaActionForms
 
 
-    public void testBasicCreate() {
-    }
+    // Test basic form bean properties on creation
+    public void testBeanCreate() {
 
+        assertEquals("booleanProperty", Boolean.TRUE,
+                     (Boolean) dynaForm.get("booleanProperty"));
+        assertEquals("booleanSecond", Boolean.TRUE,
+                     (Boolean) dynaForm.get("booleanSecond"));
+        assertEquals("doubleProperty", new Double(321.0),
+                     (Double) dynaForm.get("doubleProperty"));
+        assertEquals("floatProperty", new Float((float) 123.0),
+                     (Float) dynaForm.get("floatProperty"));
+        // FIXME - intArray
+        // FIXME - intIndexed
+        // FIXME - listProperty
+        assertEquals("longProperty", new Long((long) 321),
+                     (Long) dynaForm.get("longProperty"));
+        // FIXME - mappedProperty
+        // FIXME - mappedIntProperty
+        assertEquals("nullProperty", (String) null,
+                     (String) dynaForm.get("nullProperty"));
+        assertEquals("shortProperty", new Short((short) 987),
+                     (Short) dynaForm.get("shortProperty"));
+        // FIXME - stringArray
+        // FIXME - stringIndexed
+        assertEquals("stringProperty", "This is a string",
+                     (String) dynaForm.get("stringProperty"));
+
+    }
 
 
 }
