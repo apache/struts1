@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTei.java,v 1.3 2001/02/12 01:26:57 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/12 01:26:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTei.java,v 1.4 2003/01/12 20:27:54 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/01/12 20:27:54 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.4 $ $Date: 2003/01/12 20:27:54 $
  */
 
 public class StrutsTei extends TagExtraInfo {
@@ -85,11 +85,11 @@ public class StrutsTei extends TagExtraInfo {
     public VariableInfo[] getVariableInfo(TagData data) {
 
         String type = null;
-        if (data.getAttributeString("formBean") != null)
+        if (data.getAttribute("formBean") != null)
             type = "org.apache.struts.action.ActionFormBean";
-        else if (data.getAttributeString("forward") != null)
+        else if (data.getAttribute("forward") != null)
             type = "org.apache.struts.action.ActionForward";
-        else if (data.getAttributeString("mapping") != null)
+        else if (data.getAttribute("mapping") != null)
             type = "org.apache.struts.action.ActionMapping";
         else
             type = "java.lang.Object";
