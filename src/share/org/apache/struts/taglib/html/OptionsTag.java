@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.28 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.28 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.29 2004/05/17 19:42:09 germuska Exp $
+ * $Revision: 1.29 $
+ * $Date: 2004/05/17 19:42:09 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -314,7 +314,11 @@ public class OptionsTag extends TagSupport {
     protected void addOption(StringBuffer sb, String value, String label, boolean matched) {
 
         sb.append("<option value=\"");
-        sb.append(value);
+        if (filter) {
+            sb.append(TagUtils.getInstance().filter(value));
+        } else {
+            sb.append(value);
+        }
         sb.append("\"");
         if (matched) {
             sb.append(" selected=\"selected\"");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.16 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.17 2004/05/17 19:42:09 germuska Exp $
+ * $Revision: 1.17 $
+ * $Date: 2004/05/17 19:42:09 $
  *
  * Copyright 2002-2004 The Apache Software Foundation.
  * 
@@ -47,7 +47,7 @@ import org.apache.struts.util.MessageResources;
  * <p>
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
- * @version $Revision: 1.16 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.17 $ $Date: 2004/05/17 19:42:09 $
  * @since Struts 1.1
  */
 public class OptionsCollectionTag extends TagSupport {
@@ -290,7 +290,11 @@ public class OptionsCollectionTag extends TagSupport {
     protected void addOption(StringBuffer sb, String label, String value, boolean matched) {
 
         sb.append("<option value=\"");
-        sb.append(value);
+        if (filter) {
+            sb.append(TagUtils.getInstance().filter(value));
+        } else {
+            sb.append(value);
+        }
         sb.append("\"");
         if (matched) {
             sb.append(" selected=\"selected\"");
