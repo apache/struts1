@@ -120,6 +120,7 @@ public class FacesRequestProcessor extends RequestProcessor {
             FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
         Lifecycle lifecycle = // FIXME - alternative lifecycle ids
             lf.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
+        boolean created = false;
         FacesContext context = FacesContext.getCurrentInstance();
         if (context == null) {
             if (log.isTraceEnabled()) {
@@ -148,10 +149,16 @@ public class FacesRequestProcessor extends RequestProcessor {
             log.trace("  Rendering view for '" + uri + "'");
         }
         lifecycle.render(context);
-        if (log.isTraceEnabled()) {
-            log.trace("  Marking request complete for '" + uri + "'");
+        if (created) {
+            if (log.isTraceEnabled()) {
+                log.trace("  Releasing context for '" + uri + "'");
+            }
+            context.release();
+        } else {
+            if (log.isTraceEnabled()) {
+                log.trace("  Rendering completed");
+            }
         }
-        context.responseComplete();
 
     }
 

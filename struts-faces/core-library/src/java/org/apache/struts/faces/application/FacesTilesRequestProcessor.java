@@ -120,6 +120,7 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
             FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
         Lifecycle lifecycle = // FIXME - alternative lifecycle ids
             lf.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
+        boolean created = false;
         FacesContext context = FacesContext.getCurrentInstance();
         if (context == null) {
             if (log.isTraceEnabled()) {
@@ -129,7 +130,8 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
                 FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
             HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request, uri);
             context = fcf.getFacesContext(servlet.getServletContext(), wrapper,
-                                          response, lifecycle); 
+                                          response, lifecycle);
+            created = true;
         }
 
         // Create a new view root
@@ -144,11 +146,30 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
             log.trace("  Rendering view for '" + uri + "'");
         }
         lifecycle.render(context);
-        if (log.isTraceEnabled()) {
-            log.trace("  Marking request complete for '" + uri + "'");
+        if (created) {
+            if (log.isTraceEnabled()) {
+                log.trace("  Releasing context for '" + uri + "'");
+            }
+            context.release();
+        } else {
+            if (log.isTraceEnabled()) {
+                log.trace("  Rendering completed");
+            }
         }
-        // context.responseComplete();
-        context.release();
+
+    }
+
+
+    // Override default processing to provide logging
+    protected void internalModuleRelativeForward
+        (String uri, HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
+
+        if (log.isTraceEnabled()) {
+            log.trace("Performing internal module relative forward to '" +
+                      uri + "'");
+        }
+        super.internalModuleRelativeForward(uri, request, response);
 
     }
 
