@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.6 2000/08/01 20:03:28 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/08/01 20:03:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.7 2000/08/13 03:43:39 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/08/13 03:43:39 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * useful utility methods for use by Action classes.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:28 $
+ * @version $Revision: 1.7 $ $Date: 2000/08/13 03:43:39 $
  */
 
 public abstract class ActionBase implements Action {
@@ -136,6 +136,23 @@ public abstract class ActionBase implements Action {
 	if (locale == null)
 	    locale = defaultLocale;
 	return (locale);
+
+    }
+
+
+    /**
+     * Set the user's currently selected Locale.
+     *
+     * @param request The request we are processing
+     * @param locale The user's selected Locale to be set, or null
+     *  to select the server's default Locale
+     */
+    protected void setLocale(HttpServletRequest request, Locale locale) {
+
+	HttpSession session = request.getSession();
+	if (locale == null)
+	    locale = defaultLocale;
+	session.setAttribute(LOCALE_KEY, locale);
 
     }
 
