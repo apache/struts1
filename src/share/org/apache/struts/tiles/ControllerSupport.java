@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -75,8 +75,8 @@ public class ControllerSupport implements Controller
 {
 
    /**
-    * Method associated to a tile and called when immediately before tile is included.
-    * This implementation do nothing.
+    * Method associated to a tile and called immediately before tile is included.
+    * This implementation does nothing.
     * @param tileContext Current tile context.
     * @param request Current request
     * @param response Current response

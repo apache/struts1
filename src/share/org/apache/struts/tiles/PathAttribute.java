@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/PathAttribute.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/PathAttribute.java,v 1.3 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.tiles;
 
   /**
    * Component attribute.
-   * Such attribute value represent a path used to include a JSP.
+   * Attribute value represents a path used to include a JSP.
    */
 public class PathAttribute extends UntyppedAttribute {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryException.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryException.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -63,16 +63,13 @@
 package org.apache.struts.tiles;
 
   /**
-   * Exception throw when an error occur while factory try to
+   * Exception thrown when an error occurs while the factory tries to
    * create a new instance mapper.
    */
 public class DefinitionsFactoryException extends TilesException
 {
-    /**
-     * Constructor.
-    * Create a new MapperFactoryException.
-    *
-    * @param message The error or warning message.
+  /**
+    * Constructor.
     */
   public DefinitionsFactoryException()
     {
@@ -80,10 +77,8 @@ public class DefinitionsFactoryException extends TilesException
     this.exception = null;
   }
 
-    /**
-     * Constructor.
-    * Create a new MapperFactoryException.
-    *
+  /**
+    * Constructor.
     * @param message The error or warning message.
     */
   public DefinitionsFactoryException(String message)
@@ -94,13 +89,13 @@ public class DefinitionsFactoryException extends TilesException
 
 
   /**
-    * Create a new MapperFactoryException wrapping an existing exception.
+    * Create a new <code>DefinitionsFactoryException</code> wrapping an existing exception.
     *
     * <p>The existing exception will be embedded in the new
-    * one, and its message will become the default message for
-    * the MapperFactoryException.</p>
+    * one and its message will become the default message for
+    * the DefinitionsFactoryException.</p>
     *
-    * @param e The exception to be wrapped in a SAXException.
+    * @param e The exception to be wrapped.
     */
   public DefinitionsFactoryException(Exception e)
   {
@@ -110,14 +105,13 @@ public class DefinitionsFactoryException extends TilesException
 
 
   /**
-    * Create a new MapperFactoryException from an existing exception.
+    * Create a new <code>DefinitionsFactoryException</code> from an existing exception.
     *
     * <p>The existing exception will be embedded in the new
     * one, but the new exception will have its own message.</p>
     *
     * @param message The detail message.
-    * @param e The exception to be wrapped in a MapperFactoryException.
-    * @see org.xml.sax.Parser#setLocale
+    * @param e The exception to be wrapped.
     */
   public DefinitionsFactoryException(String message, Exception e)
   {
@@ -129,7 +123,7 @@ public class DefinitionsFactoryException extends TilesException
   /**
     * Return a detail message for this exception.
     *
-    * <p>If there is a embedded exception, and if the MapperFactoryException
+    * <p>If there is a embedded exception, and if the DefinitionsFactoryException
     * has no detail message of its own, this method will return
     * the detail message from the embedded exception.</p>
     *
@@ -149,8 +143,7 @@ public class DefinitionsFactoryException extends TilesException
 
   /**
     * Return the embedded exception, if any.
-    *
-    * @return The embedded exception, or null if there is none.
+    * @return The embedded exception, or <code>null</code> if there is none.
     */
   public Exception getException ()
   {

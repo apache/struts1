@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ComponentConstants.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ComponentConstants.java,v 1.5 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.taglib.tiles;
 import org.apache.struts.Globals;
 
 /**
- * Constant used by Tiles/Components.
+ * Constants used by Tiles/Components.
  */
 public interface ComponentConstants {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.3 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -70,17 +70,17 @@ import org.apache.struts.config.ModuleConfig;
    * TilesUtil implementation for Struts 1.1 with one single factory.
    * This class contains default implementation of utilities. This implementation
    * is intended to be used with Struts 1.1.
-   * This class is used as the base class for all struts 1.1 implementation of TilesUtil.
+   * This class is used as the base class for all Struts 1.1 implementations of TilesUtil.
    */
 public class TilesUtilStrutsImpl extends TilesUtilImpl
 {
 
     /**
      * Return the <code>Class</code> object for the specified fully qualified
-     * class name, from the struts class loader.
+     * class name from the Struts class loader.
      *
-     * @param className Fully qualified class name to be loaded
-     * @return Class object
+     * @param className Fully qualified class name to be loaded.
+     * @return Class object.
      * @exception ClassNotFoundException if the class cannot be found
      */
   public Class applicationClass(String className) throws ClassNotFoundException
@@ -89,9 +89,9 @@ public class TilesUtilStrutsImpl extends TilesUtilImpl
   }
 
     /**
-     * Get definition factory for the module attached to specified moduleConfig.
-     * @servletContext Current servlet context
-     * @moduleConfig Module config of the module for which the factory is requested.
+     * Get definition factory for the module attached to the specified moduleConfig.
+     * @param servletContext Current servlet context
+     * @param moduleConfig Module config of the module for which the factory is requested.
      * @return Definitions factory or null if not found.
      */
   public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext, ModuleConfig moduleConfig)

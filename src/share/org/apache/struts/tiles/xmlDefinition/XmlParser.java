@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.9 2003/02/08 20:01:45 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/02/08 20:01:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.10 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -72,21 +72,21 @@ import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 
 /**
- *Parse an XML definitions file.
+ * Parse an XML definitions file.
  */
 public class XmlParser
 {
 
-    /** Associated digester */
+    /** Associated digester. */
   protected Digester digester;
     /**
      * Should we use a validating XML parser to read the configuration file.
-     * Default is false.
+     * Default is <code>false</code>.
      */
     protected boolean validating = false;
     /**
-     * The set of public identifiers, and corresponding resource names, for
-     * the versions of the configuration file DTDs that we know about.  There
+     * The set of public identifiers, and corresponding resource names for
+     * the versions of the configuration file DTDs we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!
      */
     protected String registrations[] = {
@@ -106,7 +106,7 @@ public class XmlParser
 
      /**
       * Constructor.
-      * Create a digester parser, and initialize syntax rules.
+      * Creates a digester parser and initializes syntax rules.
       */
   public XmlParser()
   {
@@ -145,8 +145,8 @@ public class XmlParser
 
    /**
     * Init digester for components syntax.
-    * This is an old set of rules, left for backward compatibilities.
-    *
+    * This is an old set of rules, left for backward compatibility.
+    * @param digester Digester instance to use.
     */
   private void initDigesterForComponentsDefinitionsSyntax( Digester digester )
   {
@@ -186,9 +186,9 @@ public class XmlParser
   }
 
    /**
-    * Init digester for tiles syntax.
+    * Init digester for Tiles syntax.
     * Same as components, but with first element = tiles-definitions
-    *
+    * @param digester Digester instance to use.
     */
   private void initDigesterForTilesDefinitionsSyntax( Digester digester )
   {
@@ -266,8 +266,8 @@ public class XmlParser
    /**
     * Init digester in order to parse instances definition file syntax.
     * Instances is an old name for "definition". This method is left for
-    * backward compatibility.
-    *
+    * backwards compatibility.
+    * @param digester Digester instance to use.
     */
   private void initDigesterForInstancesSyntax( Digester digester )
   {
@@ -311,7 +311,7 @@ public class XmlParser
 
    /**
     * Init digester.
-    *
+    * @param digester Digester instance to use.
     */
   protected void initDigester( Digester digester )
   {
@@ -321,11 +321,11 @@ public class XmlParser
   }
 
   /**
-   * Parse input reader and add encounter definitions to definitions set.
-   * @param in Input stream
+   * Parse input reader and add encountered definitions to definitions set.
+   * @param in Input stream.
    * @param definitions Xml Definitions set to which encountered definition are added.
-   * @throws IOException If an error occur during file parsing.
-   * @throws SAXException
+   * @throws IOException On errors during file parsing.
+   * @throws SAXException On errors parsing XML.
    */
   public void parse( InputStream in, XmlDefinitionsSet definitions ) throws IOException, SAXException
   {

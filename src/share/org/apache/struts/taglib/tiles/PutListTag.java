@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.3 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.4 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -78,15 +78,15 @@ import org.apache.struts.tiles.UntyppedAttribute;
 public class PutListTag extends TagSupport implements ComponentConstants, AddTagParent, PutListTagParent {
   
 
-    /** Name of this attribute */
+    /** Name of this attribute. */
   private String attributeName = null;
-    /** The list itself */
+    /** The list itself. */
   private List list = null;
-    /** Role attribute */
+    /** Role attribute. */
   private String role = null;
 
   /**
-   * default constructor
+   * Default constructor.
    */
   public PutListTag() {
     super();
@@ -111,7 +111,7 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
       }
 
     /**
-     * Set property
+     * Set property.
      */
   public void setName(String name)
   {
@@ -119,7 +119,7 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
   }
 
     /**
-     * Get property
+     * Get property.
      */
   public String getName()
   {
@@ -127,7 +127,7 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
   }
 
     /**
-     * Set role attribute
+     * Set role attribute.
      * @param role The role the user must be in to store content.
      */
    public void setRole(String role)
@@ -136,7 +136,7 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
    }
 
     /**
-     * Get role attribute
+     * Get role attribute.
      */
    public String getRole()
    {
@@ -152,7 +152,7 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
    }
 
     /**
-     * Set property
+     * Set property.
      */
   public void addElement(Object value){
     if(list==null)

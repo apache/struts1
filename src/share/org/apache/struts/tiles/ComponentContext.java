@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ public class ComponentContext implements Serializable
   private Map attributes;
 
   /**
-   * Component attributes.
+   * EmptyIterator over component attributes.
    */
   private static Iterator EMPTY_ITERATOR = new EmptyIterator();
 
@@ -97,7 +97,7 @@ public class ComponentContext implements Serializable
 
     /**
      * Constructor.
-     * @deprecated Use ComponentContext( Map attributes ) instead.
+     * @deprecated Use {@link #ComponentContext(Map attributes)} instead.
      */
   public ComponentContext( ComponentDefinition instance )
     {
@@ -114,7 +114,7 @@ public class ComponentContext implements Serializable
     /**
      * Constructor.
      * Create a context and set specified attributes.
-     * @param attributes Attributes to initialize context
+     * @param attributes Attributes to initialize context.
      */
   public ComponentContext( Map attributes )
     {
@@ -127,7 +127,7 @@ public class ComponentContext implements Serializable
    * Copies all of the mappings from the specified attribute map to this context.
    * New attribute mappings will replace any mappings that this context had for any of the keys
    * currently in the specified attribute map.
-   * @param attributes to add.
+   * @param newAttributes Attributes to add.
    */
   public void addAll(Map newAttributes)
   {
@@ -144,7 +144,7 @@ public class ComponentContext implements Serializable
    * Copies all of the mappings from the specified attributes map to this context.
    * New attribute mappings will be added only if they don't already exist in
    * this context.
-   * @param attributes to add.
+   * @param defaultAttributes Attributes to add.
    */
   public void addMissing(Map defaultAttributes)
   {
@@ -169,8 +169,8 @@ public class ComponentContext implements Serializable
   }
 
   /**
-   * Get an attribute from context
-   * @param name
+   * Get an attribute from context.
+   * @param name Name of the attribute.
    * @return <{Object}>
    */
   public Object getAttribute(String name)
@@ -181,8 +181,7 @@ public class ComponentContext implements Serializable
   }
 
   /**
-   * Get names of all attributes
-   * @param name
+   * Get names of all attributes.
    * @return <{Object}>
    */
   public Iterator getAttributeNames()
@@ -194,9 +193,8 @@ public class ComponentContext implements Serializable
 
   /**
    * Put a new attribute to context.
-   * @param name
-   * @param value
-   * @return void
+   * @param name Name of the attribute.
+   * @param value Value of the attribute.
    */
   public void putAttribute(String name, Object value)
   {
@@ -208,60 +206,42 @@ public class ComponentContext implements Serializable
 
     /**
      * Find object in one of the contexts.
-
      * Order : component then pageContext.findAttribute()
-
-     * @return requested bean or null if not found.
-
-     *
-
+     * @param beanName Name of the bean to find.
+     * @param pageContext Page context.
+     * @return Requested bean or <code>null</code> if not found.
      */
 
     public Object findAttribute( String beanName, PageContext pageContext)
-
       {
-
       Object attribute = getAttribute(beanName);
-
       if( attribute == null )
-
         {
-
         attribute =  pageContext.findAttribute( beanName );
-
         } // end if
-
       return attribute;
-
       }
 
     /**
-
      * Get object from requested context.
-
      * Context can be 'component'.
-
-     * @return requested bean or null if not found.
-
-     *
-
+     * @param beanName Name of the bean to find.
+     * @param scope Search scope (see {@link PageContext}).
+     * @param pageContext Page context.
+     * @return requested bean or <code>null</code> if not found.
      */
 
     public Object getAttribute( String beanName, int scope, PageContext pageContext)
-
       {
-
       if(scope == ComponentConstants.COMPONENT_SCOPE )
-
         return getAttribute(beanName);
-
-
       return  pageContext.getAttribute( beanName, scope );
-
       }
 
     /**
      * Get component context from request.
+     * @param request ServletRequest.
+     * @return ComponentContext
      */
   static public ComponentContext getContext( ServletRequest request )
     {
@@ -270,6 +250,8 @@ public class ComponentContext implements Serializable
 
     /**
      * Store component context into request.
+     * @param context ComponentContext to store.
+     * @param request Request to store ComponentContext.
      */
   static public void setContext( ComponentContext context, ServletRequest request )
     {

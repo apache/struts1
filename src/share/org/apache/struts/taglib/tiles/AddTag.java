@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/AddTag.java,v 1.2 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/AddTag.java,v 1.3 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -65,8 +65,8 @@ package org.apache.struts.taglib.tiles;
 import javax.servlet.jsp.JspException;
 
   /**
-   * Add an element to surrounding list tag.
-   * Same syntax as put.
+   * Add an element to the surrounding list tag.
+   * Same syntax as <code>&lt;put&gt;</code>.
    */
 public class AddTag extends PutTag {
 
@@ -78,18 +78,18 @@ public class AddTag extends PutTag {
   }
 
     /**
-     * Find parent tag wich must implements AttributeContainer.
+     * Call parent tag which must implement AttributeContainer.
      * @throws JspException If we can't find an appropriate enclosing tag.
      */
   protected void callParent() throws JspException
     {
-            // Get enclosing parent,
+            // Get enclosing parent
     AddTagParent enclosingParent = findEnclosingPutListTagParent();
     enclosingParent.processNestedTag( this );
     }
 
     /**
-     * Find parent tag wich must implements AttributeContainer.
+     * Find parent tag which must implement AttributeContainer.
      * @throws JspException If we can't find an appropriate enclosing tag.
      */
   protected AddTagParent findEnclosingPutListTagParent() throws JspException {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/SimpleMenuItem.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/SimpleMenuItem.java,v 1.2 2003/02/27 19:20:25 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:25 $
  *
  * ====================================================================
  *
@@ -66,8 +66,8 @@ import java.io.Serializable;
 
 
   /**
-   * A bean MenuItem implementation.
-   * Used to read menu item in definitions.
+   * A MenuItem implementation.
+   * Used to read menu items in definitions.
    */
 public class SimpleMenuItem implements MenuItem, Serializable
 {
@@ -84,7 +84,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   {
   }
     /**
-     * Set value property
+     * Set value property.
      */
   public void setValue(String value)
   {
@@ -92,7 +92,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Get value property
+     * Get value property.
      */
   public String getValue()
   {
@@ -100,7 +100,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Set link property
+     * Set link property.
      */
   public void setLink(String link)
   {
@@ -108,7 +108,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Get link property
+     * Get link property.
      */
   public String getLink()
   {
@@ -116,7 +116,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Get icon property
+     * Set icon property.
      */
   public void setIcon(String icon)
   {
@@ -124,7 +124,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Get icon property
+     * Get icon property.
      */
   public String getIcon()
   {
@@ -132,7 +132,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Get tooltip property
+     * Set tooltip property.
      */
   public void setTooltip(String tooltip)
   {
@@ -140,7 +140,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * Get tooltip property
+     * Get tooltip property.
      */
   public String getTooltip()
   {
@@ -148,7 +148,7 @@ public class SimpleMenuItem implements MenuItem, Serializable
   }
 
     /**
-     * toString method
+     * Return String representation.
      */
   public String toString()
   {

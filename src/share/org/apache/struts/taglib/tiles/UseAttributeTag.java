@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.7 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.8 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.tiles.ComponentContext;
 
 
 /**
- * Custom tag that expose a component attribute to page.
+ * Custom tag exposing a component attribute to page.
  *
  */
 
@@ -106,8 +106,8 @@ public final class UseAttributeTag extends TagSupport {
 
     /**
      * Are errors ignored. This is the property for attribute 'ignore'.
-     * Default value is false, which throw an exception.
-     * Only attribute not found errors are ignored.
+     * Default value is <code>false</code>, which throws an exception.
+     * Only "attribute not found" - errors are ignored.
      */
   protected boolean isErrorIgnored = false;
 
@@ -132,11 +132,11 @@ public final class UseAttributeTag extends TagSupport {
     }
 
     /**
-     * Return the length.
+     * Get class name.
      */
     public String getClassname() {
 
-	return (this.classname);
+  return (this.classname);
 
     }
 
@@ -144,23 +144,23 @@ public final class UseAttributeTag extends TagSupport {
     /**
      * Set the class name.
      *
-     * @param name The new class name
+     * @param name The new class name.
      */
     public void setClassname(String name) {
 
-	this.classname = name;
+  this.classname = name;
 
     }
 
     /**
-     * Set attributeName
+     * Set name.
      */
   public void setName(String value){
     this.attributeName = value;
   }
 
     /**
-     * Get property
+     * Get name.
      */
   public String getName()
   {
@@ -170,14 +170,14 @@ public final class UseAttributeTag extends TagSupport {
     /**
      * Set the scope.
      *
-     * @param scope The new ecope
+     * @param scope The new scope.
      */
     public void setScope(String scope) {
-	this.scopeName = scope;
+  this.scopeName = scope;
     }
 
     /**
-     * Get property
+     * Get scope.
      */
   public String getScope()
   {
@@ -185,7 +185,7 @@ public final class UseAttributeTag extends TagSupport {
   }
 
     /**
-     * Set ignore attribute
+     * Set ignore.
      */
   public void setIgnore(boolean ignore)
     {
@@ -193,7 +193,7 @@ public final class UseAttributeTag extends TagSupport {
     }
 
     /**
-     * Get property
+     * Get ignore.
      */
   public boolean getIgnore()
   {
@@ -220,7 +220,7 @@ public final class UseAttributeTag extends TagSupport {
       throw new JspException ( "Error - tag useAttribute : no tiles context found." );
 
     Object value = compContext.getAttribute(attributeName);
-        // Check if value exist and if we must send a runtime exception
+        // Check if value exists and if we must send a runtime exception
     if( value == null )
       if(!isErrorIgnored)
         throw new JspException ( "Error - tag useAttribute : attribute '"+ attributeName + "' not found in context. Check tag syntax" );
@@ -236,7 +236,7 @@ public final class UseAttributeTag extends TagSupport {
      else
       pageContext.setAttribute(localId, value);
 
-	    // Continue processing this page
+      // Continue processing this page
     return SKIP_BODY;
     }
 
@@ -250,7 +250,7 @@ public final class UseAttributeTag extends TagSupport {
      */
   public int doEndTag() throws JspException
     {
-	  return (EVAL_PAGE);
+    return (EVAL_PAGE);
     }
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.3 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsModulesImpl.java,v 1.4 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -78,12 +78,12 @@ import org.apache.struts.util.RequestUtils;
  * Methods in this implementation are aware of the Struts module context.
  * <br>
  * <ul>
- * <li>The method getFactory(...) return the factory for the current struts
+ * <li>The method getFactory(...) returns the factory for the current Struts
  * module.</li>
  * <li>Methods doForward() and doInclude() use their counterparts in the
  * current RequestProcessor (todo).</li>
  * <li>The method createFactory(...) creates a factory for the current module and
- * stores it under appropriate property name.</li>
+ * stores it under the appropriate property name.</li>
  * </ul>
  */
 public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
@@ -92,10 +92,10 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
      * Do a forward using request dispatcher.
      *
      * This method is used by the Tiles package anytime a forward is required.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     * @param servletContext Current servlet context
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
+     * @param servletContext Current servlet context.
      */
     public void doForward( String uri,
                            HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
@@ -109,10 +109,10 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
      * Do an include using request dispatcher.
      *
      * This method is used by the Tiles package anytime an include is required.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     * @param servletContext Current servlet context
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
+     * @param servletContext Current servlet context.
      */
     public void doInclude(String uri,
                            HttpServletRequest request, HttpServletResponse response, ServletContext servletContext)
@@ -123,9 +123,9 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
     }
 
     /**
-     * Get definition factory from appropriate servlet context.
-     * @request Current request
-     * @servletContext Current servlet context
+     * Get the definition factory from appropriate servlet context.
+     * @param request Current request.
+     * @param servletContext Current servlet context.
      * @return Definitions factory or null if not found.
      */
     public DefinitionsFactory getDefinitionsFactory( ServletRequest request, ServletContext servletContext)
@@ -135,8 +135,8 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
 
       /**
        * Get definition factory for the module attached to specified moduleConfig.
-       * @servletContext Current servlet context
-       * @moduleConfig Module config of the module for which the factory is requested.
+       * @param servletContext Current servlet context.
+       * @param moduleConfig Module config of the module for which the factory is requested.
        * @return Definitions factory or null if not found.
        */
     public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext, ModuleConfig moduleConfig)
@@ -170,10 +170,10 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
     }
 */
     /**
-     * Make definition factory accessible to Tags.
+     * Make definition factory accessible to tags.
      * Factory is stored in servlet context.
-     * @param factory Factory to make accessible
-     * @param servletContext Current servlet context
+     * @param factory Factory to be made accessible.
+     * @param servletContext Current servlet context.
      */
     protected void makeDefinitionsFactoryAccessible( DefinitionsFactory factory, ServletContext servletContext)
     {
@@ -182,10 +182,10 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
     }
 
     /**
-     * Get Tiles request processor associated to the current module.
-     * @request Current request
-     * @servletContext Current servlet context*
-     * @return The TilesRequestProcessor for current request
+     * Get Tiles RequestProcessor associated to the current module.
+     * @param request Current request.
+     * @param servletContext Current servlet context.
+     * @return The {@link TilesRequestProcessor} for the current request.
      */
   protected TilesRequestProcessor getRequestProcessor( HttpServletRequest request, ServletContext servletContext)
   {
@@ -196,11 +196,11 @@ public class TilesUtilStrutsModulesImpl extends TilesUtilStrutsImpl {
     /**
      * Get the current ModuleConfig.
      * <br>
-     * Lookup in the request, and do selectModule if not found. The side effect
-     * is that the ModuleConfig object is set in the request if it was not present.
-     * @request Current request
-     * @servletContext Current servlet context*
-     * @return The ModuleConfig for current request
+     * Lookup in the request and do selectModule if not found. The side effect
+     * is, that the ModuleConfig object is set in the request if it was not present.
+     * @param request Current request.
+     * @param servletContext Current servlet context*.
+     * @return The ModuleConfig for current request.
      */
   protected ModuleConfig getModuleConfig( HttpServletRequest request, ServletContext servletContext)
   {

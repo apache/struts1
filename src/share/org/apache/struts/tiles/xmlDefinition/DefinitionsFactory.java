@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/DefinitionsFactory.java,v 1.2 2002/11/16 07:22:55 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 07:22:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/DefinitionsFactory.java,v 1.3 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -80,16 +80,19 @@ import javax.servlet.ServletRequest;
  */
 public class DefinitionsFactory implements Serializable
 {
-     /** */
+     /** Underlying map containing all definitions.*/
    protected Map definitions;
 
    /**
      * Get a definition by its name.
+     * @param name Name of the definition.
+     * @param request Servlet request.
+     * @param servletContext Servlet context.
      * @throws DefinitionsFactoryException An error occur while getting
      * definition.
      * @throws NoSuchDefinitionException No definition found for specified name
      * Implementation can throw more accurate exception as a subclass of this
-     * exception
+     * exception.
      */
    public ComponentDefinition getDefinition(String name, ServletRequest request, ServletContext servletContext)
              throws NoSuchDefinitionException, DefinitionsFactoryException
@@ -98,8 +101,8 @@ public class DefinitionsFactory implements Serializable
    }
 
   /**
-   * Put definition in set
-   * @param definition
+   * Put definition in set.
+   * @param definition Definition to put.
    */
   public void putDefinition(ComponentDefinition definition)
   {
@@ -108,8 +111,8 @@ public class DefinitionsFactory implements Serializable
 
    /**
     * Constructor.
-    * Create a factory initialized with definitions from XmlDefinitionsSet.
-    * @param xmlDefinitions resolved definition from XmlDefinitionSet.
+    * Create a factory initialized with definitions from {@link XmlDefinitionsSet}.
+    * @param xmlDefinitions Resolved definition from XmlDefinitionSet.
     * @throws NoSuchDefinitionException If an error occurs while resolving inheritance
     */
    public DefinitionsFactory(XmlDefinitionsSet xmlDefinitions)
@@ -129,7 +132,8 @@ public class DefinitionsFactory implements Serializable
       }  // end loop
    }
     /**
-     *
+     * Return String representation.
+     * @return String representation.
      */
   public String toString()
     {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinition.java,v 1.2 2002/10/10 16:32:26 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/10 16:32:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinition.java,v 1.3 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -70,7 +70,7 @@ import org.apache.commons.logging.LogFactory;
 import java.util.Iterator;
 
 /**
-  *A definition red from an XML definitions file.
+  *A definition read from an XML definitions file.
   */
 public class XmlDefinition extends ComponentDefinition
 {
@@ -83,7 +83,7 @@ public class XmlDefinition extends ComponentDefinition
    protected static Log log = LogFactory.getLog(XmlDefinition.class);
 
   /**
-   * Use for resolving inheritance.
+   * Used for resolving inheritance.
    */
   private boolean isVisited=false;
 
@@ -99,7 +99,7 @@ public class XmlDefinition extends ComponentDefinition
    }
 
   /**
-   * add an attribute to this component
+   * Add an attribute to this component.
    *
    * @param attribute Attribute to add.
    */
@@ -109,9 +109,9 @@ public class XmlDefinition extends ComponentDefinition
     }
 
   /**
-   * Sets the value of the extend and path property.
+   * Set extends.
    *
-   * @param aPath the new value of the path property
+   * @param name Name of the extended definition.
    */
   public void setExtends(String name)
     {
@@ -119,9 +119,9 @@ public class XmlDefinition extends ComponentDefinition
     }
 
   /**
-   * Access method for the path property.
+   * Get extends.
    *
-   * @return   the current value of the path property
+   * @return Name of the extended definition.
    */
   public String getExtends()
     {
@@ -129,7 +129,7 @@ public class XmlDefinition extends ComponentDefinition
     }
 
   /**
-   * Get the value of the extendproperty.
+   * Get extends flag.
    *
    */
   public boolean isExtending( )
@@ -138,7 +138,7 @@ public class XmlDefinition extends ComponentDefinition
     }
 
   /**
-   * Get the value of the extendproperty.
+   * Set isVisited.
    *
    */
   public void setIsVisited( boolean isVisited )
@@ -150,8 +150,8 @@ public class XmlDefinition extends ComponentDefinition
      * Resolve inheritance.
      * First, resolve parent's inheritance, then set path to the parent's path.
      * Also copy attributes setted in parent, and not set in child
-     * If instance doesn't extends something, do nothing.
-     * @throws NoSuchDefinitionException If a inheritance can be solved.
+     * If instance doesn't extend anything, do nothing.
+     * @throws NoSuchDefinitionException If an inheritance can not be solved.
      */
   public void resolveInheritance( XmlDefinitionsSet definitionsSet )
     throws NoSuchDefinitionException
@@ -181,7 +181,7 @@ public class XmlDefinition extends ComponentDefinition
 
     parent.resolveInheritance( definitionsSet );
 
-      // Iterate on each parent's attribute, and add it if not defined in child.
+      // Iterate on each parent's attribute and add it if not defined in child.
     Iterator parentAttributes = parent.getAttributes().keySet().iterator();
     while( parentAttributes.hasNext() )
       {
@@ -203,7 +203,7 @@ public class XmlDefinition extends ComponentDefinition
 
   /**
    * Overload this definition with passed child.
-   * All attributes from child are copied to this definition. Previous attribute with
+   * All attributes from child are copied to this definition. Previous attributes with
    * same name are disguarded.
    * Special attribute 'path','role' and 'extends' are overloaded if defined in child.
    * @param child Child used to overload this definition.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTei.java,v 1.2 2002/06/26 20:58:09 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/06/26 20:58:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTei.java,v 1.3 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -69,7 +69,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>UseAtribute</b>
+ * Implementation of <code>TagExtraInfo</code> for the <b>UseAttribute</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
  */
@@ -89,12 +89,12 @@ public final class UseAttributeTei extends TagExtraInfo {
       if( id == null )
         id = data.getAttributeString("name");
 
-	return new VariableInfo[] {
-	  new VariableInfo(id,
-	                   classname,
-	                   true,
-	                   VariableInfo.AT_END)
-	};
+      return new VariableInfo[] {
+      new VariableInfo(id,
+                       classname,
+                       true,
+                       VariableInfo.AT_END)
+  };
 
     }
 

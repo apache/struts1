@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTagParent.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTagParent.java,v 1.2 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -65,8 +65,8 @@ package org.apache.struts.taglib.tiles;
 import javax.servlet.jsp.JspException;
 
 /**
- * Tag Class implementing this interface can contains nested PutTag.
- * This interface define a method calls by nested tag.
+ * Tag classes implementing this interface can contains nested PutTag.
+ * This interface defines a method called by nested tags.
  */
 public interface PutListTagParent {
   /**

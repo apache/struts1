@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.5 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
   private String classname = null;
 
   /**
-   * default constructor
+   * Default constructor.
    */
   public InitDefinitionsTag() {
     super();
@@ -96,21 +96,21 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
     }
 
     /**
-     * Set property
+     * Set file.
      */
   public void setFile(String name){
     this.filename = name;
   }
 
     /**
-     * Set property
+     * Set classname.
      */
   public void setClassname(String classname){
     this.classname = classname;
   }
 
     /**
-     * Do start tag
+     * Do start tag.
      */
   public int doStartTag() throws JspException
   {
@@ -135,7 +135,7 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
   }
 
     /**
-     * Set property
+     * Do end tag.
      */
   public int doEndTag() throws JspException {
     return EVAL_PAGE;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.18 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.18 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.19 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -79,24 +79,24 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Tiles Plugin used to initialize Tiles.
  * This plugin is to be used with Struts 1.1 in association with
- * TilesRequestProcessor.
+ * {@link TilesRequestProcessor}.
  * <br>
- * This plugin create one definition factory for each struts module. The definition factory
+ * This plugin creates one definition factory for each Struts-module. The definition factory
  * configuration is read first from 'web.xml' (backward compatibility), then it is
- * overloaded by values found in plugin property values.
+ * overloaded with values found in the plugin property values.
  * <br>
- * The plugin changes Struts configuration by specifying a TilesRequestProcessor as
- * request processor. If the user has also specified another request processor,
- * this later should subclass TilesRequestProcessor.
+ * The plugin changes the Struts configuration by specifying a {@link TilesRequestProcessor} as
+ * request processor. If you want to use your own RequestProcessor,
+ * it should subclass TilesRequestProcessor.
  * <br>
- * This plugin can also be used to create one single factory for all module.
- * This behavior is enable by specifying <code>moduleAware=false</code> in each
+ * This plugin can also be used to create one single factory for all modules.
+ * This behavior is enabled by specifying <code>moduleAware=false</code> in each
  * plugin properties. In this case, the definition factory
- * configuration file is read by the first tiles plugin to be initialized. The order is
+ * configuration file is read by the first Tiles plugin to be initialized. The order is
  * determined by the order of modules declaration in web.xml. The first module
  * is always the default one if it exists.
  * The plugin should be declared in each struts-config.xml file in order to
- * properly intialize the request processor.
+ * properly initialize the request processor.
  * @author Cedric Dumoulin
  * @since 1.1
  */
@@ -105,7 +105,7 @@ public class TilesPlugin implements PlugIn {
       /** Commons Logging instance. */
     protected static Log log = LogFactory.getLog(TilesPlugin.class);
 
-      /** Does the factory is module aware ? */
+      /** Is the factory module aware ? */
     protected boolean moduleAware = false;
 
       /** Tiles util implementation classname. This property can be set
@@ -123,8 +123,8 @@ public class TilesPlugin implements PlugIn {
 
     /**
      * Get the module aware flag.
-     * true: user want a single factory instance
-     * false: user want multiple factory instance (one per module with Struts)
+     * @return <code>true</code>: user wants a single factory instance,
+     * <code>false:</code> user wants multiple factory instances (one per module with Struts)
      */
     public boolean isModuleAware() {
         return moduleAware;
@@ -132,11 +132,10 @@ public class TilesPlugin implements PlugIn {
 
     /**
      * Set the module aware flag.
-     * true: user want a single factory instance
-     * false: user want multiple factory instance (one per module with Struts)
-     * This flag is meaningfull only if the property tilesUtilImplClassname is not
+     * This flag is only meaningful if the property <code>tilesUtilImplClassname</code> is not
      * set.
-     * @param moduleAware
+     * @param moduleAware <code>true</code>: user wants a single factory instance,
+     * <code>false:</code> user wants multiple factory instances (one per module with Struts)
      */
     public void setModuleAware(boolean moduleAware) {
         this.moduleAware = moduleAware;
@@ -147,12 +146,12 @@ public class TilesPlugin implements PlugIn {
      * started up.</p>
      *
      * @param servlet ActionServlet that is managing all the modules
-     *  in this web application
+     *  in this web application.
      * @param moduleConfig ModuleConfig for the module with which
-     *  this plug in is associated
+     *  this plugin is associated.
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
-     *  be successfully initialized
+     *  be successfully initialized.
      */
     public void init(ActionServlet servlet, ModuleConfig moduleConfig) throws ServletException
     {
@@ -248,11 +247,11 @@ public class TilesPlugin implements PlugIn {
      * Create FactoryConfig and initialize it from web.xml and struts-config.xml.
      *
      * @param servlet ActionServlet that is managing all the modules
-     *  in this web application
+     *  in this web application.
      * @param config ModuleConfig for the module with which
-     *  this plug in is associated
+     *  this plugin is associated.
      * @exception ServletException if this <code>PlugIn</code> cannot
-     *  be successfully initialized
+     *  be successfully initialized.
      */
   protected DefinitionsFactoryConfig readFactoryConfig( ActionServlet servlet, ModuleConfig config)
         throws ServletException
@@ -290,16 +289,16 @@ public class TilesPlugin implements PlugIn {
     }
 
     /**
-     * Find original properties set in the struts PlugInConfig object.
-     * First, need to find the index of this plugin. Then retrieve array of configs
+     * Find original properties set in the Struts PlugInConfig object.
+     * First, we need to find the index of this plugin. Then we retrieve the array of configs
      * and then the object for this plugin.
      * @param servlet ActionServlet that is managing all the modules
-     *  in this web application
+     *  in this web application.
      * @param config ModuleConfig for the module with which
-     *  this plug in is associated
+     *  this plug in is associated.
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
-     *  be successfully initialized
+     *  be successfully initialized.
      */
     protected Map findStrutsPlugInConfigProperties(ActionServlet servlet, ModuleConfig config)
         throws ServletException
@@ -308,14 +307,14 @@ public class TilesPlugin implements PlugIn {
     }
 
     /**
-     * Set RequestProcessor to appropriate Tiles RequestProcessor.
-     * First check if a requestprocessor is specified. If yes, check if it extends
-     * appropriate TilesRequestProcessor class. If no, set processor class to
-     * TilesRequestProcessor
+     * Set RequestProcessor to appropriate Tiles {@link RequestProcessor}.
+     * First, check if a RequestProcessor is specified. If yes, check if it extends
+     * the appropriate {@link TilesRequestProcessor} class. If not, set processor class to
+     * TilesRequestProcessor.
      *
      * @param config ModuleConfig for the module with which
-     *  this plug in is associated
-     * @throws ServletException If an error occur
+     *  this plugin is associated.
+     * @throws ServletException On errors.
      */
     protected void initRequestProcessorClass(ModuleConfig config) throws ServletException
     {
@@ -361,8 +360,8 @@ public class TilesPlugin implements PlugIn {
 
     /**
      * Set Tiles util implemention classname.
-     * If this property is set, the flag "moduleAware" will not be used anymore.
-     * @param tilesUtilImplClassname
+     * If this property is set, the flag <code>moduleAware</code> will not be used anymore.
+     * @param tilesUtilImplClassname Classname.
      */
   public void setTilesUtilImplClassname(String tilesUtilImplClassname)
   {
@@ -370,7 +369,7 @@ public class TilesPlugin implements PlugIn {
   }
     /**
      * Get Tiles util implemention classname.
-     * @return the classname or null if none is set.
+     * @return The classname or <code>null</code> if none is set.
      */
   public String getTilesUtilImplClassname()
   {
@@ -380,7 +379,7 @@ public class TilesPlugin implements PlugIn {
     /**
      * Method used by the ActionServlet initializing this plugin.
      * Set the plugin config object read from module config.
-     * @param plugInConfigObject
+     * @param plugInConfigObject PlugInConfig.
      */
   public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject)
   {

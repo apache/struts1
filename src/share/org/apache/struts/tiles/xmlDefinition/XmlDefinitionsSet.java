@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinitionsSet.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlDefinitionsSet.java,v 1.2 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -69,11 +69,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * A set of definitions red from XML definitions file
+ * A set of definitions read from XML definitions file.
 */
 public class XmlDefinitionsSet
 {
-    /** defined definitions */
+    /** Defined definitions. */
   protected Map definitions;
 
      /**
@@ -85,8 +85,8 @@ public class XmlDefinitionsSet
    }
 
   /**
-   * Put definition in set
-   * @param definition
+   * Put definition in set.
+   * @param definition Definition to add.
    */
   public void putDefinition(XmlDefinition definition)
   {
@@ -94,8 +94,8 @@ public class XmlDefinitionsSet
   }
 
   /**
-   * Get requested definition
-   * @param name definitio name
+   * Get requested definition.
+   * @param name Definition name.
    */
   public XmlDefinition getDefinition(String name)
   {
@@ -103,8 +103,7 @@ public class XmlDefinitionsSet
   }
 
   /**
-   * Get definitions map
-   * @param name definitio name
+   * Get definitions map.
    */
   public Map getDefinitions()
   {
@@ -116,7 +115,7 @@ public class XmlDefinitionsSet
    */
   public void resolveInheritances() throws NoSuchDefinitionException
     {
-      // Walks throw all definitions and resolve individual inheritance
+      // Walk through all definitions and resolve individual inheritance
     Iterator i = definitions.values().iterator();
     while( i.hasNext() )
       {
@@ -126,11 +125,10 @@ public class XmlDefinitionsSet
     }
 
   /**
-   * add definitions from specified child definitions set.
-   * For each definition in child, look if it exist in this set.
+   * Add definitions from specified child definitions set.
+   * For each definition in child, look if it already exists in this set.
    * If not, add it, if yes, overload parent's definition with child definition.
-   * @param child definition used to overload this object.
-   * @return void
+   * @param child Definition used to overload this object.
    */
   public void extend( XmlDefinitionsSet child )
     {
@@ -150,7 +148,7 @@ public class XmlDefinitionsSet
       } // end loop
     }
     /**
-     *
+     * Get String representation.
      */
   public String toString()
     {

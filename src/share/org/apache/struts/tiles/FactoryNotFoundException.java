@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/FactoryNotFoundException.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/FactoryNotFoundException.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -63,7 +63,7 @@
 package org.apache.struts.tiles;
 
   /**
-   * Exception throw when instances factory is not found.
+   * Exception thrown when definitions factory is not found.
    */
 public class FactoryNotFoundException extends DefinitionsFactoryException
 {
@@ -76,6 +76,7 @@ public class FactoryNotFoundException extends DefinitionsFactoryException
     }
     /**
      * Constructor.
+     * @param msg Message.
      */
   public FactoryNotFoundException( String msg )
     {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/UntyppedAttribute.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/UntyppedAttribute.java,v 1.2 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -68,13 +68,14 @@ package org.apache.struts.tiles;
 public class UntyppedAttribute implements AttributeDefinition {
 
     /**
-     * Role associated to this attribute
+     * Role associated to this attribute.
      */
   protected String role;
   protected Object value;
 
     /**
      * Constructor.
+     * @param value Object to store.
      */
   public UntyppedAttribute( Object value )
     {
@@ -83,6 +84,8 @@ public class UntyppedAttribute implements AttributeDefinition {
 
     /**
      * Constructor.
+     * @param value Object to store.
+     * @param role Asociated role.
      */
   public UntyppedAttribute( Object value, String role )
     {
@@ -100,6 +103,7 @@ public class UntyppedAttribute implements AttributeDefinition {
 
     /**
      * Set role.
+     * @param role Associated role.
      */
   public void setRole(String role)
     {
@@ -116,6 +120,7 @@ public class UntyppedAttribute implements AttributeDefinition {
 
   /**
    * Set value.
+   * @param value New value.
    */
   public void setValue( Object value )
     {

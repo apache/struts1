@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.5 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.6 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -71,11 +71,11 @@ import org.apache.struts.tiles.UntyppedAttribute;
 
 /**
  * This is the tag handler for &lt;tiles:definition&gt;, which defines
- * a tiles (or template / component). Definition is put in requested context, and can be
+ * a tiles (or template / component). Definition is put in requested context and can be
  * used in &lt;tiles:insert&gt.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.6 $ $Date: 2003/02/27 19:18:55 $
  */
 public class DefinitionTag extends DefinitionTagSupport implements PutTagParent, PutListTagParent
 {
@@ -83,15 +83,15 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
   //protected static Log log = LogFactory.getLog(DefinitionTag.class);
 
     /* JSP Tag attributes */
-		/**
-		 * Definition identifier.
-		 */
-		private String id;
+    /**
+     * Definition identifier.
+     */
+    private String id;
 
-		/**
-		 * Scope into which definition will be saved.
-		 */
-		private String scope;
+    /**
+     * Scope into which definition will be saved.
+     */
+    private String scope;
 
     /**
      * Extends attribute value.
@@ -104,31 +104,30 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
      */
     private ComponentDefinition definition;
 
-		/**
-		 * Reset member values for reuse. This method calls super.release(),
-		 * which invokes TagSupport.release(), which typically does nothing.
-		 */
-		public void release()
-		{
+    /**
+     * Reset member values for reuse. This method calls super.release(),
+     * which invokes TagSupport.release(), which typically does nothing.
+     */
+    public void release()
+    {
     super.release();
     id = null;
     page = null;
     scope = null;
     role = null;
     extendsDefinition = null;
-		}
+    }
 
-		/**
-		 * Reset member values for reuse. This method calls super.release(),
-		 * which invokes TagSupport.release(), which typically does nothing.
-		 */
-		protected void releaseInternal()
-		{
+    /**
+     * Release internal references.
+     */
+    protected void releaseInternal()
+    {
     definition = null;
-		}
+    }
 
    /**
-     * This method is a convenience for others tags for
+     * This method is a convenience for other tags for
      * putting content into the tile definition.
      * Content is already typed by caller.
      */
@@ -139,16 +138,16 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
 
     /**
      * Process nested &lg;put&gt; tag.
-     * Method calls by nested &lg;put&gt; tags.
+     * Method is called from nested &lg;put&gt; tags.
      * Nested list is added to current list.
-     * If role is defined, nested attribute is wrapped into an untypped definition
+     * If role is defined, nested attribute is wrapped into an untyped definition
      * containing attribute value and role.
      */
   public void processNestedTag(PutTag nestedTag) throws JspException
    {
       // Get real value and check role
       // If role is set, add it in attribute definition if any.
-      // If no attribute definition, create untyped one, and set role.
+      // If no attribute definition, create untyped one and set role.
     Object attributeValue = nestedTag.getRealValue();
     AttributeDefinition def;
 
@@ -171,16 +170,16 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
 
     /**
      * Process nested &lg;putList&gt; tag.
-     * Method calls by nested &lg;putList&gt; tags.
+     * Method is called from nested &lg;putList&gt; tags.
      * Nested list is added to current list.
-     * If role is defined, nested attribute is wrapped into an untypped definition
+     * If role is defined, nested attribute is wrapped into an untyped definition
      * containing attribute value and role.
      */
   public void processNestedTag(PutListTag nestedTag) throws JspException
    {
       // Get real value and check role
       // If role is set, add it in attribute definition if any.
-      // If no attribute definition, create untyped one, and set role.
+      // If no attribute definition, create untyped one and set role.
     Object attributeValue = nestedTag.getList();
 
     if( nestedTag.getRole() != null )
@@ -196,49 +195,44 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
     putAttribute(nestedTag.getName(), attributeValue);
     }
 
-		/**
-		 * Access method for the id property.
-		 *
-		 * @return   the current value of the id property
-		 */
-		public String getId()
-		{
+    /**
+     * Get the ID.
+     * @return ID
+     */
+    public String getId()
+    {
     return id;
     }
 
-		/**
-		 * Sets the value of the id property.
-		 *
-		 * @param id the new value of the id property
-		 */
-		public void setId(String id)
-		{
+    /**
+     * Set the ID.
+     * @param id New ID.
+     */
+    public void setId(String id)
+    {
     this.id = id;
-		}
-
-		/**
-		 * Access method for the scope property.
-		 *
-		 * @return   the current value of the scope property
-		 */
-		public String getScope()
-		{
-		return scope;
     }
 
-		/**
-		 * Sets the value of the scope property.
-		 *
-		 * @param aScope the new value of the scope property
-		 */
-		public void setScope(String aScope)
-		{
+    /**
+     * Get the scope.
+     * @return Scope.
+     */
+    public String getScope()
+    {
+    return scope;
+    }
+
+    /**
+     * Set the scope.
+     * @param aScope Scope.
+     */
+    public void setScope(String aScope)
+    {
     scope = aScope;
     }
 
   /**
-   * Sets the value of the extends property.
-   *
+   * Set <code>extends</code> (parent) definition name.
    * @param definitionName Name of parent definition.
    */
   public void setExtends(String definitionName)
@@ -247,8 +241,8 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
     }
 
   /**
-   * Access method for the extends property.
-   * @return   the current value of the extends property
+   * Get <code>extends</code> (parent) definition name.
+   * @return Name of parent definition.
    */
   public String getExtends()
     {
@@ -256,8 +250,9 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
     }
 
    /**
-     * Process the start tag by creating a new definition.
-     */
+    * Process the start tag by creating a new definition.
+    * @throws JspException On errors processing tag.
+    */
    public int doStartTag() throws JspException
    {
      // Do we extend a definition ?
@@ -283,7 +278,8 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
    }
 
    /**
-     * Process the end tag by puting the definition in appropriate context.
+     * Process the end tag by putting the definition in appropriate context.
+     * @throws JspException On errors processing tag.
      */
    public int doEndTag() throws JspException
    {

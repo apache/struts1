@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.5 2002/12/27 10:35:19 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/27 10:35:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/I18nFactorySet.java,v 1.6 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -89,32 +89,32 @@ import org.xml.sax.SAXException;
 /**
  * Definitions factory.
  * This implementation allows to have a set of definition factories.
- * There is a main factory, and one factory for each file associated to a Locale.
+ * There is a main factory and one factory for each file associated to a Locale.
  *
- * To retrieve a definition, we first search for the appropriate factory, using
- * Locale found in jsp session context. If no factory is found, use the
- * default one. Then, we ask the factory for the definition.
+ * To retrieve a definition, we first search for the appropriate factory using
+ * the Locale found in session context. If no factory is found, use the
+ * default one. Then we ask the factory for the definition.
  *
  * A definition factory file is loaded using main filename extended with locale code
- * (ex : templateDefinitions_fr.xml). If no file is found under this name, use default file.
+ * (ex : <code>templateDefinitions_fr.xml</code>). If no file is found under this name, use default file.
 */
 public class I18nFactorySet extends FactorySet
 {
     /** Commons Logging instance. */
   protected static Log log = LogFactory.getLog(I18nFactorySet.class);
 
-    /** Config file parameter name
+    /** Config file parameter name.
      * @deprecated use DEFINITIONS_CONFIG_PARAMETER_NAME
      */
   public static final String INSTANCES_CONFIG_PARAMETER_NAME = "instances-config";
 
     /** Default name */
   //public static final String DEFAULT_DEFINITIONS_FILE_NAME = "/WEB-INF/componentDefinitions.xml";
-    /** Config file parameter name */
+    /** Config file parameter name. */
   public static final String DEFINITIONS_CONFIG_PARAMETER_NAME = "definitions-config";
-    /** Config file parameter name */
+    /** Config file parameter name. */
   public static final String PARSER_DETAILS_PARAMETER_NAME = "definitions-parser-details";
-    /** Config file parameter name */
+    /** Config file parameter name. */
   public static final String PARSER_VALIDATE_PARAMETER_NAME = "definitions-parser-validate";
 
     /** Possible definition filenames. */
@@ -129,21 +129,21 @@ public class I18nFactorySet extends FactorySet
      *  xmlParser is created each time we need it ;-(.
      */
   protected transient XmlParser xmlParser;
-    /** Does we want validating parser. Default is false.
-     *  Can be set from servlet config file
+    /** Do we want validating parser. Default is <code>false</code>.
+     *  Can be set from servlet config file.
      */
   protected boolean isValidatingParser = false;
     /** Parser detail level. Default is 0.
-     *  Can be set from servlet config file
+     *  Can be set from servlet config file.
      */
   protected int parserDetailLevel = 0;
 
     /**
      * Maximum length of one branch of the resource search path tree.
-     * Used in getBundle.
+     * Used in getBundle().
      */
   private static final int MAX_BUNDLES_SEARCHED = 2;
-    /** Default filenames extension */
+    /** Default filenames extension. */
   public static final String FILENAME_EXTENSION = ".xml";
 
     /** Names of files containing instances descriptions. */
@@ -154,7 +154,7 @@ public class I18nFactorySet extends FactorySet
 
     /**
      * Parameterless Constructor.
-     * Method initFactory must be called prior to any use of created factory.
+     * Method {@link #initFactory} must be called prior to any use of created factory.
      */
   public I18nFactorySet()
   {
@@ -163,6 +163,8 @@ public class I18nFactorySet extends FactorySet
     /**
      * Constructor.
      * Init the factory by reading appropriate configuration file.
+     * @param servletContext Servlet context.
+     * @param properties Map containing all properties.
      * @throws FactoryNotFoundException Can't find factory configuration file.
      */
   public I18nFactorySet(ServletContext servletContext, Map properties )
@@ -281,8 +283,7 @@ public class I18nFactorySet extends FactorySet
    /**
     * Create default factory .
    * Create InstancesMapper for specified Locale.
-   * If creation failed, use default mapper, and output an error message in
-   * console.
+   * If creation failes, use default mapper and log error message.
    * @param servletContext Current servlet context. Used to open file.
    * @return Created default definition factory.
    * @throws DefinitionsFactoryException If an error occur while creating factory.
@@ -311,8 +312,8 @@ public class I18nFactorySet extends FactorySet
    * Extract key that will be used to get the sub factory.
    * @param name Name of requested definition
    * @param request Current servlet request.
-   * @param servletContext Current servlet context
-   * @return the key or null if not found.
+   * @param servletContext Current servlet context.
+   * @return the key or <code>null</code> if not found.
    */
   protected Object getDefinitionsFactoryKey(String name, ServletRequest request, ServletContext servletContext)
   {
@@ -334,9 +335,10 @@ public class I18nFactorySet extends FactorySet
 
    /**
     * Create a factory for specified key.
-   * If creation failed, return default factory, and output an error message in
-   * console.
-   * @param key
+   * If creation failes, return default factory and log an error message.
+   * @param key The key.
+   * @param request Servlet request.
+   * @param servletContext Servlet context.
    * @return Definition factory for specified key.
    * @throws DefinitionsFactoryException If an error occur while creating factory.
     */
@@ -404,10 +406,11 @@ public class I18nFactorySet extends FactorySet
 
     /**
      * Calculate the postixes along the search path from the base bundle to the
-     * bundle specified by baseName and locale.
-     * Method copied from java.util.ResourceBundle
-     * @param baseName the base bundle name
-     * @param locale the locale
+     * bundle specified by <code>baseName</code> and <code>locale</code>.
+     * Method copied from java.util.ResourceBundle.
+     * @param baseName The base bundle name.
+     * @param locale The locale.
+     * @return List containing postixes.
      */
     private static List calculatePostixes(String baseName, Locale locale) {
         final List result = new ArrayList(MAX_BUNDLES_SEARCHED);
@@ -443,12 +446,12 @@ public class I18nFactorySet extends FactorySet
      * the XmlDefinitionsSet description.
      * The XmlDefinitionsSet description is created only if there is a definition file.
      * Inheritance is not resolved in the returned XmlDefinitionsSet.
-     * If no description file can be opened, and no definiion set is provided, return null.
+     * If no description file can be opened and no definiion set is provided, return <code>null</code>.
      * @param postfix Postfix to add to each description file.
-     * @param xmlDefinitions Definitions set to which definitions will be added. If null, a definitions
+     * @param xmlDefinitions Definitions set to which definitions will be added. If <code>null</code>, a definitions
      * set is created on request.
      * @return XmlDefinitionsSet The definitions set created or passed as parameter.
-     * @throws DefinitionsFactoryException If an error happen during file parsing.
+     * @throws DefinitionsFactoryException On errors parsing file.
      */
   private XmlDefinitionsSet parseXmlFiles( ServletContext servletContext, String postfix, XmlDefinitionsSet xmlDefinitions )
       throws DefinitionsFactoryException
@@ -469,14 +472,14 @@ public class I18nFactorySet extends FactorySet
     /**
      * Parse specified xml file and add definition to specified definitions set.
      * This method is used to load several description files in one instances list.
-     * If filename exist and definition set is null, create a new set. Otherwise, return
-     * passed definition set (can be null).
+     * If filename exists and definition set is <code>null</code>, create a new set. Otherwise, return
+     * passed definition set (can be <code>null</code>).
      * @param servletContext Current servlet context. Used to open file.
      * @param filename Name of file to parse.
      * @param xmlDefinitions Definitions set to which definitions will be added. If null, a definitions
      * set is created on request.
      * @return XmlDefinitionsSet The definitions set created or passed as parameter.
-     * @throws DefinitionsFactoryException If an error happen during file parsing.
+     * @throws DefinitionsFactoryException On errors parsing file.
      */
   private XmlDefinitionsSet parseXmlFile( ServletContext servletContext, String filename , XmlDefinitionsSet xmlDefinitions)
       throws DefinitionsFactoryException
@@ -547,6 +550,9 @@ public class I18nFactorySet extends FactorySet
      * Concat postfix to the name. Take care of existing filename extension.
      * Transform the given name "name.ext" to have "name" + "postfix" + "ext".
      * If there is no ext, return "name" + "postfix".
+     * @param name Filename.
+     * @param postfix Postfix to add.
+     * @return Concatenated filename.
      */
   private String concatPostfix( String name, String postfix )
     {
@@ -566,14 +572,15 @@ public class I18nFactorySet extends FactorySet
     }
 
     /**
-     *
+     * Return String representation.
+     * @return String representation.
      */
   public String toString()
     {
     StringBuffer buff = new StringBuffer( "I18nFactorySet : \n" );
     buff.append( "--- default factory ---\n" );
     buff.append( defaultFactory.toString() );
-    buff.append( "\n--- others factories ---\n" );
+    buff.append( "\n--- other factories ---\n" );
     Iterator i = factories.values().iterator();
     while( i.hasNext() )
       {

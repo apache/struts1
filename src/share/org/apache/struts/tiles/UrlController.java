@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UrlController.java,v 1.2 2002/11/05 14:08:56 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/05 14:08:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UrlController.java,v 1.3 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -71,18 +71,19 @@ import javax.servlet.RequestDispatcher;
 
 
 /**
- * Tiles controller  including a local URL
+ * Tiles controller including a local URL.
  * @author Cedric Dumoulin
  */
 
 public class UrlController implements Controller
 {
 
-    /** Url associated to this controller */
+    /** Url associated with this controller. */
   protected String url;
 
     /**
      * Constructor.
+     * @param url URL.
      */
   public UrlController( String url )
   {
@@ -91,12 +92,12 @@ public class UrlController implements Controller
 
    /**
     * Method associated to a tile and called immediately before the tile is included.
-    * This implementation call a Struts Action. No servlet is set by this method.
+    * This implementation calls a Struts Action. No servlet is set by this method.
     *
     * @param tileContext Current tile context.
-    * @param request Current request
-    * @param response Current response
-    * @param servletContext Current servlet context
+    * @param request Current request.
+    * @param response Current response.
+    * @param servletContext Current servlet context.
     */
    public void perform(ComponentContext tileContext,
                        HttpServletRequest request, HttpServletResponse response,

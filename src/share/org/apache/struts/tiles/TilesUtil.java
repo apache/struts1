@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.4 2002/12/27 10:41:23 cedric Exp $
- * $Revision: 1.4 $
- * $Date: 2002/12/27 10:41:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.5 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -73,17 +73,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
   /**
-   * Class containing utilities for Tiles.
-   * Methods of this class are static, and so are accessible from anywhere.
+   * Class containing utility methods for Tiles.
+   * Methods of this class are static and thereby accessible from anywhere.
    * The underlying implementation can be changed with
    * {@link void setTilesUtil(TilesUtilImpl tilesUtil)}.
    * <br>
-   * Real implementation classes should derive from the {@link TilesUtilImpl } class.
+   * Real implementation classes should derive from the {@link TilesUtilImpl} class.
    * <br>
    * Some methods are specified to throw the <code>UnsupportedOperationException</code>
    * if the underlying implementation doesn't support the operation.
-   *
-   *
    */
 public class TilesUtil
 {
@@ -106,6 +104,7 @@ public class TilesUtil
      * Set the real implementation.
      * This method should be called only once.
      * Successive calls have no effect.
+     * @param tilesUtil The implementaion.
      */
   static public void setTilesUtil(TilesUtilImpl tilesUtil)
   {
@@ -118,7 +117,7 @@ public class TilesUtil
     /**
      * Getter to know if the underlying implementation is already set to another
      * value than the default value.
-     * @return true if setTilesUtil() has already been called.
+     * @return <code>true</code> if {@link #setTilesUtil} has already been called.
      */
   static boolean isTilesUtilImplSet()
   {
@@ -126,17 +125,17 @@ public class TilesUtil
   }
 
 
-    /** Flag to know if internal implementation have been set by the setter method */
+    /** Flag to know if internal implementation has been set by the setter method */
   private static boolean implAlreadySet=false;
 
     /**
      * Do a forward using request dispatcher.
      *
      * This method is used by the Tiles package anytime a forward is required.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     * @param servletContext Current servlet context
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
+     * @param servletContext Current servlet context.
      */
   public static void doForward(String uri, HttpServletRequest request, HttpServletResponse response,
                         ServletContext servletContext)
@@ -149,10 +148,10 @@ public class TilesUtil
      * Do an include using request dispatcher.
      *
      * This method is used by the Tiles package anytime an include is required.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     * @param servletContext Current servlet context
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
+     * @param servletContext Current servlet context.
      */
   public static void doInclude(String uri, HttpServletRequest request, HttpServletResponse response,
                         ServletContext servletContext)
@@ -163,7 +162,7 @@ public class TilesUtil
 
     /**
      * Get definition factory from appropriate servlet context.
-     * @return Definitions factory or null if not found.
+     * @return Definitions factory or <code>null</code> if not found.
      */
   static  public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
   {
@@ -173,7 +172,7 @@ public class TilesUtil
     /**
      * Create Definition factory from specified configuration object.
      * Create a ConfigurableDefinitionsFactory and initialize it with the configuration
-     * object. This later can contains the factory classname to use.
+     * object. This later can contain the factory classname to use.
      * Factory is made accessible from tags.
      * <p>
      * Fallback of several factory creation methods.
@@ -191,11 +190,11 @@ public class TilesUtil
 
   /**
    * Get a definition by its name.
-   * First, retrieve definition factory, and then get requested definition.
+   * First, retrieve definition factory and then get requested definition.
    * Throw appropriate exception if definition or definition factory is not found.
    * @param definitionName Name of requested definition.
-   * @param request Current servelet request
-   * @param servletContext current servlet context
+   * @param request Current servelet request.
+   * @param servletContext current servlet context.
    * @throws FactoryNotFoundException Can't find definition factory.
    * @throws DefinitionsFactoryException General error in factory while getting definition.
    * @throws NoSuchDefinitionException No definition found for specified name
@@ -217,10 +216,10 @@ public class TilesUtil
 
     /**
      * Return the <code>Class</code> object for the specified fully qualified
-     * class name, from the underlying class loader.
+     * class name from the underlying class loader.
      *
-     * @param className Fully qualified class name to be loaded
-     * @return Class object
+     * @param className Fully qualified class name to be loaded.
+     * @return Class object.
      * @exception ClassNotFoundException if the class cannot be found
      */
   public static Class applicationClass(String className) throws ClassNotFoundException

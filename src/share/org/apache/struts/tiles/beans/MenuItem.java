@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/MenuItem.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/beans/MenuItem.java,v 1.2 2003/02/27 19:20:25 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:25 $
  *
  * ====================================================================
  *
@@ -66,48 +66,48 @@ import java.io.Serializable;
 
 
   /**
-   * A bean MenuItem interface.
-   *
+   * Interface for MenuItems.
+   * @see SimpleMenuItem
    */
 public interface MenuItem extends Serializable
 {
     /**
-     * Set value property
+     * Set value property.
      */
   public void setValue(String value);
 
     /**
-     * Get value property
+     * Get value property.
      */
   public String getValue();
 
     /**
-     * Set link property
+     * Set link property.
      */
   public void setLink(String link);
 
     /**
-     * Get link property
+     * Get link property.
      */
   public String getLink();
 
     /**
-     * Set icon property
+     * Set icon property.
      */
   public void setIcon(String link);
 
     /**
-     * Get icon property
+     * Get icon property.
      */
   public String getIcon();
 
     /**
-     * Set tooltip property
+     * Set tooltip property.
      */
   public void setTooltip(String link);
 
     /**
-     * Get tooltip property
+     * Get tooltip property.
      */
   public String getTooltip();
 }

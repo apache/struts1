@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.2 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ActionController.java,v 1.3 2003/02/27 19:20:52 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:20:52 $
  *
  * ====================================================================
  *
@@ -71,16 +71,17 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 /**
- * Struts wrapper  implementation of Controller.
- * This implementation allows to wrap a Struts Action in a Controller
+ * Struts wrapper implementation of Controller.
+ * This implementation allows to wrap a Struts Action in a Controller.
  */
 public class ActionController implements Controller
 {
-    /** Struts action wrapped */
+    /** Struts action wrapped. */
   private Action action;
 
    /**
     * Constructor.
+    * @param action Action to be wrapped.
     */
    public ActionController( Action action )
    {
@@ -88,13 +89,13 @@ public class ActionController implements Controller
    }
 
    /**
-    * Method associated to a tile and called when immediately before tile is included.
-    * This implementation call a Struts Action. No servlet is set by this method.
+    * Method associated to a tile and called immediately before tile is included.
+    * This implementation calls a Struts Action. No servlet is set by this method.
     *
     * @param tileContext Current tile context.
-    * @param request Current request
-    * @param response Current response
-    * @param servletContext Current servlet context
+    * @param request Current request.
+    * @param response Current response.
+    * @param servletContext Current servlet context.
     */
    public void perform(ComponentContext tileContext,
                        HttpServletRequest request, HttpServletResponse response,

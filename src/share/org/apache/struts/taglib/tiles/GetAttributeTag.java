@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.6 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.7 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.tiles.ComponentContext;
   /**
    * Retrieve the value of the specified component/template attribute property,
    * and render it to the current JspWriter as a String.
-   * The usual toString() conversions is applied on found value.
+   * The usual toString() conversion is applied on the found value.
    */
 public class GetAttributeTag extends TagSupport implements ComponentConstants {
 
@@ -82,12 +82,12 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
   private String role = null;
     /**
      * Do we ignore error if attribute is not found.
-     * Default value is false, which throw an exception.
+     * Default value is <code>false</code>, which will throw an exception.
      */
   private boolean isErrorIgnored = false;
 
   /**
-   * default constructor
+   * Default constructor.
    */
   public GetAttributeTag() {
     super();
@@ -105,14 +105,16 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
     }
 
     /**
-     * Set attribute
+     * Set attribute.
+     * @param attribute Attribute.
      */
   public void setAttribute(String attribute){
     this.attribute = attribute;
   }
 
     /**
-     * Get property
+     * Get attribute.
+     * @return Attribute.
      */
   public String getAttribute()
   {
@@ -120,7 +122,9 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
   }
 
     /**
-     * Set attribute
+     * Set Name.
+     * Same as setAttribute().
+     * @param value Attribute.
      */
   public void setName(String value)
     {
@@ -128,7 +132,9 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
     }
 
     /**
-     * Get property
+     * Get Name.
+     * Set as getAttribute().
+     * @return Attribute.
      */
   public String getName()
   {
@@ -136,7 +142,9 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
   }
 
     /**
-     * Set attribute
+     * Set ignoring flag when attribute is not found.
+     * @param ignore default: <code>false</code>: Exception is thrown when attribute is not found, set to <code>
+     * true</code> to ignore missing attributes silently
      */
   public void setIgnore(boolean ignore)
     {
@@ -144,7 +152,9 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
     }
 
     /**
-     * Get the property.
+     * Get ignore flag.
+     * @return <code>false</code>: Exception is thrown when attribute is not found, set to <code>
+     * true</code> to ignore missing attributes silently
      */
   public boolean getIgnore()
   {
@@ -152,7 +162,7 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
   }
 
     /**
-     * Set role attribute
+     * Set role.
      * @param role The role the user must be in to store content.
      */
    public void setRole(String role) {
@@ -160,7 +170,8 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
    }
 
     /**
-     * Get property
+     * Get role.
+     * @return Role.
      */
   public String getRole()
   {
@@ -168,14 +179,15 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
   }
 
     /**
-     * Set attribute
+     * Close tag.
+     * @throws JspException On error processing tag.
      */
   public int doEndTag() throws JspException {
 
       // Check role
     if(role != null && !((HttpServletRequest)pageContext.getRequest()).isUserInRole(role) )
       {
-      	return EVAL_PAGE;
+      return EVAL_PAGE;
       } // end if
 
       // Get context

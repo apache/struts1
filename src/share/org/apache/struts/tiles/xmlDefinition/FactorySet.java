@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/FactorySet.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/FactorySet.java,v 1.2 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -68,17 +68,17 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.FactoryNotFoundException;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.ServletContext;
-import java.util.Map;
+import javax.servlet.ServletRequest;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Component Definitions factory.
  * This factory contains several factories identified by a key. The
- * getDefinition() method first look for the factory key, retrieve or create this
- * factory and then call getDefinition() on the found factory.
+ * getDefinition() method first looks for the factory key, retrieves or creates this
+ * factory and then calls its getDefinition().
  */
 public abstract class FactorySet implements ComponentDefinitionsFactory
 {
@@ -88,26 +88,27 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
 
   /**
    * Extract key that will be used to get the sub factory.
-   * @param name Name of requested definition
+   * @param name Name of requested definition.
    * @param request Current servlet request.
-   * @param servletContext Current servlet context
+   * @param servletContext Current servlet context.
+   * @return Object.
    */
   abstract protected Object getDefinitionsFactoryKey(String name, ServletRequest request, ServletContext servletContext);
 
   /**
    * Get default factory.
-   * @return Default factory
+   * @return Default factory.
    */
   abstract protected DefinitionsFactory getDefaultFactory();
 
   /**
    * Get a factory by its key.
-   * If key is null, return defaultFactory.
-   * Search in loaded factory. If not found, call create factory, and store return value in
+   * If key is <code>null</code>, return defaultFactory.
+   * Search in loaded factories. If not found, create factory and store return value in
    * loaded factories.
-   * @param key Key of requested definition
+   * @param key Key of requested definition.
    * @param request Current servlet request.
-   * @param servletContext Current servlet context
+   * @param servletContext Current servlet context.
    * @throws DefinitionsFactoryException If an error occur while creating factory.
    */
   protected DefinitionsFactory getFactory(Object key, ServletRequest request, ServletContext servletContext)
@@ -137,11 +138,10 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
 
   /**
    * Get a definition by its name.
-   * @throws DefinitionsFactoryException An error occur while getting
-   * definition.
-   * @param name Name of requested definition
+   *
+   * @param name Name of requested definition.
    * @param request Current servlet request.
-   * @param servletContext Current servlet context
+   * @param servletContext Current servlet context.
    * @throws NoSuchDefinitionException No definition found for specified name
    * @throws DefinitionsFactoryException General exception
    */
@@ -159,9 +159,9 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
   /**
    * Create a factory for specified key.
    * This method is called by getFactory() when the requested factory doesn't already exist.
-   * Must return a factory, even a default one.
-   * Real implementation need to provide this method.
-   * @param key Key of requested definition
+   * Must return a factory, or a default one.
+   * Real implementation needs to provide this method.
+   * @param key Key of requested definition.
    * @param request Current servlet request.
    * @param servletContext Current servlet context
    * @throws DefinitionsFactoryException If an error occur while creating factory.
@@ -178,7 +178,7 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
     throws DefinitionsFactoryException;
 
   /**
-   *
+   * Constructor.
    */
   public FactorySet()
   {
@@ -186,7 +186,8 @@ public abstract class FactorySet implements ComponentDefinitionsFactory
   }
 
     /**
-     *
+     * Return String representation.
+     * @return String representation.
      */
   public String toString()
     {

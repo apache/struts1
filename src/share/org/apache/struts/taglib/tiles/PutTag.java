@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.5 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.6 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -130,7 +130,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
   protected Object realValue = null;
 
   /**
-   * default constructor
+   * Default constructor.
    */
   public PutTag() {
     super();
@@ -162,132 +162,132 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
       }
 
     /**
-     * Set property
+     * Set name.
      */
   public void setName(String value){
     this.attributeName = value;
   }
 
     /**
-     * Set property
+     * Get name.
      */
   public String getName(){
     return attributeName;
   }
 
     /**
-     * Set property.
-     * Method added to satisfy Tomcat (bug ?)
+     * Set value.
+     * Method added to satisfy Tomcat (bug ?).
      */
   public void setValue(String value){
     this.value = value;
   }
 
     /**
-     * Set property.
-     * Method added to satisfy Tomcat (bug ?)
+     * Get value.
+     * Method added to satisfy Tomcat (bug ?).
      */
   public String getValue(){
     return (String)this.value;
   }
 
     /**
-     * Set property
+     * Set value.
      */
   public void setValue(Object value){
     this.value = value;
   }
 
     /**
-     * Set property value as an object
-     * Added because some web container react badly to value as Object.
+     * Set property value as an object.
+     * Added because some web containers react badly to value as <code>Object</code>.
      */
   public void setObjectValue(Object value){
     this.value = value;
   }
 
     /**
-     * Set property
-     * Method added to satisfy Tomcat (bug ?)
+     * Set content.
+     * Method added to satisfy Tomcat (bug ?).
      */
   public void setContent(String value){
     this.value = value;
   }
 
     /**
-     * Get property
-     * Method added to satisfy Tomcat (bug ?)
+     * Get content.
+     * Method added to satisfy Tomcat (bug ?).
      */
   public String getContent(){
     return (String)value;
   }
 
     /**
-     * Set property
+     * Set content.
      */
   public void setContent(Object value){
     this.value = value;
   }
 
     /**
-     * Set property
-     * Method added for compatibility with JSP1.1
+     * Set direct.
+     * Method added for compatibility with JSP1.1.
      */
   public void setDirect( String isDirect ){
        this.direct = isDirect;
   }
 
     /**
-     * Set property
+     * Set type.
      */
   public void setType( String value ){
        this.valueType = value;
   }
 
     /**
-     * Get property
+     * Get type.
      */
   public String getType( ){
        return this.valueType;
   }
 
     /**
-     * Set property.
+     * Set bean name.
      */
   public void setBeanName(String value){
     this.beanName = value;
   }
 
     /**
-     * Get property.
+     * Get bean name.
      */
   public String getBeanName(){
     return beanName;
   }
 
     /**
-     * Set property.
+     * Set bean property.
      */
   public void setBeanProperty(String value){
     this.beanProperty = value;
   }
 
     /**
-     * Get property.
+     * Get bean property.
      */
   public String getBeanProperty(){
     return beanProperty;
   }
 
     /**
-     * Set property.
+     * Set bean scope.
      */
   public void setBeanScope(String value){
     this.beanScope = value;
   }
 
       /**
-     * Get property.
+     * Get bean scope.
      */
   public String getBeanScope(){
     return beanScope;
@@ -295,7 +295,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
 
 
     /**
-     * Set role attribute
+     * Set role attribute.
      * @param role The role the user must be in to store content.
      */
    public void setRole(String role) {
@@ -304,7 +304,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
 
     /**
      * Get role attribute
-     * @return The role defined in the tag or null.
+     * @return The role defined in the tag or <code>null</code>.
      */
    public String getRole() {
       return role;
@@ -312,8 +312,8 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
 
     /**
      * Get real value according to tag attribute.
-     * Real value is the value compute after attribute processing :
-     * @return real value.
+     * Real value is the value computed after attribute processing.
+     * @return Real value.
      * @throws JspException If something goes wrong while getting value from bean.
      */
    public Object getRealValue() throws JspException
@@ -435,11 +435,11 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
     }
 
     /**
-     * Do start tag
+     * Do start tag.
      */
   public int doStartTag() throws JspException
     {
-      // Does we need to evaluate body ?
+      // Do we need to evaluate body ?
     if( value == null && beanName == null )
       return EVAL_BODY_TAG;
       // Value is set, don't evaluate body.
@@ -447,11 +447,11 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
     }
 
     /**
-     * Do end tag
+     * Do end tag.
      */
   public int doEndTag() throws JspException
     {
-      // Call parent tag which in turn do what it want
+      // Call parent tag which in turn does what it want
     callParent();
         // clean up tag handler for reuse.
     releaseInternal();
@@ -460,18 +460,18 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
   }
 
     /**
-     * Find parent tag which must implements AttributeContainer.
+     * Find parent tag which must implement AttributeContainer.
      * @throws JspException If we can't find an appropriate enclosing tag.
      */
   protected void callParent() throws JspException
     {
-            // Get enclosing parent,
+            // Get enclosing parent
     PutTagParent enclosingParent = findEnclosingPutTagParent();
     enclosingParent.processNestedTag( this );
     }
 
     /**
-     * Find parent tag which must implements AttributeContainer.
+     * Find parent tag which must implement AttributeContainer.
      * @throws JspException If we can't find an appropriate enclosing tag.
      */
   protected PutTagParent findEnclosingPutTagParent() throws JspException {

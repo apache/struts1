@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.7 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.8 2003/02/27 19:20:52 cedric Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/02/27 19:20:52 $
  *
  * ====================================================================
  *
@@ -361,7 +361,7 @@ public class ActionComponentServlet extends ActionServlet {
      * @param response Current page response
      */
   protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
- 	  throws IOException, ServletException
+     throws IOException, ServletException
     {
       // Do we do a forward (original behavior) or an include ?
     boolean doInclude = false;
@@ -434,7 +434,7 @@ public class ActionComponentServlet extends ActionServlet {
       } // end if
 
       // Do dispatching : search dispatcher, then dispatch
-	  RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
+    RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
     if (rd == null)
       { // error
       response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,

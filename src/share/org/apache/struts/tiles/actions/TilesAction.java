@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.4 2003/02/04 02:23:08 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/04 02:23:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.5 2003/02/27 19:20:36 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/27 19:20:36 $
  *
  * ====================================================================
  *
@@ -76,13 +76,13 @@ import org.apache.struts.action.ActionMapping;
 /**
  * Base class for Tiles Actions.
  * This class has the same role as Struts Action. It provides a method execute(...)
- * called when action is invoked. The difference is that the execute() method takes
+ * called when action is invoked. The difference is, that the execute() method takes
  * an additional parameter : tile context.
  * This class extends Struts Action. Subclasses should override
  * execute(ComponentContext ...) method instead of Struts
  * execute(ActionMapping ...) method.
- * Backward compatibility is ensure with the perform(ComponentContext ...) method.
- * @version $Revision: 1.4 $ $Date: 2003/02/04 02:23:08 $
+ * Backward compatibility is ensured with the perform(ComponentContext ...) method.
+ * @version $Revision: 1.5 $ $Date: 2003/02/27 19:20:36 $
  */
 
 public abstract class TilesAction extends Action
@@ -90,13 +90,13 @@ public abstract class TilesAction extends Action
 
   /**
    * Original Struts Action's method.
-   * Retrieve current Tile context, and call TilesAction execute method.
+   * Retrieve current Tile context and call TilesAction execute method.
    * Do not overload this method !
    *
-   * @param mapping The ActionMapping used to select this instance
-   * @param form The optional ActionForm bean for this request (if any)
-   * @param request The HTTP request we are processing
-   * @param response The HTTP response we are creating
+   * @param mapping The ActionMapping used to select this instance.
+   * @param form The optional ActionForm bean for this request (if any).
+   * @param request The HTTP request we are processing.
+   * @param response The HTTP response we are creating.
    *
    * @exception Exception if the application business logic throws
    *  an exception
@@ -119,17 +119,17 @@ public abstract class TilesAction extends Action
   }
 
   /**
-   * Process the specified HTTP request, and create the corresponding HTTP
+   * Process the specified HTTP request and create the corresponding HTTP
    * response (or forward to another web component that will create it),
    * with provision for handling exceptions thrown by the business logic.
    * <br>
-   * Override this method to provide functionality
+   * Override this method to provide functionality.
    *
-   * @param context The current Tile context, containing Tile attributes
-   * @param mapping The ActionMapping used to select this instance
-   * @param form The optional ActionForm bean for this request (if any)
-   * @param request The HTTP request we are processing
-   * @param response The HTTP response we are creating
+   * @param context The current Tile context, containing Tile attributes.
+   * @param mapping The ActionMapping used to select this instance.
+   * @param form The optional ActionForm bean for this request (if any).
+   * @param request The HTTP request we are processing.
+   * @param response The HTTP response we are creating.
    *
    * @exception Exception if the application business logic throws
    *  an exception
@@ -147,17 +147,17 @@ public abstract class TilesAction extends Action
   }
 
     /**
-     * Process the specified HTTP request, and create the corresponding HTTP
+     * Process the specified HTTP request and create the corresponding HTTP
      * response (or forward to another web component that will create it).
      * Return an <code>ActionForward</code> instance describing where and how
      * control should be forwarded, or <code>null</code> if the response has
      * already been completed.
      *
-     * @param context The current Tile context, containing Tile attributes
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
+     * @param context The current Tile context, containing Tile attributes.
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request (if any).
+     * @param request The HTTP request we are processing.
+     * @param response The HTTP response we are creating.
      *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetTag.java,v 1.3 2003/02/01 15:38:37 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/01 15:38:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetTag.java,v 1.4 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -65,11 +65,11 @@ package org.apache.struts.taglib.tiles;
 /**
  * This is the tag handler for &lt;tiles:get&gt;, which gets
  * content from the request scope and either includes the content or prints
- * it, depending upon the value of the content's direct attribute.
+ * it, depending upon the value of the content's <code>direct</code> attribute.
  *
  * This tag is intended to be compatible with the same tag from Templates (David Geary).
- * Implementation extends InsertTag, for facility (no so well).
- * The only difference is the default value of attribute 'ignore', which is true
+ * Implementation extends InsertTag for facility (no so well).
+ * The only difference is the default value of attribute 'ignore', which is <code>true</code>
  * for this tag (default behavior of David Geary's templates).
  */
 public class GetTag extends InsertTag {
@@ -77,7 +77,7 @@ public class GetTag extends InsertTag {
 
     /**
      * Constructor.
-     * Set default value for 'isErrorIgnored'.
+     * Set default value for 'isErrorIgnored' to <code>true</code>.
      */
     public GetTag() {
         isErrorIgnored = true;

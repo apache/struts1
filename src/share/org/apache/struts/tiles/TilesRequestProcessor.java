@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.16 2002/12/27 10:57:01 cedric Exp $
- * $Revision: 1.16 $
- * $Date: 2002/12/27 10:57:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.17 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -76,13 +76,13 @@ import org.apache.struts.config.ModuleConfig;
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
  * the Struts controller servlet performs as it receives each servlet request
- * from the container.  </p>
- * <p>This processor subclass the Struts one in order to intercept calls to forward
- * or include. When such call is done, Tiles processor check if the specified uri
+ * from the container.</p>
+ * <p>This processor subclasses the Struts one in order to intercept calls to forward
+ * or include. When such calls are done, the Tiles processor checks if the specified uri
  * is a definition name. If true, the definition is retrieved and included. If
  * false, the original uri is included or a forward is performed.
  * <p>
- * Actually, catching is done by overloading following methods:
+ * Actually, catching is done by overloading the following methods:
  * <ul>
  * <li>{@link #processForwardConfig(HttpServletRequest,HttpServletResponse,ForwardConfig)}</li>
  * <li>{@link #internalModuleRelativeForward(String, HttpServletRequest , HttpServletResponse)}</li>
@@ -105,9 +105,9 @@ public class TilesRequestProcessor extends RequestProcessor
     /**
      * Initialize this request processor instance.
      *
-     * @param servlet The ActionServlet we are associated with
+     * @param servlet The ActionServlet we are associated with.
      * @param moduleConfig The ModuleConfig we are associated with.
-     * @throws ServletException If an error occur during initialization
+     * @throws ServletException If an error occurs during initialization.
      */
     public void init(ActionServlet servlet, ModuleConfig moduleConfig)
       throws ServletException
@@ -119,7 +119,6 @@ public class TilesRequestProcessor extends RequestProcessor
     /**
      * Read component instance mapping configuration file.
      * This is where we read files properties.
-     * @param moduleConfig The ModuleConfig we are associated with.
      */
   protected void initDefinitionsMapping() throws ServletException
     {
@@ -144,15 +143,15 @@ public class TilesRequestProcessor extends RequestProcessor
 
     /**
      * Process a Tile definition name.
-     * This method try to process parameter definitionName as a definition name.
-     * It return true if a definition has been processed, false otherwise.
-     * Parameter contextRelative is not use in this implementation.
+     * This method tries to process the parameter <code>definitionName</code> as a definition name.
+     * It returns <code>true</code> if a definition has been processed, or <code>false</code> otherwise.
+     * Parameter <code>contextRelative</code> is not used in this implementation.
      *
      * @param definitionName Definition name to insert.
-     * @param contextRelative Does the Definition is marked contextRelative ?
-     * @param request Current page request
-     * @param response Current page response
-     * @return True if the method has process uri as a definition name, false otherwise.
+     * @param contextRelative Is the definition marked contextRelative ?
+     * @param request Current page request.
+     * @param response Current page response.
+     * @return <code>true</code> if the method has processed uri as a definition name, <code>false</code> otherwise.
      */
   protected boolean processTilesDefinition(String definitionName, boolean contextRelative, HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException
@@ -253,12 +252,11 @@ public class TilesRequestProcessor extends RequestProcessor
 
     /**
      * Do a forward using request dispatcher.
-     *
      * Uri is a valid uri. If response has already been commited, do an include
      * instead.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
      */
   protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException
@@ -270,18 +268,18 @@ public class TilesRequestProcessor extends RequestProcessor
    }
 
     /**
-     * Overloaded method from Struts RequestProcessor.
-     * Forward or redirect to the specified destination, by the specified
+     * Overloaded method from Struts' RequestProcessor.
+     * Forward or redirect to the specified destination by the specified
      * mechanism.
-     * This method catch the struts actionForward call. It checks if the
+     * This method catches the Struts' actionForward call. It checks if the
      * actionForward is done on a Tiles definition name. If true, process the
-     * definition, and insert it. If false, call the original parent's method.
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param forward The ActionForward controlling where we go next
+     * definition and insert it. If false, call the original parent's method.
+     * @param request The servlet request we are processing.
+     * @param response The servlet response we are creating.
+     * @param forward The ActionForward controlling where we go next.
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception IOException if an input/output error occurs.
+     * @exception ServletException if a servlet exception occurs.
      */
     protected void processForwardConfig(HttpServletRequest request,
                                         HttpServletResponse response,
@@ -315,15 +313,15 @@ public class TilesRequestProcessor extends RequestProcessor
     /**
      * Catch the call to a module relative forward.
      * If the specified uri is a tiles definition name, insert it.
-     * Otherwise, parent processing is called
+     * Otherwise, parent processing is called.
      * Do a module relative forward to specified uri using request dispatcher.
-     * Uri is relative to the current module. The real uri is compute by prefixing
+     * Uri is relative to the current module. The real uri is computed by prefixing
      * the module name.
-     * This method is used internally and is not part of the public API. It is
-     * advice to not use it in subclasses.
-     * @param uri Module-relative URI to forward to
-     * @param request Current page request
-     * @param response Current page response
+     * <strong>This method is used internally and is not part of the public API. It is
+     * advised to not use it in subclasses.</strong>
+     * @param uri Module-relative URI to forward to.
+     * @param request Current page request.
+     * @param response Current page response.
      * @since Struts 1.1
      */
     protected void internalModuleRelativeForward(String uri, HttpServletRequest request,
@@ -338,13 +336,13 @@ public class TilesRequestProcessor extends RequestProcessor
 
     /**
      * Do a module relative include to specified uri using request dispatcher.
-     * Uri is relative to the current module. The real uri is compute by prefixing
+     * Uri is relative to the current module. The real uri is computed by prefixing
      * the module name.
-     * This method is used internally and is not part of the public API. It is
-     * advice to not use it in subclasses.
-     * @param uri Module-relative URI to forward to
-     * @param request Current page request
-     * @param response Current page response
+     * <strong>This method is used internally and is not part of the public API. It is
+     * advice to not use it in subclasses.</strong>
+     * @param uri Module-relative URI to forward to.
+     * @param request Current page request.
+     * @param response Current page response.
      * @since Struts 1.1
      */
     protected void internalModuleRelativeInclude(String uri, HttpServletRequest request,

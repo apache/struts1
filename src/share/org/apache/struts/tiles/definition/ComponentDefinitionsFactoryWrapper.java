@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.3 2002/12/17 00:59:47 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/12/17 00:59:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.4 2003/02/27 19:19:54 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/27 19:19:54 $
  *
  * ====================================================================
  *
@@ -94,6 +94,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
     /**
      * Constructor.
      * Create new wrapper for specified factory.
+     * @param factory The factory to create a wrapper for.
      */
   public ComponentDefinitionsFactoryWrapper( ComponentDefinitionsFactory factory )
   {
@@ -104,7 +105,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
      * Constructor.
      * Create new wrapper.
      * The config object passed to init method should reference a factory implementing
-     * ComponentDefinitionsFactory.
+     * {@link ComponentDefinitionsFactory}.
      */
   public ComponentDefinitionsFactoryWrapper()
   {
@@ -112,6 +113,10 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
 
     /**
      * Get requested definition.
+     * @param name Name of the definition.
+     * @param request The request we are processing.
+     * @param servletContext Our servlet context.
+     * @return ComponentDefition
      */
   public ComponentDefinition getDefinition(String name, ServletRequest request, ServletContext servletContext)
     throws NoSuchDefinitionException, DefinitionsFactoryException
@@ -121,6 +126,8 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
 
     /**
      * Call underlying factory init method.
+     * @param config DefinitionsFactoryConfig.
+     * @param servletContext Our servlet context.
      */
   public void init(DefinitionsFactoryConfig config, ServletContext servletContext)
     throws DefinitionsFactoryException
@@ -142,6 +149,8 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
 
     /**
      * Set underlying factory configuration.
+     * @param config DefinitionsFactoryConfig to use.
+     * @param servletContext Our servlet context.
      *
      */
   public void setConfig(DefinitionsFactoryConfig config, ServletContext servletContext)
@@ -155,6 +164,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
 
     /**
      * Get underlying factory configuration.
+     * @return DefinitionsFactoryConfig.
      */
   public DefinitionsFactoryConfig getConfig()
   {
@@ -162,7 +172,8 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
   }
 
    /**
-    * Get internal factory
+    * Get internal factory.
+    * @return The internal ComponentDefitionsFactory.
     */
   public ComponentDefinitionsFactory getInternalFactory()
   {
@@ -170,8 +181,8 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
   }
 
   /**
-   * Create Definition factory from provided classname which must implements ComponentDefinitionsFactory.
-   * Factory class must extends TilesDefinitionsFactory.
+   * Create Definition factory from provided classname which must implement {@link ComponentDefinitionsFactory}.
+   * Factory class must extend {@link DefinitionsFactory}.
    * @param classname Class name of the factory to create.
    * @return newly created factory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
@@ -188,7 +199,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
    catch( ClassCastException ex )
     { // Bad classname
     throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
-                                           + classname +" must implements 'TilesDefinitionsFactory'.", ex );
+                                           + classname +" must implement 'DefinitionsFactory'.", ex );
     }
    catch( ClassNotFoundException ex )
     { // Bad classname
@@ -207,8 +218,9 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
   }
 
     /**
-     * ToString method.
-     * Call toString on underlying factory.
+     * Return String representation.
+     * Calls toString() on underlying factory.
+     * @return String representation.
      */
   public String toString()
   {
@@ -218,6 +230,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory
     /**
      * Create map of configuration attributes from configuration object.
      * Mapping is done between old names and new names.
+     * @param config The DefinitionsFactoryConfig to use.
      * @return Map Map of name/value pairs.
      */
   public static Map createConfigMap( DefinitionsFactoryConfig config )

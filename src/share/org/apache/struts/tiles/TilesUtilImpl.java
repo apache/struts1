@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.1 2002/12/27 10:41:23 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/12/27 10:41:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.2 2003/02/27 19:20:50 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:50 $
  *
  * ====================================================================
  *
@@ -76,8 +76,8 @@ import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 
   /**
    * Default implementation of TilesUtil.
-   * This class conatains default implementation of utilities. This implementation
-   * is intended to be used without Struts
+   * This class contains default implementation of utilities. This implementation
+   * is intended to be used without Struts.
    */
 public class TilesUtilImpl implements Serializable
 {
@@ -91,9 +91,9 @@ public class TilesUtilImpl implements Serializable
      * Do a forward using request dispatcher.
      *
      * This method is used by the Tiles package anytime a forward is required.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param servletContext Current servlet context
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param servletContext Current servlet context.
      */
   public void doForward(String uri, HttpServletRequest request, HttpServletResponse response,
                         ServletContext servletContext)
@@ -106,10 +106,10 @@ public class TilesUtilImpl implements Serializable
      * Do an include using request dispatcher.
      *
      * This method is used by the Tiles package anytime an include is required.
-     * @param uri Uri or Definition name to forward
-     * @param request Current page request
-     * @param response Current page response
-     * @param servletContext Current servlet context
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
+     * @param servletContext Current servlet context.
      */
   public void doInclude(String uri, HttpServletRequest request, HttpServletResponse response,
                         ServletContext servletContext)
@@ -120,7 +120,7 @@ public class TilesUtilImpl implements Serializable
 
     /**
      * Get definition factory from appropriate servlet context.
-     * @return Definitions factory or null if not found.
+     * @return Definitions factory or <code>null</code> if not found.
      */
   public DefinitionsFactory getDefinitionsFactory(ServletRequest request, ServletContext servletContext)
   {
@@ -129,11 +129,11 @@ public class TilesUtilImpl implements Serializable
 
     /**
      * Create Definition factory from specified configuration object.
-     * Create an instance of the factory , with the class specified in the config
-     * object. Then, initialize this factory, and finally store the factory in
-     * appropriate context by the way of
+     * Create an instance of the factory with the class specified in the config
+     * object. Then, initialize this factory and finally store the factory in
+     * appropriate context by calling
      * {@link #makeDefinitionsFactoryAccessible(DefinitionsFactory, ServletContext)}.
-     * Factory creation is done by the way of {@link #createDefinitionFactoryInstance(String)}
+     * Factory creation is done by {@link #createDefinitionFactoryInstance(String)}.
      * <p>
      *
      * @param servletContext Servlet Context passed to newly created factory.
@@ -154,9 +154,9 @@ public class TilesUtilImpl implements Serializable
 
   /**
    * Create Definition factory of specified classname.
-   * Factory class must extends the {@link DefinitionsFactory} class.
+   * Factory class must extend the {@link DefinitionsFactory} class.
    * The factory is wrapped appropriately with {@link ComponentDefinitionsFactoryWrapper}
-   * if it is instance of the deprecated ComponentDefinitionsFactory class.
+   * if it is an instance of the deprecated ComponentDefinitionsFactory class.
    * @param classname Class name of the factory to create.
    * @return newly created factory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
@@ -180,7 +180,7 @@ public class TilesUtilImpl implements Serializable
    catch( ClassCastException ex )
     { // Bad classname
     throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
-                                           + classname +" must implements 'TilesDefinitionsFactory'.", ex );
+                                           + classname +" must implement 'TilesDefinitionsFactory'.", ex );
     }
    catch( ClassNotFoundException ex )
     { // Bad classname
@@ -199,8 +199,8 @@ public class TilesUtilImpl implements Serializable
   /**
    * Make definition factory accessible to Tags.
    * Factory is stored in servlet context.
-   * @param factory Factory to make accessible
-   * @param servletContext Current servlet context
+   * @param factory Factory to be made accessible.
+   * @param servletContext Current servlet context.
    */
  protected void makeDefinitionsFactoryAccessible(DefinitionsFactory factory, ServletContext servletContext)
   {
@@ -209,10 +209,10 @@ public class TilesUtilImpl implements Serializable
 
     /**
      * Return the <code>Class</code> object for the specified fully qualified
-     * class name, from the underlying class loader.
+     * class name from the underlying class loader.
      *
-     * @param className Fully qualified class name to be loaded
-     * @return Class object
+     * @param className Fully qualified class name to be loaded.
+     * @return Class object.
      * @exception ClassNotFoundException if the class cannot be found
      */
   public Class applicationClass(String className) throws ClassNotFoundException

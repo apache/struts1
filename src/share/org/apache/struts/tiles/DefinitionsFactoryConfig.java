@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.6 2003/02/25 04:58:30 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/25 04:58:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.7 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Cedric Dumoulin
  * @since 1.1
- * @version $Revision: 1.6 $ $Date: 2003/02/25 04:58:30 $
+ * @version $Revision: 1.7 $ $Date: 2003/02/27 19:20:51 $
  */
 public class DefinitionsFactoryConfig implements Serializable
 {
@@ -120,7 +120,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * With Struts 1.1, this name is the module name to which this factory
      * belong. It is set by the system.
      * <br>
-     * In other versions, this properties is not used.
+     * In prior versions, this property is not used.
      */
     protected String factoryName;
 
@@ -153,7 +153,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Create configuration object, and initialize it with parameters from Map.
      * Parameters corresponding to an attribute are filtered and stored in appropriate
      * attribute.
-     * @param initParameters
+     * @param initParameters Map.
      */
     public DefinitionsFactoryConfig(Map initParameters)
     {
@@ -162,8 +162,8 @@ public class DefinitionsFactoryConfig implements Serializable
 
     /**
      * Get the module aware flag.
-     * true: user want a single factory instance
-     * false: user want multiple factory instance (one per module with Struts)
+     * @return <code>true</code>: user wants a single factory instance,
+     * <code>false</code>: user wants multiple factory instances (one per module with Struts)
      */
     public boolean isModuleAware()
     {
@@ -171,9 +171,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
     /**
      * Set the module aware flag.
-     * true: user want a single factory instance
-     * false: user want multiple factory instance (one per module with Struts)
-     * @param singleFactoryInstance
+     * @param moduleAware <code>true</code>: user wants a single factory instance,
+     * <code>false</code>: user wants multiple factory instances (one per module with Struts)
      */
     public void setModuleAware(boolean moduleAware)
     {
@@ -181,9 +180,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Access method for the factoryClassname property.
-     *
-     * @return   the current value of the factoryClassname property
+     * Get the classname of the factory.
+     * @return Classname.
      */
     public String getFactoryClassname()
     {
@@ -191,9 +189,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Sets the value of the factoryClassname property.
-     *
-     * @param aFactoryClassname the new value of the factoryClassname property
+     * Set the classname of the factory..
+     * @param aFactoryClassname Classname of the factory.
      */
     public void setFactoryClassname(String aFactoryClassname)
     {
@@ -201,9 +198,9 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Access method for the debugLevel property.
-     *
-     * @return   the current value of the debugLevel property
+     * Get debug level.
+     * @return Debug level.
+     * @deprecated Use commons-logging mechanism.
      */
     public int getDebugLevel()
     {
@@ -211,9 +208,9 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Sets the value of the debugLevel property.
-     *
-     * @param aDebugLevel the new value of the debugLevel property
+     * Set debug level.
+     * @param aDebugLevel Debug level.
+     * @deprecated Use commons-logging mechanism.
      */
     public void setDebugLevel(int aDebugLevel)
     {
@@ -221,9 +218,9 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Access method for the parserDebugLevel property.
-     *
-     * @return   the current value of the parserDebugLevel property
+     * Get the debug level for the parser.
+     * @return Debug level.
+     * @deprecated Use commons-logging mechanism.
      */
     public int getParserDebugLevel()
     {
@@ -231,9 +228,9 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Sets the value of the parserDebugLevel property.
-     *
-     * @param aParserDebugLevel the new value of the parserDebugLevel property
+     * Set the debug level for the parser.
+     * @param aParserDebugLevel Debug level.
+     * @deprecated Use commons-logging mechanism.
      */
     public void setParserDebugLevel(int aParserDebugLevel)
     {
@@ -241,9 +238,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Determines if the parserValidate property is true.
-     *
-     * @return   <code>true<code> if the parserValidate property is true
+     * Determines if the parser is validating.
+     * @return <code>true<code> when in validating mode.
      */
     public boolean getParserValidate()
     {
@@ -251,9 +247,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Sets the value of the parserValidate property.
-     *
-     * @param aParserValidate the new value of the parserValidate property
+     * Set the validating mode for the parser.
+     * @param aParserValidate <code>true</code> for validation, <code>false</code> otherwise
      */
     public void setParserValidate(boolean aParserValidate)
     {
@@ -261,9 +256,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Access method for the definitionConfigFiles property.
-     *
-     * @return   the current value of the definitionConfigFiles property
+     * Get the definition config files.
+     * @return Defition config files.
      */
     public String getDefinitionConfigFiles()
     {
@@ -271,9 +265,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Sets the value of the definitionConfigFiles property.
-     *
-     * @param aDefinitionConfigFiles the new value of the definitionConfigFiles property
+     * Set the definition config files.
+     * @param aDefinitionConfigFiles Definition config files.
      */
     public void setDefinitionConfigFiles(String aDefinitionConfigFiles)
     {
@@ -281,7 +274,7 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Set a new extra attribute value.
+     * Set value of an additional attribute.
      * @param name Name of the attribute.
      * @param value Value of the attribute.
      */
@@ -291,7 +284,7 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Get extra attribute value.
+     * Get value of an additional attribute.
      * @param name Name of the attribute.
      * @return Value of the attribute, or null if not found.
      */
@@ -301,8 +294,8 @@ public class DefinitionsFactoryConfig implements Serializable
     }
 
     /**
-     * Get extra attributes as a Map.
-     * @return Map A Map containing attribute name - value pair.
+     * Get additional attributes as a Map.
+     * @return Map A Map containing attribute name - value pairs.
      */
     public Map getAttributes()
     {
@@ -325,8 +318,8 @@ public class DefinitionsFactoryConfig implements Serializable
      * the specified name/value pairs.  This method uses the populate() method from
      * org.apache.commons.beanutils.BeanUtil.
      * <p>
-     * Properties keys are scanned for old property names, and linked to new name
-     * if necessary. This modify the properties map.
+     * Properties keys are scanned for old property names, and linked to the new name
+     * if necessary. This modifies the properties map.
      * <p>
      * The particular setter method to be called for each property is
      * determined using the usual JavaBeans introspection mechanisms.  Thus,
@@ -340,12 +333,12 @@ public class DefinitionsFactoryConfig implements Serializable
      * signatures) for the same property.
      *
      * @param properties Map keyed by property name, with the
-     *  corresponding (String or String[]) value(s) to be set
+     *  corresponding (String or String[]) value(s) to be set.
      *
      * @exception IllegalAccessException if the caller does not have
-     *  access to the property accessor method
-     * @exception InvocationTargetException if the property accessor method
-     *  throws an exception
+     *  access to the property accessor method.
+     * @exception java.lang.reflect.InvocationTargetException if the property accessor method
+     *  throws an exception.
      * @see org.apache.commons.beanutils.BeanUtils
      */
     public void populate( Map properties)
@@ -358,10 +351,9 @@ public class DefinitionsFactoryConfig implements Serializable
 
     /**
      * Link old property names to new property names.
-     * This modify the map.
+     * This modifies the map.
      * @param properties Map keyed by property name, with the
-     *  corresponding (String or String[]) value(s) to be set
-     *
+     *  corresponding (String or String[]) value(s) to be set.
      */
     static public void linkOldPropertyNames( Map properties)
     {
@@ -395,6 +387,7 @@ public class DefinitionsFactoryConfig implements Serializable
     }
     /**
      * Set the factory name.
+     * @param factoryName Name of the factory.
      */
     public void setFactoryName(String factoryName)
     {

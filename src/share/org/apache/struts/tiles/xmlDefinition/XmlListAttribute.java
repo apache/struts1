@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlListAttribute.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlListAttribute.java,v 1.2 2003/02/27 19:19:42 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:19:42 $
  *
  * ====================================================================
  *
@@ -67,17 +67,17 @@ import java.util.ArrayList;
 
 
 /**
- * An attribute as a List.
+ * An attribute as a <code>List</code>.
  * This attribute associates a name with a list. The list can be found by the
  * property name.
- * Element in list are retrieved using List methods.
+ * Elements in list are retrieved using List methods.
  * This class is used to read configuration files.
  */
 public class XmlListAttribute extends XmlAttribute
 {
     /** List.
-     * We declare a list, to avoid cast.
-     * Parent "value" property point to the same list.
+     * We declare a List to avoid cast.
+     * Parent "value" property points to the same list.
      */
   private List list;
 
@@ -92,6 +92,8 @@ public class XmlListAttribute extends XmlAttribute
 
     /**
      * Constructor.
+     * @param name Name.
+     * @param value List.
      */
   public XmlListAttribute( String name, List value)
     {
@@ -101,7 +103,8 @@ public class XmlListAttribute extends XmlAttribute
 
     /**
      * Add an element in list.
-     * We use a Property, to avoid rewriting a new class.
+     * We use a property to avoid rewriting a new class.
+     * @param element XmlAttribute to add.
      */
   public void add( XmlAttribute element )
     {
@@ -110,6 +113,7 @@ public class XmlListAttribute extends XmlAttribute
 
     /**
      * Add an element in list.
+     * @param value Object to add.
      */
   public void add( Object value )
     {
@@ -127,6 +131,7 @@ public class XmlListAttribute extends XmlAttribute
 
     /**
      * Add an element in list.
+     * @param value Object to add.
      */
   public void addObject( Object value )
     {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTagSupport.java,v 1.2 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTagSupport.java,v 1.3 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -67,8 +67,8 @@ import java.io.Serializable;
 import javax.servlet.jsp.tagext.TagSupport;
 
   /**
-   * Common base class for tags dealing with Tile Definition.
-   * This class define properties used in Definition Tags.
+   * Common base class for tags dealing with Tiles definitions.
+   * This class defines properties used in Definition Tags.
    * It also extends TagSupport.
    */
 public class DefinitionTagSupport extends TagSupport implements Serializable
@@ -102,7 +102,8 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
 
   /**
    * Get controller type.
-   * Type can be 'classname', 'url'
+   * Type can be 'classname', 'url'.
+   * @return Controller type.
    */
   public String getControllerType()
   {
@@ -111,8 +112,9 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
 
   /**
    * Get controller name.
-   * Name denote a fully qualified classname, or an url.
-   * Exact type can be specified with setControllerType.
+   * Name denotes a fully qualified classname, or an url.
+   * Exact type can be specified with {@link #setControllerType}.
+   * @return Controller name.
    */
   public String getControllerName()
   {
@@ -121,8 +123,8 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
 
   /**
    * Set associated controller type.
-   * Type denote a fully qualified classname.
-   * @param controllerType Typeof associated controller
+   * Type denotes a fully qualified classname.
+   * @param controllerType Type of associated controller.
    */
   public void setControllerType(String controllerType)
   {
@@ -131,9 +133,9 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
 
   /**
    * Set associated controller name.
-   * Name denote a fully qualified classname, or an url.
-   * Exact type can be specified with setControllerType.
-   * @param controller Controller classname or url
+   * Name denotes a fully qualified classname, or an url.
+   * Exact type can be specified with {@link #setControllerType}.
+   * @param controller Controller classname or url.
    */
   public void setController(String controller)
   {
@@ -165,9 +167,9 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
   }
 
   /**
-   * Set associated controller name as a classtype, and controller
+   * Set associated controller name as a classtype and controller
    * type as "classname".
-   * Name denote a fully qualified classname
+   * Name denotes a fully qualified classname.
    * Convenience method.
    * @param controller Controller classname.
    */
@@ -178,8 +180,8 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
   }
 
   /**
-   * Access method for the role property.
-   * @return   the current value of the role property
+   * Get associated role.
+   * @return Associated role.
    */
   public String getRole()
     {
@@ -187,9 +189,8 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
     }
 
   /**
-   * Sets the value of the role property.
-   *
-   * @param role the new value of the role property
+   * Set associated role.
+   * @param role Associated role.
    */
   public void setRole(String role)
     {
@@ -197,9 +198,8 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
     }
 
   /**
-   * Sets the value of the page property.
-   *
-   * @param page the new value of the template property
+   * Set the page.
+   * @param page Page.
    */
   public void setPage(String page)
   {
@@ -207,19 +207,18 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
   }
 
   /**
-   * Gets the value of the page property.
-   *
-   * @param page the new value of the template property
+   * Get the page.
+   * @return Page.
    */
-  public String getPage(String page)
+  public String getPage()
   {
   return page;
   }
 
   /**
-   * Access method for the template property.
-   *
-   * @return   the current value of the template property
+   * Get the template.
+   * Same as getPage().
+   * @return Template.
    */
   public String getTemplate()
   {
@@ -227,10 +226,9 @@ public class DefinitionTagSupport extends TagSupport implements Serializable
   }
 
   /**
-   * Sets the value of the template property.
-   * Same as setPage()
-   *
-   * @param template the new value of the template property
+   * Set the template.
+   * Same as setPage().
+   * @param template Template.
    */
   public void setTemplate(String template)
   {

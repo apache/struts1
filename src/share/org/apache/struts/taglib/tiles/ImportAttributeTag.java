@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.5 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.6 2003/02/27 19:18:55 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/27 19:18:55 $
  *
  * ====================================================================
  *
@@ -73,9 +73,9 @@ import org.apache.struts.tiles.ComponentContext;
 
 
 /**
-	*  Import attribute from component to requested scope.
-	*  Attribute name and scope are optional. If not specified, all component
-	*  attributes are imported in page scope.
+  *  Import attribute from component to requested scope.
+  *  Attribute name and scope are optional. If not specified, all component
+  *  attributes are imported in page scope.
  */
 
 public final class ImportAttributeTag extends TagSupport {
@@ -96,9 +96,9 @@ public final class ImportAttributeTag extends TagSupport {
      */
     private int scope = PageContext.PAGE_SCOPE;
     /**
-     * Are errors ignored. This is the property for attribute 'ignore'.
-     * Default value is false, which throw an exception.
-     * Only attribute not found errors are ignored.
+     * Are errors ignored. This is the property for attribute <code>ignore</code>.
+     * Default value is <code>false</code>, which throws an exception.
+     * Only "attribute not found" - errors are ignored.
      */
   protected boolean isErrorIgnored = false;
 
@@ -116,7 +116,8 @@ public final class ImportAttributeTag extends TagSupport {
     }
 
     /**
-     * Return the name.
+     * Get the name.
+     * @return Name.
      */
     public String getName()
      {
@@ -126,7 +127,6 @@ public final class ImportAttributeTag extends TagSupport {
 
     /**
      * Set the name.
-     *
      * @param name The new name
      */
     public void setName(String name)
@@ -135,9 +135,8 @@ public final class ImportAttributeTag extends TagSupport {
      }
 
     /**
-     * Set the scope by its string name.
-     *
-     * @param scope The new scope
+     * Set the scope.
+     * @param scope Scope.
      */
     public void setScope(String scope)
       {
@@ -145,7 +144,8 @@ public final class ImportAttributeTag extends TagSupport {
       }
 
     /**
-     * Get property
+     * Get scope.
+     * @return Scope.
      */
   public String getScope()
   {
@@ -153,7 +153,9 @@ public final class ImportAttributeTag extends TagSupport {
   }
 
     /**
-     * Set ignore attribute
+     * Set ignore flag.
+     * @param ignore default: <code>false</code>: Exception is thrown when attribute is not found, set to <code>
+     * true</code> to ignore missing attributes silently
      */
   public void setIgnore(boolean ignore)
     {
@@ -161,7 +163,9 @@ public final class ImportAttributeTag extends TagSupport {
     }
 
     /**
-     * Get the property.
+     * Get ignore flag.
+     * @return default: <code>false</code>: Exception is thrown when attribute is not found, set to <code>
+     * true</code> to ignore missing attributes silently
      */
   public boolean getIgnore()
   {
@@ -174,7 +178,7 @@ public final class ImportAttributeTag extends TagSupport {
     /**
      * Expose the requested property from component context.
      *
-     * @exception JspException if a JSP exception has occurred
+     * @exception JspException On errors processing tag.
      */
   public int doStartTag() throws JspException
     {
@@ -209,7 +213,7 @@ public final class ImportAttributeTag extends TagSupport {
         } // end loop
       } // end if
 
-	    // Continue processing this page
+      // Continue processing this page
     return SKIP_BODY;
     }
 
@@ -219,11 +223,11 @@ public final class ImportAttributeTag extends TagSupport {
     /**
      * Clean up after processing this enumeration.
      *
-     * @exception JspException if a JSP exception has occurred
+     * @exception JspException On errors processing tag.
      */
   public int doEndTag() throws JspException
     {
-	  return (EVAL_PAGE);
+    return (EVAL_PAGE);
     }
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesException.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesException.java,v 1.2 2003/02/27 19:20:51 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 19:20:51 $
  *
  * ====================================================================
  *
@@ -64,7 +64,7 @@ package org.apache.struts.tiles;
 
 
 /**
- * Root class of Tiles exception
+ * Root class for all Tiles-exceptions.
  * @author Cedric Dumoulin
  */
 public class TilesException extends Exception
@@ -76,11 +76,8 @@ public class TilesException extends Exception
    * @serial
    */
   private Exception exception;
-    /**
-     * Constructor.
-    * Create a new MapperFactoryException.
-    *
-    * @param message The error or warning message.
+  /**
+    * Constructor.
     */
   public TilesException()
     {
@@ -88,10 +85,8 @@ public class TilesException extends Exception
     this.exception = null;
   }
 
-    /**
-     * Constructor.
-    * Create a new MapperFactoryException.
-    *
+  /**
+    * Constructor.
     * @param message The error or warning message.
     */
   public TilesException(String message)
@@ -102,13 +97,13 @@ public class TilesException extends Exception
 
 
   /**
-    * Create a new MapperFactoryException wrapping an existing exception.
+    * Create a new <code>TilesException</code> wrapping an existing exception.
     *
     * <p>The existing exception will be embedded in the new
     * one, and its message will become the default message for
-    * the MapperFactoryException.</p>
+    * the TilesException.</p>
     *
-    * @param e The exception to be wrapped in a SAXException.
+    * @param e The exception to be wrapped.
     */
   public TilesException(Exception e)
   {
@@ -118,14 +113,13 @@ public class TilesException extends Exception
 
 
   /**
-    * Create a new MapperFactoryException from an existing exception.
+    * Create a new <code>TilesException</code> from an existing exception.
     *
     * <p>The existing exception will be embedded in the new
     * one, but the new exception will have its own message.</p>
     *
     * @param message The detail message.
-    * @param e The exception to be wrapped in a MapperFactoryException.
-    * @see org.xml.sax.Parser#setLocale
+    * @param e The exception to be wrapped.
     */
   public TilesException(String message, Exception e)
   {
@@ -137,7 +131,7 @@ public class TilesException extends Exception
   /**
     * Return a detail message for this exception.
     *
-    * <p>If there is a embedded exception, and if the MapperFactoryException
+    * <p>If there is a embedded exception, and if the TilesException
     * has no detail message of its own, this method will return
     * the detail message from the embedded exception.</p>
     *
@@ -158,7 +152,7 @@ public class TilesException extends Exception
   /**
     * Return the embedded exception, if any.
     *
-    * @return The embedded exception, or null if there is none.
+    * @return The embedded exception, or <code>null</code> if there is none.
     */
   public Exception getException ()
   {
