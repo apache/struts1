@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.1 2001/03/18 17:48:59 vmassol Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.1.2.1 2001/06/12 03:18:10 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -83,6 +83,12 @@
   </xsl:template>
 
 
+  <!-- Process the project element for the navigation bar -->
+  <xsl:template match="project">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+
   <!-- Process an entire chapter (assumes one chapter per page) -->
   <xsl:template match="chapter">
     <xsl:element name="a">
@@ -106,7 +112,7 @@
     <table border="0" cellspacing="5">
       <tr>
         <th colspan="2" align="left">
-          <font color="{body-link}"><strong>
+          <font color="{$body-link}"><strong>
             <xsl:value-of select="@name"/>
           </strong></font>
         </th>
