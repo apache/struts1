@@ -1,6 +1,4 @@
-# Properties related to the user's environment. This file should be provided
-# for building the Cactus Sample or the properties need to be specified on
-# the command line when starting Ant with the -D switch
+# Properties related to the user's environment. 
 
 commons-validator.jar=d:/office/jakarta-commons/validator/dist/commons-validator.jar
 commons-beanutils.jar=d:/java/lib/commons-beanutils.jar
