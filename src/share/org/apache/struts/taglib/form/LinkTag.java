@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.5 2000/12/30 20:37:57 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/12/30 20:37:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.6 2000/12/31 00:17:20 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/12/31 00:17:20 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/12/30 20:37:57 $
+ * @version $Revision: 1.6 $ $Date: 2000/12/31 00:17:20 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -168,6 +168,62 @@ public class LinkTag extends BaseHandlerTag {
 
     public void setPage(String page) {
         this.page = page;
+    }
+
+
+    /**
+     * The single-parameter request parameter name to generate.
+     */
+    protected String paramId = null;
+
+    public String getParamId() {
+        return (this.paramId);
+    }
+
+    public void setParamId(String paramId) {
+        this.paramId = paramId;
+    }
+
+
+    /**
+     * The single-parameter JSP bean name.
+     */
+    protected String paramName = null;
+
+    public String getParamName() {
+        return (this.paramName);
+    }
+
+    public void setParamName(String paramName) {
+        this.paramName = paramName;
+    }
+
+
+    /**
+     * The single-parameter JSP bean property.
+     */
+    protected String paramProperty = null;
+
+    public String getParamProperty() {
+        return (this.paramProperty);
+    }
+
+    public void setParamProperty(String paramProperty) {
+        this.paramProperty = paramProperty;
+    }
+
+
+    /**
+     * The single-parameter JSP bean scope.
+     */
+    protected String paramScope = null;
+
+    public String getParamScope() {
+        return (this.paramScope);
+    }
+
+    public void setParamScope(String paramScope) {
+        this.paramScope = paramScope;
     }
 
 
@@ -259,10 +315,31 @@ public class LinkTag extends BaseHandlerTag {
 	}
 
 	// Evaluate the body of this tag
-	return (EVAL_BODY_INCLUDE);
+	return (EVAL_BODY_TAG);
 
     }
 
+
+
+    /**
+     * Render the body content of this hyperlink.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            JspWriter writer = bodyContent.getEnclosingWriter();
+            try {
+                writer.print(bodyContent.getString().trim());
+            } catch (IOException e) {
+                throw new JspException
+                    (messages.getMessage("common.io", e.toString()));
+            }
+        }
+        return (SKIP_BODY);
+
+    }
 
 
     /**
@@ -361,6 +438,48 @@ public class LinkTag extends BaseHandlerTag {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             href = request.getContextPath() + page;
+        }
+
+        // Append a single-parameter name and value, if requested
+        if ((paramId != null) && (paramName != null)) {
+            if (href.indexOf('?') < 0)
+                href += '?';
+            else
+                href += '&';
+            href += paramId;
+            href += '=';
+            Object bean = BeanUtils.lookup(pageContext, paramName, paramScope);
+            if (bean != null) {
+                if (paramProperty == null)
+                    href += bean.toString();
+                else {
+                    try {
+                        Object value =
+                            BeanUtils.getPropertyValue(bean, paramProperty);
+                        if (value != null)
+                            href += value.toString();
+                    } catch (IllegalAccessException e) {
+                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                                 PageContext.REQUEST_SCOPE);
+                        throw new JspException
+                            (messages.getMessage("getter.access",
+                                                 paramProperty, paramName));
+                    } catch (InvocationTargetException e) {
+                        Throwable t = e.getTargetException();
+                        pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                                 PageContext.REQUEST_SCOPE);
+                        throw new JspException
+                            (messages.getMessage("getter.result",
+                                                 paramProperty, t.toString()));
+                    } catch (NoSuchMethodException e) {
+                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                                 PageContext.REQUEST_SCOPE);
+                        throw new JspException
+                            (messages.getMessage("getter.method",
+                                                 paramProperty, paramName));
+                    }
+                }
+            }
         }
 
 	// Just return the "href" attribute if there is no bean to look up
