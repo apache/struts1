@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.4 2003/05/04 22:41:12 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/05/04 22:41:12 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.5 2003/08/16 17:59:34 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/08/16 17:59:34 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -89,49 +89,47 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2003/05/04 22:41:12 $
+ * @version $Revision: 1.5 $ $Date: 2003/08/16 17:59:34 $
  */
 public final class Channels extends Action {
 
+    /** 
+     * Commons Logging instance.
+     */
+    private static Log log = LogFactory.getLog(Channels.class);
 
-       /** Commons Logging instance.*/
-    protected static Log log = LogFactory.getLog(Channels.class);
-      /** Debug flag */
-    public static final boolean debug = true;
     /**
      * Tile attribute key for saving Channel bean
      */
     public static final String CHANNELS_KEY = "CHANNELS";
+
     /**
      * Tile attribute key for getting Channel urls list
      */
     public static final String CHANNEL_URLS_KEY = "urls";
+
     /**
      * Tile attribute key for getting Channel url attribute
      */
     public static final String CHANNEL_URL_KEY = "url";
 
-    // --------------------------------------------------------- Instances Variables
-    // --------------------------------------------------------- Public Methods
-
     /**
      * Main process of class. Reads, parses
      */
-    public ActionForward perform(ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
+    public ActionForward perform(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
         throws IOException, ServletException {
 
-    if(debug)
-      System.out.println( "Enter Rss Channel Action" );
+        log.debug("Enter Rss Channel Action");
 
-          // Try to retrieve tile context
-    ComponentContext context = ComponentContext.getContext( request );
-    if( context == null )
-      {
-      throw new ServletException( "This action must be called by a Tile, not directly" );
-      }
+        // Try to retrieve tile context
+        ComponentContext context = ComponentContext.getContext(request);
+        if (context == null) {
+            throw new ServletException("This action must be called by a Tile, not directly");
+        }
 
         ActionErrors errors = new ActionErrors();
         org.apache.commons.digester.rss.Channel channel = null;
@@ -139,78 +137,80 @@ public final class Channels extends Action {
         // -- Retrieve parameters --
         // Urls can come from a list, or from a single attribute.
 
-        List channels = (List)context.getAttribute( CHANNEL_URLS_KEY );
-        if( channels == null )
-          {
-          Object url = context.getAttribute( CHANNEL_URL_KEY );
-          channels = new ArrayList(1);
-          channels.add(url);
-          }
-            //channels.add("http://www.newsforge.com/newsforge.rss");
-            //channels.add("http://xmlhack.com/rss.php");
-            //channels.add("http://lwn.net/headlines/rss");
-        // channels.trimToSize();
+        List channels = (List) context.getAttribute(CHANNEL_URLS_KEY);
+        if (channels == null) {
+            Object url = context.getAttribute(CHANNEL_URL_KEY);
+            channels = new ArrayList(1);
+            channels.add(url);
+        }
 
-        if(debug)
-          System.out.println( "urls count" + channels.size() ) ;
+        log.debug("urls count" + channels.size());
+
         // -- Loop through channels --
         ArrayList channelBeans = new ArrayList(channels.size());
         try {
-            for (int i=0; i<channels.size(); i++) {
+            for (int i = 0; i < channels.size(); i++) {
                 RSSDigester digester = new RSSDigester();
-                String url = (String)channels.get(i);
-                  // Add application path if needed
-                if( url.startsWith("/") )
-                  {
-                  url = toFullUrl( request, url );
-                  }
-                if(debug)  System.out.println( "Channel url=" + url) ;
-                Channel obj = (Channel)digester.parse(url);
-                if(debug)  System.out.println( "Channel:" + obj) ;
-                //System.out.println( "Channel.items:" + obj.getI) ;
+                String url = (String) channels.get(i);
+                // Add application path if needed
+                if (url.startsWith("/")) {
+                    url = toFullUrl(request, url);
+                }
+
+                log.debug("Channel url=" + url);
+
+                Channel obj = (Channel) digester.parse(url);
+
+                log.debug("Channel:" + obj);
+
                 channelBeans.add(obj);
             }
-        }
-        catch (Throwable t) {
-            errors.add(ActionErrors.GLOBAL_ERROR,
+        } catch (Throwable t) {
+            errors.add(
+                ActionErrors.GLOBAL_ERROR,
                 new ActionError("rss.access.error"));
+
             servlet.log(t.toString());
         }
 
         // -- Handle Errors ---
         if (!errors.isEmpty()) {
             saveErrors(request, errors);
-            if (mapping.getInput()!=null)
-                return (new ActionForward(mapping.getInput()));
+
+            if (mapping.getInput() != null) {
+                return new ActionForward(mapping.getInput());
+            }
+
             // If no input page, use error forwarding
-         if(debug)
-           System.out.println( "Exit Rss Channel Action : error" );
+
+            log.debug("Exit Rss Channel Action : error");
+
             return (mapping.findForward("error"));
         }
 
         // -- Save Bean, and Continue  ---
 
-         if(debug)
-           System.out.println( "Exit Rss Channel Action" );
-        //request.setAttribute(CHANNELS_KEY,channelBeans);
-          // Use Tile context to pass channels
-        context.putAttribute( CHANNELS_KEY,channelBeans);
-        return (mapping.findForward("continue"));
-    } // ---- End perform ----
+        log.debug("Exit Rss Channel Action");
 
-  private String toFullUrl( HttpServletRequest request, String url )
-    {
-    StringBuffer buff = new StringBuffer();
-
-    buff.append( request.getScheme() ) .append( "://" ) . append(request.getServerName());
-    if( request.getServerPort() != 80 )
-      buff.append( ":" ).append( request.getServerPort() );
-    buff.append( request.getContextPath()).append( url);
-    return buff.toString();
+        // Use Tile context to pass channels
+        context.putAttribute(CHANNELS_KEY, channelBeans);
+        
+        return mapping.findForward("continue");
     }
 
-} // ---- End Fetch ----
+    private String toFullUrl(HttpServletRequest request, String url) {
+        StringBuffer buff = new StringBuffer();
 
+        buff.append(request.getScheme()).append("://").append(
+            request.getServerName());
 
+        if (request.getServerPort() != 80) {
+            buff.append(":").append(request.getServerPort());
+        }
 
+        buff.append(request.getContextPath()).append(url);
 
+        return buff.toString();
+    }
+
+}
