@@ -1,4 +1,4 @@
-<Server port="9005" shutdown="SHUTDOWN" debug="0">
+<Server port="8005" shutdown="SHUTDOWN" debug="0">
 
   <Listener className="org.apache.catalina.mbeans.ServerLifecycleListener"
             debug="0"/>
