@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.111 2002/07/07 18:45:18 husted Exp $
- * $Revision: 1.111 $
- * $Date: 2002/07/07 18:45:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.112 2002/07/09 06:40:03 martinc Exp $
+ * $Revision: 1.112 $
+ * $Date: 2002/07/09 06:40:03 $
  *
  * ====================================================================
  *
@@ -268,10 +268,11 @@ import org.apache.struts.util.ServletContextWriter;
  *     <em>DEPRECATED - Configure this using the "maxFileSize" attribute of
  *     the &lt;controller&gt; element.</em></li>
  * <li><strong>multipartClass</strong> - The fully qualified name of the
- *     MultiplartRequestHandler implementation class to be used for processing
+ *     MultipartRequestHandler implementation class to be used for processing
  *     file uploads. If set to <code>none</code>, disables Struts multipart
  *     request handling.  [org.apache.struts.upload.DiskMultipartRequestHandler]
- *     FIXME - check this</li>
+ *     <em>DEPRECATED - Configure this using the "multipartClass" attribute of
+ *     the &lt;controller&gt; element.</em></li>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
  *     generate or forward to.  [false]
@@ -292,7 +293,8 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.111 $ $Date: 2002/07/07 18:45:18 $
+ * @author Martin Cooper
+ * @version $Revision: 1.112 $ $Date: 2002/07/09 06:40:03 $
  */
 
 public class ActionServlet
@@ -1268,6 +1270,10 @@ public class ActionServlet
             } else {
                 cc.setNocache(false);
             }
+        }
+        value = getServletConfig().getInitParameter("multipartClass");
+        if (value != null) {
+            cc.setMultipartClass(value);
         }
         value = getServletConfig().getInitParameter("tempDir");
         if (value != null) {
