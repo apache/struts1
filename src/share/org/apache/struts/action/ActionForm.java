@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.4 2000/11/09 20:34:12 mschachter Exp $
- * $Revision: 1.4 $
- * $Date: 2000/11/09 20:34:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.5 2000/12/07 19:10:51 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/07 19:10:51 $
  *
  * ====================================================================
  * 
@@ -94,7 +94,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/11/09 20:34:12 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/07 19:10:51 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -222,6 +222,26 @@ public abstract class ActionForm implements Serializable {
         } catch (ClassCastException e) {
             return (null);
         }
+
+    }
+
+
+    /**
+     * Perform validations on the form input values included in this form bean.
+     * If validation errors occur, return a String array containing the message
+     * keys of corresponding error messages (in our application
+     * MessageResources) to be displayed.  If no validation errors occur,
+     * return <code>null</code>.
+     *
+     * @deprecated This is the Struts 0.5 version of validation -- use the
+     *  validate(ActionMapping,HttpServletRequest) method instead
+     */
+    public String[] validate() {
+
+        String messages[] = new String[1];
+        messages[0] =
+            "Use the Struts 1.0 version of validate() for validation";
+        return (messages);
 
     }
 
