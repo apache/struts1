@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.34 2004/01/13 12:48:46 husted Exp $
- * $Revision: 1.34 $
- * $Date: 2004/01/13 12:48:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.35 2004/01/14 03:52:25 husted Exp $
+ * $Revision: 1.35 $
+ * $Date: 2004/01/14 03:52:25 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * it to a String representation (if necessary), and writes it to the current
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
- * @version $Revision: 1.34 $ $Date: 2004/01/13 12:48:46 $
+ * @version $Revision: 1.35 $ $Date: 2004/01/14 03:52:25 $
  */
 public class WriteTag extends TagSupport {
 
@@ -409,18 +409,10 @@ public class WriteTag extends TagSupport {
                         formatString = retrieveFormatString(DATE_FORMAT_KEY);
                     }
 
-                    if (formatString != null) {
-                        formatStrFromResources = true;
-                    }
-
                 }
 
                 if (formatString != null) {
-                    if (formatStrFromResources) {
                         format = new SimpleDateFormat(formatString, locale);
-                    } else {
-                        format = new SimpleDateFormat(formatString);
-                    }
                 }
             }
         }
