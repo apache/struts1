@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.36 2003/07/28 05:54:33 rleland Exp $
- * $Revision: 1.36 $
- * $Date: 2003/07/28 05:54:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.37 2003/07/28 14:38:15 rleland Exp $
+ * $Revision: 1.37 $
+ * $Date: 2003/07/28 14:38:15 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.36 $ $Date: 2003/07/28 05:54:33 $
+ * @version $Revision: 1.37 $ $Date: 2003/07/28 14:38:15 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -402,7 +402,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * @param resources
      * @param locale
      * @param form
-     * @since Struts 1.2
      */
     private String createDynamicJavascript(
         ModuleConfig config,
@@ -538,7 +537,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * @param stopOnError If true, behaves like released version of struts 1.1
      *        and stops after first error. If false, evaluates all validations.
      * @return JavaScript methods.
-     * @since Struts 1.2
      */
     private String createMethods(List actions, boolean stopOnError) {
         String methods = null;
