@@ -34,7 +34,7 @@
   <tlib-version>0.1</tlib-version>
   <jsp-version>1.2</jsp-version>
   <short-name>Struts-Faces</short-name>
-  <uri>http://jakarta.apache.org/struts/tags-faces</uri>
+  <uri>http://struts.apache.org/tags-faces</uri>
   <display-name>Struts-Faces Integration Tag Library</display-name>
   <description>
     <p>This tag library provides custom action functionality that is

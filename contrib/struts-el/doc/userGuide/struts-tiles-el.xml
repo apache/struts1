@@ -18,7 +18,7 @@
   <jspversion>1.1</jspversion>
   <shortname>tiles</shortname>
   <display-name>Tiles Tag Library</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-tiles-el</uri>
+  <uri>http://struts.apache.org/tags-tiles-el</uri>
   <info>
     <p>This tag library provides tiles tags.</p>
     <p>Tiles were previously called Components. For historical reasons, names, pages, components and templates
