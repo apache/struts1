@@ -29,6 +29,9 @@
       <html:messages id="error" property="float">
          <li><bean:write name="error"/></li>
       </html:messages>
+      <html:messages id="error" property="floatRange">
+         <li><bean:write name="error"/></li>
+      </html:messages>
       <html:messages id="error" property="double">
          <li><bean:write name="error"/></li>
       </html:messages>
@@ -84,6 +87,14 @@
     </th>
     <td align="left">
       <html:text property="float" size="15" maxlength="15"/>
+    </td>
+  </tr>
+  <tr>
+    <th align="left">
+      <bean:message key="typeForm.floatRange.displayname"/>
+    </th>
+    <td align="left">
+      <html:text property="floatRange" size="15" maxlength="15"/>
     </td>
   </tr>
   <tr>
@@ -150,7 +161,7 @@
       &nbsp;
       <html:cancel>
          <bean:message key="button.cancel"/>
-      </html:cancel>    
+      </html:cancel>
     </td>
   </tr>
 </table>

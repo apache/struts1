@@ -77,6 +77,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     private String sInteger = null;
     private String sLong = null;
     private String sFloat = null;
+    private String sFloatRange = null;
     private String sDouble = null;
     private String sDate = null;
     private String sCreditCard = null;
@@ -131,6 +132,22 @@ public final class TypeForm extends ValidatorForm implements Serializable {
        	this.sFloat = sFloat;
     }
 
+   /**
+    * Float field with range checking
+    * @return
+    */
+    public String getFloatRange() {
+       return sFloatRange;
+    }
+
+   /**
+    * Float field with range checking
+    * @param sFloatRange
+    */
+    public void setFloatRange(String sFloatRange) {
+          this.sFloatRange = sFloatRange;
+    }
+
     public String getDouble() {
        return sDouble;
     }
@@ -176,6 +193,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
        sInteger = null;
        sLong = null;
        sFloat = null;
+       sFloatRange = null;
        sDouble = null;
        sDate = null;
        sCreditCard = null;
