@@ -21,16 +21,18 @@
 
   <!-- ========== Data Source Configuration =============================== -->
 <!--
-  <data-source
-     autoCommit="false"
-    description="Example Data Source Configuration"
-    driverClass="org.postgresql.Driver"
-       maxCount="4"
-       minCount="2"
-       password="mypassword"
-            url="jdbc:postgresql://localhost/mydatabase"
-           user="myusername"
-  />
+  <data-sources>
+    <data-source
+       autoCommit="false"
+      description="Example Data Source Configuration"
+      driverClass="org.postgresql.Driver"
+         maxCount="4"
+         minCount="2"
+         password="mypassword"
+              url="jdbc:postgresql://localhost/mydatabase"
+             user="myusername"
+    />
+  </data-sources>
 -->
 
   <!-- ========== Form Bean Definitions =================================== -->

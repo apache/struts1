@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.10 2000/12/06 19:24:03 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/12/06 19:24:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.11 2000/12/27 00:16:02 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/12/27 00:16:02 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/12/06 19:24:03 $
+ * @version $Revision: 1.11 $ $Date: 2000/12/27 00:16:02 $
  */
 
 public class Action {
@@ -115,8 +115,9 @@ public class Action {
 
 
     /**
-     * The context attribute key under which our configured data source
-     * (which must implement <code>javax.sql.DataSource</code>) is stored,
+     * The context attribute key under which our <strong>default</strong>
+     * configured data source (which must implement
+     * <code>javax.sql.DataSource</code>) is stored,
      * if one is configured for this application.
      */
     public static final String DATA_SOURCE_KEY =

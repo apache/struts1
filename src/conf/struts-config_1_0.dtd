@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.5 2000/11/30 20:12:44 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.6 2000/12/27 00:16:02 craigmcc Exp $
 -->
 
 
@@ -79,8 +79,17 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (data-source?, form-beans?, global-forwards?, action-mappings?)>
+<!ELEMENT struts-config (data-sources?, form-beans?, global-forwards?, action-mappings?)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
+
+
+<!-- The "data-sources" element describes a set of JDBC 2.0 Standard Extension
+     data source objects which will be configured according to the nested
+     "data-source" elements found inside.
+-->
+
+<!ELEMENT data-sources (data-source*)>
+<!ATTLIST data-sources   id             ID              #IMPLIED>
 
 
 <!-- The "data-source" element describes a JDBC 2.0 Standard Extension data
@@ -103,6 +112,10 @@
 
      driverClass     The Java class name of the JDBC driver to be used.
                      [REQUIRED]
+
+     key             Servlet context attribute key under which this data
+                     source will be stored.  Default is the value specified
+                     by string constant Action.DATA_SOURCE_KEY.
 
      loginTimeout    The maximum number of seconds to wait for a connection
                      to be created or returned.
@@ -127,6 +140,7 @@
 <!ATTLIST data-source    autoCommit     %Boolean;       "true">
 <!ATTLIST data-source    description    CDATA           #IMPLIED>
 <!ATTLIST data-source    driverClass    %ClassName;     #REQUIRED>
+<!ATTLIST data-source    key            %BeanName;      #IMPLIED>
 <!ATTLIST data-source    loginTimeout   %Integer;       #IMPLIED>
 <!ATTLIST data-source    maxCount       %Integer;       "2">
 <!ATTLIST data-source    minCount       %Integer;       "1">

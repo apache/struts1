@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.42 2000/12/15 03:08:09 craigmcc Exp $
- * $Revision: 1.42 $
- * $Date: 2000/12/15 03:08:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.43 2000/12/27 00:16:03 craigmcc Exp $
+ * $Revision: 1.43 $
+ * $Date: 2000/12/27 00:16:03 $
  *
  * ====================================================================
  *
@@ -69,6 +69,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Vector;
@@ -81,12 +83,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import org.apache.struts.digester.Digester;
+import org.apache.struts.digester.Rule;
 import org.apache.struts.taglib.form.Constants;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.ServletContextWriter;
+import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
 
 
@@ -208,7 +212,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.42 $ $Date: 2000/12/15 03:08:09 $
+ * @version $Revision: 1.43 $ $Date: 2000/12/27 00:16:03 $
  */
 
 public class ActionServlet
@@ -245,10 +249,11 @@ public class ActionServlet
 
 
     /**
-     * The JDBC data source that has been configured for this application,
-     * if any.
+     * The JDBC data sources that has been configured for this application,
+     * if any, keyed by the servlet context attribute under which they are
+     * stored.
      */
-    protected DataSource dataSource = null;
+    protected HashMap dataSources = new HashMap();
 
 
     /**
@@ -394,7 +399,7 @@ public class ActionServlet
 
         destroyActions();
 	destroyApplication();
-        destroyDataSource();
+        destroyDataSources();
 	destroyInternal();
 
     }
@@ -419,7 +424,7 @@ public class ActionServlet
 		(internal.getMessage("configIO", config));
 	}
         initUpload();
-        initDataSource();
+        initDataSources();
 	initOther();
 
     }
@@ -465,6 +470,24 @@ public class ActionServlet
 
 
     /**
+     * Add a data source object to be used by this application.
+     *
+     * @param key The servlet context attribute key under which to store
+     *  this data source, or <code>null</code> for the default
+     * @param dataSource The data source to be used
+     */
+    public void addDataSource(String key, DataSource dataSource) {
+
+        if (key == null)
+            key = Action.DATA_SOURCE_KEY;
+        synchronized (dataSources) {
+            dataSources.put(key, dataSource);
+        }
+
+    }
+
+
+    /**
      * Register a form bean definition to the set configured for this servlet.
      *
      * @param formBean The form bean definition to be added
@@ -496,6 +519,24 @@ public class ActionServlet
     public void addMapping(ActionMapping mapping) {
 
 	mappings.addMapping(mapping);
+
+    }
+
+
+    /**
+     * Return a JDBC data source associated with this application, if any.
+     *
+     * @param key The servlet context attribute key under which this data
+     *  source is stored, or <code>null</code> for the default.
+     */
+    public DataSource findDataSource(String key) {
+
+        synchronized (dataSources) {
+            if (key == null)
+                return ((DataSource) dataSources.get(Action.DATA_SOURCE_KEY));
+            else
+                return ((DataSource) dataSources.get(key));
+        }
 
     }
 
@@ -552,23 +593,12 @@ public class ActionServlet
     }
 
 
-
     /**
      * Return the debugging detail level for this servlet.
      */
     public int getDebug() {
 
 	return (this.debug);
-
-    }
-
-
-    /**
-     * Return the JDBC data source associated with this application, if any.
-     */
-    public DataSource getDataSource() {
-
-        return (this.dataSource);
 
     }
 
@@ -740,18 +770,6 @@ public class ActionServlet
 
 
     /**
-     * Set the data source object to be used by this application.
-     *
-     * @param dataSource The data source to be used
-     */
-    public void setDataSource(DataSource dataSource) {
-
-        this.dataSource = dataSource;
-
-    }
-
-
-    /**
      * Set the Java class name of the class used to instantiate
      * <code>ActionFormBean</code> objects.
      *
@@ -860,20 +878,24 @@ public class ActionServlet
      * Gracefully terminate use of the data source associated with this
      * application (if any).
      */
-    protected void destroyDataSource() {
+    protected void destroyDataSources() {
 
-        if (dataSource == null)
-            return;
-        if (dataSource instanceof GenericDataSource) {
-            if (debug >= 1)
-                log(internal.getMessage("dataSource.destroy"));
-            try {
-                ((GenericDataSource) dataSource).close();
-            } catch (SQLException e) {
-                log(internal.getMessage("destroyDataSource"), e);
+        synchronized (dataSources) {
+            Iterator keys = dataSources.keySet().iterator();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                getServletContext().removeAttribute(key);
+                DataSource dataSource = findDataSource(key);
+                if (dataSource instanceof GenericDataSource) {
+                    if (debug >= 1)
+                        log(internal.getMessage("dataSource.destroy", key));
+                    try {
+                        ((GenericDataSource) dataSource).close();
+                    } catch (SQLException e) {
+                        log(internal.getMessage("destroyDataSource", key), e);
+                    }
+                }
             }
-            dataSource = null;
-            getServletContext().removeAttribute(Action.DATA_SOURCE_KEY);
         }
 
     }
@@ -933,23 +955,27 @@ public class ActionServlet
 
 
     /**
-     * Initialize use of the data source associated with this
+     * Initialize use of the data sources associated with this
      * application (if any).
      */
-    protected void initDataSource() {
+    protected void initDataSources() {
 
-        if (dataSource == null)
-            return;
-        if (dataSource instanceof GenericDataSource) {
-            if (debug >= 1)
-                log(internal.getMessage("dataSource.init"));
-            try {
-                ((GenericDataSource) dataSource).open();
-            } catch (SQLException e) {
-                log(internal.getMessage("initDataSource"), e);
+        synchronized (dataSources) {
+            Iterator keys = dataSources.keySet().iterator();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                DataSource dataSource = findDataSource(key);
+                if (dataSource instanceof GenericDataSource) {
+                    if (debug >= 1)
+                        log(internal.getMessage("dataSource.init", key));
+                    try {
+                        ((GenericDataSource) dataSource).open();
+                    } catch (SQLException e) {
+                        log(internal.getMessage("initDataSource", key), e);
+                    }
+                }
+                getServletContext().setAttribute(key, dataSource);
             }
-            getServletContext().setAttribute(Action.DATA_SOURCE_KEY,
-                                             dataSource);
         }
 
     }
@@ -994,14 +1020,15 @@ public class ActionServlet
 
         // FIXME "struts-config/action-mappings" type attribute
 
-        digester.addObjectCreate("struts-config/data-source",
+        digester.addObjectCreate("struts-config/data-sources/data-source",
                                  "org.apache.struts.util.GenericDataSource",
                                  "type");
-        digester.addSetProperties("struts-config/data-source");
-        digester.addSetNext("struts-config/data-source",
-                            "setDataSource", "javax.sql.DataSource");
-        digester.addSetProperty("struts-config/data-source/set-property",
-                                "property", "value");
+        digester.addSetProperties("struts-config/data-sources/data-source");
+        digester.addRule("struts-config/data-sources/data-source",
+                         new AddDataSourceRule(digester));
+        digester.addSetProperty
+            ("struts-config/data-sources/data-source/set-property",
+             "property", "value");
 
         digester.addObjectCreate("struts-config/action-mappings/action",
                                  mappingClass, "className");
@@ -1805,5 +1832,52 @@ public class ActionServlet
 
     }
 
+
+}
+
+
+// ------------------------------------------------------------ Private Classes
+
+
+/**
+ * Private digester <code>Rule</code> that adds a data source to the underlying
+ * <code>ActionServlet</code> instance.  The servlet context attributes key
+ * is specified by the "key" attribute on the data source element, and defaults
+ * to the value of <code>Action.DATA_SOURCE_KEY</code> if not specified.
+ */
+
+final class AddDataSourceRule extends Rule {
+
+
+    public AddDataSourceRule(Digester digester) {
+
+        super(digester);
+
+    }
+
+
+    public void begin(AttributeList attributes) throws Exception {
+
+        // Acquire the key under which this data source will be stored
+        String key = null;
+        for (int i = 0; i < attributes.getLength(); i++) {
+            if ("key".equals(attributes.getName(i))) {
+                key = attributes.getValue(i);
+                break;
+            }
+        }
+        if (key == null)
+            key = Action.DATA_SOURCE_KEY;
+
+        // Pass the data source at the top of the stack to the action servlet
+        // at the next-to-top position
+        DataSource child = (DataSource) digester.peek(0);
+        ActionServlet parent = (ActionServlet) digester.peek(1);
+        if (digester.getDebug() >= 1)
+            digester.log("Call " + parent.getClass().getName() +
+                         ".addDataSource(" + key + ", " + child + ")");
+        parent.addDataSource(key, child);
+
+    }
 
 }
