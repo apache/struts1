@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.21 2003/08/15 23:53:11 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/08/15 23:53:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.22 2003/09/26 19:14:06 turner Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/09/26 19:14:06 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * @author David Winterfeldt
  * @author Eddie Bush
  * @author David Graham
- * @version $Revision: 1.21 $ $Date: 2003/08/15 23:53:11 $
+ * @version $Revision: 1.22 $ $Date: 2003/09/26 19:14:06 $
  * @since Struts 1.1
  */
 public class Resources {
@@ -117,7 +117,7 @@ public class Resources {
      * Resources key the <code>ActionErrors</code> is stored under.
      */
     private static String ACTION_ERRORS_PARAM =
-        "org.apache.struts.action.ActionErrors";
+        "org.apache.struts.action.ActionMessages";
 
     /**
      * Resources key the <code>ActionErrors</code> is stored under.
