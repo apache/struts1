@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.18 2003/07/28 05:54:10 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2003/07/28 05:54:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.19 2003/08/27 23:44:02 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/08/27 23:44:02 $
  *
  * ====================================================================
  *
@@ -77,11 +77,11 @@ import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Loads <code>ValidatorResources</code> based on
- * configuration in the struts-config.xml.</p>
+ * Loads <code>ValidatorResources</code> based on configuration in the 
+ * struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.18 $ $Date: 2003/07/28 05:54:10 $
+ * @version $Revision: 1.19 $ $Date: 2003/08/27 23:44:02 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -109,12 +109,15 @@ public class ValidatorPlugIn implements PlugIn {
     /**
      * Application scope key that <code>ValidatorResources</code> is stored under.
      */
-    public final static String VALIDATOR_KEY = "org.apache.commons.validator.VALIDATOR_RESOURCES";
+    public final static String VALIDATOR_KEY =
+        "org.apache.commons.validator.VALIDATOR_RESOURCES";
 
     /**
      * Application scope key that <code>StopOnError</code> is stored under.
+     * @since Struts 1.2
      */
-     public final static String STOP_ON_ERROR_KEY = "org.apache.struts.validator.STOP_ON_ERROR";
+    public final static String STOP_ON_ERROR_KEY =
+        "org.apache.struts.validator.STOP_ON_ERROR";
 
     /**
      * The set of Form instances that have been created and initialized,
@@ -147,28 +150,32 @@ public class ValidatorPlugIn implements PlugIn {
     }
 
     /**
-     * Informs the Validators if it has to stop validation when finding the first Error
-     * or if it should continue.
-     * Default to true to keep struts 1.1 backwards compatibility.
+     * Informs the Validators if it has to stop validation when finding the 
+     * first error or if it should continue.  Default to <code>true</code> to 
+     * keep Struts 1.1 backwards compatibility.
      */
     private boolean stopOnFirstError = true;
 
     /**
      * Gets the value for stopOnFirstError.
-     * @return a boolean indicating whether javascript validator should stop when finds the first error
-     *         ,struts 1.1 behaviour, or continue validation.
+     * @return A boolean indicating whether JavaScript validation should stop 
+     * when it finds the first error (Struts 1.1 behaviour) or continue 
+     * validation.
+     * @since Struts 1.2
      */
     public boolean isStopOnFirstError() {
-    	return stopOnFirstError;
+    	return this.stopOnFirstError;
     }
 
     /**
      * Sets the value for stopOnFirstError.
-     * @param newValue a boolean indicating whether javascript validator should stop when finds the first error
-     * 		  ,struts 1.1 behaviour, or continue validation.
+     * @param stopOnFirstError A boolean indicating whether JavaScript 
+     * validation should stop when it finds the first error 
+     * (Struts 1.1 behaviour) or continue validation.
+     * @since Struts 1.2
      */
-    public void setStopOnFirstError(boolean newValue) {
-    	this.stopOnFirstError = newValue;
+    public void setStopOnFirstError(boolean stopOnFirstError) {
+    	this.stopOnFirstError = stopOnFirstError;
     }
 
     /**
@@ -188,13 +195,16 @@ public class ValidatorPlugIn implements PlugIn {
 
         // Load our database from persistent storage
         try {
-            initResources();
+            this.initResources();
+            
             servlet.getServletContext().setAttribute(
                 VALIDATOR_KEY + config.getPrefix(),
                 resources);
+
             servlet.getServletContext().setAttribute(
-				STOP_ON_ERROR_KEY + '.'+config.getPrefix(),
-				new Boolean(stopOnFirstError));
+                STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
+                new Boolean(this.stopOnFirstError));
+                
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new UnavailableException(
