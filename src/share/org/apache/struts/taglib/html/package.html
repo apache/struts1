@@ -269,6 +269,85 @@ session, application), it creates one using the specified type.</p>
 <p>Aside from form processing, the Struts-HTML offers several other tags or tag
   properties to help with displaying error messages, messages, maintaining hyperlinks, and
   with internationalizing your application.</p>
+<<<<<<< package.html
+<h4><a name="doc.Other.messages">Displaying Messages</a></h4>
+<p>Message handling is an important part of any application.  These messages 
+  can be informative messages and/or error messages for the user.  Struts provides a 
+  generalized method for communicating runtime messages to users, based on the 
+  same technology used to provide internationalization. Messages and 
+  error messages can both be used by the messages tag.</p>
+<p>The messages tag has basically the same functionality as the errors tag, but 
+  it iterates through the messages so any formatting of messages can be done 
+  in the JSP page.  Also the header and footer for the message tag are optional. </p>
+<p>By default, the messages tag will iterate through all pending messages. You can also specify
+  a property when queuing a message, and then refer to that property in the messages
+  tag. In that case, only the message(s) for that property will be displayed. This
+  is helpful when you would like to place the message for a field next to the
+  actual field.</p>
+<p>Messages are often queued in the Action.  The variable info is the ActionForm 
+   corresponding to this Action. :</p>
+<pre>  
+       ActionMessages messages = new ActionMessages();
+       messages.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage("userForm.insert", info.getUserName()));
+       messages.add("activationDate", new ActionMessage("userForm.active", info.getSubscriptionLength()));
+</pre>
+<p>This queues two messages, one is a global message and another for
+  the "activationDate" field. To print all the messages together, simply place the messages
+  tag anywhere in your JSP.</p>
+<pre>
+  &lt;body bgcolor="white"&gt;
+  &lt;ul&gt;
+  &lt;html:messages id="message"&gt;
+     &lt;li&gt;&lt;bean:write name="message"/&gt;&lt;/li&gt;
+  &lt;/html:messages&gt;
+  &lt;/ul&gt;
+</pre>
+<p>Or, you can place specific messages at different locations</p>
+<pre>
+  &lt;ul&gt;
+     &lt;html:messages id="message" property="&lt;%= org.apache.struts.action.ActionMessages.GLOBAL_MESSAGE %&gt;"&gt;
+        &lt;li&gt;&lt;bean:write name="message"/&gt;&lt;/li&gt;
+     &lt;/html:messages&gt;
+  &lt;/ul&gt;
+  &lt;table&gt;
+     &lt;tr&gt;
+        &lt;td align="left"&gt;
+          &lt;html:text property="username" size="16" maxlength="16"/&gt;
+        &lt;/td&gt;
+     &lt;/tr&gt;
+     &lt;tr&gt;
+        &lt;td align="left"&gt;
+          &lt;html:text property="activationDate" size="10" maxlength="10"/&gt;
+          &lt;br&gt;
+          &lt;html:messages id="message" property="activationDate"&gt;
+             &lt;bean:write name="message"/&gt;&lt;br&gt;
+          &lt;/html:messages&gt;
+        &lt;/td&gt;
+     &lt;/tr&gt;
+  &lt;/table&gt;
+</pre>
+<p>By default, the actual message is retrieved from the application's standard
+  message resource. This gives you a master list of the messages used by
+  your application, and provides for internationalization. In the code snippet,
+  the message corresponding to "userForm.insert" would be retrieved and
+  displayed to the user at runtime. </p>
+<pre>
+  userForm.insert={0} has successfully been inserted.
+  userForm.active=The account will be active for {0} months.
+</pre>
+<p>A header and footer are optional.  The header will be rendered before iteration begins 
+   and the footer will be rendered after iteration is over.  If a value is not assigned 
+   to the attribute, then nothing will be rendered for that attribute.</p>
+<pre>
+  &lt;html:messages id="message" header="errors.header" footer="errors.footer"&gt;
+     &lt;li&gt;&lt;bean:write name="message"/&gt;&lt;/li&gt;
+  &lt;/html:messages&gt;
+
+  errors.header=&lt;h3&gt;&lt;font color="red"&gt;Validation Error&lt;/font&gt;&lt;/h3&gt;
+    You must correct the following error(s) before proceeding:&lt;UL&gt;
+  errors.footer=&lt;/ul&gt;&lt;hr&gt;
+</pre>
+=======
 <h4><a name="doc.Other.messages">Displaying Messages</a></h4>
 <p>Message handling is an important part of any application.  These messages 
   can be informative messages and/or error messages for the user.  Struts provides a 
@@ -346,6 +425,7 @@ session, application), it creates one using the specified type.</p>
     You must correct the following error(s) before proceeding:&lt;UL&gt;
   errors.footer=&lt;/ul&gt;&lt;hr&gt;
 </pre>
+>>>>>>> 1.8
 <h4><a name="doc.Other.errors">Displaying Error Messages</a></h4>
 <p>Error handling is an important part of any application, and curing an error
   often involves getting the user's help. Struts provides a generalized method
