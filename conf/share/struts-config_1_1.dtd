@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.19 2002/06/30 04:37:32 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.20 2002/07/04 00:05:47 craigmcc Exp $
 -->
 
 
@@ -289,7 +289,12 @@
 
      path            The application-relative or context-relative path of
                      the mapped resource (determined by the selected value
-                     for the "contextRelative" attribute).
+                     for the "contextRelative" attribute).  If contextRelative
+                     is false, this value is used in a calculation based on
+                     the "forwardPattern" property of the controller parameters
+                     for the current sub-application to calculate the
+                     resulting value.  This value must begin with a slash
+                     ("/") character.
 
      redirect        Set to "true" if sendRedirect() should be used to forward
                      to this resource, or "false" in order to use
@@ -434,6 +439,22 @@
 
      debug           Debugging detail level for this application.  [0]
 
+     forwardPattern  Replacement pattern defining how the "path" attribute of
+                     a "forward" element is mapped to a server-relative URL
+                     when it starts with a slash (and when the contextRelative
+                     property is false).  This value may consist of any
+                     combination of the following:
+                     - "$C" - Replaced by the context path of this webapp
+                     - "$A" - Replaced by the app prefix of this subapp
+                     - "$P" - Replaced by the "path" attribute of the
+                              selected "forward" element
+                     - "$$" - Causes a literal dollar sign to be rendered
+                     - "$x" - (Where "x" is any character not defined above)
+                              Silently swallowed, reserved for future use
+                     If not specified, the default forwardPattern is
+                     "$C$A$P", which is consistent with previous hard coded
+                     behavior of forwards.
+
      locale          Set to true if you want a Locale object stored in the
                      user's session if not already present.  [true]
 
@@ -450,6 +471,20 @@
                      HTTP headers for defeating caching to every response.
                      [false]
 
+     pagePattern     Replacement pattern defining how the "page" attribute of
+                     custom tags that use it is mapped to a server-relative URL
+                     of the corresponding resource.  This value may consist of
+                     any combination of the following:
+                     - "$C" - Replaced by the context path of this webapp
+                     - "$A" - Replaced by the app prefix of this subapp
+                     - "$P" - Replaced by the value of the "page" attribute
+                     - "$$" - Causes a literal dollar sign to be rendered
+                     - "$x" - (Where "x" is any character not defined above)
+                              Silently swallowed, reserved for future use
+                     If not specified, the default forwardPattern is
+                     "$C$A$P", which is consistent with previous hard coded
+                     behavior of URL evaluation for "page" attributes.
+
      processorClass  The fully qualified Java class name of the
                      RequestProcessor class to be used.
                      [org.apache.struts.action.RequestProcessor]
@@ -463,10 +498,12 @@
 <!ATTLIST controller     className      %ClassName;     #IMPLIED>
 <!ATTLIST controller     contentType    CDATA           #IMPLIED>
 <!ATTLIST controller     debug          %Integer;       #IMPLIED>  
+<!ATTLIST controller     forwardPattern CDATA           #IMPLIED>
 <!ATTLIST controller     locale         %Boolean;       #IMPLIED>
 <!ATTLIST controller     maxFileSize    CDATA           #IMPLIED>
 <!ATTLIST controller     multipartClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     nocache        %Boolean;       #IMPLIED>
+<!ATTLIST controller     pagePattern    CDATA           #IMPLIED>
 <!ATTLIST controller     processorClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     tempDir        CDATA           #IMPLIED>
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.4 2002/07/02 01:52:15 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/07/02 01:52:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.5 2002/07/04 00:05:48 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/04 00:05:48 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/07/02 01:52:15 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/04 00:05:48 $
  * @since Struts 1.1
  */
 
@@ -159,9 +159,23 @@ public class ForwardConfig implements Serializable {
 
 
     /**
-     * The application-relative (if contextRelative is <code>false</code>) or
-     * context-relative (if contextRelative is <code>true</code>) path,
-     * starting with a "/", of the resource that is mapped by this forward.
+     * <p>The URL to which this <code>ForwardConfig</code> entry points,
+     * which must start with a slash ("/") character.  It is
+     * interpreted according to the following rules:</p>
+     * <li>If <code>contextRelative</code> property is <code>true</code>, the
+     *     path is considered to be context-relative within the current web
+     *     application (even if we are in a sub-application).  It will be
+     *     prefixed by the context path to create a server-relative URL.</li>
+     * <li>If the <code>contextRelative</code> property is false, the path is
+     *     considered to be the application-relative portion of the URL.
+     *     It will be used as the replacement for the <code>$F</code>
+     *     marker in the <code>forwardPattern</code> property defined on the
+     *     {@link ControllerConfig} element for our current sub-application.
+     *     For the default <code>forwardPattern</code> value of
+     *     <code>$C$A$P</code>, the resulting server-relative URL will be
+     *     the concatenation of the context path, the sub-application prefix,
+     *     and the <code>path</code> from this <code>ForwardConfig</code>.</li>
+     * </ul>
      */
     protected String path = null;
 

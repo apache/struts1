@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.2 2002/07/02 04:23:14 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/02 04:23:14 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.3 2002/07/04 00:05:48 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/04 00:05:48 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/07/02 04:23:14 $
+ * @version $Revision: 1.3 $ $Date: 2002/07/04 00:05:48 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -457,6 +457,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default subapp -- Href only
     public void testComputeURL1b() {
 
+        request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -495,6 +496,52 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
+    // Default subapp -- Forward with pattern
+    public void testComputeURL1d() {
+
+        appConfig.getControllerConfig().setForwardPattern
+            ("$C/WEB-INF/pages$A$P");
+        request.setPathElements("/myapp", "/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, "foo",
+                 null, null,
+                 null, null, false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "/myapp/WEB-INF/pages/bar.jsp",
+                     url);
+
+    }
+
+
+    // Default subapp -- Page with pattern
+    public void testComputeURL1e() {
+
+        appConfig.getControllerConfig().setPagePattern
+            ("$C/WEB-INF/pages$A$P");
+        request.setPathElements("/myapp", "/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, null,
+                 null, "/bar",
+                 null, null, false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "/myapp/WEB-INF/pages/bar",
+                     url);
+
+    }
+
+
     // Second subapp -- Forward only
     public void testComputeURL2a() {
 
@@ -521,6 +568,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeURL2b() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -542,7 +590,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeURL2c() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
-        request.setPathElements("/myapp", "/action.do", null, null);
+        request.setPathElements("/myapp", "/2/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -555,6 +603,54 @@ public class TestRequestUtils extends TestMockBase {
         assertNotNull("url present", url);
         assertEquals("url value",
                      "/myapp/2/bar",
+                     url);
+
+    }
+
+
+    // Default subapp -- Forward with pattern
+    public void testComputeURL2d() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        appConfig2.getControllerConfig().setForwardPattern
+            ("$C/WEB-INF/pages$A$P");
+        request.setPathElements("/myapp", "/2/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, "foo",
+                 null, null,
+                 null, null, false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "/myapp/WEB-INF/pages/2/baz.jsp",
+                     url);
+
+    }
+
+
+    // Second subapp -- Page with pattern
+    public void testComputeURL2e() {
+
+        appConfig2.getControllerConfig().setPagePattern
+            ("$C/WEB-INF/pages$A$P");
+        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setPathElements("/myapp", "/2/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, null,
+                 null, "/bar",
+                 null, null, false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "/myapp/WEB-INF/pages/2/bar",
                      url);
 
     }

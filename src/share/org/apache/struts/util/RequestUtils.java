@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.41 2002/07/02 01:51:10 craigmcc Exp $
- * $Revision: 1.41 $
- * $Date: 2002/07/02 01:51:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.42 2002/07/04 00:05:48 craigmcc Exp $
+ * $Revision: 1.42 $
+ * $Date: 2002/07/04 00:05:48 $
  *
  * ====================================================================
  *
@@ -100,6 +100,7 @@ import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -111,7 +112,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.41 $ $Date: 2002/07/02 01:51:10 $
+ * @version $Revision: 1.42 $ $Date: 2002/07/04 00:05:48 $
  */
 
 public class RequestUtils {
@@ -393,6 +394,8 @@ public class RequestUtils {
             config = (ApplicationConfig)
                 pageContext.getServletContext().getAttribute
                 (Action.APPLICATION_KEY);
+            pageContext.getRequest().setAttribute(Action.APPLICATION_KEY,
+                                                  config);
         }
 
         // Calculate the appropriate URL
@@ -400,30 +403,19 @@ public class RequestUtils {
         HttpServletRequest request =
             (HttpServletRequest) pageContext.getRequest();
         if (forward != null) {
-            ActionForward af =
-                (ActionForward) config.findForwardConfig(forward);
-            if (af == null) {
+            ForwardConfig fc = config.findForwardConfig(forward);
+            if (fc == null) {
                 throw new MalformedURLException
                     (messages.getMessage("computeURL.forward", forward));
             }
-            if (af.getRedirect()) {
+            if (fc.getRedirect()) {
                 redirect = true;
             }
-            if (af.getPath().startsWith("/")) {
-                url.append(request.getContextPath());
-                if ((config != null) && !af.getContextRelative()) {
-                    url.append(config.getPrefix());
-                }
-            }
-            url.append(af.getPath());
+            url.append(forwardURL(request, fc));
         } else if (href != null) {
             url.append(href);
         } else /* if (page != null) */ {
-            url.append(request.getContextPath());
-            if (config != null) {
-                url.append(config.getPrefix());
-            }
-            url.append(page);
+            url.append(pageURL(request, page));
         }
 
         // Add anchor if requested (replacing any existing anchor)
@@ -1141,6 +1133,127 @@ public class RequestUtils {
             sb.append(ref);
             return (sb.toString());
         }
+
+    }
+
+
+    /**
+     * Return the server-relative URL that corresponds to the specified
+     * {@link ForwardConfig}, relative to the sub-application associated
+     * with the current subapp's {@link ApplicationConfig}.
+     *
+     * @param request The servlet request we are processing
+     * @param forward ForwardConfig to be evaluated
+     */
+    public static String forwardURL(HttpServletRequest request,
+                                    ForwardConfig forward) {
+
+        // Handle a ForwardConfig marked as context relative
+        StringBuffer sb = new StringBuffer();
+        if (forward.getContextRelative()) {
+            sb.append(request.getContextPath());
+            sb.append(forward.getPath());
+            return (sb.toString());
+        }
+
+        // Calculate a subapp relative path for this ForwardConfig
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        String forwardPattern =
+            appConfig.getControllerConfig().getForwardPattern();
+        if (forwardPattern == null) {
+            // Performance optimization for previous default behavior
+            sb.append(request.getContextPath());
+            sb.append(appConfig.getPrefix());
+            sb.append(forward.getPath());
+        } else {
+            boolean dollar = false;
+            for (int i = 0; i < forwardPattern.length(); i++) {
+                char ch = forwardPattern.charAt(i);
+                if (dollar) {
+                    switch (ch) {
+                    case 'C':
+                        sb.append(request.getContextPath());
+                        break;
+                    case 'A':
+                        sb.append(appConfig.getPrefix());
+                        break;
+                    case 'P':
+                        sb.append(forward.getPath());
+                        break;
+                    case '$':
+                        sb.append('$');
+                        break;
+                    default:
+                        ; // Silently swallow
+                    }
+                    dollar = false;
+                    continue;
+                } else if (ch == '$') {
+                    dollar = true;
+                } else {
+                    sb.append(ch);
+                }
+            }
+        }
+        return (sb.toString());
+
+    }
+
+
+    /**
+     * Return the server-relative URL that corresponds to the specified
+     * <code>page</code> attribute value, calculated based on the
+     * <code>pagePattern</code> property of the current subapp's
+     * {@link ApplicationConfig}.
+     *
+     * @param request The servlet request we are processing
+     * @param page The application-relative URL to be substituted in
+     *  to the <code>pagePattern</code> pattern for the current subapp
+     */
+    public static String pageURL(HttpServletRequest request,
+                                 String page) {
+
+        StringBuffer sb = new StringBuffer();
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        String pagePattern =
+            appConfig.getControllerConfig().getPagePattern();
+        if (pagePattern == null) {
+            sb.append(request.getContextPath());
+            sb.append(appConfig.getPrefix());
+            sb.append(page);
+        } else {
+            boolean dollar = false;
+            for (int i = 0; i < pagePattern.length(); i++) {
+                char ch = pagePattern.charAt(i);
+                if (dollar) {
+                    switch (ch) {
+                    case 'C':
+                        sb.append(request.getContextPath());
+                        break;
+                    case 'A':
+                        sb.append(appConfig.getPrefix());
+                        break;
+                    case 'P':
+                        sb.append(page);
+                        break;
+                    case '$':
+                        sb.append('$');
+                        break;
+                    default:
+                        ; // Silently swallow
+                    }
+                    dollar = false;
+                    continue;
+                } else if (ch == '$') {
+                    dollar = true;
+                } else {
+                    sb.append(ch);
+                }
+            }
+        }
+        return (sb.toString());
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/02/23 23:53:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.5 2002/07/04 00:05:48 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/04 00:05:48 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/04 00:05:48 $
  * @since Struts 1.1
  */
 
@@ -143,6 +143,40 @@ public class ControllerConfig implements Serializable {
 
 
     /**
+     * <p>The replacement pattern used to determine a server-relative URL
+     * from a {@link ForwardConfig} element.  The pattern may consist of any
+     * combination of the following markers and characters:</p>
+     * <ul>
+     * <li><code><strong>$C</strong></code> - Replaced by the context path
+     *     of the current web-application.</li>
+     * <li><code><strong>$A</strong></code> - Replaced by the application
+     *     prefix for the current subapplication.</li>
+     * <li><code><strong>$P</strong></code> - Replaced by the <code>path</code>
+     *     property of a {@link ForwardConfig} instance.</li>
+     * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
+     *     ("$") character in the resulting URL.</li>
+     * <li>A dollar sign followed by any other character is reserved for
+     *     future use, and both characters are silently swallowed.</li>
+     * <li>All other characters in the pattern are passed through unchanged.
+     *     </li>
+     * </ul>
+     *
+     * <p>If this property is set to <code>null</code>, a default pattern of
+     * <code>$C$A$P</code> is utilized, which is backwards compatible with
+     * the hard coded functionality in prior versions.</p>
+     */
+    protected String forwardPattern = null;
+
+    public String getForwardPattern() {
+        return (this.forwardPattern);
+    }
+
+    public void setForwardPattern(String forwardPattern) {
+        this.forwardPattern = forwardPattern;
+    }
+
+
+    /**
      * Should we store a Locale object in the user's session if needed?
      */
     protected boolean locale = false;
@@ -209,6 +243,41 @@ public class ControllerConfig implements Serializable {
             throw new IllegalStateException("Configuration is frozen");
         }
         this.nocache = nocache;
+    }
+
+
+    /**
+     * <p>The replacement pattern used to determine a server-relative URL
+     * from the <code>page</code> attribute of Struts tags and configuration
+     * properties.  The pattern may consist of any combination of the
+     * following markers and characters:</p>
+     * <ul>
+     * <li><code><strong>$C</strong></code> - Replaced by the context path
+     *     of the current web-application.</li>
+     * <li><code><strong>$A</strong></code> - Replaced by the application
+     *     prefix for the current subapplication.</li>
+     * <li><code><strong>$P</strong></code> - Replaced by the <code>page</code>
+     *     attribute value being evaluated.</li>
+     * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
+     *     ("$") character in the resulting URL.</li>
+     * <li>A dollar sign followed by any other character is reserved for
+     *     future use, and both characters are silently swallowed.</li>
+     * <li>All other characters in the pattern are passed through unchanged.
+     *     </li>
+     * </ul>
+     *
+     * <p>If this property is set to <code>null</code>, a default pattern of
+     * <code>$C$A$P</code> is utilized, which is backwards compatible with
+     * the hard coded functionality in prior versions.</p>
+     */
+    protected String pagePattern = null;
+
+    public String getPagePattern() {
+        return (this.pagePattern);
+    }
+
+    public void setPagePattern(String pagePattern) {
+        this.pagePattern = pagePattern;
     }
 
 
