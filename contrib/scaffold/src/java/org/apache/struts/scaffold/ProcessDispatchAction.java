@@ -47,7 +47,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/08/16 22:29:24 $
  */
 public class ProcessDispatchAction extends ProcessAction {
 
@@ -74,7 +74,8 @@ public class ProcessDispatchAction extends ProcessAction {
      * <p>
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
-     * @todo refactor this so both Process*Action can call core logic
+     * @todo Refactor so both Process*Actions can call core logic
+     * @todo Add support for mutliple object/methods
      */
     public void executeLogic(
             ActionMapping mapping,
@@ -92,7 +93,8 @@ public class ProcessDispatchAction extends ProcessAction {
 
         servlet.log(Log.TOKENS_PARSING,Log.DEBUG);
         String[] tokens = tokenize(mapping.getParameter());
-            // :FIXME: This could loop and instantiate every other token [class;method;class;method]
+            // :TODO: This could loop and instantiate every other
+            // token [class;method;class;method]
         Object helper = createHelperObject(request,tokens[0]);
         servlet.log(Log.HELPER_EXECUTING,Log.DEBUG);
         ProcessBean dataBean = (ProcessBean) helper;

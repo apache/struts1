@@ -14,12 +14,10 @@ import org.apache.commons.scaffold.lang.Tokens;
  * ProcessAction subclass that checks to see if a single form
  * bean exists before overwriting it. If it does exist,
  * the (presumably form) bean is populated from the result.
- * :TODO: Change from BeanUtil.populate to copyProperties
- * in 1.1 version.
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.2 $ $Date: 2002/08/16 21:06:47 $
+ * @version $Revision: 1.3 $ $Date: 2002/08/16 22:29:24 $
  */
 public class ProcessFormAction extends ProcessAction {
 
@@ -38,6 +36,8 @@ public class ProcessFormAction extends ProcessAction {
      * @param name The name to use in scope
      * @param scope The scope to set the attribute in
      * @param bean The attribute to be set
+     * @todo Change from BeanUtil.populate to copyProperties
+     * in 1.1 version.
      */
     protected void exposeInScope(
             HttpServletRequest request,

@@ -22,7 +22,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * The name of the attribute is passed via the parameter property.
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/08/16 22:29:24 $
  */
 public final class ExistsAttributeAction extends BaseAction {
 
@@ -67,7 +67,7 @@ public final class ExistsAttributeAction extends BaseAction {
         Object bean = null;
         String name = parameters[1];
 
-        // :TODO: seach for additional attributes
+        // :TODO: Add support for multiple attributes
 
         boolean any = ("*".equals(name));
 
