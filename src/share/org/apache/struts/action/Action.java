@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.29 2001/12/28 07:20:00 martinc Exp $
- * $Revision: 1.29 $
- * $Date: 2001/12/28 07:20:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.30 2001/12/29 00:24:46 craigmcc Exp $
+ * $Revision: 1.30 $
+ * $Date: 2001/12/29 00:24:46 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.29 $ $Date: 2001/12/28 07:20:00 $
+ * @version $Revision: 1.30 $ $Date: 2001/12/29 00:24:46 $
  */
 
 public class Action {
@@ -124,7 +124,7 @@ public class Action {
      * leading "/" character) to form the actual attributes key.
      */
     public static final String APPLICATION_KEY =
-        "org.apache.struts.action.APPLICATION.";
+        "org.apache.struts.action.APPLICATION";
 
 
     /**
@@ -245,15 +245,6 @@ public class Action {
     public static final String TRANSACTION_TOKEN_KEY =
         "org.apache.struts.action.TOKEN";
 
-
-
-    /**
-     * The request attributes key under which our ActionContext is
-     * normally stored, unless overridden when initializing our ActionServlet.
-     * @since 1.1
-     */
-    public static final String CONTEXT_HELPER_KEY =
-        "org.apache.struts.action.CONTEXT_HELPER";
 
 
     // ----------------------------------------------------- Instance Variables
