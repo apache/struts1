@@ -1,4 +1,4 @@
-$Id: README,v 1.1 2001/08/01 14:36:36 cedric Exp $
+$Id: README,v 1.2 2001/08/06 20:42:03 cedric Exp $
 
 				Tiles
 				======
@@ -91,38 +91,27 @@ and not the MVC framework, only the steps marked (*) are required.
   variable used by your Java compiler.
 
 
-The Tiles Documentation Application
-------------------------------------
+The Tiles Documentation and Tutorial Application
+------------------------------------------------
 
 Tiles comes with a web application that contains all of the documentation
 relevant to an application developer who wants to use it, including:
 * Reference manual for the custom tag library
-* API documentation for the Struts classes
+* API documentation for the Tiles classes
 
 To view this documentation, deploy the file "webapps/tiles-doc.war"
 into your servlet container, and use a web browser to access a URL like this:
 
 	http://localhost:8080/tiles-doc
 
+This application also contains dynamic examples from the tutorial. You can 
+browse them from the URL :
+
+	http://localhost:8080/tiles-doc/tutorial
+
+
 For notes about installing Tiles applications on various servlet containers,
 please see the INSTALL document in the same directory as this README file.
-
-
-The Tiles Tutorial Application
-------------------------------
-
-Tiles comes with an tutorial web application, which was installed into your
-servlet container if you followed the steps above.  This example is the
-beginnings of a portal application.
-
-This tutorial application comes with a tutorial guide, accessible from the
-the documentation directory. This tutorial application contains all the examples
-described in guide.
-
-To run the tutorial application, deploy the file "webapps/tiles-tutorial.war"
-into your servlet container, and use a web browser to access a URL like this:
-
-	http://localhost:8080/tiles-tutorial
 
 
 
