@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.16 2003/02/08 21:01:52 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2003/02/08 21:01:52 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.17 2003/02/08 22:12:09 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/02/08 22:12:09 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2003/02/08 21:01:52 $
+ * @version $Revision: 1.17 $ $Date: 2003/02/08 22:12:09 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1399,6 +1399,66 @@ public class TestRequestUtils extends TestMockBase {
         assertEquals("contextNoslash value",
                      "/context/noslash",
                      result);
+
+    }
+
+
+    // -------------------------------------------------------------- pageURL()
+
+
+    // Default module (default pagePattern)
+    public void testPageURL1() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setPathElements("/myapp", "/action.do", null, null);
+        String page = null;
+        String result = null;
+
+        // Straight substitution
+        page = "/mypages/index.jsp";
+        result = RequestUtils.pageURL(request, page);
+        assertNotNull("straight sub found", result);
+        assertEquals("straight sub value",
+                     "/mypages/index.jsp", result);
+
+
+    }
+
+
+    // Second module (default pagePattern)
+    public void testPageURL2() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setPathElements("/myapp", "/2/action.do", null, null);
+        String page = null;
+        String result = null;
+
+        // Straight substitution
+        page = "/mypages/index.jsp";
+        result = RequestUtils.pageURL(request, page);
+        assertNotNull("straight sub found", result);
+        assertEquals("straight sub value",
+                     "/2/mypages/index.jsp", result);
+
+
+    }
+
+
+    // Third module (custom pagePattern)
+    public void testPageURL3() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig3);
+        request.setPathElements("/myapp", "/3/action.do", null, null);
+        String page = null;
+        String result = null;
+
+        // Straight substitution
+        page = "/mypages/index.jsp";
+        result = RequestUtils.pageURL(request, page);
+        assertNotNull("straight sub found", result);
+        assertEquals("straight sub value",
+                     "/paging/3/mypages/index.jsp", result);
+
 
     }
 

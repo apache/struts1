@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.83 2003/02/08 21:20:19 craigmcc Exp $
- * $Revision: 1.83 $
- * $Date: 2003/02/08 21:20:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.84 2003/02/08 22:12:09 craigmcc Exp $
+ * $Revision: 1.84 $
+ * $Date: 2003/02/08 22:12:09 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.83 $ $Date: 2003/02/08 21:20:19 $
+ * @version $Revision: 1.84 $ $Date: 2003/02/08 22:12:09 $
  */
 
 public class RequestUtils {
@@ -1458,7 +1458,8 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param page The module-relative URL to be substituted in
-     *  to the <code>pagePattern</code> pattern for the current module.
+     *  to the <code>pagePattern</code> pattern for the current module
+     *  (<strong>MUST</strong> start with a slash)
      * @return context-relative URL
      * @since Struts 1.1b2
      */
