@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.15 2002/11/26 02:37:40 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2002/11/26 02:37:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.16 2002/11/28 07:20:18 rleland Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/11/28 07:20:18 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorResourcesInitializer;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ModuleConfig;
 
 
@@ -85,7 +84,7 @@ import org.apache.struts.config.ModuleConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.15 $ $Date: 2002/11/26 02:37:40 $
+ * @version $Revision: 1.16 $ $Date: 2002/11/28 07:20:18 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -96,7 +95,7 @@ public class ValidatorPlugIn implements PlugIn {
     private static Log log = LogFactory.getLog(ValidatorPlugIn.class);
 
     /**
-     * The application configuration for our owning module.
+     * The module configuration for our owning module.
      */
     private ModuleConfig config = null;
 

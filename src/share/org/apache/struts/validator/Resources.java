@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.6 2002/11/16 08:23:09 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/16 08:23:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.7 2002/11/28 07:20:18 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/11/28 07:20:18 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.6 $ $Date: 2002/11/16 08:23:09 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/28 07:20:18 $
  * @since Struts 1.1
 */
 public class Resources  {
@@ -135,14 +135,14 @@ public class Resources  {
     *
     * @deprecated This method can only return the resources for the default
     *  module.  Use getMessageResources(HttpServletRequest) to get the
-    *  resources for the current application module.
+    *  resources for the current module.
    */
    public static MessageResources getMessageResources(ServletContext application) {
       return (MessageResources)application.getAttribute(Globals.MESSAGES_KEY);
    }
 
    /**
-    * Retrieve <code>MessageResources</code> for the application module.
+    * Retrieve <code>MessageResources</code> for the module.
     * @param request the servlet request
    */
    public static MessageResources getMessageResources(HttpServletRequest request) {
