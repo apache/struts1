@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.27 2001/12/16 16:45:13 husted Exp $
- * $Revision: 1.27 $
- * $Date: 2001/12/16 16:45:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.28 2001/12/26 23:14:50 craigmcc Exp $
+ * $Revision: 1.28 $
+ * $Date: 2001/12/26 23:14:50 $
  *
  * ====================================================================
  *
@@ -108,13 +108,23 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.27 $ $Date: 2001/12/16 16:45:13 $
+ * @version $Revision: 1.28 $ $Date: 2001/12/26 23:14:50 $
  */
 
 public class Action {
 
 
     // ----------------------------------------------------- Manifest Constants
+
+
+    /**
+     * The base of the context attributes key under which our
+     * <code>ApplicationConfig</code> data structure will be stored.  This
+     * will be suffixed with the actual application prefix (including the
+     * leading "/" character) to form the actual attributes key.
+     */
+    public static final String APPLICATION_KEY =
+        "org.apache.struts.action.APPLICATION.";
 
 
     /**

@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.1 2001/06/25 00:02:26 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.2 2001/12/26 23:14:50 craigmcc Exp $
 -->
 
 
@@ -79,7 +79,7 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (data-sources?, form-beans?, global-forwards?, action-mappings?)>
+<!ELEMENT struts-config (data-sources?, form-beans?, global-forwards?, action-mappings?, controller?, message-resources?)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
 
@@ -343,6 +343,65 @@
 <!ATTLIST action         type           %ClassName;     #IMPLIED>
 <!ATTLIST action         unknown        %Boolean;       #IMPLIED>
 <!ATTLIST action         validate       %Boolean;       #IMPLIED>
+
+
+<!-- The "controller" element specifies the controller characterstics for
+     requests directed to this application.  The following attributes are
+     defined:
+
+     bufferSize      The size of the input buffer used when processing
+                     file uploads.  [4096]
+
+     contentType     Default content type (and optional character encoding)
+                     to be set on each response.  May be overridden by a
+                     forwarded-to servlet or JSP page.  [text/html]
+
+     locale          Set to true if you want a Locale object stored in the
+                     user's session if not already present.  [true]
+
+     maxFileSize     The maximum size (in bytes) of a file to be accepted
+                     as a file upload.  Can be expressed as a number followed
+                     by a "K", "M", or "G", which are interpreted to mean
+                     kilobytes, megabytes, or gigabytes, respectively.  [250M]
+
+     nocache         Set to <code>true</code> if you want Struts to add
+                     HTTP headers for defeating caching to every response.
+                     [false]
+
+     tempDir         Temporary working directory to use when processing
+                     file uploads.  [Directory provided by servlet container]
+-->
+<!ELEMENT controller     EMPTY>
+<!ATTLIST controller     id             ID              #IMPLIED>
+<!ATTLIST controller     bufferSize     %Integer        #IMPLIED>
+<!ATTLIST controller     contentType    CDATA           #IMPLIED>
+<!ATTLIST controller     locale         %Boolean        #IMPLIED>
+<!ATTLIST controller     maxFileSize    CDATA           #IMPLIED>
+<!ATTLIST controller     nocache        %Boolean        #IMPLIED>
+<!ATTLIST controller     tempDir        CDATA           #IMPLIED>
+
+
+<!-- The "message-resources" element specifies the characteristics of the
+     MessageResources containing the messages for this application.  The
+     following attributes are defined:
+
+     factory         Fully qualified Java class name of the
+                     MessageResourcesFactory class we should use, if any.
+                     By default, this is set to
+                     org.apache.struts.util.PropertyMessageResourcesFactory.
+
+     null            Set to true if you want our message resources to return
+                     a null string for unknown message keys, or false to
+                     return a message with the bad key value.  [true]
+
+     parameter       Configuration parameter to be passed to the
+                     createResources() method of our MessageResourcesFactory.
+-->
+<!ELEMENT message-resources EMPTY>
+<!ATTLIST message-resources id          ID              #IMPLIED>
+<!ATTLIST message-resources factory     %ClassName;     #IMPLIED>
+<!ATTLIST message-resources null        %Boolean;       #IMPLIED>
+<!ATTLIST message-resources parameter   CDATA           #REQUIRED>
 
 
 <!-- The "set-property" element specifies the name and value of an additional

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.1 2001/12/26 19:16:25 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/26 19:16:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.2 2001/12/26 23:14:50 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/26 23:14:50 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.action.ActionServlet;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/26 19:16:25 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/26 23:14:50 $
  * @since Struts 1.1
  */
 
@@ -147,6 +147,42 @@ public class ApplicationConfig {
 
     public boolean getConfigured() {
         return (this.configured);
+    }
+
+
+    /**
+     * The controller configuration object for this application.
+     */
+    protected ControllerConfig controllerConfig = null;
+
+    public ControllerConfig getControllerConfig() {
+        if (this.controllerConfig == null)
+            this.controllerConfig = new ControllerConfig();
+        return (this.controllerConfig);
+    }
+
+    public void setControllerConfig(ControllerConfig cc) {
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        this.controllerConfig = cc;
+    }
+
+
+    /**
+     * The message resources configuration object for this application.
+     */
+    protected MessageResourcesConfig messageResourcesConfig = null;
+
+    public MessageResourcesConfig getMessageResourcesConfig() {
+        if (this.messageResourcesConfig == null)
+            this.messageResourcesConfig = new MessageResourcesConfig();
+        return (this.messageResourcesConfig);
+    }
+
+    public void setMessageResourcesConfig(MessageResourcesConfig mrc) {
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        this.messageResourcesConfig = mrc;
     }
 
 
