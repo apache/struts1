@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.32 2003/07/02 04:06:53 dgraham Exp $
- * $Revision: 1.32 $
- * $Date: 2003/07/02 04:06:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.33 2003/08/23 00:29:39 dgraham Exp $
+ * $Revision: 1.33 $
+ * $Date: 2003/08/23 00:29:39 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.32 $ $Date: 2003/07/02 04:06:53 $
+ * @version $Revision: 1.33 $ $Date: 2003/08/23 00:29:39 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -905,7 +905,7 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Validating input form properties");
         }
-        ActionErrors errors = form.validate(mapping, request);
+        ActionMessages errors = form.validate(mapping, request);
         if ((errors == null) || errors.isEmpty()) {
             if (log.isTraceEnabled()) {
                 log.trace("  No errors detected, accepting input");
