@@ -1184,7 +1184,7 @@ throws Exception;
             type="org.apache.struts.webapp.example.LogonForm" />
      </form-beans>
     <global-forwards
-        type="org.apache.struts.action.ActionForward" />
+        type="org.apache.struts.action.ActionForward">
         <forward 
             name="logon" 
             path="/logon.jsp"
