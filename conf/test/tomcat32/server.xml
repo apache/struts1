@@ -19,7 +19,7 @@
     <ContextInterceptor className="org.apache.tomcat.context.LoadOnStartupInterceptor" />
     <Connector className="org.apache.tomcat.service.PoolTcpConnector">
         <Parameter name="handler" value="org.apache.tomcat.service.http.HttpConnectionHandler"/>
-        <Parameter name="port" value="8080"/>
+        <Parameter name="port" value="9090"/>
     </Connector>
     <Connector className="org.apache.tomcat.service.PoolTcpConnector">
         <Parameter name="handler" value="org.apache.tomcat.service.connector.Ajp12ConnectionHandler"/>

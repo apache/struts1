@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory. 
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.27 2003/02/07 22:00:56 rleland Exp $
+# $Id: build.properties.sample,v 1.28 2003/02/07 22:35:30 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -133,7 +133,7 @@ cactus.ant.jar = ${cactus.lib}/cactus-ant.jar
 
 # URL used to run tests for cactus, change to non standard port
 # if container is already running on that port.
-cactus.contextURL = http://localhost:8080/test
+cactus.contextURL = http://localhost:9090/test
 
 
 

@@ -3,7 +3,7 @@
   <Service name="Tomcat-Standalone">
 
     <Connector className="org.apache.catalina.connector.http.HttpConnector"
-               port="8080" minProcessors="5" maxProcessors="75"
+               port="9090" minProcessors="5" maxProcessors="75"
                acceptCount="10" debug="0"/>
 
     <Engine name="Standalone" defaultHost="localhost" debug="0">

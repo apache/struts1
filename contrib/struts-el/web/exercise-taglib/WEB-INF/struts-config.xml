@@ -20,7 +20,7 @@
     <forward name="redirectForward"
              path="/logic-redirect.jsp?redirectType=forward&amp;param1=index"/>
     <forward name="redirectHref"
-             path="/logic-redirect.jsp?redirectType=href&amp;param1=http://localhost:8080/strutsel-exercise-taglib/index.jsp"/>
+             path="/logic-redirect.jsp?redirectType=href&amp;param1=http://localhost:9090/strutsel-exercise-taglib/index.jsp"/>
     <forward name="redirectPage"
              path="/logic-redirect.jsp?redirectType=page&amp;param1=/index.jsp"/>
   </global-forwards>
