@@ -12,18 +12,6 @@
     -->
   </preGoal>
 
-  <!-- Prepare additional Jar resources -->
-  <postGoal name="java:jar-resources">
-
-    <!-- Generate TLDs -->
-    ${systemScope.setProperty('javax.xml.transform.TransformerFactory','org.apache.xalan.processor.TransformerFactoryImpl')}
-	<ant:style basedir="doc/userGuide"
-		destdir="${maven.build.dir}/classes/META-INF/tlds"
-		extension=".tld"
-		style="doc/stylesheets/tld.xsl"
-		includes="struts-*.xml"/>
-  </postGoal>
-
   <postGoal name="dist:prepare-bin-filesystem">
 
     <!-- Copy Instructions and Readmes -->
