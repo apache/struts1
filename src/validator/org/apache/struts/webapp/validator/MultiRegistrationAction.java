@@ -55,14 +55,12 @@
 
 package org.apache.struts.webapp.validator;
 
-import java.io.IOException;
 import java.util.Locale;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -82,7 +80,7 @@ public final class MultiRegistrationAction extends Action {
     /**
      * Commons Logging instance.
     */
-    private Log log = LogSource.getInstance(this.getClass().getName());
+    private Log log = LogFactory.getFactory().getInstance(this.getClass().getName());
 
 
     /**
@@ -93,7 +91,7 @@ public final class MultiRegistrationAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
@@ -108,7 +106,7 @@ public final class MultiRegistrationAction extends Action {
     // Extract attributes we will need
     HttpSession session = request.getSession();
     Locale locale = getLocale(request);
-    MessageResources messages = getResources();
+    MessageResources messages = getResources(request);
     RegistrationForm info = (RegistrationForm)form;
     String action = request.getParameter("action");
 

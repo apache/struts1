@@ -71,7 +71,7 @@ import org.apache.struts.validator.ValidatorForm;
 */
 public final class TypeForm extends ValidatorForm implements Serializable {
     private String action = null;
-       
+
     private String sByte = null;
     private String sShort = null;
     private String sInteger = null;
@@ -80,7 +80,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     private String sDouble = null;
     private String sDate = null;
     private String sCreditCard = null;
-    
+
     private List lNames = initNames();
 
     public String getAction() {
@@ -92,77 +92,77 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public String getByte() {
-       return sByte;	
+       return sByte;
     }
-    
+
     public void setByte(String sByte) {
        	this.sByte = sByte;
     }
-    
+
     public String getShort() {
-       return sShort;	
+       return sShort;
     }
-    
+
     public void setShort(String sShort) {
        	this.sShort = sShort;
     }
 
     public String getInteger() {
-       return sInteger;	
+       return sInteger;
     }
-    
+
     public void setInteger(String sInteger) {
        	this.sInteger = sInteger;
     }
 
     public String getLong() {
-       return sLong;	
+       return sLong;
     }
-    
+
     public void setLong(String sLong) {
        	this.sLong = sLong;
     }
 
     public String getFloat() {
-       return sFloat;	
+       return sFloat;
     }
-    
+
     public void setFloat(String sFloat) {
        	this.sFloat = sFloat;
     }
 
     public String getDouble() {
-       return sDouble;	
+       return sDouble;
     }
-    
+
     public void setDouble(String sDouble) {
        	this.sDouble = sDouble;
     }
 
     public String getDate() {
-       return sDate;	
+       return sDate;
     }
-    
+
     public void setDate(String sDate) {
        	this.sDate = sDate;
     }
 
     public String getCreditCard() {
-       return sCreditCard;	
+       return sCreditCard;
     }
-    
+
     public void setCreditCard(String sCreditCard) {
        	this.sCreditCard = sCreditCard;
     }
-    
+
     public List getNameList() {
-       return lNames;	
+       return lNames;
     }
 
     public void setNameList(List lNames) {
-       this.lNames = lNames;	
+       this.lNames = lNames;
     }
-    
+
     /**
      * Reset all properties to their default values.
      *
@@ -179,20 +179,21 @@ public final class TypeForm extends ValidatorForm implements Serializable {
        sDouble = null;
        sDate = null;
        sCreditCard = null;
-       
+
        //lNames = initNames();
     }
 
     /**
      * Initialize list.
+     * @return empty list of LabelValueBeans
     */
-    private List initNames() {
+    private static List initNames() {
        List lResults = new ArrayList();
-       
+
        for (int i = 0; i < 3; i++) {
           lResults.add(new LabelValueBean(null, null));
        }
-       
-       return lResults;   	
+
+       return lResults;
     }
 }
