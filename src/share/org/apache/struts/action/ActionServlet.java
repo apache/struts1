@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.64 2001/03/13 19:21:38 craigmcc Exp $
- * $Revision: 1.64 $
- * $Date: 2001/03/13 19:21:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.65 2001/03/13 22:31:50 craigmcc Exp $
+ * $Revision: 1.65 $
+ * $Date: 2001/03/13 22:31:50 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.64 $ $Date: 2001/03/13 19:21:38 $
+ * @version $Revision: 1.65 $ $Date: 2001/03/13 22:31:50 $
  */
 
 public class ActionServlet
@@ -563,6 +563,8 @@ public class ActionServlet
 
         // Validate that exactly one of "include" or "type" is included
         int n = 0;
+        if (mapping.getForward() != null)
+            n++;
         if (mapping.getInclude() != null)
             n++;
         if (mapping.getType() != null)
@@ -1536,6 +1538,10 @@ public class ActionServlet
 	if (!processValidate(mapping, formInstance, request, response))
 	    return;
 
+        // Execute a forward if specified by this mapping
+        if (!processForward(mapping, request, response))
+            return;
+
         // Execute an include if specified by this mapping
         if (!processInclude(mapping, request, response))
             return;
@@ -1764,6 +1770,47 @@ public class ActionServlet
 
         if (content != null)
             response.setContentType(content);
+
+    }
+
+
+    /**
+     * Process a forward requested by this mapping, if any.  Return
+     * <code>true</code> if processing of this request should continue (i.e.
+     * be processed by an Action class), or <code>false</code> if we have
+     * already handled this request.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param request The request we are processing
+     * @param response The response we are processing
+     *
+     * @exception IOException if the included resource throws an exception
+     * @exception ServletException if the included resource throws an
+     *  exception
+     */
+    protected boolean processForward(ActionMapping mapping,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
+        throws IOException, ServletException {
+
+        // Are we going to process this request?
+        String forward = mapping.getForward();
+        if (forward == null)
+            return (true);
+
+        // Construct a request dispatcher for the specified path
+        RequestDispatcher rd =
+            getServletContext().getRequestDispatcher(forward);
+        if (rd == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               internal.getMessage("requestDispatcher",
+                                                   forward));
+            return (false);
+        }
+
+        // Delegate the processing of this request
+        rd.forward(request, response);
+        return (false);
 
     }
 

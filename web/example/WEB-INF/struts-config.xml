@@ -115,7 +115,7 @@
 
     <!-- Display the "walking tour" documentation -->
     <action    path="/tour"
-            include="/tour.htm">
+            forward="/tour.htm">
     </action>
 
     <!-- The standard administrative actions available with Struts -->

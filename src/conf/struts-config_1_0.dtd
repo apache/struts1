@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.13 2001/03/11 02:50:07 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.14 2001/03/13 22:31:44 craigmcc Exp $
 -->
 
 
@@ -265,10 +265,15 @@
                      configured as the "mapping" initialization parameter
                      to the Struts controller servlet.
 
+     forward         Context-relative path of the servlet or JSP resource that
+                     will process this request, instead of instantiating and
+                     calling the Action class specified by "type".  Exactly one
+                     of "forward", "include", or "type" must be specified.
+
      include         Context-relative path of the servlet or JSP resource that
                      will process this request, instead of instantiating and
                      calling the Action class specified by "type".  Exactly one
-                     of "include" and "type" must be specified.
+                     of "forward", "include", or "type" must be specified.
 
      input           Context-relative path of the input form to which control
                      should be returned if a validation error is encountered.
@@ -298,9 +303,9 @@
 
      type            Fully qualified Java class name of the Action class
                      (implements org.apache.struts.action.Action) to be
-                     used to process requests for this mapping if the "include"
-                     attribute is not included.  Exactly one of "include" and
-                     "type" must be specified.
+                     used to process requests for this mapping if the "forward"
+                     or "include" attribute is not included.  Exactly one
+                     of "forward", "include", or "type" must be specified.
 
      unknown         Set to "true" if this action should be configured as the
                      default for this application, to handle all requests
@@ -315,6 +320,7 @@
 <!ATTLIST action         id             ID              #IMPLIED>
 <!ATTLIST action         attribute      %BeanName;      #IMPLIED>
 <!ATTLIST action         className      %ClassName;     #IMPLIED>
+<!ATTLIST action         forward        %RequestPath;   #IMPLIED>
 <!ATTLIST action         include        %RequestPath;   #IMPLIED>
 <!ATTLIST action         input          %RequestPath;   #IMPLIED>
 <!ATTLIST action         name           %BeanName;      #IMPLIED>

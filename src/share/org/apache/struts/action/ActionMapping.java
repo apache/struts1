@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.15 2001/03/11 02:50:09 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2001/03/11 02:50:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.16 2001/03/13 22:31:48 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2001/03/13 22:31:48 $
  *
  * ====================================================================
  *
@@ -106,14 +106,20 @@ import java.io.Serializable;
  *     names when populating the properties of our <code>ActionForm</code>
  *     bean (if any).  <em>DEPRECATED - use <code>suffix</code>
  *     instead</em>.
+ * <li><strong>forward</strong> - Context-relative path of the resource that
+ *     should serve this request (via a call to
+ *     <code>RequestDispatcher.forward()</code>) instead of instantiating the
+ *     Action class specified by the <code>type</code> property.
+ *     Exactly one of the <code>forward</code>, <code>include</code>, or
+ *     <code>type</code> properties must be specified.
  * <li><strong>forwards</strong> - The set of ActionForwards locally
  *     associated with this mapping.
  * <li><strong>include</strong> - Context-relative path of the resource that
  *     should serve this request (via a call to
  *     <code>RequestDispatcher.include()</code>) instead of instantiating the
- *     specified Action class specified by the <code>type</code> property.
- *     Exactly one of the <code>include</code> and <code>type</code> properties
- *     must be specified.</li>
+ *     Action class specified by the <code>type</code> property.
+ *     Exactly one of the <code>forward</code>, <code>include</code>, or
+ *     <code>type</code> properties must be specified.</li>
  * <li><strong>input</strong> - Context-relative path of the input form
  *     to which control should be returned if a validation error is
  *     encountered.  Replaces the old <code>inputForm</code> property.
@@ -140,8 +146,8 @@ import java.io.Serializable;
  * <li><strong>type</strong> - Fully qualified Java class name of the
  *     <code>Action</code> implementation class used by this mapping.
  *     Replaces the old <code>actionClass</code> property.  Exactly one of
- *     the <code>include</code> and <code>type</code> properties must be
- *     specified.</li>
+ *     the <code>forward</code>, <code>include</code>, or <code>type</code>
+ *     properties must be specified.
  * <li><strong>unknown</strong> - Set to <code>true</code> if this action
  *     should be configured as the default for this application, to handle
  *     all requests not handled by another action.  Only one action can be
@@ -152,7 +158,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2001/03/11 02:50:09 $
+ * @version $Revision: 1.16 $ $Date: 2001/03/13 22:31:48 $
  */
 
 public class ActionMapping implements Serializable {
@@ -166,6 +172,15 @@ public class ActionMapping implements Serializable {
      * our form bean, if any, will be created.
      */
     protected String attribute = null;
+
+
+    /**
+     * The context relative path of the servlet or JSP resource (to be called
+     * via <code>RequestDispatcher.forward()</code>) that will process this
+     * request, rather than instantiating and calling the Action class that is
+     * specified by the <code>type</code> attribute.
+     */
+    protected String forward = null;
 
 
     /**
@@ -440,6 +455,28 @@ public class ActionMapping implements Serializable {
     public void setFormSuffix(String formSuffix) {
 
         setSuffix(formSuffix);
+
+    }
+
+
+    /**
+     * Return the forward path for this mapping.
+     */
+    public String getForward() {
+
+        return (this.forward);
+
+    }
+
+
+    /**
+     * Set the forward path for this mapping.
+     *
+     * @param forward The forward path for this mapping
+     */
+    public void setForward(String forward) {
+
+        this.forward = forward;
 
     }
 
