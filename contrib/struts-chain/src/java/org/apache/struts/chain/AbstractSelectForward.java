@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectForward.java,v 1.1 2003/10/24 02:35:02 mrdon Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/24 02:35:02 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractSelectForward.java,v 1.2 2004/02/29 13:12:19 germuska Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/02/29 13:12:19 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.commons.logging.LogFactory;
  * <code>ActionConfig</code> if specified.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.1 $ $Date: 2003/10/24 02:35:02 $
+ * @version $Revision: 1.2 $ $Date: 2004/02/29 13:12:19 $
  */
 
 public abstract class AbstractSelectForward implements Command {
@@ -91,11 +91,11 @@ public abstract class AbstractSelectForward implements Command {
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
     private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
     private String validKey = Constants.VALID_KEY;
-    
+
     private static final Log log =
         LogFactory.getLog(AbstractSelectForward.class);
 
-    
+
     // -------------------------------------------------------------- Properties
 
 
@@ -196,29 +196,15 @@ public abstract class AbstractSelectForward implements Command {
 
         // Acquire configuration objects that we need
         ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
+                                    context.get(getActionConfigKey());
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
 
-        // Cache an ForwardConfig back to our input page
         ForwardConfig forwardConfig = null;
         String forward = actionConfig.getForward();
         if (forward != null) {
-            if (moduleConfig.getControllerConfig().getInputForward()) {
-                if (log.isTraceEnabled()) {
-                    log.trace("Finding ForwardConfig for '" + forward + "'");
-                }
-                forwardConfig = actionConfig.findForwardConfig(forward);
-                if (forwardConfig == null) {
-                    forwardConfig = moduleConfig.findForwardConfig(forward);
-                }
-            } else {
-                if (log.isTraceEnabled()) {
-                    log.trace("Delegating to forward() for '" + forward + "'");
-                }
-                forwardConfig = forward(context, moduleConfig, forward);
-            }
+            forwardConfig = forward(context, moduleConfig, forward);
             if (log.isDebugEnabled()) {
-                log.debug("Forwarding back to " + forwardConfig);
+                log.debug("Forwarding to " + forwardConfig);
             }
             context.put(getForwardConfigKey(), forwardConfig);
         }
@@ -226,7 +212,7 @@ public abstract class AbstractSelectForward implements Command {
 
     }
 
-    
+
     // ------------------------------------------------------- Protected Methods
 
 
