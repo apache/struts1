@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/13 13:13:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/logic/NestedIterateTag.java,v 1.4 2002/04/06 18:59:30 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/04/06 18:59:30 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -59,6 +59,7 @@
  */
 package org.apache.struts.taglib.nested.logic;
 
+import java.util.*;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import javax.servlet.http.HttpSession;
@@ -73,7 +74,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
+ * @version $Revision: 1.4 $ $Date: 2002/04/06 18:59:30 $
  */
 public class NestedIterateTag extends IterateTag implements NestedParentSupport, NestedNameSupport {
   
@@ -83,7 +84,12 @@ public class NestedIterateTag extends IterateTag implements NestedParentSupport,
    * @return String value of the property and the current index.
    */
   public String getNestedProperty() {
-    return property + "["+ this.getIndex() +"]";
+    Object idObj = pageContext.getAttribute(id);
+    if (idObj instanceof Map.Entry) {
+      return property + "("+ ((Map.Entry)idObj).getKey() +")";
+    } else {
+      return property + "["+ this.getIndex() +"]";
+    }
   }
 
   /**
