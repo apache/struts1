@@ -146,34 +146,13 @@
 	                 value="/WEB-INF/tiles-defs.xml,
                             /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
                             /WEB-INF/tiles-examples-defs.xml" /&gt;
-    &lt;set-property property="definitions-debug" value="1" /&gt;
-    &lt;set-property property="definitions-parser-details" value="0" /&gt;
+    &lt;set-property property="moduleAware" value="true" /&gt;
     &lt;set-property property="definitions-parser-validate" value="true" /&gt;
   &lt;/plug-in&gt;
 </pre>
 <ul>
 <li>definitions-config: (optional) <ul>
 <li>Specify configuration file names. There can be several comma separated file names (default: ?? )</li>
-</ul>
-</li>
-          <li>definitions-debug: (optional)
-<ul>
-<li>Specify Tiles debug level<ul>
-<li>0 : no debug information</li>
-<li>1 : debug information</li>
-<li>2 : more debug information</li>
-</ul>
-</li>
-</ul>
-</li>
-          <li>definitions-parser-details: (optional)
-<ul>
-<li>Specify Digester debug level. This value is passed to Digester<ul>
-<li>0 : no debug information (default)</li>
-<li>1 : debug information</li>
-<li>2 : more debug information</li>
-</ul>
-</li>
 </ul>
 </li>
           <li>definitions-parser-validate: (optional)
@@ -183,13 +162,40 @@
                 <ul>
                   <li>true : validate. DTD should be specified in file header (default)</li>
 <li>false : no validation	  </li>
+
+</ul>
+</li>
+</ul>
+</li>
+
+          <li>moduleAware: (optional)
+<ul>
+              <li>Specify if the Tiles definition factory is module aware. If true (default), 
+			there will be one factory for each Struts module. 
+			If false, there will be one common factory for all module. In this later case, 
+			it is still needed to declare one plugin per module. The factory will be 
+			initialized with parameters found in the first initialized plugin (generally the
+			one associated with the default module). 
+                <ul>
+                  <li>true : validate. DTD should be specified in file header (default)</li>
+<li>false : no validation	  
+         </li>
+
+
+
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-        <p>The TilesPlugin class creates one single definition factory shared 
-          by all Struts modules, even if the plugin is declared several times. 
+        <p>The TilesPlugin class creates one defintion factory for each struts module.
+		</p>
+		<p>
+		If the flag moduleAware is false, only one shared factory is created for all module. 
+		In this later case, the factory is initialized with parameters found in the first plugin.
+		The plugins should be declared in all modules, and the moduleAware flag should be 
+		the same for the entire application.</p> 
+		<p>
           Paths found in Tiles definitions are relative to the main context.</p>
         <p>You don't need to specify a TilesRequestProcessor, this is automatically 
           done by the plug-in. If, however, you want to specify your own RequestProcessor, 
@@ -208,28 +214,8 @@
 		  separated file names
 		--&gt; 	
 	&lt;init-param&gt;
-        &lt;param-name&gt;definitions-config&lt;/param-name&gt;
-        &lt;param-value&gt;/WEB-INF/tiles-defs.xml&lt;/param-value&gt;
-       &lt;/init-param&gt;
-        &lt;!-- Tiles Servlet parameter 
-		  Specify Tiles debug level.
-		  O : no debug information
-		  1 : debug information
-		  2 : more debug information
-		--&gt; 	
-    &lt;init-param&gt;
-      &lt;param-name&gt;definitions-debug&lt;/param-name&gt;
-      &lt;param-value&gt;1&lt;/param-value&gt;
-    &lt;/init-param&gt;
-        &lt;!-- Tiles Servlet parameter 
-		Specify Digester debug level. This value is passed to Digester
-		  O : no debug information
-		  1 : debug information
-		  2 : more debug information
-		--&gt; 	
-    &lt;init-param&gt;
-      &lt;param-name&gt;definitions-parser-details&lt;/param-name&gt;
-      &lt;param-value&gt;0&lt;/param-value&gt;
+      &lt;param-name&gt;definitions-config&lt;/param-name&gt;
+      &lt;param-value&gt;/WEB-INF/tiles-defs.xml&lt;/param-value&gt;
     &lt;/init-param&gt;
         &lt;!-- Tiles Servlet parameter 
 		Specify if XML parser should validate the Tiles configuration file(s).
@@ -254,17 +240,9 @@
 
 
 	&lt;init-param&gt;
-        &lt;param-name&gt;definitions-config&lt;/param-name&gt;
-        &lt;param-value&gt;/WEB-INF/tiles-defs.xml&lt;/param-value&gt;
-       &lt;/init-param&gt;
-       &lt;init-param&gt;
-         &lt;param-name&gt;definitions-debug&lt;/param-name&gt;
-         &lt;param-value&gt;1&lt;/param-value&gt;
-       &lt;/init-param&gt;
-    &lt;init-param&gt;
-      &lt;param-name&gt;definitions-parser-details&lt;/param-name&gt;
-      &lt;param-value&gt;0&lt;/param-value&gt;
-    &lt;/init-param&gt;	
+      &lt;param-name&gt;definitions-config&lt;/param-name&gt;
+      &lt;param-value&gt;/WEB-INF/tiles-defs.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
     &lt;init-param&gt;
       &lt;param-name&gt;definitions-parser-validate&lt;/param-name&gt;
       &lt;param-value&gt;true&lt;/param-value&gt;
@@ -315,6 +293,15 @@
 
 &lt;/tiles-definition&gt;
 </pre>
+</div>
+<div class="subsection1">
+<h3>Debugging</h3>
+<p>To debug a page made of Tiles, you can use following advices:</p>
+<ul>
+  <li>Check each Tiles separatly. Try to access nested Tiles directly to test 
+  if thes work properly.</li>
+  <li>Enable Tiles logging. See the commons-logging package help.</li>
+</ul>
 </div>
 </div>
 </div>

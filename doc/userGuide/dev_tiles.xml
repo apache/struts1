@@ -201,16 +201,17 @@ Create a file containing your definitions and give it a name (ex: <code>WEB-INF/
 </li>
 </ul>
 
-<pre>&lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
-&lt;set-property property="definitions-config"
-value="/WEB-INF/tiles-defs.xml,
+<pre>
+&lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
+  &lt;set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml,
 /WEB-INF/tiles-tests-defs.xml" /&gt;
-&lt;set-property property="definitions-parser-validate" value="true" /&gt;
+  &lt;set-property property="definitions-parser-validate" value="true" /&gt;
+  &lt;set-property property="moduleAware" value="true" /&gt;
 &lt;/plug-in&gt;</pre>
 
 <ul>
 <li>
-  <strong>note:</strong> This plugin creates one single shared factory even if you have several modules. The plugin first read factory parameters from <code>web.xml</code> and then overload them with parameters from the first <code>struts-config.xml</code> file read. Read order is determined by the order of module declarations in <code>web.xml</code>.
+  <strong>note:</strong> This plugin creates one factory for each Struts modules. The plugin first read factory parameters from <code>web.xml</code> and then overload them with parameters from the first <code>struts-config.xml</code> file read.
 </li>
 </ul>
 </ul>
