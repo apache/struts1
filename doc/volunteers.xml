@@ -325,6 +325,10 @@
             <b>James Mitchell</b> (jmitchell at apache.org)
         </li>
 
+        <li>
+            <b>James Turner</b> (turner at blackbear.com)
+        </li>
+
     </ul>
     
 </section>
@@ -687,6 +691,38 @@
     I'm excited about helping Struts evolve and am continually amazed by the 
     framework and the community surrounding it.
     </p>
+
+    <h3><a name="jturner">James Turner -- Committer</a></h3>
+
+    <p>
+    I discovered Struts somewhat by accident.  In 2001 I began writing a
+    book for SAMS on JSP web development (MySQL and JSP Web Development),
+    and as part of it, I decided to write a chapter on Struts in the
+    advanced section.  In the process of learning enough about Struts to
+    write about it, I realized that it could simplify some of the projects
+    that I was working on for clients.</p>
+    <p>
+    After a half a year of working with Struts, I was asked by SAMS to write
+    another book, this time concentrating on Struts specifically.  That book,
+    co-authored with a former co-worker named Kevin Bedell, became Struts
+    Kick Start.</p>
+    <p>
+    In the process of writing that book, I began to realize that there were
+    things I could do to contribute to Struts beyond writing about it.  One
+    thing in particular was to clean up and add some functionality to the
+    Commons Validator project, which eventually led to me release-managing
+    (with a lot of help!) the Commons Validator 1.0 release.</p>
+    <p>
+    More generally, I've been a software developer for over 22 years, starting
+    with work as a Research Specialist at the MIT AI Lab.  I spent nearly a
+    decade working in LISP, before moving on to C/Unix, a stint managing the
+    Web Site for the Christian Science Monitor, and finally Java based
+    e-Commerce development, which has kept me busy for the last five years.</p>
+    <p>
+    In addition to the two books mentioned above, I also write for a number of
+    publications, including WIRED and the aforementioned Christian Science 
+    Monitor.  You can get a look at my portfolio 
+    <a href="http://www.blackbear.com/monitor.html">here</a></p>
 
 </section>
 
