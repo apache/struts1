@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.22 2001/08/15 06:15:51 martinc Exp $
- * $Revision: 1.22 $
- * $Date: 2001/08/15 06:15:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.23 2001/10/16 15:48:28 dwinterfeldt Exp $
+ * $Revision: 1.23 $
+ * $Date: 2001/10/16 15:48:28 $
  *
  * ====================================================================
  *
@@ -82,10 +82,14 @@ import javax.servlet.jsp.PageContext;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
@@ -97,7 +101,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2001/08/15 06:15:51 $
+ * @version $Revision: 1.23 $ $Date: 2001/10/16 15:48:28 $
  */
 
 public class RequestUtils {
@@ -965,4 +969,98 @@ public class RequestUtils {
     }
 
 
+    /**
+     * Retrieves the value from request scope and if it isn't already an <code>ActionMessages</code> 
+     * some classes are converted to one.
+     *
+     * @param pageContext 	The PageContext for the current page
+     * @param paramName 	Key for parameter value
+     */
+    public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
+       throws JspException {
+    						   	
+        ActionMessages am = new ActionMessages();
+        
+        Object value = pageContext.getAttribute(paramName, PageContext.REQUEST_SCOPE);
+        
+        try {
+            if (value == null) {
+               ;
+            } else if (value instanceof String) {
+               am.add(ActionMessages.GLOBAL_MESSAGE,
+                                 new ActionMessage((String) value));
+            } else if (value instanceof String[]) {
+               String keys[] = (String[]) value;
+               for (int i = 0; i < keys.length; i++)
+                  am.add(ActionMessages.GLOBAL_MESSAGE,
+                               new ActionMessage(keys[i]));
+            } else if (value instanceof ErrorMessages) {
+                String keys[] = ((ErrorMessages) value).getErrors();
+                if (keys == null)
+                    keys = new String[0];
+                for (int i = 0; i < keys.length; i++)
+                    am.add(ActionErrors.GLOBAL_ERROR,
+                                 new ActionError(keys[i]));
+            } else if (value instanceof ActionMessages) {
+                am = (ActionMessages) value;
+            } else {
+               throw new JspException
+                  (messages.getMessage("actionMessages.errors", value.getClass().getName()));
+            }
+        } catch (JspException e) {
+            throw e;
+        } catch (Exception e) {
+            ;
+        }
+        
+        return am;
+    }
+
+    /**
+     * Retrieves the value from request scope and if it isn't already an <code>ErrorMessages</code> 
+     * some classes are converted to one.
+     *
+     * @param pageContext 	The PageContext for the current page
+     * @param paramName 	Key for parameter value
+     */
+    public static ActionErrors getActionErrors(PageContext pageContext, String paramName) 
+       throws JspException {
+    						   	
+        ActionErrors errors = new ActionErrors();
+        
+        Object value = pageContext.getAttribute(paramName, PageContext.REQUEST_SCOPE);
+        
+        try {
+	    if (value == null) {
+		;
+	    } else if (value instanceof String) {
+		errors.add(ActionErrors.GLOBAL_ERROR,
+                           new ActionError((String) value));
+	    } else if (value instanceof String[]) {
+                String keys[] = (String[]) value;
+                for (int i = 0; i < keys.length; i++)
+                    errors.add(ActionErrors.GLOBAL_ERROR,
+                               new ActionError(keys[i]));
+            } else if (value instanceof ErrorMessages) {
+		String keys[] = ((ErrorMessages) value).getErrors();
+                if (keys == null)
+                    keys = new String[0];
+                for (int i = 0; i < keys.length; i++)
+                    errors.add(ActionErrors.GLOBAL_ERROR,
+                               new ActionError(keys[i]));
+            } else if (value instanceof ActionErrors) {
+                errors = (ActionErrors) value;
+            } else {
+               throw new JspException
+                  (messages.getMessage("actionErrors.errors", value.getClass().getName()));
+            }
+        } catch (JspException e) {
+            throw e;
+        } catch (Exception e) {
+            ;
+        }
+        
+        return errors;
+    }
+    
 }
