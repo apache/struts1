@@ -13,8 +13,9 @@
       <item name="View Components"       href="building_view.html"/>
       <item name="Controller Components" href="building_controller.html"/>
       <item name="Applications"          href="building_apps.html"/>
-      <item name="Release Notes"		 href="release-notes.html"/>
-      <item name="Installation"			 href="installation.html"/>
+      <item name="Release Notes"         href="release-notes.html"/>
+      <item name="Installation"          href="installation.html"/>
+      <item name="Configuration"         href="configuration.html"/>
     </menu>
 
     <menu name="Developer Guides">
