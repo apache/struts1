@@ -270,15 +270,15 @@ public class DigestingPlugIn implements PlugIn {
      */
     protected URL getConfigURL(String path, String source) throws IOException {
 
-        if (SOURCE_CLASSPATH.equals(this.configSource)) {
+        if (SOURCE_CLASSPATH.equals(source)) {
             return this.getClassPathURL(path);
         }
 
-        if (SOURCE_FILE.equals(this.configSource)) {
+        if (SOURCE_FILE.equals(source)) {
             return this.getFileURL(path);
         }
 
-        if (SOURCE_SERVLET.equals(this.configSource)) {
+        if (SOURCE_SERVLET.equals(source)) {
             return this.getServletContextURL(path);
         }
 
