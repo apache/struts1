@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.4 2000/11/03 18:40:08 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/11/03 18:40:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.5 2000/12/29 20:36:55 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/29 20:36:55 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib.logic;
 
 
 import java.lang.reflect.InvocationTargetException;
+import java.security.Principal;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -78,7 +79,7 @@ import org.apache.struts.util.PropertyUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/11/03 18:40:08 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/29 20:36:55 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -170,6 +171,16 @@ public class PresentTag extends ConditionalTagBase {
             String value =
                 pageContext.getRequest().getParameter(parameter);
             present = (value != null);
+        } else if (role != null) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            present = request.isUserInRole(role);
+        } else if (user != null) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            Principal principal = request.getUserPrincipal();
+            present = (principal != null) &&
+                user.equals(principal.getName());
         } else {
             JspException e = new JspException
                 (messages.getMessage("logic.selector"));

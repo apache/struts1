@@ -1053,12 +1053,32 @@
     </attribute>
 
     <attribute>
+      <name>role</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user (if any) has been
+      associated with the specified security role.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>user</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user principal has the
+      specified name.</p>
       </info>
     </attribute>
 
@@ -1137,12 +1157,32 @@
     </attribute>
 
     <attribute>
+      <name>role</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user (if any) has been
+      associated with the specified security role.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>user</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Checks whether the currently authenticated user principal has the
+      specified name.</p>
       </info>
     </attribute>
 

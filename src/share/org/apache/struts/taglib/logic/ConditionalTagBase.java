@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.3 2000/11/03 18:40:06 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/11/03 18:40:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ConditionalTagBase.java,v 1.4 2000/12/29 20:36:55 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/12/29 20:36:55 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various conditional evaluation tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/11/03 18:40:06 $
+ * @version $Revision: 1.4 $ $Date: 2000/12/29 20:36:55 $
  */
 
 public abstract class ConditionalTagBase extends TagSupport {
@@ -162,6 +162,20 @@ public abstract class ConditionalTagBase extends TagSupport {
 
 
     /**
+     * The name of the security role to be checked for.
+     */
+    protected String role = null;
+
+    public String getRole() {
+        return (this.role);
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+    /**
      * The scope to search for the bean named by the name property, or
      * "any scope" if null.
      */
@@ -173,6 +187,20 @@ public abstract class ConditionalTagBase extends TagSupport {
 
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+
+    /**
+     * The user principal name to be checked for.
+     */
+    protected String user = null;
+
+    public String getUser() {
+        return (this.user);
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
 
@@ -218,7 +246,9 @@ public abstract class ConditionalTagBase extends TagSupport {
         name = null;
         parameter = null;
         property = null;
+        role = null;
         scope = null;
+        user = null;
 
     }
 
