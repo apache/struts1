@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.2 2002/07/11 16:40:34 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:40:34 $
  *
  * ====================================================================
  *
@@ -76,8 +76,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.struts.tiles.definition.ReloadableDefinitionsFactory;
+import org.apache.struts.tiles.definition.ConfigurableDefinitionsFactory;
+import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
 import org.apache.struts.taglib.tiles.ComponentConstants;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 /**
  * Utilities class for definitions factory.
@@ -125,7 +129,7 @@ public class DefinitionsUtil implements ComponentConstants
    * @param servletContext
    * @return newly created MapperCollection.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
-   * @deprecated Use createDefinitionFactory instead.
+   * @deprecated Use createDefinitionsFactory instead.
    */
   public static void initUserDebugLevel(ServletConfig servletConfig)
   {
@@ -155,73 +159,132 @@ public class DefinitionsUtil implements ComponentConstants
    * Create Definition factory.
    * If a factory class name is provided, a factory of this class is created. Otherwise,
    * default factory is created.
-   * Factory must have a constructor taking ServletContext and Map as parameter.
    * @param classname Class name of the factory to create.
    * @param servletContext Servlet Context passed to newly created factory.
-   * @param properties Map of name/property passed to newly created factory.
+   * @param properties Map of name/property used to initialize factory configuration object.
    * @return newly created factory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
-   * @deprecated Use createDefinitionsFactory(ServletContext servletContext, Map properties)
+   * @deprecated Use createDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig)
    */
-  public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, Map properties, String classname)
+  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, Map properties, String classname)
     throws DefinitionsFactoryException
   {
-  properties.put( ReloadableDefinitionsFactory.DEFINITIONS_FACTORY_CLASSNAME, classname );
-  return createDefinitionsFactory(servletContext, properties);
+    // Create config object
+  DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
+    // populate it from map.
+  try
+    {
+    factoryConfig.populate( properties );
+    }
+   catch(Exception ex )
+    {
+    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Can't populate config object from properties map", ex );
+    }
+    // Add classname
+  if( classname != null )
+    factoryConfig.setFactoryClassname(classname);
+    // Create factory using config object
+  return  createDefinitionsFactory( servletContext, factoryConfig );
   }
 
    /**
    * Create default Definition factory.
-   * Factory must have a constructor taking ServletContext and Map as parameter.
    * @param servletContext Servlet Context passed to newly created factory.
-   * @param properties Map of name/property passed to newly created factory.
-   * @return newly created factory.
+   * @param properties Map of name/property used to initialize factory configuration object.
+   * @return newly created factory of type ConfigurableDefinitionsFactory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
    */
-  public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, Map properties)
+  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, Map properties)
     throws DefinitionsFactoryException
   {
-  ComponentDefinitionsFactory factory = new ReloadableDefinitionsFactory(servletContext, properties); ;
-  DefinitionsUtil.setDefinitionsFactory(factory, servletContext  );
-  return factory;
+  return createDefinitionsFactory( servletContext, properties, null );
   }
 
    /**
    * Create Definition factory.
-   * Convenience method. ServletConfig is wrapped into a Map allowing retrieval
-   * of init parameters. Factory classname is also retrieved, as well as debug level.
-   * Finally, approriate createDefinitionsFactory() is called.
+   * Create configuration object from servlet web.xml file, then create
+   * ConfigurableDefinitionsFactory and initialized it with object.
+   * <p>
+   * Convenience method. Calls createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
+   *
    * @param servletContext Servlet Context passed to newly created factory.
-   * @param servletConfig Servlet config containing parameters to be passed to newly created factory.
+   * @param servletConfig Servlet config containing parameters to be passed to factory configuration object.
+   * @return newly created factory of type ConfigurableDefinitionsFactory.
+   * @throws DefinitionsFactoryException If an error occur while initializing factory
    */
-  public static ComponentDefinitionsFactory createDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig)
+  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig)
     throws DefinitionsFactoryException
   {
-    // Check if already exist in context
-  ComponentDefinitionsFactory factory = getDefinitionsFactory( servletContext);
-  if( factory != null )
-    return factory;
-    // Doesn' exist, create it and save it in context
-    // Ensure that only one is created by synchronizing section. This imply a
-    // second checking.
-    // Todo : check that servletContext is unique for this servlet !
-  synchronized (servletContext) {
-      // Check if someone has created it while we had wait for synchonized section
-    factory = getDefinitionsFactory( servletContext);
+    // Read factory config
+  DefinitionsFactoryConfig factoryConfig = readFactoryConfig(servletConfig);
+    // Create factory using config object
+  return createDefinitionsFactory( servletContext, factoryConfig );
+  }
+
+   /**
+   * Create Definition factory.
+   * Create configuration object from servlet web.xml file, then create
+   * ConfigurableDefinitionsFactory and initialized it with object.
+   * <p>
+   * If checkIfExist is true, start by checking if factory already exist. If yes,
+   * return it. If no, create a new one.
+   * <p>
+   * If checkIfExist is false, factory is always created.
+   * <p>
+   * Convenience method. Calls createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
+   *
+   * @param servletContext Servlet Context passed to newly created factory.
+   * @param servletConfig Servlet config containing parameters to be passed to factory configuration object.
+   * @param checkIfExist Check if factory already exist. If true and factory exist, return it.
+   * If true and factory doesn't exist, create it. If false, create it in all cases.
+   * @return newly created factory of type ConfigurableDefinitionsFactory.
+   * @throws DefinitionsFactoryException If an error occur while initializing factory
+   */
+  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, ServletConfig servletConfig, boolean checkIfExist)
+    throws DefinitionsFactoryException
+  {
+  if( checkIfExist )
+    {
+      // Check if already exist in context
+    DefinitionsFactory factory = getDefinitionsFactory( servletContext);
     if( factory != null )
       return factory;
-      // Now really create it
-    initUserDebugLevel(servletConfig);
-    factory = new ReloadableDefinitionsFactory(servletContext, servletConfig); ;
-    setDefinitionsFactory(factory, servletContext  );
+    }
+    // creation
+  return createDefinitionsFactory( servletContext, servletConfig);
+  }
+
+    /**
+     * Create Definition factory from specified configuration object.
+     * Create a ConfigurableDefinitionsFactory and initialize it with the configuration
+     * object. This later can contains the factory classname to use.
+     * Factory is made accessible from tags.
+     * <p>
+     * Fallback of several factory creation methods.
+     *
+     * @param servletContext Servlet Context passed to newly created factory.
+     * @param factoryConfig Configuration object passed to factory.
+     * @return newly created factory of type ConfigurableDefinitionsFactory.
+     * @throws DefinitionsFactoryException If an error occur while initializing factory
+     */
+  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
+    throws DefinitionsFactoryException
+  {
+      // Set user debug level
+    setUserDebugLevel( factoryConfig.getDebugLevel() );
+      // Create configurable factory
+    DefinitionsFactory factory = new ConfigurableDefinitionsFactory( );
+    factory.init( factoryConfig, servletContext );
+      // Make factory accessible from jsp tags
+    DefinitionsUtil.makeDefinitionsFactoryAccessible(factory, servletContext );
     return factory;
-    } // synchronized
   }
 
   /**
    * Set definition factory in appropriate servlet context.
    * @param factory Factory to store.
    * @param servletContext Servlet context that will hold factory.
+   * @deprecated since 20020708. Replaced by makeFactoryAccessible()
    */
   static protected void setDefinitionsFactory(ComponentDefinitionsFactory factory, ServletContext servletContext)
   {
@@ -274,22 +337,25 @@ public class DefinitionsUtil implements ComponentConstants
   }
 
   /**
-   * Get instances factory from appropriate servlet context.
+   * Get definition factory from appropriate servlet context.
    * @return Definitions factory or null if not found.
+   * @since 20020708
    */
- static  public ComponentDefinitionsFactory getDefinitionsFactory(ServletContext servletContext)
+ static  public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext)
   {
-  return (ComponentDefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
+  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
   }
 
   /**
-   * Get instances factory from appropriate servlet context.
-   * @return Definitions factory or null if not found.
-   * @deprecated since 020207, use getDefinitionsFactory(pageContext.getServletContext()) instead
+   * Make definition factory accessible to Tags.
+   * Factory is stored in servlet context.
+   * @param factory Factory to make accessible
+   * @param servletContext Current servlet context
+   * @since 20020708
    */
- static  public ComponentDefinitionsFactory getDefinitionsFactory(PageContext pageContext)
+ static  public void makeDefinitionsFactoryAccessible(DefinitionsFactory factory, ServletContext servletContext)
   {
-  return getDefinitionsFactory( pageContext.getServletContext());
+  servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
   }
 
   /**
@@ -318,5 +384,76 @@ public class DefinitionsUtil implements ComponentConstants
   {
   request.removeAttribute(ACTION_DEFINITION);
   }
+
+  /**
+   * Populate Definition Factory Config from web.xml properties.
+   * @param config Definition Factory Config to populate.
+   * @param servletContext Current servlet context containing web.xml properties.
+   * @exception IllegalAccessException if the caller does not have
+   *  access to the property accessor method
+   * @exception InvocationTargetException if the property accessor method
+   *  throws an exception
+   * @see org.apache.commons.beanutils.BeanUtil
+   * @since tiles 20020708
+   */
+  static public void populateDefinitionsFactoryConfig( DefinitionsFactoryConfig factoryConfig, ServletConfig servletConfig)
+    throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
+  {
+  Map properties = new DefinitionsUtil.ServletPropertiesMap( servletConfig );
+  factoryConfig.populate( properties);
+  }
+
+  /**
+   * Create FactoryConfig and initialize it from web.xml.
+   *
+   * @param servlet ActionServlet that is managing all the sub-applications
+   *  in this web application
+   * @param config ApplicationConfig for the sub-application with which
+   *  this plug in is associated
+   * @exception ServletException if this <code>PlugIn</code> cannot
+   *  be successfully initialized
+   */
+  static protected DefinitionsFactoryConfig readFactoryConfig(ServletConfig servletConfig)
+      throws DefinitionsFactoryException
+  {
+    // Create tiles definitions config object
+  DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
+    // Get init parameters from web.xml files
+  try
+    {
+    DefinitionsUtil.populateDefinitionsFactoryConfig(factoryConfig, servletConfig);
+    }
+   catch(Exception ex)
+    {
+    ex.printStackTrace();
+    throw new DefinitionsFactoryException( "Can't populate DefinitionsFactoryConfig class from 'web.xml'.", ex );
+    }
+  return factoryConfig;
+  }
+
+  /**
+   * Inner class.
+   * Wrapper for ServletContext init parameters.
+   * Object of this class is an hashmap containing parameters and values
+   * defined in the servlet config file (web.xml).
+   */
+ static class ServletPropertiesMap extends HashMap {
+    /**
+     * Constructor.
+     */
+  ServletPropertiesMap( ServletConfig config )
+    {
+      // This implementation is very simple.
+      // It is possible to avoid creation of a new structure, but this need
+      // imply writing all Map interface.
+    Enumeration enum = config.getInitParameterNames();
+    while( enum.hasMoreElements() )
+      {
+      String key = (String)enum.nextElement();
+      put( key, config.getInitParameter( key ) );
+      }
+    }
+}  // end inner class
+
 }
 
