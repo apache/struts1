@@ -29,6 +29,7 @@
 <li><a href="html-input.jsp">&lt;html:input&gt;</a>[<a href="showSource.jsp?path=/html-input.jsp">Source</a>]</li>
 <li><a href="html-select.jsp">&lt;html:select&gt;</a>[<a href="showSource.jsp?path=/html-select.jsp">Source</a>]</li>
 <li><a href="html-setters.jsp">Scalar Setters</a>[<a href="showSource.jsp?path=/html-setters.jsp">Source</a>]</li>
+<li><a href="html-indexed.jsp">Indexed Tags</a>[<a href="showSource.jsp?path=/html-indexed.jsp">Source</a>]</li>
 </ul>
 
 <h3>LOGIC Tags</h3>

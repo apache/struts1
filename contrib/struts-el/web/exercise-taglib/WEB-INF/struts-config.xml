@@ -97,6 +97,13 @@
            validate="false">
       <forward name="success"                path="/bean-dyna.jsp"/>
     </action>
+    <action    path="/html-indexed"
+				   type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+               name="testbean"
+              scope="session"
+           validate="false">
+      <forward name="input"                path="/html-indexed.jsp"/>
+    </action>
   </action-mappings>
 
   <message-resources

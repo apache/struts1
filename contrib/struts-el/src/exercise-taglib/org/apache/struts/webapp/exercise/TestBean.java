@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/exercise-taglib/org/apache/struts/webapp/exercise/TestBean.java,v 1.1 2002/09/26 04:54:39 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/09/26 04:54:39 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/exercise-taglib/org/apache/struts/webapp/exercise/TestBean.java,v 1.2 2002/11/04 00:26:48 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/04 00:26:48 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.LabelValueBean;
  *
  * @author Craig R. McClanahan
  * @author Martin F N Cooper
- * @version $Revision: 1.1 $ $Date: 2002/09/26 04:54:39 $
+ * @version $Revision: 1.2 $ $Date: 2002/11/04 00:26:48 $
  */
 
 public class TestBean extends ActionForm {
@@ -359,7 +359,14 @@ public class TestBean extends ActionForm {
         stringIndexed[index] = value;
     }
 
+    private String   indexedStrings[]  =
+    { "alpha", "beta", "gamma", "delta", "epsilon" };
 
+    public String[] getIndexedStrings()
+    {
+        return (indexedStrings);
+    }
+    
     private String stringMultibox[] = new String[0];
 
     public String[] getStringMultibox() {
@@ -396,7 +403,36 @@ public class TestBean extends ActionForm {
         this.emptyStringProperty = emptyStringProperty;
     }
 
+    /**
+     * A list of coordinate objects.
+     */
+    private Coord[]  coords   =
+    { new Coord(0, 0), new Coord(0, 1), new Coord(1, 1), new Coord(2, 0),
+      new Coord(2, 1) 
+    };
 
+    public  Coord[]  getCoords() { return (coords); }
+    
+    public  Coord getCoord(int index) { return (coords[index]); }
+
+    public  void  setCoord(int index, Coord coord) { coords[index]   = coord; }
+
+    /**
+     * A list of images.
+     */
+    public  String   images[] = {"T1.gif", "T2.gif"};
+
+    public  String[] getImages() { return (images); }
+
+    private Coord[]  imageCoords = { new Coord(0, 0),  new Coord(0, 0) };
+
+    public  Coord[]  getImageCoords() { return (imageCoords); }
+
+    public  Coord getImageCoord(int index) { return (imageCoords[index]); }
+
+    public  void  setImageCoord(int index, Coord coord)
+    { imageCoords[index] = coord; }
+    
     /**
      * A property that allows a null value but is still used in a SELECT.
      */

@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/exercise-taglib/org/apache/struts/webapp/exercise/HtmlSettersAction.java,v 1.2 2002/11/04 00:26:48 dmkarr Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/exercise-taglib/org/apache/struts/webapp/exercise/Coord.java,v 1.1 2002/11/04 00:26:48 dmkarr Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/11/04 00:26:48 $
  *
  * ====================================================================
@@ -59,56 +59,30 @@
  *
  */
 
-
 package org.apache.struts.webapp.exercise;
 
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import java.util.Map;
-import java.util.Set;
-import java.util.Iterator;
-
-
 /**
- * Do-nothing action that accepts the changes made automatically in our form
- * bean, and then returns control to the input form (if "Save" was pressed)
- * or the main menu (if "Cancel" was pressed).
- *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/11/04 00:26:48 $
+ * Simple bean to use for testing indexed tags.
  */
-
-public class HtmlSettersAction extends Action {
-
-
-    /**
-     * Forward to the input form if "Save" was pressed or the main menu
-     * if "Cancel" was pressed.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     *
-     * @exception Exception if business logic throws an exception
-     */
-    public ActionForward execute(ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-        throws Exception {
-
-        if (isCancelled(request))
-            return (mapping.findForward("index"));
-        else
-            return (mapping.findForward("input"));
-
+public class Coord implements java.io.Serializable
+{
+    private int   x;
+    private int   y;
+    
+    public Coord() {}
+    
+    public Coord(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
     }
+    
+    public  int   getX() { return (x); }
+    public  int   getY() { return (y); }
 
+    public  void  setX(int x) { this.x = x; }
+    public  void  setY(int y) { this.y = y; }
 
+    public  String   toString()
+    { return ("Coord[" + "x=" + x + ";y=" + y + "]"); }
 }

@@ -29,7 +29,7 @@
     <tr>
      <td>
       <logic-el:iterate collection="${pageScope}" id="item">
-       <html-el:button property="stringProperty" indexed="${!empty pageScope}"/>
+       <html-el:button property="stringIndexed" indexed="${!empty pageScope}"/>
       </logic-el:iterate>
      </td>
     </tr>
