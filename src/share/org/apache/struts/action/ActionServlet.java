@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.55 2001/01/16 03:52:57 craigmcc Exp $
- * $Revision: 1.55 $
- * $Date: 2001/01/16 03:52:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.56 2001/01/28 03:04:32 craigmcc Exp $
+ * $Revision: 1.56 $
+ * $Date: 2001/01/28 03:04:32 $
  *
  * ====================================================================
  *
@@ -228,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.55 $ $Date: 2001/01/16 03:52:57 $
+ * @version $Revision: 1.56 $ $Date: 2001/01/28 03:04:32 $
  */
 
 public class ActionServlet
@@ -719,6 +719,7 @@ public class ActionServlet
         // Shut down our existing environment
         destroyActions();
         destroyApplication();
+        destroyDataSources();
         destroyInternal();
 
         // Restart from our confirmation files
@@ -727,6 +728,8 @@ public class ActionServlet
         initDebug();
         initApplication();
         initMapping();
+        initUpload();
+        initDataSources();
         initOther();
 
     }
