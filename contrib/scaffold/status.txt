@@ -8,6 +8,10 @@ TODO
 StatementUtils
  * :TODO: Refactor executeUpdate methods like getCollection methods.
 
+01-Jan-2002
+-----------
++ Added source zip inside the scaffold main distributable
+
 31-Dec-2001
 -----------
 + Modified ModelHelper to extend BaseHelperAction
