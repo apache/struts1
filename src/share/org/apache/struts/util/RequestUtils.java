@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.37 2002/06/16 05:39:17 craigmcc Exp $
- * $Revision: 1.37 $
- * $Date: 2002/06/16 05:39:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.38 2002/06/16 05:56:05 craigmcc Exp $
+ * $Revision: 1.38 $
+ * $Date: 2002/06/16 05:56:05 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.37 $ $Date: 2002/06/16 05:39:17 $
+ * @version $Revision: 1.38 $ $Date: 2002/06/16 05:56:05 $
  */
 
 public class RequestUtils {
@@ -572,7 +572,7 @@ public class RequestUtils {
             if (config.getDynamic()) {
                 String className =
                     ((DynaBean) instance).getDynaClass().getName();
-                if (className.equals(config.getName())) {
+                if (className.equals(config.getType())) {
                     if (LOG.isDebugEnabled()) {
                         LOG.debug
                             (" Recycling existing DynaActionForm instance " +
