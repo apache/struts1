@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateActionForm.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateActionForm.java,v 1.3 2004/01/31 14:13:40 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/31 14:13:40 $
  *
  * ====================================================================
  *
@@ -75,13 +75,15 @@ import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.util.ClassUtils;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 /**
  * <p>Create (if necessary) and cache a form bean for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/31 14:13:40 $
  */
 
 public class CreateActionForm implements Command {
@@ -94,6 +96,8 @@ public class CreateActionForm implements Command {
     private String actionFormKey = Constants.ACTION_FORM_KEY;
     private String actionServletKey = Constants.ACTION_SERVLET_KEY;
 
+    private static final Log log =
+        LogFactory.getLog(CreateActionForm.class);
 
     // -------------------------------------------------------------- Properties
 
@@ -197,11 +201,15 @@ public class CreateActionForm implements Command {
             return (false);
         }
 
+        log.trace("Look up form-bean " + name);
+
         // Look up the corresponding FormBeanConfig (if any)
         FormBeanConfig formBeanConfig =
             actionConfig.getModuleConfig().findFormBeanConfig(name);
         if (formBeanConfig == null) {
-            // FIXME - report an error?
+            log.warn("No FormBeanConfig found in module "
+                     + actionConfig.getModuleConfig().getPrefix()
+                     + " under name " + name);
             context.remove(getActionFormKey());
             return (false);
         }
@@ -216,6 +224,7 @@ public class CreateActionForm implements Command {
 
         // Can we recycle the existing instance (if any)?
         if (instance != null) {
+            log.trace("Found an instance in the session; test for reusability");
             if (formBeanConfig.getDynamic()) {
                 String className =
                     ((DynaBean) instance).getDynaClass().getName();
@@ -228,6 +237,7 @@ public class CreateActionForm implements Command {
                             (actionConfig.getAttribute(), instance);
                     }
                     */
+                    log.debug("Using existing instance (dynamic)");
                     return (false);
                 }
             } else {
@@ -244,14 +254,16 @@ public class CreateActionForm implements Command {
                            (actionConfig.getAttribute(), instance);
                            }
                         */
+                        log.debug("Using existing instance (non-dynamic)");
                         return (false);
                     }
                 } catch (Exception e) {
-                    ; // Swallow exceptions and just create a new instance
+                    log.debug("Error testing existing instance for reusability; just create a new instance", e);
                 }
             }
         }
 
+        log.trace("Make a new instance of: " + formBeanConfig);
         // Create a new form bean instance
         if (formBeanConfig.getDynamic()) {
             DynaActionFormClass dynaClass =
