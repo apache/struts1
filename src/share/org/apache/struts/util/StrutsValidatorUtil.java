@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.5 2002/10/11 22:17:51 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/11 22:17:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.6 2002/10/14 16:32:59 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/14 16:32:59 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.Globals;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.5 $ $Date: 2002/10/11 22:17:51 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/14 16:32:59 $
  * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
@@ -109,7 +109,7 @@ public class StrutsValidatorUtil  {
    /**
     * Retrieve <code>ValidatorResources</code> for the module.
     *
-    * @deprecated This method can only return the resources for the default
+    * @deprecated In Struts 1.1b3 This method can only return the resources for the default
     *  module.  Use getValidatorResources(HttpServletRequest, ServletContext)
     *  to get the resources for the current application module.
    */
@@ -262,34 +262,6 @@ public class StrutsValidatorUtil  {
 
       return new String[] { sArg0, sArg1, sArg2, sArg3 };
 
-   }
-
-   /**
-    * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
-    *
-    * @deprecated This method can only return the resources for the default
-    *  module.  Use Commons Logging package instead.
-   */
-   public static void log(ServletContext application, String message) {
-      MessageResources messages = getMessageResources(application);
-
-      if (messages != null) {
-         messages.log(message);
-      }
-   }
-
-   /**
-    * Writes a message based on the <code>Writer</code> defined in <code>MessageResources</code>.
-    *
-    * @deprecated This method can only return the resources for the default
-    *  module.  Use Commons Logging package instead.
-   */
-   public static void log(ServletContext application, String message, Throwable t) {
-      MessageResources messages = getMessageResources(application);
-
-      if (messages != null) {
-         messages.log(message, t);
-      }
    }
 
    /**
