@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.114 2002/07/10 14:52:46 cedric Exp $
- * $Revision: 1.114 $
- * $Date: 2002/07/10 14:52:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.115 2002/07/23 01:17:02 craigmcc Exp $
+ * $Revision: 1.115 $
+ * $Date: 2002/07/23 01:17:02 $
  *
  * ====================================================================
  *
@@ -294,7 +294,7 @@ import org.apache.struts.util.ServletContextWriter;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.114 $ $Date: 2002/07/10 14:52:46 $
+ * @version $Revision: 1.115 $ $Date: 2002/07/23 01:17:02 $
  */
 
 public class ActionServlet
@@ -861,6 +861,15 @@ public class ActionServlet
                 } catch (IOException e) {
                     ;
                 }
+            }
+        }
+
+        // Force creation and registration of DynaActionFormClass instances
+        // for all dynamic form beans we wil be using
+        FormBeanConfig fbs[] = config.findFormBeanConfigs();
+        for (int i = 0; i < fbs.length; i++) {
+            if (fbs[i].getDynamic()) {
+                DynaActionFormClass.createDynaActionFormClass(fbs[i]);
             }
         }
 
