@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.7 2001/02/12 21:49:58 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/12 21:49:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.8 2001/06/11 17:35:51 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/06/11 17:35:51 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/02/12 21:49:58 $
+ * @version $Revision: 1.8 $ $Date: 2001/06/11 17:35:51 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -133,8 +133,13 @@ public class PresentTag extends ConditionalTagBase {
                 getHeader(header);
             present = (value != null);
         } else if (name != null) {
-            Object value =
-                RequestUtils.lookup(pageContext, name, property, scope);
+            Object value = null;
+            try {
+                value =
+                    RequestUtils.lookup(pageContext, name, property, scope);
+            } catch (JspException e) {
+                value = null;
+            }
             present = (value != null);
         } else if (parameter != null) {
             String value =
