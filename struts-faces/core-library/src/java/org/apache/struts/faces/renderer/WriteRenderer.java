@@ -19,6 +19,7 @@ package org.apache.struts.faces.renderer;
 
 import java.io.IOException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -68,10 +69,17 @@ public class WriteRenderer extends AbstractRenderer {
 
         ResponseWriter writer = context.getResponseWriter();
         String id = component.getId();
+        if ((id != null) && id.startsWith(UIViewRoot.UNIQUE_ID_PREFIX)) {
+            id = null;
+        }
         String style =
             (String) component.getAttributes().get("style");
         String styleClass =
             (String) component.getAttributes().get("styleClass");
+        if (log.isTraceEnabled()) {
+            log.trace("id='" + id + "', style='" + style + "', styleClass='" +
+                      styleClass + "'");
+        }
         if ((id != null) || (style != null) || (styleClass != null)) {
             writer.startElement("span", component);
             if (id != null) {

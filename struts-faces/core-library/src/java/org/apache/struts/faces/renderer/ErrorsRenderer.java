@@ -84,6 +84,10 @@ public class ErrorsRenderer extends AbstractRenderer {
             throw new NullPointerException();
         }
 
+        if (log.isDebugEnabled()) {
+            log.debug("encodeEnd() started");
+        }
+
         // Look up availability of our predefined resource keys
         MessageResources resources = resources(context, component);
 	if (Beans.isDesignTime() && (resources == null)) {
@@ -112,6 +116,9 @@ public class ErrorsRenderer extends AbstractRenderer {
         Iterator messages = context.getMessages(property);
         while (messages.hasNext()) {
             FacesMessage message = (FacesMessage) messages.next();
+            if (log.isTraceEnabled()) {
+                log.trace("Processing FacesMessage: " + message.getSummary());
+            }
             if (!headerDone) {
                 if (headerPresent) {
                     writer.write
@@ -133,10 +140,22 @@ public class ErrorsRenderer extends AbstractRenderer {
             context.getExternalContext().getRequestMap().get
             (Globals.ERROR_KEY);
         if (errors != null) {
-            Iterator reports = errors.get
-                ((property == null) ? ActionErrors.GLOBAL_ERROR : property);
+            if (log.isTraceEnabled()) {
+                log.trace("Processing Struts messages for property '" +
+                          property + "'");
+            }
+            Iterator reports = null;
+            if (property == null) {
+                reports = errors.get();
+            } else {
+                reports = errors.get(property);
+            }
             while (reports.hasNext()) {
                 ActionMessage report = (ActionMessage) reports.next();
+                if (log.isTraceEnabled()) {
+                    log.trace("Processing Struts message key='" +
+                              report.getKey() + "'");
+                }
                 if (!headerDone) {
                     writer = context.getResponseWriter();
                     if (headerPresent) {
@@ -164,6 +183,10 @@ public class ErrorsRenderer extends AbstractRenderer {
         }
         if (id != null) {
             writer.endElement("span");
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug("encodeEnd() finished");
         }
 
     }

@@ -115,7 +115,7 @@ public final class SaveRegistrationAction extends Action {
                           "' was cancelled");
             }
 	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	    return (mapping.findForward("success"));
+	    return (mapping.findForward("failure"));
 	}
 
         // Validate the transactional control token

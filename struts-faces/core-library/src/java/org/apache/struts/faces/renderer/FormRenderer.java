@@ -128,6 +128,9 @@ public class FormRenderer extends AbstractRenderer {
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("form", form);
         writer.writeAttribute("id", clientId, "clientId");
+        if (beanName != null) {
+            writer.writeAttribute("name", beanName, null);
+        }
         writer.writeAttribute("action", action(context, component), "action");
         if (styleClass != null) {
             writer.writeAttribute("class", styleClass, "styleClass");

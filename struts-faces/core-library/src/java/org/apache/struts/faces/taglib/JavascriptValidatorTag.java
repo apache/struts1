@@ -1,5 +1,7 @@
 /*
- * Copyright 1999-2004 The Apache Software Foundation.
+ * $Id$ 
+ *
+ * Copyright 2001-2004 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +19,7 @@
 package org.apache.struts.faces.taglib;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,10 +27,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.webapp.UIComponentTag;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -38,27 +43,69 @@ import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
-import org.apache.commons.validator.ValidatorUtil;
+import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.commons.validator.Var;
+
 import org.apache.struts.Globals;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.component.FormComponent;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.validator.Resources;
 import org.apache.struts.validator.ValidatorPlugIn;
+
 
 /**
  * Custom tag that generates JavaScript for client side validation based
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
- * defined in the struts-config.xml file.  This is based on the code in
- * the corresponding class of the Struts HTML tag library, modified as needed
- * to reflect differences in the way JavaServer Faces renders field
- * identifiers.
+ * defined in the struts-config.xml file.
  *
  * @version $Rev$ $Date$
+ * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
+
+    /**
+     * A Comparator to use when sorting ValidatorAction objects.
+     */
+    private static final Comparator actionComparator = new Comparator() {
+        public int compare(Object o1, Object o2) {
+
+            ValidatorAction va1 = (ValidatorAction) o1;
+            ValidatorAction va2 = (ValidatorAction) o2;
+
+            if ((va1.getDepends() == null || va1.getDepends().length() == 0)
+                && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                return 0;
+
+            } else if (
+                (va1.getDepends() != null && va1.getDepends().length() > 0)
+                    && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                return 1;
+
+            } else if (
+                (va1.getDepends() == null || va1.getDepends().length() == 0)
+                    && (va2.getDepends() != null && va2.getDepends().length() > 0)) {
+                return -1;
+
+            } else {
+                return va1.getDependencyList().size() - va2.getDependencyList().size();
+            }
+        }
+    };
+
+    /**
+     * The start of the HTML comment hiding JavaScript from old browsers.
+     * @since Struts 1.2
+     */
+    protected static final String HTML_BEGIN_COMMENT = "\n<!-- Begin \n";
+
+    /**
+     * The end of the HTML comment hiding JavaScript from old browsers.
+     * @since Struts 1.2
+     */
+    protected static final String HTML_END_COMMENT = "//End --> \n";
 
     // ----------------------------------------------------------- Properties
 
@@ -79,6 +126,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * &lt;script&gt; &lt;/script&gt; around the javascript.
      */
     protected String formName = null;
+    
+    /**
+     * formName is used for both Javascript and non-javascript validations.
+     * For the javascript validations, there is the possibility that we will
+     * be rewriting the formName (if it is a ValidatorActionForm instead of just
+     * a ValidatorForm) so we need another variable to hold the formName just for
+     * javascript usage.
+     */
+    protected String jsFormName = null;
 
     /**
      * The line ending string.
@@ -96,6 +152,13 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * the method name of the main JavaScript method that the form calls to perform validations.
      */
     protected String methodName = null;
+
+    /**
+     * Include language attribute in the &lt;script&gt; element.  This property is
+     * ignored in XHTML mode.
+     * @since Struts 1.2
+     */
+    protected boolean scriptLanguage = true;
 
     /**
      * The static JavaScript methods will only be printed if this is set to "true".
@@ -118,16 +181,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * The JavaScript methods will enclosed with html comments if this is set to "true".
      */
     protected String htmlComment = "true";
-    
+
     /**
      * Hide JavaScript methods in a CDATA section for XHTML when "true".
      */
     protected String cdata = "true";
 
-    private String htmlBeginComment = "\n<!-- Begin \n";
-
-    private String htmlEndComment = "//End --> \n";
-    
     /**
      * Gets the key (form name) that will be used
      * to retrieve a set of validation rules to be
@@ -148,6 +207,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         this.formName = formName;
     }
 
+    /**
+     * @return Returns the jsFormName.
+     */
+    public String getJsFormName() {
+        return jsFormName;
+    }
+    /**
+     * @param jsFormName The jsFormName to set.
+     */
+    public void setJsFormName(String jsFormName) {
+        this.jsFormName = jsFormName;
+    }
     /**
      * Gets the current page number of a multi-part form.
      * Only field validations with a matching page numer
@@ -265,221 +336,58 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
+        JspWriter writer = pageContext.getOut();
+        try {
+            writer.print(this.renderJavascript());
+
+        } catch (IOException e) {
+            throw new JspException(e.getMessage());
+        }
+
+        return EVAL_BODY_TAG;
+
+    }
+
+    /**
+     * Returns fully rendered JavaScript.
+     * @since Struts 1.2
+     */
+    protected String renderJavascript() throws JspException {
         StringBuffer results = new StringBuffer();
 
-        ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
+        ModuleConfig config = TagUtils.getInstance().getModuleConfig(pageContext);
         ValidatorResources resources =
             (ValidatorResources) pageContext.getAttribute(
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
                 PageContext.APPLICATION_SCOPE);
 
-        Locale locale = RequestUtils.retrieveUserLocale(this.pageContext, null);
+        Locale locale = TagUtils.getInstance().getUserLocale(this.pageContext, null);
 
-        Form form = resources.get(locale, formName);
+        Form form = resources.getForm(locale, formName);
+
+        if ("true".equalsIgnoreCase(dynamicJavascript) && form == null)
+        {
+            throw new JspException("No form found under '"
+                                   + formName
+                                   + "' in locale '"
+                                   + locale
+                                   + "'");
+        }
+
         if (form != null) {
             if ("true".equalsIgnoreCase(dynamicJavascript)) {
-                MessageResources messages =
-                    (MessageResources) pageContext.getAttribute(
-                        bundle + config.getPrefix(),
-                        PageContext.APPLICATION_SCOPE);
+                results.append(
+                        this.createDynamicJavascript(config, resources, locale, form));
 
-                List lActions = new ArrayList();
-                List lActionMethods = new ArrayList();
-
-                // Get List of actions for this Form
-                for (Iterator i = form.getFields().iterator(); i.hasNext();) {
-                    Field field = (Field) i.next();
-
-                    for (Iterator x = field.getDependencies().iterator(); x.hasNext();) {
-                        Object o = x.next();
-
-                        if (o != null && !lActionMethods.contains(o)) {
-                            lActionMethods.add(o);
-                        }
-                    }
-
-                }
-
-                // Create list of ValidatorActions based on lActionMethods
-                for (Iterator i = lActionMethods.iterator(); i.hasNext();) {
-                    String depends = (String) i.next();
-                    ValidatorAction va = resources.getValidatorAction(depends);
-
-                    // throw nicer NPE for easier debugging
-                    if (va == null) {
-                        throw new NullPointerException(
-                            "Depends string \""
-                                + depends
-                                + "\" was not found in validator-rules.xml.");
-                    }               
-                    
-                    String javascript = va.getJavascript();
-                    if (javascript != null && javascript.length() > 0) {
-                        lActions.add(va);
-                    } else {
-                        i.remove();
-                    }
-                }
-
-                Collections.sort(lActions, new Comparator() {
-                    public int compare(Object o1, Object o2) {
-                        ValidatorAction va1 = (ValidatorAction) o1;
-                        ValidatorAction va2 = (ValidatorAction) o2;
-
-                        if ((va1.getDepends() == null || va1.getDepends().length() == 0)
-                            && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
-                            return 0;
-                        } else if (
-                            (va1.getDepends() != null && va1.getDepends().length() > 0)
-                                && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
-                            return 1;
-                        } else if (
-                            (va1.getDepends() == null || va1.getDepends().length() == 0)
-                                && (va2.getDepends() != null && va2.getDepends().length() > 0)) {
-                            return -1;
-                        } else {
-                            return va1.getDependencies().size() - va2.getDependencies().size();
-                        }
-                    }
-                });
-
-                String methods = null;
-                for (Iterator i = lActions.iterator(); i.hasNext();) {
-                    ValidatorAction va = (ValidatorAction) i.next();
-
-                    if (methods == null) {
-                        methods = va.getMethod() + "(form)";
-                    } else {
-                        methods += " && " + va.getMethod() + "(form)";
-                    }
-                }
-
-                results.append(getJavascriptBegin(methods));
-
-                for (Iterator i = lActions.iterator(); i.hasNext();) {
-                    ValidatorAction va = (ValidatorAction) i.next();
-                    String jscriptVar = null;
-                    String functionName = null;
-
-                    if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
-                        functionName = va.getJsFunctionName();
-                    } else {
-                        functionName = va.getName();
-                    }
-
-                    results.append("    function " + functionName + " () { \n");
-                    for (Iterator x = form.getFields().iterator(); x.hasNext();) {
-                        Field field = (Field) x.next();
-
-                        // Skip indexed fields for now until there is a good way to handle 
-                        // error messages (and the length of the list (could retrieve from scope?))
-                        if (field.isIndexed()
-                            || field.getPage() != page
-                            || !field.isDependency(va.getName())) {
-                                
-                            continue;
-                        }
-                        
-                        String message =
-                            Resources.getMessage(messages, locale, va, field);
-                        
-                        message = (message != null) ? message : "";
-
-                        jscriptVar = this.getNextVar(jscriptVar);
-
-                        results.append(
-                            "     this."
-                                + jscriptVar
-                                + " = new Array(\""
-                                + getFormClientId()
-                                + ":"
-                                + field.getKey()
-                                + "\", \""
-                                + message
-                                + "\", ");
-
-                        results.append("new Function (\"varName\", \"");
-
-                        Map vars = field.getVars();
-                        // Loop through the field's variables.
-                        Iterator varsIterator = vars.keySet().iterator();
-                        while (varsIterator.hasNext()) {
-                            String varName = (String) varsIterator.next();
-                            Var var = (Var) vars.get(varName);
-                            String varValue = var.getValue();
-                            String jsType = var.getJsType();
-
-                            // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
-                            if (varName.startsWith("field")) {
-                                continue;
-                            }
-
-                            if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "="
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "; ");
-                            } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "=/"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "/; ");
-                            } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "='"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "'; ");
-                                // So everyone using the latest format doesn't need to change their xml files immediately.
-                            } else if ("mask".equalsIgnoreCase(varName)) {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "=/"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "/; ");
-                            } else {
-                                results.append(
-                                    "this."
-                                        + varName
-                                        + "='"
-                                        + ValidatorUtil.replace(
-                                            varValue,
-                                            "\\",
-                                            "\\\\")
-                                        + "'; ");
-                            }
-                        }
-
-                        results.append(" return this[varName];\"));\n");
-                    }
-                    results.append("    } \n\n");
-                }
             } else if ("true".equalsIgnoreCase(staticJavascript)) {
-                results.append(this.getStartElement());
+                results.append(this.renderStartElement());
                 if ("true".equalsIgnoreCase(htmlComment)) {
-                    results.append(htmlBeginComment);
+                    results.append(HTML_BEGIN_COMMENT);
                 }
             }
         }
-        
+
         if ("true".equalsIgnoreCase(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
@@ -487,20 +395,275 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (form != null
             && ("true".equalsIgnoreCase(dynamicJavascript)
                 || "true".equalsIgnoreCase(staticJavascript))) {
-                    
+
             results.append(getJavascriptEnd());
         }
 
+        return results.toString();
+    }
 
-        JspWriter writer = pageContext.getOut();
-        try {
-            writer.print(results.toString());
-        } catch (IOException e) {
-            throw new JspException(e.getMessage());
+    /**
+     * Generates the dynamic JavaScript for the form.
+     * @param config
+     * @param resources
+     * @param locale
+     * @param form
+     */
+    private String createDynamicJavascript(
+        ModuleConfig config,
+        ValidatorResources resources,
+        Locale locale,
+        Form form) throws JspException {
+
+        StringBuffer results = new StringBuffer();
+
+        MessageResources messages =
+            (MessageResources) pageContext.getAttribute(
+                bundle + config.getPrefix(),
+                PageContext.APPLICATION_SCOPE);
+
+        List actions = this.createActionList(resources, form);
+
+        final String methods = this.createMethods(actions, this.stopOnError(config));
+
+        String formName = form.getName();
+        jsFormName = formName;
+                if(jsFormName.charAt(0) == '/') {
+                    String mappingName = TagUtils.getInstance().getActionMappingName(jsFormName);
+                    ActionMapping mapping = (ActionMapping) config.findActionConfig(mappingName);
+                    if (mapping == null) {
+                        JspException e = new JspException(messages.getMessage("formTag.mapping", mappingName));
+                        pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
+                        throw e;
+                    }
+                    jsFormName = mapping.getAttribute();
+                }
+        
+        results.append(this.getJavascriptBegin(methods));
+
+        for (Iterator i = actions.iterator(); i.hasNext();) {
+            ValidatorAction va = (ValidatorAction) i.next();
+            int jscriptVar = 0;
+            String functionName = null;
+
+
+            if (va.getJsFunctionName() != null
+                && va.getJsFunctionName().length() > 0) {
+                functionName = va.getJsFunctionName();
+            } else {
+                functionName = va.getName();
+            }
+
+            
+            results.append("    function " + jsFormName + "_" + functionName + " () { \n");
+            for (Iterator x = form.getFields().iterator(); x.hasNext();) {
+                Field field = (Field) x.next();
+
+                // Skip indexed fields for now until there is a good way to handle
+                // error messages (and the length of the list (could retrieve from scope?))
+                if (field.isIndexed()
+                    || field.getPage() != page
+                    || !field.isDependency(va.getName())) {
+
+                    continue;
+                }
+
+                String message = Resources.getMessage(messages, locale, va, field);
+
+                message = (message != null) ? message : "";
+
+                // prefix variable with 'a' to make it a legal identifier
+                results.append(
+                    "     this.a"
+                        + jscriptVar++
+                        + " = new Array(\""
+                        + getFormClientId()
+                        + ":"
+                        + field.getKey()
+                        + "\", \""
+                        + escapeQuotes(message)
+                        + "\", ");
+
+                results.append("new Function (\"varName\", \"");
+
+                Map vars = field.getVars();
+                // Loop through the field's variables.
+                Iterator varsIterator = vars.keySet().iterator();
+                while (varsIterator.hasNext()) {
+                    String varName = (String) varsIterator.next();
+                    Var var = (Var) vars.get(varName);
+                    String varValue = var.getValue();
+                    String jsType = var.getJsType();
+
+                    // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
+                    if (varName.startsWith("field")) {
+                        continue;
+                    }
+
+                    if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "="
+                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + "; ");
+                    } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "=/"
+                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + "/; ");
+                    } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "='"
+                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + "'; ");
+                        // So everyone using the latest format doesn't need to change their xml files immediately.
+                    } else if ("mask".equalsIgnoreCase(varName)) {
+                        results.append(
+                            "this."
+                                + varName
+                                + "=/"
+                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + "/; ");
+                    } else {
+                        results.append(
+                            "this."
+                                + varName
+                                + "='"
+                                + ValidatorUtils.replace(varValue, "\\", "\\\\")
+                                + "'; ");
+                    }
+                }
+
+                results.append(" return this[varName];\"));\n");
+            }
+            results.append("    } \n\n");
         }
 
-        return (EVAL_BODY_TAG);
+        return results.toString();
+    }
 
+    private String escapeQuotes(String in)
+    {
+        if (in == null || in.indexOf("\"") == -1)
+        {
+            return in;
+        }
+        StringBuffer buffer = new StringBuffer();
+        StringTokenizer tokenizer = new StringTokenizer(in, "\"", true);
+
+        while (tokenizer.hasMoreTokens())
+        {
+            String token = tokenizer.nextToken();
+            if (token.equals("\""))
+            {
+                buffer.append("\\");
+            }
+            buffer.append(token);
+        }
+
+        return buffer.toString();
+    }
+
+    /**
+     * Determines if validations should stop on an error.
+     * @param config The <code>ModuleConfig</code> used to lookup the
+     * stopOnError setting.
+     * @return <code>true</code> if validations should stop on errors.
+     */
+    private boolean stopOnError(ModuleConfig config) {
+        Object stopOnErrorObj =
+            pageContext.getAttribute(
+                ValidatorPlugIn.STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
+                PageContext.APPLICATION_SCOPE);
+
+        boolean stopOnError = true;
+
+        if (stopOnErrorObj instanceof Boolean) {
+            stopOnError = ((Boolean) stopOnErrorObj).booleanValue();
+        }
+
+        return stopOnError;
+    }
+
+    /**
+     * Creates the JavaScript methods list from the given actions.
+     * @param actions A List of ValidatorAction objects.
+     * @param stopOnError If true, behaves like released version of struts 1.1
+     *        and stops after first error. If false, evaluates all validations.
+     * @return JavaScript methods.
+     */
+    private String createMethods(List actions, boolean stopOnError) {
+        StringBuffer methods = new StringBuffer();
+        final String methodOperator = stopOnError ? " && " : " & ";
+
+        Iterator iter = actions.iterator();
+        while (iter.hasNext()) {
+            ValidatorAction va = (ValidatorAction) iter.next();
+
+            if (methods.length() > 0) {
+                methods.append(methodOperator);
+            }
+            methods.append(va.getMethod())
+                   .append("(form)");
+        }
+
+        return methods.toString();
+    }
+
+    /**
+     * Get List of actions for the given Form.
+     * @param resources
+     * @param form
+     * @return A sorted List of ValidatorAction objects.
+     */
+    private List createActionList(ValidatorResources resources, Form form) {
+
+        List actionMethods = new ArrayList();
+
+        Iterator iterator = form.getFields().iterator();
+        while (iterator.hasNext()) {
+            Field field = (Field) iterator.next();
+
+            for (Iterator x = field.getDependencyList().iterator(); x.hasNext();) {
+                Object o = x.next();
+
+                if (o != null && !actionMethods.contains(o)) {
+                    actionMethods.add(o);
+                }
+            }
+        }
+
+        List actions = new ArrayList();
+
+        // Create list of ValidatorActions based on actionMethods
+        iterator = actionMethods.iterator();
+        while (iterator.hasNext()) {
+            String depends = (String) iterator.next();
+            ValidatorAction va = resources.getValidatorAction(depends);
+
+            // throw nicer NPE for easier debugging
+            if (va == null) {
+                throw new NullPointerException(
+                    "Depends string \""
+                        + depends
+                        + "\" was not found in validator-rules.xml.");
+            }
+
+            if (va.getJavascript() != null && va.getJavascript().length() > 0) {
+                actions.add(va);
+            } else {
+                iterator.remove();
+            }
+        }
+
+        Collections.sort(actions, actionComparator);
+
+        return actions;
     }
 
     /**
@@ -510,6 +673,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         super.release();
         bundle = Globals.MESSAGES_KEY;
         formName = null;
+        jsFormName = null;
         page = 0;
         methodName = null;
         staticJavascript = "true";
@@ -525,18 +689,19 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     protected String getJavascriptBegin(String methods) {
         StringBuffer sb = new StringBuffer();
-        String name =
-            formName.substring(0, 1).toUpperCase()
-                + formName.substring(1, formName.length());
+        String name = jsFormName.replace('/', '_'); // remove any '/' characters
+        name =
+            jsFormName.substring(0, 1).toUpperCase()
+                + jsFormName.substring(1, jsFormName.length());
 
-        sb.append(this.getStartElement());
-        
+        sb.append(this.renderStartElement());
+
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("<![CDATA[\r\n");
         }
-        
+
         if (!this.isXhtml() && "true".equals(htmlComment)) {
-            sb.append(htmlBeginComment);
+            sb.append(HTML_BEGIN_COMMENT);
         }
         sb.append("\n     var bCancel = false; \n\n");
 
@@ -559,7 +724,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (methods == null || methods.length() == 0) {
             sb.append("       return true; \n");
         } else {
-            sb.append("       return " + methods + "; \n");
+            //Making Sure that Bitwise operator works:
+            sb.append(" var formValidationResult;\n");
+            sb.append("       formValidationResult = " + methods + "; \n");
+            sb.append("     return (formValidationResult == 1);\n");
         }
 
         sb.append("   } \n\n");
@@ -594,74 +762,28 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         sb.append("\n");
         if (!this.isXhtml() && "true".equals(htmlComment)){
-            sb.append(htmlEndComment);
+            sb.append(HTML_END_COMMENT);
         }
-        
+
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("]]>\r\n");
         }
-        
+
         sb.append("</script>\n\n");
 
         return sb.toString();
     }
 
     /**
-     * The value <code>null</code> will be returned at the end of the sequence.
-     * &nbsp;&nbsp;&nbsp; ex: "zz" will return <code>null</code>
+     * Constructs the beginning &lt;script&gt; element depending on XHTML
+     * status.
+     * @since Struts 1.2
      */
-    private String getNextVar(String input) {
-        if (input == null) {
-            return "aa";
-        }
-
-        input = input.toLowerCase();
-
-        for (int i = input.length(); i > 0; i--) {
-            int pos = i - 1;
-
-            char c = input.charAt(pos);
-            c++;
-
-            if (c <= 'z') {
-                if (i == 0) {
-                    return c + input.substring(pos, input.length());
-                } else if (i == input.length()) {
-                    return input.substring(0, pos) + c;
-                } else {
-                    return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
-                }
-            } else {
-                input = replaceChar(input, pos, 'a');
-            }
-
-        }
-
-        return null;
-
-    }
-
-    /**
-     * Replaces a single character in a <code>String</code>
-     */
-    private String replaceChar(String input, int pos, char c) {
-        if (pos == 0) {
-            return c + input.substring(pos, input.length());
-        } else if (pos == input.length()) {
-            return input.substring(0, pos) + c;
-        } else {
-            return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
-        }
-    }
-
-    /**
-     * Constructs the beginning &lt;script&gt; element depending on xhtml status.
-     */
-    private String getStartElement() {
+    protected String renderStartElement() {
         StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
 
-        // there is no language attribute in xhtml
-        if (!this.isXhtml()) {
+        // there is no language attribute in XHTML
+        if (!this.isXhtml() && this.scriptLanguage) {
             start.append(" language=\"Javascript1.1\"");
         }
 
@@ -672,12 +794,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         start.append("> \n");
         return start.toString();
     }
-    
+
     /**
      * Returns true if this is an xhtml page.
      */
     private boolean isXhtml() {
-        return RequestUtils.isXhtml(this.pageContext);
+        return TagUtils.getInstance().isXhtml(this.pageContext);
     }
 
     /**
@@ -696,21 +818,39 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         this.cdata = cdata;
     }
 
+    /**
+     * Gets whether or not the &lt;script&gt; element will include the
+     * language attribute.
+     * @return true if language attribute will be included.
+     * @since Struts 1.2
+     */
+    public boolean getScriptLanguage() {
+        return this.scriptLanguage;
+    }
 
+    /**
+     * Sets whether or not the &lt;script&gt; element will include the
+     * language attribute.
+     * @since Struts 1.2
+     */
+    public void setScriptLanguage(boolean scriptLanguage) {
+        this.scriptLanguage = scriptLanguage;
+    }
+
+    /**
+     * <p>Cached client identifier of our parent form component.</p>
+     */
     private String formClientId = null;
 
     /**
-     * <p>Return the <code>clientId</code> of the form component for which
-     * we are rendering validation Javascript.</p>
-     *
-     * @exception IllegalStateException if we are not nested inside a
-     *  UIComponentTag with a child FormComponent matching our form name
+     * <p>Return the <code>clientId</code> of the {@link FormComponent}
+     * within which we are nested.</p>
      */
-    private String getFormClientId(){
+    private String getFormClientId() {
 
         // Return any cached value
         if (formClientId != null) {
-            return (formClientId);
+            return formClientId;
         }
 
         // Locate our parent tag that is a component tag
@@ -723,7 +863,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
         if (parent == null) {
             throw new IllegalArgumentException
-                ("Not nested inside a UIComponentTag");
+                ("Javascript tag is not nested inside a component tag");
         }
 
         // Are we nested inside our corresponding form tag?
@@ -733,26 +873,26 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             if (formName.equals((String) parentComponent.getAttributes().get("beanName"))) {
                 formClientId = parentComponent.getClientId
                     (FacesContext.getCurrentInstance());
-                return (formClientId);
+                return formClientId;
             }
         }
 
-        // Scan the children of this tag's component
-        Iterator kids = ((UIComponentTag) parent).
-            getComponentInstance().getChildren().iterator();
+        // No, so search the children of this component for a sibling form
+        Iterator kids = parentComponent.getChildren().iterator();
         while (kids.hasNext()) {
             UIComponent kid = (UIComponent) kids.next();
-            if (!(kid instanceof FormComponent)) {
-                continue;
-            }
-            if (formName.equals((String) kid.getAttributes().get("beanName"))) {
-                formClientId =
-                    kid.getClientId(FacesContext.getCurrentInstance());
-                return (formClientId);
+            if (kid instanceof FormComponent) {
+                if (formName.equals((String) kid.getAttributes().get("beanName"))) {
+                    formClientId = kid.getClientId
+                        (FacesContext.getCurrentInstance());
+                    return formClientId;
+                }
             }
         }
+
+        // Rats, could not find a form component that way either
         throw new IllegalArgumentException
-            ("Cannot find child FormComponent for form '" + formName + "'");
+            ("Cannot find form component for form '" + formName + "'");
 
     }
 

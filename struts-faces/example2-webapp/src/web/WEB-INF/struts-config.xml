@@ -90,6 +90,7 @@
     <forward   name="registration"         path=".registration"/>
     <forward   name="subscription"         path=".subscription"/>
     <forward   name="success"              path=".mainMenu"/>
+    <forward   name="failure"              path=".welcome"/>
   </global-forwards>
 
 
@@ -117,7 +118,7 @@
               scope="request"
            validate="false">
       <forward name="failure"              path=".mainMenu"/>
-      <forward name="success"              path=".registration"/>
+      <forward name="success"              path=".subscription"/>
     </action>
 
     <!-- Process a user logoff -->

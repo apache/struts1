@@ -164,6 +164,7 @@
                styleClass="command-multiple"
                     value="Reset"/>                     <%-- FIXME - i18n --%>
       <h:commandButton id="cancel" type="SUBMIT"
+                  onclick="bCancel=true;"
                styleClass="command-multiple"
                     value="Cancel"/>                    <%-- FIXME - i18n --%>
     </h:panelGroup>

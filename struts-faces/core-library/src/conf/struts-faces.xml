@@ -387,7 +387,7 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         Component of the component for which to render errors.  If not
-        specified, only global messages are rendered.
+        specified, all messages (regardless of property) are displayed.
       </description>
     </attribute>
 

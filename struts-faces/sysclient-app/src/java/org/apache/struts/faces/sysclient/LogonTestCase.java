@@ -131,7 +131,9 @@ public class LogonTestCase extends AbstractTestCase {
 
         span = (HtmlSpan) element("globalErrors");
         assertNotNull(span);
-        assertEquals("", span.asText());
+        assertEquals("[EH][EP] can not be less than 3 characters.[ES]" +
+                     "[EP] is required.[ES][EF]",
+                     span.asText());
 
         username = (HtmlTextInput) element("form:username");
         assertNotNull(username);
@@ -184,7 +186,7 @@ public class LogonTestCase extends AbstractTestCase {
         assertEquals(url + "/logon.faces", action);
         assertEquals("", form.getEnctypeAttribute());
         assertEquals("post", form.getMethodAttribute());
-        assertEquals("", form.getNameAttribute());
+        assertEquals("logonForm", form.getNameAttribute());
         assertEquals("", form.getOnResetAttribute());
         assertEquals("", form.getOnSubmitAttribute());
         assertEquals("", form.getTargetAttribute());

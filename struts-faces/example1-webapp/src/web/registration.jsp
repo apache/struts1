@@ -178,6 +178,7 @@
       <h:commandButton id="cancel"
                      type="SUBMIT"
                styleClass="cancel"
+                  onclick="bCancel=true;"
                     value="#{messages['button.cancel']}"/>
     </h:panelGroup>
 

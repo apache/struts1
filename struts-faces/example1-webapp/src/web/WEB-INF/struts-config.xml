@@ -89,6 +89,7 @@
     <forward   name="registration"         path="/registration.faces"/>
     <forward   name="subscription"         path="/subscription.faces"/>
     <forward   name="success"              path="/mainMenu.faces"/>
+    <forward   name="failure"              path="/index.faces"/>
   </global-forwards>
 
 
@@ -137,7 +138,8 @@
                type="org.apache.struts.webapp.example.SaveRegistrationAction"
                name="registrationForm"
               scope="request"
-              input="registration"/>
+              input="registration">
+    </action>
 
     <!-- Save mail subscription -->
     <action    path="/saveSubscription"

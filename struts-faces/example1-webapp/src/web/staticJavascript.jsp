@@ -1,6 +1,7 @@
 <%@ page language="java" %>
 <%-- set document type to Javascript (addresses a bug in Netscape according to a web resource --%>
 <%@ page contentType="application/x-javascript" %>
+<%@ taglib prefix="s" uri="http://struts.apache.org/tags-faces" %>
 
 <%--
 
@@ -20,7 +21,4 @@
 
 --%>
 
-
-<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
-
-<html:javascript dynamicJavascript="false" staticJavascript="true"/>
+<s:javascript dynamicJavascript="false" staticJavascript="true"/>
