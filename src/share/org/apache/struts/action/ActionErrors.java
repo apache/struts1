@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.3 2000/12/26 20:49:06 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/12/26 20:49:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.4 2000/12/30 02:48:42 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/12/30 02:48:42 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.action;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.HashMap;
 
@@ -89,7 +90,7 @@ import java.util.HashMap;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @revision $Revision: 1.3 $ $Date: 2000/12/26 20:49:06 $
+ * @revision $Revision: 1.4 $ $Date: 2000/12/30 02:48:42 $
  */
 
 public class ActionErrors implements Serializable {
@@ -107,13 +108,6 @@ public class ActionErrors implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * An empty collection to use for returning empty Iterators.  Do not add
-     * any elements to this collection!
-     */
-    protected ArrayList empty = new ArrayList();
 
 
     /**
@@ -173,19 +167,19 @@ public class ActionErrors implements Serializable {
     public Iterator get() {
 
         if (errors.size() == 0)
-            return (empty.iterator());
+            return (Collections.EMPTY_LIST.iterator());
         ArrayList results = new ArrayList();
         Iterator props = errors.keySet().iterator();
         while (props.hasNext()) {
             String prop = (String) props.next();
             Iterator errors = ((ArrayList) this.errors.get(prop)).iterator();
             while (errors.hasNext())
-                results.add(errors.next());            
+                results.add(errors.next());
         }
         return (results.iterator());
 
     }
-    
+
 
     /**
      * Return the set of error messages related to a specific property.
@@ -197,7 +191,7 @@ public class ActionErrors implements Serializable {
 
         ArrayList list = (ArrayList) errors.get(property);
         if (list == null)
-            return (empty.iterator());
+            return (Collections.EMPTY_LIST.iterator());
         else
             return (list.iterator());
 
