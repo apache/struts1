@@ -15,7 +15,7 @@
 
   <tlibversion>1.0</tlibversion>
   <jspversion>1.1</jspversion>
-  <shortname>Tiles Tag Library</shortname>
+  <shortname>tiles</shortname>
   <display-name>Tiles Tag Library</display-name>
   <uri>http://jakarta.apache.org/struts/tags-tiles</uri>
   <info>
