@@ -19,9 +19,16 @@ so much duplicate code here
 
 // ------------------------------------------------------------ CHANGES
 
+
+
+20-AUG-2002
+-----------
++ ProcessAction: Update to use LIST_KEY
++ ProcessFormAction: Expanded JavaDocs
+
+
 19-AUG-2002
 -----------
-
 + Resources.properties: Conform with latest Token class.
 + ProcessDispatchAction: Improve exception handling.
 + BaseAction: Update to better handle exceptions with null message.

@@ -42,7 +42,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/08/20 21:35:25 $
  */
 public class ProcessAction extends BaseHelperAction {
 
@@ -162,7 +162,7 @@ public class ProcessAction extends BaseHelperAction {
 
             String name = result.getName();
             if (null==name) {
-                name = Tokens.RESULT_KEY;
+                name = Tokens.LIST_KEY;
                 result.setName(name);
             }
             String scope = result.getScope();

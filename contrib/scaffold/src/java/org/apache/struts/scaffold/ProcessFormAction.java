@@ -11,13 +11,30 @@ import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
 
 /**
- * ProcessAction subclass that checks to see if a single form
- * bean exists before overwriting it. If it does exist,
- * the (presumably form) bean is populated from the result.
+ * ProcessAction subclass that checks to see if a another
+ * bean exists in the request scope before overwriting it.
+ * If another bean is present, it is populated from the
+ * ProcessBean.
+ * <P>
+ * Any JavaBean can be used to populate a Struts presentation
+ * page, and it is not always necessary to transfer data from
+ * a business bean to a form bean.
+ * Other times, the form bean will have special helper
+ * properties for the benefit of the presentation layer.
+ * For example, a second password field may be needed to
+ * validate the user's data-entry but would not be part of
+ * the business API.
+ * <P>
+ * The <CODE>ProcessFormAction</CODE> will check to see if
+ * another bean is in scope (presumably a form bean).
+ * If another bean exists, ProcessFormAction populates it
+ * from the business bean,
+ * The net result is an automatic data transfer from a
+ * business bean to the form bean.
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.3 $ $Date: 2002/08/16 22:29:24 $
+ * @version $Revision: 1.4 $ $Date: 2002/08/20 21:35:25 $
  */
 public class ProcessFormAction extends ProcessAction {
 
