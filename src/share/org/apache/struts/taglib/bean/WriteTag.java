@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.22 2002/12/18 07:03:35 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2002/12/18 07:03:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.23 2003/07/16 05:13:10 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/07/16 05:13:10 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,26 +59,22 @@
  *
  */
 
-
 package org.apache.struts.taglib.bean;
 
-
-import java.util.Locale;
-import java.text.SimpleDateFormat;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.Format;
-
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.text.NumberFormat;
-import javax.servlet.jsp.JspException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
-
 
 /**
  * Tag that retrieves the specified property of the specified bean, converts
@@ -86,62 +82,55 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2002/12/18 07:03:35 $
+ * @version $Revision: 1.23 $ $Date: 2003/07/16 05:13:10 $
  */
-
 public class WriteTag extends TagSupport {
 
     /**
-     * The key to search default format string for 
-     * java.sql.Timestamp in resources.
-     */    
-    public static final String SQL_TIMESTAMP_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.sql.timestamp";
+     * The key to search default format string for java.sql.Timestamp in resources.
+     */
+    public static final String SQL_TIMESTAMP_FORMAT_KEY =
+        "org.apache.struts.taglib.bean.format.sql.timestamp";
 
     /**
-     * The key to search default format string for 
-     * java.sql.Date in resources.
+     * The key to search default format string for java.sql.Date in resources.
      */
-    public static final String SQL_DATE_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.sql.date";
+    public static final String SQL_DATE_FORMAT_KEY =
+        "org.apache.struts.taglib.bean.format.sql.date";
 
     /**
-     * The key to search default format string for 
-     * java.sql.Time in resources.
+     * The key to search default format string for java.sql.Time in resources.
      */
-    public static final String SQL_TIME_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.sql.time";
+    public static final String SQL_TIME_FORMAT_KEY =
+        "org.apache.struts.taglib.bean.format.sql.time";
 
     /**
-     * The key to search default format string for 
-     * java.util.Date in resources.
+     * The key to search default format string for java.util.Date in resources.
      */
-    public static final String DATE_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.date";
+    public static final String DATE_FORMAT_KEY =
+        "org.apache.struts.taglib.bean.format.date";
 
     /**
-     * The key to search default format string for int
-     * (byte, short, etc.) in resources.
+     * The key to search default format string for int (byte, short, etc.) in resources.
      */
-    public static final String INT_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.int";
+    public static final String INT_FORMAT_KEY =
+        "org.apache.struts.taglib.bean.format.int";
 
     /**
-     * The key to search default format string for float
-     * (double, BigDecimal) in resources.
+     * The key to search default format string for float (double, BigDecimal) in 
+     * resources.
      */
-    public static final String FLOAT_FORMAT_KEY = 
-      "org.apache.struts.taglib.bean.format.float";
+    public static final String FLOAT_FORMAT_KEY =
+        "org.apache.struts.taglib.bean.format.float";
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-        MessageResources.getMessageResources
-        ("org.apache.struts.taglib.bean.LocalStrings");
+        MessageResources.getMessageResources(
+            "org.apache.struts.taglib.bean.LocalStrings");
 
     // ------------------------------------------------------------- Properties
-
 
     /**
      * Filter the rendered output for characters that are sensitive in HTML?
@@ -156,7 +145,6 @@ public class WriteTag extends TagSupport {
         this.filter = filter;
     }
 
-
     /**
      * Should we ignore missing beans and simply output nothing?
      */
@@ -169,8 +157,6 @@ public class WriteTag extends TagSupport {
     public void setIgnore(boolean ignore) {
         this.ignore = ignore;
     }
-
-
 
     /**
      * Name of the bean that contains the data we will be rendering.
@@ -185,7 +171,6 @@ public class WriteTag extends TagSupport {
         this.name = name;
     }
 
-
     /**
      * Name of the property to be accessed on the specified bean.
      */
@@ -198,7 +183,6 @@ public class WriteTag extends TagSupport {
     public void setProperty(String property) {
         this.property = property;
     }
-
 
     /**
      * The scope to be searched to retrieve the specified bean.
@@ -268,7 +252,6 @@ public class WriteTag extends TagSupport {
 
     // --------------------------------------------------------- Public Methods
 
-
     /**
      * Process the start tag.
      *
@@ -278,24 +261,27 @@ public class WriteTag extends TagSupport {
 
         // Look up the requested bean (if necessary)
         if (ignore) {
-            if (RequestUtils.lookup(pageContext, name, scope) == null)
-                return (SKIP_BODY);  // Nothing to output
+            if (RequestUtils.lookup(pageContext, name, scope) == null) {
+                return (SKIP_BODY); // Nothing to output
+            }
         }
 
         // Look up the requested property value
-        Object value =
-            RequestUtils.lookup(pageContext, name, property, scope);
-        if (value == null)
-            return (SKIP_BODY);  // Nothing to output
+        Object value = RequestUtils.lookup(pageContext, name, property, scope);
+
+        if (value == null) {
+            return (SKIP_BODY); // Nothing to output
+        }
 
         // Convert value to the String with some formatting
-        String output = formatValue( value );
+        String output = formatValue(value);
 
         // Print this property value to our output writer, suitably filtered
-        if (filter)
+        if (filter) {
             ResponseUtils.write(pageContext, ResponseUtils.filter(output));
-        else
+        } else {
             ResponseUtils.write(pageContext, output);
+        }
 
         // Continue processing this page
         return (SKIP_BODY);
@@ -309,15 +295,23 @@ public class WriteTag extends TagSupport {
      * @param formatKey value to use as key to search message in bundle
      * @exception JspException if a JSP exception has occurred
      */
-    protected String retrieveFormatString( String formatKey ) throws JspException {
-        String result = RequestUtils.message( pageContext, this.bundle, 
-                                this.localeKey, formatKey );
-        if( ( result!=null ) &&
-              !( result.startsWith( "???" ) &&
-                 result.endsWith( "???" ) ) )
-                return result;
-        else
-                return null;
+    protected String retrieveFormatString(String formatKey) throws JspException {
+        String result =
+            RequestUtils.message(
+                pageContext,
+                this.bundle,
+                this.localeKey,
+                formatKey);
+
+        if ((result != null)
+            && !(result.startsWith("???") && result.endsWith("???"))) {
+
+            return result;
+
+        } else {
+            return null;
+        }
+
     }
 
     /**
@@ -330,89 +324,107 @@ public class WriteTag extends TagSupport {
     protected String formatValue(Object valueToFormat) throws JspException {
         Format format = null;
         Object value = valueToFormat;
-        Locale locale =
-            RequestUtils.retrieveUserLocale( pageContext, this.localeKey );
+        Locale locale = RequestUtils.retrieveUserLocale(pageContext, this.localeKey);
         boolean formatStrFromResources = false;
         String formatString = formatStr;
 
         // Return String object as is.
-        if ( value instanceof java.lang.String ) {
-                return (String)value;
+        if (value instanceof java.lang.String) {
+            return (String) value;
         } else {
 
             // Try to retrieve format string from resources by the key from formatKey.
-            if( ( formatString==null ) && ( formatKey!=null ) ) {
-                    formatString = retrieveFormatString( this.formatKey );
-                    if( formatString!=null )
-                            formatStrFromResources = true;
+            if ((formatString == null) && (formatKey != null)) {
+                formatString = retrieveFormatString(this.formatKey);
+                if (formatString != null) {
+                    formatStrFromResources = true;
+                }
             }
 
             // Prepare format object for numeric values.
-            if ( value instanceof Number ) {
+            if (value instanceof Number) {
 
-                if( formatString==null ) {
-                        if( ( value instanceof Byte )    ||
-                            ( value instanceof Short )   ||
-                            ( value instanceof Integer ) ||
-                            ( value instanceof Long )    ||
-                            ( value instanceof BigInteger ) )
-                                formatString = retrieveFormatString( INT_FORMAT_KEY );
-                        else if( ( value instanceof Float ) ||
-                                 ( value instanceof Double ) ||
-                                 ( value instanceof BigDecimal ) )
-                                formatString = retrieveFormatString( FLOAT_FORMAT_KEY );
-                        if( formatString!=null ) 
-                                formatStrFromResources = true;
+                if (formatString == null) {
+                    if ((value instanceof Byte)
+                        || (value instanceof Short)
+                        || (value instanceof Integer)
+                        || (value instanceof Long)
+                        || (value instanceof BigInteger)) {
+
+                        formatString = retrieveFormatString(INT_FORMAT_KEY);
+
+                    } else if (
+                        (value instanceof Float)
+                            || (value instanceof Double)
+                            || (value instanceof BigDecimal)) {
+
+                        formatString = retrieveFormatString(FLOAT_FORMAT_KEY);
+                    }
+
+                    if (formatString != null) {
+                        formatStrFromResources = true;
+                    }
                 }
 
-                if( formatString!=null ) {
-                        try {
-                                format = NumberFormat.getNumberInstance( locale );
-                                if( formatStrFromResources ) 
-                                        ( ( DecimalFormat ) format ).applyLocalizedPattern( formatString );
-                                else
-                                        ( ( DecimalFormat ) format ).applyPattern( formatString );                                        
-                        } catch( IllegalArgumentException _e ) {
-                                JspException e = new JspException(messages.getMessage("write.format", formatString));
-                                RequestUtils.saveException(pageContext, e);
-                                throw e;
-                        }
-                }
-
-            } else if (  value instanceof java.util.Date ) {
-
-                if( formatString==null ) {
-
-                        if (  value instanceof java.sql.Timestamp ) {
-                                formatString = retrieveFormatString( SQL_TIMESTAMP_FORMAT_KEY );
-                        } else if (  value instanceof java.sql.Date ) {
-                                formatString = retrieveFormatString( SQL_DATE_FORMAT_KEY );
-                        } else if (  value instanceof java.sql.Time ) {
-                                formatString = retrieveFormatString( SQL_TIME_FORMAT_KEY );
-                        } else if (  value instanceof java.util.Date ) {
-                                formatString = retrieveFormatString( DATE_FORMAT_KEY );
-                        }
-
-                        if( formatString!=null ) 
-                                formatStrFromResources = true;
-
-                }
-                
-                if( formatString!=null ) {
-                        if( formatStrFromResources ) {
-                                format = new SimpleDateFormat( formatString, locale );
+                if (formatString != null) {
+                    try {
+                        format = NumberFormat.getNumberInstance(locale);
+                        if (formatStrFromResources) {
+                            ((DecimalFormat) format).applyLocalizedPattern(
+                                formatString);
                         } else {
-                                format = new SimpleDateFormat( formatString );
+                            ((DecimalFormat) format).applyPattern(formatString);
                         }
+
+                    } catch (IllegalArgumentException e) {
+                        JspException ex =
+                            new JspException(
+                                messages.getMessage("write.format", formatString));
+                        RequestUtils.saveException(pageContext, ex);
+                        throw ex;
+                    }
                 }
 
-            } 
+            } else if (value instanceof java.util.Date) {
+
+                if (formatString == null) {
+
+                    if (value instanceof java.sql.Timestamp) {
+                        formatString =
+                            retrieveFormatString(SQL_TIMESTAMP_FORMAT_KEY);
+
+                    } else if (value instanceof java.sql.Date) {
+                        formatString = retrieveFormatString(SQL_DATE_FORMAT_KEY);
+
+                    } else if (value instanceof java.sql.Time) {
+                        formatString = retrieveFormatString(SQL_TIME_FORMAT_KEY);
+
+                    } else if (value instanceof java.util.Date) {
+                        formatString = retrieveFormatString(DATE_FORMAT_KEY);
+                    }
+
+                    if (formatString != null) {
+                        formatStrFromResources = true;
+                    }
+
+                }
+
+                if (formatString != null) {
+                    if (formatStrFromResources) {
+                        format = new SimpleDateFormat(formatString, locale);
+                    } else {
+                        format = new SimpleDateFormat(formatString);
+                    }
+                }
+
+            }
         }
 
-        if( format!=null )
-                return format.format( value );
-        else
-                return value.toString();
+        if (format != null) {
+            return format.format(value);
+        } else {
+            return value.toString();
+        }
 
     }
 
@@ -433,6 +445,5 @@ public class WriteTag extends TagSupport {
         bundle = null;
 
     }
-
 
 }
