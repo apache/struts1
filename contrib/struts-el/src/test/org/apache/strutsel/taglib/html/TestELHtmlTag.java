@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELHtmlTag.java,v 1.3 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELHtmlTag.java,v 1.4 2004/06/24 01:27:31 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/06/24 01:27:31 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,10 +25,9 @@ import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import org.apache.struts.util.LabelValueBean;
+import org.apache.strutsel.taglib.utils.DOMHelper;
 import org.apache.strutsel.taglib.utils.JspTagTestCase;
 import org.apache.strutsel.taglib.utils.TestHelper;
-import org.apache.strutsel.taglib.utils.DOMHelper;
 
 public class TestELHtmlTag
     extends JspTagTestCase {

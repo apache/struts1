@@ -23,14 +23,12 @@ import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.AbstractSelectLocale;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**
  * <p>Select the <code>Locale</code> to be used for this request.</p>
  *
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.4 $ $Date: 2004/06/24 01:27:31 $
  */
 
 public class SelectLocale extends AbstractSelectLocale {

@@ -21,20 +21,18 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
-import org.apache.struts.Globals;
 import org.apache.struts.chain.AbstractPerformForward;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**
  * <p>Perform forwarding or redirection based on the specified
  * <code>ForwardConfig</code> (if any).</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.6 $ $Date: 2004/06/24 01:26:41 $
  */
 
 public class PerformForward extends AbstractPerformForward {

@@ -23,8 +23,6 @@ import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.AbstractSelectModule;
 import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -33,7 +31,7 @@ import org.apache.struts.util.MessageResources;
  * this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.3 $ $Date: 2004/06/24 01:27:31 $
  */
 
 public class SelectModule extends AbstractSelectModule {

@@ -21,12 +21,10 @@ import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.AbstractValidateActionForm;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ActionConfig;
 
 
@@ -38,7 +36,7 @@ import org.apache.struts.config.ActionConfig;
  *
  * @author Craig R. McClanahan
  * @author Don Brown
- * @version $Revision: 1.5 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.6 $ $Date: 2004/06/24 01:27:31 $
  */
 
 public class ValidateActionForm extends AbstractValidateActionForm {

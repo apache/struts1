@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/SimpleSwitchLayoutAction.java,v 1.5 2004/03/14 06:23:43 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/SimpleSwitchLayoutAction.java,v 1.6 2004/06/24 01:27:31 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/06/24 01:27:31 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,15 +20,12 @@
 
 package org.apache.struts.webapp.tiles.skin;
 
-import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;

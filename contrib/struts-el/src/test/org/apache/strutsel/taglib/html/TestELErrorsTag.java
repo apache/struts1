@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELErrorsTag.java,v 1.5 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELErrorsTag.java,v 1.6 2004/06/24 01:27:31 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/06/24 01:27:31 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,22 +20,11 @@
 
 package org.apache.strutsel.taglib.html;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.strutsel.taglib.utils.DOMHelper;
-import org.apache.strutsel.taglib.utils.HashMapMessageResources;
 import org.apache.strutsel.taglib.utils.JspTagTestCase;
-import org.apache.strutsel.taglib.utils.TestHelper;
 
 
 public class TestELErrorsTag

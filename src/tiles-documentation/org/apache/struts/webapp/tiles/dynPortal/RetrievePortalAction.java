@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/RetrievePortalAction.java,v 1.7 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/RetrievePortalAction.java,v 1.8 2004/06/24 01:26:41 jmitchell Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/06/24 01:26:41 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,14 +20,11 @@
 
 package org.apache.struts.webapp.tiles.dynPortal;
 
-import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;

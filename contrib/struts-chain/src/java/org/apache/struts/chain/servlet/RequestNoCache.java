@@ -21,16 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.AbstractRequestNoCache;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**
  * <p>Check to see if the controller is configured to prevent caching,
  * and if so, set the no cache HTTP response headers.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/04/25 02:30:16 $
+ * @version $Revision: 1.5 $ $Date: 2004/06/24 01:26:41 $
  */
 
 public class RequestNoCache extends AbstractRequestNoCache {

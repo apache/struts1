@@ -18,15 +18,8 @@ package org.apache.struts.chain.servlet;
 
 
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.servlet.ServletWebContext;
-import org.apache.struts.Globals;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.AbstractSelectForward;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
@@ -35,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Create and return a <code>ForwardConfig</code> representing the
  * specified module-relative destination.</p>
  *
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.4 $ $Date: 2004/06/24 01:26:41 $
  */
 
 public class SelectForward extends AbstractSelectForward {

@@ -22,7 +22,6 @@ import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.AbstractSelectAction;
 import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
 
@@ -30,7 +29,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Cache the <code>ActionConfig</code> instance for the
  * action to be used for processing this request.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.5 $ $Date: 2004/06/24 01:26:41 $
  */
 
 public class SelectAction extends AbstractSelectAction {

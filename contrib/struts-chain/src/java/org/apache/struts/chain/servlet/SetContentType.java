@@ -21,9 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.AbstractSetContentType;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**
@@ -31,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * response.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.3 $ $Date: 2004/06/24 01:27:31 $
  */
 
 public class SetContentType extends AbstractSetContentType {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/exercise/SuccessAction.java,v 1.2 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.2 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/exercise/SuccessAction.java,v 1.3 2004/06/24 01:27:31 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/06/24 01:27:31 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -22,21 +22,18 @@
 package org.apache.struts.webapp.exercise;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 
 /**
  * Dispatch control to the "success" forward.
  *
- * @version $Revision: 1.2 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Revision: 1.3 $ $Date: 2004/06/24 01:27:31 $
  */
 
 public class SuccessAction extends Action {
