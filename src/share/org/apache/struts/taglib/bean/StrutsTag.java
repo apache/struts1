@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.6 2001/02/12 01:26:57 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/12 01:26:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.7 2001/04/23 22:52:21 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/04/23 22:52:21 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMappings;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -81,7 +80,7 @@ import org.apache.struts.util.RequestUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.7 $ $Date: 2001/04/23 22:52:21 $
  */
 
 public class StrutsTag extends TagSupport {
