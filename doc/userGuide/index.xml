@@ -16,22 +16,22 @@
       <section name="Table of Contents" href="toc">
 
         <ul>
-            <li><a href="technologies.html">0. Enabling Technologies</a>
+            <li><a href="preface.html">0. Preface</a>
             <ul>
-              <li><a href="technologies.html#http">HTTP, HTML, and User Agents</a></li>
-              <li><a href="technologies.html#cycle">The HTTP Request/Response Cycle</a></li>
-              <li><a href="technologies.html#java">The Java Language and Application Frameworks</a></li>
-              <li><a href="technologies.html#javabeans">JavaBeans</a></li>
-              <li><a href="technologies.html#resources">Properties files and  ResourceBundles</a></li>
-              <li><a href="technologies.html#servlets">Java Servlets</a></li>
-              <li><a href="technologies.html#jsp">JavaServer Pages and JSP Tag Libraries</a></li>
-              <li><a href="technologies.html#xml">Extensible Markup Language</a></li>
+              <li><a href="preface.html#http">HTTP, HTML, and User Agents</a></li>
+              <li><a href="preface.html#cycle">The HTTP Request/Response Cycle</a></li>
+              <li><a href="preface.html#java">The Java Language and Application Frameworks</a></li>
+              <li><a href="preface.html#javabeans">JavaBeans</a></li>
+              <li><a href="preface.html#resources">Properties files and  ResourceBundles</a></li>
+              <li><a href="preface.html#servlets">Java Servlets</a></li>
+              <li><a href="preface.html#jsp">JavaServer Pages and JSP Tag Libraries</a></li>
+              <li><a href="preface.html#xml">Extensible Markup Language</a></li>
             </ul></li>
  
            
            <li><a href="introduction.html">1. Introduction</a>
                 <ul>
-                <li><a href="introduction.html#preface">1.1 Preface: Forward into the Past!</a></li>
+                <li><a href="introduction.html#history">1.1 Forward into the Past!</a></li>
                 <li><a href="introduction.html#mvc">1.2 The Model-View-Controller ('MVC') Design Pattern</a></li>
                 <li><a href="introduction.html#overview">1.2.1 Struts Framework Overview</a></li>
                 <li><a href="introduction.html#modelConcepts">1.2.2 The Model: System State and Business Logic JavaBeans</a></li>
@@ -71,7 +71,7 @@
                 <li><a href="building_controller.html#overview">4.1 Overview</a></li>
                 <li><a href="building_controller.html#action_classes">4.2 Action Classes</a></li>
                 <li><a href="building_controller.html#actionmapping">4.3 The ActionMapping Implementation</a></li>
-                <li><a href="building_controller.html#config">4.4 The Action Mappings Configuration File</a></li>
+                <li><a href="building_controller.html#config">4.4 The Struts Configuration File</a></li>
                 <li><a href="building_controller.html#dd_config">4.5 The Web Application Deployment Descriptor</a>
                     <ul>
                     <li><a href="building_controller.html#dd_config_servlet">4.5.1 Configure the Action Servlet Instance</a></li>
@@ -84,6 +84,7 @@
                 <ul>
                 <li><a href="release-notes.html">Release Notes</a></li>
                 <ul>
+                <li><a href="release-notes-1.1-b1.html">Release Notes 1.1-b1</a></li>
                 <li><a href="release-notes-1.0.2.html">Release Notes 1.0.2</a></li>
                 <li><a href="release-notes-1.0.1.html">Release Notes 1.0.1</a></li>
                 <li><a href="release-notes-1.0.html">Release Notes 1.0</a></li>

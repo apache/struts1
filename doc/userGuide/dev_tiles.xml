@@ -190,11 +190,11 @@ with the Tiles framework. [:TODO: Change link to Tiles API Guide when available.
 
 <section href="resources" name="Tiles Resources">
 
-<p><a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j">Struts and Tiles aid component-based development</a> by Wellie Chao.</p>
+<p><a href="http://www-106.ibm.com/developerworks/java/library/j-strutstiles.html?loc=j"><b>Struts and Tiles aid component-based development</b></a> by Wellie Chao.</p>
 
 <p><a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html"><b>UI design with Tiles and Struts</b></a> by Prakash Malani.</p>
 
-<p><u>Developing applications with Tiles</u> by Cedric Dumoulin and Ted Husted. 
+<p><b><u>Developing applications with Tiles</u></b> by Cedric Dumoulin and Ted Husted. 
 Sample chapter from <u>Java Web Development with Struts</u>; available as a 
 <u>free download</u> (PDF).
 </p>

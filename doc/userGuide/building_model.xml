@@ -307,10 +307,13 @@ public ActionForward
         pools, especially with high-volume production systems. If your DBMS or container 
         provides a connection pool of its own, that may be a better choice. 
       </p>
+
       <p align="center">
         Next: <a href="building_view.html">Building View Components</a>
       </p>
-    </section>
+
+      </section>
+
   </chapter>
   </body>
 </document>

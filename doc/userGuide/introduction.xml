@@ -16,37 +16,7 @@
 
   <chapter name="1. Introduction" href="introduction">
 
-      <section name="1.0 Prerequisites">
-        <p>
-          This User Guide is written for active Web developers and assumes a working 
-          knowledge about how Java Web applications work. Before getting started, you should 
-          understand the basics of several core technologies:
-        </p>
-
-    <ul>
-      <li><a href="http://www.ietf.org/rfc/rfc2616.txt?number=2616">The HTTP Request/Response sequence</a></li>
-      <li><a href="http://java.sun.com/products/servlet/">Java Servlets</a></li>
-      <li><a href="http://java.sun.com/products/javabeans/">JavaBeans</a></li>
-      <li><a href="http://java.sun.com/docs/books/tutorial/essential/attributes/properties.html">Properties</a> files and 
-      <a href="http://java.sun.com/docs/books/tutorial/i18n/resbundle/concept.html">ResourceBundles</a></li>
-      <li><a href="http://java.sun.com/products/jsp/product.html">JavaServer Pages (JSP)</a></li>.
-      <li><a href="http://java.sun.com/products/jsp/taglibraries.html">Custom Tags</a></li>
-      <li><a href="http://www.w3.org/XML/">Extensible Markup Language</a></li>
-    </ul>
-
-       <p>If you are not already familiar with these technologies, the best overall starting point is 
-         <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>
-         for the Java Web Services Developer Pack.
-       </p>
-
-       <p>If you've created Web applications on other platforms, you can probably follow along  
-         and then visit the above references as needed. The core technologies used by Struts are  
-         also used by most other Java Web development products.
-       </p>
-
-     </section>
-
-      <section name="1.1 Preface: Forward into the Past! (or a brief history of Struts)" href="preface">
+      <section name="1.1 Forward into the Past! (or a brief history of Struts)" href="history">
 
         <p>
           When Java servlets were first invented, many programmers quickly realized that they were a

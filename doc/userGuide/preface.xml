@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<document url="./technologies.xml">
+
+  <properties>
+    <author>Ted Husted</author>
+    <author>Ed Burns</author>
+    <title>The Struts User's Guide - Praface: Core Technologies</title>
+  </properties>
+
+  <body>
+
+  <chapter name="0. Preface: Core Technologies">
+
+  <section name="0.1 The Usual Suspects" href="prereqs">
+
+    <p>
+      This User Guide is written for active web developers and assumes a working 
+      knowledge about how Java web applications work. Before getting started, you should 
+      understand the basics of several core technologies:
+    </p>
+
+    <ul>
+      <li><a href="#http">HTTP, HTML, and User Agents</a></li>
+      <li><a href="#cycle">The HTTP Request/Response Cycle</a></li>
+      <li><a href="#java">The Java Language and Application Frameworks</a></li>
+      <li><a href="#javabeans">JavaBeans</a></li>
+      <li><a href="#resources">Properties files and  ResourceBundles</a></li>
+      <li><a href="#servlets">Java Servlets</a></li>
+      <li><a href="#jsp">JavaServer Pages and JSP Tag Libraries</a></li>
+      <li><a href="#xml">Extensible Markup Language</a></li>
+    </ul>
+
+    <p>This chapter briefly defines each of these technologies, but does not describe them in 
+    detail. For your convenience, links to further information about each component are also 
+    provided.</p>
+
+    <p><a target="#jwst"></a>If you are familiar with Java, but not these technologies, 
+    the best overall starting point is 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html"><b>The Java Web Services Tutorial</b></a>.
+    This is also available for download as a 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">PDF</a>.
+    </p>
+
+    <p>If you've created web applications for other platforms, you may able to follow along  
+    and visit the other references as needed. The core technologies used by Struts are  
+    also used by most other Java web development products, so the background information will be 
+    useful in any Java project.
+    </p>
+
+    <p><a target="#jt"></a>If you are not familiar with the Java language generally, 
+    then the best start starting point is
+    <a href="http://java.sun.com/docs/books/tutorial/index.html"><b>The Java Tutorial</b></a>. 
+    This overlaps with the Java Web Services Tutorial in some places, but the two work well together. 
+    </p>
+
+    </section>
+
+    <section name="0.2 HTTP, HTML and User Agents" href="http">
+
+    <p>The World Wide Web was built over the Hypertext Transfer Protocol 
+    (<a href="http://www.ietf.org/rfc/rfc2616.txt?number=2616">HTTP</a>) and the Hypertext Markup Language 
+    (<a href="http://www.w3.org/MarkUp/">HTML</a>). A User Agent, like a web browser, uses HTTP to request 
+     a HTML document. The browser then formats and displays the document to its user. HTTP is used to 
+    transport more than HTML, but HTML is the lingua franca of the Web and web applications. </p>
+
+    <p>Some Java engineers working web applications write their own HTML. Others leave that to the 
+    page designers.</p>
+
+    <p>For more about HTTP, HTML, and User Agents, see:</p>
+
+    <ul>
+    <li><a href="http://www.w3.org/MarkUp/Guide/"><b>Getting started with HTML</b></a> by Dave Raggett</li>  
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
+    <b>HTTP Overview</b></a> in the Java Web Services Tutorial.</li>
+    </ul>
+    </section>
+
+    <section name="0.3 The HTTP Request/Response cycle" href="cycle">
+
+    <p>A very important part of HTTP for the web developer is the request/response cycle. To use HTTP 
+    you have to make a request. A HTTP server, like a web server, is then obliged to respond. When you 
+    build your web application, you design it to react to a HTTP request by returning a HTTP response.
+    Frameworks like Struts abstract much of these nuts and bolts, but it is important to understand 
+    what is happening behind the scenes. </p>
+
+    <p>If you are not familiar with the HTTP Request/Response cycle, we <b>strongly</b> recommend the 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
+    HTTP Overview</a> in the JWST.
+    </p>
+
+    </section>
+
+    <section name="0.4 The Java Language and Application Frameworks" href="java">
+
+    <p>Struts is written in the popular and versatile 
+    <a href="http://java.sun.com/docs/books/jls/first_edition/html/index.html">Java programming language</a>. 
+    Java is an object-orientated language, and Struts makes good use of many object-orientated techniques. 
+    A good understanding of Java, and especially object-orientated programming (OOP) will help 
+    you get the most out of Struts and this User Guide. </p>
+
+    <p>For more about Java and OOP, see </p>
+
+    <ul>
+    <li><a href="http://java.sun.com/docs/books/tutorial/java/index.html"><b>Learning the Java Language</b></a> in the Java Tutorial</li>
+    </ul>
+
+    <p>Even if you have worked with Java and OOP before, it can also help to be aware of the 
+    programming challenges specific to creating and using application frameworks. For more about application 
+    frameworks, see the classic white papers</p>
+
+    <ul>
+    <li><a href="http://www.laputan.org/drc/drc.html"><b>Designing Reusable Classes</b></a> by Ralph E. Johnson &amp; Brian Foote</li>
+    <li><a href="http://www.cs.wustl.edu/~schmidt/CACM-frameworks.html"><b>Object-Oriented Application Frameworks</b></a> 
+    by Mohamed Fayad and Douglas C. Schmidt</li>
+    </ul>
+
+    <p>These papers can be especially helpful if you are fact-finding or reviewing 
+    <a href="http://directory.google.com/Top/Computers/Programming/Languages/Java/Server-Side/Libraries_and_Frameworks/">
+    server-side frameworks</a>.
+    </p>
+
+    </section>
+
+    <section name="0.5 JavaBeans" href="javabeans">
+
+    <p>Like many Java applications, most of the Struts objects are designed as 
+    <a href="http://java.sun.com/products/javabeans/">JavaBeans</a>. Following the JavaBean design patterns makes 
+    the Struts classes easier to use -- both by Java developers and by Java development tools. </p>
+
+    <p>Although JavaBeans were first created for visual elements, these object design patterns have been found to 
+    be useful as the basis for any reusable component, like those used by the Struts framework.</p>
+
+    <p>For more about JavaBeans, see</p>
+   
+    <ul>
+    <li><a href="http://java.sun.com/docs/books/tutorial/javabeans/index.html"><b>The JavaBean Trail</b></a> in the Java Tutorial</li>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html"><b>JavaBeans Components in JSP Pages</b></a> in the Java Web Services Tutorial</li>
+    </ul>
+
+    </section>
+
+    <section name="0.6 Properties files and ResourceBundles" href="resources">
+
+    <p>Java applications, including web applications, are often configured using 
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Properties.html">Properties</a> 
+    files. Properties files are the basis for the 
+    <a href="resourcebundle">ResourceBundles</a> that Struts uses to provide messages resources 
+    to an application. </p>
+
+    <p>For more about Properties files, see: </p>
+
+    <ul>
+    <li><a href="http://java.sun.com/docs/books/tutorial/essential/attributes/properties.html">
+    <b>Using Properties to Manage Program Attributes</b></a> in The Java Tutorial</li>
+    </ul>
+
+    <p>Java 
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> 
+    use one or more Properties files to provide internationalized messages 
+    to users based their 
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Locale.html">Locale</a>. 
+    Support for localizing an application was built into Struts from the ground-up.</p>
+
+    <p>For more about localization and ResourceBundles, see </p>
+
+    <ul>
+    <li><a href="http://java.sun.com/docs/books/tutorial/i18n/resbundle/concept.html"><b>About the ResourceBundle Class</b></a>
+    in the Java Tutorial</li>
+    </ul>
+
+    </section>     
+ 
+    <section name="0.7 Java Servlets" href="servlets">
+    <p>Much of the <a href="#cycle">HTTP Request/Response cycle</a> nuts-and-bolts are handled by Sun's 
+    <a href="http://java.sun.com/products/servlet/">Java Servlet</a> platform. This casts HTTP 
+    into an object-orientated form so that developers can better concentrate what 
+    they need their application to do -- rather than the mechanics of HTTP.</p>
+
+    <p>Struts provides a ready-to-use servlet for your application. As a Struts developer, you 
+    can then just write objects that the Struts servlet calls when needed. But it is still 
+    helpful to understand the basics of what servlets are and the role they play in a Java 
+    web application.</p>
+
+    <p>For more about Java Servlets, see </p>
+
+    <ul>
+    <li><a href=""><b>Java Servlet Technology</b></a> in the Java Web 
+    Services Tutorial.</li>
+    </ul>
+
+    </section>     
+
+    <section name="0.8 JavaServer Pages and JSP Tag Libraries" href="jsp">
+    <p><a href="http://java.sun.com/products/jsp/product.html">JavaServer Pages</a> (JSPs) are 
+    "inside-out servlets" that make it easier to create and maintain dynamic web pages. Instead 
+    of putting what you want to write to the HTTP response inside of a Java <code>print</code> 
+    statement, everything in a JavaServer Page is written to the response, <b>except</b> what is 
+    placed within special Java statements.</p>
+
+    <p>With JavaServer Pages you can start by writing the page in standard HTML and then add the 
+    dynamic features using statements in the Java language or by using 
+    <a href="http://java.sun.com/products/jsp/taglibraries.html">JSP tags</a>. 
+    The Struts distribution includes several JSP tags that make it easy to access the framework's 
+    features from a JavaServer Page.</p>
+   
+    <p>For more about JavaServerPages and JSP Tag Libraries see  </p>
+
+    <ul>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPIntro.html"><b>JavaServer Pages Technology</b></a> in the Java Web Services Tutorial</li>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPTags.html"><b>Custom Tags in JSP Pages</b></a> in the Java Web Services Tutorial</li>
+    </ul>
+
+    <p>Many times, JSP tags work hand-in-hand with JavaBeans. The application sends a JavaBean to 
+    the JSP, and the JSP tag uses the bean to customize the page for the instant user. For more, see 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">JavaBeans Components in JSP Pages</a>
+    in the Java Web Services Tutorial.</p>
+
+    <p>Struts also works well with the new 
+    <a href="http://java.sun.com/products/jsp/jstl">Java Standard Tag Library</a>
+    and taglibs from other sources, like  
+    <a href="http://jsptags.com/">JSP Tags</a> and 
+    <a href="http://jakarta.apache.org/taglibs/index.html">Jarkata Taglibs</a>.
+    </p>
+
+    <p>There are also toolkits available that make Struts easy to use with 
+    <a href="http://www.openroad.ca/opencode/">XSLT</a> and 
+    <a href="http://jakarta.apache.org/velocity/index.html">Velocity Templates</a>.
+    </p>
+   
+    </section>     
+
+    <section name="0.9 Extensible Markup Language (XML)" href="xml">
+
+    <p>The features provided by the Struts framework relies on a number of objects that are 
+    usually deployed using files writing in 
+    <a href="http://www.w3.org/XML/">Extensible Markup Language</a>. XML is also used to 
+    configure Java web applications; so, this is yet another familiar approach.
+    </p>
+
+    <p>For more about XML configuration files and Java web applications, see</p>
+
+    <ul>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp4.html#64678">Configuring Web Applications</a> in the Java Web Services Tutorial</li>
+    </ul>
+
+    <p>For more about how XML is used with Java applications generally, see 
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXPIntro.html">Java API for XML Processing</a> in the Java Web Services Tutorial. 
+    While the framework makes good use of this API internally, it is not something most Struts developers 
+    would use when writing their own applications.</p>
+
+    <p align="center">
+    Next: <a href="introduction.html">Introduction</a>
+    </p>
+     
+    </section>
+      
+    </chapter>
+    </body>
+</document>

@@ -669,9 +669,10 @@ http://www.mycompany.com/myapplication/logon.do
          (and all of the <code>commons-*.jar</code> files) into your
          <code>WEB-INF/lib</code> directory.
         </p>
-                                <p>
-                                        Next: <a href="release-notes.html">Release Notes</a>
-                                </p>
+
+      <p>
+      Next: <a href="release-notes.html">Release Notes</a>
+      </p>
       </section>
     </section>
   </chapter>
