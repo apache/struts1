@@ -1755,7 +1755,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 <p>The amount of space (in pixels) to be left between the
-                frame's contents and its left and right argins.</p>
+                frame's contents and its left and right margins.</p>
             </info>
         </attribute>
 
@@ -1787,7 +1787,7 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                <p>The applicaiton-relative path (beginning with a "/"
+                <p>The application-relative path (beginning with a "/"
                 character) to which this hyperlink will transfer control
                 if activated.  This hyperlink may be dynamically modified
                 by the inclusion of query parameters, as described in the
@@ -1807,7 +1807,7 @@
                 added to the generated hyperlink.  The corresponding value is
                 defined by the <code>paramName</code> and (optional)
                 <code>paramProperty</code> attributes, optionally scoped by
-                the <code>paramScope</code> attributel</p>
+                the <code>paramScope</code> attribute</p>
             </info>
         </attribute>
 
@@ -2549,7 +2549,7 @@
                 the x and y representing the coordinates of the mouse click
                 for the image.  A way of retrieving these values through a
                 form bean is to define getX(), getY(), setX(), and setY()
-                methods, and specify your propery as a blank string
+                methods, and specify your property as a blank string
                 (property="").</p>
                 </info>
         </attribute>
@@ -2744,13 +2744,13 @@
                         the same row</li>
                     <li>middle - aligns the image's vertical center with the
                         text base line</li>
-                    <li>bottom - aligns the image with the botton of the
+                    <li>bottom - aligns the image with the bottom of the
                         text's base line</li>
                     <li>texttop - aligns the image's top with that of the
                         text font on the same line</li>
                     <li>absmiddle - aligns the image's vertical center with the
                         absolute center of the text</li>
-                    <li>absbottom - aligns the image with the absolute botton
+                    <li>absbottom - aligns the image with the absolute bottom
                         of the text font on the same row</li>
                   </ul>
                   </info>
@@ -2803,7 +2803,7 @@
                   <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The height of the image being displayed.  This parameter
-                     is very nice to specificy (along with <code>width</code>)
+                     is very nice to specify (along with <code>width</code>)
                      to help the browser render the page faster.</p>
                   </info>
                 </attribute>
@@ -2858,7 +2858,7 @@
                   <info>
                   <p><strong>DEPRECATED</strong> - This attribute is not defined
                   in the HTML 4.01 spec and will be removed in a future version of Struts.
-                  An image for people with low resoution graphics cards.
+                  An image for people with low resolution graphics cards.
                   </p>
                   </info>
                 </attribute>
@@ -2985,7 +2985,7 @@
                   added to the generated src URL.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 
@@ -3092,7 +3092,7 @@
                   than potential URL rewriting) as the value of the "src"
                   attribute in the rendered tag.  You <strong>must</strong>
                   specify either the <code>page</code> attribute or the
-                  the <code>src</code> attribute.</p>
+                  <code>src</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -3181,7 +3181,7 @@
                   <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The width of the image being displayed.  This parameter
-                     is very nice to specificy (along with <code>height</code>)
+                     is very nice to specify (along with <code>height</code>)
                      to help the browser render the page faster.</p>
                   </info>
                 </attribute>
@@ -3292,7 +3292,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                <p>
-                  Wheather or not to enclose the javascript
+                  Whether or not to enclose the javascript
                   with html comments.
                   Defaults to <code>true</code>.
                </p>
@@ -3619,7 +3619,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The applicaiton-relative path (beginning with a "/"
+                  <p>The application-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
                   if activated.  This hyperlink may be dynamically modified
                   by the inclusion of query parameters, as described in the
@@ -3639,7 +3639,7 @@
                   added to the generated hyperlink.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 
@@ -4303,7 +4303,7 @@
                     <rtexprvalue>true</rtexprvalue>
                     <info>
                     Value to be submitted for this field if this option is
-                    selected by the uuser.
+                    selected by the user.
                     </info>
         </attribute>
 
@@ -5228,7 +5228,7 @@
                 <p>Name of the bean (in some scope) that will return the
                 value of the radio tag. Usually exposed
                 by an iterator. When the idName attribute is
-                present, the valueattribute is used as the name of the
+                present, the value attribute is used as the name of the
                 property on the idName bean that will return the
                 value of the radio tag for this iteration.</p>
             </info>
@@ -5596,7 +5596,7 @@
                   added to the generated hyperlink.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 
