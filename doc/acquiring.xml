@@ -92,7 +92,7 @@
     <p>
         If you are building Struts from source, be sure to refer to the
         <a href="userGuide/installation.html">Installation page</a> in the
-        User Guide for prerequesites.
+        User Guide for prerequisites.
         There are several JARs from the Jakarta Commons project that
         are required to build Struts.
     </p>
@@ -101,7 +101,7 @@
     If you are interested in the Tag Library Descriptor (TLD) files, 
     they are maintained in the 
     <a href="http://cvs.apache.org/viewcvs/jakarta-struts/conf/share/">
-    /conf/share</a> folder of he main repository. 
+    /conf/share</a> folder of the main repository.
     </p>
     
     <p>
