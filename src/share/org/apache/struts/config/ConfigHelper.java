@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.10 2003/08/16 18:38:56 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/08/16 18:38:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.11 2003/08/23 17:27:24 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/08/23 17:27:24 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@
 package org.apache.struts.config;
 
 import java.util.Iterator;
-import java.util.Locale;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +79,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * NOTE: THIS CLASS IS UNDER ACTIVE DEVELOPMENT.
@@ -107,7 +107,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.10 $ $Date: 2003/08/16 18:38:56 $
+ * @version $Revision: 1.11 $ $Date: 2003/08/23 17:27:24 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -256,27 +256,6 @@ public class ConfigHelper implements ConfigHelperInterface {
     // ---------------------------------------------------- Session Context
 
     /**
-     * The <code>java.util.Locale</code> for the user, if any.
-     * If a default locale object is not in the user's session,
-     * the system default locale is returned.
-     * If used, the user locale is typically set during login
-     * processing under the key <code>Globals.LOCALE_KEY</code>.
-     */
-    public Locale getLocale() {
-        Locale locale = null;
-
-        if (session != null) {
-            locale = (Locale) session.getAttribute(Globals.LOCALE_KEY);
-        }
-
-        if ((locale == null) && (request != null)) {
-            locale = request.getLocale();
-        }
-
-        return locale;
-    }
-
-    /**
      * The transaction token stored in this session, if it is used.
      */
     public String getToken() {
@@ -359,7 +338,7 @@ public class ConfigHelper implements ConfigHelperInterface {
         }
 
         // Return the requested message presence indicator
-        return (resources.isPresent(getLocale(), key));
+        return resources.isPresent(RequestUtils.getUserLocale(request, null), key);
 
     }
 
@@ -600,7 +579,8 @@ public class ConfigHelper implements ConfigHelperInterface {
         MessageResources resources = getMessageResources();
         if (resources == null)
             return null;
-        return resources.getMessage(getLocale(), key);
+
+        return resources.getMessage(RequestUtils.getUserLocale(request, null), key);
 
     }
 
@@ -619,9 +599,14 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         // Return the requested message
         if (args == null)
-            return (resources.getMessage(getLocale(), key));
+            return resources.getMessage(
+                RequestUtils.getUserLocale(request, null),
+                key);
         else
-            return (resources.getMessage(getLocale(), key, args));
+            return resources.getMessage(
+                RequestUtils.getUserLocale(request, null),
+                key,
+                args);
 
     }
 

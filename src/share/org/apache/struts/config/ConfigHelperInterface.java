@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.7 2003/08/08 23:26:36 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/08/08 23:26:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelperInterface.java,v 1.8 2003/08/23 17:27:24 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/23 17:27:24 $
  *
  * ====================================================================
  *
@@ -64,7 +64,6 @@ package org.apache.struts.config;
 
 
 import java.util.Iterator;
-import java.util.Locale;
 
 import javax.sql.DataSource;
 
@@ -104,7 +103,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.7 $ $Date: 2003/08/08 23:26:36 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/23 17:27:24 $
  */
 public interface ConfigHelperInterface {
 
@@ -133,17 +132,6 @@ public interface ConfigHelperInterface {
 
 
 // ---------------------------------------------------- Session Context
-
-
-    /**
-     * The <code>java.util.Locale</code> for the user, if any.
-     * If a default locale object is not in the user's session,
-     * the system default locale is returned.
-     * If used, the user locale is typically set during login
-     * processing under the key <code>Globals.LOCALE_KEY</code>.
-     */
-    public Locale getLocale();
-
 
     /**
      * The transaction token stored in this session, if it is used.
