@@ -154,7 +154,7 @@
 <definition name="menu.lang" path="/common/submenu.jsp" >
   <put name="title" value="Language" />
   <putList name="items" >
-    <add value="Francais" />
+    <add value="Français" />
     <add value="English" />
     <add value="Deutch" />
   </putList>
