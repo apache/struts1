@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.37 2003/08/29 22:13:16 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.38 2003/08/30 02:45:34 husted Exp $</font>
     </p>
 
     <p>
@@ -287,6 +287,45 @@
         Accordingly, it is anticipated that the development of the 2.x and 1.x
         series will occur in tandem.
         At some point, 2.x milestones may appear alongside new 1.x releases.
+    </p>
+
+</section>
+
+<section href="Portlets" name="Portlet (JSR-168) Whiteboard">
+    <p>
+        There are three major issues with supporting JSR-168 (and I'm sure a bunch of smaller ones as well):
+    </p>
+
+    <ul>
+
+        <li>
+            Struts APIs assume servlet API objects (ServletContext, ServletRequest, ServletResponse), whereas JSR-168
+            talks aboutPortletContext, PortletRequest, and PortletResponse.
+            We'd either need to change the calling sequence for Action.execute() -- problematic for backwards
+            compatibility -- or fake it somehow in a portlet environment.
+        </li>
+
+        <li>
+            The lifecycle of a portlet request is actually divided into two chunks -- processing and then rendering.
+            From a Struts perspective, that means making sure that the first part of the request processor pipeline
+            need to happen in the "process" part, and the forwarding to the resulting page needs to happen in the
+            "render" part.
+        </li>
+
+        <li>
+            Today, Struts owns the process of calculating URLs for pages and actions.
+            Because it's in a webapp, it knows exactly what to do for the developer.
+            However, in a portlet container it's actually the portal server that manages URLs, so a Struts-based
+            portlet would need to interact with the portlet APIs for this purpose.
+        </li>
+
+    </ul>
+
+    <p>
+        A strong goal should be that a Struts application should be usable either as a webapp or as a portlet, with
+        little (ideally no) changes.
+        Therefore, we should build whatever it takes to support this into the standard Struts distribution, which would
+        then be used in both environments.
     </p>
 
 </section>
