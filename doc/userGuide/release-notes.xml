@@ -22,7 +22,78 @@
         </p>
       </section>
 
-     <section name="Version 1.2.6 [DEV]" href="STRUTS_1_2_6">
+     <section name="Version 1.2.6" href="STRUTS_1_2_6">
+
+         <p>
+            2004-11-20 [105966] - Resolve #31642, "&lt;bean:include&gt; always
+            include Session id (if any) even for external Urls (href attribute)".
+         </p>
+
+         <p>
+            2004-11-20 [105965] - Resolve #32283, "Two slashes created by
+            TagUtils.getActionMappingURL for webapps in root context".
+         </p>
+
+         <p>
+            2004-11-20 [105963] - Resolve #32265 "add a warning to reset
+            FormFile".
+         </p>
+
+         <p>
+            2004-11-19 [105907] - Resolve #32323, "Shale mailreader example
+            should define the servlet version as 2.4".
+         </p>
+
+         <p>
+            2004-11-19 [105888] - Changes to update maven build after SVN layout
+            re-org.
+         </p>
+
+         <p>
+            2004-11-19 [105881] - Remove redundant definitions of
+            maven.repo.central and maven.repo.central.directory.
+         </p>
+
+         <p>
+            2004-11-18 [105785] - Added ability to load struts, validator, and
+            tiles config files from classloader if not found in the servlet
+            context.
+         </p>
+
+         <p>
+            2004-11-18 [105787] - Better handling of servlet initialization
+            errors to mark the servlet as unavailable and notify the developer
+            of the probable cause.
+         </p>
+
+         <p>
+            2004-11-18 [76271] - Add missing base class for Shale test cases.
+         </p>
+
+         <p>
+            2004-11-16 [76098] - Resolve #32134, "Must use contextRelative to
+            forward to Actions in Default module".
+         </p>
+
+         <p>
+            2004-11-13 [57587 - 65927 (not consecutive)] - Subversion repository
+            rearranged into separate core, el, faces and sandbox subprojects.
+         </p>
+
+         <p>
+            2004-11-09 [57108] - Resolve #31983, "Validator validwhen
+            documentation typo".
+         </p>
+
+         <p>
+            2004-11-09 [57099] - Resolve #32123, "DigestingPlugIn can't load a
+            digester rule file".
+         </p>
+
+         <p>
+            2004-11-06 [56770] - Resolve #32047, ""created" boolean in
+            FacesRequestProcessor.doForward() not being set".
+         </p>
 
          <p>
             2004-11-05 [56678] - Resolve #23924. Improve TagUtils.filter() performance.
@@ -75,7 +146,7 @@
 
          <p>
              2004-10-18 [55025] - Resolve #31755. Document the default value
-             for "scope" on an &lt;action> element in the DTD for a
+             for "scope" on an &lt;action&gt; element in the DTD for a
              struts-config.xml file (along with all the other documentation).
          </p>
 
