@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.14 2004/06/09 00:25:34 niallp Exp $
- * $Revision: 1.14 $
- * $Date: 2004/06/09 00:25:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.15 2004/07/31 05:52:43 niallp Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/07/31 05:52:43 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -24,10 +24,13 @@ package org.apache.struts.config;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import org.apache.commons.beanutils.DynaBean;
+import org.apache.commons.beanutils.MutableDynaClass;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.BeanValidatorForm;
 
 
 /**
@@ -35,7 +38,7 @@ import org.apache.struts.action.ActionForm;
  * <code>&lt;form-bean&gt;</code> element in a Struts
  * configuration file.<p>
  *
- * @version $Revision: 1.14 $ $Date: 2004/06/09 00:25:34 $
+ * @version $Revision: 1.15 $ $Date: 2004/07/31 05:52:43 $
  * @since Struts 1.1
  */
 
@@ -68,12 +71,12 @@ public class FormBeanConfig implements Serializable {
 
 
     /**
-     * The DynaActionFormClass associated with a DynaActionForm
+     * The DynaActionFormClass associated with a DynaActionForm.
      */
     protected transient DynaActionFormClass dynaActionFormClass;
 
     /**
-     * <p>Return the DynaActionFormClass associated with a DynaActionForm</p>
+     * <p>Return the DynaActionFormClass associated with a DynaActionForm.</p>
      *
      * @exception IllegalArgumentException if the ActionForm is not dynamic
      */
@@ -160,6 +163,29 @@ public class FormBeanConfig implements Serializable {
         }
     }
 
+    /**
+     * Is this DynaClass currently restricted (for DynaBeans with a MutableDynaClass).
+     */
+    protected boolean restricted = false;
+
+    /**
+     * <p>Indicates whether a MutableDynaClass is currently restricted.</p>
+     * <p>If so, no changes to the existing registration of property names, 
+     *    data types, readability, or writeability are allowed.</p>
+     */
+    public boolean isRestricted() {
+        return restricted;
+    }
+
+    /**
+     * <p>Set whether a MutableDynaClass is currently restricted.</p>
+     * <p>If so, no changes to the existing registration of property names, 
+     *    data types, readability, or writeability are allowed.</p>
+     */
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
+    }
+
 
     // --------------------------------------------------------- Public Methods
 
@@ -179,22 +205,41 @@ public class FormBeanConfig implements Serializable {
     public ActionForm createActionForm(ActionServlet servlet)
         throws IllegalAccessException, InstantiationException {
 
-        ActionForm instance = null;
+        Object obj = null;
 
-        // Create and return a new form bean instance
+        // Create a new form bean instance
         if (getDynamic()) {
-
-            instance = (ActionForm)getDynaActionFormClass().newInstance();
-
+            obj = getDynaActionFormClass().newInstance();
         } else {
+            obj = formBeanClass().newInstance();
+        }
 
-            instance = (ActionForm)formBeanClass().newInstance();
+        ActionForm form = null;
+        if (obj instanceof ActionForm) {
+            form = (ActionForm)obj;
+        } else  {
+            form = new BeanValidatorForm(obj);
+        }
+
+        form.setServlet(servlet);
+
+        if (form instanceof DynaBean && 
+            ((DynaBean)form).getDynaClass() instanceof MutableDynaClass) {
+            DynaBean         dynaBean  = (DynaBean)form;
+            MutableDynaClass dynaClass = (MutableDynaClass)dynaBean.getDynaClass();
+
+            // Add properties
+            dynaClass.setRestricted(false);
+            FormPropertyConfig props[] = findFormPropertyConfigs();
+            for (int i = 0; i < props.length; i++) {
+                dynaClass.add(props[i].getName(), props[i].getTypeClass());
+                dynaBean.set(props[i].getName(), props[i].initial());
+            }
+            dynaClass.setRestricted(isRestricted());
 
         }
 
-        instance.setServlet(servlet);
-
-        return (instance);
+        return form;
 
     }
 

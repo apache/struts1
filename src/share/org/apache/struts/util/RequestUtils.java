@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.150 2004/06/09 00:25:52 niallp Exp $
- * $Revision: 1.150 $
- * $Date: 2004/06/09 00:25:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.151 2004/07/31 05:52:43 niallp Exp $
+ * $Revision: 1.151 $
+ * $Date: 2004/07/31 05:52:43 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -61,7 +61,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.150 $ $Date: 2004/06/09 00:25:52 $
+ * @version $Revision: 1.151 $ $Date: 2004/07/31 05:52:43 $
  */
 public class RequestUtils {
 
@@ -476,10 +476,17 @@ public class RequestUtils {
                 }
                 stripped = stripped.substring(0, stripped.length() - suffix.length());
             }
+            Object parameterValue = null;
             if (isMultipart) {
-                properties.put(stripped, multipartParameters.get(name));
+                parameterValue = multipartParameters.get(name);
             } else {
-                properties.put(stripped, request.getParameterValues(name));
+                parameterValue = request.getParameterValues(name);
+            }
+
+            // Populate parameters, except "standard" struts attributes
+            // such as 'org.apache.struts.action.CANCEL'
+            if (!(stripped.startsWith("org.apache.struts."))) {
+                properties.put(stripped, parameterValue);
             }
         }
 
@@ -1091,7 +1098,7 @@ public class RequestUtils {
      *
      * @return the ModuleConfig object
      * @since Struts 1.1
-     * @deprecated Use {@link org.apache.struts.util.ModuleUtils#getModuleConfig(HttpServletRequest,ServletContext) instead.
+     * @deprecated Use {@link org.apache.struts.util.ModuleUtils#getModuleConfig(HttpServletRequest,ServletContext)} instead.
      * This will be removed after Struts 1.2.
      */
     public static ModuleConfig getModuleConfig(
@@ -1620,7 +1627,7 @@ public class RequestUtils {
      *
      * @return ActionErros in page context.
      * @throws JspException
-     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#getActionMessages(PageContext,String) instead.
+     * @deprecated Use {@link org.apache.struts.taglib.TagUtils#getActionMessages(PageContext,String)} instead.
      * This will be removed after Struts 1.2.
      */
     public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
