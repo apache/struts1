@@ -286,7 +286,7 @@ public ActionForward perform(ActionMapping mapping,
       <p>
         The "<code>global-forwards</code>" section is used to create logical name mappings for commonly used
         jsp pages.  Each of these forwards is available through a call to your action mapping instance,
-        i.e. <code>actionMappingInstace.findForward("logicalName")</code>.
+        i.e. <code>mapping.findForward("logicalName")</code>.
       </p>
       <p>
         As you can see, this mapping matches the path <code>/logon</code> (actually,
