@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- $Id: struts.jsl,v 1.1 2003/11/29 07:27:33 sraeburn Exp $ -->
+<!-- $Id: struts.jsl,v 1.2 2003/12/11 20:08:07 sraeburn Exp $ -->
 <jsl:stylesheet select="$doc"
   xmlns:define="jelly:define"
   xmlns:j="jelly:core"
@@ -495,18 +495,13 @@
   </jsl:template>
 
   <!-- copy any other elements through -->
-  <jsl:template match="*" trim="false">
-    <jsl:copy trim="false">
-      <jsl:applyTemplates trim="false"/>
-    </jsl:copy>
-   </jsl:template>
+  <jsl:template match="*" trim="false"><jsl:copy trim="false">
+      <jsl:applyTemplates trim="false"/></jsl:copy></jsl:template>
 
    <!-- element values don't pass through as text -->
    <jsl:template match="@*"/>
 
    <!-- CDATA and text nodes pass-thru -->
-   <jsl:template match="text()">
-     <x:expr select="."/>
-   </jsl:template>
+   <jsl:template match="text()"><x:expr select="."/></jsl:template>
 
 </jsl:stylesheet>
