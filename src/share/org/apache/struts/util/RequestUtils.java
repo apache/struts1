@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.143 2004/01/24 20:22:50 germuska Exp $
- * $Revision: 1.143 $
- * $Date: 2004/01/24 20:22:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.144 2004/01/27 01:09:32 germuska Exp $
+ * $Revision: 1.144 $
+ * $Date: 2004/01/27 01:09:32 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.143 $ $Date: 2004/01/24 20:22:50 $
+ * @version $Revision: 1.144 $ $Date: 2004/01/27 01:09:32 $
  */
 public class RequestUtils {
 
@@ -215,73 +215,107 @@ public class RequestUtils {
         String name = mapping.getName();
         FormBeanConfig config = moduleConfig.findFormBeanConfig(name);
         if (config == null) {
+            log.warn("No FormBeanConfig found under '" + name + "'");
             return (null);
         }
 
+        ActionForm instance = lookupActionForm(request, attribute, mapping.getScope());
+
+        // Can we recycle the existing form bean instance (if there is one)?
+        try {
+            if (instance != null && canReuseActionForm(instance, config)) {
+                return (instance);
+            }
+        } catch(ClassNotFoundException e) {
+            log.error(servlet.getInternal().getMessage("formBean", config.getType()), e);
+            return (null);
+        }
+
+        return createActionForm(config, servlet);
+    }
+
+
+
+    private static ActionForm lookupActionForm(HttpServletRequest request, String attribute, String scope)
+    {
         // Look up any existing form bean instance
         if (log.isDebugEnabled()) {
             log.debug(
                     " Looking for ActionForm bean instance in scope '"
-                    + mapping.getScope()
+                    + scope
                     + "' under attribute key '"
                     + attribute
                     + "'");
         }
         ActionForm instance = null;
         HttpSession session = null;
-        if ("request".equals(mapping.getScope())) {
+        if ("request".equals(scope)) {
             instance = (ActionForm) request.getAttribute(attribute);
         } else {
             session = request.getSession();
             instance = (ActionForm) session.getAttribute(attribute);
         }
 
-        // Can we recycle the existing form bean instance (if there is one)?
-        if (instance != null) {
-            if (config.getDynamic()) {
-                String className = ((DynaBean) instance).getDynaClass().getName();
-                if (className.equals(config.getName())) {
-                    if (log.isDebugEnabled()) {
-                        log.debug(
-                                " Recycling existing DynaActionForm instance "
-                                + "of type '"
-                                + className
-                                + "'");
-                        log.trace(" --> " + instance);
-                    }
-                    return (instance);
-                }
-            } else {
-                try {
-                    Class configClass = applicationClass(config.getType());
-                    if (configClass.isAssignableFrom(instance.getClass())) {
-                        if (log.isDebugEnabled()) {
-                            log.debug(
-                                    " Recycling existing ActionForm instance "
-                                    + "of class '"
-                                    + instance.getClass().getName()
-                                    + "'");
-                            log.trace(" --> " + instance);
-                        }
-                        return (instance);
-                    }
-                } catch(Throwable t) {
-                    log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
-                    return (null);
-                }
-            }
+        return (instance);
+    }
+
+    /**
+     * <p>Determine whether <code>instance</code> of <code>ActionForm</code> is
+     * suitable for re-use as an instance of the form described by
+     * <code>config</code>.</p>
+     * @param instance an instance of <code>ActionForm</code> which was found,
+     * probably in either request or session scope.
+     * @param config the configuration for the ActionForm which is needed.
+     * @return true if the instance found is "compatible" with the type required
+     * in the <code>FormBeanConfig</code>; false if not, or if <code>instance</code>
+     * is null.
+     * @throws ClassNotFoundException if the <code>type</code> property of
+     * <code>config</code> is not a valid Class name.
+     */
+    private static boolean canReuseActionForm(ActionForm instance, FormBeanConfig config)
+            throws ClassNotFoundException
+    {
+        if (instance == null) {
+            return (false);
         }
 
-        return createActionForm(config, servlet);
+        boolean canReuse = false;
+        String formType = null;
+        String className = null;
+
+        if (config.getDynamic()) {
+            className = ((DynaBean) instance).getDynaClass().getName();
+            canReuse = className.equals(config.getName());
+            formType = "DynaActionForm";
+        } else {
+            Class configClass = applicationClass(config.getType());
+            className = instance.getClass().getName();
+            canReuse = configClass.isAssignableFrom(instance.getClass());
+            formType = "ActionForm";
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug(
+                    " Can recycle existing "
+                    + formType
+                    + " instance "
+                    + "of type '"
+                    + className
+                    + "'?: "
+                    + canReuse);
+            log.trace(" --> " + instance);
+        }
+        return (canReuse);
     }
 
     /**
      * <p>Create and return an <code>ActionForm</code> instance appropriate
      * to the information in <code>config</code>.</p>
      *
-     * @param request The servlet request we are processing
-     * @param mapping The action mapping for this request
-     * @param moduleConfig The configuration for this module
+     * <p>Does not perform any checks to see if an existing ActionForm exists
+     * which could be reused.</p>
+     *
+     * @param config The configuration for the Form bean which is to be created.
      * @param servlet The action servlet
      *
      * @return ActionForm instance associated with this request
