@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.16 2003/06/07 21:08:24 husted Exp $
- * $Revision: 1.16 $
- * $Date: 2003/06/07 21:08:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.17 2003/06/07 22:23:58 husted Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/06/07 22:23:58 $
  *
  * ====================================================================
  *
@@ -66,11 +66,11 @@ package org.apache.struts.util;
 /**
  * <p>Wrapper around the <code>org.apache.struts.legacy.GenericDataSource</code>.
  * The GenericDataSource is now distributed separately to work around
- * compilation issues between J2SE 1.3 and J2SE 1.4.
+ * compilation issues between J2SE 1.3 and J2SE 1.4.</p>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.16 $ $Date: 2003/06/07 21:08:24 $
+ * @version $Revision: 1.17 $ $Date: 2003/06/07 22:23:58 $
  * @deprecated Use a <code>BasicDataSource</code> directly, or indirectly
  *  acquire a data source provided by your container
  */
