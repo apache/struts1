@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.2 2003/02/27 19:20:50 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/27 19:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.3 2003/03/22 00:25:30 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/22 00:25:30 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -105,7 +106,8 @@ public class TilesUtilImpl implements Serializable
     /**
      * Do an include using request dispatcher.
      *
-     * This method is used by the Tiles package anytime an include is required.
+     * This method is used by the Tiles package when an include is required.
+     * The Tiles package can use indifferently any form of this method.
      * @param uri Uri or Definition name to forward.
      * @param request Current page request.
      * @param response Current page response.
@@ -116,6 +118,22 @@ public class TilesUtilImpl implements Serializable
     throws IOException, ServletException
   {
   request.getRequestDispatcher( uri ).include(request, response);
+  }
+
+    /**
+     * Do an include using PageContext.include().
+     *
+     * This method is used by the Tiles package when an include is required.
+     * The Tiles package can use indifferently any form of this method.
+     * @param uri Uri or Definition name to forward.
+     * @param request Current page request.
+     * @param response Current page response.
+     * @param servletContext Current servlet context.
+     */
+  public static void doInclude(String uri, PageContext pageContext)
+        throws IOException, ServletException
+  {
+  pageContext.include(uri);
   }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.15 2003/03/18 15:04:42 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/03/18 15:04:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.16 2003/03/22 00:25:31 cedric Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/03/22 00:25:31 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.TilesUtil;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.15 $ $Date: 2003/03/18 15:04:42 $
+ * @version $Revision: 1.16 $ $Date: 2003/03/22 00:25:31 $
  */
 public class InsertTag
     extends DefinitionTagSupport
@@ -508,7 +508,7 @@ public class InsertTag
         if (value instanceof AttributeDefinition) {
             // We have a type => return appropriate IncludeType
             return processTypedAttribute((AttributeDefinition) value);
-            
+
         } else if (value instanceof ComponentDefinition) {
             return processDefinition((ComponentDefinition) value);
         }
@@ -566,7 +566,7 @@ public class InsertTag
                     name,
                     (HttpServletRequest) pageContext.getRequest(),
                     pageContext.getServletContext());
-                    
+
             if (definition == null) { // is it possible ?
                 throw new NoSuchDefinitionException();
             }
@@ -579,7 +579,7 @@ public class InsertTag
                     + "'. Check if this name exist in definitions factory.");
         } catch (FactoryNotFoundException ex) {
             throw new JspException(ex.getMessage());
-            
+
         } catch (DefinitionsFactoryException ex) {
             if (log.isDebugEnabled()) {
                 ex.printStackTrace();
@@ -737,18 +737,22 @@ public class InsertTag
         return new InsertHandler((String) value.getValue(), role, getController());
     }
     /**
-     * Do an include of specified page using pageContext.include()
-     * This method is used internally to do all includes
+     * Do an include of specified page.
+     * This method is used internally to do all includes from this class. It delegates
+     * the include call to the TilesUtil.doInclude().
      * @param page The page that will be included
      * @throws ServletException - Thrown by call to pageContext.include()
      * @throws IOException - Thrown by call to pageContext.include()
      */
     protected void doInclude(String page) throws ServletException, IOException {
-        TilesUtil.doInclude(
-            page,
-            (HttpServletRequest) pageContext.getRequest(),
-            (HttpServletResponse) pageContext.getResponse(),
-            pageContext.getServletContext());
+      /*
+        TilesUtil.doInclude( page,
+                        (HttpServletRequest)pageContext.getRequest(),
+                        (HttpServletResponse)pageContext.getResponse(),
+                        pageContext.getServletContext());
+      */
+      TilesUtil.doInclude( page, pageContext );
+
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -794,7 +798,7 @@ public class InsertTag
             String page,
             String role,
             Controller controller) {
-                
+
             this.page = page;
             this.role = role;
             this.controller = controller;
@@ -871,17 +875,17 @@ public class InsertTag
                 if (flush) {
                     pageContext.getOut().flush();
                 }
-                
+
                 // removed if statement for further investigation
                 //if ((page != null) && (page.length() > 0)) {
                     doInclude(page);
                 //}
-                
+
             } catch (IOException ex) {
                 processException(
                     ex,
                     "Can't insert page '" + page + "' : " + ex.getMessage());
-                    
+
             } catch (IllegalArgumentException ex) { // Can't resolve page uri
                 // Do we ignore bad page uri errors ?
                 if (!(page == null && isErrorIgnored)) {
@@ -893,7 +897,7 @@ public class InsertTag
                             + "'. Check if it exists.\n"
                             + ex.getMessage());
                 }
-                
+
             } catch (ServletException ex) {
                 Throwable realEx = ex;
                 if (ex.getRootCause() != null) {
@@ -906,12 +910,12 @@ public class InsertTag
                         + "] "
                         + realEx.getMessage()
                         + "'");
-                        
+
             } catch (Exception ex) {
                 processException(
                     ex,
                     "[Exception in:" + page + "] " + ex.getMessage());
-                    
+
             } finally {
                 // restore old context
                 // done only if currentContext not null (bug with Silverstream ?; related by Arvindra Sehmi 20010712)
