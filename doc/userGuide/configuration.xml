@@ -1080,7 +1080,7 @@
 
     <pre><code>
     &lt;%@ taglib 
-        uri="http://jakarta.apache.org/struts/tags-html-1.0" 
+        uri="http://jakarta.apache.org/struts/tags-html" 
         prefix="html" %&gt;
     </code></pre>
 
