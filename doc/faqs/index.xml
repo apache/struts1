@@ -85,17 +85,23 @@
     </li>
  </ul>
 
+    <ul>
+       <li>
+       <a href="http://www.husted.com/struts/tips">Struts Tips</a>
+       </li>
+    </ul>
+
  <ul>
     <li>
     <a href="http://strutstestcase.sourceforge.net">Unit testing with Struts Use Case</a>
     </li>
  </ul>
 
- <ul>
-    <li>
-    <a href="http://www.husted.com/struts/tips">Struts Tips</a>
-    </li>
- </ul>
+<ul>
+   <li>
+   <a href="http://tinyurl.com/6jnv">Struts Validator: Validating Two Fields Match</a> by Matt Raible
+   </li>
+</ul>
 
 </section>
 
