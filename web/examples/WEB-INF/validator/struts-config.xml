@@ -51,8 +51,7 @@
       <forward name="success" path="/jsType.do" />
     </action>
     <action path="/jsType" forward="/jsType.jsp" />
-    <action path="/jsType-submit" type="org.apache.struts.webapp.validator.TypeAction" name="jsTypeForm" scope="request" validate="true" input="input">
-      <forward name="input" path="/editJsType-submit.do?typeForm.reset=false" />
+    <action path="/jsType-submit" type="org.apache.struts.webapp.validator.TypeAction" name="jsTypeForm" scope="request" validate="true" input="/jsType.jsp">
       <forward name="success" path="/welcome.do" />
     </action>
     <!-- Locale Action -->
