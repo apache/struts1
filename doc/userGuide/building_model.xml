@@ -11,6 +11,7 @@
     <author>Mike Schachter</author>
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
+    <author>Phil Steitz</author>
     <title>The Struts User's Guide - Building Model Components</title>
 </properties>
 
@@ -136,13 +137,13 @@
     <ul>
     
         <li>
-        Check in the user's session for an instance of a bean of the
-        appropriate class, under the appropriate key.
+        Check for an instance of a bean of the appropriate class, under the appropriate key,
+        in the appropriate scope (request or session).
         </li>
 
         <li>
-        If there is no such session scope bean available, a new one is
-        automatically created and added to the user's session.
+        If there is no such bean instance available, a new one is
+        automatically created and added to the appropriate scope (request or session).
         </li>
 
         <li>

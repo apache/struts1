@@ -17,6 +17,7 @@
     <author>Yann Cebron</author>
     <author>David Graham</author>
     <author>Tim O'Brien</author>
+    <author>Phil Steitz</author>
 </properties>
 
 <body>
@@ -1207,7 +1208,7 @@ throws Exception;
     First the form bean is defined.  
     A basic bean of class "<code>org.apache.struts.webapp.example.LogonForm</code>"
     is mapped to the logical name "<code>logonForm</code>". 
-    This name is used as a session or request attribute name for the form 
+    This name is used as a request attribute name for the form
     bean.
     </p>
 
@@ -1222,12 +1223,14 @@ throws Exception;
     As you can see, this mapping matches the path <code>/logon</code> 
     (actually, because the MailReader example application uses extension 
     mapping, the request URI you specify in a JSP page would end in 
-    <code>/logon.do</code>).  
-    When a request that matches this path is received, an instance of the 
+    <code>/logon.do</code>).
+    When a request that matches this path is received, an instance of the
     <i>LogonAction</i> class will be created (the first time only) and used. 
     The controller servlet will look for a session scoped bean under key 
     <code>logonForm</code>, creating and saving a bean of the specified class 
     if needed.
+    A <i>LogonForm</i> object will be created and saved as a request attribute
+    under the key <code>logonForm</code>.
     </p>
    
     <p>
