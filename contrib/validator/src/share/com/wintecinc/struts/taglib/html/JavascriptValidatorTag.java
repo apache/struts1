@@ -283,15 +283,16 @@ public class JavascriptValidatorTag extends BodyTagSupport {
              results.append("	 function " + functionName + " () { \n");
              for (Iterator x = form.getFields().iterator(); x.hasNext(); ) {
                 Field field = (Field)x.next();         
-          
-                if (field.getPage() == page && field.isDependency(va.getName())) {
+
+                // Skip indexed fields for now until there is 
+                // a good way to handle error messages (and the length of the list (could retrieve from scope?))
+                if (!field.isIndexed() && field.getPage() == page && field.isDependency(va.getName())) {
 	   	   String message = ValidatorUtil.getMessage(messages, locale, va, field);
 	   	   message = (message != null ? message : "");
           
                    jscriptVar = getNextVar(jscriptVar);
           
                    results.append("	    this." + jscriptVar + " = new Array(\"" + field.getKey() + "\", \"" + message + "\", ");
-                   
                    
                    results.append("new Function (\"varName\", \"");
                    
