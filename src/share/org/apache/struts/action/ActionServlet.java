@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.69 2001/05/18 17:11:37 mschachter Exp $
- * $Revision: 1.69 $
- * $Date: 2001/05/18 17:11:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.70 2001/06/02 23:13:36 craigmcc Exp $
+ * $Revision: 1.70 $
+ * $Date: 2001/06/02 23:13:36 $
  *
  * ====================================================================
  *
@@ -88,6 +88,7 @@ import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ServletContextWriter;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
@@ -229,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.69 $ $Date: 2001/05/18 17:11:37 $
+ * @version $Revision: 1.70 $ $Date: 2001/06/02 23:13:36 $
  */
 
 public class ActionServlet
@@ -1054,11 +1055,21 @@ public class ActionServlet
      */
     protected void initDataSources() throws ServletException {
 
+        ServletContextWriter scw =
+            new ServletContextWriter(getServletContext());
+
         synchronized (dataSources) {
             Iterator keys = dataSources.keySet().iterator();
             while (keys.hasNext()) {
                 String key = (String) keys.next();
                 DataSource dataSource = findDataSource(key);
+                try {
+                    dataSource.setLogWriter(scw);
+                } catch (SQLException e) {
+                    log(internal.getMessage("initDataSource", key), e);
+                    throw new ServletException
+                        (internal.getMessage("initDataSource", key), e);
+                }
                 if (dataSource instanceof GenericDataSource) {
                     if (debug >= 1)
                         log(internal.getMessage("dataSource.init", key));
