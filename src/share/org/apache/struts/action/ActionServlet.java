@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.36 2000/11/26 05:11:30 craigmcc Exp $
- * $Revision: 1.36 $
- * $Date: 2000/11/26 05:11:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.37 2000/11/28 18:35:52 craigmcc Exp $
+ * $Revision: 1.37 $
+ * $Date: 2000/11/28 18:35:52 $
  *
  * ====================================================================
  *
@@ -203,7 +203,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.36 $ $Date: 2000/11/26 05:11:30 $
+ * @version $Revision: 1.37 $ $Date: 2000/11/28 18:35:52 $
  */
 
 public class ActionServlet
@@ -1721,14 +1721,6 @@ public class ActionServlet
         if (debug >= 1)
             log(" Validating input form properties");
 
-        // Has an input form been specified for this mapping?
-	String uri = mapping.getInput();
-        if (uri == null) {
-            if (debug >= 1)
-                log("  No input form, no validation");
-            return (true);
-        }
-
         // Was this submit cancelled?
 	if (request.getParameter(Constants.CANCEL_PROPERTY) != null) {
             if (debug >= 1)
@@ -1752,6 +1744,17 @@ public class ActionServlet
             }
             
             formInstance.getMultipartRequestHandler().rollback();
+        }
+
+        // Has an input form been specified for this mapping?
+	String uri = mapping.getInput();
+        if (uri == null) {
+            if (debug >= 1)
+                log("  No input form, but validation returned errors");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               internal.getMessage("noInput",
+                                                   mapping.getPath()));
+            return (false);
         }
 
 	// Save our error messages and return to the input form if possible
