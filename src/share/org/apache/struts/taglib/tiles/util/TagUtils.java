@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.5 2003/02/27 19:18:56 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2003/02/27 19:18:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.6 2003/05/10 17:37:44 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/05/10 17:37:44 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,17 +75,22 @@ import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 import org.apache.struts.tiles.TilesUtil;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Collection of utilities.
  * This class also serves as an interface between Components and Struts. If
  * you want to rip away Struts, simply reimplement some methods in this class.
  * You can copy them from Struts.
+ * 
+ * @author Cedric Dumoulin
+ * @author David Graham
  */
 public class TagUtils {
 
     /** Debug flag */
-    static public final boolean debug = true;
+    public static final boolean debug = true;
+    
     /**
     * Get scope value from string value
     * @param scopeName Scope as a String.
@@ -93,26 +98,19 @@ public class TagUtils {
     * @return Scope as an <code>int</code>, or <code>defaultValue</code> if scope is <code>null</code>.
     * @throws JspException Scope name is not recognized as a valid scope.
     */
-    static public int getScope(String scopeName, int defaultValue) throws JspException {
-        if (scopeName == null)
+    public static int getScope(String scopeName, int defaultValue) throws JspException {
+        if (scopeName == null) {
             return defaultValue;
-        else if (scopeName.equals("request")) {
-            return PageContext.REQUEST_SCOPE;
-        } else if (scopeName.equals("page")) {
-            return PageContext.PAGE_SCOPE;
-        } else if (scopeName.equals("session")) {
-            return PageContext.SESSION_SCOPE;
-        } else if (scopeName.equals("application")) {
-            return PageContext.APPLICATION_SCOPE;
-        } else if (scopeName.equals("component")) {
+        }
+        
+        if (scopeName.equalsIgnoreCase("component")) {
             return ComponentConstants.COMPONENT_SCOPE;
-        } else if (scopeName.equals("template")) {
+        } else if (scopeName.equalsIgnoreCase("template")) {
             return ComponentConstants.COMPONENT_SCOPE;
-        } else if (scopeName.equals("tile")) {
+        } else if (scopeName.equalsIgnoreCase("tile")) {
             return ComponentConstants.COMPONENT_SCOPE;
         } else {
-            throw new JspException(
-                "Error - scope translation tag : unrecognized scope '" + scopeName + "'");
+            return RequestUtils.getScope(scopeName);
         }
     }
 
@@ -132,10 +130,14 @@ public class TagUtils {
      * @exception NoSuchMethodException if an accessor method for this
      *  propety cannot be found
      */
-    public static Object getProperty(Object bean, String name)
-        throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        return (PropertyUtils.getProperty(bean, name));
-    }
+	public static Object getProperty(Object bean, String name)
+		throws
+			IllegalAccessException,
+			InvocationTargetException,
+			NoSuchMethodException {
+
+		return PropertyUtils.getProperty(bean, name);
+	}
 
     /**
      * Retrieve bean from page context, using specified scope.
@@ -150,12 +152,14 @@ public class TagUtils {
      */
     public static Object retrieveBean(String beanName, String scopeName, PageContext pageContext)
         throws JspException {
+        
         if (scopeName == null) {
             return findAttribute(beanName, pageContext);
-        } // end if
+        }
 
         // Default value doesn't matter because we have already check it
         int scope = getScope(scopeName, PageContext.PAGE_SCOPE);
+        
         //return pageContext.getAttribute( beanName, scope );
         return getAttribute(beanName, scope, pageContext);
     }
@@ -168,13 +172,14 @@ public class TagUtils {
      * @return Requested bean or <code>null</code> if not found.
      */
     public static Object findAttribute(String beanName, PageContext pageContext) {
-        Object attribute;
         ComponentContext compContext = ComponentContext.getContext(pageContext.getRequest());
+        
         if (compContext != null) {
-            attribute = compContext.findAttribute(beanName, pageContext);
-            if (attribute != null)
+            Object attribute = compContext.findAttribute(beanName, pageContext);
+            if (attribute != null) {
                 return attribute;
-        } // end if
+            }
+        }
 
         // Search in pageContext scopes
         return pageContext.findAttribute(beanName);
@@ -213,7 +218,7 @@ public class TagUtils {
      *  IllegalAccessException, IllegalArgumentException,
      *  InvocationTargetException, or NoSuchMethodException
      */
-    static public Object getRealValueFromBean(
+    public static Object getRealValueFromBean(
         String beanName,
         String beanProperty,
         String beanScope,
@@ -223,11 +228,13 @@ public class TagUtils {
         try {
             Object realValue;
             Object bean = retrieveBean(beanName, beanScope, pageContext);
-            if (bean != null && beanProperty != null)
+            if (bean != null && beanProperty != null) {
                 realValue = getProperty(bean, beanProperty);
-            else
+            } else {
                 realValue = bean; // value can be null
+            }
             return realValue;
+            
         } catch (NoSuchMethodException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"
@@ -273,7 +280,7 @@ public class TagUtils {
      *
      * @exception JspException Scope name is not recognized as a valid scope
      */
-    static public void setAttribute(
+    public static void setAttribute(
         PageContext pageContext,
         String name,
         Object value,
@@ -304,7 +311,7 @@ public class TagUtils {
      *
      * @exception JspException Scope name is not recognized as a valid scope
      */
-    static public void setAttribute(PageContext pageContext, String name, Object beanValue)
+    public static void setAttribute(PageContext pageContext, String name, Object beanValue)
         throws JspException {
         pageContext.setAttribute(name, beanValue, PageContext.REQUEST_SCOPE);
     }
@@ -327,11 +334,13 @@ public class TagUtils {
      */
     public static ComponentDefinition getComponentDefinition(String name, PageContext pageContext)
         throws JspException {
+            
         try {
             return TilesUtil.getDefinition(
                 name,
                 pageContext.getRequest(),
                 pageContext.getServletContext());
+                
         } catch (NoSuchDefinitionException ex) {
             throw new JspException(
                 "Error : Can't get component definition for '"
@@ -339,14 +348,14 @@ public class TagUtils {
                     + "'. Check if this name exist in component definitions.");
         } catch (FactoryNotFoundException ex) { // factory not found.
             throw new JspException(ex.getMessage());
-        } // end catch
-        catch (DefinitionsFactoryException ex) {
+            
+        } catch (DefinitionsFactoryException ex) {
             if (debug)
                 ex.printStackTrace();
             // Save exception to be able to show it later
             saveException(pageContext, ex);
             throw new JspException(ex.getMessage());
-        } // end catch
+        }
     }
 
 }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.5 2002/10/26 04:44:28 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/26 04:44:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.6 2003/05/10 17:37:44 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/05/10 17:37:44 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,7 +59,6 @@
  *
  */
 
-
 package org.apache.struts.taglib.logic;
 
 import java.util.Collection;
@@ -67,16 +66,15 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.RequestUtils;
 
-
 /**
  * Evalute the nested body content of this tag if the specified value
  * is empty for this request.
  *
  * @author Martin Cooper
- * @version $Revision: 1.5 $ $Date: 2002/10/26 04:44:28 $
+ * @author David Graham
+ * @version $Revision: 1.6 $ $Date: 2003/05/10 17:37:44 $
  * @since Struts 1.1
  */
-
 public class EmptyTag extends ConditionalTagBase {
 
 
@@ -109,35 +107,36 @@ public class EmptyTag extends ConditionalTagBase {
      * @exception JspException if a JSP exception occurs
      */
     protected boolean condition(boolean desired) throws JspException {
+		if (this.name == null) {
+			JspException e =
+				new JspException(messages.getMessage("empty.noNameAttribute"));
+			RequestUtils.saveException(pageContext, e);
+			throw e;
+		}
 
-        // Evaluate the presence of the specified value
-        boolean empty = true;
-        if (name != null) {
-            Object value =
-                RequestUtils.lookup(pageContext, name, property, scope);
-            if (value != null) {
-                if (value instanceof String) {
-                    String strValue = (String)value;
-                    empty = (strValue.length() < 1);
-                } else if (value instanceof Collection) {
-                    Collection collValue = (Collection)value;
-                    empty = collValue.isEmpty();
-                } else if (value instanceof Map) {
-                    Map mapValue = (Map)value;
-                    empty = mapValue.isEmpty();
-                } else {
-                    empty = false;
-                }
-            }
-        } else {
-            JspException e = new JspException
-                (messages.getMessage("empty.noNameAttribute"));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
+		boolean empty = true;
+		Object value = RequestUtils.lookup(pageContext, name, property, scope);
+        
+		if (value != null) {
+            
+			if (value instanceof String) {
+				String strValue = (String) value;
+				empty = (strValue.length() < 1);
+                
+			} else if (value instanceof Collection) {
+				Collection collValue = (Collection) value;
+				empty = collValue.isEmpty();
+                
+			} else if (value instanceof Map) {
+				Map mapValue = (Map) value;
+				empty = mapValue.isEmpty();
+                
+			} else {
+				empty = false;
+			}
+		}
 
-        return (empty == desired);
-
+		return (empty == desired);
     }
 
 

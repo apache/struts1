@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.99 2003/05/06 23:39:47 dgraham Exp $
- * $Revision: 1.99 $
- * $Date: 2003/05/06 23:39:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.100 2003/05/10 17:37:43 dgraham Exp $
+ * $Revision: 1.100 $
+ * $Date: 2003/05/10 17:37:43 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.99 $ $Date: 2003/05/06 23:39:47 $
+ * @version $Revision: 1.100 $ $Date: 2003/05/10 17:37:43 $
  */
 
 public class RequestUtils {
@@ -145,7 +145,13 @@ public class RequestUtils {
     private static Method encode = null;
     
     /**
-     * Initialize the encode variable with the 1.4 method if available
+     * Maps lowercase JSP scope names to their PageContext integer constant values. 
+     */
+    private static Map scopes = new HashMap();
+    
+    /**
+     * Initialize the encode variable with the 1.4 method if available.  Also set up the
+     * scope map values.
      */
     static {
         try {
@@ -155,6 +161,11 @@ public class RequestUtils {
         } catch (NoSuchMethodException e) {
             log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         }
+        
+        scopes.put("page", new Integer(PageContext.PAGE_SCOPE));
+        scopes.put("request", new Integer(PageContext.REQUEST_SCOPE));
+        scopes.put("session", new Integer(PageContext.SESSION_SCOPE));
+        scopes.put("application", new Integer(PageContext.APPLICATION_SCOPE));
     }
 
     // --------------------------------------------------------- Public Methods
@@ -789,34 +800,45 @@ public class RequestUtils {
      *
      * @param pageContext Page context to be searched
      * @param name Name of the bean to be retrieved
-     * @param scope Scope to be searched (page, request, session, application)
+     * @param scopeName Scope to be searched (page, request, session, application)
      *  or <code>null</code> to use <code>findAttribute()</code> instead
      * @return JavaBean in the specified page context
      * @exception JspException if an invalid scope name
      *  is requested
      */
-    public static Object lookup(PageContext pageContext, String name, String scope)
+    public static Object lookup(PageContext pageContext, String name, String scopeName)
         throws JspException {
-
-        Object bean = null;
-        if (scope == null) {
-            bean = pageContext.findAttribute(name);
-        } else if (scope.equalsIgnoreCase("page")) {
-            bean = pageContext.getAttribute(name, PageContext.PAGE_SCOPE);
-        } else if (scope.equalsIgnoreCase("request")) {
-            bean = pageContext.getAttribute(name, PageContext.REQUEST_SCOPE);
-        } else if (scope.equalsIgnoreCase("session")) {
-            bean = pageContext.getAttribute(name, PageContext.SESSION_SCOPE);
-        } else if (scope.equalsIgnoreCase("application")) {
-            bean = pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
-        } else {
-            JspException e = new JspException(messages.getMessage("lookup.scope", scope));
-            saveException(pageContext, e);
-            throw e;
+            
+        if (scopeName == null) {
+        	return pageContext.findAttribute(name);
+        }
+        
+        try {
+        	return pageContext.getAttribute(name, getScope(scopeName));
+        
+        } catch (JspException e) {
+        	saveException(pageContext, e);
+        	throw e;
         }
 
-        return (bean);
+    }
+    
+    /**
+     * Converts the scope name into its corresponding PageContext constant value.
+     * @param scopeName Can be "page", "request", "session", or "application" in any
+     * case.
+     * @return The constant representing the scope (ie. PageContext.REQUEST_SCOPE).
+     * @throws JspException if the scopeName is not a valid name.
+     * @since Struts 1.1
+     */
+    public static int getScope(String scopeName) throws JspException {
+		Integer scope = (Integer) scopes.get(scopeName.toLowerCase());
 
+		if (scope == null) {
+			throw new JspException(messages.getMessage("lookup.scope", scope));
+		}
+
+		return scope.intValue();
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.19 2002/09/22 06:32:45 martinc Exp $
- * $Revision: 1.19 $
- * $Date: 2002/09/22 06:32:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.20 2003/05/10 17:37:43 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/05/10 17:37:43 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2002/09/22 06:32:45 $
+ * @version $Revision: 1.20 $ $Date: 2003/05/10 17:37:43 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -277,12 +277,14 @@ public class DefineTag extends BodyTagSupport {
 
         // Expose this value as a scripting variable
         int inScope = PageContext.PAGE_SCOPE;
-        if ("request".equals(toScope))
-            inScope = PageContext.REQUEST_SCOPE;
-        else if ("session".equals(toScope))
-            inScope = PageContext.SESSION_SCOPE;
-        else if ("application".equals(toScope))
-            inScope = PageContext.APPLICATION_SCOPE;
+        try {
+			if (toScope != null) {
+				inScope = RequestUtils.getScope(toScope);
+			}
+		} catch (JspException e) {
+			//  toScope was invalid name so we default to PAGE_SCOPE
+		}
+            
         pageContext.setAttribute(id, value, inScope);
 
         // Continue processing this page
