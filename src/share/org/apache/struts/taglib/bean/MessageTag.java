@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.10 2003/03/11 00:00:28 jmitchell Exp $
- * $Revision: 1.10 $
- * $Date: 2003/03/11 00:00:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.11 2003/07/13 23:55:00 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/13 23:55:00 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.bean;
-
 
 import java.util.Locale;
 
@@ -73,7 +71,6 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Custom tag that retrieves an internationalized messages string (with
  * optional parametric replacement) from the <code>ActionResources</code>
@@ -81,14 +78,11 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/03/11 00:00:28 $
+ * @version $Revision: 1.11 $ $Date: 2003/07/13 23:55:00 $
  */
-
 public class MessageTag extends TagSupport {
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The first optional argument.
@@ -96,13 +90,12 @@ public class MessageTag extends TagSupport {
     protected String arg0 = null;
 
     public String getArg0() {
-	return (this.arg0);
+        return (this.arg0);
     }
 
     public void setArg0(String arg0) {
-	this.arg0 = arg0;
+        this.arg0 = arg0;
     }
-
 
     /**
      * The second optional argument.
@@ -110,13 +103,12 @@ public class MessageTag extends TagSupport {
     protected String arg1 = null;
 
     public String getArg1() {
-	return (this.arg1);
+        return (this.arg1);
     }
 
     public void setArg1(String arg1) {
-	this.arg1 = arg1;
+        this.arg1 = arg1;
     }
-
 
     /**
      * The third optional argument.
@@ -124,13 +116,12 @@ public class MessageTag extends TagSupport {
     protected String arg2 = null;
 
     public String getArg2() {
-	return (this.arg2);
+        return (this.arg2);
     }
 
     public void setArg2(String arg2) {
-	this.arg2 = arg2;
+        this.arg2 = arg2;
     }
-
 
     /**
      * The fourth optional argument.
@@ -138,13 +129,12 @@ public class MessageTag extends TagSupport {
     protected String arg3 = null;
 
     public String getArg3() {
-	return (this.arg3);
+        return (this.arg3);
     }
 
     public void setArg3(String arg3) {
-	this.arg3 = arg3;
+        this.arg3 = arg3;
     }
-
 
     /**
      * The fifth optional argument.
@@ -152,13 +142,12 @@ public class MessageTag extends TagSupport {
     protected String arg4 = null;
 
     public String getArg4() {
-	return (this.arg4);
+        return (this.arg4);
     }
 
     public void setArg4(String arg4) {
-	this.arg4 = arg4;
+        this.arg4 = arg4;
     }
-
 
     /**
      * The servlet context attribute key for our resources.
@@ -166,19 +155,17 @@ public class MessageTag extends TagSupport {
     protected String bundle = null;
 
     public String getBundle() {
-	return (this.bundle);
+        return (this.bundle);
     }
 
     public void setBundle(String bundle) {
-	this.bundle = bundle;
+        this.bundle = bundle;
     }
-
 
     /**
      * The default Locale for our server.
      */
     protected static final Locale defaultLocale = Locale.getDefault();
-
 
     /**
      * The message key of the message to be retrieved.
@@ -186,13 +173,12 @@ public class MessageTag extends TagSupport {
     protected String key = null;
 
     public String getKey() {
-	return (this.key);
+        return (this.key);
     }
 
     public void setKey(String key) {
-	this.key = key;
+        this.key = key;
     }
-
 
     /**
      * Name of the bean that contains the message key.
@@ -207,7 +193,6 @@ public class MessageTag extends TagSupport {
         this.name = name;
     }
 
-
     /**
      * Name of the property to be accessed on the specified bean.
      */
@@ -220,7 +205,6 @@ public class MessageTag extends TagSupport {
     public void setProperty(String property) {
         this.property = property;
     }
-
 
     /**
      * The scope to be searched to retrieve the specified bean.
@@ -235,31 +219,27 @@ public class MessageTag extends TagSupport {
         this.scope = scope;
     }
 
-
     /**
      * The session scope key under which our Locale is stored.
      */
     protected String localeKey = Globals.LOCALE_KEY;
 
     public String getLocale() {
-	return (this.localeKey);
+        return (this.localeKey);
     }
 
     public void setLocale(String localeKey) {
-	this.localeKey = localeKey;
+        this.localeKey = localeKey;
     }
-
 
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.bean.LocalStrings");
-
+        MessageResources.getMessageResources(
+            "org.apache.struts.taglib.bean.LocalStrings");
 
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the start tag.
@@ -271,63 +251,67 @@ public class MessageTag extends TagSupport {
         String key = this.key;
         if (key == null) {
             // Look up the requested property value
-            Object value =
-                RequestUtils.lookup(pageContext, name, property, scope);
+            Object value = RequestUtils.lookup(pageContext, name, property, scope);
             if (value != null && !(value instanceof String)) {
-                JspException e = new JspException
-                    (messages.getMessage("message.property", key));
+                JspException e =
+                    new JspException(messages.getMessage("message.property", key));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            key = (String)value;
+            key = (String) value;
         }
 
-	// Construct the optional arguments array we will be using
-	Object args[] = new Object[5];
-	args[0] = arg0;
-	args[1] = arg1;
-	args[2] = arg2;
-	args[3] = arg3;
-	args[4] = arg4;
+        // Construct the optional arguments array we will be using
+        Object args[] = new Object[5];
+        args[0] = arg0;
+        args[1] = arg1;
+        args[2] = arg2;
+        args[3] = arg3;
+        args[4] = arg4;
 
-	// Retrieve the message string we are looking for
-	String message = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, key, args);
-	if (message == null) {
-	    JspException e = new JspException
-		(messages.getMessage("message.message", "\"" + key + "\""));
+        // Retrieve the message string we are looking for
+        String message =
+            RequestUtils.message(
+                pageContext,
+                this.bundle,
+                this.localeKey,
+                key,
+                args);
+                
+        if (message == null) {
+            JspException e =
+                new JspException(
+                    messages.getMessage("message.message", "\"" + key + "\""));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
-	// Print the retrieved message to our output writer
+        // Print the retrieved message to our output writer
         ResponseUtils.write(pageContext, message);
 
-	// Continue processing this page
-	return (SKIP_BODY);
+        // Continue processing this page
+        return (SKIP_BODY);
 
     }
-
 
     /**
      * Release any acquired resources.
      */
     public void release() {
 
-	super.release();
-	arg0 = null;
-	arg1 = null;
-	arg2 = null;
-	arg3 = null;
-	arg4 = null;
-	bundle = Globals.MESSAGES_KEY;
-	key = null;
-	name = null;
-	property = null;
-	scope = null;
-	localeKey = Globals.LOCALE_KEY;
+        super.release();
+        arg0 = null;
+        arg1 = null;
+        arg2 = null;
+        arg3 = null;
+        arg4 = null;
+        bundle = Globals.MESSAGES_KEY;
+        key = null;
+        name = null;
+        property = null;
+        scope = null;
+        localeKey = Globals.LOCALE_KEY;
 
     }
-
 
 }
