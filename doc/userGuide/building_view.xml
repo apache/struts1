@@ -570,7 +570,7 @@ value="/WEB-INF/validator-rules.xml,
     <p>
     Beyond using the custom tags provided by the Struts library, it is easy
     to create tags that are specific to the application you are building, to
-    assist in creating the user interface.  The MailRead example application included with
+    assist in creating the user interface.  The MailReader example application included with
     Struts illustrates this principle by creating the following tags unique to
     the implementation of this application:
     </p>
@@ -580,7 +580,8 @@ value="/WEB-INF/validator-rules.xml,
     object, and forwards control to the logon page if it is missing.  This is
     used to catch cases where a user has bookmarked a page in the middle of
     your application and tries to bypass logging on, or if the user's session
-    has been timed out.</li>
+    has been timed out. (Note that there are better ways to authenticate users; the
+    checkLogon tag is simply meant to demonstrate writing your own custom tags.) </li>
     <li><b>linkSubscription</b> - Generates a hyperlink to a details page
     for a Subscription, which passes the required primary key values as
     request attributes.  This is used when listing the subscriptions associated

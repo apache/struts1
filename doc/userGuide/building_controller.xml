@@ -906,12 +906,14 @@ throws Exception;
     </p>
 
     <p>
-    The example application included with Struts stretches this design
+    The MailReader example application included with Struts stretches this design
     principle somewhat, because the business logic itself is embedded in the
     <code>Action</code> classes. 
     This should be considered something of a bug in the design of the example,
     rather than an intrinsic feature of the Struts architecture, or an 
-    approach to be emulated. 
+    approach to be emulated.
+    In order to demonstrate, in simple terms, the different ways Struts can be
+    used, the MailReader application does not always follow best practices.
     </p>
       
 </section>
@@ -1212,9 +1214,10 @@ throws Exception;
 <section name="4.8.1 ActionMapping Example" href="action_mapping_example">
 
     <p>
-    The <code>struts-config.xml</code> file from the MailReader example 
-    application includes the following mapping entry for the "log on" 
-    function, which we will use to illustrate the requirements.  
+    Here's a mapping entry based on the MailReader example
+    application. The MailReader application now uses DynaActionForms.
+    But in this example, we'll show a conventinal
+    ActionForm instead, to illustrate the usual workflow.
     Note that the entries for all the other actions are left out:
     </p>
 
@@ -1265,12 +1268,10 @@ throws Exception;
     mapping, the request URI you specify in a JSP page would end in 
     <code>/logon.do</code>).
     When a request that matches this path is received, an instance of the
-    <i>LogonAction</i> class will be created (the first time only) and used. 
-    The controller servlet will look for a session scoped bean under key 
-    <code>logonForm</code>, creating and saving a bean of the specified class 
+    <i>LogonAction</i> class will be created (the first time only) and used.
+    The controller servlet will look for a bean in request scope under key
+    <code>logonForm</code>, creating and saving a bean of the specified class
     if needed.
-    A <i>LogonForm</i> object will be created and saved as a request attribute
-    under the key <code>logonForm</code>.
     </p>
    
     <p>
