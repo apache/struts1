@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.14 2003/12/20 12:54:10 husted Exp $
- * $Revision: 1.14 $
- * $Date: 2003/12/20 12:54:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.15 2003/12/21 22:55:38 husted Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/12/21 22:55:38 $
  *
  * ====================================================================
  *
@@ -80,11 +80,11 @@ import org.apache.struts.util.RequestUtils;
  * <code>DynaActionForm</code> classes that allow developers to define
  * ActionForms without having to individually code all of the classes.
  * <strong>NOTE</strong> - This class is only used in the internal
- * implementation of dynamic action form beans. Applications never need
- * to consult this documentation.</p>
+ * implementation of dynamic action form beans. Application developers
+ * never need to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.14 $ $Date: 2003/12/20 12:54:10 $
+ * @version $Revision: 1.15 $ $Date: 2003/12/21 22:55:38 $
  * @since Struts 1.1
  */
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.10 2003/04/10 02:36:31 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/04/10 02:36:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.11 2003/12/21 22:56:00 husted Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/12/21 22:56:00 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/04/10 02:36:31 $
+ * @version $Revision: 1.11 $ $Date: 2003/12/21 22:56:00 $
  * @since Struts 1.1
  */
 
@@ -287,21 +287,21 @@ public class FormPropertyConfig implements Serializable {
      *     property represents an array (i.e. it ends with "[]"):
      *     <ul>
      *     <li>If you have specified a value for the <code>initial</code>
-     *         property, <code>ConvertUtils.convert()</code> will be
+     *         property, <code>ConvertUtils.convert</code> will be
      *         called to convert it into an instance of the specified
      *         array type.</li>
      *     <li>If you have not specified a value for the <code>initial</code>
      *         property, an array of the length specified by the
-     *         <code>size</code> property will be created.  Each element
+     *         <code>size</code> property will be created. Each element
      *         of the array will be instantiated via the zero-args constructor
-     *         on the specified class (if any).  Otherwise, <code>null</code>
+     *         on the specified class (if any). Otherwise, <code>null</code>
      *         will be returned.</li>
      *     </ul></li>
      * <li>If the value you have specified for the <code>type</code>
      *     property does not represent an array:
      *     <ul>
      *     <li>If you have specified a value for the <code>initial</code>
-     *         property, <code>ConvertUtils.convert()</code>
+     *         property, <code>ConvertUtils.convert</code>
      *         will be called to convert it into an object instance.</li>
      *     <li>If you have not specified a value for the <code>initial</code>
      *         attribute, Struts will instantiate an instance via the
