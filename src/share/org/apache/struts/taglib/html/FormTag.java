@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.48 2003/05/17 01:56:51 dgraham Exp $
- * $Revision: 1.48 $
- * $Date: 2003/05/17 01:56:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.49 2003/07/03 02:46:59 dgraham Exp $
+ * $Revision: 1.49 $
+ * $Date: 2003/07/03 02:46:59 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Martin Cooper
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.48 $ $Date: 2003/05/17 01:56:51 $
+ * @version $Revision: 1.49 $ $Date: 2003/07/03 02:46:59 $
  */
 public class FormTag extends TagSupport {
 
@@ -725,7 +725,7 @@ public class FormTag extends TagSupport {
         results.append(lineEnd);
         results.append(lineEnd);
 
-        results.append("  if (focusControl.type != \"hidden\") {");
+        results.append("  if (focusControl.type != \"hidden\" && !focusControl.disabled) {");
         results.append(lineEnd);
 
         // Construct the index if needed and insert into focus statement
