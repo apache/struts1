@@ -3,6 +3,7 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>Martin Cooper</author>
     <title>Struts Release Notes (Version 1.0-beta-1)</title>
   </properties>
 
@@ -60,7 +61,7 @@
       the current mapping and current request as arguments, in order to provide
       access to more context information than just the properties of this
       particular form bean.</li>
-  <li>The new <code>ActionForm</code> class also provides to
+  <li>The new <code>ActionForm</code> class also provides two
       <code>reset()</code> methods that take the current mapping and current
       request as arguments, in order to provide access to more context
       information (particularly important on multi-page forms so that the form
@@ -74,7 +75,7 @@
       <code>java.io.Serializable</code>.</li>
   <li>The <code>Action</code> class now includes support for "transactional
       tokens", so that you can detect cases where the user submitted a form,
-      pressed the back arrow key, and then resubmitted the form again.</li>
+      then went back and resubmitted the form again.</li>
   </ul>
 
   <p>The following major new features have been added to the
@@ -122,20 +123,20 @@
       modifiers removed, and <code>private</code> instance variables
       changed to <code>protected</code>.  This makes it possible to easily
       subclass these tags to provide specialized functionality.</li>
-  <li>The <code>&lt;form:link&gt;</code> tag has been enhanced to support
+  <li>The <code>&lt;html:link&gt;</code> tag has been enhanced to support
       a new <code>page</code> attribute that allows you to use
       context-relative URIs in a portable manner.</li>
-  <li>A new <code>&lt;form:html&gt;</code> tag has been created that
+  <li>A new <code>&lt;html:html&gt;</code> tag has been created that
       renders an HTML <code>&lt;html&gt;</code> element with appropriate
       <code>lang</code> and <code>xml:lang</code> attributes, based on the
-      session stored in the user's session (if there is one).</li>
+      locale stored for the user's session (if there is one).</li>
   <li>A new <code>&lt;rewrite&gt;</code> tag has been created that
       renders a request URI, possibly encoded with a session identifier,
       based on exactly the same rules used by the <code>&lt;link&gt;</code>
       tag that generates hyperlinks.  These constants can be useful when
       you are creating JavaScript code that needs to be aware of Struts
       addressing concepts.</li>
-  <li>The <code>options</code> tag now supports a new "collection" attribute,
+  <li>The <code>options</code> tag now supports a new <code>collection</code> attribute,
       which can be used to specify a collection whose beans have properties
       that return the value (to be returned to the server) and the label (to
       be displayed to the user) from a single collection.  The previous
@@ -148,17 +149,17 @@
       need to make changes in two places when these values are changed.</li>
   <li>A new <code>&lt;image&gt;</code> tag has been added, to create
       HTML input tags of type "image".</li>
-  <li>The <code>&lt;html:form&gt;</code> tag can now use the value you specify
-      for the <code>action</code> attribute to look up the corresponding
-      <code>ActionMapping</code> entry, and thereby derive the name and scope
-      of any defined form bean, plus the path to which the form should be
-      submitted.  It works for cases where the controller servlet is extension
-      mapped or path mapped.</li>
+<li>The <code>form</code> tag has been enhanced to read its configuration from 
+      a corresponding action mapping entry in the"struts-config.xml" file, 
+      if the <code>name</code>, <code>scope</code>, and <code>type</code> 
+      attributes are not specified. It can look up the name of the
+      form bean, its Java class, the scope in which the bean should be
+      created or accessed, plus the path to which the form should be
+      submitted. This removes the need to make changes in two places when these 
+      values are changed. It works for cases where the controller servlet is 
+      extension mapped or path mapped.</li>
   <li>The <code>&lt;html:img&gt;</code> tag has been added, to render an HTML
       <code>&lt;img&gt;</code> tag.</li>
-  <li>The <code>&lt;html:select&gt;</code> tag will now correctly display more
-      than one selected value when the <code>multiple="true"</code> attribute
-      is set.</li>
   </ul>
 
   <p>A new package of Actions and associated classes for handling file uploads
@@ -280,7 +281,7 @@
   <li>The <code>ActionServlet</code> functionality to call the
       <code>validate()</code> method of a form bean is skipped if the user
       pressed the Cancel key (i.e. the submit button created by the
-      <code>&lt;struts:cancel&gt;</code> custom tag), or if the selected
+      <code>&lt;html:cancel&gt;</code> custom tag), or if the selected
       mapping does not define an input form to return control to.</li>
   <li>The controller servlet may now be used as the target of a
       <code>RequestDispatcher.include()</code> or
