@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.17 2000/12/30 01:20:10 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2000/12/30 01:20:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.18 2000/12/31 04:26:37 craigmcc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2000/12/31 04:26:37 $
  *
  * ====================================================================
  *
@@ -91,7 +91,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.17 $ $Date: 2000/12/30 01:20:10 $
+ * @version $Revision: 1.18 $ $Date: 2000/12/31 04:26:37 $
  */
 
 public final class BeanUtils {
@@ -112,6 +112,33 @@ public final class BeanUtils {
         char chars[] = name.toCharArray();
         chars[0] = Character.toUpperCase(chars[0]);
         return new String(chars);
+
+    }
+
+
+    /**
+     * Clone a bean based on the available property getters and setters,
+     * even if the bean class itself does not implement Cloneable.
+     *
+     * @param bean Bean to be cloned
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InstantiationException if a new instance of the bean's
+     *  class cannot be instantiated
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static Object cloneBean(Object bean)
+        throws IllegalAccessException, InstantiationException,
+               InvocationTargetException, NoSuchMethodException {
+
+        Class clazz = bean.getClass();
+        Object newBean = clazz.newInstance();
+        PropertyUtils.copyProperties(newBean, bean);
+        return (newBean);
 
     }
 

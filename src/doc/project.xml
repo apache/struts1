@@ -20,6 +20,11 @@
               href="api/org/apache/struts/util/package-summary.html#package_description"/>
     </menu>
 
+    <menu name="Tag Library Guides">
+        <item name="Bean Tags"
+              href="api/org/apache/struts/taglib/bean/package-summary.html#package_description"/>
+    </menu>
+
     <menu name="Tag Library Reference">
         <item name="Bean Tags"          href="struts-bean.html"/>
         <item name="Form Tags"          href="struts-form.html"/>

@@ -79,6 +79,18 @@
       </info>
     </task>
 
+    <task name="Event and Listener Model">
+      <info>
+        <p>Retrofit the Struts controller framework with supports for event
+        generation (and the corresponding registration of listeners) for all
+        interesting events created by the framework.  The list of interesting
+        events will undoubtedly be influenced by changes related to other
+        work items on this list (such as workflow processing and standard
+        validations), so work on this should be coordinated with those
+        changes.</p>
+      </info>
+    </task>
+
     <task name="EJB Design Patterns">
       <info>
         <p>Begin adding design patterns and support for easy integration with
