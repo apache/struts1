@@ -1,5 +1,13 @@
 <!-- Action Mappings for the STRUTS Example Application -->
 
+<!--
+  WARNING:  This file is deprecated, and remains only as an example
+  of how the Struts configuration file would have been set up using
+  the conventions of Struts 0.5.  All new development should be based
+  on Struts 1.0 standards, and you should be configuring the file
+  "struts-config.xml" instead.
+-->
+
 <action-mappings>
 
   <!-- Global Forward Declarations -->
