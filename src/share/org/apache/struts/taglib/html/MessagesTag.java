@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.2 2001/09/17 19:59:30 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/17 19:59:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.3 2001/10/16 15:43:58 dwinterfeldt Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/10/16 15:43:58 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @since 1.1
  * @author David Winterfeldt
- * @version $Revision: 1.2 $ $Date: 2001/09/17 19:59:30 $
+ * @version $Revision: 1.3 $ $Date: 2001/10/16 15:43:58 $
 */
 public class MessagesTag extends BodyTagSupport {
 
@@ -224,44 +224,18 @@ public class MessagesTag extends BodyTagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-    // Were any messages specified?
-    ActionMessages messages = new ActionMessages();
+        // Were any messages specified?
+        ActionMessages messages = null;
+        
+        if (message != null && "true".equalsIgnoreCase(message))
+           name = Action.MESSAGE_KEY;
 
-    if (message != null && "true".equalsIgnoreCase(message))
-       name = Action.MESSAGE_KEY;
-
-    try {
-        Object value = pageContext.getAttribute
-                (name, PageContext.REQUEST_SCOPE);
-        if (value == null) {
-        ;
-        } else if (value instanceof String) {
-        messages.add(ActionMessages.GLOBAL_MESSAGE,
-                             new ActionMessage((String) value));
-        } else if (value instanceof String[]) {
-                String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++)
-                    messages.add(ActionMessages.GLOBAL_MESSAGE,
-                               new ActionMessage(keys[i]));
-            } else if (value instanceof ErrorMessages) {
-        String keys[] = ((ErrorMessages) value).getErrors();
-                if (keys == null)
-                    keys = new String[0];
-                for (int i = 0; i < keys.length; i++)
-                    messages.add(ActionErrors.GLOBAL_ERROR,
-                                 new ActionError(keys[i]));
-            } else if (value instanceof ActionMessages) {
-                messages = (ActionMessages) value;
-            } else {
-                JspException e = new JspException
-                    (messageResources.getMessage("messagesTag.errors",
-                                                 value.getClass().getName()));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
+        try {
+            messages = RequestUtils.getActionMessages(pageContext, name);
+        } catch (JspException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw e;
         }
-        } catch (Exception e) {
-            ;
-    }
 
         // Acquire the collection we are going to iterate over
         if (property == null)

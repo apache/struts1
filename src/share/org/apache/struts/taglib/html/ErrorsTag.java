@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.11 2001/07/16 00:44:54 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/07/16 00:44:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.12 2001/10/16 15:43:58 dwinterfeldt Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/10/16 15:43:58 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/07/16 00:44:54 $
+ * @version $Revision: 1.12 $ $Date: 2001/10/16 15:43:58 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -189,39 +189,14 @@ public class ErrorsTag extends TagSupport {
     public int doStartTag() throws JspException {
 
 	// Were any error messages specified?
-	ActionErrors errors = new ActionErrors();
+	ActionErrors errors = null;
 	try {
-	    Object value = pageContext.getAttribute
-                (name, PageContext.REQUEST_SCOPE);
-	    if (value == null) {
-		;
-	    } else if (value instanceof String) {
-		errors.add(ActionErrors.GLOBAL_ERROR,
-                           new ActionError((String) value));
-	    } else if (value instanceof String[]) {
-                String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++)
-                    errors.add(ActionErrors.GLOBAL_ERROR,
-                               new ActionError(keys[i]));
-            } else if (value instanceof ErrorMessages) {
-		String keys[] = ((ErrorMessages) value).getErrors();
-                if (keys == null)
-                    keys = new String[0];
-                for (int i = 0; i < keys.length; i++)
-                    errors.add(ActionErrors.GLOBAL_ERROR,
-                               new ActionError(keys[i]));
-            } else if (value instanceof ActionErrors) {
-                errors = (ActionErrors) value;
-            } else {
-                JspException e = new JspException
-                    (messages.getMessage("errorsTag.errors",
-                                         value.getClass().getName()));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-	    }
-        } catch (Exception e) {
-            ;
-	}
+            errors = RequestUtils.getActionErrors(pageContext, name);
+        } catch (JspException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
+        
         if (errors.empty())
 	    return (EVAL_BODY_INCLUDE);
 
