@@ -32,5 +32,13 @@
     <html:img action="/html-img-action" />
     </td>
     </tr>
+    <tr>
+    <td>
+    Struts img tag via page attribute, context relative
+    </td>
+    <td>
+    <html:img page="/exercise/struts-power.gif" contextRelative="true"/>
+    </td>
+    </tr>
   </body>
 </html>

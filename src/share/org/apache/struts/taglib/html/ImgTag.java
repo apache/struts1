@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.35 2004/01/13 12:48:47 husted Exp $
- * $Revision: 1.35 $
- * $Date: 2004/01/13 12:48:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.36 2004/01/19 04:43:10 husted Exp $
+ * $Revision: 1.36 $
+ * $Date: 2004/01/19 04:43:10 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -82,14 +83,14 @@ import org.apache.struts.util.MessageResources;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.35 $
+ * @version $Revision: 1.36 $
  */
 
 public class ImgTag extends BaseHandlerTag {
 
     // ------------------------------------------------------------- Properties
 
-    /**
+     /**
      * The property to specify where to align the image.
      */
     protected String align = null;
@@ -113,6 +114,32 @@ public class ImgTag extends BaseHandlerTag {
 
     public void setBorder(String border) {
         this.border = border;
+    }
+
+    /**
+      * The property to specify how to root the image.
+      * If 'true' or if there is no current module the image is
+      * rooted to the application context path
+      * If 'false' or absent the image is rooted to the current
+      * module's context path.
+      */
+     protected String contextRelative = null;
+
+     public String getContextRelative() {
+         return (this.contextRelative);
+     }
+
+     public void setContextRelative(String contextRelative) {
+         this.contextRelative = contextRelative;
+     }
+
+
+    /**
+     * Convenience method to return true if contextRelative set to "true".
+     * @return True if contextRelative set to "true"
+     */
+    public boolean isContextRelativeSet() {
+        return Boolean.valueOf(this.contextRelative).booleanValue();
     }
 
     /**
@@ -232,6 +259,21 @@ public class ImgTag extends BaseHandlerTag {
     public void setPageKey(String pageKey) {
         this.pageKey = pageKey;
     }
+
+    /**
+     * The module-relative action (beginning with a slash) which will be
+     * used as the source for this image.
+     */
+    protected String action = null;
+
+    public String getAction() {
+        return (this.action);
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
 
     /**
      * In situations where an image is dynamically generated (such as to create
@@ -497,6 +539,7 @@ public class ImgTag extends BaseHandlerTag {
         name = null;
         page = null;
         pageKey = null;
+        action = null;
         paramId = null;
         paramName = null;
         paramProperty = null;
@@ -514,6 +557,26 @@ public class ImgTag extends BaseHandlerTag {
     // ------------------------------------------------------ Protected Methods
 
     /**
+     * Convenience method to throw a "imgTag.src" exception.
+     * @throws JspException
+     */
+    private void throwImgTagSrcException() throws JspException {
+        JspException e = new JspException(messages.getMessage("imgTag.src"));
+        TagUtils.getInstance().saveException(pageContext, e);
+        throw e;
+    }
+
+    /**
+     * Convenience method to test whether this is the default module
+     * or if contestRelative has been set.
+     * @param config Our Moduleconfig
+     * @return True if this is the default module or contextRelative is set
+     */
+    private boolean srcDefaultReference(ModuleConfig config) {
+       return (config == null || isContextRelativeSet());
+    }
+
+    /**
      * Return the base source URL that will be rendered in the <code>src</code>
      * property for this generated element, or <code>null</code> if there is
      * no such URL.
@@ -525,14 +588,12 @@ public class ImgTag extends BaseHandlerTag {
         // Deal with a direct context-relative page that has been specified
         if (this.page != null) {
             if ((this.src != null) || (this.srcKey != null) || (this.pageKey != null)) {
-                JspException e = new JspException(messages.getMessage("imgTag.src"));
-                TagUtils.getInstance().saveException(pageContext, e);
-                throw e;
+                throwImgTagSrcException();
             }
             ModuleConfig config =
                 (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            if (config == null) {
+            if (srcDefaultReference(config)) {
                 return (request.getContextPath() + this.page);
             } else {
                 return (request.getContextPath() + config.getPrefix() + this.page);
@@ -542,14 +603,12 @@ public class ImgTag extends BaseHandlerTag {
         // Deal with an indirect context-relative page that has been specified
         if (this.pageKey != null) {
             if ((this.src != null) || (this.srcKey != null)) {
-                JspException e = new JspException(messages.getMessage("imgTag.src"));
-                TagUtils.getInstance().saveException(pageContext, e);
-                throw e;
+                throwImgTagSrcException();
             }
             ModuleConfig config =
                 (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-            if (config == null) {
+            if (srcDefaultReference(config)) {
                 return (
                     request.getContextPath()
                         + TagUtils.getInstance().message(
@@ -569,21 +628,24 @@ public class ImgTag extends BaseHandlerTag {
             }
         }
 
+        if (this.action != null) {
+            if ((this.src != null) || (this.srcKey != null)) {
+                throwImgTagSrcException();
+            }
+            return TagUtils.getInstance().getActionMappingURL(action, pageContext, isContextRelativeSet());
+        }
+
         // Deal with an absolute source that has been specified
         if (this.src != null) {
             if (this.srcKey != null) {
-                JspException e = new JspException(messages.getMessage("imgTag.src"));
-                TagUtils.getInstance().saveException(pageContext, e);
-                throw e;
+                throwImgTagSrcException();
             }
             return (this.src);
         }
 
         // Deal with an indirect source that has been specified
         if (this.srcKey == null) {
-            JspException e = new JspException(messages.getMessage("imgTag.src"));
-            TagUtils.getInstance().saveException(pageContext, e);
-            throw e;
+            throwImgTagSrcException();
         }
         
         return TagUtils.getInstance().message(

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.29 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.29 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.30 2004/01/19 04:43:10 husted Exp $
+ * $Revision: 1.30 $
+ * $Date: 2004/01/19 04:43:10 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -773,16 +773,25 @@ public class TagUtils {
         return value.startsWith("/") ? value : ("/" + value);
     }
 
+
     /**
      * Return the form action converted into a server-relative URL.
      */
     public String getActionMappingURL(String action, PageContext pageContext) {
+        return getActionMappingURL(action,pageContext,false);
+    }
+
+
+    /**
+     * Return the form action converted into a server-relative URL.
+     */
+    public String getActionMappingURL(String action, PageContext pageContext, boolean contextRelative) {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
         ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request);
 
-        if (config != null) {
+        if ((config != null) && (!contextRelative)) {
             value.append(config.getPrefix());
         }
 
