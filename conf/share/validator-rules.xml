@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.48 2003/12/11 05:52:58 rleland Exp $
-  $Revision: 1.48 $
-  $Date: 2003/12/11 05:52:58 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.49 2004/03/25 04:52:23 rleland Exp $
+  $Revision: 1.49 $
+  $Date: 2004/03/25 04:52:23 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -259,7 +259,18 @@
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.email"/>
-
+     <!--
+       This simply allows struts to include the validateUtilities into a page, it should
+       not be used as a validation rule.
+     -->
+     <validator name="includeJavaScriptUtilities"
+            classname=""
+               method=""
+         methodParams=""
+              depends=""
+                  msg=""
+           jsFunction="org.apache.commons.validator.javascript.validateUtilities"/>
+       />
 
    </global>
 
