@@ -61,7 +61,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
-import org.apache.struts.util.FastHashMap; 
+import org.apache.commons.collections.FastHashMap; 
 
 
 /**

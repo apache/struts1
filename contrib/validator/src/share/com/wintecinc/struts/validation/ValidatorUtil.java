@@ -62,7 +62,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import com.wintecinc.struts.action.ValidatorServlet;
 
 /**

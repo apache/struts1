@@ -62,7 +62,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-import org.apache.struts.util.FastHashMap; 
+import org.apache.commons.collections.FastHashMap; 
 
 
 /**
@@ -93,6 +93,7 @@ public class ValidatorAction implements Serializable {
     				  Validator.SERVLET_CONTEXT_KEY; 
     private String depends = null;       
     private String msg = null;    
+    private String jsFunctionName = null;
     private String javascript = null;
 
     private Object instance = null;
@@ -192,6 +193,24 @@ public class ValidatorAction implements Serializable {
        this.msg = msg;	
     }
 
+    /**
+     * Gets the Javascript function name.  This is optional and will 
+     * be used instead of validator action name for the name of the 
+     * Javascript function/object.
+    */
+    public String getJsFunctionName() {
+       return jsFunctionName;	
+    }
+
+    /**
+     * Sets the Javascript function name.  This is optional and will 
+     * be used instead of validator action name for the name of the 
+     * Javascript function/object.
+    */
+    public void setJsFunctionName(String jsFunctionName) {
+       this.jsFunctionName = jsFunctionName;	
+    }
+    
     /**
      * Gets the Javascript equivalent of the java class and method 
      * associated with this action.

@@ -59,7 +59,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import org.apache.struts.digester.Digester;
+import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 
 
@@ -141,7 +141,10 @@ public class ValidatorResourcesInitializer {
          
       Digester digester = new Digester();
       digester.push(resources);
+      digester.setDebug(debug);
+      digester.setNamespaceAware(true);
       digester.setValidating(false);
+      
       // Create Global Constant objects
       digester.addObjectCreate("form-validation/global/constant",
       			 "com.wintecinc.struts.validation.Constant", "className");

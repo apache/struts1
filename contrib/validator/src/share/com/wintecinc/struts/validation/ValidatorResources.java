@@ -60,7 +60,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
-import org.apache.struts.util.FastHashMap;    
+import org.apache.commons.collections.FastHashMap;    
 
 
 /**

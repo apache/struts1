@@ -273,8 +273,14 @@ public class JavascriptValidatorTag extends BodyTagSupport {
           for (Iterator i = lActions.iterator(); i.hasNext(); ) {
              ValidatorAction va = (ValidatorAction)i.next();
              String jscriptVar = null;
+             String functionName = null;
              
-             results.append("	 function " + va.getName() + " () { \n");
+             if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0)
+                functionName = va.getJsFunctionName();
+             else 
+                functionName = va.getName();
+             
+             results.append("	 function " + functionName + " () { \n");
              for (Iterator x = form.getFields().iterator(); x.hasNext(); ) {
                 Field field = (Field)x.next();         
           

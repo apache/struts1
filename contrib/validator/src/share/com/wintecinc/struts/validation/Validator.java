@@ -67,7 +67,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import org.apache.struts.util.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 
 /**
  * <p>This class performs validations.  The methods are can be configured to be 

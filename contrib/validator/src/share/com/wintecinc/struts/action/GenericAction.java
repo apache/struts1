@@ -74,7 +74,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 
 
 /**
