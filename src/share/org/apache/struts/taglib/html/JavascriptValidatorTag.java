@@ -89,7 +89,7 @@ import org.apache.struts.config.ApplicationConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.11 $ $Date: 2002/10/30 02:31:10 $
+ * @version $Revision: 1.12 $ $Date: 2002/11/01 20:57:16 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -312,7 +312,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (form != null) {
             if ("true".equals(dynamicJavascript)) {
                 MessageResources messages = (MessageResources)
-                        pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
+                        pageContext.getAttribute(bundle + config.getPrefix(),
+                                                 PageContext.APPLICATION_SCOPE);
 
                 List lActions = new ArrayList();
                 List lActionMethods = new ArrayList();
