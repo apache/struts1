@@ -318,7 +318,7 @@ multipart requests.</li>
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
-    <li>RequestUtils: Added support for forwardPattnern, pagePattern, and inputForward propertys on ControllerConfig.</li>
+    <li>RequestUtils: Added support for forwardPattern, pagePattern, and inputForward properties on ControllerConfig.</li>
     <li>GenericDataSource: Deprecated and modified to act as a thin wrapper around
     [<code>org.apache.commons.dbpc.BasicDataSource</code>].
     Replaced by direct use of BasicDataSource or other compatible component.</li>
