@@ -216,8 +216,10 @@
         tofile="${build.home}/library/commons-validator.jar"/>
   <copy file="${jakarta-oro.jar}"
         tofile="${build.home}/library/jakarta-oro.jar"/>
+<!-- Compile-time dependency only
   <copy file="${jdbc20ext.jar}"
         tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
+-->
   <copy todir="${build.home}/library">
    <fileset dir="${jstl.home}/tld" includes="*.tld"/>
    <fileset dir="${struts.home}/lib" includes="*.tld"/>
