@@ -8,7 +8,7 @@
 <body> 
 <chapter name="Struts Resources" href="resources"> 
 
-<section name="Contributor Tabligs" href="taglibs"> 
+<section name="Contributor Taglibs" href="taglibs"> 
 <p><a href="http://husted.com/about/struts/struts-was.zip"><b>Struts-WAS.jar</b></a> by Christopher Assenza - Modified Struts 1.0 JAR for Websphere 3.5 or 4. Zipped for download. (For additional tips regarding Websphere 3.5 see <a href="http://jakarta.apache.org/struts/installation-was352-x.html">http://jakarta.apache.org/struts/installation-was352-x.html</a>.)</p>
 <p><a href="http://struts.application-servers.com/"><b>Struts Layout</b></a> by Improve - An extension library to      improve interfaces creation with Struts.</p>
 <p><a href="http://husted.com/about/struts/indexed-tags.htm"><b>Indexed Tags</b></a> [Also available in the nightly build] by Dave Hays - Produce indexed names such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and Select tags are included too.</p>
