@@ -81,7 +81,7 @@ public abstract class AbstractValidateActionForm implements Command {
         }
 
         // Call the validate() method of this form bean
-        ActionErrors errors = validate(context, actionConfig, actionForm);
+        ActionErrors errors = validate(actionCtx, actionConfig, actionForm);
 
         // If there were no errors, proceed normally
         if ((errors == null) || (errors.isEmpty())) {
@@ -110,7 +110,7 @@ public abstract class AbstractValidateActionForm implements Command {
      * @param actionConfig The <code>ActionConfig</code> for this request
      * @param actionForm The form bean for this request
      */
-    protected abstract ActionErrors validate(Context context,
+    protected abstract ActionErrors validate(ActionContext context,
                                              ActionConfig actionConfig,
                                              ActionForm actionForm);
 

@@ -19,7 +19,7 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ForwardConfig;
 
 
@@ -34,67 +34,7 @@ import org.apache.struts.config.ForwardConfig;
 public abstract class AbstractPerformForward implements Command {
 
 
-    // ------------------------------------------------------ Instance Variables
-
-
-    private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
-
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
-
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getForwardConfigKey() {
-
-        return (this.forwardConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param forwardConfigKey The new context attribute key
-     */
-    public void setForwardConfigKey(String forwardConfigKey) {
-
-        this.forwardConfigKey = forwardConfigKey;
-
-    }
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module will be stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module will be stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
-
+ 
 
     // ---------------------------------------------------------- Public Methods
 
@@ -108,16 +48,15 @@ public abstract class AbstractPerformForward implements Command {
      * @return <code>true</code> so that processing completes
      */
     public boolean execute(Context context) throws Exception {
-
+        ActionContext actionCtx = (ActionContext) context;
         // Is there a ForwardConfig to be performed?
-        ForwardConfig forwardConfig = (ForwardConfig)
-            context.get(getForwardConfigKey());
+        ForwardConfig forwardConfig = actionCtx.getForwardConfig();
         if (forwardConfig == null) {
             return (false);
         }
 
         // Perform the appropriate processing on this ActionForward
-        perform(context, forwardConfig);
+        perform(actionCtx, forwardConfig);
         return (true);
 
     }
@@ -133,7 +72,7 @@ public abstract class AbstractPerformForward implements Command {
      * @param context The context for this request
      * @param forwardConfig The forward to be performed
      */
-    protected abstract void perform(Context context,
+    protected abstract void perform(ActionContext context,
                                     ForwardConfig forwardConfig)
         throws Exception;
 

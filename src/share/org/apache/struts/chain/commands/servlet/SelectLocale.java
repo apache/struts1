@@ -18,13 +18,15 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import java.util.Locale;
+
 import javax.servlet.http.HttpSession;
-import org.apache.commons.chain.Context;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.commands.AbstractSelectLocale;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.logging.Log;
 
 
 /**
@@ -46,7 +48,7 @@ public class SelectLocale extends AbstractSelectLocale {
      *
      * @param context The <code>Context</code> for this request
      */
-    protected Locale getLocale(Context context) {
+    protected Locale getLocale(ActionContext context) {
 
         ServletActionContext saContext = (ServletActionContext) context;
 

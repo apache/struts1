@@ -83,7 +83,7 @@ public abstract class AbstractSelectInput implements Command {
             if (log.isTraceEnabled()) {
                 log.trace("Delegating to forward() for '" + input + "'");
             }
-            forwardConfig = forward(context, moduleConfig, input);
+            forwardConfig = forward(actionCtx, moduleConfig, input);
         }
         if (log.isDebugEnabled()) {
             log.debug("Forwarding back to " + forwardConfig);
@@ -105,7 +105,7 @@ public abstract class AbstractSelectInput implements Command {
      * @param moduleConfig The <code>ModuleConfig</code> for this request
      * @param uri The module-relative URI to be the destination
      */
-    protected abstract ForwardConfig forward(Context context,
+    protected abstract ForwardConfig forward(ActionContext context,
                                              ModuleConfig moduleConfig,
                                              String uri);
 

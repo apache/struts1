@@ -70,7 +70,7 @@ public abstract class AbstractSelectForward implements Command {
         ForwardConfig forwardConfig = null;
         String forward = actionConfig.getForward();
         if (forward != null) {
-            forwardConfig = forward(context, moduleConfig, forward);
+            forwardConfig = forward(actionCtx, moduleConfig, forward);
             if (log.isDebugEnabled()) {
                 log.debug("Forwarding to " + forwardConfig);
             }
@@ -92,7 +92,7 @@ public abstract class AbstractSelectForward implements Command {
      * @param moduleConfig The <code>ModuleConfig</code> for this request
      * @param uri The module-relative URI to be the destination
      */
-    protected abstract ForwardConfig forward(Context context,
+    protected abstract ForwardConfig forward(ActionContext context,
                                              ModuleConfig moduleConfig,
                                              String uri);
 

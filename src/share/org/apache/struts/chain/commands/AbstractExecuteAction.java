@@ -71,7 +71,7 @@ public abstract class AbstractExecuteAction implements Command {
 
         // Execute the Action for this request, caching returned ActionForward
         ForwardConfig forwardConfig =
-            execute(context, action, actionConfig, actionForm);
+            execute(actionCtx, action, actionConfig, actionForm);
         actionCtx.setForwardConfig(forwardConfig);
 
         return (false);
@@ -94,7 +94,7 @@ public abstract class AbstractExecuteAction implements Command {
      *
      * @exception Exception if thrown by the <code>Action</code>
      */
-    protected abstract ForwardConfig execute(Context context,
+    protected abstract ForwardConfig execute(ActionContext context,
                                              Action action,
                                              ActionConfig actionConfig,
                                              ActionForm actionForm)

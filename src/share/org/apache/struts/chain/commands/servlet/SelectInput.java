@@ -17,9 +17,9 @@
 package org.apache.struts.chain.commands.servlet;
 
 
-import org.apache.commons.chain.Context;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.chain.commands.AbstractSelectInput;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
@@ -46,7 +46,7 @@ public class SelectInput extends AbstractSelectInput {
      * @param moduleConfig The <code>ModuleConfig</code> for this request
      * @param uri The module-relative URI to be the destination
      */
-    protected ForwardConfig forward(Context context,
+    protected ForwardConfig forward(ActionContext context,
                                     ModuleConfig moduleConfig,
                                     String uri) {
 

@@ -53,7 +53,7 @@ public abstract class AbstractSetContentType implements Command {
         // If the content type is configured, set it for the response
         String contentType = moduleConfig.getControllerConfig().getContentType();
         if (contentType != null) {
-            setContentType(context, contentType);
+            setContentType(actionCtx, contentType);
         }
         return (false);
 
@@ -69,7 +69,7 @@ public abstract class AbstractSetContentType implements Command {
      * @param context The <code>Context</code> for this request
      * @param contentType The content type for the response
      */
-    protected abstract void setContentType(Context context, String contentType);
+    protected abstract void setContentType(ActionContext context, String contentType);
 
 
 }

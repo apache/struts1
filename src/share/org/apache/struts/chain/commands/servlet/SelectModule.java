@@ -19,10 +19,10 @@ package org.apache.struts.chain.commands.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.chain.Context;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.commands.AbstractSelectModule;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 
 
@@ -41,7 +41,7 @@ public class SelectModule extends AbstractSelectModule {
     // ------------------------------------------------------- Protected Methods
 
 
-    protected String getPrefix(Context context) {
+    protected String getPrefix(ActionContext context) {
 
         // Identify the URI from which we will match a module prefix
         ServletActionContext sacontext = (ServletActionContext) context;

@@ -61,7 +61,7 @@ public abstract class AbstractSelectLocale implements Command {
         }
 
         // Retrieve and cache appropriate Locale for this request
-        Locale locale = getLocale(context);
+        Locale locale = getLocale(actionCtx);
         log.debug("set context locale to " + locale);
         actionCtx.setLocale(locale);
 
@@ -78,7 +78,7 @@ public abstract class AbstractSelectLocale implements Command {
      *
      * @param context The <code>Context</code> for this request
      */
-    protected abstract Locale getLocale(Context context);
+    protected abstract Locale getLocale(ActionContext context);
 
 
 }

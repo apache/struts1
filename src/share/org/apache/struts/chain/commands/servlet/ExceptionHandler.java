@@ -20,14 +20,13 @@ package org.apache.struts.chain.commands.servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.commands.AbstractExceptionHandler;
 import org.apache.struts.chain.commands.util.ClassUtils;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ExceptionConfig;
@@ -46,45 +45,14 @@ public class ExceptionHandler extends AbstractExceptionHandler {
 
     // ------------------------------------------------------ Instance Variables
 
-
-    private String actionFormKey = Constants.ACTION_FORM_KEY;
-
     private static final Log log = LogFactory.getLog(ExceptionHandler.class);
 
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionFormKey() {
-
-        return (this.actionFormKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionForm</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionFormKey The new context attribute key
-     */
-    public void setActionFormKey(String actionFormKey) {
-
-        this.actionFormKey = actionFormKey;
-
-    }
 
 
     // ------------------------------------------------------- Protected Methods
 
 
-    protected ForwardConfig handle(Context context,
+    protected ForwardConfig handle(ActionContext context,
                                    Exception exception,
                                    ExceptionConfig exceptionConfig,
                                    ActionConfig actionConfig,
@@ -93,8 +61,7 @@ public class ExceptionHandler extends AbstractExceptionHandler {
 
         // Look up the remaining properties needed for this handler
         ServletActionContext sacontext = (ServletActionContext) context;
-        ActionForm actionForm = (ActionForm)
-            sacontext.get(getActionFormKey());
+        ActionForm actionForm = (ActionForm) sacontext.getActionForm();
         HttpServletRequest request = sacontext.getRequest();
         HttpServletResponse response = sacontext.getResponse();
 

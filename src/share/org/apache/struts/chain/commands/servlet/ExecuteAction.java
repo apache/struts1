@@ -17,14 +17,14 @@
 package org.apache.struts.chain.commands.servlet;
 
 
-import org.apache.commons.chain.Context;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.commands.AbstractExecuteAction;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.chain.contexts.ServletActionContext;
 
 
 /**
@@ -52,7 +52,7 @@ public class ExecuteAction extends AbstractExecuteAction {
      *
      * @exception Exception if thrown by the <code>Action</code>
      */
-    protected ForwardConfig execute(Context context,
+    protected ForwardConfig execute(ActionContext context,
                                     Action action,
                                     ActionConfig actionConfig,
                                     ActionForm actionForm)

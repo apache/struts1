@@ -55,13 +55,14 @@ public abstract class AbstractSelectAction implements Command {
         ActionContext actionCtx = (ActionContext) context;
 
         // Identify the matching path for this request
-        String path = getPath(context);
+        String path = getPath(actionCtx);
 
         // Cache the corresponding ActonConfig instance
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
         ActionConfig actionConfig = moduleConfig.findActionConfig(path);
 
         if (actionConfig == null) {
+            //:TODO Shouldn't this be the responsibility of ModuleConfig?
             // Locate the mapping for unknown paths (if any)
             ActionConfig configs[] = moduleConfig.findActionConfigs();
             for (int i = 0; i < configs.length; i++) {
@@ -95,7 +96,7 @@ public abstract class AbstractSelectAction implements Command {
      * @exception IllegalArgumentException if no valid
      *  action can be identified for this request
      */
-    protected abstract String getPath(Context context);
+    protected abstract String getPath(ActionContext context);
 
 
 }

@@ -18,8 +18,8 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.chain.Context;
 import org.apache.struts.chain.commands.AbstractRequestNoCache;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 
 
@@ -36,7 +36,7 @@ public class RequestNoCache extends AbstractRequestNoCache {
     // ------------------------------------------------------- Protected Methods
 
 
-    protected void requestNoCache(Context context) {
+    protected void requestNoCache(ActionContext context) {
 
         ServletActionContext sacontext = (ServletActionContext) context;
         HttpServletResponse response = sacontext.getResponse();

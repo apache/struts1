@@ -53,7 +53,7 @@ public abstract class AbstractRequestNoCache implements Command {
             
         // If the module is configured for no caching, request no caching    
         if (moduleConfig.getControllerConfig().getNocache()) {
-            requestNoCache(context);
+            requestNoCache(actionCtx);
         }
         return (false);
 
@@ -68,7 +68,7 @@ public abstract class AbstractRequestNoCache implements Command {
      *
      * @param context The <code>Context</code> for this request
      */
-    protected abstract void requestNoCache(Context context);
+    protected abstract void requestNoCache(ActionContext context);
 
 
 }

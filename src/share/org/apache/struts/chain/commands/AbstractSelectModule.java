@@ -45,60 +45,6 @@ public abstract class AbstractSelectModule implements Command {
     private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
 
 
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the default
-     * <code>MessageResources</code> for the currently selected application
-     * module will be stored.</p>
-     */
-    public String getMessageResourcesKey() {
-
-        return (this.messageResourcesKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the default
-     * <code>MessageResources</code> for the currently selected application
-     * module will be stored.</p>
-     *
-     * @param messageResourcesKey The new context attribute key
-     */
-    public void setMessageResourcesKey(String messageResourcesKey) {
-
-        this.messageResourcesKey = messageResourcesKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module will be stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * module will be stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
-
 
     // ---------------------------------------------------------- Public Methods
 
@@ -118,25 +64,21 @@ public abstract class AbstractSelectModule implements Command {
     public boolean execute(Context context) throws Exception {
 
         // Identify the module prefix for the current module
-        String prefix = getPrefix(context);
+        ActionContext actionCtx = (ActionContext) context;
+        String prefix = getPrefix(actionCtx);
 
         // Cache the corresponding ModuleConfig and MessageResources instances
-        ActionContext actionCtx = (ActionContext) context;
         ModuleConfig moduleConfig = (ModuleConfig)
             actionCtx.getApplicationScope().get(Globals.MODULE_KEY + prefix);
         if (moduleConfig == null) {
             throw new IllegalArgumentException("No module config for prefix '" +
                                                prefix + "'");
         }
-        actionCtx.put(getModuleConfigKey(), moduleConfig);
-        actionCtx.getRequestScope().put(Globals.MODULE_KEY, moduleConfig);
+        actionCtx.setModuleConfig(moduleConfig);
         MessageResources messageResources = (MessageResources)
             actionCtx.getApplicationScope().get(Globals.MESSAGES_KEY + prefix);
         if (messageResources != null) {
-            actionCtx.put(getMessageResourcesKey(),
-                                         messageResources);
-            actionCtx.getRequestScope().put(Globals.MESSAGES_KEY,
-                                           messageResources);
+            actionCtx.setMessageResources(messageResources);
         }
 
         return (false);
@@ -156,7 +98,7 @@ public abstract class AbstractSelectModule implements Command {
      * @exception IllegalArgumentException if no valid
      *  ModuleConfig or MessageResources can be identified for this request
      */
-    protected abstract String getPrefix(Context context);
+    protected abstract String getPrefix(ActionContext context);
 
 
 }

@@ -60,7 +60,7 @@ public abstract class AbstractPerformInclude implements Command {
         String uri = moduleConfig.getPrefix() + include;
 
         // Perform the appropriate processing on this include uri
-        perform(context, uri);
+        perform(actionCtx, uri);
         return (true);
 
     }
@@ -76,7 +76,7 @@ public abstract class AbstractPerformInclude implements Command {
      * @param context The context for this request
      * @param include The forward to be performed
      */
-    protected abstract void perform(Context context,
+    protected abstract void perform(ActionContext context,
                                     String include)
         throws Exception;
 

@@ -17,13 +17,13 @@
 package org.apache.struts.chain.commands.servlet;
 
 
-import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.commands.AbstractValidateActionForm;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 
@@ -58,7 +58,7 @@ public class ValidateActionForm extends AbstractValidateActionForm {
      * @param context The context for this request
      * @param actionForm The form bean for this request
      */
-    protected ActionErrors validate(Context context,
+    protected ActionErrors validate(ActionContext context,
                                     ActionConfig actionConfig,
                                     ActionForm actionForm) {
 

@@ -20,8 +20,8 @@ package org.apache.struts.chain.commands.servlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.chain.Context;
 import org.apache.struts.chain.commands.AbstractPerformForward;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
@@ -49,14 +49,14 @@ public class PerformForward extends AbstractPerformForward {
      * @param context The context for this request
      * @param forwardConfig The forward to be performed
      */
-    protected void perform(Context context,ForwardConfig forwardConfig)
+    protected void perform(ActionContext context,ForwardConfig forwardConfig)
         throws Exception {
 
         ServletActionContext sacontext = (ServletActionContext) context;
         String forwardPath = forwardConfig.getPath();
         String uri = null;
 
-        ModuleConfig moduleConfig  = (ModuleConfig) context.get(getModuleConfigKey());
+        ModuleConfig moduleConfig  = context.getModuleConfig();
         // Resolve module-relative paths
         if (forwardPath.startsWith("/")) {
             uri = RequestUtils.forwardURL(sacontext.getRequest(),

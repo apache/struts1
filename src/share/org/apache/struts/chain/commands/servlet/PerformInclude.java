@@ -19,9 +19,10 @@ package org.apache.struts.chain.commands.servlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.chain.Context;
-import org.apache.struts.chain.contexts.ServletActionContext;
+
 import org.apache.struts.chain.commands.AbstractPerformInclude;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
 
@@ -45,7 +46,7 @@ public class PerformInclude extends AbstractPerformInclude {
      * @param context The context for this request
      * @param uri The uri to be included
      */
-    protected void perform(Context context, String uri)
+    protected void perform(ActionContext context, String uri)
         throws Exception {
 
         ServletActionContext swcontext = (ServletActionContext) context;

@@ -114,7 +114,7 @@ public abstract class AbstractCreateActionForm implements Command {
         }
 
         instance = createNewFormInstance(actionCtx, actionConfig, formBeanConfig);
-
+        actionCtx.setActionForm(instance);
 
         /** @todo Perhaps this logic could be moved into the ActionContext implementation,
          * or changed to a two-arg form: ActionContext.setActionForm(ActionForm, String)
@@ -132,6 +132,10 @@ public abstract class AbstractCreateActionForm implements Command {
     }
 
     /**
+     * Request the creation of a new ActionForm instance based on the information in 
+     * the <code>ActionContext</code>, <code>ActionConfig</code>, and <code>FormBeanConfig</code>.
+     * :TODO if FormBeanConfig.createActionForm took ActionContext as an argument instead of Servlet,
+     * this method wouldn't need to be abstract.
      * @param actionCtx
      * @param actionConfig
      * @param formBeanConfig

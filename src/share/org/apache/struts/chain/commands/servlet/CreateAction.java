@@ -44,20 +44,18 @@ public class CreateAction extends org.apache.struts.chain.commands.AbstractCreat
     private static final Log log = LogFactory.getLog(CreateAction.class);
 
 
-    /* (non-Javadoc)
-     * @see org.apache.struts.chain.commands.CreateAction#getAction(org.apache.commons.chain.Context, java.lang.String, org.apache.struts.config.ActionConfig)
+    /* :TODO The Action class' dependency on having its "servlet" property set requires this
+     * API-dependent subclass of AbstractCreateAction.  
      */
     protected synchronized Action getAction(ActionContext context, String type,
             ActionConfig actionConfig) throws Exception  {
 
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
-        ServletActionContext
-        saContext = (ServletActionContext) context;
         String actionsKey = Constants.ACTIONS_KEY + moduleConfig.getPrefix();
-        Map actions = (Map) saContext.getApplicationScope().get(actionsKey);
+        Map actions = (Map) context.getApplicationScope().get(actionsKey);
         if (actions == null) {
             actions = new HashMap();
-            saContext.getApplicationScope().put(actionsKey, actions);
+            context.getApplicationScope().put(actionsKey, actions);
         }
 
         Action action = null;
@@ -67,6 +65,7 @@ public class CreateAction extends org.apache.struts.chain.commands.AbstractCreat
             if (action == null) {
                 log.info("Initialize action of type: " + type);
                 action = (Action) ClassUtils.getApplicationInstance(type);
+                ServletActionContext saContext = (ServletActionContext) context;
                 ActionServlet actionServlet = saContext.getActionServlet();
                 action.setServlet(actionServlet);
                 actions.put(type, action);

@@ -21,7 +21,7 @@ import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
 /**
@@ -39,66 +39,9 @@ public class ExecuteCommand implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
-
-
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String validKey = Constants.VALID_KEY;
-
     private static final Log log =
         LogFactory.getLog(ExecuteCommand.class);
 
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * validity flag for this request is stored.</p>
-     */
-    public String getValidKey() {
-
-        return (this.validKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * validity flag for this request is stored.</p>
-     *
-     * @param validKey The new context attribute key
-     */
-    public void setValidKey(String validKey) {
-
-        this.validKey = validKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -114,9 +57,10 @@ public class ExecuteCommand implements Command {
      */
     public boolean execute(Context context) throws Exception {
 
-        if (shouldProcess(context)) {
+        ActionContext actionCtx = (ActionContext) context;
+        if (shouldProcess(actionCtx)) {
 
-            Command command = getCommand(context);
+            Command command = getCommand(actionCtx);
 
             if (command != null) {
                 return (command.execute(context));
@@ -134,9 +78,9 @@ public class ExecuteCommand implements Command {
      * @param context
      * @return
      */
-    protected boolean shouldProcess(Context context) {
+    protected boolean shouldProcess(ActionContext context) {
         // Skip processing if the current request is not valid
-        Boolean valid = (Boolean) context.get(getValidKey());
+        Boolean valid = context.getFormValid();
         return ((valid != null) && valid.booleanValue());
         
     }
@@ -148,10 +92,9 @@ public class ExecuteCommand implements Command {
      * @return a <code>Command</code> to execute, or null if none is specified
      * or if the specified command cannot be found.
      */
-    protected Command getCommand(Context context) {
+    protected Command getCommand(ActionContext context) {
 
-        ActionConfig actionConfig = (ActionConfig)
-                                    context.get(getActionConfigKey());
+        ActionConfig actionConfig = context.getActionConfig();
 
         String commandName = actionConfig.getCommand();
 

@@ -25,6 +25,7 @@ import org.apache.commons.chain.Filter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
 
 
 /**
@@ -101,29 +102,6 @@ public class ExceptionCatcher implements Filter {
     }
 
 
-    /**
-     * <p>Return the context attribute key under which any
-     * thrown exception will be stored.</p>
-     */
-    public String getExceptionKey() {
-
-        return (this.exceptionKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which any
-     * thrown exception will be stored.</p>
-     *
-     * @param exceptionKey The new context attribute key
-     */
-    public void setExceptionKey(String exceptionKey) {
-
-        this.exceptionKey = exceptionKey;
-
-    }
-
 
     // ---------------------------------------------------------- Public Methods
 
@@ -137,8 +115,8 @@ public class ExceptionCatcher implements Filter {
      * @return <code>false</code> so that processing continues
      */
     public boolean execute(Context context) throws Exception {
-
-        context.remove(getExceptionKey());
+        ActionContext actionCtx = (ActionContext) context;
+        actionCtx.setException(null);
         return (false);
 
     }
@@ -156,7 +134,6 @@ public class ExceptionCatcher implements Filter {
      *  <code>null</code>
      */ 
     public boolean postprocess(Context context, Exception exception) {
-
         // Do nothing if there was no exception thrown
         if (exception == null) {
             return (false);
@@ -166,34 +143,12 @@ public class ExceptionCatcher implements Filter {
         if (log.isDebugEnabled()) {
             log.debug("Attempting to handle a thrown exception");
         }
-        context.put(getExceptionKey(), exception);
+        ActionContext actionCtx = (ActionContext) context;
+        actionCtx.setException(exception);
 
         // Execute the specified command
         try {
-            String catalogName = getCatalogName();
-            Catalog catalog = null;
-            if (catalogName == null) {
-                catalog = CatalogFactory.getInstance().getCatalog();
-                if (catalog == null) {
-                    log.error("Cannot find default catalog");
-                    throw new IllegalArgumentException
-                        ("Cannot find default catalog");
-                }
-            } else {
-                catalog = CatalogFactory.getInstance().getCatalog(catalogName);
-                if (catalog == null) {
-                    log.error("Cannot find catalog '" + catalogName + "'");
-                    throw new IllegalArgumentException
-                        ("Cannot find catalog '" + catalogName + "'");
-                }
-            }
-            String exceptionCommand = getExceptionCommand();
-            if (exceptionCommand == null) {
-                log.error("No exceptionCommand property specified");
-                throw new IllegalStateException
-                    ("No exceptionCommand property specfied");
-            }
-            Command command = catalog.getCommand(exceptionCommand);
+            Command command = lookupExceptionCommand();
             if (command == null) {
                 log.error("Cannot find exceptionCommand '" +
                           exceptionCommand + "'");
@@ -215,6 +170,32 @@ public class ExceptionCatcher implements Filter {
 
     }
 
-
+    protected Command lookupExceptionCommand() throws IllegalArgumentException, IllegalStateException {
+        String catalogName = getCatalogName();
+        Catalog catalog = null;
+        if (catalogName == null) {
+            catalog = CatalogFactory.getInstance().getCatalog();
+            if (catalog == null) {
+                log.error("Cannot find default catalog");
+                throw new IllegalArgumentException
+                    ("Cannot find default catalog");
+            }
+        } else {
+            catalog = CatalogFactory.getInstance().getCatalog(catalogName);
+            if (catalog == null) {
+                log.error("Cannot find catalog '" + catalogName + "'");
+                throw new IllegalArgumentException
+                    ("Cannot find catalog '" + catalogName + "'");
+            }
+        }
+        String exceptionCommand = getExceptionCommand();
+        if (exceptionCommand == null) {
+            log.error("No exceptionCommand property specified");
+            throw new IllegalStateException
+                ("No exceptionCommand property specfied");
+        }
+        return catalog.getCommand(exceptionCommand);
+        
+    }
 
 }

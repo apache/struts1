@@ -18,11 +18,12 @@ package org.apache.struts.chain.commands.servlet;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.chain.Context;
-import org.apache.struts.chain.commands.AbstractSelectAction;
+
 import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.chain.commands.AbstractSelectAction;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**
@@ -38,7 +39,7 @@ public class SelectAction extends AbstractSelectAction {
     // ------------------------------------------------------- Protected Methods
 
 
-    protected String getPath(Context context) {
+    protected String getPath(ActionContext context) {
 
         ServletActionContext saContext = (ServletActionContext) context;
         HttpServletRequest request = saContext.getRequest();

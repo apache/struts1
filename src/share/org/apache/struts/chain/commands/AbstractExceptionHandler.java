@@ -21,7 +21,7 @@ import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -42,118 +42,9 @@ public abstract class AbstractExceptionHandler implements Command {
     // ------------------------------------------------------ Instance Variables
 
 
-    private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
-    private String exceptionKey = Constants.EXCEPTION_KEY;
-    private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
-
     private static final Log log =
         LogFactory.getLog(AbstractExceptionHandler.class);
 
-
-    // -------------------------------------------------------------- Properties
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getActionConfigKey() {
-
-        return (this.actionConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ActionConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param actionConfigKey The new context attribute key
-     */
-    public void setActionConfigKey(String actionConfigKey) {
-
-        this.actionConfigKey = actionConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which any
-     * thrown exception will be stored.</p>
-     */
-    public String getExceptionKey() {
-
-        return (this.exceptionKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which any
-     * thrown exception will be stored.</p>
-     *
-     * @param exceptionKey The new context attribute key
-     */
-    public void setExceptionKey(String exceptionKey) {
-
-        this.exceptionKey = exceptionKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getForwardConfigKey() {
-
-        return (this.forwardConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ForwardConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param forwardConfigKey The new context attribute key
-     */
-    public void setForwardConfigKey(String forwardConfigKey) {
-
-        this.forwardConfigKey = forwardConfigKey;
-
-    }
-
-
-    /**
-     * <p>Return the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * action is stored.</p>
-     */
-    public String getModuleConfigKey() {
-
-        return (this.moduleConfigKey);
-
-    }
-
-
-    /**
-     * <p>Set the context attribute key under which the
-     * <code>ModuleConfig</code> for the currently selected application
-     * action is stored.</p>
-     *
-     * @param moduleConfigKey The new context attribute key
-     */
-    public void setModuleConfigKey(String moduleConfigKey) {
-
-        this.moduleConfigKey = moduleConfigKey;
-
-    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -172,22 +63,18 @@ public abstract class AbstractExceptionHandler implements Command {
      *  else <code>true</code> to complete processing
      */
     public boolean execute(Context context) throws Exception {
-
+        ActionContext actionCtx = (ActionContext) context;
         // Look up the exception that was thrown
-        Exception exception = (Exception)
-            context.get(getExceptionKey());
+        Exception exception = actionCtx.getException();
         if (exception == null) {
-            log.warn("No Exception found under key '" +
-                     getExceptionKey() + "'");
+            log.warn("No Exception found in ActionContext");
             return (true);
         }
 
         // Look up the local or global exception handler configuration
         ExceptionConfig exceptionConfig = null;
-        ActionConfig actionConfig = (ActionConfig)
-            context.get(getActionConfigKey());
-        ModuleConfig moduleConfig = (ModuleConfig)
-            context.get(getModuleConfigKey());
+        ActionConfig actionConfig = actionCtx.getActionConfig();
+        ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
 
         if (actionConfig != null) {
@@ -202,10 +89,10 @@ public abstract class AbstractExceptionHandler implements Command {
             throw exception;
         }
         ForwardConfig forwardConfig =
-            handle(context, exception, exceptionConfig,
+            handle(actionCtx, exception, exceptionConfig,
                    actionConfig, moduleConfig);
         if (forwardConfig != null) {
-            context.put(getForwardConfigKey(), forwardConfig);
+            actionCtx.setForwardConfig(forwardConfig);
             return (false);
         } else {
             return (true);
@@ -229,7 +116,7 @@ public abstract class AbstractExceptionHandler implements Command {
      * @return the <code>ForwardConfig</code> to be processed next (if any),
      *  or <code>null</code> if processing has been completed
      */
-    protected abstract ForwardConfig handle(Context context,
+    protected abstract ForwardConfig handle(ActionContext context,
                                             Exception exception,
                                             ExceptionConfig exceptionConfig,
                                             ActionConfig actionConfig,
