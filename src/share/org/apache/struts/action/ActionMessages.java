@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.9 2003/04/15 00:14:28 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/04/15 00:14:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.10 2003/08/12 00:31:46 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/08/12 00:31:46 $
  *
  * ====================================================================
  *
@@ -87,10 +87,9 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.9 $ $Date: 2003/04/15 00:14:28 $
+ * @version $Revision: 1.10 $ $Date: 2003/08/12 00:31:46 $
  * @since Struts 1.1
  */
-
 public class ActionMessages implements Serializable {
 
     // ----------------------------------------------------- Manifest Constants
@@ -179,6 +178,7 @@ public class ActionMessages implements Serializable {
         if (messages == null) {
             return;
         }
+        
         // loop over properties
         Iterator props = messages.properties();
         while (props.hasNext()) {
@@ -200,15 +200,6 @@ public class ActionMessages implements Serializable {
 
         messages.clear();
 
-    }
-
-    /**
-     * Return <code>true</code> if there are no messages recorded
-     * in this collection, or <code>false</code> otherwise.
-     * @deprecated Use isEmpty instead.
-     */
-    public boolean empty() {
-        return (this.isEmpty());
     }
     
     /**
