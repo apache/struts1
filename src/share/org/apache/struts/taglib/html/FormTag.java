@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.17 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.18 2002/01/28 06:07:38 martinc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/01/28 06:07:38 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.18 $ $Date: 2002/01/28 06:07:38 $
  */
 
 public class FormTag extends TagSupport {
@@ -113,14 +113,6 @@ public class FormTag extends TagSupport {
      * The content encoding to be used on a POST submit.
      */
     protected String enctype = null;
-
-    public String getEnctype() {
-	return (this.enctype);
-    }
-
-    public void setEnctype(String enctype) {
-	this.enctype = enctype;
-    }
 
 
     /**
@@ -210,6 +202,24 @@ public class FormTag extends TagSupport {
      */
     protected String type = null;
 
+    /**
+     * Temporary copy of the 'name' property, used to ensure we don't
+     * modify tag attributes between uses of the same instance.
+     */
+    private String savedName = null;
+
+    /**
+     * Temporary copy of the 'scope' property, used to ensure we don't
+     * modify tag attributes between uses of the same instance.
+     */
+    private String savedScope = null;
+
+    /**
+     * Temporary copy of the 'type' property, used to ensure we don't
+     * modify tag attributes between uses of the same instance.
+     */
+    private String savedType = null;
+
 
     // ------------------------------------------------------------- Properties
 
@@ -235,6 +245,25 @@ public class FormTag extends TagSupport {
 
     }
 
+    /**
+     * Return the content encoding used when submitting this form.
+     */
+    public String getEnctype() {
+
+	return (this.enctype);
+
+    }
+
+    /**
+     * Set the content encoding used when submitting this form.
+     *
+     * @param enctype The new content encoding
+     */
+    public void setEnctype(String enctype) {
+
+	this.enctype = enctype;
+
+    }
 
     /**
      * Return the focus field name for this form.
@@ -489,6 +518,12 @@ public class FormTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
+        // Save the name, scope and type property values so that we can restore
+        // them in doEndTag(). Needed to allow tag reuse to work correctly.
+        savedName = name;
+        savedScope = scope;
+        savedType = type;
+
         // Look up the form bean name, scope, and type if necessary
         lookup();
 
@@ -638,6 +673,12 @@ public class FormTag extends TagSupport {
 	    throw new JspException
 	        (messages.getMessage("common.io", e.toString()));
 	}
+
+        // Restore original property values used to invoke this tag. Needed
+        // for tag reuse to work correctly.
+        name = savedName;
+        scope = savedScope;
+        type = savedType;
 
 	// Continue processing this page
 	return (EVAL_PAGE);
