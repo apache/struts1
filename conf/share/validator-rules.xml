@@ -233,6 +233,17 @@
               depends="float"
                   msg="errors.range"/>
 
+      <validator name="doubleRange"
+            classname="org.apache.struts.validator.FieldChecks"
+               method="validateDoubleRange"
+         methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       javax.servlet.http.HttpServletRequest"
+              depends="double"
+                  msg="errors.range"/>
+
 
       <validator name="creditCard"
             classname="org.apache.struts.validator.FieldChecks"
