@@ -1,64 +1,22 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.21 2004/01/13 12:48:44 husted Exp $
- * $Revision: 1.21 $
- * $Date: 2004/01/13 12:48:44 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.22 2004/03/12 02:32:41 husted Exp $
+ * $Revision: 1.22 $
+ * $Date: 2004/03/12 02:32:41 $
  *
- * ====================================================================
+ * Copyright 2000-2004 Apache Software Foundation
  *
- * The Apache Software License, Version 1.1
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
- * reserved.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- *
- * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowledgement:
- *       "This product includes software developed by the
- *        Apache Software Foundation (http://www.apache.org/)."
- *    Alternately, this acknowlegement may appear in the software itself,
- *    if and wherever such third-party acknowlegements normally appear.
- *
- * 4. The names "The Jakarta Project", "Struts", and "Apache Software
- *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written
- *    permission, please contact apache@apache.org.
- *
- * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their name, without prior written
- *    permission of the Apache Software Foundation.
- *
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
- * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
- * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- * ====================================================================
- *
- * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
- * information on the Apache Software Foundation, please see
- * <http://www.apache.org/>.
- *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package org.apache.struts.webapp.example;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,62 +24,58 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-import org.apache.struts.util.ModuleException;
 
 /**
- * Implementation of <strong>Action</strong> that validates a user logon.
+ * <p>Validate a user logon.</p>
  *
- * @version $Revision: 1.21 $ $Date: 2004/01/13 12:48:44 $
+ * @version $Revision: 1.22 $ $Date: 2004/03/12 02:32:41 $
  */
-public final class LogonAction extends Action {
-
-    // ----------------------------------------------------- Instance Variables
+public final class LogonAction extends BaseAction {
 
     /**
-     * The <code>Log</code> instance for this application.
+     * Name of username field ["username"].
      */
-    private Log log = LogFactory.getLog("org.apache.struts.webapp.Example");
+    private static String USERNAME = "username";
 
-    // --------------------------------------------------------- Public Methods
+    /**
+     * Name of password field ["password"].
+     */
+    private static String PASSWORD = "password";
 
-        // See superclass for Javadoc
-    public ActionForward execute(
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws Exception {
+    // ------------------------------------------------------ Protected Methods
 
-        // Extract attributes we will need
+    /**
+     * <p>Confirm user credentials. Post any errors and return User object
+     * (or null).</p>
+     *
+     * @param database Database in which to look up the user
+     * @param username Username specified on the logon form
+     * @param password Password specified on the logon form
+     * @param errors ActionMessages queue to passback errors
+     *
+     * @return Validated User object or null
+     * @throws ExpiredPasswordException to be handled by Struts exception
+     * processor via the action-mapping
+     */
+    protected User getUser(UserDatabase database, String username,
+                           String password, ActionMessages errors) throws ExpiredPasswordException {
+
         User user = null;
-
-        // Validate the request parameters specified by the user
-        ActionMessages errors = new ActionMessages();
-        String username = (String) PropertyUtils.getSimpleProperty(form, "username");
-        String password = (String) PropertyUtils.getSimpleProperty(form, "password");
-        UserDatabase database =
-            (UserDatabase) servlet.getServletContext().getAttribute(
-                Constants.DATABASE_KEY);
-                
         if (database == null){
             errors.add(
                 ActionMessages.GLOBAL_MESSAGE,
                 new ActionMessage("error.database.missing"));
-        } else {
-            user = getUser(database, username);
-            
-            if ((user != null) && !user.getPassword().equals(password)){
+        }
+        else {
+            user = database.findUser(username);
+            if ((user != null) && !user.getPassword().equals(password)) {
                 user = null;
             }
-                
             if (user == null) {
                 errors.add(
                     ActionMessages.GLOBAL_MESSAGE,
@@ -129,13 +83,20 @@ public final class LogonAction extends Action {
             }
         }
 
-        // Report any errors we have discovered back to the original form
-        if (!errors.isEmpty()) {
-            this.saveErrors(request, errors);
-            return (mapping.getInputForward());
-        }
+        return user;
 
-        // Save our logged-in user in the session
+    }
+
+
+    /**
+     * <p>Store User object in client session.
+     * If user object is null, any existing user object is removed.</p>
+     *
+     * @param request The request we are processing
+     * @param user The user object returned from the database
+     */
+    protected void SaveUser(HttpServletRequest request, User user) {
+
         HttpSession session = request.getSession();
         session.setAttribute(Constants.USER_KEY, user);
         if (log.isDebugEnabled()) {
@@ -146,45 +107,52 @@ public final class LogonAction extends Action {
                     + session.getId());
         }
 
-        // Remove the obsolete form bean
-        if (mapping.getAttribute() != null) {
-            if ("request".equals(mapping.getScope()))
-                request.removeAttribute(mapping.getAttribute());
-            else
-                session.removeAttribute(mapping.getAttribute());
-        }
-
-        // Forward control to the specified success URI
-        return (mapping.findForward("success"));
-
     }
 
-    // ------------------------------------------------------ Protected Methods
+    // --------------------------------------------------------- Public Methods
 
     /**
-     * Look up the user, throwing an exception to simulate business logic
-     * rule exceptions.
+     * Use "username" and "password" fields from ActionForm to retrieve a User
+     * object from the database. If credentials are not valid, or database
+     * has disappeared, post error messages and forward to input.
      *
-     * @param database Database in which to look up the user
-     * @param username Username specified on the logon form
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
      *
-     * @exception ModuleException if a business logic rule is violated
+     * @exception Exception if the application business logic throws
+     *  an exception
      */
-    public User getUser(UserDatabase database, String username)
-        throws ModuleException {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
-        // Force an ArithmeticException which can be handled explicitly
-        if ("arithmetic".equals(username)) {
-            throw new ArithmeticException();
+        // Local variables
+        UserDatabase database = getUserDatabase(request);
+        String username = (String) PropertyUtils.getSimpleProperty(form,
+                USERNAME);
+        String password = (String) PropertyUtils.getSimpleProperty(form,
+                PASSWORD);
+        ActionMessages errors = new ActionMessages();
+
+        // Retrieve user
+        User user = getUser(database,username,password,errors);
+
+        // Save (or clear) user object
+        SaveUser(request,user);
+
+        // Report back any errors, and exit if any
+        if (!errors.isEmpty()) {
+            this.saveErrors(request, errors);
+            return (mapping.getInputForward());
         }
 
-        // Force an application-specific exception which can be handled
-        if ("expired".equals(username)) {
-            throw new ExpiredPasswordException(username);
-        }
-
-        // Look up and return the specified user
-        return (database.findUser(username));
+        // Otherwise, return "success"
+        return (findSuccess(mapping));
 
     }
 

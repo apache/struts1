@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.7 2004/03/11 03:26:02 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/11 03:26:02 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryUserDatabase.java,v 1.8 2004/03/12 02:32:41 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/03/12 02:32:41 $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -35,6 +35,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.webapp.example.Subscription;
 import org.apache.struts.webapp.example.User;
 import org.apache.struts.webapp.example.UserDatabase;
+import org.apache.struts.webapp.example.ExpiredPasswordException;
 import org.xml.sax.Attributes;
 
 
@@ -42,11 +43,11 @@ import org.xml.sax.Attributes;
  * <p>Concrete implementation of {@link UserDatabase} for an in-memory
  * database backed by an XML data file.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/11 03:26:02 $
+ * @version $Revision: 1.8 $ $Date: 2004/03/12 02:32:41 $
  * @since Struts 1.1
  */
 
-public final class MemoryUserDatabase implements UserDatabase {
+public class MemoryUserDatabase implements UserDatabase {
 
 
     // ----------------------------------------------------------- Constructors
@@ -94,11 +95,7 @@ public final class MemoryUserDatabase implements UserDatabase {
     // --------------------------------------------------------- Public Methods
 
 
-    /**
-     * <p>Finalize access to the underlying persistence layer.</p>
-     *
-     * @exception Exception if a database access error occurs
-     */
+    // See interface for Javadoc
     public void close() throws Exception {
 
         save();
@@ -106,15 +103,7 @@ public final class MemoryUserDatabase implements UserDatabase {
     }
 
 
-    /**
-     * <p>Create and return a new {@link User} defined in this user database.
-     * </p>
-     *
-     * @param username Username of the new user
-     *
-     * @exception IllegalArgumentException if the specified username
-     *  is not unique
-     */
+    // See interface for Javadoc
     public User createUser(String username) {
 
         synchronized (users) {
@@ -135,13 +124,8 @@ public final class MemoryUserDatabase implements UserDatabase {
     }
 
 
-    /**
-     * <p>Return the existing {@link User} with the specified username,
-     * if any; otherwise return <code>null</code>.</p>
-     *
-     * @param username Username of the user to retrieve
-     */
-    public User findUser(String username) {
+    // See interface for Javadoc
+    public User findUser(String username) throws ExpiredPasswordException {
 
         synchronized (users) {
             return ((User) users.get(username));
@@ -150,9 +134,7 @@ public final class MemoryUserDatabase implements UserDatabase {
     }
 
 
-    /**
-     * <p>Return the set of {@link User}s defined in this user database.</p>
-     */
+    // See interface for Javadoc
     public User[] findUsers() {
 
         synchronized (users) {
@@ -163,11 +145,7 @@ public final class MemoryUserDatabase implements UserDatabase {
     }
 
 
-    /**
-     * <p>Initiate access to the underlying persistence layer.</p>
-     *
-     * @exception Exception if a database access error occurs
-     */
+    // See interface for Javadoc
     public void open() throws Exception {
 
         FileInputStream fis = null;
@@ -221,14 +199,7 @@ public final class MemoryUserDatabase implements UserDatabase {
     }
 
 
-    /**
-     * Remove the specified {@link User} from this database.
-     *
-     * @param user User to be removed
-     *
-     * @exception IllegalArgumentException if the specified user is not
-     *  associated with this database
-     */
+    // See interface for Javadoc
     public void removeUser(User user) {
 
         if (!(this == user.getDatabase())) {
@@ -245,11 +216,7 @@ public final class MemoryUserDatabase implements UserDatabase {
     }
 
 
-    /**
-     * <p>Save any pending changes to the underlying persistence layer.</p>
-     *
-     * @exception Exception if a database access error occurs
-     */
+    // See interface for Javadoc
     public void save() throws Exception {
 
         if (log.isDebugEnabled()) {

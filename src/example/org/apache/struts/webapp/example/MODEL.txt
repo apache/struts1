@@ -31,7 +31,6 @@
 + ReplyToAddress: String
 + DataBase: UserDatabase
 + Subscription: Subscription[]
-+ ErrorMessage: String !NEW!
 ----
 + CreateSubscription(Host:String): Subscription
 + FindSubscription(Host:String):Subscription
@@ -77,7 +76,6 @@
 - replyToAddress:String
 - database:MemoryDataBAse
 - subscriptions:HashMap
-- errorMessage:String; !NEW!
 ----
 + MemoryUser(database:MemoryUserDatabase:* :User members
 database username:String)

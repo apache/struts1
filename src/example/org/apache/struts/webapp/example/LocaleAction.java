@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LocaleAction.java,v 1.1 2004/03/10 03:14:31 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2004/03/10 03:14:31 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LocaleAction.java,v 1.2 2004/03/12 02:32:41 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/03/12 02:32:41 $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -32,7 +32,7 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * Change user's Struts @link(java.util.Locale.
+ * <p>Change user's Struts @link(java.util.Locale).</p>
  */
 public final class LocaleAction extends BaseAction {
 
@@ -46,27 +46,30 @@ public final class LocaleAction extends BaseAction {
     }
 
     /**
-     * Parameter for @link(java.util.Locale) language property.
+     * <p>Parameter for @link(java.util.Locale) language property.
+     * ["language"]</p>
      */
     private static final String LANGUAGE = "language" ;
 
     /**
-     * Parameter for @link(java.util.Locale) country property.
+     * <p>Parameter for @link(java.util.Locale) country property.
+     * ["country"]</p>
      */
     private static final String COUNTRY = "country";
 
     /**
-     * Parameter for response page URI.
+     * <p>Parameter for response page URI. ["page"]</p>
      */
     private static final String PAGE = "page";
 
     /**
-     * Parameter for response forward name.
+     * <p>Parameter for response forward name.
+     * ["forward"]</p>
      */
     private static final String FORWARD = "forward";
 
     /**
-     * Logging message if LocaleAction is missing a target parameter.
+     * <p>Logging message if LocaleAction is missing a target parameter.</p>
      */
     private static final String LOCALE_LOG = "LocaleAction: Missing page or forward parameter";
 
