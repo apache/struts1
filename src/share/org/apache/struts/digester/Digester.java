@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.17 2001/04/14 02:11:02 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2001/04/14 02:11:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.18 2001/04/15 22:02:27 craigmcc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2001/04/15 22:02:27 $
  *
  * ====================================================================
  * 
@@ -102,7 +102,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.17 $ $Date: 2001/04/14 02:11:02 $
+ * @version $Revision: 1.18 $ $Date: 2001/04/15 22:02:27 $
  */
 
 public class Digester extends HandlerBase {
@@ -1005,7 +1005,6 @@ public class Digester extends HandlerBase {
 	match = "";
         bodyTexts.clear();
         stack.clear();
-	root = null;
 
     }
 
@@ -1051,8 +1050,6 @@ public class Digester extends HandlerBase {
     public Object pop() {
 
 	try {
-	    if (stack.size() == 1)
-		root = stack.peek();
 	    return (stack.pop());
 	} catch (EmptyStackException e) {
 	    return (null);
@@ -1068,6 +1065,8 @@ public class Digester extends HandlerBase {
      */
     public void push(Object object) {
 
+        if (stack.size() == 0)
+            root = object;
 	stack.push(object);
 
     }
