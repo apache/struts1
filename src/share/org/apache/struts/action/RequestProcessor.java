@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.2 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.3 2002/02/07 14:02:22 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/02/07 14:02:22 $
  *
  * ====================================================================
  *
@@ -92,7 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.3 $ $Date: 2002/02/07 14:02:22 $
  * @since Struts 1.1
  */
 
@@ -166,9 +166,11 @@ public class RequestProcessor {
      *
      * @param servlet The ActionServlet we are associated with
      * @param appConfig The ApplicationConfig we are associated with.
+     * @throws ServletException If an error occor during initialization
      */
     public void init(ActionServlet servlet,
-                     ApplicationConfig appConfig) {
+                     ApplicationConfig appConfig)
+           throws ServletException {
 
         synchronized (actions) {
             actions.setFast(false);
@@ -393,15 +395,7 @@ public class RequestProcessor {
             if (path.startsWith("/") && !forward.getContextRelative()) {
                 path = appConfig.getPrefix() + path;
             }
-            RequestDispatcher rd =
-                getServletContext().getRequestDispatcher(path);
-            if (rd == null) {
-                response.sendError
-                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                     getInternal().getMessage("requestDispatcher", path));
-                return;
-            }
-            rd.forward(request, response);
+            doForward( path, request, response);
         }
 
     }
@@ -538,21 +532,13 @@ public class RequestProcessor {
 
         // Construct a request dispatcher for the specified path
         String uri = appConfig.getPrefix() + forward;
-        RequestDispatcher rd =
-            getServletContext().getRequestDispatcher(uri);
-        if (rd == null) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               getInternal().getMessage("requestDispatcher",
-                                                        uri));
-            return (false);
-        }
 
         // Delegate the processing of this request
         // FIXME - exception handling?
         if (getDebug() >= 2) {
             log(" Delegating via forward to '" + uri + "'");
         }
-        rd.forward(request, response);
+        doForward(uri, request, response);
         return (false);
 
     }
@@ -585,21 +571,13 @@ public class RequestProcessor {
 
         // Construct a request dispatcher for the specified path
         String uri = appConfig.getPrefix() + include;
-        RequestDispatcher rd =
-            getServletContext().getRequestDispatcher(uri);
-        if (rd == null) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                               getInternal().getMessage("requestDispatcher",
-                                                        uri));
-            return (false);
-        }
 
         // Delegate the processing of this request
         // FIXME - exception handling?
         if (getDebug() >= 2) {
             log(" Delegating via forward to '" + uri + "'");
         }
-        rd.include(request, response);
+        doInclude(uri, request, response);
         return (false);
 
     }
@@ -959,19 +937,54 @@ public class RequestProcessor {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
         String uri = appConfig.getPrefix() + input;
+        doForward(uri, request, response);
+        return (false);
+
+    }
+
+    /**
+     * Do a forward to specified uri using request dispatcher.
+     * This method is used by all internal method needi
+     * @param uri Uri or Definition name to forward
+     * @param request Current page request
+     * @param response Current page response
+     * @since 1.1
+     * @author Cedric Dumoulin
+     */
+  protected void doForward(String uri, HttpServletRequest request, HttpServletResponse response)
+ 	  throws IOException, ServletException
+    {
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                getInternal().getMessage
                                ("requestDispatcher", uri));
-            return (false);
+            return;
         }
         rd.forward(request, response);
-        return (false);
-
     }
 
-
+    /**
+     * Do an include of specified uri using request dispatcher.
+     * This method is used by all internal method needi
+     * @param uri Uri of page to include
+     * @param request Current page request
+     * @param response Current page response
+     * @since 1.1
+     * @author Cedric Dumoulin
+     */
+  protected void doInclude(String uri, HttpServletRequest request, HttpServletResponse response)
+ 	  throws IOException, ServletException
+    {
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
+        if (rd == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                               getInternal().getMessage
+                               ("requestDispatcher", uri));
+            return;
+        }
+        rd.include(request, response);
+    }
     // -------------------------------------------------------- Support Methods
 
 
@@ -1005,7 +1018,6 @@ public class RequestProcessor {
         return (servlet.getServletContext());
 
     }
-
 
     /**
      * Log the specified message to the servlet context log for this
