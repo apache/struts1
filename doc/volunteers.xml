@@ -14,7 +14,7 @@ is to help make Struts work even better, both for themselves and for rest of the
 The final decision of what becomes part of the official distribution is made by a group of
 <a href="#committers">Committers</a>. For more about Meritocracy, see the
 <a href="http://jakarta.apache.org/site/roles.html">Management page</a> on the
-Apache Jarakta Website.</p>
+Apache Jakarta Website.</p>
 </section>
 
 <section name="Source Code Contributors" href="contributors.source">
@@ -136,7 +136,7 @@ Jason Hunter's</a> article about the Problems with JSP. Jason and I get along
 fine, even though we have different preferences about presentation
 technologies.  Besides being the author of a very popular book about servlets,
 with a second edition coming soon, Jason is also the representative for the
-Apache Software Foundation on the Executive Committe of the Java Community
+Apache Software Foundation on the Executive Committee of the Java Community
 Process.</p>
 
 <p>Personally, I live in Portland, Oregon (even though my team at Sun is mostly in
@@ -288,38 +288,37 @@ develop over time.  The validation project was eventually incorporated
 into Struts and the core was moved to Jakarta Commons. I'm happy to see
 Struts continue to grow and develop.</p>
 
-<p>I currently am employed at Forbes.com.  I occasionaly get
+<p>I currently am employed at Forbes.com.  I occasionally get
 to do some internal projects using Struts.  The last interesting
 project was a publishing system using Message Driven EJBs in JBoss
 and Struts was used to display the status of each publishing process.</p>
 
 <h3><a name="rleland">Rob Leland -- Committer</a></h3>
 
-<p>I have gone from Unix -to- Windows -to- Unix based development about
-ever 6 years now. When working with Unix I was involved in distributed
-multi-process applications using C++. When going to windows I was amazed
-at how primitive the OS was compared to Unix. Six years later it was deja-vue all over
-again, the Unix platform hadn't changed one bit. While developing for
-Win32 I had the pleasure of discovering Delphi early on and convinced
-my company we should use it for our windows applications. I developed
-many database, telephony, internet enabled
-applications. I also experimented with multi-tier applications.
-I remain impressed with it's design. I never failed to develop a simple
-elegant solution with the language. I was convinced after 10 years of
-development with C/C++ that it was a kinder gentler language.
+<p>I have gone from Unix -to- Windows -to- Unix based
+development about ever 6 years now. When moving to Windows I was amazed
+at how primitive the OS was compared to Unix. While developing for
+Win32 I had the pleasure of discovering Delphi and developed
+many GUI/databases, and a few telephony, internet enabled
+applications. I remain impressed with it's design. I am always
+able to develop a simple elegant solution with the language, much like
+the language itself. I was convinced after 10 years of
+development with C/C++ that it was a kinder gentler language. When I reciently
+returned to Unix the platform hadn't changed one bit.
 </p>
 
-<p>Then in July 2000 I decided to move into Java, and the Web.
-I had been hired to take over a JSP based application. I realized
+<p>Then in July 2000 I decided to move into Java, and the Web development.
+This is after using the web since 1992/1985 and occasionally
+teaching classes on it since 1994.
+I came on as a consultant to take over a JSP based application. I realized
 it had been written with the equivalent of "goto's"(Model 1) and
 had to be redesigned. I searched for a better way to design the code
-and by late August I had found struts.</p>
+and by late August I had found Struts.</p>
 
-<p>Days after I had been voted a struts committer illness struck my family and
-my work demanded more time, and I was married. To date I have mainly served to
-pitch in when I have time. I feel lucky to be part of the struts team. </p>
+<p> To date I have mainly served to pitch in on odds and ends.  I continue to
+be amazed at the committers generous contributions of time, insight,
+and good will. I am fortunate to be part of the struts team. </p>
 
-
-  <p>Next: <a href="index.html">Struts Home</a></p>
+  <p>Next: <a href="../index.html">Struts Home</a></p>
 
 </section></chapter></body></document>

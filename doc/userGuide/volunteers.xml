@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <document url="./volunteers.xml">
 <properties>
-<author>Ted Husted</author> 
+<author>Ted Husted</author>
 <title>The Struts User's Guide - Who We Are</title>
 </properties>
-<body> 
-<chapter name="Who We Are" href="whoWeAre"> 
+<body>
+<chapter name="Who We Are" href="whoWeAre">
 
 <section name="The Meritocracy" href="meritocracy">
 <p>All work on Struts is contributed by volunteers whose only motivation
-is to help make Struts work even better, both for themselves and for rest of the community.</p> 
-<p>All contributions are welcome, and may be discussed and posted on the mailing lists. 
-The final decision of what becomes part of the official distribution is made by a group of 
-<a href="#committers">Committers</a>. For more about Meritocracy, see the 
-<a href="http://jakarta.apache.org/site/roles.html">Management page</a> on the 
-Apache Jarakta Website.</p>
+is to help make Struts work even better, both for themselves and for rest of the community.</p>
+<p>All contributions are welcome, and may be discussed and posted on the mailing lists.
+The final decision of what becomes part of the official distribution is made by a group of
+<a href="#committers">Committers</a>. For more about Meritocracy, see the
+<a href="http://jakarta.apache.org/site/roles.html">Management page</a> on the
+Apache Jakarta Website.</p>
 </section>
 
-<section name="Source Code Contributors" href="contributors.source"> 
+<section name="Source Code Contributors" href="contributors.source">
 <ul>
 <li>Arron Bates</li>
 <li>Arun M. Thomas</li>
@@ -35,12 +35,12 @@ Apache Jarakta Website.</p>
 <li>Niall Pemberton</li>
 <li>Ralph Schaer</li>
 <li>Rob Leland</li>
-<li>Sean Kelly</li>
+<li>Sean M. Kelly</li>
 <li>Ted Husted</li>
 </ul>
 </section>
 
-<section name="User Guide Contributors" href="contributors.documentation"> 
+<section name="User Guide Contributors" href="contributors.documentation">
 <ul>
 <li>Arron Bates</li>
 <li>Chris Assenza</li>
@@ -60,7 +60,7 @@ Apache Jarakta Website.</p>
 </ul>
 </section>
 
-<section name="Active Committers" href="committers"> 
+<section name="Active Committers" href="committers">
 <ul>
 <li><b>Craig R. McClanahan</b> (craigmcc at apache.org)</li>
 <li><b>Michael Schachter</b>   (mschachter at apache.org)</li>
@@ -69,14 +69,14 @@ Apache Jarakta Website.</p>
 <li><b>Vincent Massol</b>      (vmassol at apache.org)</li>
 <li><b>Cedric Dumoulin</b>     (cedric.dumoulin at lifl.fr)</li>
 <li><b>Martin Cooper</b>       (martinc at apache.org)</li>
-<li><b>David Winterfeldt</b>   (dwinterfeldt at apache.org)</li> 
+<li><b>David Winterfeldt</b>   (dwinterfeldt at apache.org)</li>
 <li><b>Oleg Alexeev</b>        (oalexeev at apache.org)</li>
-<li><b>Arron Bates</b>         (arron at apache.org)</li> 
+<li><b>Arron Bates</b>         (arron at apache.org)</li>
 
 </ul>
 </section>
 
-<section name="Emeritus Committers" href="comitters.emeritus"> 
+<section name="Emeritus Committers" href="comitters.emeritus">
 <ul>
 <li>David Geary</li>
 <li>Luis Arias</li>
@@ -136,7 +136,7 @@ Jason Hunter's</a> article about the Problems with JSP. Jason and I get along
 fine, even though we have different preferences about presentation
 technologies.  Besides being the author of a very popular book about servlets,
 with a second edition coming soon, Jason is also the representative for the
-Apache Software Foundation on the Executive Committe of the Java Community
+Apache Software Foundation on the Executive Committee of the Java Community
 Process.</p>
 
 <p>Personally, I live in Portland, Oregon (even though my team at Sun is mostly in
@@ -155,7 +155,7 @@ I'll happily let the other committers speak for themselves.</p>
 <p>I'm currently a student of computer
 science at Drexel University in Philadelphia, PA.
 I've been working at HP Middleware, formerly
-Bluestone Software for 3 years programming in 
+Bluestone Software for 3 years programming in
 Java and recently J2EE technologies.  I'm a full
 time worker from September until April and a student
 and part time worker from April until August.
@@ -182,10 +182,10 @@ for publishing on disk, the most popular being "Dart" and "Iris". In
 1992, Dart was awarded the Digital Quill for software excellence,
 featured in PC Magazine (February 1992), and bundled with McGraw Hill's
 bookset,"Paperless Publishing" by Colin Hayes (McGraw Hill 1994). Dart
-won a second Digital Quill in 1993. Several titles that used Iris for a 
-publishing system have also won awards and been widely distributed, 
-including "Hermitville USA." I was also fortunate to find kindred souls 
-on CompuServe and America Online, who helped me pioneer resources areas 
+won a second Digital Quill in 1993. Several titles that used Iris for a
+publishing system have also won awards and been widely distributed,
+including "Hermitville USA." I was also fortunate to find kindred souls
+on CompuServe and America Online, who helped me pioneer resources areas
 there in 1993 and 1994 for the nascent electronic publishing industry.</p>
 
 <p>I finally cut loose on the Internet in 1995, launching Epub News, an
@@ -200,15 +200,15 @@ Fiction. This was one of my earliest hypertext projects (it started as a
 print-book idea), and I had a lot of fun bringing it forward onto the
 Web. (Now, if I only had time to bring it current and dress it up!)</p>
 
-<p>My favorite all-time client is is WXXI Public Broadcasting Council, 
-where I've served as the station's Webmaster. WXXI provides public 
-broadcasting services for television and radio, and we are working to do 
+<p>My favorite all-time client is is WXXI Public Broadcasting Council,
+where I've served as the station's Webmaster. WXXI provides public
+broadcasting services for television and radio, and we are working to do
 the same online. Along with providing companion Web sites for every WXXI
-production, we stream both our AM and FM signals, in both Real and 
-QuickTime, with online archives in the works. It's a long journey, but 
-we've taken the first steps. I'm responsible for most of the regular 
-updates to the site, and much of the overall layout and design. We're 
-grateful to have won the PBS award for best Web site in our market for 
+production, we stream both our AM and FM signals, in both Real and
+QuickTime, with online archives in the works. It's a long journey, but
+we've taken the first steps. I'm responsible for most of the regular
+updates to the site, and much of the overall layout and design. We're
+grateful to have won the PBS award for best Web site in our market for
 two years running.</p>
 
 <p>Our most ambitious projects at WXXI have been Spring Marketplace 2000
@@ -220,8 +220,8 @@ people could also check their registration status and polling place. I
 developed the Web-enabled database applications for both projects.</p>
 
 <p>Currently, I'm expanding the WXXI online auction software into a
-complete package for hosting online auctions as fund-raisers; this is 
-to be an open-source project called Gavel, and, of course, is 
+complete package for hosting online auctions as fund-raisers; this is
+to be an open-source project called Gavel, and, of course, is
 based on Struts. </p>
 
 <h3><a name="cedric">Cedric Dumoulin -- Committer</a></h3>
@@ -231,48 +231,93 @@ But, as a lazy developer I have first checked what already exists, and I have
 found Struts. Struts goals fulfilled nearly all I needed for my (now old)
 portal project, except the capability to reuse and assemble easily pieces of
 pages or components. So, I have proposed the Components framework. This
-framework can be seen as a superset of the Templates tag library contributed 
+framework can be seen as a superset of the Templates tag library contributed
 by David Geary, and contains lot of interesting features.</p>
 
 <p>From a professional point of view, I have a Ph.D. in computer science. I have
-worked for 3 years in the R&amp;D department of a worldwide company developing 
-Internet banking solutions. I am now a researcher at a university, and work 
-on European research projects. My main research interest is WWW, Distributed 
-Systems and Object Oriented Design. When developing code, I always try to 
+worked for 3 years in the R&amp;D department of a worldwide company developing
+Internet banking solutions. I am now a researcher at a university, and work
+on European research projects. My main research interest is WWW, Distributed
+Systems and Object Oriented Design. When developing code, I always try to
 first propose reusable pieces of code.</p>
 
 <h3><a name="martinc">Martin Cooper -- Committer</a></h3>
 
-<p>Currently, I'm a Principal Software Engineer at Tumbleweed Communications, 
-working on the Messaging Management System. Early last year (2000), I was 
-working on the architecture for a new web-based administration system for 
-the product, and headed in the direction of servlets and JSP. I joined the 
-JSP-INTEREST and SERVLET-INTEREST mailing lists to see what was going on in 
+<p>Currently, I'm a Principal Software Engineer at Tumbleweed Communications,
+working on the Messaging Management System. Early last year (2000), I was
+working on the architecture for a new web-based administration system for
+the product, and headed in the direction of servlets and JSP. I joined the
+JSP-INTEREST and SERVLET-INTEREST mailing lists to see what was going on in
 those respective areas.</p>
 
-<p>Before too long, some interesting discussions started up around the topic 
-of Model 2 architectures. Model 2 sounded like the right way to go about 
-things, and I followed those discussions closely. I was, however, still 
+<p>Before too long, some interesting discussions started up around the topic
+of Model 2 architectures. Model 2 sounded like the right way to go about
+things, and I followed those discussions closely. I was, however, still
 looking for a "leg up" - something to give me that core on which to build.</p>
 
-<p>Then, in May, I saw a post to JSP-INTEREST from Craig McClanahan entitled 
-something like "New Jakarta-Struts Subproject", and describing Struts, and 
-his vision for it. I hopped right over to the Jakarta web site and signed 
-up for the mailing list. Before long, I realised this was exactly what I 
+<p>Then, in May, I saw a post to JSP-INTEREST from Craig McClanahan entitled
+something like "New Jakarta-Struts Subproject", and describing Struts, and
+his vision for it. I hopped right over to the Jakarta web site and signed
+up for the mailing list. Before long, I realised this was exactly what I
 had been looking for.</p>
 
-<p>Now, a year or so later, we have a team of people, on which I am the 
-technical lead, just finishing up our web-based administration system as 
-Struts reaches its 1.0 release. And I am still firmly convinced that I made 
+<p>Now, a year or so later, we have a team of people, on which I am the
+technical lead, just finishing up our web-based administration system as
+Struts reaches its 1.0 release. And I am still firmly convinced that I made
 the right decision in going with Struts in the first place.</p>
 
-<p>Like anyone else, my first postings to the struts-user list were questions 
-to help me understand how to do things, and why Struts is the way it is. 
-Over time, reading the lists and also the source code, and working on my 
-own fairly large web application, I came to the point where I could answer 
-questions too. Now, I'm glad to be able to give something back to the 
-Struts community by helping others understand, and also by contributing 
+<p>Like anyone else, my first postings to the struts-user list were questions
+to help me understand how to do things, and why Struts is the way it is.
+Over time, reading the lists and also the source code, and working on my
+own fairly large web application, I came to the point where I could answer
+questions too. Now, I'm glad to be able to give something back to the
+Struts community by helping others understand, and also by contributing
 ideas and code to help make Struts even better than it already is.</p>
+
+<h3><a name="dwinterfeldt">David Winterfeldt -- Committer</a></h3>
+
+<p>As I worked on web based projects I started looking for something
+that would really help save time during development.  I ran across
+Struts in the Summer of 2000 and
+decided it was a good solution for web development.  As I used Struts
+it really helped to remove a lot of the repetitive work,
+but validation still seemed very repetitive.
+I had an idea to create validation rules in an xml file and have them
+easily integrated with Struts.  It started out simple and continued to
+develop over time.  The validation project was eventually incorporated
+into Struts and the core was moved to Jakarta Commons. I'm happy to see
+Struts continue to grow and develop.</p>
+
+<p>I currently am employed at Forbes.com.  I occasionally get
+to do some internal projects using Struts.  The last interesting
+project was a publishing system using Message Driven EJBs in JBoss
+and Struts was used to display the status of each publishing process.</p>
+
+<h3><a name="rleland">Rob Leland -- Committer</a></h3>
+
+<p>I have gone from Unix -to- Windows -to- Unix based
+development about ever 6 years now. When moving to Windows I was amazed
+at how primitive the OS was compared to Unix. While developing for
+Win32 I had the pleasure of discovering Delphi and developed
+many GUI/databases, and a few telephony, internet enabled
+applications. I remain impressed with it's design. I am always
+able to develop a simple elegant solution with the language, much like
+the language itself. I was convinced after 10 years of
+development with C/C++ that it was a kinder gentler language. When I reciently
+returned to Unix the platform hadn't changed one bit.
+</p>
+
+<p>Then in July 2000 I decided to move into Java, and the Web development.
+This is after using the web since 1992/1985 and occasionally
+teaching classes on it since 1994.
+I came on as a consultant to take over a JSP based application. I realized
+it had been written with the equivalent of "goto's"(Model 1) and
+had to be redesigned. I searched for a better way to design the code
+and by late August I had found Struts.</p>
+
+<p> To date I have mainly served to pitch in on odds and ends.  I continue to
+be amazed at the committers generous contributions of time, insight,
+and good will. I am fortunate to be part of the struts team. </p>
 
   <p>Next: <a href="../index.html">Struts Home</a></p>
 
