@@ -146,7 +146,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print((String)pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -193,7 +193,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print((String)pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -240,7 +240,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print((String)pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -308,7 +308,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print((String)pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -366,7 +366,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print((String)pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -424,7 +424,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print((String)pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -478,7 +478,7 @@ public class TestIterateTag extends JspTestCase {
 		{
 			out.print((String)pageContext.getAttribute("theId"));
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 
 	}
@@ -522,7 +522,7 @@ public class TestIterateTag extends JspTestCase {
 		{
 			out.print((String)pageContext.getAttribute("theId"));
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 
 	}
@@ -566,7 +566,7 @@ public class TestIterateTag extends JspTestCase {
 		{
 			out.print((String)pageContext.getAttribute("theId"));
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 
 	}
@@ -625,7 +625,7 @@ public class TestIterateTag extends JspTestCase {
 		{
 			out.print((String)pageContext.getAttribute("theId"));
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 
 	}
@@ -673,7 +673,7 @@ public class TestIterateTag extends JspTestCase {
 		{
 			out.print((String)pageContext.getAttribute("theId"));
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 
 	}
@@ -721,7 +721,7 @@ public class TestIterateTag extends JspTestCase {
 		{
 			out.print((String)pageContext.getAttribute("theId"));
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 
 	}
@@ -784,7 +784,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -831,7 +831,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -878,7 +878,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -942,7 +942,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -993,7 +993,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1044,7 +1044,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1105,7 +1105,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1157,7 +1157,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1209,7 +1209,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1275,7 +1275,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1331,7 +1331,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}
@@ -1387,7 +1387,7 @@ public class TestIterateTag extends JspTestCase {
 			out.print(pageContext.getAttribute("theId"));
 		    iteration++;
 		
-		} while (tag.doAfterBody() == tag.EVAL_BODY_AGAIN);
+		} while (tag.doAfterBody() == tag.EVAL_BODY_TAG);
 		tag.doEndTag();
 		assertEquals(iterations, iteration);
 	}

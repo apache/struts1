@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedRootTag.java,v 1.7 2003/02/28 05:14:01 arron Exp $
- * $Revision: 1.7 $
- * $Date: 2003/02/28 05:14:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedRootTag.java,v 1.8 2003/03/06 16:07:13 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/03/06 16:07:13 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.7 $ $Date: 2003/02/28 05:14:01 $
+ * @version $Revision: 1.8 $ $Date: 2003/03/06 16:07:13 $
  */
 public class NestedRootTag extends BodyTagSupport implements NestedNameSupport {
 
@@ -132,7 +132,7 @@ public class NestedRootTag extends BodyTagSupport implements NestedNameSupport {
     }
 
     // do the JSP thing
-    return (EVAL_BODY_AGAIN);
+    return (EVAL_BODY_TAG);
   }
 
   /**
