@@ -72,8 +72,8 @@ import org.apache.struts.util.MessageResources;
 
 
 /**
- * Implementation of <strong>Action</strong> that 
- * changes a locale based on request level parameters 
+ * Implementation of <strong>Action</strong> that
+ * changes a locale based on request level parameters
  * that are set (language &amp; country).
  *
  * @author David Wintefeldt
@@ -97,41 +97,40 @@ public final class LocaleAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if an input/output error or servlet exception occurs
      */
-    public ActionForward perform(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws IOException, ServletException {
+    public ActionForward execute(ActionMapping mapping,
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws Exception {
 
-	// Extract attributes we will need
-	HttpSession session = request.getSession();
-	Locale locale = getLocale(request);
-	
-	String language = null;
-	String country = null;
-	
-	try {
-	   language = (String)
+    // Extract attributes we will need
+    HttpSession session = request.getSession();
+    Locale locale = getLocale(request);
+
+    String language = null;
+    String country = null;
+
+    try {
+       language = (String)
               PropertyUtils.getSimpleProperty(form, "language");
            country = (String)
               PropertyUtils.getSimpleProperty(form, "country");
         } catch (Exception e) {
-           log.error(e.getMessage(), e);	
+           log.error(e.getMessage(), e);
         }
-	
+
         if ((language != null && language.length() > 0) &&
             (country != null && country.length() > 0)) {
            locale = new java.util.Locale(language, country);
         } else if (language != null && language.length() > 0) {
            locale = new java.util.Locale(language, "");
-	}
-        
+    }
+
         session.setAttribute(Action.LOCALE_KEY, locale);
-        
-	return mapping.findForward("success");	
+
+    return mapping.findForward("success");
     }
 
 }

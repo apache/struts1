@@ -72,7 +72,7 @@ import org.apache.struts.util.MessageResources;
 
 
 /**
- * Implementation of <strong>Action</strong> that validates a multi-page 
+ * Implementation of <strong>Action</strong> that validates a multi-page
  * registration form.
  *
  * @author David Wintefeldt
@@ -97,49 +97,48 @@ public final class MultiRegistrationAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if an input/output error or servlet exception occurs
      */
-    public ActionForward perform(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws IOException, ServletException {
+    public ActionForward execute(ActionMapping mapping,
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws Exception {
 
-	// Extract attributes we will need
-	HttpSession session = request.getSession();
-	Locale locale = getLocale(request);
-	MessageResources messages = getResources();
-	RegistrationForm info = (RegistrationForm)form;
-	String action = request.getParameter("action");
-	
-	// Was this transaction cancelled?
-	if (isCancelled(request)) {
-	    if (log.isInfoEnabled()) {
-	       log.info(" " + mapping.getAttribute() + " - Registration transaction was cancelled");
-	    }
-	    
-	    removeFormBean(mapping, request);
+    // Extract attributes we will need
+    HttpSession session = request.getSession();
+    Locale locale = getLocale(request);
+    MessageResources messages = getResources();
+    RegistrationForm info = (RegistrationForm)form;
+    String action = request.getParameter("action");
 
-	    return (mapping.findForward("success"));
-	}
+    // Was this transaction cancelled?
+    if (isCancelled(request)) {
+        if (log.isInfoEnabled()) {
+           log.info(" " + mapping.getAttribute() + " - Registration transaction was cancelled");
+        }
 
-	ActionErrors errors = info.validate(mapping, request);
+        removeFormBean(mapping, request);
 
-	if (errors != null && errors.empty()) {
-	   if (info.getPage() == 1)
-	      return mapping.findForward("input2");	
-	   if (info.getPage() == 2)
-      	      return mapping.findForward("success");	
-	} else {
-	   saveErrors(request, errors);
-	   if (info.getPage() == 1)
-	      return mapping.findForward("input" + info.getPage());	
-	   if (info.getPage() == 2)
-	      return mapping.findForward("input" + info.getPage());	
-	}
-	
-	return mapping.findForward("input1");	
+        return (mapping.findForward("success"));
+    }
+
+    ActionErrors errors = info.validate(mapping, request);
+
+    if (errors != null && errors.empty()) {
+       if (info.getPage() == 1)
+          return mapping.findForward("input2");
+       if (info.getPage() == 2)
+              return mapping.findForward("success");
+    } else {
+       saveErrors(request, errors);
+       if (info.getPage() == 1)
+          return mapping.findForward("input" + info.getPage());
+       if (info.getPage() == 2)
+          return mapping.findForward("input" + info.getPage());
+    }
+
+    return mapping.findForward("input1");
     }
 
     /**
@@ -147,7 +146,7 @@ public final class MultiRegistrationAction extends Action {
      *
      * @param mapping The ActionMapping used to select this instance
      * @param request The HTTP request we are processing
-    */    
+    */
     protected void removeFormBean(ActionMapping mapping, HttpServletRequest request) {
        // Remove the obsolete form bean
        if (mapping.getAttribute() != null) {

@@ -94,34 +94,33 @@ public final class TypeAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if an input/output error or servlet exception occurs
      */
-    public ActionForward perform(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws IOException, ServletException {
+    public ActionForward execute(ActionMapping mapping,
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws Exception {
 
-	// Extract attributes we will need
-	HttpSession session = request.getSession();
-	Locale locale = getLocale(request);
-	MessageResources messages = getResources();
-	TypeForm info = (TypeForm)form;
-	String action = request.getParameter("action");
-	
-	// Was this transaction cancelled?
-	if (isCancelled(request)) {
-	    if (log.isInfoEnabled()) {
-	       log.info(" " + mapping.getAttribute() + " - Type transaction was cancelled");
-	    }
-	    
-	    removeFormBean(mapping, request);
+    // Extract attributes we will need
+    HttpSession session = request.getSession();
+    Locale locale = getLocale(request);
+    MessageResources messages = getResources();
+    TypeForm info = (TypeForm)form;
+    String action = request.getParameter("action");
 
-	    return (mapping.findForward("success"));
-	}
+    // Was this transaction cancelled?
+    if (isCancelled(request)) {
+        if (log.isInfoEnabled()) {
+           log.info(" " + mapping.getAttribute() + " - Type transaction was cancelled");
+        }
 
-	return mapping.findForward("success");	
+        removeFormBean(mapping, request);
+
+        return (mapping.findForward("success"));
+    }
+
+    return mapping.findForward("success");
     }
 
     /**
@@ -129,7 +128,7 @@ public final class TypeAction extends Action {
      *
      * @param mapping The ActionMapping used to select this instance
      * @param request The HTTP request we are processing
-    */    
+    */
     protected void removeFormBean(ActionMapping mapping, HttpServletRequest request) {
        // Remove the obsolete form bean
        if (mapping.getAttribute() != null) {
