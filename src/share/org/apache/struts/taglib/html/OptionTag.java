@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.10 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.11 2002/10/04 05:34:19 dmkarr Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/10/04 05:34:19 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.11 $ $Date: 2002/10/04 05:34:19 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -195,6 +195,30 @@ public class OptionTag extends BodyTagSupport {
         this.styleClass = styleClass;
     }
 
+    /**
+     * The identifier associated with this tag.
+     */
+    protected String styleId = null;
+
+    /**
+     * Return the style identifier for this tag.
+     */
+    public String getStyleId() {
+
+        return (this.styleId);
+
+    }
+
+    /**
+     * Set the style identifier for this tag.
+     *
+     * @param styleId The new style identifier
+     */
+    public void setStyleId(String styleId) {
+
+        this.styleId = styleId;
+
+    }
 
     /**
      * The server value for this option, also used to match against the
@@ -278,6 +302,11 @@ public class OptionTag extends BodyTagSupport {
         if (style != null) {
             results.append(" style=\"");
             results.append(style);
+            results.append("\"");
+        }
+        if (styleId != null) {
+            results.append(" id=\"");
+            results.append(styleId);
             results.append("\"");
         }
         if (styleClass != null) {

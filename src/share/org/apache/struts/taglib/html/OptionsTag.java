@@ -352,6 +352,15 @@ public class OptionsTag extends TagSupport {
     /**
      * Add an option element to the specified StringBuffer based on the
      * specified parameters.
+     *<p>
+     * Note that this tag specifically does not support the
+     * <code>styleId</code> tag attribute, which causes the HTML
+     * <code>id</code> attribute to be emitted.  This is because the HTML
+     * specification states that all "id" attributes in a document have to be
+     * unique.  This tag will likely generate more than one <code>option</code>
+     * element element, but it cannot use the same <code>id</code> value.  It's
+     * conceivable some sort of mechanism to supply an array of <code>id</code>
+     * values could be devised, but that doesn't seem to be worth the trouble.
      *
      * @param sb StringBuffer accumulating our results
      * @param value Value to be returned to the server for this option

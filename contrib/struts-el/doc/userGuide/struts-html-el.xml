@@ -2567,6 +2567,26 @@
                 </attribute>
 
                 <attribute>
+                    <name>onclick</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element receives a
+                        mouse click.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>ondblclick</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element receives a
+                        mouse double click.
+                    </info>
+                </attribute>
+
+                <attribute>
                   <name>onkeydown</name>
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
@@ -2594,6 +2614,56 @@
                   <p>JavaScript event handler that is executed when
                   this element receives a key up event.</p>
                   </info>
+                </attribute>
+
+                <attribute>
+                    <name>onmousedown</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element is under the mouse
+                        pointer and a mouse button is depressed.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>onmousemove</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element is under the
+                        mouse pointer and the pointer is moved.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>onmouseout</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element was under the
+                        mouse pointer but the pointer was moved outside the element.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>onmouseover</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element was not under
+                        the mouse pointer but the pointer is moved inside the element.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>onmouseup</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                        JavaScript event handler executed when this element is under the
+                        mouse pointer and a mouse button is released.
+                    </info>
                 </attribute>
 
                 <attribute>
@@ -3880,6 +3950,16 @@
             <rtexprvalue>false</rtexprvalue>
             <info>
                 CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 

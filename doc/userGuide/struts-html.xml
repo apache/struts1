@@ -4170,6 +4170,16 @@
         </attribute>
 
         <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
+            </info>
+        </attribute>
+
+        <attribute>
             <name>styleClass</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4271,6 +4281,13 @@
                     <code>labelProperty</code> attribute is the name of some property of
                     that bean which will return the collection.</li>
                 </ul>
+
+
+            <p>Note that this tag does not support a <code>styleId</code>
+            attribute, as it would have to apply the value to all the
+            <code>option</code> elements created by this element, which would
+            mean that more than one <code>id</code> element might have the same
+            value, which the HTML specification says is illegal.</p>
 
         </info>
 
@@ -4386,6 +4403,12 @@
             in that it makes more consistent use of the <code>name</code> and
             <code>property</code> attributes, and allows the collection to be
             more easily obtained from the enclosing form bean.</p>
+
+            <p>Note that this tag does not support a <code>styleId</code>
+            attribute, as it would have to apply the value to all the
+            <code>option</code> elements created by this element, which would
+            mean that more than one <code>id</code> element might have the same
+            value, which the HTML specification says is illegal.</p>
         </info>
 
         <attribute>

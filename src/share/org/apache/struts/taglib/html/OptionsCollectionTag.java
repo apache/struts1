@@ -85,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.6 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.7 $ $Date: 2002/10/04 05:34:19 $
  * @since Struts 1.1
  */
 
@@ -335,6 +335,15 @@ public class OptionsCollectionTag extends TagSupport {
     /**
      * Add an option element to the specified StringBuffer based on the
      * specified parameters.
+     *<p>
+     * Note that this tag specifically does not support the
+     * <code>styleId</code> tag attribute, which causes the HTML
+     * <code>id</code> attribute to be emitted.  This is because the HTML
+     * specification states that all "id" attributes in a document have to be
+     * unique.  This tag will likely generate more than one <code>option</code>
+     * element element, but it cannot use the same <code>id</code> value.  It's
+     * conceivable some sort of mechanism to supply an array of <code>id</code>
+     * values could be devised, but that doesn't seem to be worth the trouble.
      *
      * @param sb StringBuffer accumulating our results
      * @param value Value to be returned to the server for this option

@@ -71,7 +71,7 @@ main menu.
         <html-el:option value="Single 6">Single 6</html-el:option>
         <html-el:option value="Single 7">Single 7</html-el:option>
         <html-el:option value="Single 8">Single 8</html-el:option>
-        <html-el:option value="Single 9">Single 9</html-el:option>
+        <html-el:option value="Single 9" styleId="flork">Single 9</html-el:option>
       </html-el:select>
     </td>
   </tr>

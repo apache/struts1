@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTag.java,v 1.4 2002/10/04 05:34:19 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/04 05:34:19 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,7 +77,7 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELOptionTag extends OptionTag {
 
@@ -160,11 +160,12 @@ public class ELOptionTag extends OptionTag {
             setStyleClass(null);
         }
 
-//         try {
-//             setStyleId((String) evalAttr("styleId", getStyleId(), String.class));
-//         } catch (NullAttributeException ex) {
-//             setStyleId(null);
-//         }
+        try {
+            setStyleId((String) evalAttr("styleId", getStyleId(),
+                                         String.class));
+        } catch (NullAttributeException ex) {
+            setStyleId(null);
+        }
 
         try {
             setValue((String) evalAttr("value", getValue(), String.class));
