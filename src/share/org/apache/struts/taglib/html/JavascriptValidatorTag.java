@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.35 2003/07/26 18:51:35 dgraham Exp $
- * $Revision: 1.35 $
- * $Date: 2003/07/26 18:51:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.36 2003/07/28 05:54:33 rleland Exp $
+ * $Revision: 1.36 $
+ * $Date: 2003/07/28 05:54:33 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.35 $ $Date: 2003/07/26 18:51:35 $
+ * @version $Revision: 1.36 $ $Date: 2003/07/28 05:54:33 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -367,7 +367,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 PageContext.APPLICATION_SCOPE);
         
         Locale locale = TagUtils.getInstance().getUserLocale(this.pageContext, null);
-        
+
         Form form = resources.get(locale, formName);
         if (form != null) {
             if ("true".equalsIgnoreCase(dynamicJavascript)) {
@@ -402,6 +402,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * @param resources
      * @param locale
      * @param form
+     * @since Struts 1.2
      */
     private String createDynamicJavascript(
         ModuleConfig config,
@@ -418,7 +419,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         List actions = this.createActionList(resources, form);
 
-        results.append(this.getJavascriptBegin(this.createMethods(actions)));
+        Object stopOnErrorObj = pageContext.getAttribute(ValidatorPlugIn.STOP_ON_ERROR_KEY + '.'+ config.getPrefix(),
+                PageContext.APPLICATION_SCOPE);
+        boolean stopOnError = true;
+        if (stopOnErrorObj != null && (stopOnErrorObj instanceof Boolean)) {
+            stopOnError = ((Boolean)stopOnErrorObj).booleanValue();
+        }
+
+
+        results.append(this.getJavascriptBegin(this.createMethods(actions,stopOnError)));
 
         for (Iterator i = actions.iterator(); i.hasNext();) {
             ValidatorAction va = (ValidatorAction) i.next();
@@ -526,11 +535,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     /**
      * Creates the JavaScript methods list from the given actions.
      * @param actions A List of ValidatorAction objects.
+     * @param stopOnError If true, behaves like released version of struts 1.1
+     *        and stops after first error. If false, evaluates all validations.
      * @return JavaScript methods.
+     * @since Struts 1.2
      */
-    private String createMethods(List actions) {
+    private String createMethods(List actions, boolean stopOnError) {
         String methods = null;
-        
+        String methodOperator = " && ";
+        if (!stopOnError) {
+            methodOperator= " & ";
+        }
+
         Iterator iter = actions.iterator();
         while (iter.hasNext()) {
             ValidatorAction va = (ValidatorAction) iter.next();
@@ -538,7 +554,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             if (methods == null) {
                 methods = va.getMethod() + "(form)";
             } else {
-                methods += " && " + va.getMethod() + "(form)";
+                methods += methodOperator + va.getMethod() + "(form)";
             }
         }
         
@@ -651,7 +667,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (methods == null || methods.length() == 0) {
             sb.append("       return true; \n");
         } else {
-            sb.append("       return " + methods + "; \n");
+            //Making Sure that Bitwise operator works:
+            sb.append(" var formValidationResult;\n");
+            sb.append("       formValidationResult = " + methods + "; \n");
+            sb.append("     return (formValidationResult == 1);\n");
         }
 
         sb.append("   } \n\n");
