@@ -75,7 +75,7 @@
                 <li><a href="building_controller.html#dyna_action_form_classes">4.2.1 DynaActionForm Classes</a></li>
                 <li><a href="building_controller.html#map_action_form_classes">4.2.2 Map-backed ActionForm Classes</a></li>
                 <li><a href="building_controller.html#action_classes">4.3 Action Classes</a></li>
-                <li><a href="building_controller.html#plugin_classes">4.3.x Plugin Classes</a></li>
+                <li><a href="building_controller.html#plugin_classes">4.3.1 Plugin Classes</a></li>
                 <li><a href="building_controller.html#action_servlet">4.4 The ActionServlet</a></li>
                 <li><a href="building_controller.html#request_controller">4.4.1 Request Processor</a></li>
                 <li><a href="building_controller.html#exception_handler">4.4.2 Exception Handler</a></li>
