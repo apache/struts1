@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.24 2001/07/19 02:11:52 dwinterfeldt Exp $
- * $Revision: 1.24 $
- * $Date: 2001/07/19 02:11:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.25 2001/08/16 03:52:09 craigmcc Exp $
+ * $Revision: 1.25 $
+ * $Date: 2001/08/16 03:52:09 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2001/07/19 02:11:52 $
+ * @version $Revision: 1.25 $ $Date: 2001/08/16 03:52:09 $
  */
 
 public class Action {
@@ -434,21 +434,53 @@ public class Action {
      */
     protected boolean isTokenValid(HttpServletRequest request) {
 
-        // Retrieve the saved transaction token from our session
+        return (isTokenValid(request, false));
+
+    }
+
+
+    /**
+     * Return <code>true</code> if there is a transaction token stored in
+     * the user's current session, and the value submitted as a request
+     * parameter with this action matches it.  Returns <code>false</code>
+     * <ul>
+     * <li>No session associated with this request</li>
+     * <li>No transaction token saved in the session</li>
+     * <li>No transaction token included as a request parameter</li>
+     * <li>The included transaction token value does not match the
+     *     transaction token in the user's session</li>
+     * </ul>
+     *
+     * @param request The servlet request we are processing
+     * @param reset Should we reset the token after checking it?
+     */
+    protected boolean isTokenValid(HttpServletRequest request, boolean reset) {
+
+        // Retrieve the current session for this request
         HttpSession session = request.getSession(false);
         if (session == null)
             return (false);
-        String saved = (String) session.getAttribute(TRANSACTION_TOKEN_KEY);
-        if (saved == null)
-            return (false);
 
-        // Retrieve the transaction token included in this request
-        String token = (String) request.getParameter(Constants.TOKEN_KEY);
-        if (token == null)
-            return (false);
+        synchronized (session) {
 
-        // Do the values match?
-        return (saved.equals(token));
+            // Retrieve the transaction token from this session, and
+            // reset it if requested
+            String saved = (String)
+                session.getAttribute(TRANSACTION_TOKEN_KEY);
+            if (saved == null)
+                return (false);
+            if (reset)
+                session.removeAttribute(TRANSACTION_TOKEN_KEY);
+
+            // Retrieve the transaction token included in this request
+            String token = (String) request.getParameter(Constants.TOKEN_KEY);
+            if (token == null)
+                return (false);
+
+            // Do the values match?
+            return (saved.equals(token));
+
+        }
 
     }
 
