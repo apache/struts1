@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.4 2002/07/05 20:56:27 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/07/05 20:56:27 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.5 2002/07/05 22:03:16 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/05 22:03:16 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/07/05 20:56:27 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/05 22:03:16 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -164,7 +164,7 @@ public class TestRequestUtils extends TestMockBase {
             (request, appConfig.findActionConfig("/dynamic"), "*.do");
         assertNotNull("URL was returned", url);
         assertEquals("URL value",
-                     "/myapp/dynamic.do",
+                     "/dynamic.do",
                      url);
 
     }
@@ -179,7 +179,7 @@ public class TestRequestUtils extends TestMockBase {
             (request, appConfig2.findActionConfig("/dynamic2"), "*.do");
         assertNotNull("URL was returned", url);
         assertEquals("URL value",
-                     "/myapp/2/dynamic2.do",
+                     "/2/dynamic2.do",
                      url);
 
     }
@@ -194,7 +194,7 @@ public class TestRequestUtils extends TestMockBase {
             (request, appConfig.findActionConfig("/dynamic"), "/do/*");
         assertNotNull("URL was returned", url);
         assertEquals("URL value",
-                     "/myapp/do/dynamic",
+                     "/do/dynamic",
                      url);
 
     }

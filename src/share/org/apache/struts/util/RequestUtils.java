@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.43 2002/07/05 20:56:27 craigmcc Exp $
- * $Revision: 1.43 $
- * $Date: 2002/07/05 20:56:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.44 2002/07/05 22:03:16 craigmcc Exp $
+ * $Revision: 1.44 $
+ * $Date: 2002/07/05 22:03:16 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.43 $ $Date: 2002/07/05 20:56:27 $
+ * @version $Revision: 1.44 $ $Date: 2002/07/05 22:03:16 $
  */
 
 public class RequestUtils {
@@ -412,10 +412,12 @@ public class RequestUtils {
             if (fc.getRedirect()) {
                 redirect = true;
             }
+            url.append(request.getContextPath());
             url.append(forwardURL(request, fc));
         } else if (href != null) {
             url.append(href);
         } else /* if (page != null) */ {
+            url.append(request.getContextPath());
             url.append(pageURL(request, page));
         }
 
@@ -1139,20 +1141,21 @@ public class RequestUtils {
 
 
     /**
-     * Return the server-relative URL that corresponds to the specified
+     * Return the context-relative URL that corresponds to the specified
      * {@link ActionConfig}, relative to the sub-application associated
      * with the current subapp's {@link ApplicationConfig}.
      *
      * @param request The servlet request we are processing
      * @param action ActionConfig to be evaluated
      * @param pattern URL pattern used to map the controller servlet
+     *
+     * @since Struts 1.1b2
      */
     public static String actionURL(HttpServletRequest request,
                                    ActionConfig action,
                                    String pattern) {
 
         StringBuffer sb = new StringBuffer();
-        sb.append(request.getContextPath());
         if (pattern.endsWith("/*")) {
             sb.append(pattern.substring(0, pattern.length() - 2));
             sb.append(action.getPath());
@@ -1171,12 +1174,14 @@ public class RequestUtils {
 
 
     /**
-     * Return the server-relative URL that corresponds to the specified
+     * Return the context-relative URL that corresponds to the specified
      * {@link ForwardConfig}, relative to the sub-application associated
      * with the current subapp's {@link ApplicationConfig}.
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
+     *
+     * @since Struts 1.1b2
      */
     public static String forwardURL(HttpServletRequest request,
                                     ForwardConfig forward) {
@@ -1184,19 +1189,17 @@ public class RequestUtils {
         // Handle a ForwardConfig marked as context relative
         StringBuffer sb = new StringBuffer();
         if (forward.getContextRelative()) {
-            sb.append(request.getContextPath());
             sb.append(forward.getPath());
             return (sb.toString());
         }
 
-        // Calculate a subapp relative path for this ForwardConfig
+        // Calculate a context relative path for this ForwardConfig
         ApplicationConfig appConfig = (ApplicationConfig)
             request.getAttribute(Action.APPLICATION_KEY);
         String forwardPattern =
             appConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
-            sb.append(request.getContextPath());
             sb.append(appConfig.getPrefix());
             sb.append(forward.getPath());
         } else {
@@ -1205,9 +1208,6 @@ public class RequestUtils {
                 char ch = forwardPattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                    case 'C':
-                        sb.append(request.getContextPath());
-                        break;
                     case 'A':
                         sb.append(appConfig.getPrefix());
                         break;
@@ -1235,7 +1235,7 @@ public class RequestUtils {
 
 
     /**
-     * Return the server-relative URL that corresponds to the specified
+     * Return the context-relative URL that corresponds to the specified
      * <code>page</code> attribute value, calculated based on the
      * <code>pagePattern</code> property of the current subapp's
      * {@link ApplicationConfig}.
@@ -1243,6 +1243,8 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param page The application-relative URL to be substituted in
      *  to the <code>pagePattern</code> pattern for the current subapp
+     *
+     * @since Struts 1.1b2
      */
     public static String pageURL(HttpServletRequest request,
                                  String page) {
@@ -1253,7 +1255,6 @@ public class RequestUtils {
         String pagePattern =
             appConfig.getControllerConfig().getPagePattern();
         if (pagePattern == null) {
-            sb.append(request.getContextPath());
             sb.append(appConfig.getPrefix());
             sb.append(page);
         } else {
@@ -1262,9 +1263,6 @@ public class RequestUtils {
                 char ch = pagePattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                    case 'C':
-                        sb.append(request.getContextPath());
-                        break;
                     case 'A':
                         sb.append(appConfig.getPrefix());
                         break;
