@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.5 2003/12/29 22:45:52 craigmcc Exp $
+$Id: README.txt,v 1.6 2003/12/31 07:17:48 craigmcc Exp $
 
 
 ============
@@ -11,7 +11,8 @@ JavaServer Faces user interface technology in a Struts based web application,
 in place of the Struts custom tag libraries.  As a proof of concept, it also
 includes the canonical "struts-example" example web application, converted
 to use JavaServer Faces tags, as well as tags from the JSP Standard Tag
-Library (JSTL), version 1.0 or later.
+Library (JSTL), version 1.0 or later.  It also includes a very basic Tiles
+based applicaton, modified in a simiar manner.
 
 Note that this software is based on the Beta release of
 JavaServer Faces technology, and is itself very new.  Therefore, it is
@@ -39,6 +40,9 @@ following new features relative to the previous (0.4) release:
 * All attributes of the component tags in the Struts-Faces integration library
   have been "value binding enabled", meaning you can use value binding
   expressions ("#{...}") to calculate attribute values dynamically.
+
+* It is now possible to use the Struts-Faces Integration Library in conjunction
+  with application modules using Tiles.
 
 This release of the Struts-Faces Integration Library (Version 0.5) has the
 following revised features relative to the previous (0.4) release:
@@ -457,11 +461,21 @@ applications is straightforward, and requires the following steps:
 * Modify your struts-config.xml file to include identification of the custom
   request processor implementation class to be used, by adding the following
   element in the appropriate location (typically just before any existing
-  <message-resources> and <plug-in> elements):
+  <message-resources> and <plug-in> elements), one of the following
+  controller element declarations.
+
+  If your application module does *not* use Tiles:
 
     <controller>
       <set-property property="processorClass"
        value="org.apache.struts.faces.application.FacesRequestProcessor"/>
+    </controller>
+
+  If your application module *does* use Tiles:
+
+    <controller>
+      <set-property property="processorClass"
+       value="org.apache.struts.faces.application.FacesTilesRequestProcessor"/>
     </controller>
 
 
@@ -483,12 +497,11 @@ applications is straightforward, and requires the following steps:
   ActionForward (or null) defining what view layer technology
   should be invoked next.
 
-    NOTE:  If you have a command component that is *not* nested in
-    an <s:form> tag, or a command component whose "immediate" property
+    NOTE:  If you have a command component whose "immediate" property
     is set to "true", it will be processed as it would in a pure
-    JavaServer Faces based application.  Only submit buttons with
-    immediate="false" (which is the default value) that are nested
-    inside a Struts-Faces <s:form> tag will be forwarded through the
+    JavaServer Faces based application.  Only command components with
+    immediate="false" (which is the default value), that are nested
+    inside a Struts-Faces <s:form> tag, will be forwarded through the
     normal Struts request processing lifecycle.
 
 * If your application contains cancel buttons rendered by the <html:cancel>
@@ -515,10 +528,8 @@ KNOWN LIMITATIONS:
 The following items identify functionality areas that have not yet been
 fully implemented or tested:
 
-* Use of the Tiles Framework.  Integrating with Tiles will require a
-  specialized subclass of the Tiles RequestProcessor class.
-
-* Use of the Struts-Faces integration library in multiple application modules.
+* Use of the Struts-Faces integration library in multiple application modules
+  (although in theory this should "just work").
 
 * Use of the "forwardPattern" or "pagePattern" attributes on the
   <controller> element.
@@ -530,6 +541,6 @@ fully implemented or tested:
 
 * Use of a custom RequestProcessor subclass.  The Struts-Faces integration
   library provides its own custom subclass
-  (org.apache.struts.faces.application.FacesRequestProcessor), which must
+  (org.apache.struts.faces.application.FacesRequestProcessor or
+  org.apache.struts.faces.application.FacesTilesRequestProcessor), which must
   be used (or subclassed) for the integration to operate successfuly.
-

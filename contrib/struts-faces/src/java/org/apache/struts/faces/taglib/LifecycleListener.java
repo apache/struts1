@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.5 2003/12/29 22:45:52 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/29 22:45:52 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.6 2003/12/31 07:17:48 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/31 07:17:48 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.faces.taglib;
 import javax.faces.FactoryFinder;
 import javax.faces.application.Application;
 import javax.faces.application.ApplicationFactory;
+import javax.faces.application.ViewHandler;
 import javax.faces.el.PropertyResolver;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextAttributeEvent;
@@ -80,6 +81,7 @@ import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.application.FacesRequestProcessor;
 import org.apache.struts.faces.application.PropertyResolverImpl;
+import org.apache.struts.faces.application.ViewHandlerImpl;
 
 
 /**
@@ -88,7 +90,7 @@ import org.apache.struts.faces.application.PropertyResolverImpl;
  * <em>Struts-Faces Integration Library</em>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/12/29 22:45:52 $
+ * @version $Revision: 1.6 $ $Date: 2003/12/31 07:17:48 $
  */
 
 public class LifecycleListener
@@ -131,8 +133,8 @@ public class LifecycleListener
         log.info("attributeAdded(" + name + "," + event.getValue() + ")");
         if (name.equals(Globals.ACTION_SERVLET_KEY)) {
             servlet = (ActionServlet) event.getValue();
-            // } else if (name.startsWith(Globals.MODULE_KEY)) {
-            //     createProcessor(servlet, (ModuleConfig) event.getValue());
+            createPropertyResolver();
+            // createViewHandler();
         }
 
     }
@@ -194,8 +196,6 @@ public class LifecycleListener
 
         log.info("contextInitialized()");
         servletContext = event.getServletContext();
-        // FIXME -- causes NPE looking up ApplicationFactory
-        // createPropertyResolver();
 
     }
 
@@ -204,40 +204,14 @@ public class LifecycleListener
 
 
     /**
-     * <p>Create and register a <code>RequestProcessor</code> instance
-     * for the specified application module.</p>
-     *
-     * @param servlet ActionServlet instance we are associated with
-     * @param modConfig ModuleConfig instance we are associated with
-     */
-    /*
-    private RequestProcessor createProcessor(ActionServlet servlet,
-                                             ModuleConfig modConfig) {
-
-        if (log.isDebugEnabled()) {
-            log.debug("Configuring RequestProcessor instance");
-        }
-        RequestProcessor processor = new FacesRequestProcessor();
-        try {
-            processor.init(servlet, modConfig);
-            servlet.getServletContext().setAttribute
-                (Globals.REQUEST_PROCESSOR_KEY + modConfig.getPrefix(),
-                 processor);
-        } catch (Exception e) {
-            log.error("createProcessor()", e);
-        }
-        return (processor);
-
-    }
-    */
-
-
-    /**
      * <p>Create and register a <code>PropertyResolver</code> instance
      * that supports <code>DynaBean</code>s.</p>
      */
     private PropertyResolver createPropertyResolver() {
 
+        if (log.isDebugEnabled()) {
+            log.debug("Configuring custom PropertyResolver");
+        }
         ApplicationFactory factory = (ApplicationFactory)
             FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
         Application application = factory.getApplication();
@@ -245,6 +219,26 @@ public class LifecycleListener
             new PropertyResolverImpl(application.getPropertyResolver());
         application.setPropertyResolver(resolver);
         return (resolver);
+
+    }
+
+
+    /**
+     * <p>Create and register a <code>ViewHandler</code> instance
+     * that supports using include instead of forward.</p>
+     */
+    private ViewHandler createViewHandler() {
+
+        if (log.isDebugEnabled()) {
+            log.debug("Configuring custom ViewHandler");
+        }
+        ApplicationFactory factory = (ApplicationFactory)
+            FactoryFinder.getFactory(FactoryFinder.APPLICATION_FACTORY);
+        Application application = factory.getApplication();
+        ViewHandler handler =
+            new ViewHandlerImpl(application.getViewHandler());
+        application.setViewHandler(handler);
+        return (handler);
 
     }
 

@@ -614,6 +614,32 @@
 
   <tag>
 
+    <name>subview</name>
+    <summary>
+      Struts-Specific Substitute for JSF Core "subview" tag
+    </summary>
+    <tag-class>org.apache.struts.faces.taglib.SubviewTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      <p>This tag is functionally equivalent to the "subview" tag in the
+      JavaServer Faces Core Tag Library, and is present only to support
+      opportunities for additional debugging.</p>
+    </description>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Component identifier of the component corresponding to this tag.</p>
+      </description>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
     <name>write</name>
     <summary>
       Render the value of the specified model object or text string

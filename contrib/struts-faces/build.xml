@@ -84,6 +84,7 @@
   <property name="username" value="tomcat"/>
 
   <property name="example.path"     value="/struts-faces"/>
+  <property name="example2.path"    value="/struts-faces2"/>
 
 
   <!-- ===================== LIBRARY: Maintenance ========================= -->
@@ -304,7 +305,7 @@
   <!-- ===================== EXAMPLE:  Tomcat Integration ================= -->
 
 
-  <target name="install" depends="example.compile"
+  <target name="example.install" depends="example.compile"
    description="Install example webapp on Tomcat">
     <install url="${url}" username="${username}" password="${password}"
             path="${example.path}"
@@ -312,24 +313,143 @@
   </target>
 
 
-  <target name="reload" depends="example.compile"
+  <target name="example.reload" depends="example.compile"
    description="Reload example webapp on Tomcat">
     <reload url="${url}" username="${username}" password="${password}"
             path="${example.path}"/>
   </target>
 
 
-  <target name="remove"
+  <target name="example.remove"
    description="Remove example webapp from Tomcat">
     <remove url="${url}" username="${username}" password="${password}"
             path="${example.path}"/>
   </target>
 
 
+  <!-- ==================== EXAMPLE2: Create Webapp ======================= -->
+
+
+  <target name="example2.prepare" depends="library">
+
+    <echo message="------------ ${project.name} Example2 Webapp ------------"/>
+    <mkdir         dir="${build.home}/webapps"/>
+    <mkdir         dir="${build.home}/webapps/example2"/>
+
+  </target>
+
+
+  <target name="example2.static" depends="example2.prepare">
+
+    <!-- Copy static web resources -->
+    <copy        todir="${build.home}/webapps/example2">
+      <fileset     dir="web/example2"/>
+    </copy>
+
+    <!-- Copy required configuration files -->
+    <copy        todir="${build.home}/webapps/example2/WEB-INF">
+      <fileset     dir="${build.home}/conf">
+        <include  name="*.tld"/>
+      </fileset>
+    </copy>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF">
+      <fileset     dir="${struts.home}/lib">
+        <include  name="*.tld"/>
+        <include  name="valid*.xml"/>
+      </fileset>
+    </copy>
+
+    <!-- Copy required library JAR files -->
+    <mkdir         dir="${build.home}/webapps/example2/WEB-INF/lib"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${build.home}/lib/struts-faces.jar"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-beanutils.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-collections.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-digester.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-fileupload.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-lang.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-logging.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${commons-validator.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${struts.jar}"/>
+
+  </target>
+
+
+  <target name="example2.libraries" depends="example2.static"
+            if="build.standalone">
+
+    <!-- Copy libraries required for standalone use only -->
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${jsf-api.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${jsf-impl.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${jstl.jar}"/>
+    <copy        todir="${build.home}/webapps/example2/WEB-INF/lib"
+                  file="${standard.jar}"/>
+
+  </target>
+
+
+  <target name="example2.compile" depends="example2.libraries">
+
+    <!-- Compile Java Sources -->
+    <mkdir         dir="${build.home}/webapps/example2/WEB-INF/classes"/>
+    <javac      srcdir="src/example2"
+               destdir="${build.home}/webapps/example2/WEB-INF/classes"
+                 debug="${compile.debug}"
+           deprecation="${compile.deprecation}"
+              optimize="${compile.optimize}">
+      <classpath refid="classpath" />
+    </javac>
+
+    <!-- Copy non-Java Sources -->
+    <copy    todir="${build.home}/webapps/example2/WEB-INF/classes">
+      <fileset dir="src/example2">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+
+  <!-- ===================== EXAMPLE2:  Tomcat Integration ================= -->
+
+
+  <target name="example2.install" depends="example2.compile"
+   description="Install example2 webapp on Tomcat">
+    <install url="${url}" username="${username}" password="${password}"
+            path="${example2.path}"
+             war="file://${build.home}/webapps/example2"/>
+  </target>
+
+
+  <target name="example2.reload" depends="example2.compile"
+   description="Reload example2 webapp on Tomcat">
+    <reload url="${url}" username="${username}" password="${password}"
+            path="${example2.path}"/>
+  </target>
+
+
+  <target name="example2.remove"
+   description="Remove example2 webapp from Tomcat">
+    <remove url="${url}" username="${username}" password="${password}"
+            path="${example2.path}"/>
+  </target>
+
+
   <!-- ==================== Create Binary Distribution ==================== -->
 
 
-  <target name="dist" depends="example.compile, docs"
+  <target name="dist" depends="example.compile,example2.compile, docs"
    description="Create binary distribution">
 
     <mkdir     dir="${dist.home}"/>
@@ -364,6 +484,14 @@
         <include name="META-INF/LICENSE.txt"/>
       </fileset>
       <fileset dir="${build.home}/webapps/example">
+        <exclude name="**/jsf-*.jar"/>   <!-- EA license so no redistrib -->
+      </fileset>
+    </jar>
+    <jar  destfile="${dist.home}/webapps/struts-faces2.war">
+      <fileset dir="${build.home}/classes">
+        <include name="META-INF/LICENSE.txt"/>
+      </fileset>
+      <fileset dir="${build.home}/webapps/example2">
         <exclude name="**/jsf-*.jar"/>   <!-- EA license so no redistrib -->
       </fileset>
     </jar>

@@ -1,0 +1,43 @@
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+  "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<tiles-definitions>
+
+
+  <!-- ========== LAYOUTS ========== -->
+
+  <!-- Base Layout -->
+  <definition name=".base"      page="/faces/layout.jsp">
+    <put      name="header"    value="/header.jsp"/>
+    <put      name="footer"    value="/footer.jsp"/>
+    <put      name="menu"      value="/blank.jsp"/>
+    <put      name="body"      value="/blank.jsp"/>
+  </definition>
+
+  <!-- Logged Off Layout -->
+  <definition name=".loggedoff"   extends=".base">
+    <put      name="menu"      value="/loggedoff.jsp"/>
+  </definition>
+
+  <!-- Logged On Layout -->
+  <definition name=".loggedon"   extends=".base">
+    <put      name="menu"      value="/loggedon.jsp"/>
+  </definition>
+
+
+  <!-- ========== PAGES ========== -->
+
+  <definition name=".logon" extends=".loggedoff">
+    <put      name="body"     value="/logon.jsp"/>
+  </definition>
+
+  <definition name=".register" extends=".loggedoff">
+    <put      name="body"     value="/registration.jsp"/>
+  </definition>
+
+  <definition name=".welcome" extends=".loggedoff">
+  </definition>
+
+
+</tiles-definitions>

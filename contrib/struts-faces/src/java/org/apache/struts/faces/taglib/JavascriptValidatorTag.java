@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/JavascriptValidatorTag.java,v 1.1 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/JavascriptValidatorTag.java,v 1.2 2003/12/31 07:17:48 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/12/31 07:17:48 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author Craig McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/12/24 03:21:01 $
+ * @version $Revision: 1.2 $ $Date: 2003/12/31 07:17:48 $
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
 
@@ -770,6 +770,17 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (parent == null) {
             throw new IllegalArgumentException
                 ("Not nested inside a UIComponentTag");
+        }
+
+        // Are we nested inside our corresponding form tag?
+        UIComponent parentComponent =
+            ((UIComponentTag) parent).getComponentInstance();
+        if (parentComponent instanceof FormComponent) {
+            if (formName.equals((String) parentComponent.getAttributes().get("beanName"))) {
+                formClientId = parentComponent.getClientId
+                    (FacesContext.getCurrentInstance());
+                return (formClientId);
+            }
         }
 
         // Scan the children of this tag's component
