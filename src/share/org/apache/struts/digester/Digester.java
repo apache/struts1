@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.9 2000/09/20 04:17:03 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/09/20 04:17:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.10 2000/11/29 06:47:15 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/11/29 06:47:15 $
  *
  * ====================================================================
  * 
@@ -92,57 +92,11 @@ import org.xml.sax.SAXParseException;
  * <code>XmlMapper</code> class that was part of Tomcat 3.0 and 3.1,
  * but is organized somewhat differently.
  * <p>
- * A typical use of a Digester might look something like this:
- * <pre>
- *	InputStream input = ...;	// Open XML input stream
- *	Digester digester = new Digester();
- *	digester.push(this);
- *	digester.setValidating(false);
- *	digester.addObjectCreate("action-mappings/action", mappingClass,
- *                               "className");
- *	digester.addSetProperties("action-mappings/action");
- *	digester.addSetNext("action-mappings/action", "addMapping",
- *			    "org.apache.struts.action.ActionMapping");
- *	try {
- *	    digester.parse(input);
- *	    input.close();
- *	} catch (SAXException e) {
- *	    System.out.println("SAXException: " + e);
- *	    e.printStackTrace(System.out);
- *	}
- * </pre>
- * <p>
- * The initial <code>push()</code> call pushes the instance containing this
- * code (the ActionServlet in the example above) onto the digester's stack.
- * Each of the "add" methods adds a processing rule that is matched when
- * an <code>&lt;action&gt;</code> element is found nested within an
- * <code>&lt;action-mappings&gt;</code> element.  These rules perform the
- * following processing:
- * <ul>
- * <li>A new Java object will be instantiated and pushed onto the digester's
- *     object stack.  If the <code>&lt;action&gt;</code>  element includes
- *     an attribute named <code>className</code>, the value of that attribute
- *     must be the fully qualified Java class name of the object to be created.
- *     Otherwise, the class name is taken from the <code>mappingClass</code>
- *     instance variable.</li>
- * <li>The attributes of the <code>&lt;action&gt;</code> element are matched
- *     against the properties of the object on top of the stack.  Whenever
- *     there is a <code>setXxx()</code> method with a corresponding name, that
- *     property will be set to the corresponding attribute value.</li>
- * <li>A call to the <code>addMapping</code> method of the next-to-top object
- *     on the stack (i.e. the action servlet) is made, passing the top object
- *     on the stack as an argument.  The method expects an argument of type
- *    "org.apache.struts.action.ActionMapping" (or a subclass or interface
- *    implementation of this type) to be passed.
- * <li>Any object added to the digeter's stack is removed.
- * </ul>
- * <p>
- * This is a very powerful technique for constructing trees of Java objects
- * that are configured based on the element attributes, without having to
- * hard code the configuration logic.
+ * See the <a href="package-summary.html#package_description">Digester
+ * Developer Guide</a> for more information.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/09/20 04:17:03 $
+ * @version $Revision: 1.10 $ $Date: 2000/11/29 06:47:15 $
  */
 
 public final class Digester extends HandlerBase {
