@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.13 2002/06/30 03:38:30 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2002/06/30 03:38:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.14 2002/07/20 17:41:17 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/07/20 17:41:17 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.13 $ $Date: 2002/06/30 03:38:30 $
+ * @version $Revision: 1.14 $ $Date: 2002/07/20 17:41:17 $
  * @deprecated Use a <code>BasicDataSource</code> directly, or indirectly
  *  acquire a data source provided by your container
  */
@@ -137,7 +137,7 @@ public class GenericDataSource implements DataSource {
     /**
      * The maximum number of connections to be created.
      */
-    protected int maxCount = 2;
+    protected int maxCount = 8;
 
     public int getMaxCount() {
         return (this.maxCount);
@@ -152,7 +152,7 @@ public class GenericDataSource implements DataSource {
      * The maximum number of idle connections allowed before starting
      * to release them, or zero for no limit.
      */
-    protected int maxIdle = 0;
+    protected int maxIdle = 8;
 
     public int getMaxIdle() {
         return (this.maxIdle);
