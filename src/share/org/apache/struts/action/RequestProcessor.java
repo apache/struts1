@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.34 2003/09/11 01:18:45 dgraham Exp $
- * $Revision: 1.34 $
- * $Date: 2003/09/11 01:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.35 2003/09/29 01:24:21 mrdon Exp $
+ * $Revision: 1.35 $
+ * $Date: 2003/09/29 01:24:21 $
  *
  * ====================================================================
  *
@@ -82,6 +82,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
+import org.apache.struts.util.ActionMappingMatcher;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -94,7 +95,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.34 $ $Date: 2003/09/11 01:18:45 $
+ * @version $Revision: 1.35 $ $Date: 2003/09/29 01:24:21 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -145,6 +146,10 @@ public class RequestProcessor {
      */
     protected ActionServlet servlet = null;
 
+    /**
+     * Matches action mapping paths against compiled wildcard patterns
+     */
+    protected ActionMappingMatcher matcher = null;
 
     // --------------------------------------------------------- Public Methods
 
@@ -184,7 +189,7 @@ public class RequestProcessor {
         
         this.servlet = servlet;
         this.moduleConfig = moduleConfig;
-
+        matcher = new ActionMappingMatcher(moduleConfig);
     }
 
     /**
@@ -659,9 +664,15 @@ public class RequestProcessor {
                                            String path)
         throws IOException {
 
-        // Is there a directly defined mapping for this path?
+        // Is there a directly defined or wildcard-matched mapping for this 
+        // path?
         ActionMapping mapping = (ActionMapping)
             moduleConfig.findActionConfig(path);
+        if (mapping == null) {
+            mapping = matcher.match(path);
+        }
+
+        // If a mapping is found, put it in the request and return it
         if (mapping != null) {
             request.setAttribute(Globals.MAPPING_KEY, mapping);
             return (mapping);
