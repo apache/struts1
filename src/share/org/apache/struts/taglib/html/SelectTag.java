@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.11 2002/06/25 00:45:41 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2002/06/25 00:45:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.12 2002/06/25 01:33:32 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/06/25 01:33:32 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/06/25 00:45:41 $
+ * @version $Revision: 1.12 $ $Date: 2002/06/25 01:33:32 $
  */
 
 public class SelectTag extends BaseHandlerTag {
@@ -104,7 +104,7 @@ public class SelectTag extends BaseHandlerTag {
 
 
     /**
-     * Should multiple selections be allowed?  Any non-null value will
+     * Should multiple selections be allowed.  Any non-null value will
      * trigger rendering this.
      */
     protected String multiple = null;
