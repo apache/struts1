@@ -46,7 +46,7 @@
   <li><a href="http://husted.com/struts/resources/codemaker.htm">Code generator</a></li>
   </ul>
  
-  <p>See also the Tiles, Validator, and Service Manager packages in the contrib folder.</p>
+  <p>See also the Service Manager packages in the contrib folder.</p>
 
   <p>The wish list tasks are divided into functional areas that correspond
   to the major components of the Struts Framework. References in square
