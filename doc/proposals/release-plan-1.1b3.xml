@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.13 2003/02/07 22:14:04 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.14 2003/02/07 22:18:14 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -97,7 +97,7 @@
       <td colspan="3"><strong>Custom Tags</strong></td>
     </tr>
     <tr>
-      <td nowrap="nowrap">[ ]</td>
+      <td nowrap="nowrap">[x]</td>
       <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=11021">11021</a>
       </td>
@@ -213,7 +213,7 @@
       <td>Struts doesn't initialize under strict security manager</td>
     </tr>
     <tr>
-        <td>[ ]</td>
+        <td>[x]</td>
         <td>
           <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=15799">15799</a></td>
       <td>Nested tags picks up wrong bean for values</td>
