@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ComponentContext.java,v 1.1 2001/08/01 14:36:42 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ComponentContext.java,v 1.2 2001/09/10 12:52:11 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/10 12:52:11 $
  * $Author: cedric $
  *
  */
@@ -12,6 +12,7 @@ package org.apache.struts.tiles;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.PageContext;
@@ -22,7 +23,7 @@ import org.apache.struts.taglib.tiles.ComponentConstants;
  */
 public class ComponentContext
 {
-  
+
   /**
    * Component attributes.
    */
@@ -68,10 +69,55 @@ public class ComponentContext
     }
 
   /**
+   * Add all attributes to this context.
+   * Copies all of the mappings from the specified attribute map to this context.
+   * New attribute mappings will replace any mappings that this context had for any of the keys
+   * currently in the specified attribute map.
+   * @param attributes to add.
+   */
+  public void addAll(Map newAttributes)
+  {
+  if( attributes == null )
+    {
+    attributes = new HashMap(newAttributes);
+    return;
+    }
+  attributes.putAll( newAttributes );
+  }
+
+  /**
+   * Add all missing attributes to this context.
+   * Copies all of the mappings from the specified attributes map to this context.
+   * New attribute mappings will be added only if they don't already exist in
+   * this context.
+   * @param attributes to add.
+   */
+  public void addMissing(Map defaultAttributes)
+  {
+  if( defaultAttributes == null )
+    return;
+  if( attributes == null )
+    {
+    attributes = new HashMap(defaultAttributes);
+    return;
+    }
+
+  Set entries = defaultAttributes.entrySet();
+  Iterator iterator = entries.iterator();
+  while( iterator.hasNext() )
+    {
+    Map.Entry entry = (Map.Entry)iterator.next();
+    if( !attributes.containsKey( entry.getKey()) )
+      {
+      attributes.put(entry.getKey(), entry.getValue());
+      } // end if
+    } // end loop
+  }
+
+  /**
    * Get an attribute from context
    * @param name
    * @return <{Object}>
-   * @roseuid 39AEBEC90228
    */
   public Object getAttribute(String name)
   {
@@ -79,12 +125,11 @@ public class ComponentContext
     return null;
   return attributes.get( name );
   }
-  
+
   /**
    * Get names of all attributes
    * @param name
    * @return <{Object}>
-   * @roseuid 39AEBEC90228
    */
   public Iterator getAttributeNames()
   {
@@ -92,7 +137,7 @@ public class ComponentContext
     return EMPTY_ITERATOR;
   return attributes.keySet().iterator();
   }
-  
+
   /**
    * Put a new attribute to context.
    * @param name
@@ -168,6 +213,14 @@ public class ComponentContext
   static public ComponentContext getContext( ServletRequest request )
     {
     return (ComponentContext)request.getAttribute(ComponentConstants.COMPONENT_CONTEXT);
+    }
+
+    /**
+     * Store component context into request.
+     */
+  static public void setContext( ComponentContext context, ServletRequest request )
+    {
+    request.setAttribute(ComponentConstants.COMPONENT_CONTEXT, context);
     }
  }
 

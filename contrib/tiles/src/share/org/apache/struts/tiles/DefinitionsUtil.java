@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/DefinitionsUtil.java,v 1.1 2001/08/01 14:36:42 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/DefinitionsUtil.java,v 1.2 2001/09/10 12:51:31 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/10 12:51:31 $
  * $Author: cedric $
  *
  */
@@ -14,6 +14,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -49,6 +50,9 @@ public class DefinitionsUtil implements ComponentConstants
   public static final String DEFINITIONS_FACTORY_CLASSNAME = "definitions-factory-class";
     /** Constant name used to store factory in context */
   public static final String DEFINITIONS_FACTORY = "org.apache.struts.tiles.DEFINITIONS_FACTORY";
+    /** Constant name used to store definition in jsp context.
+     *  Used to pass definition from a Struts action to servlet forward */
+  public static final String ACTION_DEFINITION = "org.apache.struts.tiles.ACTION_DEFINITION";
 
 
     /**
@@ -226,21 +230,24 @@ public class DefinitionsUtil implements ComponentConstants
   }
 
   /**
-   * Get a component / template definition by its name.
-   * First, retrieve instance factory, and then get requested instance.
-   * Throw appropriate exception if definition is not found.
+   * Get a definition by its name.
+   * First, retrieve definition factory, and then get requested definition.
+   * Throw appropriate exception if definition or definition factory is not found.
+   * @param name Name of requested definition.
+   * @param request Current servelet request
+   * @param servletContext current servlet context
    * @throw FactoryNotFoundException Can't find definition factory.
-   * @throw ComponentDefinitionsFactoryException General error in factory while getting definition.
+   * @throw DefinitionsFactoryException General error in factory while getting definition.
    * @throws NoSuchDefinitionException No definition found for specified name
    */
-  static public ComponentDefinition getDefinition(String definitionName, PageContext pageContext)
+  static public ComponentDefinition getDefinition(String definitionName, ServletRequest request, ServletContext servletContext)
     throws FactoryNotFoundException, DefinitionsFactoryException
   {
   try
     {
-    return getDefinitionsFactory( pageContext).getDefinition(definitionName,
-                                                       (HttpServletRequest)pageContext.getRequest(),
-                                                        pageContext.getServletContext());
+    return getDefinitionsFactory(servletContext).getDefinition(definitionName,
+                                                       (HttpServletRequest)request,
+                                                        servletContext);
     }
    catch( NullPointerException ex )
     {  // Factory not found in context
@@ -249,12 +256,78 @@ public class DefinitionsUtil implements ComponentConstants
   }
 
   /**
+   * Get a component / template definition by its name.
+   * First, retrieve instance factory, and then get requested instance.
+   * Throw appropriate exception if definition is not found.
+   * @param name Name of requested definition.
+   * @param request Current servelet request
+   * @param servletContext current servlet context
+   * @throw FactoryNotFoundException Can't find definition factory.
+   * @throw DefinitionsFactoryException General error in factory while getting definition.
+   * @throws NoSuchDefinitionException No definition found for specified name
+   */
+  static public ComponentDefinition getDefinition(String definitionName, PageContext pageContext)
+    throws FactoryNotFoundException, DefinitionsFactoryException
+  {
+  return getDefinition( definitionName,
+                        (HttpServletRequest)pageContext.getRequest(),
+                        pageContext.getServletContext());
+  }
+
+  /**
    * Get instances factory from appropriate servlet context.
-   * @return Instances factory or null if not found.
+   * @return Definitions factory or null if not found.
+   */
+ static  public ComponentDefinitionsFactory getDefinitionsFactory(ServletContext servletContext)
+  {
+  return (ComponentDefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
+  }
+
+  /**
+   * Get instances factory from appropriate servlet context.
+   * @return Definitions factory or null if not found.
    */
  static  public ComponentDefinitionsFactory getDefinitionsFactory(PageContext pageContext)
   {
-  return (ComponentDefinitionsFactory)pageContext.getServletContext().getAttribute(DEFINITIONS_FACTORY);
+  return getDefinitionsFactory( pageContext.getServletContext());
+  }
+
+  /**
+   * Get ComponentContext defined for current Tile.
+   * @return ComponentContext ComponentContext or null.
+   *
+   */
+ static  public ComponentContext getComponentContextOld(ServletRequest request)
+  {
+  return ComponentContext.getContext(request);
+  }
+
+
+  /**
+   * Get Definition stored in jsp context by an action.
+   * @return ComponentDefinition or null if not found.
+   */
+ static  public ComponentDefinition getActionDefinition(ServletRequest request)
+  {
+  return (ComponentDefinition)request.getAttribute(ACTION_DEFINITION);
+  }
+
+  /**
+   * Store definition in jsp context.
+   * Mainly used by Struts to pass a definition defined in an Action to the forward.
+   */
+ static  public void setActionDefinition(ServletRequest request, ComponentDefinition definition)
+  {
+  request.setAttribute(ACTION_DEFINITION, definition);
+  }
+
+  /**
+   * Remove Definition stored in jsp context.
+   * Mainly used by Struts to pass a definition defined in an Action to the forward.
+   */
+ static  public void removeActionDefinition(ServletRequest request, ComponentDefinition definition)
+  {
+  request.removeAttribute(ACTION_DEFINITION);
   }
 }
 
