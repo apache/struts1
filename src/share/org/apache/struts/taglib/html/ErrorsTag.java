@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.2 2001/01/25 19:18:17 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/25 19:18:17 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/25 19:18:17 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -185,7 +185,7 @@ public class ErrorsTag extends TagSupport {
         if (messages != null)
             message = messages.getMessage(locale, "errors.header");
         else
-            message = null;
+            message = "MISSING APPLICATION RESOURCES";
 	if (message != null) {
 	    results.append(message);
 	    results.append("\r\n");
