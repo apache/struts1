@@ -6912,10 +6912,9 @@
           <info>
           <p>
           	Using this tag in a page tells all other html taglib tags
-          	to render themselves as XHTML.  This is really only useful
-          	when composing pages with jsp includes.  Using 
-          	&lt;html:html xhtml="true"&gt; will accomplish the same thing
-          	as this tag but only works for complete pages or tiles.
+          	to render themselves as XHTML.  This is useful
+          	when composing pages with JSP includes or Tiles.  This tag has the same effect
+          	as using &lt;html:html xhtml="true"&gt;.
           </p>
           </info>
 
