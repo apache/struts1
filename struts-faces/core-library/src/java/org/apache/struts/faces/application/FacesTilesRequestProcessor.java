@@ -126,12 +126,16 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
             if (log.isTraceEnabled()) {
                 log.trace("  Creating new FacesContext for '" + uri + "'");
             }
+            created = true;
             FacesContextFactory fcf = (FacesContextFactory)
                 FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
             HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request, uri);
             context = fcf.getFacesContext(servlet.getServletContext(), wrapper,
-                                          response, lifecycle);
-            created = true;
+                                          response, lifecycle); 
+            // Comment out the previous three lines and uncomment
+            // the following two lines to test eliminating the wrapper
+            // context = fcf.getFacesContext(servlet.getServletContext(),
+            //                               request, response, lifecycle);
         }
 
         // Create a new view root

@@ -126,13 +126,14 @@ public class FacesRequestProcessor extends RequestProcessor {
             if (log.isTraceEnabled()) {
                 log.trace("  Creating new FacesContext for '" + uri + "'");
             }
+            created = true;
             FacesContextFactory fcf = (FacesContextFactory)
                 FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
-            HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request, uri);
-            context = fcf.getFacesContext(servlet.getServletContext(), wrapper,
-                                          response, lifecycle); 
-            // Comment out the previous two lines and uncomment
-            // the following line to test eliminating the wrapper
+            // HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request, uri);
+            // context = fcf.getFacesContext(servlet.getServletContext(), wrapper,
+            //                               response, lifecycle); 
+            // Comment out the previous three lines and uncomment
+            // the following two lines to test eliminating the wrapper
             context = fcf.getFacesContext(servlet.getServletContext(),
                                           request, response, lifecycle);
         }
