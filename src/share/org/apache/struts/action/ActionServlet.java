@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.133 2002/11/29 19:49:50 dgraham Exp $
- * $Revision: 1.133 $
- * $Date: 2002/11/29 19:49:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.134 2002/12/08 02:43:08 craigmcc Exp $
+ * $Revision: 1.134 $
+ * $Date: 2002/12/08 02:43:08 $
  *
  * ====================================================================
  *
@@ -177,10 +177,12 @@ import org.xml.sax.InputSource;
  * deprecated between the 1.0 and 1.1 releases. The deprecated parameters
  * are listed after the nominal parameters.</p>
  * <ul>
- * <li><strong>config</strong> - Context-relative path to the XML resource
- *     containing the configuration information for the default module.
+ * <li><strong>config</strong> - Comma-separated list of context-relative
+ *     path(s) to the XML resource(s) containing the configuration information
+ *     for the default module.  (Multiple files support since Struts 1.1)
  *     [/WEB-INF/struts-config.xml].</li>
- * <li><strong>config/${module}</strong> - Context-relative path to the XML resource
+ * <li><strong>config/${module}</strong> - Comma-separated list of
+ *     Context-relative path(s) to the XML resource(s)
  *     containing the configuration information for the module that
  *     will use the specified prefix (/${module}). This can be repeated as many
  *     times as required for multiple modules. (Since Struts 1.1)</li>
@@ -299,7 +301,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.133 $ $Date: 2002/11/29 19:49:50 $
+ * @version $Revision: 1.134 $ $Date: 2002/12/08 02:43:08 $
  */
 
 public class ActionServlet
@@ -310,8 +312,8 @@ public class ActionServlet
 
 
     /**
-     * The context-relative path to our configuration resource for the
-     * default module.
+     * Comma-separated list of context-relative path(s) to our configuration
+     * resource(s) for the default module.
      */
     protected String config = "/WEB-INF/struts-config.xml";
 
@@ -858,18 +860,18 @@ public class ActionServlet
      * specified module.</p>
      *
      * @param prefix Module prefix for this module
-     * @param path Context-relative resource path for this application's
-     *  configuration resource
+     * @param paths Comma-separated list of context-relative resource path(s)
+     *  for this application's configuration resource(s)
      *
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
      */
     protected ModuleConfig initModuleConfig
-        (String prefix, String path) throws ServletException {
+        (String prefix, String paths) throws ServletException {
 
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + prefix +
-                "' configuration from '" + path + "'");
+                "' configuration from '" + paths + "'");
         }
 
         // Parse the application configuration for this module
@@ -886,20 +888,38 @@ public class ActionServlet
                 config.setActionMappingClass(mapping);
             }
 
+            // Configure the Digester instance we will use
             Digester digester = initConfigDigester();
-            digester.push(config);
-            URL url = getServletContext().getResource(path);
-            InputSource is = new InputSource(url.toExternalForm());
-            input = getServletContext().getResourceAsStream(path);
-            is.setByteStream(input);
-            digester.parse(is);
-            getServletContext().setAttribute
-                (Globals.MODULE_KEY + prefix, config);
-                
+
+            // Process each specified resource path
+            while (paths.length() > 0) {
+                digester.push(config);
+                String path = null;
+                int comma = paths.indexOf(',');
+                if (comma >= 0) {
+                    path = paths.substring(0, comma).trim();
+                    paths = paths.substring(comma + 1);
+                } else {
+                    path = paths.trim();
+                    paths = "";
+                }
+                if (path.length() < 1) {
+                    break;
+                }
+                URL url = getServletContext().getResource(path);
+                InputSource is = new InputSource(url.toExternalForm());
+                input = getServletContext().getResourceAsStream(path);
+                is.setByteStream(input);
+                digester.parse(is);
+                getServletContext().setAttribute
+                    (Globals.MODULE_KEY + prefix, config);
+                input.close();
+            }
+
         } catch (Throwable t) {
-            log.error(internal.getMessage("configParse", path), t);
+            log.error(internal.getMessage("configParse", paths), t);
             throw new UnavailableException
-                (internal.getMessage("configParse", path));
+                (internal.getMessage("configParse", paths));
         } finally {
             if (input != null) {
                 try {
