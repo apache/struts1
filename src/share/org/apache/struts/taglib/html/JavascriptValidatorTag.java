@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.21 2003/01/17 06:09:17 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/01/17 06:09:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.22 2003/01/20 06:00:48 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/01/20 06:00:48 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.21 $ $Date: 2003/01/17 06:09:17 $
+ * @version $Revision: 1.22 $ $Date: 2003/01/20 06:00:48 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -544,22 +544,22 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             sb.append("<![CDATA[\r\n");
         }
         
-        if ("true".equals(htmlComment)) {
+        if (!this.isXhtml() && "true".equals(htmlComment)) {
             sb.append(htmlBeginComment);
         }
         sb.append("\n     var bCancel = false; \n\n");
 
-        if (methodName == null || methodName.length() == 0)
+        if (methodName == null || methodName.length() == 0) {
             sb.append(
                 "    function validate"
                     + name
                     + "(form) {                                                                   \n");
-        else
+        } else {
             sb.append(
                 "    function "
                     + methodName
                     + "(form) {                                                                   \n");
-
+        }
         sb.append("        if (bCancel) \n");
         sb.append("      return true; \n");
         sb.append("        else \n");
@@ -601,7 +601,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         StringBuffer sb = new StringBuffer();
 
         sb.append("\n");
-        if ("true".equals(htmlComment)){
+        if (!this.isXhtml() && "true".equals(htmlComment)){
             sb.append(htmlEndComment);
         }
         
