@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.7 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.8 2003/07/31 00:30:21 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/31 00:30:21 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,24 +59,22 @@
  *
  */
 
-
 package org.apache.struts.util;
-
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
 import org.apache.struts.taglib.TagUtils;
 
-
 /**
  * General purpose utility methods related to generating a servlet response
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.8 $ $Date: 2003/07/31 00:30:21 $
+ * @deprecated Use the corresponding TagUtils methods instead.  
+ * This class will be removed after Struts 1.2.
  */
-
 public class ResponseUtils {
 
 
@@ -101,38 +99,10 @@ public class ResponseUtils {
      * by the corresponding character entities.
      *
      * @param value The string to be filtered and returned
+     * @deprecated
      */
     public static String filter(String value) {
-
-        if (value == null)
-            return (null);
-
-        char content[] = new char[value.length()];
-        value.getChars(0, value.length(), content, 0);
-        StringBuffer result = new StringBuffer(content.length + 50);
-        for (int i = 0; i < content.length; i++) {
-            switch (content[i]) {
-            case '<':
-                result.append("&lt;");
-                break;
-            case '>':
-                result.append("&gt;");
-                break;
-            case '&':
-                result.append("&amp;");
-                break;
-            case '"':
-                result.append("&quot;");
-                break;
-            case '\'':
-                result.append("&#39;");
-                break;
-            default:
-                result.append(content[i]);
-            }
-        }
-        return (result.toString());
-
+        return TagUtils.getInstance().filter(value);
     }
 
 
@@ -147,8 +117,7 @@ public class ResponseUtils {
      * @param text The text to be written
      *
      * @exception JspException if an input/output error occurs (already saved)
-     * @deprecated Use TagUtils.write() instead.  This will be 
-     * removed after Struts 1.2.
+     * @deprecated
      */
     public static void write(PageContext pageContext, String text)
         throws JspException {
@@ -166,8 +135,7 @@ public class ResponseUtils {
      * @param text The text to be written
      *
      * @exception JspException if an input/output error occurs (already saved)
-     * @deprecated Use TagUtils.writePrevious() instead.  This will be 
-     * removed after Struts 1.2.
+     * @deprecated
      */
     public static void writePrevious(PageContext pageContext, String text)
         throws JspException {
