@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.13 2003/03/24 04:19:21 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/03/24 04:19:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/PresentTag.java,v 1.14 2003/03/24 04:33:42 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/03/24 04:33:42 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * is present for this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/03/24 04:19:21 $
+ * @version $Revision: 1.14 $ $Date: 2003/03/24 04:33:42 $
  */
 
 public class PresentTag extends ConditionalTagBase {
@@ -119,13 +119,12 @@ public class PresentTag extends ConditionalTagBase {
         
         if (cookie != null) {
             Cookie cookies[] = request.getCookies();
-            if (cookies == null) {
-                cookies = new Cookie[0];
-            }
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookie.equals(cookies[i].getName())) {
-                    present = true;
-                    break;
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookie.equals(cookies[i].getName())) {
+                        present = true;
+                        break;
+                    }
                 }
             }
             
