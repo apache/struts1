@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.7 2003/01/25 05:52:35 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/25 05:52:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.8 2003/02/08 19:34:19 cedric Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/02/08 19:34:19 $
  *
  * ====================================================================
  *
@@ -260,7 +260,7 @@ public class XmlParser
     // bean elements rules
   String BEAN_TAG = "*/bean";
   String beanDefaultClass = "org.apache.struts.tiles.beans.SimpleMenuItem";
-	digester.addObjectCreate(  BEAN_TAG, menuItemDefaultClass, "classtype");
+	digester.addObjectCreate(  BEAN_TAG, beanDefaultClass, "classtype");
 	digester.addSetNext(       BEAN_TAG, "add", "java.lang.Object");
 	digester.addSetProperties( BEAN_TAG);
 
