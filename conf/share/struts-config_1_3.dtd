@@ -116,10 +116,13 @@ The "form-bean" element describes a particular form bean, which is a
                      configuration bean.
                      ["org.apache.struts.config.FormBeanConfig"]
 
+     extends         The name of the form bean that this bean will
+                     inherit configuration information from.
+
      name            The unique identifier for this form bean. Referenced by the
                      <action> element to specify which form bean to use with its
                      request.
-
+                     
      type            Fully qualified Java class name of the ActionForm subclass
                      to use with this form bean.
 -->
@@ -127,8 +130,9 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST form-bean      id             ID              #IMPLIED>
 <!ATTLIST form-bean      className      %ClassName;     #IMPLIED>
 <!ATTLIST form-bean      dynamic        %Boolean;       #IMPLIED>
+<!ATTLIST form-bean      extends        %BeanName;      #IMPLIED>
 <!ATTLIST form-bean      name           %BeanName;      #REQUIRED>
-<!ATTLIST form-bean      type           %ClassName;     #REQUIRED>
+<!ATTLIST form-bean      type           %ClassName;     #IMPLIED>
 
 
 <!-- The "form-property" element describes a JavaBean property that can be used to
@@ -191,6 +195,9 @@ The "form-bean" element describes a particular form bean, which is a
                      configuration bean
                      ["org.apache.struts.config.ExceptionConfig"]
 
+    extends          The name of the exception handler that this 
+                     will inherit configuration information from.
+
     handler          Fully qualified Java class name for this exception handler.
                      ["org.apache.struts.action.ExceptionHandler"]
 
@@ -212,8 +219,9 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST exception      id             ID              #IMPLIED>
 <!ATTLIST exception      bundle         %AttributeName; #IMPLIED>
 <!ATTLIST exception      className      %ClassName;     #IMPLIED>
+<!ATTLIST exception      extends        %ClassName;     #IMPLIED>
 <!ATTLIST exception      handler        %ClassName;     #IMPLIED>
-<!ATTLIST exception      key            CDATA           #REQUIRED>
+<!ATTLIST exception      key            CDATA           #IMPLIED>
 <!ATTLIST exception      path           %RequestPath;   #IMPLIED>
 <!ATTLIST exception      scope          CDATA           #IMPLIED>
 <!ATTLIST exception      type           %ClassName;     #REQUIRED>
@@ -258,6 +266,9 @@ The "form-bean" element describes a particular form bean, which is a
                      DEPRECATED.
                      [false]
 
+     extends         The name of the forward configuration that this 
+                     will inherit configuration information from.
+
      module          The module prefix to use with this path. This value should
                      begin with a slash ("/").
 
@@ -284,9 +295,10 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST forward        className      %ClassName;     #IMPLIED>
 <!ATTLIST forward        command        CDATA           #IMPLIED>
 <!ATTLIST forward        contextRelative %Boolean;      #IMPLIED>
+<!ATTLIST forward        extends        CDATA           #IMPLIED>
 <!ATTLIST forward        module         %RequestPath;   #IMPLIED>
 <!ATTLIST forward        name           CDATA           #REQUIRED>
-<!ATTLIST forward        path           %RequestPath;   #REQUIRED>
+<!ATTLIST forward        path           %RequestPath;   #IMPLIED>
 <!ATTLIST forward        redirect       %Boolean;       #IMPLIED>
 
 
@@ -332,6 +344,9 @@ The "form-bean" element describes a particular form bean, which is a
 
      command         The name of a commons-chain command which should be looked up
                      and executed as part of servicing this request.  
+
+     extends         The name of the action mapping configuration that this 
+                     will inherit configuration information from.
 
      forward         Module-relative path of the servlet or other resource that
                      will process this request, instead of the Action class
@@ -411,6 +426,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST action         catalog        CDATA           #IMPLIED>
 <!ATTLIST action         className      %ClassName;     #IMPLIED>
 <!ATTLIST action         command        CDATA           #IMPLIED>
+<!ATTLIST action         extends        %RequestPath;   #IMPLIED>
 <!ATTLIST action         forward        %RequestPath;   #IMPLIED>
 <!ATTLIST action         include        %RequestPath;   #IMPLIED>
 <!ATTLIST action         input          %RequestPath;   #IMPLIED>
