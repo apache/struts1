@@ -65,17 +65,17 @@ import org.apache.struts.util.LabelValueBean;
 
 /**
  * Suite of unit tests for the
- * <code>org.apache.struts.taglib.logic.GreaterThanTag</code> class.
+ * <code>org.apache.struts.taglib.logic.LessEqualTag</code> class.
  *
  * @author James Mitchell
  */
-public class TestGreaterThanTag extends JspTestCase {
+public class TestLessEqualTag extends JspTestCase {
 	
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
     protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
     protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
-    protected final static String GREATER_VAL = "6";
-    protected final static String LESSER_VAL = "4";
+    protected final static String GREATER_VAL = "5";
+    protected final static String LESSER_VAL = "5";
 
 
     /**
@@ -83,7 +83,7 @@ public class TestGreaterThanTag extends JspTestCase {
      *
      * @param theName the testcase's name.
      */
-    public TestGreaterThanTag(String theName) {
+    public TestLessEqualTag(String theName) {
         super(theName);
     }
 
@@ -93,7 +93,7 @@ public class TestGreaterThanTag extends JspTestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[] {TestGreaterThanTag.class.getName()});
+        junit.awtui.TestRunner.main(new String[] {TestLessEqualTag.class.getName()});
     }
 
     /**
@@ -102,7 +102,7 @@ public class TestGreaterThanTag extends JspTestCase {
      */
     public static Test suite() {
         // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestGreaterThanTag.class);
+        return new TestSuite(TestLessEqualTag.class);
     }
 
     //----- Test initApplication() method --------------------------------------
@@ -110,209 +110,209 @@ public class TestGreaterThanTag extends JspTestCase {
     /**
      * Create cookie for testCookiePresent method test.
     */
-    public void beginCookieGreaterThan(WebRequest testRequest) {
+    public void beginCookieLessEqual(WebRequest testRequest) {
        testRequest.addCookie(COOKIE_KEY, GREATER_VAL);
     }
 
     /**
-     * Create header for testHeaderGreaterThan method test.
+     * Create header for testHeaderLessEqual method test.
     */
-    public void beginHeaderGreaterThan(WebRequest testRequest) {
+    public void beginHeaderLessEqual(WebRequest testRequest) {
        testRequest.addHeader(HEADER_KEY, GREATER_VAL);
     }
 
     /**
-     * Create header for testParameterGreaterThan method test.
+     * Create header for testParameterLessEqual method test.
     */
-    public void beginParameterGreaterThan(WebRequest testRequest) {
+    public void beginParameterLessEqual(WebRequest testRequest) {
        testRequest.addParameter(PARAMETER_KEY, GREATER_VAL);
     }
 
     /**
-     * Verify the value stored in a cookie using <code>GreaterThanTag</code>.
+     * Verify the value stored in a cookie using <code>LessEqualTag</code>.
     */
-    public void testCookieGreaterThan() throws ServletException,  JspException {
-        GreaterThanTag gt = new GreaterThanTag();
-        gt.setPageContext(pageContext);
-        gt.setCookie(COOKIE_KEY);
-        gt.setValue(LESSER_VAL);
+    public void testCookieLessEqual() throws ServletException,  JspException {
+        LessEqualTag ge = new LessEqualTag();
+        ge.setPageContext(pageContext);
+        ge.setCookie(COOKIE_KEY);
+        ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Cookie Value (" + GREATER_VAL + ") is greater than value (" + LESSER_VAL + ")", 
-        	gt.condition());
+        	"Cookie Value (" + GREATER_VAL + ") is less than or equal to value (" + LESSER_VAL + ")", 
+        	ge.condition());
     }
     
     /**
-     * Verify the value stored in header using <code>GreaterThanTag</code>.
+     * Verify the value stored in header using <code>LessEqualTag</code>.
     */
-    public void testHeaderGreaterThan() throws ServletException,  JspException {
-        GreaterThanTag gt = new GreaterThanTag();
-        gt.setPageContext(pageContext);
-        gt.setHeader(HEADER_KEY);
-        gt.setValue(LESSER_VAL);
+    public void testHeaderLessEqual() throws ServletException,  JspException {
+        LessEqualTag ge = new LessEqualTag();
+        ge.setPageContext(pageContext);
+        ge.setHeader(HEADER_KEY);
+        ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Header Value (" + GREATER_VAL + ") is greater than value (" + LESSER_VAL + ")", 
-        	gt.condition());
+        	"Header Value (" + GREATER_VAL + ") is less than or equal to value (" + LESSER_VAL + ")", 
+        	ge.condition());
     }
 
     /**
-     * Verify the value stored in parameter using <code>GreaterThanTag</code>.
+     * Verify the value stored in parameter using <code>LessEqualTag</code>.
     */
-    public void testParameterGreaterThan() throws ServletException,  JspException {
-        GreaterThanTag gt = new GreaterThanTag();
-        gt.setPageContext(pageContext);
-        gt.setParameter(PARAMETER_KEY);
-        gt.setValue(LESSER_VAL);
+    public void testParameterLessEqual() throws ServletException,  JspException {
+        LessEqualTag ge = new LessEqualTag();
+        ge.setPageContext(pageContext);
+        ge.setParameter(PARAMETER_KEY);
+        ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Parameter Value (" + GREATER_VAL + ") is greater than value (" + LESSER_VAL + ")", 
-        	gt.condition());
+        	"Parameter Value (" + GREATER_VAL + ") is less than or equal to value (" + LESSER_VAL + ")", 
+        	ge.condition());
     }
     
 
     /**
-     * Testing <code>GreaterThanTag</code> using name attribute in
+     * Testing <code>LessEqualTag</code> using name attribute in
      * the application scope.
     */
-    public void testApplicationScopeNameGreaterThan() 
+    public void testApplicationScopeNameLessEqual() 
     	throws ServletException,  JspException {
     
-        GreaterThanTag gt = new GreaterThanTag();
+        LessEqualTag ge = new LessEqualTag();
 
-		String testKey = "testApplicationScopeNameGreaterThan";
+		String testKey = "testApplicationScopeNameLessEqual";
 		Integer itgr = new Integer(GREATER_VAL);
 		
 		pageContext.setAttribute(testKey, itgr, PageContext.APPLICATION_SCOPE);
-		gt.setPageContext(pageContext);
-		gt.setName(testKey);
-		gt.setScope("application");
-		gt.setValue(LESSER_VAL);
+		ge.setPageContext(pageContext);
+		ge.setName(testKey);
+		ge.setScope("application");
+		ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Application scope value from name (" + GREATER_VAL + ") is greater than value (" + LESSER_VAL + ")", 
-        	gt.condition());
+        	"Application scope value from name (" + GREATER_VAL + ") is less than or equal to value (" + LESSER_VAL + ")", 
+        	ge.condition());
     }
 
     /**
-     * Testing <code>GreaterThanTag</code> using name attribute in
+     * Testing <code>LessEqualTag</code> using name attribute in
      * the session scope.
     */
-    public void testSessionScopeNameGreaterThan() 
+    public void testSessionScopeNameLessEqual() 
     	throws ServletException,  JspException {
     
-        GreaterThanTag gt = new GreaterThanTag();
+        LessEqualTag ge = new LessEqualTag();
 
-		String testKey = "testSessionScopeNameGreaterThan";
+		String testKey = "testSessionScopeNameLessEqual";
 		Integer itgr = new Integer(GREATER_VAL);
 		
 		pageContext.setAttribute(testKey, itgr, PageContext.SESSION_SCOPE);
-		gt.setPageContext(pageContext);
-		gt.setName(testKey);
-		gt.setScope("session");
-		gt.setValue(LESSER_VAL);
+		ge.setPageContext(pageContext);
+		ge.setName(testKey);
+		ge.setScope("session");
+		ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Session scope value from name (" + GREATER_VAL + ") is greater than value (" + LESSER_VAL + ")", 
-        	gt.condition());
+        	"Session scope value from name (" + GREATER_VAL + ") is less than or equal to value (" + LESSER_VAL + ")", 
+        	ge.condition());
     }
 
     /**
-     * Testing <code>GreaterThanTag</code> using name attribute in
+     * Testing <code>LessEqualTag</code> using name attribute in
      * the request scope.
     */
-    public void testRequestScopeNameGreaterThan() 
+    public void testRequestScopeNameLessEqual() 
     	throws ServletException,  JspException {
     
-        GreaterThanTag gt = new GreaterThanTag();
+        LessEqualTag ge = new LessEqualTag();
 
-		String testKey = "testRequestScopeNameGreaterThan";
+		String testKey = "testRequestScopeNameLessEqual";
 		Integer itgr = new Integer(GREATER_VAL);
 		
 		pageContext.setAttribute(testKey, itgr, PageContext.REQUEST_SCOPE);
-		gt.setPageContext(pageContext);
-		gt.setName(testKey);
-		gt.setScope("request");
-		gt.setValue(LESSER_VAL);
+		ge.setPageContext(pageContext);
+		ge.setName(testKey);
+		ge.setScope("request");
+		ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Request scope value from name (" + GREATER_VAL + ") is greater than value (" + LESSER_VAL + ")", 
-        	gt.condition());
+        	"Request scope value from name (" + GREATER_VAL + ") is less than or equal to value (" + LESSER_VAL + ")", 
+        	ge.condition());
     }
 
 
 
 
     /**
-     * Testing <code>GreaterThanTag</code> using name and property attribute in
+     * Testing <code>LessEqualTag</code> using name and property attribute in
      * the application scope.
     */
-    public void testApplicationScopePropertyGreaterThan() 
+    public void testApplicationScopePropertyLessEqual() 
     	throws ServletException,  JspException {
     
-        GreaterThanTag gt = new GreaterThanTag();
+        LessEqualTag ge = new LessEqualTag();
 
-		String testKey = "testApplicationScopePropertyGreaterThan";
+		String testKey = "testApplicationScopePropertyLessEqual";
 		LabelValueBean lvb = new LabelValueBean("The Key", GREATER_VAL);
 		
 		pageContext.setAttribute(testKey, lvb, PageContext.APPLICATION_SCOPE);
-		gt.setPageContext(pageContext);
-		gt.setName(testKey);
-		gt.setScope("application");
-		gt.setProperty("value");
-		gt.setValue(LESSER_VAL);
+		ge.setPageContext(pageContext);
+		ge.setName(testKey);
+		ge.setScope("application");
+		ge.setProperty("value");
+		ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Value (" + LESSER_VAL + ") is greater than value (" + GREATER_VAL + ")",
-        	gt.condition());
+        	"Value (" + LESSER_VAL + ") is less than or equal to value (" + GREATER_VAL + ")",
+        	ge.condition());
     }
 
     /**
-     * Testing <code>GreaterThanTag</code> using name and property attribute in
+     * Testing <code>LessEqualTag</code> using name and property attribute in
      * the session scope.
     */
-    public void testSessionScopePropertyGreaterThan() 
+    public void testSessionScopePropertyLessEqual() 
     	throws ServletException,  JspException {
     
-        GreaterThanTag gt = new GreaterThanTag();
+        LessEqualTag ge = new LessEqualTag();
 
-		String testKey = "testSessionScopePropertyGreaterThan";
+		String testKey = "testSessionScopePropertyLessEqual";
 		LabelValueBean lvb = new LabelValueBean("The Key", GREATER_VAL);
 		
 		pageContext.setAttribute(testKey, lvb, PageContext.SESSION_SCOPE);
-		gt.setPageContext(pageContext);
-		gt.setName(testKey);
-		gt.setScope("session");
-		gt.setProperty("value");
-		gt.setValue(LESSER_VAL);
+		ge.setPageContext(pageContext);
+		ge.setName(testKey);
+		ge.setScope("session");
+		ge.setProperty("value");
+		ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Value (" + LESSER_VAL + ") is greater than value (" + GREATER_VAL + ")",
-        	gt.condition());
+        	"Value (" + LESSER_VAL + ") is less than or equal to value (" + GREATER_VAL + ")",
+        	ge.condition());
     }
     
     /**
-     * Testing <code>GreaterThanTag</code> using name and property attribute in
+     * Testing <code>LessEqualTag</code> using name and property attribute in
      * the request scope.
     */
-    public void testRequestScopePropertyGreaterThan() 
+    public void testRequestScopePropertyLessEqual() 
     	throws ServletException,  JspException {
     
-        GreaterThanTag gt = new GreaterThanTag();
+        LessEqualTag ge = new LessEqualTag();
 
-		String testKey = "testRequestScopePropertyGreaterThan";
+		String testKey = "testRequestScopePropertyLessEqual";
 		LabelValueBean lvb = new LabelValueBean("The Key", GREATER_VAL);
 		
 		pageContext.setAttribute(testKey, lvb, PageContext.REQUEST_SCOPE);
-		gt.setPageContext(pageContext);
-		gt.setName(testKey);
-		gt.setScope("request");
-		gt.setProperty("value");
-		gt.setValue(LESSER_VAL);
+		ge.setPageContext(pageContext);
+		ge.setName(testKey);
+		ge.setScope("request");
+		ge.setProperty("value");
+		ge.setValue(LESSER_VAL);
 
         assertTrue(
-        	"Value (" + LESSER_VAL + ") is greater than value (" + GREATER_VAL + ")",
-        	gt.condition());
+        	"Value (" + LESSER_VAL + ") is less than or equal to value (" + GREATER_VAL + ")",
+        	ge.condition());
     }
     
     
