@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.38 2002/06/16 05:56:05 craigmcc Exp $
- * $Revision: 1.38 $
- * $Date: 2002/06/16 05:56:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.39 2002/06/22 22:19:13 craigmcc Exp $
+ * $Revision: 1.39 $
+ * $Date: 2002/06/22 22:19:13 $
  *
  * ====================================================================
  *
@@ -97,6 +97,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.action.DynaActionFormClass;
+import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.taglib.html.Constants;
@@ -110,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.38 $ $Date: 2002/06/16 05:56:05 $
+ * @version $Revision: 1.39 $ $Date: 2002/06/22 22:19:13 $
  */
 
 public class RequestUtils {
@@ -1262,7 +1263,11 @@ public class RequestUtils {
                                          ServletContext context) {
 
         // Acquire the path used to compute the sub-application
-        String matchPath = request.getServletPath();
+        String matchPath = (String)
+            request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
+        if (matchPath == null) {
+            matchPath = request.getServletPath();
+        }
 
         // Match against the list of sub-application prefixes
         String prefix = "";
