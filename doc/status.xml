@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.33 2003/08/11 11:34:39 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.34 2003/08/29 14:27:09 husted Exp $</font>
     </p>
 
     <p>
@@ -45,9 +45,14 @@
 
         <ul>
             <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;order=%27Importance%27">Open reports</a></li>
-            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Open problem reports</a></li>
-            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Enhancement&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Open enhancement requests</a></li>
-            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Reports to be handled "LATER"</a></li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=%27Importance%27">Open problem reports</a>
+                <ul>
+                <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;order=%27Importance%27">major problem reports</a></li>
+                <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Blocker&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;order=%27Importance%27">minor problem reports</a></li>
+                </ul>
+                </li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Enhancement&amp;order=%27Importance%27">Open enhancement reports</a></li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=%27Importance%27">Reports to be handled "LATER"</a></li>
         </ul>
 
 
@@ -64,36 +69,11 @@
     </p>
 
     <p>
-        Enhancements are logged in Bugzilla as
-        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=%27Importance%27">
-        LATER or REMIND tickets as they are suggested</a>.
-        Future release milestones are provided for enhancements which are
-        being actively planned or developed
-        but may not be ready for the very next release.
-        When developers are actually working on an enhancement,
-        they should re-tag it for a specific release milestone, such as "1.2.1" or "1.2.2".
-    </p>
-
-    <p>
-        <b>The listing of an enhancement in Bugzilla does not imply that is being "planned"</b>,
-        merely that someone has suggested it, and the idea hasn't been ruled out.
-        If a listing has not been tagged for a specific milestone by a working developer,
-        then <b>it may never be realized</b>.
-    </p>
-
-    <p>
-        If an enhancement has not been tagged for a specific target,
-        feel free to start working on it yourself.
-        Many of our best features have been contributed by developers, just like you.
-        If you would like to announce your active interest in an enhancement,
-        please post a note on the ticket, and tag it to an appropriate release milestone.
-    </p>
-
-    <p>
         Any feature that can be implemented under Servlet 2.2/JSP 1.1 may be considered for the Struts 1.x series.
         This may include, but is not limited to, better support for alternate view technologies (like XLST),
         integrated unit testing, integrated support for HTTP/HTTPS mode switching, better workflow handling,
-        support for alternative action types (e.g. BSF actions), and so forth.
+        support for alternative action types (e.g. BSF actions), a chainable request processor, support for an Action
+        context, and so forth.
     </p>
 
     <p>
@@ -109,6 +89,71 @@
         Proposals for new features should include a working test suite.
         (Creating features through Test Driven Development is strongly encouraged.)
     </p>
+
+    <p>
+        Enhancement requests are logged in Bugzilla they are suggested.
+        <b>The listing of an enhancement in Bugzilla does not imply that is being "planned"</b>, merely that some
+        member of the community has suggested it, and the idea hasn't been ruled out (yet).
+    </p>
+
+    <p>
+        Future release milestones are provided for enhancements which are being actively planned or developed
+        but may not be ready for the very next release.
+        If a report has not been tagged for a specific milestone by a working developer, then <b>it may never be
+        resolved</b>.
+        When developers (including non-Committers) are actually working on an enhancement, they should re-tag it for a
+        specific release milestone, such as "1.2.1" or "1.2.2".
+    </p>
+
+    <p>
+        If an enhancement has not been tagged for a specific target, feel free to start working on it yourself.
+        Many of our best features have been contributed by developers, just like you.
+        If you would like to announce your active interest in an enhancement, please post a note on the ticket, and tag
+        it to an appropriate release milestone.
+    </p>
+
+    </section>
+
+    <section href="struts_1_x_whiteboard" name="Struts 1.x Whiteboard">
+
+        <p>
+            These are some general ideas we have about what may happen in the Struts 1.x series.
+            This is a <b>whiteboard</b> and everything here is <b>subject to change</b>.
+        </p>
+
+        <ul>
+
+            <li>Struts 1.0.0 (complete) -
+            Major refactoring of Struts internals to provide support for modules and a new "config" object series.
+            Bundles Struts Tiles and Struts Validator into main distribution.
+            The initial release of Struts EL is provided as an optional package.
+            </li>
+
+            <li>Struts 1.2.x -
+            Continued refactorings of the Struts 1.x product series.
+                <ul>
+                    <li>Remove deprecations created in the 1.0 to 1.1 timeframe, and prior</li>
+                    <li>Other minor enhancements and refactorings</li>
+                </ul>
+            </li>
+
+            <li>Struts 1.3.x -
+            More substantial enhancements to product base
+                <ul>
+                    <li>Move to Commons Resources</li>
+                    <li>Move taglibs into separate JARs</li>
+                    <li>Consider new Request Processor, if available</li>
+                </ul>
+            </li>
+
+            <li>Struts 1.4.x -
+            More substantial enhancements to product base
+                <ul>
+                    <li>Consider migration to an Action context</li>
+                </ul>
+            </li>
+
+        </ul>
 
   <!--
     <p>
@@ -202,6 +247,11 @@
         </li>
 
         <li>
+        Transparent support for a portlet environment (JSR 168), with minimal-to-no changes in your business logic
+        and pages.
+        </li>
+
+        <li>
         Direct support for JSTL/JSF taglibs and the JSF API
         </li>
 
@@ -239,10 +289,6 @@
 
         <li>
         <a href="proposals/struts-faces.html">struts-faces taglib</a>
-        </li>
-
-        <li>
-        <a href="proposals/workflow.html">Workflow Proposal</a>
         </li>
 
     </ul>
