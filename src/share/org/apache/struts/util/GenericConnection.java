@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.6 2001/01/31 21:45:13 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/31 21:45:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.7 2001/01/31 22:36:54 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/01/31 22:36:54 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import javax.sql.DataSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.6 $ $Date: 2001/01/31 21:45:13 $
+ * @version $Revision: 1.7 $ $Date: 2001/01/31 22:36:54 $
 
  */
 
@@ -120,6 +120,8 @@ public class GenericConnection implements Connection {
             ;   // PostgreSQL throws a "not yet implemented" exception
         } catch (UnsupportedOperationException e) {
             ;   // JDBC-ODBC bridge throws this
+        } catch (AbstractMethodError e) {
+            ;   // mm.mysql throws this
         }
 	this.readOnly = readOnly;
         this.conn.setAutoCommit(this.autoCommit);
