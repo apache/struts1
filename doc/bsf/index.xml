@@ -60,12 +60,12 @@
          <p>To determine what script will be executed, the "parameter" attribute of
            the action mapping should contain the name of the script relative to
            the web application root directory (i.e. http://server/app). In the place of 
-         the traditional Action implementation, use the value <code>org.twdata.struts.ScriptAction</code>.
+         the traditional Action implementation, use the value <code>org.apache.struts.bsf.ScriptAction</code>.
          For example:
          </p>
 <pre>
     &lt;action    path="/logoff"
-               type="org.twdata.struts.ScriptAction"
+               type="org.apache.struts.bsf.ScriptAction"
                parameter="/WEB-INF/scripts/Logoff.bsh"&gt;
       &lt;forward name="success"              path="/index.jsp"/&gt;
     &lt;/action&gt;
