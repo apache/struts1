@@ -187,6 +187,7 @@
     </copy>
 	
 	<!-- Compile Tiles contrib -->
+<!--
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
       <property name="struts.libs"      value="../../${struts.libs}"/>
       <property name="build.home"       value="../../${build.home}/tiles"/>
@@ -194,7 +195,7 @@
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
     </ant>
-	
+-->	
 
 </target>
 
@@ -243,6 +244,7 @@
         description="Create distribution output of web applications">
 		
 	<!-- Compile Tiles dist -->
+<!-- 
     <ant  antFile="build.xml"  dir="contrib/tiles"  target="dist.for.struts">
       <property name="struts.libs"      value="../../${struts.libs}"/>
       <property name="build.home"       value="../../${build.home}/tiles"/>
@@ -250,7 +252,7 @@
       <property name="app.name"         value="tiles"/>
       <property name="project.name"     value="Tiles"/>
     </ant>
-	
+-->	
 
 </target>
 
