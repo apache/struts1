@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.4 2003/02/04 02:23:08 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/04 02:23:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ViewDefinitionsAction.java,v 1.5 2003/05/15 15:56:31 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/05/15 15:56:31 $
  *
  * ====================================================================
  *
@@ -77,14 +77,11 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * <p>A standard <strong>Action</strong> that calls the
- * <code>reload()</code> method of our controller servlet to
- * reload its configuration information from the configuration
- * files (which have presumably been updated) dynamically.</p>
- *
- * @author Craig R. McClanahan
+ * <p>An <strong>Action</strong> that writes the
+ * definitions of the Tiles factory.
+ * Useful to check what is effectivly loaded in a
+ * Tiles factory
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2003/02/04 02:23:08 $
  */
 
 public class ViewDefinitionsAction extends Action {
