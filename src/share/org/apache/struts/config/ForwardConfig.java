@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.8 2002/07/12 09:51:30 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2002/07/12 09:51:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.9 2002/10/18 14:34:24 ekbush Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/10/18 14:34:24 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/07/12 09:51:30 $
+ * @version $Revision: 1.9 $ $Date: 2002/10/18 14:34:24 $
  * @since Struts 1.1
  */
 
@@ -253,6 +253,8 @@ public class ForwardConfig implements Serializable {
         sb.append(this.path);
         sb.append(",redirect=");
         sb.append(this.redirect);
+        sb.append(",contextRelative=");
+        sb.append(this.contextRelative);
         sb.append("]");
         return (sb.toString());
 
