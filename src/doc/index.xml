@@ -15,7 +15,7 @@
   is to provide an open source framework useful in building web applications
   with Java <a href="http://java.sun.com/products/servlet">Servlet</a> and
   <a href="http://java.sun.com/products/jsp">JavaServer Pages</a> (JSP)
-  technology.  Struts encourages appliation architectures based on the
+  technology.  Struts encourages application architectures based on the
   Model-View-Controller (MVC) design paradigm, colloquially known as
   <i>Model 2</i> in discussions on various servlet and JSP related
   mailing lists.</p>
@@ -45,26 +45,21 @@
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>A milestone release, <strong>Version 0.5</strong>
-  of Struts has been created and made available at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v0.5">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v0.5</a>.  This
-  release provides a stable basis for current projects being developed
-  on Struts, while work continues on the
-  main code branch leading up to the <strong>Version 1.0</strong> release.
-  You can track the progress towards <strong>Version 1.0</strong>, and get
-  early warning about new features and changes, by monitoring the
-  <a href="http://jakarta.apache.org/struts/release.html">Release Notes</a>
-  that are posted on the Struts project web site, as well as included in the
-  nightly build distributions.</p>
+  <p>A new milestone release, <strong>Struts 1.0-beta-1</strong> has been
+  created and made available at
+  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b1">
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0-b1</a>.  This
+  release is considered to be of production quality, and only bug fixes will
+  occur between this release and an upcoming <strong>Struts 1.0</strong>
+  final release.</p>
 
-  <p><b>New!</b> The feature set for Struts 1.0 is locked, and the TODO list for Struts 
-  1.1 is now open. When a few remaining tasks for Struts 1.0 are  complete, 
-  a build will be released for final testing, leading to the formal release. 
-  The current builds are considered to be generally stable, and many people 
-  are now choosing to develop against the nighly builds.</p>
+  <p>Check the <a href="release.html">Release Notes</a> for a summary of what
+  new features have been added, and other significant changes, since the
+  Struts 0.5 milestone release.</p>
+
+  <hr width="75%"/>
   
-  <p>You can acquire binary and source distributions of Struts from the
+  <p>You can acquire interim binary and source distributions of Struts from the
   following locations:</p>
   
   <ul>
@@ -98,8 +93,8 @@
 
   <section name="Reporting Bugs and Feature Requests" href="Bugs">
 
-  <p>Tracking of bug reports and new feature requests for Struts is hosted
-  at <a href="http://nagoya.apache.org/bugzilla/">http://nagoya.apache.org/bugzilla/</a>.
+  <p>Tracking of bug reports and new feature requests for Struts is hosted at
+  <a href="http://nagoya.apache.org/bugzilla/">http://nagoya.apache.org/bugzilla/</a>.
   Please select <strong>Struts</strong> from the product list, along with the
   details of which component of Struts you feel this report relates to,
   and details of your operating environment.  You will automatically be
