@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FileTag.java,v 1.1 2000/07/17 21:19:06 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/07/17 21:19:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FileTag.java,v 1.2 2000/07/18 00:30:35 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/18 00:30:35 $
  *
  * ====================================================================
  * 
@@ -67,7 +67,7 @@ package org.apache.struts.taglib;
  * Custom tag for input fields of type "file".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/07/17 21:19:06 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/18 00:30:35 $
  */
 
 public final class FileTag extends BaseFieldTag {
@@ -76,7 +76,7 @@ public final class FileTag extends BaseFieldTag {
     /**
      * Construct a new instance of this tag.
      */
-    public TextTag() {
+    public FileTag() {
 
 	super();
 	this.type = "file";
