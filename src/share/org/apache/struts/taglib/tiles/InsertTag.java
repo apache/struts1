@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.2 2002/07/26 16:18:28 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/26 16:18:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.3 2002/08/15 09:35:56 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/08/15 09:35:56 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/07/26 16:18:28 $
+ * @version $Revision: 1.3 $ $Date: 2002/08/15 09:35:56 $
  */
 public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {
@@ -753,6 +753,16 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      //else if( value instanceof PathAttribute )
     return new InsertHandler( (String)value.getValue(), role, getController() );
 		}
+    /**
+     * Do an include of specified page using pageContext.include()
+     * This method is used internally to do all includes
+     * @param page The page that will be included
+     * @throws ServletException - Thrown by call to pageContext.include()
+     * @throws IOException - Thrown by call to pageContext.include()
+     */
+    protected void doInclude(String page) throws ServletException, IOException {
+        pageContext.include(page);
+    }
 
   /////////////////////////////////////////////////////////////////////////////
 
@@ -862,7 +872,7 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
         // include requested component.
         if( flush )
           pageContext.getOut().flush();
-        pageContext.include(page);
+        doInclude(page);
         }
        catch (IOException ex)
         {
