@@ -84,7 +84,7 @@ import java.util.Map;
  * @author Craig McClanahan
  */
 
-public final class OptionsTag extends TagSupport {
+public class OptionsTag extends TagSupport {
 
     /**
      * The message resources for this package.
@@ -96,7 +96,7 @@ public final class OptionsTag extends TagSupport {
     /**
      * The name of the bean containing the labels collection.
      */
-    private String labelName = null;
+    protected String labelName = null;
 
     public String getLabelName() {
 	return labelName;
@@ -109,7 +109,7 @@ public final class OptionsTag extends TagSupport {
     /**
      * The bean property containing the labels collection.
      */
-    private String labelProperty = null;
+    protected String labelProperty = null;
 
     public String getLabelProperty() {
 	return labelProperty;
@@ -122,7 +122,7 @@ public final class OptionsTag extends TagSupport {
     /**
      * The name of the bean containing the values collection.
      */
-    private String name=null;
+    protected String name=null;
 
     public String getName() {
 	return name;
@@ -136,7 +136,7 @@ public final class OptionsTag extends TagSupport {
     /**
      * The name of the property to use to build the values collection.
      */
-    private String property=null;
+    protected String property=null;
 
     public String getProperty() {
 	return property;
@@ -225,7 +225,7 @@ public final class OptionsTag extends TagSupport {
     }
 
 
-    // -------------------------------------------------------- Private Methods
+    // ------------------------------------------------------ Protected Methods
 
 
     /**
@@ -237,7 +237,7 @@ public final class OptionsTag extends TagSupport {
      *
      * @exception JspException if an error occurs
      */
-    private Iterator getIterator(String name, String property)
+    protected Iterator getIterator(String name, String property)
         throws JspException {
 
 	// Identify the bean containing our collection

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/PasswordTag.java,v 1.1 2000/11/03 18:44:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/PasswordTag.java,v 1.2 2000/11/04 01:26:59 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:59 $
  *
  * ====================================================================
  * 
@@ -67,10 +67,10 @@ package org.apache.struts.taglib.form;
  * Custom tag for input fields of type "text".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:59 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:59 $
  */
 
-public final class PasswordTag extends BaseFieldTag {
+public class PasswordTag extends BaseFieldTag {
 
 
     /**

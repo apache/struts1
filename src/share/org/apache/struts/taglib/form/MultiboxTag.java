@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/MultiboxTag.java,v 1.1 2000/11/03 18:44:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/MultiboxTag.java,v 1.2 2000/11/04 01:26:59 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:59 $
  *
  * ====================================================================
  *
@@ -82,10 +82,10 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:59 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:59 $
  */
 
-public final class MultiboxTag extends BaseHandlerTag {
+public class MultiboxTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -102,7 +102,7 @@ public final class MultiboxTag extends BaseHandlerTag {
     /**
      * The name of the bean containing our underlying property.
      */
-    private String name = Constants.BEAN_KEY;
+    protected String name = Constants.BEAN_KEY;
 
     public String getName() {
 	return (this.name);
@@ -116,14 +116,14 @@ public final class MultiboxTag extends BaseHandlerTag {
     /**
      * The property name for this field.
      */
-    private String property = null;
+    protected String property = null;
 
 
     /**
      * The value which will mark this checkbox as "checked" if present
      * in the array returned by our property getter.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // ------------------------------------------------------------- Properties

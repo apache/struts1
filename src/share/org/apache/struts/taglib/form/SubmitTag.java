@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SubmitTag.java,v 1.1 2000/11/03 18:44:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SubmitTag.java,v 1.2 2000/11/04 01:27:00 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:27:00 $
  *
  * ====================================================================
  *
@@ -76,10 +76,10 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:59 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:27:00 $
  */
 
-public final class SubmitTag extends BaseHandlerTag {
+public class SubmitTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -96,13 +96,13 @@ public final class SubmitTag extends BaseHandlerTag {
     /**
      * The name of the generated input field.
      */
-    private String property = "submit";
+    protected String property = "submit";
 
 
     /**
      * The value of the button label.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // ------------------------------------------------------------- Properties

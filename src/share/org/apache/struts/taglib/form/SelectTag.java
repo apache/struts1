@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SelectTag.java,v 1.1 2000/11/03 18:44:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/SelectTag.java,v 1.2 2000/11/04 01:26:59 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:59 $
  *
  * ====================================================================
  *
@@ -80,10 +80,10 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:59 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:59 $
  */
 
-public final class SelectTag extends BaseHandlerTag {
+public class SelectTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -92,7 +92,7 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * The actual value we will match against, calculated in doStartTag().
      */
-    private String match = null;
+    protected String match = null;
 
 
     /**
@@ -107,7 +107,7 @@ public final class SelectTag extends BaseHandlerTag {
      * Should multiple selections be allowed?  Any non-null value will
      * trigger rendering this.
      */
-    private String multiple = null;
+    protected String multiple = null;
 
     public String getMultiple() {
 	return (this.multiple);
@@ -121,7 +121,7 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * The name of the bean containing our underlying property.
      */
-    private String name = Constants.BEAN_KEY;
+    protected String name = Constants.BEAN_KEY;
 
     public String getName() {
 	return (this.name);
@@ -135,14 +135,14 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * The property name we are associated with.
      */
-    private String property = null;
+    protected String property = null;
 
 
     /**
      * How many available options should be displayed when this element
      * is rendered?
      */
-    private String size = null;
+    protected String size = null;
 
     public String getSize() {
 	return (this.size);
@@ -156,7 +156,7 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * The value to compare with for marking an option selected.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // ------------------------------------------------------------- Properties

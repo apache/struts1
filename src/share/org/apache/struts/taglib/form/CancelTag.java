@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/CancelTag.java,v 1.1 2000/11/03 18:44:58 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/CancelTag.java,v 1.2 2000/11/04 01:26:58 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:58 $
  *
  * ====================================================================
  *
@@ -76,10 +76,10 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "cancel".
  *
  * @author Jeff Hutchinson
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:58 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:58 $
  */
 
-public final class CancelTag extends BaseHandlerTag {
+public class CancelTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -87,7 +87,7 @@ public final class CancelTag extends BaseHandlerTag {
     /**
      * The message resources for this package.
      */
-    private static MessageResources messages =
+    protected static MessageResources messages =
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.LocalStrings");
 
@@ -95,13 +95,13 @@ public final class CancelTag extends BaseHandlerTag {
     /**
      * The property name of the generated button.
      */
-    private String property = Constants.CANCEL_PROPERTY;
+    protected String property = Constants.CANCEL_PROPERTY;
 
 
     /**
      * The value of the button label.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // ------------------------------------------------------------- Properties

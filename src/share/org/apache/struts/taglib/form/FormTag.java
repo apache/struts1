@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/FormTag.java,v 1.1 2000/11/03 18:44:58 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/FormTag.java,v 1.2 2000/11/04 01:26:58 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:58 $
  *
  * ====================================================================
  *
@@ -79,10 +79,10 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:58 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:58 $
  */
 
-public final class FormTag extends TagSupport {
+public class FormTag extends TagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -91,13 +91,13 @@ public final class FormTag extends TagSupport {
     /**
      * The action URL to which this form should be submitted, if any.
      */
-    private String action = null;
+    protected String action = null;
 
 
     /**
      * The content encoding to be used on a POST submit.
      */
-    private String enctype = null;
+    protected String enctype = null;
 
     public String getEnctype() {
 	return (this.enctype);
@@ -111,7 +111,7 @@ public final class FormTag extends TagSupport {
     /**
      * The name of the field to receive focus, if any.
      */
-    private String focus = null;
+    protected String focus = null;
 
 
     /**
@@ -125,44 +125,44 @@ public final class FormTag extends TagSupport {
     /**
      * The request method used when submitting this form.
      */
-    private String method = "POST";
+    protected String method = "POST";
 
 
     /**
      * The attribute key under which our associated bean is stored.
      */
-    private String name = null;
+    protected String name = null;
 
 
     /**
      * The onReset event script.
      */
-    private String onreset = null;
+    protected String onreset = null;
 
 
     /**
      * The onSubmit event script.
      */
-    private String onsubmit = null;
+    protected String onsubmit = null;
 
 
     /**
      * The scope (request or session) under which our associated bean
      * is stored.
      */
-    private String scope = "session";
+    protected String scope = "session";
 
 
     /**
      * The style attribute associated with this tag.
      */
-    private String style = null;
+    protected String style = null;
 
 
     /**
      * The style class associated with this tag.
      */
-    private String styleClass = null;
+    protected String styleClass = null;
 
 
     /**
@@ -174,7 +174,7 @@ public final class FormTag extends TagSupport {
     /**
      * The Java class name of the bean to be created, if necessary.
      */
-    private String type = null;
+    protected String type = null;
 
 
     // ------------------------------------------------------------- Properties

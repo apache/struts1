@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/OptionTag.java,v 1.1 2000/11/03 18:44:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/OptionTag.java,v 1.2 2000/11/04 01:26:59 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:59 $
  *
  * ====================================================================
  *
@@ -80,10 +80,10 @@ import org.apache.struts.util.MessageResources;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:59 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:59 $
  */
 
-public final class OptionTag extends BodyTagSupport {
+public class OptionTag extends BodyTagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -100,7 +100,7 @@ public final class OptionTag extends BodyTagSupport {
     /**
      * The server value for this option.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // ------------------------------------------------------------- Properties

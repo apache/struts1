@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/RadioTag.java,v 1.1 2000/11/03 18:44:59 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/11/03 18:44:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/RadioTag.java,v 1.2 2000/11/04 01:26:59 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/11/04 01:26:59 $
  *
  * ====================================================================
  *
@@ -77,10 +77,10 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/11/03 18:44:59 $
+ * @version $Revision: 1.2 $ $Date: 2000/11/04 01:26:59 $
  */
 
-public final class RadioTag extends BaseHandlerTag {
+public class RadioTag extends BaseHandlerTag {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -97,7 +97,7 @@ public final class RadioTag extends BaseHandlerTag {
     /**
      * The name of the bean containing our underlying property.
      */
-    private String name = Constants.BEAN_KEY;
+    protected String name = Constants.BEAN_KEY;
 
     public String getName() {
 	return (this.name);
@@ -111,13 +111,13 @@ public final class RadioTag extends BaseHandlerTag {
     /**
      * The property name for this field.
      */
-    private String property = null;
+    protected String property = null;
 
 
     /**
      * The server value for this option.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // ------------------------------------------------------------- Properties
