@@ -404,6 +404,9 @@
                         
                         if (value.length > 0) {
                         
+                                if (!isAllDigits(value)) {
+                                    bValid = false;
+                                } else {
 	                        var iValue = parseInt(value);
 	                        if (isNaN(iValue) || !(iValue >= -2147483648 && iValue <= 2147483647)) {
 	                            if (i == 0) {
@@ -412,6 +415,7 @@
 	                            fields[i++] = oInteger[x][1];
 	                            bValid = false;
 	                       }
+                           }
                        }
                     }
                 }
@@ -420,6 +424,20 @@
                    alert(fields.join('\n'));
                 }
                 return bValid;
+            }
+
+            function isAllDigits(argvalue) {
+                argvalue = argvalue.toString();
+                var validchars = "012345679";
+                var startFrom = 0;
+                if (argvalue.substring(0, 2) == "0x") {
+                   validchars = "012345679abcdefABCDEF";
+                   startFrom = 2;
+                }
+                for (var n = 0; n < argvalue.length; n++) {
+                    if (validChars.indexOf(argvalue.substring(n, n+1)) == -1) return false;
+                }
+                return true;
             }]]>
          </javascript>
 
