@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.21 2003/05/15 23:43:42 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/05/15 23:43:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.22 2003/07/02 02:24:12 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/07/02 02:24:12 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2003/05/15 23:43:42 $
+ * @version $Revision: 1.22 $ $Date: 2003/07/02 02:24:12 $
  */
 public class ErrorsTag extends TagSupport {
 
@@ -122,6 +122,7 @@ public class ErrorsTag extends TagSupport {
 
     /**
      * The line ending string.
+     * @deprecated No longer used.
      */
     protected static String lineEnd = System.getProperty("line.separator");
 
@@ -223,7 +224,6 @@ public class ErrorsTag extends TagSupport {
                             "errors.header");
                             
                     results.append(message);
-                    results.append(lineEnd);
                 }
                 headerDone = true;
             }
@@ -248,7 +248,6 @@ public class ErrorsTag extends TagSupport {
                     
             if (message != null) {
                 results.append(message);
-                results.append(lineEnd);
             }
             
             if (suffixPresent) {
@@ -266,7 +265,6 @@ public class ErrorsTag extends TagSupport {
             message =
                 RequestUtils.message(pageContext, bundle, locale, "errors.footer");
             results.append(message);
-            results.append(lineEnd);
         }
 
         ResponseUtils.write(pageContext, results.toString());
