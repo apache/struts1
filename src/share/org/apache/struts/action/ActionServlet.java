@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.135 2002/12/08 05:27:07 rleland Exp $
- * $Revision: 1.135 $
- * $Date: 2002/12/08 05:27:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.136 2002/12/18 07:39:45 craigmcc Exp $
+ * $Revision: 1.136 $
+ * $Date: 2002/12/18 07:39:45 $
  *
  * ====================================================================
  *
@@ -301,7 +301,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.135 $ $Date: 2002/12/08 05:27:07 $
+ * @version $Revision: 1.136 $ $Date: 2002/12/18 07:39:45 $
  */
 
 public class ActionServlet
@@ -432,6 +432,18 @@ public class ActionServlet
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
 
         // FIXME - destroy ModuleConfig and message resource instances
+
+        // Release our LogFactory and Log instances (if any)
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = ActionServlet.class.getClassLoader();
+        }
+        try {
+            LogFactory.release(classLoader);
+        } catch (Throwable t) {
+            ; // Servlet container doesn't have the latest version
+            ; // of commons-logging-api.jar installed
+        }
 
     }
 
@@ -703,6 +715,7 @@ public class ActionServlet
                 ModuleConfig config = (ModuleConfig) value;
                 try {
                     getRequestProcessor(config).destroy();
+                    getServletContext().removeAttribute(name);
                 } catch (Throwable t) {
                     ;
                 }
@@ -714,6 +727,8 @@ public class ActionServlet
                         int j = plugIns.length - (i + 1);
                         plugIns[j].destroy();
                     }
+                    getServletContext().removeAttribute
+                        (Globals.PLUG_INS_KEY + config.getPrefix());
                 }
             }
         }
