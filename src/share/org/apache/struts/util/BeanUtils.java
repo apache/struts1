@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.12 2000/09/23 22:51:47 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2000/09/23 22:51:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.13 2000/09/23 23:19:33 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2000/09/23 23:19:33 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import javax.servlet.jsp.PageContext;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.12 $ $Date: 2000/09/23 22:51:47 $
+ * @version $Revision: 1.13 $ $Date: 2000/09/23 23:19:33 $
  */
 
 public final class BeanUtils {
@@ -357,10 +357,6 @@ public final class BeanUtils {
      * property, as a String.  The index is specified by being appended
      * to the property name in square brackets.  If the specified index
      * is out of range, <code>null</code> is returned.
-     * <p>
-     * <strong>WARNING</strong> - Use of the "square brackets" syntax
-     * for indexed references has been deprecated in favor of the new
-     * approach using the PropertyUtils.INDEXED_DELIM delimiter
      *
      * @param bean Bean whose property is to be extracted
      * @param name name of the property to be extracted, plus a literal
@@ -378,11 +374,13 @@ public final class BeanUtils {
 	       NoSuchMethodException {
 
         // @deprecated Convert the deprecated syntax to the new format
+        /*
 	int left = name.lastIndexOf("[");
 	int right = name.lastIndexOf("]");
         if ((left >= 0) && (right > left))
             name = name.substring(0, left) + PropertyUtils.INDEXED_DELIM +
                 name.substring(left + 1, right);
+        */
 
 	// Parse the property name and subscript expression
         int delim = PropertyUtils.INDEXED_DELIM;

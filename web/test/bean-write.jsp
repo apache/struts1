@@ -114,8 +114,8 @@
 <% for (int index = 0; index < 5; index++) { %>
   <tr>
     <td><%= index * 10 %></td>
-    <td><bean:write name="test3" property='<%= "intArray[" + index + "]"%>'/></td>
-    <td><bean:write name="test3" property='<%= "intIndexed[" + index + "]"%>'/></td>
+    <td><bean:write name="test3" property='<%= "intArray[" + index + "]" %>'/></td>
+    <td><bean:write name="test3" property='<%= "intIndexed[" + index + "]" %>'/></td>
   </tr>
 <% } %>
 </table>
@@ -134,8 +134,8 @@
 <% for (int index = 0; index < 5; index++) { %>
   <tr>
     <td><%= "String " + index %></td>
-    <td><bean:write name="test4" property='<%= "stringArray[" + index + "]"%>'/></td>
-    <td><bean:write name="test4" property='<%= "stringIndexed[" + index + "]"%>'/></td>
+    <td><bean:write name="test4" property='<%= "stringArray[" + index + "]" %>'/></td>
+    <td><bean:write name="test4" property='<%= "stringIndexed[" + index + "]" %>'/></td>
   </tr>
 <% } %>
 </table>
@@ -196,8 +196,8 @@
 <% for (int index = 0; index < 5; index++) { %>
   <tr>
     <td><%= index * 10 %></td>
-    <td><bean:write name="test6" property='<%= "nested.intArray[" + index + "]"%>'/></td>
-    <td><bean:write name="test6" property='<%= "nested.intIndexed[" + index + "]"%>'/></td>
+    <td><bean:write name="test6" property='<%= "nested.intArray[" + index + "]" %>'/></td>
+    <td><bean:write name="test6" property='<%= "nested.intIndexed[" + index + "]" %>'/></td>
   </tr>
 <% } %>
 </table>

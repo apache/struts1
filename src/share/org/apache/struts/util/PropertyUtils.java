@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.3 2000/09/23 22:51:47 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/09/23 22:51:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.4 2000/09/23 23:19:33 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/09/23 23:19:33 $
  *
  * ====================================================================
  *
@@ -99,25 +99,25 @@ import java.util.Hashtable;
  *     will have a getter method named <code>getXyz()</code> or (for boolean
  *     properties only) <code>isXyz()</code>, and a setter method named
  *     <code>setXyz()</code>.</li>
- * <li><strong>Nested (<code>name1_name2_name3</code>)</strong> The first
+ * <li><strong>Nested (<code>name1.name2.name3</code>)</strong> The first
  *     name element is used to select a property getter, as for simple
  *     references above.  The object returned for this property is then
  *     consulted, using the same approach, for a property getter for a
  *     property named <code>name2</code>, and so on.  The property value that
  *     is ultimately retrieved or modified is the one identified by the
  *     last name element.</li>
- * <li><strong>Indexed (<code>name$index</code>)</strong> - The underlying
+ * <li><strong>Indexed (<code>name[index]</code>)</strong> - The underlying
  *     property value is assumed to be an array, or this JavaBean is assumed
  *     to have indexed property getter and setter methods.  The appropriate
  *     (zero-relative) entry in the array is selected.</li>
- * <li><strong>Combined (<code>name1_name2$index_name3</strong> - Various
+ * <li><strong>Combined (<code>name1.name2[index].name3</strong> - Various
  *     forms combining nested and indexed references are also supported.</li>
  * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.3 $ $Date: 2000/09/23 22:51:47 $
+ * @version $Revision: 1.4 $ $Date: 2000/09/23 23:19:33 $
  */
 
 public final class PropertyUtils {
@@ -130,13 +130,20 @@ public final class PropertyUtils {
      * The delimiter that preceeds the zero-relative subscript for an
      * indexed reference.
      */
-    public static final char INDEXED_DELIM = '$';
+    public static final char INDEXED_DELIM = '[';
+
+
+    /**
+     * The delimiter that follows the zero-relative subscript for an
+     * indexed reference.
+     */
+    public static final char INDEXED_DELIM2 = ']';
 
 
     /**
      * The delimiter that separates the components of a nested reference.
      */
-    public static final char NESTED_DELIM = '_';
+    public static final char NESTED_DELIM = '.';
 
 
     // ------------------------------------------------------- Static Variables
@@ -211,12 +218,13 @@ public final class PropertyUtils {
 
 	// Identify the index of the requested individual property
         int delim = name.indexOf(INDEXED_DELIM);
-        if (delim < 0)
+        int delim2 = name.indexOf(INDEXED_DELIM2);
+        if ((delim < 0) || (delim2 <= delim))
 	    throw new IllegalArgumentException("Invalid indexed property '" +
 					       name + "'");
 	int index = -1;
 	try {
-	    String subscript = name.substring(delim + 1);
+	    String subscript = name.substring(delim + 1, delim2);
 	    index = Integer.parseInt(subscript);
 	} catch (NumberFormatException e) {
 	    throw new IllegalArgumentException("Invalid indexed property '" +
@@ -591,12 +599,13 @@ public final class PropertyUtils {
 
 	// Identify the index of the requested individual property
 	int delim = name.indexOf(INDEXED_DELIM);
-        if (delim < 0)
+        int delim2 = name.indexOf(INDEXED_DELIM2);
+        if ((delim < 0) || (delim2 <= delim))
 	    throw new IllegalArgumentException("Invalid indexed property '" +
 					       name + "'");
 	int index = -1;
 	try {
-	    String subscript = name.substring(delim + 1);
+	    String subscript = name.substring(delim + 1, delim2);
 	    index = Integer.parseInt(subscript);
 	} catch (NumberFormatException e) {
 	    throw new IllegalArgumentException("Invalid indexed property '" +
