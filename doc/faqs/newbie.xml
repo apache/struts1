@@ -3,6 +3,7 @@
 <properties>
 <author>Ted Husted</author>
 <author>James Holmes</author>
+<author>Craig R. McClanahan</author>
 <title>Newbie FAQ - Apache Struts</title>
 </properties>
 <body>
@@ -83,15 +84,53 @@ Here are answers to the most common questions people ask when using Struts on th
 
 <section href="reload" name="Why was reload removed from Struts 1.1?">
 
-<p>ReloadAction is not supported in 1.1 for two reasons:</p>
+<p>
+The problem with ReloadAction was that Struts was trying to act like a 
+container, but it couldn't do a proper job of it. For example, you 
+can't reload classes that have been modified, or (portably) add new
+classes to a running web application (even if the container supported it).
+</p>
+
+<p>
+Meanwhile, as 1.1 was being developed, work progressed on things
+like Tomcat's reload command via the Manager webapp. This feature allows 
+you to quickly reload-on-demand, complete with saving and restoring your 
+session). It started to make even less sense for Struts to half-implement 
+a feature that containers are implementing fully.
+</p>
+
+<p>
+A more minor point is that freezing the configuration information at application 
+startup time allows Struts to safely access the mapping information without 
+bothering with synchronization. The "startup-only" strategy creates a modest 
+but real improvement in performance for all users.
+</p>    
+        
+<p>So, ReloadAction is not supported in 1.1 for two reasons:</p>
+            
 <ul>
-<li>It never did let you reload everything that you would really
-  want to -- particularly changed classes -- so many people
-  ended up having to reload the webapp anyway.</li>
-<li>Not supporting ReloadAction lets Struts avoid doing synchronization
-  locks around all the lookups (like figuring out which action to use,
-  or the destination of an ActionForward) so apps can run a little faster.</li>
+<li>
+    It never did let you reload everything that you would really
+    want to -- particularly changed classes -- so many people
+    ended up having to reload the webapp anyway.
+</li>
+<li>
+    Containers are starting to offer reload-on-demand features 
+    which does the same thing as the Struts ReloadAction, only better.
+</li>
+<li>
+    Not supporting ReloadAction lets Struts avoid doing synchronization
+    locks around all the lookups (like figuring out which action to use,
+    or the destination of an ActionForward) so applications can run a 
+    little faster.
+</li>
 </ul>
+
+<p>
+Of course, if someone came up with an implementation that solved these 
+problems without creating any others, we would not be opposed to including 
+a new ReloadAction.
+</p>
 
 </section>
 
