@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.11 2001/04/29 03:11:39 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/04/29 03:11:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.12 2001/05/04 19:25:17 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/05/04 19:25:17 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/04/29 03:11:39 $
+ * @version $Revision: 1.12 $ $Date: 2001/05/04 19:25:17 $
  */
 
 public class FormTag extends TagSupport {
@@ -178,6 +178,12 @@ public class FormTag extends TagSupport {
      * The style class associated with this tag.
      */
     protected String styleClass = null;
+
+
+    /**
+     * The identifier associated with this tag.
+     */
+    protected String styleId = null;
 
 
     /**
@@ -394,6 +400,29 @@ public class FormTag extends TagSupport {
 
 
     /**
+     * Return the style identifier for this tag.
+     */
+    public String getStyleId() {
+
+        return (this.styleId);
+
+    }
+
+
+    /**
+     * Set the style identifier for this tag.
+     *
+     * @param styleId The new style identifier
+     */
+    public void setStyleId(String styleId) {
+
+        this.styleId = styleId;
+
+    }
+    
+
+
+    /**
      * Return the window target.
      */
     public String getTarget() {
@@ -485,6 +514,11 @@ public class FormTag extends TagSupport {
         if (style != null) {
             results.append(" style=\"");
             results.append(style);
+            results.append("\"");
+        }
+        if (styleId != null) {
+            results.append(" id=\"");
+            results.append(styleId);
             results.append("\"");
         }
 	if (target != null) {
@@ -607,6 +641,7 @@ public class FormTag extends TagSupport {
         servlet = null;
 	style = null;
 	styleClass = null;
+        styleId = null;
 	target = null;
 	type = null;
 

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.2 2001/05/04 19:25:16 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/05/04 19:25:16 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/05/04 19:25:16 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -152,6 +152,9 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /** Named Style class associated with component. */
     private String styleClass = null;
+
+    /** Identifier associated with component.  */
+    private String styleId = null;
 
     // ------------------------------------------------------------- Properties
 
@@ -348,6 +351,16 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return styleClass;
     }
 
+    /** Sets the style id attribute.  */
+    public void setStyleId(String styleId) {
+        this.styleId = styleId;
+    }
+
+    /** Returns the style id attribute.  */
+    public String getStyleId() {
+        return styleId;
+    }
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -375,6 +388,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 	onfocus = null;
 	style = null;
 	styleClass = null;
+        styleId = null;
 
     }
 
@@ -396,6 +410,11 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         if (styleClass != null) {
             styles.append(" class=\"");
             styles.append(styleClass);
+            styles.append("\"");
+        }
+        if (styleId != null) {
+            styles.append(" id=\"");
+            styles.append(styleId);
             styles.append("\"");
         }
         return styles.toString();
