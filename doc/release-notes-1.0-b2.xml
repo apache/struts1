@@ -57,6 +57,16 @@
         include any current transaction control token in the generated
         hyperlink, by specifying the <code>transaction</code> attribute
         with a value of <code>true</code>.</li>
+    <li>The <code>&lt;html:options&gt;</code> tag now supports Enumeration
+        for the <code>collection</code> property.</li>
+    </ul>
+
+    <p>The following new features have been added to the
+    <em>struts-logic</em> custom tag library (package
+    <code>org.apache.struts.taglib.logic</code>):</p>
+    <ul>
+    <li>The <code>&lt;logic:iterate&gt;</code> tag now supports Enumeration
+        for the <code>collection</code> property.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -86,8 +96,6 @@
     <ul>
     <li>The <code>&lt;html:image&gt;</code> tag now correctly generates a
         closing double quote on the <code>name</code> attribute.</li>
-    <li>The <code>&lt;html:iterate&gt;</code> tag now supports Enumeration
-        for the <code>collection</code> attribute.</li>
     <li>The <code>&lt;html:form&gt;</code> tag now generates a hyperlink
         that includes any query parameters that were included in the original
         hyperlink value.</li>
