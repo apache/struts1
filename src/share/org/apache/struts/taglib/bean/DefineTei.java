@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTei.java,v 1.8 2002/03/04 15:44:19 oalexeev Exp $
- * $Revision: 1.8 $
- * $Date: 2002/03/04 15:44:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTei.java,v 1.9 2002/11/16 07:11:30 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/16 07:11:30 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/03/04 15:44:19 $
+ * @version $Revision: 1.9 $ $Date: 2002/11/16 07:11:30 $
  */
 
 public class DefineTei extends TagExtraInfo {
@@ -88,7 +88,7 @@ public class DefineTei extends TagExtraInfo {
         Object name = data.getAttribute("name");
         Object value = data.getAttribute("value");
         if (type == null) {
-            if ( (value!=null) || ( (value==null) && (name==null) ) )
+            if ( (value!=null) ||  (name==null) )
                 type = "java.lang.String";
             else 
                 type = "java.lang.Object";
