@@ -15,16 +15,16 @@ rem         jakarta-commons-sandbox,
 rem         jakarta-struts-current
 rem are checked out of CVS in the same directory.
 rem Also assumes uses of 
-rem           maven beta 7 or above,
+rem           maven beta 10 or above,
 rem           ant 1.5.1
-rem           cactus v 1.2 & v1.3
+rem           cactus v 1.4.1 & v1.2
 rem              v 1.2 Because the commons (resources) use an old version
 rem                    of cactus for units test, that maven doesn't precompile 
 rem                    anymore. You'll need to copy the cactus.jar into the 
 rem                    maven repository directory. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.9 2003/08/10 06:00:49 sraeburn Exp $
+rem $Id: build-all-clean.bat.sample,v 1.10 2003/08/12 04:37:57 rleland Exp $
 
 cd ..
 
@@ -33,8 +33,8 @@ rem goto manualbuild
 rm -rf */*/dist
 rm -rf */*/target
 rm -rf */*/build
-rm -rf jakarta-struts-current/dist
-rm -rf jakarta-struts-current/target
+rm -rf jakarta-struts/dist
+rm -rf jakarta-struts/target
 
 :manualbuild
 
@@ -64,9 +64,9 @@ cd ..\validator
 call ant %CLEAN% dist
 
 cd ..\fileupload
-call maven
+call ant %CLEAN% dist
 
-cd ..\..\
+cd ..\..\jakarta-struts
 call ant %CLEAN% dist
 
 pause
