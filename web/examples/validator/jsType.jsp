@@ -23,6 +23,14 @@
       <table border="0">
         <tr>
           <th align="left">
+            <bean:message key="typeForm.name.displayname" />
+          </th>
+          <td align="left">
+            <html:text property="name" size="15" maxlength="15" />
+          </td>
+        </tr>
+        <tr>
+          <th align="left">
             <bean:message key="typeForm.byte.displayname" />
           </th>
           <td align="left">
