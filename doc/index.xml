@@ -59,8 +59,9 @@
   The <b>official documentation</b> for the framework is provided both online
   and as a self-installing WAR in the distribution. The
   <code>struts-documentation.war</code> includes the
-  <a href="kickstart.html">Kickstart</a> and
-  <a href="newbie.html">Newbie</a> FAQs,
+  <a href="kickstart.html">Kickstart</a>,
+  <a href="newbie.html">Newbie</a>, and
+  <a href="helping.html">How to Help</a> FAQs,
   <a href="userGuide/index.html">Users Guide</a>,
   <a href="api/index.html">Javadocs</a>, and everything else you find here.
   You are invited to preview the documentation online, and then install the
@@ -77,11 +78,13 @@
   the documentation locally.
   </blockquote>
 
-  <p>
+  <p><a name="faqs"></a>
   The <a href="kickstart.html"><b>Kickstart FAQ</b></a> answers the most common
   non-technical questions people first ask about Struts. The
   <a href="newbie.html">Struts Newbie FAQ</a> answers the most common
-  technical questions asked by first-timer Struts developers. A more extensive
+  technical questions asked by first-timer Struts developers. The
+  <a href="helping.html">How to Help</a> FAQ answers the most common questions
+  about contributing to the Jakarta-Struts project. A more extensive
   Struts knowledgebase is available at the
   <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and
   <a href="http://jguru.com/forums/Struts">Forum</a>.
@@ -122,6 +125,17 @@
   <b>MAILING LIST ARCHIVE</b></a> before
   <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">posting a new question</a>.
   Like as not, it's already been asked and answered.
+  </p>
+
+  <p>
+  If you really can't find the answer to your question in the <a href="#faqs">FAQs</a> or
+  <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">list archive</a>,
+  you can post your query to the Struts User list -- BUT YOU MUST SUBSCRIBE TO THE
+  <a href="mailto:struts-user-subscribe@jakarta.apache.org">USER LIST</a>
+  OR THE
+  <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">USER LIST DIGEST</a>
+  BEFORE POSTING. If you would rather not subscribe to a list, you can go through the
+  <a href="http://www.proj.com/subscribe.jsp">BaseBeanse Struts Newsgroup</a>]<br/> instead.
   </p>
 
   <p>
@@ -215,6 +229,10 @@
   <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Building">
   building Struts from the source distribution</a>.
   </p>
+  </section>
+
+  <section>
+  <p align="center"><a href="helping.html#release">So when is the next release coming out?</a></p>
   </section>
 
   <section name="Nightly Builds" href="Builds">
@@ -326,7 +344,7 @@
   <li><strong>STRUTS-USER Newsgroup</strong> - The User list is also mirrored online,
       so that you can participate <b>without</b> subscribing to the regular mailing
       list.<br/>
-      [<a href="http://news.basebeans.com/forums.jsp">Struts Newsgroup</a>]<br/>
+      [<a href="http://www.proj.com/subscribe.jsp">Struts Newsgroup</a>]<br/>
       Our thanks to BaseBeans Engineering for providing this much-needed service!
       </li>
   </ul>

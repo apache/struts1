@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <document url="./kickstart.xml">
 <properties>
-<author>Ted Husted</author> 
-<author>James DeVries</author> 
-<author>James Holmes</author> 
+<author>Ted Husted</author>
+<author>James DeVries</author>
+<author>James Holmes</author>
 <title>The Struts User's Guide - Kickstart FAQ</title>
 </properties>
-<body> 
-<chapter href="faq" name="Kickstart FAQ"> 
-<section href="contents" name="Table of Contents">
+<body>
+<chapter href="faq" name="Kickstart FAQ">
+<section href="contents" name="Kickstart FAQ">
 <p>Here are answers to the usual getting-started questions. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
     <li><a href="#why">Why do we need Struts?</a></li>
@@ -19,32 +19,27 @@
     <li><a href="#license">How is Struts licensed?</a></li>
     <li><a href="#usage">Can Struts be used in a commercial application?</a></li>
     <li><a href="#credits">Do I have to credit Struts on my own website?</a></li>
-  </ul><ul>    
+  </ul><ul>
     <li><a href="#where">Where can I get a copy of Struts?</a></li>
     <li><a href="#install">How do I install Struts?</a></li>
     <li><a href="#jar">When do I need the struts.jar on my classpath?</a></li>
-  </ul><ul>    
+    <li><a href="#tests">Does Struts provide its own unit tests?</a></li>
+  </ul><ul>
     <li><a href="#help">Where can I get help with Struts?</a></li>
     <li><a href="#consultants">Is commercial support available for Struts?</a></li>
     <li><a href="#hosts">Are there ISPs that will host my Struts application?</a></li>
     <li><a href="#powered">What Web sites are already Powered by Struts?</a></li>
-  </ul><ul>    
-    <li><a href="#turbine">Whats the difference between Struts and Turbine?</a></li>
+  </ul><ul>
+    <li><a href="#turbine">What's the difference between Struts and Turbine?</a></li>
     <li><a href="#taglibs">Why aren't the Struts tags maintained as part of the Jakarta Taglibs project?</a></li>
     <li><a href="#xhmtl">Are the Struts tags XHTML compliant?</a></li>
     <li><a href="#jsf">What about the JSTL and JavaServer Faces?</a></li>
-  </ul><ul>    
-    <li><a href="#tests">Does Struts provide its own unit tests?</a></li>
-    <li><a href="#bugs">Where can I report bugs or make feature requests?</a></li>
-    <li><a href="#contribute">How can I contribute to the development of Struts?</a></li>
-    <li><a href="#documentation">How can I contribute to the documentation?</a></li>
-    <li><a href="#release">When is the next release coming out?</a></li>
-  </ul><ul>    
+  </ul><ul>
     <li><a href="#digest">Is there a digest for the mailing list?</a></li>
     <li><a href="#newsgroup">Is there a Struts Newsgroup?</a></li>
     <li><a href="#mailbounce">Why didn't my posting show up on the user list?"</a></li>
     <li><a href="#unsubscribe">How do I unsubscribe from the mailing list?</a></li>
-  </ul><ul>    
+  </ul><ul>
     <li><a href="#more">Are there any other FAQs?</a></li>
   </ul>
 </section>
@@ -76,14 +71,14 @@
 
 <section href="usage" name="Can Struts be used in a commercial product?">
 <p>Yes. The only requirements you must meet are those listed in the Apache Software Foundation license, which is included at the top of each source file and in the file LICENSE in the top-level directory of the distribution.</p>
-<p>In addition, <a href="#bugs">contributions of patches, improved code, new features,</a> or even just requests for features are also welcome.</p>
+<p>In addition, <a href="helping.html#bugs">contributions of patches, improved code, new features,</a> or even just requests for features are also welcome.</p>
 </section>
 
 <section href="credits" name="Do I have to credit Struts on my own website?">
-<p>You need to credit Struts if you <strong>redistribute your own framework</strong> based on Struts 
-for other people to use. (See the <a href="http://www.apache.org/LICENSE">Apache License</a> for details.) 
-But you do <strong>not</strong> need to credit Struts just because your web application utilizes the framework. 
-It's the same situation as using the Apache HTTPD server or Tomcat. Not required if its just running your web site. 
+<p>You need to credit Struts if you <strong>redistribute your own framework</strong> based on Struts
+for other people to use. (See the <a href="http://www.apache.org/LICENSE">Apache License</a> for details.)
+But you do <strong>not</strong> need to credit Struts just because your web application utilizes the framework.
+It's the same situation as using the Apache HTTPD server or Tomcat. Not required if its just running your web site.
 Required if you've used the source code to create your own server that you are redistributing to other people.</p>
 </section>
 
@@ -114,39 +109,57 @@ containers</a> are available.</p>
 <ul>
 <li><b>Use ANT</b> for building your projects -- it can easily assemble  classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
 <li><b>Use an IDE</b> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
-<li><b>Use a shell script</b> that temporarily adds struts.jar  to the classpath just for compilation, for example<br/> 
+<li><b>Use a shell script</b> that temporarily adds struts.jar  to the classpath just for compilation, for example<br/>
 <i>javac -classpath /path/to/struts.jar:$CLASSPATH $@</i></li>
 </ul>
 </section>
 
+<section href="tests" name="Does Struts include its own unit tests?">
+<p>
+Struts currently has two testing environments, to reflect the fact that
+some things can be tested statically, and some really need to be done in
+the environment of a running servlet container.</p>
+<p>
+For static unit tests, we use the <a href="http://www.junit.org">JUnit framework</a>.
+The sources for these tests are in the "src/test"
+hierarchy in the CVS repository, and are executed via the "test.junit"
+target in the top-level build.xml file.  Such tests are focused on the
+low-level functionality of individual methods, are are particularly
+suitable for the static methods in the org.apache.struts.util utility
+classes.  In the test hierarchy, there are also some "mock object" classes
+(in the org.apache.struts.mock package) so that you can package up things
+that look like servlet API and Struts API objects to pass in as arguments
+to such tests.</p>
+</section>
+
 <section href="help" name="Where can I get help with Struts?">
-<p>The Struts package comes complete with a 
-<a href="http://jakarta.apache.org/struts/userGuide/index.html">Users Guide</a> to 
-introduce people to the framework and its underlying technologies. Various components 
-also have their own in-depth Developers Guide, to cover more advanced topics. Comprehensive 
-<a href="http://jakarta.apache.org/struts/api/index.html">Javadocs</a> are included 
-along with the <b>full source code</b>. For your convenience, these are bundled together as 
-a self-installing application. The <code>struts-documentation.war</code> is the same 
-bundle that is deployed as the 
-<a href="http://jakarta.apache.org/struts/">Struts Web site</a>. 
+<p>The Struts package comes complete with a
+<a href="http://jakarta.apache.org/struts/userGuide/index.html">Users Guide</a> to
+introduce people to the framework and its underlying technologies. Various components
+also have their own in-depth Developers Guide, to cover more advanced topics. Comprehensive
+<a href="http://jakarta.apache.org/struts/api/index.html">Javadocs</a> are included
+along with the <b>full source code</b>. For your convenience, these are bundled together as
+a self-installing application. The <code>struts-documentation.war</code> is the same
+bundle that is deployed as the
+<a href="http://jakarta.apache.org/struts/">Struts Web site</a>.
 </p>
 <p>
-The 
-<a href="http://jakarta.apache.org/site/mail.html">Strut's mailing list</a> is also 
-very active, and welcomes posts from new users. Before posting a new question, be 
-sure to consult the 
+The
+<a href="http://jakarta.apache.org/site/mail.html">Strut's mailing list</a> is also
+very active, and welcomes posts from new users. Before posting a new question, be
+sure to consult the
 <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
 <b>MAILING LIST ARCHIVE</b></a> and the very excellent
 <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">
-How To Ask Questions The Smart Way</a> by Eric Raymond. Please do be sure 
-to <a href="http://expita.com/nomime.html">turn off HTML</a> in your 
+How To Ask Questions The Smart Way</a> by Eric Raymond. Please do be sure
+to <a href="http://expita.com/nomime.html">turn off HTML</a> in your
 email client before posting.
 </p>
 <p>
-There are also many third-party tutorials, articles, and books that cover Struts. 
-See our 
-<a href="resources/tutorials.html">Resources page</a> for current listings and 
-links. 
+There are also many third-party tutorials, articles, and books that cover Struts.
+See our
+<a href="resources/tutorials.html">Resources page</a> for current listings and
+links.
 </p>
 </section>
 
@@ -177,215 +190,35 @@ links.
 
 <section href="jsf" name="What about the JSTL and JavaServer Faces?">
 <p>
-The lead developer of Struts, Craig McClanahan, was a member of the 
-expert group for the JavaServer Standard Tag Library (JSR 052) and 
-now the specification lead for JavaServer Faces (JSR 127). Both 
-technologies are complementary to Struts. 
+The lead developer of Struts, Craig McClanahan, was a member of the
+expert group for the JavaServer Standard Tag Library (JSR 052) and
+now the specification lead for JavaServer Faces (JSR 127). Both
+technologies are complementary to Struts.
 </p>
 <p>
-The mainstay of the Struts framework is the controller components, which 
-can be used with any Java presentation technology. As new technologies 
-become available, it is certain that new "glue" components will also 
-appear to help these technologies work as well with Struts as the 
+The mainstay of the Struts framework is the controller components, which
+can be used with any Java presentation technology. As new technologies
+become available, it is certain that new "glue" components will also
+appear to help these technologies work as well with Struts as the
 bundled JSP tags. This would apply to both the JSTL and JSF.
 </p>
 <p>
 At some point, we would not be surprised to see Faces become the
-preferred UI implementation technology once it is standardized and 
-available. You can be assured that any future migration will be 
-made as painless as possible, and maximize your investment in 
-Struts. 
+preferred UI implementation technology once it is standardized and
+available. You can be assured that any future migration will be
+made as painless as possible, and maximize your investment in
+Struts.
 </p>
 <p>
 The JSTL is available through the Jakarta Taglibs site: <br/>
 <a href="http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html">http://jakarta.apache.org/taglibs/doc/standard-doc/intro.html</a>
 </p>
 <p>
-The JavaServer Faces specification is still being finalized. Public release of 
-the specification is scheduled for Summer 2002, and an implementation may be 
+The JavaServer Faces specification is still being finalized. Public release of
+the specification is scheduled for Summer 2002, and an implementation may be
 available in Fall of 2002. <a href="http://servlet.java.sun.com/javaone/sf2002/conf/sessions/display-1697.en.jsp">
 A presentation was given at JavaOne 2002</a> with some additional background.
 </p>
-</section>
-
-<section href="tests" name="Does Struts include its own unit tests?">
-<p>
-Struts currently has two testing environments, to reflect the fact that
-some things can be tested statically, and some really need to be done in
-the environment of a running servlet container.</p>
-<p>
-For static unit tests, we use the <a href="http://www.junit.org">JUnit framework</a>.  
-The sources for these tests are in the "src/test"
-hierarchy in the CVS repository, and are executed via the "test.junit"
-target in the top-level build.xml file.  Such tests are focused on the
-low-level functionality of individual methods, are are particularly
-suitable for the static methods in the org.apache.struts.util utility
-classes.  In the test hierarchy, there are also some "mock object" classes
-(in the org.apache.struts.mock package) so that you can package up things
-that look like servlet API and Struts API objects to pass in as arguments
-to such tests.</p>
-<p>
-This works fairly well for exercising most method-level stuff, but does
-not really address situations of dynamic behavior -- most particularly the
-execution of custom tags for Struts.  You can try to fake what a JSP
-container does, but a much more reliable testing regime would actually
-execute the tag in a real container.  For that purpose, we use the 
-<a href="http://jakarta.apache.org/cactus">Cactus</a>
-testing framework , which re-executes
-the JUnit-based tests as well to make sure that nothing bad happens when
-you switch environments.  Right now, there are very few dynamic tests;
-ideally, we will have tests for every tag, that cover every reasonable
-combination of tag attribute values (yes, that's a tall order -- the
-totally lines of test source code will undoubtedly exceed the totally
-lines of code in the framework itself if we achieve this).</p>
-</section>
-
-<section href="bugs" name="Where can I report bugs or make feature requests?">
-<p>You can research and report outstanding fixes and feature requests using 
-<a href="http://jakarta.apache.org/site/bugs.html">Jakarta Bugzilla</a>. If you 
-are unsure if this is an actual problem, feel free to bring it up on the list 
-first. But to be sure that an issue is resolved, read 
-<a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report 
-Bugs Effectively</a> and report it to 
-<a href="http://jakarta.apache.org/site/bugs.html"><b>Bugzilla</b></a>.</p>
-<p>Feature requests are also maintained in the Bugzilla database. Some older 
-requests are still listed on the <a href="../todo-1.1.html">wish list</a> 
-page.</p>
-<p><a href="http://jakarta.apache.org/site/source.html">Patches</a> are always 
-welcome. If you can't write a patch to fix your bug, a <a href="#tests">unit test</a> 
-that demonstrates the problem is also welcome. 
-(And, of course, unit tests that prove your patch work are equally 
-welcome.)</p>
-<p>If your bug or feature is already in Bugzilla, <strong>you can vote</strong> 
-for the issue and call more attention to it. Each user can cast up to six 
-votes at a time.</p>
-<p>If there is a patch attached to the issue, you can also try applying 
-to your local copy of Struts, and report whether it worked for you. 
-Feedback from developers regarding a proposed patch is really quite 
-helpful. Don't hesitate to "me too" if you've tried the patch yourself.
-</p>
-</section>
-
-<section href="contribute" name="How can I contribute to the development of Struts?">
-<p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>.
-These are the same people who distribute the Apache Web server. Like all ASF projects, Struts
-is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can
-help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>,
-<a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and
-<a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can
-contribute patches, new code, and documentation. The most active Developers may become
-<a href="http://jakarta.apache.org/site/roles.html">Committers</a>, who make the actual
-decisions about Strut's codebase.</p>
-<p>
-If you are new to open source development, see the 
-"<a href="http://jakarta.apache.org/site/getinvolved.html">How to get involved</a>" 
-page on the main Jakarta site.</p>
-<p>
-A very good place to start is by reviewing the list of open issues and pending 
-feature requests (<a href="#bugs">Bugzilla</a>).</p>
-</section>
-
-<section href="documentation" name="How can I contribute to the documentation?">
-<p>The only difference is that the documentation is kept in XML rather than Java 
-source code. Otherwise, all the same precepts and procedures pertain. </p>
-<p>The trick to getting started is to download the nightly build and try 
-building the documentation WAR. Then try adding your own XML page under doc/ to see 
-if the build succeeds. If it doesn't, it will report where the bad element is, much 
-like it reports where a bad programming expression is. If it does, then your page 
-should be available under target/documention/. </p>
-<p>The website portion of the package is the root directory of doc/. The User Guide 
-portion is under the userGuide/ folder. If the material you'd to add doesn't 
-fit right in with what's there, the best thing may be to start a new section after 
-the existing material. The navigation column can be found in the project.xml document.</p>
-<p>To display markup, substitute &amp;lt; for &lt;. The unmatched trailing > will be 
-ignored. Since it is XML, all elements also need to be closed. So elements like 
-&lt;br> and &lt;hr> need to be set out as &lt;br/> and &lt;hr/>.</p>
-<p>Also watch for the length of code samples. These do not wrap. If a line is too long, 
-it will force the right margin out past the edge of the screen or printed page. </p>
-<p>The stylesheets we use are adequate, but could certainly be improved by an XML 
-guru, if you happen to be one of those.</p>
-</section>
-
-<section href="release" name="When is the next release coming out?">
-<p>Here is the truth regarding releases:</p>
-<p>
-Jakarta products are released on the basis of merit, and ~not~ according
-to a strict timetable. The volunteers devote whatever time they can to working
-on the product. But all volunteers have real jobs and real lives, that 
-do take precedence. Since Struts does not have paid personnel working 
-on the project, we simply cannot make date-oriented commitments.
-</p>
-<p>
-All Jakarta products must circulate a public beta before release. If a
-beta is not in circulation, then it's a good bet that a release is not
-forthcoming any time soon. Products sometimes go through several betas
-before final release. So if this is beta 1, then it still may not be
-released any time soon.
-</p>
-<p>
-The bottom line is that Jakarta takes releases very seriously. We do not
-compromise the quality of our software by watching the calendar (and
-then ship something ready or not). A release is ready when it is ready.
-</p>
-<p>
-That may sound flip, but it ~is~ the truth. The delivery of
-production-quality, leading-edge software is not something anyone can 
-prognosticate. If anyone tries, they are lying to you. That, we won't 
-do ;-)
-</p>
-<p>
-What we ~will~ do is release all of our development software as soon as it
-is developed. This way you can judge for yourself how quickly the
-development is proceeding, and whether what is being developed will meet
-your needs. If you need a feature right now, you can use the nightly
-build, or roll your own patch. There are no private CVS's or private 
-development lists. What you see is what we got. If you are following the
-DEV list, then you know everything the developers know. Really, you do.
-</p>
-<p>
-<i>So, what do you tell your team?</i> If you can ship your application based 
-on the nightly build of your choice, then consider that an option. You can 
-still ship yours, even if we don't ship ours, and you will have access to 
-all the latest patches or enhancements. (Just like we were working down 
-the hall.) If you can only ship your application based on a release build of 
-Struts, then you should base your development on the release build of Struts, 
-and keep an eye on what is coming down the pipeline. This way you are at least 
-forewarned and forearmed.
-</p>
-</section>
-
-<section href="release_help" name="What can I do to help the next release along?">
-<ul>
-<li>Most importantly, download the latest beta and release-candidate and test 
-it against your own applications. Report any and all issues or suspected issues 
-to <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>. The sooner 
-we resolve any problems, the fewer betas or release candidates we will have to 
-distribute before we are done. (How do we know when we done? -- When we run out 
-of issues =:o) The sooner we find them, the sooner we are done.)</li>
-
-<li>Review the list of issues at Bugzilla. If there are any you can respond to, 
-please do. If there any patches posted, feel free to test the patch on your 
-system and report the results.</li>
-
-<li>Contribute <a href="tests">unit tests</a>. The closer we get to a release, the 
-more we worry about breaking something. The more tests we have, the more 
-confident we can be when applying patches. A test that proves there is bug are 
-the most welcome. But we are eager for any and all tests for any and all 
-features, even those that already work =:0).</li>
-
-<li><strong>Feel free to use Bugzilla to vote for any issues you feel should be handled 
-first.</strong> We don't guarantee that we will alwasy follow the vote, but we do value 
-the input!</li>
-
-<li>If an issue on your ballot doesn't include a patch, feel free to try coding 
-one yourself. (At Jakarta, patches are the only votes that really count.) 
-Well over <a href="volunteers.html">thirty developers</a> have contributed code or 
-documentation to the product. You can too =:0)</li>
-
-<li>Help out on the mailing lists. The Committers only have so much time to 
-volunteer. If Developers are supporting each other on the lists, the 
-Committers have more time to spend on the next release. </li>
-</ul>
 </section>
 
 <section href="digest" name="Is there a digest for the User list?">
@@ -393,16 +226,16 @@ Committers have more time to spend on the next release. </li>
 Yes. <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">struts-user-digest-subscribe@jakarta.apache.org</a>&gt;.
 </p>
 <p>
-If you are subscribed to the digest, you can also post to the list. 
-Just be sure to send your post to the 
-<a href="mailto:struts-user@jakarta.apache.org">user list</a> rather than trying to reply to the digest. 
+If you are subscribed to the digest, you can also post to the list.
+Just be sure to send your post to the
+<a href="mailto:struts-user@jakarta.apache.org">user list</a> rather than trying to reply to the digest.
 </p>
 </section>
 
 <section href="newsgroup" name="Is there a Struts newsgroup?">
 <p>
-Not a usenet group, but the Struts User list can be accessed with your 
-favorite newsgroup reader from the 
+Not a usenet group, but the Struts User list can be accessed with your
+favorite newsgroup reader from the
 <a href="http://news.basebeans.com/forums.jsp">
 BaseBeans Engineering</a> site.
 </p>
@@ -410,9 +243,9 @@ BaseBeans Engineering</a> site.
 
 <section href="mailbounce" name="Why didn't my posting show up on the user list?">
 <p>
-You must be subscribed to the <a href="mailto:struts-user-subscribe@jakarta.apache.org">user list</a> 
-or <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">user digest</a> before posting 
-(or use the <a href="http://news.basebeans.com/forums.jsp">BaseBeans newsgroup</a> instead). 
+You must be subscribed to the <a href="mailto:struts-user-subscribe@jakarta.apache.org">user list</a>
+or <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">user digest</a> before posting
+(or use the <a href="http://news.basebeans.com/forums.jsp">BaseBeans newsgroup</a> instead).
 </p>
 </section>
 
@@ -421,9 +254,9 @@ or <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">user digest<
 <b>From the email account used to subscribe to the list,</b> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.
 </p>
 <p>
-If you are receiving the digest, you must send a blank email to 
-&lt;<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt; 
-instead. 
+If you are receiving the digest, you must send a blank email to
+&lt;<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;
+instead.
 </p>
 </section>
 
@@ -431,11 +264,14 @@ instead.
 <p>
 Yes. For questions new developers commonly ask, visit the <a href="newbie.html">Struts Newbie FAQ</a>. For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.
 </p>
+<p>
+There is also a separate FAQ page for <a href="helping.html">how to help</a> make Struts even better.
+</p>
 </section>
 
 <section>
   <p>
-  Next: <a href="userGuide/introduction.html">Introduction to the Users Guide</a>
+  Next: <a href="userGuide/preface.html">Preface to the User Guide</a>
   </p>
 </section>
 

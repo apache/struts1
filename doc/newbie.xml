@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <document url="./kickstart.xml">
 <properties>
-<author>Ted Husted</author> 
-<author>James Holmes</author> 
+<author>Ted Husted</author>
+<author>James Holmes</author>
 <title>The Struts User's Guide - Newbie FAQ</title>
 </properties>
-<body> 
-<chapter href="faq" name="Newbie FAQ"> 
-<section href="contents" name="Table of Contents">
+<body>
+<chapter href="faq" name="Newbie FAQ">
+<section href="contents" name="Newbie FAQ">
 <p><font color="red"><b>UNDER CONSTRUCTION</b></font> (contributions welcome)</p>
-<p>Here are answers to 24 common questions people ask when using Struts on 
+<p>Here are answers to 24 common questions people ask when using Struts on
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
 
@@ -54,7 +54,7 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
     <li>How can I authenticate my users?</li>
 
     <li>How can I scroll through list of pages like the search results in google?</li>
-    
+
     <li>Can I have multiple submit buttons on the same form?</li>
 
     <li>Why can't my Javascript submit a form?</li>
@@ -87,22 +87,22 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
 <section href="modules" name="What is a modular application? What does module-relative mean?">
 
 <p>
-Since Struts 1.1, the framework supports multiple application modules. All applications have at 
-least one root, or default, module. Like the root directory in a file system, the default application 
-has no name. (Or is named with an empty string, depending your viewpoint.) Developing an application 
-with only a default module is no different from how applications were developed under Struts 1.0. 
-Since Struts 1.1, you can add additional modules to your application, each of which can have their 
-own configuration files, messages resources, and so forth. Each module is developed in the same way as 
-the default module. Applications that were developed as a single module can added to a multiple 
-module application, and modules can promoted to a standalone application without change. For more 
-about configuring your application to support multiple modules, see 
-<a href="userGuide/building_controller.html#module_config">Building Controller Components</a> in the 
-User Guide. 
+Since Struts 1.1, the framework supports multiple application modules. All applications have at
+least one root, or default, module. Like the root directory in a file system, the default application
+has no name. (Or is named with an empty string, depending your viewpoint.) Developing an application
+with only a default module is no different from how applications were developed under Struts 1.0.
+Since Struts 1.1, you can add additional modules to your application, each of which can have their
+own configuration files, messages resources, and so forth. Each module is developed in the same way as
+the default module. Applications that were developed as a single module can added to a multiple
+module application, and modules can promoted to a standalone application without change. For more
+about configuring your application to support multiple modules, see
+<a href="userGuide/building_controller.html#module_config">Building Controller Components</a> in the
+User Guide.
 </p>
 
 <p>
-But to answer the question =:0), a modular application is a Struts application that uses more than 
-one module. Module-relative means that the URI starts at the application-module level, rather than at 
+But to answer the question =:0), a modular application is a Struts application that uses more than
+one module. Module-relative means that the URI starts at the application-module level, rather than at
 the application-context level, or the absolute-URL level.
 </p>
 <ul>
@@ -119,8 +119,8 @@ The framework grew in the telling and as it evolved some of the names
 drifted.
 </p>
 <p>The good thing about a nightly build, is that everything becomes
-available to the community as soon as it is written. The bad thing about 
-a nightly build is that things like classnames get locked down early and 
+available to the community as soon as it is written. The bad thing about
+a nightly build is that things like classnames get locked down early and
 then become difficult to change.
 </p>
 </section>
@@ -137,12 +137,12 @@ then become difficult to change.
 
 <section href="multiple" name="Can I use multiple HTML form elements with the same name?">
 <p>
-Yes. Define the element as an array and Struts will autopopulate it like any other. 
+Yes. Define the element as an array and Struts will autopopulate it like any other.
 </p>
 <pre>
 <code>
 private String[] id= {};
-public String[] getId() { return this.id; } 
+public String[] getId() { return this.id; }
 public void setItem(String id[]) {this.id = id;}
 </code>
 </pre>
@@ -154,26 +154,26 @@ And so forth
 
 <section href="checkbox" name="Why are my checkboxes not being set from ON to OFF?">
 <p>
-A problem with a checkbox is that the browser will only include it in the request 
-when it is checked. If it is not checked, the HTML specification suggests that it 
-not be sent (i.e. omitted from the request). If the value of the checkbox is being 
-persisted, either in a session bean or in the model, a checked box can never 
-unchecked by a HTML form -- because the form can never send a signal to uncheck 
-the box. The application must somehow ascertain that since the element was not 
+A problem with a checkbox is that the browser will only include it in the request
+when it is checked. If it is not checked, the HTML specification suggests that it
+not be sent (i.e. omitted from the request). If the value of the checkbox is being
+persisted, either in a session bean or in the model, a checked box can never
+unchecked by a HTML form -- because the form can never send a signal to uncheck
+the box. The application must somehow ascertain that since the element was not
 sent that the corresponding value is unchecked.
 </p>
 <p>
-The recommended approach for Struts applications is to use the reset method in the 
-ActionForm to set all properties represented by checkboxes to null or false. The 
-checked boxes submitted by the form will then set those properties to true. The 
-omitted properties will remain false. Another solution is to use radio buttons 
-instead, which always submit a value. 
+The recommended approach for Struts applications is to use the reset method in the
+ActionForm to set all properties represented by checkboxes to null or false. The
+checked boxes submitted by the form will then set those properties to true. The
+omitted properties will remain false. Another solution is to use radio buttons
+instead, which always submit a value.
 </p>
 <p>
-It is important to note that the HTML specification recommends this same 
-behavior whenever a control is not "successful". Any blank element in a HTML 
-form is not guaranteed to submitted. It is therefor very important to set the 
-default values for an ActionForm correctly, and to implement the reset method 
+It is important to note that the HTML specification recommends this same
+behavior whenever a control is not "successful". Any blank element in a HTML
+form is not guaranteed to submitted. It is therefor very important to set the
+default values for an ActionForm correctly, and to implement the reset method
 when the ActionForm might kept in session scope.
 </p>
 </section>
@@ -181,27 +181,27 @@ when the ActionForm might kept in session scope.
 
 <section href="scriptlets" name="Can't I just create some of my JavaBeans in the JSP using a scriptlet?">
 <p>
-Struts is designed to encourage a 
+Struts is designed to encourage a
 <a href="http://www.javaworld.com/javaworld/jw-12-1999/f_jw-12-ssj-jspmvc.html">
-Model 2/MVC architecture</a>. But there is nothing that prevents you from using Model 1 
-techniques in your JavaServer Pages, so the answer  to the question is "Yes, you can". 
+Model 2/MVC architecture</a>. But there is nothing that prevents you from using Model 1
+techniques in your JavaServer Pages, so the answer  to the question is "Yes, you can".
 </p>
 <p>
-Though, using Model 1 techniques in a Struts application does go against the grain. 
-The approach recommended by most Struts developers is to create and populate whatever 
-objects the view may need in the Action, and then forward these through the request. 
-Some objects may also be created and stored in the session or application context, 
-depending on how they are used. 
+Though, using Model 1 techniques in a Struts application does go against the grain.
+The approach recommended by most Struts developers is to create and populate whatever
+objects the view may need in the Action, and then forward these through the request.
+Some objects may also be created and stored in the session or application context,
+depending on how they are used.
 </p>
 <p>
-Likewise, there is nothing to prevent you from using scriptlets along with JSP 
-tags in your pages. Though, many Struts developers report writing very complex 
+Likewise, there is nothing to prevent you from using scriptlets along with JSP
+tags in your pages. Though, many Struts developers report writing very complex
 scriplet-free applications and recommend the JSP tag approach to others.
 </p>
 <p>
-For help with Model 1 techniques and scriptlets, you might consider joining the 
-<a href="http://archives.java.sun.com/jsp-interest.html">Javasoft JSP-interest 
-mailing list</a>, where there are more people still using these approaches. 
+For help with Model 1 techniques and scriptlets, you might consider joining the
+<a href="http://archives.java.sun.com/jsp-interest.html">Javasoft JSP-interest
+mailing list</a>, where there are more people still using these approaches.
 </p>
 </section>
 
@@ -211,7 +211,7 @@ mailing list</a>, where there are more people still using these approaches.
 <i>The Struts tags seem to provide only the most rudimentary funcationality. Why is there not better support for date formatting and advanced string handling?</i>
 </p>
 <p>
-Three reasons: 
+Three reasons:
 </p>
 <p>
 First, work started on the JSTL and we didn't want to duplicate the effort.
@@ -220,8 +220,8 @@ First, work started on the JSTL and we didn't want to duplicate the effort.
 Second, work started on Java Server Faces, and we didn't want to duplicate that effort either.
 </p>
 <p>
-Third, in a Model 2 application, most of the formatting can be handled in the ActionForms (or in the business tier), 
-so all the tag has to do is spit out a string. This leads to better reuse since the same "how to format" code 
+Third, in a Model 2 application, most of the formatting can be handled in the ActionForms (or in the business tier),
+so all the tag has to do is spit out a string. This leads to better reuse since the same "how to format" code
 does not need to be repeated in every instance. You can "say it once" in a JavaBean and be done with it.
 </p>
 </section>
@@ -279,9 +279,16 @@ a place where HTML violates standard XML syntax rules. This matters a lot
 for people writing to browsers that support XHTML, where doing so makes
 the page invalid.It's much better for Struts to use the expanded syntax,
 which works the same on existing browsers interpreting HTML, and newer
-browsers that expect XHTML-compliant syntax. Struts is following the 
+browsers that expect XHTML-compliant syntax. Struts is following the
 behavior recommended by the <a href="http://www.w3.org/TR/xhtml1/#h-4.5">
 XHTML specification</a></p>
 </section>
 
+<section href="more" name="Other FAQs">
+<ul>
+<li><a href="kickstart.html">Kickstart FAQ</a></li>
+<li><a href="helping.html">How to Help FAQ</a></li>
+<li><a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru Struts FAQ</a></li>
+</ul>
+</section>
 </chapter></body></document>
