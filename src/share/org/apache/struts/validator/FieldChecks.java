@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.8 2003/05/22 01:05:44 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/05/22 01:05:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.9 2003/06/04 02:50:58 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/06/04 02:50:58 $
  *
  * ====================================================================
  *
@@ -226,14 +226,18 @@ public class FieldChecks implements Serializable {
             i++;
         }
         
-        if (required) {
-            if ((value != null) && (value.length() > 0)) {
-                return true;
-            } else {
-                errors.add(field.getKey(), Resources.getActionError(request, va, field));
+		if (required) {
+			if (GenericValidator.isBlankOrNull(value)) {
+				errors.add(
+					field.getKey(),
+					Resources.getActionError(request, va, field));
+				
                 return false;
-            }
-        }
+
+			} else {
+				return true;
+			}
+		}
         return true;
     }
 
