@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.53 2002/08/23 02:37:12 jholmes Exp $
- * $Revision: 1.53 $
- * $Date: 2002/08/23 02:37:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.54 2002/10/08 06:16:41 martinc Exp $
+ * $Revision: 1.54 $
+ * $Date: 2002/10/08 06:16:41 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.53 $ $Date: 2002/08/23 02:37:12 $
+ * @version $Revision: 1.54 $ $Date: 2002/10/08 06:16:41 $
  */
 
 public class RequestUtils {
@@ -953,7 +953,6 @@ public class RequestUtils {
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
             String stripped = name;
-            int subscript = stripped.lastIndexOf("[");
             if (prefix != null) {
                 if (!stripped.startsWith(prefix))
                     continue;
