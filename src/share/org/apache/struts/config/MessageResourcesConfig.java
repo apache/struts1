@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.7 2002/07/24 05:28:05 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/24 05:28:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.8 2003/03/23 03:56:41 jmitchell Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/03/23 03:56:41 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.Globals;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/24 05:28:05 $
+ * @version $Revision: 1.8 $ $Date: 2003/03/23 03:56:41 $
  * @since Struts 1.1
  */
 
@@ -185,7 +185,7 @@ public class MessageResourcesConfig implements Serializable {
         StringBuffer sb = new StringBuffer("MessageResourcesConfig[");
         sb.append("factory=");
         sb.append(this.factory);
-        sb.append("null=");
+        sb.append(",null=");
         sb.append(this.nullValue);
         sb.append(",parameter=");
         sb.append(this.parameter);
