@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.4 2001/01/10 01:54:21 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/01/10 01:54:21 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/test/Attic/TestBean.java,v 1.5 2001/01/28 02:22:47 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/01/28 02:22:47 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/01/10 01:54:21 $
+ * @version $Revision: 1.5 $ $Date: 2001/01/28 02:22:47 $
  */
 
 public class TestBean extends ActionForm {
@@ -208,6 +208,20 @@ public class TestBean extends ActionForm {
 
     public void setNullProperty(String nullProperty) {
         this.nullProperty = nullProperty;
+    }
+
+
+    /**
+     * A short property.
+     */
+    private short shortProperty = (short) 987;
+
+    public short getShortProperty() {
+        return (this.shortProperty);
+    }
+
+    public void setShortProperty(short shortProperty) {
+        this.shortProperty = shortProperty;
     }
 
 

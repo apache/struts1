@@ -19,6 +19,7 @@
 <bean:define id="test1_float" name="test1" property="floatProperty"/>
 <bean:define id="test1_int" name="test1" property="intProperty"/>
 <bean:define id="test1_long" name="test1" property="longProperty"/>
+<bean:define id="test1_short" name="test1" property="shortProperty"/>
 <bean:define id="test1_string" name="test1" property="stringProperty"/>
 <bean:define id="test1_value" value="ABCDE"/>
 
@@ -54,6 +55,11 @@
     <td><%= test1_long %></td>
   </tr>
   <tr>
+    <td>short</td>
+    <td><jsp:getProperty name="test1" property="shortProperty"/></td>
+    <td><%= test1_short %></td>
+  </tr>
+  <tr>
     <td>string</td>
     <td><jsp:getProperty name="test1" property="stringProperty"/></td>
     <td><%= test1_string %></td>
@@ -75,6 +81,7 @@
 <bean:define id="test2_float" name="test2" property="nested.floatProperty"/>
 <bean:define id="test2_int" name="test2" property="nested.intProperty"/>
 <bean:define id="test2_long" name="test2" property="nested.longProperty"/>
+<bean:define id="test2_short" name="test2" property="nested.shortProperty"/>
 <bean:define id="test2_string" name="test2" property="nested.stringProperty"/>
 
 <table border="1">
@@ -107,6 +114,11 @@
     <td>long</td>
     <td><jsp:getProperty name="test2" property="longProperty"/></td>
     <td><%= test2_long %></td>
+  </tr>
+  <tr>
+    <td>short</td>
+    <td><jsp:getProperty name="test2" property="shortProperty"/></td>
+    <td><%= test2_short %></td>
   </tr>
   <tr>
     <td>string</td>

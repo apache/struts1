@@ -18,6 +18,7 @@
   pageContext.setAttribute("test1.float", new Float((float) 123.0));
   pageContext.setAttribute("test1.int", new Integer(123));
   pageContext.setAttribute("test1.long", new Long(321));
+  pageContext.setAttribute("test1.short", new Short((short) 987));
   pageContext.setAttribute("test1.string", "This is a string");
 %>
 
@@ -51,6 +52,11 @@
   <td>long</td>
   <td><%= pageContext.getAttribute("test1.long") %></td>
   <td><bean:write name="test1.long"/></td>
+</tr>
+<tr>
+  <td>short</td>
+  <td><%= pageContext.getAttribute("test1.short") %></td>
+  <td><bean:write name="test1.short"/></td>
 </tr>
 <tr>
   <td>String</td>
@@ -93,6 +99,11 @@
   <td>long</td>
   <td><jsp:getProperty name="test2" property="longProperty"/></td>
   <td><bean:write name="test2" property="longProperty"/></td>
+</tr>
+<tr>
+  <td>short</td>
+  <td><jsp:getProperty name="test2" property="shortProperty"/></td>
+  <td><bean:write name="test2" property="shortProperty"/></td>
 </tr>
 <tr>
   <td>String</td>
@@ -175,6 +186,11 @@
   <td>long</td>
   <td><jsp:getProperty name="test5" property="longProperty"/></td>
   <td><bean:write name="test5" property="nested.longProperty"/></td>
+</tr>
+<tr>
+  <td>short</td>
+  <td><jsp:getProperty name="test5" property="shortProperty"/></td>
+  <td><bean:write name="test5" property="nested.shortProperty"/></td>
 </tr>
 <tr>
   <td>String</td>
