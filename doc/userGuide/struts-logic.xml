@@ -78,8 +78,9 @@
     <bodycontent>JSP</bodycontent>
     <info>
     <p>[Since 1.1] This tag evaluates its nested body content only if the specified value
-    is either absent (i.e. <code>null</code>) or an empty string (i.e. a
-    <code>java.lang.String</code> with a length of zero).</p>
+    is either absent (i.e. <code>null</code>), an empty string (i.e. a
+    <code>java.lang.String</code> with a length of zero) or an empty java.util.Collection
+    (tested by the .isEmpty() method on the java.util.Collection interface).</p>
     </info>
 
     <attribute>
@@ -1005,7 +1006,8 @@
     <name>notEmpty</name>
     <summary>
     Evaluate the nested body content of this tag if the requested variable is
-    neither <code>null</code> nor an empty string.
+    neither <code>null</code>, nor an empty string, nor an empty java.util.Collection
+    (tested by the .isEmpty() method on the java.util.Collection interface).
     </summary>
     <tagclass>org.apache.struts.taglib.logic.NotEmptyTag</tagclass>
     <bodycontent>JSP</bodycontent>
