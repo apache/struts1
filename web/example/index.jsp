@@ -31,5 +31,8 @@
 <li><html:link page="/logon.jsp"><bean:message key="index.logon"/></html:link></li>
 </ul>
 
+<p>&nbsp;</p>
+<p><a target="_blank" href="tour.htm"><font size="1">A Walking Tour of the Example Application</font></a></p>
+
 </body>
 </html:html>
