@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.14 2001/01/23 03:35:52 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2001/01/23 03:35:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.15 2001/02/13 23:53:36 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2001/02/13 23:53:36 $
  *
  * ====================================================================
  * 
@@ -102,7 +102,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.14 $ $Date: 2001/01/23 03:35:52 $
+ * @version $Revision: 1.15 $ $Date: 2001/02/13 23:53:36 $
  */
 
 public final class Digester extends HandlerBase {
@@ -806,6 +806,28 @@ public final class Digester extends HandlerBase {
      */
     public void addCallMethod(String pattern, String methodName,
     			      int paramCount, String paramTypes[]) {
+
+	addRule(pattern,
+	        new CallMethodRule(this, methodName,
+	        		   paramCount, paramTypes));
+
+    }
+
+
+    /**
+     * Add an "call method" rule for the specified parameters.
+     *
+     * @param pattern Element matching pattern
+     * @param methodName Method name to be called
+     * @param paramCount Number of expected parameters (or zero
+     *  for a single parameter from the body of this element)
+     * @param paramTypes The Java class names of the arguments
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean</code>
+     *  for a <code>boolean</code> parameter)
+     */
+    public void addCallMethod(String pattern, String methodName,
+    			      int paramCount, Class paramTypes[]) {
 
 	addRule(pattern,
 	        new CallMethodRule(this, methodName,

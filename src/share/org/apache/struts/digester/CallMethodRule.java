@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.6 2001/01/23 03:35:52 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/01/23 03:35:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.7 2001/02/13 23:53:36 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/13 23:53:36 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,7 @@ import org.apache.struts.util.ConvertUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/01/23 03:35:52 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/13 23:53:36 $
  */
 
 public final class CallMethodRule extends Rule {
@@ -96,7 +96,7 @@ public final class CallMethodRule extends Rule {
     public CallMethodRule(Digester digester, String methodName,
     			  int paramCount) {
 
-	this(digester, methodName, paramCount, null);
+	this(digester, methodName, paramCount, (Class[]) null);
 
     }
 
@@ -120,25 +120,50 @@ public final class CallMethodRule extends Rule {
 	this.methodName = methodName;
 	this.paramCount = paramCount;
 	if (paramTypes == null) {
-	    if (this.paramCount == 0)
-	        this.paramTypes = new Class[1];
-	    else
-	    	this.paramTypes = new Class[this.paramCount];
-	    for (int i = 0; i < this.paramTypes.length; i++) {
-		if (i == 0)
-		    this.paramTypes[i] = "abc".getClass();
-		else
-		    this.paramTypes[i] = this.paramTypes[0];
-	    }
-	} else {
-	    this.paramTypes = new Class[paramTypes.length];
-	    for (int i = 0; i < this.paramTypes.length; i++) {
-		try {
-		    this.paramTypes[i] = Class.forName(paramTypes[i]);
-		} catch (ClassNotFoundException e) {
-		    this.paramTypes[i] = null;	// Will trigger NPE later
-		}
-	    }
+            this.paramTypes = new Class[paramCount];
+            for (int i = 0; i < this.paramTypes.length; i++)
+                this.paramTypes[i] = "abc".getClass();
+        } else {
+            this.paramTypes = new Class[paramTypes.length];
+            for (int i = 0; i < this.paramTypes.length; i++) {
+                try {
+                    this.paramTypes[i] = Class.forName(paramTypes[i]);
+                } catch (ClassNotFoundException e) {
+                    this.paramTypes[i] = null; // Will cause NPE later
+                }
+            }
+        }
+
+    }
+
+
+    /**
+     * Construct a "call method" rule with the specified method name.
+     *
+     * @param digester The associated Digester
+     * @param methodName Method name of the parent method to call
+     * @param paramCount The number of parameters to collect, or
+     *  zero for a single argument from the body of ths element
+     * @param paramTypes The Java classes that represent the
+     *  parameter types of the method arguments
+     *  (if you wish to use a primitive type, specify the corresonding
+     *  Java wrapper class instead, such as <code>java.lang.Boolean.TYPE</code>
+     *  for a <code>boolean</code> parameter)
+     */
+    public CallMethodRule(Digester digester, String methodName,
+                          int paramCount, Class paramTypes[]) {
+
+	super(digester);
+	this.methodName = methodName;
+	this.paramCount = paramCount;
+	if (paramTypes == null) {
+            this.paramTypes = new Class[paramCount];
+            for (int i = 0; i < this.paramTypes.length; i++)
+                this.paramTypes[i] = "abc".getClass();
+        } else {
+            this.paramTypes = new Class[paramTypes.length];
+            for (int i = 0; i < this.paramTypes.length; i++)
+                this.paramTypes[i] = paramTypes[i];
         }
 
     }
@@ -224,9 +249,9 @@ public final class CallMethodRule extends Rule {
 
 	// Construct the parameter values array we will need
 	Object paramValues[] = new Object[paramTypes.length];
-	for (int i = 0; i < this.paramTypes.length; i++)
+	for (int i = 0; i < paramTypes.length; i++)
 	    paramValues[i] =
-	      ConvertUtils.convert(parameters[i], this.paramTypes[i]);
+	      ConvertUtils.convert(parameters[i], paramTypes[i]);
 
 	// Invoke the required method on the top object
 	Object top = digester.peek();
@@ -243,6 +268,11 @@ public final class CallMethodRule extends Rule {
 		    sb.append("null");
 		else
 		    sb.append(paramValues[i].toString());
+                sb.append("/");
+                if (paramTypes[i] == null)
+                    sb.append("null");
+                else
+                    sb.append(paramTypes[i].getName());
 	    }
 	    sb.append(")");
 	    digester.log(sb.toString());
