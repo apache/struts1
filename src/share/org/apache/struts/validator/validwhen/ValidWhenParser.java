@@ -1,9 +1,15 @@
-// $ANTLR 2.7.1: "ValidWhenParser.g" -> "ValidWhenParser.java"$
+// $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.6 2003/09/29 04:19:37 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/09/29 04:19:37 $
+ *
+ * ====================================================================
+ *
  *  The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999 The Apache Software Foundation.  All rights
+ *  Copyright (c) 2003 The Apache Software Foundation.  All rights
  *  reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -19,20 +25,20 @@
  *  distribution.
  *
  *  3. The end-user documentation included with the redistribution, if
- *  any, must include the following acknowlegement:
- *  "This product includes software developed by the
- *  Apache Software Foundation (http://www.apache.org/)."
- *  Alternately, this acknowlegement may appear in the software itself,
- *  if and wherever such third-party acknowlegements normally appear.
+ *    any, must include the following acknowledgement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
  *
- *  4. The names "The Jakarta Project", "Struts", and "Apache Software
- *  Foundation" must not be used to endorse or promote products derived
- *  from this software without prior written permission. For written
- *  permission, please contact apache@apache.org.
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
  *
- *  5. Products derived from this software may not be called "Apache"
- *  nor may "Apache" appear in their names without prior written
- *  permission of the Apache Group.
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -52,12 +58,13 @@
  *  individuals on behalf of the Apache Software Foundation.  For more
  *  information on the Apache Software Foundation, please see
  *  <http://www.apache.org/>.
+ *
  */
 
 package org.apache.struts.validator.validwhen;
 
 import java.util.Stack; 
-import org.apache.commons.validator.ValidatorUtil;
+import org.apache.commons.validator.util.ValidatorUtils;
 
 
 import antlr.TokenBuffer;
@@ -73,12 +80,8 @@ import antlr.MismatchedTokenException;
 import antlr.SemanticException;
 import antlr.ParserSharedInputState;
 import antlr.collections.impl.BitSet;
-import antlr.collections.AST;
-import antlr.ASTPair;
-import antlr.collections.impl.ASTArray;
 
-public class ValidWhenParser extends antlr.LLkParser
-       implements ValidWhenParserTokenTypes
+public class ValidWhenParser extends antlr.LLkParser       implements ValidWhenParserTokenTypes
  {
 Stack argStack = new Stack();
 Object form;
@@ -290,7 +293,7 @@ public ValidWhenParser(ParserSharedInputState state) {
 			
 			Object i2 = argStack.pop();
 			Object i1 = argStack.pop();
-			argStack.push(ValidatorUtil.getValueAsString(form, i1 + "[" + index + "]" + i2));
+			argStack.push(ValidatorUtils.getValueAsString(form, i1 + "[" + index + "]" + i2));
 			
 		}
 		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (LA(5)==IDENTIFIER)) {
@@ -303,7 +306,7 @@ public ValidWhenParser(ParserSharedInputState state) {
 			Object i5 = argStack.pop();
 			Object i4 = argStack.pop();
 			Object i3 = argStack.pop();
-			argStack.push(ValidatorUtil.getValueAsString(form, i3 + "[" + i4 + "]" + i5));
+			argStack.push(ValidatorUtils.getValueAsString(form, i3 + "[" + i4 + "]" + i5));
 			
 		}
 		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (LA(5)==LBRACKET)) {
@@ -315,7 +318,7 @@ public ValidWhenParser(ParserSharedInputState state) {
 			
 			Object i7 = argStack.pop();
 			Object i6 = argStack.pop();
-			argStack.push(ValidatorUtil.getValueAsString(form, i6 + "[" + i7 + "]"));
+			argStack.push(ValidatorUtils.getValueAsString(form, i6 + "[" + i7 + "]"));
 			
 		}
 		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && (LA(3)==RBRACKET) && (_tokenSet_0.member(LA(4)))) {
@@ -324,14 +327,14 @@ public ValidWhenParser(ParserSharedInputState state) {
 			match(RBRACKET);
 			
 			Object i8 = argStack.pop();
-			argStack.push(ValidatorUtil.getValueAsString(form, i8 + "[" + index + "]"));
+			argStack.push(ValidatorUtils.getValueAsString(form, i8 + "[" + index + "]"));
 			
 		}
 		else if ((LA(1)==IDENTIFIER) && (_tokenSet_0.member(LA(2)))) {
 			identifier();
 			
 			Object i9 = argStack.pop();
-			argStack.push(ValidatorUtil.getValueAsString(form, (String)i9));
+			argStack.push(ValidatorUtils.getValueAsString(form, (String)i9));
 			
 		}
 		else {
@@ -557,9 +560,15 @@ public ValidWhenParser(ParserSharedInputState state) {
 		"WS"
 	};
 	
-	private static final long _tokenSet_0_data_[] = { 8273920L, 0L };
-	public static final BitSet _tokenSet_0 = new BitSet(_tokenSet_0_data_);
-	private static final long _tokenSet_1_data_[] = { 6640L, 0L };
-	public static final BitSet _tokenSet_1 = new BitSet(_tokenSet_1_data_);
+	private static final long[] mk_tokenSet_0() {
+		long[] data = { 8273920L, 0L};
+		return data;
+	}
+	public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
+	private static final long[] mk_tokenSet_1() {
+		long[] data = { 6640L, 0L};
+		return data;
+	}
+	public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
 	
 	}

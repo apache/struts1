@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.8 2003/09/26 18:12:24 turner Exp $
- * $Revision: 1.8 $
- * $Date: 2003/09/26 18:12:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhen.java,v 1.9 2003/09/29 04:19:37 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/09/29 04:19:37 $
  *
  * ====================================================================
  *
@@ -23,20 +23,20 @@
  *  distribution.
  *
  *  3. The end-user documentation included with the redistribution, if
- *  any, must include the following acknowlegement:
- *  "This product includes software developed by the
- *  Apache Software Foundation (http://www.apache.org/)."
- *  Alternately, this acknowlegement may appear in the software itself,
- *  if and wherever such third-party acknowlegements normally appear.
+ *    any, must include the following acknowledgement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
  *
- *  4. The names "The Jakarta Project", "Struts", and "Apache Software
- *  Foundation" must not be used to endorse or promote products derived
- *  from this software without prior written permission. For written
- *  permission, please contact apache@apache.org.
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
  *
- *  5. Products derived from this software may not be called "Apache"
- *  nor may "Apache" appear in their names without prior written
- *  permission of the Apache Group.
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -56,6 +56,7 @@
  *  individuals on behalf of the Apache Software Foundation.  For more
  *  information on the Apache Software Foundation, please see
  *  <http://www.apache.org/>.
+ *
  */
 
 package org.apache.struts.validator.validwhen;
@@ -67,7 +68,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
-import org.apache.commons.validator.ValidatorUtil;
+import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.Resources;
 
@@ -115,7 +116,7 @@ public class ValidWhen {
         Validator validator,
         HttpServletRequest request) {
             
-        Object form = validator.getResource(Validator.BEAN_KEY);
+        Object form = validator.getParameterValue(Validator.BEAN_PARAM);
         String value = null;
         boolean valid = false;
         int index = -1;
@@ -135,7 +136,7 @@ public class ValidWhen {
         if (isString(bean)) {
             value = (String) bean;
         } else {
-            value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+            value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
         
         String test = field.getVarValue("test");

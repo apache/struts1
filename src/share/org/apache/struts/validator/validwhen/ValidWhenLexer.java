@@ -1,9 +1,15 @@
-// $ANTLR 2.7.1: "ValidWhenParser.g" -> "ValidWhenLexer.java"$
+// $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenLexer.java"$
 
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenLexer.java,v 1.5 2003/09/29 04:19:37 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/09/29 04:19:37 $
+ *
+ * ====================================================================
+ *
  *  The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999 The Apache Software Foundation.  All rights
+ *  Copyright (c) 2003 The Apache Software Foundation.  All rights
  *  reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -19,20 +25,20 @@
  *  distribution.
  *
  *  3. The end-user documentation included with the redistribution, if
- *  any, must include the following acknowlegement:
- *  "This product includes software developed by the
- *  Apache Software Foundation (http://www.apache.org/)."
- *  Alternately, this acknowlegement may appear in the software itself,
- *  if and wherever such third-party acknowlegements normally appear.
+ *    any, must include the following acknowledgement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
  *
- *  4. The names "The Jakarta Project", "Struts", and "Apache Software
- *  Foundation" must not be used to endorse or promote products derived
- *  from this software without prior written permission. For written
- *  permission, please contact apache@apache.org.
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
  *
- *  5. Products derived from this software may not be called "Apache"
- *  nor may "Apache" appear in their names without prior written
- *  permission of the Apache Group.
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -52,9 +58,13 @@
  *  individuals on behalf of the Apache Software Foundation.  For more
  *  information on the Apache Software Foundation, please see
  *  <http://www.apache.org/>.
+ *
  */
 
 package org.apache.struts.validator.validwhen;
+
+import java.util.Stack; 
+import org.apache.commons.validator.util.ValidatorUtils;
 
 
 import java.io.InputStream;
@@ -63,18 +73,23 @@ import antlr.TokenStreamIOException;
 import antlr.TokenStreamRecognitionException;
 import antlr.CharStreamException;
 import antlr.CharStreamIOException;
+import antlr.ANTLRException;
 import java.io.Reader;
 import java.util.Hashtable;
+import antlr.CharScanner;
 import antlr.InputBuffer;
 import antlr.ByteBuffer;
 import antlr.CharBuffer;
 import antlr.Token;
+import antlr.CommonToken;
 import antlr.RecognitionException;
 import antlr.NoViableAltForCharException;
+import antlr.MismatchedCharException;
 import antlr.TokenStream;
 import antlr.ANTLRHashString;
 import antlr.LexerSharedInputState;
 import antlr.collections.impl.BitSet;
+import antlr.SemanticException;
 
 public class ValidWhenLexer extends antlr.CharScanner implements ValidWhenParserTokenTypes, TokenStream
  {
@@ -89,18 +104,19 @@ public ValidWhenLexer(InputBuffer ib) {
 }
 public ValidWhenLexer(LexerSharedInputState state) {
 	super(state);
+	caseSensitiveLiterals = true;
+	setCaseSensitive(false);
 	literals = new Hashtable();
 	literals.put(new ANTLRHashString("null", this), new Integer(11));
 	literals.put(new ANTLRHashString("or", this), new Integer(16));
 	literals.put(new ANTLRHashString("and", this), new Integer(15));
-caseSensitiveLiterals = true;
-setCaseSensitive(false);
 }
 
 public Token nextToken() throws TokenStreamException {
 	Token theRetToken=null;
 tryAgain:
 	for (;;) {
+		Token _token = null;
 		int _ttype = Token.INVALID_TYPE;
 		resetText();
 		try {   // for char stream error handling
@@ -207,7 +223,7 @@ tryAgain:
 					}
 				else {
 					if (LA(1)==EOF_CHAR) {uponEOF(); _returnToken = makeToken(Token.EOF_TYPE);}
-				else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+				else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
 				}
 				if ( _returnToken==null ) continue tryAgain; // found SKIP token
@@ -234,7 +250,8 @@ tryAgain:
 	public final void mWS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = WS;
-
+		int _saveIndex;
+		
 		{
 		int _cnt15=0;
 		_loop15:
@@ -262,7 +279,7 @@ tryAgain:
 			}
 			default:
 			{
-				if ( _cnt15>=1 ) { break _loop15; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+				if ( _cnt15>=1 ) { break _loop15; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			}
 			_cnt15++;
@@ -306,6 +323,7 @@ tryAgain:
 	public final void mHEX_LITERAL(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = HEX_LITERAL;
+		int _saveIndex;
 		
 		match('0');
 		match('x');
@@ -329,7 +347,7 @@ tryAgain:
 			}
 			default:
 			{
-				if ( _cnt22>=1 ) { break _loop22; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+				if ( _cnt22>=1 ) { break _loop22; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			}
 			_cnt22++;
@@ -356,7 +374,7 @@ tryAgain:
 				matchRange('0','7');
 			}
 			else {
-				if ( _cnt25>=1 ) { break _loop25; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+				if ( _cnt25>=1 ) { break _loop25; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			
 			_cnt25++;
@@ -387,7 +405,7 @@ tryAgain:
 					matchNot('\'');
 				}
 				else {
-					if ( _cnt29>=1 ) { break _loop29; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+					if ( _cnt29>=1 ) { break _loop29; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
 				
 				_cnt29++;
@@ -409,7 +427,7 @@ tryAgain:
 					matchNot('\"');
 				}
 				else {
-					if ( _cnt32>=1 ) { break _loop32; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+					if ( _cnt32>=1 ) { break _loop32; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
 				
 				_cnt32++;
@@ -421,7 +439,7 @@ tryAgain:
 		}
 		default:
 		{
-			throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());
+			throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());
 		}
 		}
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -486,6 +504,7 @@ tryAgain:
 	public final void mTHIS(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = THIS;
+		int _saveIndex;
 		
 		match("*this*");
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -498,7 +517,8 @@ tryAgain:
 	public final void mIDENTIFIER(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = IDENTIFIER;
-
+		int _saveIndex;
+		
 		{
 		switch ( LA(1)) {
 		case 'a':  case 'b':  case 'c':  case 'd':
@@ -519,7 +539,7 @@ tryAgain:
 		}
 		default:
 		{
-			throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());
+			throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());
 		}
 		}
 		}
@@ -553,7 +573,7 @@ tryAgain:
 			}
 			default:
 			{
-				if ( _cnt41>=1 ) { break _loop41; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine());}
+				if ( _cnt41>=1 ) { break _loop41; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			}
 			_cnt41++;
@@ -569,6 +589,7 @@ tryAgain:
 	public final void mEQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = EQUALSIGN;
+		int _saveIndex;
 		
 		match('=');
 		match('=');
@@ -582,6 +603,7 @@ tryAgain:
 	public final void mNOTEQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = NOTEQUALSIGN;
+		int _saveIndex;
 		
 		match('!');
 		match('=');
@@ -595,6 +617,7 @@ tryAgain:
 	public final void mLESSTHANSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = LESSTHANSIGN;
+		int _saveIndex;
 		
 		match('<');
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -607,6 +630,7 @@ tryAgain:
 	public final void mGREATERTHANSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = GREATERTHANSIGN;
+		int _saveIndex;
 		
 		match('>');
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -619,6 +643,7 @@ tryAgain:
 	public final void mLESSEQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = LESSEQUALSIGN;
+		int _saveIndex;
 		
 		match('<');
 		match('=');
@@ -632,6 +657,7 @@ tryAgain:
 	public final void mGREATEREQUALSIGN(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = GREATEREQUALSIGN;
+		int _saveIndex;
 		
 		match('>');
 		match('=');
@@ -643,9 +669,15 @@ tryAgain:
 	}
 	
 	
-	private static final long _tokenSet_0_data_[] = { 8358477528813282816L, 576460744384577536L, 0L, 0L };
-	public static final BitSet _tokenSet_0 = new BitSet(_tokenSet_0_data_);
-	private static final long _tokenSet_1_data_[] = { 8358478061389227520L, 576460744384577536L, 0L, 0L };
-	public static final BitSet _tokenSet_1 = new BitSet(_tokenSet_1_data_);
+	private static final long[] mk_tokenSet_0() {
+		long[] data = { 8358477528813282816L, 576460744384577536L, 0L, 0L};
+		return data;
+	}
+	public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
+	private static final long[] mk_tokenSet_1() {
+		long[] data = { 8358478061389227520L, 576460744384577536L, 0L, 0L};
+		return data;
+	}
+	public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
 	
 	}
