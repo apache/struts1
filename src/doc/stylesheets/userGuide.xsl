@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: userGuide.xsl,v 1.1 2001/01/08 16:27:31 mschachter Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.2 2001/01/10 20:20:21 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -39,9 +39,12 @@
 			<xsl:attribute name="name"><xsl:value-of select="@href" /></xsl:attribute>
 		</xsl:element>
 		<h3><xsl:value-of select="@name" /></h3>
+<!--
                 <xsl:copy>
                     <xsl:apply-templates select="*|@" />
                 </xsl:copy>
+-->
+                 <xsl:apply-templates/>
 	</xsl:template>
 
         <xsl:template match="properties">
