@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.2 2002/07/24 09:37:32 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/24 09:37:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.3 2002/11/05 14:15:53 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/05 14:15:53 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Cedric Dumoulin
  * @since 1.1
- * @version $Revision: 1.2 $ $Date: 2002/07/24 09:37:32 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/05 14:15:53 $
  */
 public class DefinitionsFactoryConfig implements Serializable
 {
@@ -91,12 +91,14 @@ public class DefinitionsFactoryConfig implements Serializable
 
    /**
     * Debug level value. 0=no debug info >0 = debug info.
+    * @deprecated Use commons-logging mechanism.
     */
    protected int debugLevel = 0;
 
    /**
     * Debug level value used when parsing configuration file.
     * . 0=no debug info >0 = debug info.
+    * @deprecated Use commons-logging mechanism.
     */
    protected int parserDebugLevel = 0;
 
@@ -107,6 +109,19 @@ public class DefinitionsFactoryConfig implements Serializable
    protected boolean parserValidate = true;
    /** Definition configuration file specofied by user */
    protected String definitionConfigFiles;
+
+     /** Does the factory is module aware ? */
+   protected boolean moduleAware = true;
+
+     /**
+      * The name associated to this factory.
+      * <br>
+      * With Struts > 1.1b3, this name is the module name to which this factory
+      * belong. It is set by the system.
+      * <br>
+      * In other versions, this properties is not used.
+      */
+   protected String factoryName;
 
      /** Alternate name for parser debug details properties in configuration file */
    public static final String PARSER_DETAILS_PARAMETER_NAME = "definitions-parser-details";
@@ -143,6 +158,26 @@ public class DefinitionsFactoryConfig implements Serializable
    {
 
    }
+
+    /**
+     * Get the module aware flag.
+     * true: user want a single factory instance
+     * false: user want multiple factory instance (one per module with Struts)
+     */
+  public boolean isModuleAware()
+  {
+    return moduleAware;
+  }
+    /**
+     * Set the module aware flag.
+     * true: user want a single factory instance
+     * false: user want multiple factory instance (one per module with Struts)
+     * @param singleFactoryInstance
+     */
+  public void setModuleAware(boolean moduleAware)
+  {
+    this.moduleAware = moduleAware;
+  }
 
    /**
     * Access method for the factoryClassname property.
@@ -310,7 +345,7 @@ public class DefinitionsFactoryConfig implements Serializable
    *  access to the property accessor method
    * @exception InvocationTargetException if the property accessor method
    *  throws an exception
-   * @see org.apache.commons.beanutils.BeanUtil
+   * @see org.apache.commons.beanutils.BeanUtils
    */
   public void populate( Map properties)
     throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
@@ -348,5 +383,20 @@ public class DefinitionsFactoryConfig implements Serializable
     } // end loop
   if( toAdd.size() > 0 )
     properties.putAll( toAdd );
+  }
+
+  /**
+   * Get the factory name.
+   */
+  public String getFactoryName()
+  {
+    return factoryName;
+  }
+  /**
+   * Set the factory name.
+   */
+  public void setFactoryName(String factoryName)
+  {
+    this.factoryName = factoryName;
   }
 }

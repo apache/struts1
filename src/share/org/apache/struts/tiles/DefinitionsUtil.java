@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.5 2002/10/18 15:27:42 jholmes Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/18 15:27:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.6 2002/11/05 14:15:53 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/05 14:15:53 $
  *
  * ====================================================================
  *
@@ -82,8 +82,9 @@ import org.apache.commons.logging.LogFactory;
  * Utilities class for definitions factory.
  * Also define userDebugLevel property (to be moved from this class ?).
  * (to do).
+ * @deprecated Use {@link TilesUtil#createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}
  */
-public class DefinitionsUtil implements ComponentConstants
+public class DefinitionsUtil extends TilesUtil implements ComponentConstants
 {
     /** Commons Logging instance. */
   protected static Log log = LogFactory.getLog(DefinitionsUtil.class);
@@ -111,6 +112,7 @@ public class DefinitionsUtil implements ComponentConstants
 
     /**
      * Set user debug level. This property control level of errors output.
+     * @deprecated Use commons-logging package instead.
      */
   public static void setUserDebugLevel( int level )
     {
@@ -246,36 +248,10 @@ public class DefinitionsUtil implements ComponentConstants
   return createDefinitionsFactory( servletContext, servletConfig);
   }
 
-    /**
-     * Create Definition factory from specified configuration object.
-     * Create a ConfigurableDefinitionsFactory and initialize it with the configuration
-     * object. This later can contains the factory classname to use.
-     * Factory is made accessible from tags.
-     * <p>
-     * Fallback of several factory creation methods.
-     *
-     * @param servletContext Servlet Context passed to newly created factory.
-     * @param factoryConfig Configuration object passed to factory.
-     * @return newly created factory of type ConfigurableDefinitionsFactory.
-     * @throws DefinitionsFactoryException If an error occur while initializing factory
-     */
-  public static DefinitionsFactory createDefinitionsFactory(ServletContext servletContext, DefinitionsFactoryConfig factoryConfig)
-    throws DefinitionsFactoryException
-  {
-      // Set user debug level
-    setUserDebugLevel( factoryConfig.getDebugLevel() );
-      // Create configurable factory
-    DefinitionsFactory factory = createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
-    factory.init( factoryConfig, servletContext );
-      // Make factory accessible from jsp tags
-    DefinitionsUtil.makeDefinitionsFactoryAccessible(factory, servletContext );
-    return factory;
-  }
-
-
   /**
    * Create Definition factory from provided classname.
    * Factory class must extends TilesDefinitionsFactory.
+   * @deprecated No direct replacement. Use createDefinitionFactory.
    * @param classname Class name of the factory to create.
    * @return newly created factory.
    * @throws DefinitionsFactoryException If an error occur while initializing factory
@@ -328,35 +304,10 @@ public class DefinitionsUtil implements ComponentConstants
   }
 
   /**
-   * Get a definition by its name.
-   * First, retrieve definition factory, and then get requested definition.
-   * Throw appropriate exception if definition or definition factory is not found.
-   * @param definitionName Name of requested definition.
-   * @param request Current servelet request
-   * @param servletContext current servlet context
-   * @throws FactoryNotFoundException Can't find definition factory.
-   * @throws DefinitionsFactoryException General error in factory while getting definition.
-   * @throws NoSuchDefinitionException No definition found for specified name
-   */
-  static public ComponentDefinition getDefinition(String definitionName, ServletRequest request, ServletContext servletContext)
-    throws FactoryNotFoundException, DefinitionsFactoryException
-  {
-  try
-    {
-    return getDefinitionsFactory(servletContext).getDefinition(definitionName,
-                                                       (HttpServletRequest)request,
-                                                        servletContext);
-    }
-   catch( NullPointerException ex )
-    {  // Factory not found in context
-    throw new FactoryNotFoundException( "Can't get definitions factory from context." );
-    }
-  }
-
-  /**
    * Get a component / template definition by its name.
    * First, retrieve instance factory, and then get requested instance.
    * Throw appropriate exception if definition is not found.
+   * @deprecated Use {@link TilesUtil#getDefinition(String, ServletRequest, ServletContext)}
    * @param definitionName Name of requested definition.
    * @param pageContext Current pageContext
    * @throws FactoryNotFoundException Can't find definition factory.
@@ -374,16 +325,18 @@ public class DefinitionsUtil implements ComponentConstants
   /**
    * Get definition factory from appropriate servlet context.
    * @return Definitions factory or null if not found.
+   * @deprecated Use {@link TilesUtil#getDefinitionsFactory(ServletRequest, ServletContext)}
    * @since 20020708
    */
  static  public DefinitionsFactory getDefinitionsFactory(ServletContext servletContext)
   {
-  return (DefinitionsFactory)servletContext.getAttribute(DEFINITIONS_FACTORY);
+  return getDefaultDefinitionsFactory(servletContext);
   }
 
   /**
    * Make definition factory accessible to Tags.
    * Factory is stored in servlet context.
+   * @deprecated Use {@link TilesUtil#createDefinitionsFactory(ServletContext, DefinitionsFactoryConfig)}
    * @param factory Factory to make accessible
    * @param servletContext Current servlet context
    * @since 20020708
@@ -428,7 +381,7 @@ public class DefinitionsUtil implements ComponentConstants
    *  access to the property accessor method
    * @exception java.lang.reflect.InvocationTargetException if the property accessor method
    *  throws an exception
-   * @see org.apache.commons.beanutils.BeanUtil
+   * @see org.apache.commons.beanutils.BeanUtils
    * @since tiles 20020708
    */
   static public void populateDefinitionsFactoryConfig( DefinitionsFactoryConfig factoryConfig, ServletConfig servletConfig)
