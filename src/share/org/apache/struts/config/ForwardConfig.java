@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.12 2004/02/13 11:07:54 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2004/02/13 11:07:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.13 2004/02/19 18:45:05 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/02/19 18:45:05 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import java.io.Serializable;
  * <code>&lt;forward&gt;</code> element from a Struts
  * configuration file.</p>
  *
- * @version $Revision: 1.12 $ $Date: 2004/02/13 11:07:54 $
+ * @version $Revision: 1.13 $ $Date: 2004/02/19 18:45:05 $
  * @since Struts 1.1
  */
 
@@ -115,6 +115,7 @@ public class ForwardConfig implements Serializable {
      * @param path Path to which control should be forwarded or redirected
      * @param redirect Should we do a redirect?
      * @param contextRelative Is this path context relative?
+     * @deprecated Use module rather than contextRelative
      */
     public ForwardConfig(String name, String path, boolean redirect,
                          boolean contextRelative) {
@@ -124,6 +125,25 @@ public class ForwardConfig implements Serializable {
         setPath(path);
         setRedirect(redirect);
         setContextRelative(contextRelative);
+
+    }
+
+    /**
+     * Construct a new instance with the specified values.
+     *
+     * @param name Name of this forward
+     * @param path Path to which control should be forwarded or redirected
+     * @param redirect Should we do a redirect?
+     * @param module Module prefix, if any
+     */
+    public ForwardConfig(String name, String path, boolean redirect,
+                         String module) {
+
+        super();
+        setName(name);
+        setPath(path);
+        setRedirect(redirect);
+        setModule(module);
 
     }
 
@@ -144,13 +164,20 @@ public class ForwardConfig implements Serializable {
      * Should the value of the <code>path</code> property be considered
      * context-relative if it starts with a slash (and therefore not
      * prefixed with the module prefix?
+     * @deprecated Use module property instead; will be removed in a release following 1.2.0.
      */
     protected boolean contextRelative = false;
 
+    /**
+     * @deprecated Use module property instead; will be removed in a release following 1.2.0.
+     */
     public boolean getContextRelative() {
         return (this.contextRelative);
     }
 
+    /**
+     * @deprecated Use module property instead; will be removed in a release following 1.2.0.
+     */
     public void setContextRelative(boolean contextRelative) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -273,6 +300,8 @@ public class ForwardConfig implements Serializable {
         sb.append(this.redirect);
         sb.append(",contextRelative=");
         sb.append(this.contextRelative);
+        sb.append(",module=");
+        sb.append(this.module);
         sb.append("]");
         return (sb.toString());
 
