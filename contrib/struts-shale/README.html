@@ -1,0 +1,573 @@
+<html>
+  <head>
+    <title>Struts 2.0 'Shale' Proposal</title>
+  </head>
+  <body>
+
+<div align="center">
+  <h1>Struts 2.0 'Shale' Proposal</h1>
+  <h3>$Id$</h3>
+  [<a href="#Introduction">Introduction</a>]
+  [<a href="#ProposalDetails">Proposal Details</a>]
+  [<a href="#Infrastructure">Infrastructure</a>]
+</div>
+
+<hr/><a name="Introduction">
+<h2>1. Introduction</h2>
+
+<h3>1.1 Background</h3>
+
+<p>Little did anyone know, when the first few lines of code were committed to
+the Struts CVS repository at Apache in June 2000, that a revolution was
+brewing.  Prior to that time, there were few useful models for best practices
+for the architecture of web based applications.  The best we could do was
+handwaving about the relative advantages of "Model 1" versus "Model 2"
+approaches.</p>
+
+<p>The original implementation of Struts, which was released as a 1.0 product
+approximately one year later, changed all that.  As more and more people
+came to understand the advantages of building on top of a stable and supported
+framework, and as more and more developers adopted it for their own
+application development, and as more than more books helped everyone understand
+how to use the framework correctly, and as more and more development tools
+provided support for building Struts based applications, the world changed.
+A small open source project became a defacto industry standard that, even today,
+gets downloaded many tens of thousands of times per month.</p>
+
+<p>But, that was then ... and this is now.  In the four years that Struts has
+been around (a relatively infinite amount of "Internet time"), vastly improved
+technologies have become available from many talented architects and designers.
+Moore's Law has continued its seemingly inexhaustible progress.  Developers have
+grown in their ability to understand less monolithic architectures -- as well
+as developing preferences towards agility, the ability to create unit tests,
+and to build applications by composition rather than inheritance.</p>
+
+<p>One of the critical success factors for Struts has been, and continues to
+be, an obvious commitment (on the part of Struts developers) to maintain and
+enhance the framework in a way that remains fundamentally backwards compatible,
+while embracing new technologies as they have become availalble.  This has led
+to Struts being both praised (for protecting the investment of developers with
+thousands of applications critically dependent on the framework) and dissed
+(for being a dinosaur compared to all the "latest and greatest" favorite
+technological approaches).  History has shown (in terms of continued popularity)
+that this is a good strategic approach.</p>
+
+<p>Indeed, Struts will continue to evolve in a manner that protects the
+investments of existing users.  For example, the recent discussions around
+using the "chain of responsibility" design pattern inside the Struts controller
+to radically simplify customization and extension of the framework, while at the
+same time providing historically consistent default functionality, is just one
+example of this trend.  But ... it's also time for something else.</p>
+
+<p>It is time to harvest many of the great ideas that have matured in the last
+four years.  It is time to focus Struts on solving the unsolved problems, while
+leveraging existing solutions instead of reinventing them.  It is time to
+answer the question "if we knew then what we know now, what would Struts have
+looked like?"</p>
+
+<p>Thus, this is a proposal to fundamentally reinvent Struts ... to bring
+the framework up to date.  To focus on the key value add of a framework that
+focuses on the "controller" tier of the traditional Model-View-Controller
+design pattern, while expanding the areas of responsibility that the
+controller assumes, but at the same time radically simplifying the use
+of the overall framework -- and lets you choose the portions that you
+care about, rather than being monolithic.  To bring forth ... a proposal
+for a future of Struts, code named the "Shale" proposal.</p>
+
+<blockquote><em>
+EDITOR'S NOTE:
+Why "Shale"?  As others have pointed out, the cultural
+rules of engagement at Apache encourage both evolution
+and revolution in software designs.  Revolutions are
+typically assigned code names while they are still under
+discussion, and only gain access to the branding of the
+overall project once they are accepted.  Other proposals
+for Struts 2 have talked about tearing down the walls
+inside the framework, and those are Good Things.  This
+proposal, on the other hand, suggests that we fundamentally
+divide the notion of a web application framework into
+solid individual layers, much as we see geologically in
+shale deposits around our volcanoes and coastlines.  Each
+layer of the framework should focus on the specific
+requirements that are relevant to that layer -- and use of
+one layer should not necessarily require the use of all the
+rest (although it's certainly reasonable for synergies to
+exist if all the layers are chosen :-).  Hence, "shale."
+</em></blockquote>
+
+<p>But first, let's examine some problems with the current architectures
+of web application frameworks in general, and Struts 1.x in particular.</p>
+
+<h3>1.2 Monolithic Controllers</h3>
+
+<p>Most current implementations of a Model-View-Controller architecture
+for web applications have focused on providing a single monolithic
+controller that is responsible for the entire processing of every
+incoming request.  While this paradigm is very powerful, it creates
+usability and understandability problems for some application developers,
+because it requires artificial separation of portions of the application
+logic that (from the viewpoint of the developer) belong together.  The
+most common scenario in a Struts based application, for example, is the
+following pattern:</p>
+<ol>
+<li>User fills out and submits the form requesting a transaction.</li>
+<li>Controller routes the request to the business logic responsible
+    for performing the transaction.</li>
+<li>Controller routes the request to setup logic for the next form
+    to be displayed.</li>
+<li>Controller routes the request to the view tier component that
+    displays the new form.</li>
+</ol>
+
+<p>A key issue is that, from the point of view of the person supporting
+a particular business transaction, the following pieces of functionality
+are tightly coupled:</p>
+<ul>
+<li>The setup logic for that transaction (such as retrieving
+    information from the model that is required to complete
+    the presentation to the user.</li>
+<li>The presentation logic in the view tier technology that
+    actually generates your user interface.</li>
+<li>The processing logic that will accept the incoming form
+    and complete the requested transaction.</li>
+</ul>
+
+<p>Yet in Struts 1.x, for example, the setup logic and processing logic end up
+in two different Actions, requiring multiple action mappings, and a tendency
+for people to implement action chaining and be surprised by the results.  A
+more developer-friendly approach would be to combine the tightly coupled
+processing actions into a single Java class, implicitly associated in a 1:1
+relationship by a (pluggable) mapper, so that the entire combination has a
+single "identity" from the point of view of the application framework -- and
+so that this entire combination can be treated as a unit by development tools
+that choose to support it.</p>
+
+<h3>1.3 Multiple Request Interactions</h3>
+
+<p>One of the most significant technological challenges of developing
+applications based on HTTP is dealing with the stateless aspect of the
+protocol.  The servlet API provides a relatively simple mechanism for
+identifying requests that are coming from the same user (sessions).  In
+turn, this allows convenient state saving of information particular to
+an individual user's interactions with the application.  But it doesn't
+solve all of the problems.</p>
+
+<p>In particular, it is common for individual transactions to require more
+than one interaction with a user.  The servlet API offers no direct support
+for maintaining state across these requests that is specific to that
+transaction -- let alone deal with realities like the back button on a
+browser, which can lead to incorrect interactions.  Some frameworks do more
+than others to manage this problem.  In Struts 1.x, for example, you can use
+the transaction token mechanism to catch the "duplicate submit" scenario.
+But a more comprehensive solution go "guided dialog" transactions, with the
+associated state management, would substantially improve the productivity
+of developers utilizing the framework.</p>
+
+<h3>1.4 Application Scope Features</h3>
+
+<p>It may seem, from the above problem descriptions, that an application-level
+controller has no reason for being any longer.  Yet, nothing could be further
+from the truth.  There are still useful features that can be enabled by
+processing on every incoming request.  In Struts 1.x, we have required all
+transactions to flow through a processing servlet -- because we have used
+Servlet 2.2 as the base platform, we were not able to implement these features
+using servlet filters.</p>
+
+<p>Moving to a Servlet 2.4 baseline provides us the opportunity to invoke only
+the required per-every-request features that a particular application requires,
+without requring a monolithic implementation.  In addition, event listeners (at
+the request, session, and application) levels will be important, for example,
+for implementing end-of-request cleanup operations, or detect when request
+attributes of a particular type are registered, so that value add services may
+be provided transparently.</p>
+
+<p>Beyond this, however, modern application frameworks are expected to provide
+standard services (or supported plugins to standard services) out of the box.
+Struts needs to offer such solutions in areas that are particularly important,
+yet currently require individual integration by application developers.</p>
+
+<hr/><a name="ProposalDetails"></a>
+<h2>2. Proposal Details</h2>
+
+<h3>2.1 Overview</h3>
+
+<p>The briefest way to state the proposed architecture is to fulfill the
+following goal statement:</p>
+<blockquote><em>
+Divide the current monolithic controller into individual layers,
+whose features may be composed in appropriate combinations based
+on the requirements of a particular application.
+</em></blockquote>
+
+<p>To that end, the following primary layers are proposed:</p>
+<ul>
+<li><strong>Application</strong> - Framework for performing processing
+    that is required on every incoming request, plus a place to plug in
+    application-wide services that are offered as standard plug-ins.</li>
+<li><strong>Dialog</strong> - Framework for managing a series of individual
+    interactions with the same user, necessary to complete a particular
+    business transaction, plus a mechanism for plugging in predefined
+    dialog services that are offered as standard plug-ins.</li>
+<li><strong>View</strong> - Framework for elegantly combining a view tier
+    technology that actually composes an individual HTTP response with the
+    corresponding business logic interactions (to retrieve or modify data
+    in the model tier), as well as handle user interface events activated
+    by the user.</li>
+</ul>
+
+<p>The features provided by each of these layers are further described
+in the following sections.</p>
+
+
+<h3>2.2 Application Controller</h3>
+
+<p>There continue to be framework responsibilities that are best discharged
+by preprocessing (and/or postprocessing) every request, or every request that
+meets certain criteria.  Struts will leverage the <code>Filter</code> APIs of
+the servlet container to provide mechanisms to plug in individual application
+level functionality for purposes such as:<p>
+<ul>
+<li>Access logging</li>
+<li>Authentication and authorization</li>
+<li>Performance statistic gathering</li>
+<li>Compression of large responses</li>
+<li>Unwrapping of incoming content types other than the default
+    (<code>application/x-www-form-urlencoded</code>)</li>
+<li>Remapping of incoming requests to alternate (or locale-specific) URLs</li>
+</ul>
+
+<p>Depending upon the nature of the individual pieces being integrated, it
+might be more user friendly to configure a single <code>Filter</code> that
+used a customizable "chain of responsibility" design pattern (like that
+provided by Commons Chain) to implement the actual behavior performed for
+each incoming request.</p>
+
+<p>In the specific case of authentication and authorization, Struts must
+interoperate both with applications wishing to utilize container managed
+security, as well as those providing their own technology.  In both cases,
+it is expected that the outcome of performing authentication and
+authorization activities will be made visible to the application via return
+values of the (potentially wrapped) servlet/portlet request methods
+<code>getRemoteUser()</code>, <code>getUserPrincipal()</code>, and
+<code>isUserInRole()</code>.</p>
+
+<p>Separate from the core of Struts 2, we should consider supporting a
+subproject that provides functionally complete plug-ins that implement
+functionalities of the types described above.  In particular, a complete
+user administration system (with support for "remember me" cookies) would
+be a popular feature useful in many application environments.</p>
+
+
+<h3>2.3 Dialog Controller</h3>
+
+<p>Nearly all modern MVC-based frameworks for web application development
+provide some level of support for the "application controller" functionality
+described in the previous section, as well as the "view controller" capabilities
+described next.  However, relatively few of them deal with an intermediate
+requirement to manage a "dialog" or "conversation" with the application user
+that spans multiple HTTP requests.  Dealing with this complexity is left as
+an "exercise left for the reader" -- a state of affairs that Struts 2 should
+change.</p>
+
+<p>Although this portion of the "Shale" proposal is the least fleshed out in
+terms of an thinking through a possible implementation approach, it offers an
+opportunity for substantially improving the productivity of developers building
+applications based on Struts.  Therefore, let us define the requirements that
+must be met by an implementation of a controller for dialogs:</p>
+<ul>
+<li>It must be possible to maintain a set of state information for a
+    dialog across multiple HTTP requests.</li>
+<li>It must be possible for an application user to engage in more than one
+    dialog simultaneously (for example a non-modal pop-up wizard dialog
+    running at the same time as the main line application's dialog, perhaps
+    with a third dialog rendering context-sensitive help in another window).
+    </li>
+<li>It must be possible to describe the set of views involved in a dialog
+    (and, implicitly, their corresponding event handlers in a backing bean)
+    in such a manner that navigation can be performed by an event handler
+    for one view, without having to be aware of the details of the overall
+    structure of the entire dialog.</li>
+<li>Description of a dialog should include not only support for navigation
+    (first, previous, next, last, and so on) but also some mechanism for
+    scripting the entire dialog's flow.  Examples of descriptions might be
+    some scripting language that supports "continuations" (i.e. the ability
+    to suspend execution and restart it later), or Java APIs that make state
+    saving and restoring easy to perform in view-specific event handlers.</li>
+<li>Dialog descriptions must be self documenting enough for tools to be
+    able to produce high quality user experiences at design time.</li>
+<li>In addition to generic navigation, the dialog controller
+    must support one or more mechanisms to exit from the dialog (typically
+    via "finish" and "cancel" controls, but not limited to these).</li>
+<li>To the maximum degree feasible, the dialog controller must manage the
+    browser's "back" and "forwards" buttons, treating them as if the
+    corresponding navigation controls had been utilized (in terms of
+    undoing and redoing changes to the state information being maintained).
+    Clearly, this will require restrictions on persistent changes to model
+    tier data performed as each step of the dialog is executed, but those
+    restrictions should be explicitly documented and easy to obey.</li>
+</ul>
+
+<h3>2.4 View Controller</h3>
+
+<p>Struts will support a mechanism that provides a 1:1 relationship between
+a view tier presentation technology responsible for creating an HTTP response
+(such as a JSP page), and a corresponding Java class containing event handling
+logic, (optionally) values used in the dynamic rendering of the response, and
+(optionally) bindings to the individual user interface components included in
+the response page.  Such a Java class is known (in JSF terminology) as a
+"backing bean," and will in most circumstances be registered as a managed
+bean in the JSF configuration resources.</p>
+
+<p>JSF does not require that a backing bean implement any particular interface,
+or extend any particular base class.  Therefore, Struts should not impose any
+such restriction either.  It should merely promise to ensure that a bean of the
+appropriate class (selected by a pluggable mapper that translates the JSF
+view identifier into a class name) will be present -- normally in request
+scope -- when needed to process an incoming form submit, or to render a newly
+created view.</p>
+
+<p>However, if an application's backing bean happens to implement a lightweight
+<code>ViewController</code> interface defined by Struts, several lifecycle
+related methods will be called by the framework:</p>
+<ul>
+<li>The backing bean will possess the following properties useful in
+    conditionally performing application logic based on the current
+    processing state:
+    <ul>
+    <li><strong>dialog</strong> - The <code>DialogController</code> instance
+        for the dialog that this view is a participant in, if any.</li>
+    <li><strong>postBack</strong> - Boolean property indicating whether this
+        view (and corresponding backing bean) will be processing an incoming
+        form request, or only rendering output for a newly created view.</li>
+    </ul></li>
+<li>The following lifecycle methods will be called by the framework at the
+    indicated times:
+    <ul>
+    <li><strong>init()</strong> - Called after a backing bean instance has been
+        created and framework-defined properties (see above) have been set.
+        This is a useful place to acquire resources that will be needed for
+        either a form submit or for rendering a new view.</li>
+    <li><strong>prepare()</strong> - Called immediate before the currently
+        selected view is rendered (in JSF terms, this happens at the beginning
+        of <em>Render Response</em> phase, before the <code>encode()</code>
+        methods of the components have been called).  This method is only
+        called for a view that is actually going to be rendered, in the
+        case where the view being rendered is different from the view that
+        responded to a form submit.  As such, it is a useful place to acquire
+        references to model data that is required in the rendering of
+        this view.</li>
+    <li><strong>destroy()</strong> = Called after rendering has been completed,
+        for all <code>ViewController</code>s that have had their
+        <code>init()</code> method called during this request.</li>
+    </ul></li>
+</ul>
+
+<p>Other than implementing a Struts-defined interface, a
+<code>ViewController</code> need not have any other dependence on the
+framework.  Thus, it remains easy to unit test such a bean outside of
+a servlet container environment.</p>
+
+<p>When coding the action method corresponding to a form's submit button,
+Struts should encourage best practices in terms of delegating business
+logic to the model tier, rather than implementing it directly in the action
+method.  One approach to this might be to provide helper methods that make
+it easy to encapsulate the current request state (including the current
+instance of the backing bean, which would include all the incoming input
+field values) into a context that is then passed to a "chain of responsibility"
+implementation such as Commons Chain for performing the actual business logic
+processing.</p>
+
+<p>Best practices for JSF include storing backing beans in request scope,
+rather than in page scope.  Because such beans are instantiated anew for each
+request, and are accessed only by a single thread, there are no thread safety
+concerns (as there are with Struts 1.x Actions) related to instance variables.
+However, this also means that state required across more than one request
+needs to be stored elsewhere (because the backing bean will be thrown away
+at the end of the request).</p>
+
+
+<h3>2.5 Functionality Not Included In Struts 2.0 Core</h3>
+
+<p>Compared to Struts 1.x, support for client side validation and layout
+management (Tiles) are explicitly excluded from the core controller framework.
+This is not based on any belief that the functionality is not valuable -- it
+belongs properly in the view tier, and should be managed there as a separate
+subproject.</p>
+
+
+<hr/><a name="Infrastructure"></a>
+<h2>3. Infrastructure</h2>
+
+<p>A key aspect of designing a framework is to choose which features it
+implements itself, and which capabilities it imports as dependencies.  The
+"Shale" proposal contemplates the following dependency choices, with
+individual implementations proposed for some of them.  Struts will then
+provide its own APIs in the controller tier that leverage these capabilities.
+</p>
+
+<h3>3.1 Java2 Standard Edition APIs</h3>
+
+<p><em>Proposal</em>: JDK Version 1.4</p>
+
+<p>Picking a base J2SE platform is a tradeoff between wanting to use all
+the latest and greatest features of the most recent platform (for the
+purposes of this discussion, JDK 5.0) and the realities of how many
+developers will have the possibility of deploying applications based on
+that platform when we release the initial version of Struts 2.  Currently,
+Struts 1.x requires a minimum of JDK 1.2 (because it uses the collection
+classes extensively).</p>
+
+<p>JDK 1.4 represents a slightly aggressive choice given the current state
+of the market, but relies on a reasonable assumption that JDK 1.4 will
+become widely deployed over the next 12-18 months (in particular because
+JDK 1.4 is a required baseline for the upcoming generation of J2EE 1.4
+platform application servers).  The key technological reasons for this
+choice (over a more conservative choice of JDK 1.3) include:</p>
+<ul>
+<li>Integration of JAXP (XML parsing and transformations) into the base
+    platform, eliminating the need to worry about providing such libraries
+    as part of a web application or separate plugin to a web container.</li>
+<li>New I/O APIs allow the applications that leverage the potentially
+    higher performance access to the filesystem.</li>
+<li>Inclusion of critical security APIs (JSSE for "https" protocol access,
+    and JAAS for authorization and authentication) into the base
+    platform.</li>
+<li>JDBC 3.0 integration, including connection pools (data sources)
+    and rowsets.</li>
+<li>Assertion facility, allowing developers to create assertions that can
+    be conditionally compiled.</li>
+<li>Chained exceptions, which (if used correctly) allows underlying causes
+    to be included in a business tier exception, without tying to specific
+    APIs unnecessarily.</li>
+<li>Internationalization improvements, particularly support for
+    Unicode 3.0.</li>
+<li>Performance improvements in areas critical to the framework (such as
+    reflection and object creation/garbage collection).</li>
+</ul>
+
+<h3>3.2 Java2 Enterprise Edition APIs</h3>
+
+<p><em>Proposal</em>: J2EE Version 1.4 Platform APIs</p>
+
+<p>For Struts, the most important platform API is the Servlet Specification.
+Although Servlet 2.4 (the version included in J2EE 1.4) was fairly modest
+in the scope of its changes, several of them are important to the architecture
+of a web application framework:</p>
+<ul>
+<li>Lifecycle and event listeners for requests (as well as sessions
+    and the entire application).</li>
+<li>Filters can be applied across RequestDispatcher calls, not only
+    on the original request.</li>
+<li>Ability to specify a servlet path as a welcome file, without needing
+    an actual artifact.</li>
+<li>Clarifications in ordering of event handler calls ensure consistent
+    behavior across implementations.</li>
+</ul>
+
+<h3>3.3 View (Presentation) Tier APIs</h3>
+
+<p><em>Proposal:</em>: JavaServer Faces 1.1</p>
+
+<p>Prior to the development of JavaServer Faces, web application frameworks
+were on their own in terms of supporting mechaisms for user interface components
+and the corresponding request processing lifecycle.  The standardization of JSF
+provides an opportunity to build on top of a functionally capable API that is
+slated to become part of the J2EE 5.0 platform, and which provides useful
+(from the viewpoint of a framework) functionality in many areas beyond just
+the user interface components themselves, such as:</p>
+
+<ul>
+<li>Well-defined request processing lifecycle with appropriate
+    extension points for inserting application framework functionality.</li>
+<li>Built-in support for page navigation based on logical outcomes
+    from event handlers.</li>
+<li>Managed beans facility that provides on-demand creation of
+    JavaBeans, including setter injection to configure their
+    properties.</li>
+<li>Powerful expression language evaluation mechanisms, allowing
+    dynamically scripted value retrievals, value settings, and
+    method calls.</li>
+<li>Expression evaluation is extensible in two ways ... through
+    plug-in variable resolvers (can provide linkage into existing
+    hierarchies of data) and plug-in property resolvers (can
+    redefine what the "." operator in an expression does, based
+    on the type of object it is being applied to).</li>
+</ul>
+
+<p>Without JSF, we would likely have to reinvent much of this functionality
+(or leverage the similar, but more primitive, implementations of these ideas
+in existing Struts code or other framworks).  With JSF, we can leverage the
+extensibility of the basic framework to enable the division of controller
+responsibilities at the view (page), dialog, and application level that is the
+key feature of the entire proposal.</p>
+
+
+<h3>3.4 Model Tier and Persistence APIs</h3>
+
+<p>Struts should remain agnostic about technologies to be employed for
+representing business logic, model data, and persistence.  However,
+functional examples should be provided that encourage the use of best
+practices in application design.</p>
+
+<h3>3.5 Service Provisioning APIs</h3>
+
+<p>Inversion of Control (IoC) containers (the techniques are also referred
+to as Dependency Injection) are becoming a popular mechanism for assembling
+the required services and logic of an application.  If Struts included such
+a framework, it would provide a solid basis for building maintainable apps,
+as well as allowing the framework to configure itself using the same
+capabilities.</p>
+
+<p>Rather than building such a container ourselves, we should seek to
+incorporate an existing one that is license-compatible and which can
+be integrated into the JSF managed beans facilities (so that value binding
+and method binding expressions can leverage the facilities of this
+container transparently).  From my research so far, I like Spring's
+capabilities in this area the best, but am open to other suggestions.</p>
+
+<h3>3.6 Authentication and Authorization APIs</h3>
+
+<p>In order to support reasonably complete solutions for applications that
+wish to provide their own authentication and authorization services (as well
+as interact with container managed security), we need APIs available for
+performing user registration, implementing "remember me" features, and
+represent the results via a wrapped request (so that apps depending on
+getRemoteUser(), getUserPrincipal(), and isUserInRole() will still work).
+Using JDK 1.4 as a base platform would allow us to integrate mechanisms
+like JAAS.  Other alternatives include plugins like SecurityFilter.</p>
+
+<h3>3.7 State Management APIs</h3>
+
+<p>The proposed solutions for dialog management require a framework for
+managing state across multiple HTTP requests.  This is likely to be an
+area where considerable investigation is needed before picking a fundamental
+technology.  Things that seem feasible based on my initial review are:</p>
+<ul>
+<li>Modified Rhino with support for continuations (as used in
+    <a href="http://cocoon.apache.org/2.1/userdocs/flow/">Cocoon Flow</a>
+    and Don Brown's <a href="http://struts.sourceforge.net/struts-flow/">
+    Struts Flow</a> plugin). I'll feel better about this if/when the
+    modifications are part of a mainstream Rhino release, however.</li>
+<li>An updated version of <a href="http://jakarta.apache.org/commons/sandbox/workflow/">
+    Commons Workflow</a> that leverages the expression language APIs
+    of either JSF or something like JEXL, but also supports continuations.</li>
+<li>Working with the <a href="http://jakarta.apache.org/commons/jelly">Jelly</a>
+    folks to add continuations support.</li>
+<li>Giving up on explicit continuations support, and providing Java APIs
+    that make explicit saving and restoring of state easier.</li>
+</ul>
+
+<h3>3.8 Logging APIs</h3>
+
+<p><em>Proposal</em>: Commons Logging</p>
+
+<p>Logging is an important feature of both an application framework itself
+(to help developers understand the dynamic behavior of the framework) and
+for building high quality applications.  If the proposal for JDK 1.4 is
+accepted, we could potentially mandate using the java.util.logging APIs;
+however, many Struts users prefer to use alternative logging implementations
+such as Log4J.  Commons Logging provides a portable adapter layer that allows
+the use of different logging implementations under the covers.</p>
+
+  </body>
+</html>
