@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELResetTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELResetTag.java,v 1.4 2002/10/15 03:12:41 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/15 03:12:41 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -62,7 +62,7 @@ package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.ResetTag;
 import javax.servlet.jsp.JspException;
-import org.apache.taglibs.standard.tag.el.core.ExpressionUtil;
+import org.apache.strutsel.taglib.utils.EvalHelper;
 import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
 
 /**
@@ -75,9 +75,35 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELResetTag extends ResetTag {
+
+    /**
+     * String value of the "disabled" attribute.
+     */
+    private String   disabledExpr;
+
+    /**
+     * Returns the string value of the "disabled" attribute.
+     */
+    public  String   getDisabledExpr() { return (disabledExpr); }
+
+    /**
+     * Sets the string value of the "disabled" attribute.  This attribute is
+     * mapped to this method by the <code>ELResetTagBeanInfo</code> class.
+     */
+    public  void     setDisabledExpr(String disabledExpr)
+    { this.disabledExpr  = disabledExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setDisabledExpr(null);
+    }
 
     /**
      * Process the start tag.
@@ -91,7 +117,8 @@ public class ELResetTag extends ResetTag {
     
     /**
      * Evaluates and returns a single attribute value, given the attribute
-     * name, attribute value, and attribute type.  It uses
+     * name, attribute value, and attribute type.  It uses the
+     * <code>EvalHelper</code> class to interface to
      * <code>ExpressionUtil.evalNotNull</code> to do the actual evaluation, and
      * it passes to this the name of the current tag, the <code>this</code>
      * pointer, and the current pageContext.
@@ -99,6 +126,8 @@ public class ELResetTag extends ResetTag {
      * @param attrName attribute name being evaluated
      * @param attrValue String value of attribute to be evaluated using EL
      * @param attrType Required resulting type of attribute value
+     * @exception NullAttributeException if either the <code>attrValue</code>
+     * was null, or the resulting evaluated value was null.
      * @return Resulting attribute value
      */
     private Object   evalAttr(String   attrName,
@@ -106,8 +135,8 @@ public class ELResetTag extends ResetTag {
                               Class    attrType)
         throws JspException, NullAttributeException
     {
-        return (ExpressionUtil.evalNotNull("reset", attrName, attrValue,
-                                           attrType, this, pageContext));
+        return (EvalHelper.eval("reset", attrName, attrValue, attrType,
+                                this, pageContext));
     }
     
     /**
@@ -139,7 +168,7 @@ public class ELResetTag extends ResetTag {
         }
 
         try {
-            setDisabled(((Boolean) evalAttr("disabled", getDisabled() + "",
+            setDisabled(((Boolean) evalAttr("disabled", getDisabledExpr(),
                                             Boolean.class)).
                         booleanValue());
         } catch (NullAttributeException ex) {

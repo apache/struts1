@@ -60,6 +60,16 @@
       <html-el:cancel property="stringProperty" disabled="${!empty pageScope}"/>
      </td>
     </tr>
+    <tr>
+     <td>
+      <html-el:reset property="stringProperty" />
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <html-el:reset property="stringProperty" disabled="${!empty pageScope}"/>
+     </td>
+    </tr>
    </table>
   </html-el:form>
   <script>
