@@ -133,6 +133,7 @@
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
     <li>Unconditionally pass the selected mapping as a request attribute under key Action.MAPPING_KEY, even if no form bean is specified.</li>
     <li>Avoid a NullPointerException in corner cases caused by failed initialization of ActionServlet.</li>
     </ul>
@@ -140,12 +141,16 @@
     <p>The following changes and bug fixes have occurred in the file upload
     package (package <code>org.apache.struts.upload</code>):</p>
     <ul>
+    <li>Improved error-handling of out of bounds conditions</li>
     <li>Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li>Added error message for the getActionErrors and getActionMessages method.</li>
+    <li>Added a getActionErrors and getActionMessages methods to generate the correct corresponding object based on the object retrieved from request scope based on the key passed in.</li>
+    <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
     <li><code>ConvertUtils.convertCharacter()</code> will now detect empty strings and return the default value.</li>
     </ul>
 
@@ -160,6 +165,7 @@
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
+    <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
     <li>Added the 'align' attribute to the &lt;html:image> tag.</li>
     <li>On the Options tag, if the property specified by the "property" attribute returns null, it now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
     <li>Added 'style' and 'styleClass' attributes for &lt;html:option&gt; and &lt;html:options&gt; tags.</li>
@@ -171,12 +177,18 @@
     <em>struts-logic</em> custom tag library (package
     <code>org.apache.struts.taglib.logic</code>):</p>
     <ul>
+    <li>Added tags for checking if a message is present in general or for a specific property. They retrieve an object from request scope just like the html:errors and html:messages tags.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Documentation
     application (and corresponding contents on the Struts web site) have
     occurred:</p>
     <ul>
+    <li>Add installation notes for Jetty.</li>
+    <li>In the Tag Developers Guide, add more detail regarding file upload requirements.</li>
+    <li>In the Introduction, added references to basic background material.</li>
+    <li>In Building View Components, clarify that additional i18n support may be provided by the browser, and is outside the scope of the framework.</li>
+    <li>In Building Controller Components, document 'validating' init-param, add defaults for various parameters, clarify that some web.xml settings are not Struts-specific.</li>
     <li>Correct the example page in the User's Guide (Building View Components) to reflect current practice.</li>
     <li>Revised installation instructions for SilverStream and Resin.</li>
     </ul>
@@ -191,6 +203,13 @@
     Application have occurred:</p>
     <ul>
     </ul>
+
+    <p>The following changes and bug fixes to the Struts Exercise Taglib Example
+    Application have occurred:</p>
+    <ul>
+    <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
+  saved in the page context.</li>
+    </ul> 
 
   </section>
 

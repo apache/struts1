@@ -239,6 +239,8 @@
     <p>The following changes and bug fixes have occurred in the file upload
     package (package <code>org.apache.struts.upload</code>):</p>
     <ul>
+    <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
+    <li>Improved error-handling of out of bounds conditions</li>
     <li>Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
@@ -282,7 +284,13 @@
     application (and corresponding contents on the Struts web site) have
     occurred:</p>
     <ul>
-    <li>None.</li>
+    <li>In the Tag Developers Guide, add more detail regarding file upload requirements.</li>
+    <li>In the Introduction, added references to basic background material.</li>
+    <li>In Building View Components, clarify that additional i18n support may be provided by the browser, and is outside the scope of the framework.</li>
+    <li>In Building Controller Components, document 'validating' init-param, add defaults for various parameters, clarify that some web.xml settings are not Struts-specific.</li>
+    <li>Reorganized to separate 1.0 material from nightly build material.</li>
+    <li>Expanded Resources section.</li>
+    <li>Various updates regarding other release notes.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Example Application
@@ -296,6 +304,13 @@
     Application have occurred:</p>
     <ul>
     <li>None.</li>
+    </ul> 
+
+    <p>The following changes and bug fixes to the Struts Excercise Taglib Example
+    Application have occurred:</p>
+    <ul>
+    <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
+  saved in the page context.</li>
     </ul> 
 
 </section>  
