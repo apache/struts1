@@ -270,10 +270,12 @@
     <a href="../faqs/database.html">Accessing a Database HowTo</a>.
     </p>
 
-    <p align="center">
+</section>
+
+<section>
+    <p align="right">
     Next: <a href="building_view.html">Building View Components</a>
     </p>
-
 </section>
 
 </chapter>

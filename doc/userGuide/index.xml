@@ -125,12 +125,33 @@
                 <li><a href="building_controller.html#logging">4.10 Using The Commons Logging Interface</a></li>                
                 </ul></li>
 
-             <li><a href="building_apps.html">5. Building Applications</a>
+             <li>5. Configuring Applications</li>
+                <ul>
+                <li><a href="configuration.html#config-overview">5.1 Overview</a></li>
+                <li><a href="configuration.html#config">5.2 The Struts Configuration File</a>
                     <ul>
-                    <li><a href="building_apps.html#caveats">5.1 Caveats</a></li>
-                    <li><a href="building_apps.html#overview">5.2 Overview</a></li>
-                    <li><a href="building_apps.html#details">5.3 Details</a></li>
-                    </ul></li>
+                    <li><a href="configuration.html#plugin_config">5.2.1 Controller Configuration</a></li>
+                    <li><a href="configuration.html#resources_config">5.2.2 Message Resources Configuration</a></li>
+                    <li><a href="configuration.html#PlugIn_config">5.2.3 PlugIn Configuration</a></li>
+                    <li><a href="configuration.html#data-source_config">5.2.4 Data Source Configuration</a></li>
+                    <li><a href="configuration.html#dd_config_modules">5.3 Configuring your application for modules</a></li>
+                    <li><a href="configuration.html#module_config-switching">5.3.3 Switching Modules</a></li>
+                    <li><a href="configuration.html#dd_config">5.4 The Web Application Deployment Descriptor</a></li>
+                    <li><a href="configuration.html#config_add">5.5 Add Struts Components To Your Application</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="configuration.html#dd_config">5.3 The Web Application Deployment Descriptor</a>
+                    <ul>
+                    <li><a href="configuration.html#dd_config_servlet">5.3.1 Configure the Action Servlet Instance</a></li>
+                    <li><a href="configuration.html#dd_config_mapping">5.3.2 Configure the Action Servlet Mapping</a></li>
+                    <li><a href="configuration.html#dd_config_taglib">5.3.3 Configure the Struts Tag Library</a></li>
+                    <li><a href="configuration.html#dd_config_taglib">5.3.3.1 Configure the Struts Tag Library (Servlet 2.3)</a></li>
+                    </ul>
+                </li>
+                <li><a href="configuration.html#config_add">5.4 Add Struts Components To Your Application</a></li>
+                </ul>             
+
              <li>6. Getting Started</li>
                 <ul>
                 <li><a href="release-notes.html">6.1 Release Notes</a></li>
@@ -159,34 +180,7 @@
                 <li><a href="installation-wls5.html">Weblogic 5.1 sp8</a></li>
                 </ul>
                 </ul>
-                
-             <li>7. Configuring Applications</li>
-                <ul>
-                <li><a href="configuration.html#config-overview">7.1 Overview</a></li>
-                <li><a href="configuration.html#config">7.2 The Struts Configuration File</a>
-                    <ul>
-                    <li><a href="configuration.html#plugin_config">7.2.1 Controller Configuration</a></li>
-                    <li><a href="configuration.html#resources_config">7.2.2 Message Resources Configuration</a></li>
-                    <li><a href="configuration.html#PlugIn_config">7.2.3 PlugIn Configuration</a></li>
-                    <li><a href="configuration.html#data-source_config">7.2.4 Data Source Configuration</a></li>
-                    <li><a href="configuration.html#dd_config_modules">7.3 Configuring your application for modules</a></li>
-                    <li><a href="configuration.html#module_config-switching">7.3.3 Switching Modules</a></li>
-                    <li><a href="configuration.html#dd_config">7.4 The Web Application Deployment Descriptor</a></li>
-                    <li><a href="configuration.html#config_add">7.5 Add Struts Components To Your Application</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="configuration.html#dd_config">7.3 The Web Application Deployment Descriptor</a>
-                    <ul>
-                    <li><a href="configuration.html#dd_config_servlet">7.3.1 Configure the Action Servlet Instance</a></li>
-                    <li><a href="configuration.html#dd_config_mapping">7.3.2 Configure the Action Servlet Mapping</a></li>
-                    <li><a href="configuration.html#dd_config_taglib">7.3.3 Configure the Struts Tag Library</a></li>
-                    <li><a href="configuration.html#dd_config_taglib">7.3.3.1 Configure the Struts Tag Library (Servlet 2.3)</a></li>
-                    </ul>
-                </li>
-                <li><a href="configuration.html#config_add">7.4 Add Struts Components To Your Application</a></li>
-                </ul>             
-                
+                                
         </ul>
 
       </section>

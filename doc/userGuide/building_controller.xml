@@ -1355,8 +1355,8 @@ public class Foo {
 </section>
 
 <section>
-    <p>
-    Next: <a href="building_apps.html">Building Applications</a>
+    <p align="right">
+    Next: <a href="./configuration.html">Configuring Applications</a>
     </p>
 </section>
 

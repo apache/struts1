@@ -11,7 +11,7 @@
 
   <body>
 
-  <chapter name="6.1 Release Notes" href="release_notoes">
+  <chapter name="6.1 Release Notes" href="release_notes">
   <section name="Beta Notes" href="beta">
 
     <p>This section contains the release notes for
@@ -588,9 +588,14 @@
       </li>
     </ul>
 
-    <p>Next: <a href="installation.html">Installation</a></p>
-
 </section>
+
+<section>
+    <p align="right">
+    Next: <a href="installation.html">Installation</a>
+    </p>
+</section>
+
 </chapter>
     </body>
 

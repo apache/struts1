@@ -16,9 +16,9 @@
 </properties>
 
 <body>
-<chapter name="7. Configuring Applications" href="config_apps">
+<chapter name="5. Configuring Applications" href="config_apps">
 
-<section name="7.1 Overview" href="config-overview">
+<section name="5.1 Overview" href="config-overview">
 
     <p>
     Before you can build an application, you need to lay a solid foundation.
@@ -30,7 +30,7 @@
 
  </section>
 
- <section name="7.2 The Struts configuration file"  href="struts-config">
+ <section name="5.2 The Struts configuration file"  href="struts-config">
 
     <p>
     The <a href="building_controller.html#config">Building Controller
@@ -68,7 +68,7 @@
 
  </section>
 
- <section name="7.2.1 Controller Configuration" href="controller_config">
+ <section name="5.2.1 Controller Configuration" href="controller_config">
 
     <p>
     The <code>&lt;controller&gt;</code> element allows you to configure
@@ -243,7 +243,7 @@
 
 </section>
 
-<section name="7.2.2 Message Resources Configuration" href="resources_config">
+<section name="5.2.2 Message Resources Configuration" href="resources_config">
 
     <p>
     Struts has built in support for internationalization (I18N).
@@ -303,7 +303,7 @@
 
 </section>
 
-<section name="7.2.3 PlugIn Configuration" href="plugin_config">
+<section name="5.2.3 PlugIn Configuration" href="plugin_config">
    
     <p>
     Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code>
@@ -332,7 +332,7 @@
 
 </section>
 
-<section name="7.2.4 Data Source Configuration" href="data-source_config">
+<section name="5.2.4 Data Source Configuration" href="data-source_config">
 
     <p>
     Besides the objects related to defining ActionMappings, the Struts
@@ -411,7 +411,7 @@
 </section>
 
 <section 
-    name="7.3 Configuring your application for modules" 
+    name="5.3 Configuring your application for modules" 
     href="dd_config_modules">
 
     <p>
@@ -438,7 +438,7 @@
 
 </section>
 
-<section name="7.3.1 Module Configuration Files" href="module_config-files">
+<section name="5.3.1 Module Configuration Files" href="module_config-files">
 
     <p>
     Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml 
@@ -465,7 +465,7 @@
 </section>
 
 <section 
-    name="7.3.2 Informing the Controller" 
+    name="5.3.2 Informing the Controller" 
     href="module_config-inform_conroller">
 
     <p>
@@ -514,7 +514,7 @@
 </section>
 
 
-<section name="7.3.3 Switching Modules" href="module_config-switching">
+<section name="5.3.3 Switching Modules" href="module_config-switching">
 
     <p>
     There are two basic methods to switching from one module to another.
@@ -595,7 +595,7 @@
 
 </section>
 
-<section name="7.4 The Web Application Deployment Descriptor" href="dd_config">
+<section name="5.4 The Web Application Deployment Descriptor" href="dd_config">
 
     <p>
     The final step in setting up the application is to configure the
@@ -609,7 +609,7 @@
 </section>
 
 <section 
-    name="7.4.1 Configure the Action Servlet Instance" 
+    name="5.4.1 Configure the Action Servlet Instance" 
     href="dd_config_servlet">
 
     <p>
@@ -891,7 +891,7 @@
 </section>
 
 <section 
-    name="7.4.2 Configure the Action Servlet Mapping" 
+    name="5.4.2 Configure the Action Servlet Mapping" 
     href="dd_config_mapping">
 
     <p>
@@ -976,7 +976,7 @@
 </section>
 
 <section 
-    name="7.4.3 Configure the Struts Tag Library" 
+    name="5.4.3 Configure the Struts Tag Library" 
     href="dd_config_taglib">
 
         <p>
@@ -1074,7 +1074,7 @@
 </section>
 
 <section 
-    name="7.4.3.1 Configure the Struts Tag Library (Servlet 2.3)" 
+    name="5.4.3.1 Configure the Struts Tag Library (Servlet 2.3)" 
     href="dd_config_taglib_23">
 
     <p>
@@ -1107,7 +1107,7 @@
 </section>
 
 <section 
-    name="7.5 Add Struts Components To Your Application" 
+    name="5.5 Add Struts Components To Your Application" 
     href="config_add">
 
     <p>
@@ -1119,16 +1119,23 @@
 
     <p>
     <b>Servlet 2.3 Users:</b> See
-    <a href="#dd_config_taglib_23">section 4.7.3.1</a>
+    <a href="#dd_config_taglib_23">section 4.5.3.1</a>
     for how to avoid copying the tlds into your application.
     </p>
 
 </section>
 
 <section>
+
     <p>
-    Next: <a href="../faqs/index.html">FAQs and Howtos</a>
+    For more about putting it all together, see the <a href="../faqs/apps.html">
+    Building Applications HowTo</a>.
     </p>
+
+    <p align="right">
+    Next: <a href="./release-notes.html">Release Notes</a>
+    </p>
+
 </section>
 
   </chapter>

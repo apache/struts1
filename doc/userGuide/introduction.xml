@@ -419,12 +419,14 @@
           <a href="http://www.apache.org/LICENSE-1.1">ASF license</a> for specifics. 
          </p>
           
-      <p align="center">
-        Next: <a href="building_model.html">Building Model Components</a>
-      </p>
-     
-    </section>
+</section>
+
+<section>
+    <p align="right">
+    Next: <a href="building_model.html">Building Model Components</a>
+    </p>
+</section>
       
-    </chapter>
-    </body>
+</chapter>
+</body>
 </document>

@@ -882,11 +882,14 @@ return(null);
     fill their needs.
     </p>
 
-    <p align="center">
+</section>
+
+<section>
+    <p align="right">
     Next: <a href="building_controller.html">Building Controller 
     Components</a>
     </p>
-    </section>
+</section>
 
 </chapter>
 </body>

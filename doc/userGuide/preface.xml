@@ -810,11 +810,14 @@
     Web Application Security</a> chapter of the
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Web Services Tutorial</a>.</p>
 
-    <p align="center">
+</section>
+
+<section>
+    <p align="right">
     Next: <a href="introduction.html">Introduction</a>
     </p>
+</section>
 
-    </section>
-
-    </chapter>
- </body></document>
+</chapter>
+</body>
+</document>
