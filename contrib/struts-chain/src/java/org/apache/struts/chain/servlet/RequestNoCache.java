@@ -30,7 +30,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Check to see if the controller is configured to prevent caching,
  * and if so, set the no cache HTTP response headers.</p>
  *
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.4 $ $Date: 2004/04/25 02:30:16 $
  */
 
 public class RequestNoCache extends AbstractRequestNoCache {
@@ -45,7 +45,7 @@ public class RequestNoCache extends AbstractRequestNoCache {
         HttpServletResponse response = swcontext.getResponse();
         
         response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
         response.setDateHeader("Expires", 1);
 
     }

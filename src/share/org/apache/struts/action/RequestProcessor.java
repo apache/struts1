@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.44 2004/03/14 06:23:42 sraeburn Exp $
- * $Revision: 1.44 $
- * $Date: 2004/03/14 06:23:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.45 2004/04/25 02:29:41 husted Exp $
+ * $Revision: 1.45 $
+ * $Date: 2004/04/25 02:29:41 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -51,7 +51,7 @@ import org.apache.struts.util.RequestUtils;
  * subclassing this class and overriding the method(s) whose behavior you are
  * interested in changing.</p>
  *
- * @version $Revision: 1.44 $ $Date: 2004/03/14 06:23:42 $
+ * @version $Revision: 1.45 $ $Date: 2004/04/25 02:29:41 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -698,7 +698,7 @@ public class RequestProcessor {
 
         if (moduleConfig.getControllerConfig().getNocache()) {
             response.setHeader("Pragma", "No-cache");
-            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
             response.setDateHeader("Expires", 1);
         }
 
