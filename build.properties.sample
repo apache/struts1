@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.51 2003/12/26 22:14:17 germuska Exp $
+# $Id: build.properties.sample,v 1.52 2004/03/08 23:27:34 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -56,7 +56,7 @@ commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-2.0.jar
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
-# The JAR file containing the Validator package (Version 1.1.0 or later)
+# The JAR file containing the Validator package (Version 1.1.2 or later)
 # from the Jakarta Commons project.
 commons-validator.jar=${commons-lib.home}/validator/dist/commons-validator.jar
 
