@@ -12,8 +12,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts.util.BeanUtils; // Struts 1.0.x
 
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.validator.ValidatorForm;
+// import org.apache.struts.validator.ValidatorForm; // Struts 1.1
+import com.wintecinc.struts.action.ValidatorForm;
 
 import org.apache.commons.scaffold.lang.ChainedException;
 
@@ -21,7 +24,7 @@ import org.apache.commons.scaffold.lang.ChainedException;
 /**
  * Enhanced base ActionForm.
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/08/16 22:29:24 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/06 21:48:52 $
  * @todo Change from BeanUtil.populate to copyProperties
  * in 1.1 version.
  */
@@ -29,6 +32,33 @@ public class BaseForm extends ValidatorForm {
 
 
 // ----------------------------------------------------------- Properties
+
+    /**
+     * The network address making this request.
+     * <p>
+     * This is the value returned by reqest.getRemoteAddr.
+     * It is provided so that this can be logged by components on
+     * the business tier if needed.
+     * This property is maintained automatically through the
+     * <code>reset</code> method.
+     */
+    private String remoteAddr = null;
+
+    /**
+     * Return our remoteAddr property.
+     */
+    public String getRemoteAddr() {
+        return (this.remoteAddr);
+    }
+
+
+    /**
+     * Set our remoteAddr property.
+     */
+    public void setRemoteAddr(String remoteAddr) {
+        this.remoteAddr = remoteAddr;
+    }
+
 
     /**
      * Our locale property.
@@ -119,6 +149,42 @@ public class BaseForm extends ValidatorForm {
 // --------------------------------------------------------- Public Methods
 
     /**
+     * If bean is set to mutable, calls <code>resetSessionLocale</code>
+     * and <code>setRemoteAddr</code>.
+     *
+     * Subclasses resetting their own fields should observe the mutable
+     * state (<code>if (isMutable()) ...</code>).
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public void reset(
+            ActionMapping mapping,
+            HttpServletRequest request) {
+
+        if (isMutable()) {
+
+            resetSessionLocale(request);
+            setRemoteAddr(request.getRemoteAddr());
+        }
+
+    } // end reset
+
+
+    /**
+     * Return an empty ActionErrors or the result of calling
+     * the superclass validate. Will not return null.
+     */
+    public ActionErrors validate(ActionMapping mapping,
+        HttpServletRequest request) {
+
+        ActionErrors errors = super.validate(mapping,request);
+        if (null==errors) errors = new ActionErrors();
+        return errors;
+    }
+
+
+    /**
      * Reset our locale property to the locale object found in
      * the session associated with this request.
      */
@@ -151,24 +217,6 @@ public class BaseForm extends ValidatorForm {
         request.getSession(true).setAttribute(Action.LOCALE_KEY,locale);
 
     } // end putSessionLocale
-
-
-    /**
-     * If bean is set to mutable, calls <code>resetSessionLocale()</code>.
-     *
-     * Subclasses resetting their own fields should observe the mutable
-     * state (<code>if (isMutable()) ...</code>).
-     *
-     * @param mapping The mapping used to select this instance
-     * @param request The servlet request we are processing
-     */
-    public void reset(
-            ActionMapping mapping,
-            HttpServletRequest request) {
-
-        if (isMutable()) resetSessionLocale(request);
-
-    } // end reset
 
 
     /**
