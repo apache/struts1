@@ -1,6 +1,7 @@
 <%@ page import="org.apache.struts.action.*,
                  java.util.Iterator,
-                 org.apache.struts.webapp.upload.UploadForm"%>
+                 org.apache.struts.webapp.upload.UploadForm, 
+                 org.apache.struts.Globals"%>
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
@@ -13,9 +14,9 @@
 
 <body>
 <!-- Find out if the maximum length has been exceeded. -->
-<logic:present name="<%= Action.ERROR_KEY %>" scope="request">
+<logic:present name="<%= Globals.ERROR_KEY %>" scope="request">
     <%
-        ActionErrors errors = (ActionErrors) request.getAttribute(Action.ERROR_KEY);
+        ActionErrors errors = (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
         //note that this error is created in the validate() method of UploadForm
         Iterator iterator = errors.get(UploadForm.ERROR_PROPERTY_MAX_LENGTH_EXCEEDED);
         //there's only one possible error in this
