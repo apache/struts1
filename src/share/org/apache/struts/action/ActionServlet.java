@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.39 2000/11/30 20:12:53 craigmcc Exp $
- * $Revision: 1.39 $
- * $Date: 2000/11/30 20:12:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.40 2000/12/01 19:54:42 craigmcc Exp $
+ * $Revision: 1.40 $
+ * $Date: 2000/12/01 19:54:42 $
  *
  * ====================================================================
  *
@@ -203,7 +203,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.39 $ $Date: 2000/11/30 20:12:53 $
+ * @version $Revision: 1.40 $ $Date: 2000/12/01 19:54:42 $
  */
 
 public class ActionServlet
@@ -1203,8 +1203,8 @@ public class ActionServlet
                 locale = false;
         }
 
+        value = getServletConfig().getInitParameter("nocache");
         if (value != null) {
-            value = getServletConfig().getInitParameter("nocache");
             if ("true".equalsIgnoreCase(value) ||
                 "yes".equalsIgnoreCase(value))
                 nocache = true;
