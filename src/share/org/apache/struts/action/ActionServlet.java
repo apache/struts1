@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.17 2000/07/17 00:46:39 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2000/07/17 00:46:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.18 2000/08/13 03:48:56 craigmcc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2000/08/13 03:48:56 $
  *
  * ====================================================================
  *
@@ -185,7 +185,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2000/07/17 00:46:39 $
+ * @version $Revision: 1.18 $ $Date: 2000/08/13 03:48:56 $
  */
 
 public class ActionServlet
@@ -850,10 +850,18 @@ public class ActionServlet
      */
     protected String processPath(HttpServletRequest request) {
 
-	String path = request.getServletPath();
+	String path = null;
+
+	// For prefix matching, we want to match on the path info (if any)
+	path = request.getPathInfo();
+	if (path != null)
+	    return (path);
+
+	// For extension matching, we want to strip the extension (if any)
+	path = request.getServletPath();
 	int slash = path.lastIndexOf("/");
 	int period = path.lastIndexOf(".");
-	if ((period >= 0) && (period > slash))	// Strip the extenson (if any)
+	if ((period >= 0) && (period > slash))
 	    path = path.substring(0, period);
 	return (path);
 
