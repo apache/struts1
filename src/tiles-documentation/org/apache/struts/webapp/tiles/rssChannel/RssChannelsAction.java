@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.3 2003/05/04 22:41:12 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/05/04 22:41:12 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.4 2003/07/21 15:18:47 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/21 15:18:47 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  *
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/05/04 22:41:12 $
+ * @version $Revision: 1.4 $ $Date: 2003/07/21 15:18:47 $
  */
 public final class RssChannelsAction extends TilesAction {
 
@@ -120,13 +120,23 @@ public final class RssChannelsAction extends TilesAction {
 
     /**
      * Main process of class. Reads, parses
+     * @param context The current Tile context, containing Tile attributes.
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request (if any).
+     * @param request The HTTP request we are processing.
+     * @param response The HTTP response we are creating.
+     *
+     * @exception Exception if the application business logic throws
+     *  an exception
+     * @since Struts 1.1
      */
-    public ActionForward perform( ComponentContext context,
-                                 ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-                          throws IOException, ServletException
+    public ActionForward execute(
+        ComponentContext context,
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception
     {
     //System.out.println("Enter action UserPortalAction");
     if(debug)
@@ -213,9 +223,9 @@ public final class RssChannelsAction extends TilesAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.3 2003/05/04 22:41:12 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/05/04 22:41:12 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.4 2003/07/21 15:18:47 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/21 15:18:47 $
  *
  * ====================================================================
  *

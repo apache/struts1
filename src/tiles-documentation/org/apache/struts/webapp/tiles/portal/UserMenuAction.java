@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.2 2002/11/16 04:58:48 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:58:48 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/portal/UserMenuAction.java,v 1.3 2003/07/21 15:18:46 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/21 15:18:46 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.tiles.beans.MenuItem;
  * </ul>
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/11/16 04:58:48 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/21 15:18:46 $
  */
 
 public final class UserMenuAction extends TilesAction implements Controller {
@@ -139,21 +139,23 @@ public final class UserMenuAction extends TilesAction implements Controller {
      * control should be forwarded, or <code>null</code> if the response has
      * already been completed.
      *
-     * @param servlet The ActionServlet making this request
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
+     * @param context The current Tile context, containing Tile attributes.
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request (if any).
+     * @param request The HTTP request we are processing.
+     * @param response The HTTP response we are creating.
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
+     * @since Struts 1.1
      */
-    public ActionForward perform( ComponentContext context,
-                                 ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-                          throws IOException, ServletException
+    public ActionForward execute(
+        ComponentContext context,
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception
     {
     perform( context, request, response, getServlet().getServletContext() );
 	  return null; //(mapping.findForward("success"));

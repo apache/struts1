@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestActionTileAction.java,v 1.2 2002/11/16 04:58:47 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:58:47 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestActionTileAction.java,v 1.3 2003/07/21 15:18:47 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/21 15:18:47 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.2 $ $Date: 2002/11/16 04:58:47 $
+ * @version $Revision: 1.3 $ $Date: 2003/07/21 15:18:47 $
  */
 
 public final class TestActionTileAction extends Action {
@@ -101,21 +101,20 @@ public final class TestActionTileAction extends Action {
      * control should be forwarded, or <code>null</code> if the response has
      * already been completed.
      *
-     * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
      */
-    public ActionForward perform(
+    public ActionForward execute(
 				 ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
       // Try to retrieve tile context
     ComponentContext context = ComponentContext.getContext( request );

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/LayoutSwitchAction.java,v 1.2 2003/02/28 02:23:05 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/02/28 02:23:05 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/skin/LayoutSwitchAction.java,v 1.3 2003/07/21 15:18:47 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/21 15:18:47 $
  *
  * ====================================================================
  *
@@ -121,21 +121,23 @@ public class LayoutSwitchAction extends TilesAction
      * already been completed.
      * This method should be implemented by subclasses.
      *
-     * @param context The current Tile context, containing Tile attributes
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
+     * @param context The current Tile context, containing Tile attributes.
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request (if any).
+     * @param request The HTTP request we are processing.
+     * @param response The HTTP response we are creating.
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
+     * @since Struts 1.1
      */
-    public ActionForward perform( ComponentContext context,
-                                 ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-                          throws IOException, ServletException
+    public ActionForward execute(
+        ComponentContext context,
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception
     {
     if(debug)
       System.out.println( "EnterLayoutSwitchAction"  );

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/SetPortalPrefsAction.java,v 1.3 2003/02/28 02:22:57 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/28 02:22:57 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/dynPortal/SetPortalPrefsAction.java,v 1.4 2003/07/21 15:18:47 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/21 15:18:47 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.tiles.ComponentContext;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/02/28 02:22:57 $
+ * @version $Revision: 1.4 $ $Date: 2003/07/21 15:18:47 $
  */
 
 public final class SetPortalPrefsAction extends Action {
@@ -96,22 +96,21 @@ public final class SetPortalPrefsAction extends Action {
      * control should be forwarded, or <code>null</code> if the response has
      * already been completed.
      *
-     * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
      */
-    public ActionForward perform(
-                                 ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
-                          throws IOException, ServletException
-  {
+    public ActionForward execute(
+				 ActionMapping mapping,
+				 ActionForm form,
+				 HttpServletRequest request,
+				 HttpServletResponse response)
+	throws Exception
+    {
     System.out.println("Enter action SetPortalPrefsAction");
 	HttpSession session = request.getSession();
   PortalPrefsForm prefsForm = (PortalPrefsForm)form;
