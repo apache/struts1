@@ -34,5 +34,7 @@
 <p>&nbsp;</p>
 <p><a target="_blank" href="tour.htm"><font size="1">A Walking Tour of the Example Application</font></a></p>
 
+<html:img src="struts-power.gif" alt="Powered by Struts"/>
+
 </body>
 </html:html>

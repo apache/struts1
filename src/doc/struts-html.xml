@@ -1391,6 +1391,384 @@
         </tag> 
 
 
+        <tag>
+
+                <name>img</name>
+                <summary>Render an HTML img tag</summary>
+                <tagclass>org.apache.struts.taglib.html.ImgTag</tagclass>
+		<bodycontent>empty</bodycontent>
+                <info>
+
+                <p>Renders an HTML <code>&lt;img&gt;</code> element with
+                the image at the specified URL.  Like the link tag, URL
+                rewriting will be applied automatically to the value
+                specified in <code>src</code>, to maintain session state
+                in the absence of cookies.  This will allow dynamic
+                generation of an image where the content displayed for this
+                image will be taken from the attributes of this tag.</p>
+
+                <p>The base URL for this image is calculated based on
+                the value specified in <code>src</code>.</p>
+
+                <p>Normally, the <code>src</code> you specify will be left
+                unchanged (other than URL rewriting if necessary).  However,
+                there are two ways you can append one or more dynamically
+                defined query parameters to the <code>src</code> URL --
+                specify a single parameter with the <code>paramId</code>
+                attribute (at its associated attributes to select the value),
+                or specify the <code>name</code> (and optional
+                <code>property</code>) attributes to select a
+                <code>java.util.Map</code> bean that contains one or more
+                parameter ids and corresponding values.</p>
+
+                <p>To specify a single parameter, use the <code>paramId</code>
+                attribute to define the name of the request parameter to be
+                submitted.  To specify the corresponding value, use one of the
+                following approaches:</p>
+                <ul>
+                <li><em>Specify only the <code>paramName</code> attribute</em>
+                    - The named JSP bean (optionally scoped by the value of the
+                    <code>paramScope</code> attribute) must identify a value
+                    that can be converted to a String.</li>
+                <li><em>Specify both the <code>paramName</code> and
+                    <code>paramProperty</code> attributes</em> - The specified
+                    property getter will be called on the JSP bean identified
+                    by the <code>paramName</code> (and optional
+                    <code>paramScope</code>) attributes, in order to select
+                    a value that can be converted to a String.</li>
+                </ul>
+
+                <p>If you prefer to specify a <code>java.util.Map</code> that
+                contains all of the request parameters to be added to the
+                hyperlink, use one of the following techniques:</p>
+                <ul>
+                <li><em>Specify only the <code>name</code> attribute</em> -
+                    The named JSP bean (optionally scoped by the value of
+                    the <code>scope</code> attribute) must identify a
+                    <code>java.util.Map</code> containing the parameters.</li>
+                <li><em>Specify both <code>name</code> and
+                    <code>property</code> attributes</em> - The specified
+                    property getter method will be called on the bean
+                    identified by the <code>name</code> (and optional
+                    <code>scope</code>) attributes, in order to return the
+                    <code>java.util.Map</code> containing the parameters.</li>
+                </ul>
+
+                <p>As the <code>Map</code> is processed, the keys are assumed
+                to be the names of query parameters to be appended to the
+                <code>src</code> URL.  The value associated with each key
+                must be either a String or a String array representing the
+                parameter value(s).  If a String array is specified, more than
+                one value for the same query parameter name will be
+                created.</p>
+
+                </info>
+
+                <attribute>
+                  <name>accesskey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The keyboard character used to move focus immediately
+                  to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>align</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Where the image is aligned to.  Can be one of the
+                  following attributes:</p>
+                  <ul>
+                   <li>left - left justify, wrapping text on right</li>
+                    <li>right -right justify, wrapping test on left</li>
+                    <li>top - aligns the image with the top of the text on
+                        the same row</li>
+                    <li>middle - aligns the image's vertical center with the
+                        text base line</li>
+                    <li>bottom - aligns the image with the botton of the
+                        text's base line</li>
+                    <li>texttop - aligns the image's top with that of the
+                        text font on the same line</li>
+                    <li>absmiddle - aligns the image's vertical center with the
+                        absolute center of the text</li>
+                    <li>absbottom - aligns the image with the absolute botton 
+                        of the text font on the same row</li>
+                  </ul>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>alt</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>And alternative text to be displayed in browsers that
+                     don't support graphics.  Also used often as type of
+                     context help over images.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>border</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The width of the border surrounding the image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>imageName</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scriptable name to be defined within this page, so 
+                  thatyou can reference it with intra-page scripts.  In other
+                  words, the value specified here will render a "name" element
+                  in the generated image tag.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>height</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The height of the image being displayed.  This parameter
+                     is very nice to specificy (along with <code>width</code>)
+                     to help the browser render the page faster.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>hspace</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The amount of horizontal spacing between the icon and
+                     the text.  The text may be in the same paragraph, or
+                     be wrapped around the image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>imageName</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scriptable name to be defined within this page, so 
+                  thatyou can reference it with intra-page scripts.  In other
+                  words, the value specified here will render a "name" element
+                  in the generated image tag.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>ismap</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of the server-side map that this image belongs
+                     to.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>lowsrc</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>An image for people with low resoution graphics cards.
+                     Is this even necessary any more?</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that contains a <code>Map</code>
+                  representing the query parameters (if <code>property</code>
+                  is not specified), or a JSP bean whose property getter is
+                  called to return a <code>Map</code> (if <code>property</code>
+                  is specified).</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>src</name>
+                  <required>true</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The URL to which this image will be transferred from
+                  This image may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  You <strong>must</strong> specify
+                  the <code>src</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>usemap</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of the map as defined within this page for
+                     mapping hot-spot areas of this image.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>vspace</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The amount of vertical spacing between the icon and
+                     the text, above and below.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>width</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The width of the image being displayed.  This parameter
+                     is very nice to specificy (along with <code>height</code>)
+                     to help the browser render the page faster.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onkeydown</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a key down event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onkeypress</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a key press event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onkeyup</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a key up event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramId</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of the request parameter that will be dynamically
+                  added to the generated src URL.  The corresponding value is
+                  defined by the <code>paramName</code> and (optional)
+                  <code>paramProperty</code> attributes, optionally scoped by
+                  the <code>paramScope</code> attributel</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramName</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that is a String containing the
+                  value for the request parameter named by <code>paramId</code>
+                  (if <code>paramProperty</code> is not specified), or a JSP
+                  bean whose property getter is called to return a String
+                  (if <code>paramProperty</code> is specified).  The JSP bean
+                  is constrained to the bean scope specified by the
+                  <code>paramScope</code> property, if it is specified.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramProperty</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>paramName</code> attribute, whose return value must
+                  be a String containing the value of the request parameter
+                  (named by the <code>paramId</code> attribute) that will be
+                  dynamically added to this src URL.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramScope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>paramName</code> attribute.  If not specified,
+                  all scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>property</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>name</code> attribute, whose return value must be
+                  a <code>java.util.Map</code> containing the query parameters
+                  to be added to the src URL.  You <strong>must</strong>
+                  specify the <code>name</code> attribute if you specify
+                  this attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>scope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>name</code> attribute.  If not specified, all
+                  scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>style</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>CSS styles to be applied to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>styleClass</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>CSS stylesheet class to be applied to this element.</p>
+                  </info>
+                </attribute>
+
+        </tag>
 
         <tag>
 

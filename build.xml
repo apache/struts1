@@ -57,6 +57,8 @@
     <copy  todir="${build.home}/example">
       <fileset dir="web/example"/>
     </copy>
+    <copy tofile="${build.home}/example/struts-power.gif"
+            file="src/doc/images/struts-power.gif"/>
   </target>
 
   <!-- BUILD:  Create directories and copy files for test application -->
