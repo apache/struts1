@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.6 2000/07/16 22:29:04 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/07/16 22:29:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.7 2000/07/17 00:20:08 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/07/17 00:20:08 $
  *
  * ====================================================================
  *
@@ -76,13 +76,27 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:04 $
+ * @version $Revision: 1.7 $ $Date: 2000/07/17 00:20:08 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The name of the bean containing our underlying property.
+     */
+    protected String name = Constants.BEAN_KEY;
+
+    public String getName() {
+	return (this.name);
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
 
 
     /**
@@ -132,10 +146,10 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	if (value != null) {
 	    results.append(BeanUtils.filter(value));
 	} else {
-	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
+	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("getter.bean", Constants.BEAN_KEY));
+		    (messages.getMessage("getter.bean", name));
 	    try {
 		value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)

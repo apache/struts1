@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.6 2000/07/16 22:29:06 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/07/16 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.7 2000/07/17 00:20:08 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/07/17 00:20:08 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:06 $
+ * @version $Revision: 1.7 $ $Date: 2000/07/17 00:20:08 $
  */
 
 public final class RadioTag extends BaseHandlerTag {
@@ -90,6 +90,20 @@ public final class RadioTag extends BaseHandlerTag {
     protected static MessageResources messages =
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.LocalStrings");
+
+
+    /**
+     * The name of the bean containing our underlying property.
+     */
+    private String name = Constants.BEAN_KEY;
+
+    public String getName() {
+	return (this.name);
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
 
 
     /**
@@ -163,10 +177,10 @@ public final class RadioTag extends BaseHandlerTag {
 
 	// Acquire the current value of the appropriate field
 	Object current = null;
-	Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
+	Object bean = pageContext.findAttribute(name);
 	if (bean == null)
 	    throw new JspException
-	        (messages.getMessage("getter.bean", Constants.BEAN_KEY));
+	        (messages.getMessage("getter.bean", name));
 	try {
 	    current = BeanUtils.getScalarProperty(bean, property);
 	    if (current == null)

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.4 2000/07/16 22:29:06 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/07/16 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.5 2000/07/17 00:20:08 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/07/17 00:20:08 $
  *
  * ====================================================================
  *
@@ -76,10 +76,27 @@ import org.apache.struts.util.MessageResources;
  * Display the value of the specified bean property as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/07/16 22:29:06 $
+ * @version $Revision: 1.5 $ $Date: 2000/07/17 00:20:08 $
  */
 
 public class PropertyTag extends BaseInputTag {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The name of the bean containing our underlying property.
+     */
+    private String name = Constants.BEAN_KEY;
+
+    public String getName() {
+	return (this.name);
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -97,10 +114,10 @@ public class PropertyTag extends BaseInputTag {
 	if (value != null) {
 	    results.append(BeanUtils.filter(value));
 	} else {
-	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
+	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("getter.bean", Constants.BEAN_KEY));
+		    (messages.getMessage("getter.bean", name));
 	    try {
 		String value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)

@@ -565,6 +565,11 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -661,6 +666,11 @@
     <name>hidden</name>
     <tagclass>org.apache.struts.taglib.HiddenTag</tagclass>
     <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
@@ -678,6 +688,11 @@
     <tagclass>org.apache.struts.taglib.MultiboxTag</tagclass>
     <attribute>
       <name>accessKey</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -855,6 +870,11 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -961,6 +981,11 @@
     <name>property</name>
     <tagclass>org.apache.struts.taglib.PropertyTag</tagclass>
     <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
@@ -978,6 +1003,11 @@
     <tagclass>org.apache.struts.taglib.RadioTag</tagclass>
     <attribute>
       <name>accessKey</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -1171,6 +1201,11 @@
     <bodycontent>JSP</bodycontent>
     <attribute>
       <name>accessKey</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -1382,6 +1417,11 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -1494,6 +1534,11 @@
     </attribute>
     <attribute>
       <name>cols</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.10 2000/07/16 22:29:07 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/07/16 22:29:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.11 2000/07/17 00:20:08 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/07/17 00:20:08 $
  *
  * ====================================================================
  *
@@ -76,22 +76,26 @@ import org.apache.struts.util.MessageResources;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/07/16 22:29:07 $
+ * @version $Revision: 1.11 $ $Date: 2000/07/17 00:20:08 $
  */
 
 public class TextareaTag extends BaseInputTag {
 
 
-    // ----------------------------------------------------------- Constructors
+    // ----------------------------------------------------- Instance Variables
 
 
     /**
-     * Construct a new instance of this tag.
+     * The name of the bean containing our underlying property.
      */
-    public TextareaTag() {
+    private String name = Constants.BEAN_KEY;
 
-	super();
+    public String getName() {
+	return (this.name);
+    }
 
+    public void setName(String name) {
+	this.name = name;
     }
 
 
@@ -134,10 +138,10 @@ public class TextareaTag extends BaseInputTag {
 	if (value != null) {
 	    results.append(BeanUtils.filter(value));
 	} else {
-	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
+	    Object bean = pageContext.findAttribute(name);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("getter.bean", Constants.BEAN_KEY));
+		    (messages.getMessage("getter.bean", name));
 	    try {
 		String value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)

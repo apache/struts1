@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.1 2000/07/16 22:49:22 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/07/16 22:49:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.2 2000/07/17 00:20:08 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/17 00:20:08 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/07/16 22:49:22 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/17 00:20:08 $
  */
 
 public final class MultiboxTag extends BaseHandlerTag {
@@ -95,6 +95,20 @@ public final class MultiboxTag extends BaseHandlerTag {
     protected static MessageResources messages =
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.LocalStrings");
+
+
+    /**
+     * The name of the bean containing our underlying property.
+     */
+    private String name = Constants.BEAN_KEY;
+
+    public String getName() {
+	return (this.name);
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
 
 
     /**
@@ -182,11 +196,11 @@ public final class MultiboxTag extends BaseHandlerTag {
 	    results.append(tabIndex);
 	    results.append("\"");
 	}
-	Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
+	Object bean = pageContext.findAttribute(name);
 	String values[] = null;
 	if (bean == null)
 	    throw new JspException
-		(messages.getMessage("getter.bean", Constants.BEAN_KEY));
+		(messages.getMessage("getter.bean", name));
 	try {
 	    values = BeanUtils.getArrayProperty(bean, property);
 	    if (values == null)
