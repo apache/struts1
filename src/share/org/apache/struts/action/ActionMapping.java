@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.20 2001/11/04 07:42:21 martinc Exp $
- * $Revision: 1.20 $
- * $Date: 2001/11/04 07:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.21 2001/12/31 01:14:36 craigmcc Exp $
+ * $Revision: 1.21 $
+ * $Date: 2001/12/31 01:14:36 $
  *
  * ====================================================================
  *
@@ -130,7 +130,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2001/11/04 07:42:21 $
+ * @version $Revision: 1.21 $ $Date: 2001/12/31 01:14:36 $
  */
 
 public class ActionMapping implements Serializable {
@@ -144,6 +144,12 @@ public class ActionMapping implements Serializable {
      * our form bean, if any, will be created.
      */
     protected String attribute = null;
+
+
+    /**
+     * The set of ActionException objects associated with this mapping.
+     */
+    protected ActionExceptions exceptions = new ActionExceptions();
 
 
     /**
@@ -595,6 +601,18 @@ public class ActionMapping implements Serializable {
 
 
     /**
+     * Add a new <code>ActionException</code> associated with this mapping.
+     *
+     * @param exception The ActionException to be added
+     */
+    public void addException(ActionException exception) {
+
+        exceptions.addException(exception);
+
+    }
+
+
+    /**
      * Add a new <code>ActionForward</code> associated with this mapping.
      *
      * @param forward The ActionForward to be added
@@ -602,6 +620,35 @@ public class ActionMapping implements Serializable {
     public void addForward(ActionForward forward) {
 
         forwards.addForward(forward);
+
+    }
+
+
+    /**
+     * Return the <code>ActionException</code> handler for exceptions of the
+     * specified type.
+     *
+     * @param type Exception class for which to find a handler
+     */
+    public ActionException findException(Class type) {
+
+        // First, check our locally defined exceptions
+        ActionException ex = exceptions.findException(type);
+        if (ex != null) {
+            return (ex);
+        }
+
+        // Second, check the globally defined exceptions
+        ActionMappings mappings = getMappings();
+        if (mappings == null) {
+            return (null);
+        }
+        ActionServlet servlet = mappings.getServlet();
+        if (servlet == null) {
+            return (null);
+        } else {
+            return (servlet.findException(type));
+        }
 
     }
 

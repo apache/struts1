@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.32 2001/12/29 19:37:28 craigmcc Exp $
- * $Revision: 1.32 $
- * $Date: 2001/12/29 19:37:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.33 2001/12/31 01:14:36 craigmcc Exp $
+ * $Revision: 1.33 $
+ * $Date: 2001/12/31 01:14:36 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.32 $ $Date: 2001/12/29 19:37:28 $
+ * @version $Revision: 1.33 $ $Date: 2001/12/31 01:14:36 $
  */
 
 public class Action {
@@ -320,6 +320,8 @@ public class Action {
      *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
+     *
+     * @deprecated Use the <code>execute()</code> method instead
      */
     public ActionForward perform(ActionMapping mapping,
                                  ActionForm form,
@@ -352,6 +354,8 @@ public class Action {
      *
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
+     *
+     * @deprecated Use the <code>execute()</code> method instead
      */
     public ActionForward perform(ActionMapping mapping,
                  ActionForm form,
@@ -360,6 +364,31 @@ public class Action {
     throws IOException, ServletException {
 
         return (null);  // Override this method to provide functionality
+
+    }
+
+
+    /**
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it),
+     * with provision for handling exceptions thrown by the business logic.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     *
+     * @exception Exception if the application business logic throws
+     *  an exception
+     */
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+        throws Exception {
+
+        // Call the deprecated method
+        return (perform(mapping, form, request, response));
 
     }
 

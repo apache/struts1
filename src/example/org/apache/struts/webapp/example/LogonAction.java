@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.2 2001/04/14 12:53:08 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/14 12:53:08 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.3 2001/12/31 01:14:36 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/12/31 01:14:36 $
  *
  * ====================================================================
  *
@@ -78,6 +78,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.util.AppException;
 import org.apache.struts.util.MessageResources;
 
 
@@ -85,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/14 12:53:08 $
+ * @version $Revision: 1.3 $ $Date: 2001/12/31 01:14:36 $
  */
 
 public final class LogonAction extends Action {
@@ -106,14 +107,13 @@ public final class LogonAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if business logic throws an exception
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
@@ -130,7 +130,7 @@ public final class LogonAction extends Action {
             errors.add(ActionErrors.GLOBAL_ERROR,
                        new ActionError("error.database.missing"));
 	else {
-	    user = (User) database.get(username);
+	    user = getUser(database, username, password);
 	    if ((user != null) && !user.getPassword().equals(password))
 		user = null;
 	    if (user == null)
@@ -161,6 +161,38 @@ public final class LogonAction extends Action {
 
 	// Forward control to the specified success URI
 	return (mapping.findForward("success"));
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Look up the user, throwing an exception to simulate business logic
+     * rule exceptions.
+     *
+     * @param database Database in which to look up the user
+     * @param username Username specified on the logon form
+     * @param password Password specified on the logon form
+     *
+     * @exception AppException if a business logic rule is violated
+     */
+    public User getUser(Hashtable database, String username, String password)
+        throws AppException {
+
+        // Force an ArithmeticException which can be handled explicitly
+        if ("arithmetic".equals(username)) {
+            int a = 10 / 0;
+        }
+
+        // Force an application-specific exception which can be handled
+        if ("expired".equals(username)) {
+            throw new ExpiredPasswordException(username);
+        }
+
+        // Look up and return the specified user
+        return ((User) database.get(username));
 
     }
 

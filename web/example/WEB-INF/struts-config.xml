@@ -103,6 +103,9 @@
                name="logonForm"
               scope="request"
               input="/logon.jsp">
+      <exception
+               type="org.apache.struts.webapp.example.ExpiredPasswordException"
+               path="/changePassword.jsp"/>
     </action>
 
     <!-- Save user registration -->

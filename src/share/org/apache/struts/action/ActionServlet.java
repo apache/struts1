@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.81 2001/12/29 19:35:32 craigmcc Exp $
- * $Revision: 1.81 $
- * $Date: 2001/12/29 19:35:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.82 2001/12/31 01:14:36 craigmcc Exp $
+ * $Revision: 1.82 $
+ * $Date: 2001/12/31 01:14:36 $
  *
  * ====================================================================
  *
@@ -238,7 +238,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.81 $ $Date: 2001/12/29 19:35:32 $
+ * @version $Revision: 1.82 $ $Date: 2001/12/31 01:14:36 $
  */
 
 public class ActionServlet
@@ -305,6 +305,20 @@ public class ActionServlet
      * The default Locale for this server.
      */
     protected final Locale defaultLocale = Locale.getDefault();
+
+
+    /**
+     * The Java class name of the <code>ActionException</code> implementation
+     * class to use.
+     */
+    protected String exceptionClass =
+        "org.apache.struts.action.ActionException";
+
+
+    /**
+     * The global exceptions registered with this handler.
+     */
+    protected ActionExceptions exceptions = new ActionExceptions();
 
 
     /**
@@ -568,6 +582,20 @@ public class ActionServlet
 
 
     /**
+     * Add a global exception to the set configured for this servlet.
+     *
+     * @param exception The exception to be added
+     *
+     * @deprecated Will no longer be required with multi-application support
+     */
+    public void addException(ActionException exception) {
+
+        exceptions.addException(exception);
+
+    }
+
+
+    /**
      * Register a form bean definition to the set configured for this servlet.
      *
      * @param formBean The form bean definition to be added
@@ -674,6 +702,21 @@ public class ActionServlet
     public ActionFormBean findFormBean(String name) {
 
         return (formBeans.findFormBean(name));
+
+    }
+
+
+    /**
+     * Return the exception handler for an exception of the specified
+     * class, if any; otherwise return <code>null</code>.
+     *
+     * @param ex Exception class for which to find a handler
+     *
+     * @deprecated Will no longer be required with multi-application support
+     */
+    public ActionException findException(Class ex) {
+
+        return (exceptions.findException(ex));
 
     }
 
@@ -1575,6 +1618,16 @@ public class ActionServlet
                             "addForward",
                             "org.apache.struts.action.ActionForward");
 
+        digester.addObjectCreate
+            ("struts-config/action-mappings/action/exception",
+             exceptionClass, "className");
+        digester.addSetProperties
+            ("struts-config/action-mappings/action/exception");
+        digester.addSetNext
+            ("struts-config/action-mappings/action/exception",
+             "addException",
+             "org.apache.struts.action.ActionException");
+
         digester.addSetProperty
             ("struts-config/action-mappings/action/forward/set-property",
              "property", "value");
@@ -1588,6 +1641,17 @@ public class ActionServlet
 
         digester.addSetProperty
             ("struts-config/form-beans/form-bean/set-property",
+             "property", "value");
+
+        digester.addObjectCreate("struts-config/global-exceptions/exception",
+                                 exceptionClass, "className");
+        digester.addSetProperties("struts-config/global-exceptions/exception");
+        digester.addSetNext("struts-config/global-exceptions/exception",
+                            "addException",
+                            "org.apache.struts.action.ActionException");
+
+        digester.addSetProperty
+            ("struts-config/global-exceptions/exception/set-property",
              "property", "value");
 
         digester.addObjectCreate("struts-config/global-forwards/forward",
@@ -2160,9 +2224,24 @@ public class ActionServlet
                                         HttpServletResponse response)
         throws IOException, ServletException {
 
-        ActionForward forward =
-            action.perform(mapping, formInstance, request, response);
-        return (forward);
+        //        ActionForward forward =
+        //            action.perform(mapping, formInstance, request, response);
+        //        return (forward);
+
+        ActionError error = null;
+        Throwable cause = null;
+        try {
+            ActionForward forward =
+                action.execute(mapping, formInstance, request, response);
+            return (forward);
+        } catch (Exception ex) {
+            if (debug >= 1) {
+                log("Exception occurred", ex);
+            }
+            return (processException(ex, mapping, formInstance,
+                                     request, response));
+        }
+
 
     }
 
@@ -2180,6 +2259,56 @@ public class ActionServlet
             response.setContentType(content);
 
     }
+
+
+    /**
+     * Ask our exception handler to handle the exception.  Return the
+     * <code>ActionForward</code> instance (if any) returned by the called
+     * <code>ExceptionHandler</code>.
+     *
+     * @param ex The exception to handle
+     * @param maping The ActionMapping we are processing
+     * @param form The ActionForm we are processing (if any)
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are processing
+     *
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected ActionForward processException(Exception ex,
+                                             ActionMapping mapping,
+                                             ActionForm form,
+                                             HttpServletRequest request,
+                                             HttpServletResponse response)
+        throws ServletException {
+
+        // Look for an exception mapping
+        ActionException ae = mapping.findException(ex.getClass());
+
+        // If one is found, place it in the scope defined
+        if (ae != null) {
+            Class handlerClass = ae.getHandlerClass();
+            try {
+                // Ask handler to handle the exception
+                ExceptionHandler handler = (ExceptionHandler)
+                    handlerClass.newInstance();
+                return (handler.execute(ex, ae, mapping, form,
+                                        request, response));
+            } catch (Exception e) {
+                // Yuck - the exception handler thew an exception
+                throw new ServletException(e);
+            }
+        } else {
+            if (debug >= 1) {
+                log(internal.getMessage("unhandledException", ex.getClass()));
+            }
+            if (ex instanceof ServletException) {
+                throw (ServletException) ex;
+            }
+            throw new ServletException(ex);
+        }
+
+    }
+                                             
 
 
     /**
