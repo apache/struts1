@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.12 2003/01/28 19:30:24 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2003/01/28 19:30:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.13 2003/02/07 07:00:49 martinc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/02/07 07:00:49 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/01/28 19:30:24 $
+ * @version $Revision: 1.13 $ $Date: 2003/02/07 07:00:49 $
  * @since Struts 1.1
  */
 
@@ -231,6 +231,23 @@ public class ControllerConfig implements Serializable {
 
 
     /**
+     * The maximum file size to retain in memory.
+     */
+    protected String memFileSize = "256K";
+
+    public String getMemFileSize() {
+        return (this.memFileSize);
+    }
+
+    public void setMemFileSize(String memFileSize) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.memFileSize = memFileSize;
+    }
+
+
+    /**
      * The fully qualified Java class name of the MultipartRequestHandler
      * class to be used.
      */
@@ -369,8 +386,12 @@ public class ControllerConfig implements Serializable {
         sb.append(",locale=");
         sb.append(this.locale);
         if (this.maxFileSize != null) {
-            sb.append(",maxFileSzie=");
+            sb.append(",maxFileSize=");
             sb.append(this.maxFileSize);
+        }
+        if (this.memFileSize != null) {
+            sb.append(",memFileSize=");
+            sb.append(this.memFileSize);
         }
         sb.append(",multipartClass=");
         sb.append(this.multipartClass);

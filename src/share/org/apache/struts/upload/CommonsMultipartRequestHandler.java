@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.6 2002/11/09 04:04:11 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/09 04:04:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.7 2003/02/07 07:00:49 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/07 07:00:49 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.Globals;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.6 $ $Date: 2002/11/09 04:04:11 $
+  * @version $Revision: 1.7 $ $Date: 2003/02/07 07:00:49 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -218,7 +218,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         // Set the maximum size before a FileUploadException will be thrown.
         upload.setSizeMax((int) getSizeMax(ac));
         // Set the maximum size that will be stored in memory.
-        upload.setSizeThreshold(getSizeThreshold(ac));
+        upload.setSizeThreshold((int) getSizeThreshold(ac));
         // Set the the location for saving data on disk.
         upload.setRepositoryPath(getRepositoryPath(ac));
 
@@ -324,8 +324,41 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * @return The maximum allowable file size, in bytes.
      */
     protected long getSizeMax(ModuleConfig mc) {
+        return convertSizeToBytes(
+                mc.getControllerConfig().getMaxFileSize(),
+                DEFAULT_SIZE_MAX);
+    }
 
-        String sizeString = mc.getControllerConfig().getMaxFileSize();
+
+    /**
+     * Returns the size threshold which determines whether an uploaded file
+     * will be written to disk or cached in memory.
+     *
+     * @param mc The current module's configuration.
+     *
+     * @return The size threshold, in bytes.
+     */
+    protected long getSizeThreshold(ModuleConfig mc) {
+        return convertSizeToBytes(
+                mc.getControllerConfig().getMemFileSize(),
+                DEFAULT_SIZE_THRESHOLD);
+    }
+
+    /**
+     * Converts a size value from a string representation to its numeric value.
+     * The string must be of the form nnnm, where nnn is an arbitrary decimal
+     * value, and m is a multiplier. The multiplier must be one of 'K', 'M' and
+     * 'G', representing kilobytes, megabytes and gigabytes respectively.
+     *
+     * If the size value cannot be converted, for example due to invalid syntax,
+     * the supplied default is returned instead.
+     *
+     * @param sizeString  The string representation of the size to be converted.
+     * @param defaultSize The value to be returned if the string is invalid.
+     *
+     * @return The actual size in bytes.
+     */
+    protected long convertSizeToBytes(String sizeString, long defaultSize) {
         int multiplier = 1;
 
         if (sizeString.endsWith("K")) {
@@ -343,27 +376,13 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         try {
             size = Long.parseLong(sizeString);
         } catch (NumberFormatException nfe) {
-            log.warn("Invalid format for maximum file size ('"
-                    + mc.getControllerConfig().getMaxFileSize()
-                    + "'). Using default.");
-            size = DEFAULT_SIZE_MAX;
+            log.warn("Invalid format for file size ('" + sizeString +
+                    "'). Using default.");
+            size = defaultSize;
             multiplier = 1;
         }
                 
         return (size * multiplier);
-    }
-
-
-    /**
-     * Returns the size threshold which determines whether an uploaded file
-     * will be written to disk or cached in memory.
-     *
-     * @param mc The current module's configuration.
-     *
-     * @return The size threshold, in bytes.
-     */
-    protected int getSizeThreshold(ModuleConfig mc) {
-        return DEFAULT_SIZE_THRESHOLD;
     }
 
 

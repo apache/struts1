@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.35 2003/01/28 19:30:23 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.36 2003/02/07 07:00:49 martinc Exp $
 -->
 
 
@@ -515,6 +515,14 @@ The "form-bean" element describes a particular form bean, which is a
                      megabytes, or gigabytes, respectively.
                      ["250M"]
 
+     memFileSize     The maximum size (in bytes) of a file whose contents will
+                     be retained in memory after uploading. Files larger than
+                     this threshold will be written to some alternative storage
+                     medium, typically a hard disk. Can be expressed as a number
+                     followed by a "K", "M", or "G", which are interpreted to
+                     mean kilobytes, megabytes, or gigabytes, respectively.
+                     ["256K"]
+
      multipartClass  The fully qualified Java class name of the multipart
                      request handler class to be used with this module.
                      ["org.apache.struts.upload.CommonsMultipartRequestHandler"]
@@ -555,6 +563,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST controller     inputForward   %Boolean;       #IMPLIED>
 <!ATTLIST controller     locale         %Boolean;       #IMPLIED>
 <!ATTLIST controller     maxFileSize    CDATA           #IMPLIED>
+<!ATTLIST controller     memFileSize    CDATA           #IMPLIED>
 <!ATTLIST controller     multipartClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     nocache        %Boolean;       #IMPLIED>
 <!ATTLIST controller     pagePattern    CDATA           #IMPLIED>
