@@ -16,22 +16,14 @@
 
 package org.apache.shale.faces;
 
-import java.io.IOException;
+import org.apache.shale.view.DefaultViewControllerMapper;
 
 import javax.faces.FactoryFinder;
 import javax.faces.event.PhaseListener;
 import javax.faces.lifecycle.Lifecycle;
 import javax.faces.lifecycle.LifecycleFactory;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-
-import org.apache.shale.view.DefaultViewControllerMapper;
+import javax.servlet.*;
+import java.io.IOException;
 
 /**
  * <p>{@link ShaleApplicationFilter} is a <code>Filter</code> implementation

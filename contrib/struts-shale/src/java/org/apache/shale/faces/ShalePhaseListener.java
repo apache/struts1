@@ -16,15 +16,14 @@
 
 package org.apache.shale.faces;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import org.apache.shale.ViewController;
 
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
-
-import org.apache.shale.ViewController;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>{@link ShalePhaseListener} is a JavaServer Faces <code>PhaseListener</code> that implements phase
