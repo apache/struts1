@@ -11,12 +11,12 @@
 <p>Here are answers to twenty common questions people ask when using Struts on 
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
-    <li><a href="#actionforms">Why is ActionForm a base class rather than an interface?</a></li>
+    <li>Why is ActionForm a base class rather than an interface?</li>
     <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
     <li>Can I use other beans or hashmaps with ActionForms?</li>
     <li>How can I prepopulate a form?</li>
     <li>Can I use multiple HTML form elements with the same name?</li>
-    <li>Why are my checkboxes not being set from ON to OFF?</li>
+    <li><a href="#actionforms">hy are my checkboxes not being set from ON to OFF?</a></li>
     <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
     <li>Why do my option lists disappear when validation fails?</li>
     <li>Can't I just create some of my JavaBeans on the JSP using a scriptlet?</li>
@@ -40,7 +40,32 @@ http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html<br/>
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19338.html<br/>
 http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html<br/>
 </p>
+</section>
 
+<section href="checkbox" name="Why are my checkboxes not being set from ON to OFF?">
+<p>
+A problem with a checkbox is that the browser will only include it in the request 
+when it is checked. If it is not checked, the HTML specification suggests that it 
+not be sent (i.e. omitted from the request). If the value of the checkbox is being 
+persisted, either in a session bean or in the model, a checked box can never 
+unchecked by a HTML form -- because the form can never send a signal to uncheck 
+the box. The application must somehow ascertain that since the element was not 
+sent that the corresponding value is unchecked.
+</p>
+<p>
+The recommended approach for Struts applications is to use the reset method in the 
+ActionForm to set all properties represented by checkboxes to null or false. The 
+checked boxes submitted by the form will then set those properties to true. The 
+omitted properties will remain false. Another solution is to use radio buttons 
+instead, which always submit a value. 
+</p>
+<p>
+It is important to note that the HTML specification recommends this same 
+behavior whenever a control is not "successful". Any blank element in a HTML 
+form is not guaranteed to submitted. It is therefor very important to set the 
+default values for an ActionForm correctly, and to implement the reset method 
+when the ActionForm might kept in session scope.
+</p>
 </section>
 
 </chapter></body></document>
