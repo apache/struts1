@@ -85,14 +85,15 @@
                  classname="com.wintecinc.struts.validation.StrutsValidator"
                  method="validateByte"
                  depends="required"
-                 msg="errors.byte">
+                 msg="errors.byte"
+                 jsFunctionName="ByteValidations">
          <javascript><![CDATA[
             function validateByte(form) {
                 var bValid = true;
                 var focusField = null;
                 var i = 0;                                                                                          
                 var fields = new Array();                                                                           
-                oByte = new byte();                                                                         
+                oByte = new ByteValidations();                                                                         
             
                 for (x in oByte) {                                                                              
                     if ((form[oByte[x][0]].type == 'text' || form[oByte[x][0]].type == 'textarea' || form[oByte[x][0]].type == 'select' || form[oByte[x][0]].type == 'radio') && form[oByte[x][0]].value.length > 0) {   
@@ -123,14 +124,15 @@
                  classname="com.wintecinc.struts.validation.StrutsValidator"
                  method="validateShort"
                  depends="required"
-                 msg="errors.short">
+                 msg="errors.short"
+                 jsFunctionName="ShortValidations">
          <javascript><![CDATA[
             function validateShort(form) {
                 var bValid = true;
                 var focusField = null;
                 var i = 0;                                                                                          
                 var fields = new Array();                                                                           
-                oShort = new short();                                                                         
+                oShort = new ShortValidations();                                                                         
             
                 for (x in oShort) {                                                                              
                     if ((form[oShort[x][0]].type == 'text' || form[oShort[x][0]].type == 'textarea' || form[oShort[x][0]].type == 'select' || form[oShort[x][0]].type == 'radio') && form[oShort[x][0]].value.length > 0) {   
@@ -161,14 +163,15 @@
                  classname="com.wintecinc.struts.validation.StrutsValidator"
                  method="validateInteger"
                  depends="required"
-                 msg="errors.integer">
+                 msg="errors.integer"
+                 jsFunctionName="IntegerValidations">
          <javascript><![CDATA[
             function validateInteger(form) {
                 var bValid = true;
                 var focusField = null;
                 var i = 0;                                                                                          
                 var fields = new Array();                                                                           
-                oInteger = new integer();                                                                         
+                oInteger = new IntegerValidations();                                                                         
             
                 for (x in oInteger) {                                                                              
                     if ((form[oInteger[x][0]].type == 'text' || form[oInteger[x][0]].type == 'textarea' || form[oInteger[x][0]].type == 'select' || form[oInteger[x][0]].type == 'radio') && form[oInteger[x][0]].value.length > 0) {   
@@ -205,14 +208,15 @@
                  classname="com.wintecinc.struts.validation.StrutsValidator"
                  method="validateFloat"
                  depends="required"
-                 msg="errors.float">
+                 msg="errors.float"
+                 jsFunctionName="FloatValidations">
          <javascript><![CDATA[
             function validateFloat(form) {
                 var bValid = true;
                 var focusField = null;
                 var i = 0;                                                                                          
                 var fields = new Array();                                                                           
-                oFloat = new float();                                                                         
+                oFloat = new FloatValidations();                                                                         
             
                 for (x in oFloat) {                                                                              
                     if ((form[oFloat[x][0]].type == 'text' || form[oFloat[x][0]].type == 'textarea' || form[oFloat[x][0]].type == 'select' || form[oFloat[x][0]].type == 'radio') && form[oFloat[x][0]].value.length > 0) {   
@@ -249,14 +253,15 @@
                  classname="com.wintecinc.struts.validation.StrutsValidator"
                  method="validateDate"
                  depends="required"
-                 msg="errors.date">
+                 msg="errors.date"
+                 jsFunctionName="DateValidations">
          <javascript><![CDATA[
             function validateDate(form) {                                                                                                                             
                var bValid = true;   
                var focusField = null;                                                                                                                                  
                var i = 0;                                                                                                                                             
                var fields = new Array();                                                                                                                              
-               oDate = new date();                                                                                                                                                                                                                                                                                        
+               oDate = new DateValidations();                                                                                                                                                                                                                                                                                        
                
                for (x in oDate) { 
                   var value = form[oDate[x][0]].value;
