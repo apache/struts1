@@ -12,7 +12,7 @@
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
     <init-param>
       <param-name>application</param-name>
-      <param-value>ApplicationResources</param-value>
+      <param-value>application</param-value>
     </init-param>
     <init-param>
       <param-name>config</param-name>
