@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.61 2002/10/15 17:37:25 ekbush Exp $
- * $Revision: 1.61 $
- * $Date: 2002/10/15 17:37:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.62 2002/10/15 18:10:52 rleland Exp $
+ * $Revision: 1.62 $
+ * $Date: 2002/10/15 18:10:52 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.61 $ $Date: 2002/10/15 17:37:25 $
+ * @version $Revision: 1.62 $ $Date: 2002/10/15 18:10:52 $
  */
 
 public class RequestUtils {
@@ -387,8 +387,15 @@ public class RequestUtils {
         }
 
         // Look up the application module configuration for this request
-        ApplicationConfig config = getApplicationConfig(pageContext);
-
+        ApplicationConfig config = (ApplicationConfig)
+            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+        if (config == null) { // Backwards compatibility hack
+            config = (ApplicationConfig)
+                pageContext.getServletContext().getAttribute
+                (Action.APPLICATION_KEY);
+            pageContext.getRequest().setAttribute(Action.APPLICATION_KEY,
+                                                  config);
+        }
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
