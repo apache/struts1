@@ -101,6 +101,11 @@
     <a href="#formbeans">Do ActionForms have to be true JavaBeans?</a>
     </li>
 
+    <li>
+    <a href="#separate">Do I have to have a separate ActionForm bean
+    for every HTML form?</a>
+    </li>
+
     </ul>
  
     <p>
@@ -565,6 +570,55 @@ XHTML specification</a></p>
 </section>
 
 
+<section href="separate"
+      name="Do I have to have a separate ActionForm bean for every HTML form?">
+
+    <p>This is an interesting question.  As a newbie, it is a good
+    practice to create a new <code>ActionForm</code> for each action
+    sequence.  You can use <code>DynaActionForm</code>s to help reduce
+    the effort required, or use the code generation facilities of your
+    IDE.</p>
+
+    <p>Some issues to keep in mind regarding reuse of form beans
+    are as follows:</p>
+    <ul>
+    <li><em>Validation</em> - You might need to use different
+        validation rules depending upon the action that is currently
+        being executed.</li>
+    <li><em>Persistence</em> - Be careful that a form populated in
+        one action is not <strong>unexpectedly</strong> reused in a
+        different action.  Multiple <code>&lt;form-bean&gt;</code>
+        entries in <code>struts-config.xml</code> for the same
+        <code>ActionForm</code> subclass can help (especially if you
+        store your form beans in session scope).  Alternatively,
+        storing form beans in request scope can avoid unexpected
+        interactions (as well as reduce the memory footprint of your
+        application, because no server-side objects will need to be
+        saved in between requests.</li>
+    <li><em>Checkboxes</em> - If you do as recommended and reset
+        your boolean properties (for fields presented as checkboxes),
+        and the page you are currently displaying does not have a
+        checkbox for every boolean property on the form bean, the
+        undisplayed boolean properties will always appear to have a
+        <code>false</code> value.</li>
+    <li><em>Workflow</em> - The most common need for form bean
+        reuse is workflow.  Out of the box, Struts has limited support
+        for workflow, but a common pattern is to use a single form bean
+        with all of the properties for all of the pages of a workflow.
+        You will need a good understanding of the
+        environment (<code>ActionForm</code>s, <code>Action</code>s,
+        etc.) prior to being able to put together a smooth workflow
+        environment using a single form bean.</li>
+    </ul>
+
+    <p>As you get more comfortable, there are a few shortcuts you can
+    take in order to reuse your <code>ActionForm</code> beans.  Most of
+    these shortcuts depend on how you have chosen to implement your
+    <code>Action</code> / <code>ActionForm</code> combinations.</p>
+
+</section>
+
+
 
 <section 
     href="undocumented" 
@@ -574,8 +628,6 @@ XHTML specification</a></p>
     <ul>
     
     <li>Why is ActionForm a base class rather than an interface?</li>
-
-    <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
 
     <li>Can I use other beans or hashmaps with ActionForms?</li>
 
