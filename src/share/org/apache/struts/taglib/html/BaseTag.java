@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.18 2003/08/28 05:50:32 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2003/08/28 05:50:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.19 2003/09/20 07:31:18 mrdon Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/09/20 07:31:18 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Luis Arias <luis@elysia.com>
  * @author David Graham
- * @version $Revision: 1.18 $ $Date: 2003/08/28 05:50:32 $
+ * @version $Revision: 1.19 $ $Date: 2003/09/20 07:31:18 $
  */
 
 public class BaseTag extends TagSupport {
@@ -157,7 +157,7 @@ public class BaseTag extends TagSupport {
         String uri) {
             
         StringBuffer tag = new StringBuffer("<base href=\"");
-        tag.append(RequestUtils.createServerUriStringBuffer(scheme,serverName,port,uri));
+        tag.append(RequestUtils.createServerUriStringBuffer(scheme,serverName,port,uri).toString());
 
         tag.append("\"");
         
