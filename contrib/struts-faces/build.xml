@@ -1,0 +1,336 @@
+<project name="jakarta-struts-faces" default="compile" basedir=".">
+
+
+  <!-- ===================== Initialize Property Values =================== -->
+
+
+  <!-- Initialize property values -->
+  <property file="build.properties"/>
+  <property file="${user.home}/build.properties"/>
+
+
+  <!-- Dependency home defaults -->
+  <property name="jsf-ri.home"      value="/usr/local/jsf-ea3"/>
+  <property name="servlet.home"     value="/usr/local/tomcat-4.1/common/lib"/>
+  <property name="struts.home"      value="../../dist"/>
+
+
+  <!-- Dependency JAR defaults -->
+  <property name="jsf-api.jar"      value="${jsf-ri.home}/lib/jsf-api.jar"/>
+  <property name="jsf-ri.jar"       value="${jsf-ri.home}/lib/jsf-ri.jar"/>
+  <property name="jstl.jar"         value="${jsf-ri.home}/lib/jstl.jar"/>
+  <property name="jstl_el.jar"      value="${jsf-ri.home}/lib/jstl_el.jar"/>
+  <property name="servlet.jar"      value="${servlet.home}/servlet.jar"/>
+  <property name="standard.jar"     value="${jsf-ri.home}/lib/standard.jar"/>
+  <property name="struts.jar"       value="${struts.home}/lib/struts.jar"/>
+
+
+  <!-- Build Defaults -->
+  <property name="build.home"      value="${basedir}/build"/>
+  <property name="dist.home"       value="${basedir}/dist"/>
+  <property name="project.name"    value="Struts-Faces Integration Library"/>
+  <property name="project.package" value="org.apache.struts.faces"/>
+  <property name="project.version" value="0.3"/>
+
+
+  <!-- Compile Defaults -->
+  <property name="compile.debug"           value="true"/>
+  <property name="compile.deprecation"     value="false"/>
+  <property name="compile.optimize"        value="true"/>
+
+
+  <!-- Construct Classpath -->
+  <path id="classpath">
+    <fileset          dir="${struts.home}/lib">
+      <include       name="*.jar"/>
+    </fileset>
+    <pathelement location="${jsf-api.jar}"/>
+    <pathelement location="${jstl.jar}"/>
+    <pathelement location="${servlet.jar}"/>
+    <pathelement location="${struts.jar}"/>
+    <pathelement location="${build.home}/classes"/>
+  </path>
+
+
+  <!-- Custom Tomcat Integration -->
+  <taskdef  name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
+  <taskdef  name="install"  classname="org.apache.catalina.ant.InstallTask"/>
+  <taskdef  name="list"     classname="org.apache.catalina.ant.ListTask"/>
+  <taskdef  name="reload"   classname="org.apache.catalina.ant.ReloadTask"/>
+  <taskdef  name="remove"   classname="org.apache.catalina.ant.RemoveTask"/>
+  <taskdef  name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
+  <property name="password" value="tomcat"/>
+  <property name="url"      value="http://localhost:8080/manager"/>
+  <property name="username" value="tomcat"/>
+
+  <property name="example.path"     value="/struts-faces"/>
+
+
+  <!-- ===================== LIBRARY: Maintenance ========================= -->
+
+
+  <target name="clean"
+   description="Clean all build directories">
+    <delete dir="${build.home}"/>
+    <delete dir="${dist.home}"/>
+  </target>
+
+
+  <target name="init">
+    <echo message="---------- ${project.name} ${project.version} ----------"/>
+    <filter token="name"     value="${project.name}"/>
+    <filter token="package"  value="${project.package}"/>
+    <filter token="version"  value="${project.version}"/>
+  </target>
+
+
+  <target name="list" description="List installed webapps on Tomcat">
+    <list url="${url}" username="${username}" password="${password}"/>
+  </target>
+
+
+  <target name="prepare" depends="init">
+    <mkdir dir="${build.home}"/>
+    <mkdir dir="${build.home}/classes"/>
+    <mkdir dir="${build.home}/classes/META-INF"/>
+    <mkdir dir="${build.home}/conf"/>
+    <mkdir dir="${build.home}/lib"/>
+    <mkdir dir="${dist.home}"/>
+    <mkdir dir="${dist.home}/docs"/>
+    <mkdir dir="${dist.home}/docs/api"/>
+  </target>
+
+
+  <target name="static" depends="prepare">
+    <tstamp/>
+    <copy todir="${build.home}/conf" filtering="on">
+      <fileset dir="src/conf" includes="*.MF"/>
+    </copy>
+  </target>
+
+
+  <!-- ============== LIBRARY: Compile Library Components ================= -->
+
+
+  <target name="compile" depends="static"
+   description="Compile integration library">
+
+    <!-- Compile Java Sources -->
+    <javac  srcdir="src/java"
+           destdir="${build.home}/classes"
+             debug="${compile.debug}"
+       deprecation="${compile.deprecation}"
+          optimize="${compile.optimize}">
+      <classpath refid="classpath" />
+    </javac>
+
+    <!-- Copy non-Java Sources -->
+    <copy    todir="${build.home}/classes">
+      <fileset dir="src/java">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+
+    <!-- Create Tag Library Descriptor -->
+    <style basedir="src/conf"
+           destdir="${build.home}/conf"
+         extension=".tld"
+             style="src/conf/struts-tld.xsl"
+          includes="struts-faces.xml"/>
+    <copy   tofile="${build.home}/classes/META-INF/taglib.tld"
+              file="${build.home}/conf/struts-faces.tld"/>
+
+
+    <!-- Copy license file -->
+    <copy   tofile="${build.home}/classes/META-INF/LICENSE.txt"
+              file="LICENSE.txt"/>
+
+  </target>
+
+
+  <target name="library" depends="compile"
+   description="Package integration library">
+
+    <jar jarfile="${build.home}/lib/struts-faces.jar"
+         basedir="${build.home}/classes"
+        manifest="${build.home}/conf/MANIFEST.MF"/>
+
+  </target>
+
+
+  <!-- ==================== LIBRARY:  Documentation ======================= -->
+
+
+  <target name="docs" depends="prepare"
+   description="Create generated documentation and JavaDocs">
+
+    <style basedir="src/conf"
+           destdir="${dist.home}/docs"
+         extension=".html"
+             style="src/conf/struts-doc.xsl"
+          includes="struts-faces.xml"/>
+
+    <javadoc
+        sourcepath="src/java"
+           destdir="${dist.home}/docs/api"
+            author="true"
+           private="true"
+           version="true"
+      packagenames="org.apache.struts.*"
+       windowtitle="${project.name} (Version ${project.version})"
+          doctitle="${project.name} (Version ${project.version})"
+            bottom="Copyright &#169; 2003 - Apache Software Foundation">
+      <classpath refid="classpath"/>
+    </javadoc>
+
+  </target>
+
+
+  <!-- ===================== EXAMPLE: Create Webapp ======================= -->
+
+
+  <target name="example.prepare" depends="library">
+    <echo message="------------ ${project.name} Example Webapp -------------"/>
+    <mkdir dir="${build.home}/webapps"/>
+    <mkdir dir="${build.home}/webapps/example"/>
+  </target>
+
+
+  <target name="example.static" depends="example.prepare">
+    <copy    todir="${build.home}/webapps/example">
+      <fileset dir="web/example"/>
+    </copy>
+
+    <!-- Copy required configuration files -->
+    <copy       todir="${build.home}/webapps/example/WEB-INF">
+      <fileset    dir="${build.home}/conf">
+        <include name="*.tld"/>
+      </fileset>
+    </copy>
+    <copy       todir="${build.home}/webapps/example/WEB-INF">
+      <fileset    dir="${struts.home}/lib">
+        <include name="*.tld"/>
+        <include name="valid*.xml"/>
+      </fileset>
+    </copy>
+
+    <!-- Copy required library JAR files -->
+    <mkdir        dir="${build.home}/webapps/example/WEB-INF/lib"/>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib">
+      <fileset    dir="${build.home}/lib">
+        <include name="struts-faces.jar"/>
+      </fileset>
+    </copy>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib">
+      <fileset    dir="${struts.home}/lib">
+        <include name="commons-*.jar"/>
+        <include name="struts.jar"/>
+      </fileset>
+    </copy>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
+                 file="${jsf-api.jar}"/>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
+                 file="${jsf-ri.jar}"/>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
+                 file="${jstl.jar}"/>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
+                 file="${jstl_el.jar}"/>
+    <copy       todir="${build.home}/webapps/example/WEB-INF/lib"
+                 file="${standard.jar}"/>
+
+  </target>
+
+
+  <target name="example.compile" depends="example.static">
+    <mkdir     dir="${build.home}/webapps/example/WEB-INF/classes"/>
+
+    <!-- Compile Java Sources -->
+    <javac  srcdir="src/example"
+           destdir="${build.home}/webapps/example/WEB-INF/classes"
+             debug="${compile.debug}"
+       deprecation="${compile.deprecation}"
+          optimize="${compile.optimize}">
+      <classpath refid="classpath" />
+    </javac>
+
+    <!-- Copy non-Java Sources -->
+    <copy    todir="${build.home}/webapps/example/WEB-INF/classes">
+      <fileset dir="src/example">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+
+  <!-- ===================== EXAMPLE:  Tomcat Integration ================= -->
+
+
+  <target name="install" depends="example.compile"
+   description="Install example webapp on Tomcat">
+    <install url="${url}" username="${username}" password="${password}"
+            path="${example.path}"
+             war="file://${build.home}/webapps/example"/>
+  </target>
+
+
+  <target name="reload" depends="example.compile"
+   description="Reload example webapp on Tomcat">
+    <reload url="${url}" username="${username}" password="${password}"
+            path="${example.path}"/>
+  </target>
+
+
+  <target name="remove"
+   description="Remove example webapp from Tomcat">
+    <remove url="${url}" username="${username}" password="${password}"
+            path="${example.path}"/>
+  </target>
+
+
+  <!-- ==================== Create Binary Distribution ==================== -->
+
+
+  <target name="dist" depends="example.compile, docs"
+   description="Create binary distribution">
+
+    <mkdir     dir="${dist.home}"/>
+    <copy    todir="${dist.home}">
+      <fileset dir="${basedir}" includes="*.txt build.*"/>
+    </copy>
+
+    <mkdir     dir="${dist.home}/conf"/>
+    <copy    todir="${dist.home}/conf">
+      <fileset dir="${build.home}/conf" includes="*.tld"/>
+    </copy>
+
+    <mkdir     dir="${dist.home}/lib"/>
+    <copy    todir="${dist.home}/lib">
+      <fileset dir="${build.home}/lib" includes="*.jar"/>
+    </copy>
+
+    <mkdir     dir="${dist.home}/src"/>
+    <copy    todir="${dist.home}/src">
+      <fileset dir="src" excludes="**/CVS/**"/>
+    </copy>
+
+    <mkdir     dir="${dist.home}/web"/>
+    <copy    todir="${dist.home}/web">
+      <fileset dir="web" excludes="**/CVS/**"/>
+    </copy>
+
+    <mkdir     dir="${dist.home}/webapps"/>
+    <jar  destfile="${dist.home}/webapps/struts-faces.war">
+      <fileset dir="${build.home}/classes">
+        <include name="META-INF/LICENSE.txt"/>
+      </fileset>
+      <fileset dir="${build.home}/webapps/example">
+        <exclude name="**/jsf-*.jar"/>   <!-- EA license so no redistrib -->
+        <exclude name="**/jstl_el.jar"/> <!-- EA license so no redistrib -->
+      </fileset>
+    </jar>
+
+  </target>
+
+
+</project>

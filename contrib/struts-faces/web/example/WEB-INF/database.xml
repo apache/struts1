@@ -1,0 +1,15 @@
+<database>
+
+  <user username="user"
+        password="pass"
+        fullName="John Q. User"
+     fromAddress="John.User@somewhere.com">
+
+     <subscription host="mail.yahoo.com"     type="imap"
+                   username="jquser"     password="foo"/>
+     <subscription host="mail.hotmail.com"   type="pop3"
+                   username="user1234"   password="bar"/>
+
+  </user>
+
+</database>

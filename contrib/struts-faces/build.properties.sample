@@ -1,0 +1,26 @@
+# build.properties.sample
+# -----------------------
+#
+# This file contains example property settings that you would use to customzie
+# your build environment to build the Struts-Faces integration library from
+# source code.  To use this file, make a copy of it in "build.properties" and
+# customize the values as required.
+#
+# $Id: build.properties.sample,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
+
+
+# The absolute or relative pathname of the JavaServer Faces Reference
+# Implementation Release distribution
+jsf-ri.home=../jsf-ri/dist
+
+
+# The absolute or relative pathname of the directory containing your
+# Servlet API classes JAR file (servlet.jar)
+servlet.home=/usr/local/jakarta-tomcat-4.1.18/commons/lib
+
+
+# The absolute or relative pathname of the Struts 1.1 (Final Release)
+# distribution
+struts.home=/usr/local/jakarta-struts-1.1
+
+
