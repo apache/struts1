@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.4 2002/10/18 15:27:42 jholmes Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/18 15:27:42 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/memory/MemoryDatabasePlugIn.java,v 1.5 2002/11/26 02:44:15 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/26 02:44:15 $
  *
  * ====================================================================
  *
@@ -69,17 +69,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import javax.servlet.ServletException;
-import javax.servlet.UnavailableException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.webapp.example.Constants;
-import org.apache.struts.webapp.example.Subscription;
-import org.apache.struts.webapp.example.User;
-import org.apache.struts.webapp.example.UserDatabase;
-
 
 /**
  * <p><strong>MemoryDatabasePlugIn</strong> initializes and finalizes the
@@ -96,7 +91,7 @@ import org.apache.struts.webapp.example.UserDatabase;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/10/18 15:27:42 $
+ * @version $Revision: 1.5 $ $Date: 2002/11/26 02:44:15 $
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {
@@ -108,7 +103,7 @@ public final class MemoryDatabasePlugIn implements PlugIn {
     /**
      * The application configuration for our owning module.
      */
-    private ApplicationConfig config = null;
+    private ModuleConfig config = null;
 
 
     /**
@@ -183,7 +178,7 @@ public final class MemoryDatabasePlugIn implements PlugIn {
      *
      * @exception ServletException if we cannot configure ourselves correctly
      */
-    public void init(ActionServlet servlet, ApplicationConfig config)
+    public void init(ActionServlet servlet, ModuleConfig config)
         throws ServletException {
 
         log.info("Initializing memory database plug in from '" +
