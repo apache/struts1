@@ -421,13 +421,13 @@
         <mkdir  dir="${dist.home}/contrib"/>
 
         <!-- The STRUTS-EL Tag Library -->
-        <ant    dir="${basedir}/contrib/struts-el"
+        <ant    dir="${struts.el.home}"
              target="clean" inheritAll="false"/>
-        <ant    dir="${basedir}/contrib/struts-el"
+        <ant    dir="${struts.el.home}"
              target="dist" inheritAll="false"/>
         <mkdir  dir="${dist.home}/contrib/struts-el"/>
         <copy todir="${dist.home}/contrib/struts-el">
-           <fileset dir="${basedir}/contrib/struts-el/dist"/>
+           <fileset dir="${struts.el.home}/dist"/>
         </copy>
 
     </target>
@@ -747,7 +747,7 @@
        Clean contrib distribution
 -->
     <target name="clean.contrib" >
-        <ant dir="${basedir}/contrib/struts-el"
+        <ant dir="${struts.el.home}"
              target="clean" inheritAll="false"/>
      </target>
 
