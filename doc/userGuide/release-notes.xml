@@ -23,8 +23,6 @@
           <li>
           <code>LICENSE.txt</code> - The Apache Software Foundation license that defines the terms under which you can use Struts (and other software licensed by Apache).</li>
           <li>
-          <code>README.txt</code> - A brief introduction to Struts.</li>
-          <li>
           <code>contrib/</code> - Additional libraries developed by the Struts team which are not yet part of the core distribution.</li>
           <li>
           <code>lib/</code> - Directory containing files you will need in your own applications. The individual files of interest are:
@@ -201,6 +199,9 @@
         <p>
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
+          <ul>
+              <li>2004-08-10 - DynaActionForm: Change Map's key from String to Object in toString().</li>
+          </ul>
         <ul>
             <li>2004-07-01 - TestDynaActionFormClass: Correct operation of static method calls.</li>
         </ul>
@@ -262,6 +263,11 @@
         <p>
         <strong>Config Package</strong> [
         <code>org.apache.struts.config</code>]</p>
+          <ul>
+              <li>
+              2004-07-31 - Enhance support for "lazy" dynabeans or POJO beans. "Lazy" DynaBeans will hopefully soon be released with Beanutils 1.7.0. These changes will make it easier to plug either a regular JavaBean or a "lazy" DynaBean into struts as an ActionForm. * FormBeanConfig now sets up the properties of DynaBeans which use a MutableDynaClass. * FormBeanConfig now handles POJO beans by wrapping the specified bean using WrapDynaBean and the new BeanValidatorForm. * RequestUtils has been changed so that properties starting with "org.apache.struts" are not attempted to be populated in the ActionForm.
+              </li>
+          </ul>
         <ul>
          <li>2004-04-14 - ModuleConfig.java: Local, as well as global, ActionForwards now observe pluggable classes. </li>
          <li>2004-04-08 - ModuleConfigImpl: Added a list to store ActionConfigs to ensure when enumerated, they are in the order in which they were added.</li>
@@ -306,6 +312,10 @@
         <ul>
           <li>2003-09-07 - strutsel.taglib.tiles: Addition of "tiles-el" library</li>
         </ul>
+          <ul>
+              <li>2004-08-10 - TilesUtilImpl: Remove "static" modifier from doInclude() method.
+              </li>
+          </ul>
         <ul>
           <li>2003-08-11 - struts-chain: Initial check-in of an experimental library that decomposes the Struts 1.1 request procoessor, using the newly checked in Commons Sandbox project called "chain" supporting the Chain of Responsibility pattern.</li>
           <li>2003-08-10 - strutsel: Added action attribute added in base class</li>
@@ -358,6 +368,7 @@
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
         <ul>
+            <li>2004-07-21 - Add accept-charset attribute to the FormTag.</li>
             <li>2004-07-01 - JavascriptValidatorTag - Correct naming of JS methods when multiple forms are used.</li>
         </ul>
         <ul>
@@ -481,6 +492,7 @@
         <code>org.apache.struts.util</code>]:</p>
         <ul>
             <li>
+                2004-07-21 - ModuleUtil: Add module support to the bundle attribute.
                 2004-07-07 - TokenProcessor: Ensure that tokens returned differ even if called quickly by tracking last value used.
             </li>
         </ul>
