@@ -12,10 +12,11 @@
     <author>Martin Cooper</author>
     <author>James Holmes</author>
     <author>David Graham</author>
+    <author>James Mitchell</author>
 </properties>
 
 <body>
-    
+
 <section name="Welcome to Struts" href="Welcome">
 
     <p>
@@ -120,20 +121,20 @@
                 name="logonForm"
                 scope="request"
                 validate="true"
-                input="/Logon.do">
+                input="/pages/Logon.jsp">
                 <forward
                     name="success"
-                    path="/Welcome.do"/>
+                    path="/pages/Welcome.jsp"/>
                 <forward
                     name="failure"
-                    path="/Logon.do"/>
+                    path="/pages/Logon.jsp"/>
             </action>
             <action
                 path="/Logoff"
                 type="app.LogoffAction">
                 <forward
                     name="success"
-                    path="/Welcome.do"/>
+                    path="/pages/Logoff.jsp"/>
             </action>
         </action-mappings>
         <message-resources parameter="resources.application"/>
@@ -153,7 +154,7 @@
             Every class deployed by Struts can be replaced by your own default class.
             The properties of your default class can be set using the
             <a href="http://jakarta.apache.org/commons/digester/"> Digester's</a> <code>set-property</code> feature.
-            This is one reason why there are so many <a href="resources/extensions.html">contributor extensions</a> for
+            This is one reason why there are so many <a href="http://struts.sourceforge.net/community/index.html">contributor extensions</a> for
             Struts.
             Struts provides a base framework, but you can still write <b>your</b> application <b>your</b> way.
         </p>
