@@ -4,7 +4,10 @@
   <property name="app.name"       value="struts"/>
   <property name="build.home"     value="../build/${app.name}"/>
   <property name="catalina.home"  value="../build/tomcat-4.0"/>
+  <property name="debug"          value="true"/>
+  <property name="deprecation"    value="false"/>
   <property name="dist.home"      value="../dist/${app.name}"/>
+  <property name="optimize"       value="true"/>
   <property name="project.name"   value="jakarta-struts"/>
   <property name="project.version" value="1.0-dev"/>
   <property name="tomcat.home"    value="../build/tomcat"/>
@@ -107,7 +110,8 @@
   <target name="compile.library" depends="prepare.library">
     <javac srcdir="src/share"     destdir="${build.home}/library/classes"
            classpath="${servlet.jar}"
-	   debug="true" optimize="false" deprecation="false"/>
+	   debug="${debug}" optimize="${optimize}"
+     deprecation="${deprecation}"/>
     <copy   todir="${build.home}/library/classes">
       <fileset dir="src/share" includes="**/*.properties"/>
     </copy>
@@ -132,7 +136,8 @@
     <javac srcdir="src/documentation"
           destdir="${build.home}/documentation/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
-            debug="true" optimize="false" deprecation="false"/>
+            debug="${debug}" optimize="${optimize}"
+      deprecation="${deprecation}"/>
 -->
 
     <!-- Copy Struts JAR file and TLDs to the documentation app -->
@@ -168,7 +173,8 @@
     <javac srcdir="src/example"
           destdir="${build.home}/example/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
-            debug="true" optimize="false" deprecation="false"/>
+            debug="${debug}" optimize="${optimize}"
+      deprecation="${deprecation}"/>
     <copy   todir="${build.home}/example/WEB-INF/classes">
       <fileset dir="src/example" includes="**/*.properties"/>
     </copy>
@@ -202,7 +208,8 @@
       <javac srcdir="web/upload"
              destdir="${build.home}/upload/WEB-INF/classes"
              classpath="${build.home}/library/classes:${servlet.jar}"
-             debug="true" optimize="false" deprecation="false"/>
+             debug="${debug}" optimize="${optimize}"
+       deprecation="${deprecation}"/>
       <copy todir="${build.home}/upload">
         <fileset dir="web/upload" />
       </copy>
@@ -218,7 +225,8 @@
     <javac srcdir="src/test"
           destdir="${build.home}/test/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
-            debug="true" optimize="false" deprecation="false"/>
+            debug="${debug}" optimize="${optimize}"
+      deprecation="${deprecation}"/>
     <copy  todir="${build.home}/test/WEB-INF/classes">
       <fileset dir="src/test" includes="**/*.properties"/>
     </copy>
@@ -282,7 +290,6 @@
     <jar jarfile="${dist.home}/webapps/${app.name}-upload.war"
          basedir="${build.home}/upload" includes="**"/>
   </target>
-
 
   <!-- DIST:  Construct test distributables -->
   <target name="dist.test" depends="dist.library,compile.test">
