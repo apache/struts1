@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.2 2002/07/11 16:48:46 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:48:46 $
  *
  * ====================================================================
  *
@@ -80,6 +80,9 @@ import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
  * charge real implementation instance, and allows reload of it by creating a new
  * instance.
  *
+ * @author Cedric Dumoulin
+ * @since 1.1
+ * @version $Revision: 1.2 $ $Date: 2002/07/11 16:48:46 $
  */
 public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
 {
