@@ -13,6 +13,10 @@
 
   <global-forwards>
     <forward   name="index"                path="/index.jsp"/>
+    <forward   name="absolute"             path="http://jakarta.apache.org/"/>
+    <forward   name="relative"             path="/index.jsp"/>
+    <forward   name="context-relative"     path="/index.jsp" contextRelative="true"/>
+    <!-- Need a better test for context-relative -->
   </global-forwards>
 
   <action-mappings>

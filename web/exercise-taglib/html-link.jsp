@@ -22,10 +22,14 @@
 <h1>Test struts-html Link Tag</h1>
 </div>
 
+<p>
+
 The following links should hyperlink back to this page, with various
 combinations of request parameters used to modify the previous values of
 the associated form bean.  Press the "Cancel" button to return to the
 main menu.
+
+</p>
 
 <html:form action="html-link.do">
 <table border="0" width="100%">
@@ -140,5 +144,15 @@ main menu.
 
 </html:form>
 
+
+<p>
+The following list tests relative, context-relative, and absolute links. Press (back) to return.
+</p>
+
+<ul>
+<li><html:link forward="relative">index page</html:link></li>
+<li><html:link forward="context-relative">index page, again</html:link></li>
+<li><html:link forward="absolute">jakarta.apache.org</html:link></li>
+</ul>
 
 </html:html>
