@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.5 2003/05/04 22:41:13 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/05/04 22:41:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.6 2003/07/04 20:53:42 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/07/04 20:53:42 $
  *
  * ====================================================================
  *
@@ -108,10 +108,10 @@ import org.apache.struts.util.MessageResources;
  * from under the context and key used by the Struts
  * ActionServlet when the resources are created.
  *
- * @since 1.1
+ * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.5 $ $Date: 2003/05/04 22:41:13 $
+ * @version $Revision: 1.6 $ $Date: 2003/07/04 20:53:42 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 

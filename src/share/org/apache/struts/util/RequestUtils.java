@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.107 2003/07/03 01:47:05 dgraham Exp $
- * $Revision: 1.107 $
- * $Date: 2003/07/03 01:47:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.108 2003/07/04 20:53:42 dgraham Exp $
+ * $Revision: 1.108 $
+ * $Date: 2003/07/04 20:53:42 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.107 $ $Date: 2003/07/03 01:47:05 $
+ * @version $Revision: 1.108 $ $Date: 2003/07/04 20:53:42 $
  */
 
 public class RequestUtils {
@@ -1699,7 +1699,7 @@ public class RequestUtils {
      * @param prefix The module prefix of the desired module
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
-     * @since struts 1.1
+     * @since Struts 1.1
      */
     public static void selectModule(
         String prefix,
@@ -1801,7 +1801,7 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @return the ModuleConfig object from request, or null if none is set in
      * the request.
-     * @since 1.1
+     * @since Struts 1.1
      */
     public static ModuleConfig getRequestModuleConfig( HttpServletRequest request) {
         return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
@@ -1812,7 +1812,7 @@ public class RequestUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      * @return the ModuleConfig object
-     * @since 1.1
+     * @since Struts 1.1
      */
     public static ModuleConfig getModuleConfig(
         HttpServletRequest request,
@@ -1829,7 +1829,7 @@ public class RequestUtils {
      * Return the ModuleConfig object if it exists, null if otherwise.
      * @param pageContext The page context.
      * @return the ModuleConfig object
-     * @since 1.1
+     * @since Struts 1.1
      */
     public static ModuleConfig getModuleConfig(PageContext pageContext) {
         return getModuleConfig(

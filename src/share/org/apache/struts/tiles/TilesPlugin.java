@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.20 2003/04/17 03:51:12 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/04/17 03:51:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.21 2003/07/04 20:53:42 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/07/04 20:53:42 $
  *
  * ====================================================================
  *
@@ -98,27 +98,35 @@ import org.apache.struts.util.RequestUtils;
  * The plugin should be declared in each struts-config.xml file in order to
  * properly initialize the request processor.
  * @author Cedric Dumoulin
- * @since 1.1
+ * @since Struts 1.1
  */
 public class TilesPlugin implements PlugIn {
 
-      /** Commons Logging instance. */
+    /** 
+     * Commons Logging instance. 
+     */
     protected static Log log = LogFactory.getLog(TilesPlugin.class);
 
-      /** Is the factory module aware ? */
+    /** 
+     * Is the factory module aware ? 
+     */
     protected boolean moduleAware = false;
 
-      /** Tiles util implementation classname. This property can be set
-       *  by user in the plugin declaration
-       */
+    /** 
+     * Tiles util implementation classname. This property can be set
+     * by user in the plugin declaration.
+     */
     protected String tilesUtilImplClassname = null;
 
-      /** Associated definition factory */
+    /** 
+     * Associated definition factory. 
+     */
     protected DefinitionsFactory definitionFactory;
 
-      /** The plugin config object provided by the ActionServlet initializing
-       *  this plugin.
-       */
+    /** 
+     * The plugin config object provided by the ActionServlet initializing
+     * this plugin.
+     */
     protected PlugInConfig currentPlugInConfigObject;
 
     /**
@@ -153,89 +161,96 @@ public class TilesPlugin implements PlugIn {
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized.
      */
-    public void init(ActionServlet servlet, ModuleConfig moduleConfig) throws ServletException
-    {
-      // Create factory config object
-    DefinitionsFactoryConfig factoryConfig = readFactoryConfig(servlet, moduleConfig);
-      // Set the module name in the config. This name will be used to compute
-      // the name under which the factory is stored.
-    factoryConfig.setFactoryName(moduleConfig.getPrefix());
-      // Set RequestProcessor class
-    initRequestProcessorClass(moduleConfig);
+    public void init(ActionServlet servlet, ModuleConfig moduleConfig)
+        throws ServletException {
+            
+        // Create factory config object
+        DefinitionsFactoryConfig factoryConfig =
+            readFactoryConfig(servlet, moduleConfig);
+            
+        // Set the module name in the config. This name will be used to compute
+        // the name under which the factory is stored.
+        factoryConfig.setFactoryName(moduleConfig.getPrefix());
+        
+        // Set RequestProcessor class
+        initRequestProcessorClass(moduleConfig);
 
-      // Set Tiles util implementation according to properties 'tilesUtilImplClassname'
-      // and 'moduleAware'.
-      // These properties are taken into account only once. A
-      // side effect is that only the values set in the first initialized plugin
-      // are effectively taken into account.
-    if( !TilesUtil.isTilesUtilImplSet())
-      { // TilesUtilImpl not set , do it
-        // Check if user has specified a TilesUtil implementation classname or not.
-        // If no implementation is specified, check if user has specified one
-        // shared single factory for all module, or one factory for each module.
-      if( getTilesUtilImplClassname() == null )
-        { // No implementation specified, check if moduleAware is set
-        if (isModuleAware())
-          {   // Use appropriate TilesUtil implementation
-          TilesUtil.setTilesUtil(new TilesUtilStrutsModulesImpl());
-          }
-         else
-          { // Use appropriate TilesUtil implementation
-          TilesUtil.setTilesUtil(new TilesUtilStrutsImpl());
-          }
-        }
-       else
-        { // A classname is specified for the tilesUtilImp, use it.
-        try
-          {
-        TilesUtilStrutsImpl impl =
-            (TilesUtilStrutsImpl) RequestUtils
-                .applicationClass(getTilesUtilImplClassname())
-                .newInstance();
-        TilesUtil.setTilesUtil(impl);
-          }
-         catch( ClassCastException ex )
-          {
-          throw new ServletException( "Can't set TilesUtil implementation to '"
-                                      + getTilesUtilImplClassname()
-                                      + "'. TilesUtil implementation should be a subclass of '"
-                                      + TilesUtilStrutsImpl.class.getName()
-                                      + "'" );
-          }
-         catch( Exception ex )
-          {
-          throw new ServletException( "Can't set TilesUtil implementation.", ex );
-          }
+        // Set Tiles util implementation according to properties 'tilesUtilImplClassname'
+        // and 'moduleAware'.
+        // These properties are taken into account only once. A
+        // side effect is that only the values set in the first initialized plugin
+        // are effectively taken into account.
+        if (!TilesUtil.isTilesUtilImplSet()) { // TilesUtilImpl not set , do it
+            // Check if user has specified a TilesUtil implementation classname or not.
+            // If no implementation is specified, check if user has specified one
+            // shared single factory for all module, or one factory for each module.
+            if (getTilesUtilImplClassname() == null) {
+                // No implementation specified, check if moduleAware is set
+                if (isModuleAware()) { // Use appropriate TilesUtil implementation
+                    TilesUtil.setTilesUtil(new TilesUtilStrutsModulesImpl());
+                } else { // Use appropriate TilesUtil implementation
+                    TilesUtil.setTilesUtil(new TilesUtilStrutsImpl());
+                }
+            } else { // A classname is specified for the tilesUtilImp, use it.
+                try {
+                    TilesUtilStrutsImpl impl =
+                        (TilesUtilStrutsImpl) RequestUtils
+                            .applicationClass(getTilesUtilImplClassname())
+                            .newInstance();
+                    TilesUtil.setTilesUtil(impl);
+                    
+                } catch (ClassCastException ex) {
+                    throw new ServletException(
+                        "Can't set TilesUtil implementation to '"
+                            + getTilesUtilImplClassname()
+                            + "'. TilesUtil implementation should be a subclass of '"
+                            + TilesUtilStrutsImpl.class.getName()
+                            + "'");
+                            
+                } catch (Exception ex) {
+                    throw new ServletException(
+                        "Can't set TilesUtil implementation.",
+                        ex);
+                }
+            } // end if
         } // end if
-      } // end if
 
+        // Check if a factory already exist for this module
+        definitionFactory =
+            ((TilesUtilStrutsImpl) TilesUtil.getTilesUtil()).getDefinitionsFactory(
+                servlet.getServletContext(),
+                moduleConfig);
+                
+        if (definitionFactory != null) {
+            if (log.isInfoEnabled())
+                log.info(
+                    "Factory already exists for module '"
+                        + moduleConfig.getPrefix()
+                        + "'. The factory found is from module '"
+                        + definitionFactory.getConfig().getFactoryName()
+                        + "'. No new creation.");
+            return;
+        }
 
-      // Check if a factory already exist for this module
-    definitionFactory = ((TilesUtilStrutsImpl)TilesUtil.getTilesUtil()).getDefinitionsFactory(servlet.getServletContext(), moduleConfig);
-    if (definitionFactory != null)
-      {
-      if (log.isInfoEnabled())
-          log.info( "Factory already exists for module '"
-                  + moduleConfig.getPrefix()
-                  + "'. The factory found is from module '"
-                  + definitionFactory.getConfig().getFactoryName()
-                  + "'. No new creation.");
-      return;
-      } // end if
+        // Create configurable factory
+        try {
+            definitionFactory =
+                TilesUtil.createDefinitionsFactory(
+                    servlet.getServletContext(),
+                    factoryConfig);
+                    
+        } catch (DefinitionsFactoryException ex) {
+            log.error(
+                "Can't create Tiles definition factory for module '"
+                    + moduleConfig.getPrefix()
+                    + "'.");
+            throw new ServletException(ex);
+        }
 
-
-      // Create configurable factory
-    try
-     {
-     definitionFactory = TilesUtil.createDefinitionsFactory(servlet.getServletContext(), factoryConfig);
-     }
-     catch (DefinitionsFactoryException ex)
-     {
-     log.error("Can't create Tiles definition factory for module '" + moduleConfig.getPrefix() + "'.");
-     throw new ServletException(ex);
-     }
-
-    log.info("Tiles definition factory loaded for module '" + moduleConfig.getPrefix() + "'.");
+        log.info(
+            "Tiles definition factory loaded for module '"
+                + moduleConfig.getPrefix()
+                + "'.");
     }
 
     /**
@@ -256,39 +271,47 @@ public class TilesPlugin implements PlugIn {
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized.
      */
-  protected DefinitionsFactoryConfig readFactoryConfig( ActionServlet servlet, ModuleConfig config)
-        throws ServletException
-    {
-      // Create tiles definitions config object
-    DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
-      // Get init parameters from web.xml files
-    try
-      {
-      DefinitionsUtil.populateDefinitionsFactoryConfig( factoryConfig, servlet.getServletConfig());
-      }
-     catch (Exception ex)
-      {
-      if (log.isDebugEnabled())
-          log.debug("", ex);
-      ex.printStackTrace();
-      throw new UnavailableException( "Can't populate DefinitionsFactoryConfig class from 'web.xml': " + ex.getMessage());
-      }
-    // Get init parameters from struts-config.xml
-    try
-      {
-      Map strutsProperties = findStrutsPlugInConfigProperties(servlet, config);
-      factoryConfig.populate(strutsProperties);
-      }
-     catch (Exception ex)
-      {
-      if (log.isDebugEnabled())
-          log.debug("", ex);
-      throw new UnavailableException( "Can't populate DefinitionsFactoryConfig class from '"
-                                      + config.getPrefix()
-                                      + "/struts-config.xml':"
-                                      + ex.getMessage());
-      }
-    return factoryConfig;
+    protected DefinitionsFactoryConfig readFactoryConfig(
+        ActionServlet servlet,
+        ModuleConfig config)
+        throws ServletException {
+            
+        // Create tiles definitions config object
+        DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
+        // Get init parameters from web.xml files
+        try {
+            DefinitionsUtil.populateDefinitionsFactoryConfig(
+                factoryConfig,
+                servlet.getServletConfig());
+                
+        } catch (Exception ex) {
+            if (log.isDebugEnabled()){
+                log.debug("", ex);
+            }
+            ex.printStackTrace();
+            throw new UnavailableException(
+                "Can't populate DefinitionsFactoryConfig class from 'web.xml': "
+                    + ex.getMessage());
+        }
+        
+        // Get init parameters from struts-config.xml
+        try {
+            Map strutsProperties = findStrutsPlugInConfigProperties(servlet, config);
+            factoryConfig.populate(strutsProperties);
+            
+        } catch (Exception ex) {
+            if (log.isDebugEnabled()) {
+                log.debug("", ex);
+            }
+                
+            throw new UnavailableException(
+                "Can't populate DefinitionsFactoryConfig class from '"
+                    + config.getPrefix()
+                    + "/struts-config.xml':"
+                    + ex.getMessage());
+        }
+        
+        return factoryConfig;
     }
 
     /**
@@ -303,10 +326,12 @@ public class TilesPlugin implements PlugIn {
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized.
      */
-    protected Map findStrutsPlugInConfigProperties(ActionServlet servlet, ModuleConfig config)
-        throws ServletException
-    {
-    return currentPlugInConfigObject.getProperties();
+    protected Map findStrutsPlugInConfigProperties(
+        ActionServlet servlet,
+        ModuleConfig config)
+        throws ServletException {
+            
+        return currentPlugInConfigObject.getProperties();
     }
 
     /**
@@ -319,46 +344,47 @@ public class TilesPlugin implements PlugIn {
      *  this plugin is associated.
      * @throws ServletException On errors.
      */
-    protected void initRequestProcessorClass(ModuleConfig config) throws ServletException
-    {
-    String tilesProcessorClassname = TilesRequestProcessor.class.getName();
-    ControllerConfig ctrlConfig = config.getControllerConfig();
-    String configProcessorClassname = ctrlConfig.getProcessorClass();
+    protected void initRequestProcessorClass(ModuleConfig config)
+        throws ServletException {
+            
+        String tilesProcessorClassname = TilesRequestProcessor.class.getName();
+        ControllerConfig ctrlConfig = config.getControllerConfig();
+        String configProcessorClassname = ctrlConfig.getProcessorClass();
 
-      // Check if specified classname exist
-    Class configProcessorClass;
-    try
-     {
-     configProcessorClass = RequestUtils.applicationClass( configProcessorClassname);
-     }
-    catch(java.lang.ClassNotFoundException ex)
-     {
-     log.fatal( "Can't set TilesRequestProcessor: bad class name '"
-                + configProcessorClassname
-                + "'.");
-     throw new ServletException(ex);
-     }
-
-      // Check if it is the default request processor or Tiles one.
-      // If true, replace by Tiles' one.
-    if(configProcessorClassname.equals(RequestProcessor.class.getName())
-        || configProcessorClassname.endsWith(tilesProcessorClassname))
-      {
-      ctrlConfig.setProcessorClass(tilesProcessorClassname);
-      return;
-      }
-
-      // Check if specified request processor is compatible with Tiles.
-    Class tilesProcessorClass = TilesRequestProcessor.class;
-    if(!tilesProcessorClass.isAssignableFrom(configProcessorClass))
-      { // Not compatible
-      String msg = "TilesPlugin : Specified RequestProcessor not compatible with TilesRequestProcessor";
-      if (log.isFatalEnabled())
-        {
-        log.fatal(msg);
+        // Check if specified classname exist
+        Class configProcessorClass;
+        try {
+            configProcessorClass =
+                RequestUtils.applicationClass(configProcessorClassname);
+                
+        } catch (ClassNotFoundException ex) {
+            log.fatal(
+                "Can't set TilesRequestProcessor: bad class name '"
+                    + configProcessorClassname
+                    + "'.");
+            throw new ServletException(ex);
         }
-      throw new ServletException(msg);
-      } // end if
+
+        // Check if it is the default request processor or Tiles one.
+        // If true, replace by Tiles' one.
+        if (configProcessorClassname.equals(RequestProcessor.class.getName())
+            || configProcessorClassname.endsWith(tilesProcessorClassname)) {
+                
+            ctrlConfig.setProcessorClass(tilesProcessorClassname);
+            return;
+        }
+
+        // Check if specified request processor is compatible with Tiles.
+        Class tilesProcessorClass = TilesRequestProcessor.class;
+        if (!tilesProcessorClass.isAssignableFrom(configProcessorClass)) {
+            // Not compatible
+            String msg =
+                "TilesPlugin : Specified RequestProcessor not compatible with TilesRequestProcessor";
+            if (log.isFatalEnabled()) {
+                log.fatal(msg);
+            }
+            throw new ServletException(msg);
+        }
     }
 
     /**
@@ -366,27 +392,25 @@ public class TilesPlugin implements PlugIn {
      * If this property is set, the flag <code>moduleAware</code> will not be used anymore.
      * @param tilesUtilImplClassname Classname.
      */
-  public void setTilesUtilImplClassname(String tilesUtilImplClassname)
-  {
-    this.tilesUtilImplClassname = tilesUtilImplClassname;
-  }
+    public void setTilesUtilImplClassname(String tilesUtilImplClassname) {
+        this.tilesUtilImplClassname = tilesUtilImplClassname;
+    }
+    
     /**
      * Get Tiles util implemention classname.
      * @return The classname or <code>null</code> if none is set.
      */
-  public String getTilesUtilImplClassname()
-  {
-    return tilesUtilImplClassname;
-  }
+    public String getTilesUtilImplClassname() {
+        return tilesUtilImplClassname;
+    }
 
     /**
      * Method used by the ActionServlet initializing this plugin.
      * Set the plugin config object read from module config.
      * @param plugInConfigObject PlugInConfig.
      */
-  public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject)
-  {
-    this.currentPlugInConfigObject = plugInConfigObject;
-  }
+    public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject) {
+        this.currentPlugInConfigObject = plugInConfigObject;
+    }
 
 }

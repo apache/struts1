@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.7 2003/02/27 19:20:51 cedric Exp $
- * $Revision: 1.7 $
- * $Date: 2003/02/27 19:20:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsFactoryConfig.java,v 1.8 2003/07/04 20:53:42 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/04 20:53:42 $
  *
  * ====================================================================
  *
@@ -59,10 +59,10 @@
  *
  */
 
-
 package org.apache.struts.tiles;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -75,18 +75,18 @@ import org.apache.commons.beanutils.BeanUtils;
  * definition factory.
  *
  * @author Cedric Dumoulin
- * @since 1.1
- * @version $Revision: 1.7 $ $Date: 2003/02/27 19:20:51 $
+ * @since Struts 1.1
+ * @version $Revision: 1.8 $ $Date: 2003/07/04 20:53:42 $
  */
-public class DefinitionsFactoryConfig implements Serializable
-{
+public class DefinitionsFactoryConfig implements Serializable {
 
     /**
      * Fully qualified classname of the factory to create.
      * If no classname is set, a default factory is created
      * (of class "org.apache.struts.tiles.xmlDefinition.I18nFactorySet").
      */
-    protected String factoryClassname = "org.apache.struts.tiles.xmlDefinition.I18nFactorySet";
+    protected String factoryClassname =
+        "org.apache.struts.tiles.xmlDefinition.I18nFactorySet";
 
     /**
      * Debug level value. 0=no debug info >0 = debug info.
@@ -106,8 +106,11 @@ public class DefinitionsFactoryConfig implements Serializable
      * Default value is true.
      */
     protected boolean parserValidate = true;
-    /** Definition configuration file specified by user */
-    protected String definitionConfigFiles;
+    
+    /** 
+     * Definition configuration file specified by user. 
+     */
+    protected String definitionConfigFiles = null;
 
     /**
      * Specifies whether the factory is "module-aware".
@@ -124,15 +127,33 @@ public class DefinitionsFactoryConfig implements Serializable
      */
     protected String factoryName;
 
-    /** Alternate name for parser debug details properties in configuration file */
-    public static final String PARSER_DETAILS_PARAMETER_NAME = "definitions-parser-details";
-    /** Alternate name for parser validate properties in configuration file */
-    public static final String PARSER_VALIDATE_PARAMETER_NAME = "definitions-parser-validate";
-    /** Alternate name for factory classname properties in configuration file */
-    public static final String FACTORY_CLASSNAME_PARAMETER_NAME = "definitions-factory-class";
-    /** Alternate name for definition files properties in configuration file */
-    public static final String DEFINITIONS_CONFIG_PARAMETER_NAME = "definitions-config";
-    /** Alternate name for definition debug details properties in configuration file */
+    /** 
+     * Alternate name for parser debug details properties in configuration file. 
+     */
+    public static final String PARSER_DETAILS_PARAMETER_NAME =
+        "definitions-parser-details";
+        
+    /**
+     * Alternate name for parser validate properties in configuration file. 
+     */
+    public static final String PARSER_VALIDATE_PARAMETER_NAME =
+        "definitions-parser-validate";
+        
+    /** 
+     * Alternate name for factory classname properties in configuration file. 
+     */
+    public static final String FACTORY_CLASSNAME_PARAMETER_NAME =
+        "definitions-factory-class";
+        
+    /** 
+     * Alternate name for definition files properties in configuration file. 
+     */
+    public static final String DEFINITIONS_CONFIG_PARAMETER_NAME =
+        "definitions-config";
+        
+    /** 
+     * Alternate name for definition debug details properties in configuration file. 
+     */
     public static final String TILES_DETAILS_PARAMETER_NAME = "definitions-debug";
 
     /**
@@ -143,9 +164,8 @@ public class DefinitionsFactoryConfig implements Serializable
     /**
      * Default constructor.
      */
-    public DefinitionsFactoryConfig()
-    {
-
+    public DefinitionsFactoryConfig() {
+        super();
     }
 
     /**
@@ -155,9 +175,8 @@ public class DefinitionsFactoryConfig implements Serializable
      * attribute.
      * @param initParameters Map.
      */
-    public DefinitionsFactoryConfig(Map initParameters)
-    {
-
+    public DefinitionsFactoryConfig(Map initParameters) {
+        super();
     }
 
     /**
@@ -165,8 +184,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @return <code>true</code>: user wants a single factory instance,
      * <code>false</code>: user wants multiple factory instances (one per module with Struts)
      */
-    public boolean isModuleAware()
-    {
+    public boolean isModuleAware() {
         return moduleAware;
     }
     /**
@@ -174,8 +192,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @param moduleAware <code>true</code>: user wants a single factory instance,
      * <code>false</code>: user wants multiple factory instances (one per module with Struts)
      */
-    public void setModuleAware(boolean moduleAware)
-    {
+    public void setModuleAware(boolean moduleAware) {
         this.moduleAware = moduleAware;
     }
 
@@ -183,8 +200,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Get the classname of the factory.
      * @return Classname.
      */
-    public String getFactoryClassname()
-    {
+    public String getFactoryClassname() {
         return factoryClassname;
     }
 
@@ -192,8 +208,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Set the classname of the factory..
      * @param aFactoryClassname Classname of the factory.
      */
-    public void setFactoryClassname(String aFactoryClassname)
-    {
+    public void setFactoryClassname(String aFactoryClassname) {
         factoryClassname = aFactoryClassname;
     }
 
@@ -202,8 +217,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @return Debug level.
      * @deprecated Use commons-logging mechanism.
      */
-    public int getDebugLevel()
-    {
+    public int getDebugLevel() {
         return debugLevel;
     }
 
@@ -212,8 +226,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @param aDebugLevel Debug level.
      * @deprecated Use commons-logging mechanism.
      */
-    public void setDebugLevel(int aDebugLevel)
-    {
+    public void setDebugLevel(int aDebugLevel) {
         debugLevel = aDebugLevel;
     }
 
@@ -222,8 +235,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @return Debug level.
      * @deprecated Use commons-logging mechanism.
      */
-    public int getParserDebugLevel()
-    {
+    public int getParserDebugLevel() {
         return parserDebugLevel;
     }
 
@@ -232,8 +244,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @param aParserDebugLevel Debug level.
      * @deprecated Use commons-logging mechanism.
      */
-    public void setParserDebugLevel(int aParserDebugLevel)
-    {
+    public void setParserDebugLevel(int aParserDebugLevel) {
         parserDebugLevel = aParserDebugLevel;
     }
 
@@ -241,8 +252,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Determines if the parser is validating.
      * @return <code>true<code> when in validating mode.
      */
-    public boolean getParserValidate()
-    {
+    public boolean getParserValidate() {
         return parserValidate;
     }
 
@@ -250,8 +260,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Set the validating mode for the parser.
      * @param aParserValidate <code>true</code> for validation, <code>false</code> otherwise
      */
-    public void setParserValidate(boolean aParserValidate)
-    {
+    public void setParserValidate(boolean aParserValidate) {
         parserValidate = aParserValidate;
     }
 
@@ -259,8 +268,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Get the definition config files.
      * @return Defition config files.
      */
-    public String getDefinitionConfigFiles()
-    {
+    public String getDefinitionConfigFiles() {
         return definitionConfigFiles;
     }
 
@@ -268,8 +276,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Set the definition config files.
      * @param aDefinitionConfigFiles Definition config files.
      */
-    public void setDefinitionConfigFiles(String aDefinitionConfigFiles)
-    {
+    public void setDefinitionConfigFiles(String aDefinitionConfigFiles) {
         definitionConfigFiles = aDefinitionConfigFiles;
     }
 
@@ -278,8 +285,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @param name Name of the attribute.
      * @param value Value of the attribute.
      */
-    public void setAttribute(String name, Object value)
-    {
+    public void setAttribute(String name, Object value) {
         extraAttributes.put(name, value);
     }
 
@@ -288,8 +294,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * @param name Name of the attribute.
      * @return Value of the attribute, or null if not found.
      */
-    public Object getAttribute(String name)
-    {
+    public Object getAttribute(String name) {
         return extraAttributes.get(name);
     }
 
@@ -297,8 +302,7 @@ public class DefinitionsFactoryConfig implements Serializable
      * Get additional attributes as a Map.
      * @return Map A Map containing attribute name - value pairs.
      */
-    public Map getAttributes()
-    {
+    public Map getAttributes() {
         Map map = new HashMap(extraAttributes);
         // Add property attributes using old names
         /*
@@ -306,7 +310,7 @@ public class DefinitionsFactoryConfig implements Serializable
           map.put(TILES_DETAILS_PARAMETER_NAME, Integer.toString(getDebugLevel()) );
           map.put(PARSER_DETAILS_PARAMETER_NAME, Integer.toString(getParserDebugLevel()) );
           map.put(PARSER_VALIDATE_PARAMETER_NAME, new Boolean(getParserValidate()).toString() );
-
+        
           if( ! "org.apache.struts.tiles.xmlDefinition.I18nFactorySet".equals(getFactoryClassname()) )
           map.put(FACTORY_CLASSNAME_PARAMETER_NAME, getFactoryClassname());
         */
@@ -337,16 +341,16 @@ public class DefinitionsFactoryConfig implements Serializable
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method.
-     * @exception java.lang.reflect.InvocationTargetException if the property accessor method
+     * @exception InvocationTargetException if the property accessor method
      *  throws an exception.
      * @see org.apache.commons.beanutils.BeanUtils
      */
-    public void populate( Map properties)
-        throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
-    {
+    public void populate(Map properties)
+        throws IllegalAccessException, InvocationTargetException {
+
         // link old parameter names for backward compatibility
         linkOldPropertyNames(properties);
-        BeanUtils.populate( this, properties);
+        BeanUtils.populate(this, properties);
     }
 
     /**
@@ -355,42 +359,46 @@ public class DefinitionsFactoryConfig implements Serializable
      * @param properties Map keyed by property name, with the
      *  corresponding (String or String[]) value(s) to be set.
      */
-    static public void linkOldPropertyNames( Map properties)
-    {
+    static public void linkOldPropertyNames(Map properties) {
         Set entries = properties.entrySet();
         Map toAdd = new HashMap();
         Iterator i = entries.iterator();
-        while( i.hasNext() )
-            {
-                Map.Entry entry = (Map.Entry)i.next();
-                if(DEFINITIONS_CONFIG_PARAMETER_NAME.equals(entry.getKey()))
-                    toAdd.put( "definitionConfigFiles", entry.getValue());
-                else if(FACTORY_CLASSNAME_PARAMETER_NAME.equals(entry.getKey()))
-                    toAdd.put( "factoryClassname", entry.getValue());
-                else if(PARSER_DETAILS_PARAMETER_NAME.equals(entry.getKey()))
-                    toAdd.put( "parserDebugLevel", entry.getValue());
-                else if(PARSER_VALIDATE_PARAMETER_NAME.equals(entry.getKey()))
-                    toAdd.put( "parserValidate", entry.getValue());
-                else if(TILES_DETAILS_PARAMETER_NAME.equals(entry.getKey()))
-                    toAdd.put( "debugLevel", entry.getValue());
-            } // end loop
-        if( toAdd.size() > 0 )
-            properties.putAll( toAdd );
+        while (i.hasNext()) {
+            Map.Entry entry = (Map.Entry) i.next();
+
+            if (DEFINITIONS_CONFIG_PARAMETER_NAME.equals(entry.getKey())) {
+                toAdd.put("definitionConfigFiles", entry.getValue());
+                
+            } else if (FACTORY_CLASSNAME_PARAMETER_NAME.equals(entry.getKey())) {
+                toAdd.put("factoryClassname", entry.getValue());
+                
+            } else if (PARSER_DETAILS_PARAMETER_NAME.equals(entry.getKey())) {
+                toAdd.put("parserDebugLevel", entry.getValue());
+                
+            } else if (PARSER_VALIDATE_PARAMETER_NAME.equals(entry.getKey())) {
+                toAdd.put("parserValidate", entry.getValue());
+                
+            } else if (TILES_DETAILS_PARAMETER_NAME.equals(entry.getKey())) {
+                toAdd.put("debugLevel", entry.getValue());
+            }
+        }
+
+        if (toAdd.size() > 0) {
+            properties.putAll(toAdd);
+        }
     }
 
     /**
      * Get the factory name.
      */
-    public String getFactoryName()
-    {
+    public String getFactoryName() {
         return factoryName;
     }
     /**
      * Set the factory name.
      * @param factoryName Name of the factory.
      */
-    public void setFactoryName(String factoryName)
-    {
+    public void setFactoryName(String factoryName) {
         this.factoryName = factoryName;
     }
 }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.6 2003/02/27 19:19:54 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2003/02/27 19:19:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.7 2003/07/04 20:53:42 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/04 20:53:42 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,7 +59,6 @@
  *
  */
 
-
 package org.apache.struts.tiles.definition;
 
 import java.util.Enumeration;
@@ -85,18 +84,26 @@ import org.apache.struts.tiles.TilesUtil;
  * instance.
  *
  * @author Cedric Dumoulin
- * @since 1.1
- * @version $Revision: 1.6 $ $Date: 2003/02/27 19:19:54 $
+ * @since Struts 1.1
+ * @version $Revision: 1.7 $ $Date: 2003/07/04 20:53:42 $
  */
-public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
-{
-    /** The real factory instance */
-  protected ComponentDefinitionsFactory factory;
-    /** Initialization parameters */
-  protected Map properties;
+public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory {
 
-    /** Name of init property carrying factory class name */
-  public static final String DEFINITIONS_FACTORY_CLASSNAME = "definitions-factory-class";
+    /** 
+     * The real factory instance. 
+     */
+    protected ComponentDefinitionsFactory factory = null;
+
+    /** 
+     * Initialization parameters. 
+     */
+    protected Map properties = null;
+
+    /** 
+     * Name of init property carrying factory class name. 
+     */
+    public static final String DEFINITIONS_FACTORY_CLASSNAME =
+        "definitions-factory-class";
 
     /**
      * Constructor.
@@ -105,12 +112,14 @@ public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
      * @param servletConfig Our servlet config.
      * @throws DefinitionsFactoryException If factory creation fail.
      */
-  public ReloadableDefinitionsFactory( ServletContext servletContext, ServletConfig servletConfig )
-    throws DefinitionsFactoryException
-  {
-  properties = new ServletPropertiesMap( servletConfig );
-  factory = createFactory( servletContext, properties);
-  }
+    public ReloadableDefinitionsFactory(
+        ServletContext servletContext,
+        ServletConfig servletConfig)
+        throws DefinitionsFactoryException {
+
+        properties = new ServletPropertiesMap(servletConfig);
+        factory = createFactory(servletContext, properties);
+    }
 
     /**
      * Constructor.
@@ -119,178 +128,197 @@ public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
      * @param properties Map containing all properties.
      * @throws DefinitionsFactoryException If factory creation fail.
      */
-  public ReloadableDefinitionsFactory( ServletContext servletContext, Map properties )
-    throws DefinitionsFactoryException
-  {
-  this.properties = properties;
-  factory = createFactory( servletContext, properties);
-  }
+    public ReloadableDefinitionsFactory(
+        ServletContext servletContext,
+        Map properties)
+        throws DefinitionsFactoryException {
 
-
-   /**
-   * Create Definition factory from provided classname.
-   * If a factory class name is provided, a factory of this class is created. Otherwise,
-   * a default factory is created.
-   * Factory must have a constructor taking ServletContext and Map as parameter.
-   * @param classname Class name of the factory to create.
-   * @param servletContext Servlet Context passed to newly created factory.
-   * @param properties Map of name/property passed to newly created factory.
-   * @return newly created factory.
-   * @throws DefinitionsFactoryException If an error occur while initializing factory
-   */
-  public ComponentDefinitionsFactory createFactoryFromClassname(ServletContext servletContext, Map properties, String classname)
-    throws DefinitionsFactoryException
-  {
-  if( classname == null )
-    return createFactory( servletContext, properties );
-
-    // Try to create from classname
-  try
-    {
-    Class factoryClass = TilesUtil.applicationClass(classname);
-    ComponentDefinitionsFactory factory = (ComponentDefinitionsFactory)factoryClass.newInstance();
-    factory.initFactory( servletContext, properties);
-    return factory;
-    }
-   catch( ClassCastException ex )
-    { // Bad classname
-    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Factory class '"
-                                           + classname +" must implements 'ComponentDefinitionsFactory'.", ex );
-    }
-   catch( ClassNotFoundException ex )
-    { // Bad classname
-    throw new DefinitionsFactoryException( "Error - createDefinitionsFactory : Bad class name '"
-                                           + classname +"'.", ex );
-    }
-   catch( InstantiationException ex )
-    { // Bad constructor or error
-    throw new DefinitionsFactoryException( ex );
-    }
-   catch( IllegalAccessException ex )
-    { //
-    throw new DefinitionsFactoryException( ex );
+        this.properties = properties;
+        factory = createFactory(servletContext, properties);
     }
 
-  }
-
-   /**
-   * Create default Definition factory.
-   * Factory must have a constructor taking ServletContext and Map as parameter.
-   * In this implementation, default factory is of class I18nFactorySet
-   * @param servletContext Servlet Context passed to newly created factory.
-   * @param properties Map of name/property passed to newly created factory.
-   * @return newly created factory.
-   * @throws DefinitionsFactoryException If an error occur while initializing factory
-   */
-  public ComponentDefinitionsFactory createDefaultFactory(ServletContext servletContext, Map properties)
-    throws DefinitionsFactoryException
-  {
-    ComponentDefinitionsFactory factory = new I18nFactorySet(servletContext, properties); ;
-    return factory;
-  }
-
-   /**
-   * Create Definition factory.
-   * Convenience method. ServletConfig is wrapped into a Map allowing retrieval
-   * of init parameters. Factory classname is also retrieved, as well as debug level.
-   * Finally, approriate createDefinitionsFactory() is called.
-   * @param servletContext Servlet Context passed to newly created factory.
-   * @param properties Map containing all properties.
-   */
-  public ComponentDefinitionsFactory createFactory(ServletContext servletContext, Map properties)
-    throws DefinitionsFactoryException
-  {
-    String classname = (String)properties.get(DEFINITIONS_FACTORY_CLASSNAME);
-    if(classname!=null)
-      return createFactoryFromClassname( servletContext, properties, classname);
-
-    return new I18nFactorySet( servletContext, properties );
-  }
-
-
-  /**
-   * Get a definition by its name.
-   * Call appropriate method on underlying factory instance.
-   * Throw appropriate exception if definition or definition factory is not found.
-   * @param definitionName Name of requested definition.
-   * @param request Current servlet request.
-   * @param servletContext Current servlet context.
-   * @throws FactoryNotFoundException Can't find definition factory.
-   * @throws DefinitionsFactoryException General error in factory while getting definition.
-   */
-  public ComponentDefinition getDefinition(String definitionName, ServletRequest request, ServletContext servletContext)
-    throws FactoryNotFoundException, DefinitionsFactoryException
-  {
-  return factory.getDefinition(definitionName, (HttpServletRequest)request, servletContext);
-  }
-
-  /**
-   * Reload underlying factory.
-   * Reload is done by creating a new factory instance, and replacing the old instance
-   * with the new one.
-   * @param servletContext Current servlet context.
-   * @throws DefinitionsFactoryException If factory creation fails.
-   */
-  public void reload(ServletContext servletContext)
-    throws DefinitionsFactoryException
-  {
-  ComponentDefinitionsFactory newInstance = createFactory( servletContext, properties);
-  factory = newInstance;
-  }
-
-  /**
-   * Get underlying factory instance.
-   * @return ComponentDefinitionsFactory
-   */
-  public ComponentDefinitionsFactory getFactory()
-  {
-  return factory;
-  }
-
-   /**
-     * Init factory.
-     * This method is required by interface ComponentDefinitionsFactory. It is
-     * not used in this implementation, as it manages itself the underlying creation
-     * and initialization.
-     * @param servletContext Servlet Context passed to newly created factory.
-     * @param properties Map of name/property passed to newly created factory.
-     * Map can contain more properties than requested.
-     * @throws DefinitionsFactoryException An error occur during initialization.
-   */
-   public void initFactory(ServletContext servletContext, Map properties) throws DefinitionsFactoryException
-   {  // do nothing
-   }
-
-   /**
-    * Return String representation.
-    * @return String representation.
-    */
-   public String toString()
-   {
-   return factory.toString();
-   }
-
-  /**
-   * Inner class.
-   * Wrapper for ServletContext init parameters.
-   * Object of this class is an HashMap containing parameters and values
-   * defined in the servlet config file (web.xml).
-   */
- class ServletPropertiesMap extends HashMap {
     /**
-     * Constructor.
-     */
-  ServletPropertiesMap( ServletConfig config )
-    {
-      // This implementation is very simple.
-      // It is possible to avoid creation of a new structure, but this would
-      // imply writing all of the Map interface.
-    Enumeration enum = config.getInitParameterNames();
-    while( enum.hasMoreElements() )
-      {
-      String key = (String)enum.nextElement();
-      put( key, config.getInitParameter( key ) );
-      }
+    * Create Definition factory from provided classname.
+    * If a factory class name is provided, a factory of this class is created. Otherwise,
+    * a default factory is created.
+    * Factory must have a constructor taking ServletContext and Map as parameter.
+    * @param classname Class name of the factory to create.
+    * @param servletContext Servlet Context passed to newly created factory.
+    * @param properties Map of name/property passed to newly created factory.
+    * @return newly created factory.
+    * @throws DefinitionsFactoryException If an error occur while initializing factory
+    */
+    public ComponentDefinitionsFactory createFactoryFromClassname(
+        ServletContext servletContext,
+        Map properties,
+        String classname)
+        throws DefinitionsFactoryException {
+
+        if (classname == null) {
+            return createFactory(servletContext, properties);
+        }
+
+        // Try to create from classname
+        try {
+            Class factoryClass = TilesUtil.applicationClass(classname);
+            ComponentDefinitionsFactory factory =
+                (ComponentDefinitionsFactory) factoryClass.newInstance();
+            factory.initFactory(servletContext, properties);
+            return factory;
+
+        } catch (ClassCastException ex) { // Bad classname
+            throw new DefinitionsFactoryException(
+                "Error - createDefinitionsFactory : Factory class '"
+                    + classname
+                    + " must implements 'ComponentDefinitionsFactory'.",
+                ex);
+
+        } catch (ClassNotFoundException ex) { // Bad classname
+            throw new DefinitionsFactoryException(
+                "Error - createDefinitionsFactory : Bad class name '"
+                    + classname
+                    + "'.",
+                ex);
+
+        } catch (InstantiationException ex) { // Bad constructor or error
+            throw new DefinitionsFactoryException(ex);
+
+        } catch (IllegalAccessException ex) {
+            throw new DefinitionsFactoryException(ex);
+        }
+
     }
-}  // end inner class
+
+    /**
+    * Create default Definition factory.
+    * Factory must have a constructor taking ServletContext and Map as parameter.
+    * In this implementation, default factory is of class I18nFactorySet
+    * @param servletContext Servlet Context passed to newly created factory.
+    * @param properties Map of name/property passed to newly created factory.
+    * @return newly created factory.
+    * @throws DefinitionsFactoryException If an error occur while initializing factory
+    */
+    public ComponentDefinitionsFactory createDefaultFactory(
+        ServletContext servletContext,
+        Map properties)
+        throws DefinitionsFactoryException {
+
+        ComponentDefinitionsFactory factory =
+            new I18nFactorySet(servletContext, properties);
+
+        return factory;
+    }
+
+    /**
+    * Create Definition factory.
+    * Convenience method. ServletConfig is wrapped into a Map allowing retrieval
+    * of init parameters. Factory classname is also retrieved, as well as debug level.
+    * Finally, approriate createDefinitionsFactory() is called.
+    * @param servletContext Servlet Context passed to newly created factory.
+    * @param properties Map containing all properties.
+    */
+    public ComponentDefinitionsFactory createFactory(
+        ServletContext servletContext,
+        Map properties)
+        throws DefinitionsFactoryException {
+
+        String classname = (String) properties.get(DEFINITIONS_FACTORY_CLASSNAME);
+
+        if (classname != null) {
+            return createFactoryFromClassname(servletContext, properties, classname);
+        }
+
+        return new I18nFactorySet(servletContext, properties);
+    }
+
+    /**
+     * Get a definition by its name.
+     * Call appropriate method on underlying factory instance.
+     * Throw appropriate exception if definition or definition factory is not found.
+     * @param definitionName Name of requested definition.
+     * @param request Current servlet request.
+     * @param servletContext Current servlet context.
+     * @throws FactoryNotFoundException Can't find definition factory.
+     * @throws DefinitionsFactoryException General error in factory while getting definition.
+     */
+    public ComponentDefinition getDefinition(
+        String definitionName,
+        ServletRequest request,
+        ServletContext servletContext)
+        throws FactoryNotFoundException, DefinitionsFactoryException {
+
+        return factory.getDefinition(
+            definitionName,
+            (HttpServletRequest) request,
+            servletContext);
+    }
+
+    /**
+     * Reload underlying factory.
+     * Reload is done by creating a new factory instance, and replacing the old instance
+     * with the new one.
+     * @param servletContext Current servlet context.
+     * @throws DefinitionsFactoryException If factory creation fails.
+     */
+    public void reload(ServletContext servletContext)
+        throws DefinitionsFactoryException {
+
+        ComponentDefinitionsFactory newInstance =
+            createFactory(servletContext, properties);
+
+        factory = newInstance;
+    }
+
+    /**
+     * Get underlying factory instance.
+     * @return ComponentDefinitionsFactory
+     */
+    public ComponentDefinitionsFactory getFactory() {
+        return factory;
+    }
+
+    /**
+      * Init factory.
+      * This method is required by interface ComponentDefinitionsFactory. It is
+      * not used in this implementation, as it manages itself the underlying creation
+      * and initialization.
+      * @param servletContext Servlet Context passed to newly created factory.
+      * @param properties Map of name/property passed to newly created factory.
+      * Map can contain more properties than requested.
+      * @throws DefinitionsFactoryException An error occur during initialization.
+    */
+    public void initFactory(ServletContext servletContext, Map properties)
+        throws DefinitionsFactoryException {
+        // do nothing
+    }
+
+    /**
+     * Return String representation.
+     * @return String representation.
+     */
+    public String toString() {
+        return factory.toString();
+    }
+
+    /**
+     * Inner class.
+     * Wrapper for ServletContext init parameters.
+     * Object of this class is an HashMap containing parameters and values
+     * defined in the servlet config file (web.xml).
+     */
+    class ServletPropertiesMap extends HashMap {
+        /**
+         * Constructor.
+         */
+        ServletPropertiesMap(ServletConfig config) {
+            // This implementation is very simple.
+            // It is possible to avoid creation of a new structure, but this would
+            // imply writing all of the Map interface.
+            Enumeration enum = config.getInitParameterNames();
+            while (enum.hasMoreElements()) {
+                String key = (String) enum.nextElement();
+                put(key, config.getInitParameter(key));
+            }
+        }
+    } // end inner class
 }
