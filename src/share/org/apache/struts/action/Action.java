@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.62 2003/07/01 01:24:10 dgraham Exp $
- * $Revision: 1.62 $
- * $Date: 2003/07/01 01:24:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.63 2003/07/04 21:23:12 dgraham Exp $
+ * $Revision: 1.63 $
+ * $Date: 2003/07/04 21:23:12 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.62 $ $Date: 2003/07/01 01:24:10 $
+ * @version $Revision: 1.63 $ $Date: 2003/07/04 21:23:12 $
  */
 public class Action {
 
@@ -185,17 +185,26 @@ public class Action {
      * @param response The non-HTTP response we are creating
      *
      * @exception Exception if the application business logic throws
-     *  an exception
+     *  an exception.
      * @since Struts 1.1
      */
-    public ActionForward execute(ActionMapping mapping,
-                                 ActionForm form,
-                                 ServletRequest request,
-                                 ServletResponse response)
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        ServletRequest request,
+        ServletResponse response)
         throws Exception {
 
-        // Call the deprecated method for backwards compatibility
-        return (perform(mapping, form, request, response));
+        try {
+            return execute(
+                mapping,
+                form,
+                (HttpServletRequest) request,
+                (HttpServletResponse) response);
+                
+        } catch (ClassCastException e) {
+            return null;
+        }
 
     }
 
@@ -217,79 +226,14 @@ public class Action {
      *  an exception
      * @since Struts 1.1
      */
-    public ActionForward execute(ActionMapping mapping,
-                                 ActionForm form,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
         throws Exception {
 
-        // Call the deprecated method for backwards compatibility
-        return (perform(mapping, form, request, response));
-
-    }
-
-
-    /**
-     * Process the specified non-HTTP request, and create the corresponding
-     * non-HTTP response (or forward to another web component that will create
-     * it).  Return an <code>ActionForward</code> instance describing where
-     * and how control should be forwarded, or <code>null</code> if the
-     * response has already been completed.
-     * <p>
-     * The default implementation attempts to forward to the HTTP version of
-     * this method.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The non-HTTP request we are processing
-     * @param response The non-HTTP response we are creating
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     *
-     * @deprecated Use the <code>execute()</code> method instead
-     */
-    public ActionForward perform(ActionMapping mapping,
-                                 ActionForm form,
-                                 ServletRequest request,
-                                 ServletResponse response)
-        throws IOException, ServletException {
-
-        try {
-            return (perform(mapping, form,
-                            (HttpServletRequest) request,
-                            (HttpServletResponse) response));
-        } catch (ClassCastException e) {
-            return (null);
-        }
-
-    }
-
-
-    /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
-     *
-     * @deprecated Use the <code>execute()</code> method instead
-     */
-    public ActionForward perform(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response)
-    throws IOException, ServletException {
-
-        return (null);  // Override this method to provide functionality
+        return null;
 
     }
 
