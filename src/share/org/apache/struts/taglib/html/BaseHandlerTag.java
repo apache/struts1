@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.21 2003/01/05 00:50:08 turner Exp $
- * $Revision: 1.21 $
- * $Date: 2003/01/05 00:50:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.22 2003/01/05 01:40:44 martinc Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/01/05 01:40:44 $
  *
  * ====================================================================
  *
@@ -65,7 +65,6 @@ import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.Tag;
 
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.logic.IterateTag;
@@ -82,7 +81,7 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.21 $ $Date: 2003/01/05 00:50:08 $
+ * @version $Revision: 1.22 $ $Date: 2003/01/05 01:40:44 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
