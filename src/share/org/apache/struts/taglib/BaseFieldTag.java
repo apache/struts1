@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.11 2000/08/14 04:42:50 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/08/14 04:42:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.12 2001/02/14 00:00:40 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/02/14 00:00:40 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/08/14 04:42:50 $
+ * @version $Revision: 1.12 $ $Date: 2001/02/14 00:00:40 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -219,7 +219,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	super.release();
 	accept = null;
 	name = Constants.BEAN_KEY;
-	type = null;
 
     }
 
