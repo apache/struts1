@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateAction.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/CreateAction.java,v 1.3 2003/10/10 04:26:16 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/10/10 04:26:16 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.config.ModuleConfig;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2003/10/10 04:26:16 $
  */
 
 public class CreateAction implements Command {
@@ -92,6 +92,7 @@ public class CreateAction implements Command {
     private String actionKey = Constants.ACTION_KEY;
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
     private String actionServletKey = Constants.ACTION_SERVLET_KEY;
+    private String validKey = Constants.VALID_KEY;
 
 
     // -------------------------------------------------------------- Properties
@@ -175,6 +176,30 @@ public class CreateAction implements Command {
     }
 
 
+    /**
+     * <p>Return the context attribute key under which the
+     * validity flag for this request is stored.</p>
+     */
+    public String getValidKey() {
+
+        return (this.validKey);
+
+    }
+
+
+    /**
+     * <p>Set the context attribute key under which the
+     * validity flag for this request is stored.</p>
+     *
+     * @param validKey The new context attribute key
+     */
+    public void setValidKey(String validKey) {
+
+        this.validKey = validKey;
+
+    }
+
+
     // ---------------------------------------------------------- Public Methods
 
 
@@ -187,6 +212,12 @@ public class CreateAction implements Command {
      * @return <code>false</code> so that processing continues
      */
     public boolean execute(Context context) throws Exception {
+
+        // Skip processing if the current request is not valid
+        Boolean valid = (Boolean) context.get(getValidKey());
+        if ((valid == null) || !valid.booleanValue()) {
+            return (false);
+        }
 
         // Look up the class name for the desired Action
         ActionConfig actionConfig = (ActionConfig)

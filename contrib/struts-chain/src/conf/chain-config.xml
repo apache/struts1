@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.4 2003/08/31 22:42:45 craigmcc Exp $
+    $Id: chain-config.xml,v 1.5 2003/10/10 04:26:16 craigmcc Exp $
 -->
 
 
@@ -135,8 +135,12 @@
 
       <!-- Validate the ActionForm for this request -->
       <command
-          className="org.apache.struts.chain.servlet.ValidateActionForm"
-     failureCommand="servlet-validation-failure"/>
+          className="org.apache.struts.chain.servlet.ValidateActionForm"/>
+
+
+      <!-- Select the appropriate ForwardConfig for return to input page -->
+      <command
+          className="org.apache.struts.chain.servlet.SelectInput"/>
 
 
       <!-- Create (if needed) the Action for this request -->
@@ -173,28 +177,6 @@
       <!-- Execute the configured exception handler (if any) -->
       <command
           className="org.apache.struts.chain.servlet.ExceptionHandler"/>
-
-      <!-- Follow the returned ForwardConfig (if any) -->
-      <command
-          className="org.apache.struts.chain.servlet.PerformForward"/>
-
-    </chain>
-
-
-    <!-- ========== Servlet Validation Failure Chain ======================= -->
-
-    <chain     name="servlet-validation-failure">
-
-      <!--
-           This chain is designed to be invoked (by o.a.s.c.ValidateActionForm)
-           if a validation failure occurs.  The standard behavior is to obey
-           the "input" property of the current ActionConfig, and forward back
-           to the input page.
-      -->
-
-      <!-- Select the appropriate ForwardConfig for return to input page -->
-      <command
-          className="org.apache.struts.chain.servlet.SelectInput"/>
 
       <!-- Follow the returned ForwardConfig (if any) -->
       <command

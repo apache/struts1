@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/08/31 21:53:00 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.4 2003/10/10 04:26:16 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/10/10 04:26:16 $
  *
  * ====================================================================
  *
@@ -155,6 +155,14 @@ public final class Constants {
      * will be stored.</p>
      */
     public static final String MODULE_CONFIG_KEY = "moduleConfig";
+
+
+    /**
+     * <p>The default context attribute key under which a <code>Boolean</code>
+     * is stored, indicating the valid state of the current request.  If not
+     * present, a value of <code>Boolean.FALSE</code> should be assumed.
+     */
+    public static final String VALID_KEY = "valid";
 
 
     // --------------------------------------------------------- Other Constants

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractValidateActionForm.java,v 1.3 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractValidateActionForm.java,v 1.4 2003/10/10 04:26:16 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/10/10 04:26:16 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.ActionConfig;
  * proceed normally.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.4 $ $Date: 2003/10/10 04:26:16 $
  */
 
 public abstract class AbstractValidateActionForm implements Command {
@@ -96,7 +96,7 @@ public abstract class AbstractValidateActionForm implements Command {
     private String actionFormKey = Constants.ACTION_FORM_KEY;
     private String cancelKey = Constants.CANCEL_KEY;
     private String catalogKey = Constants.CATALOG_KEY;
-    private String failureCommand = null;
+    private String validKey = Constants.VALID_KEY;
 
     private static final Log log =
         LogFactory.getLog(AbstractValidateActionForm.class);
@@ -206,25 +206,25 @@ public abstract class AbstractValidateActionForm implements Command {
 
 
     /**
-     * <p>Return the name of the command to be executed
-     * if a validation failure occurs.</p>
+     * <p>Return the context attribute key under which the
+     * validity flag for this request is stored.</p>
      */
-    public String getFailureCommand() {
+    public String getValidKey() {
 
-        return (this.failureCommand);
+        return (this.validKey);
 
     }
 
 
     /**
-     * <p>Set the name of the command to be executed
-     * if a validation failure occurs.</p>
+     * <p>Set the context attribute key under which the
+     * validity flag for this request is stored.</p>
      *
-     * @param failureCommand The name of the chain to be executed
+     * @param validKey The new context attribute key
      */
-    public void setFailureCommand(String failureCommand) {
+    public void setValidKey(String validKey) {
 
-        this.failureCommand = failureCommand;
+        this.validKey = validKey;
 
     }
 
@@ -248,6 +248,7 @@ public abstract class AbstractValidateActionForm implements Command {
         ActionForm actionForm = (ActionForm)
             context.get(getActionFormKey());
         if (actionForm == null) {
+            context.put(getValidKey(), Boolean.TRUE);
             return (false);
         }
 
@@ -255,6 +256,7 @@ public abstract class AbstractValidateActionForm implements Command {
         Boolean cancel = (Boolean)
             context.get(getCancelKey());
         if ((cancel != null) && cancel.booleanValue()) {
+            context.put(getValidKey(), Boolean.TRUE);
             return (false);
         }
 
@@ -262,6 +264,7 @@ public abstract class AbstractValidateActionForm implements Command {
         ActionConfig actionConfig = (ActionConfig)
             context.get(getActionConfigKey());
         if (!actionConfig.getValidate()) {
+            context.put(getValidKey(), Boolean.TRUE);
             return (false);
         }
 
@@ -270,25 +273,13 @@ public abstract class AbstractValidateActionForm implements Command {
 
         // If there were no errors, proceed normally
         if ((errors == null) || (errors.isEmpty())) {
+            context.put(getValidKey(), Boolean.TRUE);
             return (false);
         }
 
-        // Execute the specified validation failure command
-        try {
-            Catalog catalog = (Catalog)
-                context.get(getCatalogKey());
-            Command command = catalog.getCommand(getFailureCommand());
-            if (log.isTraceEnabled()) {
-                log.trace("Calling failure command '" + getFailureCommand()
-                          + "'");
-            }
-            command.execute(context);
-        } catch (Exception e) {
-            log.warn("Exception from failure command '" +
-                     getFailureCommand() + "'", e);
-            throw new IllegalStateException("Failure chain threw exception");
-        }
-        return (true);
+        // Flag the validation failure and proceed
+        context.put(getValidKey(), Boolean.FALSE);
+        return (false);
 
     }
 

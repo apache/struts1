@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExecuteAction.java,v 1.2 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/AbstractExecuteAction.java,v 1.3 2003/10/10 04:26:16 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/10/10 04:26:16 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.config.ForwardConfig;
  * the returned <code>ActionForward</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.3 $ $Date: 2003/10/10 04:26:16 $
  */
 
 public abstract class AbstractExecuteAction implements Command {
@@ -89,6 +89,7 @@ public abstract class AbstractExecuteAction implements Command {
     private String actionConfigKey = Constants.ACTION_CONFIG_KEY;
     private String actionFormKey = Constants.ACTION_FORM_KEY;
     private String forwardConfigKey = Constants.FORWARD_CONFIG_KEY;
+    private String validKey = Constants.VALID_KEY;
 
 
     // -------------------------------------------------------------- Properties
@@ -198,6 +199,30 @@ public abstract class AbstractExecuteAction implements Command {
     }
 
 
+    /**
+     * <p>Return the context attribute key under which the
+     * validity flag for this request is stored.</p>
+     */
+    public String getValidKey() {
+
+        return (this.validKey);
+
+    }
+
+
+    /**
+     * <p>Set the context attribute key under which the
+     * validity flag for this request is stored.</p>
+     *
+     * @param validKey The new context attribute key
+     */
+    public void setValidKey(String validKey) {
+
+        this.validKey = validKey;
+
+    }
+
+
     // ---------------------------------------------------------- Public Methods
 
 
@@ -213,6 +238,12 @@ public abstract class AbstractExecuteAction implements Command {
      * @return <code>false</code> so that processing continues
      */
     public boolean execute(Context context) throws Exception {
+
+        // Skip processing if the current request is not valid
+        Boolean valid = (Boolean) context.get(getValidKey());
+        if ((valid == null) || !valid.booleanValue()) {
+            return (false);
+        }
 
         // Acquire the resources we will need to send to the Action
         Action action = (Action)
