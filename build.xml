@@ -115,7 +115,7 @@
 
     <!-- Default values for unspecified properties -->
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
-    <property name="pmd.rulesets"    value="rulesets/imports.xml,rulesets/unusedcode.xml"/>
+    <property name="pmd.rulesets"    value="rulesets/imports.xml,rulesets/unusedcode.xml,rulesets/basic.xml,rulesets/strings.xml"/>
     <property name="pmd.report"      value="pmdreport.html"/>
 
 
@@ -216,6 +216,14 @@
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${antlr.jar}"/>
       <pathelement location="${xerces.jar}"/>
+    </path>
+
+    <!-- PMD Classpath -->
+  
+    <path id="pmd.classpath">
+      <fileset dir="${pmd.home}/lib">
+        <include name="*.jar"/>
+      </fileset>
     </path>
 
 
@@ -762,19 +770,17 @@
         </checkstyle>
     </target>
 
-    <target name="pmd" if="pmd.jar"
+    <target name="pmd" if="pmd.home"
             description="Locates unused imports, unused variables, etc."
             depends="init">
-        <taskdef name="pmd"
-                 classname="net.sourceforge.pmd.ant.PMDTask">
-            <classpath location="${pmd.jar}"/>
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask">
+            <classpath refid="pmd.classpath"/>
         </taskdef>
-        <pmd printToConsole="true" rulesetfiles="${pmd.rulesets}">
-             <formatter type="html" toFile="${pmd.report}"/>
+        <pmd printToConsole="true" rulesetfiles="${pmd.rulesets}" shortFilenames="true">
+            <formatter type="html" toFile="${pmd.report}"  />
             <fileset dir="${src.share.dir}" includes="**/*.java"/>
         </pmd>
     </target>
-
 
 <!--
         Compile Website documenation
