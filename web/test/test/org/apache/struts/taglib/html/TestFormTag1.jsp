@@ -28,6 +28,16 @@
 	</bean:define>
 </logic:equal>
  
+<logic:equal name="runTest" value="testFormActionAcceptCharset">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:form action="/testFormTag" acceptCharset="UTF-8">
+		</html:form>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<form name="testFormBean" method="post" action="<%=response.encodeURL( request.getContextPath() + "/testFormTag.do")%>" accept-charset="UTF-8">
+		</form>
+	</bean:define>
+</logic:equal>
 
 <logic:equal name="runTest" value="testFormActionFocus">
 	<bean:define id="TEST_RESULTS" toScope="page">

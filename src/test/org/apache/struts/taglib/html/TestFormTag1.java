@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFormTag1.java,v 1.8 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFormTag1.java,v 1.9 2004/07/21 22:34:09 niallp Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/07/21 22:34:09 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -78,6 +78,9 @@ public class TestFormTag1 extends JspTestCase {
         }
     public void testFormActionEnctype() throws Exception {
         runMyTest("testFormActionEnctype", "");
+        }
+    public void testFormActionAcceptCharset() throws Exception {
+        runMyTest("testFormActionAcceptCharset", "");
         }
     public void testFormActionFocus() throws Exception {
         runMyTest("testFormActionFocus", "");
