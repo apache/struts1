@@ -228,7 +228,7 @@
   <!-- ===================== Generate Documentation ======================== -->
 
 
-  <target         name="docs" depends="prepare"
+  <target         name="docs" depends="library"
            description="Create generated documentation and JavaDocs">
 
     <style     basedir="src/conf"
@@ -256,7 +256,7 @@
   <!-- ==================== Create Binary Distribution ==================== -->
 
 
-  <target name="dist" depends="library"
+  <target name="dist" depends="doc"
    description="Create binary distribution">
 
     <mkdir     dir="${dist.home}"/>

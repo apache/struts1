@@ -20,6 +20,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 
+ $Id$
+
 -->
 
 
@@ -66,12 +68,12 @@
 
     <!-- Render Context Values Action -->
     <action          path="/context"
-                     type="org.apache.struts.faces.systest.ContextAction"
+                     type="org.apache.struts.faces.systest1.ContextAction"
                  validate="false"/>
 
     <!-- Execute Logon Action -->
     <action          path="/logon"
-                     type="org.apache.struts.faces.systest.LogonAction"
+                     type="org.apache.struts.faces.systest1.LogonAction"
                     input="logon"
                      name="logonForm"
                     scope="request"
@@ -95,7 +97,7 @@
 
   <message-resources
           key="messages"
-    parameter="org.apache.struts.faces.systest.ApplicationResources"/>
+    parameter="org.apache.struts.faces.systest1.ApplicationResources"/>
 
 
   <!-- ========== Plug Ins Configuration ================================== -->

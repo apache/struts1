@@ -12,9 +12,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * $Id$
  */
 
-package org.apache.struts.faces.systest;
+package org.apache.struts.faces.systest1;
 
 
 import javax.faces.component.UIComponent;

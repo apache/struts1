@@ -21,13 +21,13 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 
+ $Id$
+
 -->
 
 
 <!--
     Validation Rules for the Struts-Faces System Integration Test Webapp
-
-    $Id$
 -->
 
 <form-validation>
