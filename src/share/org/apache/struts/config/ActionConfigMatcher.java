@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.7 2004/01/10 21:29:12 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2004/01/10 21:29:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.8 2004/02/14 10:39:31 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/02/14 10:39:31 $
  *
  * ====================================================================
  *
@@ -205,6 +205,7 @@ public class ActionConfigMatcher implements Serializable {
             cfg.setContextRelative(fConfigs[x].getContextRelative());
             cfg.setName(fConfigs[x].getName());
             cfg.setPath(convertParam(fConfigs[x].getPath(), vars));
+            cfg.setRedirect(fConfigs[x].getRedirect());
             config.removeForwardConfig(fConfigs[x]);
             config.addForwardConfig(cfg);
         }
