@@ -1,0 +1,510 @@
+<?xml version="1.0"?>
+<document url="./building_view.xml">
+
+  <properties>
+    <author>Craig R. McClanahan</author>
+    <author>Mike Schachter</author>
+    <title>The Struts Framework Project</title>
+  </properties>
+  
+  <body>  
+  <chapter name="Building View Components" href="building_view">
+  
+  		<section name="3.1 Overview" href="building_view_overview">
+  			
+  			<p>
+  				This chapter focuses on the task of building the <i>View</i> components
+				of the application, which will primarily be created using JavaServer Pages
+				(JSP) technology.  In particular, Struts provides support for building
+				internationalized applications, as well as for interacting with input forms.
+				Several other topics related to the View components are briefly discussed.
+			</p>
+			
+		</section>
+		
+		<section name="3.2 Internationalized Messages" href="building_view_i18n">
+			
+			<p>
+				A few years ago, application developers could count on having to support
+				only residents of their own country, who are used to only one (or sometimes
+				two) languages, and one way to represent numeric quantities like dates,
+				numbers, and monetary values.  However, the explosion of application
+				development based on web technologies, as well as the deployment of such
+				applications on the Internet and other broadly accessible networks, have
+				rendered national boundaries invisible in many cases.  This has translated
+				(if you will pardon the pun) into a need for applications to support
+				<i>internationalization</i> (often called "i18n" because 18 is the number of
+				letters in between the "i" and the "n") and <i>localization</i>.
+			</p>
+				
+			<p>
+				Struts builds upon the Java platform to provide assistance
+				for building internationalized and localized applications.  The key concepts
+				to become familiar with are:
+			</p>
+			
+			<ul>
+				<li><b>Locale</b> - The fundamental Java class that supports
+				    internationalization is <code>java.util.Locale</code>.  Each
+				    <code>Locale</code> represents a particular choice of country and
+				    language (plus an optional language variant), and also a set of
+				    formatting assumptions for things like numbers and dates.</li>
+				<li><b>ResourceBundle</b> - The <code>java.util.ResourceBundle</code> class
+				    provides the fundmental tools for supporting messages in multiple
+				    languages.  See the Javadocs for the <code>ResourceBundle</code> class,
+				    and the information on Internationalization in the documentation bundle
+				    for your JDK release, for more information.</li>
+				<li><b>PropertyResourceBundle</b> - One of the standard implementations of
+				    <code>ResourceBundle</code> allows you to define resources using the
+				    same "name=value" syntax used to initialize properties files.  This is
+				    very convenient for preparing resource bundles with messages that are
+				    used in a web application, because these messages are generally text
+				    oriented.</li>
+				<li><b>MessageFormat</b> - The <code>java.text.MessageFormat</code> class
+				    allows you to replace portions of a message string (in this case,
+				    one retrieved from a resource bundle) with arguments specified at
+				    run time.  This is useful in cases where you are creating a sentence,
+				    but the words would appear in a different order in different languages.
+				    The placeholder string <code>{0}</code> in the message is replaced by
+				    the first runtime argument, <code>{1}</code> is replaced by the second
+				    argument, and so on.</li>
+				<li><b>MessageResources</b> - The Struts class
+				    <code>org.apache.struts.util.MessageResources</code> lets you treat
+				    a set of resource bundles like a database, and allows you to request
+				    a particular message string for a particular Locale (normally one
+				    associated with the current user) instead of for the default Locale
+				    the server itself is running in.</li>
+			</ul>
+				
+			<p>
+				For an internationalized application, follow the steps described in
+				the Internationalization document in the JDK documentation bundle for your
+				platform to create a properties file containing the messages for each
+				language.  An example will illustrate this further.
+			</p>
+				
+			<p>
+				Assume that your source code is created in package
+				<code>com.mycompany.mypackage</code>, so it is stored in a directory
+				(relative to your source directory) named
+				<code>com/mycompany/mypackage</code>.  To create a resource bundle called
+				<code>com.mycompany.mypackage.MyResources</code>, you would create the
+				following files in the <code>com/mycompany/mypackage</code> directory:
+			</p>
+		
+			<ul>
+				<li><b>MyResources.properties</b> - Contains the messages in the default
+				    language for your server.  If your default language is English, you
+				    might have an entry like this:
+				    <pre>
+					prompt.hello=Hello
+				    </pre></li>
+				<li><b>MyResources_xx.properties</b> - Contains the same messages in the
+				    language whose ISO language code is "xx" (See the ResourceBundle
+				    Javadoc page for a link to the current list).  For a French version
+				    of the message shown above, you would have this entry:
+				    <pre>
+					prompt.hello=Bonjour
+				    </pre>
+				    You can have resource bundle files for as many languages as you need.</li>
+			</ul>
+				
+			<p>
+				When you configue the controller servlet in the web application
+				deployment descriptor, one of the things you will need to define in
+				an initialization parameter is the base name of the resource bundle
+				for the application.  In the case described above, it would be
+				<code>com.mycompany.mypackage.MyResources</code>.
+			</p>
+		</section>
+
+		<section name="3.3 Forms and FormBean Interactions" href="building_view_form_beans">
+		
+			<p>
+				At one time or another, most web developers have built forms using
+				the standard capabilities of HTML, such as the <code>&lt;input&gt;</code>
+				tag.  Users have come to expect interactive applications to have certain
+				behaviors, and one of these expectations relates to error handling -- if
+				the user makes an error, the application should allow them to fix just what
+				needs to be changed -- without having to re-enter any of the rest of the
+				information on the current page or form.
+			</p>
+				
+			<p>
+				Fulfilling this expectation is tedious and cumbersome when coding with
+				standard HTML and JSP pages.  For example, an input element for a
+				<code>username</code> field might look like this (in JSP)
+			
+			
+				<pre>
+					&lt;input type="text" name="username"
+					value="&lt;%= loginBean.getUsername() %&gt;">
+				</pre>
+			
+			
+				which is difficult to type correctly, confuses HTML developers who are
+				not knowledgeable about programming concepts, and can cause problems with
+				HTML editors.  Instead, Struts provides a comprehensive facility for
+				building forms, based on the Custom Tag Library facility of JSP 1.1.
+				The case above would be rendered like this using Struts:
+				
+				<pre>
+					&lt;struts:text name="username"/&gt;
+				</pre>
+				
+				with no need to explicitly refer to the JavaBean from which the initial
+				value is retrieved.  That is handled automatically by the framework.
+			</p>
+		
+			<section name="3.3.1 Building Forms With Struts" href="building_view_forms">
+				
+				<p>
+					A complete example of a login form will illustrate how Struts
+					makes dealing with forms much less painful than using straight HTML
+					and standard JSP facilities.  Consider the following page (from the
+					example application included with Struts) named <code>logon.jsp</code>:
+				</p>
+				
+				<pre>
+						&lt;%@ page language="java" %&gt;
+						&lt;%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %&gt;
+					
+						&lt;html&gt;
+						&lt;head&gt;
+						&lt;title&gt;&lt;struts:message key="logon.title"/&gt;&lt;/title&gt;
+						&lt;body bgcolor="white"&gt;
+					
+						&lt;struts:errors/&gt;
+					
+						&lt;struts:form action="logon.do" name="logonForm"
+							type="org.apache.struts.example.LogonForm"/&gt;
+						&lt;table border="0" width="100%"&gt;
+					    &lt;tr&gt;
+					      &lt;th align="right"&gt;
+					        &lt;struts:message key="prompt.username"/&gt;
+					      &lt;/th&gt;
+					      &lt;td align="left"&gt;
+					        &lt;struts:text name="username" size="16"/&gt;
+					      &lt;/td&gt;
+					    &lt;/tr&gt;
+					    &lt;tr&gt;
+					      &lt;th align="right"&gt;
+					        &lt;struts:message key="prompt.password"/&gt;
+					      &lt;/th&gt;
+					      &lt;td align="left"&gt;
+					        &lt;struts:password name="password" size="16"/&gt;
+					      &lt;/td&gt;
+					    &lt;/tr&gt;
+					    &lt;tr&gt;
+					      &lt;td align="right"&gt;
+					        &lt;struts:submit&gt;
+					          &lt;struts:message key="button.submit"/&gt;
+					        &lt;/struts:submit&gt;
+					      &lt;/td&gt;
+					      &lt;td align="right"&gt;
+					        &lt;struts:reset&gt;
+					          &lt;struts:message key="button.reset"/&gt;
+					        &lt;/struts:reset&gt;
+					      &lt;/td&gt;
+					    &lt;/tr&gt;
+					  &lt;/table&gt;
+					  &lt;/struts:form&gt;
+					
+					  &lt;/body&gt;
+					  &lt;/html&gt;
+				</pre>
+					
+				<p>
+					The following items illustrate the key features of form handling in Struts,
+					based on this example:
+				</p>
+				
+				<ul>
+					<li>The <code>taglib</code> directive tells the JSP page compiler where to
+					    find the <i>tag library descriptor</i> for the Struts tag library.  In
+					    this case, we are using <code>struts</code> as the prefix that identifies
+					    tags from this library, but any desired prefix can be used.</li>
+					<li>This page uses several occurrences of the
+					    <a href="tags.html#message">message</a> tag to look up internationalized
+					    message strings from a <code>MessageResources</code> object containing
+					    all the resources for this application.  For this page to work, the
+					    following message keys must be defined in these resources:
+					    <ul>
+						    <li><b>logon.title</b> - Title of the logon page</li>
+						    <li><b>prompt.username</b> - A "Username:" prompt string</li>
+						    <li><b>prompt.password</b> - A "Password:" prompt string</li>
+						    <li><b>button.submit</b> - "Submit" for the button label</li>
+						    <li><b>button.reset</b> - "Reset" for the button label</li>
+					    </ul>
+					    When the user logs on, the application can store a <code>Locale</code>
+					    object in the user's session.  This <code>Locale</code> will be used
+					    to select messages in the appropriate language.  This makes it easy to
+					    implement giving the user an option to switch languages -- simply change
+					    the stored <code>Locale</code> object, and all messages are switched
+					    automatically.</li>
+					<li>The <a href="tags.html#errors">errors</a> tag displays any error
+					    messages that have been stored by a business logic component, or nothing
+					    if no errors have been stored.  This tag will be described further
+					    below.</li>
+					<li>The <a href="tags.html#form">form</a> tag renders an HTML
+					    <code>&lt;form&gt;</code> element, based on the specified attributes.
+					    It also associates all of the fields within this form with a session
+					    scoped FormBean that is stored under the key <code>logonForm</code>.
+					    This bean is used to provide initial values for all of the input
+					    fields that have names matching the property names of the bean.
+					    If an appropriate bean is not found, a new one will be created
+					    automatically, using the specified Java class name.</li>
+					<li>The <a href="tags:html#text">text</a> tag renders an HTML
+					    <code>&lt;input&gt;</code> element of type "text".  In this case,
+					    the number of character positions to occupy on the browser's screen
+					    has been specified as well.  When this page is executed, the current
+					    value of the <code>username</code> property of the corresponding bean
+					    (that is, the value returned by <code>getUsername()</code>).</li>
+					<li>The <a href="tags.html#password">password</a> tag is used similarly.
+					    The difference is that the browser will echo asterisk characters,
+					    instead of the input value, as the user types their password.</li>.
+					<li>The <a href="tags.html#submit">submit</a> and
+					    <a href="tags.html#reset">reset</a> tags generate the corresponding
+					    buttons at the bottom of the form.  The text labels for each button
+					    are created using <a href="tags.html#message">message</a> tags,
+					    as with the prompts, so that these values are internationalized.</li>
+				</ul>
+			</section>
+			
+			<section name="3.3.2 Input Field Types Supported" href="building_view_form_input">
+				
+				<p>
+					Struts defines tags for all of the following types of input fields,
+					with hyperlinks to the corresponding reference information.
+				</p>
+				
+				<ul>
+						<li><a href="tags.html#checkbox">checkboxes</a></li>
+						<li><a href="tags.html#hidden">hidden</a> fields</li>
+						<li><a href="tags.html#password">password</a> input fields</li>
+						<li><a href="tags.html#radio">radio</a> buttons</li>
+						<li><a href="tags.html#reset">reset</a> buttons</li>
+						<li><a href="tags.html#select">select</a> lists with embedded</li>
+						<li><a href="tags.html#option">options</a></li>
+						<li><a href="tags.html#submit">submit</a> buttons</li>
+						<li><a href="tags.html#text">text</a> input fields</li>
+						<li><a href="tags.html#textarea">textareas</a></li>
+				</ul>
+				
+				<p>
+					In every
+					case, a field tag must be nested within a <code>form</code> tag, so that
+					the field knows what bean to use for initializing displayed values.
+				</p>
+			</section>
+			
+			<section name="3.3.3 Other Useful Presentation Tags" href="building_view_presentation_tags">
+				
+				<p>
+					There are several other tags in the Struts library that are useful in
+					creating user interfaces:
+				</p>
+				
+				<ul>
+					<li><a href="tags.html#enumerate">enumerate</a> repeats its tag body once
+					    for each element of a specified collection (which can be an Enumeration,
+					    a Hashtable, a Vector, or an array of objects).</li>
+					<li><a href="tags.html#getProperty">getProperty</a> retrieves the specified
+					    property from the specified bean, and exposes it as a page scope
+					    bean to the rest of this page.  Among other things, this is a convenient
+					    way to access a collection to be used by <code>enumerate</code>.</li>
+					<li><a href="tags.html#ifAttributeExists">ifAttributeExists</a> evaluates
+					    its tag body only if a specified attribute exists in a specified scope.
+					    </li>
+					<li><a href="tags.html#ifAttributeMissing">ifAttributeMissing</a> evaluates
+					    its tag body only if a specified attribute does not exist in a
+					    specified scope.</li>
+					<li><a href="tags.html#ifParameterEquals">ifParameterEquals</a> evaluates
+					    its tag body only if a specified request parameter has a specified
+					    value.</li>
+					<li><a href="tags.html#ifParameterNotEquals">ifParameterNotEquals</a>
+					    evaluates its tag body only if a specified request parameter does not
+					    have a specified value, or is not present.</li>
+					<li><a href="tags.html#ifParameterNotNull">ifParameterNotNull</a>
+					    evaluates its tag body only if a specified request parameter is included
+					    in this request, and has a length greater than zero.</li>
+					<li><a href="tags.html#ifParameterNull">ifParameterNull</a> evaluates its
+					    tag body only if a specified request parameter is not included in this
+					    request, or if it is included with zero length.</li>
+					<li><a href="tags.html#iterate">iterate</a> repeats its tag body once
+					    for each element of a specified collection (which can be a Collection,
+					    an Iterator, a Map, or an array of objects.  This tag supercedes the
+					    <code>enumerate</code> tag on a Java2 environment.</li>
+					<li><a href="tags.html#link">link</a> generates a hyperlink, and automatically
+					    applies URL encoding to maintain session state in the absence of
+					    cookie support.</li>
+					<li><a href="tags.html#parameter">parameter</a> renders the specified
+					    request parameter's value, suitably filtered for characters that are
+					    sensitive in HTML.</li>
+					<li><a href="tags.html#property">property</a> displays the named bean
+					    property within a form -- use it instead of <code>text</code> for
+					    properties that should be read only.</li>
+				</ul>
+			</section>
+			
+			<section name="3.3.4 Automatic Form Validation" href="building_view_form_validation">
+			
+				<p>
+					In addition to the form and bean interactions described above, Struts
+					offers an additional facility if your bean knows how to validate the input
+					fields it has received.  To utilize this feature, have your bean class
+					implement the <code>ValidatingActionForm</code> interface, rather than the
+					<code>ActionForm</code> interface.  A ValidatingActionForm adds an additional
+					method signature:
+				</p>
+					
+					<pre>
+					    public String[] validate()
+					</pre>
+					
+				<p>
+					for a method that is called by the controller servlet after the bean
+					properties have been populated, but before the corresponding action class's
+					<code>perform()</code> method is invoked.  The <code>validate()</code> method
+					has the following options:
+				</p>
+				
+				<ul>
+					<li>Perform the appropriate validations and find no problems -- Return either
+					    <code>null</code> or a zero-length String array, and the controller servlet
+					    will proceed to call the <code>perform()</code> method of the appropriate
+					    <code>Action</code> class.</li>
+					<li>Perform the appropriate validations and find problems -- Return a String
+					    array whose contents are the error message keys (into the application's
+					    <code>MessageResources</code> bundle) that should be displayed.  The
+					    controller servlet will store this array as a request attribute suitable
+					    for use by the <code>&lt;struts:errors&gt;</code> tag, and will forward
+					    control back to the input form (identified by the <code>inputForm</code>
+					    property for this <code>ActionMapping</code>.</li>
+				</ul>
+					
+				<p>
+					As mentioned earlier, this feature is entirely optional.  If your form bean
+					implements only the <code>ActionForm</code> interface, the controller servlet
+					will assume that any required validation is done by the action class.
+				</p>
+			</section>
+		</section>
+		
+		<section name="3.4 Other Presentation Techniques" href="building_view_other_presentations">
+		
+			<p>
+				Although the look and feel of your application can be completely constructed
+				based on the standard capabilities of JSP and the Struts custom tag library,
+				you should consider employing other techniques that will improve component
+				reuse, reduce maintenance efforts, and/or reduce errors.  Several options
+				are discussed in the following sections.
+			</p>
+			
+			<section name="3.4.1 Application-Specific Custom Tags" href="building_view_custom_tags">
+			
+				<p>
+					Beyond using the custom tags provided by the Struts library, it is easy
+					to create tags that are specific to the application you are building, to
+					assist in creating the user interface.  The example application included with
+					Struts illustrates this principle by creating the following tags unique to
+					the implementation of this application:
+				</p>
+				
+				<ul>
+					<li><code>checkLogon</code> - Checks for the existence of a particular session
+					    object, and forwards control to the logon page if it is missing.  This is
+					    used to catch cases where a user has bookmarked a page in the middle of
+					    your application and tries to bypass logging on, or if the user's session
+					    has been timed out.</li>
+					<li><code>linkSubscription</code> - Generates a hyperlink to a details page
+					    for a Subscription, which passes the required primary key values as
+					    request attributes.  This is used when listing the subscriptions associated
+					    with a user, and providing links to edit or delete them.</li>
+					<li><code>linkUser</code> - Generates a hyperlink to a details page
+					    for a User, which passes the required primary key values as
+					    request attributes.</li>
+				</ul>
+					
+				<p>
+					The source code for these tags is in the <code>src/example</code> directory,
+					in package <code>org.apache.struts.example</code>, along with the other Java
+					classes that are used in this application.
+				</p>
+			</section>
+			
+			<section name="3.4.2 Page Composition With Includes" href="building_view_includes">
+				
+				<p>
+					Creating the entire presentation of a page in one JSP file (with custom
+					tags and beans to access the required dynamic data) is a very common design
+					approach, and was employed in the example application included with Struts.
+					However, many applications require the display of multiple logically distinct
+					portions of your application together on a single page.</p>
+					
+				<p>
+					For example, a portal application might have some or all of the following
+					functional capabilities available on the portal's "home" page:
+				</p>
+				
+				<ul>
+					<li>Access to a search engine for this portal.</li>
+					<li>One or more "news feed" displays, with the topics of interest customized
+					    from the user's registration profile.</li>
+					<li>Access to discussion topics related to this portal.</li>
+					<li>A "mail waiting" indicator if your portal provides free email
+					    accounts.</li>
+				</ul>
+					
+				<p>
+					The development of the various segments of this site is easier if you
+					can divide up the work, and assign different developers to the different
+					segments.  Then, you can use the <i>include</i> capability of JavaServer Pages
+					technology to combine the results into a single result page.  There are two
+					types of <i>include</i> available, depending on when you want the combination
+					of output to occur:
+				</p>
+					
+				<ul>
+					<li>The include <i>directive</i> (<code>&lt;%@ include file="xxxxx"
+					    %&gt;</code>) is processed when the JSP page is compiled.  It is
+					    useful when you are including HTML code that will not need to change
+					    at request time.  It treats the text being included as static text,
+					    much like the <code>#include</code> directive in C or C++.</li>
+					<li>The include <i>action</i> (<code>&lt;jsp:include page="xxxxx"
+					    flush="true" /&gt;</code>) is processed at request time, and is handled
+					    transparently by the server.  Among other things, that means you
+					    can conditionally perform the include by nesting it within a tag
+					    like <a href="tags.html#ifParameterEquals">ifParameterEquals</a>.</li>
+				</ul>
+			</section>
+
+			<section name="3.4.3 Image Rendering Components" href="building_view_image_rendering">
+			
+				<p>
+					Some applications require dynamically generated images, like the price
+					charts on a stock reporting site.  Two different approaches are commonly used
+					to meet these requirements:
+				</p>
+				
+				<ul>
+					<li>Render a hyperlink with a URL that executes a servlet request.  The
+					    servlet will use a graphics library to render the graphical image,
+					    set the content type appropriately (such as to <code>image/gif</code>),
+					    and send back the bytes of that image to the browser, which will display
+					    them just as if it had received a static file.</li>
+					<li>Render the HTML code necessary to download a Java applet that creates
+					    the required graph.  You can configure the graph by setting appropriate
+					    initialization parameters for the applet in the rendered code, or you
+					    can have the applet make its own connection to the server to receive
+					    these parameters.</li>
+				</ul>
+			</section>
+		</section>
+	</chapter>
+	</body>
+</document>	
+	
+
+
+
