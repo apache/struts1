@@ -10,8 +10,7 @@
   <body>
       <section name="Introduction" href="Introduction">
         <p>This section contains release notes for changes that have taken place since
-        <a href="release-notes-1.1.html">Version 1.1</a> was released. The release notes
-        through the Struts 1.2.1 release are also <a href="release-notes-1.2.1.html">available.</a></p>
+        <a href="release-notes-1.1.html">Version 1.1</a> was released.</p>
       </section>
       <section name="What's Included?" href="Included">
         <p>The binary distribution of this release includes the following files relevant to Struts:</p>
