@@ -1002,8 +1002,17 @@
            <td>java.sql.Time</td>
        </tr>
       </table>
-      <p>If nothing found, then will be used format string according to current 
-      value data type and locale (object stored as session scope bean).</p>
+      <p>If nothing found, then toString() method for target object will be called.</p>
+      <p>Default format strings in resources can be written as - <br />
+        <pre>
+                org.apache.struts.taglib.bean.format.int=######
+                org.apache.struts.taglib.bean.format.float=######,####
+                org.apache.struts.taglib.bean.format.timestamp=hh 'o''clock' a, zzzz
+                org.apache.struts.taglib.bean.format.date=EEE, MMM d, ''yy
+                org.apache.struts.taglib.bean.format.time=h:mm a
+        </pre>                
+        <br />values for resource file entries are standart Java format strings for
+        date, time and number values.</p>
       </info>
     </attribute>
 
