@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.3 2002/04/02 04:02:13 dwinterfeldt Exp $
- * $Revision: 1.3 $
- * $Date: 2002/04/02 04:02:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.4 2002/06/24 16:56:56 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/24 16:56:56 $
  *
  * ====================================================================
  *
@@ -88,8 +88,8 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/04/02 04:02:13 $
- * @since 1.1
+ * @version $Revision: 1.4 $ $Date: 2002/06/24 16:56:56 $
+ * @since Struts 1.1
 */
 
 public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBean, Serializable {
@@ -115,16 +115,16 @@ public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBe
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
-	Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
-	                                                        this,
-	                                                        application, request,
-	                                                        errors, page);
+    Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
+                                                            this,
+                                                            application, request,
+                                                            errors, page);
 
-	try {
-	   validatorResults = validator.validate();
+    try {
+       validatorResults = validator.validate();
         } catch (ValidatorException e) {
-	   log.error(e.getMessage(), e);
-	}
+       log.error(e.getMessage(), e);
+    }
 
         return errors;
     }

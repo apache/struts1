@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.2 2002/04/02 04:02:13 dwinterfeldt Exp $
- * $Revision: 1.2 $
- * $Date: 2002/04/02 04:02:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.3 2002/06/24 16:56:56 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/24 16:56:56 $
  *
  * ====================================================================
  *
@@ -57,8 +57,8 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
- 
- 
+
+
 package org.apache.struts.validator;
 
 import java.io.Serializable;
@@ -77,18 +77,18 @@ import org.apache.struts.util.StrutsValidatorUtil;
 
 
 /**
- * <p>This class extends <strong>ValidatorForm</strong> and provides 
- * basic field validation based on an XML file.  The key passed into the 
- * validator is the action element's 'path' attribute from the 
- * struts-config.xml which should match the form element's name attribute 
+ * <p>This class extends <strong>ValidatorForm</strong> and provides
+ * basic field validation based on an XML file.  The key passed into the
+ * validator is the action element's 'path' attribute from the
+ * struts-config.xml which should match the form element's name attribute
  * in the validation.xml.</p>
  *
- * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
+ * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.2 $ $Date: 2002/04/02 04:02:13 $
- * @since 1.1
+ * @version $Revision: 1.3 $ $Date: 2002/06/24 16:56:56 $
+ * @since Struts 1.1
 */
 
 public class ValidatorActionForm extends ValidatorForm implements Serializable {
@@ -112,18 +112,18 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
                                  HttpServletRequest request) {
 
         ServletContext application = getServlet().getServletContext();
-        ActionErrors errors = new ActionErrors();	
-        
-	Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(), 
-	                                                        this,
-	                                                        application, request, 
-	                                                        errors, page);
-	
-	try {
-	   validatorResults = validator.validate();
+        ActionErrors errors = new ActionErrors();
+
+    Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
+                                                            this,
+                                                            application, request,
+                                                            errors, page);
+
+    try {
+       validatorResults = validator.validate();
         } catch (ValidatorException e) {
-	   log.error(e.getMessage(), e);
-	}
+       log.error(e.getMessage(), e);
+    }
 
         return errors;
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.3 2002/04/01 02:22:08 dwinterfeldt Exp $
- * $Revision: 1.3 $
- * $Date: 2002/04/01 02:22:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.4 2002/06/24 16:56:56 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/24 16:56:56 $
  *
  * ====================================================================
  *
@@ -84,12 +84,12 @@ import org.apache.struts.config.ApplicationConfig;
 
 
 /**
- * <p>Loads <code>ValidatorResources</code> based on 
+ * <p>Loads <code>ValidatorResources</code> based on
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/04/01 02:22:08 $
- * @since 1.1
+ * @version $Revision: 1.4 $ $Date: 2002/06/24 16:56:56 $
+ * @since Struts 1.1
 */
 public class ValidatorPlugIn implements PlugIn {
 
@@ -113,7 +113,7 @@ public class ValidatorPlugIn implements PlugIn {
      * Delimitter for Validator resources.
     */
     private final static String RESOURCE_DELIM = ",";
-    
+
     /**
      * Application scope key that <code>ValidatorResources</code> is stored under.
     */
@@ -131,7 +131,7 @@ public class ValidatorPlugIn implements PlugIn {
     /**
      * A comma delimitted list of Validator resource.
      */
-    private String pathnames = null; 
+    private String pathnames = null;
 
     /**
      * Gets a comma delimitted list of Validator resource.
@@ -162,15 +162,15 @@ public class ValidatorPlugIn implements PlugIn {
         this.config = config;
         this.servlet = servlet;
 
-	// Load our database from persistent storage
-	try {
-	    initResources();
-	    servlet.getServletContext().setAttribute(VALIDATOR_KEY, resources);
-	} catch (Exception e) {
-	    log.error(e.getMessage(), e);
-	    throw new UnavailableException
-		("Cannot load a validator resource from '" + pathnames + "'");
-	}
+    // Load our database from persistent storage
+    try {
+        initResources();
+        servlet.getServletContext().setAttribute(VALIDATOR_KEY, resources);
+    } catch (Exception e) {
+        log.error(e.getMessage(), e);
+        throw new UnavailableException
+        ("Cannot load a validator resource from '" + pathnames + "'");
+    }
 
     }
 
@@ -179,14 +179,14 @@ public class ValidatorPlugIn implements PlugIn {
      * that were allocated at initialization.
     */
     public void destroy() {
-	
-	if (log.isDebugEnabled()) {
-	    log.debug("Destroying ValidatorPlugin");
-	}
+
+    if (log.isDebugEnabled()) {
+        log.debug("Destroying ValidatorPlugin");
+    }
 
         servlet = null;
         config = null;
-        
+
         destroyResources();
     }
 
@@ -201,35 +201,35 @@ public class ValidatorPlugIn implements PlugIn {
 
        if (pathnames != null && pathnames.length() > 0) {
           StringTokenizer st = new StringTokenizer(pathnames, RESOURCE_DELIM);
-          
+
           while (st.hasMoreTokens()) {
              String validatorRules = st.nextToken();
-             
+
              validatorRules = validatorRules.trim();
-        
-	     if (log.isInfoEnabled()) {
-	        log.info("Loading validation rules file from '" + validatorRules + "'");
-	     }          
-	     
+
+         if (log.isInfoEnabled()) {
+            log.info("Loading validation rules file from '" + validatorRules + "'");
+         }
+
              InputStream input = null;
              BufferedInputStream bis = null;
              input = servlet.getServletContext().getResourceAsStream(validatorRules);
-             
+
              if (input != null) {
                 bis = new BufferedInputStream(input);
-             
+
                 try {
-                   // pass in false so resources aren't processed 
+                   // pass in false so resources aren't processed
                    // until last file is loaded
                    ValidatorResourcesInitializer.initialize(resources, bis, false);
                 } catch (Exception e) {
                    log.error(e.getMessage(), e);
                 }
              } else {
-                log.error("Skipping validation rules file from '" + validatorRules + "'.  No stream could be opened.");	
+                log.error("Skipping validation rules file from '" + validatorRules + "'.  No stream could be opened.");
              }
           }
-          
+
           // process resources
           resources.process();
        }
@@ -239,7 +239,7 @@ public class ValidatorPlugIn implements PlugIn {
      * Destroy <code>ValidatorResources</code>.
     */
     protected void destroyResources() {
-	resources = null;
+    resources = null;
     }
 
 }

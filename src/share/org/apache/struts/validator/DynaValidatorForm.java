@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.2 2002/04/02 04:02:13 dwinterfeldt Exp $
- * $Revision: 1.2 $
- * $Date: 2002/04/02 04:02:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.3 2002/06/24 16:56:56 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/06/24 16:56:56 $
  *
  * ====================================================================
  *
@@ -57,8 +57,8 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
- 
- 
+
+
 package org.apache.struts.validator;
 
 import java.io.Serializable;
@@ -80,18 +80,18 @@ import org.apache.struts.util.StrutsValidatorUtil;
 
 
 /**
- * <p>This class extends <strong>DynaActionForm</strong> and provides 
- * basic field validation based on an XML file.  The key passed into the 
- * validator is the action element's 'name' attribute from the 
- * struts-config.xml which should match the form element's name attribute 
+ * <p>This class extends <strong>DynaActionForm</strong> and provides
+ * basic field validation based on an XML file.  The key passed into the
+ * validator is the action element's 'name' attribute from the
+ * struts-config.xml which should match the form element's name attribute
  * in the validation.xml.</p>
  *
- * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
+ * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.2 $ $Date: 2002/04/02 04:02:13 $
- * @since 1.1
+ * @version $Revision: 1.3 $ $Date: 2002/06/24 16:56:56 $
+ * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
 */
 
@@ -103,7 +103,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
     private Log log = LogSource.getInstance(this.getClass().getName());
 
     /**
-     * The results returned from the validation performed 
+     * The results returned from the validation performed
      * by the <code>Validator</code>.
     */
     protected ValidatorResults validatorResults = null;
@@ -117,14 +117,14 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
      * Gets page.
     */
     public int getPage() {
-       return page;	
+       return page;
     }
 
     /**
      * Sets page.
     */
     public void setPage(int page) {
-       this.page = page;	
+       this.page = page;
     }
 
     /**
@@ -141,28 +141,28 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
                                  HttpServletRequest request) {
 
         ServletContext application = getServlet().getServletContext();
-        ActionErrors errors = new ActionErrors();	
-        
-	Validator validator = StrutsValidatorUtil.initValidator(mapping.getAttribute(), 
-	                                                        this,
-	                                                        application, request, 
-	                                                        errors, page);
-	
-	try {
-	   validatorResults = validator.validate();
+        ActionErrors errors = new ActionErrors();
+
+    Validator validator = StrutsValidatorUtil.initValidator(mapping.getAttribute(),
+                                                            this,
+                                                            application, request,
+                                                            errors, page);
+
+    try {
+       validatorResults = validator.validate();
         } catch (ValidatorException e) {
-	   log.error(e.getMessage(), e);
-	}
+       log.error(e.getMessage(), e);
+    }
 
         return errors;
     }
 
     /**
-     * Convenience method that call the comparable servlet log method and writes 
-     * an explanatory message and a stack trace for a given Throwable exception to the 
+     * Convenience method that call the comparable servlet log method and writes
+     * an explanatory message and a stack trace for a given Throwable exception to the
      * servlet log file.
      *
-     * @param 	message		String that describes the error or exception
+     * @param   message     String that describes the error or exception
     */
     protected void log(String message) {
        if (getServlet().getDebug() >= 1) {
@@ -171,12 +171,12 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
     }
 
     /**
-     * Convenience method that call the comparable servlet log method and writes 
-     * an explanatory message and a stack trace for a given Throwable exception to the 
+     * Convenience method that call the comparable servlet log method and writes
+     * an explanatory message and a stack trace for a given Throwable exception to the
      * servlet log file.
      *
-     * @param 	message		String that describes the error or exception
-     * @param 	throwable	Throwable error or exception
+     * @param   message     String that describes the error or exception
+     * @param   throwable   Throwable error or exception
     */
     protected void log(String message, Throwable throwable) {
        if (getServlet().getDebug() >= 1) {
@@ -197,25 +197,25 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
     }
 
     /**
-     * Get results of the validation performed by the 
+     * Get results of the validation performed by the
      * <code>Validator</code>.
     */
     public ValidatorResults getValidatorResults() {
-       return validatorResults;	
+       return validatorResults;
     }
 
     /**
-     * Set results of the validation performed by the 
+     * Set results of the validation performed by the
      * <code>Validator</code>.
     */
     public void setValidatorResults(ValidatorResults validatorResults) {
-       this.validatorResults = validatorResults;	
+       this.validatorResults = validatorResults;
     }
 
     /**
-     * Returns a <code>Map</code> of values returned 
-     * from any validation that returns a value other than 
-     * <code>null</code> or <code>Boolean</code> with the  
+     * Returns a <code>Map</code> of values returned
+     * from any validation that returns a value other than
+     * <code>null</code> or <code>Boolean</code> with the
      * key the full property path of the field.
     */
     public Map getResultValueMap() {
