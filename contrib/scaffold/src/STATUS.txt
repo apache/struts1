@@ -20,11 +20,21 @@ so much duplicate code here
 // ------------------------------------------------------------ CHANGES
 
 
+[2002-10-29]
++ ProcessDispatchAction: Resolve problem in Scroller/ScrollBeanBase; 
+helper methods needed to be named UNlike properties to keep from 
+confusing BeanUtils.
++ ProcessDispatchAction: Change to bypass ProcessFormAction. Now works. 
++ ProcessDispatchAction: Now causing a reflection error when used. 
+
+
+24-OCT-2002
+-----------
++ ParameterAction: Fix to observer redirect on template froward.
+
 09-OCT-2002
 -----------
 + Add BaseActionMapping
-
-
 
 07-OCT-2002
 -----------

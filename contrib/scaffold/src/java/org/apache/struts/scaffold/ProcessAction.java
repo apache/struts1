@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.PropertyUtils; // Struts 1.1
-// import org.apache.struts.util.PropertyUtils; // Struts 1.0.x
+import org.apache.commons.beanutils.PropertyUtils;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
@@ -42,7 +41,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.4 $ $Date: 2002/09/27 18:59:52 $
+ * @version $Revision: 1.5 $ $Date: 2002/10/31 14:32:07 $
  */
 public class ProcessAction extends BaseHelperAction {
 

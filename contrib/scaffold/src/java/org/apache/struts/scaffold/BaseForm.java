@@ -8,10 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-// import org.apache.struts.util.BeanUtils; // Struts 1.0.x
-// import org.apache.struts.util.PropertyUtils; // Struts 1.0.x
-import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
-import org.apache.commons.beanutils.PropertyUtils; // Struts 1.1
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
@@ -27,7 +25,7 @@ import org.apache.commons.scaffold.lang.ChainedException;
 /**
  * Enhanced base ActionForm.
  * @author Ted Husted
- * @version $Revision: 1.7 $ $Date: 2002/09/27 18:59:52 $
+ * @version $Revision: 1.8 $ $Date: 2002/10/31 14:32:08 $
  * @todo Change from BeanUtil.populate to copyProperties
  * in 1.1 version.
  */

@@ -26,7 +26,7 @@ import org.apache.struts.action.ActionServlet;
  * cross-compatibility with Struts 1.1 and 1.0
  *
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/08/14 18:30:08 $
+ * @version $Revision: 1.2 $ $Date: 2002/10/31 14:32:08 $
  */
 public class ParameterAction extends BaseAction {
 
@@ -52,12 +52,13 @@ public class ParameterAction extends BaseAction {
 
             // Get stub URI from mapping (/do/whatever?paramName=)
         StringBuffer path = new StringBuffer(64);
-        path.append(mapping.findForward(parameter).getPath());
+        ActionForward template = mapping.findForward(parameter);
+        path.append(template.getPath());
             // Append the value passed (/do/whatever?paramName=paramProperty)
         path.append(request.getParameter(paramName));
 
             // Return a new forward based on stub+value
-        return new ActionForward(path.toString());
+        return new ActionForward(path.toString(),template.getRedirect());
 
     }
 
@@ -65,9 +66,9 @@ public class ParameterAction extends BaseAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.1 2002/08/14 18:30:08 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/08/14 18:30:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.2 2002/10/31 14:32:08 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/31 14:32:08 $
  *
  * ====================================================================
  *

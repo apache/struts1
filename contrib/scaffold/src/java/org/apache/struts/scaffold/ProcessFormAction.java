@@ -4,8 +4,7 @@ package org.apache.struts.scaffold;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
-// import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.apache.commons.scaffold.lang.ChainedException;
 import org.apache.commons.scaffold.lang.Log;
@@ -35,7 +34,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.5 $ $Date: 2002/09/12 12:39:50 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/31 14:32:07 $
  */
 public class ProcessFormAction extends ProcessAction {
 
