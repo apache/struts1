@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1rc2.xml,v 1.1 2003/06/06 13:15:45 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1rc2.xml,v 1.2 2003/06/06 13:48:08 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Release Candidate 2</strong>
   release is to create a milestone release in preparation for an imminent
@@ -36,7 +36,7 @@
           which is required to compile and use Struts 1.1.
           A final release of Struts must depend only on final releases of other
           required products. Consequently, the Struts 1.1 Final release cannot
-          be made unitl the Commons FileUpload 1.1 Final Release is available.
+          be made unitl the Commons FileUpload 1.0 Final Release is available.
       </p>
 
       <p>
@@ -48,7 +48,7 @@
           is encourged to do so before that date.
       </p>
 
-  <p>Therefore, the following release plan is proposed for Struts 1.1 Release Candidate 1:
+  <p>Therefore, the following release plan is proposed for Struts 1.1 Release Candidate 2:
   </p>
   <ul>
   <li><em>Code Freeze / Tag Date</em> - Friday, June 6, 2003, 23:59:59</li>
