@@ -100,7 +100,7 @@
     <p>
     If you are interested in the Tag Library Descriptor (TLD) files, 
     they are maintained in the 
-    <a href="http://cvs.apache.org/viewcvs/jakarta-struts/conf/share/">
+    <a href="http://svn.apache.org/repos/asf/struts/trunk/conf/share/">
     /conf/share</a> folder of he main repository. 
     </p>
     
