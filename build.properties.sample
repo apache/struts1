@@ -6,8 +6,9 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.18 2002/12/17 17:07:27 rleland Exp $
+# $Id: build.properties.sample,v 1.19 2002/12/22 04:42:24 rleland Exp $
 # -----------------------------------------------------------------------------
+compile.deprecation=true
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
 # top-level directory of the jakarta-struts source distribution.
@@ -36,7 +37,7 @@ commons-collections.jar=${commons-lib.home}/collections/dist/commons-collections
 
 # The JAR file containing version 1.1 (or later) of the DBCP package
 # from the Jakarta Commons project.
-commons-dbcp.jar=${commons-lib.home}/dbcp/target/commons-dbcp-1.1-dev.jar
+commons-dbcp.jar=${commons-lib.home}/dbcp/dist/commons-dbcp.jar
 
 # The JAR file containing version 1.0 (or later) of the Digester package
 # from the Jakarta Commons project.
@@ -103,8 +104,8 @@ xerces.jar=${apache.home}/xerces-1_4_4/xerces.jar
 # contrib library (although it doesn't prevent you from building it directly in
 # "contrib/struts-el".
 
-jstl.jar		= f:/applis/jakarta-taglibs/jstl-1.0/lib/jstl.jar
-jstl-standard.jar	= f:/applis/jakarta-taglibs/jstl-1.0/lib/standard.jar
+jstl.jar		= ${apache.home}/jakarta-taglibs/jstl-1.0/lib/jstl.jar
+jstl-standard.jar	= ${apache.home}/jakarta-taglibs/jstl-1.0/lib/standard.jar
 
 # Properties related to Struts unit testing
 # -----------------------------------------
