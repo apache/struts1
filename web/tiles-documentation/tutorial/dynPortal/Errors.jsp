@@ -3,9 +3,7 @@
  * Summarize channels errors as unadorned HTML.
  *
  * @parameters errors
- * @author Ted Husted
- * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/07/06 01:13:53 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/19 04:41:57 $
  */
 --%>
 <%@ page language="java" %>
