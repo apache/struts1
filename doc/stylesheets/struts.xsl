@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.1 2001/03/18 17:48:59 vmassol Exp $ -->
+<!-- $Id: struts.xsl,v 1.2 2001/05/31 18:36:59 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -109,6 +109,13 @@
       </td>
     </tr>
   </xsl:template>
+
+
+  <!-- Process a document body -->
+  <xsl:template match="body">
+    <xsl:apply-templates/>
+  </xsl:template>
+
 
   <!-- Process a documentation section -->
   <xsl:template match="section">
