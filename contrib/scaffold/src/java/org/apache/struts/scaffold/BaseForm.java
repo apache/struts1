@@ -29,7 +29,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
  * Enhanced base ActionForm.
  * :TODO: Extend from DynaValidatorForm in 1.1 version.
  * @author Ted Husted
- * @version $Revision: 1.11 $ $Date: 2002/11/23 19:09:19 $
+ * @version $Revision: 1.12 $ $Date: 2002/11/24 15:53:05 $
  */
 public class BaseForm extends ValidatorForm {
 
@@ -405,8 +405,10 @@ public class BaseForm extends ValidatorForm {
      * The result is a union of the properties, with the this
      * bean's non-blank properties having precedence over the
      * profile's properties. The profile is a base that this bean
-     * can override on the fly. If this bean does not supply a
-     * property, then the profile property is used.
+     * can override on the fly -- If this bean does not supply a
+     * property, then the profile property is used. But any 
+     * property named on the userProfile is included (even if 
+     * it has no match on this bean).
      * <p>
      * If profile is null, a map of this bean's properties is returned.
      * <p>
@@ -446,7 +448,11 @@ public class BaseForm extends ValidatorForm {
                 userMap = PropertyUtils.describe(this);
             }
 
-                // Add user element to formMap if form element is null or blank
+            // Add user element to formMap if form element is null or blank
+            // Starting with the formMap, for every element in the userMap, 
+            // see if the formMap element is non-existant, null, or an empty String. 
+            // If it is (our formMap doesn't override), add the userMap value 
+            // to the formMap. 
             Iterator i = userMap.keySet().iterator();
             while (i.hasNext()) {
                 String key = (String) i.next();
@@ -478,10 +484,10 @@ public class BaseForm extends ValidatorForm {
             HttpServletRequest request) {
 
         if (isMutable()) {
-			
-			super.reset(mapping,request);
+            
+            super.reset(mapping,request);
 
-		   // :TODO: Might be useful to have a collection of reset listeners 
+           // :TODO: Might be useful to have a collection of reset listeners 
             resetRemoteHost(request);
             resetSessionLocale(request);
         }
