@@ -1,26 +1,30 @@
 @echo on
-
 rem This is an example "build-all-clean.bat" file, used to build struts from 
-rem a clean commons. It uses Cygwin to remove build directories since 
+rem a clean commons. 
+rem What is needed is a good top level commons build.xml for ant/maven.
+rem I know I could submit a patch.
+rem
+rem This bat file uses Cygwin to remove build directories since 
 rem commons doesn't have an ant clean target. (HINT for COMMONS COMITTERS!)
 rem Make any changes you need, and rename this file
-rem to "build-all-clean.bat" and in the same directory that contains the Struts
-rem "build.xml" file.
+rem to "build-all-clean.bat" and place it in the same directory that 
+rem contains the Struts "build.xml" file.
+rem 
 rem assumes jakarta-commons, 
 rem         jakarta-commons-sandbox,
 rem         jakarta-struts-current
-rem are checked out in the same directory.
+rem are checked out of CVS in the same directory.
 rem Also assumes uses of 
-rem           maven beta 7,
+rem           maven beta 7 or above,
 rem           ant 1.5.1
 rem           cactus v 1.2 & v1.3
-rem              Because the commons (resources) use an old version
-rem              of cactus for units test, that maven doesn't precompile 
-rem              anymore, you'll need to copy the cactus.jar into the 
-rem              maven repository directoty. I filed a bug report for this.
+rem              v 1.2 Because the commons (resources) use an old version
+rem                    of cactus for units test, that maven doesn't precompile 
+rem                    anymore. You'll need to copy the cactus.jar into the 
+rem                    maven repository directory. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.2 2002/10/26 05:38:07 rleland Exp $
+rem $Id: build-all-clean.bat.sample,v 1.3 2002/10/27 04:02:00 rleland Exp $
 
 cd ..
 
@@ -57,12 +61,12 @@ call ant clean dist
 cd ..\validator
 call ant clean dist
 
-cd fileupload
+cd ..\fileupload
 call maven
 
 cd ..\..\jakarta-commons-sandbox
 
-cd ..\resources
+cd resources
 call maven
 
 cd ..\services
