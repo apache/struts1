@@ -266,6 +266,42 @@ your needs. If you need a feature right now, you can use the nightly
 build, or roll your own patch. There are no private CVS's or private 
 development lists. What you see is what we got. If you are following the
 DEV list, then you know everything the developers know. Really, you do.</p>
+<p><i>So, what do you tell your team?</i> If you can ship your application based 
+on the nightly build of your choice, then consider that an option. You can 
+still ship yours, even if we don't ship ours, and you will have access to 
+all the latest patches or enhancements. (Just like we were working down 
+the hall.) If you can only ship your application based on a release build of 
+Struts, then you should base your development on the release build of Struts, 
+and keep an eye on what is coming down the pipeline. This way you are at least 
+forewarned and forearmed. </p>
+
+</section>
+
+<section href="release_help" name="What can I do to help the next release along?">
+<ul>
+<li>Most importantly, download the latest beta and release-candidate and test 
+it against your own applications. Report any and all issues or suspected issues 
+to <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>. The sooner 
+we resolve any problems, the fewer betas or release candidates we will have to 
+distribute before we are done. (How do we know when we done? -- When we run out 
+of issues =:o) The sooner we find them, the sooner we are done.)</li>
+
+<li>Review the list of issues at Bugzilla. If there are any you can respond to, 
+please do. If there any patches posted, feel free to test the patch on your 
+system and report the results.</li>
+
+<li>Feel free to use Bugzilla to vote for any issues you feel should be handled 
+first.</li>
+
+<li>If any of these issues involve enhancments, feel free to try coding the 
+enhancement yourself and submitting a patch. Over <a href="volunteers.html">
+thirty developers</a> have contributed code or documentation to the product. 
+You can too =:0)</li>
+
+<li>Help out on the mailing lists. The Committers only have so much time to 
+volunteer. If Developers are supporting each other on the lists, the 
+Committers have more time to spend on the next release. </li>
+</ul>
 
 </section>
 
