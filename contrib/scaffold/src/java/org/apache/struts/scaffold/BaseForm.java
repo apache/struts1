@@ -20,12 +20,14 @@ import org.apache.struts.action.ActionMapping;
 import com.wintecinc.struts.action.ValidatorForm; // Struts 1.0.x
 
 import org.apache.commons.scaffold.lang.ChainedException;
+import org.apache.commons.scaffold.text.ConvertUtils;
+import org.apache.commons.scaffold.lang.Tokens;
 
 
 /**
  * Enhanced base ActionForm.
  * @author Ted Husted
- * @version $Revision: 1.9 $ $Date: 2002/11/11 21:25:53 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/13 19:16:41 $
  * @todo Change from BeanUtil.populate to copyProperties
  * in 1.1 version.
  */
@@ -150,6 +152,38 @@ public class BaseForm extends ValidatorForm {
 // --------------------------------------------------------- Public Methods
 
     /**
+     * Convenience method to test for a required field
+     * and setup the error message.
+     */
+    protected void required(
+        ActionErrors errors,
+        String field,
+        String name,
+        String arg) {
+        if ((null==field) || (0==field.length())) {
+            errors.add(name,
+                new ActionError(Tokens.ERRORS_REQUIRED,arg));
+        }
+    }
+
+
+    /**
+     * Convenience method to test for a required array
+     * and setup the error message.
+     */
+    protected void required(
+        ActionErrors errors,
+        String[] field,
+        String name,
+        String arg) {
+        if ((null==field) || (0==field.length)) {
+            errors.add(name,
+                new ActionError(Tokens.ERRORS_REQUIRED,arg));
+        }
+    }
+
+
+    /**
      * If bean is set to mutable, calls <code>resetSessionLocale</code>
      * and <code>setRemoteAddr</code>.
      *
@@ -254,8 +288,26 @@ public class BaseForm extends ValidatorForm {
      *
      * @param s The sting to check
      */
+    protected boolean blank(String s) {
+        return ConvertUtils.blank(s);
+    }
+
+
+    /**
+     * Convenience method to check for a null, empty, or "0" String.
+     *
+     * @param s The sting to check
+     */
+    protected boolean blankValue(String s) {
+        return ConvertUtils.blankValue(s);
+    }
+
+
+    /**
+     * @deprecated Use blank instead.
+     */
     protected boolean isBlank(String s) {
-        return ((s==null) || (EMPTY.equals(s)));
+        return blank(s);
     }
 
 
