@@ -1,4 +1,10 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.1 2003/07/26 01:00:01 dgraham Exp $
+ * $Revision: 1.1 $
+ * $Date: 2003/07/26 01:00:01 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
  * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
@@ -53,105 +59,106 @@
  *
  */
 
-package org.apache.struts.taglib.logic;
-
-import java.util.Iterator;
+package org.apache.struts.taglib;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 
-import org.apache.struts.Globals;
-import org.apache.struts.action.ActionMessages;
-import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.util.RequestUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.util.MessageResources;
 
 /**
- * Evalute to <code>true</code> if an <code>ActionMessages</code> class or a
- * class that can be converted to an <code>ActionMessages</code> class is in
- * request scope under the specified key and there is at least one message in the
- * class or for the property specified.
- *
- * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2003/07/26 01:00:01 $
- * @since Struts 1.1
+ * Provides helper methods for JSP tags.
+ * 
+ * @author Craig R. McClanahan
+ * @author Ted Husted
+ * @author James Turner
+ * @author David Graham
+ * @version $Revision: 1.1 $
  */
-public class MessagesPresentTag extends ConditionalTagBase {
+public class TagUtils {
 
     /**
-     * If this is set to 'true', then the <code>Globals.MESSAGE_KEY</code> will
-     * be used to retrieve the messages from scope.
-    */
-    protected String message = null;
-
-
-    public MessagesPresentTag() {
-        name = Globals.ERROR_KEY;
-    }
-
-    public String getMessage() {
-        return (this.message);
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    /**
-     * Evaluate the condition that is being tested by this particular tag,
-     * and return <code>true</code> if the nested body content of this tag
-     * should be evaluated, or <code>false</code> if it should be skipped.
-     * This method must be implemented by concrete subclasses.
-     *
-     * @exception JspException if a JSP exception occurs
+     * The Singleton instance.
      */
-    protected boolean condition() throws JspException {
-
-        return (condition(true));
-
-    }
-
+    private static final TagUtils instance = new TagUtils();
 
     /**
-     * Evaluate the condition that is being tested by this particular tag,
-     * and return <code>true</code> if there is at least one message in the
-     * class or for the property specified.
-     * This method must be implemented by concrete subclasses.
-     *
-     * @param desired Desired outcome for a true result
-     *
-     * @exception JspException if a JSP exception occurs
+     * Commons logging instance.
      */
-    protected boolean condition(boolean desired) throws JspException {
-        ActionMessages am = null;
+    private static final Log log = LogFactory.getLog(TagUtils.class);
 
-        if (message != null && "true".equalsIgnoreCase(message)){
-           name = Globals.MESSAGE_KEY;
-        }
+    /**
+     * The message resources for this package.
+     */
+    private static final MessageResources messages =
+        MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
+
+    /**
+     * Constructor for TagUtils.
+     */
+    protected TagUtils() {
+        super();
+    }
+
+    /**
+     * Returns the Singleton instance of TagUtils.
+     */
+    public static TagUtils getInstance() {
+        return instance;
+    }
+
+    /**
+     * Retrieves the value from request scope and if it isn't already an 
+     * <code>ErrorMessages</code> some classes are converted to one.
+     *
+     * @param pageContext The PageContext for the current page
+     * @param paramName Key for parameter value
+     * @return ActionErrors from request scope
+     * @exception JspException
+     */
+    public ActionErrors getActionErrors(PageContext pageContext, String paramName)
+        throws JspException {
+
+        ActionErrors errors = new ActionErrors();
+
+        Object value = pageContext.findAttribute(paramName);
 
         try {
-            // Definitely know it should be an error so use method to retrieve errors.
-            if (Globals.ERROR_KEY.equals(name)) {
-                am = TagUtils.getInstance().getActionErrors(pageContext, name);
+            if (value == null) {
+                ;
+
+            } else if (value instanceof String) {
+                errors.add(
+                    ActionErrors.GLOBAL_ERROR,
+                    new ActionError((String) value));
+
+            } else if (value instanceof String[]) {
+                String keys[] = (String[]) value;
+                for (int i = 0; i < keys.length; i++) {
+                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
+                }
+
+            } else if (value instanceof ActionErrors) {
+                errors = (ActionErrors) value;
+
             } else {
-                am = RequestUtils.getActionMessages(pageContext, name);
+                throw new JspException(
+                    messages.getMessage(
+                        "actionErrors.errors",
+                        value.getClass().getName()));
             }
+
         } catch (JspException e) {
-            RequestUtils.saveException(pageContext, e);
             throw e;
+        } catch (Exception e) {
+            log.debug(e, e);
         }
 
-        Iterator iterator = (property == null) ? am.get() : am.get(property);
-
-        return (iterator.hasNext() == desired);
-
-    }
-
-    /**
-     * Release all allocated resources.
-     */
-    public void release() {
-        super.release();
-        name = Globals.ERROR_KEY;
-        message = null;
+        return errors;
     }
 
 }
