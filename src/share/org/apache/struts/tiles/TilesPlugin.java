@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.12 2002/11/26 02:33:07 rleland Exp $
- * $Revision: 1.12 $
- * $Date: 2002/11/26 02:33:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.13 2002/11/26 02:37:39 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/11/26 02:37:39 $
  *
  * ====================================================================
  *
@@ -71,7 +71,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.action.PlugInPatch;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
@@ -103,7 +102,7 @@ import org.apache.struts.util.RequestUtils;
  * @author Cedric Dumoulin
  * @since 1.1
  */
-public class TilesPlugin implements PlugIn, PlugInPatch {
+public class TilesPlugin implements PlugIn {
 
     /** Commons Logging instance. */
     protected static Log log = LogFactory.getLog(TilesPlugin.class);

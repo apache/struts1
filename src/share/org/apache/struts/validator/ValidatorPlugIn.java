@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.14 2002/11/26 02:33:07 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2002/11/26 02:33:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.15 2002/11/26 02:37:40 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/11/26 02:37:40 $
  *
  * ====================================================================
  *
@@ -76,7 +76,6 @@ import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorResourcesInitializer;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.action.PlugInPatch;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ModuleConfig;
 
@@ -86,10 +85,10 @@ import org.apache.struts.config.ModuleConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.14 $ $Date: 2002/11/26 02:33:07 $
+ * @version $Revision: 1.15 $ $Date: 2002/11/26 02:37:40 $
  * @since Struts 1.1
  */
-public class ValidatorPlugIn implements PlugIn,PlugInPatch {
+public class ValidatorPlugIn implements PlugIn {
 
     /**
      * Commons Logging instance.
