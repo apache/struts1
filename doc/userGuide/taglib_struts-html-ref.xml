@@ -89,6 +89,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+                <since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+                <since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -105,9 +126,9 @@
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "propertyName[34]". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag. 
+                for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
             </info>
         </attribute>
@@ -290,6 +311,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+                  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+            	  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -326,6 +368,27 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+            	<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+            	<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -521,6 +584,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+            	  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+            	  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -574,6 +658,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+            	<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+            	<since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -590,7 +695,7 @@
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
@@ -786,6 +891,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+            	  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+            	  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -924,6 +1050,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+            	<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+            	<since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -940,7 +1087,7 @@
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
@@ -1154,6 +1301,27 @@
             </info>
         </attribute>
 
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The advisory title for this element.</p>
+			</info>
+			<since>1.1</since>
+		</attribute>
+
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The message resources key for the advisory title
+			for this element.</p>
+			</info>
+			<since>1.1</since>
+		</attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -1353,6 +1521,380 @@
 
     <tag>
 
+        <name>frame</name>
+        <summary>Render an HTML frame element</summary>
+        <tagclass>org.apache.struts.taglib.html.FrameTag</tagclass>
+        <info>
+
+            <p>Renders an HTML <code>&lt;frame&gt;</code> element
+            with processing for the <code>src</code> attribute that is
+            identical to that performed by the <code>&lt;html:link&gt;</code>
+            tag for the <code>href</code> attribute.  URL rewriting will be
+            applied automatically, to maintain session state in the
+            absence of cookies.</p>
+
+            <p>The base URL for this frame is calculated based on
+            which of the following attributes you specify (you must
+            specify exactly one of them):</p>
+            <ul>
+            <li><em>forward</em> - Use the value of this attribute as the
+                name of a global <code>ActionForward</code> to be looked
+                up, and use the application-relative or context-relative
+                URI found there.</li>
+            <li><em>href</em> - Use the value of this attribute unchanged.
+                </li>
+            <li><em>page</em> - Use the value of this attribute as a
+                application-relative URI, and generate a server-relative
+                URI by including the context path and application
+                prefix.</li>
+            </ul>
+
+            <p>Normally, the hyperlink you specify with one of the
+            attributes described in the previous paragraph will be left
+            unchanged (other than URL rewriting if necessary).  However,
+            there are two ways you can append one or more dynamically
+            defined query parameters to the hyperlink -- specify a single
+            parameter with the <code>paramId</code> attribute (and its
+            associated attributes to select the value), or specify the
+            <code>name</code> (and optional <code>property</code>)
+            attributes to select a <code>java.util.Map</code> bean that
+            contains one or more parameter ids and corresponding values.
+            </p>
+
+            <p>To specify a single parameter, use the <code>paramId</code>
+            attribute to define the name of the request parameter to be
+            submitted.  To specify the corresponding value, use one of the
+            following approaches:</p>
+            <ul>
+            <li><em>Specify only the <code>paramName</code> attribute</em>
+                - The named JSP bean (optionally scoped by the value of the
+                <code>paramScope</code> attribute) must identify a value
+                that can be converted to a String.</li>
+            <li><em>Specify both the <code>paramName</code> and
+                <code>paramProperty</code> attributes</em> - The specified
+                property getter method will be called on the JSP bean
+                identified by the <code>paramName</code> (and optional
+                <code>paramScope</code>) attributes, in order to select
+                a value that can be converted to a String.</li>
+            </ul>
+
+            <p>If you prefer to specify a <code>java.util.Map</code> that
+            contains all of the request parameters to be added to the
+            hyperlink, use one of the following techniques:</p>
+            <ul>
+            <li><em>Specify only the <code>name</code> attribute</em> -
+                The named JSP bean (optionally scoped by the value of
+                the <code>scope</code> attribute) must identify a
+                <code>java.util.Map</code> containing the parameters.</li>
+            <li><em>Specify both <code>name</code> and
+                <code>property</code> attributes</em> - The specified
+                property getter method will be called on the bean
+                identified by the <code>name</code> (and optional
+                <code>scope</code>) attributes, in order to return the
+                <code>java.util.Map</code> containing the parameters.</li>
+            </ul>
+
+            <p>As the <code>Map</code> is processed, the keys are assumed
+            to be the names of query parameters to be appended to the
+            hyperlink.  The value associated with each key must be either
+            a String or a String array representing the parameter value(s),
+            or an object whose toString() method will be called.
+            If a String array is specified, more than one value for the
+            same query parameter name will be created.</p>
+
+            <p>Additionally, you can request that the current transaction
+            control token, if any, be included in the generated hyperlink
+            by setting the <code>transaction</code> attribute to
+            <code>true</code>.
+            You can also request that an anchor ("#xxx") be added to the
+            end of the URL that is created by any of the above mechanisms,
+            by using the <code>anchor</code> attribute.</p>
+
+        </info>
+		<since>1.1</since>
+
+        <attribute>
+            <name>anchor</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Optional anchor tag ("#xxx") to be added to the generated
+                hyperlink.  Specify this value <strong>without</strong> any
+                "#" character.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>forward</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Logical name of a global <code>ActionForward</code> that
+                contains the actual content-relative URI of the destination
+                of this transfer.  This hyperlink may be dynamically
+                modified by the inclusion of query parameters, as described
+                in the tag description.  You <strong>must</strong> specify
+                exactly one of the <code>forward</code> attribute, the
+                <code>href</code> attribute,
+                or the <code>page</code> attribute.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>frameborder</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Should a frame border be generated around this frame (1)
+                or not (0)?</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>frameName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Value for the <code>name</code> attribute of the rendered
+                <code>&lt;frame&gt;</code> element.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>href</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The URL to which this hyperlink will transfer control
+                if activated.  This hyperlink may be dynamically modified
+                by the inclusion of query parameters, as described in the
+                tag description.  You <strong>must</strong> specify
+                exactly one of the <code>forward</code> attribute, the
+                <code>href</code> attribute,
+                or the <code>page</code> attribute.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>longdesc</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>URI of a long description of the frame.  This description
+                should supplement the short description provided by the
+                <code>title</code> attribute, and may be particularly useful
+                for non-visual user agents.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>marginheight</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The amount of space (in pixels) to be left between the
+                frame's contents and its top and bottom margins.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>marginwidth</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The amount of space (in pixels) to be left between the
+                frame's contents and its left and right argins.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The name of a JSP bean that contains a <code>Map</code>
+                representing the query parameters (if <code>property</code>
+                is not specified), or a JSP bean whose property getter is
+                called to return a <code>Map</code> (if <code>property</code>
+                is specified).</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>noresize</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Should users be disallowed from resizing the frame?
+                (true, false).</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>page</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The applicaiton-relative path (beginning with a "/"
+                character) to which this hyperlink will transfer control
+                if activated.  This hyperlink may be dynamically modified
+                by the inclusion of query parameters, as described in the
+                tag description.  You <strong>must</strong> specify exactly
+                one of the <code>forward</code> attribute, the
+                <code>href</code> attribute,
+                or the <code>page</code> attribute.</p>
+                </info>
+            </attribute>
+
+        <attribute>
+            <name>paramId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The name of the request parameter that will be dynamically
+                added to the generated hyperlink.  The corresponding value is
+                defined by the <code>paramName</code> and (optional)
+                <code>paramProperty</code> attributes, optionally scoped by
+                the <code>paramScope</code> attributel</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>paramName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The name of a JSP bean that is a String containing the
+                value for the request parameter named by <code>paramId</code>
+                (if <code>paramProperty</code> is not specified), or a JSP
+                bean whose property getter is called to return a String
+                (if <code>paramProperty</code> is specified).  The JSP bean
+                is constrained to the bean scope specified by the
+                <code>paramScope</code> property, if it is specified.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>paramProperty</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The name of a property of the bean specified by the
+                <code>paramName</code> attribute, whose return value must
+                be a String containing the value of the request parameter
+                (named by the <code>paramId</code> attribute) that will be
+                dynamically added to this hyperlink.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>paramScope</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The scope within which to search for the bean specified
+                by the <code>paramName</code> attribute.  If not specified,
+                all scopes are searched.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>property</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The name of a property of the bean specified by the
+                <code>name</code> attribute, whose return value must be
+                a <code>java.util.Map</code> containing the query parameters
+                to be added to the hyperlink.  You <strong>must</strong>
+                specify the <code>name</code> attribute if you specify
+                this attribute.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>scope</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The scope within which to search for the bean specified
+                by the <code>name</code> attribute.  If not specified, all
+                scopes are searched.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>scrolling</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>Should scroll bars be created unconditionally (yes),
+                never (no), or only when needed (auto)?</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS styles to be applied to this element.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>CSS stylesheet class to be applied to this element.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The advisory title for this element.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>titleKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>The message resources key for the advisory title
+                for this element.</p>
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>transaction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                <p>If set to <code>true</code>, any current transaction
+                control token will be included in the generated hyperlink,
+                so that it will pass an <code>isTokenValid()</code> test
+                in the receiving Action.</p>
+            </info>
+        </attribute>
+
+    </tag>
+
+
+    <tag>
         <name>hidden</name>
         <summary>
             Render A Hidden Field
@@ -1368,13 +1910,34 @@
         </info>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
@@ -1404,6 +1967,27 @@
             </info>
         </attribute>
 
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The advisory title for this element.</p>
+			</info>
+			<since>1.1</since>
+		</attribute>
+
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The message resources key for the advisory title
+			for this element.</p>
+			</info>
+			<since>1.1</since>
+		</attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -1413,6 +1997,20 @@
                 corresponding bean property value]
             </info>
         </attribute>
+
+        <attribute>
+            <name>write</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Should the value of this field also be rendered to the
+                response page to make it visible, in addition to creating
+                an HTML type="hidden" element?  By default, only the
+                hidden element is created.
+            </info>
+			<since>1.1</since>
+        </attribute>
+
     </tag>
 
 
@@ -1485,6 +2083,16 @@
         </attribute>
 
         <attribute>
+                <name>align</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alignment option for this image.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
                 <name>alt</name>
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
@@ -1531,6 +2139,19 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+			<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -1694,6 +2315,27 @@
             <rtexprvalue>true</rtexprvalue>
           </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				<since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				<since>1.1</since>
+                </attribute>
+
           <attribute>
             <name>value</name>
             <required>false</required>
@@ -1826,7 +2468,7 @@
                   </info>
                 </attribute>
 
-                <attribute>
+			<attribute>
                   <name>alt</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1835,9 +2477,9 @@
                      don't support graphics.  Also used often as type of
                      context help over images.</p>
                   </info>
-                </attribute>
+			</attribute>
 
-                <attribute>
+			<attribute>
                   <name>altKey</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1846,7 +2488,7 @@
                   the <code>bundle</code> attribute, of the String to be
                   displayed as the alternate text for this image.</p>
                   </info>
-                </attribute>
+			</attribute>
 
                 <attribute>
                   <name>border</name>
@@ -2134,6 +2776,27 @@
         </attribute>
 
                 <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
                   <name>usemap</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -2166,6 +2829,108 @@
 
         </tag>
 
+    <tag>
+
+        <name>javascript</name>
+        <summary>
+            Render JavaScript validation based on the
+            validation rules loaded by the <code>ValidatorPlugIn</code>.
+        </summary>
+        <tagclass>org.apache.struts.taglib.html.JavascriptValidatorTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>
+            <p>
+                Render JavaScript validation based on the
+                validation rules loaded by the <code>ValidatorPlugIn</code>.
+                The set of validation rules that should be generated is based
+                on the formName attribute passed in, which should match
+                the name attribute of the form element in the xml file.
+            <p>
+            </p>
+                The dynamicJavascript and staticJavascript attributes
+                default to true, but if dynamicJavascript is set to <code>true</code>
+                and staticJavascript is set to <code>false</code> then only
+                the dynamic JavaScript will be rendered.  If dynamicJavascript
+                is set to <code>false</code>
+                and staticJavascript is set to <code>true</code> then only
+                the static JavaScript will be rendered which can then be put in
+                separate JSP page so the browser can cache the static JavaScript.
+            </p>
+        </info>
+
+		<since>1.1</since>
+        <attribute>
+            <name>dynamicJavascript</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+               <p>
+                  Whether or not to render the dynamic JavaScript.
+                  Defaults to <code>true</code>.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>formName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The key (form name) to retrieve a specific
+                  set of validation rules.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>method</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The alternate JavaScript method name to be used
+                  instead of the of the default.  The default is
+                  'validate' concatenated in front of
+                  the key (form name) passed in (ex: validateRegistrationForm).
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>page</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The current page of a set of validation rules
+                  if the page attribute for the field element
+                  in the xml file is in use.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>src</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+               <p>
+                  The src attribute's value when defining
+                  the html script element.
+               </p>
+            </info>
+        </attribute>
+        <attribute>
+            <name>staticJavascript</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+               <p>
+                  Whether or not to render the static JavaScript.
+                  Defaults to <code>true</code>.
+               </p>
+            </info>
+        </attribute>
+
+    </tag>
+
         <tag>
 
                 <name>link</name>
@@ -2186,12 +2951,14 @@
                 <ul>
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
-                    up, and use the context-relative URI found there.</li>
+                    up, and use the application-relative or context-relative
+                    URI found there.</li>
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
                 <li><em>page</em> - Use the value of this attribute as a
-                    context-relative URI, and generate a server-relative URI
-                    by including the context path.</li>
+                    application-relative URI, and generate a server-relative
+                    URI by including the context path and application
+                    prefix.</li>
                 </ul>
 
                 <p>Normally, the hyperlink you specify with one of the
@@ -2330,7 +3097,7 @@
             <rtexprvalue>true</rtexprvalue>
             <since>1.1</since>
             <info>
-                By this attribute different name for the indexed parameter can be 
+                By this attribute different name for the indexed parameter can be
                 specified. Take a look to the "indexed" attribute for details.
                 [Since 1.1]
             </info>
@@ -2632,6 +3399,17 @@
                 </attribute>
 
                 <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+					<since>1.1</since>
+                </attribute>
+
+                <attribute>
                   <name>transaction</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -2657,7 +3435,7 @@
                 <info>
                 <p>Displays a set of messages prepared by a business
                 logic component and stored as an <code>ActionMessages</code>
-                object, <code>ActionErrors</code> object, a String, 
+                object, <code>ActionErrors</code> object, a String,
                 or a String array in request scope.  If
                 such a bean is not found, nothing will be rendered.</p>
 
@@ -2726,7 +3504,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  This value is an optional message resource key that will 
+                  This value is an optional message resource key that will
                   be printed before the iteration of messages begins.
                   </info>
                 </attribute>
@@ -2736,7 +3514,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  This value is an optional message resource key that will 
+                  This value is an optional message resource key that will
                   be printed after the iteration of messages has finished.
                   </info>
                 </attribute>
@@ -2746,11 +3524,11 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  By default the tag will retrieve the request scope bean it will 
-                  iterate over from the <code>Action.ERROR_KEY</code> constant string, 
-                  but if this attribute is set to 'true' the request scope bean 
-                  will be retrieved from the <code>Action.MESSAGE_KEY</code> 
-                  constant string.  Also if this is set to 'true', any value 
+                  By default the tag will retrieve the request scope bean it will
+                  iterate over from the <code>Action.ERROR_KEY</code> constant string,
+                  but if this attribute is set to 'true' the request scope bean
+                  will be retrieved from the <code>Action.MESSAGE_KEY</code>
+                  constant string.  Also if this is set to 'true', any value
                   assigned to the name attribute will be ignored.
                   </info>
                 </attribute>
@@ -2804,6 +3582,27 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -3005,6 +3804,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -3085,6 +3905,26 @@
                 </attribute>
 
         <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+			<since>1.1</since>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+			<since>1.1</since>
+        </attribute>
+
+        <attribute>
                     <name>value</name>
                     <required>true</required>
                     <rtexprvalue>true</rtexprvalue>
@@ -3111,7 +3951,7 @@
                 element.  This tag can be used multiple times within a single
                 <code>&lt;html:select&gt;</code> element, either in conjunction
                 with or instead of one or more <code>&lt;html:option&gt;</code>
-                elements.</p>
+                or <code>&lt;html:optionsCollection&gt;</code> elements.</p>
 
                 <p>This tag operates in one of two major modes, depending on
                 whether or not the <code>collection</code> attribute is
@@ -3194,6 +4034,18 @@
                 </attribute>
 
         <attribute>
+            <name>filter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Set to <code>false</code> if you do NOT want the option labels
+                filtered for sensitive characters in HTML.  By default, such
+                values are filtered.
+            </info>
+			<since>1.1</since>
+        </attribute>
+
+        <attribute>
             <name>labelName</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -3235,6 +4087,116 @@
                 to the server for these options.
             </info>
         </attribute>
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+			<since>1.1</since>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+			<since>1.1</since>
+        </attribute>
+    </tag>
+
+    <tag>
+
+        <name>optionsCollection</name>
+        <summary>
+            Render a Collection of Select Options
+        </summary>
+        <tagclass>org.apache.struts.taglib.html.OptionsCollectionTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>
+            <p>Renders a set of HTML <code>&lt;option&gt;</code> elements,
+            representing possible choices for a <code>&lt;select&gt;</code>
+            element.  This tag can be used multiple times within a single
+            <code>&lt;html:select&gt;</code> element, either in conjunction
+            with or instead of one or more <code>&lt;html:option&gt;</code>
+            or <code>&lt;html:options&gt;</code> elements.</p>
+
+            <p>This tag operates on a collection of beans, where each bean
+            has a <strong>label</strong> property and a <strong>value</strong>
+            property. The actual names of these properties can be configured
+            using the <code>label</code> and <code>value</code> attributes
+            of this tag.</p>
+
+            <p>This tag differs from the <code>&lt;html:options&gt;</code> tag
+            in that it makes more consistent use of the <code>name</code> and
+            <code>property</code> attributes, and allows the collection to be
+            more easily obtained from the enclosing form bean.</p>
+        </info>
+
+		<since>1.1</since>
+        <attribute>
+            <name>label</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The property of the bean within the collection which represents
+                the label to be rendered for each option. Defaults to "label".
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The attribute name of the bean whose properties are consulted
+                when rendering the current value of this input field. If not
+                specified, the bean associated with the form tag we are nested
+                within is utilized.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>property</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The property of the form bean, or the bean specified by the name
+                attribute, that will return the collection of objects to be
+                rendered for these options.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>value</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The property of the bean within the collection which represents
+                the value to be rendered for each option. Defaults to "value".
+            </info>
+        </attribute>
     </tag>
 
     <tag>
@@ -3259,6 +4221,27 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -3519,6 +4502,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -3557,6 +4561,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -3564,6 +4589,19 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+			<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -3715,6 +4753,27 @@
         </attribute>
 
                 <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
                         <name>value</name>
                         <required>true</required>
                         <rtexprvalue>true</rtexprvalue>
@@ -3746,6 +4805,27 @@
                 The keyboard character used to move focus immediately to this
                 element.
             </info>
+        </attribute>
+
+        <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -3925,6 +5005,27 @@
                 The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
 
         <attribute>
             <name>value</name>
@@ -4166,6 +5267,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -4182,7 +5304,7 @@
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
@@ -4399,6 +5521,27 @@
             </info>
         </attribute>
 
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The advisory title for this element.</p>
+			</info>
+			<since>1.1</since>
+		</attribute>
+
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The message resources key for the advisory title
+			for this element.</p>
+			</info>
+			<since>1.1</since>
+		</attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -4432,6 +5575,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -4448,7 +5612,7 @@
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "propertyName[34]". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
@@ -4633,6 +5797,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -4665,6 +5850,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -4681,7 +5887,7 @@
             <since>1.1</since>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as 
+                If yes then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
                 [Since 1.1]
@@ -4905,6 +6111,27 @@
             </info>
         </attribute>
 
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
         <attribute>
             <name>value</name>
             <required>false</required>
@@ -4940,6 +6167,27 @@
         </attribute>
 
         <attribute>
+                <name>alt</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alternate text for this element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
+                <name>altKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The message resources key of the alternate text for this
+                element.</p>
+                </info>
+				<since>1.1</since>
+        </attribute>
+
+        <attribute>
             <name>cols</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4956,6 +6204,19 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+			<since>1.1</since>
         </attribute>
 
         <attribute>
@@ -5165,6 +6426,27 @@
                 The tab order (ascending positive integers) for this element.
             </info>
         </attribute>
+
+                <attribute>
+                  <name>title</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The advisory title for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
+
+                <attribute>
+                  <name>titleKey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  </info>
+				  <since>1.1</since>
+                </attribute>
 
         <attribute>
             <name>value</name>

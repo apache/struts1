@@ -1281,24 +1281,24 @@
             </info>
         </attribute>
 
-                <attribute>
-                  <name>title</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The advisory title for this element.</p>
-                  </info>
-                </attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The advisory title for this element.</p>
+			</info>
+		</attribute>
 
-                <attribute>
-                  <name>titleKey</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The message resources key for the advisory title
-                  for this element.</p>
-                  </info>
-                </attribute>
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The message resources key for the advisory title
+			for this element.</p>
+			</info>
+		</attribute>
 
         <attribute>
             <name>value</name>
@@ -1941,24 +1941,24 @@
             </info>
         </attribute>
 
-                <attribute>
-                  <name>title</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The advisory title for this element.</p>
-                  </info>
-                </attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The advisory title for this element.</p>
+			</info>
+		</attribute>
 
-                <attribute>
-                  <name>titleKey</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The message resources key for the advisory title
-                  for this element.</p>
-                  </info>
-                </attribute>
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The message resources key for the advisory title
+			for this element.</p>
+			</info>
+		</attribute>
 
         <attribute>
             <name>value</name>
@@ -2067,7 +2067,7 @@
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
                 <info>
-                <p>The alternate text for this element.</p>
+                <p>The alternate text for this image.</p>
                 </info>
         </attribute>
 
@@ -2077,7 +2077,7 @@
                 <rtexprvalue>true</rtexprvalue>
                 <info>
                 <p>The message resources key of the alternate text for this
-                element.</p>
+                image.</p>
                 </info>
         </attribute>
 
@@ -2440,7 +2440,9 @@
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
                 <info>
-                <p>The alternate text for this element.</p>
+                  <p>And alternative text to be displayed in browsers that
+                     don't support graphics.  Also used often as type of
+                     context help over images.</p>
                 </info>
         </attribute>
 
@@ -3351,7 +3353,7 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The advisory title for this element.</p>
+                  <p>The advisory title for this hyperlink.</p>
                   </info>
                 </attribute>
 
@@ -3872,6 +3874,7 @@
                 CSS stylesheet class to be applied to this HTML element.
             </info>
         </attribute>
+
         <attribute>
                     <name>value</name>
                     <required>true</required>
@@ -5447,24 +5450,24 @@
             </info>
         </attribute>
 
-                <attribute>
-                  <name>title</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The advisory title for this element.</p>
-                  </info>
-                </attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The advisory title for this element.</p>
+			</info>
+		</attribute>
 
-                <attribute>
-                  <name>titleKey</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The message resources key for the advisory title
-                  for this element.</p>
-                  </info>
-                </attribute>
+		<attribute>
+			<name>titleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<info>
+			<p>The message resources key for the advisory title
+			for this element.</p>
+			</info>
+		</attribute>
 
         <attribute>
             <name>value</name>
