@@ -100,11 +100,9 @@
       <pathelement location="${build.home}/test/classes"/>
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${commons-dbcp.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-httpclient.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
-      <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${aspectjrt.jar}"/>
       <pathelement location="${cactus.jar}"/>
@@ -113,9 +111,10 @@
       <pathelement location="${xalanj.jar}"/>
       <pathelement location="${jtidy.jar}"/>
       <pathelement location="${servlet.jar}"/>
+      <pathelement location="${struts-legacy.jar}"/>
       <pathelement location="${struts.jar}"/>
-		<pathelement location="${jstl.jar}"/>
-		<pathelement location="${jstl-standard.jar}"/>
+      <pathelement location="${jstl.jar}"/>
+	  <pathelement location="${jstl-standard.jar}"/>
     </path>
 
 <!-- ========== Executable Targets ======================================== -->
@@ -198,15 +197,13 @@
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-collections.jar}"
                                       todir="${out.test.dir}/lib"/>
-        <copy file="${commons-dbcp.jar}"
-                                      todir="${out.test.dir}/lib"/>
         <copy file="${commons-digester.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-logging.jar}"
                                       todir="${out.test.dir}/lib"/>
-        <copy file="${commons-pool.jar}"
-                                      todir="${out.test.dir}/lib"/>
         <copy file="${commons-validator.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${struts-legacy.jar}"
                                       todir="${out.test.dir}/lib"/>
 
         <war warfile="${out.test.dir}/test.war"

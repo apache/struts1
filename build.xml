@@ -40,8 +40,8 @@
                                       of the Jakarta Commons Collections
                                       package (version 1.0 or later).
 
-        commons-dbcp.jar              (required).  The path to the JAR file
-                                      of the Jakarta Commons DBCP
+        struts-legacy.jar             (required).  The path to the JAR file
+                                      of the Jakarta Struts Legacy
                                       package (version 1.0 or later).
 
         commons-digester.jar          (required).  The path to the JAR file
@@ -58,10 +58,6 @@
 
         commons-logging.jar           (required).  The path to the JAR file
                                       of the Jakarta Commons Logging
-                                      package (version 1.0 or later).
-
-        commons-pool.jar              (required).  The path to the JAR file
-                                      of the Jakarta Commons POOL
                                       package (version 1.0 or later).
 
         commons-validator.jar         (required).  The path to the JAR file
@@ -198,12 +194,11 @@
     <path id="compile.classpath">
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${commons-dbcp.jar}"/>
+      <pathelement location="${struts-legacy.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-lang.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
-      <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${jakarta-oro.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
@@ -252,8 +247,8 @@
             tofile="${build.home}/library/commons-beanutils.jar"/>
         <copy file="${commons-collections.jar}"
             tofile="${build.home}/library/commons-collections.jar"/>
-        <copy file="${commons-dbcp.jar}"
-            tofile="${build.home}/library/commons-dbcp.jar"/>
+        <copy file="${struts-legacy.jar}"
+            tofile="${build.home}/library/struts-legacy.jar"/>
         <copy file="${commons-digester.jar}"
             tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${commons-fileupload.jar}"
@@ -262,8 +257,6 @@
             tofile="${build.home}/library/commons-lang.jar"/>
         <copy file="${commons-logging.jar}"
             tofile="${build.home}/library/commons-logging.jar"/>
-        <copy file="${commons-pool.jar}"
-            tofile="${build.home}/library/commons-pool.jar"/>
         <copy file="${commons-validator.jar}"
             tofile="${build.home}/library/commons-validator.jar"/>
         <copy file="${jakarta-oro.jar}"

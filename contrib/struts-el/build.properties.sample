@@ -6,7 +6,7 @@
 # in the same directory that contains the "build.xml" file, then make any
 # changes you need.
 #
-# $Id: build.properties.sample,v 1.4 2003/02/07 22:35:30 rleland Exp $
+# $Id: build.properties.sample,v 1.5 2003/06/07 21:53:28 husted Exp $
 # -----------------------------------------------------------------------------
 
 struts.home	= <path to struts distribution>
@@ -28,10 +28,6 @@ commons-beanutils.jar	= <path to commons-beanutils.jar>
 # from the Jakarta Commons project.
 commons-collections.jar	= <path to commons-collections.jar>
 
-# The JAR file containing version 1.0 (or later) of the DBCP package
-# from the Jakarta Commons project.
-commons-dbcp.jar	= <path to commons-dbcp.jar>
-
 # The JAR file containing version 1.0 (or later) of the Digester package
 # from the Jakarta Commons project.
 commons-digester.jar	= <path to commons.digester.jar>
@@ -48,9 +44,13 @@ commons-pool.jar	= <path to commons-pool.jar>
 # from the Jakarta Commons project.
 commons-validator.jar	= <path to commons-validator.jar>
 
-# The JAR file containing version 2.06 (or later) of 
+# The JAR file containing version 2.06 (or later) of
 # the the Jakarta ORO project.
 jakarta-oro.jar	= <path to jakarta-oro.jar>
+
+# The JAR file containing version 1.0 (or later) of the Struts Legacy package
+# from the Jakarta Struts contrib area.
+struts-legacy.jar	= <path to struts-legacy.jar>
 
 # Properties related to Struts unit testing
 # -----------------------------------------

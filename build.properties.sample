@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.39 2003/06/06 22:02:08 husted Exp $
+# $Id: build.properties.sample,v 1.40 2003/06/07 21:53:28 husted Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -40,10 +40,6 @@ commons-beanutils.jar=${commons-lib.home}/beanutils/dist/commons-beanutils.jar
 # from the Jakarta Commons project.
 commons-collections.jar=${commons-lib.home}/collections/dist/commons-collections.jar
 
-# The JAR file containing the DBCP package (Version 1.0 or later)
-# from the Jakarta Commons project.
-commons-dbcp.jar=${commons-lib.home}/dbcp/dist/commons-dbcp.jar
-
 # The JAR file containing the Digester package (Version 1.3 or later)
 # from the Jakarta Commons project.
 commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
@@ -59,10 +55,6 @@ commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang.jar
 # The JAR file containing the Logging package (Version 1.0.3 or later)
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
-
-# The JAR file containing the POOL package (Version 1.0.1 or later)
-# from the Jakarta Commons project.
-commons-pool.jar=${commons-lib.home}/pool/dist/commons-pool.jar
 
 # The JAR file containing the Validator package (Version 1.0.1 or later)
 # from the Jakarta Commons project.
@@ -87,6 +79,10 @@ jdbc20ext.jar=../../../Java/Programs/sun/jdbc2_0-stdext.jar
 # The JAR file containing the Servlet API classes to compile against (either
 # version 2.2 or 2.3)
 servlet.jar=${apache.home}/jakarta-servletapi/lib/servlet.jar
+
+# The JAR file containing the Struts Legacy package (Version 1.0 or later)
+# from the Struts contrib area.
+struts-legacy.jar=../contrib/struts-legacy/dist/struts-legacy.jar
 
 # The directory containing your binary distribution of Tomcat 3.3, from CVS
 # module "jakarta-tomcat" (and branch "TOMCAT_32") at jakarta.apache.org.

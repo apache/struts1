@@ -10,9 +10,9 @@ Implementation-Version: 1.1
 Class-Path: 
   commons-beanutils.jar
   commons-collections.jar
-  commons-dbcp.jar
   commons-digester.jar
   commons-logging.jar
   commons-pool.jar
   commons-validator.jar
   jakarta-oro.jar
+  struts-legacy.jar

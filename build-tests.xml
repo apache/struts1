@@ -90,12 +90,10 @@
       <pathelement location="${build.home}/test/classes"/>
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${commons-dbcp.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-httpclient.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
-      <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${commons-lang.jar}"/>
       <pathelement location="${httpunit.jar}"/>
@@ -103,6 +101,7 @@
       <pathelement location="${cactus.jar}"/>
       <pathelement location="${junit.jar}"/>
       <pathelement location="${servlet.jar}"/>
+      <pathelement location="${struts-legacy.jar}"/>
       <pathelement location="${struts.jar}"/>
     </path>
 
@@ -190,17 +189,14 @@
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-collections.jar}"
                                       todir="${out.test.dir}/lib"/>
-        <copy file="${commons-dbcp.jar}"
-                                      todir="${out.test.dir}/lib"/>
         <copy file="${commons-digester.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-logging.jar}"
                                       todir="${out.test.dir}/lib"/>
-        <copy file="${commons-pool.jar}"
-                                      todir="${out.test.dir}/lib"/>
         <copy file="${commons-validator.jar}"
                                       todir="${out.test.dir}/lib"/>
-
+        <copy file="${struts-legacy.jar}"
+                                      todir="${out.test.dir}/lib"/>
         <war warfile="${out.test.dir}/test.war"
              webxml="${conf.test.dir}/web.xml">
 

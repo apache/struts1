@@ -53,10 +53,6 @@
                                       of the Jakarta Commons Collections
                                       package (version 1.0 or later).
 
-        commons-dbcp.jar              (required).  The path to the JAR file
-                                      of the Jakarta Commons DBCP
-                                      package (version 1.0 or later).
-
         commons-digester.jar          (required).  The path to the JAR file
                                       of the Jakarta Commons Digester
                                       package (version 1.0 or later).
@@ -73,10 +69,6 @@
                                       of the Jakarta Commons Logging
                                       package (version 1.0 or later).
 
-        commons-pool.jar              (required).  The path to the JAR file
-                                      of the Jakarta Commons POOL
-                                      package (version 1.0 or later).
-
         commons-validator.jar         (required).  The path to the JAR file
                                       of the Jakarta Commons VALIDATOR
                                       package (version 1.0 or later).
@@ -84,6 +76,10 @@
         servlet.jar                   MUST be set to the pathname of the
                                       servlet API classes you wish to
                                       compile against.
+
+        struts-legacy.jar             (required).  The path to the JAR file
+                                      of the Jakarta Struts Legacy
+                                      package (version 1.0 or later).
 
         struts.libs                   If specified, must be the pathname of a
                                       directory from which "struts.jar" will be
@@ -177,7 +173,6 @@
 <path id="classpath">
   <pathelement location="${commons-beanutils.jar}"/>
   <pathelement location="${commons-collections.jar}"/>
-  <pathelement location="${commons-dbcp.jar}"/>
   <pathelement location="${commons-digester.jar}"/>
   <pathelement location="${commons-fileupload.jar}"/>
   <pathelement location="${commons-lang.jar}"/>
@@ -186,6 +181,7 @@
   <pathelement location="${commons-validator.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
+  <pathelement location="${struts-legacy.jar}"/>
   <pathelement location="${struts.libs}/struts.jar"/>
   <pathelement location="${struts.libs}/struts-el.jar"/>
   <pathelement location="${webapp.libs}"/>

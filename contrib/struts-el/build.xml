@@ -153,13 +153,12 @@
  <path id="compile.classpath">
   <pathelement location="${commons-beanutils.jar}"/>
   <pathelement location="${commons-collections.jar}"/>
-  <pathelement location="${commons-dbcp.jar}"/>
   <pathelement location="${commons-digester.jar}"/>
   <pathelement location="${commons-logging.jar}"/>
-  <pathelement location="${commons-pool.jar}"/>
   <pathelement location="${commons-validator.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
+  <pathelement location="${struts-legacy.jar}"/>
   <pathelement location="${struts.jar}"/>
   <pathelement location="${struts-el.jar}"/>
   <pathelement location="${jstl.jar}"/>
@@ -203,8 +202,6 @@
         tofile="${build.home}/library/commons-beanutils.jar"/>
   <copy file="${commons-collections.jar}"
         tofile="${build.home}/library/commons-collections.jar"/>
-  <copy file="${commons-dbcp.jar}"
-        tofile="${build.home}/library/commons-dbcp.jar"/>
   <copy file="${commons-digester.jar}"
         tofile="${build.home}/library/commons-digester.jar"/>
   <copy file="${commons-fileupload.jar}"
@@ -213,12 +210,12 @@
         tofile="${build.home}/library/commons-lang.jar"/>
   <copy file="${commons-logging.jar}"
         tofile="${build.home}/library/commons-logging.jar"/>
-  <copy file="${commons-pool.jar}"
-        tofile="${build.home}/library/commons-pool.jar"/>
   <copy file="${commons-validator.jar}"
         tofile="${build.home}/library/commons-validator.jar"/>
   <copy file="${jakarta-oro.jar}"
         tofile="${build.home}/library/jakarta-oro.jar"/>
+  <copy file="${struts-legacy.jar}"
+        tofile="${build.home}/library/struts-legacy.jar"/>
 <!-- Compile-time dependency only
   <copy file="${jdbc20ext.jar}"
         tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
