@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkSubscriptionTag.java,v 1.4 2001/02/02 02:26:06 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/02 02:26:06 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkSubscriptionTag.java,v 1.5 2001/03/06 17:14:18 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/03/06 17:14:18 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -70,8 +70,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/02 02:26:06 $
+ * @version $Revision: 1.5 $ $Date: 2001/03/06 17:14:18 $
  */
 
 public class LinkSubscriptionTag extends TagSupport {
@@ -184,15 +184,15 @@ public class LinkSubscriptionTag extends TagSupport {
 	else
 	    url.append("&");
 	url.append("username=");
-	url.append(BeanUtils.filter(subscription.getUser().getUsername()));
+	url.append(ResponseUtils.filter(subscription.getUser().getUsername()));
 	url.append("&host=");
-	url.append(BeanUtils.filter(subscription.getHost()));
+	url.append(ResponseUtils.filter(subscription.getHost()));
 
 	// Generate the hyperlink start element
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<a href=\"");
-	results.append(response.encodeURL(BeanUtils.filter(url.toString())));
+	results.append(response.encodeURL(url.toString()));
 	results.append("\">");
 
 	// Print this element to our output writer

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkUserTag.java,v 1.4 2001/02/02 02:26:06 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/02 02:26:06 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkUserTag.java,v 1.5 2001/03/06 17:14:20 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/03/06 17:14:20 $
  *
  * ====================================================================
  *
@@ -70,8 +70,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/02 02:26:06 $
+ * @version $Revision: 1.5 $ $Date: 2001/03/06 17:14:20 $
  */
 
 public class LinkUserTag extends TagSupport {
@@ -184,13 +184,13 @@ public class LinkUserTag extends TagSupport {
 	else
 	    url.append("&");
 	url.append("username=");
-	url.append(BeanUtils.filter(user.getUsername()));
+	url.append(ResponseUtils.filter(user.getUsername()));
 
 	// Generate the hyperlink start element
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<a href=\"");
-	results.append(response.encodeURL(BeanUtils.filter(url.toString())));
+	results.append(response.encodeURL(url.toString()));
 	results.append("\">");
 
 	// Print this element to our output writer
