@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.6 2002/03/13 13:13:28 arron Exp $
- * $Revision: 1.6 $
- * $Date: 2002/03/13 13:13:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.7 2002/08/10 02:00:38 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/08/10 02:00:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2002/03/13 13:13:28 $
+ * @version $Revision: 1.7 $ $Date: 2002/08/10 02:00:38 $
  */ 
 public class NestedPropertyHelper {
   
@@ -222,7 +222,7 @@ public class NestedPropertyHelper {
     
     String nameTemp = null;
     if (namedTag instanceof FormTag) {
-      nameTemp = ((FormTag)namedTag).getName();
+      nameTemp = ((FormTag)namedTag).getBeanName();
     } else if (namedTag instanceof NestedParentSupport) {
       nameTemp = ((NestedParentSupport)namedTag).getName();
     }

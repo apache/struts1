@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.5 2002/03/29 21:49:09 rleland Exp $
- * $Revision: 1.5 $
- * $Date: 2002/03/29 21:49:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.6 2002/08/10 02:00:38 martinc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/08/10 02:00:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -71,7 +71,7 @@ import org.apache.struts.taglib.html.FormTag;
  * NestedFormTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/03/29 21:49:09 $
+ * @version $Revision: 1.6 $ $Date: 2002/08/10 02:00:38 $
  */
 public class NestedFormTag extends FormTag implements NestedParentSupport {
 
@@ -101,7 +101,7 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
 
     /* set the details */
     HttpSession session = (HttpSession)pageContext.getSession();
-    NestedReference nr = new NestedReference(getName(), getNestedProperty());
+    NestedReference nr = new NestedReference(getBeanName(), getNestedProperty());
     NestedPropertyHelper.setIncludeReference(session, nr);
 
     /* continue */

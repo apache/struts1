@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.26 2002/08/07 05:25:03 martinc Exp $
- * $Revision: 1.26 $
- * $Date: 2002/08/07 05:25:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.27 2002/08/10 02:00:38 martinc Exp $
+ * $Revision: 1.27 $
+ * $Date: 2002/08/10 02:00:38 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.26 $ $Date: 2002/08/07 05:25:03 $
+ * @version $Revision: 1.27 $ $Date: 2002/08/10 02:00:38 $
  */
 
 public class FormTag extends TagSupport {
@@ -210,7 +210,7 @@ public class FormTag extends TagSupport {
      * as the 'name' attribute, if that was specified, or is obtained from the
      * associated <code>ActionMapping</code> otherwise.
      */
-    private String beanName = null;
+    protected String beanName = null;
 
 
     /**
@@ -218,17 +218,31 @@ public class FormTag extends TagSupport {
      * as the 'scope' attribute, if that was specified, or is obtained from the
      * associated <code>ActionMapping</code> otherwise.
      */
-    private String beanScope = null;
+    protected String beanScope = null;
+
 
     /**
      * The type of the form bean to (create and) use. This is either the same
      * as the 'type' attribute, if that was specified, or is obtained from the
      * associated <code>ActionMapping</code> otherwise.
      */
-    private String beanType = null;
+    protected String beanType = null;
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the name of the form bean corresponding to this tag. There is
+     * no corresponding setter method; this method exists so that the nested
+     * tag classes can obtain the actual bean name derived from other
+     * attributes of the tag.
+     */
+    public String getBeanName() {
+
+        return beanName;
+
+    }
 
 
     /**
