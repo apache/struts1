@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.17 2004/04/08 22:17:23 mrdon Exp $
- * $Revision: 1.17 $
- * $Date: 2004/04/08 22:17:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.18 2004/04/18 22:02:14 martinc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2004/04/18 22:02:14 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -48,7 +48,7 @@ import org.apache.struts.Globals;
   * This class implements the <code>MultipartRequestHandler</code> interface
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
-  * @version $Revision: 1.17 $ $Date: 2004/04/08 22:17:23 $
+  * @version $Revision: 1.18 $ $Date: 2004/04/18 22:02:14 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -406,15 +406,24 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     protected void addTextParameter(HttpServletRequest request, FileItem item) {
         String name = item.getFieldName();
         String value = null;
+        boolean haveValue = false;
+        String encoding = request.getCharacterEncoding();
 
-        try {
-            value = item.getString(request.getCharacterEncoding());
-        } catch (Exception e) {
+        if (encoding != null) {
+            try {
+                value = item.getString(encoding);
+                haveValue = true;
+            } catch (Exception e) {
+                // Handled below, since haveValue is false.
+            }
+        }
+        if (!haveValue) {
             try {
                  value = item.getString("ISO-8859-1");
             } catch (java.io.UnsupportedEncodingException uee) {
                  value = item.getString();
             }
+            haveValue = true;
         }
 
         if (request instanceof MultipartRequestWrapper) {
