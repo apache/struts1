@@ -39,14 +39,17 @@ The syntax looks like this:
 <p>
 If you have this in your struts-config.xml </p>
 <ol>
-<pre>        &lt;form-bean name="dependentlistForm" </pre>
-<pre>           type="org.apache.struts.webapp.validator.forms.ValidatorForm"&gt; </pre>
-<pre>           &lt;form-property name="dependents" </pre>
-<pre>           type="org.apache.struts.webapp.validator.Dependent[]"</pre>
-<pre>           initial="{'','','','','','','','','','',''}"/&gt;</pre>
-<pre>           &lt;form-property name="insureDependents" type="java.lang.Boolean" </pre>
-<pre>           initial="false"/&gt;</pre>
-<pre>        &lt;/form-bean&gt;</pre>
+<pre><![CDATA[
+<form-bean name="dependentlistForm"
+           type="org.apache.struts.webapp.validator.forms.ValidatorForm">
+    <form-property name="dependents" 
+                   type="org.apache.struts.webapp.validator.Dependent[]"
+                   initial="{'','','','','','','','','','',''}"/>
+    <form-property name="insureDependents"
+                   type="java.lang.Boolean" 
+                   initial="false"/>
+</form-bean>
+]]></pre>
 </ol>
 <p>
 Where dependent is a bean that has properties lastName, firstName, dob, 
@@ -54,47 +57,76 @@ coverageType </p>
 <p>
 You can define a validation:</p>
 
-<pre>  &lt;form name="dependentlistForm"&gt;</pre>
-<pre>    &lt;field property="firstName" indexedListProperty="dependents" </pre>
-<pre>           depends="requiredif"&gt;</pre>
-<pre>      &lt;arg0 key="dependentlistForm.firstName.label"/&gt;</pre>
-<pre>       &lt;var&gt;  &lt;var-name&gt;field[0]&lt;/var-name&gt;</pre>
-<pre>              &lt;var-value&gt;lastName&lt;/var-value&gt;  &lt;/var&gt;</pre>
-<pre>       &lt;var&gt;  &lt;var-name&gt;field-indexed[0]&lt;/var-name&gt;</pre>         
-<pre>              &lt;var-value&gt;true&lt;/var-value&gt;            &lt;/var&gt;</pre>
-<pre>       &lt;var&gt;  &lt;var-name&gt;field-test[0]&lt;/var-name&gt;</pre>                 
-<pre>              &lt;var-value&gt;NOTNULL&lt;/var-value&gt; &lt;/var&gt;</pre>
-<pre>     &lt;/field&gt;</pre>
-<pre>    &lt;field property="dob" indexedListProperty="dependents" </pre>
-<pre>           depends="requiredif,date"&gt;</pre>
-<pre>      &lt;arg0 key="dependentlistForm.dob.label"/&gt;</pre>
-<pre>      &lt;var&gt;   &lt;var-name&gt;field[0]&lt;/var-name&gt; </pre>
-<pre>              &lt;var-value&gt;lastName&lt;/var-value&gt;  &lt;/var&gt;</pre>
-<pre>       &lt;var&gt;  &lt;var-name&gt;field-indexed[0]&lt;/var-name&gt;  </pre>        
-<pre>              &lt;var-value&gt;true&lt;/var-value&gt;            &lt;/var&gt;</pre>
-<pre>      &lt;var&gt;   &lt;var-name&gt;field-test[0]&lt;/var-name&gt;   </pre>               
-<pre>              &lt;var-value&gt;NOTNULL&lt;/var-value&gt;&lt;/var&gt;</pre>
-<pre>     &lt;/field&gt;</pre>
+<pre><![CDATA[
+  <form name="dependentlistForm">
+    <field property="firstName" indexedListProperty="dependents"
+           depends="requiredif">
+      <arg0 key="dependentlistForm.firstName.label"/>
+      <var>
+        <var-name>field[0]</var-name>
+        <var-value>lastName</var-value>
+      </var>
+      <var>
+        <var-name>field-indexed[0]</var-name>
+        <var-value>true</var-value>
+      </var>
+      <var>
+        <var-name>field-test[0]</var-name>
+        <var-value>NOTNULL</var-value>
+      </var>
+    </field>
+    <field property="dob" indexedListProperty="dependents" 
+           depends="requiredif,date">
+      <arg0 key="dependentlistForm.dob.label"/>
+      <var>
+        <var-name>field[0]</var-name>
+        <var-value>lastName</var-value>
+      </var>
+      <var>
+        <var-name>field-indexed[0]</var-name> 
+        <var-value>true</var-value>
+      </var>
+      <var>
+        <var-name>field-test[0]</var-name>    
+        <var-value>NOTNULL</var-value>
+      </var>
+    </field>
 
-<pre>    &lt;field property="coverageType" indexedListProperty="dependents"</pre> 
-<pre>           depends="requiredif"&gt;</pre>
-<pre>      &lt;arg0 key="dependentlistForm.coverageType.label"/&gt;</pre>
-<pre>      &lt;var&gt;   &lt;var-name&gt;field[0]&lt;/var-name&gt;</pre>                        
-<pre>              &lt;var-value&gt;lastName&lt;/var-value&gt;    &lt;/var&gt;</pre>
-<pre>       &lt;var&gt;  &lt;var-name&gt;field-indexed[0]&lt;/var-name&gt;</pre>          
-<pre>              &lt;var-value&gt;true&lt;/var-value&gt;             &lt;/var&gt;</pre>
-<pre>      &lt;var&gt;   &lt;var-name&gt;field-test[0]&lt;/var-name&gt;</pre>                 
-<pre>              &lt;var-value&gt;NOTNULL&lt;/var-value&gt;  &lt;/var&gt;</pre>
-<pre>      &lt;var&gt;   &lt;var-name&gt;field[1]&lt;/var-name&gt;</pre>                        
-<pre>              &lt;var-value&gt;insureDependents&lt;/var-value&gt;    &lt;/var&gt;</pre>
-<pre>     &lt;var&gt;   &lt;var-name&gt;field-test[1]&lt;/var-name&gt; </pre>                
-<pre>             &lt;var-value&gt;EQUAL&lt;/var-value&gt;        &lt;/var&gt;</pre>
-<pre>     &lt;var&gt;   &lt;var-name&gt;field-value[1]&lt;/var-name&gt;</pre>               
-<pre>             &lt;var-value&gt;true&lt;/var-value&gt;              &lt;/var&gt;</pre>
-<pre>     &lt;var&gt;   &lt;var-name&gt;field-join&lt;/var-name&gt;          </pre>            
-<pre>             &lt;var-value&gt;AND&lt;/var-value&gt;              &lt;/var&gt;</pre>
-<pre>     &lt;/field&gt;</pre>
-<pre>  &lt;/form&gt;</pre>
+    <field property="coverageType" indexedListProperty="dependents"
+           depends="requiredif">
+      <arg0 key="dependentlistForm.coverageType.label"/>
+      <var>
+        <var-name>field[0]</var-name>  
+        <var-value>lastName</var-value>
+      </var>
+      <var>
+        <var-name>field-indexed[0]</var-name>
+        <var-value>true</var-value>
+      </var>
+      <var>
+        <var-name>field-test[0]</var-name>
+        <var-value>NOTNULL</var-value>
+      </var>
+      <var>
+        <var-name>field[1]</var-name>  
+        <var-value>insureDependents</var-value>
+      </var>
+      <var>
+        <var-name>field-test[1]</var-name>
+        <var-value>EQUAL</var-value>
+      </var>
+      <var>
+        <var-name>field-value[1]</var-name>
+        <var-value>true</var-value>
+      </var>
+      <var>
+        <var-name>field-join</var-name>
+        <var-value>AND</var-value>
+      </var>
+     </field>
+  </form>
+]]></pre>
+
 <p>
 Which is read as follows:
 The firstName field is only required if the lastName field is non-null.  Since 
