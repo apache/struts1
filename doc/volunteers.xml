@@ -2,7 +2,6 @@
 <document url="./volunteers.xml">
    <properties>
       <title>Who We Are - The Apache Struts Web Application Framework</title>
-
       <author>Ted Husted</author>
    </properties>
 
@@ -13,86 +12,75 @@
 
             <p>According to recently released 
             <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range around 15,000 a month.</p>
-
          </section>
 
-         <section name="Active Committers" href="committers">
+         <section name="Project Management Committee Members" href="pmc">
             <ul>
                <li>
-               <strong>Craig R. McClanahan</strong>
-
+               <strong>Craig R. McClanahan</strong>, Vice President and Chair
                (craigmcc at apache.org)</li>
 
                <li>
                <strong>Ted Husted</strong>
-
                (husted at apache.org)</li>
 
                <li>
                <strong>Rob Leland</strong>
-
                (rleland at apache.org)</li>
 
                <li>
                <strong>Cedric Dumoulin</strong>
-
                (cedric.dumoulin at lifl.fr)</li>
 
                <li>
                <strong>Martin Cooper</strong>
-
                (martinc at apache.org)</li>
 
                <li>
                <strong>Arron Bates</strong>
-
                (arron at apache.org)</li>
 
                <li>
                <strong>James Holmes</strong>
-
                (jholmes at apache.org)</li>
 
                <li>
                <strong>David M. Karr</strong>
-
                (dmkarr at apache.org)</li>
 
                <li>
                <strong>David Graham</strong>
-
                (dgraham at apache.org)</li>
 
                <li>
                <strong>James Mitchell</strong>
-
                (jmitchell at apache.org)</li>
 
                <li>
                <strong>James Turner</strong>
-
                (turner at blackbear.com)</li>
 
                <li>
                <strong>Steve Raeburn</strong>
-
                (sraeburn at apache.org)</li>
                
                <li>
                <strong>Don Brown</strong>
-
                (mrdon at apache.org)</li>
 
                <li>
                <strong>Joe Germuska</strong>
-
                (germuska at apache.org)</li>
-               <li>
-               <strong>Niall Pemberton</strong>
-
-               (niallp at apache.org)</li>
             </ul>
          </section>
+
+        <section name="Active Committers" href="committers">
+            <ul>
+            <li>
+            <strong>Niall Pemberton</strong>
+            (niallp at apache.org)</li>
+            </ul>
+        </section>
 
          <section name="Emeritus Committers" href="comitters.emeritus">
             <ul>
@@ -104,21 +92,13 @@
 
                <li>Michael Schachter</li>
 
-               <li>
-                  <strong>Vincent Massol</strong>
-               </li>
+               <li>Vincent Massol</li>
 
-               <li>
-                  <strong>David Winterfeldt</strong>
-               </li>
+               <li>David Winterfeldt</li>
 
-               <li>
-                  <strong>Oleg Alexeev</strong>
-               </li>
+               <li>Oleg Alexeev</li>
 
-               <li>
-                  <strong>Eddie Bush</strong>
-               </li>
+               <li>Eddie Bush</li>
             </ul>
          </section>
 

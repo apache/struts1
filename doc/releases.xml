@@ -37,23 +37,22 @@
       </ul>
       <p>Additional remarks:</p>
       <ul>
-        <li>The release process can seem daunting when you review it for the first time. But, essentially, it breaks down into three phases of just a few steps each: 
+        <li>The release process can seem daunting when you review it for the first time. But, essentially, it breaks down into four phases of just a few steps each:
         <ul>
-          <li>Building - Bugzilla, dependencies, release notes, JAR manifest, licenses, copyrights, and build (using the release target).</li>
-          <li>Testing - JUnit, Cactus, web apps (for all "supported" containers).</li>
-          <li>Distributing - Checksum, sign, mirror, release, update Struts site, update Jakarta site, announce.</li>
+          <li><strong>Rolling</strong> - Bugzilla, dependencies, release notes, JAR manifest, licenses, copyrights, and build (using the release target).</li>
+          <li><strong>Testing</strong> - JUnit, Cactus, web apps (for all "supported" containers).</li>
+          <li><strong>Voting</strong> - Upload to home directory, post majority vote on DEV list as to release grade: Alpha, Beta, General Availability.</li>
+          <li><strong>Distributing</strong> - Checksum, sign, mirror, update download page, announce.</li>
         </ul></li>
         <li>Our dependencies on external JARs (including Commons JARs) should be in line with our own release status. Our nightly build can be dependant on another nightly build. Our beta can be dependant on another beta, but should avoid a dependance on a nightly build. Our release candidate can have a dependance on another RC, but should not have a dependance on a beta (and certainly 
-        <strong>not</strong>a nightly build). Our final release can only have dependencies on other final releases.</li>
+        <strong>not</strong>a nightly build). Our General Availability release can only have dependencies on other GA, final, or stable releases.</li>
         <li>Use your own discretion as to detail needed by the Release Notes. A high-level description of the changes is more important than providing uninterpreted detail. At a minimum, new features and deprecations should be summarized, since these are commonly asked questions. Ideally, the release notes should be maintained continuously for the nightly build so that we do not need to quickly assembled them on the eve of a Release.</li>
         <li>Test building the distribution under prior version of J2SE, if possible, to ensure that we are still backwardly-compatible. But, our Release distribution should be built using the 
         <strong>latest release of J2SE</strong>, to take advantage of all available compiler enhancements.</li>
         <li>Before building the release, run the JUnit and Cactus tests using the same configuration used that will be used to build the Release distribution.</li>
         <li>There is a "release" target in the buildfile that will zip and tar the releases. Before uploading the release, extract the sample web applications and deploy the WARs under each of the "supported" containers. Play test each application under each container to be sure they operate nominally.</li>
-        <li>Be sure to copy the pmc@jakarta.apache.org list on any release announcement.</li>
-        <li>Remember to update the 
-        <a href="status.html">Status section of the Roadmap page</a> once a release is available.</li>
-        <li>By the way, the nightly builds are being created on a machine of Craig McClanahan's. If there are problems with a nightly build that seem infrastructure related, Craig is the one to contact.</li>
+        <li>The Alpha release can be posted to your Apache home directory (www.apache.org/~$USERNAME) for initial testing. Once it is voted to Beta or GA status, the release can be submitted to the distribution channels.</li>
+        <li>After announcing a release, remember to update the Announcements page.</li>
       </ul>
     </section>
     <section href="Coding" name="Coding Conventions and Guidelines">
@@ -78,8 +77,8 @@
         <code>.*</code>).</li>
         <li>Write all if/else statements as full blocks with each clause within braces, unless the entire statement fits on the same line.</li>
         <li>Use 
-        <code>:FIXME:</code>and 
-        <code>:TODO:</code>tokens to mark follow up notes in code. You may also include your Apache username and the date.</li>
+        <code>FIXME:</code>and
+        <code>TODO:</code>tokens to mark follow up notes in code. You may also include your Apache username and the date.</li>
         <li>Omit 
         <code>@author</code>tags.</li>
         <li>Use 
@@ -111,7 +110,7 @@
     </section>
     <section>
       <p class="right">Next: 
-      <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS Repository</a></p>
+      <a href="http://struts.apache.org/roadmap.html">Roadmap</a></p>
     </section>
   </body>
 </document>
