@@ -219,9 +219,9 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
     }
 
 
-    // Test reset() method on indexed values to ensure that the
+    // Test initialize() method on indexed values to ensure that the
     // result returned by FormPropertyConfig().initial() is never clobbered
-    public void testIndexedReset() {
+    public void testIndexedInitialize() {
 
         // Update some values in the indexed properties
         dynaForm.set("intArray", 1, new Integer(111));
@@ -237,17 +237,17 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         assertEquals("stringIndexed[4]", "New String 4",
                      (String) dynaForm.get("stringIndexed", 4));
 
-        // Perform reset and revalidate the original values
+        // Perform initialize() and revalidate the original values
         // while ensuring our initial values did not get corrupted
-        dynaForm.reset(mapping, (ServletRequest) null);
+        dynaForm.initialize(mapping);
         setupComplexProperties();
         testGetIndexedValues();
 
     }
 
 
-    // Test reset() method going back to initial values
-    public void testScalarReset() {
+    // Test initialize() method going back to initial values
+    public void testScalarInitialize() {
 
         // Update a bunch of scalar properties to new values
         dynaForm.set("booleanProperty", Boolean.FALSE);
@@ -263,8 +263,8 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         assertEquals("stringProperty", "New String Value",
                      (String) dynaForm.get("stringProperty"));
 
-        // Reset and revalidate the original values
-        dynaForm.reset(mapping, (ServletRequest) null);
+        // Perform initialize() and revalidate the original values
+        dynaForm.initialize(mapping);
         setupComplexProperties();
         testBeanCreate();
 

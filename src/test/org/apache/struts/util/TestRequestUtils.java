@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.13 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.14 2002/12/23 22:00:24 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/12/23 22:00:24 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.taglib.html.Constants;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.14 $ $Date: 2002/12/23 22:00:24 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -1094,6 +1094,85 @@ public class TestRequestUtils extends TestMockBase {
                    form instanceof DynaActionForm);
 
     }
+
+
+    // Default module -- Dynamic ActionForm with initializers
+    public void testCreateActionForm4a() {
+
+        // Retrieve an appropriately configured DynaActionForm instance
+        request.setPathElements("/myapp", "/dynamic0.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig.findActionConfig("/dynamic0");
+        assertNotNull("Found /dynamic0 mapping", mapping);
+        assertNotNull("Mapping has non-null name",
+                      mapping.getName());
+        assertEquals("Mapping has correct name",
+                     "dynamic0",
+                     mapping.getName());
+        assertNotNull("AppConfig has form bean " + mapping.getName(),
+                      appConfig.findFormBeanConfig(mapping.getName()));
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig, null);
+        assertNotNull("ActionForm returned", form);
+        assertTrue("ActionForm of correct type",
+                   form instanceof DynaActionForm);
+
+        // Validate the property values
+        DynaActionForm dform = (DynaActionForm) form;
+        Boolean booleanProperty = (Boolean) dform.get("booleanProperty");
+        assertTrue("booleanProperty is true", booleanProperty.booleanValue());
+        String stringProperty = (String) dform.get("stringProperty");
+        assertEquals("stringProperty is correct",
+                     "String Property",
+                     stringProperty);
+        Object value = null;
+
+        value = dform.get("intArray1");
+        assertNotNull("intArray1 exists", value);
+        assertTrue("intArray1 is int[]", value instanceof int[]);
+        int intArray1[] = (int[]) value;
+        assertEquals("intArray1 length is correct", 3, intArray1.length);
+        assertEquals("intArray1[0] value is correct", 1, intArray1[0]);
+        assertEquals("intArray1[1] value is correct", 2, intArray1[1]);
+        assertEquals("intArray1[2] value is correct", 3, intArray1[2]);
+
+        value = dform.get("intArray2");
+        assertNotNull("intArray2 exists", value);
+        assertTrue("intArray2 is int[]", value instanceof int[]);
+        int intArray2[] = (int[]) value;
+        assertEquals("intArray2 length is correct", 5, intArray2.length);
+        assertEquals("intArray2[0] value is correct", 0, intArray2[0]);
+        assertEquals("intArray2[1] value is correct", 0, intArray2[1]);
+        assertEquals("intArray2[2] value is correct", 0, intArray2[2]);
+        assertEquals("intArray2[3] value is correct", 0, intArray2[3]);
+        assertEquals("intArray2[4] value is correct", 0, intArray2[4]);
+
+        value = dform.get("stringArray1");
+        assertNotNull("stringArray1 exists", value);
+        assertTrue("stringArray1 is int[]", value instanceof String[]);
+        String stringArray1[] = (String[]) value;
+        assertEquals("stringArray1 length is correct", 3, stringArray1.length);
+        assertEquals("stringArray1[0] value is correct",
+                     "aaa", stringArray1[0]);
+        assertEquals("stringArray1[1] value is correct",
+                     "bbb", stringArray1[1]);
+        assertEquals("stringArray1[2] value is correct",
+                     "ccc", stringArray1[2]);
+
+        value = dform.get("stringArray2");
+        assertNotNull("stringArray2 exists", value);
+        assertTrue("stringArray2 is int[]", value instanceof String[]);
+        String stringArray2[] = (String[]) value;
+        assertEquals("stringArray2 length is correct", 3, stringArray2.length);
+        assertEquals("stringArray2[0] value is correct",
+                     (String) null, stringArray2[0]);
+        assertEquals("stringArray2[1] value is correct",
+                     (String) null, stringArray2[1]);
+        assertEquals("stringArray2[2] value is correct",
+                     (String) null, stringArray2[2]);
+
+    }
+
 
 
     // ----------------------------------------------------------- requestURL()

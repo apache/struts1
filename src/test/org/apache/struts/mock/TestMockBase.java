@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.7 2002/11/16 04:58:48 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/16 04:58:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.8 2002/12/23 22:00:24 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/12/23 22:00:24 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/11/16 04:58:48 $
+ * @version $Revision: 1.8 $ $Date: 2002/12/23 22:00:24 $
  */
 
 public class TestMockBase extends TestCase {
@@ -212,6 +212,37 @@ public class TestMockBase extends TestCase {
         mapping.setName("dynamic");
         mapping.setPath("/dynamic");
         mapping.setScope("session");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig.addActionConfig(mapping);
+
+        // Form Bean "/dynamic0" is a DynaActionForm with initializers
+        formBean = new ActionFormBean
+            ("dynamic0",
+             "org.apache.struts.action.DynaActionForm");
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("booleanProperty", "boolean", "true"));
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("stringProperty", "java.lang.String",
+                                    "String Property"));
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("intArray1", "int[]",
+                                    "{1,2,3}", 4)); // 4 should be ignored
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("intArray2", "int[]",
+                                    null, 5)); // 5 should be respected
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("stringArray1", "java.lang.String[]",
+                                    "{aaa,bbb,ccc}", 2)); // 2 should be ignored
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("stringArray2", "java.lang.String[]",
+                                    null, 3)); // 3 should be respected
+        appConfig.addFormBeanConfig(formBean);
+
+        // Action "/dynamic0" uses the "dynamic0" form bean in request scope
+        mapping = new ActionMapping();
+        mapping.setName("dynamic0");
+        mapping.setPath("/dynamic0");
+        mapping.setScope("request");
         mapping.setType("org.apache.struts.mock.MockAction");
         appConfig.addActionConfig(mapping);
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.7 2002/07/09 23:57:37 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/09 23:57:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.8 2002/12/23 22:00:24 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/12/23 22:00:24 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/09 23:57:37 $
+ * @version $Revision: 1.8 $ $Date: 2002/12/23 22:00:24 $
  * @since Struts 1.1
  */
 
@@ -103,10 +103,28 @@ public class FormPropertyConfig implements Serializable {
      */
     public FormPropertyConfig(String name, String type, String initial) {
 
+        this(name, type, initial, 0);
+
+    }
+
+
+    /**
+     * Constructor that preconfigures the relevant properties.
+     *
+     * @param name Name of this property
+     * @param type Fully qualified class name of this property
+     * @param initial Initial value of this property (if any)
+     * @param size Size of the array to be created if this property is an
+     *  array with no defined initial value
+     */
+    public FormPropertyConfig(String name, String type,
+                              String initial, int size) {
+
         super();
         setName(name);
         setType(type);
         setInitial(initial);
+        setSize(size);
 
     }
 
@@ -167,6 +185,27 @@ public class FormPropertyConfig implements Serializable {
         }
         this.name = name;
     }
+
+
+    /**
+     * <p>The size of the array to be created if this property is an array
+     * type and there is no specified <code>initial</code> value.</p>
+     *
+     * @since Struts 1.1-b3
+     */
+    protected int size = 0;
+
+    public int getSize() {
+        return (this.size);
+    }
+
+    public void setSize(int size) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.size = size;
+    }
+        
 
 
     /**
@@ -258,7 +297,17 @@ public class FormPropertyConfig implements Serializable {
         if (!initialized) {
             try {
                 Class clazz = getTypeClass();
-                initialValue = ConvertUtils.convert(initial, clazz);
+                if (clazz.isArray()) {
+                    if (initial != null) {
+                        initialValue =
+                            ConvertUtils.convert(initial, clazz);
+                    } else {
+                        initialValue =
+                            Array.newInstance(clazz.getComponentType(), size);
+                    }
+                } else {
+                    initialValue = ConvertUtils.convert(initial, clazz);
+                }
             } catch (Throwable t) {
                 initialValue = null;
             }
