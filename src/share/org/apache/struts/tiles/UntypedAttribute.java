@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UntypedAttribute.java,v 1.1 2003/07/02 02:16:39 dgraham Exp $
- * $Revision: 1.1 $
- * $Date: 2003/07/02 02:16:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/UntypedAttribute.java,v 1.2 2003/07/02 02:17:41 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/02 02:17:41 $
  *
  * ====================================================================
  *
