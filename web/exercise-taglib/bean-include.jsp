@@ -26,7 +26,7 @@ directly, with filtering.</p>
 <pre>
 <bean:write name="index" filter="true"/>
 </pre>
-</hr>
+<hr>
 
 </body>
 </html>
