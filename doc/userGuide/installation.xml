@@ -97,9 +97,6 @@
       <li><em>Lang</em> (Version 1.1 or later)</li>
       <li><em>Logging</em> (Version 1.0.2 or later)</li>
       <li><em>Pool</em> (Version 1.0.1 or later)</li>
-      <li><em>Services</em> (No official release, obtain current
-                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-services">Nightly Build</a>
-                        )</li>
       <li><em>Validator</em> (Version 1.0.1 or later) </li>
       </ul>
   </li>
@@ -370,8 +367,6 @@ about how to configure additional security manager permissions.</p>
             Pool package JAR file from the Jakarta Commons project.</li>
         <li><strong>commons-resources.jar</strong> - Pathname of the
             Resources package JAR file from the Jakarta Commons project.</li>
-        <li><strong>commons-services.jar</strong> - Pathname of the
-            Services package JAR file from the Jakarta Commons project.</li>
         <li><strong>commons-validator.jar</strong> - Pathname of the
             Validator package JAR file from the Jakarta Commons project.</li>
         <li><strong>servletapi.home</strong> - Pathname to the directory of

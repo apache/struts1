@@ -105,7 +105,6 @@
       <pathelement location="${commons-httpclient.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-pool.jar}"/>
-      <pathelement location="${commons-services.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${aspectjrt.jar}"/>
       <pathelement location="${cactus.jar}"/>
@@ -206,8 +205,6 @@
         <copy file="${commons-logging.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-pool.jar}"
-                                      todir="${out.test.dir}/lib"/>
-        <copy file="${commons-services.jar}"
                                       todir="${out.test.dir}/lib"/>
         <copy file="${commons-validator.jar}"
                                       todir="${out.test.dir}/lib"/>

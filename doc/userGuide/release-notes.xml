@@ -154,8 +154,6 @@
     [<a href="http://jakarta.apache.org/commons/logging.html"><code>org.apache.commons.logging</code></a>]</li>
     <li><strong>Pool Package</strong>
     [<a href="http://jakarta.apache.org/commons/pool/index.html"><code>org.apache.commons.pool</code></a>]</li>
-    <li><strong>Services Package</strong>
-    [<a href="http://cvs.apache.org/viewcvs/jakarta-commons-sandbox/services/"><code>org.apache.commons.services</code></a>]</li>
     <li><strong>Validator Package</strong>
     [<a href="http://cvs.apache.org/viewcvs/jakarta-commons/validator/"><code>org.apache.commons.validator</code></a>]</li>
     </ul>
