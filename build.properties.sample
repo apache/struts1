@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory. 
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.25 2003/01/09 04:12:41 jmitchell Exp $
+# $Id: build.properties.sample,v 1.26 2003/02/07 21:51:16 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -123,6 +123,7 @@ jstl-standard.jar	= ${apache.home}/jakarta-taglibs/jstl-1.0/lib/standard.jar
 # Cactus home
 cactus.home=${apache.home}/jakarta-cactus-12-1.3
 cactus.lib=${cactus.home}/lib
+cactus.contextURL = http://localhost:8080/test
 
 # Cactus jar for the Servlet API corresponding to the servlet.jar file
 # selected above (either 2.2 or 2.3)

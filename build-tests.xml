@@ -21,7 +21,10 @@
         servlet.jar                   The servlet jar (either 2.2 or 2.3)
 
         cactus.home                   The home directory of your Cactus
-                                      installation (version 1.3 required)
+                                      installation (version 1.3+ required)
+                                      
+        cactus.contextURL             The URL used for testing
+                                      
 
         aspectjrt.jar                 The AspectJ runtime jar that is
                                       included with Cactus 1.3
@@ -293,7 +296,7 @@
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:8080/test"
+        <runservertests testURL="${cactus.contextURL}"
             startTarget="start.tomcat.32"
             stopTarget="stop.tomcat.32"
             testTarget="run.test"/>
@@ -371,7 +374,7 @@
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:8080/test"
+        <runservertests testURL="${cactus.contextURL}"
             startTarget="start.tomcat.33"
             stopTarget="stop.tomcat.33"
             testTarget="run.test"/>
@@ -462,7 +465,7 @@
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:9090/test"
+        <runservertests testURL="${cactus.contextURL}"
             startTarget="start.tomcat.40"
             stopTarget="stop.tomcat.40"
             testTarget="run.test"/>
@@ -545,7 +548,7 @@
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:9090/test"
+        <runservertests testURL="${cactus.contextURL}"
             startTarget="start.tomcat.41"
             stopTarget="stop.tomcat.41"
             testTarget="run.test"/>
