@@ -64,4 +64,10 @@ import java.io.Serializable;
 */
 public class ValidatorException extends Exception implements Serializable{
 
+   public ValidatorException() {}
+   
+   public ValidatorException(String message) {
+      super(message);	
+   }
+
 }
