@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.9 2003/01/05 00:40:04 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2003/01/05 00:40:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.10 2003/03/11 00:00:28 jmitchell Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/03/11 00:00:28 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2003/01/05 00:40:04 $
+ * @version $Revision: 1.10 $ $Date: 2003/03/11 00:00:28 $
  */
 
 public class MessageTag extends TagSupport {
@@ -295,7 +295,7 @@ public class MessageTag extends TagSupport {
                                               this.localeKey, key, args);
 	if (message == null) {
 	    JspException e = new JspException
-		(messages.getMessage("message.message", key));
+		(messages.getMessage("message.message", "\"" + key + "\""));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
