@@ -39,6 +39,21 @@
     <url>http://svn.apache.org/repos/asf/struts/core/trunk/mock</url>
   </repository>
 
+  <dependencies>
+
+	<dependency>
+	  <groupId>struts</groupId>
+	  <artifactId>struts-core</artifactId>
+	  <version>1.3.0-dev</version>
+	  <properties>
+		<war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+	  </properties>
+	</dependency>
+	
+  </dependencies>
+	
+
   <build>
     <nagEmailAddress>turbine-maven-dev@jakarta.apache.org</nagEmailAddress>
     <sourceDirectory>src/java</sourceDirectory>

@@ -5,6 +5,16 @@
             xmlns:ant="jelly:ant"
             xmlns:maven="jelly:maven">
   
+  <postGoal name="dist">
+    <maven:reactor 
+              basedir="./"
+             includes="mock/project.xml"
+                goals="jar:install"
+               banner="Building Struts Mock classes distribution"
+       ignoreFailures="false"/>
+  
+  </postGoal>
+
   <postGoal name="dist:prepare-bin-filesystem">
 
     <!-- Copy configuration files -->
