@@ -65,6 +65,7 @@ import org.apache.cactus.*;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.FormBeanConfig;
 
 
@@ -1057,13 +1058,13 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
 
 class DynaActionFormMapping extends ActionMapping {
 
-    public DynaActionFormMapping(ApplicationConfig appConfig) {
+    public DynaActionFormMapping(ModuleConfig appConfig) {
         this.appConfig = appConfig;
     }
 
-    private ApplicationConfig appConfig = null;
+    private ModuleConfig appConfig = null;
 
-    public ApplicationConfig getApplicationConfig() {
+    public ModuleConfig getModuleConfig() {
         return (this.appConfig);
     }
 
@@ -1072,6 +1073,7 @@ class DynaActionFormMapping extends ActionMapping {
     }
 
 }
+
 
 
 class DynaActionFormConfig extends ApplicationConfig {
@@ -1086,5 +1088,8 @@ class DynaActionFormConfig extends ApplicationConfig {
     public FormBeanConfig findFormBeanConfig(String name) {
         return (this.beanConfig);
     }
-
+    
+	
 }
+
+
