@@ -40,6 +40,12 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020718"></a>18 July 2002 - JavaBoutique Struts Tutorials</h3>
+<p><a href="http://javaboutique.internet.com/tutorials/Struts/"><b>Stepping through Jakarta Struts</b></a> by Keld H. Hansen.</p>
+<p><a href="http://javaboutique.internet.com/tutorials/Struts2/"><b>Coding your second Jakarta Struts Application</b></a> by Keld H. Hansen.</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020717"></a>17 July 2002 - StrutsTestCase v1.8 Released</h3>
 <p>
 StrutsTestCase v1.8 improves support for Struts 1.1,
