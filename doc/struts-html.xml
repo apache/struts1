@@ -3472,6 +3472,15 @@
             </info>
         </attribute>
 
+        <attribute>
+            <name>tabindex</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                The tab order (ascending positive integers) for this element.
+            </info>
+        </attribute>
+
                 <attribute>
                         <name>value</name>
                         <required>true</required>
