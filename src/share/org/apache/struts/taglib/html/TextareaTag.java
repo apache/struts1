@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.5 2001/07/16 00:44:55 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/07/16 00:44:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.6 2001/09/05 16:03:57 oalexeev Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/09/05 16:03:57 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/07/16 00:44:55 $
+ * @version $Revision: 1.6 $ $Date: 2001/09/05 16:03:57 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -93,11 +93,11 @@ public class TextareaTag extends BaseInputTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
@@ -111,66 +111,68 @@ public class TextareaTag extends BaseInputTag {
      */
     public int doStartTag() throws JspException {
 
-	// Create an appropriate "input" element based on our parameters
-	StringBuffer results = new StringBuffer("<textarea");
-	results.append(" name=\"");
-	results.append(property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	if (cols != null) {
-	    results.append(" cols=\"");
-	    results.append(cols);
-	    results.append("\"");
-	}
-	if (rows != null) {
-	    results.append(" rows=\"");
-	    results.append(rows);
-	    results.append("\"");
-	}
+        // Create an appropriate "input" element based on our parameters
+        StringBuffer results = new StringBuffer("<textarea");
+        results.append(" name=\"");
+        if( indexed )
+                prepareIndex( results, name );
+        results.append(property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        if (cols != null) {
+            results.append(" cols=\"");
+            results.append(cols);
+            results.append("\"");
+        }
+        if (rows != null) {
+            results.append(" rows=\"");
+            results.append(rows);
+            results.append("\"");
+        }
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-	results.append(">");
-	if (value != null) {
-	    results.append(ResponseUtils.filter(value));
-	} else {
-	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null)
-		throw new JspException
-		    (messages.getMessage("getter.bean", name));
-	    try {
-		String value = BeanUtils.getProperty(bean, property);
-		if (value == null)
-		    value = "";
-		results.append(ResponseUtils.filter((String) value));
-	    } catch (IllegalAccessException e) {
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (NoSuchMethodException e) {
-		throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
-	}
-	results.append("</textarea>");
+        results.append(">");
+        if (value != null) {
+            results.append(ResponseUtils.filter(value));
+        } else {
+            Object bean = pageContext.findAttribute(name);
+            if (bean == null)
+                throw new JspException
+                    (messages.getMessage("getter.bean", name));
+            try {
+                String value = BeanUtils.getProperty(bean, property);
+                if (value == null)
+                    value = "";
+                results.append(ResponseUtils.filter((String) value));
+            } catch (IllegalAccessException e) {
+                throw new JspException
+                    (messages.getMessage("getter.access", property, name));
+            } catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
+                throw new JspException
+                    (messages.getMessage("getter.result",
+                                         property, t.toString()));
+            } catch (NoSuchMethodException e) {
+                throw new JspException
+                    (messages.getMessage("getter.method", property, name));
+            }
+        }
+        results.append("</textarea>");
 
-	// Print this field to our output writer
+        // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue processing this page
-	return (EVAL_BODY_TAG);
+        // Continue processing this page
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -180,8 +182,8 @@ public class TextareaTag extends BaseInputTag {
      */
     public void release() {
 
-	super.release();
-	name = Constants.BEAN_KEY;
+        super.release();
+        name = Constants.BEAN_KEY;
 
     }
 

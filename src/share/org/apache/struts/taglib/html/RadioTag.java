@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.6 2001/07/16 00:44:55 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/07/16 00:44:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.7 2001/09/05 16:03:57 oalexeev Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/09/05 16:03:57 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/07/16 00:44:55 $
+ * @version $Revision: 1.7 $ $Date: 2001/09/05 16:03:57 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -99,11 +99,11 @@ public class RadioTag extends BaseHandlerTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
 
@@ -133,7 +133,7 @@ public class RadioTag extends BaseHandlerTag {
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
 
@@ -145,7 +145,7 @@ public class RadioTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-	this.property = property;
+        this.property = property;
 
     }
 
@@ -155,7 +155,7 @@ public class RadioTag extends BaseHandlerTag {
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
 
@@ -167,7 +167,7 @@ public class RadioTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
@@ -182,59 +182,61 @@ public class RadioTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Acquire the current value of the appropriate field
-	Object current = null;
-	Object bean = pageContext.findAttribute(name);
-	if (bean == null)
-	    throw new JspException
-	        (messages.getMessage("getter.bean", name));
-	try {
-	    current = BeanUtils.getProperty(bean, property);
-	    if (current == null)
-	        current = "";
-	    } catch (IllegalAccessException e) {
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	} catch (NoSuchMethodException e) {
-	    throw new JspException
-	        (messages.getMessage("getter.method", property, name));
-	}
+        // Acquire the current value of the appropriate field
+        Object current = null;
+        Object bean = pageContext.findAttribute(name);
+        if (bean == null)
+            throw new JspException
+                (messages.getMessage("getter.bean", name));
+        try {
+            current = BeanUtils.getProperty(bean, property);
+            if (current == null)
+                current = "";
+            } catch (IllegalAccessException e) {
+                throw new JspException
+                    (messages.getMessage("getter.access", property, name));
+            } catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
+                throw new JspException
+                    (messages.getMessage("getter.result",
+                                         property, t.toString()));
+        } catch (NoSuchMethodException e) {
+            throw new JspException
+                (messages.getMessage("getter.method", property, name));
+        }
 
-	// Create an appropriate "input" element based on our parameters
-	StringBuffer results = new StringBuffer("<input type=\"radio\"");
-	results.append(" name=\"");
-	results.append(this.property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(" value=\"");
-	results.append(this.value);
-	results.append("\"");
-	if (value.equals(current))
-	    results.append(" checked=\"checked\"");
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+        // Create an appropriate "input" element based on our parameters
+        StringBuffer results = new StringBuffer("<input type=\"radio\"");
+        results.append(" name=\"");
+        if( indexed )
+                prepareIndex( results, name );
+        results.append(this.property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
+        results.append(this.value);
+        results.append("\"");
+        if (value.equals(current))
+            results.append(" checked=\"checked\"");
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(">");
 
-	// Print this field to our output writer
+        // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue processing this page
+        // Continue processing this page
         this.text = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
 
@@ -267,8 +269,8 @@ public class RadioTag extends BaseHandlerTag {
         if (text != null)
             ResponseUtils.write(pageContext, text);
 
-	// Evaluate the remainder of this page
-	return (EVAL_PAGE);
+        // Evaluate the remainder of this page
+        return (EVAL_PAGE);
 
     }
 
@@ -278,11 +280,11 @@ public class RadioTag extends BaseHandlerTag {
      */
     public void release() {
 
-	super.release();
-	name = Constants.BEAN_KEY;
-	property = null;
+        super.release();
+        name = Constants.BEAN_KEY;
+        property = null;
         text = null;
-	value = null;
+        value = null;
 
     }
 
