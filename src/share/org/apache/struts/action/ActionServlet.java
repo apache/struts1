@@ -50,6 +50,8 @@ import org.apache.commons.beanutils.converters.FloatConverter;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
+import org.apache.commons.chain.Catalog;
+import org.apache.commons.chain.CatalogFactory;
 import org.apache.commons.chain.config.ConfigParser;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
@@ -319,7 +321,9 @@ public class ActionServlet extends HttpServlet {
             */
         }
 
+        PropertyUtils.clearDescriptors();
     }
+    
 
 
     /**
