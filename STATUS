@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.28 2002/07/17 22:40:44 jholmes Exp $
+$Id: STATUS,v 1.29 2002/07/18 11:33:56 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           23 open bugs to swat!!
+                           20 open bugs to swat!!
 
 
 Controller:
@@ -28,9 +28,6 @@ Documentation:
 
 Example Webapps:
 ---------------
- 9709 Does not work with BEA Weblogic 7.0
-10501 Error running struts under JRun 3.1
-10921 Validation error (JavaScript) on struts-example.
 
 
 File Upload:
