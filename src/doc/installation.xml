@@ -131,6 +131,11 @@
         You can install this web application on any servlet container
         compatible with the Servlet 2.2 (or later) and JSP 1.1 (or later)
         specifications.</li>
+    <li><strong>webapps/struts-test.war</strong> - This web application
+        contains test pages for the various custom tags supported by Struts.
+        It is primarily of use to developers who are enhancing the Struts
+        custom tag libraries, but may also be useful as simple examples of
+        the usage of various Struts tags.</li>
     </ul>
 
     <p>To use Struts in your own application, you will need to follow
@@ -139,8 +144,9 @@
     <li>Copy the file <code>lib/struts.jar</code> from the Struts distribution
         into the <code>WEB-INF/lib</code> directory of your web application.
         </li>
-    <li>Copy the file <code>lib/struts.tld</code> from the Struts distribution
-        into the <code>WEB-INF</code> directory of your web application.</li>
+    <li>Copy the all of the files that match <code>lib/struts*.tld</code>
+        from the Struts distribution into the <code>WEB-INF</code> directory
+        of your web application.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file for your web application
         to include a <code>&lt;servlet&gt;</code> element to define the
         controller servlet, and a <code>&lt;servlet-mapping&gt;</code> element
@@ -148,11 +154,21 @@
         <code>WEB-INF/web.xml</code> file from the Struts example application
         for a detailed example of the required syntax.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
-        to include the following tag library declaration:
+        to include the following tag library declarations:
         <pre>
         &lt;taglib&gt;
           &lt;taglib-uri&gt;/WEB-INF/struts.tld&lt;/taglib-uri&gt;
           &lt;taglib-location&gt;/WEB-INF/struts.tld&lt;/taglib-location&gt;
+        &lt;/taglib&gt;
+
+        &lt;taglib&gt;
+          &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
+          &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
+        &lt;/taglib&gt;
+
+        &lt;taglib&gt;
+          &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
+          &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
         &lt;/taglib&gt;
         </pre>
         </li>
@@ -161,9 +177,12 @@
         <code>action.xml</code> file from the Struts example application
         for a detailed example of the required syntax.</li>
     <li>At the top of each JSP page that will use the Struts custom tags,
-        add a line declaring the Struts custom tag library, like this:
+        add line(s) declaring the Struts custom tag libraries used on
+        this particular page, like this:
         <pre>
         &lt;@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %&gt;
+        &lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
+        &lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %&gt;
         </pre>
         </li>
     <li>When compiling the Java classes that comprise your application, be sure

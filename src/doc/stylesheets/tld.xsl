@@ -8,7 +8,7 @@
   <xsl:output
              method="xml"
              indent="yes"
-     doctype-public="-//Sun Microsystems, Inc.//DTD JSP Tag Librayr 1.1//EN"
+     doctype-public="-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
      doctype-system="http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd"/>
    <xsl:strip-space elements="taglib tag attribute"/>
 
