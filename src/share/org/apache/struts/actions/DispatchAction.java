@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.17 2003/08/13 04:53:43 rleland Exp $
- * $Revision: 1.17 $
- * $Date: 2003/08/13 04:53:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.18 2003/08/13 05:29:27 rleland Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/08/13 05:29:27 $
  *
  * ====================================================================
  *
@@ -134,7 +134,8 @@ import org.apache.struts.util.MessageResources;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Leonardo Quijano
- * @version $Revision: 1.17 $ $Date: 2003/08/13 04:53:43 $
+ * @author Rob Leland
+ * @version $Revision: 1.18 $ $Date: 2003/08/13 05:29:27 $
  */
 public abstract class DispatchAction extends Action {
 
@@ -206,27 +207,29 @@ public abstract class DispatchAction extends Action {
                                  HttpServletRequest request,
                                  HttpServletResponse response)
             throws Exception {
-
         if (isCancelled(request)) {
-            return cancelled(mapping, form, request, response);
-        } else {
-            // Identify the request parameter containing the method name
-            String parameter = mapping.getParameter();
-            if (parameter == null) {
-                String message =
-                        messages.getMessage("dispatch.handler", mapping.getPath());
-
-                log.error(message);
-
-                throw new ServletException(message);
+            ActionForward af = cancelled(mapping, form, request, response);
+            if (af != null) {
+                return af;
             }
-
-            // Get the method's name. This could be overridden in subclasses.
-            String name = getMethodName(mapping, form, request, response, parameter);
-
-            // Invoke the named method, and return the result
-            return dispatchMethod(mapping, form, request, response, name);
         }
+        // Identify the request parameter containing the method name
+        String parameter = mapping.getParameter();
+        if (parameter == null) {
+            String message =
+                    messages.getMessage("dispatch.handler", mapping.getPath());
+
+            log.error(message);
+
+            throw new ServletException(message);
+        }
+
+        // Get the method's name. This could be overridden in subclasses.
+        String name = getMethodName(mapping, form, request, response, parameter);
+
+        // Invoke the named method, and return the result
+        return dispatchMethod(mapping, form, request, response, name);
+
     }
 
 
@@ -259,7 +262,7 @@ public abstract class DispatchAction extends Action {
      * Subclasses of <code>DispatchAction</code> should override this method if
      * they wish to provide default behavior different than throwing a
      * ServletException.
-     *
+     * @since Struts 1.2.1
      */
     protected ActionForward cancelled(ActionMapping mapping,
                                       ActionForm form,
@@ -267,15 +270,7 @@ public abstract class DispatchAction extends Action {
                                       HttpServletResponse response)
             throws Exception {
 
-        String message =
-                messages.getMessage(
-                        "dispatch.cancelled",
-                        mapping.getPath(),
-                        mapping.getParameter());
-
-        log.error(message);
-
-        throw new ServletException(message);
+        return null;
     }
 
     // ----------------------------------------------------- Protected Methods
@@ -378,6 +373,7 @@ public abstract class DispatchAction extends Action {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
+     * @since Struts 1.2.1
      */
     protected String getMethodName(ActionMapping mapping,
                                    ActionForm form,

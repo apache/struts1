@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.13 2003/08/13 04:53:43 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2003/08/13 04:53:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.14 2003/08/13 05:29:27 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/08/13 05:29:27 $
  *
  *  ====================================================================
  *
@@ -153,6 +153,7 @@ import org.apache.struts.util.MessageResources;
  * @author Scott Carlson
  * @author David Graham
  * @author Leonardo Quijano
+ * @author Rob Leland
  */
 public abstract class LookupDispatchAction extends DispatchAction {
 
@@ -190,20 +191,23 @@ public abstract class LookupDispatchAction extends DispatchAction {
             throws Exception {
 
         if (isCancelled(request)) {
-            return cancelled(mapping, form, request, response);
-        } else {
-            // Identify the request parameter containing the method name
-            String parameter = mapping.getParameter();
-            if (parameter == null) {
-                String message = messages.getMessage("dispatch.handler", mapping.getPath());
-                throw new ServletException(message);
+            ActionForward af = cancelled(mapping, form, request, response);
+            if (af != null) {
+                return af;
             }
-
-            // Identify the string to lookup
-            String methodName = getMethodName(mapping, form, request, response, parameter);
-
-            return dispatchMethod(mapping, form, request, response, methodName);
         }
+        // Identify the request parameter containing the method name
+        String parameter = mapping.getParameter();
+        if (parameter == null) {
+            String message = messages.getMessage("dispatch.handler", mapping.getPath());
+            throw new ServletException(message);
+        }
+
+        // Identify the string to lookup
+        String methodName = getMethodName(mapping, form, request, response, parameter);
+
+        return dispatchMethod(mapping, form, request, response, methodName);
+
     }
 
     /**
@@ -257,6 +261,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
      * @param parameter The <code>ActionMapping</code> parameter's name
      *
      * @return The method's name.
+     * @since Struts 1.2.1
      */
     protected String getMethodName(ActionMapping mapping,
                                    ActionForm form,
