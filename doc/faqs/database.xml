@@ -160,7 +160,7 @@
       property="defaultReadOnly"
       value="false" />
     <set-property
-      property="pingQuery"
+      property="validationQuery"
       value="SELECT COUNT(*) FROM market" />
 </data-source>
 </data-sources>
