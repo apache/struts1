@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.18 2003/05/19 16:29:00 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2003/05/19 16:29:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.19 2003/07/07 23:29:46 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/07/07 23:29:46 $
  *
  * ====================================================================
  *
@@ -95,32 +95,53 @@ import org.apache.struts.tiles.TilesUtil;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.18 $ $Date: 2003/05/19 16:29:00 $
+ * @version $Revision: 1.19 $ $Date: 2003/07/07 23:29:46 $
  */
 public class InsertTag
     extends DefinitionTagSupport
     implements PutTagParent, ComponentConstants, PutListTagParent {
 
-    /** Commons Logging instance. */
+    /** 
+     * The role delimiter. 
+     * @deprecated This will be removed in a release after Struts 1.2.
+     */
+    public static final String ROLE_DELIMITER = ",";
+
+    /** 
+     * Commons Logging instance. 
+     */
     protected static Log log = LogFactory.getLog(InsertTag.class);
 
     /* JSP Tag attributes */
-    /** Flush attribute value */
+
+    /** 
+     * Flush attribute value. 
+     */
     protected boolean flush = true;
 
-    /** Name to insert */
+    /** 
+     * Name to insert. 
+     */
     protected String name = null;
 
-    /** Name of attribute from which to read page name to include */
+    /**
+     * Name of attribute from which to read page name to include. 
+     */
     protected String attribute = null;
 
-    /** Name of bean used as entity to include */
+    /** 
+     * Name of bean used as entity to include. 
+     */
     protected String beanName = null;
 
-    /** Name of bean property, if any */
+    /** 
+     * Name of bean property, if any. 
+     */
     protected String beanProperty = null;
 
-    /** Scope of bean, if any */
+    /** 
+     * Scope of bean, if any. 
+     */
     protected String beanScope = null;
 
     /**
@@ -130,7 +151,9 @@ public class InsertTag
      */
     protected boolean isErrorIgnored = false;
 
-    /** Name of component instance to include */
+    /**
+     * Name of component instance to include.
+     */
     protected String definitionName = null;
 
     /* Internal properties */
@@ -140,13 +163,19 @@ public class InsertTag
      */
     protected boolean processEndTag = true;
 
-    /** Current component context */
+    /** 
+     * Current component context. 
+     */
     protected ComponentContext cachedCurrentContext;
 
-    /** Finale handler of tag methods */
+    /** 
+     * Final handler of tag methods. 
+     */
     protected TagHandler tagHandler = null;
 
-    /** Trick to allows inner classes to access pageContext */
+    /** 
+     * Trick to allows inner classes to access pageContext. 
+     */
     protected PageContext pageContext = null;
 
     /**
@@ -218,14 +247,6 @@ public class InsertTag
      */
     public void setComponent(String name) {
         this.page = name;
-    }
-
-    /**
-     * Set instance.
-     * @deprecated Use setDefinition() instead.
-     */
-    public void setInstance(String name) {
-        this.definitionName = name;
     }
 
     /**
@@ -345,10 +366,10 @@ public class InsertTag
      */
     public void processNestedTag(PutTag nestedTag) throws JspException {
         // Check role
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         String role = nestedTag.getRole();
-        if (role != null
-            && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
-                role)) { // not allowed : skip attribute
+        if (role != null && !request.isUserInRole(role)) {
+            // not allowed : skip attribute
             return;
         }
 
@@ -363,10 +384,10 @@ public class InsertTag
      */
     public void processNestedTag(PutListTag nestedTag) throws JspException {
         // Check role
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         String role = nestedTag.getRole();
-        if (role != null
-            && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
-                role)) { // not allowed : skip attribute
+        if (role != null && !request.isUserInRole(role)) {
+            // not allowed : skip attribute
             return;
         }
 
@@ -374,6 +395,7 @@ public class InsertTag
         if (nestedTag.getName() == null) {
             throw new JspException("Error - PutList : attribute name is not defined. It is mandatory as the list is added as attribute of 'insert'.");
         }
+
         // now add attribute to enclosing parent (i.e. : this object).
         putAttribute(nestedTag.getName(), nestedTag.getList());
     }
@@ -384,10 +406,10 @@ public class InsertTag
      */
     public void putAttribute(PutListTag nestedTag) throws JspException {
         // Check role
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         String role = nestedTag.getRole();
-        if (role != null
-            && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
-                role)) { // not allowed : skip attribute
+        if (role != null && !request.isUserInRole(role)) {
+            // not allowed : skip attribute
             return;
         }
 
@@ -404,6 +426,7 @@ public class InsertTag
                     ComponentConstants.COMPONENT_CONTEXT,
                     PageContext.REQUEST_SCOPE);
         }
+
         return cachedCurrentContext;
     }
 
@@ -417,10 +440,12 @@ public class InsertTag
         if (controllerType == null) {
             return null;
         }
+
         try {
             return ComponentDefinition.createController(
                 controllerName,
                 controllerType);
+
         } catch (InstantiationException ex) {
             throw new JspException(ex.getMessage());
         }
@@ -440,23 +465,24 @@ public class InsertTag
         // Check role immediatly to avoid useless stuff.
         // In case of insertion of a "definition", definition's role still checked later.
         // This lead to a double check of "role" ;-(
-        if (role != null
-            && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(role)) {
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        if (role != null && !request.isUserInRole(role)) {
             processEndTag = false;
             return SKIP_BODY;
         }
 
-        // Now, real stuff
         try {
             tagHandler = createTagHandler();
-        } catch (JspException ex) { // Do we ignore errors ?
+
+        } catch (JspException e) {
             if (isErrorIgnored) {
                 processEndTag = false;
                 return SKIP_BODY;
+            } else {
+                throw e;
             }
-            // Errors aren't ignored, let it throw.
-            throw ex;
         }
+
         return tagHandler.doStartTag();
     }
 
@@ -503,7 +529,8 @@ public class InsertTag
      * Object can be a typed attribute, a String, or anything else.
      * If typed attribute, use associated type.
      * Otherwise, apply toString() on object, and use returned string as a name.
-    * @throws JspException - Throws by underlying nested call to processDefinitionName()
+     * @throws JspException - Throws by underlying nested call to 
+     * processDefinitionName()
      */
     public TagHandler processObjectValue(Object value) throws JspException {
         // First, check if value is one of the Typed Attribute
@@ -530,7 +557,8 @@ public class InsertTag
      * </ul>
      *
      * @return appropriate tag handler.
-    * @throws JspException - Throws by underlying nested call to processDefinitionName()
+     * @throws JspException - Throws by underlying nested call to 
+     * processDefinitionName()
      */
     public TagHandler processName(String name) throws JspException {
         Object attrValue = getCurrentContext().getAttribute(name);
@@ -552,13 +580,13 @@ public class InsertTag
 
     /**
      * Process tag attribute "definition".
-    * First, search definition in the factory, then create handler from this definition.
+     * First, search definition in the factory, then create handler from this definition.
      * @param name Name of the definition.
      * @return Appropriate TagHandler.
      * @throws JspException- NoSuchDefinitionException No Definition  found for name.
      * @throws JspException- FactoryNotFoundException Can't find Definitions factory.
      * @throws JspException- DefinedComponentFactoryException General error in factory.
-    * @throws JspException InstantiationException Can't create requested controller
+     * @throws JspException InstantiationException Can't create requested controller
      */
     protected TagHandler processDefinitionName(String name) throws JspException {
 
@@ -572,6 +600,7 @@ public class InsertTag
             if (definition == null) { // is it possible ?
                 throw new NoSuchDefinitionException();
             }
+
             return processDefinition(definition);
 
         } catch (NoSuchDefinitionException ex) {
@@ -579,6 +608,7 @@ public class InsertTag
                 "Error -  Tag Insert : Can't get definition '"
                     + definitionName
                     + "'. Check if this name exist in definitions factory.");
+
         } catch (FactoryNotFoundException ex) {
             throw new JspException(ex.getMessage());
 
@@ -586,6 +616,7 @@ public class InsertTag
             if (log.isDebugEnabled()) {
                 ex.printStackTrace();
             }
+
             // Save exception to be able to show it later
             pageContext.setAttribute(
                 Globals.EXCEPTION_KEY,
@@ -617,9 +648,11 @@ public class InsertTag
             if (role == null) {
                 role = definition.getRole();
             }
+
             if (page == null) {
                 page = definition.getTemplate();
             }
+
             if (controllerName != null) {
                 controller =
                     ComponentDefinition.createController(
@@ -633,6 +666,7 @@ public class InsertTag
                 page,
                 role,
                 controller);
+
         } catch (InstantiationException ex) {
             throw new JspException(ex.getMessage());
         }
@@ -663,7 +697,6 @@ public class InsertTag
                 pageContext);
 
         if (beanValue == null) {
-            //throw new NoSuchDefinitionException();
             throw new JspException(
                 "Error - Tag Insert : No value defined for bean '"
                     + beanName
@@ -673,6 +706,7 @@ public class InsertTag
                     + beanScope
                     + "'.");
         }
+
         return processObjectValue(beanValue);
     }
 
@@ -692,6 +726,7 @@ public class InsertTag
             throw new JspException(
                 "Error - Tag Insert : No value found for attribute '" + name + "'.");
         }
+
         return processObjectValue(attrValue);
     }
 
@@ -699,7 +734,7 @@ public class InsertTag
      * Try to process name as a definition, or as an URL if not found.
      * @param name Name to process.
      * @return appropriate TagHandler
-    * @throws JspException InstantiationException Can't create requested controller
+     * @throws JspException InstantiationException Can't create requested controller
      */
     public TagHandler processAsDefinitionOrURL(String name) throws JspException {
         try {
@@ -708,12 +743,15 @@ public class InsertTag
                     name,
                     pageContext.getRequest(),
                     pageContext.getServletContext());
+
             if (definition != null) {
                 return processDefinition(definition);
             }
+
         } catch (DefinitionsFactoryException ex) {
             // silently failed, because we can choose to not define a factory.
         }
+
         // no definition found, try as url
         return processUrl(name);
     }
@@ -722,7 +760,7 @@ public class InsertTag
      * Process typed attribute according to its type.
      * @param value Typed attribute to process.
      * @return appropriate TagHandler.
-    * @throws JspException - Throws by underlying nested call to processDefinitionName()
+     * @throws JspException - Throws by underlying nested call to processDefinitionName()
      */
     public TagHandler processTypedAttribute(AttributeDefinition value)
         throws JspException {
@@ -735,9 +773,10 @@ public class InsertTag
         } else if (value instanceof DefinitionNameAttribute) {
             return processDefinitionName((String) value.getValue());
         }
-        //else if( value instanceof PathAttribute )
+
         return new InsertHandler((String) value.getValue(), role, getController());
     }
+
     /**
      * Do an include of specified page.
      * This method is used internally to do all includes from this class. It delegates
@@ -747,14 +786,7 @@ public class InsertTag
      * @throws IOException - Thrown by call to pageContext.include()
      */
     protected void doInclude(String page) throws ServletException, IOException {
-      /*
-        TilesUtil.doInclude( page,
-                        (HttpServletRequest)pageContext.getRequest(),
-                        (HttpServletResponse)pageContext.getResponse(),
-                        pageContext.getServletContext());
-      */
-      TilesUtil.doInclude( page, pageContext );
-
+        TilesUtil.doInclude(page, pageContext);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -823,9 +855,10 @@ public class InsertTag
          */
         public int doStartTag() throws JspException {
             // Check role
-            if (role != null
-                && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
-                    role)) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+
+            if (role != null && !request.isUserInRole(role)) {
                 return SKIP_BODY;
             }
 
@@ -847,9 +880,10 @@ public class InsertTag
          */
         public int doEndTag() throws JspException {
             // Check role
-            if (role != null
-                && !((HttpServletRequest) pageContext.getRequest()).isUserInRole(
-                    role)) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+
+            if (role != null && !request.isUserInRole(role)) {
                 return EVAL_PAGE;
             }
 
@@ -878,7 +912,7 @@ public class InsertTag
                     pageContext.getOut().flush();
                 }
 
-                doInclude(page);                
+                doInclude(page);
 
             } catch (IOException ex) {
                 processException(
@@ -937,10 +971,12 @@ public class InsertTag
          */
         protected void processException(Throwable ex, String msg)
             throws JspException {
+
             try {
                 if (msg == null) {
                     msg = ex.getMessage();
                 }
+
                 if (log.isDebugEnabled()) { // show full trace
                     log.debug(msg, ex);
                     pageContext.getOut().println(msg);
@@ -948,6 +984,7 @@ public class InsertTag
                 } else { // show only message
                     pageContext.getOut().println(msg);
                 }
+
             } catch (IOException ioex) { // problems. Propagate original exception
                 pageContext.setAttribute(
                     ComponentConstants.EXCEPTION_KEY,
@@ -965,15 +1002,15 @@ public class InsertTag
      * @param request The request.
      */
     static public boolean userHasRole(HttpServletRequest request, String role) {
-        StringTokenizer st = new StringTokenizer(role, ROLE_DELIMITER, false);
+        StringTokenizer st = new StringTokenizer(role, ",");
         while (st.hasMoreTokens()) {
-            if (request.isUserInRole(st.nextToken()))
+            if (request.isUserInRole(st.nextToken())) {
                 return true;
+            }
         }
+
         return false;
     }
-    /** The role delimiter. */
-    static public final String ROLE_DELIMITER = ",";
 
     /////////////////////////////////////////////////////////////////////////////
 
@@ -1013,19 +1050,23 @@ public class InsertTag
                 if (flush) {
                     pageContext.getOut().flush();
                 }
+
                 pageContext.getOut().print(value);
 
             } catch (IOException ex) {
                 if (log.isDebugEnabled()) {
                     log.debug("Can't write string '" + value + "' : ", ex);
                 }
+
                 pageContext.setAttribute(
                     ComponentConstants.EXCEPTION_KEY,
                     ex,
                     PageContext.REQUEST_SCOPE);
+
                 throw new JspException(
                     "Can't write string '" + value + "' : " + ex.getMessage());
             }
+
             return EVAL_PAGE;
         }
     }
