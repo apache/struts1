@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.2 2000/06/01 21:06:27 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/01 21:06:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.3 2000/06/14 19:28:55 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/14 19:28:55 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/01 21:06:27 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/14 19:28:55 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -148,8 +148,19 @@ public final class ErrorsTag extends TagSupport {
 	// Were any error messages specified?
 	String errors[] = null;
 	try {
-	    errors = (String[]) pageContext.getAttribute
+	    Object value = pageContext.getAttribute
 	      (name, PageContext.REQUEST_SCOPE);
+	    if (value == null) {
+		errors = null;
+	    } else if (value instanceof String) {
+		errors = new String[1];
+		errors[0] = (String) value;
+	    } else if (value instanceof String[]) {
+		errors = (String[]) value;
+	    } else {
+		errors = new String[1];
+		errors[0] = value.toString();
+	    }
 	} catch (Exception e) {
 	    errors = null;
 	}
