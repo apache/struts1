@@ -15,6 +15,10 @@
 <body>
     <section name="Status" href="status">
 
+    <p class="version">
+      $Id: status.xml,v 1.57 2003/12/31 00:05:53 husted Exp $
+     </p>
+
     <p>
         The <strong>stable production release</strong> is
         <a href="http://www.apache.org/dist/jakarta/struts/binaries/">Struts 1.1.0</a> (29 June 2003).
@@ -24,7 +28,7 @@
 
     <ul>
     <li>
-      See the <a href="../status.html">Development Roadmap</a> for an overview of future plans.
+      See the <a href="#roadmap">Development Roadmap</a> for an overview of future plans.
     </li>
     <li>
         See the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> for outstanding issues and
@@ -43,17 +47,13 @@
         codebase.
       </li>
     <li>
-       See the <a href="../releases.html">Release Guides</a> for our release process and coding conventions.
+       See the <a href="releases.html">Release Guides</a> for our release process and coding conventions.
     </li>
     </ul>
 
 </section>
 
 <section href="roadmap" name="Development Roadmap">
-
-    <p class="version">
-    $Id: status.xml,v 1.56 2003/12/30 15:39:24 husted Exp $
-    </p>
 
     <p>
     This document outlines some of changes we expect to
@@ -172,10 +172,10 @@
             </li>
 
             <li>Struts 1.2.x -
-                Continued refactorings of the Struts 1.x product series.
+                Continued refactorings of the Struts 1.x product series. The current release trigger for 1.2.0 is resolving outstanding <a href="#Bugzilla">problem reports</a>. There are also <a href="#Bugzilla">several patches</a> that could be applied prior to rolling 1.2.0.
                 <ul>
-                    <li>The current release trigger for 1.2.0 is the release of Commons Validator 1.1.1</li>
                     <li>Remove deprecations created in the 1.0 to 1.1 timeframe, and prior</li>
+                    <li>Add support for wildcard mappings.</li>
                     <li>Move build platform to Maven when convenient</li>
                     <li>Other minor enhancements and refactorings</li>
                 </ul>
@@ -345,6 +345,11 @@
 
     </ul>
 
+    <p>
+        An early proposal for one possible implementation of Struts 2.x, "Struts Jericho",
+        is available in the <a href="http://cvs.apache.org/viewcvs.cgi/jakarta-struts/contrib/struts-jericho/">contrib folder</a>.
+    </p>
+
 </section>
 
 <section href="Portlets" name="Portlet (JSR-168) Whiteboard">
@@ -485,8 +490,8 @@
 </section>
 
 <section>
-    <p class="version">Website updated from CVS: 2003 DEC 11 by husted.</p>
-    <p class="version">Javadocs updated from CVS: 2003 NOV 26 by husted.</p>
+    <p class="version">Website updated from CVS: 2003 DEC 30 by husted.</p>
+    <p class="version">Javadocs updated from CVS: 2003 DEC 30 by husted.</p>
 </section>
 
 </body></document>
