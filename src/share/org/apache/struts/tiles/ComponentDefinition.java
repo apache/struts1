@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.2 2002/10/10 16:32:27 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/10 16:32:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.3 2002/11/16 04:07:54 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 04:07:54 $
  *
  * ====================================================================
  *
@@ -62,12 +62,9 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.Controller;
-
+import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
-import java.io.Serializable;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
