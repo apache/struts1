@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/30 23:18:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/08/31 21:53:00 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.commons.logging.LogFactory;
  * @author Cedric Dumoulin
  * @author Greg Reddin
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/30 23:18:56 $
+ * @version $Revision: 1.3 $ $Date: 2003/08/31 21:53:00 $
  * @since Struts 1.1
  */
 
@@ -150,7 +150,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
                  + moduleConfig.getPrefix() + "'");
         super.init(servlet, moduleConfig);
         this.catalog = (Catalog)
-            servlet.getServletContext().getAttribute(Constants.CATALOG_KEY);
+            servlet.getServletContext().getAttribute(Constants.CATALOG_ATTR);
         if (this.catalog == null) {
             // FIXME - i18n
             throw new ServletException("No Catalog has been configured");
@@ -176,7 +176,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
         // Create and populate a Context for this request
         ServletWebContext context = new ServletWebContext();
         context.initialize(getServletContext(), request, response);
-        context.getAttributes().put("catalog", this.catalog);
+        context.getAttributes().put(Constants.CATALOG_KEY,
+                                    this.catalog);
         context.getAttributes().put(Constants.ACTION_SERVLET_KEY,
                                     this.servlet);
         context.getAttributes().put(Constants.MODULE_CONFIG_KEY,

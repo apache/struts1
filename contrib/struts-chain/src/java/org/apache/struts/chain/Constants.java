@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/30 23:18:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/Constants.java,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/08/31 21:53:00 $
  *
  * ====================================================================
  *
@@ -112,6 +112,21 @@ public final class Constants {
 
 
     /**
+     * <p>The default context attribute under which our
+     * <code>Catalog</code> will be stored.</p>
+     */
+    public static final String CATALOG_KEY = "catalog";
+
+
+    /**
+     * <p>The default context attribute under which an
+     * <code>Exception</code> will be stored before passing
+     * it to an exception handler chain.</p>
+     */
+    public static final String EXCEPTION_KEY = "exception";
+
+
+    /**
      * <p>The default context attribute under which the
      * <code>ForwardConfig</code> for the current request
      * will be stored.</p>
@@ -158,7 +173,7 @@ public final class Constants {
      * <p>The context attribute under which the <code>Catalog</code> containing
      * our defined command chains has been stored.</p>
      */
-    public static final String CATALOG_KEY =
+    public static final String CATALOG_ATTR =
         "org.apache.struts.chain.CATALOG";
 
 

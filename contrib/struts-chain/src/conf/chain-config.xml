@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
+    $Id: chain-config.xml,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
 -->
 
 
@@ -62,7 +62,7 @@
 
            processPath             SelectAction (which also does processMapping)
 
-           processException        NOT SUPPORTED YET
+           processException        ExceptionCatcher / ExceptionHandler
 
            processLocale           SelectLocale
 
@@ -105,6 +105,12 @@
          catalogKey="catalog"
                name="servlet-standard-preprocess"
            optional="true"/>
+
+
+      <!-- Establish exception handling filter -->
+      <command
+          className="org.apache.struts.chain.ExceptionCatcher"
+   exceptionCommand="servlet-exception"/>
 
 
       <!-- Identify the Locale for this request -->
@@ -153,7 +159,31 @@
           className="org.apache.struts.chain.servlet.PerformForward"/>
 
 
-   </chain>
+    </chain>
+
+
+    <!-- ========== Servlet Exception Handler Chain ======================== -->
+
+    <chain     name="servlet-exception">
+
+      <!--
+            This chain is designed to be invoked (by o.a.s.c.ExceptionCatcher)
+            if an unhandled exception is thrown by any subsequent command
+            in a processing chain (including the one that invokes a Struts
+            action).  The standard definition of this chain supports the
+            exception mapping of Struts 1.1, but can be replaced in order
+            to handle exceptions differently.
+      -->
+
+      <!-- Execute the configured exception handler (if any) -->
+      <command
+          className="org.apache.struts.chain.servlet.ExceptionHandler"/>
+
+      <!-- Follow the returned ActionForward (if any) -->
+      <command
+          className="org.apache.struts.chain.servlet.PerformForward"/>
+
+    </chain>
 
 
 </chains>

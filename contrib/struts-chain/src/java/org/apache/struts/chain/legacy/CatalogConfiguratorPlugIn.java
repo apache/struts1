@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.2 2003/08/30 23:18:56 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/30 23:18:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.3 2003/08/31 21:53:00 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/08/31 21:53:00 $
  *
  * ====================================================================
  *
@@ -172,11 +172,11 @@ public class CatalogConfiguratorPlugIn implements PlugIn {
 
         // Retrieve or create the Catalog instance we will be updating
         Catalog catalog = (Catalog)
-            servlet.getServletContext().getAttribute(Constants.CATALOG_KEY);
+            servlet.getServletContext().getAttribute(Constants.CATALOG_ATTR);
         if (catalog == null) {
             log.info("Creating new Catalog instance");
             catalog = new CatalogBase();
-            servlet.getServletContext().setAttribute(Constants.CATALOG_KEY,
+            servlet.getServletContext().setAttribute(Constants.CATALOG_ATTR,
                                                      catalog);
         }
 
