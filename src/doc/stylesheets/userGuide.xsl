@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.3 2001/01/20 01:08:56 craigmcc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.4 2001/01/21 23:46:17 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -71,7 +71,7 @@
 
       <tr><td colspan="2">
         <div align="center"><font color="{$body-link}" size="-1"><em>
-        Copyright &#169; 2000, Apache Software Foundation
+        Copyright &#169; 2000-2001, Apache Software Foundation
         </em></font></div>
         <img src="../images/struts-power.gif" align="right" border="0"/>
       </td></tr>
