@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.3 2001/01/28 01:07:57 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/28 01:07:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.4 2001/01/28 01:18:54 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/28 01:18:54 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import java.lang.reflect.Array;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.3 $ $Date: 2001/01/28 01:07:57 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/28 01:18:54 $
  */
 
 public final class ConvertUtils {
@@ -147,6 +147,8 @@ public final class ConvertUtils {
             return (convertByte(value));
         } else if (clazz == Float.TYPE) {
             return (convertFloat(value));
+        } else if (clazz == Short.TYPE) {
+            return (convertShort(value));
         } else {
             if (value == null)
                 return ((String) null);
@@ -214,6 +216,11 @@ public final class ConvertUtils {
             float array[] = new float[len];
             for (int i = 0; i < len; i++)
                 array[i] = convertFloat(values[i]).floatValue();
+            return (array);
+        } else if (type == Short.TYPE) {
+            short array[] = new short[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertShort(values[i]).shortValue();
             return (array);
         } else {
             if (values == null)
@@ -343,6 +350,22 @@ public final class ConvertUtils {
             return (new Long(value));
         } catch (NumberFormatException e) {
             return (new Long(0));
+        }
+
+    }
+
+
+    /**
+     * Convert a String value to a corresponding Short value.
+     *
+     * @param value The string value to convert
+     */
+    private static Short convertShort(String value) {
+
+        try {
+            return (new Short(value));
+        } catch (NumberFormatException e) {
+            return (new Short((short) 0));
         }
 
     }
