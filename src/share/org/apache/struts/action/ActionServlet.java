@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.84 2002/01/13 04:21:18 craigmcc Exp $
- * $Revision: 1.84 $
- * $Date: 2002/01/13 04:21:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.85 2002/01/15 18:51:26 craigmcc Exp $
+ * $Revision: 1.85 $
+ * $Date: 2002/01/15 18:51:26 $
  *
  * ====================================================================
  *
@@ -265,7 +265,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.84 $ $Date: 2002/01/13 04:21:18 $
+ * @version $Revision: 1.85 $ $Date: 2002/01/15 18:51:26 $
  */
 
 public class ActionServlet
@@ -434,9 +434,7 @@ public class ActionServlet
               HttpServletResponse response)
         throws IOException, ServletException {
 
-        RequestUtils.selectApplication(request, getServletContext());
-        getApplicationConfig(request).getProcessor().process
-            (request, response);
+        process(request, response);
 
     }
 
@@ -454,9 +452,7 @@ public class ActionServlet
                HttpServletResponse response)
         throws IOException, ServletException {
 
-        RequestUtils.selectApplication(request, getServletContext());
-        getApplicationConfig(request).getProcessor().process
-            (request, response);
+        process(request, response);
 
     }
 
@@ -1010,6 +1006,27 @@ public class ActionServlet
         if (servletMapping != null)
             getServletContext().setAttribute(Action.SERVLET_KEY,
                                              servletMapping);
+
+    }
+
+
+    /**
+     * Perform the standard request processing for this request, and create
+     * the corresponding response.
+     *
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception is thrown
+     */
+    protected void process(HttpServletRequest request,
+                           HttpServletResponse response)
+        throws IOException, ServletException {
+
+        RequestUtils.selectApplication(request, getServletContext());
+        getApplicationConfig(request).getProcessor().process
+            (request, response);
 
     }
 
