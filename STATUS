@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.24 2002/07/16 11:18:01 jholmes Exp $
+$Id: STATUS,v 1.25 2002/07/17 11:24:08 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           19 open bugs to swat!!
+                           20 open bugs to swat!!
 
 
 Controller:
@@ -42,6 +42,7 @@ File Upload:
 Standard Actions:
 ----------------
 10322 Problems with LookupDispatchAction and other locales
+10881 PATCH: DynaActionForm throws unhelpful NPE on invalid form-property type
 
 
 Tiles Framework:
@@ -65,6 +66,7 @@ Validator Framework:
 10432 DynaValidatorActionForm does not validate data
 10584 Not all validation files are read in Validation PlugIn
 10782 If two fields are required, and one has a mask, the mask is not checked if the other field is blank
+10868 Validator  does not support non-default resource bundles
 
 
 Web Site:
