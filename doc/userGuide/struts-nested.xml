@@ -1370,6 +1370,59 @@
     </attribute>
 
   </tag>
+  
+  <tag document-attributes="false">
+    <name>optionsCollection</name>
+    <summary>Nested Extension -
+        Render a Collection of Select Options
+    </summary>
+    <tagclass>org.apache.struts.taglib.nested.html.NestedOptionsCollectionTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+      <p>This tag is an extension of the
+      <a href="struts-html.html#optionsCollection"
+      ><code>&lt;html:optionsCollection&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
+    </info>
+    
+    <attribute>
+      <name>label</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>property</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>style</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>styleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>value</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
 
   <tag document-attributes="false">
     <name>password</name>
