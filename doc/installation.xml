@@ -243,16 +243,17 @@ each individual web app!  Doing so will cause problems with
   object in the Struts-Example application is not compatible with this container.</li>
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
   <li>iPortal Application Server - <a href="installation-ipas.html">Additional steps required.</a></li>
-  <li>JRUN - <a href="installation-jrun.html">Additional steps required.</a></li>
+  <li>Jetty - <a href="installation-jetty.html">Additional steps required.</a></li>
+  <li>JRun - <a href="installation-jrun.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
     required.</a></li>
   <li>Resin 1.2+ "standalone" - No additional steps required.</li>
   <li>SilverStream 3.7.1 and later - <a href="installation-sas.html">Additional steps required.</a></li>
-  <li>Tomcat 4.0 final - No additional steps required.</li>
+  <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
   <li>Tomcat 3.2.1 with Apache - <a href="installation-tc.html">Additional steps 
     required.</a></li>
   <li>Tomcat 3.2.1+ "standalone" - No additional steps required.</li>
-  <li>Tomcat 3.1 and prior - Not recommended. Use Tomcat 3.2.1 or later.</li>
+  <li>Tomcat 4.0 - No additional steps required.</li>
   <li>Weblogic - <a href="installation-wls.html">Additional steps required.</a></li>
   <li>WebLogic 6.0+ - No additional steps required.</li>
   <li>WebSphere - <a href="installation-was352.html">Additional steps required.</a></li>
