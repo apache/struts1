@@ -464,7 +464,7 @@ public class UploadForm extends ActionForm {
               <code>MessageResources</code> bundle) that should be displayed. The
               controller servlet will store this array as a request attribute suitable
               for use by the <code>&lt;html:errors&gt;</code> tag, and will forward
-              control back to the input form (identified by the <code>inputForm</code>
+              control back to the input form (identified by the <code>input</code>
               property for this <code>ActionMapping</code>).</li>
         </ul>
           
