@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.7 2003/05/10 18:06:40 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/05/10 18:06:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.8 2003/07/13 23:28:03 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/13 23:28:03 $
  *
  * ====================================================================
  *
@@ -63,7 +63,9 @@ package org.apache.struts.taglib.logic;
 
 import java.util.Collection;
 import java.util.Map;
+
 import javax.servlet.jsp.JspException;
+
 import org.apache.struts.util.RequestUtils;
 
 /**
@@ -72,7 +74,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.7 $ $Date: 2003/05/10 18:06:40 $
+ * @version $Revision: 1.8 $ $Date: 2003/07/13 23:28:03 $
  * @since Struts 1.1
  */
 public class EmptyTag extends ConditionalTagBase {
@@ -113,8 +115,6 @@ public class EmptyTag extends ConditionalTagBase {
 			RequestUtils.saveException(pageContext, e);
 			throw e;
 		}
-
-		boolean empty = true;
         
 		Object value = null;
 		if (this.property == null) {
@@ -123,27 +123,28 @@ public class EmptyTag extends ConditionalTagBase {
 			value = RequestUtils.lookup(pageContext, name, property, scope);
 		}
         
-		if (value != null) {
-            
-			if (value instanceof String) {
-				String strValue = (String) value;
-				empty = (strValue.length() < 1);
-                
-			} else if (value instanceof Collection) {
-				Collection collValue = (Collection) value;
-				empty = collValue.isEmpty();
-                
-			} else if (value instanceof Map) {
-				Map mapValue = (Map) value;
-				empty = mapValue.isEmpty();
-                
-			} else {
-				empty = false;
-			}
-		}
+        boolean empty = true;
+        
+        if (value == null) {
+            empty = true;
+
+        } else if (value instanceof String) {
+            String strValue = (String) value;
+            empty = (strValue.length() < 1);
+
+        } else if (value instanceof Collection) {
+            Collection collValue = (Collection) value;
+            empty = collValue.isEmpty();
+
+        } else if (value instanceof Map) {
+            Map mapValue = (Map) value;
+            empty = mapValue.isEmpty();
+
+        } else {
+            empty = false;
+        }
 
 		return (empty == desired);
     }
-
 
 }
