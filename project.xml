@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <name>struts</name>
+  <id>Struts</id>
+  <currentVersion>1.2-dev</currentVersion>
+  <organization>
+    <name>Apache Software Foundation</name>
+    <url>http://jakarta.apache.org/</url>
+  </organization>
+  <inceptionYear>2000</inceptionYear>
+  <package>org.apache.struts</package>
+
+  <shortDescription>MVC Web Application Framework</shortDescription>
+
+  <!-- Gump integration -->
+  <gumpRepositoryId>jakarta</gumpRepositoryId>
+
+  <description>
+ The core of the Struts framework is a flexible control layer based on standard
+ technologies like Java Servlets, JavaBeans, ResourceBundles, 
+ and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
+ Struts encourages application architectures based on the Model 2 approach, a variation
+ of the classic  Model-View-Controller (MVC) design paradigm.
+
+Struts provides its own Controller component and integrates with other technologies
+to provide the Model and the View. For the Model, Struts can interact with any standard
+data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge.
+For the View, Struts works well with JavaServer Pages, including JSTL and JSF, 
+as well as Velocity Templates, XSLT, and other presentation systems.
+
+The Struts framework provides the invisible underpinnings every professional 
+web application needs to survive. Struts helps you create an extensible 
+development environment for your application, based on published standards
+and proven design patterns.
+
+  </description>
+
+  <url>http://jakarta.apache.org/</url>
+  <issueTrackingUrl>
+    http://issues.apache.org/bugzilla/
+  </issueTrackingUrl>
+  <siteAddress>jakarta.apache.org/struts</siteAddress>
+  <siteDirectory>
+    /www/jakarta.apache.org/struts
+  </siteDirectory>
+  <distributionDirectory>
+    /www/jakarta.apache.org/builds/jakarta-turbine-maven/
+  </distributionDirectory>
+
+  <repository>
+    <connection>
+      scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:maven
+    </connection>
+    <url>
+      http://cvs.apache.org/viewcvs/maven/
+    </url>
+  </repository>
+
+  <versions>
+    <version>
+      <id>1.0.2</id>
+      <name>1.0.02</name>
+      <tag>STRUTS_1_0_2</tag>
+    </version>
+    <version>
+      <id>1.1.0</id>
+      <name>1.1.0</name>
+      <tag>STRUTS_1_1</tag>
+    </version>
+  </versions>
+
+  <mailingLists>
+    <mailingList>
+      <name>Struts User List</name>
+      <subscribe>
+        struts-user-subscribe@jakarta.apache.org
+      </subscribe>
+      <unsubscribe>
+        struts-user-unsubscribe@jakarta.apache.org
+      </unsubscribe>
+      <archive>
+        http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42
+      </archive>
+    </mailingList>
+    <mailingList>
+      <name>Struts Developer List</name>
+      <subscribe>
+        struts-dev-subscribe@jakarta.apache.org
+      </subscribe>
+      <unsubscribe>
+        struts-dev-unsubscribe@jakarta.apache.org
+      </unsubscribe>
+      <archive>
+        http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41
+      </archive>
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+
+        <developer>
+            <name>Craig R. McClanahan</name>
+             <email>craigmcc at apache.org</email>
+             <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Ted Husted</name>
+             <email>husted at apache.org</email>
+             <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Rob Leland</name>
+             <email>rleland at apache.org</email>
+             <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Cedric Dumoulin</name>
+             <email>cedric.dumoulin at lifl.fr</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Martin Cooper</name>
+             <email>martinc at apache.org</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Arron Bates</name>
+             <email>arron at apache.org</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>James Holmes</name>
+             <email>jholmes at apache.org</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>David M. Karr</name>
+             <email>dmkarr at apache.org</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>Eddie Bush</name>
+             <email>ekbush at apache.org</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>David Graham</name>
+             <email>dgraham at apache.org</email>
+              <organization></organization>
+        </developer>
+
+        <developer>
+            <name>James Mitchell</name> 
+            <email>jmitchell at apache.org</email>
+             <organization></organization>
+        </developer>
+
+        <developer>
+            <name>James Turner</name>
+            <email>turner at blackbear.com</email>
+             <organization></organization>
+        </developer>
+
+
+  </developers>
+  <contributors>
+    <contributor>
+      <name></name>
+      <id></id>
+      <email></email>
+      <organization></organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+  </contributors>
+
+  <dependencies>
+    <dependency>
+      <id>commons-beanutils</id>
+      <version>1.6.1</version>
+    </dependency>
+
+    <dependency>
+      <id>commons-collections</id>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <id>commons-digester</id>
+      <version>1.5</version>
+    </dependency>
+
+    <dependency>
+      <id>commons-fileupload</id>
+      <version>1.0</version>
+    </dependency>
+    
+    <dependency>
+      <id>commons-lang</id>
+      <version>1.0.1</version>
+    </dependency>
+    
+    <dependency>
+      <id>commons-logging</id>
+      <version>1.0.3</version>
+    </dependency>
+    
+    <dependency>
+      <id>commons-validator</id>
+      <version>1.0.2</version>
+    </dependency>
+    
+    <dependency>
+      <id>oro</id>
+      <version>2.0.6</version>
+    </dependency>
+
+    <dependency>
+      <id>xml-apis</id>
+      <version>2.0.2</version>
+    </dependency>
+
+    <dependency>
+      <id>servletapi</id>
+      <version>2.2</version>
+    </dependency>
+    
+    <dependency>
+      <id>junit</id>
+      <version>3.8.1</version>
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+
+    <nagEmailAddress>
+      struts-dev@jakarta.apache.org
+    </nagEmailAddress>
+
+    <sourceDirectory>src/share</sourceDirectory>
+
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    <integrationUnitTestSourceDirectory/>
+
+    <aspectSourceDirectory/>
+
+    <!-- Unit test cases -->
+    <unitTest>
+      <includes>
+        <include>**/*Test.java</include>
+      </includes>
+      <excludes>
+        <exclude>**/RepositoryTest.java</exclude>
+      </excludes>
+    </unitTest>
+              
+    <!-- J A R  R E S O U R C E S -->
+    <!-- Resources that are packaged up inside the JAR file -->
+    <resources>
+      <resource>
+        <directory>${basedir}/src/share</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <!-- Integration unit test cases -->
+    <integrationUnitTest/>
+
+    <jars>
+    </jars>
+  </build>
+</project>
