@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.28 2003/04/15 00:18:45 dgraham Exp $
- * $Revision: 1.28 $
- * $Date: 2003/04/15 00:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.29 2003/04/19 01:13:54 dgraham Exp $
+ * $Revision: 1.29 $
+ * $Date: 2003/04/19 01:13:54 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.28 $ $Date: 2003/04/15 00:18:45 $
+ * @version $Revision: 1.29 $ $Date: 2003/04/19 01:13:54 $
  * @since Struts 1.1
  */
 
@@ -304,6 +304,7 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Looking for Action instance for class " + className);
         }
+        
         Action instance = null;
         synchronized (actions) {
 
@@ -320,21 +321,25 @@ public class RequestProcessor {
             if (log.isTraceEnabled()) {
                 log.trace("  Creating new Action instance");
             }
+            
             try {
-                instance = (Action)
-                    RequestUtils.applicationInstance(className);
-                instance.setServlet(this.servlet);
-                actions.put(className, instance);
-            } catch (Throwable t) {
-                log.error(getInternal().getMessage("actionCreate",
-                                                   mapping.getPath()), t);
-                response.sendError
-                    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                     getInternal().getMessage("actionCreate",
-                                              mapping.getPath()));
+                instance = (Action) RequestUtils.applicationInstance(className);
+                // TODO Maybe we should propagate this exception instead of returning
+                // null.
+            } catch (Exception e) {
+                log.error(
+                    getInternal().getMessage("actionCreate", mapping.getPath()),
+                    e);
+                    
+                response.sendError(
+                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    getInternal().getMessage("actionCreate", mapping.getPath()));
+                    
                 return (null);
             }
-
+            
+            instance.setServlet(this.servlet);
+            actions.put(className, instance);
         }
 
         return (instance);
@@ -544,7 +549,7 @@ public class RequestProcessor {
         // Use the configured exception handling
         try {
             ExceptionHandler handler = (ExceptionHandler)
-                RequestUtils.applicationInstance(config.getHandler());
+            RequestUtils.applicationInstance(config.getHandler());
             return (handler.execute(exception, config, mapping, form,
                                     request, response));
         } catch (Exception e) {
@@ -692,9 +697,10 @@ public class RequestProcessor {
      */
     protected HttpServletRequest processMultipart(HttpServletRequest request) {
 
-        if (!"POST".equals(request.getMethod())) {
+        if (!"POST".equalsIgnoreCase(request.getMethod())) {
             return (request);
         }
+        
         String contentType = request.getContentType();
         if ((contentType != null) &&
             contentType.startsWith("multipart/form-data")) {
