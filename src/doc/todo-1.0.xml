@@ -37,16 +37,6 @@
       </info>
     </task>
 
-    <task name="Struts Resources">
-      <info>
-        <p>Integrate Ted Husted's web page containing available resources
-        about Struts into the standard documentation application.</p>
-      </info>
-      <assigned>
-      Michael Schachter
-      </assigned>
-    </task>
-
   </task-list>
 
 
@@ -56,13 +46,6 @@
       <p>An example web application utilizing the Struts framework and
       custom tag library.</p>
     </info>
-
-    <task name="Locale Switching">
-      <info>
-        <p>Add support for switching Locales on the fly to the Struts
-        example application.</p>
-      </info>
-    </task>
 
   </task-list>
 

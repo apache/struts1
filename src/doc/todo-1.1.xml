@@ -32,6 +32,40 @@
   </section>
 
 
+  <task-list name="Struts Documentation" href="Docs">
+
+    <info>
+      <p>Omnibus task list for items related to the Struts Documentation,
+      which do not have direct relationships with code bases.</p>
+    </info>
+
+  </task-list>
+
+
+  <task-list name="Struts Example Application" href="Example">
+
+    <info>
+      <p>An example web application utilizing the Struts framework and
+      custom tag library.</p>
+    </info>
+
+    <task name="Better Database Support">
+      <info>
+        <p>Use a "real" database of some sort (while still making Struts
+        easy to install.</p>
+      </info>
+    </task>
+
+    <task name="Locale Switching">
+      <info>
+        <p>Add support for switching Locales on the fly to the Struts
+        example application.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
   <task-list name="MVC Framework [org.apache.struts.action]" href="MVC">
 
     <info>
