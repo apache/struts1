@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.21 2002/12/29 12:57:38 husted Exp $
+# $Id: build.properties.sample,v 1.22 2002/12/29 13:07:48 husted Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -122,10 +122,10 @@ ant.optional.jar = ${apache.home}/jakarta-ant-1.5.1/lib/optional.jar
 # AspectJ from Cactus distribution
 aspectjrt.jar = ${cactus.lib}/aspectjrt.jar
 
-# Httpclient from Jakrata-Commons
+# Httpclient from Jakarta-Commons
 commons-httpclient.jar = ${commons-lib.home}/httpclient/dist/commons-httpclient.jar
 
-# Log4J from Jakrata-Commons
+# Log4J from Jakarta-Commons
 log4j.jar = D:/Java/Programs/Apache/jakarta-log4j-1.2.6/dist/lib/log4j-1.2.6.jar
 
 # JUnit jar file
