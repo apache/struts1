@@ -714,6 +714,17 @@
                   </info>
                 </attribute>
 
+                <attribute>
+                  <name>property</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  Name of the property for which error messages should be
+                  displayed.  If not specified, all error messages (regardless
+                  of property) are displayed.
+                  </info>
+                </attribute>
+
         </tag>
 
 	<tag>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.2 2001/01/25 19:18:17 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/25 19:18:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.3 2001/01/27 20:09:43 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/27 20:09:43 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/25 19:18:17 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/27 20:09:43 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -124,6 +124,22 @@ public class ErrorsTag extends TagSupport {
     public void setName(String name) {
 	this.name = name;
     }
+
+
+    /**
+     * The name of the property for which error messages should be returned,
+     * or <code>null</code> to return all errors.
+     */
+    protected String property = null;
+
+    public String getProperty() {
+        return (this.property);
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
 
 
     // ------------------------------------------------------- Public Methods
@@ -190,7 +206,11 @@ public class ErrorsTag extends TagSupport {
 	    results.append(message);
 	    results.append("\r\n");
 	}
-        Iterator reports = errors.get();
+        Iterator reports = null;
+        if (property == null)
+            reports = errors.get();
+        else
+            reports = errors.get(property);
         while (reports.hasNext()) {
             ActionError report = (ActionError) reports.next();
             if (messages != null)
@@ -234,6 +254,7 @@ public class ErrorsTag extends TagSupport {
 
 	super.release();
 	name = Action.ERROR_KEY;
+        property = null;
 
     }
 
