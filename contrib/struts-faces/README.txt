@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 1.0) README File
-$Id: README.txt,v 1.14 2004/07/07 22:08:56 craigmcc Exp $
+$Id: README.txt,v 1.15 2004/08/03 07:01:07 craigmcc Exp $
 
 
 ============
@@ -346,13 +346,15 @@ applications is straightforward, and requires the following steps:
 
 * Add the following JAR files from the JavaServer Faces reference
   implementation's "lib" directory to your application's
-  "/WEB-INF/lib" directory:  jsf-api.jar, jsf-impl.jar.
+  "/WEB-INF/lib" directory:  jsf-api.jar, jsf-impl.jar,
+  or install them in your servlet container's shared folder.
   (You can also use any other JSF implementation that has
   been certified to be compatible with the JSF specification.)
 
 * Add the following JAR files, containing the JSTL release (or
   from the JavaServer Faces release) to your application's
-  "/WEB-INF/lib" directory:  jstl.jar, standard.jar.
+  "/WEB-INF/lib" directory:  jstl.jar, standard.jar, or
+  install them in your servlet container's shared folder.
 
 * Add the servlet definition for the JavaServer Faces servlet into
   your web application's deployment descriptor (/WEB-INF/web.xml):
@@ -506,7 +508,8 @@ The following items identify functionality areas that have not yet been
 fully implemented or tested:
 
 * Use of the Struts-Faces integration library in multiple application modules
-  (although in theory this should "just work").
+  (likely to not work without the addition of a Filter to set the correct
+  module configuration instance).
 
 * Use of the "forwardPattern" or "pagePattern" attributes on the
   <controller> element.
@@ -526,3 +529,36 @@ fully implemented or tested:
   combining JSF component tags and other JSP source elements (including
   custom tags from other tag libraries) on the same page.  See
   Section 9.2.8 of the JSF spec for more information.
+
+
+===============
+DEVELOPER NOTES:
+===============
+
+The CVS sources for the Struts-Faces integration library include a System
+Integration test suite that is comprised of a test web application (default
+context path is "/struts-faces-systest") and a client application based on
+the HtmlUnit package from SourceForge.  To execute the test suite:
+
+* Update your build.properties file as needed to declare appropriate values
+  for the "htmlunit.home" and "junit.home" properties.
+
+* Update your build.properties file as necessary for deploying applications
+  to a standalone Tomcat instance.  You should be able to successfully use
+  the "example.install" and "example2.install" targets.
+
+* Compile and deploy the system integration application by executing the
+  Ant target "systest.install".
+
+* Execute the test client by executing the Ant target "sysclient.execute".
+
+* When you have finished testing, you can remove the test application by
+  executing the Ant target "systest.remove".
+
+* Before committing any changes to the integration library, be sure that the
+  system integration tests can be succesfully executed.
+
+* If you add new functionality to the integration library, you should also
+  add or enhance the system integration tests to catch potential future
+  regressions as the library is updated by you, or others, in the future.
+

@@ -22,7 +22,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.8 2004/07/07 19:40:29 craigmcc Exp $
+# $Id: build.properties.sample,v 1.9 2004/08/03 07:01:07 craigmcc Exp $
 
 
 # ---------------------------- BUILD MODE -------------------------------------
@@ -132,3 +132,19 @@ password=tomcat
 
 # The context path to which the example web application will be deployed
 example.path=/struts-faces
+example2.path=/struts-faces2
+
+
+# ------------------------- System Integration Test Properties -----------------
+
+# The following properties are only required if you wish to execute the
+# system integration test client against the corresponding webapp.
+
+# The absolute or relative pathname to your installation of HtmlUnit 1.2.3
+# or later.  This code can be acquired at SourceForge.
+htmlunit.home=/usr/local/htmlunit-1.2.3
+
+# The type of JSF state saving that should be used when the system integration
+# test web application is depoyed ("client" or "server")
+systest.state.saving=server
+

@@ -31,9 +31,10 @@
 
 
   <!-- Dependency home directory defaults -->
+  <property name="htmlunit.home"    value="/usr/local/htmlunit-1.2.3"/>
   <property name="jsf.home"         value="/usr/local/jsf-1_1"/>
   <property name="jstl.home"        value="/usr/local/standard-1.0.3"/>
-  <property name="server.home"       value="/usr/local/jakarta-tomcat-4.1.29"/>
+  <property name="server.home"      value="/usr/local/jakarta-tomcat-5.0.25"/>
   <property name="struts.home"      value="/usr/local/jakarta-struts-1.1"/>
 
 
@@ -89,6 +90,13 @@
     <pathelement location="${build.home}/classes"/>
   </path>
 
+  <!-- System Integration Test Client Classpath -->
+  <path id="sysclient.classpath">
+    <pathelement location="${junit.jar}"/>
+    <fileset          dir="${htmlunit.home}/lib"
+                 includes="*.jar"/>
+    <pathelement location="${build.home}/sysclient"/>
+  </path>
 
   <!-- Custom Tomcat Integration -->
   <taskdef  name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
@@ -103,6 +111,13 @@
 
   <property name="example.path"     value="/struts-faces"/>
   <property name="example2.path"    value="/struts-faces2"/>
+  <property name="systest.path"         value="/struts-faces-systest"/>
+
+
+  <!-- System Integration Test Settings -->
+  <property name="systest.state.saving" value="server"/>
+  <property name="systest.url"          value="http://localhost:8080${systest.path}"/>
+
 
 
   <!-- ===================== LIBRARY: Maintenance ========================= -->
@@ -119,6 +134,7 @@
     <echo message="---------- ${project.name} ${project.version} ----------"/>
     <filter token="name"     value="${project.name}"/>
     <filter token="package"  value="${project.package}"/>
+    <filter token="state"    value="${systest.state.saving}"/>
     <filter token="version"  value="${project.version}"/>
   </target>
 
@@ -464,6 +480,183 @@
    description="Remove example2 webapp from Tomcat">
     <remove url="${url}" username="${username}" password="${password}"
             path="${example2.path}"/>
+  </target>
+
+
+  <!-- ===================== SYSTEST: Create Webapp ======================== -->
+
+
+  <target name="systest.prepare" depends="library">
+
+    <echo message="------------ ${project.name} Systest Webapp -------------"/>
+    <mkdir         dir="${build.home}/webapps"/>
+    <mkdir         dir="${build.home}/webapps/systest"/>
+
+  </target>
+
+
+  <target name="systest.static" depends="systest.prepare">
+
+    <!-- Copy static web resources -->
+    <copy        todir="${build.home}/webapps/systest"
+             filtering="on">
+      <fileset     dir="web/systest"/>
+    </copy>
+
+    <!-- Copy required configuration files -->
+<!--
+    <copy        todir="${build.home}/webapps/systest/WEB-INF">
+      <fileset     dir="${build.home}/conf">
+        <include  name="*.tld"/>
+      </fileset>
+    </copy>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF">
+      <fileset     dir="${struts.home}/lib">
+        <include  name="*.tld"/>
+        <include  name="valid*.xml"/>
+      </fileset>
+    </copy>
+-->
+
+    <!-- Copy required library JAR files -->
+    <mkdir         dir="${build.home}/webapps/systest/WEB-INF/lib"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${build.home}/lib/struts-faces.jar"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${commons-beanutils.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${commons-collections.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${commons-digester.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${commons-fileupload.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${commons-logging.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${commons-validator.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${jakarta-oro.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${struts.jar}"/>
+
+  </target>
+
+
+  <target name="systest.libraries" depends="systest.static"
+            if="build.standalone">
+
+    <!-- Copy libraries required for standalone use only -->
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${jsf-api.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${jsf-impl.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${jstl.jar}"/>
+    <copy        todir="${build.home}/webapps/systest/WEB-INF/lib"
+                  file="${standard.jar}"/>
+
+  </target>
+
+
+  <target name="systest.compile" depends="systest.libraries">
+
+    <!-- Compile Java Sources -->
+    <mkdir         dir="${build.home}/webapps/systest/WEB-INF/classes"/>
+<!--
+    <javac      srcdir="src/systest"
+               destdir="${build.home}/webapps/systest/WEB-INF/classes"
+                 debug="${compile.debug}"
+           deprecation="${compile.deprecation}"
+              optimize="${compile.optimize}">
+      <classpath refid="classpath" />
+    </javac>
+-->
+
+    <!-- Copy non-Java Sources -->
+<!--
+    <copy    todir="${build.home}/webapps/systest/WEB-INF/classes">
+      <fileset dir="src/systest">
+        <exclude name="**/*.java"/>
+      </fileset>
+    </copy>
+-->
+
+  </target>
+
+
+  <!-- ====================== SYSTEST:  Tomcat Integration ================= -->
+
+
+  <target name="systest.install" depends="systest.compile"
+   description="Install systest webapp on Tomcat">
+    <install url="${url}" username="${username}" password="${password}"
+            path="${systest.path}"
+             war="file://${build.home}/webapps/systest"/>
+  </target>
+
+
+  <target name="systest.reload" depends="systest.compile"
+   description="Reload systest webapp on Tomcat">
+    <reload url="${url}" username="${username}" password="${password}"
+            path="${systest.path}"/>
+  </target>
+
+
+  <target name="systest.remove"
+   description="Remove systest webapp from Tomcat">
+    <remove url="${url}" username="${username}" password="${password}"
+            path="${systest.path}"/>
+  </target>
+
+
+  <!-- ====================== SYSTEST: Client Execution =================== -->
+
+
+  <target name="sysclient.compile"
+   description="Prepare system integration test client">
+
+    <!-- Compile Java Sources -->
+    <mkdir         dir="${build.home}/sysclient"/>
+    <javac      srcdir="src/sysclient"
+               destdir="${build.home}/sysclient"
+                 debug="${compile.debug}"
+           deprecation="${compile.deprecation}"
+              optimize="${compile.optimize}">
+      <classpath refid="sysclient.classpath"/>
+    </javac>
+
+    <!-- Copy non-Java Sources -->
+    <copy        todir="${build.home}/sysclient">
+      <fileset     dir="src/sysclient">
+        <exclude  name="**/*.java"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+
+  <target name="sysclient.execute" depends="sysclient.compile"
+   description="Execute system integration test client">
+
+    <junit         fork="yes"
+           printSummary="yes"
+            haltonerror="yes"
+          haltonfailure="yes">
+
+      <classpath  refid="sysclient.classpath"/>
+      <formatter   type="plain"
+                usefile="false"/>
+      <sysproperty  key="systest"
+                  value="${systest.url}"/>
+
+      <batchtest>
+        <fileset    dir="${build.home}/sysclient"
+               excludes="**/AbstractTestCase.class"
+               includes="**/*TestCase.class"/>
+      </batchtest>
+
+    </junit>
+
   </target>
 
 
