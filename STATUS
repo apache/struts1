@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.30 2002/07/19 03:30:19 craigmcc Exp $
+$Id: STATUS,v 1.31 2002/07/19 04:02:05 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           20 open bugs to swat!!
+                           18 open bugs to swat!!
 
 
 Controller:
@@ -65,7 +65,6 @@ Validator Framework:
 10584 Not all validation files are read in Validation PlugIn
 10782 If two fields are required, and one has a mask, the mask is not checked if the other field is blank
 10868 Validator  does not support non-default resource bundles
-10919 PATCH: ValidatorUtils can't handle StringArrays
 
 
 Web Site:

@@ -101,18 +101,23 @@ public class StrutsValidator implements Serializable {
                                ActionErrors errors,
                                            HttpServletRequest request) {
 
-       String value = null;
-       if (field.getProperty() != null && field.getProperty().length() > 0)
-          value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+        String value = null;
+        if (isString(bean)) {
+            value = (String) bean;
+        } else {
+            value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+        }
+        if (GenericValidator.isBlankOrNull(value)) {
+            errors.add(field.getKey(),
+                       StrutsValidatorUtil.getActionError(request, va, field));
+            
+            return false;
+        } else {
+            return true;
+        }
 
-       if (GenericValidator.isBlankOrNull(value)) {
-          errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-
-          return false;
-       } else {
-          return true;
-       }
     }
+
 
     /**
      * <p>Checks if the field matches the regular expression in the field's mask attribute.</p>
@@ -130,25 +135,30 @@ public class StrutsValidator implements Serializable {
                            ActionErrors errors,
                                        HttpServletRequest request) {
 
-         String mask = field.getVarValue("mask");
-
-     if (field.getProperty() != null && field.getProperty().length() > 0) {
-        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
-
-            try {
-           if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.matchRegexp(value, mask)) {
-              errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
-
-                  return false;
-               } else {
-                  return true;
-               }
-        } catch (Exception e) {
-           LOG.error(e.getMessage(), e);
+        String mask = field.getVarValue("mask");
+        String value = null;
+        if (isString(bean)) {
+            value = (String) bean;
+        } else {
+            value = ValidatorUtil.getValueAsString(bean,
+                                                   field.getProperty());
         }
-         }
+        try {
+            if (!GenericValidator.isBlankOrNull(value) &&
+                !GenericValidator.matchRegexp(value, mask)) {
+                errors.add(field.getKey(),
+                           StrutsValidatorUtil.getActionError(request, va,
+                                                              field));
+                
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+        }
+        return true;
 
-         return true;
     }
 
 
@@ -169,7 +179,12 @@ public class StrutsValidator implements Serializable {
                                     HttpServletRequest request) {
 
        Byte result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatByte(value);
@@ -198,7 +213,12 @@ public class StrutsValidator implements Serializable {
                           ActionErrors errors,
                                       HttpServletRequest request) {
        Short result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatShort(value);
@@ -227,7 +247,12 @@ public class StrutsValidator implements Serializable {
                               ActionErrors errors,
                                           HttpServletRequest request) {
        Integer result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatInt(value);
@@ -256,7 +281,12 @@ public class StrutsValidator implements Serializable {
                         ActionErrors errors,
                                     HttpServletRequest request) {
        Long result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatLong(value);
@@ -285,7 +315,12 @@ public class StrutsValidator implements Serializable {
                           ActionErrors errors,
                                       HttpServletRequest request) {
        Float result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatFloat(value);
@@ -314,7 +349,12 @@ public class StrutsValidator implements Serializable {
                             ActionErrors errors,
                                         HttpServletRequest request) {
        Double result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatDouble(value);
@@ -350,8 +390,13 @@ public class StrutsValidator implements Serializable {
                         ActionErrors errors,
                                     HttpServletRequest request) {
 
-    Date result = null;
-        String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+        Date result = null;
+        String value = null;
+        if (isString(bean)) {
+            value = (String) bean;
+        } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+        }
         String datePattern = field.getVarValue("datePattern");
         String datePatternStrict = field.getVarValue("datePatternStrict");
         Locale locale = StrutsValidatorUtil.getLocale(request);
@@ -397,7 +442,12 @@ public class StrutsValidator implements Serializable {
                             ActionErrors errors,
                                         HttpServletRequest request) {
 
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
        String sMin = field.getVarValue("min");
        String sMax = field.getVarValue("max");
 
@@ -440,7 +490,12 @@ public class StrutsValidator implements Serializable {
                                              HttpServletRequest request) {
 
        Long result = null;
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value)) {
           result = GenericTypeValidator.formatCreditCard(value);
@@ -471,7 +526,12 @@ public class StrutsValidator implements Serializable {
                             ActionErrors errors,
                                         HttpServletRequest request) {
 
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
 
        if (!GenericValidator.isBlankOrNull(value) && !GenericValidator.isEmail(value)) {
           errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
@@ -498,7 +558,12 @@ public class StrutsValidator implements Serializable {
                                 ActionErrors errors,
                                             HttpServletRequest request) {
 
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
        String sMaxLength = field.getVarValue("maxlength");
 
        if (value != null) {
@@ -537,7 +602,12 @@ public class StrutsValidator implements Serializable {
                                 ActionErrors errors,
                                             HttpServletRequest request) {
 
-       String value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
        String sMinLength = field.getVarValue("minlength");
 
        if (value != null) {
@@ -557,5 +627,22 @@ public class StrutsValidator implements Serializable {
 
        return true;
     }
+
+
+    /**
+     * <p>Return <code>true</code> if the specified object is a String or
+     * a <code>null</code> value.</p>
+     *
+     * @param o Object to be tested
+     */
+    private static boolean isString(Object o) {
+
+        if (o == null) {
+            return (true);
+        }
+        return (String.class.isInstance(o));
+
+    }
+
 
 }
