@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.21 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.22 2003/11/15 23:08:54 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/11/15 23:08:54 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -69,7 +69,7 @@ import org.apache.struts.taglib.TagUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2003/07/31 00:34:15 $
+ * @version $Revision: 1.22 $ $Date: 2003/11/15 23:08:54 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -189,23 +189,40 @@ public abstract class BaseFieldTag extends BaseInputTag {
 
         results.append(" value=\"");
         if (value != null) {
-            results.append(TagUtils.getInstance().filter(value));
+            results.append(this.formatValue(value));
 
         } else if (redisplay || !"password".equals(type)) {
-            Object value = TagUtils.getInstance().lookup(pageContext, name, property, null);
-            if (value == null) {
-                value = "";
-            }
-            
-            results.append(TagUtils.getInstance().filter(value.toString()));
+            Object value =
+                TagUtils.getInstance().lookup(pageContext, name, property, null);
+
+            results.append(this.formatValue(value));
         }
 
-        results.append("\"");
+        results.append('"');
         results.append(this.prepareEventHandlers());
         results.append(this.prepareStyles());
         results.append(this.getElementClose());
 
         return results.toString();
+    }
+    
+    /**
+     * Return the given value as a formatted <code>String</code>.  This 
+     * implementation escapes potentially harmful HTML characters.
+     *
+     * @param value The value to be formatted. <code>null</code> values will
+     * be returned as the empty String "".
+     * 
+     * @throws JspException if a JSP exception has occurred
+     * 
+     * @since Struts 1.2
+     */
+    protected String formatValue(Object value) throws JspException {
+        if (value == null) {
+            return "";
+        }
+
+        return TagUtils.getInstance().filter(value.toString());
     }
 
     /**
