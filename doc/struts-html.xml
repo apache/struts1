@@ -1464,6 +1464,15 @@
         </attribute>
 
         <attribute>
+                <name>align</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The alignment option for this image.</p>
+                </info>
+        </attribute>
+
+        <attribute>
                 <name>alt</name>
                 <required>false</required>
                 <rtexprvalue>true</rtexprvalue>
