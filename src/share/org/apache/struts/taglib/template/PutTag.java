@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.4 2000/12/12 17:11:33 dgeary Exp $
- * $Revision: 1.4 $
- * $Date: 2000/12/12 17:11:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.5 2001/01/12 19:29:42 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/01/12 19:29:42 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.taglib.template.util.Content;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.4 $ $Date: 2000/12/12 17:11:33 $
+ * @version $Revision: 1.5 $ $Date: 2001/01/12 19:29:42 $
  */
 public class PutTag extends BodyTagSupport {
 
@@ -195,6 +195,8 @@ public class PutTag extends BodyTagSupport {
      * Returns a boolean indicating whether this tag has a body.
      */
    private boolean hasBody() {
+      if (bodyContent == null)
+         return (false);
       return ! bodyContent.getString().equals("");
    }
 
