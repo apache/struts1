@@ -87,9 +87,9 @@ needs:
     <a href="http://husted.com/struts/tips/002.html">(more...)</a></li>
 <li>Use the <code>execute</code> method (or its surrogates) of your
     Action class to interface with objects in your application responsible
-    for database interaction, such as EJBs, etc. [:TODO: find good doc to link to]</li>
+    for database interaction, such as EJBs, etc. <!-- [:TODO: find good doc to link to] --></li>
 <li>Use the return value of the <code>execute</code> method (or its surrogates)
-    direct the user interface to the appropriate next page. [:TODO: find good doc to link to]</li>
+    direct the user interface to the appropriate next page. <!-- [:TODO: find good doc to link to] --></li>
 </ol>
 <li>Create <code>struts-config.xml</code> to associate forms with
     actions.  The file minimally needs:</li>
@@ -131,7 +131,7 @@ needs:
 <li>Deployment</li>
 <ol>
 <li>Build script should create a war file containing the files developed
-    above, along with files that make up the Struts framework. [:TODO: describe this
+    above, along with files that make up the Struts framework. <!-- [:TODO: describe this -->
     further, look for doc to link to]</li>
 </ol>
 </ol>

@@ -31,9 +31,10 @@
       <li><a href="#xml">Extensible Markup Language</a></li>
     </ul>
 
-    <p>This chapter briefly defines each of these technologies, but does not describe them in
-    detail. For your convenience, links to further information about each component are also
-    provided.</p>
+    <p>
+    This chapter briefly defines each of these technologies but does not describe them in detail. 
+    For your convenience, links to further information are provided if you would like to learn more about a technology.
+    </p>
 
     <p><a target="#jwst"></a>If you are familiar with Java, but not these technologies,
     the best overall starting point is
@@ -90,7 +91,7 @@
     Frameworks like Struts abstract much of these nuts and bolts, but it is important to understand
     what is happening behind the scenes. </p>
 
-    <p>If you are not familiar with the HTTP Request/Response cycle, we <b>strongly</b> recommend the
+    <p>If you are not familiar with the HTTP request/response cycle, we <b>strongly</b> recommend the
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
     HTTP Overview</a> in the JWST.
     </p>
@@ -208,9 +209,13 @@
     DynaBeans combine the extensibility of JavaBeans with the flexbility of a Map. 
     Defining even the simplest JavaBean requires defining a new class and coding a field and two methods for each property. 
     The properties of a DynaBean can be configured via an XML descriptor. 
-    The virtual properties of a DynaBean can't be called by standard Java methods, but can be used to roundtrip properties to HTML forms. 
-    In many cases, Struts DynaForms can be configured entirely through XML. 
-    This means you can avoid creating a formal subclass just to store a few simple properties.
+    The virtual properties of a DynaBean can't be called by standard Java methods, 
+    but work well with components that rely on relfection and introspection. 
+    </p>
+    
+    <p>
+    In a Struts application, you can use DynaBeans to describe your HTML forms. 
+    This stategy can avoid creating a formal JavaBean subclass to store a few simple properties. 
     </p>
 
     <p>
@@ -255,45 +260,40 @@
     </section>
 
     <section name="0.7 Java Servlets" href="servlets">
-    <p>Much of the <a href="#cycle">HTTP Request/Response cycle</a> nuts-and-bolts are handled by Sun's
-    <a href="http://java.sun.com/products/servlet/">Java Servlet</a> platform. This casts HTTP
-    into an object-orientated form so that developers can better concentrate on what
-    they need their application to do -- rather than the mechanics of HTTP.</p>
+    <p>
+    Since Java is an object-orientated language, the 
+    <a href="http://java.sun.com/products/servlet/">Java Servlet</a> 
+    platform strives to cast HTTP into an object-orientated form. 
+    This strategy makes it easier for Java developers to concentrate on what they need their application to do -- 
+    rather than the mechanics of HTTP.
+    </p>
+    
+    <p>
+    HTTP provides a standard mechanism for extending servers called the Common Gateway Interface, or CGI. 
+    The server can pass a request to a CGI-aware program, and the program will pass back a response.
+    Likewise, a Java-aware server can pass a request to a servlet container. 
+    The container can fulfill the request or it can pass the request back to the HTTP server.
+    The container decides whether it can handle the request by checking its list of servlets. 
+    If there is a servlet registered for the request, the container passes the request to the servlet.
+    </p>
+    
+    <p>
+    When a request comes in, the container checks to see if there is a servlet registered for that request. 
+    If there is a match, 
+    the request is given to the servlet. 
+    If not, the request is returned to the HTTP server.
+    </p>
+    
+    <p>
+    It's the container's job to manages the servlet lifecycle.
+    The container creates the servlets, invokes the servlets, and ultimately disposes the servlets. 
+    </p>    
 
-    <p>Struts provides a ready-to-use servlet for your application. As a Struts developer, you
-    can then just write objects that the Struts servlet calls when needed. But it is still
-    helpful to understand the basics of what servlets are and the role they play in a Java
-    web application.</p>
+    <p>
+    A servlet is generally a subclass of <code>javax.servlet.http.HttpServlet</code>. 
+    A servlet must implement four methods, which are invoked by the container as needed:
+    </p>
 
-    <p>For more about Java Servlets, see </p>
-
-    <ul>
-    <li><a href="http://java.sun.com/products/servlet/"><strong>The
-        Java Servlet Technology</strong></a> page at
-        <code>java.sun.com</code></li>
-    <li><a href="http://java.sun.com/products/servlet/download/"><strong>The
-        Servlet 2.2 and 2.3 Specifications</strong></a> download page at
-        <code>java.sun.com</code></li>
-    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets.html">
-        <b>Java Servlet Technology</b></a> in the Java Web Services Tutorial.</li>
-    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html">
-        <b>Web Applications</b></a> in the Java Web Services Tutorial.</li>
-    </ul>
-
-      <section name="0.7.1 Servlets" href="servlets">
-
-      <p>A <em>servlet</em> is a web component, managed by a <em>servlet
-      container</em> (or web container), that generates dynamic content.
-      An instance of each defined servlet is created for you the first time
-      it is requested (or at application startup, depending on a setting in
-      the web application deployment descriptor), and is used to process
-      zero or more requests that are <em>mapped</em> to that servlet by
-      a <code>&lt;servlet-mapping&gt;</code> element in the web application
-      deployment descriptor.</p>
-
-      <p>A servlet is generally a subclass of
-      <code>javax.servlet.http.HttpServlet</code> and must implement the
-      following methods:</p>
       <ul>
       <li><strong>public void init(ServletConfig config)</strong> - Called by the
           servlet container when the servlet instance is first created, and
@@ -311,24 +311,58 @@
           such as when a web application is being undeployed or when the
           entire container is being shut down.</li>
       </ul>
+    
+    <p>
+    Struts provides a ready-to-use servlet for your application [<code>org.apache.struts.action.ActionServlet</code>]. 
+    As a Struts developer, you can then just write objects that the Struts ActionServlet calls when needed. 
+    But it is still helpful to understand the basics of what servlets are, 
+    and the role they play in a Java web application.
+    </p>
+    
+    <p>
+    For more about Java Servlets, see: 
+    </p>
 
-      <p>Because there is only a single instance of a particular servlet
-      running, it is quite common for several calls to the <code>doGet()</code>
-      or <code>doPost()</code> methods to be occurring at the same time (on
-      separate threads).  Therefore, these methods (and any methods they call)
-      must be programmed in a <em>thread-safe</em> manner.</p>
+    <ul>
+    <li><a href="http://java.sun.com/products/servlet/"><strong>The
+        Java Servlet Technology</strong></a> page at
+        <code>java.sun.com</code></li>
+    <li><a href="http://java.sun.com/products/servlet/download/"><strong>The
+        Servlet 2.2 and 2.3 Specifications</strong></a> download page at
+        <code>java.sun.com</code></li>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets.html">
+        <b>Java Servlet Technology</b></a> in the Java Web Services Tutorial.</li>
+    <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html">
+        <b>Web Applications</b></a> in the Java Web Services Tutorial.</li>
+    </ul>
 
-      <p>Struts includes a single servlet
-      (<code>org.apache.struts.action.ActionServlet</code>) that acts as a
-      Controller in the Model-View-Controller architecture.  In addition, if
-      you are using them, each JSP page you create is automatically converted
-      into a servlet.</p>
+	</section>
+		
+	<section name="0.7.1 Servlets and threads" href="threads">
 
-      </section>
+ 	<p>
+ 	To boost performance, the container can multi-thread servlets. 
+ 	Only one instance of a particular servlet is created, 
+ 	and each request for that servlet passes through the same object. 
+ 	This strategy helps the container make the best use of available resources. 
+	The tradeoff is that the servlet's <code>doGet()</code> and <code>doPost()</code> methods must be programmed in a <em>thread-safe</em> manner.
+ 	</p>
+ 	
+ 	<p>
+	For more about servlets and thread-safety, see:
+ 	</p>
+ 	
+ 	<ul>
+    <li>
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets5.html#64386">Controlling Concurrent Access to Shared Resources</a> in JWST.
+    </li>
+ 	</ul>
+
+    </section>
 
       <section name="0.7.2 Servlet Context" href="context">
 
-      <p>The <em>ServletContext</em> interface defines a servlet's view of
+      <p>The <em>ServletContext</em> interface [<code>javax.servlet.ServletContext</code>] defines a servlet's view of
       the web application within which the servlet is running.  It is
       accessible in a servlet via the <code>getServletConfig()</code> method,
       and in a JSP page as the <code>application</code> implicit variable.
@@ -349,23 +383,31 @@
           </li>
       </ul>
 
-      <p>See the Javadocs for <code>javax.servlet.ServletContext</code>
-      for more information.</p>
+ 	<p>
+	For more about the servlet context, see:
+ 	</p>
+ 	
+ 	<ul>
+    <li>
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets10.html#64724">Accessing the Web Context</a> in JWST.
+    </li>
+ 	</ul>
 
       </section>
 
       <section name="0.7.3 Servlet Request" href="request">
 
       <p>Each request processed by a servlet is represented by a Java
-      interface, normally a <code>javax.servlet.http.HttpServletRequest</code>.
-      The request interface provides an object oriented mechanism to access
+      interface, normally a <code>HttpServletRequest</code>
+      [<code>javax.servlet.http.HttpServletRequest</code>].
+      The request interface provides an object-oriented mechanism to access
       all of the information that was included in the underlying HTTP request,
       including:</p>
       <ul>
       <li><em>Cookies</em> - The set of cookies included with this request
           are available via the <code>getCookies()</code> method.</li>
       <li><em>Headers</em> - HTTP headers that were included with
-          the request are accessible by name.  You can enumerate the names
+          the request are accessible by name. You can enumerate the names
           of all included headers.</li>
       <li><em>Parameters</em> - Request parameters, including those from
           the query string portion of the URL and from the embedded content
@@ -388,29 +430,36 @@
 
       <p>In addition, servlet requests support <em>request attributes</em>
       (from JSP, these are "request scope beans"), analogous to the servlet
-      context attributes described above.  Request attributes are often used
+      context attributes described above. Request attributes are often used
       to communicate state information from a business logic class that
       generates it to a view component (such as a JSP page) that will use
       the information to produce the corresponding response.</p>
 
       <p>The servlet container guarantees that a particular request will
-      be processed by a servlet on a single thread.  Therefore, you do not
+      be processed by a servlet on a single thread. Therefore, you do not
       generally have to worry about the thread safety of your access to
       request properties and attributes.</p>
 
-      <p>See the Javadocs for <code>javax.servlet.ServletRequest</code> and
-      <code>javax.servlet.http.HttpServletRequest</code> for more
-      information.</p>
+ 	<p>
+	For more about the servlet request, see:
+ 	</p>
+ 	
+ 	<ul>
+    <li>
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64433">Getting Information from Requests</a> in JWST.
+    </li>
+ 	</ul>
 
       </section>
 
       <section name="0.7.4 Servlet Response" href="response">
 
-      <p>The primary purpose of a Servlet is to process an incoming
-      <a href="#request">Servlet Request</a> and convert it into a
-      corresponding response.  This is performed by calling appropriate
-      methods on the <code>javax.servlet.http.HttpServletResponse</code>
-      interface.  Available methods let you:</p>
+      <p>The primary purpose of a servlet is to process an incoming
+      <a href="#request">Servlet Request</a> [<code>javax.servlet.http.HttpServletRequest</code>]
+      and convert it into a
+      corresponding response. This is performed by calling appropriate
+      methods on the servlet response [<code>javax.servlet.http.HttpServletResponse</code>]
+      interface. Available methods let you:</p>
       <ul>
       <li><em>Set Headers</em> - You can set HTTP headers that will be
           included in the response.  The most important header is the
@@ -431,35 +480,50 @@
       <p>An important principle in using the servlet response APIs is that
       any methods you call to manipulate headers or cookies
       <strong>MUST</strong> be performed before the first buffer-full of
-      content has been flushed to the client.  The reason for this restriction
+      content has been flushed to the client. The reason for this restriction
       is that such information is transmitted at the beginning of the HTTP
       response, so trying things like adding a header after the headers have
       already been sent will not be effective.</p>
 
-      <p>When you are using JSP pages (which is the typical mechanism for
-      producing a response when using Struts), you will not generally
-      use the servlet response APIs directly.  Instead, the JSP page compiler
-      in your servlet container will convert your page into a servlet that
-      writes the content of the JSP page to the response, interspersing dynamic
-      information where you have called out JSP custom tags (such as
-      <code>&lt;bean:message&gt;</code> or <code>&lt;html:text&gt;</code>)
-      in your page.</p>
-
-      <p>See the Javadocs for <code>javax.servlet.ServletRequest</code> and
-      <code>javax.servlet.http.HttpServletRequest</code> for more
-      information.</p>
-
+      <p>
+      When you are using presentation pages in a Model 2 application, 
+      you will not generally use the servlet response APIs directly. 
+      In the case of JavaServerPages, the JSP page compiler
+      in your servlet container will convert your page into a servlet.
+      The JSP servlet renders the response, interspersing dynamic
+      information where you have interposed JSP custom tags.
+      </p>
+      
+      <p>
+      Other presentation systems, like Velocity Tools for Struts, 
+      may delegate rendering the response to a specialized serlvet, 
+      but the same pattern holds true. 
+      You create a template, 
+      and the dynamic response is generated automatically from the template.
+      </p>
+      
+	<p>
+	For more about the servlet response, see:
+ 	</p>
+ 	
+ 	<ul>
+ 	<li>
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64531">Constructing Responses</a> in JWST.
+    </li>
+    </ul>
+              
       </section>
 
       <section name="0.7.5 Filtering" href="filter">
 
       <p>If you are using a servlet container based on version
       <strong>2.3</strong> or later of the Servlet Specification (such as
-      Tomcat 4.x), you can take advantage of the new Filter APIs that
+      Tomcat 4.x), you can take advantage of the new Filter APIs 
+      [<code>javax.servlet.Filter</code>] that
       let you compose a set of components that will process a request or
-      response.  Filters are aggregated into a chain in which each filter
+      response. Filters are aggregated into a chain in which each filter
       has a chance to process the request and response before and after
-      it is processed by subsequent fitlers (and the servlet that is ultimately
+      it is processed by subsequent filters (and the servlet that is ultimately
       called).</p>
 
       <p>Struts 1.0 and 1.1 require only version 2.2 or later of the
@@ -469,18 +533,25 @@
       container.  It is very likely that future versions of Struts will
       require a Servlet 2.3 or later container, so that Struts itself
       can utilize filters.</p>
+      
+      <p>
+      For more about filters, see:
+      </p>
 
-      <p>See the Javadocs for <code>javax.servlet.Filter</code> for more
-      information.</p>
+	<ul>
+    <li>
+    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets8.html#64572">Filtering Requests and Responses</a>
+	</li>
+	</ul>
 
       </section>
 
       <section name="0.7.6 Sessions" href="session">
 
-      <p>One of the key characteristics of the HTTP protocol is that it is
-      <em>stateless</em>.  In other words, there is nothing built in to
+      <p>One of the key characteristics of HTTP is that it is
+      <em>stateless</em>. In other words, there is nothing built in to
       HTTP that identifies a subsequent request from the same user as being
-      related to a previous request from that user.  This makes building an
+      related to a previous request from that user. This makes building an
       application that wants to engage in a conversation with the user over
       several requests to be somewhat difficult.</p>
 
@@ -491,13 +562,13 @@
       URL rewriting) to ensure that the next request from the same user will
       include the <em>session id</em> for this session, so that state
       information saved in the session can be associated with multiple
-      requests.  This state information is stored in <em>session
+      requests. This state information is stored in <em>session
       attributes</em> (in JSP, they are known as "session scope beans").</p>
 
       <p>To avoid occupying resources forever when a user fails to complete
       an interaction, sessions have a configurable <em>timeout interval</em>.
       If the time gap between two requests exceeds this interval, the session
-      will be timed out, and all session attributes removed.  You define a
+      will be timed out, and all session attributes removed. You define a
       default session timeout in your web application deployment descriptor,
       and you can dynamically change it for a particular session by calling
       the <code>setMaxInactiveInterval()</code> method.</p>
@@ -505,53 +576,101 @@
       <p>Unlike requests, you need to be concerned about thread safety on
       your session attributes (the methods these beans provide, not the
       <code>getAttribute()</code> and <code>setAttribute()</code> methods
-      of the session itself).  It is surprisingly easy for there to be
+      of the session itself). It is surprisingly easy for there to be
       multiple simultaneous requests from the same user, which will therefore
       access the same session.</p>
 
       <p>Another important consideration is that session attributes occupy
-      memory in your server <em>in between</em> requests.  This can have
+      memory in your server <em>in between</em> requests. This can have
       an impact on the number of simultaneous users that your application can
-      support.  If your application requirements include very large numbers of
+      support. If your application requirements include very large numbers of
       simultaneous users, you will likely want to minimize your use of
       session attributes, in an effort to control the overall amount of memory
       required to support your application.</p>
-
-      <p>See the Javadocs for <code>javax.servlet.http.HttpSession</code>
-      for more information.</p>
+      
+      <p>
+      For more about sessions, see:
+      </p>      
+      <ul>
+      	<li>
+		<a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets11.html#64744">Maintaining Client State</a> in JWST
+		</li>
+        <li>
+        <a href="http://java.sun.com/products/servlet/2.1/api/javax.servlet.http.HttpSession.html"><code>javax.servlet.http.HttpSession</code></a>
+        </li>
+      </ul>
 
       </section>
 
       <section name="0.7.7 Dispatching Requests" href="dispatch">
 
-      <p>[:TODO:]</p>
+      <p>
+      The Java Servlet specification extends the HTTP request/response cycle by allowing the request to be dispatched, 
+      or forwarded, between resources. 
+      Struts uses this feature to pass a request through specialized components, 
+      each handling one aspect of the response. 
+      In the normal course, a request may pass through a controller object, a model object, 
+      and finaly to a view object as part of a single request/response cycle.
+      </p>
 
       </section>
 
       <section name="0.7.8 Web Applications" href="webapp">
 
-      <p>[:TODO:]</p>
+      <p>
+      Just as a HTTP server can be used to host several distinct web sites, 
+      a servlet container can be used to host more than one web application. 
+      The Java servlet platform provides a well-defined mechanism for organizing and deploying web applications.
+      Each application runs in its own namespace so that they can be developed and deployed separately. 
+      A web application can be assembled into a Web Application Archive, or WAR file. 
+      The single WAR can be uploaded to the server and automatically deployed. 
+      </p>
+      
+    <p>
+    For more about web applications, see:
+    </p>      
+    <ul>
+    <li>
+		<a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">Web Applications</a> in JWST
+	</li>
+    </ul>
 
       </section>
 
-      <section name="0.7.9 Application Lifecycle Events" href="events">
+      <section name="0.7.9 Web application deployment descriptor (web.xml)" href="events">
 
-      <p>[:TODO:]</p>
-
+      <p>
+      Most aspects of an application's lifecycle are configured through an XML document called the Web application deployment descriptor. 
+      The schema of the descriptor, or web.xml, is given by the Java servlet specification. 
+      </p>
+      
+      <p>
+      For more about the web.xml and application lifecycle events, see:
+      </p>  
+      <ul>
+      <li>
+      <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp2.html#64550">Web Application Life Cycle</a> in JWST
+      </li>
+      </ul>
+      
       </section>
 
-      <section name="0.7.10 Security" href="security">
+	<section name="0.7.10 Security" href="security">
 
-      <p>[:TODO:]</p>
+    <p>
+    One detail that can be configured in the Web application deployment descriptor is container-managed security. 
+    Declarative security can be used to protect requests for URIs that match given patterns. 
+    Progmatic security can be used to fine-tune security make authorization decisions based on the time of day, 
+    the parameters of a call, or the internal state of a Web component.
+    It can also be used to restrict authentification based on information in a database.  
+	</p>
 
-      <p>For more information about container managed security, see:</p>
+      <p>For more information about container-managed security, see:</p>
       <ul>
       <li><a href="http://java.sun.com/webservices/docs/1.0/tutorial/WebAppSecurity.html">
-          <strong>Web Application Security</strong></a> in the
-          Java Web Services Tutorial</li>
+          Web Application Security</a> in the Java Web Services Tutorial
+      </li>
       </ul>
-
-      </section>
 
     </section>
 
@@ -594,11 +713,11 @@
     </p>
 
     <p>
-     One of the contributed libraries that comes with the Struts distribution,
-     called <strong>Struts-EL</strong>, is specifically designed to work well
-     with the JavaServer Pages Standard Tag Library.  In particular, it uses
+     One of the contributed libraries available for Struts is <strong>Struts-EL</strong>.
+     This taglib is specifically designed to work well
+     with the JavaServer Pages Standard Tag Library. In particular, it uses
      the same "expression language" engine for evaluating tag attribute values
-     as the JSTL.  This is in contrast to the main Struts tag library, which
+     as the JSTL.  This is in contrast to the original Struts tag library, which
      can only use "rtexprvalue"s (runtime scriptlet expressions) for dynamic
      attribute values.
     </p>
@@ -613,7 +732,7 @@
     <section name="0.9 Extensible Markup Language (XML)" href="xml">
 
     <p>The features provided by the Struts framework relies on a number of objects that are
-    usually deployed using files written in
+    usually deployed using a configuration file written in
     <a href="http://www.w3.org/XML/">Extensible Markup Language</a>. XML is also used to
     configure Java web applications; so, this is yet another familiar approach.
     </p>
@@ -628,12 +747,22 @@
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXPIntro.html">Java API for XML Processing</a> in the Java Web Services Tutorial.
     While the framework makes good use of this API internally, it is not something most Struts developers
     would use when writing their own applications.</p>
+    
+    </section>    
 
         <section name="0.9.1 Descriptors" href="descriptors">
 
-        <p>[:TODO:]</p>
-
-        </section>
+        <p>
+        When Java applications use XML configuration files, 
+        the elements are most often used as <em>descriptors</em>.
+        The application does not use the XML elements directly. 
+        The elements are used to create and configure (or deploy) Java objects.
+        </p>
+        
+        <p>
+        The Java Servlet platform uses an XML configuration file to deploy servlets (among other things). 
+        Likewise, Struts uses an XML configuration file to deploy objects used by the framework.
+        </p>
 
     </section>
 
@@ -688,5 +817,4 @@
     </section>
 
     </chapter>
-    </body>
-</document>
+ </body></document>

@@ -109,9 +109,17 @@
       <p>For example, add the following to struts-config.xml for a UserForm bean that stores a user's given and family names:</p>
 <pre>
 <![CDATA[
-<form-bean name="UserForm" type="org.apache.struts.action.DynaActionForm">
-  <form-property name="givenName" type="java.lang.String" initial="John"/>
-  <form-property name="familyName" type="java.lang.String" initial="Smith"/>
+<form-bean 
+  name="UserForm" 
+  type="org.apache.struts.action.DynaActionForm">
+  <form-property 
+    name="givenName" 
+    type="java.lang.String" 
+    initial="John"/>
+  <form-property 
+    name="familyName" 
+    type="java.lang.String" 
+    initial="Smith"/>
 </form-bean>
 ]]>
 </pre>
@@ -441,11 +449,14 @@ public ActionForward execute(ActionMapping mapping,
       Your execute method should process the Exception and return an ActionForward
       object to tell Struts where to forward to next.  Then you configure your 
       handler in struts-config.xml like this:<br/>
-        <pre>
-        &lt;global-exceptions&gt;
-            &lt;exception key="some.key" type="java.io.IOException" handler="com.yourcorp.ExceptionHandler"/&gt;
-        &lt;/global-exceptions&gt;
-        </pre>
+        <pre><![CDATA[
+        <global-exceptions>
+            <exception 
+              key="some.key" 
+              type="java.io.IOException" 
+              handler="com.yourcorp.ExceptionHandler">
+        </global-exceptions>
+        ]]></pre>
       <br/>
       That configuration says that com.yourcorp.ExceptionHandler.execute() will be called 
       when any IOException is thrown by an Action.  The key is a key from your message resources
@@ -630,30 +641,32 @@ public ActionForward execute(ActionMapping mapping,
         are left out:
       </p>
 
-<pre>
-&lt;struts-config>
-  &lt;form-beans>
-    &lt;form-bean
+<pre><![CDATA[
+<struts-config>
+  <form-beans>
+    <form-bean
       name="logonForm"
       type="org.apache.struts.example.LogonForm" />
-  &lt;/form-beans>
-  &lt;global-forwards
+ </form-beans>
+ <global-forwards
       type="org.apache.struts.action.ActionForward" />
-    &lt;forward name="logon" path="/logon.jsp"
-         redirect="false" />
-  &lt;/global-forwards>
-  &lt;action-mappings&gt;
-    &lt;action
-        path="/logon"
-        type="org.apache.struts.example.LogonAction"
-        name="logonForm"
-       scope="request"
-       input="/logon.jsp"
-     unknown="false"
-    validate="true" />
-  &lt;/action-mappings&gt;
-&lt;/struts-config>
-</pre>
+    <forward 
+      name="logon" 
+      path="/logon.jsp"
+      redirect="false" />
+  </global-forwards>
+  <action-mappings>
+    <action
+      path="/logon"
+      type="org.apache.struts.example.LogonAction"
+      name="logonForm"
+      scope="request"
+      input="/logon.jsp"
+      unknown="false"
+      validate="true" />
+  </action-mappings>
+</struts-config>
+]]></pre>
 
       <p>
         First the form bean is defined.  A basic bean of class "<code>org.apache.struts.example.LogonForm</code>"
@@ -679,17 +692,18 @@ public ActionForward execute(ActionMapping mapping,
         application, many actions include a local "success" and/or "failure" forward as
         part of an Action mapping.
       </p>
-<pre>
-&lt;!-- Edit mail subscription -->
-&lt;action    path="/editSubscription"
+<pre><![CDATA[
+<!-- Edit mail subscription -->
+<action    
+  path="/editSubscription"
   type="org.apache.struts.example.EditSubscriptionAction"
   name="subscriptionForm"
   scope="request"
   validate="false">
-  &lt;forward name="failure" path="/mainMenu.jsp"/>
-  &lt;forward name="success" path="/subscription.jsp"/>
-  &lt;/action>
-</pre>
+  <forward name="failure" path="/mainMenu.jsp"/>
+  <forward name="success" path="/subscription.jsp"/>
+  </action>
+]]></pre>
 
       <p>Using just these two extra properties, the <code>Action</code> classes in the example
         application are almost totally independent of the actual names of the JSP pages
@@ -704,24 +718,25 @@ public ActionForward execute(ActionMapping mapping,
 
       <section name="4.6.2 Controller Configuration" href="controller_config">
       <p>
-        The &lt;controller&gt; element allows you to configure the ActionServlet.  Many of the controller
+        The &lt;controller&gt; element allows you to configure the ActionServlet. Many of the controller
         parameters were previously defined by servlet init. parameters in your web.xml file but have been
-        moved to this section of struts-config.xml.  For full details on available parameters see the
+        moved to this section of struts-config.xml. For full details on available parameters see the
         struts-config_1_1.dtd.
       </p>
       <p>
         This example uses the default values for several controller parameters.  If you only want default
-        behavior you can omit the controller section altogether.<br/>
-        <pre>
-        &lt;controller 
+        behavior you can omit the controller section altogether.
+      </p>
+        <pre><![CDATA[
+        <controller 
             processorClass="org.apache.struts.action.RequestProcessor"
             debug="0"
-            contentType="text/html"/&gt;
-        </pre>
-      </p>
+            contentType="text/html"/>;
+        ]]></pre>
       </section>
 
-        <section name="4.6.3 Message Resources Configuration" href="resources_config">
+    <section name="4.6.3 Message Resources Configuration" href="resources_config">
+
     <p>
     Struts has builtin support for internationalization (I18N).
     You can define one or more <code>&lt;message-resources&gt;</code> elements
@@ -729,6 +744,7 @@ public ActionForward execute(ActionMapping mapping,
     Different bundles can be used simultaneously in your application, the
     'key' attribute is used to specify the desired bundle.
     </p>
+
     <blockquote>
     <ul>
     <li>
@@ -754,109 +770,135 @@ public ActionForward execute(ActionMapping mapping,
     </ul>
     </blockquote>
     <p>Example configuration:</p>
-    <pre>
-    &lt;message-resources
-      parameter="MyWebAppResources"
-      null="false" />
-    </pre>
+<pre>
+&lt;message-resources
+parameter="MyWebAppResources"
+null="false" />
+</pre>
+
     <p>
     This would set up a message resource bundle provided in the file
     <code>MyWebAppResources.properties</code> under the default key.
     Missing resource keys would be displayed as '<i>???keyname???</i>'.
     </p>
+
     </section>
 
     <section name="4.6.4 PlugIn Configuration" href="plugin_config">
+
     <p>
     Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code> element within
     the Struts configuration file. This element has only one valid attribute,
     'className', which is the fully qualified name of the Java class which
     implements the <code>org.apache.struts.action.PlugIn</code> interface.
-        </p>
+    </p>
+
     <p>
     For PlugIns that require configuration themselves, the nested
     <code>&lt;set-property&gt;</code> element is available.
-        </p>
-        <p>
-            This is an example using the Tiles plugin:<br/>
-            <pre>
-            &lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
-                &lt;set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/&gt;
-            &lt;/plug-in&gt;
-            </pre>
-        </p>
+    </p>
+
+    <p>
+    This is an example using the Tiles plugin:
+    </p>
+
+<pre>
+&lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
+&lt;set-property 
+  property="definitions-config" 
+  value="/WEB-INF/tiles-defs.xml"/&gt;
+&lt;/plug-in&gt;
+</pre>
+
     </section>
 
       <section name="4.6.5 Other Configuration Objects" href="other_config">
 
       <p>
-        Besides the objects related to defining ActionMappings, the Struts configuration may
-        contain elements that create other useful objects.
+      Besides the objects related to defining ActionMappings, the Struts configuration may
+      contain elements that create other useful objects.
       </p>
 
       <p>
-        The <code>&lt;data-sources></code> section, which
-        specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
-        of struts-config.xml:
+      The <code>&lt;data-sources></code> section, which specifies data sources that your application can use.
+      This is how you would specify a basic data source for your application inside of struts-config.xml:
       </p>
 
-    <pre>
-    &lt;struts-config>
-      &lt;data-sources>
-    &lt;!-- configuration for GenericDataSource wrapper -->
-        &lt;data-source>
-          &lt;set-property property="autoCommit"
-                           value="false"/>
-          &lt;set-property property="description"
-                           value="Example Data Source Configuration"/>
-          &lt;set-property property="driverClass"
-                           value="org.postgresql.Driver"/>
-          &lt;set-property property="maxCount"
-                           value="4"/>
-          &lt;set-property property="minCount"
-                           value="2"/>
-          &lt;set-property property="password"
-                           value="mypassword"/>
-          &lt;set-property property="url"
-                           value="jdbc:postgresql://localhost/mydatabase"/>
-          &lt;set-property property="user"
-                           value="myusername"/>
-        &lt;/data-source>
+<pre><![CDATA[
+<struts-config>
+<data-sources>
+<!-- configuration for GenericDataSource wrapper -->
+<data-source>
+  <set-property 
+    property="autoCommit"
+    value="false"/>
+  <set-property 
+    property="description"
+    value="Example Data Source Configuration"/>
+  <set-property 
+    property="driverClass"
+    value="org.postgresql.Driver"/>
+  <set-property
+    property="maxCount"
+    value="4"/>
+  <set-property 
+    property="minCount"
+    value="2"/>
+  <set-property 
+    property="password"
+    value="mypassword"/>
+  <set-property 
+    property="url"
+    value="jdbc:postgresql://localhost/mydatabase"/>
+  <set-property 
+    property="user"
+    value="myusername"/>
+</data-source>
 
-        &lt;!-- configuration for commons BasicDataSource -->
-        &lt;data-source type="org.apache.commons.dbcp.BasicDataSource">
-            &lt;set-property property="driverClassName"
-                            value="org.postgresql.Driver" />
-            &lt;set-property property="url"
-                            value="jdbc:postgresql://localhost/mydatabase" />
-            &lt;set-property property="maxActive"
-                            value="10" />
-            &lt;set-property property="maxWait"
-                            value="5000" />
-            &lt;set-property property="defaultAutoCommit"
-                            value="false" />
-            &lt;set-property property="defaultReadOnly"
-                            value="false" />
+<!-- configuration for commons BasicDataSource -->
+<data-source type="org.apache.commons.dbcp.BasicDataSource">
+    <set-property 
+      property="driverClassName"
+      value="org.postgresql.Driver" />
+    <set-property 
+      property="url"
+      value="jdbc:postgresql://localhost/mydatabase" />
+    <set-property 
+      property="maxActive"
+      value="10" />
+    <set-property 
+      property="maxWait"
+      value="5000" />
+    <set-property 
+      property="defaultAutoCommit"
+      value="false" />
+    <set-property 
+      property="defaultReadOnly"
+      value="false" />
 
-        &lt;/data-source>
-      &lt;/data-sources>
-    &lt;/struts-config>
-    </pre>
+</data-source>
+</data-sources>
+</struts-config>
+]]></pre>
 
-      <p>
-        For information on how to retrieve the data source, see the
-        <a href="building_model.html#databases">Accessing Relational Databases</a> section.
-      </p>
-      <p>
-        <i>Note: Since Struts is now using commons-dbcp for all it's
-           data-source needs, the query you provide for the pingQuery
-           attribute must return at least one row.</i><br/>
-    <br/>
-        <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code><br/>
-    <br/>
+    <p>
+    For information on how to retrieve the data source, see the
+    <a href="building_model.html#databases">Accessing Relational Databases</a> section.
+    </p>
+
+    <p>
+    <i>Note: Since Struts is now using commons-dbcp for all it's
+    data-source needs, the query you provide for the pingQuery
+    attribute must return at least one row.</i>
+    </p>
+    
+    <p>
+    <b>Example:</b> <code>SELECT COUNT(*) FROM VALIDTABLE</code>
+    </p>
+    
+    <p>
     Just be sure you to replace "VALIDTABLE" with the name of a valid table in your database.
-      </p>
-
+    </p>
 
     </section>
 
@@ -874,42 +916,40 @@ public ActionForward execute(ActionMapping mapping,
 
         <p>
           Add an entry defining the action servlet itself, along with the appropriate
-          initialization parameters.  Such an entry might look like this:
+          initialization parameters. Such an entry might look like this:
         </p>
-        <p>
-           [:TODO: Conform with MailReader example application]
-        </p>
-<pre>
-&lt;servlet&gt;
-  &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-  &lt;servlet-class&gt;
+
+<pre><![CDATA[
+<servlet>
+  <servlet-name>action</servlet-name>
+  <servlet-class>
     org.apache.struts.action.ActionServlet
-  &lt;/servlet-class&gt;
-  &lt;init-param&gt;
-    &lt;param-name&gt;application&lt;/param-name&gt;
-    &lt;param-value&gt;
+  </servlet-class>
+  <init-param>
+    <param-name>application</param-name>
+    <param-value>
       org.apache.struts.example.ApplicationResources
-    &lt;/param-value&gt;
-  &lt;/init-param&gt;
-  &lt;init-param&gt;
-    &lt;param-name&gt;config&lt;/param-name&gt;
-    &lt;param-value&gt;
+    </param-value>
+  </init-param>
+  <init-param>
+    <param-name>config</param-name>
+    <param-value>
       /WEB-INF/struts-config.xml
-    &lt;/param-value&gt;
-  &lt;/init-param&gt;
-  &lt;init-param&gt;
-    &lt;param-name&gt;debug&lt;/param-name&gt;
-    &lt;param-value&gt;2&lt;/param-value&gt;
-  &lt;/init-param&gt;
-  &lt;init-param&gt;
-    &lt;param-name&gt;mapping&lt;/param-name&gt;
-    &lt;param-value&gt;
+    </param-value>
+  </init-param>
+  <init-param>
+    <param-name>debug</param-name>
+    <param-value>2</param-value>
+  </init-param>
+  <init-param>
+    <param-name>mapping</param-name>
+    <param-value>
       org.apache.struts.example.ApplicationMapping
-    &lt;/param-value&gt;
-  &lt;/init-param&gt;
-  &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-&lt;/servlet&gt;
-</pre>
+    </param-value>
+  </init-param>
+  <load-on-startup>2</load-on-startup>
+</servlet>
+]]></pre>
 
         <p>
           The initialization parameters supported by the controller servlet are
@@ -918,7 +958,8 @@ public ActionForward execute(ActionMapping mapping,
           describe the default values that are assumed if you do not provide a value for
           that initialization parameter.
         </p>
-        <ul>
+
+ <ul>
  <li><strong>config</strong> - Context-relative path to the XML resource
      containing the configuration information for the default module.
      [/WEB-INF/struts-config.xml].</li>
@@ -1256,28 +1297,30 @@ http://www.mycompany.com/myapplication/logon.do
           of your module (this gets used when determining which URIs fall under a
           given module, so choose something meaningful!).  For example:
         </p>
-        <pre>
-            ...
-            &lt;init-param&gt;
-              &lt;param-name&gt;config&lt;/param-name&gt;
-              &lt;param-value&gt;/WEB-INF/conf/struts-default.xml&lt;/param-value&gt;
-            &lt;/init-param&gt;
-            &lt;init-param&gt;
-              &lt;param-name&gt;config/module1&lt;/param-name&gt;
-              &lt;param-value&gt;/WEB-INF/conf/struts-module1.xml&lt;/param-value&gt;
-            &lt;/init-param&gt;
-            ...
-        </pre>
+<pre>
+    ...
+    &lt;init-param&gt;
+      &lt;param-name&gt;config&lt;/param-name&gt;
+      &lt;param-value&gt;/WEB-INF/conf/struts-default.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;config/module1&lt;/param-name&gt;
+      &lt;param-value&gt;/WEB-INF/conf/struts-module1.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    ...
+</pre>
         <p>
           This says I have two modules.  One happens to be the "default" module,
           which has no "/module" in it's name, and one named "module1" (config/module1).  I've told
           the controller it can find their respective configurations under /WEB-INF/conf (which is
           where I put all my configuration files).  Pretty simple!
         </p>
+
         <p>
           (My struts-default.xml would be equivalent to what most folks call struts-config.xml.  I just
           like the symmety of having all my Struts module files being named struts-&lt;module&gt;.xml)
         </p>
+
       </section>
 
       <section name="4.7.4.3 Using Actions for Pages" href="module_config-use_actions">
@@ -1291,9 +1334,9 @@ http://www.mycompany.com/myapplication/logon.do
         <p>
            The simplest way to do this is to use the <code>forward</code> property of the ActionMapping:
         </p>
-        <pre>
-           &lt;action path="/view" forward="/view.jsp"/>
-         </pre>
+<pre>
+&lt;action path="/view" forward="/view.jsp"/>
+</pre>
       </section>
 
      <section name="4.7.4.4 Switching Modules" href="module_config-switching">
@@ -1307,57 +1350,59 @@ http://www.mycompany.com/myapplication/logon.do
          Here's an example of a global forward:
        </p>
        <p>
-        <pre>
-           ...
-           &lt;struts-config&gt;
-             ...
-             &lt;global-forwards&gt;
-               &lt;forward name="toModuleB"
-                           contextRelative="true"
-                           path="/moduleB/index.do"
-                           redirect="true"/&gt;
-               ...
-             &lt;/global-forwards&gt;
-             ...
-           &lt;/struts-config&gt;
-         </pre>
+<pre>
+   ...
+   &lt;struts-config&gt;
+     ...
+     &lt;global-forwards&gt;
+       &lt;forward name="toModuleB"
+		   contextRelative="true"
+		   path="/moduleB/index.do"
+		   redirect="true"/&gt;
+       ...
+     &lt;/global-forwards&gt;
+     ...
+   &lt;/struts-config&gt;
+ </pre>
        </p>
        <p>
          You could do the same thing with a local forward declared in an
          ActionMapping:
        </p>
        <p>
-        <pre>
-           ...
-           &lt;struts-config&gt;
-             ...
-             &lt;action-mappings&gt;
-               ...
-               &lt;action ... &gt;
-                 &lt;forward name="success"
-                             contextRelative="true"
-                             path="/moduleB/index.do"
-                             redirect="true"/&gt;
-              &lt;/action&gt;
-               ...
-             &lt;/action-mappingss&gt;
-             ...
-           &lt;/struts-config&gt;
-         </pre>
+<pre>
+   ...
+   &lt;struts-config&gt;
+     ...
+     &lt;action-mappings&gt;
+       ...
+       &lt;action ... &gt;
+	 &lt;forward name="success"
+		     contextRelative="true"
+		     path="/moduleB/index.do"
+		     redirect="true"/&gt;
+      &lt;/action&gt;
+       ...
+     &lt;/action-mappingss&gt;
+     ...
+   &lt;/struts-config&gt;
+ </pre>
        </p>
        <p>
          Finally, you could use <code>org.apache.struts.actions.SwitchAction
          </code>, like so:
        </p>
        <p>
-             ...
-             &lt;action-mappings&gt;
-               &lt;action path="/toModule"
-                          type="org.apache.struts.actions.SwitchAction"/&gt;
-               ...
-             &lt;/action-mappingss&gt;
-             ...
-       </p>
+ <pre>
+...
+&lt;action-mappings&gt;
+&lt;action path="/toModule"
+	  type="org.apache.struts.actions.SwitchAction"/&gt;
+...
+&lt;/action-mappingss&gt;
+...
+</pre> 
+      </p>
        <p>
          Now, to change to ModuleB, we would use a URI like this:
        </p>
@@ -1428,26 +1473,26 @@ http://www.mycompany.com/myapplication/logon.do
         are two imports and a declaration for a logger.  Let's take a look:
       </p>
       <p>
-        <pre>
-          package com.foo;
-          ...
-          import org.apache.commons.logging.Log;
-          import org.apache.commons.logging.LogFactory;
-          ...
-          public class Foo {
-            ...
-            private static Log log = LogFactory.getLog(Foo.class);
-           ...
-           public void setBar(Bar bar)
-           {
-             if (log.isTraceEnabled())
-               log.trace("Setting bar to " + bar);
+<pre>
+  package com.foo;
+  ...
+  import org.apache.commons.logging.Log;
+  import org.apache.commons.logging.LogFactory;
+  ...
+  public class Foo {
+    ...
+    private static Log log = LogFactory.getLog(Foo.class);
+   ...
+   public void setBar(Bar bar)
+   {
+     if (log.isTraceEnabled())
+       log.trace("Setting bar to " + bar);
 
-             this.bar = bar;
-           }
-           ...
-          }
-        </pre>
+     this.bar = bar;
+   }
+   ...
+  }
+</pre>
       </p>
       <p>
         The general idea is to instantiate a single logger per class and to
