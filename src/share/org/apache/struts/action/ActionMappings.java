@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.9 2002/09/22 05:46:51 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/09/22 05:46:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.10 2002/11/28 07:12:42 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/28 07:12:42 $
  *
  * ====================================================================
  *
@@ -74,10 +74,10 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/09/22 05:46:51 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/28 07:12:42 $
  *
  * @deprecated Replaced by collection of ActionConfig instances in
- *  ApplicationConfig
+ *  {@link org.apache.struts.config.ModuleConfig}
  */
 
 public class ActionMappings implements Serializable {

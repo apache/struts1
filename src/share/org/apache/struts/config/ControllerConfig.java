@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.10 2002/08/27 00:38:13 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/08/27 00:38:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.11 2002/11/28 07:13:03 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/11/28 07:13:03 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/08/27 00:38:13 $
+ * @version $Revision: 1.11 $ $Date: 2002/11/28 07:13:03 $
  * @since Struts 1.1
  */
 
@@ -148,7 +148,7 @@ public class ControllerConfig implements Serializable {
      * combination of the following markers and characters:</p>
      * <ul>
      * <li><code><strong>$M</strong></code> - Replaced by the module
-     *     prefix for the current application module.</li>
+     *     prefix for the current module.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>path</code>
      *     property of a {@link ForwardConfig} instance.</li>
      * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
@@ -271,7 +271,7 @@ public class ControllerConfig implements Serializable {
      * following markers and characters:</p>
      * <ul>
      * <li><code><strong>$M</strong></code> - Replaced by the module
-     *     prefix for the current application module.</li>
+     *     prefix for the current module.</li>
      * <li><code><strong>$P</strong></code> - Replaced by the <code>page</code>
      *     attribute value being evaluated.</li>
      * <li><code><strong>$$</strong></code> - Renders a literal dollar sign

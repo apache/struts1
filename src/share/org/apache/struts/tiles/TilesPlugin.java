@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.13 2002/11/26 02:37:39 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2002/11/26 02:37:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.14 2002/11/28 07:13:39 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/11/28 07:13:39 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
@@ -138,7 +137,7 @@ public class TilesPlugin implements PlugIn {
      *
      * @param servlet ActionServlet that is managing all the modules
      *  in this web application
-     * @param config ApplicationConfig for the module with which
+     * @param config ModuleConfig for the module with which
      *  this plug in is associated
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
@@ -196,7 +195,7 @@ public class TilesPlugin implements PlugIn {
      *
      * @param servlet ActionServlet that is managing all the modules
      *  in this web application
-     * @param config ApplicationConfig for the module with which
+     * @param config ModuleConfig for the module with which
      *  this plug in is associated
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized
@@ -240,7 +239,7 @@ public class TilesPlugin implements PlugIn {
      * and then the object for this plugin.
      * @param servlet ActionServlet that is managing all the modules
      *  in this web application
-     * @param config ApplicationConfig for the module with which
+     * @param config ModuleConfig for the module with which
      *  this plug in is associated
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
@@ -273,7 +272,7 @@ public class TilesPlugin implements PlugIn {
      * appropriate TilesRequestProcessor class. If no, set processor class to
      * TilesRequestProcessor
      *
-     * @param config ApplicationConfig for the module with which
+     * @param config ModuleConfig for the module with which
      *  this plug in is associated
      * @throws ServletException If an error occur
      */

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.5 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.6 2002/11/28 07:12:42 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/28 07:12:42 $
  *
  * ====================================================================
  *
@@ -72,10 +72,10 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/28 07:12:42 $
  *
  * @deprecated Replaced by collection of FormBeanConfig instances
- *  in ApplicationConfig
+ *  in {@link org.apache.struts.config.ModuleConfig}
  */
 
 public class ActionFormBeans implements Serializable {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.8 2002/11/09 16:30:02 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/09 16:30:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.9 2002/11/28 07:12:52 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/28 07:12:52 $
  *
  * ====================================================================
  *
@@ -85,15 +85,15 @@ import org.apache.struts.Globals;
  * <li><strong>page</strong> - Module-relative URI (beginning with "/")
  *     to which control should be forwarded after switching.</li>
  * <li><strong>prefix</strong> - The module prefix (beginning with "/")
- *     of the application module to which control should be switched.  Use a
+ *     of the module to which control should be switched.  Use a
  *     zero-length string for the default module.  The
- *     appropriate <code>ApplicationConfig</code> object will be stored as a
+ *     appropriate <code>ModuleConfig</code> object will be stored as a
  *     request attribute, so any subsequent logic will assume the new
- *     application module.</li>
+ *     module.</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/11/09 16:30:02 $
+ * @version $Revision: 1.9 $ $Date: 2002/11/28 07:12:52 $
  * @since Struts 1.1
  */
 
@@ -150,7 +150,7 @@ public class SwitchAction extends Action {
             return (null);
         }
 
-        // Switch to the requested application module
+        // Switch to the requested module
         RequestUtils.selectModule(prefix, request,
                                        getServlet().getServletContext());
         if (request.getAttribute(Globals.MODULE_KEY) == null) {

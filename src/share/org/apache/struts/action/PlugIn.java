@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.7 2002/11/26 02:33:07 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/26 02:33:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.8 2002/11/28 07:12:42 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/28 07:12:42 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.ModuleConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/11/26 02:33:07 $
+ * @version $Revision: 1.8 $ $Date: 2002/11/28 07:12:42 $
  * @since Struts 1.1
  */
 
@@ -91,24 +91,24 @@ public interface PlugIn {
 
 
     /**
-     * <p>Receive notification that our owning application module is being
+     * <p>Receive notification that our owning module is being
      * shut down.</p>
      */
     public void destroy();
 
 
     /**
-     * <p>Receive notification that the specified application module is being
+     * <p>Receive notification that the specified module is being
      * started up.</p>
      *
-     * @param servlet ActionServlet that is managing all the application
+     * @param servlet ActionServlet that is managing all the
      *  modules in this web application
-     * @param config ApplicationConfig for the application module with which
+     * @param config ApplicationConfig for the module with which
      *  this plug-in is associated
      *
      * @exception ServletException if this <code>PlugIn</code> cannot
      *  be successfully initialized
-     * @deprecated and removed use {@link PlugInPatch#init)}
+     * @deprecated and removed use {@link #init(ActionServlet, ModuleConfig))}
      */
 
 
@@ -116,7 +116,7 @@ public interface PlugIn {
      * <p>Receive notification that the specified module is being
      * started up.</p>
      *
-     * @param servlet ActionServlet that is managing all the application
+     * @param servlet ActionServlet that is managing all the
      *  modules in this web application
      * @param config ModuleConfig for the module with which
      *  this plug-in is associated

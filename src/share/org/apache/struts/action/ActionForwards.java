@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.6 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.7 2002/11/28 07:12:42 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/11/28 07:12:42 $
  *
  * ====================================================================
  *
@@ -72,10 +72,10 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/28 07:12:42 $
  *
  * @deprecated Replaced by collection of ForwardConfig instances in
- *  ApplicationConfig and ActionConfig
+ *  {@link org.apache.struts.config.ModuleConfig} and ActionConfig
  */
 
 public class ActionForwards implements Serializable {

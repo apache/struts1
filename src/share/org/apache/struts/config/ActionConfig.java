@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.9 2002/11/06 04:48:29 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2002/11/06 04:48:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.10 2002/11/28 07:13:03 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/28 07:13:03 $
  *
  * ====================================================================
  *
@@ -70,11 +70,11 @@ import java.util.HashMap;
 
 /**
  * <p>A JavaBean representing the configuration information of an
- * <code>&lt;action&gt;</code> element from a Struts application
+ * <code>&lt;action&gt;</code> element from a Struts
  * module configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/11/06 04:48:29 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/28 07:13:03 $
  * @since Struts 1.1
  */
 
@@ -575,7 +575,7 @@ public class ActionConfig implements Serializable {
      *
      * @param config ExceptionConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeExceptionConfig(ExceptionConfig config) {
@@ -593,7 +593,7 @@ public class ActionConfig implements Serializable {
      *
      * @param config ForwardConfig instance to be removed
      *
-     * @exception IllegalStateException if this application configuration
+     * @exception IllegalStateException if this module configuration
      *  has been frozen
      */
     public void removeForwardConfig(ForwardConfig config) {

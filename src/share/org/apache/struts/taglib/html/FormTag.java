@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.37 2002/11/20 05:36:50 dgraham Exp $
- * $Revision: 1.37 $
- * $Date: 2002/11/20 05:36:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.38 2002/11/28 07:13:18 rleland Exp $
+ * $Revision: 1.38 $
+ * $Date: 2002/11/28 07:13:18 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
@@ -87,7 +86,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.37 $ $Date: 2002/11/20 05:36:50 $
+ * @version $Revision: 1.38 $ $Date: 2002/11/28 07:13:18 $
  */
 
 public class FormTag extends TagSupport {
@@ -100,7 +99,7 @@ public class FormTag extends TagSupport {
     protected String action = null;
 
     /**
-     * The application configuration for our module.
+     * The module configuration for our module.
      */
     protected ModuleConfig moduleConfig = null;
 
@@ -793,7 +792,7 @@ public class FormTag extends TagSupport {
      */
     protected void lookup() throws JspException {
 
-        // Look up the application module configuration information we need
+        // Look up the module configuration information we need
         moduleConfig = RequestUtils.getModuleConfig(pageContext);
 
         if (moduleConfig == null) {
