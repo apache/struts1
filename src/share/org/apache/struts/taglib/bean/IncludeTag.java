@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.8 2001/01/10 22:05:24 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.9 2001/01/16 01:20:53 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,7 +89,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/01/10 22:05:24 $
+ * @version $Revision: 1.9 $ $Date: 2001/01/16 01:20:53 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -302,7 +302,7 @@ public class IncludeTag extends TagSupport {
         } else if (this.href != null) {
             href = this.href;
             includeSession = false;
-        } /* else if (this.page != null) */ {
+        } else /* if (this.page != null) */ {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             href = RequestUtils.absoluteURL(request, this.page);
