@@ -247,11 +247,12 @@ public ActionForward
                HttpServletRequest request,
                HttpServletResponse response)
 {
+ javax.sql.DataSource dataSource;
+ java.sql.Connection myConnection;
+
  try {
-   javax.sql.DataSource dataSource =
-     servlet.findDataSource(null);
-   java.sql.Connection myConnection =
-     dataSource.getConnection();
+   dataSource = servlet.findDataSource(null);
+   myConnection = dataSource.getConnection();
 
    //do what you wish with myConnection
  } catch (SQLException sqle) {
