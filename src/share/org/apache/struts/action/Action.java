@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.22 2001/05/20 04:54:41 craigmcc Exp $
- * $Revision: 1.22 $
- * $Date: 2001/05/20 04:54:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.23 2001/07/12 05:12:01 dwinterfeldt Exp $
+ * $Revision: 1.23 $
+ * $Date: 2001/07/12 05:12:01 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.22 $ $Date: 2001/05/20 04:54:41 $
+ * @version $Revision: 1.23 $ $Date: 2001/07/12 05:12:01 $
  */
 
 public class Action {
@@ -135,6 +135,13 @@ public class Action {
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";
 
+    /**
+     * The request attributes key under which your action should store an
+     * <code>org.apache.struts.action.ActionMessages</code> object, if you
+     * are using the corresponding custom tag library elements.
+     */
+    public static final String MESSAGE_KEY =
+      "org.apache.struts.action.MESSAGE";
 
     /**
      * The request attributes key under which Struts custom tags might store a
@@ -486,6 +493,28 @@ public class Action {
 
     }
 
+    /**
+     * Save the specified messages keys into the appropriate request
+     * attribute for use by the &lt;struts:messages&gt; tag (if messages="true" is set),
+     * if any messages are required.  Otherwise, ensure that the request 
+     * attribute is not created.
+     *
+     * @param request 	The servlet request we are processing
+     * @param messages 	Messages object
+     */
+    protected void saveMessages(HttpServletRequest request,
+			        ActionMessages messages) {
+
+	// Remove any messages attribute if none are required
+	if ((messages == null) || messages.empty()) {
+	    request.removeAttribute(MESSAGE_KEY);
+	    return;
+	}
+
+	// Save the messages we need
+	request.setAttribute(MESSAGE_KEY, messages);
+
+    }
 
     /**
      * Save a new transaction token in the user's current session, creating
