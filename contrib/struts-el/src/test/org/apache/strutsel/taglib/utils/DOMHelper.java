@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/DOMHelper.java,v 1.4 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/DOMHelper.java,v 1.5 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -222,10 +222,27 @@ public class DOMHelper {
 
                 String text = ((Text)node).getData();
                 System.out.print(text);
-            } else
-                System.out.println(
-                        spaces.substring(0, level) + "<" + nodeName + ">");
+            } else {
+                System.out.print(spaces.substring(0, level) + "<" + nodeName);
 
+                NamedNodeMap  nodeMap  = node.getAttributes();
+                if (nodeMap.getLength() > 0) {
+                    StringBuffer sb = new StringBuffer();
+
+                    for (int ctr = 0; ctr < nodeMap.getLength(); ++ ctr) {
+                        Attr  attrnode = (Attr) nodeMap.item(ctr);
+                        String   name  = attrnode.getName();
+                        String   value = attrnode.getValue();
+
+                        sb.append(" " + name + "=\"" + value + "\"");
+                    }
+
+                    System.out.print(sb.toString());
+                }
+                
+                System.out.println(">");
+            }
+            
             for (int ctr = 0; ctr < children.getLength(); ++ctr) {
 
                 Node child = children.item(ctr);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.7 2003/03/09 05:47:24 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/09 05:47:24 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.8 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
 
@@ -105,6 +105,11 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String pageExpr;
+    /**
+     * Instance variable mapped to "scriptLanguage" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scriptLanguageExpr;
     /**
      * Instance variable mapped to "src" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -147,6 +152,11 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      */
     public String getPageExpr() { return (pageExpr); }
     /**
+     * Getter method for "scriptLanguage" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScriptLanguageExpr() { return (scriptLanguageExpr); }
+    /**
      * Getter method for "src" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -188,6 +198,11 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      */
     public void setPageExpr(String pageExpr) { this.pageExpr = pageExpr; }
     /**
+     * Setter method for "scriptLanguage" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScriptLanguageExpr(String scriptLanguageExpr) { this.scriptLanguageExpr = scriptLanguageExpr; }
+    /**
      * Setter method for "src" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -214,6 +229,7 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
         setFormNameExpr(null);
         setMethodExpr(null);
         setPageExpr(null);
+        setScriptLanguageExpr(null);
         setSrcExpr(null);
         setStaticJavascriptExpr(null);
         setHtmlCommentExpr(null);
@@ -238,6 +254,7 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
     private void evaluateExpressions() throws JspException {
         String  string  = null;
         Integer integer = null;
+        Boolean bool    = null;
 
         if ((string = EvalHelper.evalString("cdata", getCdataExpr(),
                                             this, pageContext)) != null)
@@ -258,6 +275,10 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
         if ((integer = EvalHelper.evalInteger("page", getPageExpr(),
                                               this, pageContext)) != null)
             setPage(integer.intValue());
+
+        if ((bool = EvalHelper.evalBoolean("scriptLanguage", getScriptLanguageExpr(),
+                                           this, pageContext)) != null)
+            setScriptLanguage(bool.booleanValue());
 
         if ((string = EvalHelper.evalString("src", getSrcExpr(),
                                             this, pageContext)) != null)

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./struts-logic-el.xml">
+<document url="struts-logic-el.html">
 
 <properties>
   <author>Craig R. McClanahan</author>
@@ -115,8 +115,11 @@ JSTL EL.
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
-      <p>The logical name of the global <code>ActionForward</code> entry
-      that identifies the destination, and forwarding approach, to be used.
+      <p>
+      	The logical name of the global <code>ActionForward</code> entry
+      	that identifies the destination, and forwarding approach, to be used.
+        <strong>Note</strong>: forwarding to Tiles definitions is not supported
+        from this tag.  You should forward to them from an Action subclass.
       </p>
       </info>
     </attribute>
@@ -174,16 +177,16 @@ JSTL EL.
     <p>So, if you wish to iterate over the values of a Hashtable, you would
     implement code like the following:</p>
     <code>
-    &lt;logic:iterate id="element" name="myhashtable"&gt;<br/>
+    &lt;logic-el:iterate id="element" name="myhashtable"&gt;<br/>
       Next element is &lt;bean:write name="element" property="value"/&gt;<br/>
-    &lt;/logic:iterate&gt;
+    &lt;/logic-el:iterate&gt;
     </code>
 
     <p>If the collection you are iterating over can contain <code>null</code>
     values, the loop will still be performed but no page scope attribute
     (named by the <code>id</code> attribute) will be created for that loop
-    iteration.  You can use the <code>&lt;logic:present&gt;</code> and
-    <code>&lt;logic:notPresent&gt;</code> tags to test for this case.</p>
+    iteration.  You can use the <code>&lt;logic-el:present&gt;</code> and
+    <code>&lt;logic-el:notPresent&gt;</code> tags to test for this case.</p>
 
     </info>
 
@@ -217,6 +220,7 @@ JSTL EL.
       index of the collection on each iteration.</p>
       </info>
     </attribute>
+
     <attribute>
       <name>length</name>
       <required>false</required>
@@ -417,8 +421,9 @@ JSTL EL.
     </summary>
     <tagclass>org.apache.strutsel.taglib.logic.ELMessagesNotPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
+    <since>Struts 1.1</since>
     <info>
-    <p>[since 1.1] Evaluates the nested body content of this tag if 
+    <p>Evaluates the nested body content of this tag if
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is not in request scope.  If
@@ -473,8 +478,9 @@ JSTL EL.
     </summary>
     <tagclass>org.apache.strutsel.taglib.logic.ELMessagesPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
+    <since>Struts 1.1</since>
     <info>
-    <p>[since 1.1] Evaluates the nested body content of this tag if 
+    <p>Evaluates the nested body content of this tag if
        an <code>ActionMessages</code>
        object, <code>ActionErrors</code> object, a String,
        or a String array is in request scope.  If
@@ -871,7 +877,7 @@ JSTL EL.
                 <li><em>href</em> - Use the value of this attribute unchanged.
                     </li>
                 <li><em>page</em> - Use the value of this attribute as an
-                    applicaiton-relative URI, and generate a server-relative
+                    application-relative URI, and generate a server-relative
                     URI by including the context path.</li>
                 </ul>
 
@@ -1008,7 +1014,7 @@ JSTL EL.
                   added to the generated hyperlink.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 

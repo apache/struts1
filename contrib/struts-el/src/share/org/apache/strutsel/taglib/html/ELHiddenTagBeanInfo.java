@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTagBeanInfo.java,v 1.4 2003/07/26 05:48:02 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/26 05:48:02 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -85,6 +85,10 @@ public class ELHiddenTagBeanInfo extends SimpleBeanInfo
         ArrayList proplist = new ArrayList();
 
         try {
+            proplist.add(new PropertyDescriptor("accesskey", ELHiddenTag.class,
+                                                null, "setAccesskeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("alt", ELHiddenTag.class,
                                                 null, "setAltExpr"));
         } catch (IntrospectionException ex) {}
@@ -101,8 +105,72 @@ public class ELHiddenTagBeanInfo extends SimpleBeanInfo
                                                 null, "setNameExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("onblur", ELHiddenTag.class,
+                                                null, "setOnblurExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onchange", ELHiddenTag.class,
+                                                null, "setOnchangeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onclick", ELHiddenTag.class,
+                                                null, "setOnclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("ondblclick", ELHiddenTag.class,
+                                                null, "setOndblclickExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onfocus", ELHiddenTag.class,
+                                                null, "setOnfocusExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeydown", ELHiddenTag.class,
+                                                null, "setOnkeydownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeypress", ELHiddenTag.class,
+                                                null, "setOnkeypressExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onkeyup", ELHiddenTag.class,
+                                                null, "setOnkeyupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousedown", ELHiddenTag.class,
+                                                null, "setOnmousedownExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmousemove", ELHiddenTag.class,
+                                                null, "setOnmousemoveExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseout", ELHiddenTag.class,
+                                                null, "setOnmouseoutExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseover", ELHiddenTag.class,
+                                                null, "setOnmouseoverExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("onmouseup", ELHiddenTag.class,
+                                                null, "setOnmouseupExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("property", ELHiddenTag.class,
                                                 null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("style", ELHiddenTag.class,
+                                                null, "setStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleClass", ELHiddenTag.class,
+                                                null, "setStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("styleId", ELHiddenTag.class,
+                                                null, "setStyleIdExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("title", ELHiddenTag.class,

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.7 2003/03/09 05:47:23 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/09 05:47:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.8 2003/07/26 05:48:02 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/26 05:48:02 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,7 +75,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELFormTag extends FormTag {
 
@@ -124,6 +124,11 @@ public class ELFormTag extends FormTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String scopeExpr;
+    /**
+     * Instance variable mapped to "scriptLanguage" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scriptLanguageExpr;
     /**
      * Instance variable mapped to "style" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -196,6 +201,11 @@ public class ELFormTag extends FormTag {
      */
     public String getScopeExpr() { return (scopeExpr); }
     /**
+     * Getter method for "scriptLanguage" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScriptLanguageExpr() { return (scriptLanguageExpr); }
+    /**
      * Getter method for "style" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -267,6 +277,11 @@ public class ELFormTag extends FormTag {
      */
     public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
     /**
+     * Setter method for "scriptLanguage" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScriptLanguageExpr(String scriptLanguageExpr) { this.scriptLanguageExpr = scriptLanguageExpr; }
+    /**
      * Setter method for "style" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -307,6 +322,7 @@ public class ELFormTag extends FormTag {
         setOnresetExpr(null);
         setOnsubmitExpr(null);
         setScopeExpr(null);
+        setScriptLanguageExpr(null);
         setStyleExpr(null);
         setStyleClassExpr(null);
         setStyleIdExpr(null);
@@ -332,6 +348,7 @@ public class ELFormTag extends FormTag {
      */
     private void evaluateExpressions() throws JspException {
         String  string  = null;
+        Boolean bool    = null;
 
         if ((string = EvalHelper.evalString("action", getActionExpr(),
                                             this, pageContext)) != null)
@@ -368,6 +385,10 @@ public class ELFormTag extends FormTag {
         if ((string = EvalHelper.evalString("scope", getScopeExpr(),
                                             this, pageContext)) != null)
             setScope(string);
+
+        if ((bool = EvalHelper.evalBoolean("scriptLanguage", getScriptLanguageExpr(),
+                                           this, pageContext)) != null)
+            setScriptLanguage(bool.booleanValue());
 
         if ((string = EvalHelper.evalString("style", getStyleExpr(),
                                             this, pageContext)) != null)

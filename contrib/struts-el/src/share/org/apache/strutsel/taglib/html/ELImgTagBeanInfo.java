@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.4 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -170,16 +170,16 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
                                                 null, "setOnmouseupExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("paramId", ELImgTag.class,
+                                                null, "setParamIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("page", ELImgTag.class,
                                                 null, "setPageExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("pageKey", ELImgTag.class,
                                                 null, "setPageKeyExpr"));
-        } catch (IntrospectionException ex) {}
-        try {
-            proplist.add(new PropertyDescriptor("paramId", ELImgTag.class,
-                                                null, "setParamIdExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("paramName", ELImgTag.class,

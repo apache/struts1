@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFrameTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/19 03:54:39 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFrameTag.java,v 1.5 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -130,45 +130,45 @@ public class TestELFrameTag
             fail();
     }
 
-    /**
-     * Tests setting "forward" attribute to a Forward with a null Path.
-     */
-    public void testForward()
-        throws ServletException, JspException {
+//     /**
+//      * Tests setting "forward" attribute to a Forward with a null Path.
+//      */
+//     public void testForward()
+//         throws ServletException, JspException {
 
-        ActionServlet   actionServlet  = new ActionServlet();
-        actionServlet.init(pageContext.getServletConfig());
-        actionServlet.init();
+//         ActionServlet   actionServlet  = new ActionServlet();
+//         actionServlet.init(pageContext.getServletConfig());
+//         actionServlet.init();
 
-        ApplicationConfig  appConfig   = new ApplicationConfig("");
+//         ApplicationConfig  appConfig   = new ApplicationConfig("");
 
-        pageContext.setAttribute(Action.APPLICATION_KEY, appConfig,
-                                 PageContext.APPLICATION_SCOPE);
+//         pageContext.setAttribute(Action.APPLICATION_KEY, appConfig,
+//                                  PageContext.APPLICATION_SCOPE);
 
-        ActionForward   actionForward  = new ActionForward();
-        actionForward.setName(FORWARD_VALUE);
-        actionForward.setPath(PATH_VALUE);
-        appConfig.addForwardConfig(actionForward);
+//         ActionForward   actionForward  = new ActionForward();
+//         actionForward.setName(FORWARD_VALUE);
+//         actionForward.setPath(PATH_VALUE);
+//         appConfig.addForwardConfig(actionForward);
 
-        elFrameTag.setForwardExpr(FORWARD_VALUE);
+//         elFrameTag.setForwardExpr(FORWARD_VALUE);
 
-        HttpServletResponse   response =
-            (HttpServletResponse)pageContext.getResponse();
+//         HttpServletResponse   response =
+//             (HttpServletResponse)pageContext.getResponse();
 
-        int startTagReturn  = elFrameTag.doStartTag();
-        int afterBodyReturn = elFrameTag.doAfterBody();
-        int endTagReturn    = elFrameTag.doEndTag();
-    }
+//         int startTagReturn  = elFrameTag.doStartTag();
+//         int afterBodyReturn = elFrameTag.doAfterBody();
+//         int endTagReturn    = elFrameTag.doEndTag();
+//     }
 
-    public void endForward(com.meterware.httpunit.WebResponse testResponse) {
-        try {
-            TestHelper.printResponse(testResponse);
+//     public void endForward(com.meterware.httpunit.WebResponse testResponse) {
+//         try {
+//             TestHelper.printResponse(testResponse);
 
-            org.w3c.dom.Document document = testResponse.getDOM();
-            DOMHelper.printNode(document.getDocumentElement());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail();
-        }
-    }
+//             org.w3c.dom.Document document = testResponse.getDOM();
+//             DOMHelper.printNode(document.getDocumentElement());
+//         } catch (Exception ex) {
+//             ex.printStackTrace();
+//             fail();
+//         }
+//     }
 }

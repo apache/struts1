@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTagBeanInfo.java,v 1.2 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTagBeanInfo.java,v 1.3 2003/07/26 05:48:02 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/26 05:48:02 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -112,6 +112,10 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("scope", ELFormTag.class,
                                                 null, "setScopeExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scriptLanguage", ELFormTag.class,
+                                                null, "setScriptLanguageExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("style", ELFormTag.class,

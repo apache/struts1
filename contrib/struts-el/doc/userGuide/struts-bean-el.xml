@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./struts-bean-el.xml">
+<document url="struts-bean-el.html">
 
 <properties>
   <author>Craig R. McClanahan</author>
@@ -234,9 +234,9 @@
       <info>
       <p>The name of the application scope bean under which the
       <code>MessageResources</code> object containing our messages
-      is stored.  If not specified, the default name (the value of
-      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      is stored.</p>
       </info>
+      <default>Action.MESSAGES_KEY</default>
     </attribute>
 
     <attribute>
@@ -257,10 +257,9 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       <p>The name of the session scope bean under which our currently
-      selected <code>Locale</code> object is stored.  If not specified,
-      the default name (the value of the <code>Action.LOCALE_KEY</code>
-      constant string) is used.</p>
+      selected <code>Locale</code> object is stored.</p>
       </info>
+      <default>Action.LOCALE_KEY</default>
     </attribute>
 
     <attribute>
@@ -416,7 +415,7 @@
         <code>collection</code> attribute.</li>
     <li>As a JSP bean specified by the <code>name</code> attribute.</li>
     <li>As the property, specified by the <code>property</code> attribute,
-        of the JSP bean specified by the <code>bean</code> attribute.</li>
+        of the JSP bean specified by the <code>name</code> attribute.</li>
     </ul>
     </info>
 
@@ -428,7 +427,7 @@
       <p>A runtime expression that evaluates to an array, a Collection, or
       a Map.</p>
       </info>
-    </attribute>     
+    </attribute>
 
     <attribute>
       <name>id</name>

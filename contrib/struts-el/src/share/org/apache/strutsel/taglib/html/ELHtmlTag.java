@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.6 2003/03/09 05:47:23 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/09 05:47:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.7 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,10 +75,15 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELHtmlTag extends HtmlTag {
 
+    /**
+     * Instance variable mapped to "lang" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String langExpr;
     /**
      * Instance variable mapped to "locale" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -91,6 +96,11 @@ public class ELHtmlTag extends HtmlTag {
     private String xhtmlExpr;
 
     /**
+     * Getter method for "lang" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLangExpr() { return (langExpr); }
+    /**
      * Getter method for "locale" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -101,6 +111,11 @@ public class ELHtmlTag extends HtmlTag {
      */
     public String getXhtmlExpr() { return (xhtmlExpr); }
 
+    /**
+     * Setter method for "lang" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) { this.langExpr = langExpr; }
     /**
      * Setter method for "locale" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -118,6 +133,7 @@ public class ELHtmlTag extends HtmlTag {
     public void release()
     {
         super.release();
+        setLangExpr(null);
         setLocaleExpr(null);
         setXhtmlExpr(null);
     }
@@ -140,6 +156,11 @@ public class ELHtmlTag extends HtmlTag {
      */
     private void evaluateExpressions() throws JspException {
         Boolean bool    = null;
+        String  string  = null;
+
+        if ((bool = EvalHelper.evalBoolean("lang", getLangExpr(),
+                                           this, pageContext)) != null)
+            setLang(bool.booleanValue());
 
         if ((bool = EvalHelper.evalBoolean("locale", getLocaleExpr(),
                                            this, pageContext)) != null)

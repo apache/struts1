@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELBaseTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/02/19 03:54:39 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELBaseTag.java,v 1.5 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -142,7 +142,13 @@ public class TestELBaseTag
                   throws ServletException, JspException {
         HttpServletResponse response          = (HttpServletResponse)pageContext.getResponse();
         String              requiredHrefValue = getRequiredHrefValue(request);
+        System.out.println("requiredHrefValue[" + requiredHrefValue + "]");
         response.addHeader(REQUIRED_HREF_VALUE_KEY, requiredHrefValue);
+        response.addHeader("abc", "def");
+        response.addHeader("ghi", "jkl");
+        response.addHeader("mno", "pqr");
+//         response.addHeader("stuvwx", requiredHrefValue);
+        response.addHeader("stuvwx", "abc");
 
         int startTagReturn = elBaseTag.doStartTag();
     }
@@ -159,6 +165,9 @@ public class TestELBaseTag
                                             "/html/head/base", attrMap);
             DOMHelper.verifyAttributesPresent(attrMap, new String[] { "href" }, 
                                               false);
+            String   header   =
+                testResponse.getHeaderField(REQUIRED_HREF_VALUE_KEY);
+            System.out.println("[header[" + header + "]]");
             checkAttrValue(attrMap, testResponse, REQUIRED_HREF_VALUE_KEY, 
                            "base", "href");
         } catch (Exception ex) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTagBeanInfo.java,v 1.2 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTagBeanInfo.java,v 1.3 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,7 +88,10 @@ public class ELHtmlTagBeanInfo extends SimpleBeanInfo
             proplist.add(new PropertyDescriptor("xhtml", ELHtmlTag.class,
                                                 null, "setXhtmlExpr"));
         } catch (IntrospectionException ex) {}
-
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELHtmlTag.class,
+                                                null, "setLangExpr"));
+        } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("locale", ELHtmlTag.class,
                                                 null, "setLocaleExpr"));

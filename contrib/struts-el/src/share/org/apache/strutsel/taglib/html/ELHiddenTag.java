@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.6 2003/03/09 05:47:23 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/09 05:47:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.7 2003/07/26 05:48:02 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/26 05:48:02 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,10 +74,15 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELHiddenTag extends HiddenTag {
 
+    /**
+     * Instance variable mapped to "accesskey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String accesskeyExpr;
     /**
      * Instance variable mapped to "alt" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -99,10 +104,90 @@ public class ELHiddenTag extends HiddenTag {
      */
     private String nameExpr;
     /**
+     * Instance variable mapped to "onblur" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onblurExpr;
+    /**
+     * Instance variable mapped to "onchange" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onchangeExpr;
+    /**
+     * Instance variable mapped to "onclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onclickExpr;
+    /**
+     * Instance variable mapped to "ondblclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String ondblclickExpr;
+    /**
+     * Instance variable mapped to "onfocus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onfocusExpr;
+    /**
+     * Instance variable mapped to "onkeydown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onkeydownExpr;
+    /**
+     * Instance variable mapped to "onkeypress" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onkeypressExpr;
+    /**
+     * Instance variable mapped to "onkeyup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onkeyupExpr;
+    /**
+     * Instance variable mapped to "onmousedown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmousedownExpr;
+    /**
+     * Instance variable mapped to "onmousemove" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmousemoveExpr;
+    /**
+     * Instance variable mapped to "onmouseout" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmouseoutExpr;
+    /**
+     * Instance variable mapped to "onmouseover" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmouseoverExpr;
+    /**
+     * Instance variable mapped to "onmouseup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmouseupExpr;
+    /**
      * Instance variable mapped to "property" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     private String propertyExpr;
+    /**
+     * Instance variable mapped to "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleExpr;
+    /**
+     * Instance variable mapped to "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleClassExpr;
+    /**
+     * Instance variable mapped to "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleIdExpr;
     /**
      * Instance variable mapped to "title" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -125,6 +210,11 @@ public class ELHiddenTag extends HiddenTag {
     private String writeExpr;
 
     /**
+     * Getter method for "accesskey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getAccesskeyExpr() { return (accesskeyExpr); }
+    /**
      * Getter method for "alt" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -145,10 +235,90 @@ public class ELHiddenTag extends HiddenTag {
      */
     public String getNameExpr() { return (nameExpr); }
     /**
+     * Getter method for "onblur" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnblurExpr() { return (onblurExpr); }
+    /**
+     * Getter method for "onchange" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnchangeExpr() { return (onchangeExpr); }
+    /**
+     * Getter method for "onclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnclickExpr() { return (onclickExpr); }
+    /**
+     * Getter method for "ondblclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOndblclickExpr() { return (ondblclickExpr); }
+    /**
+     * Getter method for "onfocus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnfocusExpr() { return (onfocusExpr); }
+    /**
+     * Getter method for "onkeydown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnkeydownExpr() { return (onkeydownExpr); }
+    /**
+     * Getter method for "onkeypress" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnkeypressExpr() { return (onkeypressExpr); }
+    /**
+     * Getter method for "onkeyup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnkeyupExpr() { return (onkeyupExpr); }
+    /**
+     * Getter method for "onmousedown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmousedownExpr() { return (onmousedownExpr); }
+    /**
+     * Getter method for "onmousemove" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmousemoveExpr() { return (onmousemoveExpr); }
+    /**
+     * Getter method for "onmouseout" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmouseoutExpr() { return (onmouseoutExpr); }
+    /**
+     * Getter method for "onmouseover" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmouseoverExpr() { return (onmouseoverExpr); }
+    /**
+     * Getter method for "onmouseup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmouseupExpr() { return (onmouseupExpr); }
+    /**
      * Getter method for "property" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleExpr() { return (styleExpr); }
+    /**
+     * Getter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleClassExpr() { return (styleClassExpr); }
+    /**
+     * Getter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleIdExpr() { return (styleIdExpr); }
     /**
      * Getter method for "title" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -171,6 +341,11 @@ public class ELHiddenTag extends HiddenTag {
     public String getWriteExpr() { return (writeExpr); }
 
     /**
+     * Setter method for "accesskey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setAccesskeyExpr(String accesskeyExpr) { this.accesskeyExpr = accesskeyExpr; }
+    /**
      * Setter method for "alt" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -191,10 +366,90 @@ public class ELHiddenTag extends HiddenTag {
      */
     public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
     /**
+     * Setter method for "onblur" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnblurExpr(String onblurExpr) { this.onblurExpr = onblurExpr; }
+    /**
+     * Setter method for "onchange" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnchangeExpr(String onchangeExpr) { this.onchangeExpr = onchangeExpr; }
+    /**
+     * Setter method for "onclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnclickExpr(String onclickExpr) { this.onclickExpr = onclickExpr; }
+    /**
+     * Setter method for "ondblclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOndblclickExpr(String ondblclickExpr) { this.ondblclickExpr = ondblclickExpr; }
+    /**
+     * Setter method for "onfocus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnfocusExpr(String onfocusExpr) { this.onfocusExpr = onfocusExpr; }
+    /**
+     * Setter method for "onkeydown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnkeydownExpr(String onkeydownExpr) { this.onkeydownExpr = onkeydownExpr; }
+    /**
+     * Setter method for "onkeypress" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnkeypressExpr(String onkeypressExpr) { this.onkeypressExpr = onkeypressExpr; }
+    /**
+     * Setter method for "onkeyup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnkeyupExpr(String onkeyupExpr) { this.onkeyupExpr = onkeyupExpr; }
+    /**
+     * Setter method for "onmousedown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmousedownExpr(String onmousedownExpr) { this.onmousedownExpr = onmousedownExpr; }
+    /**
+     * Setter method for "onmousemove" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmousemoveExpr(String onmousemoveExpr) { this.onmousemoveExpr = onmousemoveExpr; }
+    /**
+     * Setter method for "onmouseout" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmouseoutExpr(String onmouseoutExpr) { this.onmouseoutExpr = onmouseoutExpr; }
+    /**
+     * Setter method for "onmouseover" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmouseoverExpr(String onmouseoverExpr) { this.onmouseoverExpr = onmouseoverExpr; }
+    /**
+     * Setter method for "onmouseup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmouseupExpr(String onmouseupExpr) { this.onmouseupExpr = onmouseupExpr; }
+    /**
      * Setter method for "property" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleExpr(String styleExpr) { this.styleExpr = styleExpr; }
+    /**
+     * Setter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleClassExpr(String styleClassExpr) { this.styleClassExpr = styleClassExpr; }
+    /**
+     * Setter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleIdExpr(String styleIdExpr) { this.styleIdExpr = styleIdExpr; }
     /**
      * Setter method for "title" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -222,11 +477,28 @@ public class ELHiddenTag extends HiddenTag {
     public void release()
     {
         super.release();
+        setAccesskeyExpr(null);
         setAltExpr(null);
         setAltKeyExpr(null);
         setIndexedExpr(null);
         setNameExpr(null);
+        setOnblurExpr(null);
+        setOnchangeExpr(null);
+        setOnclickExpr(null);
+        setOndblclickExpr(null);
+        setOnfocusExpr(null);
+        setOnkeydownExpr(null);
+        setOnkeypressExpr(null);
+        setOnkeyupExpr(null);
+        setOnmousedownExpr(null);
+        setOnmousemoveExpr(null);
+        setOnmouseoutExpr(null);
+        setOnmouseoverExpr(null);
+        setOnmouseupExpr(null);
         setPropertyExpr(null);
+        setStyleExpr(null);
+        setStyleClassExpr(null);
+        setStyleIdExpr(null);
         setTitleExpr(null);
         setTitleKeyExpr(null);
         setValueExpr(null);
@@ -253,6 +525,10 @@ public class ELHiddenTag extends HiddenTag {
         String  string  = null;
         Boolean bool    = null;
 
+        if ((string = EvalHelper.evalString("accesskey", getAccesskeyExpr(),
+                                            this, pageContext)) != null)
+            setAccesskey(string);
+
         if ((string = EvalHelper.evalString("alt", getAltExpr(),
                                             this, pageContext)) != null)
             setAlt(string);
@@ -269,9 +545,73 @@ public class ELHiddenTag extends HiddenTag {
                                             this, pageContext)) != null)
             setName(string);
 
+        if ((string = EvalHelper.evalString("onblur", getOnblurExpr(),
+                                            this, pageContext)) != null)
+            setOnblur(string);
+
+        if ((string = EvalHelper.evalString("onchange", getOnchangeExpr(),
+                                            this, pageContext)) != null)
+            setOnchange(string);
+
+        if ((string = EvalHelper.evalString("onclick", getOnclickExpr(),
+                                            this, pageContext)) != null)
+            setOnclick(string);
+
+        if ((string = EvalHelper.evalString("ondblclick", getOndblclickExpr(),
+                                            this, pageContext)) != null)
+            setOndblclick(string);
+
+        if ((string = EvalHelper.evalString("onfocus", getOnfocusExpr(),
+                                            this, pageContext)) != null)
+            setOnfocus(string);
+
+        if ((string = EvalHelper.evalString("onkeydown", getOnkeydownExpr(),
+                                            this, pageContext)) != null)
+            setOnkeydown(string);
+
+        if ((string = EvalHelper.evalString("onkeypress", getOnkeypressExpr(),
+                                            this, pageContext)) != null)
+            setOnkeypress(string);
+
+        if ((string = EvalHelper.evalString("onkeyup", getOnkeyupExpr(),
+                                            this, pageContext)) != null)
+            setOnkeyup(string);
+
+        if ((string = EvalHelper.evalString("onmousedown", getOnmousedownExpr(),
+                                            this, pageContext)) != null)
+            setOnmousedown(string);
+
+        if ((string = EvalHelper.evalString("onmousemove", getOnmousemoveExpr(),
+                                            this, pageContext)) != null)
+            setOnmousemove(string);
+
+        if ((string = EvalHelper.evalString("onmouseout", getOnmouseoutExpr(),
+                                            this, pageContext)) != null)
+            setOnmouseout(string);
+
+        if ((string = EvalHelper.evalString("onmouseover", getOnmouseoverExpr(),
+                                            this, pageContext)) != null)
+            setOnmouseover(string);
+
+        if ((string = EvalHelper.evalString("onmouseup", getOnmouseupExpr(),
+                                            this, pageContext)) != null)
+            setOnmouseup(string);
+
         if ((string = EvalHelper.evalString("property", getPropertyExpr(),
                                             this, pageContext)) != null)
             setProperty(string);
+
+        if ((string = EvalHelper.evalString("style", getStyleExpr(),
+                                            this, pageContext)) != null)
+            setStyle(string);
+
+        if ((string = EvalHelper.evalString("styleClass", getStyleClassExpr(),
+                                            this, pageContext)) != null)
+            setStyleClass(string);
+
+        if ((string = EvalHelper.evalString("styleId", getStyleIdExpr(),
+                                            this, pageContext)) != null)
+            setStyleId(string);
 
         if ((string = EvalHelper.evalString("title", getTitleExpr(),
                                             this, pageContext)) != null)

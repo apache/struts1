@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.8 2003/03/09 05:47:23 dmkarr Exp $
- * $Revision: 1.8 $
- * $Date: 2003/03/09 05:47:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.9 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,7 +84,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ELImgTag extends ImgTag {
 
@@ -204,6 +204,11 @@ public class ELImgTag extends ImgTag {
      */
     private String onmouseupExpr;
     /**
+     * Instance variable mapped to "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramIdExpr;
+    /**
      * Instance variable mapped to "page" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -213,11 +218,6 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String pageKeyExpr;
-    /**
-     * Instance variable mapped to "paramId" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    private String paramIdExpr;
     /**
      * Instance variable mapped to "paramName" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -410,6 +410,11 @@ public class ELImgTag extends ImgTag {
      */
     public String getOnmouseupExpr() { return (onmouseupExpr); }
     /**
+     * Getter method for "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamIdExpr() { return (paramIdExpr); }
+    /**
      * Getter method for "page" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -419,11 +424,6 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getPageKeyExpr() { return (pageKeyExpr); }
-    /**
-     * Getter method for "paramId" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public String getParamIdExpr() { return (paramIdExpr); }
     /**
      * Getter method for "paramName" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -616,6 +616,11 @@ public class ELImgTag extends ImgTag {
      */
     public void setOnmouseupExpr(String onmouseupExpr) { this.onmouseupExpr = onmouseupExpr; }
     /**
+     * Setter method for "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamIdExpr(String paramIdExpr) { this.paramIdExpr = paramIdExpr; }
+    /**
      * Setter method for "page" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -625,11 +630,6 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setPageKeyExpr(String pageKeyExpr) { this.pageKeyExpr = pageKeyExpr; }
-    /**
-     * Setter method for "paramId" tag attribute.
-     * (Mapping set in associated BeanInfo class.)
-     */
-    public void setParamIdExpr(String paramIdExpr) { this.paramIdExpr = paramIdExpr; }
     /**
      * Setter method for "paramName" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -868,6 +868,10 @@ public class ELImgTag extends ImgTag {
                                             this, pageContext)) != null)
             setOnmouseup(string);
 
+        if ((string = EvalHelper.evalString("paramId", getParamIdExpr(),
+                                            this, pageContext)) != null)
+            setParamId(string);
+
         if ((string = EvalHelper.evalString("page", getPageExpr(),
                                             this, pageContext)) != null)
             setPage(string);
@@ -875,10 +879,6 @@ public class ELImgTag extends ImgTag {
         if ((string = EvalHelper.evalString("pageKey", getPageKeyExpr(),
                                             this, pageContext)) != null)
             setPageKey(string);
-
-        if ((string = EvalHelper.evalString("paramId", getParamIdExpr(),
-                                            this, pageContext)) != null)
-            setParamId(string);
 
         if ((string = EvalHelper.evalString("paramName", getParamNameExpr(),
                                             this, pageContext)) != null)

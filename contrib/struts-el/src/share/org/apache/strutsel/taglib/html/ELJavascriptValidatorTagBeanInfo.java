@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTagBeanInfo.java,v 1.4 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTagBeanInfo.java,v 1.5 2003/07/26 05:48:03 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/26 05:48:03 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -103,6 +103,10 @@ public class ELJavascriptValidatorTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("page", ELJavascriptValidatorTag.class,
                                                 null, "setPageExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("scriptLanguage", ELJavascriptValidatorTag.class,
+                                                null, "setScriptLanguageExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("src", ELJavascriptValidatorTag.class,

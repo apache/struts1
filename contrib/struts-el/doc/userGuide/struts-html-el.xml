@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./struts-html-el.xml">
+<document url="struts-html-el.html">
 
 <properties>
   <author>Mike Schachter</author>
@@ -43,8 +43,7 @@
           <p>Renders an HTML <code>&lt;base&gt;</code> element with an
           <code>href</code> attribute pointing to the absolute location of
           the enclosing JSP page.  This tag is valid only when nested inside
-          an HTML <code>&lt;head&gt;</code> element.  There are no attributes
-          associated with this tag.</p>
+          an HTML <code>&lt;head&gt;</code> element.</p>
 
           <p>This tag is useful because it allows you to use relative URL
           references in the page that are calculated based on the URL of the
@@ -81,9 +80,14 @@
         <tagclass>org.apache.strutsel.taglib.html.ELButtonTag</tagclass>
         <info>
             <p>
-                Renders an HTML &lt;input&gt; element of type button, populated
-                from the specified value or the content of this tag body. This
-                tag is only valid when nested inside a form tag body.
+                Renders an HTML &lt;input&gt; element of type
+                <code>button</code>, populated from the specified value or the
+                content of this tag body. This tag is only valid when nested
+                inside a form tag body.
+            </p>
+            <p>
+             If a graphical button is needed (a button with an image), then the
+             <a href="#image"><code>image</code></a> tag is more appropriate.
             </p>
         </info>
 
@@ -131,10 +135,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "propertyName[34]". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "propertyName[34]". Number in
+                brackets will be generated for every iteration and taken from
+                ancestor iteration tag.
             </info>
         </attribute>
 
@@ -294,7 +299,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -564,7 +570,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -692,10 +699,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -866,7 +874,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1083,10 +1092,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -1095,7 +1105,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Maximum number of input characters to accept. [No limit]
+                Maximum number of input characters to accept.  This is ignored
+                by most browsers. [No limit]
             </info>
         </attribute>
 
@@ -1275,7 +1286,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1322,9 +1334,18 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Value of the label to be placed on this button. This value will
-                also be submitted as the value of the specified request parameter.
-                [Body of this tag (if any), or "Cancel"]
+            <p>
+                <strong>NOTE</strong>: When setting this to some value, whether
+                intentional or as the result (for example) of validation errors 
+                forcing the user back to the original jsp, this value is ignored 
+                by most browsers (for security reasons).
+                This means that your users will have to re-select any previously
+                selected files when submitting the form.  Opera web browser will
+                prompt the user so they have a chance to abort the submit.
+            </p>
+                Value to which this field should be initialized. [Use the
+                corresponding bean property value or body content (if any) if 
+                property is not specified]
             </info>
         </attribute>
     </tag>
@@ -1343,6 +1364,30 @@
                 by the body content of this tag. The form implicitly interacts
                 with the specified request scope or session scope bean to populate
                 the input fields with the current property values from the bean.
+            </p>
+            <p>
+                The associated form bean is determined in one of two ways:
+            </p>
+            <ul>
+                <li>
+                    If the <code>name</code> and <code>type</code> attributes
+                    are not specified, then the form bean will be located, and
+                    created if necessary, based on the form bean specification
+                    for the associated <code>ActionMapping</code>.
+                </li>
+                <li>
+                    If the <code>name</code> and <code>type</code> attributes
+                    are specified, then the form bean will be located, and created
+                    if necessary, using the specified values for <code>name</code>,
+                    <code>type</code> and <code>scope</code>.
+                </li>
+            </ul>
+            <p>
+                <strong>NOTE</strong>: The use of the <code>name</code>,
+                <code>type</code> and <code>scope</code> attributes is
+                deprecated. The preferred usage is to allow the appropriate
+                values to be determined automatically from the corresponding
+                <code>ActionMapping</code>.
             </p>
         </info>
 
@@ -1392,7 +1437,7 @@
             </info>
         </attribute>
 
- 		<attribute>
+        <attribute>
             <name>focusIndex</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
@@ -1418,21 +1463,25 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                        <p>Name of the request scope or session scope bean
-                        (as defined by the <code>scope</code> attribute)
-                        whose properties will be used to populate the input
-                        field values.  If no such bean is found, a new bean
-                        will be created and added to the appropriate scope,
-                        using the Java class name specified by the
-                        <code>type</code> attribute.</p>
+                <p>Name of the request scope or session scope bean
+                (as defined by the <code>scope</code> attribute)
+                whose properties will be used to populate the input
+                field values.  If no such bean is found, a new bean
+                will be created and added to the appropriate scope,
+                using the Java class name specified by the
+                <code>type</code> attribute.</p>
 
-                        <p>If this attribute is not specified, it will be
-                        calculated by using the value of the
-                        <code>action</code> attribute to look up the
-                        corresponding ActionMapping element, from which
-                        we will select the specified form bean name.</p>
-                        </info>
-                </attribute>
+                <p>If this attribute is not specified, the name of the bean
+                will be calculated by using the value of the
+                <code>action</code> attribute to look up the
+                corresponding <code>ActionMapping</code> element, from which
+                the specified form bean name will be selected.</p>
+            </info>
+            <deprecated>
+                The bean name will be determined from the corresponding
+                <code>ActionMapping</code>.
+            </deprecated>
+        </attribute>
 
         <attribute>
             <name>onreset</name>
@@ -1457,19 +1506,35 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                        <p>Scope within which the form bean associated with
-                        this input form will be accessed or created (must be
-                        either <code>request</code> or <code>session</code>.
-                        </p>
+                <p>Scope within which the form bean associated with
+                this input form will be accessed or created (must be
+                either <code>request</code> or <code>session</code>).
+                </p>
 
-                        <p>If this attribute is not specified, it will be
-                        calculated by using the value of the
-                        <code>action</code> attribute to look up the
-                        corresponding ActionMapping element, from which
-                        we will select the specified form bean scope.</p>
-                        </info>
+                <p>If this attribute is not specified, the scope of the bean
+                will be calculated by using the value of the
+                <code>action</code> attribute to look up the
+                corresponding <code>ActionMapping</code> element, from which
+                the specified form bean scope will be selected.</p>
+            </info>
+            <deprecated>
+                The bean scope will be determined from the corresponding
+                <code>ActionMapping</code>.
+            </deprecated>
         </attribute>
-
+        
+		<attribute>
+            <name>scriptLanguage</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                The form's focus &lt;script&gt; element will not contain a language attribute
+                when this is set to false.  The default is true but this property is ignored
+                in XHMTL mode.
+            </info>
+            <since>Struts 1.2</since>
+        </attribute>
+        
         <attribute>
             <name>style</name>
             <required>false</required>
@@ -1484,7 +1549,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1513,16 +1579,20 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                        <p>Fully qualified Java class name of the form bean to
-                        be created, if no such bean is found in the specified
-                        scope.</p>
+                <p>Fully qualified Java class name of the form bean to
+                be created, if no such bean is found in the specified
+                scope.</p>
 
-                        <p>If this attribute is not specified, it will be
-                        calculated by using the value of the
-                        <code>action</code> attribute to look up the
-                        corresponding ActionMapping element, from which
-                        we will select the specified form bean type.</p>
-                        </info>
+                <p>If this attribute is not specified, the type of the bean
+                will be calculated by using the value of the
+                <code>action</code> attribute to look up the
+                corresponding <code>ActionMapping</code> element, from which
+                the specified form bean type will be selected.</p>
+            </info>
+            <deprecated>
+                The bean type will be determined from the corresponding
+                <code>ActionMapping</code>.
+            </deprecated>
         </attribute>
     </tag>
 
@@ -1554,6 +1624,9 @@
                 application-relative URI, and generate a server-relative
                 URI by including the context path and application
                 prefix.</li>
+            <li><em>action</em> - Use the value of this attribute as the
+                logical name of a global Action that contains the actual 
+                content-relative URI of the destination of this transfer.</li>
             </ul>
 
             <p>Normally, the hyperlink you specify with one of the
@@ -1657,10 +1730,11 @@
                 of this transfer.  This hyperlink may be dynamically
                 modified by the inclusion of query parameters, as described
                 in the tag description.  You <strong>must</strong> specify
-                exactly one of the <code>forward</code> attribute, the
+                exactly one of the <code>action</code> attribute, the
+                <code>forward</code> attribute, the
                 <code>href</code> attribute,
                 or the <code>page</code> attribute.</p>
-            </info>
+             </info>
         </attribute>
 
         <attribute>
@@ -1689,13 +1763,14 @@
             <rtexprvalue>false</rtexprvalue>
             <info>
                 <p>The URL to which this hyperlink will transfer control
-                if activated.  This hyperlink may be dynamically modified
-                by the inclusion of query parameters, as described in the
-                tag description.  You <strong>must</strong> specify
-                exactly one of the <code>forward</code> attribute, the
-                <code>href</code> attribute,
-                or the <code>page</code> attribute.</p>
-            </info>
+                 if activated.  This hyperlink may be dynamically modified
+                 by the inclusion of query parameters, as described in the
+                 tag description.  You <strong>must</strong> specify
+                 exactly one of the <code>action</code> attribute, the
+                 <code>forward</code> attribute, the
+                 <code>href</code> attribute,
+                 or the <code>page</code> attribute.</p>
+             </info>
         </attribute>
 
         <attribute>
@@ -1726,7 +1801,7 @@
             <rtexprvalue>false</rtexprvalue>
             <info>
                 <p>The amount of space (in pixels) to be left between the
-                frame's contents and its left and right argins.</p>
+                frame's contents and its left and right margins.</p>
             </info>
         </attribute>
 
@@ -1758,15 +1833,16 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                <p>The application-relative path (beginning with a "/"
+                <p>The module-relative path (beginning with a "/"
                 character) to which this hyperlink will transfer control
-                if activated.  This hyperlink may be dynamically modified
-                by the inclusion of query parameters, as described in the
-                tag description.  You <strong>must</strong> specify exactly
-                one of the <code>forward</code> attribute, the
-                <code>href</code> attribute,
-                or the <code>page</code> attribute.</p>
-                </info>
+                 if activated.  This hyperlink may be dynamically modified
+                 by the inclusion of query parameters, as described in the
+                 tag description.  You <strong>must</strong> specify exactly
+                 one of the <code>action</code> attribute, the
+                 <code>forward</code> attribute, the
+                 <code>href</code> attribute,
+                 or the <code>page</code> attribute.</p>
+                 </info>
             </attribute>
 
         <attribute>
@@ -1778,7 +1854,7 @@
                 added to the generated hyperlink.  The corresponding value is
                 defined by the <code>paramName</code> and (optional)
                 <code>paramProperty</code> attributes, optionally scoped by
-                the <code>paramScope</code> attributel</p>
+                the <code>paramScope</code> attribute</p>
             </info>
         </attribute>
 
@@ -1870,7 +1946,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                <p>CSS stylesheet class to be applied to this element.</p>
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -1935,6 +2012,16 @@
         </info>
 
         <attribute>
+            <name>accesskey</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                The keyboard character used to move focus immediately to this
+                element.
+            </info>
+        </attribute>
+
+        <attribute>
                 <name>alt</name>
                 <required>false</required>
                 <rtexprvalue>false</rtexprvalue>
@@ -1958,10 +2045,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -1978,6 +2066,136 @@
         </attribute>
 
         <attribute>
+            <name>onblur</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onchange</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus and its value has changed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onclick</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse click.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>ondblclick</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse double click.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onfocus</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives input
+                focus.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onkeydown</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus and a
+                key is depressed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onkeypress</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus and a
+                key is depressed and released.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onkeyup</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus and a
+                key is released.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmousedown</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the mouse
+                pointer and a mouse button is depressed.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmousemove</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and the pointer is moved.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseout</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was under the
+                mouse pointer but the pointer was moved outside the element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseover</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was not under
+                the mouse pointer but the pointer is moved inside the element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>onmouseup</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and a mouse button is released.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>property</name>
             <required>true</required>
             <rtexprvalue>false</rtexprvalue>
@@ -1985,6 +2203,35 @@
                 Name of this input field, and the name of the corresponding bean
                 property if value is not specified. The corresponding bean property
                 (if any) must be of type String.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>styleId</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                Identifier to be assigned to this HTML element (renders
+                an "id" attribute).
             </info>
         </attribute>
 
@@ -2044,15 +2291,34 @@
           object, if there is one.</p>
           </info>
 
+	  <attribute>
+            <name>lang</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                 Renders a lang attribute with the locale stored in the user's session.  If not 
+                 found in the session, the language from the <code>Accept-Language</code>
+                 HTTP header is used.  If still not found, the default language for the server 
+                 is used.
+            </info>
+			<since>Struts 1.2</since>
+        </attribute>
+
           <attribute>
             <name>locale</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-              <p>Set to <code>true</code> in order to record a Locale based on
+              <p>Set to <code>true</code> in order to store a Locale in the session based on
               the current request's <code>Accept-Language</code> header (if
-              any) if none has currently been set.</p>
+              any) if none has currently been set.  This attribute will create a session
+              if one does not already exist.  The lang attribute is rendered with the
+              appropriate language code.</p>
             </info>
+            <deprecated>
+                Creating a session is undesirable for apps that don't support them.  Use the lang
+                attribute to acheive the same functionality without creating a session.
+            </deprecated>
           </attribute>
 
           <attribute>
@@ -2062,7 +2328,9 @@
             <info>
               <p>Set to <code>true</code> in order to render an
               <code>xml:lang</code> attribute on the generated
-              <code>html</code> element.</p>
+              <code>html</code> element.  This also causes all other
+              html tags to render as xhtml.
+              </p>
             </info>
           </attribute>
 
@@ -2087,6 +2355,8 @@
                 <p>If you would like to obtain the coordinates of the mouse
                 click that submitted this request, see the information below
                 on the <code>property</code> attribute.</p>
+                
+                <p>This tag is only valid when nested inside a form tag body.</p>
 
                 </info>
 
@@ -2105,7 +2375,9 @@
                 <required>false</required>
                 <rtexprvalue>false</rtexprvalue>
                 <info>
-                <p>The alignment option for this image.</p>
+                <p>The alignment option for this image. The align attribute is
+                deprecated in HTML 4.x. The suggested alternative is to use CSS.
+                Please see http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.7.4 for more details.</p>
                 </info>
         </attribute>
 
@@ -2185,78 +2457,132 @@
             <name>onblur</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus.
+            </info>
           </attribute>
 
           <attribute>
             <name>onchange</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element loses input
+                focus and its value has changed.
+            </info>
           </attribute>
 
           <attribute>
             <name>onclick</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse click.
+            </info>
           </attribute>
 
           <attribute>
             <name>ondblclick</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives a
+                mouse double click.
+            </info>
           </attribute>
 
           <attribute>
             <name>onfocus</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element receives input
+                focus.
+            </info>
           </attribute>
 
           <attribute>
             <name>onkeydown</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus
+                and a key is depressed.
+            </info>
           </attribute>
 
           <attribute>
             <name>onkeypress</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus
+                and a key is depressed and released.
+            </info>
           </attribute>
 
           <attribute>
             <name>onkeyup</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element has focus
+                and a key is released.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmousedown</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under
+                the mouse pointer and a mouse button is depressed.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmousemove</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and the pointer is moved.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmouseout</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was under
+                the mouse pointer but the pointer was moved outside the
+                element.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmouseover</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element was not
+                under the mouse pointer but the pointer is moved inside the
+                element.
+            </info>
           </attribute>
 
           <attribute>
             <name>onmouseup</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                JavaScript event handler executed when this element is under the
+                mouse pointer and a mouse button is released.
+            </info>
           </attribute>
 
         <attribute>
@@ -2264,7 +2590,7 @@
                 <required>false</required>
                 <rtexprvalue>false</rtexprvalue>
                 <info>
-                <p>The application-relative path of the image for this
+                <p>The module-relative path of the image for this
                 input tag.</p>
                 </info>
         </attribute>
@@ -2275,7 +2601,7 @@
                 <rtexprvalue>false</rtexprvalue>
                 <info>
                 <p>The key of the message resources string specifying the
-                application-relative path of the image for this input tag.</p>
+                module-relative path of the image for this input tag.</p>
                 </info>
         </attribute>
 
@@ -2289,7 +2615,7 @@
                 the x and y representing the coordinates of the mouse click
                 for the image.  A way of retrieving these values through a
                 form bean is to define getX(), getY(), setX(), and setY()
-                methods, and specify your propery as a blank string
+                methods, and specify your property as a blank string
                 (property="").</p>
                 </info>
         </attribute>
@@ -2317,12 +2643,19 @@
             <name>style</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                CSS styles to be applied to this HTML element.
+            </info>
           </attribute>
 
           <attribute>
             <name>styleClass</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
+            </info>
           </attribute>
 
         <attribute>
@@ -2339,6 +2672,9 @@
             <name>tabindex</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+                The tab order (ascending positive integers) for this element.
+            </info>
           </attribute>
 
                 <attribute>
@@ -2364,6 +2700,10 @@
             <name>value</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
+            <info>
+              <p>The value that will be submitted if this image button
+              is pressed.</p>
+            </info>
           </attribute>
 
         </tag>
@@ -2457,16 +2797,6 @@
                 </info>
 
                 <attribute>
-                  <name>accesskey</name>
-                  <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
-                  <info>
-                  <p>The keyboard character used to move focus immediately
-                  to this element.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
                   <name>align</name>
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
@@ -2480,13 +2810,13 @@
                         the same row</li>
                     <li>middle - aligns the image's vertical center with the
                         text base line</li>
-                    <li>bottom - aligns the image with the botton of the
+                    <li>bottom - aligns the image with the bottom of the
                         text's base line</li>
                     <li>texttop - aligns the image's top with that of the
                         text font on the same line</li>
                     <li>absmiddle - aligns the image's vertical center with the
                         absolute center of the text</li>
-                    <li>absbottom - aligns the image with the absolute botton
+                    <li>absbottom - aligns the image with the absolute bottom
                         of the text font on the same row</li>
                   </ul>
                   </info>
@@ -2539,7 +2869,7 @@
                   <rtexprvalue>false</rtexprvalue>
                   <info>
                   <p>The height of the image being displayed.  This parameter
-                     is very nice to specificy (along with <code>width</code>)
+                     is very nice to specify (along with <code>width</code>)
                      to help the browser render the page faster.</p>
                   </info>
                 </attribute>
@@ -2592,8 +2922,10 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>An image for people with low resoution graphics cards.
-                     Is this even necessary any more?</p>
+                  <p><strong>DEPRECATED</strong> - This attribute is not defined
+                  in the HTML 4.01 spec and will be removed in a future version of Struts.
+                  An image for people with low resolution graphics cards.
+                  </p>
                   </info>
                 </attribute>
 
@@ -2711,11 +3043,24 @@
                 </attribute>
 
                 <attribute>
+                  <name>paramId</name>
+                  <required>false</required>
+                  <rtexprvalue>false</rtexprvalue>
+                  <info>
+                  <p>The name of the request parameter that will be dynamically
+                  added to the generated src URL.  The corresponding value is
+                  defined by the <code>paramName</code> and (optional)
+                  <code>paramProperty</code> attributes, optionally scoped by
+                  the <code>paramScope</code> attribute</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>page</name>
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>The application-relative path, starting with a slash, of
+                  <p>The module-relative path, starting with a slash, of
                   the image to be displayed by this tag.  The rendered
                   URL for this image will automatically prepend the context
                   path of this web application (in the same manner as the
@@ -2733,20 +3078,7 @@
                   <info>
                   <p>The message key, in the message resources bundle named by
                   the <code>bundle</code> attribute, of the String to be
-                  used as the application-relative path for this image.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
-                  <name>paramId</name>
-                  <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
-                  <info>
-                  <p>The name of the request parameter that will be dynamically
-                  added to the generated src URL.  The corresponding value is
-                  defined by the <code>paramName</code> and (optional)
-                  <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  used as the module-relative path for this image.</p>
                   </info>
                 </attribute>
 
@@ -2826,7 +3158,7 @@
                   than potential URL rewriting) as the value of the "src"
                   attribute in the rendered tag.  You <strong>must</strong>
                   specify either the <code>page</code> attribute or the
-                  the <code>src</code> attribute.</p>
+                  <code>src</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -2855,7 +3187,8 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>CSS stylesheet class to be applied to this element.</p>
+                  CSS stylesheet class to be applied to this HTML element
+                  (renders a "class" attribute).
                   </info>
                 </attribute>
 
@@ -2914,7 +3247,7 @@
                   <rtexprvalue>false</rtexprvalue>
                   <info>
                   <p>The width of the image being displayed.  This parameter
-                     is very nice to specificy (along with <code>height</code>)
+                     is very nice to specify (along with <code>height</code>)
                      to help the browser render the page faster.</p>
                   </info>
                 </attribute>
@@ -2957,10 +3290,7 @@
             <info>
                <p>
                   If set to "true" and XHTML has been enabled, the JavaScript will
-                  be wrapped in a CDATA section to prevent XML parsing.  Current browsers
-                  don't support this convention, causing the scripts to fail.  To allow the
-                  script to work in current browsers as well as hide it from XML parsers you 
-                  need to set this attribute to "false" and htmlComment to "true".  The default is
+                  be wrapped in a CDATA section to prevent XML parsing. The default is
                   "true" to comply with the W3C's recommendation.
                </p>
             </info>
@@ -3014,6 +3344,19 @@
                </p>
             </info>
         </attribute>
+        
+        <attribute>
+            <name>scriptLanguage</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                The &lt;script&gt; element will not contain a language attribute
+                when this is set to false.  The default is true but this property is ignored
+                in XHMTL mode.
+            </info>
+            <since>Struts 1.2</since>
+        </attribute>
+        
         <attribute>
             <name>src</name>
             <required>false</required>
@@ -3042,8 +3385,11 @@
             <rtexprvalue>false</rtexprvalue>
             <info>
                <p>
-                  Wheather or not to enclose the javascript
-                  with html comments.
+                  Whether or not to enclose the javascript
+                  with HTML comments.  This attribute is ignored in XHTML
+                  mode because the script would be deleted by the XML parser.  See
+                  the cdata attribute for details on hiding scripts from XML
+                  parsers. 
                   Defaults to <code>true</code>.
                </p>
             </info>
@@ -3077,9 +3423,9 @@
                     name of a <code>Action</code> to be looked
                     up, and use the application-relative or context-relative
                     URI found there.</li>
-                <li><em>href</em> - Use the value of this attribute unchanged.
-                    </li>
-                <li><em>page</em> - Use the value of this attribute as a
+                 <li><em>href</em> - Use the value of this attribute unchanged.
+                     </li>
+                 <li><em>page</em> - Use the value of this attribute as a
                     application-relative URI, and generate a server-relative
                     URI by including the context path and application
                     prefix.</li>
@@ -3193,14 +3539,14 @@
                   <info>
                   <p>Logical name of a global <code>ActionForward</code> that
                   contains the actual content-relative URI of the destination
-                  of this transfer.  This hyperlink may be dynamically modified
-                  by the inclusion of query parameters, as described in the tag
-                  description.  You <strong>must</strong> specify exactly one
-                  of the <code>action</code> attribute, the
-                  <code>forward</code> attribute, the <code>href</code>
-                  attribute, the <code>linkName</code> attribute, or the
-                  <code>page</code> attribute.</p>
-                  </info>
+                   of this transfer.  This hyperlink may be dynamically
+                   modified by the inclusion of query parameters, as described
+                   in the tag description.  You <strong>must</strong> specify
+                   exactly one of the <code>action</code> attribute, the
+                   <code>forward</code> attribute, the
+                   <code>href</code> attribute, the <code>linkName</code>
+                   attribute, or the <code>page</code> attribute.</p>
+                   </info>
                 </attribute>
 
                 <attribute>
@@ -3208,15 +3554,15 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>The URL to which this hyperlink will transfer control if
-                  activated.  This hyperlink may be dynamically modified by the
-                  inclusion of query parameters, as described in the tag
-                  description.  You <strong>must</strong> specify exactly one
-                  of the <code>action</code> attribute, the
-                  <code>forward</code> attribute, the <code>href</code>
-                  attribute, the <code>linkName</code> attribute, or the
-                  <code>page</code> attribute.</p>
-                  </info>
+                  <p>The URL to which this hyperlink will transfer control
+                   if activated.  This hyperlink may be dynamically modified
+                   by the inclusion of query parameters, as described in the
+                   tag description.  You <strong>must</strong> specify
+                   exactly one of the <code>action</code> attribute, the
+                   <code>forward</code> attribute, the
+                   <code>href</code> attribute, the <code>linkName</code>
+                   attribute, or the <code>page</code> attribute.</p>
+                   </info>
                 </attribute>
 
         <attribute>
@@ -3224,11 +3570,12 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.  If <code>true</code>
-                then indexed parameter with name from indexId attribute will be
-                added to the query string. Indexed parameter looks like
-                "index[32]". Number in brackets will be generated for every
-                iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then indexed
+                parameter with name from indexId attribute will be added to the
+                query string. Indexed parameter looks like "index[32]". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -3392,16 +3739,16 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>The application-relative path (beginning with a "/"
-                  character) to which this hyperlink will transfer control if
-                  activated.  This hyperlink may be dynamically modified by the
-                  inclusion of query parameters, as described in the tag
-                  description.  You <strong>must</strong> specify exactly one
-                  of the <code>action</code> attribute, the
-                  <code>forward</code> attribute, the <code>href</code>
-                  attribute, the <code>linkName</code> attribute, or the
-                  <code>page</code> attribute.</p>
-                  </info>
+                  <p>The module-relative path (beginning with a "/"
+                  character) to which this hyperlink will transfer control
+                   if activated.  This hyperlink may be dynamically modified
+                   by the inclusion of query parameters, as described in the
+                   tag description.  You <strong>must</strong> specify exactly
+                   one of the <code>action</code> attribute,
+                   <code>forward</code> attribute, the
+                   <code>href</code> attribute, the <code>linkName</code>
+                   attribute, or the <code>page</code> attribute.</p>
+                   </info>
                 </attribute>
 
                 <attribute>
@@ -3413,7 +3760,7 @@
                   added to the generated hyperlink.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 
@@ -3495,8 +3842,8 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>CSS stylesheet class to be applied to this element
-                  (renders a "class" attribute).</p>
+                  CSS stylesheet class to be applied to this HTML element
+                  (renders a "class" attribute).
                   </info>
                 </attribute>
 
@@ -3920,7 +4267,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4051,15 +4399,6 @@
         </attribute>
 
         <attribute>
-            <name>styleClass</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-            <info>
-                CSS stylesheet class to be applied to this HTML element.
-            </info>
-        </attribute>
-
-        <attribute>
             <name>styleId</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
@@ -4070,12 +4409,22 @@
         </attribute>
 
         <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
+            </info>
+        </attribute>
+
+        <attribute>
                     <name>value</name>
                     <required>true</required>
                     <rtexprvalue>false</rtexprvalue>
                     <info>
                     Value to be submitted for this field if this option is
-                    selected by the uuser.
+                    selected by the user.
                     </info>
         </attribute>
 
@@ -4163,6 +4512,13 @@
                     that bean which will return the collection.</li>
                 </ul>
 
+
+            <p>Note that this tag does not support a <code>styleId</code>
+            attribute, as it would have to apply the value to all the
+            <code>option</code> elements created by this element, which would
+            mean that more than one <code>id</code> element might have the same
+            value, which the HTML specification says is illegal.</p>
+
         </info>
 
                 <attribute>
@@ -4246,7 +4602,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4280,6 +4637,12 @@
             in that it makes more consistent use of the <code>name</code> and
             <code>property</code> attributes, and allows the collection to be
             more easily obtained from the enclosing form bean.</p>
+
+            <p>Note that this tag does not support a <code>styleId</code>
+            attribute, as it would have to apply the value to all the
+            <code>option</code> elements created by this element, which would
+            mean that more than one <code>id</code> element might have the same
+            value, which the HTML specification says is illegal.</p>
         </info>
 
         <attribute>
@@ -4340,7 +4703,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4415,10 +4779,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -4625,7 +4990,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4683,7 +5049,7 @@
             <info>
                 Value of the label to be placed on this button. This value will
                 also be submitted as the value of the specified request parameter.
-                [Body of this tag (if any), or "Cancel"]
+                [Body of this tag (if any)]
             </info>
         </attribute>
     </tag>
@@ -4756,10 +5122,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -4856,6 +5223,15 @@
             </info>
         </attribute>
 
+                <attribute>
+                        <name>property</name>
+                        <required>true</required>
+                        <rtexprvalue>false</rtexprvalue>
+                        <info>
+                                The corresponding bean property for this radio tag.
+                        </info>
+                </attribute>
+
         <attribute>
             <name>onmousedown</name>
             <required>false</required>
@@ -4906,15 +5282,6 @@
             </info>
         </attribute>
 
-                <attribute>
-                        <name>property</name>
-                        <required>true</required>
-                        <rtexprvalue>false</rtexprvalue>
-                        <info>
-                                The corresponding bean property for this radio tag.
-                        </info>
-                </attribute>
-
         <attribute>
             <name>style</name>
             <required>false</required>
@@ -4929,7 +5296,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -4985,14 +5353,14 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Name of the bean (in some scope) that will return the
+                <p>Name of the bean (in some scope) that will return the
                 value of the radio tag. Usually exposed
                 by an iterator. When the idName attribute is
-                present, the valueattribute is used as the name of the
+                present, the value attribute is used as the name of the
                 property on the idName bean that will return the
-                value of the radio tag for this iteration.
-                Since Struts 1.1.
+                value of the radio tag for this iteration.</p>
             </info>
+            <since>Struts 1.1</since>
         </attribute>
 
 
@@ -5205,7 +5573,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -5292,14 +5661,15 @@
                   <rtexprvalue>false</rtexprvalue>
                   <info>
                   <p>Logical name of a global <code>ActionForward</code> that
-                  contains the actual content-relative URI of the destination
-                  of this transfer.  This hyperlink may be dynamically
-                  modified by the inclusion of query parameters, as described
-                  in the tag description.  You <strong>must</strong> specify
-                  exactly one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, or the <code>page</code>
-                  attribute.</p>
-                  </info>
+                   contains the actual content-relative URI of the destination
+                   of this transfer.  This hyperlink may be dynamically
+                   modified by the inclusion of query parameters, as described
+                   in the tag description.  You <strong>must</strong> specify
+                   exactly one of the <code>action</code> attribute, the
+                   <code>forward</code> attribute, the
+                   <code>href</code> attribute, or the <code>page</code>
+                   attribute.</p>
+                   </info>
                 </attribute>
 
                 <attribute>
@@ -5308,14 +5678,15 @@
                   <rtexprvalue>false</rtexprvalue>
                   <info>
                   <p>The URL to which this hyperlink will transfer control
-                  if activated.  This hyperlink may be dynamically modified
-                  by the inclusion of query parameters, as described in the
-                  tag description.  You <strong>must</strong> specify
-                  exactly one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, or the <code>page</code>
-                  attribute.</p>
-                  </info>
-                </attribute>
+                   if activated.  This hyperlink may be dynamically modified
+                   by the inclusion of query parameters, as described in the
+                   tag description.  You <strong>must</strong> specify
+                   exactly one of the <code>action</code> attribute, the
+                   <code>forward</code> attribute, the
+                   <code>href</code> attribute, or the <code>page</code>
+                   attribute.</p>
+                   </info>
+                 </attribute>
 
                 <attribute>
                   <name>name</name>
@@ -5335,16 +5706,17 @@
                   <required>false</required>
                   <rtexprvalue>false</rtexprvalue>
                   <info>
-                  <p>The application-relative path (beginning with a "/"
+                  <p>The module-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
-                  if activated.  This hyperlink may be dynamically modified
-                  by the inclusion of query parameters, as described in the
-                  tag description.  You <strong>must</strong> specify exactly
-                  one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, or the <code>page</code>
-                  attribute.</p>
-                  </info>
-                </attribute>
+                   if activated.  This hyperlink may be dynamically modified
+                   by the inclusion of query parameters, as described in the
+                   tag description.  You <strong>must</strong> specify exactly
+                   one of the <code>action</code> attribute, the 
+                   <code>forward</code> attribute, the
+                   <code>href</code> attribute, or the <code>page</code>
+                   attribute.</p>
+                   </info>                
+                 </attribute>
 
                 <attribute>
                   <name>paramId</name>
@@ -5355,7 +5727,7 @@
                   added to the generated hyperlink.  The corresponding value is
                   defined by the <code>paramName</code> and (optional)
                   <code>paramProperty</code> attributes, optionally scoped by
-                  the <code>paramScope</code> attributel</p>
+                  the <code>paramScope</code> attribute</p>
                   </info>
                 </attribute>
 
@@ -5510,10 +5882,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -5683,15 +6056,6 @@
         </attribute>
 
         <attribute>
-            <name>size</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
-            <info>
-                The number of available options displayed at one time.
-            </info>
-        </attribute>
-
-        <attribute>
             <name>style</name>
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
@@ -5705,7 +6069,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -5725,6 +6090,15 @@
             <rtexprvalue>false</rtexprvalue>
             <info>
                 The tab order (ascending positive integers) for this element.
+            </info>
+        </attribute>
+
+        <attribute>
+            <name>size</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <info>
+                The number of available options displayed at one time.
             </info>
         </attribute>
 
@@ -5766,7 +6140,11 @@
         </summary>
         <tagclass>org.apache.strutsel.taglib.html.ELSubmitTag</tagclass>
         <info>
-            Render an input button of type submit.
+            Renders an HTML &lt;input&gt; element of type <code>submit</code>.
+            <p>
+             If a graphical button is needed (a button with an image), then the
+             <a href="#image"><code>image</code></a> tag is more appropriate.
+            </p>
         </info>
 
         <attribute>
@@ -5813,10 +6191,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "propertyName[34]". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "propertyName[34]". Number in
+                brackets will be generated for every iteration and taken from
+                ancestor iteration tag.
             </info>
         </attribute>
 
@@ -5976,7 +6355,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -6036,7 +6416,8 @@
         </summary>
         <tagclass>org.apache.strutsel.taglib.html.ELTextTag</tagclass>
         <info>
-            Render an input button of type text.
+            Render an input button of type text.  This tag is only valid when nested
+                inside a form tag body.
         </info>
 
         <attribute>
@@ -6083,10 +6464,11 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
-                "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                Valid only inside of <code>logic-el:iterate</code> or
+                <code>c:forEach</code> tags.  If <code>true</code> then name of
+                the html tag will be rendered as "id[34].propertyName". Number
+                in brackets will be generated for every iteration and taken
+                from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -6285,7 +6667,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -6348,7 +6731,8 @@
         </summary>
         <tagclass>org.apache.strutsel.taglib.html.ELTextareaTag</tagclass>
         <info>
-            Render a textarea element.
+            Render a textarea element.  This tag is only valid when nested
+                inside a form tag body.
         </info>
 
         <attribute>
@@ -6405,7 +6789,7 @@
             <rtexprvalue>false</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If yes then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -6597,7 +6981,8 @@
             <required>false</required>
             <rtexprvalue>false</rtexprvalue>
             <info>
-                CSS stylesheet class to be applied to this HTML element.
+                CSS stylesheet class to be applied to this HTML element
+                (renders a "class" attribute).
             </info>
         </attribute>
 
@@ -6659,11 +7044,10 @@
           <bodycontent>empty</bodycontent>
           <info>
           <p>
-          	Using this tag in a page tells all other html taglib tags
-          	to render themselves as XHTML.  This is really only useful
-          	when composing pages with jsp includes.  Using 
-          	&lt;html-el:html xhtml="true"&gt; will accomplish the same thing
-          	as this tag but only works for complete pages or tiles.
+            Using this tag in a page tells all other html taglib tags
+            to render themselves as XHTML.  This is useful
+            when composing pages with JSP includes or Tiles.  This tag has the same effect
+            as using &lt;html-el:html xhtml="true"&gt;.
           </p>
           </info>
 
