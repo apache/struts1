@@ -227,10 +227,10 @@ public class TestPresentTag extends JspTestCase {
 	 * Verify that there is a LabelValueBean in application scope 
 	 * and test to see if it has a getValue() using the <code>PresentTag</code>.
 	*/
-	public void testApplicationScopeParameterPresent()
+	public void testApplicationScopePropertyPresent()
 		throws ServletException, JspException {
 		PresentTag pt = new PresentTag();
-		String testKey = "testApplicationScopeParameterPresent";
+		String testKey = "testApplicationScopePropertyPresent";
 		
 		String testStringValue = "The Value";
 		LabelValueBean lvb = new LabelValueBean("The Key", testStringValue);
@@ -243,17 +243,17 @@ public class TestPresentTag extends JspTestCase {
 		pt.setName(testKey);
 		pt.setScope("application");
 		
-		pt.setParameter("value");
-		assertEquals("Parameter Value present (not null)", true, pt.condition(true));
+		pt.setProperty("value");
+		assertEquals("Property Value present (not null)", true, pt.condition(true));
 	}
 
 	/**
 	 * Verify that there is an application scope object is not in scope using the <code>PresentTag</code>.
 	*/
-	public void testApplicationScopeParameterNotPresent()
+	public void testApplicationScopePropertyNotPresent()
 		throws ServletException, JspException {
 		PresentTag pt = new PresentTag();
-		String testKey = "testApplicationScopeParameterNotPresent";
+		String testKey = "testApplicationScopePropertyNotPresent";
 		
 		String testStringValue = null; //"The Value";
 		LabelValueBean lvb = new LabelValueBean("The Key", testStringValue);
@@ -266,8 +266,8 @@ public class TestPresentTag extends JspTestCase {
 		pt.setName(testKey);
 		pt.setScope("application");
 		
-		pt.setParameter("value");
-		assertEquals("Parameter Value not present (null)", true, pt.condition(true));
+		pt.setProperty("value");
+		assertEquals("Property Value not present (null)", true, pt.condition(true));
 		
 	}
 
