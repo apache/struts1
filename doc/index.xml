@@ -112,15 +112,20 @@
   community, including contributing to the future development of Struts.
   Check out the following resources:</p>
   <ul>
-  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to the
-      <a href="mailto:struts-user-subscribe@jakarta.apache.org">STRUTS-USER</a>
+  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
+      to communicate with other developers that are using
       mailing list to communicate with other developers that are using
       Struts for their own applications, including questions about the
-      installation of Struts, and the usage of particular Struts features.</li>
-  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to the
-      <a href="mailto:struts-dev-subscribe@jakarta.apache.org">STRUTS-DEV</a>
+      installation of Struts, and the usage of particular Struts features.
+      [<a href="mailto:struts-user-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-user-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to this
       mailing list to communicate with other developers interested in expanding
-      and improving the functionality supported by Struts itself.</li>
+      and improving the functionality supported by Struts itself.
+      [<a href="mailto:struts-dev-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-dev-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
   <li><strong>Bug Reports and Feature Requests</strong> Use the
       <a href="#Bugs">Bug Reporting System</a> to submit these reports.</li>
   <li><strong>Patches and Modules</strong> - You can contribute patches and
