@@ -62,11 +62,11 @@ import java.util.Iterator;
  * Unit tests for the <code>org.apache.struts.action.ActionMessages</code> class.
  *
  * @author Dominique Plante
- * @version $Revision: 1.1 $ $Date: 2002/06/22 20:50:36 $
+ * @author David Graham
+ * @version $Revision: 1.2 $ $Date: 2002/10/20 18:59:23 $
  */
 
-public class TestActionMessages extends TestCase
-{
+public class TestActionMessages extends TestCase {
 	protected ActionMessages aMsgs = null;
 	protected ActionMessages anMsgs = null;
 	protected ActionMessage msg1 = null;
@@ -75,42 +75,38 @@ public class TestActionMessages extends TestCase
 	protected ActionMessage msg4 = null;
 	protected ActionMessage msg5 = null;
 
-    /**
-     * Defines the testcase name for JUnit.
-     *
-     * @param theName the testcase's name.
-     */
-	public TestActionMessages(String theName)	
-	{
+	/**
+	 * Defines the testcase name for JUnit.
+	 *
+	 * @param theName the testcase's name.
+	 */
+	public TestActionMessages(String theName) {
 		super(theName);
 	}
 
-    /**
-     * Start the tests.
-     *
-     * @param theArgs the arguments. Not used
-     */
-    public static void main(String[] theArgs)
-    {
-        junit.awtui.TestRunner.main(new String[] {TestActionMessages.class.getName()});
-    }
+	/**
+	 * Start the tests.
+	 *
+	 * @param theArgs the arguments. Not used
+	 */
+	public static void main(String[] theArgs) {
+		junit.awtui.TestRunner.main(new String[] { TestActionMessages.class.getName()});
+	}
 
-    /**
-     * @return a test suite (<code>TestSuite</code>) that includes all methods
-     *         starting with "test"
-     */
-    public static Test suite()
-    {
-        // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestActionMessages.class);
-    }
+	/**
+	 * @return a test suite (<code>TestSuite</code>) that includes all methods
+	 *         starting with "test"
+	 */
+	public static Test suite() {
+		// All methods starting with "test" will be executed in the test suite.
+		return new TestSuite(TestActionMessages.class);
+	}
 
-	public void setUp()
-	{
+	public void setUp() {
 		aMsgs = new ActionMessages();
 		anMsgs = new ActionMessages();
-		Object [] objs1 = new Object [] { "a", "b", "c", "d", "e" };
-		Object [] objs2 = new Object [] { "f", "g", "h", "i", "j" };
+		Object[] objs1 = new Object[] { "a", "b", "c", "d", "e" };
+		Object[] objs2 = new Object[] { "f", "g", "h", "i", "j" };
 		msg1 = new ActionMessage("aMessage", objs1);
 		msg2 = new ActionMessage("anMessage", objs2);
 		msg3 = new ActionMessage("msg3", "value1");
@@ -118,30 +114,26 @@ public class TestActionMessages extends TestCase
 		msg5 = new ActionMessage("msg5", "value3", "value4");
 	}
 
-	public void tearDown()
-	{
+	public void tearDown() {
 		aMsgs = null;
 	}
-	public void testEmpty()
-	{
+
+	public void testEmpty() {
 		assertTrue("aMsgs is not empty!", aMsgs.empty());
 	}
 
-	public void testNotEmpty()
-	{
+	public void testNotEmpty() {
 		aMsgs.add("myProp", msg1);
-		assertTrue("aMsgs is empty!", aMsgs.empty()== false);
+		assertTrue("aMsgs is empty!", aMsgs.empty() == false);
 	}
 
-	public void testSizeWithOneProperty()
-	{
+	public void testSizeWithOneProperty() {
 		aMsgs.add("myProp", msg1);
 		aMsgs.add("myProp", msg2);
-		assertTrue("number of meesages is not 2", aMsgs.size("myProp") == 2);
+		assertTrue("number of mesages is not 2", aMsgs.size("myProp") == 2);
 	}
 
-	public void testSizeWithManyProperties()
-	{
+	public void testSizeWithManyProperties() {
 		aMsgs.add("myProp1", msg1);
 		aMsgs.add("myProp2", msg2);
 		aMsgs.add("myProp3", msg3);
@@ -150,24 +142,57 @@ public class TestActionMessages extends TestCase
 		assertTrue("number of messages for myProp1 is not 1", aMsgs.size("myProp1") == 1);
 		assertTrue("number of messages", aMsgs.size() == 5);
 	}
-	public void testSizeAndEmptyAfterClear()
-	{
+
+	public void testSizeAndEmptyAfterClear() {
 		testSizeWithOneProperty();
 		aMsgs.clear();
 		testEmpty();
 		assertTrue("number of meesages is not 0", aMsgs.size("myProp") == 0);
 	}
 
-	public void testGetWithNoProperty()
-	{
+	public void testGetWithNoProperty() {
 		Iterator it = aMsgs.get("myProp");
 		assertTrue("iterator is not empty!", it.hasNext() == false);
 	}
 
-	public void testGetForAProperty()
-	{
+	public void testGetForAProperty() {
 		testSizeWithOneProperty();
 		Iterator it = aMsgs.get("myProp");
 		assertTrue("iterator is empty!", it.hasNext() == true);
+	}
+
+	/**
+	 * Tests adding an ActionMessages object to an ActionMessages object.
+	 */
+	public void testAddMessages() {
+		ActionMessage msg1 = new ActionMessage("key");
+		ActionMessage msg2 = new ActionMessage("key2");
+		ActionMessage msg3 = new ActionMessage("key3");
+		ActionMessages msgs = new ActionMessages();
+		ActionMessages add = new ActionMessages();
+
+		msgs.add("prop1", msg1);
+		add.add("prop1", msg2);
+		add.add("prop3", msg3);
+
+		msgs.add(add);
+		assertTrue(msgs.size() == 3);
+		assertTrue(msgs.size("prop1") == 2);
+
+		// test message order
+		Iterator props = msgs.get();
+		int count = 1;
+		while (props.hasNext()) {
+			ActionMessage msg = (ActionMessage) props.next();
+			if (count == 1) {
+				assertTrue(msg.getKey().equals("key"));
+			} else if (count == 2) {
+				assertTrue(msg.getKey().equals("key2"));
+			} else {
+				assertTrue(msg.getKey().equals("key3"));
+			}
+
+			count++;
+		}
 	}
 }
