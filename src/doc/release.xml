@@ -115,6 +115,10 @@
       lower case (onClick --&gt; onclick) to conform to XHTML.</li>
   <li>The <code>options1</code> tag has been eliminated since Struts is now
       based on Java2.</li>
+  <li>All tag implementation classes have had their <code>final</code>
+      modifiers removed, and <code>private</code> instance variables
+      changed to <code>protected</code>.  This makes it possible to easily
+      subclass these tags to provide specialized functionality.</li>
   </ul>
 
   <p>The following major new features have been added to the
@@ -126,6 +130,8 @@
       because there is no need to maintain such form beans across requests.
       Note that the action classes have been coded so that they work with
       either request scope or session scope beans.</li>
+  <li>The Struts Example Application has been updated to utilize the new
+      (separated) custom tag libraries, rather than the old combined one.</li>
   </ul>
 
   </section>
@@ -174,6 +180,11 @@
       pressed the Cancel key (i.e. the submit button created by the
       <code>&lt;struts:cancel&gt;</code> custom tag), or if the selected
       mapping does not define an input form to return control to.</li>
+  <li>The controller servlet may now be used as the target of a
+      <code>RequestDispatcher.include()</code> or
+      <code>&lt;jsp:include/&gt;</code> call.  Previously, it would mistakenly
+      use the original request URI, rather than the included path, to calculate
+      which action class to execute.</li>
   </ul>
 
   <p>The following changes and bug fixes to the Digester module
