@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.7 2000/08/01 20:03:29 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/08/01 20:03:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.8 2000/08/14 21:59:19 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/08/14 21:59:19 $
  *
  * ====================================================================
  * 
@@ -142,7 +142,7 @@ import org.xml.sax.SAXParseException;
  * hard code the configuration logic.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/08/01 20:03:29 $
+ * @version $Revision: 1.8 $ $Date: 2000/08/14 21:59:19 $
  */
 
 public final class Digester extends HandlerBase {
@@ -389,7 +389,7 @@ public final class Digester extends HandlerBase {
 
 	//	if (debug >= 3)
 	//	    log("endElement(" + match + ")");
-	Vector rules = (Vector) this.rules.get(match);
+	Vector rules = getRules(match);
 
 	// Fire "body" events for all relevant rules
 	if (rules != null) {
@@ -528,7 +528,7 @@ public final class Digester extends HandlerBase {
 
 
 	// Fire "begin" events for all relevant rules
-	Vector rules = (Vector) this.rules.get(match);
+	Vector rules = getRules(match);
 	if (rules != null) {
 	    //	    if (debug >= 3)
 	    //		log("  Firing 'begin' events for " + rules.size() + " rules");
@@ -1070,6 +1070,38 @@ public final class Digester extends HandlerBase {
     public void push(Object object) {
 
 	stack.push(object);
+
+    }
+
+
+    // ------------------------------------------------------ Private Methods
+
+
+    /**
+     * Return the set of rules that apply to the specified match position.
+     * The selected rules are those that match exactly, or those rules
+     * that specify a suffix match and the tail of the rule matches the
+     * current match position.  Exact matches have precedence over
+     * suffix matches.
+     *
+     * @param match The current match position
+     */
+    private Vector getRules(String match) {
+
+        Vector rulesVector = (Vector) this.rules.get(match);
+	if (rulesVector == null) {
+	    Enumeration keys = this.rules.keys();
+	    while (keys.hasMoreElements()) {
+	        String key = (String) keys.nextElement();
+		if (key.startsWith("*/")) {
+		    if (match.endsWith(key.substring(1))) {
+		        rulesVector = (Vector) this.rules.get(key);
+			break;
+		    }
+		}
+	    }
+	}
+	return (rulesVector);
 
     }
 
