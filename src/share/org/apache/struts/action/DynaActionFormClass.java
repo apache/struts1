@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.6 2002/06/29 03:14:19 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/06/29 03:14:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.7 2002/07/13 18:05:05 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/07/13 18:05:05 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.action;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -83,11 +84,11 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/06/29 03:14:19 $
+ * @version $Revision: 1.7 $ $Date: 2002/07/13 18:05:05 $
  * @since Struts 1.1
  */
 
-public class DynaActionFormClass implements DynaClass {
+public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     // ----------------------------------------------------------- Constructors
@@ -120,7 +121,7 @@ public class DynaActionFormClass implements DynaClass {
      * The <code>DynaActionForm</code> implementation <code>Class</code> which
      * we will use to create new bean instances.
      */
-    protected Class beanClass = null;
+    protected transient Class beanClass = null;
 
 
     /**
@@ -156,7 +157,14 @@ public class DynaActionFormClass implements DynaClass {
      * The set of <code>DynaActionFormClass</code> instances that have
      * ever been created, keyed by the form bean name.
      */
-    protected static HashMap dynaClasses = new HashMap();
+    protected transient static HashMap dynaClasses = new HashMap();
+
+
+    /**
+     * The lockable object we can synchronize on, even if dynaClasses
+     * is null,
+     */
+    protected static String lock = "";
 
 
     // ------------------------------------------------------ DynaClass Methods
@@ -227,7 +235,8 @@ public class DynaActionFormClass implements DynaClass {
     public DynaBean newInstance()
         throws IllegalAccessException, InstantiationException {
 
-        DynaActionForm dynaBean = (DynaActionForm) beanClass.newInstance();
+        DynaActionForm dynaBean =
+            (DynaActionForm) getBeanClass().newInstance();
         dynaBean.setDynaActionFormClass(this);
         FormPropertyConfig props[] = config.findFormPropertyConfigs();
         for (int i = 0; i < props.length; i++) {
@@ -272,7 +281,10 @@ public class DynaActionFormClass implements DynaClass {
      */
     public static void clear() {
 
-        synchronized (dynaClasses) {
+        synchronized (lock) {
+            if (dynaClasses == null) {
+                dynaClasses = new HashMap();
+            }
             dynaClasses.clear();
         }
 
@@ -293,7 +305,10 @@ public class DynaActionFormClass implements DynaClass {
     public static DynaActionFormClass
         createDynaActionFormClass(FormBeanConfig config) {
 
-        synchronized (dynaClasses) {
+        synchronized (lock) {
+            if (dynaClasses == null) {
+                dynaClasses = new HashMap();
+            }
             DynaActionFormClass dynaClass =
                 (DynaActionFormClass) dynaClasses.get(config.getName());
             if (dynaClass == null) {
@@ -307,6 +322,22 @@ public class DynaActionFormClass implements DynaClass {
 
 
     // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the implementation class we are using to construct new
+     * instances, re-introspecting our {@link FormBeanConfig} if necessary
+     * (i.e. after being deserialized, since <code>beanClass</code> is
+     * marked transient.
+     */
+    protected Class getBeanClass() {
+
+        if (beanClass == null) {
+            introspect(config);
+        }
+        return (beanClass);
+
+    }
 
 
     /**
