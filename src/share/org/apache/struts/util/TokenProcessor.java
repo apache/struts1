@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/TokenProcessor.java,v 1.6 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/TokenProcessor.java,v 1.7 2004/07/07 21:12:43 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/07/07 21:12:43 $
  *
  * Copyright 2003-2004 The Apache Software Foundation.
  * 
@@ -59,6 +59,11 @@ public class TokenProcessor {
     protected TokenProcessor() {
         super();
     }
+
+    /**
+     * The timestamp used most recently to generate a token value.
+     */
+    private long previous;
 
     /**
      * Return <code>true</code> if there is a transaction token stored in
@@ -162,19 +167,21 @@ public class TokenProcessor {
      * 
      * @param request The request we are processing
      */
-    public String generateToken(HttpServletRequest request) {
+    public synchronized String generateToken(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         try {
             byte id[] = session.getId().getBytes();
-            byte now[] = new Long(System.currentTimeMillis()).toString().getBytes();
+            long current = System.currentTimeMillis();
+            if (current == previous) {
+                current++;
+            }
+            previous = current;
+            byte now[] = new Long(current).toString().getBytes();
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(id);
             md.update(now);
-            return this.toHex(md.digest());
-
-        } catch (IllegalStateException e) {
-            return null;
+            return toHex(md.digest());
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
@@ -186,17 +193,11 @@ public class TokenProcessor {
      * @param buffer The byte array to be converted
      */
     private String toHex(byte buffer[]) {
-        StringBuffer sb = new StringBuffer();
-        String s = null;
-        
+        StringBuffer sb = new StringBuffer(buffer.length * 2);
         for (int i = 0; i < buffer.length; i++) {
-            s = Integer.toHexString((int) buffer[i] & 0xff);
-            if (s.length() < 2) {
-                sb.append('0');
-            }
-            sb.append(s);
+            sb.append(Character.forDigit((buffer[i] & 0xf0) >> 4, 16));
+            sb.append(Character.forDigit(buffer[i] & 0x0f, 16));
         }
-        
         return sb.toString();
     }
 
