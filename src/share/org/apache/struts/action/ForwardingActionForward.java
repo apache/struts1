@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ForwardingActionForward.java,v 1.2 2001/02/21 00:35:46 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/21 00:35:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ForwardingActionForward.java,v 1.3 2003/01/07 06:32:25 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/01/07 06:32:25 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ package org.apache.struts.action;
  * <code>redirect</code> attribute to <code>false</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/02/21 00:35:46 $
+ * @version $Revision: 1.3 $ $Date: 2003/01/07 06:32:25 $
  */
 
 public class ForwardingActionForward extends ActionForward {
@@ -82,7 +82,7 @@ public class ForwardingActionForward extends ActionForward {
      */
     public ForwardingActionForward() {
 
-	this(null);
+    this(null);
 
     }
 
@@ -94,10 +94,10 @@ public class ForwardingActionForward extends ActionForward {
      */
     public ForwardingActionForward(String path) {
 
-	super();
-	setName(null);
-	setPath(path);
-	setRedirect(false);
+    super();
+    setName(null);
+    setPath(path);
+    setRedirect(false);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestActionMapping.java,v 1.3 2001/02/21 00:35:46 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/21 00:35:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestActionMapping.java,v 1.4 2003/01/07 06:32:25 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/01/07 06:32:25 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ package org.apache.struts.action;
  * scope to <code>request</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/21 00:35:46 $
+ * @version $Revision: 1.4 $ $Date: 2003/01/07 06:32:25 $
  */
 
 public class RequestActionMapping extends ActionMapping {
@@ -80,8 +80,8 @@ public class RequestActionMapping extends ActionMapping {
      */
     public RequestActionMapping() {
 
-	super();
-	setScope("request");
+    super();
+    setScope("request");
 
     }
 

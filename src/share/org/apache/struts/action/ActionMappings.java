@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.10 2002/11/28 07:12:42 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/28 07:12:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.11 2003/01/07 06:32:25 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/01/07 06:32:25 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/11/28 07:12:42 $
+ * @version $Revision: 1.11 $ $Date: 2003/01/07 06:32:25 $
  *
  * @deprecated Replaced by collection of ActionConfig instances in
  *  {@link org.apache.struts.config.ModuleConfig}
@@ -201,7 +201,7 @@ public class ActionMappings implements Serializable {
      */
     public void addMapping(ActionMapping mapping) {
 
-	mappings.put(mapping.getPath(), mapping);
+    mappings.put(mapping.getPath(), mapping);
         //        mapping.setMappings(this);
 
     }
@@ -215,7 +215,7 @@ public class ActionMappings implements Serializable {
      */
     public ActionMapping findMapping(String path) {
 
-	return ((ActionMapping) mappings.get(path));
+    return ((ActionMapping) mappings.get(path));
 
     }
 
@@ -239,7 +239,7 @@ public class ActionMappings implements Serializable {
      */
     public void removeMapping(ActionMapping mapping) {
 
-	mappings.remove(mapping.getPath());
+    mappings.remove(mapping.getPath());
         //        mapping.setMappings(null);
 
     }

@@ -103,7 +103,7 @@ public class ExceptionHandler {
             forward = new ActionForward(ae.getPath());
             forward.setContextRelative(true);
         } else {
-	    forward = mapping.getInputForward();
+        forward = mapping.getInputForward();
         }
 
         // Figure out the error

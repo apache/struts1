@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.6 2002/11/28 07:12:42 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/28 07:12:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.7 2003/01/07 06:32:25 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/01/07 06:32:25 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/11/28 07:12:42 $
+ * @version $Revision: 1.7 $ $Date: 2003/01/07 06:32:25 $
  *
  * @deprecated Replaced by collection of FormBeanConfig instances
  *  in {@link org.apache.struts.config.ModuleConfig}
@@ -125,7 +125,7 @@ public class ActionFormBeans implements Serializable {
      */
     public void addFormBean(ActionFormBean formBean) {
 
-	formBeans.put(formBean.getName(), formBean);
+    formBeans.put(formBean.getName(), formBean);
 
     }
 
@@ -138,7 +138,7 @@ public class ActionFormBeans implements Serializable {
      */
     public ActionFormBean findFormBean(String name) {
 
-	return ((ActionFormBean) formBeans.get(name));
+    return ((ActionFormBean) formBeans.get(name));
 
     }
 
@@ -162,7 +162,7 @@ public class ActionFormBeans implements Serializable {
      */
     public void removeFormBean(ActionFormBean formBean) {
 
-	formBeans.remove(formBean.getName());
+    formBeans.remove(formBean.getName());
 
     }
 

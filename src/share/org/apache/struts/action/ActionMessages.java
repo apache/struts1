@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.7 2002/10/20 19:11:15 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2002/10/20 19:11:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.8 2003/01/07 06:32:25 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/01/07 06:32:25 $
  *
  * ====================================================================
  *
@@ -87,276 +87,276 @@ import java.util.List;
  * @author Craig R. McClanahan
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.7 $ $Date: 2002/10/20 19:11:15 $
+ * @version $Revision: 1.8 $ $Date: 2003/01/07 06:32:25 $
  * @since Struts 1.1
  */
 
 public class ActionMessages implements Serializable {
 
-	// ----------------------------------------------------- Manifest Constants
+    // ----------------------------------------------------- Manifest Constants
 
-	/**
-	 * The "property name" marker to use for global messages, as opposed to
-	 * those related to a specific property.
-	 */
-	public static final String GLOBAL_MESSAGE = "org.apache.struts.action.GLOBAL_MESSAGE";
+    /**
+     * The "property name" marker to use for global messages, as opposed to
+     * those related to a specific property.
+     */
+    public static final String GLOBAL_MESSAGE = "org.apache.struts.action.GLOBAL_MESSAGE";
 
-	// ----------------------------------------------------- Instance Variables
+    // ----------------------------------------------------- Instance Variables
 
-	/**
-	 * The accumulated set of <code>ActionMessage</code> objects (represented
-	 * as an ArrayList) for each property, keyed by property name.
-	 */
-	protected HashMap messages = new HashMap();
+    /**
+     * The accumulated set of <code>ActionMessage</code> objects (represented
+     * as an ArrayList) for each property, keyed by property name.
+     */
+    protected HashMap messages = new HashMap();
 
-	/**
-	 * The current number of the property/key being added.  This is used
-	 * to maintain the order messages are added.
-	*/
-	protected int iCount = 0;
+    /**
+     * The current number of the property/key being added.  This is used
+     * to maintain the order messages are added.
+    */
+    protected int iCount = 0;
 
-	// --------------------------------------------------------- Public Methods
+    // --------------------------------------------------------- Public Methods
 
-	/**
-	 * Create an empty <code>ActionMessages</code> object.
-	 */
-	public ActionMessages() {
-		super();
-	}
+    /**
+     * Create an empty <code>ActionMessages</code> object.
+     */
+    public ActionMessages() {
+        super();
+    }
 
-	/**
-	 * Create an <code>ActionMessages</code> object initialized with the given 
-	 * messages.
-	 * 
-	 * @param messages The messages to be initially added to this object.
-	 * @since Struts 1.1
-	 */
-	public ActionMessages(ActionMessages messages) {
-		super();
-		this.add(messages);
-	}
+    /**
+     * Create an <code>ActionMessages</code> object initialized with the given 
+     * messages.
+     * 
+     * @param messages The messages to be initially added to this object.
+     * @since Struts 1.1
+     */
+    public ActionMessages(ActionMessages messages) {
+        super();
+        this.add(messages);
+    }
 
-	/**
-	 * Add a message to the set of messages for the specified property.  An
-	 * order of the property/key is maintained based on the initial addition
-	 * of the property/key.
-	 *
-	 * @param property  Property name (or ActionMessages.GLOBAL_MESSAGE)
-	 * @param message   The message to be added
-	 */
-	public void add(String property, ActionMessage message) {
+    /**
+     * Add a message to the set of messages for the specified property.  An
+     * order of the property/key is maintained based on the initial addition
+     * of the property/key.
+     *
+     * @param property  Property name (or ActionMessages.GLOBAL_MESSAGE)
+     * @param message   The message to be added
+     */
+    public void add(String property, ActionMessage message) {
 
-		ActionMessageItem item = (ActionMessageItem) messages.get(property);
-		List list = null;
+        ActionMessageItem item = (ActionMessageItem) messages.get(property);
+        List list = null;
 
-		if (item == null) {
-			list = new ArrayList();
-			item = new ActionMessageItem(list, iCount++);
+        if (item == null) {
+            list = new ArrayList();
+            item = new ActionMessageItem(list, iCount++);
 
-			messages.put(property, item);
-		} else {
-			list = item.getList();
-		}
+            messages.put(property, item);
+        } else {
+            list = item.getList();
+        }
 
-		list.add(message);
+        list.add(message);
 
-	}
+    }
 
-	/**
-	 * Adds the messages from the given <code>ActionMessages</code> object to
-	 * this set of messages.  The messages are added in the order they are returned from
-	 * the properties() method.  If a message's property is already in the current 
-	 * <code>ActionMessages</code> object it is added to the end of the list for that
-	 * property.  If a message's property is not in the current list it is added to the end 
-	 * of the properties.
-	 * 
-	 * @param messages The <code>ActionMessages</code> object to be added.
-	 * @since Struts 1.1
-	 */
-	public void add(ActionMessages messages) {
-		// loop over properties
-		Iterator props = messages.properties();
-		while (props.hasNext()) {
-			String property = (String) props.next();
+    /**
+     * Adds the messages from the given <code>ActionMessages</code> object to
+     * this set of messages.  The messages are added in the order they are returned from
+     * the properties() method.  If a message's property is already in the current 
+     * <code>ActionMessages</code> object it is added to the end of the list for that
+     * property.  If a message's property is not in the current list it is added to the end 
+     * of the properties.
+     * 
+     * @param messages The <code>ActionMessages</code> object to be added.
+     * @since Struts 1.1
+     */
+    public void add(ActionMessages messages) {
+        // loop over properties
+        Iterator props = messages.properties();
+        while (props.hasNext()) {
+            String property = (String) props.next();
 
-			// loop over messages for each property
-			Iterator msgs = messages.get(property);
-			while (msgs.hasNext()) {
-				ActionMessage msg = (ActionMessage) msgs.next();
-				this.add(property, msg);
-			}
+            // loop over messages for each property
+            Iterator msgs = messages.get(property);
+            while (msgs.hasNext()) {
+                ActionMessage msg = (ActionMessage) msgs.next();
+                this.add(property, msg);
+            }
 
-		}
-	}
+        }
+    }
 
-	/**
-	 * Clear all messages recorded by this object.
-	 */
-	public void clear() {
+    /**
+     * Clear all messages recorded by this object.
+     */
+    public void clear() {
 
-		messages.clear();
+        messages.clear();
 
-	}
+    }
 
-	/**
-	 * Return <code>true</code> if there are no messages recorded
-	 * in this collection, or <code>false</code> otherwise.
-	 * @deprecated Use isEmpty instead.
-	 */
-	public boolean empty() {
-		return (this.isEmpty());
-	}
-	
-	/**
-	 * Return <code>true</code> if there are no messages recorded
-	 * in this collection, or <code>false</code> otherwise.
-	 * @since Struts 1.1
-	 */
-	public boolean isEmpty(){
-		return (messages.isEmpty());	
-	}
+    /**
+     * Return <code>true</code> if there are no messages recorded
+     * in this collection, or <code>false</code> otherwise.
+     * @deprecated Use isEmpty instead.
+     */
+    public boolean empty() {
+        return (this.isEmpty());
+    }
+    
+    /**
+     * Return <code>true</code> if there are no messages recorded
+     * in this collection, or <code>false</code> otherwise.
+     * @since Struts 1.1
+     */
+    public boolean isEmpty(){
+        return (messages.isEmpty());    
+    }
 
-	/**
-	 * Return the set of all recorded messages, without distinction
-	 * by which property the messages are associated with.  If there are
-	 * no messages recorded, an empty enumeration is returned.
-	 */
-	public Iterator get() {
+    /**
+     * Return the set of all recorded messages, without distinction
+     * by which property the messages are associated with.  If there are
+     * no messages recorded, an empty enumeration is returned.
+     */
+    public Iterator get() {
 
-		if (messages.size() == 0) {
-			return (Collections.EMPTY_LIST.iterator());
-		}
+        if (messages.size() == 0) {
+            return (Collections.EMPTY_LIST.iterator());
+        }
 
-		ArrayList results = new ArrayList();
-		ArrayList actionItems = new ArrayList();
+        ArrayList results = new ArrayList();
+        ArrayList actionItems = new ArrayList();
 
-		for (Iterator i = messages.values().iterator(); i.hasNext();) {
-			actionItems.add(i.next());
-		}
+        for (Iterator i = messages.values().iterator(); i.hasNext();) {
+            actionItems.add(i.next());
+        }
 
-		// Sort ActionMessageItems based on the initial order the
-		// property/key was added to ActionMessages.
-		Collections.sort(actionItems, new Comparator() {
-			public int compare(Object o1, Object o2) {
-				return ((ActionMessageItem) o1).getOrder() - ((ActionMessageItem) o2).getOrder();
-			}
-		});
+        // Sort ActionMessageItems based on the initial order the
+        // property/key was added to ActionMessages.
+        Collections.sort(actionItems, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                return ((ActionMessageItem) o1).getOrder() - ((ActionMessageItem) o2).getOrder();
+            }
+        });
 
-		for (Iterator i = actionItems.iterator(); i.hasNext();) {
-			ActionMessageItem ami = (ActionMessageItem) i.next();
+        for (Iterator i = actionItems.iterator(); i.hasNext();) {
+            ActionMessageItem ami = (ActionMessageItem) i.next();
 
-			for (Iterator messages = ami.getList().iterator(); messages.hasNext();) {
-				results.add(messages.next());
-			}
-		}
+            for (Iterator messages = ami.getList().iterator(); messages.hasNext();) {
+                results.add(messages.next());
+            }
+        }
 
-		return (results.iterator());
+        return (results.iterator());
 
-	}
+    }
 
-	/**
-	 * Return the set of messages related to a specific property.
-	 * If there are no such messages, an empty enumeration is returned.
-	 *
-	 * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
-	 */
-	public Iterator get(String property) {
+    /**
+     * Return the set of messages related to a specific property.
+     * If there are no such messages, an empty enumeration is returned.
+     *
+     * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
+     */
+    public Iterator get(String property) {
 
-		ActionMessageItem item = (ActionMessageItem) messages.get(property);
+        ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
-		if (item == null) {
-			return (Collections.EMPTY_LIST.iterator());
-		} else {
-			return (item.getList().iterator());
-		}
-		
-	}
+        if (item == null) {
+            return (Collections.EMPTY_LIST.iterator());
+        } else {
+            return (item.getList().iterator());
+        }
+        
+    }
 
-	/**
-	 * Return the set of property names for which at least one message has
-	 * been recorded.  If there are no messages, an empty Iterator is returned.
-	 * If you have recorded global messages, the String value of
-	 * <code>ActionMessages.GLOBAL_MESSAGE</code> will be one of the returned
-	 * property names.
-	 */
-	public Iterator properties() {
+    /**
+     * Return the set of property names for which at least one message has
+     * been recorded.  If there are no messages, an empty Iterator is returned.
+     * If you have recorded global messages, the String value of
+     * <code>ActionMessages.GLOBAL_MESSAGE</code> will be one of the returned
+     * property names.
+     */
+    public Iterator properties() {
 
-		return (messages.keySet().iterator());
+        return (messages.keySet().iterator());
 
-	}
+    }
 
-	/**
-	 * Return the number of messages recorded for all properties (including
-	 * global messages).  <strong>NOTE</strong> - it is more efficient to call
-	 * <code>empty()</code> if all you care about is whether or not there are
-	 * any messages at all.
-	 */
-	public int size() {
+    /**
+     * Return the number of messages recorded for all properties (including
+     * global messages).  <strong>NOTE</strong> - it is more efficient to call
+     * <code>empty()</code> if all you care about is whether or not there are
+     * any messages at all.
+     */
+    public int size() {
 
-		int total = 0;
+        int total = 0;
 
-		for (Iterator i = messages.values().iterator(); i.hasNext();) {
-			ActionMessageItem ami = (ActionMessageItem) i.next();
-			total += ami.getList().size();
-		}
+        for (Iterator i = messages.values().iterator(); i.hasNext();) {
+            ActionMessageItem ami = (ActionMessageItem) i.next();
+            total += ami.getList().size();
+        }
 
-		return (total);
+        return (total);
 
-	}
+    }
 
-	/**
-	 * Return the number of messages associated with the specified property.
-	 *
-	 * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
-	 */
-	public int size(String property) {
+    /**
+     * Return the number of messages associated with the specified property.
+     *
+     * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
+     */
+    public int size(String property) {
 
-		ActionMessageItem ami = (ActionMessageItem) messages.get(property);
+        ActionMessageItem ami = (ActionMessageItem) messages.get(property);
 
-		if (ami == null)
-			return (0);
-		else
-			return (ami.getList().size());
+        if (ami == null)
+            return (0);
+        else
+            return (ami.getList().size());
 
-	}
+    }
 
-	/**
-	 * This class is used to store a set of messages associated with a
-	 * property/key and the position it was initially added to list.
-	*/
-	protected class ActionMessageItem implements Serializable {
+    /**
+     * This class is used to store a set of messages associated with a
+     * property/key and the position it was initially added to list.
+    */
+    protected class ActionMessageItem implements Serializable {
 
-		/**
-		 * The list of <code>ActionMessage</code>s.
-		*/
-		protected List list = null;
+        /**
+         * The list of <code>ActionMessage</code>s.
+        */
+        protected List list = null;
 
-		/**
-		 * The position in the list of messages.
-		*/
-		protected int iOrder = 0;
+        /**
+         * The position in the list of messages.
+        */
+        protected int iOrder = 0;
 
-		public ActionMessageItem(List list, int iOrder) {
-			this.list = list;
-			this.iOrder = iOrder;
-		}
+        public ActionMessageItem(List list, int iOrder) {
+            this.list = list;
+            this.iOrder = iOrder;
+        }
 
-		public List getList() {
-			return list;
-		}
+        public List getList() {
+            return list;
+        }
 
-		public void setList(List list) {
-			this.list = list;
-		}
+        public void setList(List list) {
+            this.list = list;
+        }
 
-		public int getOrder() {
-			return iOrder;
-		}
+        public int getOrder() {
+            return iOrder;
+        }
 
-		public void setOrder(int iOrder) {
-			this.iOrder = iOrder;
-		}
+        public void setOrder(int iOrder) {
+            this.iOrder = iOrder;
+        }
 
-	}
+    }
 
 }
