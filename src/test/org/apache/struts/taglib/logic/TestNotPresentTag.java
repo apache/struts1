@@ -69,6 +69,10 @@ import org.apache.commons.cactus.*;
  * @author David Winterfeldt
  */
 public class TestNotPresentTag extends JspTestCase {
+    protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
+    protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
+    protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
+
     /**
      * Defines the testcase name for JUnit.
      *
@@ -102,127 +106,214 @@ public class TestNotPresentTag extends JspTestCase {
      * Verify that there is an application scope object in scope using the <code>NotPresentTag</code>.
     */
     public void testApplicationScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testApplicationScopePresent";
         String testStringValue = "abc";
         
         pageContext.setAttribute(testKey, testStringValue, PageContext.APPLICATION_SCOPE);
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
-	pt.setScope("application");
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
+	npt.setScope("application");
 	
-        assertEquals("Value present (not null)", false, pt.condition(false));
+        assertEquals("Value present (not null)", false, npt.condition(false));
     }
 
     /**
      * Verify that there is an application scope object is not in scope using the <code>NotPresentTag</code>.
     */
     public void testApplicationScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testApplicationScopeNotPresent";
 
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
-	pt.setScope("application");
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
+	npt.setScope("application");
 	
 	
-        assertEquals("Value not present (null)", true, pt.condition(false));
+        assertEquals("Value not present (null)", true, npt.condition(false));
     }
     
     /**
      * Verify that there is an session scope object in scope using the <code>NotPresentTag</code>.
     */
     public void testSessionScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testSessionScopePresent";
         String testStringValue = "abc";
         
         pageContext.setAttribute(testKey, testStringValue, PageContext.SESSION_SCOPE);
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
-	pt.setScope("session");
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
+	npt.setScope("session");
 	
-	
-        assertEquals("Value present (not null)", false, pt.condition(false));
+        assertEquals("Value present (not null)", false, npt.condition(false));
     }
 
     /**
      * Verify that there is an session scope object is not in scope using the <code>NotPresentTag</code>.
     */
     public void testSessionScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testSessionScopeNotPresent";
 
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
-	pt.setScope("session");
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
+	npt.setScope("session");
 	
-	
-        assertEquals("Value present (not null)", true, pt.condition(false));
+        assertEquals("Value present (not null)", true, npt.condition(false));
     }
     
     /**
      * Verify that there is an request scope object in scope using the <code>NotPresentTag</code>.
     */
     public void testRequestScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testRequestScopePresent";
         String testStringValue = "abc";
-        pt.setScope("request");
+        npt.setScope("request");
         
         pageContext.setAttribute(testKey, testStringValue, PageContext.REQUEST_SCOPE);
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
 	
-	
-        assertEquals("Value present (not null)", false, pt.condition(false));
+        assertEquals("Value present (not null)", false, npt.condition(false));
     }
 
     /**
      * Verify that there is an request scope object is not in scope using the <code>NotPresentTag</code>.
     */
     public void testRequestScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testRequestScopeNotPresent";
 
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
-	pt.setScope("request");
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
+	npt.setScope("request");
 	
-	
-        assertEquals("Value not present (null)", true, pt.condition(false));
+        assertEquals("Value not present (null)", true, npt.condition(false));
     }
     
     /**
      * Verify that there is an page scope object in scope using the <code>NotPresentTag</code>.
     */
     public void testPageScopeObjectPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testPageScopePresent";
         String testStringValue = "abc";
-        pt.setScope("page");
+        npt.setScope("page");
         
         pageContext.setAttribute(testKey, testStringValue, PageContext.PAGE_SCOPE);
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
 	
-	
-        assertEquals("Value present (not null)", false, pt.condition(false));
+        assertEquals("Value present (not null)", false, npt.condition(false));
     }
 
     /**
      * Verify that there is an page scope object is not in scope using the <code>NotPresentTag</code>.
     */
     public void testPageScopeObjectNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
-        NotPresentTag pt = new NotPresentTag();
+        NotPresentTag npt = new NotPresentTag();
         String testKey = "testPageScopeNotPresent";
 
-        pt.setPageContext(pageContext);
-	pt.setName(testKey);
-	pt.setScope("page");
+        npt.setPageContext(pageContext);
+	npt.setName(testKey);
+	npt.setScope("page");
 	
-	
-        assertEquals("Value not present (null)", true, pt.condition(false));
+        assertEquals("Value not present (null)", true, npt.condition(false));
     }
 
+    /**
+     * Create cookie for testCookiePresent method test.
+    */
+    public void beginCookiePresent(ServletTestRequest testRequest) {
+       testRequest.addCookie(COOKIE_KEY, "cookie value");
+    }
+
+    /**
+     * Verify that there is an cookie using the <code>PresentTag</code>.
+    */
+    public void testCookiePresent() throws ServletException,  javax.servlet.jsp.JspException {
+        NotPresentTag npt = new NotPresentTag();
+
+        npt.setPageContext(pageContext);
+	npt.setCookie(COOKIE_KEY);
+
+        assertEquals("Cookie present", false, npt.condition(false));
+    }
+
+    /**
+     * Verify that there isn't an cookie using the <code>PresentTag</code>.
+    */
+    public void testCookieNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        NotPresentTag npt = new NotPresentTag();
+
+        npt.setPageContext(pageContext);
+	npt.setCookie(COOKIE_KEY);
+	
+        assertEquals("Cookie not present", true, npt.condition(false));
+    }
+
+    /**
+     * Create header for testHeaderPresent method test.
+    */
+    public void beginHeaderPresent(ServletTestRequest testRequest) {
+       testRequest.addHeader(HEADER_KEY, "header value");
+    }
+
+    /**
+     * Verify that there is an header using the <code>PresentTag</code>.
+    */
+    public void testHeaderPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        NotPresentTag npt = new NotPresentTag();
+
+        npt.setPageContext(pageContext);
+	npt.setHeader(HEADER_KEY);
+	
+        assertEquals("Header present", false, npt.condition(false));
+    }
+
+    /**
+     * Verify that there isn't an header using the <code>PresentTag</code>.
+    */
+    public void testHeaderNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        NotPresentTag npt = new NotPresentTag();
+
+        npt.setPageContext(pageContext);
+	npt.setHeader(HEADER_KEY);
+	
+        assertEquals("Header not present", true, npt.condition(false));
+    }
+
+    /**
+     * Create parameter for testParameterPresent method test.
+    */
+    public void beginParameterPresent(ServletTestRequest testRequest) {
+       testRequest.addParameter(PARAMETER_KEY, "parameter value");
+    }
+
+    /**
+     * Verify that there is an parameter using the <code>PresentTag</code>.
+    */
+    public void testParameterPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        NotPresentTag npt = new NotPresentTag();
+
+        npt.setPageContext(pageContext);
+	npt.setParameter(PARAMETER_KEY);
+
+        assertEquals("Parameter present", false, npt.condition(false));
+    }
+
+    /**
+     * Verify that there isn't an parameter using the <code>PresentTag</code>.
+    */
+    public void testParameterNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        NotPresentTag npt = new NotPresentTag();
+
+        npt.setPageContext(pageContext);
+	npt.setParameter(PARAMETER_KEY);
+	
+        assertEquals("Parameter not present", true, npt.condition(false));
+    }    
+    
 }

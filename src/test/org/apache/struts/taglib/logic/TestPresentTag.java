@@ -69,6 +69,10 @@ import org.apache.commons.cactus.*;
  * @author David Winterfeldt
  */
 public class TestPresentTag extends JspTestCase {
+    protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
+    protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
+    protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
+
     /**
      * Defines the testcase name for JUnit.
      *
@@ -111,7 +115,6 @@ public class TestPresentTag extends JspTestCase {
 	pt.setName(testKey);
 	pt.setScope("application");
 	
-	
         assertEquals("Value present (not null)", true, pt.condition(true));
     }
 
@@ -125,7 +128,6 @@ public class TestPresentTag extends JspTestCase {
         pt.setPageContext(pageContext);
 	pt.setName(testKey);
 	pt.setScope("application");
-	
 	
         assertEquals("Value not present (null)", false, pt.condition(true));
     }
@@ -143,7 +145,6 @@ public class TestPresentTag extends JspTestCase {
 	pt.setName(testKey);
 	pt.setScope("session");
 	
-	
         assertEquals("Value present (not null)", true, pt.condition(true));
     }
 
@@ -157,7 +158,6 @@ public class TestPresentTag extends JspTestCase {
         pt.setPageContext(pageContext);
 	pt.setName(testKey);
 	pt.setScope("session");
-	
 	
         assertEquals("Value present (not null)", false, pt.condition(true));
     }
@@ -175,7 +175,6 @@ public class TestPresentTag extends JspTestCase {
         pt.setPageContext(pageContext);
 	pt.setName(testKey);
 	
-	
         assertEquals("Value present (not null)", true, pt.condition(true));
     }
 
@@ -189,7 +188,6 @@ public class TestPresentTag extends JspTestCase {
         pt.setPageContext(pageContext);
 	pt.setName(testKey);
 	pt.setScope("request");
-	
 	
         assertEquals("Value not present (null)", false, pt.condition(true));
     }
@@ -207,7 +205,6 @@ public class TestPresentTag extends JspTestCase {
         pt.setPageContext(pageContext);
 	pt.setName(testKey);
 	
-	
         assertEquals("Value present (not null)", true, pt.condition(true));
     }
 
@@ -222,8 +219,100 @@ public class TestPresentTag extends JspTestCase {
 	pt.setName(testKey);
 	pt.setScope("page");
 	
-	
         assertEquals("Value not present (null)", false, pt.condition(true));
     }
 
+    /**
+     * Create cookie for testCookiePresent method test.
+    */
+    public void beginCookiePresent(ServletTestRequest testRequest) {
+       testRequest.addCookie(COOKIE_KEY, "cookie value");
+    }
+
+    /**
+     * Verify that there is an cookie using the <code>PresentTag</code>.
+    */
+    public void testCookiePresent() throws ServletException,  javax.servlet.jsp.JspException {
+        PresentTag pt = new PresentTag();
+
+        pt.setPageContext(pageContext);
+	pt.setCookie(COOKIE_KEY);
+
+        assertEquals("Cookie present", true, pt.condition(true));
+    }
+
+    /**
+     * Verify that there isn't an cookie using the <code>PresentTag</code>.
+    */
+    public void testCookieNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        PresentTag pt = new PresentTag();
+
+        pt.setPageContext(pageContext);
+	pt.setCookie(COOKIE_KEY);
+	
+        assertEquals("Cookie not present", false, pt.condition(true));
+    }
+
+    /**
+     * Create header for testHeaderPresent method test.
+    */
+    public void beginHeaderPresent(ServletTestRequest testRequest) {
+       testRequest.addHeader(HEADER_KEY, "header value");
+    }
+
+    /**
+     * Verify that there is an header using the <code>PresentTag</code>.
+    */
+    public void testHeaderPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        PresentTag pt = new PresentTag();
+
+        pt.setPageContext(pageContext);
+	pt.setHeader(HEADER_KEY);
+	
+        assertEquals("Header present", true, pt.condition(true));
+    }
+
+    /**
+     * Verify that there isn't an header using the <code>PresentTag</code>.
+    */
+    public void testHeaderNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        PresentTag pt = new PresentTag();
+
+        pt.setPageContext(pageContext);
+	pt.setHeader(HEADER_KEY);
+	
+        assertEquals("Header not present", false, pt.condition(true));
+    }
+
+    /**
+     * Create parameter for testParameterPresent method test.
+    */
+    public void beginParameterPresent(ServletTestRequest testRequest) {
+       testRequest.addParameter(PARAMETER_KEY, "parameter value");
+    }
+
+    /**
+     * Verify that there is an parameter using the <code>PresentTag</code>.
+    */
+    public void testParameterPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        PresentTag pt = new PresentTag();
+
+        pt.setPageContext(pageContext);
+	pt.setParameter(PARAMETER_KEY);
+
+        assertEquals("Parameter present", true, pt.condition(true));
+    }
+
+    /**
+     * Verify that there isn't an parameter using the <code>PresentTag</code>.
+    */
+    public void testParameterNotPresent() throws ServletException,  javax.servlet.jsp.JspException {
+        PresentTag pt = new PresentTag();
+
+        pt.setPageContext(pageContext);
+	pt.setParameter(PARAMETER_KEY);
+	
+        assertEquals("Parameter not present", false, pt.condition(true));
+    }    
+    
 }
