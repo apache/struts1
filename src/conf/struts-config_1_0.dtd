@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.10 2001/02/13 19:25:40 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.11 2001/02/19 21:41:39 craigmcc Exp $
 -->
 
 
@@ -230,7 +230,7 @@
 <!ATTLIST forward        className      %ClassName;     #IMPLIED>
 <!ATTLIST forward        name           CDATA           #REQUIRED>
 <!ATTLIST forward        path           %RequestPath;   #REQUIRED>
-<!ATTLIST forward        redirect       %Boolean;       "false">
+<!ATTLIST forward        redirect       %Boolean;       #IMPLIED>
 
 
 <!-- The "action-mappings" element configures the mappings from submitted
