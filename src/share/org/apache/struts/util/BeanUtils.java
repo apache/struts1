@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.19 2001/01/06 04:00:58 mschachter Exp $
- * $Revision: 1.19 $
- * $Date: 2001/01/06 04:00:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.20 2001/01/07 21:45:38 craigmcc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2001/01/07 21:45:38 $
  *
  * ====================================================================
  *
@@ -73,7 +73,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -92,7 +91,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.19 $ $Date: 2001/01/06 04:00:58 $
+ * @version $Revision: 1.20 $ $Date: 2001/01/07 21:45:38 $
  */
 
 public final class BeanUtils {
@@ -762,9 +761,9 @@ public final class BeanUtils {
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
             String stripped = name;
-            //int subscript = stripped.lastIndexOf("[");
-            //if (subscript >= 0)  // Remove subscript expression
-            //stripped = stripped.substring(0, subscript);
+            int subscript = stripped.lastIndexOf("[");
+            if (subscript >= 0)  // Remove subscript expression
+            stripped = stripped.substring(0, subscript);
             if (prefix != null) {
                 if (!stripped.startsWith(prefix))
                 continue;
@@ -816,9 +815,7 @@ public final class BeanUtils {
      *
      * @param bean JavaBean whose properties are being populated
      * @param properties Hashtable keyed by property name, with the
-     *  corresponding value to be set.  See 
-     *  {@link #convert(String,Class) convert(String, Class)} for the
-     *  allowable types of the value.
+     *  corresponding (String or String[]) value(s) to be set
      *
      * @exception IllegalAccessException if the caller does not have
      *  access to the property accessor method
@@ -827,29 +824,73 @@ public final class BeanUtils {
      */
     public static void populate(Object bean, Hashtable properties)
     throws IllegalAccessException, InvocationTargetException {
+
         if ((bean == null) || (properties == null))
         return;
-        
-        Iterator keys = properties.keySet().iterator();
-        
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            Object value = properties.get(key);
-            
-            if (value.getClass().isArray()) {
-                Object[] value1 = (Object[]) value;
-                if (value1.length == 1) {
-                    value = value1[0];
+
+        // Identify the property descriptors supported by our JavaBean
+        PropertyDescriptor descriptors[] =
+        PropertyUtils.getPropertyDescriptors(bean);
+        if (descriptors.length < 1)
+        return;
+
+        // Loop through the property name/value pairs to be set
+        Enumeration names = properties.keys();
+        while (names.hasMoreElements()) {
+
+            // Identify the property name and value(s) to be assigned
+            String name = (String) names.nextElement();
+            Object value = properties.get(name);	// String or String[]
+            if (value == null)
+            continue;
+
+            // Identify the relevant setter method (if there is one)
+            Method setter = null;
+            Class parameterTypes[] = null;
+            for (int i = 0; i < descriptors.length; i++) {
+                if (!name.equals(descriptors[i].getName()))
+                continue;
+                setter = descriptors[i].getWriteMethod();
+                if (setter == null)
+                continue;
+                parameterTypes = setter.getParameterTypes();
+                if (parameterTypes.length != 1) {
+                    setter = null;
+                    continue;
+                }
+                break;
+            }
+            if (setter == null)
+            continue;
+
+            // Convert the parameter value as required for this setter method
+            Object parameters[] = new Object[1];
+            if (parameterTypes[0].isArray()) {
+                if (value instanceof String) {
+                    String values[] = new String[1];
+                    values[0] = (String) value;
+                    parameters[0] = convert((String[]) values,
+                    parameterTypes[0]);
+                } else {
+                    parameters[0] = convert((String[]) value,
+                    parameterTypes[0]);
+                }
+            } else {
+                if (value instanceof String) {
+                    parameters[0] = convert((String) value,
+                    parameterTypes[0]);
+                }
+                else if (value instanceof FormFile) {
+                    parameters[0] = value;
+                } else {
+                    parameters[0] = convert( ((String[]) value)[0],
+                    parameterTypes[0]);
                 }
             }
-            
-            try {
-                PropertyUtils.setProperty(bean, key, value, true);
-            }
-            catch (NoSuchMethodException nsme) {
-                //this will happen, do nothing
-                ;
-            }            
+
+            // Invoke the setter method
+            setter.invoke(bean, parameters);
+
         }
 
     }
