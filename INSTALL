@@ -1,4 +1,4 @@
-$Id: INSTALL,v 1.2 2001/02/05 17:13:19 husted Exp $
+$Id: INSTALL,v 1.3 2001/02/05 18:58:51 mschachter Exp $
 
 				Struts
 				======
@@ -7,6 +7,48 @@ This document contains notes that have been accumulated on getting the Struts
 applications (documentation and example) running in a variety of servlet
 container environments.
 
+
+BLUESTONE UNIVERSAL BUSINESS SERVER
+-----------------------------------  	
+
+	*	You need UBS version 7.2 to run war file applications.  The UBS 7.2.2
+		evaluation is located here:
+		
+			http://www.bluestone.com/SaISAPI.dll/SaServletEngine.class/products/downloads.jsp
+		
+	*	If you're using version 7.2.1, you need to download the WAR file patch,
+		located in the product enhancement section of Bluestone's website: 
+		
+			http://www.bluestone.com/SaISAPI.dll/SaServletEngine.class/products/wfe.jsp
+
+	*	After installation of the correct version and/or patch of UBS 7.2, you
+		need to modify your apserver.txt file to point to the correct directory
+		for your war file applications.  Look for the section that says something
+		similar to the following:
+  		
+			[SaServletEngine.class]
+			session_affinity=1
+			type=1
+			program=/SaServletEngine.class
+			file_path=f:\webapps
+			host=localhost:20000
+
+	*	Use the directory specified by the "file_path" variable, or modify it
+		to point to your own custom webapp directory.  Copy the
+		"struts-documention.war" and "struts-example.war" files into that
+		webapp directory, and start the UBS (read documentation distributed
+		with UBS for information on how to start it if necessary).  Your webapps
+		are now accessible from the following URL's:
+		
+			http://localhost/<PLUGIN>/SaServletEngine.class/struts-example/
+			http://localhost/<PLUGIN>/SaServletEngine.class/struts-documentation/
+		
+		
+	*	"<PLUGIN>" represents the plugin you are using for your specific
+		webserver.  For apache on Windows, it might be "cgi-bin/SaCGI.exe",
+		for IIS on Windows, it might be "scripts/SaCGI.exe" or "scripts/ISAPI.dll".
+		Consult the UBS documentation for more information.
+		
 
 ORION APPLICATION SERVER
 ------------------------
