@@ -11,6 +11,7 @@
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <author>James Holmes</author>
+    <author>James Mitchell</author>
 </properties>
 
 <body>
@@ -33,13 +34,13 @@
     <ul>
 
     <li>
-        <a href="http://jakarta.apache.org/site/binindex.cgi">
-        <strong>Struts Binary Distribution - Struts 1.1 is the best available version</strong></a>
+        <a href="http://struts.apache.org/binindex.cgi">
+        <strong>Struts Binary Distribution - Struts 1.2.2 is the best available version</strong></a>
     </li>
 
     <li>
-        <a href="http://jakarta.apache.org/site/sourceindex.cgi">
-        <strong>Struts Source Code Distribution - Struts 1.1. is the best available version</strong></a>
+        <a href="http://struts.apache.org/sourceindex.cgi">
+        <strong>Struts Source Code Distribution - Struts 1.2.2 is the best available version</strong></a>
     </li>
 
     </ul>
