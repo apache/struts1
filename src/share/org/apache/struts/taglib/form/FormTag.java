@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/FormTag.java,v 1.3 2000/11/18 20:04:44 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/11/18 20:04:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/FormTag.java,v 1.4 2000/11/21 01:45:53 mschachter Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/11/21 01:45:53 $
  *
  * ====================================================================
  *
@@ -68,7 +68,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMappings;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 
@@ -78,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/11/18 20:04:44 $
+ * @version $Revision: 1.4 $ $Date: 2000/11/21 01:45:53 $
  */
 
 public class FormTag extends TagSupport {
@@ -177,7 +181,26 @@ public class FormTag extends TagSupport {
 
     // ------------------------------------------------------------- Properties
 
-
+    /**
+     * Returns a form action converted into an action mapping path.
+     * Anything after a period (".") is considered a name extension and ignored.
+     * Anything before the last forward slash ("/") is considered a name 
+     * extension and ignored.
+     */
+    protected String getActionMappingName() {
+        String retString = action;
+        int period = action.lastIndexOf(".");
+        int slash = action.lastIndexOf("/");
+        if (period > -1) {
+            retString = action.substring(0, period);
+        }
+        if (slash > -1) {
+            retString = retString.substring(slash+1, retString.length());
+        }
+        return "/" + retString;
+    }
+    
+    
     /**
      * Return the action URL to which this form should be submitted.
      */
@@ -488,6 +511,36 @@ public class FormTag extends TagSupport {
 
 	// Store this tag itself as a page attribute
 	pageContext.setAttribute(Constants.FORM_KEY, this);
+        
+        //get unspecified values
+        if ((name == null) || (type == null)) {
+            //get ActionMapping specified by "action"
+            ActionMappings mappings = (ActionMappings)
+                 pageContext.getAttribute(Action.MAPPINGS_KEY, PageContext.APPLICATION_SCOPE);            
+               
+            if (mappings != null) {
+              String actionMappingName = getActionMappingName();
+              ActionMapping mapping = mappings.findMapping(actionMappingName); 
+            
+              if (mapping != null) {
+                  this.scope = mapping.getScope();
+                  if (name == null) {
+                    this.name = mapping.getAttribute();
+                  }
+                  if (type == null) {
+                    this.type = mapping.getName();
+                  }
+                }
+                else {
+                    throw new JspTagException("Cannot retrieve mapping for specified form " +
+                        "action path \"" + actionMappingName + "\"");
+                }
+            }
+            else {
+                throw new JspTagException("Cannot retrieve ActionMappings under key \"" + 
+                    Action.MAPPINGS_KEY + "\"");
+            }
+        }
 
 	// Locate or create the bean associated with our form
 	int scope = PageContext.SESSION_SCOPE;
