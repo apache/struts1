@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.125 2003/07/26 18:58:36 dgraham Exp $
- * $Revision: 1.125 $
- * $Date: 2003/07/26 18:58:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.126 2003/07/26 19:04:07 dgraham Exp $
+ * $Revision: 1.126 $
+ * $Date: 2003/07/26 19:04:07 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.125 $ $Date: 2003/07/26 18:58:36 $
+ * @version $Revision: 1.126 $ $Date: 2003/07/26 19:04:07 $
  */
 
 public class RequestUtils {
@@ -825,12 +825,17 @@ public class RequestUtils {
      *
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
+     * @deprecated Use TagUtils.message() instead.  This will be removed after
+     * Struts 1.2.
      */
-    public static String message(PageContext pageContext, String bundle, String locale, String key)
+    public static String message(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key)
         throws JspException {
 
-        return (message(pageContext, bundle, locale, key, null));
-
+        return TagUtils.getInstance().message(pageContext, bundle, locale, key);
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.12 2003/07/26 19:01:12 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/26 19:01:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.13 2003/07/26 19:04:07 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/26 19:04:07 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -567,6 +567,30 @@ public class TagUtils {
             throw new JspException(
                 messages.getMessage("lookup.method", property, name));
         }
+
+    }
+    
+    /**
+     * Look up and return a message string, based on the specified parameters.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     * @return message string
+     *
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     */
+    public String message(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key)
+        throws JspException {
+
+        return message(pageContext, bundle, locale, key, null);
 
     }
     
