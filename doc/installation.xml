@@ -207,10 +207,10 @@
         this particular page, like this:</li>
     </ul>
 
-<pre>&lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="struts-bean" %&gt;
-&lt;@ taglib uri="/WEB-INF/struts-html.tld" prefix="struts-html" %&gt;
-&lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="struts-logic" %&gt;
-&lt;@ taglib uri="/WEB-INF/struts-template.tld" prefix="struts-template" %&gt;
+<pre>&lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-template.tld" prefix="template" %&gt;
 </pre>
 
     <ul>
