@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.21 2003/08/16 17:50:10 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/08/16 17:50:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.22 2003/08/23 17:11:46 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/08/23 17:11:46 $
  *
  * ====================================================================
  *
@@ -108,16 +108,17 @@ public class ExceptionHandler {
      *
      * @since Struts 1.1
      */
-    public ActionForward execute(Exception ex,
-                                 ExceptionConfig ae,
-                                 ActionMapping mapping,
-                                 ActionForm formInstance,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response)
+    public ActionForward execute(
+        Exception ex,
+        ExceptionConfig ae,
+        ActionMapping mapping,
+        ActionForm formInstance,
+        HttpServletRequest request,
+        HttpServletResponse response)
         throws ServletException {
 
         ActionForward forward = null;
-        ActionError error = null;
+        ActionMessage error = null;
         String property = null;
 
         // Build the forward from the exception mapping if it exists
@@ -130,10 +131,10 @@ public class ExceptionHandler {
 
         // Figure out the error
         if (ex instanceof ModuleException) {
-            error = ((ModuleException) ex).getError();
+            error = ((ModuleException) ex).getActionMessage();
             property = ((ModuleException) ex).getProperty();
         } else {
-            error = new ActionError(ae.getKey(), ex.getMessage());
+            error = new ActionMessage(ae.getKey(), ex.getMessage());
             property = error.getKey();
         }
 
@@ -141,7 +142,7 @@ public class ExceptionHandler {
 
         // Store the exception
         request.setAttribute(Globals.EXCEPTION_KEY, ex);
-        storeException(request, property, error, forward, ae.getScope());
+        this.storeException(request, property, error, forward, ae.getScope());
 
         return forward;
     }
@@ -186,7 +187,7 @@ public class ExceptionHandler {
      * from an Exception during <b>Action</b> delegation.  The default
      * implementation is to set an attribute of the request or session, as
      * defined by the scope provided (the scope from the exception mapping).  An
-     * <b>ActionErrors</b> instance is created, the error is added to the 
+     * <b>ActionMessages</b> instance is created, the error is added to the 
      * collection and the collection is set under the Globals.ERROR_KEY.
      *
      * @param request - The request we are handling
@@ -203,7 +204,7 @@ public class ExceptionHandler {
         ActionForward forward,
         String scope) {
 
-        ActionErrors errors = new ActionErrors();
+        ActionMessages errors = new ActionMessages();
         errors.add(property, error);
 
         if ("request".equals(scope)) {
