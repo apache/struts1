@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.25 2003/01/19 00:42:49 craigmcc Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.26 2003/02/15 12:50:51 husted Exp $</font>
     </p>
 
     <p>
@@ -56,40 +56,67 @@
     <section href="struts_1_1" name="Struts 1.1">
 
     <p>
-    Struts 1.1 provides a number of functional enhancements, including support 
-    for application modules. 
+    Struts 1.1 provides a number of functional enhancements, including support
+    for application modules.
     Other enhancements include action-based authentication, use of Commons-
-    Datasource and Commons-Logging packages, declarative exception handling, 
-    Dynabean support, Plug-In Actions, and a pluggable request processor.
-    Several extensions are now bundled with the Struts distribution, including 
+    Datasource and Commons-Logging packages, declarative exception handling,
+    Dynabean support, Plug-In classes, and a pluggable request processor.
+    Several extensions are now bundled with the Struts distribution, including
     the Nested taglib, Tiles, and the Commons Validator.
     An optional Struts-el taglib makes it easy to use Struts with JSTL.
     Backward-compatiblity with Struts 1.0.x is a primary goal of this release.
     </p>
 
     <p>
-        A proposal for the release of
-        <a href="proposals/release-plan-1.1b3.html">Struts 1.1 beta 3</a> is pending.
+        <a href="proposals/release-plan-1.1b3.html">Struts 1.1 beta 3</a> is in circulation
+        and we are working toward a release candidate.
     </p>
 </section>
 
 <section href="struts_1_2" name="Struts 1.2.x">
 
     <p>
-    Struts 1.2.x will include additional functional enhancements along the 
-    same lines as Struts 1.1, such as the items marked
-    <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=%27Importance%27">
-    LATER or REMIND in Bugzilla</a>.
-    The platform requirements will remain the same (Servlet 2.2 / JSP 1.1). 
-    The release will focus on refactoring of existing functionality, with a 
-    continued emphasis on backward compatibility.
+        Struts 1.2.x will include additional functional enhancements along the
+        same lines as Struts 1.1.
+        The platform requirements will remain the same (Servlet 2.2 / JSP 1.1).
+        The release will focus on refactoring of existing functionality, with a
+        continued emphasis on backward compatibility.
     </p>
 
     <p>
-    The Struts 1.2.x series is expected to incorporate several
-    incremental releases (in contrast to Struts 1.1).
+        The Struts 1.2.x series is expected to incorporate several
+        incremental releases (in contrast to Struts 1.1).
     </p>
 
+    <p>
+        Enhancements are logged in Bugzilla as
+        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=%27Importance%27">
+        LATER or REMIND tickets as they are suggested</a>.
+        Enhancements that represent incremental improvements are now being
+        tagged for the "Struts 1.2 family" milestone.
+        When developers are actually working on an enhancement,
+        they should re-tag it for a specific release milestone, such as "1.2.1" or "1.2.2".
+        Future release milestones are provided for enhancements which are
+        being actively planned or developed
+        but may not be ready for the very next release.
+    </p>
+
+    <p>
+        The listing of an enhancement in Bugzilla does not imply that is being "planned",
+        merely that it is under consideration.
+        If a listing has not been tagged for a specific milestone by a working developer,
+        then it may never be realized.
+    </p>
+
+    <p>
+        If an enhancement has not been tagged for a specific target,
+        feel free to start working on it yourself.
+        Many of our best features have been contributed by developers, just like you.
+        If you would like to announce your active interest in an enhancement,
+        please post a note on the ticket, and tag it to an appropriate release milestone.
+    </p>
+
+  <!--
     <p>
     Features under discussion include:
     </p>
@@ -105,7 +132,7 @@
         </li>
 
         <li>
-        Extending one configuration element from another, as is done with Tiles 
+        Extending one configuration element from another, as is done with Tiles
         Definitions
         </li>
 
@@ -114,7 +141,7 @@
         </li>
 
         <li>
-        Making Tiles JSTL-aware and available to other presentation systems (XLST, 
+        Making Tiles JSTL-aware and available to other presentation systems (XLST,
         Velocity)
         </li>
 
@@ -141,13 +168,13 @@
         and easier maintenance.</li>
 
     </ul>
-
     <p>
     More detail on work-in-progress may be found in
     <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Unknown&amp;version=1.0+Beta+2&amp;version=1.0+Beta+1&amp;version=0.5+Final&amp;version=1.0.2+Final&amp;version=1.0.1+Final&amp;version=1.0+Final&amp;version=1.0+Beta+3&amp;version=1.1+Beta+2&amp;version=1.1+Beta+1&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">Bugzilla</a>.
-    If any of these features are important to you, please don't hesitate to 
+    If any of these features are important to you, please don't hesitate to
     <a href="./faqs/helping.html">help with the development effort</a>.
     </p>
+-->
 
 </section>
 
@@ -155,11 +182,11 @@
 
     <p>
     Struts 2.0.x will include broader enhancements.
-    The implementation will expect a minimum platform of Servlet 2.3 / JSP 1.2 and 
-    refactorings may include the use of Filters. 
-    It is expected that Struts 2.0.x will rely on JSTL and the JavaServer Faces 
-    API as supporting technologies. 
-    However, the focus of the Struts framework will remain on the Controller aspect of a Model 2/MVC architecture. 
+    The implementation will expect a minimum platform of Servlet 2.3 / JSP 1.2 and
+    refactorings may include the use of Filters.
+    It is expected that Struts 2.0.x will rely on JSTL and the JavaServer Faces
+    API as supporting technologies.
+    However, the focus of the Struts framework will remain on the Controller aspect of a Model 2/MVC architecture.
     The core framework will continue to be both Model and View independent.
     </p>
 
@@ -178,7 +205,7 @@
         </li>
 
         <li>
-        Better support for other presentation layers, such as XLST (as in 
+        Better support for other presentation layers, such as XLST (as in
         1.2.x)
         </li>
 
@@ -189,14 +216,14 @@
     </ul>
 
     <p>
-    Development of Struts 2.0 will include taking a completely fresh look at 
-    the architecture. 
-    The goal for 2.0 will be to incorporate everything we've learned in the past 
-    years of Struts usage, and create something even better. 
+    Development of Struts 2.0 will include taking a completely fresh look at
+    the architecture.
+    The goal for 2.0 will be to incorporate everything we've learned in the past
+    years of Struts usage, and create something even better.
     </p>
 
     <p>
-    Of course, it is anticipated that the Struts team will continue to support 
+    Of course, it is anticipated that the Struts team will continue to support
     1.x users for a long time with bugfixes and incremental enhancements.
     </p>
 
@@ -225,24 +252,24 @@
 <section href="guidelines" name="Coding Conventions and Guidelines">
 
     <p>
-    Source code and documentation contributed to the Struts repositories 
+    Source code and documentation contributed to the Struts repositories
     should observe the:
     </p>
 
     <ul>
 
         <li>
-          <a href="http://jakarta.apache.org/site/source.html">Jakarta project 
+          <a href="http://jakarta.apache.org/site/source.html">Jakarta project
           guidelines</a>,
         </li>
 
         <li>
-          <a href="http://www.ambysoft.com/elementsJavaStyle.html">Elements of 
-          Java Style</a>, and 
+          <a href="http://www.ambysoft.com/elementsJavaStyle.html">Elements of
+          Java Style</a>, and
         </li>
 
         <li>
-          <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/">How to 
+          <a href="http://java.sun.com/j2se/javadoc/writingdoccomments/">How to
           write Doc Comments</a>
         </li>
 
@@ -259,42 +286,42 @@
     <ul>
 
         <li>
-        First, "Observe the style of the original". 
-        Resist the temptation to make stylistic changes for their own sake. 
+        First, "Observe the style of the original".
+        Resist the temptation to make stylistic changes for their own sake.
         But, if you must reformat code, commit style changes separately from
-        code changes. 
+        code changes.
         Either change the style, commit, and then change the code, or vice-
-        versa. 
+        versa.
         </li>
 
         <li>
-        Set editors to replace tabs with spaces, and do not trim trailing 
-        spaces. 
+        Set editors to replace tabs with spaces, and do not trim trailing
+        spaces.
         </li>
 
         <li>
-        Specify imported classes (do not use <code>.*</code>). 
+        Specify imported classes (do not use <code>.*</code>).
         </li>
 
         <li>
-        Write all if/else statements as full blocks with each clause within braces, 
-        unless the entire statement fits on the same line. 
+        Write all if/else statements as full blocks with each clause within braces,
+        unless the entire statement fits on the same line.
         </li>
 
         <li>
-        Use <code>:FIXME:</code> and <code>:TODO:</code> tokens to mark follow up 
-        notes in code. 
-        You may also include your Apache username and the date. 
+        Use <code>:FIXME:</code> and <code>:TODO:</code> tokens to mark follow up
+        notes in code.
+        You may also include your Apache username and the date.
         <code>:FIXME: we need to do this sometime (husted 2002-11-14)</code>
         </li>
 
         <li>
-        Use <code>@since</code> to document changes between Struts versions, 
+        Use <code>@since</code> to document changes between Struts versions,
         as in <code>@since Struts 1.1</code>.
         </li>
 
         <li>
-        Wrap lines of code and JavaDoc at column 78. 
+        Wrap lines of code and JavaDoc at column 78.
         You can include a "comment rule" in the source to help with this.<br />
         <small>
         // ------------------------------------------------------------------------ 78
@@ -302,61 +329,61 @@
         </li>
 
         <li>
-        Please do your best to provide high-quality JavaDocs for all source code 
+        Please do your best to provide high-quality JavaDocs for all source code
         elements.
         Package overviews (aka "Developer Guides") are also encouraged.
         </li>
 
         <li>
-        When working on a bugfix, please first write a 
-        <a href="http://www.junit.org">JUnit</a> test that proves the bug exists, 
+        When working on a bugfix, please first write a
+        <a href="http://www.junit.org">JUnit</a> test that proves the bug exists,
         and then use the test to prove  the bug is fixed. =:0)
         </li>
 
         <li>
-        When working on an enhancement, please feel free to use test-driven design 
+        When working on an enhancement, please feel free to use test-driven design
         and write the test first &lt;head-slap/>.
-        For more about TDD, see the 
+        For more about TDD, see the
         <a href="http://sourceforge.net/projects/mockobjects">MockObjects project
         </a>.
         </li>
 
         <li>
-        As files are updated from year to year, the copyright on each file should 
-        be extended to include the current year. 
-        You do not need to change the copyright year unless you change the file. 
+        As files are updated from year to year, the copyright on each file should
+        be extended to include the current year.
+        You do not need to change the copyright year unless you change the file.
         Every source file should include the current Apache License and copyright.
         </li>
 
         <li>
-        Provide high-level API compatibility for any changes made within the same 
-        major release series (#.x). 
-        Changes which adversely affect compatibility should be slotted for the 
+        Provide high-level API compatibility for any changes made within the same
+        major release series (#.x).
+        Changes which adversely affect compatibility should be slotted for the
         next major release series (++#.x).
         </li>
 
         <li>
-        Our favorite books about programming are 
+        Our favorite books about programming are
         <a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">
-        Design Patterns</a> and 
+        Design Patterns</a> and
         <a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">
-        Refactoring</a>. 
+        Refactoring</a>.
         </li>
 
         <li>
-        Our favorite book about open source development is the 
+        Our favorite book about open source development is the
         <a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">
         The Cathedral and the Bazaar</a>.
         </li>
 
         <li>
-        Our favorite science fiction author is 
-        <a href="http://www.nitrosyncretic.com/rah/">Robert Heinlein</a>. 
+        Our favorite science fiction author is
+        <a href="http://www.nitrosyncretic.com/rah/">Robert Heinlein</a>.
         <a href="http://www.tuxedo.org/~esr/jargon/html/entry/TANSTAAFL.html">
         <font size="-1">TANSTAAFL</font></a>.<br />
-        (Except on Friday, when we favor 
-        <a href="http://carbon.cudenver.edu/~mstilman/zaphod/">Douglas 
-        Adams</a>. 
+        (Except on Friday, when we favor
+        <a href="http://carbon.cudenver.edu/~mstilman/zaphod/">Douglas
+        Adams</a>.
         <a href="http://news.bbc.co.uk/1/hi/uk/1326657.stm">
         <font size="-1">SLATFATF</font></a>.)
         </li>
