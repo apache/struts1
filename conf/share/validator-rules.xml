@@ -101,7 +101,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.minlength">
 
          <javascript><![CDATA[
@@ -143,7 +143,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.maxlength">
 
          <javascript><![CDATA[
@@ -185,7 +185,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.invalid">
 
          <javascript><![CDATA[
@@ -236,7 +236,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.byte"
        jsFunctionName="ByteValidations">
 
@@ -281,7 +281,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.short"
        jsFunctionName="ShortValidations">
 
@@ -327,7 +327,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.integer"
        jsFunctionName="IntegerValidations">
 
@@ -373,7 +373,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.long"/>
 
 
@@ -385,7 +385,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.float"
        jsFunctionName="FloatValidations">
 
@@ -431,7 +431,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.double"/>
 
 
@@ -443,7 +443,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.date"
        jsFunctionName="DateValidations">
 
@@ -606,7 +606,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required,integer"
+              depends="integer"
                   msg="errors.range">
 
          <javascript><![CDATA[
@@ -625,7 +625,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required,integer"
+              depends="integer"
                   msg="errors.range">
 
          <javascript><![CDATA[
@@ -669,7 +669,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required,float"
+              depends="float"
                   msg="errors.range">
 
          <javascript><![CDATA[
@@ -713,7 +713,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.creditcard">
 
          <javascript><![CDATA[
@@ -791,7 +791,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionErrors,
                        javax.servlet.http.HttpServletRequest"
-              depends="required"
+              depends=""
                   msg="errors.email">
 
          <javascript><![CDATA[
