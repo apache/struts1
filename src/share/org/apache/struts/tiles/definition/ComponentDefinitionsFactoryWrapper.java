@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.13 2004/08/07 04:17:52 martinc Exp $
- * $Revision: 1.13 $
- * $Date: 2004/08/07 04:17:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ComponentDefinitionsFactoryWrapper.java,v 1.14 2004/08/31 20:41:29 jmitchell Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/08/31 20:41:29 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -207,7 +207,7 @@ public class ComponentDefinitionsFactoryWrapper implements DefinitionsFactory {
 
         map.put(
             DefinitionsFactoryConfig.PARSER_VALIDATE_PARAMETER_NAME,
-            Boolean.valueOf(config.getParserValidate()).toString());
+            (config.getParserValidate() ? Boolean.TRUE.toString() : Boolean.FALSE.toString()));
 
         if (!"org.apache.struts.tiles.xmlDefinition.I18nFactorySet"
             .equals(config.getFactoryClassname())) {
