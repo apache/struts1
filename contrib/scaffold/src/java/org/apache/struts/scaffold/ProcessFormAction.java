@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import org.apache.commons.scaffold.lang.ChainedException;
 import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
 
@@ -33,7 +32,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.7 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.8 $ $Date: 2003/01/02 19:43:45 $
  */
 public class ProcessFormAction extends ProcessAction {
 
@@ -47,13 +46,13 @@ public class ProcessFormAction extends ProcessAction {
      * context,
      * then the matching properties on that bean are populated with the
      * result.
+     * :TODO: Change from BeanUtil.populate to copyProperties
+     * in 1.1 version.
      *
      * @param request the request being serviced
      * @param name The name to use in scope
      * @param scope The scope to set the attribute in
      * @param bean The attribute to be set
-     * @todo Change from BeanUtil.populate to copyProperties
-     * in 1.1 version.
      */
     protected void exposeInScope(
             HttpServletRequest request,

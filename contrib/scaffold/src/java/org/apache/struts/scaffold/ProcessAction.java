@@ -1,31 +1,20 @@
 package org.apache.struts.scaffold;
 
 
-import java.io.IOException;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.beanutils.PropertyUtils;
-
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
-
 import org.apache.commons.scaffold.lang.Log;
 import org.apache.commons.scaffold.lang.Tokens;
 import org.apache.commons.scaffold.util.ProcessBean;
 import org.apache.commons.scaffold.util.ProcessResult;
-import org.apache.commons.scaffold.util.ResultList;
-import org.apache.commons.scaffold.util.ResultListBase;
+import org.apache.struts.action.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
 
 /**
@@ -35,7 +24,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Ted Husted
  * @author  Synthis Corporation.
  * @author OK State DEQ
- * @version $Revision: 1.8 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.9 $ $Date: 2003/01/02 19:43:27 $
  * @deprecated Use BizAction instead
  */
 public class ProcessAction extends BaseHelperAction {
@@ -92,9 +81,8 @@ public class ProcessAction extends BaseHelperAction {
      * If data is a Collection, only the first element is stored.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param form The ActionForm
      * @param request The HTTP request we are processing
-     * @param processResult The ProcessResult we are handling
+     * @param result The ProcessResult we are handling
      */
     protected void checkDataSingle(
             ActionMapping mapping,
@@ -140,9 +128,8 @@ public class ProcessAction extends BaseHelperAction {
      * By default, this is the <code>form-bean</code>'s name.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param form The ActionForm
      * @param request The HTTP request we are processing
-     * @param processResult The ProcessResult we are handling
+     * @param result The ProcessResult we are handling
      */
     protected void checkData(
             ActionMapping mapping,
@@ -236,7 +223,7 @@ public class ProcessAction extends BaseHelperAction {
       * superclass method.
       *
       * @param mapping The ActionMapping used to select this instance
-      * @param actionForm The optional ActionForm bean for this request
+      * @param form The optional ActionForm bean for this request
       * @param request The HTTP request we are processing
       * @param response The resonse we are creating
       * @return The ActionForward representing FAILURE
@@ -274,7 +261,7 @@ public class ProcessAction extends BaseHelperAction {
      * default behaviour will branch to findFailure().
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request
+     * @param form The optional ActionForm bean for this request
      * @param request The HTTP request we are processing
      * @param response The resonse we are creating
      */
@@ -325,7 +312,7 @@ public class ProcessAction extends BaseHelperAction {
      *
      * @param mapping The ActionMapping used to select this instance
      * @param request The HTTP request we are processing
-     * @param processResult The ProcessResult we are handling
+     * @param result The ProcessResult we are handling
      */
     protected void checkOutcome(
             ActionMapping mapping,
@@ -437,7 +424,7 @@ public class ProcessAction extends BaseHelperAction {
      * @param form The ActionForm
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
-     * @param helper The object instantiated from type given as parameter.
+     * @param helpers The object instantiated from type given as parameter.
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
