@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.11 2002/12/08 02:09:44 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/12/08 02:09:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.12 2002/12/16 03:48:27 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/12/16 03:48:27 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -83,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/12/08 02:09:44 $
+ * @version $Revision: 1.12 $ $Date: 2002/12/16 03:48:27 $
  * @since Struts 1.1
  */
 
@@ -308,8 +309,11 @@ public class DynaActionFormClass implements DynaClass, Serializable {
             if (dynaClasses == null) {
                 dynaClasses = new HashMap();
             }
-            String key =
-                config.getName() + config.getModuleConfig().getPrefix();
+            ModuleConfig moduleConfig = config.getModuleConfig();
+            String key = config.getName();
+            if (moduleConfig != null) {
+                key += moduleConfig.getPrefix();
+            }
             DynaActionFormClass dynaClass =
                 (DynaActionFormClass) dynaClasses.get(key);
             if (dynaClass == null) {
