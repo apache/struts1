@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.16 2003/07/25 23:51:31 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/07/25 23:51:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.17 2003/07/25 23:55:37 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/25 23:55:37 $
  *
  * ====================================================================
  *
@@ -73,8 +73,8 @@ import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * This class helps provides some useful methods for retrieving objects
@@ -82,7 +82,8 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.16 $ $Date: 2003/07/25 23:51:31 $
+ * @author David Graham
+ * @version $Revision: 1.17 $ $Date: 2003/07/25 23:55:37 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -123,15 +124,15 @@ public class Resources  {
 
   /**
    * Retrieve <code>ValidatorResources</code> for the current module.
-   * @param application  Application Context
-   * @param request     The ServletRequest
+   * @param application Application Context
+   * @param request The ServletRequest
    */
     public static ValidatorResources getValidatorResources(
         ServletContext application,
         HttpServletRequest request) {
             
         String prefix =
-            ((ModuleConfig) request.getAttribute(Globals.MODULE_KEY)).getPrefix();
+            RequestUtils.getModuleConfig(request, application).getPrefix();
             
         return (ValidatorResources) application.getAttribute(
             ValidatorPlugIn.VALIDATOR_KEY + prefix);
@@ -191,9 +192,9 @@ public class Resources  {
     * Gets the locale sensitive message based on the <code>ValidatorAction</code> message and the
     * <code>Field</code>'s arg objects.
     * @param messages  The Message resources
-    * @param locale    The locale
-    * @param va        The Validator Action
-    * @param field     The Validator Field
+    * @param locale The locale
+    * @param va The Validator Action
+    * @param field The Validator Field
     */
    public static String getMessage(MessageResources messages, Locale locale,
                                    ValidatorAction va, Field field) {
