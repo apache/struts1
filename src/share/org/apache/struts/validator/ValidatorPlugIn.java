@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.8 2002/10/16 22:41:42 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/10/16 22:41:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.9 2002/10/17 03:32:29 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/10/17 03:32:29 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.config.ApplicationConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2002/10/16 22:41:42 $
+ * @version $Revision: 1.9 $ $Date: 2002/10/17 03:32:29 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -210,10 +210,10 @@ public class ValidatorPlugIn implements PlugIn {
                 }
 
                 InputStream input = null;
-                BufferedInputStream bis = null;
                 input = servlet.getServletContext().getResourceAsStream(validatorRules);
 
                 if (input != null) {
+                    BufferedInputStream bis = null;
                     bis = new BufferedInputStream(input);
 
                     try {
