@@ -1,7 +1,7 @@
 /*
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,13 +55,25 @@
 package org.apache.struts.util;
 
 import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionMessage;
 
 /**
  * Used for specialized exception handling.
  */
 public class ModuleException extends Exception {
+    
     protected String property = null;
+    
+    /**
+     * @deprecated Use message instead.
+     */
     protected ActionError error = null;
+    
+    /**
+     * The ActionMessage associated with this exception.
+     * @since Struts 1.2
+     */
+    protected ActionMessage message = null;
 
 	/**
 	 * Construct an module exception with no replacement values.
@@ -71,6 +83,7 @@ public class ModuleException extends Exception {
     public ModuleException(String key) {
         super(key);
 		error = new ActionError(key);
+        message = new ActionMessage(key);
     }
 
 	/**
@@ -82,6 +95,7 @@ public class ModuleException extends Exception {
 	public ModuleException(String key, Object value) {
 		super(key);
 		error = new ActionError(key, value);
+        message = new ActionMessage(key, value);
 	}
 
 	/**
@@ -94,6 +108,7 @@ public class ModuleException extends Exception {
 	public ModuleException(String key, Object value0, Object value1) {
 		super(key);
 		error = new ActionError(key, value0, value1);
+        message = new ActionMessage(key, value0, value1);
 	}
 
 	/**
@@ -107,6 +122,7 @@ public class ModuleException extends Exception {
 	public ModuleException(String key, Object value0, Object value1, Object value2) {
 		super(key);
 		error = new ActionError(key, value0, value1, value2);
+        message = new ActionMessage(key, value0, value1, value2);
 	}
 
 	/**
@@ -121,6 +137,7 @@ public class ModuleException extends Exception {
 	public ModuleException(String key, Object value0, Object value1, Object value2, Object value3) {
 		super(key);
 		error = new ActionError(key, value0, value1, value2, value3);
+        message = new ActionMessage(key, value0, value1, value2, value3);
 	}
 
 	/**
@@ -131,14 +148,15 @@ public class ModuleException extends Exception {
 	 */
 	public ModuleException(String key, Object[] values) {
 		error = new ActionError(key, values);
+        message = new ActionMessage(key, values);
 	}
-	// -------------------------------------------------------- Public Methods
+    
     /**
 	 * Returns the property associated with the exception.
 	 * @return Value of property.
 	 */
 	public String getProperty() {
-		return (property != null) ? property : error.getKey();
+		return (property != null) ? property : message.getKey();
 	}
 
     /**
@@ -152,8 +170,19 @@ public class ModuleException extends Exception {
     /**
 	 * Returns the error associated with the exception.
 	 * @return Value of property error.
+     * @deprecated Use getActionMessage() instead.  This will be removed
+     * after Struts 1.2.
 	 */
 	public ActionError getError() {
 		return error;
 	}
+    
+    /**
+     * Returns the error associated with the exception.
+     * @return Value of property error.
+     * @since Struts 1.2
+     */
+    public ActionMessage getActionMessage() {
+        return this.message;
+    }
 }
