@@ -144,7 +144,7 @@
     <property name="project.name" value="struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.2.6"/>
+    <property name="project.version" value="1.3.0-dev"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
@@ -201,6 +201,7 @@
     <path id="compile.classpath">
       <pathelement location="${commons-beanutils.jar}"/>
       <pathelement location="${commons-chain.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
