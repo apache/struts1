@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.2 2002/07/31 06:43:18 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/31 06:43:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.3 2002/10/17 00:49:25 jholmes Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/17 00:49:25 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.config.ApplicationConfig;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.2 $ $Date: 2002/07/31 06:43:18 $
+  * @version $Revision: 1.3 $ $Date: 2002/10/17 00:49:25 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -427,7 +427,13 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      */
     protected void addTextParameter(HttpServletRequest request, FileItem item) {
         String name = item.getFieldName();
-        String value = item.getString();
+        String value = null;
+
+        try {
+            value = item.getString(request.getCharacterEncoding());
+        } catch (Exception e) {
+            value = item.getString();
+        }
 
         if (request instanceof MultipartRequestWrapper) {
             MultipartRequestWrapper wrapper = (MultipartRequestWrapper) request;
