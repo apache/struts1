@@ -187,7 +187,7 @@ Struts 1.0.
 <p>
 Day Corp.'s 
 <a href="http://www.day.com/devnet">
-<b>Communiqué JSP Debugger</b></a> is a remote java/jsp debugger for
+<b>Communique JSP Debugger</b></a> is a remote java/jsp debugger for
 Tomcat. it's based on JPDA 1.0 (Java Platform Debugger Architecture),
 which is the official debugging support for the Java 2 platform.
 </p>
