@@ -14,81 +14,38 @@
 </properties>
 
 <body>
-<section name="Acquiring Struts" href="Acquiring">
+
+    <section name="Acquiring Struts" href="Acquiring">
 
     <p>
-    The <i>production release</i> of <strong>Struts 1.0.2</strong> is 
-    available in a convenient binary distribution and also with complete 
+    The lastest <i>production release</i> of Struts is
+    available in a convenient binary distribution and also with complete
     source code. 
-    In addition, a library distribution is available, which contains the 
-    latest Struts binaries without the documentation or sample applications, 
-    providing a smaller, faster download.
     </p>
+
+        <p>
+            Apache downloads are now mirrored.
+            When you follow either the Binary or Source link,
+            please select your preferred mirror and then click on the link
+            to the <b>Struts</b> download.
+        </p>
 
     <ul>
         
     <li>
-        <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2">
-        <b>Struts 1.0.2 Binary Distribution</b></a>
+        <a href="http://jakarta.apache.org/site/binindex.cgi">
+        <b>Struts Binary Distribution - Latest release</b></a>
     </li>
-    
+
     <li>
-        <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/lib">
-        <b>Struts 1.0.2 Library Distribution</b></a>
-    </li>
-    
-    <li>
-        <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src">
-        <b>Struts 1.0.2 Source Code Distribution</b></a>
+        <a href="http://jakarta.apache.org/site/sourceindex.cgi">
+        <b>Struts Source Code Distribution - Latest Release</b></a>
     </li>
     
     </ul>
 
     <p>
-    Check the
-    <a href="http://jakarta.apache.org/struts/doc-1.0.2/release-notes-1.0.2.html">
-    Release Notes</a> for a summary of the changes since the Struts 1.0.1 
-    release.
-    </p>
-
-    <p>
-    <b>In addition to a Struts distribution,</b> you will need to ensure that
-    you have downloaded and installed all of the
-    <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Prerequisites">
-    prerequisite</a> software applications. 
-    Then, follow the appropriate instructions to 
-    <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Installing">
-    install and use a Struts binary distribution</a> in your web application 
-    or for
-    <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Building">
-    building Struts from the source distribution</a>.
-    </p>
-
-    <p>
-    A <i>release candidate</i> of <strong>Struts 1.1</strong> is also
-    available, in the same three distributions. As a release candidate, this
-    release is expected to be as stable as a production release, but there may
-    be a few remaining issues which have not been previously encountered.
-    </p>
-
-    <ul>
-    <li><a href="http://www.apache.org/dist/jakarta/struts/binaries/">
-    <b>Struts 1.1 Release Candidate 1 Binary Distribution</b></a></li>
-    <li><a href="http://www.apache.org/dist/jakarta/struts/library/">
-    <b>Struts 1.1 Release Candidate 1 Library Distribution</b></a></li>
-    <li><a href="http://www.apache.org/dist/jakarta/struts/source/">
-    <b>Struts 1.1 Release Candidate 1 Source Code Distribution</b></a></li>
-    </ul>
-
-    <p>
-    Check the
-    <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html">
-    Release Notes</a> for a summary of the changes since the Struts 1.0.2 
-    release.
-    </p>
-
-    <p>
-    As with the production release, you will need to ensure that you have
+    <b>In addition to a Struts distribution,</b> you will need to ensure that you have
     downloaded and installed all of the
     <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Prerequisites">
     prerequisite</a> software applications. 
@@ -100,20 +57,6 @@
     building Struts from the source distribution</a>.
     </p>
     
-    <p>   
-    For your convenience, the requisite JARs are provided as a single download under 
-    the <code>lib</code> sub-directory with each release and beta distribution. 
-    (The "Library Distribution" above.)
-    Please note that the minimum requirements may change between releases 
-    and betas, and some JARs may need to be updated to use the latest 
-    Nightly Build. 
-    </p>
-    
-</section>
-
-<section>
-    <p align="center"><a href="./faqs/helping.html#release">So when is the 
-    next release coming out?</a></p>
 </section>
 
 <section name="Nightly Builds" href="Builds">
@@ -147,24 +90,11 @@
     </ul>
     
     <p>
-    The nightly build relies on several JARs from the 
-    <a href="http://jakarta.apache.org/commons">Jakarta Commons</a>. 
-    Nightly builds of all the Commons and Commons-Sandbox packages are  
-    available from the 
-    <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/">
-    Commons nightly build directory</a>. 
-    Binary JARs are also available from the Apache Gump 
-    <a href="http://gump.covalent.net/jars/latest/">latest JARs 
-    directory</a>. 
-    (If you have trouble with a JAR after downloading it from Gump, 
-    your browser may be interpreting it as a text file. 
-    Try another browser or download the full distribution.)
-    </p>
-    
-    <p>
-    If you are building Struts from source, be sure to refer to the 
-    <a href="userGuide/installation.html">Installation page</a> in the 
-    User Guide for prerequesites.
+        If you are building Struts from source, be sure to refer to the
+        <a href="userGuide/installation.html">Installation page</a> in the
+        User Guide for prerequesites.
+        There are several JARs from the Jakarta Commons project that
+        are required to build Struts.
     </p>
     
     <p>

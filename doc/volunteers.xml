@@ -9,27 +9,42 @@
 <body>
 <chapter name="Who We Are" href="whoWeAre">
 
-<section name="The Meritocracy" href="meritocracy">
+    <section name="Community Support" href="support">
 
-    <p>
-    All work Struts is contributed by volunteers whose only motivation is 
-    to help make Struts work even better, both for themselves and for rest of 
-    the community.
-    </p>
+        <p>
+            As of June 25, 2003, there were 2744 subscribers to STRUTS-USER (plus an unknown
+            number who read it through newsfeed mirrors).  It's the largest
+            user mailing list at Jakarta, exceeding TOMCAT-USER that has ~2400.
+        </p>
 
-    <p>
-    All contributions are welcome, and may discussed and posted the 
-    mailing lists.
-    The final decision of what becomes part of the official distribution is 
-    made by a group of <a href="#committers">Committers</a>. 
-    For more about Meritocracy, see the 
-    <a href="http://jakarta.apache.org/site/roles.html">Management page</a> 
-    the Apache Jakarta Website.
-    </p>
+        <p>
+            Since Apache now uses a mirroring system, the precise number of downloads counts
+            is unknown, but in the Summer of 2002, Struts was averaging
+            8500 downloads per month. In liklihood, we well exceed that now.
+        </p>
 
-</section>
+        <p>
+            Some high level traffic statistics for the Struts web site
+            are
+            <a href="http://www.apache.org/~vgritsenko/stats/index.html">
+            now available.</a>
+        </p>
+
+        <p>
+            There are a great number of third-party extensions are available for Struts,
+            along with an equally vast number of articles and books.
+            We try to list as many of these as we can in the
+            <a href="resources/index.html">Resources area</a>.
+        </p>
+
+    </section>
 
 <section name="Source Code Contributors" href="contributors.source">
+
+    <p>
+        More than forty developers have contributed code or documentation to Struts.
+        We've tried to list all of our volunteers on this page (and apologize to anyone we missed!).
+    </p>
 
     <ul>
         <li>

@@ -85,8 +85,8 @@
         	/>
     </menu>
 
-    <menu name="Stable Release (1.1)">
-        <item 
+    <menu name="Stable Release (1.1.0)">
+        <item
         	name="Release Notes"
             href="userGuide/release-notes-1.1.html"
             />
@@ -95,30 +95,6 @@
             href="proposals/release-plan-1.1.html"
             />
     </menu>
-
-    <menu name="Previous Release (1.0.2)">
-        <item 
-        	name="Welcome page"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/index.html"
-            />
-        <item 
-        	name="User Guide"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/userGuide/index.html"
-            />
-        <item 
-        	name="Javadoc"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/api/index.html"
-            />
-        <item 
-        	name="Release Notes"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/release-notes-1.0.2.html"
-            />
-        <item 
-        	name="Installation"
-            href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html"
-            />
-    </menu>
-
 
 </project>
 

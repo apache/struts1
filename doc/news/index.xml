@@ -3,127 +3,52 @@
 
   <properties>
     <author email="husted@apache.org">Ted Husted</author>
-    <title>New and Status - Jakarta Struts</title>
+    <title>News and Status - Jakarta Struts</title>
   </properties>
 
 <body>
-<section name="Status" href="status">
 
-<p>
-The <strong>stable production release</strong> is <a href="http://www.apache.org/dist/jakarta/struts/binaries/">Struts 1.1</a>.
-</p>
-
-<hr size="1" noshade=""/>
-
-<ul>
-<li>
-  See the <a href="../status.html">Development Roadmap</a> for an overview of future plans.
-</li>
-<li>
-  See the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> for outstanding issues and enhancement requests.
-  </li>
-<li>
-  See the <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">Struts Nightly Build</a> for the latest development distribution.
-</li>
-<li>
-  See the <a href="http://jakarta.apache.org/site/mail.html">Struts-Dev list</a> for current development communications.
-  </li>
-<li>
-  See the <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">Struts CVS</a> for the current development codebase.
-  </li>
-</ul>
-
-<hr size="1" noshade=""/>
-
-<p>
-Struts is a completely open product. The
-<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development
-business using the resources cited here, which are all available to the public. Only
-Struts Committers may write to the
-<a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted
-to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a>.
-</p>
-
-</section>
-
-<section>
-<p align="center"><a href="../faqs/helping.html#release">So when is the next release coming out?</a></p>
-</section>
-
-<section name="Community Support" href="community">
+    <section name="Status" href="status">
 
     <p>
-        More than forty developers have contributed code or documentation to Struts.
-        We've tried to list all of our volunteers on the <a href="../volunteers.html">Who We Are</a> page
-        (and apologize to anyone we missed!).
+        The <strong>stable production release</strong> is
+        <a href="http://www.apache.org/dist/jakarta/struts/binaries/">Struts 1.1.0</a> (29 June 2003).
     </p>
+
+    <hr size="1" noshade=""/>
+
+    <ul>
+    <li>
+      See the <a href="../status.html">Development Roadmap</a> for an overview of future plans.
+    </li>
+    <li>
+      See the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> for outstanding issues and enhancement requests.
+      </li>
+    <li>
+      See the <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">Struts Nightly Build</a> for the latest development distribution.
+    </li>
+    <li>
+      See the <a href="http://jakarta.apache.org/site/mail.html">Struts-Dev list</a> for current development communications.
+      </li>
+    <li>
+      See the <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">Struts CVS</a> for the current development codebase.
+      </li>
+    </ul>
+
+    <hr size="1" noshade=""/>
 
     <p>
-        Since the release of Struts 1.1 RC1 (20/Feb/2003) through 30/May/2003,
-        there were 741 commit events to the Struts CVS
-        (which may have affected multiple files).
+    Struts is a completely open product. The
+    <a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development
+    business using the resources cited here, which are all available to the public. Only
+    Struts Committers may write to the
+    <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted
+    to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a>.
     </p>
 
-    <p>
-       On 30/May/2003, the mailing list counts were:
-    </p>
+    </section>
 
-    <pre>
-  User    1929
-  Digest   806
-  Dev      740
-        ------
-  Total   3475
-        ======
-    </pre>
-
-<p>
-In October 2002, the download counts for Struts binary distributions were:
-</p>
-
-<pre>
-  1.0.2:          15,780
-  1.1-b1:            763
-  1.1-b2:          9,695
-  Nightlies:       2,961
-                  ------
-  Total:          29,199
-                  ======
-</pre>
-
-<p>
-or around 940 per day. That's second highest among Jakarta projects,
-the highest being Tomcat with 80k-100k downloads per month.
-</p>
-
-<p>
-These counts reflect only the main Apache website -- they don't count
-any downloads from Apache mirrors, or from other sites that support
-download of the Struts binaries, either by themselves or incorporated in
-other tools. (The Apache Software License is wonderful for developers,
-but terrible for bean counters ...)
-</p>
-
-<p>
-As of November 14, the subscription counts to the Struts user mailing
-lists (counting digest subscribers) is:
-</p>
-
-<pre>
-  STRUTS-USER:     2,399
-</pre>
-
-<p>
-which only just trails Tomcat:
-</p>
-
-<pre>
-  TOMCAT-USER:     2,454
-</pre>
-
-</section>
-
-<section name="Recent News" href="news">
+    <section name="Recent News" href="news">
 
 <!--
 <h3><a name=""></a> - </h3>

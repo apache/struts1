@@ -48,11 +48,7 @@
     When learning about Struts, <b>be sure to refer to the documentation for 
     the version you are actually using</b>. 
     The documentation is bundled with each distribution as an application that 
-    you can install locally. 
-    For your convenience, links to the documentation for the current stable 
-    release are also provided on the menu bar. 
-    Whenever possible, please help conserve our bandwidth and install the 
-    documentation locally.
+    you can install and use locally.
     </blockquote>
 
     <p>
@@ -173,7 +169,7 @@
 
     <p>
     The Struts <a href="resources/index.html"><b>Resources</b></a> page 
-    provides links to everything else published about Struts, including:
+    provides links to other material published about Struts, including:
     </p>
     
     <ul>
