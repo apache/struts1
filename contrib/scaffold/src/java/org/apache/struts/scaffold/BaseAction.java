@@ -43,7 +43,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
  * compatibility with 1_0.
  *
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/09/12 12:39:50 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/12 20:39:00 $
  */
 public class BaseAction extends Action {
 
@@ -58,8 +58,8 @@ public class BaseAction extends Action {
      * @deprecated Will be removed after Struts 1.1 final ships.
      */
     private final boolean isStruts_1_0() {
-        return true;  // Struts 1.0.x
-//      return false; // Struts 1.1
+//    return true;  // Struts 1.0.x
+      return false; // Struts 1.1
     }
 
 // ---------------------------------------------------------------- Log
