@@ -113,7 +113,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>
       	The logical name of the global <code>ActionForward</code> entry
@@ -193,7 +193,7 @@ JSTL EL.
     <attribute>
       <name>collection</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>A runtime expression that evaluates to a collection (conforming to
       the requirements listed above) to be iterated over.</p>
@@ -224,7 +224,7 @@ JSTL EL.
     <attribute>
       <name>length</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The maximum number of entries (from the underlying collection) to be
       iterated through on this page.  This can be either an integer that
@@ -238,7 +238,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the JSP bean containing the collection to be iterated
       (if <code>property</code> is not specified), or the JSP bean whose
@@ -250,7 +250,7 @@ JSTL EL.
     <attribute>
       <name>offset</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The zero-relative index of the starting point at which entries from
       the underlying collection will be iterated through.  This can be either
@@ -264,7 +264,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Name of the property, of the JSP bean specified by <code>name</code>,
       whose getter returns the collection to be iterated.</p>
@@ -274,7 +274,7 @@ JSTL EL.
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
@@ -284,7 +284,7 @@ JSTL EL.
     <attribute>
       <name>type</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Fully qualified Java class name of the element to be exposed through
       the JSP bean named from the <code>id</code> attribute.  If not present,
@@ -315,7 +315,7 @@ JSTL EL.
     <attribute>
       <name>cookie</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the value of the cookie whose
       name is specified by this attribute.</p>
@@ -325,7 +325,7 @@ JSTL EL.
     <attribute>
       <name>expr</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>
        A specific value to be compared with, either a static value, or an EL
@@ -337,7 +337,7 @@ JSTL EL.
     <attribute>
       <name>header</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the value of the header whose
       name is specified by this attribute.  The name match is performed
@@ -348,7 +348,7 @@ JSTL EL.
     <attribute>
       <name>location</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If not specified, a match between the variable and the value may
       occur at any position within the variable string.  If specified, the
@@ -360,7 +360,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the JSP bean specified by this
       attribute, if <code>property</code> is not specified, or the value
@@ -372,7 +372,7 @@ JSTL EL.
     <attribute>
       <name>parameter</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the first, or only, value of the
       request parameter specified by this attribute.</p>
@@ -382,7 +382,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the property (of the bean specified
       by the <code>name</code> attribute) specified by this attribute.
@@ -393,7 +393,7 @@ JSTL EL.
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
@@ -403,7 +403,7 @@ JSTL EL.
     <attribute>
       <name>value</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The constant value which is checked for existence as a substring
       of the specified variable.</p>
@@ -434,7 +434,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The parameter key to retrieve the message from request scope.</p>
       </info>
@@ -443,7 +443,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Name of the property for which messages should be
          retrieved.  If not specified, all messages (regardless
@@ -455,7 +455,7 @@ JSTL EL.
     <attribute>
       <name>message</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>By default the tag will retrieve the request scope bean it will
          iterate over from the <code>Action.ERROR_KEY</code> constant string,
@@ -491,7 +491,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The parameter key to retrieve the message from request scope.</p>
       </info>
@@ -500,7 +500,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Name of the property for which messages should be
          retrieved.  If not specified, all messages (regardless
@@ -512,7 +512,7 @@ JSTL EL.
     <attribute>
       <name>message</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>By default the tag will retrieve the request scope bean it will
          iterate over from the <code>Action.ERROR_KEY</code> constant string,
@@ -545,7 +545,7 @@ JSTL EL.
     <attribute>
       <name>cookie</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the value of the cookie whose
       name is specified by this attribute.</p>
@@ -555,7 +555,7 @@ JSTL EL.
     <attribute>
       <name>expr</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>
        A specific value to be compared with, either a static value, or an EL
@@ -567,7 +567,7 @@ JSTL EL.
     <attribute>
       <name>header</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the value of the header whose
       name is specified by this attribute.  The name match is performed
@@ -578,7 +578,7 @@ JSTL EL.
     <attribute>
       <name>location</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If not specified, a match between the variable and the value may
       occur at any position within the variable string.  If specified, the
@@ -590,7 +590,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the JSP bean specified by this
       attribute, if <code>property</code> is not specified, or the value
@@ -602,7 +602,7 @@ JSTL EL.
     <attribute>
       <name>parameter</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the first, or only, value of the
       request parameter specified by this attribute.</p>
@@ -612,7 +612,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The variable to be matched is the property (of the bean specified
       by the <code>name</code> attribute) specified by this attribute.
@@ -623,7 +623,7 @@ JSTL EL.
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
@@ -633,7 +633,7 @@ JSTL EL.
     <attribute>
       <name>value</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The constant value which is checked for existence as a substring
       of the specified variable.</p>
@@ -663,7 +663,7 @@ JSTL EL.
     <attribute>
       <name>cookie</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of a cookie with the specified name.</p>
       </info>
@@ -672,7 +672,7 @@ JSTL EL.
     <attribute>
       <name>header</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of an HTTP header with the specified
       name.  The name match is performed in a case insensitive manner.</p>
@@ -682,7 +682,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of a JSP bean, in any scope, with the
       specified name.  If <code>property</code> is also specified, checks
@@ -693,7 +693,7 @@ JSTL EL.
     <attribute>
       <name>parameter</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of at least one occurrence of the
       specified request parameter on this request, even if the parameter
@@ -704,7 +704,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of a non-null property value, returned
       by a property getter method on the JSP bean (in any scope) that is
@@ -716,7 +716,7 @@ JSTL EL.
     <attribute>
       <name>role</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks whether the currently authenticated user (if any) has been
       associated with the specified security role.</p>
@@ -726,7 +726,7 @@ JSTL EL.
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
@@ -736,7 +736,7 @@ JSTL EL.
     <attribute>
       <name>user</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks whether the currently authenticated user principal has the
       specified name.</p>
@@ -767,7 +767,7 @@ JSTL EL.
     <attribute>
       <name>cookie</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of a cookie with the specified name.</p>
       </info>
@@ -776,7 +776,7 @@ JSTL EL.
     <attribute>
       <name>header</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of an HTTP header with the specified
       name.  The name match is performed in a case insensitive manner.</p>
@@ -786,7 +786,7 @@ JSTL EL.
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of a JSP bean, in any scope, with the
       specified name.  If <code>property</code> is also specified, checks
@@ -797,7 +797,7 @@ JSTL EL.
     <attribute>
       <name>parameter</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of at least one occurrence of the
       specified request parameter on this request, even if the parameter
@@ -808,7 +808,7 @@ JSTL EL.
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks for the existence of a non-null property value, returned
       by a property getter method on the JSP bean (in any scope) that is
@@ -820,7 +820,7 @@ JSTL EL.
     <attribute>
       <name>role</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks whether the currently authenticated user (if any) has been
       associated with any of the specified security roles. Use a comma-delimited
@@ -834,7 +834,7 @@ JSTL EL.
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the bean named by the
       <code>name</code> property, or "any scope" if not specified.</p>
@@ -844,7 +844,7 @@ JSTL EL.
     <attribute>
       <name>user</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Checks whether the currently authenticated user principal has the
       specified name.</p>
@@ -937,7 +937,7 @@ JSTL EL.
                 <attribute>
                   <name>anchor</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>Optional anchor tag ("#xxx") to be added to the generated
                   hyperlink.  Specify this value <strong>without</strong> any
@@ -948,7 +948,7 @@ JSTL EL.
                 <attribute>
                   <name>forward</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>Logical name of a global <code>ActionForward</code> that
                   contains the actual content-relative URI of the destination
@@ -964,7 +964,7 @@ JSTL EL.
                 <attribute>
                   <name>href</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The URL to which this redirect will transfer control.
                   This URL may be dynamically modified
@@ -979,7 +979,7 @@ JSTL EL.
                 <attribute>
                   <name>name</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The name of a JSP bean that contains a <code>Map</code>
                   representing the query parameters (if <code>property</code>
@@ -992,7 +992,7 @@ JSTL EL.
                 <attribute>
                   <name>page</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The context-relative path (beginning with a "/"
                   character) to which this hyperlink will transfer control
@@ -1008,7 +1008,7 @@ JSTL EL.
                 <attribute>
                   <name>paramId</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The name of the request parameter that will be dynamically
                   added to the generated hyperlink.  The corresponding value is
@@ -1021,7 +1021,7 @@ JSTL EL.
                 <attribute>
                   <name>paramName</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The name of a JSP bean that is a String containing the
                   value for the request parameter named by <code>paramId</code>
@@ -1036,7 +1036,7 @@ JSTL EL.
                 <attribute>
                   <name>paramProperty</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The name of a property of the bean specified by the
                   <code>paramName</code> attribute, whose return value must
@@ -1049,7 +1049,7 @@ JSTL EL.
                 <attribute>
                   <name>paramScope</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The scope within which to search for the bean specified
                   by the <code>paramName</code> attribute.  If not specified,
@@ -1060,7 +1060,7 @@ JSTL EL.
                 <attribute>
                   <name>property</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The name of a property of the bean specified by the
                   <code>name</code> attribute, whose return value must be
@@ -1074,7 +1074,7 @@ JSTL EL.
                 <attribute>
                   <name>scope</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                   <p>The scope within which to search for the bean specified
                   by the <code>name</code> attribute.  If not specified, all
@@ -1085,7 +1085,7 @@ JSTL EL.
                 <attribute>
                   <name>transaction</name>
                   <required>false</required>
-                  <rtexprvalue>false</rtexprvalue>
+                  <rtexprvalue>true</rtexprvalue>
                   <info>
                     <p>Set to <code>true</code> if you want the current
                     transaction control token included in the generated

@@ -88,7 +88,7 @@
     <attribute>
       <name>anchor</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Optional anchor tag ("#xxx") to be added to the generated
       hyperlink.  Specify this value <strong>without</strong> any
@@ -99,7 +99,7 @@
     <attribute>
       <name>forward</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Logical name of a global <code>ActionForward</code> that contains
       the actual content-relative URI of the resource to be included.</p>
@@ -109,7 +109,7 @@
     <attribute>
       <name>href</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Absolute URL (including the appropriate protocol prefix such as
       "http:") of the resource to be included.  Because this URL could be
@@ -132,19 +132,21 @@
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Application-relative name (starting with a '/') of the web application
       resource to be dispatched, and whose response data is to be made
-      available as a bean.  <strong>DEPRECATED - Use the "page" attribute
-      instead</strong>.</p>
+      available as a bean.</p>
       </info>
+      <deprecated>
+      Use the "page" attribute instead.
+      </deprecated>
     </attribute>
 
     <attribute>
       <name>page</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Application-relative URI (starting with a '/') of the web application
       resource to be included.</p>
@@ -154,7 +156,7 @@
     <attribute>
       <name>transaction</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
         <p>Set to <code>true</code> if you want the current
         transaction control token included in the generated
@@ -180,12 +182,22 @@
     <p>The message key may be specified directly, using the <code>key</code>
     attribute, or indirectly, using the <code>name</code> and
     <code>property</code> attributes to obtain it from a bean.</p>
+    
+    <p>
+    <strong>JSTL</strong>:  The equivalent JSTL tag is &lt;fmt:message&gt;.  For example,
+    <br/>
+    <code>
+    	&lt;fmt:message key="my.msg.key"&gt;
+    	  &lt;fmt:param value="replacement text"/&gt;
+    	&lt;/fmt:message&gt;
+    </code>
+    </p>
     </info>
 
     <attribute>
       <name>arg0</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>First parametric replacement value, if any.</p>
       </info>
@@ -194,7 +206,7 @@
     <attribute>
       <name>arg1</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Second parametric replacement value, if any.</p>
       </info>
@@ -203,7 +215,7 @@
     <attribute>
       <name>arg2</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Third parametric replacement value, if any.</p>
       </info>
@@ -212,7 +224,7 @@
     <attribute>
       <name>arg3</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Fourth parametric replacement value, if any.</p>
       </info>
@@ -221,7 +233,7 @@
     <attribute>
       <name>arg4</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Fifth parametric replacement value, if any.</p>
       </info>
@@ -230,7 +242,7 @@
     <attribute>
       <name>bundle</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the application scope bean under which the
       <code>MessageResources</code> object containing our messages
@@ -242,7 +254,7 @@
     <attribute>
       <name>key</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The message key of the requested message, which must have
       a corresponding value in the message resources. If not specified,
@@ -254,7 +266,7 @@
     <attribute>
       <name>locale</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the session scope bean under which our currently
       selected <code>Locale</code> object is stored.</p>
@@ -265,7 +277,7 @@
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the attribute name of the bean whose property is accessed
       to retrieve the value specified by <code>property</code> (if
@@ -277,7 +289,7 @@
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the property to be accessed on the bean
       specified by <code>name</code>.  This value may be a simple, indexed,
@@ -290,7 +302,7 @@
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the variable scope searched to retrieve the bean specified
       by <code>name</code>.  If not specified, the default rules applied by
@@ -332,7 +344,7 @@
     <attribute>
       <name>property</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Name of the property from our page context to be retrieved and
       exposed.  Must be one of <code>application</code>, <code>config</code>,
@@ -375,7 +387,7 @@
     <attribute>
       <name>input</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>If any arbitrary value for this attribute is specified, the resource
       will be made available as an <code>InputStream</code>.  If this
@@ -387,7 +399,7 @@
     <attribute>
       <name>name</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Application-relative name (starting with a '/') of the web application
       resource to be loaded and made available.</p>
@@ -422,7 +434,7 @@
     <attribute>
       <name>collection</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>A runtime expression that evaluates to an array, a Collection, or
       a Map.</p>
@@ -443,7 +455,7 @@
     <attribute>
       <name>name</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the JSP bean (optionally constrained to the scope
       specified by the <code>scope</code> attribute) that contains the
@@ -456,7 +468,7 @@
     <attribute>
       <name>property</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The name of the property, of the bean specified by the
       <code>name</code> attribute, whose getter method will return the
@@ -467,7 +479,7 @@
     <attribute>
       <name>scope</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>The bean scope within which to search for the JSP bean specified
       by the <code>name</code> attribute.  If not specified, the available
@@ -513,7 +525,7 @@
     <attribute>
       <name>formBean</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the Struts <code>ActionFormBean</code>
       definition object to be exposed.</p>
@@ -523,7 +535,7 @@
     <attribute>
       <name>forward</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the name of the global Struts <code>ActionForward</code>
       definition object to be exposed.</p>
@@ -533,7 +545,7 @@
     <attribute>
       <name>mapping</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
       <info>
       <p>Specifies the matching path of the Struts <code>ActionMapping</code>
       definition object to be exposed.</p>
