@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.6 2002/03/12 06:30:56 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/03/12 06:30:56 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.7 2002/10/09 05:09:35 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/10/09 05:09:35 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.LabelValueBean;
  *
  * @author Craig R. McClanahan
  * @author Martin F N Cooper
- * @version $Revision: 1.6 $ $Date: 2002/03/12 06:30:56 $
+ * @version $Revision: 1.7 $ $Date: 2002/10/09 05:09:35 $
  */
 
 public class TestBean extends ActionForm {
@@ -394,6 +394,20 @@ public class TestBean extends ActionForm {
 
     public void setEmptyStringProperty(String emptyStringProperty) {
         this.emptyStringProperty = emptyStringProperty;
+    }
+
+
+    /**
+     * A single-String value for a SELECT element based on resource strings.
+     */
+    private String resourcesSelect = "Resources 2";
+
+    public String getResourcesSelect() {
+        return (this.resourcesSelect);
+    }
+
+    public void setResourcesSelect(String resourcesSelect) {
+        this.resourcesSelect = resourcesSelect;
     }
 
 

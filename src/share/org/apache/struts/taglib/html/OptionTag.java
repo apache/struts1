@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.11 2002/10/04 05:34:19 dmkarr Exp $
- * $Revision: 1.11 $
- * $Date: 2002/10/04 05:34:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.12 2002/10/09 05:09:35 martinc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/10/09 05:09:35 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/10/04 05:34:19 $
+ * @version $Revision: 1.12 $ $Date: 2002/10/09 05:09:35 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -262,11 +262,13 @@ public class OptionTag extends BodyTagSupport {
      */
     public int doAfterBody() throws JspException {
 
-        String text = bodyContent.getString();
-        if (text != null) {
-            text = text.trim();
-            if (text.length() > 0)
-                this.text = text;
+        if (bodyContent != null) {
+            String text = bodyContent.getString();
+            if (text != null) {
+                text = text.trim();
+                if (text.length() > 0)
+                    this.text = text;
+            }
         }
         return (SKIP_BODY);
 

@@ -102,6 +102,17 @@ main menu.
   </tr>
 
   <tr>
+    <th align="right">Select With Labels From Resources:</th>
+    <td align="left">
+      <html:select property="resourcesSelect" size="3">
+        <html:option value="Resources 0" key="resources0"/>
+        <html:option value="Resources 1" key="resources1"/>
+        <html:option value="Resources 2" key="resources2"/>
+      </html:select>
+    </td>
+  </tr>
+
+  <tr>
     <th align="right">
       Collection with null labels and values:
     </th>
