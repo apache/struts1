@@ -103,35 +103,38 @@
     <p>Unfortunately, actions cannot be specified as a welcome page. Since there can be a list of pages, the web server looks for each page on the list before selecting one. The web server doesn't see actions as pages and will never select one as a welcome page. So, in the case of a welcome page, how do we follow the Struts best practice of navigating through actions rather than pages?</p>
 
     <p>One solution is to use a server page to "bootstrap" a Struts action. A Java web application recognizes the idea of "forwarding" from one page to another page (or action). We can register the usual "index.jsp" as the welcome page and have it forward to a "welcome" action. Here's the MailReader's index.jsp:</p>
-
-    <blockquote>
-      <p><code>&lt;%@ taglib uri="/tags/struts-logic" prefix="logic" %><br />
-      &lt;logic:redirect action="/welcome"/></code></p>
-    </blockquote>
+    <hr />
+    <pre>
+<code>&lt;%@ taglib uri="/tags/struts-logic" prefix="logic" %&gt;
+&lt;logic:redirect action="/welcome"/&gt;</code>
+</pre>
+    <hr />
 
     <p>At the top of the page, we import the "struts-logic" JSP tag library. (Again, see the <a href="http://jakarta.apache.org/struts/userGuide/preface.html">Preface to the Struts User Guide</a> for more about the technologies underlying Struts.) The page itself consists of a single tag that redirects to the "welcome" action. The tag inserts the actual web address for the redirect when the page is rendered. But, where does the tag find the actual address to insert?</p>
 
     <p>The list of actions, along with other Struts components, are registered through one or more Struts configuration files. The configuration files are written as XML documents and processed when the application starts. If we just wanted to forward to the welcome page, we could use a configuration element like this:</p>
-
-    <blockquote>
-      <p><code>&lt;!-- Display welcome page --><br />
-      &lt;action path="/welcome" forward="/welcome.jsp" /></code></p>
-    </blockquote>
+    <hr />
+    <pre>
+<code>&lt;!-- Display welcome page --&gt;
+&lt;action path="/welcome" forward="/welcome.jsp" /&gt;</code>
+</pre>
+    <hr />
 
     <p>If someone asked for the welcome action ("/welcome.do"), the welcome.jsp page would be displayed in return.</p>
 
-    <h4>WelcomeAction</h4>
+    <h4><a name="WelcomeAction.java" id="WelcomeAction.java">WelcomeAction.java</a></h4>
 
     <p>But if we peek at the configuration file for the MailReader, we find a slightly more complicated XML element for the welcome action:</p>
-
-    <blockquote>
-      <p><code>&lt;!-- Display welcome page --><br />
-      &lt;action path="/welcome"<br />
-      &nbsp;&nbsp;type="org.apache.struts.webapp.example.WelcomeAction"><br />
-      &nbsp;&nbsp;&lt;forward name="failure" path="/Error.jsp" /> <br />
-      &nbsp;&nbsp;&lt;forward name="success" path="/welcome.jsp" /> <br />
-      &lt;/action></code></p>
-    </blockquote>
+    <hr />
+    <pre>
+<code>&lt;!-- Display welcome page --&gt;
+&lt;action path="/welcome"
+  type="org.apache.struts.webapp.example.WelcomeAction"&gt;
+  &lt;forward name="failure" path="/Error.jsp" /&gt;
+  &lt;forward name="success" path="/welcome.jsp" /&gt;
+&lt;/action&gt;</code>
+</pre>
+    <hr />
 
     <p>Here, the "WelcomeAction" Java class executes whenever someone asks for the welcome action. As it completes, the Action class can select which page is displayed. Two pages the class can select here are "Error.jsp" and "welcome.jsp". But the Action class doesn't need to know the path to the pages. The class can select them just using the names "success" or "failure".</p>
 
@@ -144,96 +147,100 @@
     <p>The database is exposed to the application as an object stored in application scope. The database object is based on an interface. Different implementations of the database could be loaded without changing the rest of the application. But how is the database object loaded in the first place?</p>
 
     <p>One section of the Struts configuration is devoted to "PlugIns". When a Struts application loads, it also loads whatever PlugIns are specified in its configuration. The PlugIn interface is quite simple, and you can use PlugIns to do anything that might need to be done when your application loads. The PlugIn is also notified when the application shuts down, so you can release any allocated resources.</p>
-
-    <blockquote>
-      <p><code>&lt;plug-in className="org.apache.struts.webapp.example.memory.MemoryDatabasePlugIn"> <br />
-      &nbsp;&nbsp;&lt;set-property property="pathname" value="/WEB-INF/database.xml"/> <br />
-      &lt;/plug-in></code></p>
-    </blockquote>
+    <hr />
+    <pre>
+<code>&lt;plug-in className="org.apache.struts.webapp.example.memory.MemoryDatabasePlugIn"&gt;
+  &lt;set-property property="pathname" value="/WEB-INF/database.xml"/&gt;
+&lt;/plug-in&gt;</code>
+</pre>
+    <hr />
 
     <p>By default, the MailReader application loads a "MemoryDatabase" implementation of the UserDatabase. MemoryDatabase stores the database contents as a XML document, which is parsed by the Digester and loaded as a set of nested hashtables. The outer table is the list of user objects, each of which has its own inner hashtable of subscriptions. When you register, a user object is stored in this hashtable ... and when you login, the user object is stored within the session context.</p>
 
     <p>The database comes seeded with a sample user. If you check the database.xml file under WEB-INF, you'll see the sample user described as:</p>
-
-    <blockquote>
-      <p><code>
-  		&lt;user username="user" fromAddress="John.User@somewhere.com" fullName="John Q. User" password="pass"><br />
-  		  &nbsp;&nbsp;&lt;subscription host="mail.hotmail.com" autoConnect="false" password="bar" type="pop3" username="user1234"><br />
-  		  &nbsp;&nbsp;&lt;/subscription><br />
-  		  &nbsp;&nbsp;&lt;subscription host="mail.yahoo.com" autoConnect="false" password="foo" type="imap" username="jquser"><br />
-  		  &nbsp;&nbsp;&lt;/subscription><br />
-  		&lt;/user>
-		</code></p>
-    </blockquote>
+    <hr />
+    <pre>
+<code>&lt;user username="user" fromAddress="John.User@somewhere.com" fullName="John Q. User" password="pass"&gt;
+  &lt;subscription host="mail.hotmail.com" autoConnect="false" password="bar" type="pop3" username="user1234"&gt;
+  &lt;/subscription&gt;
+  &lt;subscription host="mail.yahoo.com" autoConnect="false" password="foo" type="imap" username="jquser"&gt;
+  &lt;/subscription&gt;
+&lt;/user&gt;</code>
+</pre>
+    <hr />
 
     <p>This creates a registration record for "John Q. User", with the detail for his hotmail account (or "subscription").</p>
 
     <h4><a name="MessageResources.properties" id="MessageResources.properties">MessageResources.properties</a></h4>
 
     <p>Another section of the Struts configuration loads the message resources for the application. If you change a message in the resource, and then reload the application, the change will appear throughout the application. If you provide message resources for additional locales, you can internationalize your application.</p>
-
-    <blockquote>
-      <p><code>&lt;message-resources parameter="org.apache.struts.webapp.example.MessageResources" /></code></p>
-    </blockquote>
+    <hr />
+    <pre>
+<code>&lt;message-resources parameter="org.apache.struts.webapp.example.MessageResources" /&gt;</code>
+</pre>
+    <hr />
 
     <p>This is a standard properties text file. Here are the entries used by the welcome page:</p>
-
-    <blockquote>
-      	<pre>
-index.heading=MailReader Demonstration Application Options
+    <hr />
+    <pre>
+<code>index.heading=MailReader Demonstration Application Options
 index.logon=Log on to the MailReader Demonstration Application
 index.registration=Register with the MailReader Demonstration Application
 index.title=MailReader Demonstration Application (Struts 1.2.1-dev)
-index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
-    </blockquote>
+index.tour=A Walking Tour of the MailReader Demonstration Application</code>
+</pre>
+    <hr />
 
     <p>The MailReader application uses a second set of message resources for non-text elements. The "key" element can be used to access this resource bundle rather than the default bundle.</p>
+    <hr />
+    <pre>
+<code>&lt;message-resources parameter="org.apache.struts.webapp.example.AlternateMessageResources" key="alternate" /&gt;</code>
+</pre>
+    <hr />
 
-    <blockquote>
-      <p><code>&lt;message-resources parameter="org.apache.struts.webapp.example.AlternateMessageResources" key="alternate" /></code></p>
-    </blockquote>
-
-
-    <h3>welcome.jsp</h3>
+    <h3><a name="welcome.jsp" id="welcome.jsp">welcome.jsp</a></h3>
 
     <p>After confirming that the necessary resources exist, the WelcomeAction forwards to the welcome.jsp page.</p>
+    <hr />
+    <pre>
+<code>&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
+&lt;%@ taglib uri="/tags/struts-bean" prefix="bean" %&gt;
+&lt;%@ taglib uri="/tags/struts-html" prefix="html" %&gt;
 
-    <blockquote><pre><code>&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %>
-&lt;%@ taglib uri="/tags/struts-bean" prefix="bean" %>
-&lt;%@ taglib uri="/tags/struts-html" prefix="html" %>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;bean:message key="index.title"/&gt;&lt;/title&gt;
+&lt;link rel="stylesheet" type="text/css" href="base.css" /&gt;
+&lt;/head&gt;
 
-&lt;html>
-&lt;head>
-&lt;title>&lt;bean:message key="index.title"/>&lt;/title>
-&lt;link rel="stylesheet" type="text/css" href="base.css" />
-&lt;/head>
+&lt;h3&gt;&lt;bean:message key="index.heading"/&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;html:link action="/editRegistration?action=Create"&gt;<br />
+&lt;bean:message key="index.registration"/&gt;&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/logon"&gt;&lt;bean:message key="index.logon"/&gt;&lt;/html:link&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3>&lt;bean:message key="index.heading"/>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;html:link action="/editRegistration?action=Create"><br />&lt;bean:message key="index.registration"/>&lt;/html:link>&lt;/li>
-&lt;li>&lt;html:link action="/logon">&lt;bean:message key="index.logon"/>&lt;/html:link>&lt;/li>
-&lt;/ul>
+&lt;h3&gt;Change Language&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;html:link action="/locale?language=en"&gt;English&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/locale?language=ja" useLocalEncoding="true"&gt;Japanese&lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link action="/locale?language=ru" useLocalEncoding="true"&gt;Russian&lt;/html:link&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3>Change Language&lt;/h3>
-&lt;ul>
-&lt;li>&lt;html:link action="/locale?language=en">English&lt;/html:link>&lt;/li>
-&lt;li>&lt;html:link action="/locale?language=ja" useLocalEncoding="true">Japanese&lt;/html:link>&lt;/li>
-&lt;li>&lt;html:link action="/locale?language=ru" useLocalEncoding="true">Russian&lt;/html:link>&lt;/li>
-&lt;/ul>
+&lt;hr /&gt;
 
-&lt;hr />
+&lt;p&gt;&lt;html:img bundle="alternate" pageKey="struts.logo.path" altKey="struts.logo.alt"/&gt;&lt;/p&gt;
 
-&lt;p>&lt;html:img bundle="alternate" pageKey="struts.logo.path" altKey="struts.logo.alt"/>&lt;/p>
+&lt;p&gt;&lt;html:link action="/tour"&gt;&lt;bean:message key="index.tour"/&gt;&lt;/html:link&gt;&lt;/p&gt;
 
-&lt;p>&lt;html:link action="/tour">&lt;bean:message key="index.tour"/>&lt;/html:link>&lt;/p>
-
-&lt;/body>
-&lt;/html></code></pre>
-</blockquote>
+&lt;/body&gt;
+&lt;/html&gt;</code>
+</pre>
+    <hr />
 
     <p>At the top of the welcome.jsp page, there are several directives that load the Struts tag libraries. These are just the usual red tape that goes with any JSP file. The rest of the page demonstrates three Struts JSP tags: "bean:message", "html:link", and "html:img".</p>
 
-    <p>The bean:message tag inserts a message from the MessageResources file. The MailReader comes with support for three locales: English (the default), Russian, and Japanese. If the Struts locale setting is changed for a user, the bean:message tag will render messages from that locale's property bundle instead. </p>
+    <p>The bean:message tag inserts a message from the MessageResources file. The MailReader comes with support for three locales: English (the default), Russian, and Japanese. If the Struts locale setting is changed for a user, the bean:message tag will render messages from that locale's property bundle instead.</p>
 
     <p>The html:link tag does double duty. First, you can refer to an action or forward stored in the Struts configuration, and the tag will insert the corresponding path when the page is rendered. This makes it easy to "rewire" an application without touching all the pages. Second, the link tag will "URL encode" the hyperlink to maintain the client session. Your application can maintain client state without requiring cookies.</p>
 
@@ -257,128 +264,271 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
 
     <h3><a name="logon.jsp" id="logon.jsp">logon.jsp</a></h3>
 
-    <p>If you choose the logon link, the container loads the logon.jsp file. You can use the default username and password (user:pass) to login. (Note that both the username and password are case sensitive.) Better yet, try omitting or misspelling the login in various combinations and see how the application reacts.</p>
+    <p>If you choose the logon link, the Logon action forwards control to the logon.jsp page. The logon page displays a form that accepts a username and password. You can use the default username and password to logon (user and pass). Note that both the username and password are case sensitive. Better yet, try omitting or misspelling the username and password in various combinations and see how the application reacts.</p>
 
-    <p>If you do this, Struts will return you to the same JSP, but with three major differences:</p>
+    <p>Once you enter the correct username and password combination, the LogonAction will send you to the main menu. Note that whatever username you entered before is defaulted on the form.</p>
 
-    <ol>
-      <li>The page address is now logon.do rather than login.jsp.</li>
+    <p>Now that we've gotten through a logon, let's backtrack and take a look at the logon.jsp.</p>
+    <hr />
+    <pre>
+<code>&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
+&lt;%@ taglib uri="/tags/struts-bean" prefix="bean" %&gt;
+&lt;%@ taglib uri="/tags/struts-html" prefix="html" %&gt;
 
-      <li>Struts will display a validation-error above the logon form.</li>
+&lt;html:xhtml/&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;bean:message key="logon.title"/&gt;&lt;/title&gt;
+&lt;/head&gt;
 
-      <li>Whatever username you entered before is defaulted on the form.</li>
-    </ol>
+&lt;html:errors/&gt;
 
-    <p>Pretty cool, but how does it work?</p>
+&lt;html:form action="/submitLogon" focus="username"
+         onsubmit="return validateLogonForm(this);"&gt;
+&lt;table border="0" width="100%"&gt;
 
-    <h4><a name="struts-config.xml" id="struts-config.xml">struts-config.xml</a> and <a name="LogonForm.java" id="LogonForm.java">LogonForm.java</a></h4>
+  &lt;tr&gt;
+    &lt;th align="right"&gt;
+      &lt;bean:message key="prompt.username"/&gt;:
+    &lt;/th&gt;
+    &lt;td align="left"&gt;
+      &lt;html:text property="username" size="16" maxlength="18"/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
 
-    <p>First, the logon.jsp makes use of the custom-tag "form". This tag can scan the application's properties for a form bean related to the path /logon.jsp (from the link on the welcome page). In this case, Struts finds one, and then checks for an instance of this particular form bean. Not finding one, Struts creates a new form bean. When the form is submitted, Struts grabs the form fields from the HTTP request, and updates the waiting bean.</p>
+  &lt;tr&gt;
+    &lt;th align="right"&gt;
+      &lt;bean:message key="prompt.password" bundle="alternate"/&gt;:
+    &lt;/th&gt;
+    &lt;td align="left"&gt;
+      &lt;html:password property="password" size="16" maxlength="18"
+                    redisplay="false"/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
 
-    <p>To enable all this, you can simply</p>
+  &lt;tr&gt;
+    &lt;td align="right"&gt;
+      &lt;html:submit property="Submit" value="Submit"/&gt;
+    &lt;/td&gt;
+    &lt;td align="left"&gt;
+      &lt;html:reset/&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
 
-    <ol>
-      <li>define a class for the form bean in your package (the form fields with setters and getters),</li>
+&lt;/table&gt;
 
-      <li>add the bean class to your application's configuration resource, and</li>
+&lt;/html:form&gt;
 
-      <li>link the bean class to your action mapping by their name properties (name="logonForm").</li>
-    </ol>
+&lt;html:javascript formName="logonForm"
+        dynamicJavascript="true"
+         staticJavascript="false"/&gt;
+&lt;script language="Javascript1.1" src="staticJavascript.jsp"&gt;&lt;/script&gt;
 
-    <p>In addition to parameters representing standard HTML options, The form tag can also take several handy parameters to add JavaScript features to a form. These include focus, onsubmit, and onreset. There are even parameters for specifying cascading stylesheets.</p>
+&lt;jsp:include page="footer.jsp" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+</pre>
+    <hr />
 
-    <p>Struts has tidy mechanisms for validating forms and printing error messages. An action object can add as many messages as needed to a standard Struts collection. The JSP can then print all the messages, and clear the queue, using a single custom tag, &lt;html:errors/>. There can be as many messages as your validation routine cares to post.</p>
+    <p>We saw some of these tags on the welcome page. Let's focus on the new tags.</p>
+
+    <p>The first new tag on the logon page is html:errors. If a person enters incorrect credentials, then the LogonAction will post an appropriate error message. If the html:errors tag sees that one or more messages were posted, the tag ouputs the messages to the page. The text of the messages can be specified in the MessageResource bundle, making them easy to internationalize.</p>
+
+    <p>The second new tag is html:form. This tag renders a html form tag. The "action" element tells the tag to use "logonSubmit.do" for the form's action. The "focus" attribute tells the tag to generate a little Javascript after the form that sets its focus to the "username" field. The "onsubmit" attribute tells the form to run a Javascript when the form is submitted. (Just like the corresponding attribute on the standard form tag.)</p>
+
+    <p>Within the html:form tag, we see four other new tags: "html:text", "html:password", "html:submit", and "html:reset".</p>
+
+    <p>The html:text tag renders a "input type=text" tag. The "property" attribute becomes the input tag's "name" attribute.</p>
+
+    <p>The html:password tag renders a "input type=password" tag. The "redisplay" attribute tell the tag not to render the password back into the file, if the submit fails. The html:submit and html:reset tags renders buttons of the corresponding types.</p>
+
+    <p>Following the form is a html:javascript tag. This tag works with the Struts Validator component to generate a JavaScript that can validate input before it is submitted to the LogonAction.</p>
 
     <blockquote>
-      <p><i>Struts labels this mechanism as an error message handler, though your application could use it for other messages too. For example, to post a message than a record was added or deleted.</i></p>
+      <p><font class="note">Most of these tags have many more options than the ones we use in this application. For the complete documentation for each tag, see the Tag Developers Guides in the Struts documentation bundle.</font></p>
     </blockquote>
 
-    <p>To get the most out of your form beans, Struts provides a special class, ActionForm, with built-in support for validation and message handling that you can use as the base for your own form beans. Each of your JSP forms will probably have a unique set of fields, and would have their own specific form bean.</p>
+    <p>But, how do these tags know so much? How does the Javascript tag know what scripts to write? How do the text and password tags know what values to redisplay?</p>
+
+    <p>For the answers, we need to turn to the Struts configuration files.</p>
+
+    <h4><a name="struts-config.xml" id="struts-config.xml">struts-config.xml</a></h4>
+
+    <p>In the struts-config.xml file, we find an element for the "/logonSubmit" action</p>
+    <hr />
+    <pre>
+<code>&lt;!-- Process a user logon --&gt;
+&lt;action    path="/submitLogon"
+                  type="org.apache.struts.webapp.example.LogonAction"
+                  name="logonForm"
+                 scope="request"
+                 input="logon"&gt;
+ &lt;exception
+                   key="expired.password"
+                  type="org.apache.struts.webapp.example.ExpiredPasswordException"
+                  path="/expiredPassword.do"/&gt;
+       &lt;/action&gt;</code>
+</pre>
+    <hr />
+
+    <p>We saw the path and type attributes in the welcome action. Let's look at the new attributes.</p>
+
+    <p>The "name" attribute specifies something Struts calls an "ActionForm". The ActionForm buffers input from a form and delivers it to an Action class as an object. The ActionForm can also validate the input. If validation fails, the tags can rewrite the input values from the ActionForm.</p>
+
+    <p>The ActionForms are defined in the "formbeans" section of the configuration file. Here's the formbean element for the "logonForm".</p>
+    <hr />
+    <pre>
+<code>&lt;form-bean       name="logonForm"
+                 type="org.apache.struts.validator.DynaValidatorForm"&gt;
+                 &lt;form-property name="username" type="java.lang.String"/&gt;
+                 &lt;form-property name="password" type="java.lang.String"/&gt;
+&lt;/form-bean&gt;</code>
+</pre>
+    <hr />
+
+    <p>ActionForms can be "conventional" or "dynamic". Here, we are using a dynamic ActionForm. Rather than cobble up an actual JavaBean class, we specify the properties the ActionForm can accept in the configuration file. If the property is not specified here, it is not captured, validated, or passed up to the Action class.</p>
+
+    <p>Struts creates the ActionForms automatically. The "scope" attribute in the action element tells the controller wether to store the ActionForm in the request or in the user's session.</p>
+
+    <blockquote>
+      <p><font class="note">The Struts best practice is to use request scope for single-page forms that contain all the properties needed by the Action. There is usually no need to maintain form data across requests.</font></p>
+    </blockquote>
+
+    <p>Struts can also validate the ActionForm automatically. If validation fails, Struts looks for the forward specified by the "input" attribute. In this case, the "logon" forward sends control back to the input.jsp page.</p>
+    <hr />
+    <pre>
+<code>&lt;forward name="logon" path="/logon.do"/&gt;</code>
+</pre>
+    <hr />
+
+    <p>Within the logon action element is another new element, "exception". When a user logons on, it's possible that an "ExpiredPasswordException" will be thrown. Should this happen, Struts will capture the exception and send control to the "ExpiredPassword" action.</p>
+
+    <h4><a name="validations.xml" id="validations.xml">validations.xml</a></h4>
+
+    <p>In the logon.jsp, we mentioned that the html:javascript tag confers with the Struts Validator components. The Validator is configured through another XML document, the "validation.xml". Here's the element for our logonForm:</p>
+    <hr />
+    <pre>
+<code>&lt;form name="logonForm"&gt;
+
+        &lt;field property="username"
+                        depends="required"&gt;
+                &lt;arg0   key="prompt.username"/&gt;
+        &lt;/field&gt;
+
+        &lt;field property="password"
+                        depends="required, minlength,maxlength"&gt;
+                &lt;arg0   key="prompt.password"/&gt;
+                &lt;arg1   key="${var:minlength}" name="minlength"
+                   resource="false"/&gt;
+                &lt;arg2   key="${var:maxlength}" name="maxlength"
+                   resource="false"/&gt;
+                &lt;var&gt;
+                        &lt;var-name&gt;maxlength&lt;/var-name&gt;
+                        &lt;var-value&gt;16&lt;/var-value&gt;
+                &lt;/var&gt;
+                &lt;var&gt;
+                        &lt;var-name&gt;minlength&lt;/var-name&gt;
+                        &lt;var-value&gt;3&lt;/var-value&gt;
+                &lt;/var&gt;
+        &lt;/field&gt;
+
+&lt;/form&gt;</code>
+</pre>
+    <hr />
+
+    <p>The field elements correspond to the ActionForm properties. The "username" field element says it depends on the "required" validator. If the username is blank or absent, validation will fail and an error message is automatically generated.</p>
+
+    <p>The "password" field (or property) is also required. In addition, it must also pass the "maxlength" and "minlength" validations. Here, the minimum length is three characters and the maximum length is sixteen. If the length of the password doesn't meet these criteria, a corresponding error message is generated. Of course, the messages are generated from the MessageResource bundles and are easy to localize.</p>
 
     <h4><a name="LogonAction.java" id="LogonAction.java">LogonAction.java</a></h4>
 
-    <p>The initial JSP submits its form to logon.do. If you check the servlet mappings in the example's web.xml you will see that requests for *.do files are directed to the Struts "action" servlet (an instance of ActionServlet). In the example, the ActionServlet refers to struts-config.xml for its own mappings (among other things), which is where we find the reference to logon.do:</p>
+    <p>If validation passes, the logonForm is forwarded to the LogonAction. The LogonAction interacts with the database to see if the credentials are valid. If so, the user is logged on, and control passes to the "success" forward. Otherwise, control is forwarded to the input page and the list of error messages displayed.</p>
 
-    <blockquote>
-      <p><code>&lt;!-- Process a user logon --><br />
-      &lt;action<br />
-      path="/logon"<br />
-      type="org.apache.struts.webapp.example.LogonAction"<br />
-      name="logonForm"<br />
-      scope="request"<br />
-      input="/logon.jsp"<br />
-      ><br />
-      &lt;/action></code></p>
-    </blockquote>
+    <p>Here's the LogonAction (sans comments):</p>
 
-    <p>and a form bean to go with the "logonForm" action:</p>
+    <hr />
 
-    <blockquote>
-      <p><code>&lt;!-- Logon form bean --><br />
-      &lt;form-bean<br />
-      name="logonForm"<br />
-      type="org.apache.struts.webapp.example.LogonForm"<br />
-      /></code></p>
-    </blockquote>
+<pre><code>package org.apache.struts.webapp.example;
+import ...
 
-    <p>In the action mapping, the path property tells the ActionServlet to forward a request for logon.do to the LogonAction object. The input property tells the LogonAction object where it can pass control to get information from the user.</p>
+public final class LogonAction extends BaseAction {
 
-    <p>Before passing the request to LogonAction, the ActionServlet looks for the LogonForm bean. If it finds it, the ActionServlet updates the bean by matching properties named in the HTTP request with properties named in the form bean. If it doesn't find the bean, ActionServlet creates it, so LogonAction can assume that it already exists.</p>
+    private static String USERNAME = "username";
+    private static String PASSWORD = "password";
 
-    <p>When called by the ActionServlet, LogonAction retrieves the username and password from the LogonForm bean. (If just created, the bean will return default values.)</p>
+    protected User getUser(UserDatabase database, String username,
+                           String password, ActionMessages errors)
+                           throws ExpiredPasswordException {
 
-    <p>In the example, LogonAction then checks with the DatabaseServlet to see if the logon matches a registered user. If the logon doesn't match, LogonAction adds a message key to an error list. At the end of the routine, if the error list is not empty, LogonAction adds a User bean to the session context, and forwards control to its input form (login.jsp).</p>
+        User user = null;
+        if (database == null){
+            errors.add(
+                ActionMessages.GLOBAL_MESSAGE,
+                new ActionMessage("error.database.missing"));
+        }
+        else {
+            user = database.findUser(username);
+            if ((user != null) && !user.getPassword().equals(password)) {
+                user = null;
+            }
+            if (user == null) {
+                errors.add(
+                    ActionMessages.GLOBAL_MESSAGE,
+                    new ActionMessage("error.password.mismatch"));
+            }
+        }
 
-    <blockquote>
-      <p><i>Note that direct access to the DatabaseServlet should really be handled by a business-logic bean, and NOT by LogonAction. To quote the example's author "This should be considered a bug in the example."</i></p>
-    </blockquote>
+        return user;
 
-    <p>If there are no errors, LogonAction places a user bean into the session context (replacing any prior user bean), and forwards control to the "success" action. Where that control actually goes is determined by the mappings in struts-config.xml.</p>
+    }
 
-    <p>Before returning from a successful login, LogonAction also disposes of the LogonForm bean. This way, if the user returns to the index.jsp form later, it will be a clean form without the (old) login already entered. Note that LogonAction first checks to see if the scope has been set to "request", and then removes the bean from the request context, or otherwise from the default session context.</p>
+    protected void SaveUser(HttpServletRequest request, User user) {
 
-    <blockquote>
-      <p><i>The Struts best practice is to use request scope for single-page forms that contain all of your relevant properties, because there is no need to maintain such form beans across requests.</i></p>
+        HttpSession session = request.getSession();
 
-      <p><i>Note that the example removes the LogonForm bean regardless of scope. This is for backward compatibility with earlier configurations. In your application, you should follow the advice of the configuration, and remove it only if the scope is set to "request". This way, the behavior can be changed just by editing struts-config.xml and reloading the application.</i></p>
-    </blockquote>
+        session.setAttribute(Constants.USER_KEY, user);
+        if (log.isDebugEnabled()) {
+            log.debug(
+                "LogonAction: User '"
+                    + user.getUsername()
+                    + "' logged on in session "
+                    + session.getId());
+        }
 
-    <p>Go ahead and login successfully now, using the default username and password (user and pass).</p>
+    }
 
-    <h4><a name="struts-config.xml_2" id="struts-config.xml_2">struts-config.xml 2</a></h4>
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
-    <p>As mentioned, on a successful login, LogonAction forwards control to the "success" action, and where control actually goes is determined by the mappings in struts-config.xml. But if you check the mappings for LogonAction, you'll find this block</p>
+        UserDatabase database = getUserDatabase(request);
+        String username = (String) PropertyUtils.getSimpleProperty(form,
+                USERNAME);
+        String password = (String) PropertyUtils.getSimpleProperty(form,
+                PASSWORD);
+        ActionMessages errors = new ActionMessages();
 
-    <blockquote>
-      <p><code>&lt;!-- Process a user logon --><br />
-      &lt;action<br />
-      path="/logon"<br />
-      type="com.husted.struts.example2.LogonAction"<br />
-      name="logonForm"<br />
-      scope="request"<br />
-      input="/logon.jsp"><br />
-      &lt;/action></code></p>
-    </blockquote>
+        User user = getUser(database,username,password,errors);
 
-    <p><i>Huh!? Where's the success mapping?</i> If you dig around, you'll also find</p>
+        SaveUser(request,user);
 
-    <blockquote>
-      <p><code>&lt;!-- Global Forward Definitions --><br />
-      &lt;global-forwards><br />
-      &lt;forward<br />
-      name="logon"<br />
-      path="/logon.jsp"<br />
-      /><br />
-      &lt;forward<br />
-      name="success"<br />
-      path="/mainMenu.jsp"<br />
-      /><br />
-      &lt;/global-forwards></code></p>
-    </blockquote>
+        if (!errors.isEmpty()) {
+            this.saveErrors(request, errors);
+            return (mapping.getInputForward());
+        }
 
-    <p>Which says, if somebody says forward to "success", and doesn't have a local forward for "success", then forward using the path "/mainMenu.jsp". (Ditto for forward to "logon", but forward to "/logon.jsp".)</p>
+        return (findSuccess(mapping));
 
-    <p>And which is why you should be now be staring at the result of the mainMenu.jsp now, offering the choices</p>
+    }</code></pre>
+
+	<hr />
+
+    <h4><a name="mainMenu.jsp" id="mainMenu.jsp">mainMenu.jsp</a></h4>
+
+    <p>On a successful logon, the main menu page displays, offering the choices</p>
 
     <ul>
       <li>Edit your user registration profile</li>
@@ -398,7 +548,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
 
     <h4><a name="CheckLoginTag.java" id="CheckLoginTag.java">CheckLoginTag.java</a></h4>
 
-    <p>This is an excellent example of using custom tags to encapsulate application logic. CheckLoginTag.java looks to see if the user is logged in by checking for an object named "User" in the session context. If not, control is forwarded to "/login.jsp". So, whenever you want to be sure someone is logged in before they access a page, just put "&lt;app:checkLogon/>" at the top of the JSP.</p>
+    <p>This is an excellent example of using custom tags to encapsulate application logic. CheckLoginTag.java looks to see if the user is logged in by checking for an object named "User" in the session context. If not, control is forwarded to "/login.jsp". So, whenever you want to be sure someone is logged in before they access a page, just put "&lt;app:checkLogon/&gt;" at the top of the JSP.</p>
 
     <blockquote>
       <p><i>If you take a good look at the CheckLoginTag source, you will probably see a quick and easy way the code could be made easier to maintain.</i></p>
@@ -423,19 +573,19 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>If you check the struts-config.xml, you'll see that the editRegistration action is mapped to the (surprise again!), the EditRegistrationAction; it uses a registrationForm bean, and registration.jsp for input.</p>
 
     <blockquote>
-      <p><code>&lt;!-- Registration form bean --><br />
+      <p><code>&lt;!-- Registration form bean --&gt;<br />
       &lt;form-bean name="registrationForm"<br />
-      type="org.apache.struts.webapp.example.RegistrationForm"/></code></p>
+      type="org.apache.struts.webapp.example.RegistrationForm"/&gt;</code></p>
 
-      <p><code>&lt;!-- Edit user registration --><br />
+      <p><code>&lt;!-- Edit user registration --&gt;<br />
       &lt;action path="/editRegistration"<br />
       type="org.apache.struts.webapp.example.EditRegistrationAction"<br />
       name="registrationForm"<br />
       scope="request"<br />
       validate="false"<br />
-      input="/registration.jsp"><br />
-      &lt;forward name="success" path="/registration.jsp"/><br />
-      &lt;/action></code></p>
+      input="/registration.jsp"&gt;<br />
+      &lt;forward name="success" path="/registration.jsp"/&gt;<br />
+      &lt;/action&gt;</code></p>
 
       <p><i>Hint: Consistent naming conventions, like the ones used throughout the Example, make applications much easier to write and understand. Save your creativity for the things that matter, and follow an established standard for source code formatting, like the <a href="www.amazon.com/exec/obidos/ISBN=0521777682/">Elements of Java Style</a>.</i></p>
     </blockquote>
@@ -460,9 +610,9 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
       property="action"<br />
       scope="request"<br />
       value="Edit"<br />
-      ><br />
-      &lt;app:checkLogon/><br />
-      &lt;/logic:equal></code></p>
+      &gt;<br />
+      &lt;app:checkLogon/&gt;<br />
+      &lt;/logic:equal&gt;</code></p>
 
       <p><i>Note that the Struts html:form tag will refer to properties set by struts-config.xml and automatically create a registrationForm bean if one is not present. However, that does not happen until the form tag is processed within the page. Since this block appears before the html:form tag, a runtime error is exposed if you try to access registration.jsp directly (rather then going through the editRegistration.do action).</i></p>
     </blockquote>
@@ -481,7 +631,7 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
       property="action"<br />
       scope="request"<br />
       value="Edit"<br />
-      ></code></p>
+      &gt;</code></p>
     </blockquote>
 
     <p>Otherwise, the page just contains the top portion -- a blank data-entry form for creating the user's registration.</p>
@@ -493,9 +643,9 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>The subscriptions are stored in a hashtable object, which is in turn stored in the user object. So to display each subscription, we have to reach into the user object, and loop through the members of the subscription collection. Using the iterate tag, this couldn't be easier.</p>
 
     <blockquote>
-      <p>&lt;logic:iterate name="user" property="subscriptions" id="subscription"><br />
-      &lt;!-- block to repeat --><br />
-      &lt;/logic:iterate></p>
+      <p>&lt;logic:iterate name="user" property="subscriptions" id="subscription"&gt;<br />
+      &lt;!-- block to repeat --&gt;<br />
+      &lt;/logic:iterate&gt;</p>
     </blockquote>
 
     <p>The three parameters to the iterate tag ( name, property, and id) tell it to</p>
@@ -511,13 +661,13 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>So, to list the host for each subscription in a HTML unordered list, we could write:</p>
 
     <blockquote>
-      <p><code>&lt;ul><br />
-      &lt;logic:iterate name="user" property="subscriptions" id="subscription"><br />
-      &lt;li><br />
-      &lt;bean:write name="subscription" property="host" filter="true" /><br />
-      &lt;/li><br />
-      &lt;/logic:iterate><br />
-      &lt;/ul></code></p>
+      <p><code>&lt;ul&gt;<br />
+      &lt;logic:iterate name="user" property="subscriptions" id="subscription"&gt;<br />
+      &lt;li&gt;<br />
+      &lt;bean:write name="subscription" property="host" filter="true" /&gt;<br />
+      &lt;/li&gt;<br />
+      &lt;/logic:iterate&gt;<br />
+      &lt;/ul&gt;</code></p>
 
       <p><i>This is another good example of how Struts works with the standard JSP tags, like bean. The filter option says to use convert HTML commands to their character entity. So a &lt; would be output in the HTML as &amp;lt;.</i></p>
     </blockquote>
@@ -525,30 +675,30 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>In registration.jsp, iterate is used to create a menu of subscriptions, each linked with an edit and delete action.</p>
 
     <blockquote>
-      <p><code>&lt;logic:iterate id="subscription" name="user" property="subscriptions"><br />
-      &lt;tr><br />
-      &lt;td align="left"><br />
-      &lt;bean:write name="subscription" property="host" filter="true"/><br />
-      &lt;/td><br />
-      &lt;td align="left"><br />
-      &lt;bean:write name="subscription" property="username" filter="true"/><br />
-      &lt;/td><br />
-      &lt;td align="center"><br />
-      &lt;bean:write name="subscription" property="type" filter="true"/><br />
-      &lt;/td><br />
-      &lt;td align="center"><br />
-      &lt;bean:write name="subscription" property="autoConnect"/><br />
-      &lt;/td><br />
-      &lt;td align="center"><br />
-      &lt;app:linkSubscription page="/editSubscription.do?action=Delete"><br />
-      &lt;bean:message key="registration.deleteSubscription"/><br />
-      &lt;/app:linkSubscription><br />
-      &lt;app:linkSubscription page="/editSubscription.do?action=Edit"><br />
-      &lt;bean:message key="registration.editSubscription"/><br />
-      &lt;/app:linkSubscription><br />
-      &lt;/td><br />
-      &lt;/tr><br />
-      &lt;/logic:iterate></code></p>
+      <p><code>&lt;logic:iterate id="subscription" name="user" property="subscriptions"&gt;<br />
+      &lt;tr&gt;<br />
+      &lt;td align="left"&gt;<br />
+      &lt;bean:write name="subscription" property="host" filter="true"/&gt;<br />
+      &lt;/td&gt;<br />
+      &lt;td align="left"&gt;<br />
+      &lt;bean:write name="subscription" property="username" filter="true"/&gt;<br />
+      &lt;/td&gt;<br />
+      &lt;td align="center"&gt;<br />
+      &lt;bean:write name="subscription" property="type" filter="true"/&gt;<br />
+      &lt;/td&gt;<br />
+      &lt;td align="center"&gt;<br />
+      &lt;bean:write name="subscription" property="autoConnect"/&gt;<br />
+      &lt;/td&gt;<br />
+      &lt;td align="center"&gt;<br />
+      &lt;app:linkSubscription page="/editSubscription.do?action=Delete"&gt;<br />
+      &lt;bean:message key="registration.deleteSubscription"/&gt;<br />
+      &lt;/app:linkSubscription&gt;<br />
+      &lt;app:linkSubscription page="/editSubscription.do?action=Edit"&gt;<br />
+      &lt;bean:message key="registration.editSubscription"/&gt;<br />
+      &lt;/app:linkSubscription&gt;<br />
+      &lt;/td&gt;<br />
+      &lt;/tr&gt;<br />
+      &lt;/logic:iterate&gt;</code></p>
 
       <p><i>The collection in an iterate tag can be any of the following: an array of objects, an Iterator, a Collection (which includes Lists, Sets and Vectors), or a Map (which includes Hashtables) whose elements will be iterated over.</i></p>
     </blockquote>
@@ -560,16 +710,16 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>The Example application uses a subscription's host name (e.g. yahoo.com) as a primary key, which means you can only have one subscription for each host. It also means that to edit a subscription, all you need to know is the user and host. In fact, the editSubscription action is designed to create, edit, or delete a subscription if provided a user and host names in the request. The goal of LinkSubscriptionTag is then to output a block like:</p>
 
     <blockquote>
-      <p><code>&lt;A HREF=[path]editSubscription.do?action=[action]&amp;username=[user]&amp;host=[host]">[action]<br />
-      &lt;/A></code></p>
+      <p><code>&lt;A HREF=[path]editSubscription.do?action=[action]&amp;username=[user]&amp;host=[host]"&gt;[action]<br />
+      &lt;/A&gt;</code></p>
     </blockquote>
 
     <p>based on input block like:</p>
 
     <blockquote>
       <p><code>&lt;app:linkSubscription<br />
-      page="/editSubscription.do?action=Delete">Delete<br />
-      &lt;/app:linkSubscription></code></p>
+      page="/editSubscription.do?action=Delete"&gt;Delete<br />
+      &lt;/app:linkSubscription&gt;</code></p>
     </blockquote>
 
     <p>To reduce overhead, LinkSubscriptionTag uses "subscription" as the default name (which the iterator refers to as "ID"), so that can be omitted from the tag properties. The "action" portion of the will differ, and so that is given as the page property to the tag</p>
@@ -592,9 +742,9 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>Meanwhile, back on registration.jsp, there is one more link on the page. This uses yet another custom tag, the app:linkUser tag.</p>
 
     <blockquote>
-      <p><code>&lt;app:linkUser page="/editSubscription.do?action=Create"><br />
-      &lt;bean:message key="registration.addSubscription"/><br />
-      &lt;/app:linkUser></code></p>
+      <p><code>&lt;app:linkUser page="/editSubscription.do?action=Create"&gt;<br />
+      &lt;bean:message key="registration.addSubscription"/&gt;<br />
+      &lt;/app:linkUser&gt;</code></p>
     </blockquote>
 
     <p>By this time, you must be ready to flip directly to LinkUserTag.java with nary a glance at the configuration file ...</p>
@@ -604,17 +754,17 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>Since they solve the same general problem, LinkUserTag and LinkSubscriptionTag are quite a bit a like, except that LinkUserTag grabs the user bean from the session context, instead of a subscription bean from the iteration. Like the LinkSubscriptionTag, the name for the user bean (e.g. "user") is defaulted, and can be omitted from the tag; all that's needed is the page property -- the rest is automatic!</p>
 
     <blockquote>
-      <p><code>&lt;app:linkUser page="/editSubscription.do?action=Create"><br />
-      &lt;bean:message key="registration.addSubscription"/><br />
-      &lt;/app:linkUser></code></p>
+      <p><code>&lt;app:linkUser page="/editSubscription.do?action=Create"&gt;<br />
+      &lt;bean:message key="registration.addSubscription"/&gt;<br />
+      &lt;/app:linkUser&gt;</code></p>
     </blockquote>
 
     <p>When rendered, this displays a HTML hypertext link like:</p>
 
     <blockquote>
-      <p><code>&lt;a href="/struts-example/editSubscription.do?action=Create&amp;amp;username=user"><br />
+      <p><code>&lt;a href="/struts-example/editSubscription.do?action=Create&amp;amp;username=user"&gt;<br />
       Add<br />
-      &lt;/a></code></p>
+      &lt;/a&gt;</code></p>
 
       <p><i>Note that anchor links with ampersands should use the character entity &amp;amp; as the LinkUserTag has done here (<a href="http://www.w3.org/TR/html401/appendix/notes.html#h-B.2.2">http://www.w3.org/TR/html401/appendix/notes.html#h-B.2.2</a>).</i></p>
     </blockquote>
@@ -626,22 +776,22 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>Predictably, we find a some now-familiar mappings in struts-config.xml</p>
 
     <blockquote>
-      <p><code>&lt;!-- Subscription form bean --><br />
+      <p><code>&lt;!-- Subscription form bean --&gt;<br />
       &lt;form-bean<br />
       name="subscriptionForm"<br />
       type="org.apache.struts.webapp.example.SubscriptionForm"<br />
-      /></code></p>
+      /&gt;</code></p>
 
-      <p><code>&lt;!-- Edit mail subscription --><br />
+      <p><code>&lt;!-- Edit mail subscription --&gt;<br />
       &lt;action path="/editSubscription"<br />
       type="org.apache.struts.webapp.example.EditSubscriptionAction"<br />
       name="subscriptionForm"<br />
       scope="request"<br />
       validate="false"<br />
-      ><br />
-      &lt;forward name="failure" path="/mainMenu.jsp"/><br />
-      &lt;forward name="success" path="/subscription.jsp"/><br />
-      &lt;/action></code></p>
+      &gt;<br />
+      &lt;forward name="failure" path="/mainMenu.jsp"/&gt;<br />
+      &lt;forward name="success" path="/subscription.jsp"/&gt;<br />
+      &lt;/action&gt;</code></p>
 
       <p><i>When we've introduced these type of mappings before, and mentioned that the struts-config.xml was parsed when the ActionServlet was initialized. But we should make it clear that when the Struts digester parsed this file, it actually created standard Java objects, linked as properties to the controller. This means you don't have to edit Java source files just to add a bunch of "new" statements. (How cool is that?)</i></p>
     </blockquote>
@@ -669,22 +819,22 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
     <p>In registration.jsp, the Struts iteration tag was used to write a list of subscriptions. Another place where iterations and collections are handy is the option list for a HTML select tag. Since this is such a common situation, Struts offers a html:options (plural) tag can take an array of objects as a parameter. The tag then iterates over the members of the array (beans) to place each one inside an standard option tag. So given a block like</p>
 
     <blockquote>
-      <p><code>&lt;html:select property="type"><br />
+      <p><code>&lt;html:select property="type"&gt;<br />
       &lt;html:options<br />
       collection="serverTypes"<br />
       property="value"<br />
       labelProperty="label"<br />
-      /><br />
-      &lt;/html:select></code></p>
+      /&gt;<br />
+      &lt;/html:select&gt;</code></p>
     </blockquote>
 
     <p>Struts outputs a block like</p>
 
     <blockquote>
-      <p><code>&lt;select name="type"><br />
-      &lt;option value="imap" selected>IMAP Protocol&lt;/option><br />
-      &lt;option value="pop3">POP3 Protocol&lt;/option><br />
-      &lt;/select></code></p>
+      <p><code>&lt;select name="type"&gt;<br />
+      &lt;option value="imap" selected&gt;IMAP Protocol&lt;/option&gt;<br />
+      &lt;option value="pop3"&gt;POP3 Protocol&lt;/option&gt;<br />
+      &lt;/select&gt;</code></p>
     </blockquote>
 
     <p>Here, one collection contained both the labels and the values, from properties of the same name. Options can also use a second array for the labels, if they do not match the values. Options can use a Collection, Iterator, or Map for the source of the list.</p>
@@ -714,10 +864,10 @@ index.tour=A Walking Tour of the MailReader Demonstration Application</pre>
       name="subscriptionForm"<br />
       property="action"<br />
       scope="request"<br />
-      value="Create"><br />
-      &lt;html:submit><br />
-      <b>&lt;bean:message key="button.save"/><br /></b> &lt;/html:submit><br />
-      &lt;/logic:equal></code></p>
+      value="Create"&gt;<br />
+      &lt;html:submit&gt;<br />
+      <b>&lt;bean:message key="button.save"/&gt;<br /></b> &lt;/html:submit&gt;<br />
+      &lt;/logic:equal&gt;</code></p>
     </blockquote>
 
     <p>In the case of a request to delete a subscription, the submit button is labeled "Confirm", since this view is meant to give the user a last chance to cancel, before sending that task along to SaveSubscriptionAction.java.</p>

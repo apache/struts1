@@ -7,7 +7,7 @@
 <!--
     Validation Rules for the Struts Example Web Application
 
-    $Id: validation.xml,v 1.11 2004/02/07 00:09:33 rleland Exp $
+    $Id: validation.xml,v 1.12 2004/03/12 02:44:34 husted Exp $
 -->
 
 <form-validation>
@@ -19,20 +19,8 @@
         <form name="logonForm">
 
             <field property="username"
-                    depends="required, minlength,maxlength">
+                    depends="required">
                 <arg0   key="prompt.username"/>
-                <arg1   key="${var:minlength}" name="minlength"
-                   resource="false"/>
-                <arg2   key="${var:maxlength}" name="maxlength"
-                   resource="false"/>
-                <var>
-                    <var-name>maxlength</var-name>
-                    <var-value>16</var-value>
-                </var>
-                <var>
-                    <var-name>minlength</var-name>
-                    <var-value>3</var-value>
-                </var>
             </field>
 
             <field property="password"

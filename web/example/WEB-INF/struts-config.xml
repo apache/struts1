@@ -3,9 +3,9 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
 <!--
- $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.40 2004/03/10 03:14:31 husted Exp $
- $Revision: 1.40 $
- $Date: 2004/03/10 03:14:31 $
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.41 2004/03/12 02:44:34 husted Exp $
+ $Revision: 1.41 $
+ $Date: 2004/03/12 02:44:34 $
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -89,12 +89,12 @@
        <action    path="/submitLogon"
                   type="org.apache.struts.webapp.example.LogonAction"
                   name="logonForm"
-                 scope="session"
+                 scope="request"
                  input="logon">
          <exception
                    key="expired.password"
                   type="org.apache.struts.webapp.example.ExpiredPasswordException"
-                  path="/changePassword.jsp"/>
+                  path="/ExpiredPassword.do"/>
        </action>
 
       <!-- Process a user logoff -->
@@ -122,6 +122,11 @@
          <forward name="subscription"    path="/subscription.jsp"/>
          <forward name="success"         path="/editRegistration.do?action=Edit"/>
        </action>
+
+      <!-- Display the change password page when a password expires -->
+      <action    path="/ExpiredPassword"
+              forward="/changePassword.jsp">
+      </action>
 
       <!-- Display the "walking tour" documentation -->
       <action    path="/tour"

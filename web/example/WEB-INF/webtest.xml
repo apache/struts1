@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE project SYSTEM "WebTest.dtd" [
-    <!ENTITY config     SYSTEM "entities/config.xml">
+    <!ENTITY config     SYSTEM "entities/config-debug.xml">
     <!ENTITY taskdef-webtest SYSTEM "entities/taskdef-webtest.xml">
 ]>
 <!--
- $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/webtest.xml,v 1.1 2004/03/09 04:43:12 husted Exp $
- $Revision: 1.1 $
- $Date: 2004/03/09 04:43:12 $
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/webtest.xml,v 1.2 2004/03/12 02:44:34 husted Exp $
+ $Revision: 1.2 $
+ $Date: 2004/03/12 02:44:34 $
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -38,7 +38,7 @@
      Use the standard Struts "build.webapps" target to create the example application. Start your web container. 
      Then use Ant to run the webtest.xml.
      
-     @version $Revision: 1.1 $ $Date: 2004/03/09 04:43:12 $
+     @version $Revision: 1.2 $ $Date: 2004/03/12 02:44:34 $
      */
     -->
     
@@ -57,7 +57,7 @@
        </classpath>
     </taskdef>
 
-    <target name="default" depends="welcome" />
+    <target name="default" depends="welcome,logon" />
 
     <target name="welcome"
         description="Welcome page">
@@ -83,7 +83,63 @@
                <clicklink label="${index.title}" />
             </steps>
         </testSpec>
+        </target>
 
+        <target name="logon"
+            description="Logon page">
+
+            <testSpec name="Open logon action">
+            &config;
+               <steps>
+                   <invoke
+                      stepid="Pass logon"
+                      url="/logon.do" />
+                   <verifytitle
+                       stepid="Logon page title"
+                       text="${logon.title}" />
+                   <setinputfield
+                     stepid="username"
+                     name="username"
+                     value="user" />
+                  <setinputfield
+                    stepid="password"
+                    name="password"
+                    value="pass" />
+                   <clickbutton
+                       stepid="Submit"
+                       name="Submit">
+                       <form name="logonForm" />
+                   </clickbutton>
+                </steps>
+            </testSpec>
+
+            <testSpec name="Fail logon">
+            &config;
+               <steps>
+                   <invoke
+                      stepid="Open logon action"
+                      url="/logon.do" />
+                   <verifytitle
+                       stepid="Logon page title"
+                       text="${logon.title}" />
+                   <setinputfield
+                     stepid="username"
+                     name="username"
+                     value="xxxx" />
+                  <setinputfield
+                    stepid="password"
+                    name="password"
+                    value="xxxx" />
+                   <clickbutton
+                       stepid="Submit"
+                       name="Submit">
+                       <form name="logonForm" />
+                   </clickbutton>
+                   <verifytitle
+                       stepid="Logon page title"
+                       text="${logon.title}" />
+                </steps>
+            </testSpec>
     </target>
 
 </project>

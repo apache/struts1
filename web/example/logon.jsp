@@ -2,12 +2,11 @@
 <%@ taglib uri="/tags/struts-bean" prefix="bean" %>
 <%@ taglib uri="/tags/struts-html" prefix="html" %>
 
-<html:html locale="true">
+<html:xhtml/>
+<html>
 <head>
 <title><bean:message key="logon.title"/></title>
-<html:base/>
 </head>
-<body bgcolor="white">
 
 <html:errors/>
 
@@ -36,7 +35,7 @@
 
   <tr>
     <td align="right">
-      <html:submit value="Submit"/>
+      <html:submit property="Submit" value="Submit"/>
     </td>
     <td align="left">
       <html:reset/>
@@ -54,4 +53,4 @@
 
 <jsp:include page="footer.jsp" />
 </body>
-</html:html>
+</html>

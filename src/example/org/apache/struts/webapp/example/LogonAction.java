@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.22 2004/03/12 02:32:41 husted Exp $
- * $Revision: 1.22 $
- * $Date: 2004/03/12 02:32:41 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.23 2004/03/12 02:43:29 husted Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/03/12 02:43:29 $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -33,7 +33,7 @@ import org.apache.struts.action.ActionMessages;
 /**
  * <p>Validate a user logon.</p>
  *
- * @version $Revision: 1.22 $ $Date: 2004/03/12 02:32:41 $
+ * @version $Revision: 1.23 $ $Date: 2004/03/12 02:43:29 $
  */
 public final class LogonAction extends BaseAction {
 
