@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.5 2000/12/15 03:08:10 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/12/15 03:08:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.6 2000/12/26 20:07:00 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/12/26 20:07:00 $
  *
  * ====================================================================
  * 
@@ -90,7 +90,7 @@ import java.util.Locale;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/12/15 03:08:10 $
+ * @version $Revision: 1.6 $ $Date: 2000/12/26 20:07:00 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -435,8 +435,8 @@ public abstract class MessageResources implements Serializable {
 
         if (locale == null)
             return ("");
-        else if (locale.equals(defaultLocale))
-            return ("");
+        //        else if (locale.equals(defaultLocale))
+        //            return ("");
         else
             return (locale.toString());
 

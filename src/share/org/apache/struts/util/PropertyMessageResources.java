@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.1 2000/12/15 03:08:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/12/15 03:08:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.2 2000/12/26 20:07:00 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/26 20:07:00 $
  *
  * ====================================================================
  * 
@@ -85,7 +85,7 @@ import java.util.Properties;
  * the same locale + key combination.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/12/15 03:08:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/26 20:07:00 $
  */
 
 public class PropertyMessageResources extends MessageResources {
@@ -194,8 +194,23 @@ public class PropertyMessageResources extends MessageResources {
 
         }
 
+        // Try the default locale if the current locale is different
+        if (!defaultLocale.equals(locale)) {
+            localeKey = localeKey(defaultLocale);
+            messageKey = messageKey(localeKey, key);
+            loadLocale(localeKey);
+            synchronized (messages) {
+                message = (String) messages.get(messageKey);
+                if (message != null) {
+                    if (addIt)
+                        messages.put(originalKey, message);
+                    return (message);
+                }
+            }
+        }
+
         // As a last resort, try the default Locale
-        localeKey = localeKey(defaultLocale);
+        localeKey = "";
         messageKey = messageKey(localeKey, key);
         loadLocale(localeKey);
         synchronized (messages) {
