@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastHashMap.java,v 1.1 2000/12/30 00:40:02 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/12/30 00:40:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastHashMap.java,v 1.2 2000/12/30 19:08:55 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/30 19:08:55 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import java.util.Set;
  * overridden:  clone(), equals(Object), hashCode().</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/12/30 00:40:02 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/30 19:08:55 $
  */
 
 public class FastHashMap implements Map, Cloneable, Serializable {
@@ -192,9 +192,11 @@ public class FastHashMap implements Map, Cloneable, Serializable {
     public void clear() {
 
         if (fast) {
-            HashMap temp = (HashMap) map.clone();
-            temp.clear();
-            map = temp;
+            synchronized (this) {
+                HashMap temp = (HashMap) map.clone();
+                temp.clear();
+                map = temp;
+            }
         } else {
             synchronized (map) {
                 map.clear();
@@ -323,10 +325,12 @@ public class FastHashMap implements Map, Cloneable, Serializable {
     public Object put(Object key, Object value) {
 
         if (fast) {
-            HashMap temp = (HashMap) map.clone();
-            Object result = temp.put(key, value);
-            map = temp;
-            return (result);
+            synchronized (this) {
+                HashMap temp = (HashMap) map.clone();
+                Object result = temp.put(key, value);
+                map = temp;
+                return (result);
+            }
         } else {
             synchronized (map) {
                 return (map.put(key, value));
@@ -345,9 +349,11 @@ public class FastHashMap implements Map, Cloneable, Serializable {
     public void putAll(Map in) {
 
         if (fast) {
-            HashMap temp = (HashMap) map.clone();
-            temp.putAll(in);
-            map = temp;
+            synchronized (this) {
+                HashMap temp = (HashMap) map.clone();
+                temp.putAll(in);
+                map = temp;
+            }
         } else {
             synchronized (map) {
                 map.putAll(in);
@@ -366,10 +372,12 @@ public class FastHashMap implements Map, Cloneable, Serializable {
     public Object remove(Object key) {
 
         if (fast) {
-            HashMap temp = (HashMap) map.clone();
-            Object result = temp.remove(key);
-            map = temp;
-            return (result);
+            synchronized (this) {
+                HashMap temp = (HashMap) map.clone();
+                Object result = temp.remove(key);
+                map = temp;
+                return (result);
+            }
         } else {
             synchronized (map) {
                 return (map.remove(key));

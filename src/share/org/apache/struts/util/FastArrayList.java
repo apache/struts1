@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastArrayList.java,v 1.1 2000/12/30 00:40:02 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/12/30 00:40:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/FastArrayList.java,v 1.2 2000/12/30 19:08:54 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/30 19:08:54 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import java.util.ListIterator;
  * overridden:  clone(), equals(Object), hashCode().</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/12/30 00:40:02 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/30 19:08:54 $
  */
 
 public class FastArrayList implements List, Cloneable, Serializable {
@@ -182,10 +182,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public boolean add(Object element) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            boolean result = temp.add(element);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                boolean result = temp.add(element);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.add(element));
@@ -207,9 +209,11 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public void add(int index, Object element) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            temp.add(index, element);
-            list = temp;
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                temp.add(index, element);
+                list = temp;
+            }
         } else {
             synchronized (list) {
                 list.add(index, element);
@@ -229,10 +233,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public boolean addAll(Collection collection) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            boolean result = temp.addAll(collection);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                boolean result = temp.addAll(collection);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.addAll(collection));
@@ -255,10 +261,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public boolean addAll(int index, Collection collection) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            boolean result = temp.addAll(index, collection);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                boolean result = temp.addAll(index, collection);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.addAll(index, collection));
@@ -278,9 +286,11 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public void clear() {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            temp.clear();
-            list = temp;
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                temp.clear();
+                list = temp;
+            }
         } else {
             synchronized (list) {
                 list.clear();
@@ -337,9 +347,11 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public void ensureCapacity(int capacity) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            temp.ensureCapacity(capacity);
-            list = temp;
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                temp.ensureCapacity(capacity);
+                list = temp;
+            }
         } else {
             synchronized (list) {
                 list.ensureCapacity(capacity);
@@ -497,10 +509,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public Object remove(int index) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            Object result = temp.remove(index);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                Object result = temp.remove(index);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.remove(index));
@@ -519,10 +533,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public boolean remove(Object element) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            boolean result = temp.remove(element);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                boolean result = temp.remove(element);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.remove(element));
@@ -544,10 +560,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public boolean removeAll(Collection collection) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            boolean result = temp.removeAll(collection);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                boolean result = temp.removeAll(collection);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.removeAll(collection));
@@ -569,10 +587,12 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public boolean retainAll(Collection collection) {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            boolean result = temp.retainAll(collection);
-            list = temp;
-            return (result);
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                boolean result = temp.retainAll(collection);
+                list = temp;
+                return (result);
+            }
         } else {
             synchronized (list) {
                 return (list.retainAll(collection));
@@ -712,9 +732,11 @@ public class FastArrayList implements List, Cloneable, Serializable {
     public void trimToSize() {
 
         if (fast) {
-            ArrayList temp = (ArrayList) list.clone();
-            temp.trimToSize();
-            list = temp;
+            synchronized (this) {
+                ArrayList temp = (ArrayList) list.clone();
+                temp.trimToSize();
+                list = temp;
+            }
         } else {
             synchronized (list) {
                 list.trimToSize();
@@ -722,9 +744,6 @@ public class FastArrayList implements List, Cloneable, Serializable {
         }
 
     }
-
-
-    // ------------------------------------------------------ Protected Methods
 
 
 }
