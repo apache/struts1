@@ -97,18 +97,14 @@ public class ExceptionHandler {
         ActionError error = null;
         String property = null;
 
-        String path;
-
         // Build the forward from the exception mapping if it exists
         // or from the form input
         if (ae.getPath() != null) {
-            path = ae.getPath();
+            forward = new ActionForward(ae.getPath());
+	    forward.setContextRelative(true);
         } else {
-            path = mapping.getInput();
+	    forward = new ActionForward(mapping.getInput());
         }
-
-        // Generate the forward
-        forward = new ActionForward(path);
 
         // Figure out the error
         if (ex instanceof ModuleException) {
