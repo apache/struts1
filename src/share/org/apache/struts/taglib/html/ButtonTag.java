@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.3 2001/04/18 01:31:14 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/18 01:31:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.3.2.1 2001/06/01 17:11:45 craigmcc Exp $
+ * $Revision: 1.3.2.1 $
+ * $Date: 2001/06/01 17:11:45 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.ResponseUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.3 $ $Date: 2001/04/18 01:31:14 $
+ * @version $Revision: 1.3.2.1 $ $Date: 2001/06/01 17:11:45 $
  */
 
 public class ButtonTag extends BaseHandlerTag {
@@ -152,6 +152,22 @@ public class ButtonTag extends BaseHandlerTag {
 
     }
     
+
+    /**
+     * Save the associated label from the body content (if any).
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            String value = bodyContent.getString().trim();
+            if (value.length() > 0)
+                text = value;
+        }
+        return (SKIP_BODY);
+
+    }
+
 
     /**
      * Process the end of this tag.
