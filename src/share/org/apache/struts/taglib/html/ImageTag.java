@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.2 2001/01/07 00:09:19 mschachter Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/01/07 00:09:19 $
  *
  * ====================================================================
  *
@@ -72,14 +72,13 @@ import javax.servlet.jsp.JspWriter;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.taglib.form.SubmitTag;
 
 
 /**
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/01/07 00:09:19 $
  */
 
 public class ImageTag extends SubmitTag {
