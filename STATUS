@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.27 2002/07/17 22:22:05 jholmes Exp $
+$Id: STATUS,v 1.28 2002/07/17 22:40:44 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -56,6 +56,7 @@ Unknown:
 
 Utilities:
 ---------
+10897 PropertyMessageResources loading resources from the wrong ClassLoader
 
 
 Validator Framework:
