@@ -138,7 +138,6 @@
     <ul>
     <li>Unconditionally creates (or replaces) a bean under the
         specified identifier.</li>
-    <li>Creates beans in page scope only.</li>
     <li>Can create a bean with the value returned by a property getter
         of a different bean (including properties referenced with a
         nested and/or indexed property name).</li>
