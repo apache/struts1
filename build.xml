@@ -3,7 +3,7 @@
   <!-- Initialization properties -->
   <property name="app.name"       value="struts"/>
   <property name="build.home"     value="build"/>
-  <property name="catalina.home"  value="../build/tomcat-4.0"/>
+  <property name="catalina.home"  value="../jakarta-tomcat-4.0/build"/>
   <property name="debug"          value="true"/>
   <property name="deprecation"    value="false"/>
   <property name="dist.home"      value="dist"/>
