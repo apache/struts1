@@ -15,7 +15,7 @@
 compile.deprecation=true
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
-# top-level directory of the jakarta-struts source distribution.
+# top-level directory of the struts source distribution.
 
 # commons-lib.home Where the CVS toplevel commons live
 commons-lib.home=D:/Projects/Apache/jakarta-commons

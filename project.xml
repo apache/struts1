@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <project>
   <pomVersion>3</pomVersion>
-  <id>struts-core</id>
+  <id>struts</id>
+
   <name>Struts Core</name>
   <groupId>struts</groupId>
   <currentVersion>1.3.0-dev</currentVersion>

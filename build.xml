@@ -3,9 +3,6 @@
 <!--
         Struts main build.xml file for building everything related to Struts.
 
-        This script will delegate some of it's tasks to the other build*.xml
-        scripts (build-webapps.xml, build-tests.xml, ...
-
         For a complete list of executable tasks use -projecthelp when calling
         this build file.
         
@@ -288,13 +285,6 @@
     </target>
 
 <!--
-        Prepare static directories for web applications
--->
-    <target name="static.webapps">
-        <ant antfile="build-webapps.xml" target="static"/>
-    </target>
-
-<!--
         Compile core struts library directory components
 -->
     <target name="compile.library" depends="prepare.library"
@@ -335,14 +325,6 @@
             manifest="${conf.share.dir}/MANIFEST.MF"
             basedir="${build.home}/library/classes"
             includes="**"/>
-    </target>
-
-<!--
-        Compile code for web applications
--->
-    <target name="compile.webapps" depends="compile.library,static.webapps"
-     description="Compile Struts web applications">
-        <ant antfile="build-webapps.xml" target="compile"/>
     </target>
 
 <!--
@@ -392,7 +374,6 @@
     <target name="prepare.dist" depends="init">
         <mkdir dir="${dist.home}"/>
         <mkdir dir="${dist.home}/lib"/>
-        <mkdir dir="${dist.home}/webapps"/>
     </target>
 
 <!--
@@ -405,13 +386,6 @@
             <fileset dir="${build.home}/library" includes="*.tld"/>
             <fileset dir="${build.home}/library" includes="*.xml"/>
         </copy>
-    </target>
-
-<!--
-        Construct distributable web applications
--->
-    <target name="dist.webapps" depends="compile.webapps,compile.javadoc">
-        <ant antfile="build-webapps.xml" target="dist"/>
     </target>
 
 <!--
@@ -465,7 +439,7 @@
     <target name="dist"
          depends="dist.library,dist.source"
      description="Construct binary distribution"/>
-<!--          depends="dist.library,dist.webapps,dist.source,dist.contrib,dist.examples" -->
+
 <!--
         Construct complete release distributions
 -->
@@ -519,249 +493,6 @@
         </checksum>
     </target>
 
-<!--
-        Deploy these applications on Catalina
--->
-    <target name="deploy.catalina" depends="compile.webapps"
-     description="Deploy Struts web.apps in Catalina (Tomcat 4.0)">
-
-        <mkdir dir="${catalina.home}/webapps/struts-blank"/>
-        <copy todir="${catalina.home}/webapps/struts-blank">
-            <fileset dir="${build.home}/blank"/>
-        </copy>
-
-        <mkdir dir="${catalina.home}/webapps/struts-documentation"/>
-        <copy todir="${catalina.home}/webapps/struts-documentation">
-            <fileset dir="${build.home}/documentation"/>
-        </copy>
-
-        <mkdir dir="${catalina.home}/webapps/struts-example"/>
-        <copy todir="${catalina.home}/webapps/struts-example">
-            <fileset dir="${build.home}/example"/>
-        </copy>
-
-        <mkdir dir="${catalina.home}/webapps/struts-examples"/>
-        <copy todir="${catalina.home}/webapps/struts-examples">
-            <fileset dir="${build.home}/examples"/>
-        </copy>
-
-    </target>
-
-
-<!--
-        Dynamic struts-documentation management on Catalina (Tomcat 4.1.x required)
--->
-
-    <target name="install.documentation" depends="compile.webapps"
-     description="Dynamically install struts-documentation on Catalina (Tomcat 4.1)">
-      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
-      <install url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-documentation"
-            war="file://${build.home}/documentation"/>
-    </target>
-
-    <target name="reload.documentation" depends="compile.webapps"
-     description="Dynamically reload struts-documentation on Catalina (Tomcat 4.1)">
-      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
-      <reload url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-documentation"/>
-    </target>
-
-    <target name="remove.documentation"
-     description="Dynamically remove struts-documentation on Catalina (Tomcat 4.1)">
-      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
-      <remove url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-documentation"/>
-    </target>
-
-
-<!--
-        Dynamic struts-example management on Catalina (Tomcat 4.1.x required)
--->
-
-    <target name="install.example" depends="compile.webapps"
-     description="Dynamically install struts-example on Catalina (Tomcat 4.1)">
-      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
-      <install url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-example"
-            war="file://${build.home}/example"/>
-    </target>
-
-    <target name="list.catalina"
-     description="Dynamically list installed apps on Catalina (Tomcat 4.1)">
-      <taskdef name="list"   classname="org.apache.catalina.ant.ListTask"/>
-      <list url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}"/>
-    </target>
-
-    <target name="reload.example" depends="compile.webapps"
-     description="Dynamically reload struts-example on Catalina (Tomcat 4.1)">
-      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
-      <reload url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-example"/>
-    </target>
-
-    <target name="remove.example"
-     description="Dynamically remove struts-example on Catalina (Tomcat 4.1)">
-      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
-      <remove url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-example"/>
-    </target>
-
-    <!-- Backwards Compatibility -->
-    <target name="install.catalina" depends="install.example"/>
-    <target name="reload.catalina" depends="reload.example"/>
-    <target name="remove.catalina" depends="remove.example"/>
-
-
-<!--
-        Dynamic struts-exercise management on Catalina (Tomcat 4.1.x required)
--->
-
-    <target name="install.exercise" depends="compile.webapps"
-     description="Dynamically install struts-exercise on Catalina (Tomcat 4.1)">
-      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
-      <install url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-exercise"
-            war="file://${build.home}/exercise-taglib"/>
-    </target>
-
-    <target name="reload.exercise" depends="compile.webapps"
-     description="Dynamically reload struts-exercise on Catalina (Tomcat 4.1)">
-      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
-      <reload url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-exercise"/>
-    </target>
-
-    <target name="remove.exercise"
-     description="Dynamically remove struts-exercise on Catalina (Tomcat 4.1)">
-      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
-      <remove url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-exercise"/>
-    </target>
-
-
-<!--
-        Dynamic struts-tiles management on Catalina (Tomcat 4.1.x required)
--->
-
-    <target name="install.tiles" depends="compile.webapps"
-     description="Dynamically install struts-tiles on Catalina (Tomcat 4.1)">
-      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
-      <install url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-tiles"
-            war="file://${build.home}/tiles-documentation"/>
-    </target>
-
-    <target name="reload.tiles" depends="compile.webapps"
-     description="Dynamically reload struts-tiles on Catalina (Tomcat 4.1)">
-      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
-      <reload url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-tiles"/>
-    </target>
-
-    <target name="remove.tiles"
-     description="Dynamically remove struts-tiles on Catalina (Tomcat 4.1)">
-      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
-      <remove url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-tiles"/>
-    </target>
-
-
-<!--
-        Dynamic struts-upload management on Catalina (Tomcat 4.1.x required)
--->
-
-    <target name="install.upload" depends="compile.webapps"
-     description="Dynamically install struts-upload on Catalina (Tomcat 4.1)">
-      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
-      <install url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-upload"
-            war="file://${build.home}/upload"/>
-    </target>
-
-    <target name="reload.upload" depends="compile.webapps"
-     description="Dynamically reload struts-upload on Catalina (Tomcat 4.1)">
-      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
-      <reload url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-upload"/>
-    </target>
-
-    <target name="remove.upload"
-     description="Dynamically remove struts-upload on Catalina (Tomcat 4.1)">
-      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
-      <remove url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-upload"/>
-    </target>
-
-
-<!--
-        Dynamic struts-tiles management on Catalina (Tomcat 4.1.x required)
--->
-
-    <target name="install.validator" depends="compile.webapps"
-     description="Dynamically install struts-validator on Catalina (Tomcat 4.1)">
-      <taskdef name="install" classname="org.apache.catalina.ant.InstallTask"/>
-      <install url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-validator"
-            war="file://${build.home}/validator"/>
-    </target>
-
-    <target name="reload.validator" depends="compile.webapps"
-     description="Dynamically reload struts-validator on Catalina (Tomcat 4.1)">
-      <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
-      <reload url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-validator"/>
-    </target>
-
-    <target name="remove.validator"
-     description="Dynamically remove struts-validator on Catalina (Tomcat 4.1)">
-      <taskdef name="remove" classname="org.apache.catalina.ant.RemoveTask"/>
-      <remove url="${catalina.url}" username="${catalina.username}"
-       password="${catalina.password}" path="/struts-validator"/>
-    </target>
-
-
-<!--
-        Deploy these applications on Tomcat
--->
-    <target name="deploy.tomcat" depends="compile.webapps"
-     description="Deploy Struts web.apps in Tomcat 3.x">
-
-        <mkdir dir="${tomcat.home}/webapps/struts-blank"/>
-        <copy todir="${tomcat.home}/webapps/struts-blank">
-            <fileset dir="${build.home}/blank"/>
-        </copy>
-
-        <mkdir dir="${tomcat.home}/webapps/struts-documentation"/>
-        <copy todir="${tomcat.home}/webapps/struts-documentation">
-            <fileset dir="${build.home}/documentation"/>
-        </copy>
-
-        <mkdir dir="${tomcat.home}/webapps/struts-example"/>
-        <copy todir="${tomcat.home}/webapps/struts-example">
-            <fileset dir="${build.home}/example"/>
-        </copy>
-
-        <mkdir dir="${tomcat.home}/webapps/struts-exercise-taglib"/>
-        <copy todir="${tomcat.home}/webapps/struts-exercise-taglib">
-            <fileset dir="${build.home}/exercise-taglib"/>
-        </copy>
-
-        <mkdir dir="${tomcat.home}/webapps/struts-upload"/>
-        <copy todir="${tomcat.home}/webapps/struts-upload">
-            <fileset dir="${build.home}/upload"/>
-        </copy>
-
-    </target>
-    
-<!--
-       Clean contrib distribution
--->
-    <target name="clean.contrib" >
-        <ant dir="${struts.el.home}"
-             target="clean" inheritAll="false"/>
-     </target>
 
 <!--
         Clean up build and distribution directories
@@ -777,8 +508,8 @@
 <!--
         All-in-one build target
 -->
-    <target name="all" depends="clean,compile.library,compile.webapps"
-     description="Clean and build library and web applications"/>
+    <target name="all" depends="clean,compile.library"
+     description="Clean and build core library"/>
 
 
 <!--
@@ -826,81 +557,6 @@
             <sourcePath path="${src.share.dir}"/>
       </findbugs>
   </target>
-
-
-<!--
-        Compile Website documenation
--->
-
-<target name="clean.website" depends="clean,compile.website"/>
-<target name="compile.website"
-        description="Compile main website">
-        <ant antfile="build-webapps.xml" target="compile.docs"/>
-        <ant antfile="build-webapps.xml" target="validate.docs"/>        
-</target>
-
-
-<!--
-        Run tests on all servers not commented out in the build.properties file.
--->
-
-    <!-- =================== Cactus-Based Tests on Tomcat ================= -->
-
-
-    <target name="test.tomcat.all"
-         depends="compile.library,
-                  skip.tomcat.41,test.tomcat.41,
-                  skip.tomcat.50,test.tomcat.50,
-                  skip.tomcat.55,test.tomcat.55"
-     description="Run Cactus-based unit tests on all servlet engines">
-    </target>
-
-    <target name="skip.tomcat.41" unless="tomcat.home.41">
-        <echo message="*****************************************************"/>
-        <echo message="WARNING : Property 'tomcat.home.41' has not been set."/>
-        <echo message="          No test will be run on that servlet engine."/>
-        <echo message="*****************************************************"/>
-        <echo message=""/>
-    </target>
-
-    <target name="test.tomcat.41" if="tomcat.home.41"
-         depends="skip.tomcat.41,compile.library"
-     description="Run unit tests on Tomcat 4.1">
-        <echo message="tomcat.home.41 = ${tomcat.home.41}"/>
-        <ant antfile="build-tests.xml" target="test.tomcat.41"/>
-    </target>
-
-
-    <target name="skip.tomcat.50" unless="tomcat.home.50">
-        <echo message="*****************************************************"/>
-        <echo message="WARNING : Property 'tomcat.home.50' has not been set."/>
-        <echo message="          No test will be run on that servlet engine."/>
-        <echo message="*****************************************************"/>
-        <echo message=""/>
-    </target>
-
-    <target name="test.tomcat.50" if="tomcat.home.50"
-         depends="skip.tomcat.50,compile.library"
-     description="Run unit tests on Tomcat 5.0">
-        <echo message="tomcat.home.50 = ${tomcat.home.50}"/>
-        <ant antfile="build-tests.xml" target="test.tomcat.50"/>
-    </target>
-
-
-    <target name="skip.tomcat.55" unless="tomcat.home.55">
-        <echo message="*****************************************************"/>
-        <echo message="WARNING : Property 'tomcat.home.55' has not been set."/>
-        <echo message="          No test will be run on that servlet engine."/>
-        <echo message="*****************************************************"/>
-        <echo message=""/>
-    </target>
-
-    <target name="test.tomcat.55" if="tomcat.home.55"
-         depends="skip.tomcat.55,compile.library"
-     description="Run unit tests on Tomcat 5.5">
-        <echo message="tomcat.home.55 = ${tomcat.home.55}"/>
-        <ant antfile="build-tests.xml" target="test.tomcat.55"/>
-    </target>
 
 
     <!-- ========== Non-Cactus Unit Tests ================================= -->
