@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.9 2003/02/25 04:58:29 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/02/25 04:58:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.10 2003/05/20 01:47:32 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/05/20 01:47:32 $
  *
  * ====================================================================
  *
@@ -58,7 +58,6 @@
  * <http://www.apache.org/>.
  */
 
-
 package org.apache.struts.validator;
 
 import java.util.Locale;
@@ -77,34 +76,31 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 
-
 /**
  * <p>This class helps provides some useful methods for retrieving objects
  * from different scopes of the application.</p>
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.9 $ $Date: 2003/02/25 04:58:29 $
+ * @version $Revision: 1.10 $ $Date: 2003/05/20 01:47:32 $
  * @since Struts 1.1
-*/
+ */
 public class Resources  {
 
    /**
     * Resources key the <code>ServletContext</code> is stored under.
-   */
+    */
    public static String SERVLET_CONTEXT_KEY = "javax.servlet.ServletContext";
 
    /**
     * Resources key the <code>HttpServletRequest</code> is stored under.
-   */
+    */
    public static String HTTP_SERVLET_REQUEST_KEY = "javax.servlet.http.HttpServletRequest";
 
    /**
     * Resources key the <code>ActionErrors</code> is stored under.
-   */
+    */
    public static String ACTION_ERRORS_KEY = "org.apache.struts.action.ActionErrors";
-
-   private static Locale defaultLocale = Locale.getDefault();
 
    /**
     * Retrieve <code>ValidatorResources</code> for the module.
@@ -113,9 +109,9 @@ public class Resources  {
     * @deprecated In Struts 1.1 This method can only return the resources for the default
     *  module.  Use getValidatorResources(HttpServletRequest, ServletContext)
     *  to get the resources for the current application module.
-   */
+    */
    public static ValidatorResources getValidatorResources(ServletContext application) {
-      return (ValidatorResources)application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY);
+      return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY);
    }
 
   /**
@@ -123,10 +119,16 @@ public class Resources  {
    * @param application  Application Context
    * @param request     The ServletRequest
    */
-   public static ValidatorResources getValidatorResources(ServletContext application,HttpServletRequest request) {
-      return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
-                           ((ModuleConfig)request.getAttribute(Globals.MODULE_KEY)).getPrefix());
-   }
+    public static ValidatorResources getValidatorResources(
+        ServletContext application,
+        HttpServletRequest request) {
+            
+        String prefix =
+            ((ModuleConfig) request.getAttribute(Globals.MODULE_KEY)).getPrefix();
+            
+        return (ValidatorResources) application.getAttribute(
+            ValidatorPlugIn.VALIDATOR_KEY + prefix);
+    }
 
    /**
     * Retrieve <code>MessageResources</code> for the application module.
@@ -135,23 +137,23 @@ public class Resources  {
     * @deprecated This method can only return the resources for the default
     *  module.  Use getMessageResources(HttpServletRequest) to get the
     *  resources for the current module.
-   */
+    */
    public static MessageResources getMessageResources(ServletContext application) {
-      return (MessageResources)application.getAttribute(Globals.MESSAGES_KEY);
+      return (MessageResources) application.getAttribute(Globals.MESSAGES_KEY);
    }
 
    /**
     * Retrieve <code>MessageResources</code> for the module.
     * @param request the servlet request
-   */
+    */
    public static MessageResources getMessageResources(HttpServletRequest request) {
-      return (MessageResources)request.getAttribute(Globals.MESSAGES_KEY);
+      return (MessageResources) request.getAttribute(Globals.MESSAGES_KEY);
    }
 
    /**
     * Get the <code>Locale</code> of the current user.
     * @param request servlet request
-   */
+    */
    public static Locale getLocale(HttpServletRequest request) {
       Locale locale = null;
       try {
@@ -160,7 +162,7 @@ public class Resources  {
           locale = null;
       }
       if (locale == null) {
-         locale = defaultLocale;
+         locale = Locale.getDefault();
       }
 
       return locale;
@@ -171,25 +173,22 @@ public class Resources  {
     * @param messages  The Message resources
     * @param locale    The locale
     * @param key key used to lookup the message
-   */
+    */
    public static String getMessage(MessageResources messages, Locale locale, String key) {
       String message = null;
 
       if (messages != null) {
          message = messages.getMessage(locale, key);
       }
-      if (message == null) {
-         message = "";
-      }
-
-      return message;
+      
+      return (message == null) ? "" : message;
    }
 
    /**
     * Gets the <code>Locale</code> sensitive value based on the key passed in.
     * @param request servlet request
     * @param key the request key
-   */
+    */
    public static String getMessage(HttpServletRequest request, String key) {
       MessageResources messages = getMessageResources(request);
 
@@ -203,7 +202,7 @@ public class Resources  {
     * @param locale    The locale
     * @param va        The Validator Action
     * @param field     The Validator Field
-   */
+    */
    public static String getMessage(MessageResources messages, Locale locale,
                                    ValidatorAction va, Field field) {
 
@@ -219,7 +218,7 @@ public class Resources  {
     * @param request the servlet request
     * @param va Validator action
     * @param field the validator Field
-   */
+    */
    public static ActionError getActionError(HttpServletRequest request,
                                             ValidatorAction va, Field field) {
 
@@ -236,7 +235,7 @@ public class Resources  {
     * @param messages  message resources
     * @param locale   the locale
     * @param field the validator field
-   */
+    */
    public static String[] getArgs(String actionName, MessageResources messages,
                                   Locale locale, Field field) {
 
@@ -289,37 +288,41 @@ public class Resources  {
    /**
     * Initialize the <code>Validator</code> to perform validation.
     *
-    * @param  key     The key that the validation rules are under
-    *               (the form elements name attribute).
-    *@param  bean     The bean validation is being performed on.
-    * @param  application servlet context
-    * @param  request     The current request object.
-    * @param  errors      The object any errors will be stored in.
-    * @param  page        This in conjunction with  the page property
-    *                     of a <code>Field<code>  can control the processing
-    *                    of fields.  If the field's page is less than or equal
-    *                    to this page value, it will be processed.
-
-   */
-   public static Validator initValidator(String key, Object bean,
-                                         ServletContext application, HttpServletRequest request,
-                                         ActionErrors errors, int page) {
-
-      ValidatorResources resources = Resources.getValidatorResources(application,request);
-      Locale locale = Resources.getLocale(request);
-
-      Validator validator = new Validator(resources, key);
-      validator.setUseContextClassLoader(true);
-
-      validator.setPage(page);
-
-      validator.addResource(SERVLET_CONTEXT_KEY, application);
-      validator.addResource(HTTP_SERVLET_REQUEST_KEY, request);
-      validator.addResource(Validator.LOCALE_KEY, locale);
-      validator.addResource(ACTION_ERRORS_KEY, errors);
-      validator.addResource(Validator.BEAN_KEY, bean);
-
-      return validator;
-   }
+    * @param key The key that the validation rules are under (the form elements 
+    * name attribute).
+    * @param bean The bean validation is being performed on.
+    * @param application servlet context
+    * @param request The current request object.
+    * @param errors The object any errors will be stored in.
+    * @param page This in conjunction with  the page property of a 
+    * <code>Field<code> can control the processing of fields.  If the field's 
+    * page is less than or equal to this page value, it will be processed.
+    */
+    public static Validator initValidator(
+        String key,
+        Object bean,
+        ServletContext application,
+        HttpServletRequest request,
+        ActionErrors errors,
+        int page) {
+    
+        ValidatorResources resources =
+            Resources.getValidatorResources(application, request);
+            
+        Locale locale = Resources.getLocale(request);
+    
+        Validator validator = new Validator(resources, key);
+        validator.setUseContextClassLoader(true);
+    
+        validator.setPage(page);
+    
+        validator.addResource(SERVLET_CONTEXT_KEY, application);
+        validator.addResource(HTTP_SERVLET_REQUEST_KEY, request);
+        validator.addResource(Validator.LOCALE_KEY, locale);
+        validator.addResource(ACTION_ERRORS_KEY, errors);
+        validator.addResource(Validator.BEAN_KEY, bean);
+    
+        return validator;
+    }
 
 }
