@@ -43,7 +43,7 @@
 
   if (focusControl.type != "hidden") {
      focusControl.focus();
-  } 
+  }
   // -->
 </script>
 	</bean:define>
@@ -64,7 +64,7 @@
 
   if (focusControl.type != "hidden") {
      focusControl[2].focus();
-  } 
+  }
   // -->
 </script>
 	</bean:define>

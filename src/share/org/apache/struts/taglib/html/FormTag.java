@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.44 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.44 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.45 2003/03/10 01:57:30 craigmcc Exp $
+ * $Revision: 1.45 $
+ * $Date: 2003/03/10 01:57:30 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Craig R. McClanahan
  * @author Martin Cooper
  * @author James Turner
- * @version $Revision: 1.44 $ $Date: 2003/03/08 19:23:49 $
+ * @version $Revision: 1.45 $ $Date: 2003/03/10 01:57:30 $
  */
 
 public class FormTag extends TagSupport {
@@ -123,6 +123,11 @@ public class FormTag extends TagSupport {
      * @since Struts 1.1
      */
     protected String focusIndex = null;
+
+    /**
+     * The line ending string.
+     */
+    protected static String lineEnd = System.getProperty("line.separator");
 
     /**
      * The ActionMapping defining where we will be submitting this form
@@ -629,35 +634,56 @@ public class FormTag extends TagSupport {
 
         // Render JavaScript to set the input focus if required
         if (this.focus != null) {
-            results.append("\r\n");
+
+            results.append(lineEnd);
             results.append(this.getJsStartElement());
 
             // xhtml script content shouldn't use the browser hiding trick
             if (!this.isXhtml()) {
-                results.append("  <!--\r\n");
+                results.append("  <!--");
+                results.append(lineEnd);
             }
 
             // Construct the control name that will receive focus.
             // This does not include any index.
-            String focusControl =
-                "document.forms[\"" + beanName + "\"].elements[\"" + this.focus + "\"]";
+            StringBuffer focusControl = new StringBuffer("document.forms[\"");
+            focusControl.append(beanName);
+            focusControl.append("\"].elements[\"");
+            focusControl.append(this.focus);
+            focusControl.append("\"]");
 
-            results.append("  var focusControl = " + focusControl + ";\r\n\r\n");
+            results.append("  var focusControl = ");
+            results.append(focusControl.toString());
+            results.append(";");
+            results.append(lineEnd);
+            results.append(lineEnd);
 
-            results.append("  if (focusControl.type != \"hidden\") {\r\n");
+            results.append("  if (focusControl.type != \"hidden\") {");
+            results.append(lineEnd);
 
             // Construct the index if needed and insert into focus statement
             String index = "";
             if (this.focusIndex != null) {
-                index = "[" + this.focusIndex + "]";
+                StringBuffer sb = new StringBuffer("[");
+                sb.append(this.focusIndex);
+                sb.append("]");
+                index = sb.toString();
             }
-            results.append("     focusControl" + index + ".focus();\r\n  } \r\n");
+            results.append("     focusControl");
+            results.append(index);
+            results.append(".focus();");
+            results.append(lineEnd);
+
+            results.append("  }");
+            results.append(lineEnd);
 
             if (!this.isXhtml()) {
-                results.append("  // -->\r\n");
+                results.append("  // -->");
+                results.append(lineEnd);
             }
 
-            results.append("</script>\r\n");
+            results.append("</script>");
+            results.append(lineEnd);
         }
 
         // Print this value to our output writer
@@ -763,14 +789,13 @@ public class FormTag extends TagSupport {
      * Returns the starting javascript element formatted for xhtml if needed.
      */
     private String getJsStartElement() {
-        String start = "<script type=\"text/javascript\"";
-
+        StringBuffer sb = new StringBuffer("<script type=\"text/javascript\"");
         if (!this.isXhtml()) {
-            start += " language=\"JavaScript\"";
+            sb.append(" language=\"JavaScript\"");
         }
-        start += ">\r\n";
-
-        return start;
+        sb.append(">");
+        sb.append(lineEnd);
+        return sb.toString();
     }
 
     /**

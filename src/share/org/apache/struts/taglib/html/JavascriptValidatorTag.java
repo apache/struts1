@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.23 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.24 2003/03/10 01:57:31 craigmcc Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/03/10 01:57:31 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.23 $ $Date: 2003/03/08 19:23:49 $
+ * @version $Revision: 1.24 $ $Date: 2003/03/10 01:57:31 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -116,6 +116,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * &lt;script&gt; &lt;/script&gt; around the javascript.
      */
     protected String formName = null;
+
+    /**
+     * The line ending string.
+     */
+    protected static String lineEnd = System.getProperty("line.separator");
 
     /**
      * The current page number of a multi-part form.
