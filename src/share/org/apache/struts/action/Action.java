@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.13 2000/12/30 20:47:30 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2000/12/30 20:47:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.14 2001/01/05 22:12:56 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/01/05 22:12:56 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2000/12/30 20:47:30 $
+ * @version $Revision: 1.14 $ $Date: 2001/01/05 22:12:56 $
  */
 
 public class Action {
@@ -115,7 +115,7 @@ public class Action {
 
 
     /**
-     * The context attribute key under which our <strong>default</strong>
+     * The context attributes key under which our <strong>default</strong>
      * configured data source (which must implement
      * <code>javax.sql.DataSource</code>) is stored,
      * if one is configured for this application.
@@ -125,17 +125,16 @@ public class Action {
 
 
     /**
-     * The request attribute key under which your action should store an error
-     * messages, if you are using the corresponding custom tag library
-     * elements.  The stored data should be an object of type
-     * <code>org.apache.struts.action.ActionErrors</code>.
+     * The request attributes key under which your action should store an
+     * <code>org.apache.struts.action.ActionErrors</code> object, if you
+     * are using the corresponding custom tag library elements.
      */
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";
 
 
     /**
-     * The request attribute key under which Struts custom tags might store a
+     * The request attributes key under which Struts custom tags might store a
      * <code>Throwable</code> that caused them to report a JspException at
      * runtime.  This value can be used on an error page to provide more
      * detailed information about what really went wrong.
@@ -145,8 +144,9 @@ public class Action {
 
 
     /**
-     * The context attributes key under which our ActionFormBeans collection
-     * are normally stored, unless overridden when initializing our
+     * The context attributes key under which our
+     * <code>org.apache.struts.action.ActionFormBeans</code> collection
+     * is normally stored, unless overridden when initializing our
      * ActionServlet.
      */
     public static final String FORM_BEANS_KEY =
@@ -154,8 +154,9 @@ public class Action {
 
 
     /**
-     * The context attributes key under which our ActionForwards collection
-     * are normally stored, unless overridden when initializing our
+     * The context attributes key under which our
+     * <code>org.apache.struts.action.ActionForwards</code> collection
+     * is normally stored, unless overridden when initializing our
      * ActionServlet.
      */
     public static final String FORWARDS_KEY =
@@ -163,8 +164,9 @@ public class Action {
 
 
     /**
-     * The session attribute key under which the user's selected Locale is
-     * stored, if any.  If no such attribute is found, the system default locale
+     * The session attributes key under which the user's selected
+     * <code>java.util.Locale</code> is stored, if any.  If no such
+     * attribute is found, the system default locale
      * will be used when retrieving internationalized messages.  If used, this
      * attribute is typically set during user login processing.
      */
@@ -173,7 +175,8 @@ public class Action {
 
 
     /**
-     * The request attribute key under which our ActionMapping instance
+     * The request attributes key under which our
+     * <code>org.apache.struts.ActionMapping</code> instance
      * is passed.
      */
     public static final String MAPPING_KEY =
@@ -181,8 +184,9 @@ public class Action {
 
 
     /**
-     * The context attributes key under which our ActionMappings collection
-     * are normally stored, unless overridden when initializing our
+     * The context attributes key under which our
+     * <code>org.apache.struts.action.ActionMappings</code> collection
+     * is normally stored, unless overridden when initializing our
      * ActionServlet.
      */
     public static final String MAPPINGS_KEY =
@@ -251,8 +255,8 @@ public class Action {
 
 
     /**
-     * Process the specified HTTP request, and create the corresponding
-     * HTTP response (or forward to another web component that will create
+     * Process the specified non-HTTP request, and create the corresponding
+     * non-HTTP response (or forward to another web component that will create
      * it).  Return an <code>ActionForward</code> instance describing where
      * and how control should be forwarded, or <code>null</code> if the
      * response has already been completed.
@@ -311,6 +315,36 @@ public class Action {
         } catch (ClassCastException e) {
             return (null);
         }
+
+    }
+
+
+    /**
+     * Process the specified HTTP request, and create the corresponding
+     * HTTP response (or forward to another web component that will create
+     * it).  Return an <code>ActionForward</code> instance describing where
+     * and how control should be forwarded, or <code>null</code> if the
+     * response has already been completed.
+     *
+     * @deprecated Use the new perform() method without a servlet argument
+     *
+     * @param servlet The ActionServlet instance owning this Action
+     * @param mapping The ActionMapping used to select this instance
+     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are processing
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    public ActionForward perform(ActionServlet servlet,
+                                 ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+        throws IOException, ServletException {
+
+        return (perform(mapping, form, request, response));
 
     }
 
@@ -388,12 +422,12 @@ public class Action {
 
 
     /**
-     * Returns <code>true</code> if the form cancel button was pressed.
-     * This method will check if the cancel button generated by
+     * Returns <code>true</code> if the current form's cancel button was
+     * pressed.  This method will check if the cancel button generated by
      * <strong>CancelTag</strong> was pressed by the user in the
-     * current request.  If true, validation by any
-     * <strong>ValidatingActionForm</strong> validate() method will be
-     * skipped.
+     * current request.  If true, validation performed by an
+     * <strong>ActionForm</strong> validate() method will have been
+     * skipped by the controller servlet.
      *
      * @param request The servlet request we are processing
      * @see org.apache.struts.taglib.CancelTag
