@@ -55,6 +55,21 @@
 
     <p>Nested tags are all about efficiently managing this style of hierarchy  
     structure within your JSP markup.</p>
+    
+    <p>
+    <strong>Important Note:</strong> Nearly all these tags extend tags from
+    other libraries to bring their functionality into the nested context.
+    Nesting relies on the tags working against the one bean model, and managing
+    the properties so that they become relative to the properties they are
+    nested within. In doing so, the tags will set the "name" attribute internally
+    (where applicable), and in many cases will rely on the "property" attribute
+    being set so it can be updated internally to become nested. The original tags
+    on occasion provide options that don't use the "name" and "property"
+    attributes. These uses will then fall outside the nested context, and will
+    most likely cause error. To take advantage of these options, markup using
+    the original tag for these cases. For an example see the
+    <a href="#options"><code>&lt;nested:options&gt;</code></a> tag.
+    </p>
   </info>
   
   <tag>
@@ -84,11 +99,10 @@
       </pre>
       Can instead become...
       <pre>
-  myNestedLevel
 &lt;nested:nest property="myNestedLevel" /&gt;
-&lt;nested:write property="propertyOne" /&gt;
-&lt;nested:write property="propertyTwo" /&gt;
-&lt;nested:write property="propertyThree" /&gt;
+  &lt;nested:write property="propertyOne" /&gt;
+  &lt;nested:write property="propertyTwo" /&gt;
+  &lt;nested:write property="propertyThree" /&gt;
 &lt;/nested:nest &gt;
       </pre>
       </p>
@@ -134,7 +148,7 @@
 ********************************************************************************
 ********************************************************************************
 -->
-  <tag>
+  <tag document-attributes="false">
     <name>define</name>
     <summary>Nested Extension - 
       Define a scripting variable based on the value(s) of the specified
@@ -144,133 +158,58 @@
     <teiclass>org.apache.struts.taglib.bean.DefineTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
-      <p>Retrieve the value of a specified bean property, and define it
-      as an attribute (in the scope specified by the <code>toScope</code>
-      property) accessible to the remainder of the current
-      page.  No type conversion is performed on the returned property value,
-      unless it is a Java primitive type, in which case it is wrapped in the
-      appropriate wrapper class (i.e. int is wrapped by java.lang.Integer).</p>
-
-      <p>If you specify a "value" attribute, the exposed bean will be of type
-      <code>java.lang.String</code> and initialized to the specified value.</p>
-
-      <p>If a problem occurs while retrieving the specified bean property, a
-      request time exception will be thrown.</p>
-
-      <p>The <code>&lt;bean:define&gt;</code> tag differs from
-      <code>&lt;jsp:useBean&gt;</code> in several ways, including:</p>
-      <ul>
-      <li>Unconditionally creates (or replaces) a bean under the
-          specified identifier.</li>
-      <li>Can create a bean with the value returned by a property getter
-          of a different bean (including properties referenced with a
-          nested and/or indexed property name).</li>
-      <li>Can create a bean whose contents is a literal string (or the result
-          of a runtime expression) specified by the <code>value</code>
-          attribute.</li>
-      <li>Does not support nested content (such as
-          <code>&lt;jsp:setProperty&gt;</code> tags) that are only executed
-          if a bean was actually created.</li>
-      </ul>
-
-      <p><strong>USAGE NOTE</strong> - There is a restriction in the JSP 1.1
-      Specification that disallows using the same value for an <code>id</code>
-      attribute more than once in a single JSP page.  Therefore, you will not
-      be able to use <code>&lt;bean:define&gt;</code> for the same bean
-      name more than once in a single page.</p>
-
-      <p>See the Bean Developer's Guide section on
-      <a href="api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
-      bean creation</a> for more information about these differences, as well
-      as alternative approaches to introducing beans into a JSP page.</p>
+      <p>This tag is an extension of the
+      <a href="struts-bean.html#define"><code>&lt;bean:define&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>id</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Specifies the name of the scripting variable (and associated page
-      scope attribute) that will be made available with the value of the
-      specified property.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the attribute name of the bean whose property is accessed
-        to define a new page scope attribute (if <code>property</code> is also
-        specified) or the attribute name of the bean that is duplicated with
-        the new reference created by this tag (if <code>property</code> is not
-        also specified).  This attribute is required unless you specify
-        a <code>value</code> attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the name of the property to be accessed on the bean
-        specified by <code>name</code>.  This value may be a simple, indexed,
-        or nested property reference expression.  If not specified, the bean
-        identified by <code>name</code> is given a new reference identified by
-        <code>id</code>.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the variable scope searched to retrieve the bean specified
-        by <code>name</code>.  If not specified, the default rules applied by
-        <code>PageContext.findAttribute()</code> are applied.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>toScope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the variable scope into which the newly defined bean will
-        be created.  If not specified, the bean will be created in
-        <code>page</code> scope.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>type</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the fully qualified class name of the value to be exposed
-        as the <code>id</code> attribute.  If not specified, the default type
-        is <code>java.lang.String</code> (if you specify a <code>value</code>
-        attribute), or <code>java.lang.Object</code> otherwise.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The <code>java.lang.String</code> value to which the exposed bean
-        should be set.  This attribute is required unless you specify the
-        <code>name</code> attribute.</p>
-      </info>
     </attribute>
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
 
     <name>size</name>
     <summary>Nested Extension - 
@@ -280,78 +219,46 @@
     <teiclass>org.apache.struts.taglib.bean.SizeTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
-      <p>Given a reference to an array, Collection or Map, creates a new bean, of
-      type <code>java.lang.Integer</code>, whose value is the number of elements
-      in that collection.  You can specify the collection to be counted in any
-      one of the following ways:</p>
-      <ul>
-      <li>As a runtime expression specified as the value of the
-          <code>collection</code> attribute.</li>
-      <li>As a JSP bean specified by the <code>name</code> attribute.</li>
-      <li>As the property, specified by the <code>property</code> attribute,
-          of the JSP bean specified by the <code>bean</code> attribute.</li>
-      </ul>
+      <p>This tag is an extension of the
+      <a href="struts-bean.html#size"><code>&lt;bean:size&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>collection</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>A runtime expression that evaluates to an array, a Collection, or
-        a Map.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>id</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The name of a page scope JSP bean, of type
-        <code>java.lang.Integer</code>, that will be created to contain the
-        size of the underlying collection being counted.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The name of the JSP bean (optionally constrained to the scope
-        specified by the <code>scope</code> attribute) that contains the
-        collection to be counted (if <code>property</code> is not specified),
-        or whose property getter is called to return the collection to be
-        counted (if <code>property</code> is specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The name of the property, of the bean specified by the
-        <code>name</code> attribute, whose getter method will return the
-        collection to be counted.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The bean scope within which to search for the JSP bean specified
-        by the <code>name</code> attribute.  If not specified, the available
-        scopes are searched in ascending sequence.</p>
-      </info>
     </attribute>
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
 
     <name>write</name>
     <summary>Nested Extension - 
@@ -361,175 +268,65 @@
     <tagclass>org.apache.struts.taglib.nested.bean.NestedWriteTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>
-      <p>Retrieve the value of the specified bean property, and render it to the
-      current JspWriter as a String by the ways:
-      <ul>
-      <li>If <code>format</code> attribute exists then value will be formatted on base of format
-      string from <code>format</code> attribute and default system locale.</li>
-      <li>If in resources exists format string for value data type (view <code>format</code>
-      attribute description) then value will be formatted on base of format string
-      from resources. Resources bundle and target locale can be specified with
-      <code>bundle</code> and <code>locale</code> attributes. If nothing specified then
-      default resource bundle and current user locale will be used.</li>
-      <li>If there is a PropertyEditor configured for the property value's class, the
-      <code>getAsText()</code> method will be called.</li>
-      <li>Otherwise, the usual <code>toString()</code> conversions will be applied.</li>
-      </ul>
+      <p>This tag is an extension of the
+      <a href="struts-bean.html#write"><code>&lt;bean:write&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
       </p>
-
-      <p>If a problem occurs while retrieving the specified bean property, a
-      request time exception will be thrown.</p>
     </info>
 
     <attribute>
       <name>bundle</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The name of the application scope bean under which the
-        <code>MessageResources</code> object containing our messages
-        is stored.  If not specified, the default name (the value of
-        the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>filter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>If this attribute is set to <code>true</code>, the rendered property
-        value will be filtered for characters that are sensitive in HTML, and any
-        such characters will be replaced by their entity equivalents.  By
-        default, filtering is performed - to disable it, you must explicitly
-        set this attribute to <code>false</code>.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>format</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Specifies the format string to use to convert bean or property value
-      to the <code>String</code>. If nothing specified, then default format
-      string for value data type will be searched in message resources by
-      according key.</p>
-<!-- move to developer's guide
-      <table>
-       <tr>
-           <td>Key to search format string</td>
-           <td>Data types</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.nested.bean.Nestedformat.int</td>
-           <td>java.lang.Byte, java.lang.Short, java.lang.Integer, java.lang.Long,
-               java.math.BigInteger</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.nested.bean.Nestedformat.float</td>
-           <td>java.lang.Float, java.lang.Double, java.math.BigDecimal</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.nested.bean.Nestedformat.sql.timestamp</td>
-           <td>java.sql.Timestamp</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.nested.bean.Nestedformat.sql.date</td>
-           <td>java.sql.Date</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.nested.bean.Nestedformat.sql.time</td>
-           <td>java.sql.Time</td>
-       </tr>
-       <tr>
-           <td>org.apache.struts.taglib.nested.bean.Nestedformat.date</td>
-           <td>java.util.Date</td>
-       </tr>
-      </table>
-      <p>Default format strings in resources can be written as - <br />
-        <pre><small>
-org.apache.struts.taglib.nested.bean.Nestedformat.int=######
-org.apache.struts.taglib.nested.bean.Nestedformat.float=######,####
-org.apache.struts.taglib.nested.bean.Nestedformat.sql.timestamp=hh 'o''clock' a, zzzz
-org.apache.struts.taglib.nested.bean.Nestedformat.sql.date=EEE, MMM d, ''yy
-org.apache.struts.taglib.nested.bean.Nestedformat.sql.time=h:mm a
-org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
-        </small></pre>
-        <br />values for resource file entries are standart Java format strings for
-        date, time and number values.</p>
--->
-      </info>
     </attribute>
 
     <attribute>
       <name>formatKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the key to search format string in application resources.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>ignore</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>If this attribute is set to <code>true</code>, and the bean specified
-        by the <code>name</code> and <code>scope</code> attributes does not
-        exist, simply return without writing anything.  The default value is
-        <code>false</code>, which will cause a runtime exception to be thrown,
-        consistent with the other tags in this tag library.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>locale</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The name of the session scope bean under which our currently
-        selected <code>Locale</code> object is stored.  If not specified,
-        the default name (the value of the <code>Action.LOCALE_KEY</code>
-        constant string) is used.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the attribute name of the bean whose property is accessed
-        to retrieve the value specified by <code>property</code> (if
-        specified).  If <code>property</code> is not specified, the value of
-        this bean itself will be rendered.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the name of the property to be accessed on the bean
-        specified by <code>name</code>.  This value may be a simple, indexed,
-        or nested property reference expression.  If not specified, the bean
-        identified by <code>name</code> will itself be rendered.  If the
-        specified property returns null, no output will be rendered.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Specifies the variable scope searched to retrieve the bean specified
-        by <code>name</code>.  If not specified, the default rules applied by
-        <code>PageContext.findAttribute()</code> are applied.</p>
-      </info>
     </attribute>
 
   </tag>
@@ -539,120 +336,70 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
 ********************************************************************************
 ********************************************************************************
 -->
-  <tag>
+  <tag document-attributes="false">
     <name>checkbox</name>
     <summary>Nested Extension - Render A Checkbox Input Field</summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedCheckboxTag</tagclass>
     <info>
-      <p>Renders an HTML &lt;input&gt; element of type
-      <code>checkbox</code>, populated from the specified
-      value or the specified property of the bean associated
-      with our current form. This tag is only valid when
-      nested inside a form tag body.</p>
-
-      <p><strong>NOTE</strong>:  The underlying property value
-      associated with this field should be of type <code>boolean</code>,
-      and any <code>value</code> you specify should correspond to one
-      of the Strings that indicate a true value ("true", "yes", or
-      "on").  If you wish to utilize a set of related String values,
-      consider using the <code>multibox</code> tag.</p>
-
-      <p><strong>WARNING</strong>:  In order to correctly recognize unchecked
-      checkboxes, the <code>ActionForm</code> bean associated with this form
-      must include a statement setting the corresponding boolean property to
-      <code>false</code> in the <code>reset()</code> method.</p>
+      <p>This tag is an extension of the
+      <a href="struts-html.html#checkbox"><code>&lt;html:checkbox&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The keyboard character used to move focus immediately to this
-        element.
-      </info>
     </attribute>
 
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The alternate text for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The message resources key of the alternate text for this
-        element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        Set to <code>true</code> if this input field should be
-        disabled.
-      </info>
     </attribute>
 
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        Valid only inside of logic:iterate tag.
-        If yes then name of the html tag will be rendered as
-        "id[34].propertyName". Number in brackets will be generated
-        for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The attribute name of the bean whose properties are consulted when
-        rendering the current value of this input field. If not specified,
-        the bean associated with the form tag we are nested within is utilized.
-      </info>
     </attribute>
 
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element loses input
-        focus.
-      </info>
     </attribute>
 
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element loses input
-        focus and its value has changed.
-      </info>
     </attribute>
 
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element receives a
-        mouse click.
-      </info>
     </attribute>
 
 
@@ -660,20 +407,12 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element receives a
-        mouse double click.
-      </info>
     </attribute>
 
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element receives input
-        focus.
-      </info>
     </attribute>
 
 
@@ -681,170 +420,109 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element has focus and a
-        key is depressed.
-      </info>
     </attribute>
 
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element has focus and a
-        key is depressed and released.
-      </info>
     </attribute>
 
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element has focus and a
-        key is released.
-      </info>
     </attribute>
 
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element is under the mouse
-        pointer and a mouse button is depressed.
-      </info>
     </attribute>
 
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element is under the
-        mouse pointer and the pointer is moved.
-      </info>
     </attribute>
 
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element was under the
-        mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
 
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element was not under
-        the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
 
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed when this element is under the
-        mouse pointer and a mouse button is released.
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        Name of the request parameter that will be included with this
-        submission, set to the specified value.
-      </info>
     </attribute>
 
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
 
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The advisory title for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The message resources key for the advisory title
-        for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The value to be transmitted if this checkbox is
-        checked when the form is submitted.  If not specified,
-        the value "on" will be returned.
-      </info>
     </attribute>
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
     <name>form</name>
     <summary>Nested Extension - Define An Input Form</summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedFormTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>
-        Renders an HTML &lt;form&gt; element whose contents are described
-        by the body content of this tag. The form implicitly interacts
-        with the specified request scope or session scope bean to populate
-        the input fields with the current property values from the bean.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#form"><code>&lt;html:form&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
       </p>
     </info>
 
@@ -852,390 +530,222 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>action</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The URL to which this form will be submitted.  This value is also
-        used to select the ActionMapping we are assumed to be processing, from
-        which we can identify the appropriate form bean and scope.</p>
-
-        <p>If you are using extension mapping for selecting the controller
-        servlet, this value should be equal to the <code>path</code> attribute
-        of the corresponding <code>&lt;action&gt;</code> element, optionally
-        followed by the correct extension suffix.</p>
-
-        <p>If you are using path mapping to select the controller servlet, this
-        value should be exactly equal to the <code>path</code> attribute of the
-        corresponding <code>&lt;action&gt;</code> element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>enctype</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The content encoding to be used to submit this form, if the method
-        is POST. This must be set to "multipart/form-data" if you are using
-        the file tag to enable file upload. If not specified, the browser
-        default (normally "application/x-www-form-urlencoded") is used.
-      </info>
     </attribute>
 
     <attribute>
       <name>focus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The field name (among the fields on this form) to which initial
-        focus will be assigned with a JavaScript function. If not specified,
-        no special JavaScript for this purpose will be rendered.
-      </info>
     </attribute>
 
     <attribute>
       <name>method</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        The HTTP method that will be used to submit this request
-        (GET, POST). [POST]
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Name of the request scope or session scope bean (as defined by the
-        <code>scope</code> attribute) whose properties will be used to populate
-        the input field values.  If no such bean is found, a new bean will be
-        created and added to the appropriate scope, using the Java class name
-        specified by the <code>type</code> attribute.</p>
-
-        <p>If this attribute is not specified, it will be calculated by using
-        the value of the <code>action</code> attribute to look up the
-        corresponding ActionMapping element, from which we will select the
-        specified form bean name.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onreset</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed if the form is reset.
-      </info>
     </attribute>
 
     <attribute>
       <name>onsubmit</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        JavaScript event handler executed if the form is submitted.
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Scope within which the form bean associated with this input form will
-        be accessed or created (must be either <code>request</code> or
-        <code>session</code>.
-        </p>
-
-        <p>If this attribute is not specified, it will be calculated by using
-        the value of the <code>action</code> attribute to look up the
-        corresponding ActionMapping element, from which we will select the
-        specified form bean scope.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>target</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        Window target to which this form is submitted, such as
-        for use in framed presentations.
-      </info>
     </attribute>
 
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The advisory title for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>The message resources key for the advisory title
-        for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>type</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-        <p>Fully qualified Java class name of the form bean to be created, if no
-        such bean is found in the specified scope.</p>
-
-        <p>If this attribute is not specified, it will be calculated by using
-        the value of the <code>action</code> attribute to look up the
-        corresponding ActionMapping element, from which we will select the
-        specified form bean type.</p>
-      </info>
     </attribute>
   </tag>
   
-  <tag>
+  <tag document-attributes="false">
    <name>hidden</name>
     <summary>Nested Extension - 
         Render A Hidden Field
     </summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedHiddenTag</tagclass>
     <info>
-        <p>
-            Renders an HTML &lt;input&gt; element of type hidden, populated
-            from the specified value or the specified property of the bean
-            associated with our current form. This tag is only valid when
-            nested inside a form tag body.
-        </p>
+      <p>This tag is an extension of the
+      <a href="struts-html.html#hidden"><code>&lt;html:hidden&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          Valid only inside of logic:iterate tag.
-          If yes then name of the html tag will be rendered as
-          "id[34].propertyName". Number in brackets will be generated
-          for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          The attribute name of the bean whose properties are consulted
-          when rendering the current value of this input field. If not
-          specified, the bean associated with the form tag we are nested
-          within is utilized.
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          Name of this input field, and the name of the corresponding bean
-          property if value is not specified. The corresponding bean property
-          (if any) must be of type String.
-      </info>
     </attribute>
 
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          Value to which this field should be initialized. [Use the
-          corresponding bean property value]
-      </info>
     </attribute>
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
      <name>image</name>
       <summary>Nested Extension - 
       Render an input tag of type "image"
       </summary>
       <tagclass>org.apache.struts.taglib.nested.html.NestedImageTag</tagclass>
       <info>
-
-      <p>Renders an HTML <code>&lt;input&gt;</code> tag of type
-      "image".  The base URL for this image is calculated directly
-      based on the value specified in the <code>src</code> or
-      <code>page</code> attributes, or indirectly by looking up a
-      message resource string based on the <code>srcKey</code> or
-      <code>pageKey</code> attributes.  You <strong>must</strong>
-      specify exactly one of these attributes.</p>
-
-      <p>If you would like to obtain the coordinates of the mouse
-      click that submitted this request, see the information below
-      on the <code>property</code> attribute.</p>
-
+      <p>This tag is an extension of the
+      <a href="struts-html.html#image"><code>&lt;html:image&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
       </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The keyboard character used to move focus immediately
-      to this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>align</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alignment option for this image.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>border</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The width (in pixels) of the border around this image.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>bundle</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The servlet context attribute key for the MessageResources
-      instance to use.  If not specified, defaults to the
-      application resources configured for our action servlet.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
 
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          Valid only inside of logic:iterate tag.
-          If yes then name of the html tag will be rendered as
-          "id[34].propertyName". Number in brackets will be generated
-          for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
 
     <attribute>
       <name>locale</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The session attribute key for the Locale used to select
-      internationalized messages.  If not specified, defaults to the
-      Struts standard value.</p>
-      </info>
     </attribute>
 
       <attribute>
@@ -1320,54 +830,30 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>page</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The application-relative path of the image for this
-      input tag.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>pageKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The key of the message resources string specifying the
-      application-relative path of the image for this input tag.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The property name of this image tag.  The parameter names
-      for the request will appear as "property.x" and "property.y",
-      the x and y representing the coordinates of the mouse click
-      for the image.  A way of retrieving these values through a
-      form bean is to define getX(), getY(), setX(), and setY()
-      methods, and specify your propery as a blank string
-      (property="").</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>src</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The source URL of the image for this input tag.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>srcKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The key of the message resources string specifying the
-      source URL of the image for this input tag.</p>
-      </info>
     </attribute>
 
       <attribute>
@@ -1392,20 +878,13 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
         <name>title</name>
         <required>false</required>
         <rtexprvalue>true</rtexprvalue>
-        <info>
-        <p>The advisory title for this element.</p>
-        </info>
-      </attribute>
+    </attribute>
 
       <attribute>
         <name>titleKey</name>
         <required>false</required>
         <rtexprvalue>true</rtexprvalue>
-        <info>
-        <p>The message resources key for the advisory title
-        for this element.</p>
-        </info>
-      </attribute>
+    </attribute>
 
       <attribute>
         <name>value</name>
@@ -1414,593 +893,289 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
     <name>link</name>
     <summary>Nested Extension - Render an HTML anchor or hyperlink</summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedLinkTag</tagclass>
     <info>
-      <p>Renders an HTML <code>&lt;a&gt;</code> element as an anchor definition 
-      (if "linkName" is specified) or as a hyperlink to the specified URL.  URL 
-      rewriting will be applied automatically, to maintain session state in the
-      absence of cookies.  The content displayed for this hyperlink will be 
-      taken from the body of this tag.</p>
-  
-      <p>The base URL for this hyperlink is calculated based on which of the 
-      following attributes you specify (you must specify exactly one of 
-      them):</p>
-      <ul>
-      <li><em>forward</em> - Use the value of this attribute as the name of a 
-        global <code>ActionForward</code> to be looked up, and use the  
-        application-relative or context-relative URI found there.</li>
-        <li><em>href</em> - Use the value of this attribute unchanged.
-          </li>
-      <li><em>page</em> - Use the value of this attribute as a
-          application-relative URI, and generate a server-relative
-          URI by including the context path and application
-          prefix.</li>
-      </ul>
-  
-      <p>Normally, the hyperlink you specify with one of the attributes 
-      described in the previous paragraph will be left unchanged (other than URL 
-      rewriting if necessary).  However, there are two ways you can append one 
-      or more dynamically defined query parameters to the hyperlink -- specify a 
-      single parameter with the <code>paramId</code> attribute (and its 
-      associated attributes to select the value), or specify the 
-      <code>name</code> (and optional <code>property</code>) attributes to 
-      select a <code>java.util.Map</code> bean that contains one or more 
-      parameter ids and corresponding values.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#link"><code>&lt;html:link&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
       </p>
-  
-      <p>To specify a single parameter, use the <code>paramId</code> attribute 
-      to define the name of the request parameter to be submitted.  To specify 
-      the corresponding value, use one of the following approaches:</p>
-      <ul>
-      <li><em>Specify only the <code>paramName</code> attribute</em>
-          - The named JSP bean (optionally scoped by the value of the
-          <code>paramScope</code> attribute) must identify a value
-          that can be converted to a String.</li>
-      <li><em>Specify both the <code>paramName</code> and
-          <code>paramProperty</code> attributes</em> - The specified
-          property getter method will be called on the JSP bean
-          identified by the <code>paramName</code> (and optional
-          <code>paramScope</code>) attributes, in order to select
-          a value that can be converted to a String.</li>
-      </ul>
-  
-      <p>If you prefer to specify a <code>java.util.Map</code> that contains all 
-      of the request parameters to be added to the hyperlink, use one of the 
-      following techniques:</p>
-      <ul>
-      <li><em>Specify only the <code>name</code> attribute</em> -
-          The named JSP bean (optionally scoped by the value of
-          the <code>scope</code> attribute) must identify a
-          <code>java.util.Map</code> containing the parameters.</li>
-      <li><em>Specify both <code>name</code> and
-          <code>property</code> attributes</em> - The specified
-          property getter method will be called on the bean
-          identified by the <code>name</code> (and optional
-          <code>scope</code>) attributes, in order to return the
-          <code>java.util.Map</code> containing the parameters.</li>
-      </ul>
-  
-      <p>As the <code>Map</code> is processed, the keys are assumed to be the 
-      names of query parameters to be appended to the hyperlink.  The value 
-      associated with each key must be either a String or a String array 
-      representing the parameter value(s), or an object whose toString() method 
-      will be called. If a String array is specified, more than one value for 
-      the same query parameter name will be created.</p>
-  
-      <p>Additionally, you can request that the current transaction control 
-      token, if any, be included in the generated hyperlink by setting the 
-      <code>transaction</code> attribute to <code>true</code>.
-      You can also request that an anchor ("#xxx") be added to the end of the 
-      URL that is created by any of the above mechanisms, by using the 
-      <code>anchor</code> attribute.</p>
-    </info>
+      </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The keyboard character used to move focus immediately
-      to this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>anchor</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Optional anchor tag ("#xxx") to be added to the generated
-      hyperlink.  Specify this value <strong>without</strong> any
-      "#" character.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>forward</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Logical name of a global <code>ActionForward</code> that
-      contains the actual content-relative URI of the destination
-      of this transfer.  This hyperlink may be dynamically
-      modified by the inclusion of query parameters, as described
-      in the tag description.  You <strong>must</strong> specify
-      exactly one of the <code>forward</code> attribute, the
-      <code>href</code> attribute, the <code>linkName</code>
-      attribute, or the <code>page</code> attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>href</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The URL to which this hyperlink will transfer control
-      if activated.  This hyperlink may be dynamically modified
-      by the inclusion of query parameters, as described in the
-      tag description.  You <strong>must</strong> specify
-      exactly one of the <code>forward</code> attribute, the
-      <code>href</code> attribute, the <code>linkName</code>
-      attribute, or the <code>page</code> attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          Valid only inside of logic:iterate tag.
-          If yes then indexed parameter with name from indexId attribute
-          will be added to the query string. Indexed parameter looks like
-          "index[32]". Number in brackets will be generated
-          for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
 
     <attribute>
       <name>indexId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          By this attribute different name for the indexed parameter can be
-          specified. Take a look to the "indexed" attribute for details.
-      </info>
     </attribute>
 
     <attribute>
       <name>linkName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The anchor name to be defined within this page, so that
-      you can reference it with intra-page hyperlinks.  In other
-      words, the value specified here will render a "name" element
-      in the generated anchor tag.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of a JSP bean that contains a <code>Map</code>
-      representing the query parameters (if <code>property</code>
-      is not specified), or a JSP bean whose property getter is
-      called to return a <code>Map</code> (if <code>property</code>
-      is specified).</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element loses input focus.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse click.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse double click.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives input focus.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a key down event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a key press event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a key up event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse down event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse move event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse out event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse over event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>JavaScript event handler that is executed when
-      this element receives a mouse up event.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>page</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The applicaiton-relative path (beginning with a "/"
-      character) to which this hyperlink will transfer control
-      if activated.  This hyperlink may be dynamically modified
-      by the inclusion of query parameters, as described in the
-      tag description.  You <strong>must</strong> specify exactly
-      one of the <code>forward</code> attribute, the
-      <code>href</code> attribute, the <code>linkName</code>
-      attribute, or the <code>page</code> attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>paramId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of the request parameter that will be dynamically
-      added to the generated hyperlink.  The corresponding value is
-      defined by the <code>paramName</code> and (optional)
-      <code>paramProperty</code> attributes, optionally scoped by
-      the <code>paramScope</code> attributel</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>paramName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of a JSP bean that is a String containing the
-      value for the request parameter named by <code>paramId</code>
-      (if <code>paramProperty</code> is not specified), or a JSP
-      bean whose property getter is called to return a String
-      (if <code>paramProperty</code> is specified).  The JSP bean
-      is constrained to the bean scope specified by the
-      <code>paramScope</code> property, if it is specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>paramProperty</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of a property of the bean specified by the
-      <code>paramName</code> attribute, whose return value must
-      be a String containing the value of the request parameter
-      (named by the <code>paramId</code> attribute) that will be
-      dynamically added to this hyperlink.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>paramScope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The scope within which to search for the bean specified
-      by the <code>paramName</code> attribute.  If not specified,
-      all scopes are searched.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of a property of the bean specified by the
-      <code>name</code> attribute, whose return value must be
-      a <code>java.util.Map</code> containing the query parameters
-      to be added to the hyperlink.  You <strong>must</strong>
-      specify the <code>name</code> attribute if you specify
-      this attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The scope within which to search for the bean specified
-      by the <code>name</code> attribute.  If not specified, all
-      scopes are searched.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>CSS styles to be applied to this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>CSS stylesheet class to be applied to this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-          Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
 
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The tab order (ascending positive integers) for
-      this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>target</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The window target in which the resource requested by this
-      hyperlink will be displayed, for example in a framed
-      presentation.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>transaction</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>If set to <code>true</code>, any current transaction
-      control token will be included in the generated hyperlink,
-      so that it will pass an <code>isTokenValid()</code> test
-      in the receiving Action.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
     <name>multibox</name>
     <summary>Nested Extension - 
         Render A Checkbox Input Field
     </summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedMultiboxTag</tagclass>
     <info>
-      <p>Renders an HTML &lt;input&gt; element of type <code>checkbox</code>, 
-      whose "checked" status is initialized based on whether the specified value
-      matches one of the elements of the underlying property's array of current 
-      values. This element is useful when you have large numbers of checkboxes, 
-      and prefer to combine the values into a single array-valued property 
-      instead of multiple boolean properties.  This tag is only valid when 
-      nested inside a form tag body.</p>
-      
-      <p><strong>WARNING</strong>:  In order to correctly recognize cases where 
-      none of the associated checkboxes are selected, the 
-      <code>ActionForm</code> bean associated with this form must include a 
-      statement setting the corresponding array to zero length in the
-      <code>reset()</code> method.</p>
-      
-      <p>The value to be returned to the server, if this checkbox is selected, 
-      must be defined by one of the following methods:</p>
-      <ul>
-      <li>Specify a <code>value</code> attribute, whose contents will be used 
-      literally as the value to be returned.</li> <li>Specify no 
-      <code>value</code> attribute, and the nested body content of this tag will 
-      be used as the value to be returned.</li>
-      </ul>
+      <p>This tag is an extension of the
+      <a href="struts-html.html#multibox"><code>&lt;html:multibox&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The attribute name of the bean whose properties are consulted when
-      rendering the current value of this input field. If not specified,
-      the bean associated with the form tag we are nested within is 
-      utilized.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
       
@@ -2008,20 +1183,12 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
       
@@ -2029,351 +1196,193 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and 
-      a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and 
-      a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and 
-      a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the 
-      mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and the pointer is moved.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was under the
-      mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was not under
-      the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and a mouse button is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the request parameter that will be included with this
-      submission, set to the specified value.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>false</required> 
       <rtexprvalue>true</rtexprvalue>
-      <info> The value to be transmitted if this 
-      checkbox is checked when the form is submitted.
-      </info>
     </attribute>
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
     <name>options</name>
     <summary>Nested Extension - Render a Collection of Select Options</summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedOptionsTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>
-      <p>Renders a set of HTML <code>&lt;option&gt;</code> elements,
-      representing possible choices for a <code>&lt;select&gt;</code>
-      element.  This tag can be used multiple times within a single
-      <code>&lt;html:select&gt;</code> element, either in conjunction
-      with or instead of one or more <code>&lt;html:option&gt;</code>
-      elements.</p>
-      
-      <p>This tag operates in one of two major modes, depending on
-      whether or not the <code>collection</code> attribute is
-      specified.  If the <code>collection</code> attribute is
-      included, the following rules apply:</p>
-      <ul>
-      <li>The <strong>collection</strong> attribute is interpreted
-          as the name of a JSP bean, in some scope, that itself
-          represents a collection of individual beans, one per option
-          value to be rendered.</li>
-      <li>The <strong>property</strong> attribute is interpreted as
-          the name of a property of the individual beans included in
-          the collection, and is used to retrieve the value that will
-          be returned to the server if this option is selected.</li>
-      <li>The <strong>labelProperty</strong> attribute is interpreted
-          as the name of a property of the individual beans included
-          in the collection, and is used to retrieve the label that
-          will be displayed to the user for this option.  If the
-          <code>labelProperty</code> attribute is not specified, the
-          property named by the <code>property</code> attribute will
-          be used to select both the value returned to the server and
-          the label displayed to the user for this option.</li>
-      </ul>
-      
-      <p>If the <code>collection</code> attribute is not specified,
-      the rules described in the remainder of this section apply.</p>
-      
-      <p>The collection of values actually selected depends on the 
-      presence or
-      absence of the <code>name</code> and <code>property</code> 
-      attributes.  The
-      following combinations are allowed:</p>
-      <ul>
-      <li><i>Only <code>name</code> is specified</i> - The value of this 
-      attribute
-          is the name of a JSP bean in some scope that is the
-          collection.</li>
-      <li><i>Only <code>property</code> is specified</i> - The value of 
-      this
-          attribute is the name of a property of the ActionForm bean 
-          associated
-          with our form, which will return the collection.</li>
-      <li><i>Both <code>name</code> and <code>property</code> are 
-      specified</i> -
-          The value of the <code>name</code> attribute identifies a 
-          JSP bean
-          in some scope.  The value of the <code>property</code> 
-          attribute is the
-          name of some property of that bean which will return the 
-          collection.</li>
-      </ul>
-      
-      <p>The collection of labels displayed to the user can be the same 
-      as the
-      option values themselves, or can be different, depending on the 
-      presence or
-      absence of the <code>labelName</code> and 
-      <code>labelProperty</code>
-      attributes.  If this feature is used, the collection of labels 
-      must contain
-      the same number of elements as the corresponding collection of 
-      values.
-      The following combinations are allowed:</p>
-      <ul>
-      <li><i>Neither <code>labelName</code> nor 
-      <code>labelProperty</code> is
-          specified</i> - The labels will be the same as the option 
-          values
-          themselves.</li>
-      <li><i>Only <code>labelName</code> is specified</i> - The value of 
-      this
-          attribute is the name of a JSP bean in some scope that is 
-          the
-          collection.</li>
-      <li><i>Only <code>labelProperty</code> is specified</i> - The 
-      value of this
-          attribute is the name of a property of the ActionForm bean 
-          associated
-          with our form, which will return the collection.</li>
-      <li><i>Both <code>labelName</code> and <code>labelProperty</code> 
-      are
-            specified</i> - The value of the <code>labelName</code> 
-            attribute
-            identifies a JSP bean in some scope.  The value of the
-            <code>labelProperty</code> attribute is the name of some 
-          property of
-            that bean which will return the collection.</li>
-        </ul>
+      <p>This tag is an extension of the
+      <a href="struts-html.html#options"><code>&lt;html:options&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
+      <p>
+      <strong>Note:</strong> The nested context of this tag relies on the use
+      of the "property" property, and the internal use of the "name" property.
+      The nested tags rely on these properties and will attempt to set them
+      iteself. The <code>&lt;html:options&gt;</code> tag this tag extendeds
+      allows other options for the tag which don't use these properties.
+      To take advantage of these options, markup using the
+      <code>&lt;html:options&gt;</code> tag instead of the nested tag.
+      </p>
+      <p>
+      For example, the "collections" option allows you to specify a separate
+      bean reference which itself is a list of objects with properties
+      to access the title and value parts of the html option tag. You can use
+      this in a nested context (the list is a property of a nested bean) by
+      using the nested define tag and the original options tag.
+<pre>
+&lt;nested:nest property="myNestedLevel" /&gt;
+  &lt;nested:define property="collectionList" /&gt;
+  &lt;html:options collection="collectionList"
+                  property="labelProperty"
+             valueProperty="valueProperty" /&gt;
+&lt;/nested:nest &gt;
+</pre>
+      </p>
     </info>
 
     <attribute>
       <name>collection</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the JSP bean (in some scope) which is itself a
-      Collection of other beans, each of which has properties
-      named by the "property" and "labelProperty" attributes
-      that are used to retrieve the value and label for each
-      option, respectively.
-      </info>
     </attribute>
       
     <attribute>
       <name>labelName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the JSP bean (in some scope) containing the collection of labels to
-      be displayed to the user for these options.
-      </info>
     </attribute>
       
     <attribute>
       <name>labelProperty</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Property of the form bean, or the bean specified by the labelName
-      attribute, that will return the collection of labels to be displayed
-      to the user for these options.
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the JSP bean (in some scope) containing the collection of
-      values to be returned to the server for these options. If not
-      specified, the form bean associated with our form is assumed.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Property of the form bean, or the bean specified by the name
-      attribute, that will return the collection of values to returned
-      to the server for these options.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
     <name>password</name>
     <summary>Nested Extension - 
         Render A Password Input Field
     </summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedPasswordTag</tagclass>
     <info>
-        Renders an HTML &lt;input&gt; element of type password, populated
-        from the specified value or the specified property of the bean
-        associated with our current form. This tag is only valid when
-        nested inside a form tag body.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#password"><code>&lt;html:password&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
 
@@ -2381,101 +1390,60 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Valid only inside of logic:iterate tag.
-      If yes then name of the html tag will be rendered as
-      "id[34].propertyName". Number in brackets will be generated
-      for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>maxlength</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Maximum number of input characters to accept. [No limit]
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The attribute name of the bean whose properties are consulted when
-      rendering the current value of this input field. If not specified,
-      the bean associated with the form tag we are nested within is utilized.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
       
@@ -2483,20 +1451,12 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
       
@@ -2504,298 +1464,184 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and the pointer is moved.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was under the
-      mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was not under
-      the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and a mouse button is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the request parameter that will be included with this
-      submission, set to the specified value.
-      </info>
     </attribute>
       
     <attribute>
       <name>readonly</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      read only.
-      </info>
     </attribute>
       
     <attribute>
       <name>redisplay</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Boolean flag indicating whether or not existing values
-      will be redisplayed if they exist.  Even though the
-      redisplayed value will be shown as asterisks on the
-      visible HTML page, the cleartext of the actual password
-      value will be visible though the "Show Page Source"
-      menu option of the client browser.  You may wish to
-      set this value to <code>false</code> on login pages.
-      Defaults to <code>true</code> for consistency with
-      all other form tags that redisplay their contents.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>size</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Number of character positions to allocate. [Browser default]
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Value of the label to be placed on this button. This value will
-      also be submitted as the value of the specified request parameter.
-      [Body of this tag (if any), or "Cancel"]
-      </info>
     </attribute>
 
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
     <name>radio</name>
     <summary>Nested Extension - 
         Render A Radio Button Input Field
     </summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedRadioTag</tagclass>
     <info>
-        Renders an HTML &lt;input&gt; element of type radio, populated from
-        the specified property of the bean associated with our current form.
-        This tag is only valid when nested inside a form tag body.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#radio"><code>&lt;html:radio&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Valid only inside of logic:iterate tag.
-      If yes then name of the html tag will be rendered as
-      "id[34].propertyName". Number in brackets will be generated
-      for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The attribute name of the bean whose properties are consulted when
-      rendering the current value of this input field. If not specified,
-      the bean associated with the form tag we are nested within is utilized.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
       
@@ -2803,20 +1649,12 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
       
@@ -2824,117 +1662,76 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The corresponding bean property for this radio tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The value of the radio tag.
-      </info>
     </attribute>
   </tag>
 
-  <tag>
+  <tag document-attributes="false">
     <name>select</name>
     <summary>Nested Extension - 
     Render A Select Element
@@ -2942,131 +1739,71 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.html.NestedSelectTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Renders an HTML &lt;select&gt; element, associated with a bean property
-      specified by our attributes.  This tag is only valid when nested inside a 
-      form tag body.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#select"><code>&lt;html:select&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
       </p>
-      
-      <p>This tag operates in two modes, depending upon the state of the 
-      <code>multiple</code> attribute, which affects the data type of the 
-      associated property you should use:</p>
-      <ul>
-      <li><em>multiple="true" IS NOT selected</em> - The corresponding property 
-        should be a scalar value of any supported data type.</li>
-      <li><em>multiple="true" IS selected</em> - The corresponding property 
-        should be an array of any supported data type.</li>
-      </ul>
-      
-      <p><strong>WARNING</strong>:  In order to correctly recognize cases where 
-      no selection at all is made, the <code>ActionForm</code> bean associated 
-      with this form must include a statement resetting the scalar property
-      to a default value (if <code>multiple</code> is not set), or the array 
-      property to zero length (if <code>multiple</code> is set) in the 
-      <code>reset()</code> method.</p>
     </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Valid only inside of logic:iterate tag.
-      If yes then name of the html tag will be rendered as
-      "id[34].propertyName". Number in brackets will be generated
-      for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>multiple</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      If set to any arbitrary value, the rendered
-      select element will support
-      multiple selections.
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The attribute name of the bean whose properties are consulted
-      to determine which option should be pre-selected when rendering
-      this input field.  If not specified, the bean associated with
-      the enclosing <code>&lt;html:form&gt;</code> tag is utilized.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
       
@@ -3074,20 +1811,12 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
       
@@ -3095,254 +1824,164 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and the pointer is moved.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was under the
-      mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was not under
-      the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and a mouse button is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the request parameter that will be included with this
-      submission, set to the specified value.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>size</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The number of available options displayed at one time.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The value to compare with for marking an option selected.
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
   
     <name>submit</name>
     <summary>Nested Extension - Render A Submit Button</summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedSubmitTag</tagclass>
     <info>
-        Render an input button of type submit.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#submit"><code>&lt;html:submit&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Valid only inside of logic:iterate tag.
-      If yes then name of the html tag will be rendered as
-      "propertyName[34]". Number in brackets will be generated
-      for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
       
@@ -3350,20 +1989,12 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
       
@@ -3371,158 +2002,100 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and the pointer is moved.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was under the
-      mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was not under
-      the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and a mouse button is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of the request parameter that will be included with this
-      submission, set to the specified value.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The value of the button label.
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
 
     <name>text</name>
     <summary>Nested Extension - 
@@ -3530,7 +2103,11 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     </summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedTextTag</tagclass>
     <info>
-        Render an input button of type text.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#text"><code>&lt;html:text&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
         
@@ -3538,604 +2115,374 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Valid only inside of logic:iterate tag.
-      If yes then name of the html tag will be rendered as
-      "id[34].propertyName". Number in brackets will be generated
-      for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>maxlength</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Maximum number of input characters to accept. [No limit]
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The attribute name of the bean whose properties are consulted
-      when rendering the current value of this input field. If not
-      specified, the bean associated with the form tag we are nested
-      within is utilized.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
     <attribute>
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and the pointer is moved.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was under the
-      mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was not under
-      the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and a mouse button is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of this input field, and the name of the corresponding bean
-      property if value is not specified. The corresponding bean property
-      (if any) must be of type String.
-      </info>
     </attribute>
       
     <attribute>
       <name>readonly</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      read only.
-      </info>
     </attribute>
       
     <attribute>
       <name>size</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Number of character positions to allocate. [Browser default]
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Value to which this field should be initialized. [Use the
-      corresponding bean property value]
-      </info>
     </attribute>
  
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>textarea</name>
     <summary>Nested Extension - Render A Textarea</summary>
     <tagclass>org.apache.struts.taglib.nested.html.NestedTextareaTag</tagclass>
     <info>
-        Render a textarea element.
+      <p>This tag is an extension of the
+      <a href="struts-html.html#textarea"><code>&lt;html:textarea&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>accesskey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The keyboard character used to move focus immediately to this
-      element.
-      </info>
     </attribute>
       
     <attribute>
       <name>alt</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The alternate text for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>altKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key of the alternate text for this
-      element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>cols</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The number of columns to display.
-      </info>
     </attribute>
       
     <attribute>
       <name>disabled</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      disabled.
-      </info>
     </attribute>
       
     <attribute>
       <name>indexed</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Valid only inside of logic:iterate tag.
-      If yes then name of the html tag will be rendered as
-      "id[34].propertyName". Number in brackets will be generated
-      for every iteration and taken from ancestor logic:iterate tag.
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The attribute name of the bean whose properties are consulted
-      when rendering the current value of this input field. If not
-      specified, the bean associated with the form tag we are nested
-      within is utilized.
-      </info>
     </attribute>
       
     <attribute>
       <name>onblur</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onchange</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element loses input
-      focus and its value has changed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse click.
-      </info>
     </attribute>
       
     <attribute>
       <name>ondblclick</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives a
-      mouse double click.
-      </info>
     </attribute>
       
     <attribute>
       <name>onfocus</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element receives input
-      focus.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeydown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeypress</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is depressed and released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onkeyup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element has focus and a
-      key is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousedown</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the mouse
-      pointer and a mouse button is depressed.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmousemove</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and the pointer is moved.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseout</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was under the
-      mouse pointer but the pointer was moved outside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseover</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element was not under
-      the mouse pointer but the pointer is moved inside the element.
-      </info>
     </attribute>
       
     <attribute>
       <name>onmouseup</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      JavaScript event handler executed when this element is under the
-      mouse pointer and a mouse button is released.
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Name of this input field, and the name of the corresponding bean
-      property if value is not specified. The corresponding bean property
-      (if any) must be of type String.
-      </info>
     </attribute>
       
     <attribute>
       <name>readonly</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Set to <code>true</code> if this input field should be
-      read only.
-      </info>
     </attribute>
       
     <attribute>
       <name>rows</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The number of rows to display.
-      </info>
     </attribute>
       
     <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS styles to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleClass</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      CSS stylesheet class to be applied to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>styleId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Identifier to be assigned to this HTML element.
-      </info>
     </attribute>
       
     <attribute>
       <name>tabindex</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      The tab order (ascending positive integers) for this element.
-      </info>
     </attribute>
       
     <attribute>
       <name>title</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The advisory title for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>titleKey</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The message resources key for the advisory title
-      for this element.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      Value to which this field should be initialized. [Use the
-      corresponding bean property value]
-      </info>
     </attribute>
     
   </tag>
@@ -4149,7 +2496,7 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
 ********************************************************************************
 -->
     
-  <tag>
+  <tag document-attributes="false">
     
     <name>empty</name>
     <summary>Nested Extension - 
@@ -4159,46 +2506,33 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedEmptyTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-    <p>This tag evaluates its nested body content only if the specified value
-    is either absent (i.e. <code>null</code>) or an empty string (i.e. a
-    <code>java.lang.String</code> with a length of zero).</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#empty"><code>&lt;logic:empty&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
     
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>equal</name>
     <summary>Nested Extension - 
@@ -4208,9 +2542,10 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedEqualTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Compares the variable specified by one of the selector attributes
-      against the specified constant value.  The nested body content of this
-      tag is evaluated if the variable and value are <strong>equal</strong>.
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#equal"><code>&lt;logic:equal&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
       </p>
     </info>
   
@@ -4218,78 +2553,46 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value to which the variable, specified by other
-      attribute(s) of this tag, will be compared.</p>
-      </info>
     </attribute>
       
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>greaterEqual</name>
     <summary>Nested Extension - Evaluate the nested body content of this tag if the requested
@@ -4298,88 +2601,57 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedGreaterEqualTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Compares the variable specified by one of the selector attributes
-      against the specified constant value.  The nested body content of this
-      tag is evaluated if the variable is <strong>greater than or equal</strong>
-      to the value.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#greaterEqual"><code>&lt;logic:greaterEqual&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
     
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value to which the variable, specified by other
-      attribute(s) of this tag, will be compared.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>greaterThan</name>
     <summary>Nested Extension - 
@@ -4389,88 +2661,57 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedGreaterThanTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Compares the variable specified by one of the selector attributes
-      against the specified constant value.  The nested body content of this
-      tag is evaluated if the variable is <strong>greater than</strong>
-      the value.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#greaterThan"><code>&lt;logic:greaterThan&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
     
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value to which the variable, specified by other
-      attribute(s) of this tag, will be compared.</p>
-      </info>
     </attribute>    
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>iterate</name>
     <summary>Nested Extension - 
@@ -4480,169 +2721,69 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <teiclass>org.apache.struts.taglib.nested.logic.NestedIterateTei</teiclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Repeats the nested body content of this tag once for every element
-      of the specified collection, which must be an <code>Iterator</code>,
-      a <code>Collection</code>, a <code>Map</code> (whose values are to be
-      iterated over), or an array.  The collection to be iterated over must be
-      specified in one of the following ways:</p>
-      <ul>
-      <li>As a runtime expression specified as the value of the
-      <code>collection</code> attribute.</li>
-      <li>As a JSP bean specified by the <code>name</code> attribute.</li>
-      <li>As the property, specified by the <code>property</code>, of the
-      JSP bean specified by the <code>name</code> attribute.</li>
-      </ul>
-      
-      <p>The collection to be iterated over MUST conform to one of the following
-      requirements in order for iteration to be successful:</p>
-      <ul>
-      <li>An array of Java objects (but not primitive data types such as
-      "int")</li>
-      <li>An implementation of <code>java.util.Collection</code>, including
-      <code>ArrayList</code> and <code>Vector</code>.</li>
-      <li>An implementation of <code>java.util.Enumeration</code>.</li>
-      <li>An implementation of <code>java.util.Iterator</code>.</li>
-      <li>An implementation of <code>java.util.Map</code>, including
-      <code>HashMap</code>, <code>Hashtable</code>, and
-      <code>TreeMap</code>.  <strong>NOTE</strong> - See below for
-      additional information about accessing Maps.</li>
-      </ul>
-      
-      <p>Normally, each object exposed by the iterate tag is an element
-      of the underlying collection you are iterating over.  However, if you
-      iterate over a <code>Map</code>, the exposed object is of type
-      <code>Map.Entry</code> that has two properties:</p>
-      <ul>
-      <li><code>key</code> - The key under which this item is stored in the
-      underlying Map.</li>
-      <li><code>value</code> - The value that corresponds to this key.</li>
-      </ul>
-      
-      <p>So, if you wish to iterate over the values of a Hashtable, you would
-      implement code like the following:</p>
-      <code>
-      &lt;logic:iterate id="element" name="myhashtable"&gt;<br/>
-      Next element is &lt;bean:write name="element" property="value"/&gt;<br/>
-      &lt;/logic:iterate&gt;
-      </code>
-      
-      <p>If the collection you are iterating over can contain <code>null</code>
-      values, the loop will still be performed but no page scope attribute
-      (named by the <code>id</code> attribute) will be created for that loop
-      iteration.  You can use the <code>&lt;logic:present&gt;</code> and
-      <code>&lt;logic:notPresent&gt;</code> tags to test for this case.</p>
-      
-      <p><strong>WARNING</strong> - Currently, this tag cannot deal with
-      arrays of primitive data types.  Only arrays of Java objects (including
-      Strings) are supported.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#iterate"><code>&lt;logic:iterate&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
     
     <attribute>
       <name>collection</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>A runtime expression that evaluates to a collection (conforming to
-      the requirements listed above) to be iterated over.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>id</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of a page scope JSP bean that will contain the current
-      element of the collection on each iteration, if it is not
-      <code>null</code>.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>indexId</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of a page scope JSP bean that will contain the current
-      index of the collection on each iteration.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>length</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The maximum number of entries (from the underlying collection) to be
-      iterated through on this page.  This can be either an integer that
-      directly expresses the desired value, or the name of a JSP bean (in
-      any scope) of type <code>java.lang.Integer</code> that defines the
-      desired value.  If not present, there will be no limit on the number
-      of iterations performed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The name of the JSP bean containing the collection to be iterated
-      (if <code>property</code> is not specified), or the JSP bean whose
-      property getter returns the collection to be iterated (if
-      <code>property</code> is specified).</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>offset</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The zero-relative index of the starting point at which entries from
-      the underlying collection will be iterated through.  This can be either
-      an integer that directly expresses the desired value, or the name of a
-      JSP bean (in any scope) of type <code>java.lang.Integer</code> that
-      defines the desired value.  If not present, zero is assumed (meaning
-      that the collection will be iterated from the beginning.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Name of the property, of the JSP bean specified by <code>name</code>,
-      whose getter returns the collection to be iterated.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>type</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Fully qualified Java class name of the element to be exposed through
-      the JSP bean named from the <code>id</code> attribute.  If not present,
-      no type conversions will be performed.  NOTE:  The actual elements of
-      the collection must be assignment-compatible with this class, or a
-      request time ClassCastException will occur.</p>
-      </info>
     </attribute>
       
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>lessEqual</name>
     <summary>Nested Extension - 
@@ -4652,88 +2793,57 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedLessEqualTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Compares the variable specified by one of the selector attributes
-      against the specified constant value.  The nested body content of this
-      tag is evaluated if the variable is <strong>less than or equal</strong>
-      to the value.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#lessEqual"><code>&lt;logic:lessEqual&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value to which the variable, specified by other
-      attribute(s) of this tag, will be compared.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>lessThan</name>
     <summary>Nested Extension - 
@@ -4743,88 +2853,57 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedLessThanTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Compares the variable specified by one of the selector attributes
-      against the specified constant value.  The nested body content of this
-      tag is evaluated if the variable is <strong>less than</strong>
-      the value.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#lessThan"><code>&lt;logic:lessThan&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
     
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value to which the variable, specified by other
-      attribute(s) of this tag, will be compared.</p>
-      </info>
     </attribute>
       
   </tag>
-  <tag>
+  <tag document-attributes="false">
     
     <name>match</name>
     <summary>Nested Extension - 
@@ -4834,100 +2913,63 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedMatchTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Matches the variable specified by one of the selector attributes
-      (as a String) against the specified constant value.  If the value is
-      a substring (appropriately limited by the <code>location</code>
-      attribute), the nested body content of this tag is evaluated.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#match"><code>&lt;logic:match&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
     
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>location</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>If not specified, a match between the variable and the value may
-      occur at any position within the variable string.  If specified, the
-      match must occur at the specified location (either <code>start</code>
-      or <code>end</code>) of the variable string.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
       
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value which is checked for existence as a substring
-      of the specified variable.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
 
     <name>notEmpty</name>
     <summary>Nested Extension - 
@@ -4937,46 +2979,33 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedNotEmptyTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>This tag evaluates its nested body content only if the specified value
-      is present (i.e. not <code>null</code>) and is not an empty string (i.e. a
-      <code>java.lang.String</code> with a length of zero).</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#notEmpty"><code>&lt;logic:notEmpty&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
 
     <name>notEqual</name>
     <summary>Nested Extension - 
@@ -4986,9 +3015,10 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedNotEqualTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Compares the variable specified by one of the selector attributes
-      against the specified constant value.  The nested body content of this
-      tag is evaluated if the variable and value are <strong>not equal</strong>.
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#notEqual"><code>&lt;logic:notEqual&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
       </p>
     </info>
 
@@ -4996,78 +3026,46 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be compared is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value to which the variable, specified by other
-      attribute(s) of this tag, will be compared.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
 
     <name>notMatch</name>
     <summary>Nested Extension - 
@@ -5077,100 +3075,63 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedNotMatchTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Matches the variable specified by one of the selector attributes
-      (as a String) against the specified constant value.  If the value is
-      not a substring (appropriately limited by the <code>location</code>
-      attribute), the nested body content of this tag is evaluated.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#notMatch"><code>&lt;logic:notMatch&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the value of the cookie whose
-      name is specified by this attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the value of the header whose
-      name is specified by this attribute.  The name match is performed
-      in a case insensitive manner.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>location</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>If not specified, a match between the variable and the value may
-      occur at any position within the variable string.  If specified, the
-      match must occur at the specified location (either <code>start</code>
-      or <code>end</code>) of the variable string.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the JSP bean specified by this
-      attribute, if <code>property</code> is not specified, or the value
-      of the specified property of this bean, if <code>property</code>
-      is specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the first, or only, value of the
-      request parameter specified by this attribute.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The variable to be matched is the property (of the bean specified
-      by the <code>name</code> attribute) specified by this attribute.
-      The property reference can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>value</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The constant value which is checked for existence as a substring
-      of the specified variable.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
 
     <name>notPresent</name>
     <summary>Nested Extension - 
@@ -5180,99 +3141,63 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedNotPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Depending on which attribute is specified, this tag checks the
-      current request, and evaluates the nested body content of this tag
-      only if the specified value <strong>is not</strong> present.  Only one
-      of the attributes may be used in one occurrence of this tag, unless
-      you use the <code>property</code> attribute, in which case the
-      <code>name</code> attribute is also required.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#notPresent"><code>&lt;logic:notPresent&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of a cookie with the specified name.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of an HTTP header with the specified
-      name.  The name match is performed in a case insensitive manner.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of a JSP bean, in any scope, with the
-      specified name.  If <code>property</code> is also specified, checks
-      for a non-null property value for the specified property.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of at least one occurrence of the
-      specified request parameter on this request, even if the parameter
-      value is a zero-length string.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of a non-null property value, returned
-      by a property getter method on the JSP bean (in any scope) that is
-      specified by the <code>name</code> attribute.  Property references
-      can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>role</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks whether the currently authenticated user (if any) has been
-      associated with the specified security role.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>user</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks whether the currently authenticated user principal has the
-      specified name.</p>
-      </info>
     </attribute>
 
   </tag>
-  <tag>
+  <tag document-attributes="false">
 
     <name>present</name>
     <summary>Nested Extension - 
@@ -5282,99 +3207,59 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
     <tagclass>org.apache.struts.taglib.nested.logic.NestedPresentTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <info>
-      <p>Depending on which attribute is specified, this tag checks the
-      current request, and evaluates the nested body content of this tag
-      only if the specified value <strong>is</strong> present.  Only one
-      of the attributes may be used in one occurrence of this tag, unless
-      you use the <code>property</code> attribute, in which case the
-      <code>name</code> attribute is also required.</p>
+      <p>This tag is an extension of the
+      <a href="struts-logic.html#present"><code>&lt;logic:present&gt;</code></a>
+      tag. Please consult its documentation for information on tag attributes
+      and usage details.
+      </p>
     </info>
 
     <attribute>
       <name>cookie</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of a cookie with the specified name.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>header</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of an HTTP header with the specified
-      name.  The name match is performed in a case insensitive manner.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of a JSP bean, in any scope, with the
-      specified name.  If <code>property</code> is also specified, checks
-      for a non-null property value for the specified property.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>parameter</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of at least one occurrence of the
-      specified request parameter on this request, even if the parameter
-      value is a zero-length string.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>property</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks for the existence of a non-null property value, returned
-      by a property getter method on the JSP bean (in any scope) that is
-      specified by the <code>name</code> attribute.  Property references
-      can be simple, nested, and/or indexed.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>role</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks whether the currently authenticated user (if any) has been
-      associated with any of the specified security roles. Use a comma-delimited
-      list to check for multiple roles. Example:
-      <code>&lt;logic:present role="role1,role2,role3"&gt;
-                code.....
-            &lt;/logic:present&gt;</code></p>
-      </info>
     </attribute>
 
     <attribute>
       <name>scope</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The bean scope within which to search for the bean named by the
-      <code>name</code> property, or "any scope" if not specified.</p>
-      </info>
     </attribute>
 
     <attribute>
       <name>user</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>Checks whether the currently authenticated user principal has the
-      specified name.</p>
-      </info>
     </attribute>
 
   </tag>
