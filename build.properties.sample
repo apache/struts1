@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory. 
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.28 2003/02/07 22:35:30 rleland Exp $
+# $Id: build.properties.sample,v 1.29 2003/02/08 20:10:01 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -149,8 +149,8 @@ commons-httpclient.jar = ${commons-lib.home}/httpclient/dist/commons-httpclient.
 # Log4J from Jakarta-Commons
 log4j.jar = D:/Java/Programs/Apache/jakarta-log4j-1.2.6/dist/lib/log4j-1.2.6.jar
 
-# JUnit jar file
-junit.jar = /Java/Lib/Junit3.7/junit.jar
+# JUnit jar file, version 3.81 or newer required.
+junit.jar = /Java/Lib/Junit3.8.1/junit.jar
 
 # Servlet engine locations for the tests
 
