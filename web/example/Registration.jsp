@@ -24,7 +24,7 @@
 
 <html:errors/>
 
-<html:form action="/saveRegistration"
+<html:form action="/saveRegistration" focus="username"
          onsubmit="return validateRegistrationForm(this);">
 <html:hidden property="action"/>
 <table border="0" width="100%">
@@ -168,7 +168,7 @@
 
 </table>
 
-<html:link page="/editSubscription.do?action=Create" paramId="username"
+<html:link action="/editSubscription?action=Create" paramId="username"
  paramName="RegistrationForm" paramProperty="username">
   <bean:message key="registration.addSubscription"/>
 </html:link>

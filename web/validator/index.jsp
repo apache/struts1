@@ -47,7 +47,7 @@
       <bean:message key="typeForm.description"/>
    </li>
    <li>
-      <html:link page="/editJsType.do"><bean:message key="jsTypeForm.title"/></html:link> -
+      <html:link action="/editJsType"><bean:message key="jsTypeForm.title"/></html:link> -
       <bean:message key="jsTypeForm.description"/>
    </li>
 </ul>
@@ -56,17 +56,17 @@
 
 <h3>Change Language | Changez Le Langage</h3>
 <ul>
-   <li><html:link page="/locale.do?language=en">English | Anglais</html:link></li>
+   <li><html:link action="/locale?language=en">English | Anglais</html:link></li>
    <li>
-      <html:link page="/locale.do?language=fr">French | Francais</html:link> - 
+      <html:link action="/locale?language=fr">French | Francais</html:link> -
       <bean:message key="localeForm.fr"/>
    </li>
    <li>
-      <html:link page="/locale.do?language=fr&country=CA">French Canadian | Francais Canadien</html:link> - 
+      <html:link action="/locale?language=fr&country=CA">French Canadian | Francais Canadien</html:link> -
       <bean:message key="localeForm.frCA"/>
    </li>
    <li>
-      <html:link page="/locale.do?language=ja">Japanese | Japonais</html:link> - 
+      <html:link action="/locale.?language=ja">Japanese | Japonais</html:link> -
       <bean:message key="localeForm.ja"/>
    </li>
 </ul>

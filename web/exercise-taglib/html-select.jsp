@@ -53,7 +53,7 @@ main menu.
 --%>
 <jsp:useBean id="testbean" scope="session" class="org.apache.struts.webapp.exercise.TestBean"/>
 
-<html:form action="html-select.do">
+<html:form action="/html-select">
 <table border="0" width="100%">
 
   <tr>

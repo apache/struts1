@@ -14,10 +14,10 @@
 
 Whatever changes you make to properties should be reflected when the page
 is redisplayed.  When first started, all of the listed checkboxes should
-be selected.  Press "Save" to update, or "Cancel" to return to the
+be clear (not selected).  Press "Save" to update, or "Cancel" to return to the
 main menu.
 
-<html:form action="html-multibox.do">
+<html:form action="/html-multibox">
 <table border="0" width="100%">
 
   <tr>

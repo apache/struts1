@@ -31,7 +31,7 @@ main menu.
 
 </p>
 
-<html:form action="html-link.do">
+<html:form action="/html-link">
 <table border="0" width="100%">
 
   <tr>

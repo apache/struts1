@@ -16,7 +16,7 @@ Whatever changes you make to properties should be reflected when the page
 is redisplayed.  Press "Save" to update, or "Cancel" to return to the
 main menu.
 
-<html:form action="html-setters.do">
+<html:form action="/html-setters">
 <table border="0" width="100%">
 
   <tr>

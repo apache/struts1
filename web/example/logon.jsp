@@ -11,7 +11,7 @@
 
 <html:errors/>
 
-<html:form action="/logon" focus="username"
+<html:form action="/submitLogon" focus="username"
          onsubmit="return validateLogonForm(this);">
 <table border="0" width="100%">
 

@@ -10,7 +10,7 @@
 <body bgcolor="white">
 
 <bean:message key="change.message"/>
-<html:link page="/logon.jsp">
+<html:link action="/logon">
   <bean:message key="change.try"/>
 </html:link>
 
