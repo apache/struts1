@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.24 2004/07/09 14:19:46 germuska Exp $ -->
+<!-- $Id$ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -92,11 +92,10 @@
         <div id="content">
         <div id="menu">
         
-            <!-- to be removed after ApacheCon 2003 ends 20th of November 2003
-            <a href="http://apachecon.com/2003/US/index.html" style="text-decoration: none">
-            <img src="http://jakarta.apache.org/images/logos/ac2003-150.gif" alt="ApacheCon 2003"/>
-            </a>
-            -->
+            <!-- to be removed after ApacheCon 2004 ends 17th of November 2004 -->
+            <a href="http://ApacheCon.Com/2004/US/">
+			<img src="http://ApacheCon.Com/2004/US/logos/logo_only.gif" width="170" height="100" alt="ApacheCon!" title="Come to ApacheCon!" />
+			</a>
 
             <xsl:apply-templates select="$project"/>
 
