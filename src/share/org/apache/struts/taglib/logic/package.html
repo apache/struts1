@@ -58,24 +58,24 @@
 <h3>Logic Tag Properties<a name="doc.Properties"></a></h3>
 <p>Each of the four groups of logic tags have a common set of attributes associated
   with them. :</p>
-<blockquote> 
-  <p><b>Value Comparisions</b> (equal, notEqual, greaterEqual, lessEqual, greaterThan, 
+<blockquote>
+  <p><b>Value Comparisions</b> (equal, notEqual, greaterEqual, lessEqual, greaterThan,
     lessThan, present, notPresent)</p>
-  <p>Each of the value comparision tags takes a <i>value</i> and compares it to 
-    the value of a comparision attribute. If the value given can be successfully 
-    converted to a <i>float</i> or <i>double</i>, then a number comparision is 
-    performed on the value given and the value of the comparision attribute. Otherwise 
-    a String comparision is performed. You have to specify one of the comparision 
-    attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>, <i>property</i> 
-    or <i>name. </i>For each of the examples, the tag &quot;<i>someComparisionTag&quot;</i>can 
+  <p>Each of the value comparision tags takes a <i>value</i> and compares it to
+    the value of a comparision attribute. If the value given can be successfully
+    converted to a <i>float</i> or <i>double</i>, then a number comparision is
+    performed on the value given and the value of the comparision attribute. Otherwise
+    a String comparision is performed. You have to specify one of the comparision
+    attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>, <i>property</i>
+    or <i>name. </i>For each of the examples, the tag &quot;<i>someComparisionTag&quot;</i>can
     be replaced by any of the value comparision tags.</p>
   <ul>
-    <li>value - the value to which this tag is going to compare, used in conjunction 
-      with one of the comparision attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>, 
+    <li>value - the value to which this tag is going to compare, used in conjunction
+      with one of the comparision attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>,
       <i>and property</i> and/or <i>name. </i></li>
-    <li>cookie - the name of the cookie to compare to <i>value</i> 
+    <li>cookie - the name of the cookie to compare to <i>value</i>
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;logic:<i>someComparisionTag</i> value=&quot;someUserName&quot; cookie=&quot;userName&quot;&gt;
   User Logged In
 &lt;/logic:<i>someComparisionTag</i>&gt;
@@ -83,25 +83,25 @@
         </li>
       </ul>
     </li>
-    <li>header - the name of the HTTP header to compare to <i>value</i> 
+    <li>header - the name of the HTTP header to compare to <i>value</i>
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;logic:<i>someComparisionTag</i> value=&quot;en_US&quot; header=&quot;Accept-Language&quot;&gt;
   Welcome English-speaking User*
 &lt;/logic:<i>someComparisionTag</i>&gt;
 </pre>
         </li>
-        <li> 
-          <p>*Note: See the section in the user's guide on <a href="../../../../../../userGuide/building_view.html#i18n">Internationalized 
+        <li>
+          <p>*Note: See the section in the user's guide on <a href="../../../../../../userGuide/building_view.html#i18n">Internationalized
             Messages</a> to do things like this better.</p>
         </li>
       </ul>
     </li>
-    <li>name - the variable to be compared to <i>value</i> is the JSP bean specified 
-      by this attribute, if property is not specified, or the value of the specified 
-      property of this bean, if property is specified. 
+    <li>name - the variable to be compared to <i>value</i> is the JSP bean specified
+      by this attribute, if property is not specified, or the value of the specified
+      property of this bean, if property is specified.
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;%
   String testString = &quot;pantalones&quot;;
   pageContext.setAttribute(&quot;testString&quot;, testString, PageContext.PAGE_SCOPE);
@@ -114,9 +114,9 @@
         </li>
       </ul>
     </li>
-    <li>parameter - the name of the request parameter to compare to <i>value</i> 
+    <li>parameter - the name of the request parameter to compare to <i>value</i>
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;logic:<i>someComparisionTag</i> value=&quot;&quot; parameter=&quot;username&quot;&gt;
   Error: a username must be specified
 &lt;/logic:<i>someComparisionTag</i>&gt;
@@ -124,31 +124,31 @@
         </li>
       </ul>
     </li>
-    <li>property - the variable to be compared with <i>value</i> is the property 
-      (of the bean specified by the name attribute) specified by this attribute. 
-      The property reference can be simple, nested, and/or indexed. <i>property</i> 
-      is used in conjunction with <i>name</i> to specify a property in the bean 
-      specified by <i>name</i>. For the type of syntax used for property, see 
+    <li>property - the variable to be compared with <i>value</i> is the property
+      (of the bean specified by the name attribute) specified by this attribute.
+      The property reference can be simple, nested, and/or indexed. <i>property</i>
+      is used in conjunction with <i>name</i> to specify a property in the bean
+      specified by <i>name</i>. For the type of syntax used for property, see
       the users guide on the Bean Tags.</li>
-    <li>scope - the bean scope within which to search for the bean named by the 
-      name property, or "any scope" if not specified. Possible values are &quot;page&quot;, 
-      &quot;request&quot;, &quot;session&quot;, &quot;application&quot;, or &quot;any 
+    <li>scope - the bean scope within which to search for the bean named by the
+      name property, or "any scope" if not specified. Possible values are &quot;page&quot;,
+      &quot;request&quot;, &quot;session&quot;, &quot;application&quot;, or &quot;any
       scope&quot; </li>
   </ul>
   <p><b>Substring Matching</b> (match, notMatch)</p>
-  <p>The substring matching tags take all the same arguments as the value comparision 
-    tags. You compare the String specified by <i>value</i> to any of the comparision 
-    values you give it, specified by <i>cookie</i>, <i>header</i>, <i>parameter</i>, 
-    <i>property</i> or <i>name.</i> Note that in the examples, <i>matchTag</i> 
-    corresponds either the <i>match </i>or <i>notMatch</i> tag. Matching tags 
+  <p>The substring matching tags take all the same arguments as the value comparision
+    tags. You compare the String specified by <i>value</i> to any of the comparision
+    values you give it, specified by <i>cookie</i>, <i>header</i>, <i>parameter</i>,
+    <i>property</i> or <i>name.</i> Note that in the examples, <i>matchTag</i>
+    corresponds either the <i>match </i>or <i>notMatch</i> tag. Matching tags
     also have an additional <i>location</i> attribute added:</p>
   <ul>
-    <li>location - has two possible values, &quot;start&quot; and &quot;end&quot;. 
-      If &quot;start&quot;, the substring is attempted to be matched at the beginning 
-      of the String, if &quot;end&quot;, then the substring is attempted to be 
-      matched to the end of the String 
+    <li>location - has two possible values, &quot;start&quot; and &quot;end&quot;.
+      If &quot;start&quot;, the substring is attempted to be matched at the beginning
+      of the String, if &quot;end&quot;, then the substring is attempted to be
+      matched to the end of the String
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;logic:<i>matchTag</i> parameter=&quot;action&quot; value=&quot;processLogin&quot;&gt;
   Processing Login....
 &lt;/logic:<i>matchTag</i>&gt;
@@ -162,41 +162,41 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
     </li>
   </ul>
   <p><b>Presentation Location</b> (forward, redirect)</p>
-  <p>The <i>redirect</i> tag is resposible for sending a re-direct to the client's 
-    browser, complete with URL-rewriting if it's supported by the container. Its 
-    attributes are consistent with the Struts HTML <a href="../../../../../../struts-html.html#link"><code>link</code></a> 
-    tag. The base URL is calculated based on which of the following attributes 
+  <p>The <i>redirect</i> tag is resposible for sending a re-direct to the client's
+    browser, complete with URL-rewriting if it's supported by the container. Its
+    attributes are consistent with the Struts HTML <a href="../../../../../../struts-html.html#link"><code>link</code></a>
+    tag. The base URL is calculated based on which of the following attributes
     you specify (you must specify exactly one of them):</p>
   <ul>
-    <li> forward - Use the value of this attribute as the name of a global ActionForward 
+    <li> forward - Use the value of this attribute as the name of a global ActionForward
       to be looked up, and use the context-relative URI found there. </li>
     <li>href - Use the value of this attribute unchanged. </li>
-    <li>page - Use the value of this attribute as a context-relative URI, and 
+    <li>page - Use the value of this attribute as a context-relative URI, and
       generate a server-relative URI by including the context path. </li>
   </ul>
-  <p>The <i>forward</i> tag is responsible for either redirecting or forwarding 
-    to a specified global action forward. To define a global ActionForward, see 
-    The <a href="../../../../../../userGuide/building_controller.html#config">Action 
-    Mappings Configuration File</a>. You can specify whether the forward re-directs 
+  <p>The <i>forward</i> tag is responsible for either redirecting or forwarding
+    to a specified global action forward. To define a global ActionForward, see
+    The <a href="../../../../../../userGuide/building_controller.html#config">Action
+    Mappings Configuration File</a>. You can specify whether the forward re-directs
     or forwards when executed in the config file. The forward tag has one attribute:</p>
   <ul>
     <li>name - The logical name of the ActionForward to use</li>
   </ul>
   <p><b>Collection Utilities</b> (iterate)</p>
-  <p>The <i>iterate</i> tag is responsible for executing it's body content once 
-    for every element inside of the specified Collection. There is one required 
+  <p>The <i>iterate</i> tag is responsible for executing it's body content once
+    for every element inside of the specified Collection. There is one required
     attribute:</p>
   <ul>
-    <li>id - The name of a page scope JSP bean that will contain the current element 
+    <li>id - The name of a page scope JSP bean that will contain the current element
       of the collection on each iteration</li>
   </ul>
-  <p>The other attributes allow for more flexibility on which Collection to iterate 
+  <p>The other attributes allow for more flexibility on which Collection to iterate
     and how to do it:</p>
   <ul>
-    <li>collection - a runtime expression that evaluates to a Collection to be 
-      iterated 
+    <li>collection - a runtime expression that evaluates to a Collection to be
+      iterated
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;%
   java.util.Vector vector = new java.util.Vector();
   vector.add(new Integer(12));
@@ -207,25 +207,25 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
       </ul>
     </li>
   </ul>
-  <blockquote> 
-    <blockquote> 
-      <pre>&lt;bean:iterate id=&quot;myCollectionElement&quot; collection=&quot;&lt;% vector %&gt;&quot;&gt;
+  <blockquote>
+    <blockquote>
+      <pre>&lt;bean:iterate id=&quot;myCollectionElement&quot; collection=&quot;&lt;%= vector %&gt;&quot;&gt;
 <i> Do something with myCollectionElement</i>
 &lt;/bean:iterate&gt;
 </pre>
     </blockquote>
   </blockquote>
   <ul>
-    <li>length - The maximum number of entries (from the underlying collection) 
-      to be iterated through on this page. This can be either an integer that 
-      directly expresses the desired value, or the name of a JSP bean (in any 
-      scope) of type java.lang.Integer that defines the desired value. If not 
+    <li>length - The maximum number of entries (from the underlying collection)
+      to be iterated through on this page. This can be either an integer that
+      directly expresses the desired value, or the name of a JSP bean (in any
+      scope) of type java.lang.Integer that defines the desired value. If not
       present, there will be no limit on the number of iterations performed</li>
-    <li>name - The name of the JSP bean containing the collection to be iterated 
-      (if property is not specified), or the JSP bean whose property getter returns 
-      the collection to be iterated (if property is specified). 
+    <li>name - The name of the JSP bean containing the collection to be iterated
+      (if property is not specified), or the JSP bean whose property getter returns
+      the collection to be iterated (if property is specified).
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;%<br>
     java.util.ArrayList list = new java.util.ArrayList();
     list.add(&quot;First&quot;);
@@ -242,25 +242,25 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
         </li>
       </ul>
     </li>
-    <li>offset - The zero-relative index of the starting point at which entries 
-      from the underlying collection will be iterated through. This can be either 
-      an integer that directly expresses the desired value, or the name of a JSP 
-      bean (in any scope) of type java.lang.Integer that defines the desired value. 
-      If not present, zero is assumed (meaning that the collection will be iterated 
+    <li>offset - The zero-relative index of the starting point at which entries
+      from the underlying collection will be iterated through. This can be either
+      an integer that directly expresses the desired value, or the name of a JSP
+      bean (in any scope) of type java.lang.Integer that defines the desired value.
+      If not present, zero is assumed (meaning that the collection will be iterated
       from the beginning. </li>
-    <li>property - Name of the property, of the JSP bean specified by name, whose 
-      getter returns the collection to be iterated. See the user's guide for the 
+    <li>property - Name of the property, of the JSP bean specified by name, whose
+      getter returns the collection to be iterated. See the user's guide for the
       bean tag library for the syntax of the property attribute</li>
-    <li>scope - The bean scope within which to search for the bean named by the 
-      name property, or "any scope" if not specified. Possible values are &quot;page&quot;, 
-      &quot;request&quot;, &quot;session&quot;, &quot;application&quot;, or &quot;any 
+    <li>scope - The bean scope within which to search for the bean named by the
+      name property, or "any scope" if not specified. Possible values are &quot;page&quot;,
+      &quot;request&quot;, &quot;session&quot;, &quot;application&quot;, or &quot;any
       scope&quot; </li>
-    <li>type - Fully qualified Java class name of the element to be exposed through 
-      the JSP bean named from the id attribute. If not present, no type conversions 
-      will be performed. NOTE: The actual elements of the collection must be assignment-compatible 
-      with this class, or a request time ClassCastException will occur. 
+    <li>type - Fully qualified Java class name of the element to be exposed through
+      the JSP bean named from the id attribute. If not present, no type conversions
+      will be performed. NOTE: The actual elements of the collection must be assignment-compatible
+      with this class, or a request time ClassCastException will occur.
       <ul>
-        <li>example: 
+        <li>example:
           <pre>&lt;%    java.util.ArrayList list = new java.util.ArrayList();
 list.add(&quot;First&quot;);
 list.add(&quot;Second&quot;);
@@ -371,7 +371,7 @@ Please Enter a Number From 1-10: &lt;input type=&quot;text&quot; name=&quot;numb
 
 &lt;!-- If the header is not present --&gt;
 &lt;logic:notPresent header=&quot;Referer&quot;&gt;
-  Hi, welcome to our site.  Please fill out our 
+  Hi, welcome to our site.  Please fill out our
   &lt;a href=&quot;nonExistantForm.jsp&quot;&gt;Form&lt;/a&gt; and
   tell us where you're coming from.
 &lt;/logic:notPresent&gt;</pre>
