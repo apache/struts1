@@ -1116,6 +1116,94 @@
     for how to avoid copying the tlds into your application.
     </p>
 
+    <div align="center">
+      <table border="1" cellspacing="0" cellpadding="5" width="80%">
+      <tr><td bgcolor="cyan">
+
+      <h3 align="center">
+        Sidebar:  Sharing JAR Files Across Web Applications
+      </h3>
+
+      <p>
+        Many servlet containers and application servers provide facilities
+        for sharing JAR files across multiple web applications that depend
+        on them.  For example, Tomcat 4.1 allows you to put JAR files into
+        the <code>$CATALINA_HOME/shared/lib</code> or
+        <code>$CATALINA_HOME/common/lib</code> directories, and the classes
+        in those JAR files will be available in all applications, without
+        the need to place them in every web application's
+        <code>/WEB-INF/lib</code> directory.  Usually, the sharing is
+        accomplished by creating a separate class loader that is the parent
+        of the class loader (created by your container) for each individual
+        web application.
+      </p>
+
+      <p>
+        If you have multiple Struts-based web applications, it is tempting
+        to consider taking advantage of this container feature, and placing
+        <code>struts.jar</code> and the various <code>commons-*.jar</code>
+        files in the shared directory, rather than in each web application.
+        However, there are several potential, and actual, problems with
+        this approach:
+      </p>
+
+      <ul>
+        <li>
+          Classes loaded from the shared class loader cannot see classes
+          in the web application's class loader, unless they are specifically
+          programmed to use the Thread context class loader.
+          <blockquote>
+            For example, Struts dynamically loads your action and form bean
+            classes, and normally would not be able to find those classes.
+            Struts has been programmed to deal with this in <em>most</em>
+            scenarios, but it has not been thoroughly audited to ensure that
+            it works in <em>all</em> scenarios.  The Commons libraries that
+            Struts uses have <strong>NOT</strong> been audited to catch all
+            possible scenarios where this might become a problem.
+          </blockquote>
+        </li>
+        <li>
+          When a class is loaded from a shared class loader, static variables
+          used within that class become global as well.  This can cause
+          inter-webapp conflicts when the underlying code assumes that the
+          statics are global only within a particular web applicaiton (which
+          would be true if the class was loaded from the webapp class loader).
+          <blockquote>
+            There are many cases where Struts, and the Commons libraries it
+            relies on, use static variables to maintain information that is
+            presumed to be visible only within a single web applicaiton.
+            Sharing these JAR files can cause unwanted interactions, and
+            probably cause incorrect behavior.
+          </blockquote>
+        </li>
+        <li>
+          When JAR files are shared like this, it is not possible to update
+          the JAR file versions employed by a single web application without
+          updating all of them.  In addition, because updating a Struts version
+          normally requires recompilation of the applications that use it,
+          you will have to recompile all of your applications as well, instead
+          of being able to manage them independently.
+        </li>
+      </ul>
+
+      <p>
+        In spite of these difficulties, it is possible that sharing the
+        Struts and Commons JAR files <em>might</em> appear to work for you.
+        However, this is <strong>NOT</strong> a supported configuration.
+      </p>
+
+      <p>
+        If you file a bug report for <code>ClassNotFoundException</code> or
+        <code>NoClassDefFoundError</code> exceptions, or similar situations
+        where it appears that the wrong version of a class is being loaded,
+        the bug report will <strong>NOT</strong> be processed unless the
+        problem exists with the JAR files in their recommended location,
+        in the <code>/WEB-INF/lib</code> subdirectory of your webapp.
+      </p>
+      </td></tr>
+      </table>
+    </div>
+
 </section>
 
 <section
