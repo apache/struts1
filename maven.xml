@@ -1,15 +1,80 @@
-<project default="jar:jar">
+<project default="jar:jar"
+  xmlns:j="jelly:core"
+  xmlns:ant="jelly:ant">
 
   <preGoal name="xdoc:jelly-transform">
     <attainGoal name="html2xdoc"/>
-  </preGoal>
 
-  <!-- 
+    <!-- 
       Maven FAQ PlugIn 1.2 will allow multiple faqs
       For now, we'll just generate them from xdocs    
-  <preGoal name="xdoc:jelly-transform">
     <attainGoal name="faq"/>
+    -->
   </preGoal>
-  --> 
+
+  <!-- Prepare additional Jar resources -->
+  <postGoal name="java:jar-resources">
+  
+    <!-- Generate TLDs -->
+	${systemScope.setProperty('javax.xml.transform.TransformerFactory','org.apache.xalan.processor.TransformerFactoryImpl')}
+	<ant:style basedir="doc/userGuide"
+		destdir="${maven.build.dir}/classes/META-INF/tlds"
+		extension=".tld"
+		style="doc/stylesheets/tld.xsl"
+		includes="struts-*.xml"/>
+
+	<!-- Copy DTDs -->	
+    <ant:copy todir="${maven.build.dir}/classes/org/apache/struts/resources">
+      <ant:fileset dir="./conf/share">
+        <ant:include name="*.dtd"/>
+      </ant:fileset>
+    </ant:copy>		
+  </postGoal>
+
+  <postGoal name="dist:prepare-bin-filesystem">
+
+    <!-- Copy Instructions and Readmes -->
+    <ant:copy todir="${maven.dist.bin.assembly.dir}">
+      <ant:fileset dir=".">
+        <ant:include name="README*"/>
+        <ant:include name="LICENSE*"/>
+        <ant:include name="STATUS*"/>
+        <ant:include name="INSTALL*"/>
+      </ant:fileset>
+    </ant:copy>
+
+    <!-- Copy configuration files -->
+    <j:set var="docsDest" value="${maven.docs.dest}"/>
+    <ant:copy todir="${maven.dist.bin.assembly.dir}/conf">
+      <ant:fileset dir="./conf/share">
+        <ant:include name="*.xml"/>
+        <ant:include name="*.dtd"/>
+      </ant:fileset>
+    </ant:copy>
+  </postGoal>
+
+
+  <postGoal name="dist:prepare-src-filesystem">
+    <!-- Copy Instructions and Readmes -->
+    <ant:copy todir="${maven.dist.src.assembly.dir}">
+      <ant:fileset dir=".">
+        <ant:include name="README*"/>
+        <ant:include name="LICENSE*"/>
+        <ant:include name="STATUS*"/>
+        <ant:include name="INSTALL*"/>
+      </ant:fileset>
+    </ant:copy>
+
+    <!-- Copy configuration files -->
+    <j:set var="docsDest" value="${maven.docs.dest}"/>
+    <ant:copy todir="${maven.dist.src.assembly.dir}/conf">
+      <ant:fileset dir="./conf/share">
+        <ant:include name="*.xml"/>
+        <ant:include name="*.dtd"/>
+      </ant:fileset>
+    </ant:copy>
+  </postGoal>
+
+  
 
 </project>
