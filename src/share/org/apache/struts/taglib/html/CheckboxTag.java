@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.11 2002/06/25 00:45:41 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2002/06/25 00:45:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.12 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,10 +63,7 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -76,7 +73,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/06/25 00:45:41 $
+ * @version $Revision: 1.12 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class CheckboxTag extends BaseHandlerTag {

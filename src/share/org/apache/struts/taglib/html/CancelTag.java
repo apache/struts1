@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.5 2001/12/11 17:54:28 oalexeev Exp $
- * $Revision: 1.5 $
- * $Date: 2001/12/11 17:54:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CancelTag.java,v 1.6 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,10 +63,7 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -75,7 +72,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "cancel".
  *
  * @author Jeff Hutchinson
- * @version $Revision: 1.5 $ $Date: 2001/12/11 17:54:28 $
+ * @version $Revision: 1.6 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class CancelTag extends BaseHandlerTag {
@@ -122,7 +119,7 @@ public class CancelTag extends BaseHandlerTag {
     /**
      * Set the property name.
      *
-     * @param name The property name
+     * @param property The property name
      */
     public void setProperty(String property) {
         this.property = property;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseInputTag.java,v 1.2 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,10 +63,7 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 
 
@@ -74,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various input tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public abstract class BaseInputTag extends BaseHandlerTag {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.17 2002/07/09 23:58:52 husted Exp $
- * $Revision: 1.17 $
- * $Date: 2002/07/09 23:58:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.18 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,16 +63,12 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
@@ -95,7 +91,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -434,8 +430,6 @@ public class ImgTag extends BaseHandlerTag {
     public int doEndTag() throws JspException {
 
     // Generate the name definition or image element
-        HttpServletRequest request =
-      (HttpServletRequest) pageContext.getRequest();
     HttpServletResponse response =
       (HttpServletResponse) pageContext.getResponse();
     StringBuffer results = new StringBuffer("<img");

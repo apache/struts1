@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.12 2002/06/25 01:33:32 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/06/25 01:33:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SelectTag.java,v 1.13 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,12 +63,8 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -81,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/06/25 01:33:32 $
+ * @version $Revision: 1.13 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class SelectTag extends BaseHandlerTag {

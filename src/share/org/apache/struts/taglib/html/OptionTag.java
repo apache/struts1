@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.9 2001/10/05 05:07:47 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/10/05 05:07:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.10 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,12 +63,8 @@
 package org.apache.struts.taglib.html;
 
 
-import java.lang.reflect.Method;
-import java.io.IOException;
 import java.util.Locale;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
@@ -82,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/10/05 05:07:47 $
+ * @version $Revision: 1.10 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class OptionTag extends BodyTagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.11 2002/08/22 03:01:57 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2002/08/22 03:01:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.12 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,21 +63,15 @@
 package org.apache.struts.taglib.html;
 
 
-import java.lang.reflect.Method;
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.taglib.logic.IterateTag;
 
 /**
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/08/22 03:01:57 $
+ * @version $Revision: 1.12 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class SubmitTag extends BaseHandlerTag {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.26 2002/09/20 04:33:13 martinc Exp $
- * $Revision: 1.26 $
- * $Date: 2002/09/20 04:33:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.27 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.27 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,23 +63,10 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -89,7 +76,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.26 $ $Date: 2002/09/20 04:33:13 $
+ * @version $Revision: 1.27 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class LinkTag extends BaseHandlerTag {

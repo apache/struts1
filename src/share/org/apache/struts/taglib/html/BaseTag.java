@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.4 2001/03/11 00:58:43 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/03/11 00:58:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.5 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -82,7 +81,7 @@ import org.apache.struts.util.RequestUtils;
  * this tag.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.4 $ $Date: 2001/03/11 00:58:43 $
+ * @version $Revision: 1.5 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class BaseTag extends TagSupport {

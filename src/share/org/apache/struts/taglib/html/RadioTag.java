@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.13 2002/07/07 23:27:57 husted Exp $
- * $Revision: 1.13 $
- * $Date: 2002/07/07 23:27:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.14 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,11 +63,8 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
@@ -78,7 +75,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.13 $ $Date: 2002/07/07 23:27:57 $
+ * @version $Revision: 1.14 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -156,7 +153,7 @@ public class RadioTag extends BaseHandlerTag {
     /**
      * Set the property name.
      *
-     * @param name The new property name
+     * @param property The new property name
      */
     public void setProperty(String property) {
 
@@ -203,7 +200,7 @@ public class RadioTag extends BaseHandlerTag {
      * Set the idName.
      * @since Struts 1.1
      *
-     * @param value The new idName
+     * @param idName The new idName
      */
     public void setIdName(String idName) {
 

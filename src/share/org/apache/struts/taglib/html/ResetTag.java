@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.6 2002/07/06 23:36:29 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/07/06 23:36:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.7 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,11 +63,7 @@
 package org.apache.struts.taglib.html;
 
 
-import java.lang.reflect.Method;
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -76,7 +72,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/07/06 23:36:29 $
+ * @version $Revision: 1.7 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class ResetTag extends BaseHandlerTag {

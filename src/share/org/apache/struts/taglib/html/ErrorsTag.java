@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.16 2002/07/09 23:58:52 husted Exp $
- * $Revision: 1.16 $
- * $Date: 2002/07/09 23:58:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.17 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,19 +63,13 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.Locale;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -102,7 +96,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/07/09 23:58:52 $
+ * @version $Revision: 1.17 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class ErrorsTag extends TagSupport {

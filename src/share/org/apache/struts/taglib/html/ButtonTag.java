@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.9 2002/06/25 00:45:41 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2002/06/25 00:45:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ButtonTag.java,v 1.10 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -63,10 +63,7 @@
 package org.apache.struts.taglib.html;
 
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspWriter;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -74,7 +71,7 @@ import org.apache.struts.util.ResponseUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.9 $ $Date: 2002/06/25 00:45:41 $
+ * @version $Revision: 1.10 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class ButtonTag extends BaseHandlerTag {
@@ -113,7 +110,7 @@ public class ButtonTag extends BaseHandlerTag {
     /**
      * Set the property name.
      *
-     * @param name The property name
+     * @param property The property name
      */
     public void setProperty(String property) {
         this.property = property;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.3 2001/04/18 23:45:02 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/04/18 23:45:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.4 2002/09/23 05:13:43 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/09/23 05:13:43 $
  *
  * ====================================================================
  *
@@ -61,13 +61,10 @@
 
 package org.apache.struts.taglib.html;
 
-import java.io.IOException;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
@@ -79,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/04/18 23:45:02 $
+ * @version $Revision: 1.4 $ $Date: 2002/09/23 05:13:43 $
  */
 
 public class HtmlTag extends TagSupport {

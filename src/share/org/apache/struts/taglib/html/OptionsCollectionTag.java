@@ -57,7 +57,6 @@
 
 package org.apache.struts.taglib.html;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -65,8 +64,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.IteratorAdapter;
@@ -88,7 +85,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.5 $ $Date: 2002/07/09 23:58:52 $
+ * @version $Revision: 1.6 $ $Date: 2002/09/23 05:13:43 $
  * @since Struts 1.1
  */
 
@@ -374,11 +371,9 @@ public class OptionsCollectionTag extends TagSupport {
 
 
     /**
-     * Return an iterator for the option labels or values, based on our
-     * configured properties.
+     * Return an iterator for the options collection.
      *
-     * @param name Name of the bean attribute (if any)
-     * @param property Name of the bean property (if any)
+     * @param collection Collection to be iterated over
      *
      * @exception JspException if an error occurs
      */
