@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.4 2000/06/20 20:05:50 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/20 20:05:50 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.5 2000/08/01 20:03:24 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/08/01 20:03:24 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ErrorMessages;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/20 20:05:50 $
+ * @version $Revision: 1.5 $ $Date: 2000/08/01 20:03:24 $
  */
 
 public final class RegistrationForm implements ValidatingActionForm  {

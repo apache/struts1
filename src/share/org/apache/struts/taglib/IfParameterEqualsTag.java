@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfParameterEqualsTag.java,v 1.2 2000/07/17 16:37:46 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/07/17 16:37:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfParameterEqualsTag.java,v 1.3 2000/08/01 20:03:33 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/01 20:03:33 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * matches the specified value.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/07/17 16:37:46 $
+ * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:33 $
  */
 
 public class IfParameterEqualsTag extends TagSupport {

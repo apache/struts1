@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfAttributeMissingTag.java,v 1.1 2000/06/13 22:45:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/13 22:45:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfAttributeMissingTag.java,v 1.2 2000/08/01 20:03:33 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/08/01 20:03:33 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import javax.servlet.jsp.PageContext;
  * does not exist in the specified scope.
  *
  * @author Arun M. Thomas <arun@ipin.com>
- * @version $Revision: 1.1 $ $Date: 2000/06/13 22:45:44 $
+ * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:33 $
  */
 
 public class IfAttributeMissingTag extends BaseAttributeTag {

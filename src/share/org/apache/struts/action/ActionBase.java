@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.5 2000/06/20 20:05:58 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/20 20:05:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionBase.java,v 1.6 2000/08/01 20:03:28 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/08/01 20:03:28 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * useful utility methods for use by Action classes.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/20 20:05:58 $
+ * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:28 $
  */
 
 public abstract class ActionBase implements Action {

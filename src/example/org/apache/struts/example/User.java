@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/User.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/User.java,v 1.2 2000/08/01 20:03:25 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/08/01 20:03:25 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.util.Hashtable;
  * Object that represents a registered user of the mail reader application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:25 $
  */
 
 public final class User implements Serializable {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfParameterNullTag.java,v 1.1 2000/06/13 02:05:15 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/13 02:05:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfParameterNullTag.java,v 1.2 2000/08/01 20:03:34 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/08/01 20:03:34 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/13 02:05:15 $
+ * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:34 $
  */
 
 public class IfParameterNullTag extends TagSupport {

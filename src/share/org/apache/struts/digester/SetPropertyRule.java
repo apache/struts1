@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetPropertyRule.java,v 1.1 2000/07/16 00:49:22 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/07/16 00:49:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetPropertyRule.java,v 1.2 2000/08/01 20:03:29 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/08/01 20:03:29 $
  *
  * ====================================================================
  * 
@@ -73,7 +73,7 @@ import org.apache.struts.util.BeanUtils;
  * top of the stack, based on attributes with specified names.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/07/16 00:49:22 $
+ * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:29 $
  */
 
 public final class SetPropertyRule extends Rule {

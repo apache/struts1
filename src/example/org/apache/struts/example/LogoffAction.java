@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogoffAction.java,v 1.2 2000/06/16 07:12:16 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogoffAction.java,v 1.3 2000/08/01 20:03:23 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/01 20:03:23 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 07:12:16 $
+ * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:23 $
  */
 
 public final class LogoffAction extends ActionBase {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.6 2000/06/20 20:05:51 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/06/20 20:05:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.7 2000/08/01 20:03:24 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/08/01 20:03:24 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/06/20 20:05:51 $
+ * @version $Revision: 1.7 $ $Date: 2000/08/01 20:03:24 $
  */
 
 public final class SaveRegistrationAction extends ActionBase {

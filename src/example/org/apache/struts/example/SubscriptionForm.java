@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.5 2000/07/15 23:20:54 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/07/15 23:20:54 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.6 2000/08/01 20:03:25 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/08/01 20:03:25 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ErrorMessages;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/07/15 23:20:54 $
+ * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:25 $
  */
 
 public final class SubscriptionForm implements ValidatingActionForm  {

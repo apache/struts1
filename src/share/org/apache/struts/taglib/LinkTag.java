@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.9 2000/07/18 05:35:12 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/07/18 05:35:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.10 2000/08/01 20:03:34 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/08/01 20:03:34 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/07/18 05:35:12 $
+ * @version $Revision: 1.10 $ $Date: 2000/08/01 20:03:34 $
  */
 
 public class LinkTag extends TagSupport {

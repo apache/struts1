@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/ObjectCreateRule.java,v 1.1 2000/05/31 22:28:13 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/ObjectCreateRule.java,v 1.2 2000/08/01 20:03:29 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/08/01 20:03:29 $
  *
  * ====================================================================
  * 
@@ -72,7 +72,7 @@ import org.xml.sax.AttributeList;
  * object will be popped
  *
  * @author Craig McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:13 $
+ * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:29 $
  */
 
 public final class ObjectCreateRule extends Rule {

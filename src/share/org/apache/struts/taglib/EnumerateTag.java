@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.5 2000/07/17 16:37:45 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/07/17 16:37:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.6 2000/08/01 20:03:31 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/08/01 20:03:31 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/07/17 16:37:45 $
+ * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:31 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {

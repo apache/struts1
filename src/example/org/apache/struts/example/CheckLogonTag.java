@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.3 2000/06/29 21:36:07 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/29 21:36:07 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.4 2000/08/01 20:03:22 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/08/01 20:03:22 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Craig R. McClanahan
  * @author Marius Barduta
- * @version $Revision: 1.3 $ $Date: 2000/06/29 21:36:07 $
+ * @version $Revision: 1.4 $ $Date: 2000/08/01 20:03:22 $
  */
 
 public final class CheckLogonTag extends TagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/16 01:32:21 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.3 2000/08/01 20:03:24 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/01 20:03:24 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.action.ValidatingActionForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
+ * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:24 $
  */
 
 public final class LogonForm implements ValidatingActionForm {

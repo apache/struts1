@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.6 2000/06/20 20:05:51 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/06/20 20:05:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.7 2000/08/01 20:03:24 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/08/01 20:03:24 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/06/20 20:05:51 $
+ * @version $Revision: 1.7 $ $Date: 2000/08/01 20:03:24 $
  */
 
 public final class SaveSubscriptionAction extends ActionBase {

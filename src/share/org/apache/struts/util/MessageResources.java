@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.3 2000/06/29 22:24:48 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/29 22:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.4 2000/08/01 20:04:02 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/08/01 20:04:02 $
  *
  * ====================================================================
  * 
@@ -78,7 +78,7 @@ import java.util.ResourceBundle;
  * retrieval of messages for either the default Locale or a specified Locale.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/29 22:24:48 $
+ * @version $Revision: 1.4 $ $Date: 2000/08/01 20:04:02 $
  */
 
 public final class MessageResources {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.2 2000/07/16 23:03:19 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/07/16 23:03:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.3 2000/08/01 20:03:29 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/01 20:03:29 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,7 @@ import org.apache.struts.util.BeanUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/07/16 23:03:19 $
+ * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:29 $
  */
 
 public final class CallMethodRule extends Rule {

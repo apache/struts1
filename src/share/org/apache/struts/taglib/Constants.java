@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Constants.java,v 1.2 2000/06/20 20:06:02 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/20 20:06:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Constants.java,v 1.3 2000/08/01 20:03:31 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/01 20:03:31 $
  *
  * ====================================================================
  *

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.2 2000/06/21 19:58:20 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/21 19:58:20 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.3 2000/08/01 20:03:22 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/08/01 20:03:22 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/21 19:58:20 $
+ * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:22 $
  */
 
 public final class DatabaseServlet

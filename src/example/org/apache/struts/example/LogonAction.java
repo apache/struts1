@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.5 2000/06/20 16:33:48 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/20 16:33:48 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.6 2000/08/01 20:03:23 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/08/01 20:03:23 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/20 16:33:48 $
+ * @version $Revision: 1.6 $ $Date: 2000/08/01 20:03:23 $
  */
 
 public final class LogonAction extends ActionBase {

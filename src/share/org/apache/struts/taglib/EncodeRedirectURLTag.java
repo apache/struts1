@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EncodeRedirectURLTag.java,v 1.3 2000/07/17 16:37:45 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/17 16:37:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EncodeRedirectURLTag.java,v 1.4 2000/08/01 20:03:31 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/08/01 20:03:31 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * HTML-related characters do not cause difficulties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/07/17 16:37:45 $
+ * @version $Revision: 1.4 $ $Date: 2000/08/01 20:03:31 $
  */
 
 public final class EncodeRedirectURLTag extends TagSupport {
