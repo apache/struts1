@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.19 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.20 2003/09/26 06:22:05 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/09/26 06:22:05 $
  *
  * ====================================================================
  *
@@ -70,7 +70,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.20 $ $Date: 2003/09/26 06:22:05 $
  */
 public class CheckboxTag extends BaseHandlerTag {
 
@@ -202,10 +202,8 @@ public class CheckboxTag extends BaseHandlerTag {
             result = "";
         }
 
-        if (!(result instanceof String)) {
-            result = result.toString();
-        }
-
+        result = result.toString();
+        
         String checked = (String) result;
         if (checked.equalsIgnoreCase(value)
             || checked.equalsIgnoreCase("true")
