@@ -237,7 +237,7 @@ public class MultipartIterator {
     protected void parseRequest() throws ServletException {
         
         contentLength = request.getContentLength();
-        System.out.println("Content length: " + contentLength);
+        
         //set boundary
         boundary = parseBoundary(request.getContentType());
         
