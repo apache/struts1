@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.78 2001/12/16 16:45:13 husted Exp $
- * $Revision: 1.78 $
- * $Date: 2001/12/16 16:45:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.79 2001/12/16 16:50:10 husted Exp $
+ * $Revision: 1.79 $
+ * $Date: 2001/12/16 16:50:10 $
  *
  * ====================================================================
  *
@@ -233,7 +233,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.78 $ $Date: 2001/12/16 16:45:13 $
+ * @version $Revision: 1.79 $ $Date: 2001/12/16 16:50:10 $
  */
 
 public class ActionServlet
@@ -925,6 +925,76 @@ public class ActionServlet
      */
     public void setTempDir(String tempDir) {
         this.tempDir = tempDir;
+    }
+
+
+    /**
+     * Return an instance of the ActionForm associated with the specified
+     * path, if any; otherwise return <code>null</code>.
+     * May be used to create an ActionForm for InvokeAction.
+     *
+     * @param name path of the Action using the ActionForm bean
+     * @since 1.1
+     */
+    public ActionForm createActionForm(String path) {
+
+        ActionMapping mapping = findMapping(path);
+        String name = mapping.getName();
+
+        ActionForm form = null;
+
+        ActionFormBean formBean = findFormBean(name);
+        if (formBean != null) {
+            String className = null;
+            className = formBean.getType();
+            try {
+                Class clazz = Class.forName(className);
+                form = (ActionForm) clazz.newInstance();
+            } catch (Throwable t) {
+                form = null;
+            }
+        }
+
+        return form;
+
+    }
+
+
+    /**
+     * Directly process the Action perform associated with the
+     * given path.
+     * Return the <code>ActionForward</code> instance (if any)
+     * returned by the called <code>Action</code>.
+     * <code>createActionForm</code> may be used to create an
+     * ActionForm instance to pass to the Action invoked.
+     *
+     * @param action The path to the Action to invoke
+     * @param form The ActionForm we are processing
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     * @since 1.1
+     */
+    public ActionForward invokeAction(
+            String path,
+            ActionForm form,
+            HttpServletRequest request,
+            HttpServletResponse response)
+        throws IOException, ServletException {
+
+        ActionMapping mapping =
+            processMapping(path,request);
+
+        Action action =
+            processActionCreate(mapping,request);
+
+        ActionForward forward = processActionPerform(
+            action,mapping,form,request,response);
+
+        return forward;
+
     }
 
 
