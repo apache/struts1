@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/StrutsModulesTilesUtilImpl.java,v 1.2 2002/11/09 07:11:21 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/09 07:11:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/StrutsModulesTilesUtilImpl.java,v 1.3 2002/11/09 16:30:02 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/09 16:30:02 $
  *
  * ====================================================================
  *
@@ -183,7 +183,7 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
   /**
    * Get the current ModuleConfig.
    * <br>
-   * Lookup in the request, and do selectApplication if not found. The side effect
+   * Lookup in the request, and do selectModule if not found. The side effect
    * is that the Application object is set in the request if it was not present.
    */
  protected ModuleConfig getModuleConfig(HttpServletRequest request, ServletContext servletContext)
@@ -192,7 +192,7 @@ public class StrutsModulesTilesUtilImpl extends DefaultTilesUtilImpl implements 
   if(moduleConfig==null)
     {
       // ModuleConfig not found in current request. Select it.
-    RequestUtils.selectApplication(request, servletContext);
+    RequestUtils.selectModule(request, servletContext);
     moduleConfig = RequestUtils.getModuleConfig( request, servletContext);
     }
 

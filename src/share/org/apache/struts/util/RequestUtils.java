@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.69 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.69 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.70 2002/11/09 16:30:02 rleland Exp $
+ * $Revision: 1.70 $
+ * $Date: 2002/11/09 16:30:02 $
  *
  * ====================================================================
  *
@@ -98,7 +98,6 @@ import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
@@ -113,7 +112,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.69 $ $Date: 2002/11/08 05:39:24 $
+ * @version $Revision: 1.70 $ $Date: 2002/11/09 16:30:02 $
  */
 
 public class RequestUtils {
@@ -388,11 +387,11 @@ public class RequestUtils {
                 (messages.getMessage("computeURL.specifier"));
         }
 
-        // Look up the application module configuration for this request
-        ApplicationConfig config = (ApplicationConfig)
+        // Look up the module configuration for this request
+        ModuleConfig config = (ModuleConfig)
             pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
         if (config == null) { // Backwards compatibility hack
-            config = (ApplicationConfig)
+            config = (ModuleConfig)
                 pageContext.getServletContext().getAttribute
                 (Globals.MODULE_KEY);
             pageContext.getRequest().setAttribute(Globals.MODULE_KEY,
@@ -538,7 +537,7 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param mapping The action mapping for this request
-     * @param moduleConfig The application configuration for this module
+     * @param moduleConfig The configuration for this module
      * @param servlet The action servlet
      * @return ActionForm instance associated with this request
      */
@@ -1043,9 +1042,9 @@ public class RequestUtils {
                 return multipartHandler;
         }
 
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
-        multipartClass = appConfig.getControllerConfig().getMultipartClass();
+        multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
         if (multipartClass != null) {
@@ -1160,13 +1159,13 @@ public class RequestUtils {
 
     /**
      * Return the context-relative URL that corresponds to the specified
-     * {@link ActionConfig}, relative to the application module associated
-     * with the current modules's {@link ApplicationConfig}.
+     * {@link ActionConfig}, relative to the module associated
+     * with the current modules's {@link ModuleConfig}.
      *
      * @param request The servlet request we are processing
      * @param action ActionConfig to be evaluated
      * @param pattern URL pattern used to map the controller servlet
-     * @return  context-relative URL relative to the application module
+     * @return  context-relative URL relative to the module
      *
      * @since Struts 1.1b2
      */
@@ -1179,7 +1178,7 @@ public class RequestUtils {
             sb.append(pattern.substring(0, pattern.length() - 2));
             sb.append(action.getPath());
         } else if (pattern.startsWith("*.")) {
-            ApplicationConfig appConfig = (ApplicationConfig)
+            ModuleConfig appConfig = (ModuleConfig)
                 request.getAttribute(Globals.MODULE_KEY);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
@@ -1194,7 +1193,7 @@ public class RequestUtils {
     /**
      * Return the context-relative URL that corresponds to the specified
      * {@link ForwardConfig}, relative to the module associated
-     * with the current {@link ApplicationConfig}. The forward path is
+     * with the current {@link ModuleConfig}. The forward path is
      * gracefully prefixed with a '/' according to the boolean
      *
      *
@@ -1219,7 +1218,7 @@ public class RequestUtils {
         }
 
         // Calculate a context relative path for this ForwardConfig
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig appConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         String forwardPattern =
             appConfig.getControllerConfig().getForwardPattern();
@@ -1271,7 +1270,7 @@ public class RequestUtils {
      * Return the context-relative URL that corresponds to the specified
      * <code>page</code> attribute value, calculated based on the
      * <code>pagePattern</code> property of the current module's
-     * {@link ApplicationConfig}.
+     * {@link ModuleConfig}.
      *
      * @param request The servlet request we are processing
      * @param page The module-relative URL to be substituted in
@@ -1283,7 +1282,7 @@ public class RequestUtils {
                                  String page) {
 
         StringBuffer sb = new StringBuffer();
-        ApplicationConfig appConfig = (ApplicationConfig)
+        ModuleConfig appConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         String pagePattern =
             appConfig.getControllerConfig().getPagePattern();
@@ -1399,19 +1398,35 @@ public class RequestUtils {
 
 
     /**
-     * Select the application module to which the specified request belongs, and
+     * Select the module to which the specified request belongs, and
      * add corresponding request attributes to this request.
      *
-     * @param prefix The module prefix of the desired application module
+     * @param prefix The module prefix of the desired module
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
+     * @deprecated use {@link #selectModule(String,HttpServletRequest,ServletContext)}
      */
     public static void selectApplication(String prefix,
                                          HttpServletRequest request,
                                          ServletContext context) {
+        selectModule(prefix,request,context);
+    }
 
-        // Expose the resources for this application module
-        ApplicationConfig config = (ApplicationConfig)
+    /**
+     * Select the module to which the specified request belongs, and
+     * add corresponding request attributes to this request.
+     *
+     * @param prefix The module prefix of the desired module
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     * @since struts 1.1b3
+     */
+    public static void selectModule(String prefix,
+                                         HttpServletRequest request,
+                                         ServletContext context) {
+
+        // Expose the resources for this module
+        ModuleConfig config = (ModuleConfig)
             context.getAttribute(Globals.MODULE_KEY + prefix);
         if (config != null) {
             request.setAttribute(Globals.MODULE_KEY, config);
@@ -1435,13 +1450,26 @@ public class RequestUtils {
      *
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
+     * @deprecated use {@link #selectModule(HttpServletRequest,ServletContext)}
      */
     public static void selectApplication(HttpServletRequest request,
+                                         ServletContext context) {
+        selectModule(request, context);
+    }
+
+    /**
+     * Select the module to which the specified request belongs, and
+     * add corresponding request attributes to this request.
+     *
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     */
+    public static void selectModule(HttpServletRequest request,
                                          ServletContext context) {
           // Compute module name
         String prefix = getModuleName( request, context);
         // Expose the resources for this module
-        selectApplication(prefix, request, context);
+        selectModule(prefix, request, context);
 
     }
 
@@ -1496,36 +1524,36 @@ public class RequestUtils {
 
 
     /**
-     * Return the ApplicationConfig object is it exists, null otherwise.
+     * Return the ModuleConfig object is it exists, null otherwise.
      * @param pageContext The page context.
-     * @return the ApplicationConfig object
+     * @return the ModuleConfig object
      * @since 1.1b3
      */
-    public static ApplicationConfig getModuleConfig(PageContext pageContext) {
-       ApplicationConfig appConfig = (ApplicationConfig)
+    public static ModuleConfig getModuleConfig(PageContext pageContext) {
+       ModuleConfig moduleConfig = (ModuleConfig)
            pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-       if (appConfig == null) { // Backwards compatibility hack
-           appConfig = (ApplicationConfig)
+       if (moduleConfig == null) { // Backwards compatibility hack
+           moduleConfig = (ModuleConfig)
                pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
        }
-       return appConfig;
+       return moduleConfig;
     }
 
     /**
-     * Return the ApplicationConfig object is it exists, null otherwise.
+     * Return the ModuleConfig object is it exists, null otherwise.
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
-     * @return the ApplicationConfig object
+     * @return the ModuleConfig object
      * @since 1.1b3
      */
-    public static ApplicationConfig getModuleConfig(HttpServletRequest request,ServletContext context) {
-        ApplicationConfig appConfig = (ApplicationConfig)
+    public static ModuleConfig getModuleConfig(HttpServletRequest request,ServletContext context) {
+        ModuleConfig moduleConfig = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
-        if (appConfig == null) {
-            appConfig = (ApplicationConfig)
+        if (moduleConfig == null) {
+            moduleConfig = (ModuleConfig)
                 context.getAttribute(Globals.MODULE_KEY);
         }
-       return appConfig;
+       return moduleConfig;
     }
 
     /**
@@ -1654,7 +1682,7 @@ public class RequestUtils {
         } catch (JspException e) {
             throw e;
         } catch (Exception e) {
-            LOG.debug(e);
+            LOG.debug(e,e);
         }
 
         return errors;

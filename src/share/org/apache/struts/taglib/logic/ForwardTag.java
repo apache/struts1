@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.11 2002/10/30 02:31:23 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2002/10/30 02:31:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.12 2002/11/09 16:30:02 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/11/09 16:30:02 $
  *
  * ====================================================================
  *
@@ -67,9 +67,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -79,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/10/30 02:31:23 $
+ * @version $Revision: 1.12 $ $Date: 2002/11/09 16:30:02 $
  */
 
 public class ForwardTag extends TagSupport {
@@ -136,7 +135,7 @@ public class ForwardTag extends TagSupport {
 
 	// Look up the desired ActionForward entry
 	ActionForward forward = null;
-        ApplicationConfig config = RequestUtils.getModuleConfig(pageContext);
+        ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
 	if (config != null)
 	    forward = (ActionForward) config.findForwardConfig(name);
 	if (forward == null) {

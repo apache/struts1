@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.8 2002/11/09 07:11:21 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/09 07:11:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.9 2002/11/09 16:30:02 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/09 16:30:02 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.action.PlugInPatch;
@@ -78,8 +79,6 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
-import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.config.ModuleConfig;
 
 
 /**

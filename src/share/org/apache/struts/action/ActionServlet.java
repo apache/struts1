@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.127 2002/11/09 07:11:21 rleland Exp $
- * $Revision: 1.127 $
- * $Date: 2002/11/09 07:11:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.128 2002/11/09 16:30:02 rleland Exp $
+ * $Revision: 1.128 $
+ * $Date: 2002/11/09 16:30:02 $
  *
  * ====================================================================
  *
@@ -102,6 +102,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.impl.ModuleConfigImpl;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
@@ -296,7 +297,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.127 $ $Date: 2002/11/09 07:11:21 $
+ * @version $Revision: 1.128 $ $Date: 2002/11/09 16:30:02 $
  */
 
 public class ActionServlet
@@ -446,11 +447,11 @@ public class ActionServlet
 
         // Initialize application modules as needed
         getServletContext().setAttribute(Action.ACTION_SERVLET_KEY, this);
-        ApplicationConfig ac = initApplicationConfig("", config);
-        initApplicationMessageResources(ac);
-        initApplicationDataSources(ac);
-        initApplicationPlugIns(ac);
-        ac.freeze();
+        ModuleConfig moduleConfig = initModuleConfig("", config);
+        initApplicationMessageResources(moduleConfig);
+        initApplicationDataSources(moduleConfig);
+        initModulePlugIns(moduleConfig);
+        moduleConfig.freeze();
         Enumeration names = getServletConfig().getInitParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
@@ -458,12 +459,12 @@ public class ActionServlet
                 continue;
             }
             String prefix = name.substring(6);
-            ac = initApplicationConfig
+            moduleConfig = initApplicationConfig
                 (prefix, getServletConfig().getInitParameter(name));
-            initApplicationMessageResources(ac);
-            initApplicationDataSources(ac);
-            initApplicationPlugIns(ac);
-            ac.freeze();
+            initApplicationMessageResources(moduleConfig);
+            initApplicationDataSources(moduleConfig);
+            initModulePlugIns(moduleConfig);
+            moduleConfig.freeze();
         }
         destroyConfigDigester();
 
@@ -684,8 +685,8 @@ public class ActionServlet
         while (keys.hasNext()) {
             String name = (String) keys.next();
             Object value = getServletContext().getAttribute(name);
-            if (value instanceof ApplicationConfig) {
-                ApplicationConfig config = (ApplicationConfig) value;
+            if (value instanceof ModuleConfig) {
+                ModuleConfig config = (ModuleConfig) value;
                 try {
                     getRequestProcessor(config).destroy();
                 } catch (Throwable t) {
@@ -759,19 +760,36 @@ public class ActionServlet
 
 
     /**
-     * Return the application configuration object for the currently selected
+     * Return the module configuration object for the currently selected
+     * application module.
+     *
+     * @param request The servlet request we are processing
+     * @since Struts 1.1
+     * @deprecated use {@link #getModuleConfig(HttpServletRequest)}
+     */
+    protected ApplicationConfig getApplicationConfig
+        (HttpServletRequest request) {
+        /* Since Struts 1.1 only has one implementation for
+           ModuleConfig casting is safe here. Used only for
+           transition purposes !
+        */
+        return new ApplicationConfig((ModuleConfigImpl)getModuleConfig(request));
+    }
+
+    /**
+     * Return the module configuration object for the currently selected
      * application module.
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1
      */
-    protected ApplicationConfig getApplicationConfig
+    protected ModuleConfig getModuleConfig
         (HttpServletRequest request) {
 
-        ApplicationConfig config = (ApplicationConfig)
+        ModuleConfig config = (ModuleConfig)
             request.getAttribute(Globals.MODULE_KEY);
         if (config == null) {
-            config = (ApplicationConfig)
+            config = (ModuleConfig)
                 getServletContext().getAttribute(Globals.MODULE_KEY);
         }
         return (config);
@@ -791,7 +809,7 @@ public class ActionServlet
      * @since Struts 1.1
      */
     protected synchronized RequestProcessor
-        getRequestProcessor(ApplicationConfig config) throws ServletException {
+        getRequestProcessor(ModuleConfig config) throws ServletException {
 
         String key = Action.REQUEST_PROCESSOR_KEY + config.getPrefix();
         RequestProcessor processor = (RequestProcessor)
@@ -822,9 +840,29 @@ public class ActionServlet
      *  configuration resource
      *
      * @exception ServletException if initialization cannot be performed
+     * @deprecated use {@link #initModuleConfig(String,String)}
      * @since Struts 1.1
      */
     protected ApplicationConfig initApplicationConfig
+        (String prefix, String path) throws ServletException {
+        /* Since Struts 1.1 only has one implementation for
+           ModuleConfig casting is safe here. Used only for
+           transition purposes !
+        */
+        return new ApplicationConfig((ModuleConfigImpl)initModuleConfig(prefix,path));
+    }
+    /**
+     * <p>Initialize the application configuration information for the
+     * specified application module.</p>
+     *
+     * @param prefix Application prefix for this application
+     * @param path Context-relative resource path for this application's
+     *  configuration resource
+     *
+     * @exception ServletException if initialization cannot be performed
+     * @since Struts 1.1
+     */
+    protected ModuleConfig initModuleConfig
         (String prefix, String path) throws ServletException {
 
         if (log.isDebugEnabled()) {
@@ -833,11 +871,12 @@ public class ActionServlet
         }
 
         // Parse the application configuration for this module
-        ApplicationConfig config = null;
+        ModuleConfig config = null;
         InputStream input = null;
         String mapping = null;
         try {
-            config = new ApplicationConfig(prefix);
+            //@todo & FIXME replace with a FactoryMethod
+            config = new ModuleConfigImpl(prefix);
 
             // Support for module-wide ActionMapping type override
             mapping = getServletConfig().getInitParameter("mapping");
@@ -905,7 +944,7 @@ public class ActionServlet
      * @since Struts 1.1
      */
     protected void initApplicationDataSources
-        (ApplicationConfig config) throws ServletException {
+        (ModuleConfig config) throws ServletException {
 
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix() +
@@ -955,6 +994,19 @@ public class ActionServlet
 
 
     /**
+     * <p>Initialize the plug ins for the specified module.</p>
+     *
+     * @param config ModuleConfig information for this module
+     *
+     * @exception ServletException if initialization cannot be performed
+     * @deprecated use {@link #initModulePlugIns(ModuleConfig)}
+     * @since Struts 1.1
+     */
+    protected void initApplicationPlugIns
+        (ModuleConfig config) throws ServletException {
+        initModulePlugIns(config);
+    }
+    /**
      * <p>Initialize the plug ins for the specified application module.</p>
      *
      * @param config ApplicationConfig information for this module
@@ -962,8 +1014,8 @@ public class ActionServlet
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
      */
-    protected void initApplicationPlugIns
-        (ApplicationConfig config) throws ServletException {
+    protected void initModulePlugIns
+        (ModuleConfig config) throws ServletException {
 
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix() +
@@ -986,7 +1038,12 @@ public class ActionServlet
                     ((PlugInPatch)plugIns[i]).init(this, (ModuleConfig)config);
                 }
                 else  {
-                    plugIns[i].init(this, config);
+                    /* Since Struts 1.1 only has one implementation for
+                       ModuleConfig casting is safe here. Used only for
+                       transition purposes !
+                    */
+                    ApplicationConfig ac = new ApplicationConfig((ModuleConfigImpl)config);
+                    plugIns[i].init(this, ac);
                 }
             } catch (ServletException e) {
               // Lets propagate
@@ -1013,7 +1070,7 @@ public class ActionServlet
      * @since Struts 1.1
      */
     protected void initApplicationMessageResources
-        (ApplicationConfig config) throws ServletException {
+        (ModuleConfig config) throws ServletException {
 
         MessageResourcesConfig mrcs[] =
             config.findMessageResourcesConfigs();
@@ -1292,8 +1349,8 @@ public class ActionServlet
                            HttpServletResponse response)
         throws IOException, ServletException {
 
-        RequestUtils.selectApplication(request, getServletContext());
-        getRequestProcessor(getApplicationConfig(request)).process
+        RequestUtils.selectModule(request, getServletContext());
+        getRequestProcessor(getModuleConfig(request)).process
             (request, response);
 
     }
@@ -1307,12 +1364,12 @@ public class ActionServlet
      * controller configuration from servlet initialization parameters (as
      * were used in Struts 1.0).
      *
-     * @param config The ApplicationConfig object for the default module
+     * @param config The ModuleConfig object for the default module
      *
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
-    private void defaultControllerConfig(ApplicationConfig config) {
+    private void defaultControllerConfig(ModuleConfig config) {
 
         String value = null;
 
@@ -1370,7 +1427,7 @@ public class ActionServlet
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
-    private void defaultFormBeansConfig(ApplicationConfig config) {
+    private void defaultFormBeansConfig(ModuleConfig config) {
 
         FormBeanConfig fbcs[] = config.findFormBeanConfigs();
         ActionFormBeans afb = new ActionFormBeans();
@@ -1395,7 +1452,7 @@ public class ActionServlet
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
-    private void defaultForwardsConfig(ApplicationConfig config) {
+    private void defaultForwardsConfig(ModuleConfig config) {
 
         ForwardConfig fcs[] = config.findForwardConfigs();
         ActionForwards af = new ActionForwards();
@@ -1420,7 +1477,7 @@ public class ActionServlet
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
-    private void defaultMappingsConfig(ApplicationConfig config) {
+    private void defaultMappingsConfig(ModuleConfig config) {
 
         ActionConfig acs[] = config.findActionConfigs();
         ActionMappings am = new ActionMappings();
@@ -1445,7 +1502,7 @@ public class ActionServlet
      * @since Struts 1.1
      * @deprecated Will be removed in a release after Struts 1.1.
      */
-    private void defaultMessageResourcesConfig(ApplicationConfig config) {
+    private void defaultMessageResourcesConfig(ModuleConfig config) {
 
         String value = null;
 

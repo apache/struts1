@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.7 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.8 2002/11/09 16:30:02 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/09 16:30:02 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.Globals;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/11/08 05:39:24 $
+ * @version $Revision: 1.8 $ $Date: 2002/11/09 16:30:02 $
  * @since Struts 1.1
  */
 
@@ -151,7 +151,7 @@ public class SwitchAction extends Action {
         }
 
         // Switch to the requested application module
-        RequestUtils.selectApplication(prefix, request,
+        RequestUtils.selectModule(prefix, request,
                                        getServlet().getServletContext());
         if (request.getAttribute(Globals.MODULE_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);
