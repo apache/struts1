@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./release-plan-1.1rc2.xml">
+<document url="./release-plan-1_2_0.xml">
 
     <properties>
         <author>Ted Husted</author>
@@ -11,7 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              $Id: release-plan_1_2_0.xml,v 1.9 2004/02/20 17:03:20 husted Exp $
+              $Id: release-plan_1_2_0.xml,v 1.10 2004/08/31 17:23:10 jmitchell Exp $
           </p>
 
           <p>

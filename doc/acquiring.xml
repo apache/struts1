@@ -34,13 +34,8 @@
     <ul>
 
     <li>
-        <a href="http://struts.apache.org/binindex.cgi">
-        <strong>Struts Binary Distribution - Struts 1.2.2 is the best available version</strong></a>
-    </li>
-
-    <li>
-        <a href="http://struts.apache.org/sourceindex.cgi">
-        <strong>Struts Source Code Distribution - Struts 1.2.2 is the best available version</strong></a>
+        <a href="http://struts.apache.org/download.cgi">
+        <strong>Struts Binary and Source Code Distributions - Struts 1.2.2 is the best available version</strong></a>
     </li>
 
     </ul>

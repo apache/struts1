@@ -76,11 +76,11 @@
     <menu name="Download">
         <item 
             name="Binaries"                
-            href="http://jakarta.apache.org/site/binindex.cgi"
+            href="http://struts.apache.org/download.cgi"
             />
         <item 
             name="Source Code"             
-            href="http://jakarta.apache.org/site/sourceindex.cgi"
+            href="http://struts.apache.org/download.cgi"
             />
         <item
             name="Development Releases"
