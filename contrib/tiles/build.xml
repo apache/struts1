@@ -1,15 +1,14 @@
 <project name="Tiles" default="compile.library" basedir=".">
 
 <!--
-        Struts main build.xml file for building everything related to Struts :
-        - core Struts library
+        Tiles main build.xml file for building everything related to Tiles :
+        - core tiles library
         - documentation
         - Struts web apps
-        - run unit tests
         - ...
 
         This script will delegate some of it's tasks to the other build*.xml
-        scripts (build-webapps.xml, build-tests.xml, ...)
+        scripts (build-webapps.xml, ...)
 -->
 
 
@@ -24,17 +23,38 @@
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
 
-        commons-lib.home              The path to the JAR files
-                                      of the Jakarta Commons 
+        commons-beanutils.jar         (required).  The path to the JAR file
+                                      of the Jakarta Commons Beanutils
                                       package (version 1.0 or later).
 
-        struts.libs                   (required). The path to the Struts
+        commons-collections.jar       (required).  The path to the JAR file
+                                      of the Jakarta Commons Collections
+                                      package (version 1.0 or later).
+
+        commons-digester.jar          (required).  The path to the JAR file
+                                      of the Jakarta Commons Digester
+                                      package (version 1.0 or later).
+
+        commons-logging.jar           (required).  The path to the JAR file
+                                      of the Jakarta Commons Logging
+                                      package (version 1.0 or later).
+
+        struts.home                   (required). The path to the Struts
                                       library installation. .
+
+        struts.libs                   (required). The directory containing 
+                                      struts.jar and the associated TLD files.
+									  At least one of struts.home or struts.libs
+									  is required.
 
         xerces.jar                    (optional) The path to the Xerces classes
                                       to copy.  This is required only when
                                       executing the "deploy.catalina" target.
 
+        struts1.0.home                If specified, must be the directory 
+		                              containing struts1.0
+                                      struts.jar and the associated TLD files..
+									  
 -->
 
     <!-- Load local and user build preferences -->
@@ -45,7 +65,6 @@
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
     <property name="jdbc20ext.jar"   value="../jdbc2_0-stdext.jar"/>
     <property name="servlet.jar"     value="../jakarta-servletapi/lib/servlet.jar"/>
-    <property name="struts.libs"     value="${struts.home}/lib"/>
     <property name="xerces.jar"      value="../xml-xerces/xerces.jar"/>
 
 
@@ -79,6 +98,9 @@
 
     <!-- Version of the project -->
     <property name="project.version" value="1.1-dev"/>
+	
+    <!-- Version of the project -->
+    <property name="struts.libs" value="${struts.home}/lib"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
@@ -110,31 +132,25 @@
     <!-- Web directory -->
     <property name="web.dir" value="web"/>
 
+    <!-- Commons-* jar files -->
+    <path id="commons-jars">
+      <pathelement location="${commons-beanutils.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
+    </path>
+
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${servlet.jar}"/>
-      <pathelement location="${commons-beanutils.jar}"/>
-      <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${commons-digester.jar}"/>
-      <pathelement location="${commons-logging.jar}"/>
-    </path>
-
-    <path id="compile.classpath.struts1.1">
-      <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts.libs}/struts.jar"/>
-      <pathelement location="${commons-beanutils.jar}"/>
-      <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${commons-digester.jar}"/>
-      <pathelement location="${commons-logging.jar}"/>
+	  <path refid="commons-jars" />
     </path>
 
-    <path id="compile.classpath.struts1.1">
+    <path id="compile.classpath.struts1.0">
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts1.0.home}/lib/struts.jar"/>
-      <pathelement location="${commons-beanutils.jar}"/>
-      <pathelement location="${commons-collections.jar}"/>
-      <pathelement location="${commons-digester.jar}"/>
-      <pathelement location="${commons-logging.jar}"/>
+	  <path refid="commons-jars" />
     </path>
 
 
@@ -166,22 +182,8 @@
 <!--
         Prepare static directories for web applications
 -->
-    <target name="static.webapps">
+    <target name="static.webapps" depends="init" >
         <ant antfile="build-webapps.xml" target="static"/>
-    </target>
-
-<!--
-        Compile Libraries for each target
--->
-    <target name="compile.library" depends="init"
-    description="Compile Tiles libraries">
-
-        <!-- for struts1.1 -->
-	    <antcall target="compile.clean.library.classes" />
-	    <antcall target="compile.library.struts1.1" />
-        <!-- for struts1.0.X -->
-	    <antcall target="compile.clean.library.classes" />
-	    <antcall target="compile.library.struts1.0" />
     </target>
 
 
@@ -217,32 +219,27 @@
     </target>
 
 <!--
-        Create directories and copy files required for building library
+        Compile Libraries for each target
 -->
-    <target name="compile.clean.library.classes" depends="prepare.library" >
-		  <delete quiet="true">
-		    <fileset dir="${build.home}/library/classes" includes="**/*.class"/>
-		  </delete>
+    <target name="compile.library" depends="init,compile.library.struts1.1,compile.library.struts1.0"
+    description="Compile Tiles libraries">
+
     </target>
 
 <!--
         Compile  Tiles library for Struts1.1
 -->
-    <target name="compile.library.struts1.1" if="struts.home"
+    <target name="compile.library.struts1.1" if="struts.libs"
      depends="prepare.library"
      description="Compile Tiles library for Struts1.1">
 
-        <antcall target="prepare.library" />
         <javac srcdir="${src.share.dir}"
             destdir="${build.home}/library/classes"
             debug="${compile.debug}"
             optimize="${compile.optimize}"
             deprecation="${compile.deprecation}">
           <classpath refid="compile.classpath"/>
-          <classpath>
-            <pathelement location="${struts.libs}/struts.jar"/>
-          </classpath>
-        </javac>
+       </javac>
         <jar jarfile="${build.home}/library/${app.name}.jar"
             manifest="${conf.share.dir}/MANIFEST.MF"
             basedir="${build.home}/library/classes"
@@ -256,20 +253,18 @@
      depends="prepare.library"
      description="Compile Tiles library for Struts1.0.x">
 
-        <antcall target="prepare.library" />
-
+	       <!-- Delete previous .class to enforce recompilation -->
+	    <delete quiet="true">
+	      <fileset dir="${build.home}/library/classes" includes="**/*.class"/>
+	    </delete>
         <property name="jar.name" value="${app.name}ForStruts1-0"/>
-
         <javac srcdir="${src.share.dir}"
             destdir="${build.home}/library/classes"
             debug="${compile.debug}"
             optimize="${compile.optimize}"
             deprecation="${compile.deprecation}">
           <exclude name="org/apache/struts/tiles/TilesRequestProcessor.java" />
-          <classpath refid="compile.classpath"/>
-          <classpath>
-            <pathelement location="${struts1.0.home}/lib/struts.jar"/>
-          </classpath>
+          <classpath refid="compile.classpath.struts1.0"/>
         </javac>
         <jar jarfile="${build.home}/library/${jar.name}.jar"
             manifest="${conf.share.dir}/MANIFEST.MF"
@@ -277,60 +272,6 @@
             includes="**"/>
 
 		  <move file="${build.home}/library/${jar.name}.jar" todir="${build.home}/library/struts1.0" />
-    </target>
-
-<!--
-        Procedure to compile library with struts1.0, if set
--->
-    <target name="proc.compile.library1.0" if="struts1.0.home" >
-	      <!-- delete classes to ensure new classes are compiled -->
-		  <delete>
-		    <fileset dir="${build.home}/library/classes" includes="**/*.class"/>
-		  </delete>
-  	    <antcall target="proc.compile.library" >
-		  <param name="build.lib.classes" value="${build.home}/library/classes" />
-		  <param name="compile.classpath" value="compile.classpath1.0" />
-		  <param name="app.name" value="${app.name}ForStruts1-0" />
-		</antcall>
-		<move file="${build.home}/library/${app.name}ForStruts1-0.jar" todir="${build.home}/library/struts1.0" />
-	</target>
-
-<!--
-        Procedure to compile library
-		@param build.lib.classes directory where classes are compiled
-		@param compile.classpath refid of classpath
-		@param app.name name use for the resulting .jar
--->
-    <target name="proc.compile.library" >
-        <javac srcdir="${src.share.dir}"
-            destdir="${build.lib.classes}"
-            debug="${compile.debug}"
-            optimize="${compile.optimize}"
-            deprecation="${compile.deprecation}">
-          <classpath refid="${compile.classpath}"/>
-        </javac>
-        <copy todir="${build.lib.classes}">
-            <fileset dir="${src.share.dir}" includes="**/*.properties"/>
-        </copy>
-        <copy todir="${build.lib.classes}">
-            <fileset dir="${src.share.dir}" includes="**/*.dtd"/>
-        </copy>
-        <copy todir="${build.home}/library">
-            <fileset dir="${conf.share.dir}" includes="*.dtd"/>
-            <fileset dir="${conf.share.dir}" includes="*.tld"/>
-        </copy>
-        <style basedir="${doc.dir}"
-            destdir="${build.home}/library"
-            extension=".tld"
-            style="stylesheets/tld.xsl"
-            includes="*.xml"/>
-        <copy todir="${build.lib.classes}/META-INF/tlds">
-            <fileset dir="${build.home}/library" includes="*.tld"/>
-        </copy>
-        <jar jarfile="${build.home}/library/${app.name}.jar"
-            manifest="${conf.share.dir}/MANIFEST.MF"
-            basedir="${build.lib.classes}"
-            includes="**"/>
     </target>
 
 <!--
@@ -350,14 +291,13 @@
         <mkdir dir="${build.home}/documentation/api"/>
         <javadoc sourcepath="${src.share.dir}"
             destdir="${build.home}/documentation/api"
-            classpath="${servlet.jar}"
             packagenames="org.apache.struts.*"
             author="true"
             private="true"
             version="true"
             windowtitle="Tiles API Documentation"
             doctitle="&lt;h1&gt;Tiles Framework (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2000-2001 - Cedric Dumoulin and Apache Software Foundation">
+            bottom="Copyright &#169; 2000-2002 - Cedric Dumoulin and Apache Software Foundation">
 			<classpath refid="compile.classpath"/>
 			</javadoc>
     </target>

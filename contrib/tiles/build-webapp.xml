@@ -45,8 +45,20 @@
         build.home                    Base directory into which we are building
                                       the Struts tiles.
 
-        commons-lib.home              (required).  The path to the JAR files
-                                      of the Jakarta Commons 
+        commons-beanutils.jar         (required).  The path to the JAR file
+                                      of the Jakarta Commons Beanutils
+                                      package (version 1.0 or later).
+
+        commons-collections.jar       (required).  The path to the JAR file
+                                      of the Jakarta Commons Collections
+                                      package (version 1.0 or later).
+
+        commons-digester.jar          (required).  The path to the JAR file
+                                      of the Jakarta Commons Digester
+                                      package (version 1.0 or later).
+
+        commons-logging.jar           (required).  The path to the JAR file
+                                      of the Jakarta Commons Logging
                                       package (version 1.0 or later).
 
         servlet.jar                   MUST be set to the pathname of the
@@ -187,7 +199,7 @@
 
   <!-- Should we copy Tiles library and TLD files? -->
   <available property="webapp.tiles"    file="${tiles.libs}" />
-
+  
 </target>
 
 
@@ -304,7 +316,7 @@
         application, if and only if the specified source directory
         actually exists.
 -->
-<target name="compile" depends="static" if="hasSrcToCompile"
+<target name="compile"  if="hasSrcToCompile" depends="init"
         description="Compile Java sources">
   <echo    message="Compiling webapp ${webapp.name}"/>
   <javac  srcdir="${webapp.src}"
@@ -328,7 +340,7 @@
         your completed web application, suitable for deployment on any
         compatible servlet container.
 -->
-<target name="dist" depends="compile"
+<target name="dist" 
         description="Create web application archive">
   <echo    message="Processing webapp ${webapp.name}"/>
   <jar  jarfile="${webapp.dist}/${webapp.war}"

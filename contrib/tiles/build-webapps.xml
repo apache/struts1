@@ -26,11 +26,24 @@
         servlet.jar                   The pathname of the servlet API classes
                                       that you wish to compile against.
 
-        commons-lib.home              The path to the JAR files
-                                      of the Jakarta Commons 
+        commons-beanutils.jar         (required).  The path to the JAR file
+                                      of the Jakarta Commons Beanutils
                                       package (version 1.0 or later).
-        struts.libs                   The directory containing struts.jar and
-                                      the associated TLD files.
+
+        commons-collections.jar       (required).  The path to the JAR file
+                                      of the Jakarta Commons Collections
+                                      package (version 1.0 or later).
+
+        commons-digester.jar          (required).  The path to the JAR file
+                                      of the Jakarta Commons Digester
+                                      package (version 1.0 or later).
+
+        commons-logging.jar           (required).  The path to the JAR file
+                                      of the Jakarta Commons Logging
+                                      package (version 1.0 or later).
+
+        struts.libs                   (required).  The directory containing 
+                                      struts.jar and the associated TLD files.
 
         tiles.libs                    The directory containing tiles.jar and
                                       the associated TLD files.
@@ -39,6 +52,10 @@
                                       directory from which all available
                                       "*.jar" files are copied to the web
                                       application's WEB-INF/lib directory.
+									  
+        struts1.0.home                If specified, must be the directory 
+		                              containing struts1.0
+                                      struts.jar and the associated TLD files..
 -->
 
 <property name="build.home"           value="target"/>
@@ -70,7 +87,7 @@
 <!-- The base directory for distribution targets -->
 <property name="dist.home"             value="dist" />
 
-<!-- Directory where core struts library configurations files are stored -->
+<!-- Directory where core tiles library configurations files are stored -->
 <property name="conf.share.dir" value="conf/share"/>
 
 <!-- Doc directory -->
@@ -86,13 +103,52 @@
 -->
 
 <!--
+        The "static.optional.struts1.0" target causes the "static" target of 
+        individual web application depending on struts1.0 to be executed.
+		webapp.name : application name in dist
+		webapp.war  : jar file name
+		webapp.web  : webapp directory name in module
+-->
+<target name="static.optional.struts1.0" if="struts1.0.home" >
+
+    <!-- blank for struts1.0 -->
+  <ant  antfile="build-webapp.xml"    target="static">
+    <property name="webapp.name"      value="blank-struts1-0"/>
+    <property name="webapp.web"      value="web/blank"/>
+    <property name="struts.libs"    value="${struts1.0.home}/lib"/>
+  </ant>
+  <move file="${build.home}/blank-struts1-0/WEB-INF/web-struts.xml" 
+      tofile="${build.home}/blank-struts1-0/WEB-INF/web.xml" />
+  <replace file="${build.home}/blank-struts1-0/WEB-INF/struts-config.xml">
+    <replacetoken><![CDATA[<!-- struts1.1 only begin -->]]></replacetoken>
+    <replacevalue><![CDATA[<!-- struts1.1 only begin]]></replacevalue>
+  </replace>
+  <replace file="${build.home}/blank-struts1-0/WEB-INF/struts-config.xml">
+    <replacetoken><![CDATA[<!-- struts1.1 only end -->]]></replacetoken>
+    <replacevalue><![CDATA[     struts1.1 only end -->]]></replacevalue>
+  </replace>
+  <replace file="${build.home}/blank-struts1-0/WEB-INF/struts-config.xml">
+    <replacefilter 
+        token="Struts Configuration 1.1//EN" 
+        value="Struts Configuration 1.0//EN"/>
+    <replacefilter 
+        token="struts-config_1_1.dtd" 
+        value="struts-config_1_0.dtd"/>
+		
+	</replace>
+  <delete file="${build.home}/blank-struts1-0/WEB-INF/lib/tiles.jar" />
+  <copy file="${build.home}/library/struts1.0/tilesForStruts1-0.jar" 
+       todir="${build.home}/blank-struts1-0/WEB-INF/lib" />
+</target>
+
+<!--
         The "static.generic" target causes the "static" target of each
         individual web application to be executed.
 		webapp.name : application name in dist
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="static.generic.optional" if="make.optional.webapps" >
+<target name="static.optional" if="make.optional.webapps" >
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="template-example"/>
     <property name="webapp.web"      value="web/template"/>
@@ -100,12 +156,27 @@
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="channel"/>
     <property name="webapp.web"      value="web/channel"/>
+    <property name="webapp.src"      value="src/tutorial"/>
   </ant>
+    <!-- blank -->
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="blank"/>
     <property name="webapp.web"      value="web/blank"/>
     <property name="struts.libs"    value="false"/>
   </ant>
+  <delete file="${build.home}/blank/WEB-INF/struts-config.xml" />
+  <delete file="${build.home}/blank/WEB-INF/web-struts.xml" />
+    <!-- blank for struts1.1 -->
+  <ant  antfile="build-webapp.xml"    target="static">
+    <property name="webapp.name"      value="blank-struts1-1"/>
+    <property name="webapp.web"      value="web/blank"/>
+    <property name="struts.libs"    value="${struts.libs}"/>
+  </ant>
+  <move file="${build.home}/blank-struts1-1/WEB-INF/web-struts.xml" 
+      tofile="${build.home}/blank-struts1-1/WEB-INF/web.xml" />
+    <!-- 1.0 applications -->
+  <antcall target="static.optional.struts1.0" />
+
 </target>
 
 <!--
@@ -115,10 +186,16 @@
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="static.generic" depends="static.generic.optional" >
+<target name="static.required" >
+    <!-- Copy DTDs for Tiles constructs -->
+    <copy  todir="${build.home}/documentation/dtds">
+      <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
+    </copy>
+	
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="documentation"/>
     <property name="webapp.web"       value="web/doc"/>
+    <property name="webapp.src"       value="src/tutorial"/>
   </ant>
 </target>
 
@@ -127,31 +204,21 @@
         The "static" target causes non-generic static activity required
         for specific tag libraries to be executed.
 -->
-<target name="static.optional" if="make.optional.webapps"
-        description="Copy optional static resources for individual web applications">
-</target>
-
-<!--
-        The "static" target causes non-generic static activity required
-        for specific tag libraries to be executed.
--->
-<target name="static" depends="static.optional,static.generic"
+<target name="static" 
         description="Copy static resources for individual web applications">
-    <!-- Copy DTDs for Struts constructs -->
-    <copy  todir="${build.home}/documentation/dtds">
-      <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
-    </copy>
+	<antcall target="static.required" />
+	<antcall target="static.optional" />
 </target>
 
 
 <!--
-        The "compile.generic" target causes the "compile" target of each
+        The "compile.optional" target causes the "compile" target of each
         individual web application to be executed.
 		webapp.name : application name in dist
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="compile.generic.optional" if="make.optional.webapps" >
+<target name="compile.optional" if="make.optional.webapps" >
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="template-example"/>
     <property name="webapp.web"      value="web/template"/>
@@ -167,31 +234,30 @@
     <property name="webapp.web"      value="web/blank"/>
     <property name="struts.libs"    value="false"/>
   </ant>
+  <ant  antfile="build-webapp.xml"    target="compile">
+    <property name="webapp.name"      value="blank-struts1-1"/>
+    <property name="webapp.web"      value="web/blank"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="compile">
+    <property name="webapp.name"      value="blank-struts1-0"/>
+    <property name="webapp.web"      value="web/blank"/>
+  </ant>
 </target>
 
 <!--
-        The "compile.generic" target causes the "compile" target of each
-        individual web application to be executed.
+        The "compile.documentation" target causes the documentation to be 
+		compiled.
 		webapp.name : application name in dist
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="compile.generic" depends="compile.generic.optional" >
+<target name="compile.documentation" >
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="documentation"/>
     <property name="webapp.web"      value="web/doc"/>
 	  <!-- compile tutorial sources -->
     <property name="webapp.src"      value="src/tutorial/"/>
   </ant>
-</target>
-
-
-<!--
-        The "compile" target causes non-generic compile activity required
-        for specific tag libraries to be executed.
--->
-<target name="compile" depends="compile.generic"
-        description="Compile individual web applications">
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation/doc">
       <fileset   dir="${doc.dir}/html">
@@ -215,9 +281,27 @@
            extension="Tags.html" style="stylesheets/tiles.xsl" includes="tiles*.xml"/>
     <!-- Create the xml documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
-           extension="Xml.html" style="stylesheets/tiles.xsl" includes="*.xml" excludes="tiles*.xml" />
+           extension=".html" style="stylesheets/tiles.xsl" includes="*.xml" excludes="tiles*.xml" />
 </target>
 
+
+<!--
+        The "compile.required" target causes non-generic compile activity required
+        for specific tag libraries to be executed.
+-->
+<target name="compile.required" >
+  <antcall target="compile.documentation" />
+</target>
+
+<!--
+        The "compile" target causes non-generic compile activity required
+        for specific tag libraries to be executed.
+-->
+<target name="compile" 
+        description="Compile individual web applications">
+  <antcall target="compile.required" />
+  <antcall target="compile.optional" />
+</target>
 
 <!--
         The "dist.generic" target causes the "dist" target of each
@@ -226,7 +310,23 @@
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="dist.generic.optional" if="make.optional.webapps" >
+<target name="dist.optional.struts1.0" if="struts1.0.home" >
+  <ant  antfile="build-webapp.xml"    target="dist">
+    <property name="webapp.name"      value="blank-struts1-0"/>
+    <property name="webapp.web"       value="web/blank"/>
+    <property name="webapp.war"       value="tiles-blank-struts1-0.war"/>
+    <property name="struts.libs"      value="${struts1.0.home}/lib"/>
+  </ant>
+</target>
+
+<!--
+        The "dist.generic" target causes the "dist" target of each
+        individual web application to be executed.
+		webapp.name : application name in dist
+		webapp.war  : jar file name
+		webapp.web  : webapp directory name in module
+-->
+<target name="dist.optional" if="make.optional.webapps" >
   <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="template-example"/>
     <property name="webapp.web"       value="web/template"/>
@@ -243,6 +343,12 @@
     <property name="webapp.war"       value="tiles-blank.war"/>
     <property name="struts.libs"    value="false"/>
   </ant>
+  <ant  antfile="build-webapp.xml"    target="dist">
+    <property name="webapp.name"      value="blank-struts1-1"/>
+    <property name="webapp.web"       value="web/blank"/>
+    <property name="webapp.war"       value="tiles-blank-struts1-1.war"/>
+  </ant>
+  <antcall target="dist.optional.struts1.0" />
 </target>
 
 <!--
@@ -252,7 +358,7 @@
 		webapp.war  : jar file name
 		webapp.web  : webapp directory name in module
 -->
-<target name="dist.generic" depends="dist.generic.optional">
+<target name="dist.required" >
   <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="documentation"/>
     <property name="webapp.web"       value="web/doc"/>
@@ -265,9 +371,11 @@
         The "dist" target causes non-generic dist activity required
         for specific tag libraries to be executed.
 -->
-<target name="dist" depends="dist.generic"
-        description="Create distribution output of web applications">
+<target name="dist" description="Create distribution output of web applications">
+  <antcall target="dist.required" />
+  <antcall target="dist.optional" />
 </target>
+
 
 
 <!--
@@ -276,7 +384,11 @@
 		webapp.name : application name in dist
 		webapp.web  : webapp directory name in module
 -->
-<target name="clean.generic.optional" if="make.optional.webapps">
+<target name="clean.generic" >
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="documentation"/>
+    <property name="webapp.web"      value="web/doc"/>
+  </ant>
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="template-example"/>
     <property name="webapp.web"      value="web/template"/>
@@ -289,18 +401,13 @@
     <property name="webapp.name"      value="blank"/>
     <property name="webapp.web"      value="web/blank"/>
   </ant>
-</target>
-
-<!--
-        The "clean.generic" target causes the "clean" target of each
-        individual web application to be executed.
-		webapp.name : application name in dist
-		webapp.web  : webapp directory name in module
--->
-<target name="clean.generic" depends="clean.generic.optional">
   <ant  antfile="build-webapp.xml"    target="clean">
-    <property name="webapp.name"      value="documentation"/>
-    <property name="webapp.web"      value="web/doc"/>
+    <property name="webapp.name"      value="blank-struts1-1"/>
+    <property name="webapp.web"      value="web/blank"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="blank-struts1-0"/>
+    <property name="webapp.web"      value="web/blank"/>
   </ant>
 </target>
 
