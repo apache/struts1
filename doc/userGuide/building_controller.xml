@@ -426,8 +426,13 @@
 
     <p>
     Maintaining a separate concrete ActionForm class for each form in your 
-    Struts application is time-consuming. 
-    This can be alleviated through the use of DynaActionForm classes. 
+    Struts application is time-consuming.
+    It is particularly frustrating when all the ActionForm does is gather
+    and validate simple properties that are passed along to a business
+    JavaBean.
+    </p>
+    <p>
+    This bottleneck can be alleviated through the use of DynaActionForm classes.
     Instead of creating a new ActionForm subclass and new get/set methods for 
     each of your bean's properties, you can list its properties, type, and 
     defaults in the Struts configuration file.
@@ -527,15 +532,15 @@
     </p>
     
     <p>
-    In JSP pages using Struts custom tags, attributes of 
+    In JSP pages using Struts custom tags (except bean:define), attributes of
     <code>DynaActionForm</code> objects can be referenced just like ordinary
     <code>ActionForm</code> objects.  
-    However, when utilizing the JavaServer Pages Standard Tag Library, only 
+    However, when utilizing the JavaServer Pages Standard Tag Library (JSTL), only
     properties of ordinary <code>ActionForm</code> objects can be directly 
     accessed through the JSTL expression language syntax.  
-    However, <code>DynaActionForm</code> properties can be accessed through a 
+    Although, <code>DynaActionForm</code> properties can be accessed through a
     slightly different syntax. 
-    In particular, whereas the JSTL EL syntax for referencing a property
+    The JSTL EL syntax for referencing a property
     of an <code>ActionForm</code> would be something like:
     </p>
     
@@ -552,6 +557,41 @@
     The <code>map</code> property is a property of 
     <code>DynaActionForm</code> which represents the <code>HashMap</code>
     containing the <code>DynaActionForm</code> properties.
+    </p>
+
+    <p>
+    DynaActionForms are meant as a simple solution to a simple problem:
+    <i>Your ActionForms use simple properties and standard validations,
+    and you just pass these properties over to another JavaBean</i>
+    (say using BeanUtils.copyProperties(<code>myBusinessBean,form)</code>).
+    </p>
+
+    <p>
+    DynaActionForms are <b>not</b> a drop-in replacement for ActionForms.
+    If you need to access ActionForm properties in your Action, you will need to
+    use the map-style accessor, like <code>myForm.get("name")</code>.
+    If you actively use the ActionForm object in your Action,
+    then you may want to use conventional ActionForms instead.
+    </p>
+
+    <p>
+    If need be, you can subclass the DynaActionForm to add whatever
+    helper methods you might need. Simply specify your subclass
+    in the struts-config instead.
+    </p>
+
+    <p>
+    DynaActionForms cannot be instantiated using a no-argument constructor.
+    In order to simulate the extra properties,
+    there is a lot of machinery involved in their construction.
+    You must rely on Struts to instantiate a DynaActionForm for you,
+    via the ActionMapping.
+    </p>
+
+    <p>
+    To use DynaActionForms with the Struts Validator, specify
+    <code>org.apache.struts.validator.ValidatorActionForm</code> as
+    the form-bean class.
     </p>
 
 </section>
