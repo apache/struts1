@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.6 2003/05/10 17:37:44 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/05/10 17:37:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.7 2003/07/10 01:12:10 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/10 01:12:10 $
  *
  * ====================================================================
  *
@@ -128,7 +128,9 @@ public class TagUtils {
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
      * @exception NoSuchMethodException if an accessor method for this
-     *  propety cannot be found
+     *  propety cannot be found.
+     * @deprecated Use PropertyUtils.getProperty() directly.  This will be removed
+     * after Struts 1.2.
      */
 	public static Object getProperty(Object bean, String name)
 		throws
@@ -229,7 +231,7 @@ public class TagUtils {
             Object realValue;
             Object bean = retrieveBean(beanName, beanScope, pageContext);
             if (bean != null && beanProperty != null) {
-                realValue = getProperty(bean, beanProperty);
+                realValue = PropertyUtils.getProperty(bean, beanProperty);
             } else {
                 realValue = bean; // value can be null
             }
@@ -245,6 +247,7 @@ public class TagUtils {
                     + beanScope
                     + "'. (exception : "
                     + ex.getMessage());
+                    
         } catch (InvocationTargetException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"
@@ -255,6 +258,7 @@ public class TagUtils {
                     + beanScope
                     + "'. (exception : "
                     + ex.getMessage());
+                    
         } catch (IllegalAccessException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"
