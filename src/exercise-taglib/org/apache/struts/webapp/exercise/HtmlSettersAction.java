@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/HtmlSettersAction.java,v 1.1 2001/04/11 01:55:37 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2001/04/11 01:55:37 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/HtmlSettersAction.java,v 1.2 2002/03/11 06:13:13 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/11 06:13:13 $
  *
  * ====================================================================
  *
@@ -63,8 +63,6 @@
 package org.apache.struts.webapp.exercise;
 
 
-import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
@@ -79,7 +77,7 @@ import org.apache.struts.action.ActionMapping;
  * or the main menu (if "Cancel" was pressed).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/04/11 01:55:37 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/11 06:13:13 $
  */
 
 public class HtmlSettersAction extends Action {
@@ -94,14 +92,13 @@ public class HtmlSettersAction extends Action {
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if business logic throws an exception
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
                                  HttpServletRequest request,
                                  HttpServletResponse response)
-        throws IOException, ServletException {
+        throws Exception {
 
         if (isCancelled(request))
             return (mapping.findForward("index"));

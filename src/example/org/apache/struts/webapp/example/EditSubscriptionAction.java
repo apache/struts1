@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.6 2002/03/05 04:55:51 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/03/05 04:55:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditSubscriptionAction.java,v 1.7 2002/03/11 06:13:13 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/03/11 06:13:13 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/03/05 04:55:51 $
+ * @version $Revision: 1.7 $ $Date: 2002/03/11 06:13:13 $
  */
 
 public final class EditSubscriptionAction extends Action {
@@ -130,7 +130,7 @@ public final class EditSubscriptionAction extends Action {
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
-	MessageResources messages = getResources();
+	MessageResources messages = getResources(request);
 	HttpSession session = request.getSession();
 	String action = request.getParameter("action");
 	if (action == null) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.3 2002/03/05 04:55:51 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/05 04:55:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.4 2002/03/11 06:13:13 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/03/11 06:13:13 $
  *
  * ====================================================================
  *
@@ -63,12 +63,10 @@
 package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
@@ -87,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/03/05 04:55:51 $
+ * @version $Revision: 1.4 $ $Date: 2002/03/11 06:13:13 $
  */
 
 public final class LogoffAction extends Action {
@@ -118,18 +116,17 @@ public final class LogoffAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if business logic throws an exception
      */
-    public ActionForward perform(ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
 				 ActionForm form,
 				 HttpServletRequest request,
 				 HttpServletResponse response)
-	throws IOException, ServletException {
+	throws Exception {
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
-	MessageResources messages = getResources();
+	MessageResources messages = getResources(request);
 	HttpSession session = request.getSession();
 	User user = (User) session.getAttribute(Constants.USER_KEY);
 

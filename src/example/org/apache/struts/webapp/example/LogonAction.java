@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.6 2002/03/05 04:55:51 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/03/05 04:55:51 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogonAction.java,v 1.7 2002/03/11 06:13:13 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/03/11 06:13:13 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/03/05 04:55:51 $
+ * @version $Revision: 1.7 $ $Date: 2002/03/11 06:13:13 $
  */
 
 public final class LogonAction extends Action {
@@ -129,7 +129,7 @@ public final class LogonAction extends Action {
 
 	// Extract attributes we will need
 	Locale locale = getLocale(request);
-	MessageResources messages = getResources();
+	MessageResources messages = getResources(request);
 	User user = null;
 
 	// Validate the request parameters specified by the user

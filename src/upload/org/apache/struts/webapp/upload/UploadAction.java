@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.5 2002/03/06 19:39:08 mschachter Exp $
-* $Revision: 1.5 $
-* $Date: 2002/03/06 19:39:08 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.6 2002/03/11 06:13:13 martinc Exp $
+* $Revision: 1.6 $
+* $Date: 2002/03/11 06:13:13 $
 *
 * ====================================================================
 *
@@ -87,15 +87,17 @@ import org.apache.struts.action.ForwardingActionForward;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.5 $ $Date: 2002/03/06 19:39:08 $
+ * @version $Revision: 1.6 $ $Date: 2002/03/11 06:13:13 $
  */
 
 
 public class UploadAction extends Action
 {
-    public ActionForward perform(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response)
-    {
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+        throws Exception {
 
         if (form instanceof UploadForm) {
 
