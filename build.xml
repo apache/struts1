@@ -213,8 +213,8 @@
 	         author="true"
                 private="true"
                 version="true"
-            windowtitle="Jakarta Struts API Documentation"
-               doctitle="&lt;h1&gt;Jakarta Struts Package&lt;/h1&gt;"
+            windowtitle="Apache Struts API Documentation"
+               doctitle="&lt;h1&gt;Apache Struts Framework&lt;/h1&gt;"
                  bottom="Copyright &#169; 2000 - Apache Software Foundation"/>
   </target>
 
