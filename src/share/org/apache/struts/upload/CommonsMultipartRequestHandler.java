@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.9 2003/04/27 17:49:34 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2003/04/27 17:49:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.10 2003/05/02 04:35:42 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/05/02 04:35:42 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.Globals;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.9 $ $Date: 2003/04/27 17:49:34 $
+  * @version $Revision: 1.10 $ $Date: 2003/05/02 04:35:42 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -250,7 +250,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             if (item.isFormField()) {
                 addTextParameter(request, item);
             } else {
-                addFileParameter(request, item);
+                addFileParameter(item);
             }
         }
     }
@@ -476,10 +476,9 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * Adds a file parameter to the set of file parameters for this request
      * and also to the list of all parameters.
      *
-     * @param request The request in which the parameter was specified.
      * @param item    The file item for the parameter to add.
      */
-    protected void addFileParameter(HttpServletRequest request, FileItem item) {
+    protected void addFileParameter(FileItem item) {
         FormFile formFile = new CommonsFormFile(item);
 
         elementsFile.put(item.getFieldName(), formFile);
