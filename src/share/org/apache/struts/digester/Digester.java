@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.11 2000/12/28 00:27:09 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/12/28 00:27:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.12 2000/12/28 01:55:14 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2000/12/28 01:55:14 $
  *
  * ====================================================================
  * 
@@ -73,10 +73,9 @@ import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
-import java.util.Vector;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import org.apache.struts.util.ArrayStack;
 import org.xml.sax.AttributeList;
 import org.xml.sax.DocumentHandler;
 import org.xml.sax.EntityResolver;
@@ -103,7 +102,7 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/12/28 00:27:09 $
+ * @version $Revision: 1.12 $ $Date: 2000/12/28 01:55:14 $
  */
 
 public final class Digester extends HandlerBase {
@@ -134,7 +133,7 @@ public final class Digester extends HandlerBase {
     /**
      * The stack of body text string buffers for surrounding elements.
      */
-    private Stack bodyTexts = new Stack();
+    private ArrayStack bodyTexts = new ArrayStack();
 
 
     /**
@@ -187,7 +186,7 @@ public final class Digester extends HandlerBase {
     /**
      * The object stack being constructed.
      */
-    private Stack stack = new Stack();
+    private ArrayStack stack = new ArrayStack();
 
 
     /**
@@ -971,10 +970,8 @@ public final class Digester extends HandlerBase {
     public void clear() {
 
 	match = "";
-	while (!bodyTexts.empty())
-	    bodyTexts.pop();
-	while (!stack.empty())
-	    stack.pop();
+        bodyTexts.clear();
+        stack.clear();
 	root = null;
 
     }
@@ -1005,11 +1002,11 @@ public final class Digester extends HandlerBase {
      */
     public Object peek(int n) {
 
-	int index = (stack.size() - n) - 1;
-	if ((index < 0) || (index >= stack.size()))
+	try {
+	    return (stack.peek(n));
+	} catch (EmptyStackException e) {
 	    return (null);
-	else
-	    return (((Vector) stack).elementAt(index));
+	}
 
     }
 
