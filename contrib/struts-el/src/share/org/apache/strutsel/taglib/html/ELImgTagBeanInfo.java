@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.5 2004/01/18 07:11:27 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/18 07:11:27 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.6 2004/01/24 18:48:33 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/24 18:48:33 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -78,8 +78,8 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
         ArrayList proplist = new ArrayList();
 
         try {
-            proplist.add(new PropertyDescriptor("accesskey", ELImgTag.class,
-                                                null, "setAccesskeyExpr"));
+            proplist.add(new PropertyDescriptor("action", ELImgTag.class,
+                                                null, "setActionExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("align", ELImgTag.class,
@@ -100,6 +100,10 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("bundle", ELImgTag.class,
                                                 null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("contextRelative", ELImgTag.class,
+                                                null, "setContextRelativeExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("height", ELImgTag.class,

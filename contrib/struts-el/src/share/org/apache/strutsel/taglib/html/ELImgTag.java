@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.11 2004/01/18 13:43:11 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2004/01/18 13:43:11 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTag.java,v 1.12 2004/01/24 18:48:17 dmkarr Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/01/24 18:48:17 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -83,15 +83,15 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class ELImgTag extends ImgTag {
 
     /**
-     * Instance variable mapped to "accessKey" tag attribute.
+     * Instance variable mapped to "action" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
-    private String accessKeyExpr;
+    private String actionExpr;
     /**
      * Instance variable mapped to "align" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -117,6 +117,11 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String bundleExpr;
+    /**
+     * Instance variable mapped to "contextRelative" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String contextRelativeExpr;
     /**
      * Instance variable mapped to "height" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -299,10 +304,10 @@ public class ELImgTag extends ImgTag {
     private String widthExpr;
 
     /**
-     * Getter method for "accessKey" tag attribute.
+     * Getter method for "action" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
-    public String getAccesskeyExpr() { return (accessKeyExpr); }
+    public String getActionExpr() { return (actionExpr); }
     /**
      * Getter method for "align" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -328,6 +333,11 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getBundleExpr() { return (bundleExpr); }
+    /**
+     * Getter method for "contextRelative" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getContextRelativeExpr() { return (contextRelativeExpr); }
     /**
      * Getter method for "height" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -510,10 +520,10 @@ public class ELImgTag extends ImgTag {
     public String getWidthExpr() { return (widthExpr); }
 
     /**
-     * Setter method for "accessKey" tag attribute.
+     * Setter method for "action" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
-    public void setAccesskeyExpr(String accessKeyExpr) { this.accessKeyExpr = accessKeyExpr; }
+    public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
     /**
      * Setter method for "align" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -539,6 +549,11 @@ public class ELImgTag extends ImgTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
+     * Setter method for "contextRelative" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setContextRelativeExpr(String contextRelativeExpr) { this.contextRelativeExpr = contextRelativeExpr; }
     /**
      * Setter method for "height" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -726,12 +741,13 @@ public class ELImgTag extends ImgTag {
     public void release()
     {
         super.release();
-        setAccesskeyExpr(null);
+        setActionExpr(null);
         setAlignExpr(null);
         setAltExpr(null);
         setAltKeyExpr(null);
         setBorderExpr(null);
         setBundleExpr(null);
+        setContextRelativeExpr(null);
         setHeightExpr(null);
         setHspaceExpr(null);
         setImageNameExpr(null);
@@ -790,9 +806,9 @@ public class ELImgTag extends ImgTag {
         String  string  = null;
         Boolean bool    = null;
 
-        if ((string = EvalHelper.evalString("accessKey", getAccesskeyExpr(),
+        if ((string = EvalHelper.evalString("action", getActionExpr(),
                                             this, pageContext)) != null)
-            setAccesskey(string);
+            setAction(string);
 
         if ((string = EvalHelper.evalString("align", getAlignExpr(),
                                             this, pageContext)) != null)
@@ -813,6 +829,10 @@ public class ELImgTag extends ImgTag {
         if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
                                             this, pageContext)) != null)
             setBundle(string);
+
+        if ((string = EvalHelper.evalString("contextRelative", getContextRelativeExpr(),
+                                            this, pageContext)) != null)
+            setContextRelative(string);
 
         if ((string = EvalHelper.evalString("height", getHeightExpr(),
                                             this, pageContext)) != null)
