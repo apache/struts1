@@ -1527,12 +1527,12 @@
             <ul>
             <li><em>forward</em> - Use the value of this attribute as the
                 name of a global <code>ActionForward</code> to be looked
-                up, and use the application-relative or context-relative
+                up, and use the module-relative or context-relative
                 URI found there.</li>
             <li><em>href</em> - Use the value of this attribute unchanged.
                 </li>
             <li><em>page</em> - Use the value of this attribute as a
-                application-relative URI, and generate a server-relative
+                module-relative URI, and generate a server-relative
                 URI by including the context path and application
                 prefix.</li>
             <li><em>action</em> - Use the value of this attribute as the
@@ -3386,17 +3386,17 @@
                 <ul>
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
-                    up, and use the application-relative or context-relative
+                    up, and use the module-relative or context-relative
                     URI found there.</li>
                 <li><em>action</em> - Use the value of this attribute as the
                     name of a <code>Action</code> to be looked
-                    up, and use the application-relative or context-relative
+                    up, and use the module-relative or context-relative
                     URI found there.</li>
                  <li><em>href</em> - Use the value of this attribute unchanged.
                      </li>
                  <li><em>page</em> - Use the value of this attribute as a
-                    application-relative URI, and generate a server-relative
-                    URI by including the context path and application
+                    module-relative URI, and generate a server-relative
+                    URI by including the context path and module
                     prefix.</li>
                 </ul>
 

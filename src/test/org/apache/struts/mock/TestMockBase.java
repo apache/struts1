@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.14 2004/01/13 12:48:53 husted Exp $
- * $Revision: 1.14 $
- * $Date: 2004/01/13 12:48:53 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.15 2004/02/01 16:15:33 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2004/02/01 16:15:33 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  * tests included in this class are simple validations that the basic
  * environment was set up correctly.</p>
  *
- * @version $Revision: 1.14 $ $Date: 2004/01/13 12:48:53 $
+ * @version $Revision: 1.15 $ $Date: 2004/02/01 16:15:33 $
  */
 
 public class TestMockBase extends TestCase {
@@ -152,7 +152,7 @@ public class TestMockBase extends TestCase {
         // NOTE - we do not initialize the request attribute
         // for the selected module so that fallbacks to the
         // default module can be tested.  To select a module,
-        // tests should set the request attribute Action.APPLICATION_KEY
+        // tests should set the request attribute Globals.MODULE_KEY
         // to the ModuleConfig instance for the selected module
 
     }

@@ -233,8 +233,8 @@ User Guide.
 
 <p>
 But to answer the question =:0), a modular application is a Struts application that uses more than
-one module. Module-relative means that the URI starts at the application-module level, rather than at
-the application-context level, or the absolute-URL level.
+one module. Module-relative means that the URI starts at the module level, rather than at
+the context level, or the absolute-URL level.
 </p>
 <ul>
 <li>Absolute URL: http://localhost/myApplication/myModule/myAction.do</li>
@@ -502,7 +502,7 @@ techniques in your JavaServer Pages, so the answer  to the question is "Yes, you
 Though, using Model 1 techniques in a Struts application does go against the grain.
 The approach recommended by most Struts developers is to create and populate whatever
 objects the view may need in the Action, and then forward these through the request.
-Some objects may also be created and stored in the session or application context,
+Some objects may also be created and stored in the session or context,
 depending on how they are used.
 </p>
 <p>

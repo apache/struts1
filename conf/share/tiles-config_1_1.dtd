@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-     $Id: tiles-config_1_1.dtd,v 1.6 2003/05/03 16:19:56 jholmes Exp $
+     $Id: tiles-config_1_1.dtd,v 1.7 2004/02/01 16:14:07 rleland Exp $
 -->
 
 
@@ -31,7 +31,7 @@
 -->
 <!ENTITY % ClassName "CDATA">
 
-<!-- A "RequestPath" is an application-relative URI path, beginning with a
+<!-- A "RequestPath" is an module-relative URI path, beginning with a
      slash, that identifies a mapped resource (such as a JSP page or a servlet)
      within this web application.
 -->

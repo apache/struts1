@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.40 2003/05/14 08:17:16 turner Exp $
+     $Id: struts-config_1_1.dtd,v 1.41 2004/02/01 16:14:07 rleland Exp $
 -->
 
 
@@ -62,7 +62,7 @@
 <!ENTITY % PropName "CDATA">
 
 
-<!-- A "RequestPath" is an application-relative URI path, beginning with a
+<!-- A "RequestPath" is an module-relative URI path, beginning with a
      slash, that identifies a mapped resource (such as a JSP page or a servlet)
      within this web application.
 -->
@@ -130,7 +130,7 @@
 
 
 <!-- The "form-beans" element describes the set of form bean descriptors for this
-     application module. The following attributes are defined:
+     module. The following attributes are defined:
 
      type            Fully qualified Java class to use when instantiating
                      ActionFormBean objects. If specified, the object must be a
@@ -298,7 +298,7 @@ The "form-bean" element describes a particular form bean, which is a
      available to an Action as a return value. An ActionForward is referenced by
      a logical name and encapsulates a URI. A "forward" element may be used to
      describe both global and local ActionForwards. Global forwards are available
-     to all the Action objects in the application module. Local forwards can be
+     to all the Action objects in the module. Local forwards can be
      nested within an <action> element and only available to an Action object
      when it is invoked through that ActionMapping.
 
@@ -378,7 +378,7 @@ The "form-bean" element describes a particular form bean, which is a
                      will process this request, instead of the Action class
                      specified by "type".  The path WILL NOT be processed
                      through the "forwardPattern" attribute that is configured
-                     on the "controller" element for this application module.
+                     on the "controller" element for this module.
                      Exactly one of "forward", "include", or "type" must be
                      specified.
 
@@ -386,7 +386,7 @@ The "form-bean" element describes a particular form bean, which is a
                      will process this request, instead of the Action class
                      specified by "type".  The path WILL NOT be processed
                      through the "forwardPattern" attribute that is configured
-                     on the "controller" element for this application module.
+                     on the "controller" element for this module.
                      Exactly one of "forward", "include", or "type" must be
                      specified.
 
@@ -467,7 +467,7 @@ The "form-bean" element describes a particular form bean, which is a
 
 <!-- The "controller" element describes the ControllerConfig bean
      [org.apache.struts.config.ControllerConfig] that encapsulates
-     an application module's runtime configuration. The following
+     a module's runtime configuration. The following
      attributes are defined:
 
      bufferSize      The size of the input buffer used when processing
@@ -595,11 +595,11 @@ The "form-bean" element describes a particular form bean, which is a
      key             Servlet context attribute under which this message
                      resources bundle will be stored. The default attribute is
                      the value specified by the string constant at
-                     [Globals.MESSAGES_KEY]. The application module prefix (if
+                     [Globals.MESSAGES_KEY]. The module prefix (if
                      any) is appended to the key (${key}${prefix}).
                      [org.apache.struts.Globals.MESSAGES_KEY]
 
-                     NOTE: The application module  prefix includes the leading
+                     NOTE: The module  prefix includes the leading
                      slash, so the default message resource bundle for a module
                      named "foo" is stored under
                      "org.apache.struts.action.MESSAGE/foo".

@@ -1350,7 +1350,7 @@ throws Exception;
 
     <p>
     Fronting your pages with ActionMappings is <em>essential</em> when using 
-    application modules, since doing so is the only way you involve the 
+    modules, since doing so is the only way you involve the 
     controller in the request -- and you want to!  
     The controller puts the application configuration in the request,
     which makes available all of your module-specific configuration data 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.6 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.6 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/ModuleConfigVerifier.java,v 1.7 2004/02/01 16:15:33 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/02/01 16:15:33 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * <p>Convenient implementation of {@link PlugIn} that performs as many
  * verification tests on the information stored in the {@link ModuleConfig}
- * for this application module as is practical.  Based on the setting of the
+ * for this module as is practical.  Based on the setting of the
  * <code>fatal</code> property (which defaults to <code>true</code>), the
  * detection of any such errors will cause a <code>ServletException</code>
  * to be thrown from the <code>init</code> method, which will ultimately
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Under all circumstances, errors that are detected will be logged via
  * calls to <code>ServletContext.log</code>.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/01/13 12:48:45 $
+ * @version $Revision: 1.7 $ $Date: 2004/02/01 16:15:33 $
  * @since Struts 1.1
  */
 
@@ -96,7 +96,7 @@ public class ModuleConfigVerifier implements PlugIn {
 
 
     /**
-     * <p>The {@link ModuleConfig} instance for our application module.</p>
+     * <p>The {@link ModuleConfig} instance for our module.</p>
      */
     protected ModuleConfig config = null;
 
