@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.8 2002/02/26 03:38:57 dwinterfeldt Exp $
- * $Revision: 1.8 $
- * $Date: 2002/02/26 03:38:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.9 2002/02/26 05:21:07 dwinterfeldt Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/02/26 05:21:07 $
  *
  * ====================================================================
  *
@@ -180,7 +180,7 @@ import org.apache.commons.logging.LogSource;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.8 $ $Date: 2002/02/26 03:38:57 $
+ * @version $Revision: 1.9 $ $Date: 2002/02/26 05:21:07 $
  */
 
 public class GenericDataSource implements DataSource {
@@ -594,8 +594,6 @@ public class GenericDataSource implements DataSource {
      * Return the log writer for this data source.
      *
      * @exception SQLException if a database access error occurs
-     *
-     * @deprecated Switched to Commons Logging.
      */
     public PrintWriter getLogWriter() throws SQLException {
 
@@ -624,8 +622,6 @@ public class GenericDataSource implements DataSource {
      * @param logWriter The new log writer
      *
      * @exception SQLException if a database access error occurs
-     *
-     * @deprecated Switched to Commons Logging.
      */
     public void setLogWriter(PrintWriter logWriter) throws SQLException {
 
@@ -769,8 +765,6 @@ public class GenericDataSource implements DataSource {
      * Log the specified message to our log writer, if we have one.
      *
      * @param message The message to be logged
-     *
-     * @deprecated Switched to Commons Logging.
      */
     protected void log(String message) {
 
@@ -790,8 +784,6 @@ public class GenericDataSource implements DataSource {
      *
      * @param message The message to be logged
      * @param throwable The exception to be logged
-     *
-     * @deprecated Switched to Commons Logging.
      */
     protected void log(String message, Throwable throwable) {
 
