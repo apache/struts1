@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.20 2003/08/15 23:50:26 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/08/15 23:50:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.21 2003/08/15 23:53:11 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/08/15 23:53:11 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import org.apache.commons.validator.ValidatorResources;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
@@ -84,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  * @author David Winterfeldt
  * @author Eddie Bush
  * @author David Graham
- * @version $Revision: 1.20 $ $Date: 2003/08/15 23:50:26 $
+ * @version $Revision: 1.21 $ $Date: 2003/08/15 23:53:11 $
  * @since Struts 1.1
  */
 public class Resources {
@@ -221,6 +222,8 @@ public class Resources {
      * @param request the servlet request
      * @param va Validator action
      * @param field the validator Field
+     * @deprecated Use getActionMessage() instead.  This will be removed after
+     * Struts 1.2.
      */
     public static ActionError getActionError(
         HttpServletRequest request,
@@ -240,6 +243,34 @@ public class Resources {
                 : va.getMsg();
 
         return new ActionError(msg, args);
+    }
+    
+    /**
+     * Gets the <code>ActionError</code> based on the 
+     * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+     * arg objects.
+     * @param request the servlet request
+     * @param va Validator action
+     * @param field the validator Field
+     */
+    public static ActionMessage getActionMessage(
+        HttpServletRequest request,
+        ValidatorAction va,
+        Field field) {
+
+        String args[] =
+            getArgs(
+                va.getName(),
+                getMessageResources(request),
+                RequestUtils.getUserLocale(request, null),
+                field);
+
+        String msg =
+            field.getMsg(va.getName()) != null
+                ? field.getMsg(va.getName())
+                : va.getMsg();
+
+        return new ActionMessage(msg, args);
     }
 
     /**
