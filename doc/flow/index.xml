@@ -25,7 +25,7 @@ components like Actions and ActionForms.
             <ul>
               <li>Easily script complex workflows</li>
               <li>Full access to Struts features</li>
-              <li>Can exist side-by-side existing Struts actions</li>
+              <li>Can exist side-by-side regular Struts actions</li>
               <li>Ability to run in non-Struts environments (uses Jakarta's Commons-Chain)</li>
               <li>Includes Wizard library to help easily create complex wizards</li> 
               <li>Includes Wizard example</li> 
