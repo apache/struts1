@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -87,13 +87,13 @@ public class TagUtils {
     private static final Map scopes = new HashMap();
 
     /**
-     * Initialize the scope names map and the encode variable with the 
+     * Initialize the scope names map and the encode variable with the
      * Java 1.4 method if available.
      */
     static {
 
         try {
-            // get version of encode method with two String args 
+            // get version of encode method with two String args
             Class[] args = new Class[]{String.class, String.class};
             encode = URLEncoder.class.getMethod("encode", args);
         } catch (NoSuchMethodException e) {
@@ -130,7 +130,7 @@ public class TagUtils {
      * identified, return <code>null</code>.
      *
      * @param pageContext PageContext we are operating in
-    
+
      * @param paramId Single-value request parameter name (if any)
      * @param paramName Bean containing single-value parameter value
      * @param paramProperty Property (of bean named by <code>paramName</code>
@@ -285,7 +285,7 @@ public class TagUtils {
 								redirect,
 								false);
 	}
-	
+
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -364,7 +364,7 @@ public class TagUtils {
 				false
 				);
 	}
-	
+
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -389,7 +389,7 @@ public class TagUtils {
      * @param encodeSeparator This is only checked if redirect is set to false (never
      * encoded for a redirect).  If true, query string parameter separators are encoded
      * as &gt;amp;, else &amp; is used.
-     * @param useLocalEncoding If set to true, urlencoding is done on the bytes of 
+     * @param useLocalEncoding If set to true, urlencoding is done on the bytes of
      * character encoding from ServletResponse#getCharacterEncoding. Use UTF-8
      * otherwise.
      * @return URL with session identifier
@@ -559,7 +559,8 @@ public class TagUtils {
         }
 
         // Perform URL rewriting to include our session ID (if any)
-        if (pageContext.getSession() != null) {
+        // but only if url is not an external URL
+        if (( href == null ) && ( pageContext.getSession() != null )) {
             HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
             if (redirect) {
                 return (response.encodeRedirectURL(url.toString()));
@@ -570,30 +571,27 @@ public class TagUtils {
             return (url.toString());
         }
 
-    }
-
-
 	/**
 	 * URLencodes a string assuming the character encoding is UTF-8.
-	 * 
+	 *
 	 * @param url
 	 * @return String The encoded url in UTF-8
 	 */
 	public String encodeURL(String url) {
 		return encodeURL(url, "UTF-8");
 	}
-	
+
     /**
      * Use the new URLEncoder.encode() method from Java 1.4 if available, else
-     * use the old deprecated version.  This method uses reflection to find the 
-     * appropriate method; if the reflection operations throw exceptions, this 
+     * use the old deprecated version.  This method uses reflection to find the
+     * appropriate method; if the reflection operations throw exceptions, this
      * will return the url encoded with the old URLEncoder.encode() method.
-     * @param enc The character encoding the urlencode is performed on.  
+     * @param enc The character encoding the urlencode is performed on.
      * @return String The encoded url.
      */
     public String encodeURL(String url, String enc) {
         try {
-        	
+
 			if(enc==null || enc.length()==0){
 				enc = "UTF-8";
 			}
@@ -821,7 +819,7 @@ public class TagUtils {
     }
 
     /**
-     * Retrieves the value from request scope and if it isn't already an 
+     * Retrieves the value from request scope and if it isn't already an
      * <code>ActionMessages</code>, some classes are converted to one.
      *
      * @param pageContext The PageContext for the current page
@@ -1197,13 +1195,13 @@ public class TagUtils {
     }
 
     /**
-     * Returns the appropriate MessageResources object for the current module and 
+     * Returns the appropriate MessageResources object for the current module and
      * the given bundle.
-     * 
+     *
      * @param pageContext Search the context's scopes for the resources.
-     * @param bundle The bundle name to look for.  If this is <code>null</code>, the 
+     * @param bundle The bundle name to look for.  If this is <code>null</code>, the
      * default bundle name is used.
-     * @return MessageResources The bundle's resources stored in some scope. 
+     * @return MessageResources The bundle's resources stored in some scope.
      * @throws JspException if the MessageResources object could not be found.
      */
     private MessageResources retrieveMessageResources(
@@ -1239,7 +1237,7 @@ public class TagUtils {
                             bundle + moduleConfig.getPrefix(),
                             PageContext.APPLICATION_SCOPE);
         }
-        
+
         if (resources == null) {
 			resources =
 					(MessageResources) pageContext.getAttribute(
