@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ControllerSupport.java,v 1.8 2004/03/14 06:23:43 sraeburn Exp $
  * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -41,6 +41,8 @@ public class ControllerSupport implements Controller {
 	 * @param request Current request
 	 * @param response Current response
 	 * @param servletContext Current servlet context
+       * @deprecated Use execute() instead.  This will be removed after 
+       * Struts 1.2.
 	 */
 	public void perform(
 		ComponentContext tileContext,
@@ -48,12 +50,6 @@ public class ControllerSupport implements Controller {
 		HttpServletResponse response,
 		ServletContext servletContext)
 		throws ServletException, IOException {
-
-		try {
-			this.execute(tileContext, request, response, servletContext);
-		} catch (Exception e) {
-			throw new ServletException(e);
-		}
 	}
 
 	/**
@@ -66,5 +62,6 @@ public class ControllerSupport implements Controller {
 		ServletContext servletContext)
 		throws Exception {
 
+            perform(tileContext, request, response, servletContext);
 	}
 }
