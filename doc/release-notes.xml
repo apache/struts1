@@ -158,6 +158,7 @@
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
+    <li>Correct the generated scripting variable type when the &lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter> tag is used with the "multiple" attribute.</li>
     <li>Added <code>name</code>, <code>property</code>, and
         <code>scope</code> attributes to the <code>&lt;bean:message&gt;</code>
         tag, so that the message source key can be obtained dynamically from
@@ -168,6 +169,8 @@
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
+    <li>On the Options tag, if the property specified by the "property" attribute returns null, it now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
+    <li>Added 'style' and 'styleClass' attributes for &lt;html:option&gt; and &lt;html:options&gt; tags.</li>
     <li>Added 'name', 'property' and 'scope' attributes to
         <code>&lt;bean:message&gt;</code> so that
         the message resource key can be obtained dynamically from a bean.</li>
@@ -221,6 +224,8 @@
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>Unconditionally pass the selected mapping as a request attribute under key Action.MAPPING_KEY, even if no form bean is specified.</li>
+    <li>Avoid a NullPointerException in corner cases caused by failed initialization of ActionServlet.</li>
     <li>The <code>ActionForm</code> class is now truly serializable, because
         the two non-serializable instance variables (servlet and
         multipartRequestHandler) have been made transient.  However, if you
@@ -260,6 +265,7 @@
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
+    <li>Added the 'align' attribute to the &lt;html:image> tag.</li>
     <li>Added indexed attribute to ImageTag, RadioTag, and TextAreaTag.</li>
     <li>Added MessagesTag.</li>
     <li>Correctly URLEncode the query string parameter value on ImgTag, even if there is only a single parameter.</li>
