@@ -10,15 +10,18 @@ rem
 rem   ANT_OPTS              Command line options to pass to the JVM when
 rem                         executing Ant. [none]
 rem
+rem   CATALINA_HOME         Build directory for "jakarta-tomcat-4.0".
+rem                         [../build/tomcat-4.0]
+rem
 rem   JAVA_HOME             Java Development Kit directory. [REQUIRED]
 rem
 rem   SERVLETAPI_HOME       Distribution directory for "jakarta-servletapi".
 rem                         [../jakarta-servletapi]
 rem
-rem   TOMCAT_HOME           Distribution directory for "jakarta-tomcat".
-rem                         [../jakarta-tomcat]
+rem   TOMCAT_HOME           Build directory for "jakarta-tomcat".
+rem                         [../build/tomcat]
 rem
-rem $Id: build.bat,v 1.6 2000/06/24 23:28:34 craigmcc Exp $
+rem $Id: build.bat,v 1.7 2000/09/20 04:21:48 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 
@@ -26,6 +29,7 @@ rem ----- Save Environment Variables That May Change --------------------------
 
 set _ANT_HOME=%ANT_HOME%
 set _ANT_OPTS=%ANT_OPTS%
+set _CATALINA_HOME=%CATALINA_HOME%
 set _SERVLETAPI_HOME=%SERVLETAPI_HOME%
 set _TOMCAT_HOME=%TOMCAT_HOME%
 
@@ -41,13 +45,16 @@ if not "%ANT_HOME%" == "" goto gotAntHome
 set ANT_HOME=..\jakarta-ant
 :gotAntHome
 
+if not "%CATALINA_HOME%" == "" goto gotCatalinaHome
+set CATALINA_HOME=..\build\tomcat-4.0
+:gotCatalinaHome
 
 if not "%SERVLETAPI_HOME%" == "" goto gotServletapiHome
 set SERVLETAPI_HOME=..\jakarta-servletapi
 :gotServletapiHome
 
 if not "%TOMCAT_HOME%" == "" goto gotTomcatHome
-set TOMCAT_HOME=..\jakarta-tomcat
+set TOMCAT_HOME=..\build\tomcat
 :gotTomcatHome
 
 
@@ -64,7 +71,7 @@ set CP=%ANT_HOME%\lib\ant.jar;%JAVA_HOME%\lib\tools.jar
 
 rem ----- Execute The Requested Build -----------------------------------------
 
-java %ANT_OPTS% -classpath "%CP%" org.apache.tools.ant.Main -Dant.home=%ANT_HOME% -Dservlet.jar=%SERVLETAPI_HOME%\lib\servlet.jar -Dtomcat.home=%TOMCAT_HOME% %1 %2 %3 %4 %5 %6 %7 %8 %9
+java %ANT_OPTS% -classpath "%CP%" org.apache.tools.ant.Main -Dant.home=%ANT_HOME% -Dcatalina.home=%CATALINA_HOME% -Dservlet.jar=%SERVLETAPI_HOME%\lib\servlet.jar -Dtomcat.home=%TOMCAT_HOME% %1 %2 %3 %4 %5 %6 %7 %8 %9
 
 
 rem ----- Clean Up Environment Variables --------------------------------------
@@ -73,11 +80,13 @@ rem ----- Clean Up Environment Variables --------------------------------------
 
 set ANT_HOME=%_ANT_HOME%
 set ANT_OPTS=%_ANT_OPTS%
+set CATALINA_HOME=%_CATALINA_HOME%
 set SERVLETAPI_HOME=%_SERVLETAPI_HOME%
 set TOMCAT_HOME=%_TOMCAT_HOME%
 
 set _ANT_HOME=
 set _ANT_OPTS=
+set _CATALINA_HOME=
 set _SERVLETAPI_HOME=
 set _TOMCAT_HOME=
 

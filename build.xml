@@ -3,21 +3,34 @@
   <!-- Initialization properties -->
   <property name="app.name"       value="struts"/>
   <property name="build.home"     value="../build/${app.name}"/>
-  <property name="catalina.build"  value="../build/tomcat-4.0"/>
+  <property name="catalina.home"  value="../build/tomcat-4.0"/>
   <property name="dist.home"      value="../dist/${app.name}"/>
-  <property name="tomcat.build"    value="../build/tomcat"/>
+  <property name="tomcat.home"    value="../build/tomcat"/>
 
   <!-- BUILD:  Create directories and copy files for library -->
   <target name="prepare.library">
     <mkdir   dir="${build.home}"/>
     <mkdir   dir="${build.home}/library"/>
     <mkdir   dir="${build.home}/library/classes"/>
+    <mkdir   dir="${build.home}/library/classes/org"/>
+    <mkdir   dir="${build.home}/library/classes/org/apache"/>
+    <mkdir   dir="${build.home}/library/classes/org/apache/struts"/>
+    <mkdir   dir="${build.home}/library/classes/org/apache/struts/resources"/>
+    <copydir src="src/conf"
+            dest="${build.home}/library/classes/org/apache/struts/resources">
+      <include name="**/*.dtd"/>
+    </copydir>
   </target>
 
   <!-- BUILD:  Create directories and copy files for documentation app -->
   <target name="prepare.documentation">
     <mkdir   dir="${build.home}"/>
     <mkdir   dir="${build.home}/documentation"/>
+    <mkdir   dir="${build.home}/documentation/dtds"/>
+    <copydir src="src/conf"
+            dest="${build.home}/documentation/dtds">
+      <include name="**/*.dtd"/>
+    </copydir>
     <mkdir   dir="${build.home}/documentation/WEB-INF"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF/lib"/>
@@ -195,28 +208,28 @@
 
   <!-- DEPLOY:  Deploy these applications on Catalina -->
   <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.test">
-    <mkdir   dir="${catalina.build}/webapps/struts-documentation"/>
+    <mkdir   dir="${catalina.home}/webapps/struts-documentation"/>
     <copydir src="${build.home}/documentation"
-            dest="${catalina.build}/webapps/struts-documentation"/>
-    <mkdir   dir="${catalina.build}/webapps/struts-example"/>
+            dest="${catalina.home}/webapps/struts-documentation"/>
+    <mkdir   dir="${catalina.home}/webapps/struts-example"/>
     <copydir src="${build.home}/example"
-            dest="${catalina.build}/webapps/struts-example"/>
-    <mkdir   dir="${catalina.build}/webapps/struts-test"/>
+            dest="${catalina.home}/webapps/struts-example"/>
+    <mkdir   dir="${catalina.home}/webapps/struts-test"/>
     <copydir src="${build.home}/test"
-            dest="${catalina.build}/webapps/struts-test"/>
+            dest="${catalina.home}/webapps/struts-test"/>
   </target>
 
   <!-- DEPLOY:  Deploy these applications on Tomcat -->
   <target name="deploy.tomcat" depends="compile.documentation,compile.example,compile.test">
-    <mkdir   dir="${tomcat.build}/webapps/struts-documentation"/>
+    <mkdir   dir="${tomcat.home}/webapps/struts-documentation"/>
     <copydir src="${build.home}/documentation"
-            dest="${tomcat.build}/webapps/struts-documentation"/>
-    <mkdir   dir="${tomcat.build}/webapps/struts-example"/>
+            dest="${tomcat.home}/webapps/struts-documentation"/>
+    <mkdir   dir="${tomcat.home}/webapps/struts-example"/>
     <copydir src="${build.home}/example"
-            dest="${tomcat.build}/webapps/struts-example"/>
-    <mkdir   dir="${tomcat.build}/webapps/struts-test"/>
+            dest="${tomcat.home}/webapps/struts-example"/>
+    <mkdir   dir="${tomcat.home}/webapps/struts-test"/>
     <copydir src="${build.home}/test"
-            dest="${tomcat.build}/webapps/struts-test"/>
+            dest="${tomcat.home}/webapps/struts-test"/>
   </target>
 
   <!-- UTILITY:  Clean up build and distribution directories -->

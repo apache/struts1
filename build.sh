@@ -10,15 +10,18 @@
 #   ANT_OPTS              Command line options to pass to the JVM when
 #                         executing Ant. [none]
 #
+#   CATALINA_HOME         Build directory for "jakarta-tomcat-4.0".
+#                         [../build/tomcat-4.0]
+#
 #   JAVA_HOME             Java Development Kit directory. [REQUIRED]
 #
 #   SERVLETAPI_HOME       Distribution directory for "jakarta-servletapi".
 #                         [../jakarta-servletapi]
 #
-#   TOMCAT_HOME           Distribution directory for "jakarta-tomcat".
-#                         [../jakarta-tomcat]
+#   TOMCAT_HOME           Build directory for "jakarta-tomcat".
+#                         [../build/tomcat]
 #
-# $Id: build.sh,v 1.2 2000/06/01 00:05:54 craigmcc Exp $
+# $Id: build.sh,v 1.3 2000/09/20 04:21:48 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 
@@ -32,6 +35,10 @@ if [ "$ANT_OPTS" = "" ] ; then
   ANT_OPTS=""
 fi
 
+if [ "$CATALINA_HOME" = "" ] ; then
+  CATALINA_HOME=../build/tomcat-4.0
+fi
+
 if [ "$JAVA_HOME" = "" ] ; then
   echo You must set JAVA_HOME to point at your Java Development Kit directory
   exit 1
@@ -42,7 +49,7 @@ if [ "$SERVLETAPI_HOME" = "" ] ; then
 fi
 
 if [ "$TOMCAT_HOME" = "" ] ; then
-  TOMCAT_HOME=../jakarta-tomcat
+  TOMCAT_HOME=../build/tomcat
 fi
 
 
@@ -57,7 +64,4 @@ fi
 
 # ----- Execute The Requested Build -------------------------------------------
 
-java $ANT_OPTS -classpath "$CP" org.apache.tools.ant.Main -Dant.home=$ANT_HOME -Dservlet.jar=$SERVLETAPI_HOME/lib/servlet.jar -Dtomcat.home=$TOMCAT_HOME "$@"
-
-
-
+java $ANT_OPTS -classpath "$CP" org.apache.tools.ant.Main -Dant.home=$ANT_HOME -Dcatalina.home=$CATALINA_HOME -Dservlet.jar=$SERVLETAPI_HOME/lib/servlet.jar -Dtomcat.home=$TOMCAT_HOME "$@"
