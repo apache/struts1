@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.9 2001/09/17 19:59:30 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2001/09/17 19:59:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.10 2001/11/26 15:08:02 oalexeev Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/11/26 15:08:02 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.9 $ $Date: 2001/09/17 19:59:30 $
+ * @version $Revision: 1.10 $ $Date: 2001/11/26 15:08:02 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -497,22 +497,22 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         StringBuffer styles = new StringBuffer();
         if (style != null) {
             styles.append(" style=\"");
-            styles.append(style);
+            styles.append(getStyle());
             styles.append("\"");
         }
         if (styleClass != null) {
             styles.append(" class=\"");
-            styles.append(styleClass);
+            styles.append(getStyleClass());
             styles.append("\"");
         }
         if (styleId != null) {
             styles.append(" id=\"");
-            styles.append(styleId);
+            styles.append(getStyleId());
             styles.append("\"");
         }
         if (title != null) {
             styles.append(" title=\"");
-            styles.append(title);
+            styles.append(getTitle());
             styles.append("\"");
         }
         return styles.toString();
@@ -540,43 +540,43 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     protected void prepareMouseEvents(StringBuffer handlers) {
         if (onclick != null) {
             handlers.append(" onclick=\"");
-            handlers.append(onclick);
+            handlers.append(getOnclick());
             handlers.append("\"");
         }
 
         if (ondblclick != null) {
             handlers.append(" ondblclick=\"");
-            handlers.append(ondblclick);
+            handlers.append(getOndblclick());
             handlers.append("\"");
         }
 
         if (onmouseover != null) {
             handlers.append(" onmouseover=\"");
-            handlers.append(onmouseover);
+            handlers.append(getOnmouseover());
             handlers.append("\"");
         }
 
         if (onmouseout != null) {
             handlers.append(" onmouseout=\"");
-            handlers.append(onmouseout);
+            handlers.append(getOnmouseout());
             handlers.append("\"");
         }
 
         if (onmousemove != null) {
             handlers.append(" onmousemove=\"");
-            handlers.append(onmousemove);
+            handlers.append(getOnmousemove());
             handlers.append("\"");
         }
 
         if (onmousedown != null) {
             handlers.append(" onmousedown=\"");
-            handlers.append(onmousedown);
+            handlers.append(getOnmousedown());
             handlers.append("\"");
         }
 
         if (onmouseup != null) {
             handlers.append(" onmouseup=\"");
-            handlers.append(onmouseup);
+            handlers.append(getOnmouseup());
             handlers.append("\"");
         }
     }
@@ -590,19 +590,19 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         if (onkeydown != null) {
             handlers.append(" onkeydown=\"");
-            handlers.append(onkeydown);
+            handlers.append(getOnkeydown());
             handlers.append("\"");
         }
 
         if (onkeyup != null) {
             handlers.append(" onkeyup=\"");
-            handlers.append(onkeyup);
+            handlers.append(getOnkeyup());
             handlers.append("\"");
         }
 
         if (onkeypress != null) {
             handlers.append(" onkeypress=\"");
-            handlers.append(onkeypress);
+            handlers.append(getOnkeypress());
             handlers.append("\"");
         }
     }
@@ -616,13 +616,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         if (onselect != null) {
             handlers.append(" onselect=\"");
-            handlers.append(onselect);
+            handlers.append(getOnselect());
             handlers.append("\"");
         }
 
         if (onchange != null) {
             handlers.append(" onchange=\"");
-            handlers.append(onchange);
+            handlers.append(getOnchange());
             handlers.append("\"");
         }
     }
@@ -636,13 +636,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         if (onblur != null) {
             handlers.append(" onblur=\"");
-            handlers.append(onblur);
+            handlers.append(getOnblur());
             handlers.append("\"");
         }
 
         if (onfocus != null) {
             handlers.append(" onfocus=\"");
-            handlers.append(onfocus);
+            handlers.append(getOnfocus());
             handlers.append("\"");
         }
 
