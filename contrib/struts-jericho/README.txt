@@ -12,7 +12,7 @@ This proposal is called "Jericho" since it tries to tear-down the walls within t
 
 * Providing additional extension points from core components so that the "Inversion of Control" pattern is fully realized. (e.g., a populate method for the FormHandler.)
 
-* Providing "POJO" signatures that encapsulate servlet/portlet behavior so that applications can be freed of servlet/portlet semantics, if so desired. This strategy would also be applied to optional packages like Validator and Tiles.
+* Providing "POJO" signatures that encapsulate servlet/portlet/soap behavior so that applications can be freed of servlet/portlet/soap semantics, if so desired. This strategy would also be applied to optional packages like Validator and Tiles.
 
 * Retain optional access to servlet/portlet objects so that applications can be free to do whatever they need to do.
 
@@ -36,9 +36,9 @@ The Jericho Configuration builds on the best aspects of Struts 1.2. The elements
 
 A second alternative might be to provide an alternate configuration loader that would map the Struts 1.2 elements to Struts Jericho objects at initialization.
 
--Servlet/Portlet/Mock support-
+-Servlet/Portlet/Soap/Mock support-
 
-Core components will implement signatures that reference a StrutsContext. Implementations of this interface can be backed by servlet, portlet, or mock implementations as needed.
+Core components will implement signatures that reference a StrutsContext. Implementations of this interface can be backed by servlet, portlet, soap, or mock implementations as needed.
 
 -Also under consideration-
 

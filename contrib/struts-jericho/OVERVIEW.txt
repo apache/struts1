@@ -6,7 +6,7 @@ Configuration registry
 Command Context
 * Extends CoR Context to encapsulate framework members needed to process request and render response
 
-Request Adapter (module, portlet, mock)
+Request Adapter (servlet module, portlet, SOAP, mock)
 * Receives request from container (or TestRunner)
 * Normalizes request path (masks pattern registered with container)
 * Creates context to wrap request and response objects
