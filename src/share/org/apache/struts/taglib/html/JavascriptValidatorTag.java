@@ -1,4 +1,10 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.21 2003/01/17 06:09:17 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/01/17 06:09:17 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
  * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
@@ -87,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.20 $ $Date: 2003/01/16 03:55:09 $
+ * @version $Revision: 1.21 $ $Date: 2003/01/17 06:09:17 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -144,6 +150,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * The JavaScript methods will enclosed with html comments if this is set to "true".
      */
     protected String htmlComment = "true";
+    
+    /**
+     * Hide JavaScript methods in a CDATA section for XHTML when "true".
+     */
+    protected String cdata = "true";
 
     private String htmlBeginComment = "\n<!-- Begin \n";
 
@@ -515,6 +526,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         staticJavascript = "true";
         dynamicJavascript = "true";
         htmlComment = "true";
+        cdata = "true";
         src = null;
     }
 
@@ -527,6 +539,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             formName.substring(0, 1).toUpperCase() + formName.substring(1, formName.length());
 
         sb.append(this.getStartElement());
+        
+        if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
+            sb.append("<![CDATA[\r\n");
+        }
         
         if ("true".equals(htmlComment)) {
             sb.append(htmlBeginComment);
@@ -587,6 +603,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         sb.append("\n");
         if ("true".equals(htmlComment)){
             sb.append(htmlEndComment);
+        }
+        
+        if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
+            sb.append("]]>\r\n");
         }
         
         sb.append("</script>\n\n");
@@ -669,6 +689,22 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
 
         return ("true".equalsIgnoreCase(xhtml));
+    }
+
+    /**
+     * Returns the cdata setting "true" or "false".
+     * @return String - "true" if JavaScript will be hidden in a CDATA section
+     */
+    public String getCdata() {
+        return cdata;
+    }
+
+    /**
+     * Sets the cdata status.
+     * @param cdata The cdata to set
+     */
+    public void setCdata(String cdata) {
+        this.cdata = cdata;
     }
 
 }
