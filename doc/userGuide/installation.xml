@@ -91,9 +91,9 @@
       <li><em>Collections</em> (Version 2.1 or later)</li>
       <li><em>DBCP</em> (Version 1.0 or later)</li>
       <li><em>Digester</em> (Version 1.3 or later)</li>
-      <li><em>FileUpload</em> (No official release, obtain current
-                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-fileupload">Nightly Build</a>
-                        )</li>
+      <li><em>FileUpload</em> (Recent 
+        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-fileupload">
+        Nightly Build</a>)</li>
       <li><em>Lang</em> (Version 1.1 or later)</li>
       <li><em>Logging</em> (Version 1.0.2 or later)</li>
       <li><em>Pool</em> (Version 1.0.1 or later)</li>
@@ -109,11 +109,15 @@
       directory. However, if you wish to build Struts from source, you will
       need to download and install the following packages:
       <ul>
-      <li><em>Resources</em> (No official release, obtain current
-                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-resources">Nightly Build</a>
-                        )</li>
+      <li><em>Resources</em> (Recent 
+        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-resources">
+        Nightly Build</a>)</li>
      </ul>
-  </li>http://jakarta.apache.org/builds/jakarta-commons/nightly/
+  </li>
+  
+  <li><strong>Jakarta ORO</strong> - 
+  <a href="http://jakarta.apache.org/oro/index.html">Apache Jakarta ORO</a> 
+  version 2.06 (or later) is  required to build Struts from source.</li>  
 
   <li><strong>Xalan XSLT Processor</strong> - If you are building Struts from
       the source distribution, you will need a version of Xalan to perform
