@@ -6,7 +6,7 @@
 
 <div align="center">
 <h1>Struts User's Guide</h2>
-<h3>$Id: users_guide.html,v 1.10 2000/08/10 23:45:27 craigmcc Exp $</h3>
+<h3>$Id: users_guide.html,v 1.11 2000/11/29 23:22:44 craigmcc Exp $</h3>
 </div>
 
 
@@ -877,8 +877,9 @@ include the following:</p>
     <code>Action</code> class.  Local variables are created on a
     stack that is assigned (by your JVM) to each request thread, so
     there is no need to worry about sharing them.</li>
-<li>Although they should not, the beans that represent the Model of
-    your system may throw exceptions.  You should trap all such exceptions
+<li>The beans that represent the Model of your system may throw exceptions
+    due to problems accessing databases or other resources.
+    You should trap all such exceptions
     in the logic of your <code>perform()</code> method, and log them to the
     application logfile (along with the corresponding stack trace) by
     calling:
