@@ -113,3 +113,6 @@
 </table>
 
 </struts:form>
+
+</body>
+</html>
