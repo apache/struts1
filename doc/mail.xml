@@ -122,6 +122,24 @@ list only. Do not send your messages to multiple mailing lists. The reason is
 that people may be subscribed to one list and not to the other. Therefore, 
 some people will only see part of the conversation.
 </p>
+
+<p>
+<strong>Watch where you are sending email.</strong>.
+The majority of our mailing lists have set the Reply-To to go back to the
+list. That means that when you Reply to a message, it will go to the list
+and not to the original author directly. The reason is because it helps
+facilitate discussion on the list for everyone to benefit from. Be careful
+of this as sometimes you may intend to reply to a message directly to someone
+instead of the entire list.
+The appropriate contents of the Reply-To header is an age-old debate that
+should not be brought up on the mailing lists.  You can
+examine opposing points of view
+<a href="http://www.unicom.com/pw/reply-to-harmful.html">condemning</a> our convention and
+<a href="http://www.metasystema.org/essays/reply-to-useful.mhtml">condoning</a>
+it. Bringing this up for debate on a mailing list will add nothing
+new and is considered off-topic.
+</p>
+
 </section>
 
 <section name="Archives">
