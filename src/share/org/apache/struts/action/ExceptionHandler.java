@@ -77,13 +77,15 @@ public class ExceptionHandler {
      * the called <code>ExceptionHandler</code>.
      *
      * @param ex The exception to handle
-     * @param ae The ActionException corresponding to the exception
+     * @param ae The ExceptionConfig corresponding to the exception
      * @param mapping The ActionMapping we are processing
      * @param formInstance The ActionForm we are processing
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
      *
      * @exception ServletException if a servlet exception occurs
+     *
+     * @since Struts 1.1
      */
     public ActionForward execute(Exception ex,
                                  ExceptionConfig ae,
@@ -93,7 +95,7 @@ public class ExceptionHandler {
                                  HttpServletResponse response)
         throws ServletException {
 
-	ActionForward forward = null;
+    ActionForward forward = null;
         ActionError error = null;
         String property = null;
 
@@ -133,9 +135,10 @@ public class ExceptionHandler {
      * <b>ActionErrors</b> instance is created, the error is added to the collection
      * and the collection is set under the Action.ERROR_KEY.
      *
-     * @param request
+     * @param request - The request we are handling
+     * @param property  - The property name to use for this error
      * @param error - The error generated from the exception mapping
-     * @param input - The forward generated from the input path (from the form or exception mapping)
+     * @param forward - The forward generated from the input path (from the form or exception mapping)
      * @param scope - The scope of the exception mapping.
      *
      */
