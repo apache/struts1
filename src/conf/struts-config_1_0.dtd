@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.2 2000/11/26 05:11:28 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.3 2000/11/28 18:37:44 craigmcc Exp $
 -->
 
 
@@ -221,7 +221,10 @@
 
      input           Context-relative path of the input form to which control
                      should be returned if a validation error is encountered.
-                     Required if "name" is specified, else not allowed.
+                     Required if "name" is specified and the input bean
+                     returns validation errors.  Optional if "name" is
+                     specified and the input bean does not return validation
+                     errors.  Not allowed if "name" is not specified.
 
      name            Name of the form bean, if any, that is associated
                      with this action.
