@@ -1,4 +1,6 @@
 /*
+ * $Id$ 
+ *
  * Copyright 2004 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -93,6 +95,7 @@ import org.apache.commons.beanutils.LazyDynaMap;
  *
  * @see <a href="http://jakarta.apache.org/commons/beanutils/apidocs/org/apache/commons/beanutils/package-summary.html#dynamic.lazy">Commons BeanUtils JavaDoc</a>
  * @since Struts 1.2.6
+ * @version $Rev$ $Date$ 
  */
 public class LazyValidatorForm extends BeanValidatorForm {
 
