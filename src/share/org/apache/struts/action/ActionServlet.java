@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.121 2002/10/18 15:27:42 jholmes Exp $
- * $Revision: 1.121 $
- * $Date: 2002/10/18 15:27:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.122 2002/10/27 05:36:47 rleland Exp $
+ * $Revision: 1.122 $
+ * $Date: 2002/10/27 05:36:47 $
  *
  * ====================================================================
  *
@@ -69,21 +69,16 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.MissingResourceException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.converters.BooleanConverter;
 import org.apache.commons.beanutils.converters.ByteConverter;
 import org.apache.commons.beanutils.converters.CharacterConverter;
@@ -94,7 +89,6 @@ import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
-import org.apache.commons.digester.Rule;
 import org.apache.commons.digester.RuleSet;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -107,8 +101,6 @@ import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.PlugInConfig;
-import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
@@ -302,7 +294,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.121 $ $Date: 2002/10/18 15:27:42 $
+ * @version $Revision: 1.122 $ $Date: 2002/10/27 05:36:47 $
  */
 
 public class ActionServlet
@@ -1258,8 +1250,13 @@ public class ActionServlet
         } catch (Throwable e) {
             log.error(internal.getMessage("configWebXml"), e);
         } finally {
-            if (input != null)
-                input = null;
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    ;
+                }
+            }
         }
 
         // Record a servlet context attribute (if appropriate)
