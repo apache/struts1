@@ -1,30 +1,30 @@
 // $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.6 2003/09/29 04:19:37 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2003/09/29 04:19:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.7 2004/01/13 12:48:53 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/13 12:48:53 $
  *
  * ====================================================================
  *
- *  The Apache Software License, Version 1.1
+ * The Apache Software License, Version 1.1
  *
- *  Copyright (c) 2003 The Apache Software Foundation.  All rights
- *  reserved.
+ * Copyright (c) 2003 The Apache Software Foundation.  All rights
+ * reserved.
  *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted provided that the following conditions
- *  are met:
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *  1. Redistributions of source code must retain the above copyright
- *  notice, this list of conditions and the following disclaimer.
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
  *
- *  2. Redistributions in binary form must reproduce the above copyright
- *  notice, this list of conditions and the following disclaimer in
- *  the documentation and/or other materials provided with the
- *  distribution.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
  *
- *  3. The end-user documentation included with the redistribution, if
+ * 3. The end-user documentation included with the redistribution, if
  *    any, must include the following acknowledgement:
  *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."

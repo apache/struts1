@@ -1,5 +1,8 @@
 /*
- * $Id: IncludeTag.java,v 1.27 2004/01/10 21:03:37 dgraham Exp $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/IncludeTag.java,v 1.28 2004/01/13 12:48:46 husted Exp $
+ * $Revision: 1.28 $
+ * $Date: 2004/01/13 12:48:46 $
+ *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -20,7 +23,7 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
+ *    any, must include the following acknowledgement:
  *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
@@ -32,8 +35,8 @@
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -84,7 +87,7 @@ import org.apache.struts.taglib.TagUtils;
  * <strong>FIXME</strong>:  In a servlet 2.3 environment, we can use a
  * wrapped response passed to RequestDispatcher.include().
  *
- * @version $Revision: 1.27 $ $Date: 2004/01/10 21:03:37 $
+ * @version $Revision: 1.28 $ $Date: 2004/01/13 12:48:46 $
  */
 
 public class IncludeTag extends TagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPrincipal.java,v 1.3 2004/01/10 21:03:39 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2004/01/10 21:03:39 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockPrincipal.java,v 1.4 2004/01/13 12:48:53 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/13 12:48:53 $
  *
  * ====================================================================
  *
@@ -23,7 +23,7 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
+ *    any, must include the following acknowledgement:
  *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
@@ -35,8 +35,8 @@
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -80,7 +80,7 @@ import java.security.Principal;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Revision: 1.3 $ $Date: 2004/01/10 21:03:39 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/13 12:48:53 $
  */
 
 public class MockPrincipal implements Principal {

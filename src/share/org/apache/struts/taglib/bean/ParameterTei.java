@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.6 2004/01/10 21:03:37 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2004/01/10 21:03:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTei.java,v 1.7 2004/01/13 12:48:46 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/13 12:48:46 $
  *
  * ====================================================================
  *
@@ -23,7 +23,7 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
+ *    any, must include the following acknowledgement:
  *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
@@ -35,8 +35,8 @@
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -72,7 +72,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * Implementation of <code>TagExtraInfo</code> for the <b>parameter</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
- * @version $Revision: 1.6 $ $Date: 2004/01/10 21:03:37 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/13 12:48:46 $
  */
 
 public class ParameterTei extends TagExtraInfo {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LocaleAction.java,v 1.2 2004/01/10 21:03:36 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2004/01/10 21:03:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LocaleAction.java,v 1.3 2004/01/13 12:48:45 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/13 12:48:45 $
  *
  * ====================================================================
  *
@@ -56,6 +56,7 @@
  * individuals on behalf of the Apache Software Foundation.  For more
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
+ *
  */
 
 

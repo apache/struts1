@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.33 2004/01/10 21:03:37 dgraham Exp $
- * $Revision: 1.33 $
- * $Date: 2004/01/10 21:03:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.34 2004/01/13 12:48:46 husted Exp $
+ * $Revision: 1.34 $
+ * $Date: 2004/01/13 12:48:46 $
  *
  * ====================================================================
  *
@@ -23,7 +23,7 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
+ *    any, must include the following acknowledgement:
  *       "This product includes software developed by the
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
@@ -35,8 +35,8 @@
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
- *    nor may "Apache" appear in their names without prior written
- *    permission of the Apache Group.
+ *    nor may "Apache" appear in their name, without prior written
+ *    permission of the Apache Software Foundation.
  *
  * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
  * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * it to a String representation (if necessary), and writes it to the current
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
- * @version $Revision: 1.33 $ $Date: 2004/01/10 21:03:37 $
+ * @version $Revision: 1.34 $ $Date: 2004/01/13 12:48:46 $
  */
 public class WriteTag extends TagSupport {
 

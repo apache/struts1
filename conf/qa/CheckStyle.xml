@@ -116,11 +116,10 @@
     <!-- don't allow tabs -->
     <module name="TabCharacter"/>
 
-    <!-- enforce License Header -->
-    <module name="Header">
-       <property name="headerFile" value="LICENSE.txt"/>
-       <!-- Skip over CVS header variables. -->
-       <property name="ignoreLines" value="2,3,4,5"/>
+    <!-- enforce License Header using a RegExp file to allow some variations
+         like the years in copyrights or values of CVS variables. -->
+    <module name="RegexpHeader">
+       <property name="headerFile" value="LICENSE.CheckStyle"/>
     </module>
 
   </module>

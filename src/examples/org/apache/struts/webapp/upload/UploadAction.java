@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadAction.java,v 1.1 2004/01/08 16:17:57 husted Exp $
-* $Revision: 1.1 $
-* $Date: 2004/01/08 16:17:57 $
+* $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/upload/UploadAction.java,v 1.2 2004/01/13 12:48:45 husted Exp $
+* $Revision: 1.2 $
+* $Date: 2004/01/13 12:48:45 $
 *
 * ====================================================================
 *
@@ -23,7 +23,7 @@
 *    distribution.
 *
 * 3. The end-user documentation included with the redistribution, if
-*    any, must include the following acknowlegement:
+*    any, must include the following acknowledgement:
 *       "This product includes software developed by the
 *        Apache Software Foundation (http://www.apache.org/)."
 *    Alternately, this acknowlegement may appear in the software itself,
@@ -35,8 +35,8 @@
 *    permission, please contact apache@apache.org.
 *
 * 5. Products derived from this software may not be called "Apache"
-*    nor may "Apache" appear in their names without prior written
-*    permission of the Apache Group.
+*    nor may "Apache" appear in their name, without prior written
+*    permission of the Apache Software Foundation.
 *
 * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
 * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -86,7 +86,7 @@ import org.apache.struts.upload.FormFile;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.1 $ $Date: 2004/01/08 16:17:57 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/13 12:48:45 $
  */
 
 
