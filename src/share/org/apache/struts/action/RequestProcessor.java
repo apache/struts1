@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.37 2003/10/05 17:45:14 dgraham Exp $
- * $Revision: 1.37 $
- * $Date: 2003/10/05 17:45:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.38 2003/10/10 22:03:33 mrdon Exp $
+ * $Revision: 1.38 $
+ * $Date: 2003/10/10 22:03:33 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.37 $ $Date: 2003/10/05 17:45:14 $
+ * @version $Revision: 1.38 $ $Date: 2003/10/10 22:03:33 $
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -145,11 +145,6 @@ public class RequestProcessor {
      */
     protected ActionServlet servlet = null;
 
-    /**
-     * Matches action mapping paths against compiled wildcard patterns
-     */
-    protected ActionMappingMatcher matcher = null;
-
     // --------------------------------------------------------- Public Methods
 
 
@@ -188,7 +183,6 @@ public class RequestProcessor {
         
         this.servlet = servlet;
         this.moduleConfig = moduleConfig;
-        matcher = new ActionMappingMatcher(moduleConfig.findActionConfigs());
     }
 
     /**
@@ -663,13 +657,9 @@ public class RequestProcessor {
                                            String path)
         throws IOException {
 
-        // Is there a directly defined or wildcard-matched mapping for this 
-        // path?
+        // Is there a mapping for this path?
         ActionMapping mapping = (ActionMapping)
             moduleConfig.findActionConfig(path);
-        if (mapping == null) {
-            mapping = matcher.match(path);
-        }
 
         // If a mapping is found, put it in the request and return it
         if (mapping != null) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.6 2003/07/16 04:52:44 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/16 04:52:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.7 2003/10/10 22:03:33 mrdon Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/10/10 22:03:33 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.struts.config.ActionConfig;
+import org.apache.struts.config.ActionConfigMatcher;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.DataSourceConfig;
 import org.apache.struts.config.ExceptionConfig;
@@ -85,7 +86,7 @@ import org.apache.struts.config.PlugInConfig;
  * previous Struts behavior that only supported one module.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/07/16 04:52:44 $
+ * @version $Revision: 1.7 $ $Date: 2003/10/10 22:03:33 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -312,14 +313,23 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
     }
 
     /**
-     * Return the action configuration for the specified path, if any;
+     * Return the action configuration for the specified path, first looking
+     * a direct match, then if none found, a wildcard pattern match;
      * otherwise return <code>null</code>.
      *
      * @param path Path of the action configuration to return
      */
     public ActionConfig findActionConfig(String path) {
 
-        return ((ActionConfig) actionConfigs.get(path));
+        ActionConfig config = (ActionConfig) actionConfigs.get(path);
+        
+        // If a direct match cannot be found, try to match action configs 
+        // containing wildcard patterns
+        if (config == null) {
+            config = matcher.match(path);
+        }
+        
+        return config;
 
     }
 
@@ -475,6 +485,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         for (int i = 0; i < aconfigs.length; i++) {
             aconfigs[i].freeze();
         }
+        matcher = new ActionConfigMatcher(aconfigs);
 
         getControllerConfig().freeze();
 
@@ -507,7 +518,6 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         for (int i = 0; i < piconfigs.length; i++) {
             piconfigs[i].freeze();
         }
-
     }
 
     /**
@@ -685,5 +695,10 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
      * instances.
      */
     protected String actionMappingClass = "org.apache.struts.action.ActionMapping";
+    
+    /**
+     * Matches action config paths against compiled wildcard patterns
+     */
+    protected ActionConfigMatcher matcher = null;
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingMatcher.java,v 1.2 2003/10/05 17:39:19 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/10/05 17:39:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfigMatcher.java,v 1.1 2003/10/10 22:03:33 mrdon Exp $
+ * $Revision: 1.1 $
+ * $Date: 2003/10/10 22:03:33 $
  *
  * ====================================================================
  *
@@ -59,7 +59,7 @@
  *
  */
  
-package org.apache.struts.action;
+package org.apache.struts.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,41 +69,42 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ExceptionConfig;
-import org.apache.struts.config.ForwardConfig;
+
+import org.apache.commons.beanutils.BeanUtils;
+
+import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.WildcardHelper;
 
 /**
  *  Matches paths against pre-compiled wildcard expressions pulled from 
- *  action mappings. It uses the wildcard matcher from the Apache
+ *  action configs. It uses the wildcard matcher from the Apache
  *  Cocoon project.
  *
  * @author    Don Brown
  */
-class ActionMappingMatcher {
+public class ActionConfigMatcher {
 
     /**  
      * The logging instance 
      */
     private static final Log log =
-        LogFactory.getLog(ActionMappingMatcher.class);
+        LogFactory.getLog(ActionConfigMatcher.class);
     
     /**  
-     * The compiled paths and their associated ActionMapping's 
+     * The compiled paths and their associated ActionConfig's 
      */
     private List compiledPaths;
 
     /**
-     *  Finds and precompiles the wildcard patterns from the ActionMapping
+     *  Finds and precompiles the wildcard patterns from the ActionConfig
      *  "path" attributes.
-     *  ActionMapping's will be evaluated in the order they exist in the
+     *  ActionConfig's will be evaluated in the order they exist in the
      *  Struts config file. Only paths that actually contain a wildcard
      *  will be compiled.
      *
      * @param  configs  An array of ActionConfig's to process
      */
-    protected ActionMappingMatcher(ActionConfig[] configs) {
+    public ActionConfigMatcher(ActionConfig[] configs) {
         compiledPaths = new ArrayList();
         int[] pattern;
         String path;
@@ -114,7 +115,7 @@ class ActionMappingMatcher {
                     path = path.substring(1);
                 }
                 if (log.isDebugEnabled()) {
-                    log.debug("Compiling action mapping path '" + path + "'");
+                    log.debug("Compiling action config path '" + path + "'");
                 }    
                 pattern = WildcardHelper.compilePattern(path);
                 compiledPaths.add(new Mapping(pattern, configs[x]));
@@ -126,12 +127,12 @@ class ActionMappingMatcher {
      *  Matches the path against the compiled wildcard patterns.
      *
      * @param  path             The portion of the request URI for selecting a
-     *      mapping
-     * @return                  The action mapping if matched, else null
+     *      config
+     * @return                  The action config if matched, else null
      */
-    protected ActionMapping match(String path) {
+    public ActionConfig match(String path) {
 
-        ActionMapping mapping = null;
+        ActionConfig config = null;
         if (compiledPaths.size() > 0) {
             if (log.isDebugEnabled()) {
                 log.debug("Attempting to match '" + path
@@ -145,56 +146,52 @@ class ActionMappingMatcher {
             for (Iterator i = compiledPaths.iterator(); i.hasNext();) {
                 m = (Mapping) i.next();
                 if (WildcardHelper.match(vars, path, m.getPattern())) {
-                    mapping = convertActionMapping(
+                    config = convertActionConfig(
                             path,
-                            (ActionMapping) m.getActionConfig(),
+                            (ActionConfig) m.getActionConfig(),
                             vars);
                 }
             }
         }    
 
-        return mapping;
+        return config;
     }
     
     /**
-     *  Clones the ActionMapping and its children, replacing various properties
+     *  Clones the ActionConfig and its children, replacing various properties
      *  with the values of the wildcard-matched strings.
      *
      * @param  path  The requested path
-     * @param  orig  The original ActionMapping
+     * @param  orig  The original ActionConfig
      * @param  vars  A Map of wildcard-matched strings
-     * @return       A cloned ActionMapping with appropriate properties replaced
+     * @return       A cloned ActionConfig with appropriate properties replaced
      *      with wildcard-matched values
      */
-    protected ActionMapping convertActionMapping(String path, 
-            ActionMapping orig, Map vars) {
-        ActionMapping mapping = new ActionMapping();
-        mapping.setModuleConfig(orig.getModuleConfig());
-
-        mapping.setMultipartClass(orig.getMultipartClass());
-        mapping.setName(convertParam(orig.getName(), vars));
+    protected ActionConfig convertActionConfig(String path, 
+            ActionConfig orig, Map vars) {
+        ActionConfig config = null;
+        
+        try {
+            config = (ActionConfig) BeanUtils.cloneBean(orig);
+        }
+        catch (Exception ex) {
+            log.warn("Unable to clone action config, recommend not using "
+                + "wildcards", ex);
+            return null;    
+        }
+        
+        config.setName(convertParam(orig.getName(), vars));
         if (path.charAt(0) != '/') {
             path = "/" + path;
         }    
-        mapping.setPath(path);
-        mapping.setPrefix(orig.getPrefix());
-        mapping.setScope(orig.getScope());
-        mapping.setSuffix(orig.getSuffix());
-        mapping.setUnknown(orig.getUnknown());
-        mapping.setValidate(orig.getValidate());
-
-        mapping.setType(convertParam(orig.getType(), vars));
-        mapping.setRoles(convertParam(orig.getRoles(), vars));
-        mapping.setParameter(convertParam(orig.getParameter(), vars));
-        mapping.setAttribute(convertParam(orig.getAttribute(), vars));
-        mapping.setForward(convertParam(orig.getForward(), vars));
-        mapping.setInclude(convertParam(orig.getInclude(), vars));
-        mapping.setInput(convertParam(orig.getInput(), vars));
-
-        ExceptionConfig[] exConfigs = orig.findExceptionConfigs();
-        for (int x = 0; x < exConfigs.length; x++) {
-            mapping.addExceptionConfig(exConfigs[x]);
-        }
+        config.setPath(path);
+        config.setType(convertParam(orig.getType(), vars));
+        config.setRoles(convertParam(orig.getRoles(), vars));
+        config.setParameter(convertParam(orig.getParameter(), vars));
+        config.setAttribute(convertParam(orig.getAttribute(), vars));
+        config.setForward(convertParam(orig.getForward(), vars));
+        config.setInclude(convertParam(orig.getInclude(), vars));
+        config.setInput(convertParam(orig.getInput(), vars));
 
         ForwardConfig[] fConfigs = orig.findForwardConfigs();
         ForwardConfig cfg;
@@ -203,9 +200,10 @@ class ActionMappingMatcher {
             cfg.setContextRelative(fConfigs[x].getContextRelative());
             cfg.setName(fConfigs[x].getName());
             cfg.setPath(convertParam(fConfigs[x].getPath(), vars));
-            mapping.addForwardConfig(cfg);
+            config.removeForwardConfig(fConfigs[x]);
+            config.addForwardConfig(cfg);
         }
-        return mapping;
+        return config;
     }
 
     /**
