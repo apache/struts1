@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+
+     NOTE:  You would only flesh out the details in the "form-bean"
+     declarations if you had a generator tool that used them to create
+     the corresponding Java classes for you.  Otherwise, you would
+     need only the "form-bean" element itself, with the corresponding
+     "name" and "type" attributes.
+-->
+
+
+<struts-config>
+
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <!-- Logon form bean -->
+    <form-bean      name="logonForm"
+                    type="org.apache.struts.example.LogonForm"/>
+
+    <!-- Registration form bean -->
+    <form-bean      name="registrationForm"
+                    type="org.apache.struts.example.RegistrationForm"/>
+
+    <!-- Subscription form bean -->
+    <form-bean      name="subscriptionForm"
+                    type="org.apache.struts.example.SubscriptionForm"/>
+
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward   name="logon"                path="/logon.jsp"/>
+    <forward   name="success"              path="/mainMenu.jsp"/>
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+    <!-- Edit user registration -->
+    <action    path="/editRegistration"
+               type="org.apache.struts.example.EditRegistrationAction"
+               name="registrationForm">
+      <forward name="success"              path="/registration.jsp"/>
+    </action>
+
+    <!-- Edit mail subscription -->
+    <action    path="/editSubscription"
+               type="org.apache.struts.example.EditSubscriptionAction"
+               name="subscriptionForm">
+      <forward name="failure"              path="/mainMenu.jsp"/>
+      <forward name="success"              path="/subscription.jsp"/>
+    </action>
+
+    <!-- Process a user logoff -->
+    <action    path="/logoff"
+               type="org.apache.struts.example.LogoffAction">
+      <forward name="success"              path="/index.jsp"/>
+    </action>
+
+    <!-- Process a user logon -->
+    <action    path="/logon"
+               type="org.apache.struts.example.LogonAction"
+               name="logonForm"
+              input="/logon.jsp">
+    </action>
+
+    <!-- Save user registration -->
+    <action    path="/saveRegistration"
+               type="org.apache.struts.example.SaveRegistrationAction"
+               name="registrationForm"
+              input="/registration.jsp"/>
+
+    <!-- Save mail subscription -->
+    <action    path="/saveSubscription"
+               type="org.apache.struts.example.SaveSubscriptionAction"
+               name="subscriptionForm"
+              input="/subscription.jsp">
+      <forward name="success"         path="/editRegistration.do?action=Edit"/>
+    </action>
+
+  </action-mappings>
+
+</struts-config>

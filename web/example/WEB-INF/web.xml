@@ -29,7 +29,7 @@
     </init-param>
     <init-param>
       <param-name>config</param-name>
-      <param-value>/WEB-INF/action.xml</param-value>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
     </init-param>
     <init-param>
       <param-name>debug</param-name>
@@ -38,6 +38,10 @@
     <init-param>
       <param-name>detail</param-name>
       <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>validate</param-name>
+      <param-value>true</param-value>
     </init-param>
     <load-on-startup>2</load-on-startup>
   </servlet>
