@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.20 2002/07/15 22:32:33 jholmes Exp $
+$Id: STATUS,v 1.21 2002/07/16 00:05:27 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -59,7 +59,6 @@ Utilities:
 
 Validator Framework:
 -------------------
- 7347 Validator contrib directory should be dead
  7351 Validator JavaScript Primitive Validation Error
  7353 Validator JavaScript Select Error
  8446 Zero values are not validated as byte, integer, etc.
