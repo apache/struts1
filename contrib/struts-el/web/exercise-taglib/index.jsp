@@ -20,6 +20,10 @@
 <li><a href="html-link.jsp">&lt;html:link&gt;</a>[<a href="showSource.jsp?path=/html-link.jsp">Source</a>]</li>
 <li><a href="html-multibox.jsp">&lt;html:multibox&gt;</a>[<a href="showSource.jsp?path=/html-multibox.jsp">Source</a>]</li>
 <li><a href="html-radio.jsp">&lt;html:radio&gt;</a>[<a href="showSource.jsp?path=/html-radio.jsp">Source</a>]</li>
+<li><a href="html-button.jsp">&lt;html:button&gt;</a>[<a href="showSource.jsp?path=/html-button.jsp">Source</a>]</li>
+<li><a href="html-file.jsp">&lt;html:file&gt;</a>[<a href="showSource.jsp?path=/html-file.jsp">Source</a>]</li>
+<li><a href="html-frame.jsp">&lt;html:frame&gt;</a>[<a href="showSource.jsp?path=/html-frame.jsp">Source</a>]</li>
+<li><a href="html-input.jsp">&lt;html:input&gt;</a>[<a href="showSource.jsp?path=/html-input.jsp">Source</a>]</li>
 <li><a href="html-select.jsp">&lt;html:select&gt;</a>[<a href="showSource.jsp?path=/html-select.jsp">Source</a>]</li>
 <li><a href="html-setters.jsp">Scalar Setters</a>[<a href="showSource.jsp?path=/html-setters.jsp">Source</a>]</li>
 </ul>
