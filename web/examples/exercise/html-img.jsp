@@ -40,5 +40,13 @@
     <html:img page="/exercise/struts-power.gif" contextRelative="true"/>
     </td>
     </tr>
+    <tr>
+    <td>
+    Struts img tag via page attribute, default module
+    </td>
+    <td>
+    <html:img page="/exercise/struts-power.gif" module="/"/>
+    </td>
+    </tr>
   </body>
 </html>

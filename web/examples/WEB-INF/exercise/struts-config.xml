@@ -13,12 +13,11 @@
   <global-forwards>
     <forward name="absolute" path="http://jakarta.apache.org/struts" />
     <forward name="context-relative" path="/welcome.do" contextRelative="true" />
+    <forward name="module-root" path="/welcome.do" module="" />
+    <forward name="module-validator" path="/welcome.do" module="/validator" />
     <forward name="relative" path="/welcome.do" />
     <forward name="redirect-default" path="/" redirect="true" />
     <forward name="logic-forward" path="/logic-forward.do" />
-      <!--
-    <forward name="cross-module" module="" path="/welcome.do" />
-      -->
   </global-forwards>
   <action-mappings>
     <action path="/welcome" forward="/index.html" />

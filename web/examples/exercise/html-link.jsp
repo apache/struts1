@@ -162,7 +162,13 @@
         <html:link forward="relative">module welcome page</html:link>
       </li>
       <li>
-        <html:link forward="context-relative">application welcome page</html:link>
+        <html:link forward="context-relative">application welcome page (context relative attribute)</html:link>
+      </li>
+      <li>
+        <html:link forward="module-root">application welcome page (module attribute)</html:link>
+      </li>
+      <li>
+        <html:link forward="module-validator">validator welcome page</html:link>
       </li>
       <li>
         <html:link forward="absolute">Struts website</html:link>
