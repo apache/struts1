@@ -22,20 +22,19 @@
 &lt;/body>&lt;/html></p>
 <p class="Paragraph">template:get is a custom tag that retrieves a Java bean from request scope. That bean contains the URI of a Web component which is subsequently included by template:get. In the template listed in A JSP Template (chapterTemplate.jsp), a bean named header is retrieved from request scope, and the URI--/header.html--is obtained from the bean and included.</p>
 <p class="Paragraph">Beans retrieved by template:get are put in request scope by template:put, and the template itself is included with template:insert, as illustrated in A JSP Page That Uses theTemplate listed in Example 5-3.a.</p>
-<h4 class="CodeCaption">A JSP Page That Uses theTemplate listed in A JSP Template (chapterTemplate.jsp)</h4>
+<h4 class="CodeCaption"><b>A JSP Page That Uses theTemplate</b> listed in A JSP Template (chapterTemplate.jsp)</h4>
 <p class="Example-Code">&lt;%@ taglib uri='/WEB-INF/tlds/template.tld' prefix='template' %><br>
 &lt;template:insert template='/chapterTemplate.jsp'><br>
-&lt;template:put name='title' content='Templates' direct='true'/><br>
+&lt;template:put name='title' content='JSP Templates' direct='true'/><br>
 &lt;template:put name='header' content='/header.html' /><br>
 &lt;template:put name='sidebar' content='/sidebar.jsp' /><br>
 &lt;template:put name='content' content='/introduction.jsp'/><br>
 &lt;template:put name='footer' content='/footer.jsp' /><br>
 &lt;/template:insert&gt;</p>
-<p class="Paragraph">The template:insert start tag specifies the template to be included, in this case chapterTemplate.jsp, listed in A JSP Template (chapterTemplate.jsp). Each template:put tag stores a bean in request scope and the template:insert end tag includes the template.</p>
-<p class="Paragraph">A direct attribute can be specified for template:put; if the attribute is set to true, the content associated with the tag is not included, but is printed directly to the implicit out variable. For example, in A JSP Page That Uses theTemplate listed in Example 5-3.a the title content--'JSP Templates'--is used as the window title. A web site that has many pages with an identical format would have one template, such as the one listed in A JSP Template (chapterTemplate.jsp), and many JSP pages, such as A JSP Page That Uses theTemplate listed in Example 5-3.a, that use the template. If the format is modified, changes are restricted to the template. Another benefit of templates, and including content in general, is modular design. For example, the JSP file listed in A JSP Page That Uses theTemplate listed in Example 5-3.a ultimately includes header.html, which is listed in header.html.</p>
+<p class="Paragraph">The template:insert start tag specifies the template to be included, in this case chapterTemplate.jsp, listed in <b>A JSP Template (chapterTemplate.jsp)</b>. Each template:put tag stores a bean in request scope and the template:insert end tag includes the template.</p>
+<p class="Paragraph">A direct attribute can be specified for template:put; if the attribute is set to true, the content associated with the tag is not included, but is printed directly to the implicit out variable. For example, in the example code above, the title content--'JSP Templates'--is used as the window title. A web site that has many pages with an identical format would have one template, such as the one listed in <b>A JSP Template (chapterTemplate.jsp)</b>, and many JSP pages, such as the code example above, that use the template. If the format is modified, changes are restricted to the template. Another benefit of templates, and including content in general, is modular design. For example, the JSP file listed here ultimately includes header.html, which is as follows:.</p>
 <h4 class="CodeCaption">header.html</h4>
-<p>&lt;table><br>
-<p class="Example-Code">&lt;tr><br>
+<p>&lt;table><br><p class="Example-Code">&lt;tr><br>
 &lt;td>&lt;img src='graphics/java.gif'/>&lt;/td><br>
 &lt;td>&lt;img src='graphics/layout.gif'/>&lt;/td><br>
 &lt;/tr><br>
