@@ -1,6 +1,7 @@
 -[STATUS LOG] 25-May-2004 Apache Struts-
 
-* Active Committers
+* PMC Members
+* Other Committers
 * PMC Actions
 * Significant Threads
 * Releases
@@ -14,7 +15,7 @@
 
 ----
 
--Active Committers-
+-PMC Members-
 
     * Craig R. McClanahan (craigmcc at apache.org)
     * Ted Husted (husted at apache.org)
@@ -29,6 +30,10 @@
     * Steve Raeburn (sraeburn at apache.org)
     * Don Brown (mrdon at apache.org)
     * Joe Germuska (germuska at apache.org)
+
+
+-Other Committers-
+
     * Niall Pemberton (niallp at apache.org) [NEW]
 
 
@@ -111,5 +116,5 @@
 * See also: http://jakarta.apache.org/struts/userGuide/release-notes.html
 
 
-$Id: STATUS.txt,v 1.11 2004/05/25 15:48:47 husted Exp $
+$Id: STATUS.txt,v 1.12 2004/05/25 16:03:50 husted Exp $
 ###
