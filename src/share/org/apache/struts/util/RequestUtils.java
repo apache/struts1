@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.23 2001/10/16 15:48:28 dwinterfeldt Exp $
- * $Revision: 1.23 $
- * $Date: 2001/10/16 15:48:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.24 2001/11/21 14:00:28 husted Exp $
+ * $Revision: 1.24 $
+ * $Date: 2001/11/21 14:00:28 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -101,7 +101,8 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.23 $ $Date: 2001/10/16 15:48:28 $
+ * @author Ted Husted
+ * @version $Revision: 1.24 $ $Date: 2001/11/21 14:00:28 $
  */
 
 public class RequestUtils {
@@ -120,8 +121,8 @@ public class RequestUtils {
      * The message resources for this package.
      */
     private static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.util.LocalStrings");
+    MessageResources.getMessageResources
+    ("org.apache.struts.util.LocalStrings");
 
 
 
@@ -345,7 +346,7 @@ public class RequestUtils {
             url.append('#');
             url.append(URLEncoder.encode(anchor));
         }
-        
+
         // Add dynamic parameters if requested
         if ((params != null) && (params.size() > 0)) {
 
@@ -661,10 +662,10 @@ public class RequestUtils {
             (contentType.startsWith("multipart/form-data")) &&
             (method.equalsIgnoreCase("POST"))) {
 
-            // Get the ActionServlet from the form bean
-            ActionServlet servlet;
+            // Get the ActionServletWrapper from the form bean
+            ActionServletWrapper servlet;
             if (bean instanceof ActionForm) {
-                servlet = ((ActionForm) bean).getServlet();
+                servlet = ((ActionForm) bean).getServletWrapper();
             } else {
                 throw new ServletException("bean that's supposed to be " +
                    "populated from a multipart request is not of type " +
@@ -686,7 +687,7 @@ public class RequestUtils {
                 isMultipart = true;
 
                 // Set servlet and mapping info
-                multipartHandler.setServlet(servlet);
+                servlet.setServletFor(multipartHandler);
                 multipartHandler.setMapping((ActionMapping)
                     request.getAttribute(Action.MAPPING_KEY));
 
@@ -744,7 +745,7 @@ public class RequestUtils {
      *
      * @param request The HTTP request for which the multipart handler should
      *                be found.
-     * @param servlet The <code>ActionServlet</code> processing the supplied
+     * @param servlet The <code>ActionServletWrapper</code> processing the supplied
      *                request.
      *
      * @return the multipart handler to use, or <code>null</code> if none is
@@ -754,7 +755,7 @@ public class RequestUtils {
      *                             to locate the multipart handler.
      */
     private static MultipartRequestHandler getMultipartHandler(
-            HttpServletRequest request, ActionServlet servlet)
+            HttpServletRequest request, ActionServletWrapper servlet)
         throws ServletException {
 
         MultipartRequestHandler multipartHandler = null;
@@ -970,19 +971,19 @@ public class RequestUtils {
 
 
     /**
-     * Retrieves the value from request scope and if it isn't already an <code>ActionMessages</code> 
+     * Retrieves the value from request scope and if it isn't already an <code>ActionMessages</code>
      * some classes are converted to one.
      *
-     * @param pageContext 	The PageContext for the current page
-     * @param paramName 	Key for parameter value
+     * @param pageContext   The PageContext for the current page
+     * @param paramName     Key for parameter value
      */
     public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
        throws JspException {
-    						   	
+
         ActionMessages am = new ActionMessages();
-        
+
         Object value = pageContext.getAttribute(paramName, PageContext.REQUEST_SCOPE);
-        
+
         try {
             if (value == null) {
                ;
@@ -1012,37 +1013,37 @@ public class RequestUtils {
         } catch (Exception e) {
             ;
         }
-        
+
         return am;
     }
 
     /**
-     * Retrieves the value from request scope and if it isn't already an <code>ErrorMessages</code> 
+     * Retrieves the value from request scope and if it isn't already an <code>ErrorMessages</code>
      * some classes are converted to one.
      *
-     * @param pageContext 	The PageContext for the current page
-     * @param paramName 	Key for parameter value
+     * @param pageContext   The PageContext for the current page
+     * @param paramName     Key for parameter value
      */
-    public static ActionErrors getActionErrors(PageContext pageContext, String paramName) 
+    public static ActionErrors getActionErrors(PageContext pageContext, String paramName)
        throws JspException {
-    						   	
+
         ActionErrors errors = new ActionErrors();
-        
+
         Object value = pageContext.getAttribute(paramName, PageContext.REQUEST_SCOPE);
-        
+
         try {
-	    if (value == null) {
-		;
-	    } else if (value instanceof String) {
-		errors.add(ActionErrors.GLOBAL_ERROR,
+        if (value == null) {
+        ;
+        } else if (value instanceof String) {
+        errors.add(ActionErrors.GLOBAL_ERROR,
                            new ActionError((String) value));
-	    } else if (value instanceof String[]) {
+        } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++)
                     errors.add(ActionErrors.GLOBAL_ERROR,
                                new ActionError(keys[i]));
             } else if (value instanceof ErrorMessages) {
-		String keys[] = ((ErrorMessages) value).getErrors();
+        String keys[] = ((ErrorMessages) value).getErrors();
                 if (keys == null)
                     keys = new String[0];
                 for (int i = 0; i < keys.length; i++)
@@ -1059,8 +1060,8 @@ public class RequestUtils {
         } catch (Exception e) {
             ;
         }
-        
+
         return errors;
     }
-    
+
 }
