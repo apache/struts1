@@ -305,6 +305,7 @@
 <target name="compile" depends="static" if="webapp.compile"
         description="Compile Java sources">
   <echo    message="Processing webapp ${webapp.name}"/>
+  <echo    message="struts.libs=${struts.libs}"/>
   <javac  srcdir="${webapp.src}"
          destdir="${webapp.target}/WEB-INF/classes"
            debug="${compile.debug}"

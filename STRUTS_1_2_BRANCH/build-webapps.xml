@@ -36,7 +36,6 @@
 -->
 
 <property name="build.home"           value="${basedir}/target"/>
-<property name="servlet.jar"          value="../jakarta-servletapi/lib/servlet.jar"/>
 <property name="struts.libs"          value="${build.home}/library"/>
 
 

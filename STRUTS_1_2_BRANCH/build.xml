@@ -46,6 +46,14 @@
                                       or later).
  -->
 
+ <!--
+     Location of other Struts subprojects
+
+     These default values assume that the checked out locations are the same
+     as the full repository paths, and that you are building the trunk.
+ -->
+ <property name="struts.core.home" value="../.."/>
+
  <!-- Load local and user build preferences -->
  <property file="build.properties"/>
  <property file="../../build.properties"/>
@@ -54,23 +62,10 @@
 
  <!-- Default values for unspecified properties -->
  <property name="jdbc20ext.jar" value="../jdbc2_0-stdext.jar"/>
- <property name="servlet.jar" value="../jakarta-servletapi/lib/servlet.jar"/>
  <property name="struts.jar" value="${struts.core.home}/dist/lib/struts.jar"/>
  <property name="struts-el.jar"
            value="dist/lib/struts-el.jar"/>
- <property name="jstl.jar" value="../jakarta-taglibs/dist/lib/jstl.jar"/>
- <property name="jstl-standard.jar"
-           value="../jakarta-taglibs/dist/lib/standard.jar"/>
- <property name="commons-beanutils.jar"
-           value="../jakarta-commons/beanutils/dist/lib/beanutils.jar"/>
 
- <!--
-     Location of other Struts subprojects
-
-     These default values assume that the checked out locations are the same
-     as the full repository paths, and that you are building the trunk.
- -->
- <property name="struts.core.home" value="../../core/trunk"/>
 
  <!-- ========== Initialization Properties ================================= -->
 
@@ -152,6 +147,22 @@
  <!-- Web directory -->
  <property name="web.dir" value="web"/>
 
+ <!-- This is only used if you execute "ant download-dependencies" -->
+ <property name="libdir" value="${basedir}/../../lib" />
+
+ <path id="downloaded.lib.classpath">
+   <fileset dir="${libdir}">
+     <include name="*.jar"/>
+   </fileset>
+ </path>
+
+ <property name="jstl.jar"               value="${libdir}/jstl-1.0.6.jar"/>
+ <property name="jstl-standard.jar"      value="${libdir}/standard-1.0.6.jar"/>
+ <property name="jstl.tld.dir"           value="${libdir}/tld"/>
+ <property name="servlet.jar"            value="${libdir}/servlet.jar"/>
+
+
+
  <!-- Compilation Classpath -->
  <path id="compile.classpath">
   <pathelement location="${commons-beanutils.jar}"/>
@@ -165,6 +176,8 @@
   <pathelement location="${struts-el.jar}"/>
   <pathelement location="${jstl.jar}"/>
   <pathelement location="${jstl-standard.jar}"/>
+
+
  </path>
 
  <!-- ========== Executable Targets ======================================== -->
@@ -222,7 +235,7 @@
 -->
     <target name="compile.webapps" depends="compile.library,static.webapps"
      description="Compile Struts web applications">
-        <ant antfile="build-webapps.xml" target="compile"/>
+        <ant antfile="build-webapps.xml" target="compile" />
     </target>
 
 <!--
