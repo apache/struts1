@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.155 2003/07/03 03:23:08 dgraham Exp $
- * $Revision: 1.155 $
- * $Date: 2003/07/03 03:23:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.156 2003/07/03 03:36:18 dgraham Exp $
+ * $Revision: 1.156 $
+ * $Date: 2003/07/03 03:36:18 $
  *
  * ====================================================================
  *
@@ -205,16 +205,6 @@ import org.xml.sax.SAXException;
  * <p>The following parameters may still be used with the Struts 1.1 release but
  * are <b>deprecated</b>.
  * <ul>
- * <li><strong>application</strong> - Java class name of the application
- *     resources bundle base class.  [NONE]
- *     <em>DEPRECATED - Configure this using the "parameter" attribute
- *     of the &lt;message-resources&gt; element.</em></li>
- * <li><strong>factory</strong> - The Java class name of the
- *     <code>MessageResourcesFactory</code> used to create the application
- *     <code>MessageResources</code> object.
- *     [org.apache.struts.util.PropertyMessageResourcesFactory]
- *     <em>DEPRECATED - Configure this using the "factory" attribute
- *     of the &lt;message-resources&gt; element.</em></li>
  * <li><strong>formBean</strong> - The Java class name of the ActionFormBean
  *     implementation to use [org.apache.struts.action.ActionFormBean].
  *     <em>DEPRECATED - Configure this using the "className" attribute
@@ -249,19 +239,13 @@ import org.xml.sax.SAXException;
  *     <em>DEPRECATED - Configure this using the "className" attribute of
  *     each &lt;action&gt; element, or globally for a module by using the
  *     "type" attribute of the &lt;action-mappings&gt; element.</em></li>
- * <li><strong>null</strong> - If set to <code>true</code>, set our application
- *     resources to return <code>null</code> if an unknown message key is used.
- *     Otherwise, an error message including the offending message key will
- *     be returned.  [true]
- *     <em>DEPRECATED - Configure this using the "null" attribute of
- *     the &lt;message-resources&gt; element.</em></li>
  * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.155 $ $Date: 2003/07/03 03:23:08 $
+ * @version $Revision: 1.156 $ $Date: 2003/07/03 03:36:18 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -733,7 +717,6 @@ public class ActionServlet extends HttpServlet {
         // Special handling for the default module (for
         // backwards compatibility only, will be removed later)
         if (prefix.length() < 1) {
-            defaultMessageResourcesConfig(config);
             defaultFormBeansConfig(config);
             defaultForwardsConfig(config);
             defaultMappingsConfig(config);
@@ -1251,48 +1234,6 @@ public class ActionServlet extends HttpServlet {
         }
         am.setFast(true);
         getServletContext().setAttribute(Globals.MAPPINGS_KEY, am);
-
-    }
-
-
-    /**
-     * Perform backwards-compatible configuration of the default module's
-     * message resources configuration from servlet initialization parameters
-     * (as were used in Struts 1.0).
-     *
-     * @param config The ModuleConfig object for the default module
-     *
-     * @since Struts 1.1
-     * @deprecated Will be removed in a release after Struts 1.1.
-     */
-    private void defaultMessageResourcesConfig(ModuleConfig config) {
-
-        String value = null;
-
-        MessageResourcesConfig mrc =
-            config.findMessageResourcesConfig(Globals.MESSAGES_KEY);
-        if (mrc == null) {
-            mrc = new MessageResourcesConfig();
-            mrc.setKey(Globals.MESSAGES_KEY);
-            config.addMessageResourcesConfig(mrc);
-        }
-        value = getServletConfig().getInitParameter("application");
-        if (value != null) {
-            mrc.setParameter(value);
-        }
-        value= getServletConfig().getInitParameter("factory");
-        if (value != null) {
-            mrc.setFactory(value);
-        }
-        value = getServletConfig().getInitParameter("null");
-        if (value != null) {
-            if (value.equalsIgnoreCase("true") ||
-                value.equalsIgnoreCase("yes")) {
-                mrc.setNull(true);
-            } else {
-                mrc.setNull(false);
-            }
-        }
 
     }
 
