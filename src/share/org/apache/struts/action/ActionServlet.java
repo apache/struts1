@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.148 2003/04/19 00:01:28 dgraham Exp $
- * $Revision: 1.148 $
- * $Date: 2003/04/19 00:01:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.149 2003/06/19 00:11:54 dgraham Exp $
+ * $Revision: 1.149 $
+ * $Date: 2003/06/19 00:11:54 $
  *
  * ====================================================================
  *
@@ -309,7 +309,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.148 $ $Date: 2003/04/19 00:01:28 $
+ * @version $Revision: 1.149 $ $Date: 2003/06/19 00:11:54 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -350,6 +350,7 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * The debugging detail level for this servlet.
+     * @deprecated
      */
     protected int debug = 0;
 
@@ -677,6 +678,7 @@ public class ActionServlet extends HttpServlet {
      *
      * @param message Message to be logged
      * @param level Debugging detail level of this message
+     * @deprecated Use commons-logging instead.
      */
     public void log(String message, int level) {
 
