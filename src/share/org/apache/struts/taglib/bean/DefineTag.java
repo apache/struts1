@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.10 2001/01/27 03:59:35 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/01/27 03:59:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.11 2001/02/12 01:26:57 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/02/12 01:26:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -68,8 +68,6 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
 
@@ -79,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/01/27 03:59:35 $
+ * @version $Revision: 1.11 $ $Date: 2001/02/12 01:26:57 $
  */
 
 public class DefineTag extends TagSupport {
@@ -101,14 +99,6 @@ public class DefineTag extends TagSupport {
     public void setId(String id) {
         this.id = id;
     }
-
-
-    /**
-     * The message resources for this package.
-     */
-    protected static MessageResources messages =
-        MessageResources.getMessageResources
-        ("org.apache.struts.taglib.bean.LocalStrings");
 
 
     /**
@@ -206,55 +196,9 @@ public class DefineTag extends TagSupport {
     public int doStartTag() throws JspException {
 
         // Retrieve the required property value
-        Object bean = null;
         Object value = this.value;
-        try {
-
-            if (value == null) {
-
-                // Locate the specified bean
-                bean = RequestUtils.lookup(pageContext, name, scope);
-
-                // Locate the specified property
-                if (bean == null) {
-                    JspException e = new JspException
-                        (messages.getMessage("getter.bean", name));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-                if (property == null)
-                    value = bean;
-                else
-                    value = PropertyUtils.getProperty(bean, property);
-
-            }
-
-        } catch (IllegalAccessException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("getter.access", property, name));
-	} catch (IllegalArgumentException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-	      (messages.getMessage("getter.scope", scope));
-        } catch (InvocationTargetException e) {
-            Throwable t = e.getTargetException();
-            if (t == null)
-                t = e;
-            pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("getter.invocation",
-                                     property, name, t.toString()));
-        } catch (NoSuchMethodException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("getter.method", property, name));
-        }
+        if (value == null)
+            value = RequestUtils.lookup(pageContext, name, property, scope);
 
         // Expose this value as a scripting variable
         int inScope = PageContext.PAGE_SCOPE;

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.6 2000/10/30 06:02:14 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/10/30 06:02:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.7 2001/02/12 01:26:57 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/12 01:26:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -70,9 +70,9 @@ import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:14 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/12 01:26:57 $
  */
 
 public class ResourceTag extends TagSupport {
@@ -162,9 +162,8 @@ public class ResourceTag extends TagSupport {
 	  pageContext.getServletContext().getResourceAsStream(name);
 	if (stream == null) {
 	    JspException e = new JspException
-	      (messages.getMessage("getter.resource", name));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+	      (messages.getMessage("resource.get", name));
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -190,10 +189,9 @@ public class ResourceTag extends TagSupport {
 	    reader.close();
 	    pageContext.setAttribute(id, sb.toString());
 	} catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
 	    throw new JspException
-	      (messages.getMessage("getter.resource", name));
+	      (messages.getMessage("resource.get", name));
 	}
         return (SKIP_BODY);
 

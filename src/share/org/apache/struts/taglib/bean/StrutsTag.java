@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.5 2001/01/06 01:50:25 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/01/06 01:50:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.6 2001/02/12 01:26:57 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/12 01:26:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -71,9 +71,9 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMappings;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/01/06 01:50:25 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/12 01:26:57 $
  */
 
 public class StrutsTag extends TagSupport {
@@ -177,8 +177,7 @@ public class StrutsTag extends TagSupport {
         if (n != 1) {
             JspException e = new JspException
                 (messages.getMessage("struts.selector"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -210,8 +209,7 @@ public class StrutsTag extends TagSupport {
         if (object == null) {
             JspException e = new JspException
                 (messages.getMessage("struts.missing", selector));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 

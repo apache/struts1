@@ -1,10 +1,10 @@
 /*
- * $Id: IncludeTag.java,v 1.9 2001/01/16 01:20:53 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.10 2001/02/12 01:26:57 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -89,7 +89,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/01/16 01:20:53 $
+ * @version $Revision: 1.10 $ $Date: 2001/02/12 01:26:57 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -202,8 +202,7 @@ public class IncludeTag extends TagSupport {
 	    conn.setDoOutput(false);
 	    conn.connect();
 	} catch (Exception e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
 	    throw new JspException
                 (messages.getMessage("include.open",
                                      url.toString(), e.toString()));
@@ -225,8 +224,7 @@ public class IncludeTag extends TagSupport {
 	    }
             in.close();
 	} catch (Exception e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw new JspException
                 (messages.getMessage("include.read",
                                      url.toString(), e.toString()));
@@ -277,8 +275,7 @@ public class IncludeTag extends TagSupport {
         if (n != 1) {
             JspException e = new JspException
                 (messages.getMessage("include.destination"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -289,13 +286,19 @@ public class IncludeTag extends TagSupport {
             ActionForwards forwards = (ActionForwards)
                 pageContext.getAttribute(Action.FORWARDS_KEY,
                                          PageContext.APPLICATION_SCOPE);
-            if (forwards == null)
-                throw new JspException
+            if (forwards == null) {
+                JspException e = new JspException
                     (messages.getMessage("include.forwards"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
             ActionForward forward = forwards.findForward(this.forward);
-            if (forward == null)
-                throw new JspException
+            if (forward == null) {
+                JspException e = new JspException
                     (messages.getMessage("include.forward", this.forward));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             href = RequestUtils.absoluteURL(request, forward.getPath());
@@ -334,10 +337,9 @@ public class IncludeTag extends TagSupport {
         try {
             return (new URL(href));
         } catch (MalformedURLException e) {
+            RequestUtils.saveException(pageContext, e);
             JspException f = new JspException
                 (messages.getMessage("include.malformed", href));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.APPLICATION_SCOPE);
             throw f;
         }
 

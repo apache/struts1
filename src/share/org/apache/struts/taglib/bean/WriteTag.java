@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.9 2001/01/07 22:39:07 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/01/07 22:39:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.10 2001/02/12 01:26:58 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/02/12 01:26:58 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -63,17 +63,12 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -82,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/01/07 22:39:07 $
+ * @version $Revision: 1.10 $ $Date: 2001/02/12 01:26:58 $
  */
 
 public class WriteTag extends TagSupport {
@@ -118,14 +113,6 @@ public class WriteTag extends TagSupport {
         this.ignore = ignore;
     }
 
-
-
-    /**
-     * The message resources for this package.
-     */
-    protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.bean.LocalStrings");
 
 
     /**
@@ -181,84 +168,25 @@ public class WriteTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-        // Retrieve the required property value
+        // Look up the requested bean (if necessary)
         Object bean = null;
-        Object value = null;
-        try {
-
-            // Locate the specified bean
-            try {
-                bean = RequestUtils.lookup(pageContext, name, scope);
-            } catch (IllegalArgumentException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-                throw new JspException
-                    (messages.getMessage("getter.scope", scope));
-            }
-	    if ((bean == null) && ignore)
+        if (ignore) {
+            if (RequestUtils.lookup(pageContext, name, scope) == null)
                 return (SKIP_BODY);  // Nothing to output
-            else if (bean == null) {
-                JspException e = new JspException
-                    (messages.getMessage("getter.bean", name));
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-                throw e;
-            }
-
-            // Locate the specified property
-            if (property == null)
-                value = bean;
-            else
-                value = PropertyUtils.getProperty(bean, property);
-	    if (value == null)
-	        return (SKIP_BODY);  // Nothing to output
-
-	    // Convert the property value to a String if necessary
-	    // FIXME - deal with array valued properties
-	    // FIXME - use a PropertyEditor as necessary
-	    if (!(value instanceof String))
-	        value = value.toString();
-
-        } catch (IllegalAccessException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("getter.access", property, name));
-	} catch (IllegalArgumentException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-	      (messages.getMessage("getter.argument", e.toString()));
-        } catch (InvocationTargetException e) {
-            Throwable t = e.getTargetException();
-            if (t == null)
-                t = e;
-            pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("getter.invocation",
-                                     property, name, t.toString()));
-        } catch (NoSuchMethodException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("getter.method", property, name));
         }
 
+        // Look up the requested property value
+        Object value =
+            RequestUtils.lookup(pageContext, name, property, scope);
+        if (value == null)
+            return (SKIP_BODY);  // Nothing to output
 
 	// Print this property value to our output writer, suitably filtered
-	JspWriter writer = pageContext.getOut();
-	try {
-	    if (filter)
-	        writer.print(BeanUtils.filter((String) value));
-	    else
-	        writer.print((String) value);
-	} catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-		(messages.getMessage("getter.io", e.toString()));
-	}
+        String output = value.toString();
+        if (filter)
+            ResponseUtils.write(pageContext, ResponseUtils.filter(output));
+        else
+            ResponseUtils.write(pageContext, output);
 
 	// Continue processing this page
 	return (SKIP_BODY);
