@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.21 2003/03/22 18:46:12 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/03/22 18:46:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.22 2003/05/17 03:30:45 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/05/17 03:30:45 $
  *
  * ====================================================================
  *
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -72,15 +70,14 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.21 $ $Date: 2003/03/22 18:46:12 $
+ * @author David Graham
+ * @version $Revision: 1.22 $ $Date: 2003/05/17 03:30:45 $
  */
-
 public class RadioTag extends BaseHandlerTag {
 
 
@@ -139,7 +136,6 @@ public class RadioTag extends BaseHandlerTag {
     protected String idName = null;
 
 
-
     // ------------------------------------------------------------- Properties
 
 
@@ -152,7 +148,6 @@ public class RadioTag extends BaseHandlerTag {
 
     }
 
-
     /**
      * Set the property name.
      *
@@ -164,7 +159,6 @@ public class RadioTag extends BaseHandlerTag {
 
     }
 
-
     /**
      * Return the server value.
      */
@@ -173,7 +167,6 @@ public class RadioTag extends BaseHandlerTag {
         return (this.value);
 
     }
-
 
     /**
      * Set the server value.
@@ -186,8 +179,6 @@ public class RadioTag extends BaseHandlerTag {
 
     }
 
-
-
     /**
      * Return the idName.
      * @since Struts 1.1
@@ -197,7 +188,6 @@ public class RadioTag extends BaseHandlerTag {
         return (this.idName);
 
     }
-
 
     /**
      * Set the idName.
@@ -212,7 +202,6 @@ public class RadioTag extends BaseHandlerTag {
     }
 
 
-
     // --------------------------------------------------------- Public Methods
 
 
@@ -223,48 +212,96 @@ public class RadioTag extends BaseHandlerTag {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
+        String radioTag = renderRadioElement(serverValue(), currentValue());
+
+        ResponseUtils.write(pageContext, radioTag);
+
+        this.text = null;
+        return (EVAL_BODY_TAG);
+    }
+
+    /**
+     * Return the String to be used in the radio tag's <code>value</code> attribute 
+     * that gets sent to the server on form submission.
+     * @throws JspException
+     */
+    private String serverValue() throws JspException {
+
+        // Not using indexed radio buttons
+        if (this.idName == null) {
+            return this.value;
+        }
         
-        // Acquire the current value of the appropriate field
-        Object current = null;
-        Object bean = RequestUtils.lookup(pageContext, name, null);
+        Object idBean = RequestUtils.lookup(this.pageContext, this.idName, null);
+        if (idBean == null) {
+            throw new JspException(messages.getMessage("getter.bean", this.idName));
+        }
+        
+        String serverValue = this.lookupProperty(idBean, this.value);
+        
+        return (serverValue == null) ? "" : serverValue;
+    }
+
+    /**
+     * Acquire the current value of the bean specified by the <code>name</code> 
+     * attribute and the property specified by the <code>property</code> attribute.
+     * This radio button with this value will be checked.
+     * @throws JspException
+     */
+    private String currentValue() throws JspException {
+        Object bean = RequestUtils.lookup(this.pageContext, name, null);
         if (bean == null) {
             throw new JspException(messages.getMessage("getter.bean", name));
         }
         
-        // Cannot change this.value so use a temp variable
-        String tempValue = this.value;
+        String current = this.lookupProperty(bean, this.property);
         
-        try {
-            current = BeanUtils.getProperty(bean, property);
-            if (current == null) {
-                current = "";
-            }
-        
-            // @since Struts 1.1
-            if (idName != null) {
-                Object idBean = RequestUtils.lookup(pageContext, idName, null);
-                if (idBean == null) {
-                    throw new JspException(messages.getMessage("getter.bean", idName));
-                }
-                tempValue = BeanUtils.getProperty(idBean, this.value);
-                if (tempValue == null) {
-                    tempValue = "";
-                }
-            }
-        
-        } catch (IllegalAccessException e) {
-            throw new JspException(messages.getMessage("getter.access", property, name));
+        return (current == null) ? "" : current;
+    }
+    
+    /**
+     * Calls BeanUtils.getProperty with the given arguments and converts any exceptions
+     * into JspException.
+     * @param bean The object to get the property from.
+     * @param property The name of the property to get.
+     * @return The value of the property.
+     * @throws JspException
+     */
+    private String lookupProperty(Object bean, String property)
+        throws JspException {
             
+        try {
+            return BeanUtils.getProperty(bean, property);
+
+        } catch (IllegalAccessException e) {
+            throw new JspException(
+                messages.getMessage("getter.access", property, name));
+
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
             throw new JspException(
                 messages.getMessage("getter.result", property, t.toString()));
-                
+
         } catch (NoSuchMethodException e) {
-            throw new JspException(messages.getMessage("getter.method", property, name));
+            throw new JspException(
+                messages.getMessage("getter.method", property, name));
         }
-        
-        // Create an appropriate "input" element based on our parameters
+    }
+
+    /**
+     * Renders an HTML &lt;input type="radio"&gt; element.
+     * @param serverValue The data to be used in the tag's <code>value</code> 
+     * attribute and sent to the server when the form is submitted.
+     * @param checkedValue If the serverValue equals this value the radio button 
+     * will be checked.
+     * @return A radio input element.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String renderRadioElement(String serverValue, String checkedValue)
+        throws JspException {
+            
         StringBuffer results = new StringBuffer("<input type=\"radio\"");
         results.append(" name=\"");
         // @since Struts 1.1
@@ -284,24 +321,16 @@ public class RadioTag extends BaseHandlerTag {
             results.append("\"");
         }
         results.append(" value=\"");
-        results.append(tempValue);
+        results.append(serverValue);
         results.append("\"");
-        if (tempValue.equals(current.toString())) {
+        if (serverValue.equals(checkedValue)) {
             results.append(" checked=\"checked\"");
         }
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(getElementClose());
-        
-        // Print this field to our output writer
-        ResponseUtils.write(pageContext, results.toString());
-        
-        // Continue processing this page
-        this.text = null;
-        return (EVAL_BODY_TAG);
-
+        return results.toString();
     }
-
 
     /**
      * Save the associated label from the body content.
@@ -310,16 +339,15 @@ public class RadioTag extends BaseHandlerTag {
      */
     public int doAfterBody() throws JspException {
 
-        if (bodyContent != null) {
-            String value = bodyContent.getString().trim();
+        if (this.bodyContent != null) {
+            String value = this.bodyContent.getString().trim();
             if (value.length() > 0) {
-                text = value;
+                this.text = value;
             }
         }
+        
         return (SKIP_BODY);
-
     }
-
 
     /**
      * Optionally render the associated label from the body content.
@@ -329,15 +357,13 @@ public class RadioTag extends BaseHandlerTag {
     public int doEndTag() throws JspException {
 
         // Render any description for this radio button
-        if (text != null) {
+        if (this.text != null) {
             ResponseUtils.write(pageContext, text);
         }
         
-        // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release any acquired resources.
@@ -351,6 +377,5 @@ public class RadioTag extends BaseHandlerTag {
         value = null;
 
     }
-
 
 }
