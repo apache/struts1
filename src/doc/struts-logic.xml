@@ -374,6 +374,7 @@
     Repeat the nested body content of this tag over a specified collection.
     </summary>
     <tagclass>org.apache.struts.taglib.logic.IterateTag</tagclass>
+    <teiclass>org.apache.struts.taglib.logic.IterateTei</teiclass>
     <bodycontent>JSP</bodycontent>
     <info>
     <p>Repeats the nested body content of this tag once for every element
