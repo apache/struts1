@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.66 2002/10/30 02:29:15 rleland Exp $
- * $Revision: 1.66 $
- * $Date: 2002/10/30 02:29:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.67 2002/11/05 14:07:09 cedric Exp $
+ * $Revision: 1.67 $
+ * $Date: 2002/11/05 14:07:09 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.66 $ $Date: 2002/10/30 02:29:15 $
+ * @version $Revision: 1.67 $ $Date: 2002/11/05 14:07:09 $
  */
 
 public class RequestUtils {
@@ -1436,31 +1436,45 @@ public class RequestUtils {
      */
     public static void selectApplication(HttpServletRequest request,
                                          ServletContext context) {
+          // Compute module name
+        String prefix = getModuleName( request, context);
+        // Expose the resources for this module
+        selectApplication(prefix, request, context);
 
-        // Acquire the path used to compute the module
+    }
+
+    /**
+     * Get the module name to which the specified request belong.
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     */
+    public static String getModuleName(HttpServletRequest request,
+                                         ServletContext context) {
+
+       // Acquire the path used to compute the module
         String matchPath = (String)
             request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
-	
+
         if (matchPath == null) {
             matchPath = request.getServletPath();
         }
 
         if (LOG.isDebugEnabled())
             {
-                LOG.debug("Selecting module for path " + matchPath);
+                LOG.debug("Get module name for path " + matchPath);
             }
 
         String prefix = "";  // Initialize prefix before we try lookup
         String prefixes[] =
             getApplicationPrefixes(context); // Get all other possible prefixes
         int lastSlash = 0;  // Initialize before loop
-        
+
         while (prefix.equals("") &&
                ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
-            
+
             // We may be in a non-default module.  Try to get it's prefix.
             matchPath = matchPath.substring(0, lastSlash);
-            
+
             // Match against the list of module prefixes
             for (int i = 0; i < prefixes.length; i++) {
                 if (matchPath.equals(prefixes[i])) {
@@ -1472,14 +1486,12 @@ public class RequestUtils {
 
         if (LOG.isDebugEnabled())
             {
-                LOG.debug("Activating module " +
+                LOG.debug("Module name found: " +
                           (prefix.equals("") ? "default" : prefix));
             }
-
-        // Expose the resources for this module
-        selectApplication(prefix, request, context);
-
+    return prefix;
     }
+
 
     /**
      * Return the ApplicationConfig object is it exists, null otherwise.
