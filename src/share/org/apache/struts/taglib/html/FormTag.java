@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.31 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.31 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.32 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.32 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.31 $ $Date: 2002/11/08 05:39:24 $
+ * @version $Revision: 1.32 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class FormTag extends TagSupport {
@@ -596,7 +596,7 @@ public class FormTag extends TagSupport {
         HttpSession session = pageContext.getSession();
         if (session != null) {
             String token =
-                (String) session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
+                (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
             if (token != null) {
                 results.append("<input type=\"hidden\" name=\"");
                 results.append(Constants.TOKEN_KEY);
@@ -801,7 +801,7 @@ public class FormTag extends TagSupport {
 
         // Use our servlet mapping, if one is specified
         String servletMapping = (String)
-            pageContext.getAttribute(Action.SERVLET_KEY,
+            pageContext.getAttribute(Globals.SERVLET_KEY,
                                      PageContext.APPLICATION_SCOPE);
         if (servletMapping != null) {
             String queryString = null;
@@ -854,12 +854,12 @@ public class FormTag extends TagSupport {
         if (moduleConfig == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.collections"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+            pageContext.setAttribute(Globals.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw e;
         }
         servlet = (ActionServlet)
-            pageContext.getServletContext().getAttribute(Action.ACTION_SERVLET_KEY);
+            pageContext.getServletContext().getAttribute(Globals.ACTION_SERVLET_KEY);
 
         // Look up the action mapping we will be submitting to
         String mappingName = getActionMappingName();
@@ -867,7 +867,7 @@ public class FormTag extends TagSupport {
         if (mapping == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.mapping", mappingName));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+            pageContext.setAttribute(Globals.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw e;
         }
@@ -877,7 +877,7 @@ public class FormTag extends TagSupport {
             if (type == null) {
                 JspException e = new JspException
                     (messages.getMessage("formTag.nameType"));
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                pageContext.setAttribute(Globals.EXCEPTION_KEY, e,
                                          PageContext.REQUEST_SCOPE);
                 throw e;
             }
@@ -893,7 +893,7 @@ public class FormTag extends TagSupport {
         if (formBeanConfig == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.formBean", mapping.getName()));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+            pageContext.setAttribute(Globals.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw e;
         }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.17 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.17 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.18 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -62,12 +62,15 @@
 package org.apache.struts.taglib.html;
 
 import java.util.Locale;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.struts.action.Action;
+import javax.servlet.jsp.tagext.Tag;
+
+import org.apache.struts.Globals;
+import org.apache.struts.taglib.logic.IterateTag;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.taglib.logic.IterateTag;
 
 /**
  * Base class for tags that render form elements capable of including JavaScript
@@ -76,44 +79,40 @@ import org.apache.struts.taglib.logic.IterateTag;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.17 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.18 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The default Locale for our server.
      */
     protected static final Locale defaultLocale = Locale.getDefault();
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
-
-//  Navigation Management
+    //  Navigation Management
 
     /** Access key character. */
-    protected String accesskey= null;
+    protected String accesskey = null;
 
     /** Tab index value. */
     protected String tabindex = null;
 
-//  Indexing ability for Iterate
+    //  Indexing ability for Iterate
 
     /** Whether to created indexed names for fields
       * @since Struts 1.1
       */
     protected boolean indexed = false;
 
-//  Mouse Events
+    //  Mouse Events
 
     /** Mouse click event. */
     private String onclick = null;
@@ -136,7 +135,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Mouse released on component event. */
     private String onmouseup = null;
 
-//  Keyboard Events
+    //  Keyboard Events
 
     /** Key down in component event. */
     private String onkeydown = null;
@@ -147,7 +146,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Key down and up together in component event. */
     private String onkeypress = null;
 
-// Text Events
+    // Text Events
 
     /** Text selected in component event. */
     private String onselect = null;
@@ -155,7 +154,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Content changed after component lost focus event. */
     private String onchange = null;
 
-// Focus Events and States
+    // Focus Events and States
 
     /** Component lost focus event. */
     private String onblur = null;
@@ -169,7 +168,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Component is readonly. */
     private boolean readonly = false;
 
-// CSS Style Support
+    // CSS Style Support
 
     /** Style attribute associated with component. */
     private String style = null;
@@ -180,7 +179,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** Identifier associated with component.  */
     private String styleId = null;
 
-// Other Common Attributes
+    // Other Common Attributes
 
     /** The alternate text of this element. */
     private String alt = null;
@@ -192,7 +191,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     private String bundle = null;
 
     /** The name of the session attribute key for our locale. */
-    private String locale = Action.LOCALE_KEY;
+    private String locale = Globals.LOCALE_KEY;
 
     /** The advisory title of this element. */
     private String title = null;
@@ -200,10 +199,9 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /** The message resources key of the advisory title. */
     private String titleKey = null;
 
-
     // ------------------------------------------------------------- Properties
 
-//  Navigation Management
+    //  Navigation Management
 
     /** Sets the accessKey character. */
     public void setAccesskey(String accessKey) {
@@ -215,7 +213,6 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return (this.accesskey);
     }
 
-
     /** Sets the tabIndex value. */
     public void setTabindex(String tabIndex) {
         this.tabindex = tabIndex;
@@ -226,7 +223,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return (this.tabindex);
     }
 
-//  Indexing ability for Iterate [since Struts 1.1]
+    //  Indexing ability for Iterate [since Struts 1.1]
 
     /** Sets the indexed value.
       * @since Struts 1.1
@@ -242,7 +239,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return (this.indexed);
     }
 
-// Mouse Events
+    // Mouse Events
 
     /** Sets the onClick event handler. */
     public void setOnclick(String onClick) {
@@ -314,7 +311,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return onmouseout;
     }
 
-// Keyboard Events
+    // Keyboard Events
 
     /** Sets the onKeyDown event handler. */
     public void setOnkeydown(String onKeyDown) {
@@ -346,7 +343,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return onkeypress;
     }
 
-// Text Events
+    // Text Events
 
     /** Sets the onChange event handler. */
     public void setOnchange(String onChange) {
@@ -368,7 +365,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return onselect;
     }
 
-// Focus Events and States
+    // Focus Events and States
 
     /** Sets the onBlur event handler. */
     public void setOnblur(String onBlur) {
@@ -410,7 +407,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return readonly;
     }
 
-// CSS Style Support
+    // CSS Style Support
 
     /** Sets the style attribute. */
     public void setStyle(String style) {
@@ -442,7 +439,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return styleId;
     }
 
-// Other Common Elements
+    // Other Common Elements
 
     /** Returns the alternate text attribute. */
     public String getAlt() {
@@ -504,9 +501,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         this.titleKey = titleKey;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Release any acquired resources.
@@ -519,7 +514,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         altKey = null;
         bundle = null;
         indexed = false;
-        locale = Action.LOCALE_KEY;
+        locale = Globals.LOCALE_KEY;
         onclick = null;
         ondblclick = null;
         onmouseover = null;
@@ -545,9 +540,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     }
 
-
     // ------------------------------------------------------ Protected Methods
-
 
     /**
      * Return the text specified by the literal value or the message resources
@@ -562,8 +555,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         if (literal != null) {
             if (key != null) {
-                JspException e = new JspException
-                    (messages.getMessage("common.both"));
+                JspException e = new JspException(messages.getMessage("common.both"));
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             } else {
@@ -571,8 +563,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             }
         } else {
             if (key != null) {
-                return (RequestUtils.message(pageContext, getBundle(),
-                                             getLocale(), key));
+                return (RequestUtils.message(pageContext, getBundle(), getLocale(), key));
             } else {
                 return null;
             }
@@ -580,30 +571,28 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     }
 
-
     /**
      *  Appends bean name with index in brackets for tags with
      *  'true' value in 'indexed' attribute.
      *  @param handlers The StringBuffer that output will be appended to.
      *  @exception JspException if 'indexed' tag used outside of iterate tag.
      */
-    protected void prepareIndex( StringBuffer handlers, String name )
-        throws JspException {
+    protected void prepareIndex(StringBuffer handlers, String name) throws JspException {
         // look for outer iterate tag
         IterateTag iterateTag = (IterateTag) findAncestorWithClass(this, IterateTag.class);
         if (iterateTag == null) {
-             // this tag should only be nested in iteratetag, if it's not, throw exception
-             JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
-             RequestUtils.saveException(pageContext, e);
-             throw e;
+            // this tag should only be nested in iteratetag, if it's not, throw exception
+            JspException e = new JspException(messages.getMessage("indexed.noEnclosingIterate"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
         }
-        if( name!=null )
-                handlers.append( name );
+        if (name != null)
+            handlers.append(name);
         handlers.append("[");
         handlers.append(iterateTag.getIndex());
-                handlers.append("]");
-        if( name!=null )
-                handlers.append(".");
+        handlers.append("]");
+        if (name != null)
+            handlers.append(".");
     }
 
     /**
@@ -656,7 +645,6 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         prepareFocusEvents(handlers);
         return handlers.toString();
     }
-
 
     /**
      * Prepares the mouse event handlers, appending them to the the given
@@ -782,5 +770,38 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     }
 
+    /**
+     * Allows HTML tags to find out if they're nested within an %lt;html:html&gt; tag that
+     * has xhtml set to true.
+     * @param tag - Tags should pass themselves into the method as a starting point
+     * for finding the parent html tag.
+     * @return true if the tag is nested within an html tag with xhtml set to true, false
+     * otherwise.
+     * @since Struts 1.1
+     */
+    protected static boolean isXhtml(Tag tag) {
+        HtmlTag htmlTag = (HtmlTag) findAncestorWithClass(tag, HtmlTag.class);
+        if (htmlTag == null) {
+            return false;
+        }
+
+        return htmlTag.getXhtml();
+    }
+
+    /**
+     * Returns the closing brace for an input element depending on xhtml status.  The tag
+     * must be nested within an %lt;html:html&gt; tag that has xhtml set to true.
+     * @param tag - Tags should pass themselves into the method as a starting point
+     * for finding the parent html tag.
+     * @return String - &gt; if xhtml is false, /&gt; if xhtml is true
+     * @since Struts 1.1
+     */
+    protected String getElementClose(Tag tag) {
+        if (this.isXhtml(tag)) {
+            return "/>";
+        } else {
+            return ">";
+        }
+    }
 
 }

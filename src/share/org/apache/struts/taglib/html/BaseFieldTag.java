@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.15 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.15 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.16 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -59,27 +59,22 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import javax.servlet.jsp.JspException;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2002/10/26 15:08:16 $
+ * @version $Revision: 1.16 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * Comma-delimited list of content types that a server processing this form
@@ -97,7 +92,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
         this.accept = accept;
     }
 
-
     /**
      * The name of the bean containing our underlying property.
      */
@@ -110,7 +104,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
     public void setName(String name) {
         this.name = name;
     }
-
 
     /**
      * The "redisplay contents" flag (used only on <code>password</code>).
@@ -125,16 +118,13 @@ public abstract class BaseFieldTag extends BaseInputTag {
         this.redisplay = redisplay;
     }
 
-
     /**
      * The type of input field represented by this tag (text, password, or
      * hidden).
      */
     protected String type = null;
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Generate the required input tag.
@@ -150,8 +140,8 @@ public abstract class BaseFieldTag extends BaseInputTag {
         results.append(type);
         results.append("\" name=\"");
         // * @since Struts 1.1
-        if( indexed )
-                prepareIndex( results, name );
+        if (indexed)
+            prepareIndex(results, name);
         results.append(property);
         results.append("\"");
         if (accesskey != null) {
@@ -183,8 +173,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
         if (value != null) {
             results.append(ResponseUtils.filter(value));
         } else if (redisplay || !"password".equals(type)) {
-            Object value = RequestUtils.lookup(pageContext, name, property,
-                                               null);
+            Object value = RequestUtils.lookup(pageContext, name, property, null);
             if (value == null)
                 value = "";
             results.append(ResponseUtils.filter(value.toString()));
@@ -192,7 +181,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
         results.append("\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-        results.append(">");
+        results.append(getElementClose(this));
 
         // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
@@ -201,7 +190,6 @@ public abstract class BaseFieldTag extends BaseInputTag {
         return (EVAL_BODY_TAG);
 
     }
-
 
     /**
      * Release any acquired resources.
@@ -214,6 +202,5 @@ public abstract class BaseFieldTag extends BaseInputTag {
         redisplay = true;
 
     }
-
 
 }

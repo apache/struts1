@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.17 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.17 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.18 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -65,8 +65,11 @@ package org.apache.struts.taglib.html;
 
 import java.util.Iterator;
 import java.util.Locale;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
@@ -96,7 +99,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.18 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -128,7 +131,7 @@ public class ErrorsTag extends TagSupport {
     /**
      * The session attribute key for our locale.
      */
-    protected String locale = Action.LOCALE_KEY;
+    protected String locale = Globals.LOCALE_KEY;
 
     public String getLocale() {
         return (this.locale);
@@ -149,7 +152,7 @@ public class ErrorsTag extends TagSupport {
     /**
      * The request attribute key for our error messages (if any).
      */
-    protected String name = Action.ERROR_KEY;
+    protected String name = Globals.ERROR_KEY;
 
     public String getName() {
     return (this.name);
@@ -194,7 +197,7 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        if ((errors == null) || errors.empty()) {
+        if ((errors == null) || errors.isEmpty()) {
         return (EVAL_BODY_INCLUDE);
         }
 
@@ -262,19 +265,15 @@ public class ErrorsTag extends TagSupport {
 
     }
 
-
     /**
      * Release any acquired resources.
      */
     public void release() {
-
-    super.release();
-        bundle = Action.MESSAGES_KEY;
-        locale = Action.LOCALE_KEY;
-    name = Action.ERROR_KEY;
+        super.release();
+        bundle = Globals.MESSAGES_KEY;
+        locale = Globals.LOCALE_KEY;
+        name = Globals.ERROR_KEY;
         property = null;
-
     }
-
 
 }

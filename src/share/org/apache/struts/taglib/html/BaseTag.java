@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.8 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.8 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.9 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -62,14 +62,15 @@
 package org.apache.struts.taglib.html;
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.util.MessageResources;
 
+import org.apache.struts.Globals;
+import org.apache.struts.util.MessageResources;
 
 /**
  * Renders an HTML <base> element with an href 
@@ -80,16 +81,16 @@ import org.apache.struts.util.MessageResources;
  * used to call the ActionServlet.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.8 $ $Date: 2002/10/26 15:08:16 $
+ * @version $Revision: 1.9 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class BaseTag extends TagSupport {
-  
-  /**
-   * The message resources for this package.
-   */
-  protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+
+    /**
+     * The message resources for this package.
+     */
+    protected static MessageResources messages =
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The target window for this base reference.
@@ -104,45 +105,46 @@ public class BaseTag extends TagSupport {
         this.target = target;
     }
 
-
-  /**
-   * Process the start of this tag.
-   *
-   * @exception JspException if a JSP exception has occurred
-   */
-  public int doStartTag() throws JspException {
-    HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-    StringBuffer buf = new StringBuffer("<base href=\""); 
-    buf.append(request.getScheme());
-    buf.append("://");
-    buf.append(request.getServerName());
-    if ("http".equals(request.getScheme()) &&
-        (80 == request.getServerPort())) {
-        ;
-    } else if ("https".equals(request.getScheme()) &&
-               (443 == request.getServerPort())) {
-        ;
-    } else {
-        buf.append(":");
-        buf.append(request.getServerPort());
-    }
-    buf.append(request.getRequestURI());
-    buf.append("\"");
-    if (target != null) {
-        buf.append(" target=\"");
-        buf.append(target);
+    /**
+     * Process the start of this tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doStartTag() throws JspException {
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+        StringBuffer buf = new StringBuffer("<base href=\"");
+        buf.append(request.getScheme());
+        buf.append("://");
+        buf.append(request.getServerName());
+        if ("http".equals(request.getScheme()) && (80 == request.getServerPort())) {
+            ;
+        } else if ("https".equals(request.getScheme()) && (443 == request.getServerPort())) {
+            ;
+        } else {
+            buf.append(":");
+            buf.append(request.getServerPort());
+        }
+        buf.append(request.getRequestURI());
         buf.append("\"");
+        if (target != null) {
+            buf.append(" target=\"");
+            buf.append(target);
+            buf.append("\"");
+        }
+
+        if (BaseHandlerTag.isXhtml(this)) {
+            buf.append("/>");
+        } else {
+            buf.append(">");
+        }
+
+        JspWriter out = pageContext.getOut();
+        try {
+            out.write(buf.toString());
+        } catch (IOException e) {
+            pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
+            throw new JspException(messages.getMessage("common.io", e.toString()));
+        }
+        return EVAL_BODY_INCLUDE;
     }
-    buf.append(">");
-    JspWriter out = pageContext.getOut();
-    try {
-        out.write(buf.toString());
-    }
-    catch (IOException e) {
-        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                 PageContext.REQUEST_SCOPE);
-        throw new JspException(messages.getMessage("common.io", e.toString()));
-    }
-    return EVAL_BODY_INCLUDE;
-  }
 }

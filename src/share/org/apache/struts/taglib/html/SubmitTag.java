@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.14 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.14 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.15 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/10/26 15:08:16 $
+ * @version $Revision: 1.15 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -230,7 +230,7 @@ public class SubmitTag extends BaseHandlerTag {
         results.append("\"");
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-        results.append(">");
+        results.append(getElementClose(this));
 
         // Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());

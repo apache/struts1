@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.23 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.23 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.24 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.Globals;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.23 $ $Date: 2002/11/08 05:39:24 $
+ * @version $Revision: 1.24 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -261,7 +261,7 @@ public class ImageTag extends SubmitTag {
         }
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
-        results.append(">");
+        results.append(getElementClose(this));
 
         // Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.9 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.9 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ResetTag.java,v 1.10 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/10/26 15:08:16 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class ResetTag extends BaseHandlerTag {
@@ -225,7 +225,7 @@ public class ResetTag extends BaseHandlerTag {
 	results.append("\"");
 	results.append(prepareEventHandlers());
 	results.append(prepareStyles());
-	results.append(">");
+	results.append(getElementClose(this));
 
 	// Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());

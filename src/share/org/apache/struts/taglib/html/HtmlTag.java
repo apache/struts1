@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.5 2002/11/07 01:43:34 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/07 01:43:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.6 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -62,10 +62,13 @@
 package org.apache.struts.taglib.html;
 
 import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
@@ -76,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/11/07 01:43:34 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -204,7 +207,7 @@ public class HtmlTag extends TagSupport {
             return (null);
 
         // Return any currently set Locale in our session
-        Locale current = (Locale) session.getAttribute(Action.LOCALE_KEY);
+        Locale current = (Locale) session.getAttribute(Globals.LOCALE_KEY);
         if (current != null)
             return (current);
 
@@ -213,7 +216,7 @@ public class HtmlTag extends TagSupport {
             return (null);
         current = pageContext.getRequest().getLocale();
         if (current != null)
-            session.setAttribute(Action.LOCALE_KEY, current);
+            session.setAttribute(Globals.LOCALE_KEY, current);
         return (current);
 
     }

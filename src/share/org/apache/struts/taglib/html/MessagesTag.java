@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.5 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.6 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -62,8 +62,11 @@
 package org.apache.struts.taglib.html;
 
 import java.util.Iterator;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -74,13 +77,13 @@ import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that iterates the elements of a message collection.
- * It defaults to retrieving the messages from <code>Action.ERROR_KEY</code>,
+ * It defaults to retrieving the messages from <code>Globals.ERROR_KEY</code>,
  * but if the message attribute is set to true then the messages will be
- * retrieved from <code>Action.MESSAGE_KEY</code>. This is an alternative
+ * retrieved from <code>Globals.MESSAGE_KEY</code>. This is an alternative
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.5 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.6 $ $Date: 2002/11/12 03:47:42 $
  * @since Struts 1.1
 */
 public class MessagesTag extends BodyTagSupport {
@@ -110,17 +113,17 @@ public class MessagesTag extends BodyTagSupport {
     /**
      * The servlet context attribute key for our resources.
     */
-    protected String bundle = Action.MESSAGES_KEY;
+    protected String bundle = Globals.MESSAGES_KEY;
 
     /**
      * The session attribute key for our locale.
     */
-    protected String locale = Action.LOCALE_KEY;
+    protected String locale = Globals.LOCALE_KEY;
 
     /**
      * The request attribute key for our error messages (if any).
      */
-    protected String name = Action.ERROR_KEY;
+    protected String name = Globals.ERROR_KEY;
 
     /**
      * The name of the property for which error messages should be returned,
@@ -139,7 +142,7 @@ public class MessagesTag extends BodyTagSupport {
     protected String footer = null;
 
     /**
-     * If this is set to 'true', then the <code>Action.MESSAGE_KEY</code> will
+     * If this is set to 'true', then the <code>Globals.MESSAGE_KEY</code> will
      * be used to retrieve the messages from scope.
     */
     protected String message = null;
@@ -223,7 +226,7 @@ public class MessagesTag extends BodyTagSupport {
         ActionMessages messages = null;
 
         if (message != null && "true".equalsIgnoreCase(message))
-           name = Action.MESSAGE_KEY;
+           name = Globals.MESSAGE_KEY;
 
         try {
             messages = RequestUtils.getActionMessages(pageContext, name);
@@ -325,9 +328,9 @@ public class MessagesTag extends BodyTagSupport {
        iterator = null;
        processed = false;
        id = null;
-       bundle = Action.MESSAGES_KEY;
-       locale = Action.LOCALE_KEY;
-       name = Action.ERROR_KEY;
+       bundle = Globals.MESSAGES_KEY;
+       locale = Globals.LOCALE_KEY;
+       name = Globals.ERROR_KEY;
        property = null;
        header = null;
        footer = null;

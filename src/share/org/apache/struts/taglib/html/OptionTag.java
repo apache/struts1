@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.12 2002/10/09 05:09:35 martinc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/10/09 05:09:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.13 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -64,8 +64,11 @@ package org.apache.struts.taglib.html;
 
 
 import java.util.Locale;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -78,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2002/10/09 05:09:35 $
+ * @version $Revision: 1.13 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -113,7 +116,7 @@ public class OptionTag extends BodyTagSupport {
      * The name of the servlet context attribute containing our message
      * resources.
      */
-    protected String bundle = Action.MESSAGES_KEY;
+    protected String bundle = Globals.MESSAGES_KEY;
 
     public String getBundle() {
         return (this.bundle);
@@ -157,7 +160,7 @@ public class OptionTag extends BodyTagSupport {
      * The name of the attribute containing the Locale to be used for
      * looking up internationalized messages.
      */
-    protected String locale = Action.LOCALE_KEY;
+    protected String locale = Globals.LOCALE_KEY;
 
     public String getLocale() {
         return (this.locale);
@@ -337,17 +340,15 @@ public class OptionTag extends BodyTagSupport {
      * Release any acquired resources.
      */
     public void release() {
-
-	super.release();
-        bundle = Action.MESSAGES_KEY;
+        super.release();
+        bundle = Globals.MESSAGES_KEY;
         disabled = false;
         key = null;
-        locale = Action.LOCALE_KEY;
-	style = null;
-	styleClass = null;
+        locale = Globals.LOCALE_KEY;
+        style = null;
+        styleClass = null;
         text = null;
-	value = null;
-
+        value = null;
     }
 
 

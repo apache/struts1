@@ -52,9 +52,7 @@
  * <http://www.apache.org/>.
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,6 +62,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -75,13 +74,13 @@ import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorUtil;
 import org.apache.commons.validator.Var;
+import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
-import org.apache.struts.validator.ValidatorPlugIn;
-import org.apache.struts.util.MessageResources;
-import org.apache.struts.validator.Resources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.config.ModuleConfig;
-
+import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.validator.Resources;
+import org.apache.struts.validator.ValidatorPlugIn;
 
 /**
  * Custom tag that generates JavaScript for client side validation based
@@ -89,20 +88,17 @@ import org.apache.struts.config.ModuleConfig;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.13 $ $Date: 2002/11/08 05:45:58 $
+ * @version $Revision: 1.14 $ $Date: 2002/11/12 03:47:42 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
 
-
     // ----------------------------------------------------------- Properties
-
 
     /**
      * The servlet context attribute key for our resources.
      */
-    protected String bundle = Action.MESSAGES_KEY;
-
+    protected String bundle = Globals.MESSAGES_KEY;
 
     /**
      * The default locale on our server.
@@ -254,18 +250,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
       * JavaScript with html comments.  If this is set to 'true', which
       * is the default, the htmlComment will be surround the JavaScript.
       */
-     public String getHtmlComment() {
-         return htmlComment;
-     }
+    public String getHtmlComment() {
+        return htmlComment;
+    }
 
-     /**
-      * Sets whether or not to delimit the
-      * JavaScript with html comments.  If this is set to 'true', which
-      * is the default, the htmlComment will be surround the JavaScript.
-      */
-     public void setHtmlComment(String htmlComment) {
-         this.htmlComment = htmlComment;
-     }
+    /**
+     * Sets whether or not to delimit the
+     * JavaScript with html comments.  If this is set to 'true', which
+     * is the default, the htmlComment will be surround the JavaScript.
+     */
+    public void setHtmlComment(String htmlComment) {
+        this.htmlComment = htmlComment;
+    }
 
     /**
      * Gets the src attribute's value when defining
@@ -293,13 +289,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         StringBuffer results = new StringBuffer();
 
         ModuleConfig config = RequestUtils.getModuleConfig(pageContext);
-        ValidatorResources resources = (ValidatorResources)
-                pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
-                config.getPrefix(), PageContext.APPLICATION_SCOPE);
+        ValidatorResources resources =
+            (ValidatorResources) pageContext.getAttribute(
+                ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
+                PageContext.APPLICATION_SCOPE);
         Locale locale = null;
         try {
-            locale = (Locale) pageContext.getAttribute(Action.LOCALE_KEY, PageContext.SESSION_SCOPE);
-        } catch (IllegalStateException e) {  // Invalidated session
+            locale =
+                (Locale) pageContext.getAttribute(Globals.LOCALE_KEY, PageContext.SESSION_SCOPE);
+        } catch (IllegalStateException e) { // Invalidated session
             locale = null;
         }
 
@@ -311,9 +309,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         form = resources.get(locale, formName);
         if (form != null) {
             if ("true".equals(dynamicJavascript)) {
-                MessageResources messages = (MessageResources)
-                        pageContext.getAttribute(bundle + config.getPrefix(),
-                                                 PageContext.APPLICATION_SCOPE);
+                MessageResources messages =
+                    (MessageResources) pageContext.getAttribute(
+                        bundle + config.getPrefix(),
+                        PageContext.APPLICATION_SCOPE);
 
                 List lActions = new ArrayList();
                 List lActionMethods = new ArrayList();
@@ -349,14 +348,16 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         ValidatorAction va1 = (ValidatorAction) o1;
                         ValidatorAction va2 = (ValidatorAction) o2;
 
-                        if ((va1.getDepends() == null || va1.getDepends().length() == 0) &&
-                                (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                        if ((va1.getDepends() == null || va1.getDepends().length() == 0)
+                            && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
                             return 0;
-                        } else if ((va1.getDepends() != null && va1.getDepends().length() > 0) &&
-                                (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                        } else if (
+                            (va1.getDepends() != null && va1.getDepends().length() > 0)
+                                && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
                             return 1;
-                        } else if ((va1.getDepends() == null || va1.getDepends().length() == 0) &&
-                                (va2.getDepends() != null && va2.getDepends().length() > 0)) {
+                        } else if (
+                            (va1.getDepends() == null || va1.getDepends().length() == 0)
+                                && (va2.getDepends() != null && va2.getDepends().length() > 0)) {
                             return -1;
                         } else {
                             return va1.getDependencies().size() - va2.getDependencies().size();
@@ -394,13 +395,22 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
                         // Skip indexed fields for now until there is
                         // a good way to handle error messages (and the length of the list (could retrieve from scope?))
-                        if (!field.isIndexed() && field.getPage() == page && field.isDependency(va.getName())) {
+                        if (!field.isIndexed()
+                            && field.getPage() == page
+                            && field.isDependency(va.getName())) {
                             String message = Resources.getMessage(messages, locale, va, field);
                             message = (message != null ? message : "");
 
                             jscriptVar = getNextVar(jscriptVar);
 
-                            results.append("     this." + jscriptVar + " = new Array(\"" + field.getKey() + "\", \"" + message + "\", ");
+                            results.append(
+                                "     this."
+                                    + jscriptVar
+                                    + " = new Array(\""
+                                    + field.getKey()
+                                    + "\", \""
+                                    + message
+                                    + "\", ");
 
                             results.append("new Function (\"varName\", \"");
 
@@ -413,16 +423,41 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                 String jsType = var.getJsType();
 
                                 if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
-                                    results.append("this." + varKey + "=" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "; ");
+                                    results.append(
+                                        "this."
+                                            + varKey
+                                            + "="
+                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                            + "; ");
                                 } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
-                                    results.append("this." + varKey + "=/" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "/; ");
+                                    results.append(
+                                        "this."
+                                            + varKey
+                                            + "=/"
+                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                            + "/; ");
                                 } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
-                                    results.append("this." + varKey + "='" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "'; ");
+                                    results.append(
+                                        "this."
+                                            + varKey
+                                            + "='"
+                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                            + "'; ");
                                     // So everyone using the latest format doesn't need to change their xml files immediately.
                                 } else if ("mask".equalsIgnoreCase(varKey)) {
-                                    results.append("this." + varKey + "=/" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "/; ");
+                                    results.append(
+                                        "this."
+                                            + varKey
+                                            + "=/"
+                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                            + "/; ");
                                 } else {
-                                    results.append("this." + varKey + "='" + ValidatorUtil.replace(varValue, "\\", "\\\\") + "'; ");
+                                    results.append(
+                                        "this."
+                                            + varKey
+                                            + "='"
+                                            + ValidatorUtil.replace(varValue, "\\", "\\\\")
+                                            + "'; ");
                                 }
                             }
 
@@ -432,16 +467,17 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     results.append("    } \n\n");
                 }
             } else if ("true".equals(staticJavascript)) {
-                results.append("<script language=\"Javascript1.1\" type=\"text/javascript\">");
+                results.append(this.getStartElement());
                 if ("true".equals(htmlComment))
-                  results.append(htmlBeginComment);
+                    results.append(htmlBeginComment);
             }
         }
         if ("true".equals(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
 
-        if (form != null && ("true".equals(dynamicJavascript) || "true".equals(staticJavascript))) {
+        if (form != null
+            && ("true".equals(dynamicJavascript) || "true".equals(staticJavascript))) {
             results.append(getJavascriptEnd());
         }
 
@@ -464,7 +500,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     public void release() {
         super.release();
-        bundle = Action.MESSAGES_KEY;
+        bundle = Globals.MESSAGES_KEY;
         formName = null;
         page = 0;
         methodName = null;
@@ -474,12 +510,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         src = null;
     }
 
-
     protected String getJavascriptBegin(String methods) {
         StringBuffer sb = new StringBuffer();
-        String name = formName.substring(0, 1).toUpperCase() + formName.substring(1, formName.length());
+        String name =
+            formName.substring(0, 1).toUpperCase() + formName.substring(1, formName.length());
 
-        sb.append("<script language=\"Javascript1.1\" type=\"text/javascript\"");
+        sb.append(this.getStartElement());
 
         if (src != null) {
             sb.append(" src=\"" + src + "\"> \n");
@@ -488,13 +524,19 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
 
         if ("true".equals(htmlComment))
-           sb.append(htmlBeginComment);
+            sb.append(htmlBeginComment);
         sb.append("\n     var bCancel = false; \n\n");
 
         if (methodName == null || methodName.length() == 0)
-            sb.append("    function validate" + name + "(form) {                                                                   \n");
+            sb.append(
+                "    function validate"
+                    + name
+                    + "(form) {                                                                   \n");
         else
-            sb.append("    function " + methodName + "(form) {                                                                   \n");
+            sb.append(
+                "    function "
+                    + methodName
+                    + "(form) {                                                                   \n");
 
         sb.append("        if (bCancel) \n");
         sb.append("      return true; \n");
@@ -535,7 +577,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         sb.append("\n");
         if ("true".equals(htmlComment))
-           sb.append(htmlEndComment);
+            sb.append(htmlEndComment);
         sb.append("</script>\n\n");
 
         return sb.toString();
@@ -589,5 +631,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
     }
 
+    /**
+     * Constructs the beginning &lt;script&gt; element depending on xhtml status.
+     */
+    private String getStartElement() {
+        StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
+
+        // there is no language attribute in xhtml
+        if (!BaseHandlerTag.isXhtml(this)) {
+            start.append(" language=\"Javascript1.1\"");
+        }
+        start.append(">");
+        return start.toString();
+    }
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.15 2002/10/26 15:08:16 jholmes Exp $
- * $Revision: 1.15 $
- * $Date: 2002/10/26 15:08:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.16 2002/11/12 03:47:42 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/11/12 03:47:42 $
  *
  * ====================================================================
  *
@@ -59,18 +59,17 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
 import java.lang.reflect.InvocationTargetException;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
+
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.struts.action.Action;
+import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
-
 
 /**
  * Tag for input fields of type "checkbox".  This differs from CheckboxTag
@@ -81,14 +80,12 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2002/10/26 15:08:16 $
+ * @version $Revision: 1.16 $ $Date: 2002/11/12 03:47:42 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The constant String value to be returned when this checkbox is
@@ -96,13 +93,11 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     protected String constant = null;
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The name of the bean containing our underlying property.
@@ -110,19 +105,17 @@ public class MultiboxTag extends BaseHandlerTag {
     protected String name = Constants.BEAN_KEY;
 
     public String getName() {
-	return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
-
 
     /**
      * The property name for this field.
      */
     protected String property = null;
-
 
     /**
      * The value which will mark this checkbox as "checked" if present
@@ -130,19 +123,16 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     protected String value = null;
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * Return the property name.
      */
     public String getProperty() {
 
-	return (this.property);
+        return (this.property);
 
     }
-
 
     /**
      * Set the property name.
@@ -151,20 +141,18 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public void setProperty(String property) {
 
-	this.property = property;
+        this.property = property;
 
     }
-
 
     /**
      * Return the server value.
      */
     public String getValue() {
 
-	return (this.value);
+        return (this.value);
 
     }
-
 
     /**
      * Set the server value.
@@ -173,13 +161,11 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public void setValue(String value) {
 
-	this.value = value;
+        this.value = value;
 
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the beginning of this tag.
@@ -188,13 +174,11 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Defer processing until the end of this tag is encountered
+        // Defer processing until the end of this tag is encountered
         this.constant = null;
-	return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
 
     }
-
-
 
     /**
      * Save the body contents of this tag as the constant that we will
@@ -212,7 +196,6 @@ public class MultiboxTag extends BaseHandlerTag {
 
     }
 
-
     /**
      * Render an input element for this tag.
      *
@@ -220,86 +203,77 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public int doEndTag() throws JspException {
 
-	// Create an appropriate "input" element based on our parameters
-	StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
-	results.append(" name=\"");
-	results.append(this.property);
-	results.append("\"");
-	if (accesskey != null) {
-	    results.append(" accesskey=\"");
-	    results.append(accesskey);
-	    results.append("\"");
-	}
-	if (tabindex != null) {
-	    results.append(" tabindex=\"");
-	    results.append(tabindex);
-	    results.append("\"");
-	}
-	results.append(" value=\"");
+        // Create an appropriate "input" element based on our parameters
+        StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
+        results.append(" name=\"");
+        results.append(this.property);
+        results.append("\"");
+        if (accesskey != null) {
+            results.append(" accesskey=\"");
+            results.append(accesskey);
+            results.append("\"");
+        }
+        if (tabindex != null) {
+            results.append(" tabindex=\"");
+            results.append(tabindex);
+            results.append("\"");
+        }
+        results.append(" value=\"");
         String value = this.value;
         if (value == null)
             value = this.constant;
         if (value == null) {
-            JspException e = new JspException
-                (messages.getMessage("multiboxTag.value"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            JspException e = new JspException(messages.getMessage("multiboxTag.value"));
+            pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
             throw e;
         }
         results.append(ResponseUtils.filter(value));
-	results.append("\"");
-	Object bean = pageContext.findAttribute(name);
-	String values[] = null;
-	if (bean == null)
-	    throw new JspException
-		(messages.getMessage("getter.bean", name));
-	try {
-	    values = BeanUtils.getArrayProperty(bean, property);
-	    if (values == null)
-		values = new String[0];
-	    } catch (IllegalAccessException e) {
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	} catch (NoSuchMethodException e) {
-	    throw new JspException
-		(messages.getMessage("getter.method", property, name));
-	}
-	for (int i = 0; i < values.length; i++) {
-	    if (value.equals(values[i])) {
-		results.append(" checked=\"checked\"");
-		break;
-	    }
-	}
-	results.append(prepareEventHandlers());
-	results.append(prepareStyles());
-	results.append(">");
+        results.append("\"");
+        Object bean = pageContext.findAttribute(name);
+        String values[] = null;
+        if (bean == null)
+            throw new JspException(messages.getMessage("getter.bean", name));
+        try {
+            values = BeanUtils.getArrayProperty(bean, property);
+            if (values == null)
+                values = new String[0];
+        } catch (IllegalAccessException e) {
+            throw new JspException(messages.getMessage("getter.access", property, name));
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            throw new JspException(messages.getMessage("getter.result", property, t.toString()));
+        } catch (NoSuchMethodException e) {
+            throw new JspException(messages.getMessage("getter.method", property, name));
+        }
+        for (int i = 0; i < values.length; i++) {
+            if (value.equals(values[i])) {
+                results.append(" checked=\"checked\"");
+                break;
+            }
+        }
+        results.append(prepareEventHandlers());
+        results.append(prepareStyles());
+        results.append(getElementClose(this));
 
         // Render this element to our response
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue evaluating this page
-	return (EVAL_PAGE);
+        // Continue evaluating this page
+        return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release any acquired resources.
      */
     public void release() {
 
-	super.release();
+        super.release();
         constant = null;
-	name = Constants.BEAN_KEY;
-	property = null;
-	value = null;
+        name = Constants.BEAN_KEY;
+        property = null;
+        value = null;
 
     }
-
 
 }
