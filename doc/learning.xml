@@ -166,12 +166,26 @@
 
   <section name="Books and Articles about Struts" href="books">
 
+  <div align="center">
+  <center>
+  <table border="0" cellpadding="6">
+    <tr>
+      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/0471213020.jpg" width="49" height="60" /></a></td>
+      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/0596003285.jpg" width="46" height="60" /></a></td>
+      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/0672324725.jpg" width="49" height="60" /></a></td>
+      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/1558608621.jpg" width="47" height="60" /></a></td>
+      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/1930110502.jpg" width="49" height="60" /></a></td>
+    </tr>
+  </table>
+  </center>
+ </div>
+
   <p>
   Printed books about Struts are available now, and several more are on the way.
   A current list of books about Struts is maintained in <a href="resources/books.html">the
   resource area</a>. Links to excerpts are provided when available.
   </p>
-
+  
   <p>
   A great number of online articles and tutorials have also been published about Struts,
   which are also listed in the
