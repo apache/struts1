@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.3 2001/07/08 04:15:12 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/07/08 04:15:12 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/TestBean.java,v 1.4 2001/10/15 05:50:10 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/10/15 05:50:10 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.struts.action.ActionMapping;
  * General purpose test bean for Struts custom tag tests.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/07/08 04:15:12 $
+ * @version $Revision: 1.4 $ $Date: 2001/10/15 05:50:10 $
  */
 
 public class TestBean extends ActionForm {
@@ -92,6 +92,21 @@ public class TestBean extends ActionForm {
 
     public void setBooleanProperty(boolean booleanProperty) {
         this.booleanProperty = booleanProperty;
+    }
+
+
+    /**
+     * A multiple-String SELECT element using a collection.
+     */
+    private String[] collectionSelect = { "Value 2", "Value 4",
+                                          "Value 6" };
+
+    public String[] getCollectionSelect() {
+        return (this.collectionSelect);
+    }
+
+    public void setCollectionSelect(String collectionSelect[]) {
+        this.collectionSelect = collectionSelect;
     }
 
 
@@ -340,6 +355,7 @@ public class TestBean extends ActionForm {
     public void reset(ActionMapping mapping, HttpServletRequest request) {
 
         booleanProperty = false;
+        collectionSelect = new String[0];
         intMultibox = new int[0];
         multipleSelect = new String[0];
         stringMultibox = new String[0];
