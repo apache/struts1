@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.5 2003/08/16 17:59:34 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/08/16 17:59:34 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/Channels.java,v 1.6 2003/08/16 18:07:41 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/08/16 18:07:41 $
  *
  * ====================================================================
  *
@@ -61,7 +61,6 @@
 
 package org.apache.struts.webapp.tiles.rssChannel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,11 +73,11 @@ import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.tiles.ComponentContext;
 
 /**
@@ -89,7 +88,7 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2003/08/16 17:59:34 $
+ * @version $Revision: 1.6 $ $Date: 2003/08/16 18:07:41 $
  */
 public final class Channels extends Action {
 
@@ -116,12 +115,12 @@ public final class Channels extends Action {
     /**
      * Main process of class. Reads, parses
      */
-    public ActionForward perform(
+    public ActionForward execute(
         ActionMapping mapping,
         ActionForm form,
         HttpServletRequest request,
         HttpServletResponse response)
-        throws IOException, ServletException {
+        throws Exception {
 
         log.debug("Enter Rss Channel Action");
 
@@ -132,7 +131,6 @@ public final class Channels extends Action {
         }
 
         ActionErrors errors = new ActionErrors();
-        org.apache.commons.digester.rss.Channel channel = null;
 
         // -- Retrieve parameters --
         // Urls can come from a list, or from a single attribute.
@@ -168,7 +166,7 @@ public final class Channels extends Action {
         } catch (Throwable t) {
             errors.add(
                 ActionErrors.GLOBAL_ERROR,
-                new ActionError("rss.access.error"));
+                new ActionMessage("rss.access.error"));
 
             servlet.log(t.toString());
         }
@@ -194,7 +192,7 @@ public final class Channels extends Action {
 
         // Use Tile context to pass channels
         context.putAttribute(CHANNELS_KEY, channelBeans);
-        
+
         return mapping.findForward("continue");
     }
 

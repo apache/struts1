@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.5 2003/08/16 18:04:41 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/08/16 18:04:41 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/rssChannel/RssChannelsAction.java,v 1.6 2003/08/16 18:07:41 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/08/16 18:07:41 $
  *
  * ====================================================================
  *
@@ -71,11 +71,11 @@ import org.apache.commons.digester.rss.Channel;
 import org.apache.commons.digester.rss.RSSDigester;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.tiles.ComponentContext;
 import org.apache.struts.tiles.actions.TilesAction;
 
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.actions.TilesAction;
  *
  * @author Ted Husted
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2003/08/16 18:04:41 $
+ * @version $Revision: 1.6 $ $Date: 2003/08/16 18:07:41 $
  */
 public final class RssChannelsAction extends TilesAction {
 
@@ -177,7 +177,8 @@ public final class RssChannelsAction extends TilesAction {
         } catch (Throwable t) {
             errors.add(
                 ActionErrors.GLOBAL_ERROR,
-                new ActionError("rss.access.error"));
+                new ActionMessage("rss.access.error"));
+                
             servlet.log(t.toString());
         }
 
