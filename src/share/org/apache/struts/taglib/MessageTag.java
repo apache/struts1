@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.2 2000/06/01 21:06:27 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/01 21:06:27 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/01 21:06:27 $
  */
 
 public final class MessageTag extends TagSupport {
@@ -148,12 +148,6 @@ public final class MessageTag extends TagSupport {
      * The message key of the message to be retrieved.
      */
     private String key = null;
-
-
-    /**
-     * The language and/or country selector to use for selecting a Locale.
-     */
-    private String locale = null;
 
 
     /**
@@ -321,28 +315,6 @@ public final class MessageTag extends TagSupport {
     }
 
 
-    /**
-     * Return the locale selector.
-     */
-    public String getLocale() {
-
-	return (this.locale);
-
-    }
-
-
-    /**
-     * Set the locale selector.
-     *
-     * @param locale The new locale selector
-     */
-    public void setLocale(String locale) {
-
-	this.locale = locale;
-
-    }
-
-
     // --------------------------------------------------------- Public Methods
 
 
@@ -361,8 +333,11 @@ public final class MessageTag extends TagSupport {
 		(messages.getMessage("getMessageTag.resources", bundle));
 
 	// Calculate the Locale we will be using
-	Locale locale = defaultLocale;
-	;	// FIXME - evaluate "this.locale" and get one!  cache!
+	Locale locale = (Locale)
+	    pageContext.getAttribute(Action.LOCALE_KEY,
+				     PageContext.SESSION_SCOPE);
+	if (locale == null)
+	    locale = defaultLocale;
 
 	// Construct the optional arguments array we will be using
 	Object args[] = new Object[5];

@@ -1,0 +1,794 @@
+<html>
+<head>
+<title>Struts - Custom Tag Library Reference</title>
+</head>
+<body bgcolor="white">
+
+
+<a name="Top"></a>
+<h1>Introduction</h1>
+
+<p>This document contains reference information about each of the tags defined
+in the Struts custom tag library.  For each tag, the following information
+is presented:</p>
+<ul>
+<li>The name of this tag.</li>
+<li>A brief description of what the tag does and how it is used.</li>
+<li>Descriptions of the attributes of this tag, including default
+    values (if the attribute is not specified) in square brackets.</li>
+</ul>
+
+
+<a name="checkbox"></a>
+<h1><i>checkbox</i> - Render A Checkbox Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>checkbox</code>, populated from the specified value or the specified
+property of the bean associated with our current <code>form</code>.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>boolean</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which the checkbox should be initialized ("true", "false",
+      "yes", or "no").  [Use the corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="enumerate"></a>
+<h1><i>enumerate</i> - Repeat Tag Body For Elements of a Collection</h1>
+
+<p>Repeats the body of this tag once for each element of a collection, which
+must be an <code>Enumeration</code>, a <code>Hashtable</code>, a
+<code>Vector</code>, or an array of objects.  The collection to be enumerated
+is identified by the <code>name</code> or <code>name</code> and
+<code>property</code> attributes, and the element being processed is exposed
+as a page scope bean named by the <code>id</code> attribute.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">id</td>
+    <td>
+      Attribute name of the page scope bean that will be made visible to
+      the body of the <code>enumerate</code> tag, containing the current
+      element of the enumeration.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Attribute name of the collection bean itself (if <code>property</code>
+      is not specified), or the bean whose property is retrieved (if
+      <code>property</code> is specified).  The collection may be in
+      any scope, but must be one of the Java types described above.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of a property of the bean identified by <code>name</code>
+      that is retrieved to provide the collection to be enumerated.
+      [Use the bean identified by <code>name</code> itself]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="errors"></a>
+<h1><i>errors</i> - Conditionally Display Error Messages</h1>
+
+<p>Displays a set of error messages prepared by a business logic component
+and stored as a <code>String[]</code> request scope bean.  If such a bean
+is not found, nothing will be rendered.</p>
+
+<p>In order to use this tag successfully, you must have defined an application
+scope <code>MessageResources</code> bean under the default attribute name,
+with at least the following message keys:</p>
+<ul>
+<li><b>errors.header</b> - Text that will be rendered before the error
+    messages list.  Typically, this message text ends with
+    <code>&lt;ul&gt;</code> to start the error messages list.</li>
+<li><b>errors.detail</b> - Text that will be rendered for each error message,
+    with <code>{0}</code> replacement text for the message actually generated
+    by the business logic component.  A typical value for this message text is
+    <code>"&lt;li&gt;{0}&lt;/li&gt;"</code>.</li>
+<li><b>errors.footer</b> - Text that will be rendered after the error messages
+    list.  Typically, this message text begins with
+    <code>&lt;/ul&gt;</code> to end the error messages list.</li>
+</ul>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request scope bean under which a <code>String[]</code>
+      object has possibly been stored.  [The value of the
+      <code>org.apache.struts.Action.ERROR_KEY</code> constant string]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="form"></a>
+<h1><i>form</i> - Define An Input Form</h1>
+
+<p>Renders an HTML <code>&lt;form&gt;</code> element whose contents are
+described by the body content of this tag.  The form implicitly interacts
+with the specified request scope or session scope bean to populate
+the input fields with the current property values from the bean.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">action</td>
+    <td>
+      The URL to which this form will be submitted.  Typically, this will
+      match a mapping for the <code>ActionServlet</code> managing this
+      application.  URL rewriting will automatically be performed on this
+      URL, to maintain session state in the absence of cookies.
+      [Form will be submitted to this page itself]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">method</td>
+    <td>
+      The HTTP method that will be used to submit this request (GET, POST).
+      [POST]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request scope or session scope bean (as defined by
+      the <code>scope</code> attribute) whose properties will
+      be used to populate input field values.  If no such bean is found,
+      a new bean will be created (and added to the appropriate scope), using
+      the Java class name specified by the <code>type</code> attribute.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">scope</td>
+    <td>
+      JSP scope within which the associated bean will be accessed
+      or created (request, session).  [session]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">type</td>
+    <td>
+      Fully qualified Java class name of the bean to be created if no bean
+      is found for the specified <code>name</code> and <code>scope</code>.
+      To be used successfully with the Struts <code>ActionServlet</code>, this
+      class must implement the <code>org.apache.struts.action.ActionForm</code>
+      interface.  [Runtime error if bean creation is attempted]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="getProperty"></a>
+<h1><i>getProperty</i> - Expose Bean Property as an Attribute</h1>
+
+<p>Retrieves the value of the specified property from the specified bean,
+and exposes it as a page scope bean for use by other tags.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">id</td>
+    <td>
+      Name of the page scope bean under which the retrieved attribute
+      will be retrieved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the bean (which can be in any scope) whose specified
+      property value is retrieved and exposed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of the property whose value is retrieved and exposed.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="hidden"></a>
+<h1><i>hidden</i> - Render A Hidden Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>hidden</code>, populated from the specified value or the specified
+property of the bean associated with our current <code>form</code>.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which this field should be initialized.  [Use the
+      corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="htmlProperty"></a>
+<h1><i>htmlProperty</i> - Render A Bean Property</h1>
+
+<p>Retrieves the value of the specified property from the specified bean,
+and renders it to the output stream, with suitable filtering for characters
+that are sensitive in HTML.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the bean (which can be in any scope) whose specified
+      property value is retrieved and rendered.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of the property whose value is retrieved and rendered.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="ifParameterEquals"></a>
+<h1><i>ifParameterEquals</i> - Conditionally Evaluate Tag Body</h1>
+
+<p>Evaluates and processes the body of this tag if the specified parameter
+included with this request has the specified value.  Otherwise, the body of
+this tag is skipped.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter whose value must match for
+      conditional evaluation of the tag body to take place.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value that must match exactly in order for conditional
+      evaluation of the tag body to take place.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="ifParameterNotEquals"></a>
+<h1><i>ifParameterNotEquals</i> - Conditionally Evaluate Tag Body</h1>
+
+<p>Evaluates and processes the body of this tag if the specified parameter
+included with this request does not match the specified value (or it is
+omitted).  Otherwise, the body of this tag is skipped.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter whose value must not match for
+      conditional evaluation of the tag body to take place.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value that must not match exactly in order for conditional
+      evaluation of the tag body to take place.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="link"></a>
+<h1><i>link</i> - Render HTML Hyperlink</h1>
+
+<p>Renders an HTML <code>&lt;a&gt;</code> element as a hyperlink to the
+specified URL.  URL rewriting will be applied automatically to maintain
+session state in the absence of cookies.  The content displayed for this
+hyperlink will be taken from the body of this tag.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">href</td>
+    <td>
+      URL to which this hyperlink will transfer if activated.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="message"></a>
+<h1><i>message</i> - Render An Internationalized Message</h1>
+
+<p>Retrieves an internationalized message for the specified Locale, using
+the specified key, and renders it to the output stream.  If the message
+supports parametric replacements (such as "{0}"), you can specify up to
+four argument values to use as replacement text.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">arg0</td>
+    <td>
+      First parameteric replacement value, if any.  [None]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">arg1</td>
+    <td>
+      Second parameteric replacement value, if any.  [None]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">arg2</td>
+    <td>
+      Third parameteric replacement value, if any.  [None]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">arg3</td>
+    <td>
+      Fourth parameteric replacement value, if any.  [None]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">bundle</td>
+    <td>
+      Application scope attribute under which the <code>MessageResources</code>
+      bean containing our messages is stored.  [The value of the
+      <code>Action.MESSAGES_KEY</code> constant string]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">key</td>
+    <td>
+      Message key of the requested message, which must have a corresponding
+      value in the resources.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">locale</td>
+    <td>
+      Session scope attribute under which the <code>Locale</code> bean
+      selected by the current user is stored.  If no such bean is found,
+      the system default Locale will be used.  [The value of the
+      <code>Action.LOCALE_KEY</code> constant string]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="option"></a>
+<h1><i>option</i> - Render A Select Option</h1>
+
+<p>Renders an HTML <code>&lt;option&gt;</code> element, representing one of
+the choices for a <code>&lt;select&gt;</code> element.  The text displayed
+to the user comes from the body of this tag.  If the value of the corresponding
+bean property matches the specified <code>value</code>, this
+<code>option</code> will be marked <code>selected</code>.  This tag is only
+valid when nested inside a <code>select</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to be submitted for this field if this option is selected
+      by the user.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="parameter"></a>
+<h1><i>parameter</i> - Render Request Parameter</h1>
+
+<p>Renders the value of the specified request parameter, suitably filtered
+for characters that are sensitive in HTML.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter whose value is to be rendered.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="password"></a>
+<h1><i>password</i> - Render A Password Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>password</code>, populated from the specified value or the specified
+property of the bean associated with our current <code>form</code>.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">maxlength</td>
+    <td>
+      Maximum number of input characters to accept.  [No limit]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">size</td>
+    <td>
+      Number of character positions to allocate.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which this field should be initialized.  [Use the
+      corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="property"></a>
+<h1><i>property</i> - Render A Read-only Property Value</h1>
+
+<p>Renders the value of the specified property as read-only text.  It
+is similar to the standard &lt;jsp:getProperty&gt; tag, but also filters
+the output text for characters that HTML is sensitive to.  This tag is
+only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which this field should be initialized.  [Use the
+      corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="radio"></a>
+<h1><i>radio</i> - Render A Radio Button Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>radio</code>, populated from the specified value or the specified
+property of the bean associated with our current <code>form</code>.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>boolean</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value that is matched against the underlying bean property value.
+      If the property has the same value, this radio button will be
+      rendered as <code>checked</code>.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="reset"></a>
+<h1><i>reset</i> - Render a Reset Button</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>reset</code>.  This tag is only valid when nested inside a
+<code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value of the label to be placed on this button.
+      [Body of this tag (if any), or "Reset"]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="select"></a>
+<h1><i>select</i> - Render a Select Input Field</h1>
+
+<p>Renders an HTML <code>&lt;select&gt;</code> element, whose available
+options are described by <code>&lt;option&gt;</code> elements nested in the
+tag body of this tag.  This tag is only valid when nested inside a
+<code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which this field should be initialized.  [Use the
+      corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="submit"></a>
+<h1><i>submit</i> - Render a Submit Button</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>submit</code>.  This tag is only valid when nested inside a
+<code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the request parameter that will be included with this
+      submission, set to the specified value.  [submit]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value of the label to be placed on this button.  This value will
+      also be submitted as the value of the specified request parameter.
+      [Body of this tag (if any), or "Reset"]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="text"></a>
+<h1><i>text</i> - Render A Text Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>text/code>, populated from the specified value or the specified
+property of the bean associated with our current <code>form</code>.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">maxlength</td>
+    <td>
+      Maximum number of input characters to accept.  [No limit]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">size</td>
+    <td>
+      Number of character positions to allocate.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which this field should be initialized.  [Use the
+      corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="textarea"></a>
+<h1><i>textarea</i> - Render A Textarea Input Field</h1>
+
+<p>Renders an HTML <code>&lt;textarea&gt;</code> element, based on the
+specified attributes.  This tag is only valid when nested inside a
+<code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">cols</td>
+    <td>
+      Number of columns displayed in the textarea.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">rows</td>
+    <td>
+      Number of rows displayed in the textarea.  [Browser default]
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      Value to which this field should be initialized.  [Use the
+      corresponding bean property value]
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+</body>
+</html>

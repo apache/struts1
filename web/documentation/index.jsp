@@ -4,7 +4,12 @@
 </head>
 <body bgcolor="white">
 
-FIXME - Write the documentation and include it here!
+FIXME - Write the documentation and include it here!<br><br>
+
+The following documentation is available:
+<ul>
+<li><a href="tags.html">Custom Tag Library Reference</a>
+</ul>
 
 </body>
 </html>

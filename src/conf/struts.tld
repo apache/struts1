@@ -25,25 +25,6 @@
     <tagclass>org.apache.struts.taglib.EnumerateTag</tagclass>
     <teiclass>org.apache.struts.taglib.EnumerateTei</teiclass>
     <bodycontent>JSP</bodycontent>
-    <info>
-      Repeat the body of this tag for each element of the collection
-      specified by our attributes.  The collection may be an object
-      itself, or may be a bean property.  The collection may be an
-      Enumeration, a Hashtable, a Vector, or an object array.  The
-      following attributes are supported:
-
-      id       - Attribute name of the page scope attribute which is
-                 visible to the body tag, and contains the current
-                 element from the collection.
-      
-      name     - Attribute name of the collection itself (if property
-                 is not specified) or the bean whose property is to
-                 be retrieved as the collection.
-      
-      property - Property name of the bean property containing the
-                 collection, if any.  [The "name" attribute identifies
-                 the collection bean itself]
-    </info>
     <attribute>
       <name>id</name>
       <required>true</required>
@@ -66,16 +47,6 @@
     <name>ifParameterEquals</name>
     <tagclass>org.apache.struts.taglib.IfParameterEqualsTag</tagclass>
     <bodycontent>JSP</bodycontent>
-    <info>
-      Conditionally evaluate the body of this tag, if the specified
-      parameter has the specified value.  For the purposes of this
-      comparision, a missing parameter is treated as if is a zero-length
-      string.  The following attributes are supported:
-
-      name     - Name of the parameter to be retrieved.  [REQUIRED]
-      
-      value    - Value to be compared.  [REQUIRED]
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -93,16 +64,6 @@
     <name>ifParameterNotEquals</name>
     <tagclass>org.apache.struts.taglib.IfParameterNotEqualsTag</tagclass>
     <bodycontent>JSP</bodycontent>
-    <info>
-      Conditionally evaluate the body of this tag, if the specified
-      parameter does not have the specified value.  For the purposes of this
-      comparision, a missing parameter is treated as if is a zero-length
-      string.  The following attributes are supported:
-
-      name     - Name of the parameter to be retrieved.  [REQUIRED]
-      
-      value    - Value to be compared.  [REQUIRED]
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -122,12 +83,11 @@
   <tag>
     <name>errors</name>
     <tagclass>org.apache.struts.taglib.ErrorsTag</tagclass>
-    <info>
-      If an action class has created a String[] request attribute under the
-      standard key, it is rendered as a list of errors that must be fixed
-      on the form that is presumably next on this page.  Otherwise, nothing
-      will be rendered.
-    </info>
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
   </tag>
 
 
@@ -135,28 +95,6 @@
     <name>form</name>
     <tagclass>org.apache.struts.taglib.FormTag</tagclass>
     <bodycontent>JSP</bodycontent>
-    <info>
-      Generates an HTML &lt;FORM&gt; tag, containing the template text
-      and nested field elements inside.  This tag also implicitly uses
-      or creates a bean (in the specified scope) with the given name and
-      Java class.  The following attributes are supported, with default
-      values in square brackets:
-
-      action - URL to which this form will be submitted.  [This page]
-
-      method - The HTTP method used to submit this requeest (GET, POST).
-               [POST]
-
-      name   - The name of the attribute to be accessed or created in
-               page scope, as well as the name of the scripting variable
-               to be created referencing this attribute.
-
-      scope  - The JSP scope within which this bean is created or
-               accessed (request, session).  [session]
-
-      type   - Java class of the bean object to be created, if necessary
-               [Runtime error if creation is needed]
-    </info>
     <attribute>
       <name>action</name>
       <required>false</required>
@@ -188,20 +126,6 @@
   <tag>
     <name>checkbox</name>
     <tagclass>org.apache.struts.taglib.CheckboxTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "checkbox", based
-      on the specified attributes.  This tag must be nested inside a
-      form tag.  The following attributes are supported, with default
-      values in square brackets.
-
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.  The
-                  property must be of type "boolean".
-
-      value     - A string representing whether the checkbox should be
-                  initialized as checked ("true" or "yes").  [Use the
-                  corresponding property value from the bean]
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -218,19 +142,6 @@
   <tag>
     <name>hidden</name>
     <tagclass>org.apache.struts.taglib.HiddenTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "hidden", based on the
-      specified attributes.  This tag must be nested inside a form tag.
-      The following attributes are supported, with default values in
-      square brackets:
-
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.
-
-      value     - Value with which to initialize this field.
-                  [Corresponding property from the bean specified
-                  in our form tag]
-    </info>
     <attribute>
       <name>name</name>
       <required>name</required>
@@ -247,16 +158,6 @@
   <tag>
     <name>option</name>
     <tagclass>org.apache.struts.taglib.OptionTag</tagclass>
-    <info>
-      Generates an HTML &lt;OPTION&gt; element, which must be nested within
-      a corresponding "select" tag.  If the value specified here matches
-      the value of the underlying "select" tag, this option will be
-      marked as "selected" in the rendered element.  The body of this
-      tag will be presented to the user in the option list.
-      
-      value    - The value returned if this option is selected, and is matched
-                 against the underlying property.
-    </info>
     <attribute>
       <name>value</name>
       <required>true</required>
@@ -268,23 +169,6 @@
   <tag>
     <name>password</name>
     <tagclass>org.apache.struts.taglib.PasswordTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "password", based on the
-      specified attributes.  This tag must be nested inside a form tag.
-      The following attributes are supported, with default values in
-      square brackets:
-
-      maxlength - Maximum number of characters allowed.  [No limit]
-
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.
-
-      size      - Number of character positions defined.  [Browser default]
-
-      value     - Value with which to initialize this field.
-                  [Corresponding property from the bean specified
-                  in our form tag]
-    </info>
     <attribute>
       <name>maxlength</name>
       <required>false</required>
@@ -311,17 +195,6 @@
   <tag>
     <name>property</name>
     <tagclass>org.apache.struts.taglib.PropertyTag</tagclass>
-    <info>
-      Generates the value of the specified property as readonly text.
-      This tag must be nested inside a form tag.  The following attributes
-      are supported, with default values in square brackets:
-
-      name      - The name of the property we are displaying.
-
-      value     - Value with which to initialize this field.
-                  [Corresponding property from the bean specified
-                  in our form tag]
-    </info>
     <attribute>
       <name>name</name>
       <required>name</required>
@@ -338,20 +211,6 @@
   <tag>
     <name>radio</name>
     <tagclass>org.apache.struts.taglib.RadioTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "radio", based
-      on the specified attributes.  This tag must be nested inside a
-      form tag.  The following attributes are supported, with default
-      values in square brackets.
-
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.  The
-                  property must be of type "boolean".
-
-      value     - A String value matched against the underlying property
-                  value.  If they match, this radio button will be
-                  rendered as "checked".
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -368,13 +227,6 @@
   <tag>
     <name>reset</name>
     <tagclass>org.apache.struts.taglib.ResetTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "reset".
-      The following attributes are supported:
-      
-      value   - The value that will be defined for this button
-                [Body of this tag or "Reset"]
-    </info>
   </tag>
 
 
@@ -382,21 +234,6 @@
     <name>select</name>
     <tagclass>org.apache.struts.taglib.SelectTag</tagclass>
     <bodycontent>JSP</bodycontent>
-    <info>
-      Generates an HTML &lt;SELECT&gt; element, based on the specified
-      attributes.  You must use "option" tags nested within this tag
-      to establish the values of the available options -- any such option
-      that matches the current property value will be marked selected.
-      The following attributes are supported, with default values in
-      square brackets:
-      
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.
-
-      value     - Value with which to initialize this field.
-                  [Corresponding property from the bean specified
-                  in our form tag]
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -413,19 +250,6 @@
   <tag>
     <name>submit</name>
     <tagclass>org.apache.struts.taglib.SubmitTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "submit", based
-      on the specified attributes.  This tag must be nested inside a
-      form tag.  The following attributes are supported, with default
-      values in square brackets.
-
-      name      - The name of a request parameter that will be included
-                  with this form submission.  [submit]
-
-      value     - The value that will be defined for this request
-                  parameter, if this submit button is pressed.
-                  [Body of this tag or "Submit"]
-    </info>
     <attribute>
       <name>name</name>
       <required>false</required>
@@ -442,23 +266,6 @@
   <tag>
     <name>text</name>
     <tagclass>org.apache.struts.taglib.TextTag</tagclass>
-    <info>
-      Generates an HTML &lt;INPUT&gt; tag of type "text", based on the
-      specified attributes.  This tag must be nested inside a form tag.
-      The following attributes are supported, with default values in
-      square brackets:
-
-      maxlength - Maximum number of characters allowed.  [No limit]
-
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.
-
-      size      - Number of character positions defined.  [Browser default]
-
-      value     - Value with which to initialize this field.
-                  [Corresponding property from the bean specified
-                  in our form tag]
-    </info>
     <attribute>
       <name>maxlength</name>
       <required>false</required>
@@ -485,25 +292,6 @@
   <tag>
     <name>textarea</name>
     <tagclass>org.apache.struts.taglib.TextareaTag</tagclass>
-    <info>
-      Generates an HTML &lt;TEXTAREA&gt; tag, based on the
-      specified attributes.  This tag must be nested inside a form tag.
-      The following attributes are supported, with default values in
-      square brackets:
-
-      cols      - The number of columns allowed for the textarea.
-                  [Browser default]
-
-      name      - The name of the input field, and of the corresponding
-                  property in the bean specified in our form tag.
-
-      rows      - The number of rows allowed for the textarea.
-                  [Browser default]
-
-      value     - Value with which to initialize this field.
-                  [Corresponding property from the bean specified
-                  in our form tag]
-    </info>
     <attribute>
       <name>maxlength</name>
       <required>false</required>
@@ -533,13 +321,6 @@
   <tag>
     <name>encodeRedirectURL</name>
     <tagclass>org.apache.struts.taglib.EncodeRedirectURLTag</tagclass>
-    <info>
-      Encodes the URL specified by the "url" attribute with the
-      session identifier, if the client is not supporting cookies.
-      The following attributes are supported:
-      
-      url      - URL to be encoded
-    </info>
     <attribute>
       <name>url</name>
       <required>true</required>
@@ -551,13 +332,6 @@
   <tag>
     <name>encodeURL</name>
     <tagclass>org.apache.struts.taglib.EncodeURLTag</tagclass>
-    <info>
-      Encodes the URL specified by the "url" attribute with the
-      session identifier, if the client is not supporting cookies.
-      The following attributes are supported:
-      
-      url      - URL to be encoded
-    </info>
     <attribute>
       <name>url</name>
       <required>true</required>
@@ -569,19 +343,6 @@
   <tag>
     <name>getProperty</name>
     <tagclass>org.apache.struts.taglib.GetPropertyTag</tagclass>
-    <info>
-      Retrieves the specified property from the bean with the specified
-      attribute name, and makes it available as a scripting variable
-      for the remainder of the current page.  The following attributes
-      are supported:
-      
-      id       - Attribute key under which the property will be exposed.
-      
-      name     - Name of the bean conaining the property to be
-                 retrieved and exposed.
-      
-      property - Name of the property to be retrieved and exposed.
-    </info>
     <attribute>
       <name>id</name>
       <required>true</required>
@@ -603,19 +364,6 @@
   <tag>
     <name>htmlProperty</name>
     <tagclass>org.apache.struts.taglib.HtmlPropertyTag</tagclass>
-    <info>
-      Places the value of a Bean instance property, converted to a
-      String, into the implicit "out" object.  It performs the same
-      function as the standard &lt;jsp:getProperty&gt; tag, except
-      that the output is encoded appropriately so that characters
-      significant to HTML do not cause any problems.  The supported
-      attributes are as follows, with default values in square brackets:
-
-      name     - Name of the object instance from which the property
-                 is obtained.  This object can be in any scope. [REQUIRED]
-
-      property - Name of the property to be retrieved.  [REQUIRED]
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -633,14 +381,6 @@
     <name>link</name>
     <tagclass>org.apache.struts.taglib.LinkTag</tagclass>
     <bodycontent>JSP</bodycontent>
-    <info>
-      Generates a URL encoded hyperlink to the specified URI, with the
-      body of this tag being the hyperlink text value.
-      The supported attributes are as follows, with default values in
-      square brackets.
-      
-      href     - Hyperlink URI to be encoded.
-    </info>
     <attribute>
       <name>href</name>
       <required>true</required>
@@ -652,14 +392,6 @@
   <tag>
     <name>parameter</name>
     <tagclass>org.apache.struts.taglib.ParameterTag</tagclass>
-    <info>
-      Place the value of the specified parameter, suitably HTML filtered,
-      into the output stream.  If no parameter value is found, a zero
-      length string is inserted.  The supported attributes are as follows,
-      with default values in square brackets.
-
-      name     - Name of the query parameter to retrieve.
-    </info>
     <attribute>
       <name>name</name>
       <required>true</required>
@@ -674,43 +406,19 @@
   <tag>
     <name>message</name>
     <tagclass>org.apache.struts.taglib.MessageTag</tagclass>
-    <info>
-      Retrieves an internationalized message from the application resources
-      component that has been loaded by our controller servlet as a servlet
-      context attribute.  The supported attributes are as follows, with
-      default values in square brackets:
-
-      bundle - Servlet context attribute key of the resources to be
-               accessed.  [applicationResources]
-
-      locale - The language and/or country selector to use (request
-               time variables allowed).  [Default Locale]
-
-      key -    Message key of the requested message.  [REQUIRED - NO DEFAULT]
-
-      arg0 -   First optional argument for parametric replacement.  [NONE]
-
-      arg1 -   Second optional argument for parametric replacement.  [NONE]
-
-      arg2 -   Third optional argument for parametric replacement.  [NONE]
-
-      arg3 -   Fourth optional argument for parametric replacement.  [NONE]
-
-      arg4 -   Fifth optional argument for parametric replacement.  [NONE]
-    </info>
     <attribute>
       <name>bundle</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <name>locale</name>
-      <required>false</required>
+      <name>key</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <name>key</name>
-      <required>true</required>
+      <name>locale</name>
+      <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>

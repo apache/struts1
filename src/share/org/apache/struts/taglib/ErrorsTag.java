@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.2 2000/06/01 21:06:27 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/01 21:06:27 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/01 21:06:27 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -101,6 +101,38 @@ public final class ErrorsTag extends TagSupport {
      * The default locale on our server.
      */
     private static Locale defaultLocale = Locale.getDefault();
+
+
+    /**
+     * Name of the request scope attribute containing our error messages,
+     * if any.
+     */
+    private String name = Action.ERROR_KEY;
+
+
+    // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the errors attribute name.
+     */
+    public String getName() {
+
+	return (this.name);
+
+    }
+
+
+    /**
+     * Set the errors attribute name.
+     *
+     * @param name The new errors attribute name
+     */
+    public void setName(String name) {
+
+	this.name = name;
+
+    }
 
 
     // ------------------------------------------------------- Public Methods
@@ -117,7 +149,7 @@ public final class ErrorsTag extends TagSupport {
 	String errors[] = null;
 	try {
 	    errors = (String[]) pageContext.getAttribute
-	      (Action.ERROR_KEY, PageContext.REQUEST_SCOPE);
+	      (name, PageContext.REQUEST_SCOPE);
 	} catch (Exception e) {
 	    errors = null;
 	}
