@@ -1067,7 +1067,7 @@
 </section>
 
 <section 
-    name="5.4.3.1 Configure the Struts Tag Library (Servlet 2.3)" 
+    name="5.4.3.1 Configure the Struts Tag Libraries (Servlet 2.3)" 
     href="dd_config_taglib_23">
 
     <p>
@@ -1117,6 +1117,97 @@
     </p>
 
 </section>
+
+<section
+    name="5.6 Logging in Struts Based Applications"
+    href="config_logging">
+
+  <p>
+  In Struts 1.0, the logging functionality was fairly limited.  You could
+  set a debugging detail level with a servlet initialization parameter, and
+  all log messages were written to wherever <code>ServletContext.log()</code>
+  output is sent by your servlet container.  WIth Struts 1.1, however, all
+  logging messages written by Struts itself, as well as the commons librarires
+  that it utilizes, flow through an abstract wrapper called
+  <a href="http://jakarta.apache.org/commons/logging">Commons Logging</a>,
+  which can be used as a wrapper around any logging implementation.  The most
+  common implementations used are simple logging to <code>System.err</code>,
+  the <a href="http://jakarta.apache.org/log4j/">Apache Log4J</a> package,
+  or the built-in logging capabilities of JDK 1.4 or later in the
+  <a href="http://java.sun.com/j2se/1.4/docs/api/java/util/logging/package-summary.html">
+  java.util.logging</a> package.
+  </p>
+
+  <p>
+  This section does not attempt to fully explain how Commons Logging is
+  configured and used.  Instead, it focuses on pertinent details of using
+  Commons Logging in a Struts based environment.  For complete documentation
+  on using Commons Logging, consult the documentation for the logging system
+  you are using, plus the Commons Logging
+  <a href="http://jakarta.apache.org/commons/logging/api/org/apache/commons/logging/package-summary.html#package_description">
+  Javadocs</a>.
+  </p>
+
+  <p>
+  Commons Logging provides fine-grained control over the logging messages
+  created by a <code>Log</code> instance.  By convention, the <code>Log</code>
+  instances for Struts (and the Commons packages in general) are named the
+  fully qualified class name of the class whose messages are being logged.
+  Therefore, log messages created by the RequestProcessor class are, naturally
+  enough, directed to a logger named
+  <code>org.apache.struts.action.RequestProcessor</code>.
+  </p>
+
+  <p>
+  The advantage of this approach is that you can configure the level of detail
+  in the output you want from each class, individually.  However, it would be
+  a burden to be required to maintain such settings for every possible class,
+  so the logging environment supports the notion of logging
+  <em>hierarchies</em> as well.  If a detail level configuration for a
+  particular class has not been set, the logging system looks up the hierarchy
+  until it finds a configuration setting to use, or else uses the default
+  detail level if no configuration for any level of the hierarchy has been
+  explicitly set.  In the case of our messages from <code>RequestProcessor</code>,
+  the logging system will look for explicit settings of the following loggers,
+  in this order, until it finds one.
+  </p>
+
+  <ul>
+  <li><code>org.apache.struts.action.RequestProcessor</code></li>
+  <li><code>org.apache.struts.action</code></li>
+  <li><code>org.apache.struts</code></li>
+  <li><code>org.apache</code></li>
+  <li><code>org</code></li>
+  <li>The default logging detail level for your log implementation.</li>
+  </ul>
+
+  <p>
+  In a similar manner, the detail level for messages from
+  <code>PropertyUtils</code> (from the Commons BeanUtils library) is set by
+  a search for configuration settings for:
+  </p>
+
+  <ul>
+  <li><code>org.apache.commons.beanutils.PropertyUtils</code></li>
+  <li><code>org.apache.commons.beanutils</code></li>
+  <li><code>org.apache.commons</code></li>
+  <li><code>org.apache</code></li>
+  <li><code>org</code></li>
+  <li>The default logging detail level for your log implementation.</li>
+  </ul>
+
+  <p>
+  You can seamlessly integrate logging from your own components into the same
+  logging implementation that Struts and the Commons libraries use, by
+  following the instructions in
+  <a href="building_controller.html#logging">Section 4.10</a>.  If you do
+  this, you are strongly encouraged to follow the same naming convention for
+  loggers (based on the class name of the messages being logged) for
+  maximum configuration flexibility.
+  </p>
+
+</section>
+
 
 <section>
 

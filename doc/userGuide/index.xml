@@ -148,8 +148,9 @@
                     <li><a href="configuration.html#dd_config_taglib">5.4.3 Configure the Struts Tag Libraries"</a></li>
                     </ul>
                 <li><a href="configuration.html#config_add">5.5 Add Struts Components To Your Application</a></li>
-                </li>
-                </ul>             
+                <li><a href="configuration.html#config_logging">5.6 Logging in Struts Applications</a></li>
+             </li>
+             </ul>             
 
              <li>6. Getting Started</li>
                 <ul>
