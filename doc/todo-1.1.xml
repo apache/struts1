@@ -159,6 +159,9 @@
       <assigned>
         <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
       </assigned>
+      <assigned>
+        <a href="mailto:mschachter@hp.com">Mike Schachter</a>
+      </assigned>
     </task>
 
     <task name="HTML No-Cache Support">

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.6 2001/02/21 00:35:43 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/21 00:35:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.7 2001/05/11 17:10:58 mschachter Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/05/11 17:10:58 $
  *
  * ====================================================================
  * 
@@ -94,7 +94,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/21 00:35:43 $
+ * @version $Revision: 1.7 $ $Date: 2001/05/11 17:10:58 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -134,7 +134,9 @@ public abstract class ActionForm implements Serializable {
      * The reasoning behind this is to give form bean developers
      * control over the lifecycle of their multipart requests
      * through the use of the finish() and/or rollback() methods
-     * of MultipartRequestHandler
+     * of MultipartRequestHandler.  This method will return
+     * <code>null</code> if this form's enctype is not
+     * "multipart/request-data".
      * @see org.apache.struts.upload.MultipartRequestHandler
      */
     public MultipartRequestHandler getMultipartRequestHandler() {
