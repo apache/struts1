@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.89 2003/02/25 04:58:30 dgraham Exp $
- * $Revision: 1.89 $
- * $Date: 2003/02/25 04:58:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.90 2003/02/26 04:48:56 dgraham Exp $
+ * $Revision: 1.90 $
+ * $Date: 2003/02/26 04:48:56 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.89 $ $Date: 2003/02/25 04:58:30 $
+ * @version $Revision: 1.90 $ $Date: 2003/02/26 04:48:56 $
  */
 
 public class RequestUtils {
@@ -886,7 +886,7 @@ public class RequestUtils {
         }
 
         if (userLocale == null) {
-            userLocale = defaultLocale;
+            userLocale = pageContext.getRequest().getLocale();
         }
 
         return userLocale;
