@@ -1,0 +1,134 @@
+<project name="Struts" default="compile.library" basedir=".">
+
+  <!-- Initialization properties -->
+  <property name="app.name"       value="struts"/>
+  <property name="build.home"     value="../build/${app.name}"/>
+  <property name="deploy.home"    value="../build/catalina/webapps/struts"/>
+  <property name="dist.home"      value="../dist/${app.name}"/>
+
+  <!-- BUILD:  Create directories and copy files for library -->
+  <target name="prepare.library">
+    <mkdir   dir="${build.home}"/>
+    <mkdir   dir="${build.home}/library"/>
+    <mkdir   dir="${build.home}/library/classes"/>
+  </target>
+
+  <!-- BUILD:  Create directories and copy files for documentation app -->
+  <target name="prepare.documentation">
+    <mkdir   dir="${build.home}"/>
+    <mkdir   dir="${build.home}/documentation"/>
+    <mkdir   dir="${build.home}/documentation/WEB-INF"/>
+    <mkdir   dir="${build.home}/documentation/WEB-INF/classes"/>
+    <mkdir   dir="${build.home}/documentation/WEB-INF/lib"/>
+    <copydir src="web/documentation" dest="${build.home}/documentation"/>
+  </target>
+
+  <!-- BUILD:  Create directories and copy files for example application -->
+  <target name="prepare.example">
+    <mkdir   dir="${build.home}"/>
+    <mkdir   dir="${build.home}/example"/>
+    <mkdir   dir="${build.home}/example/WEB-INF"/>
+    <mkdir   dir="${build.home}/example/WEB-INF/classes"/>
+    <mkdir   dir="${build.home}/example/WEB-INF/lib"/>
+    <copydir src="web/example" dest="${build.home}/example"/>
+  </target>
+
+  <!-- DIST:  Create directories and copy files for distribution -->
+  <target name="prepare.dist">
+    <mkdir   dir="${dist.home}"/>
+    <mkdir   dir="${dist.home}/etc"/>
+    <mkdir   dir="${dist.home}/lib"/>
+    <mkdir   dir="${dist.home}/src"/>
+    <mkdir   dir="${dist.home}/web"/>
+  </target>
+
+  <!-- BUILD:  Compile library directory components -->
+  <target name="compile.library" depends="prepare.library">
+    <javac srcdir="src/share"     destdir="${build.home}/library/classes"
+           classpath="${servlet.jar}"
+	   debug="true" optimize="false" deprecation="false"/>
+    <copydir src="src/conf" dest="${build.home}/library"/>
+  </target>
+
+  <!-- BUILD:  Compile documentation application components -->
+  <target name="compile.documentation"
+       depends="compile.library,prepare.documentation">
+<!--
+    <javac srcdir="src/documentation"
+          destdir="${build.home}/documentation/WEB-INF/classes"
+        classpath="${build.home}/library/classes:${servlet.jar}"
+            debug="true" optimize="false" deprecation="false"/>
+-->
+    <copydir src="web/documentation" dest="${build.home}/documentation"/>
+    <copyfile src="${dist.home}/lib/${app.name}.jar"
+             dest="${build.home}/documentation/WEB-INF/lib/${app.name}.jar"/>
+    <copyfile src="${dist.home}/lib/${app.name}.tld"
+             dest="${build.home}/documentation/WEB-INF/${app.name}.tld"/>
+  </target>
+
+  <!-- BUILD:  Compile example application components -->
+  <target name="compile.example"
+       depends="dist.library,prepare.example">
+    <javac srcdir="src/example"
+          destdir="${build.home}/example/WEB-INF/classes"
+        classpath="${build.home}/library/classes:${servlet.jar}"
+            debug="true" optimize="false" deprecation="false"/>
+    <copydir  src="web/example" dest="${build.home}/example"/>
+    <copyfile src="${dist.home}/lib/${app.name}.jar"
+             dest="${build.home}/example/WEB-INF/lib/${app.name}.jar"/>
+    <copyfile src="${dist.home}/lib/${app.name}.tld"
+             dest="${build.home}/example/WEB-INF/${app.name}.tld"/>
+  </target>
+
+  <!-- DIST:  Construct library distributables -->
+  <target name="dist.library" depends="prepare.dist,compile.library">
+    <copyfile src="${build.home}/library/${app.name}.tld"
+             dest="${dist.home}/lib/${app.name}.tld"/>
+    <jar  jarfile="${dist.home}/lib/${app.name}.jar"
+          basedir="${build.home}/library/classes"/>
+  </target>
+
+  <!-- DIST:  Construct documentation distributables -->
+  <target name="dist.documentation"
+       depends="dist.library,compile.documentation">
+    <jar  jarfile="${dist.home}/lib/${app.name}-documentation.war"
+          basedir="${build.home}/documentation"/>
+  </target>
+
+  <!-- DIST:  Construct example distributables -->
+  <target name="dist.example" depends="dist.library,compile.example">
+    <jar  jarfile="${dist.home}/lib/${app.name}-example.war"
+          basedir="${build.home}/example"/>
+  </target>
+
+  <!-- DIST:  Copy sources -->
+  <target name="dist.source" depends="prepare.dist">
+    <copydir  src="."       dest="${dist.home}/etc"   includes="build.*"/>
+    <copyfile src="LICENSE" dest="${dist.home}/LICENSE"/>
+    <copyfile src="README"  dest="${dist.home}/README"/>
+    <copyfile src="TODO"    dest="${dist.home}/TODO"/>
+    <copydir  src="src"     dest="${dist.home}/src"/>
+    <copydir  src="web"     dest="${dist.home}/web"/>
+  </target>
+
+  <!-- DIST:  Construct complete release distribution -->
+  <target name="dist"
+       depends="dist.library,dist.documentation,dist.example,dist.source"/>
+
+  <!-- DEPLOY:  Deploy this application on Tomcat -->
+  <target name="deploy" depends="compile.example">
+    <mkdir dir="${deploy.home}"/>
+    <copydir src="${build.home}/example" dest="${deploy.home}"/>
+  </target>
+
+  <!-- UTILITY:  Clean up build and distribution directories -->
+  <target name="clean">
+    <deltree dir="${build.home}"/>
+    <deltree dir="${dist.home}"/>
+  </target>
+
+  <!-- UTILITY:  All-in-one build target -->
+  <target name="all"
+       depends="clean,compile.library,compile.documentation,compile.example"/>
+
+</project>

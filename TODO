@@ -1,0 +1,52 @@
+$Id: TODO,v 1.1 2000/05/31 22:28:09 craigmcc Exp $
+
+
+			    Struts TODO List
+			    ================
+
+
+Application frameworks, like the applications we build with them, never seem
+to be completed.  The following items have been identified as interesting
+projects for the continued development of Struts -- volunteers who wish to help
+are welcome, as are additional ideas.
+
+
+Documentation
+-------------
+
+- Write a reference manual describing the capabilities of all Java classes
+  and all of the custom tags.  (For the custom tags, there is information
+  in the "lib/struts.tld" file on what each tag does, and what attributes
+  are supported.)
+
+- Write a user's guide that walks the developer through the development of
+  a web application based on the Struts outline, and describes the runtime
+  execution processing performed for each request.
+
+- Write a more comprehensive example of using a Digester to configure a
+  set of related JavaBeans based on the contents of an arbitrary XML file.
+
+
+Custom Tag Library
+------------------
+
+- Add an "iterate" tag that works like "enumerate", but uses the collection
+  classes APIs (Java2 or later).
+
+- Add tags that support building the options lists for SELECT elements,
+  based on a Map or Dictionary bean.
+
+- Enhance the form management tags to optionally generate JavaScript code
+  for client side validation of things like required fields.
+
+- Add tags that generate hyperlinks useful in documentation applications
+  ("next page", "previous page", "contents", and so on), and use them
+  within the Struts Documentation application itself.
+
+- Add tags that treat the rows and columns of a JDBC "RowSet" implementation
+  as beans and properties (from the perspective of other tags in Struts).
+
+- Add tags that paginate long reports (such as the response to a search
+  request that shows ten entries per page), with automatic support for
+  next and previous page links.
+
