@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.8 2001/02/22 18:46:12 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/02/22 18:46:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.9 2001/03/11 00:42:47 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/03/11 00:42:47 $
  *
  * ====================================================================
  * 
@@ -75,7 +75,7 @@ import org.apache.struts.util.ConvertUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/02/22 18:46:12 $
+ * @version $Revision: 1.9 $ $Date: 2001/03/11 00:42:47 $
  */
 
 public final class CallMethodRule extends Rule {
@@ -245,8 +245,10 @@ public final class CallMethodRule extends Rule {
 	else {
 	    parameters = new String[1];
 	    parameters[0] = bodyText;
-            paramTypes = new Class[1];
-            paramTypes[0] = "abc".getClass();
+            if (paramTypes.length == 0) {
+                paramTypes = new Class[1];
+                paramTypes[0] = "abc".getClass();
+            }
         }
 
 	// Construct the parameter values array we will need
