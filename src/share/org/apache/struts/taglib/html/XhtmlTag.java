@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.2 2003/01/16 03:51:23 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/16 03:51:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/XhtmlTag.java,v 1.3 2003/01/17 05:26:21 dgraham Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/01/17 05:26:21 $
  *
  * ====================================================================
  * 
