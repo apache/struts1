@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.6 2000/12/27 00:16:02 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.7 2000/12/30 02:25:40 craigmcc Exp $
 -->
 
 
@@ -163,7 +163,7 @@
 
 <!-- The "form-bean" element describes a particular form bean, which is a
      JavaBean that implements the org.apache.struts.action.ActionForm
-     interface.  The following attributes are defined:
+     class.  The following attributes are defined:
 
      name            Unique identifier of this bean, used to reference it
                      in corresponding action mappings.
