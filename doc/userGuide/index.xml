@@ -18,14 +18,16 @@
         <ul>
             <li><a href="preface.html">0. Preface</a>
             <ul>
-              <li><a href="preface.html#http">HTTP, HTML, and User Agents</a></li>
-              <li><a href="preface.html#cycle">The HTTP Request/Response Cycle</a></li>
-              <li><a href="preface.html#java">The Java Language and Application Frameworks</a></li>
-              <li><a href="preface.html#javabeans">JavaBeans</a></li>
-              <li><a href="preface.html#resources">Properties files and  ResourceBundles</a></li>
-              <li><a href="preface.html#servlets">Java Servlets</a></li>
-              <li><a href="preface.html#jsp">JavaServer Pages and JSP Tag Libraries</a></li>
-              <li><a href="preface.html#xml">Extensible Markup Language</a></li>
+              <li><a href="preface.html#suspects">0.1 The Usual Suspects</a></li>
+              <li><a href="preface.html#http">0.2 HTTP, HTML, and User Agents</a></li>
+              <li><a href="preface.html#cycle">0.3 The HTTP Request/Response Cycle</a></li>
+              <li><a href="preface.html#java">0.4 The Java Language and Application Frameworks</a></li>
+              <li><a href="preface.html#javabeans">0.5 JavaBeans</a></li>
+              <li><a href="preface.html#resources">0.6 Properties Files and  ResourceBundles</a></li>
+              <li><a href="preface.html#servlets">0.7 Java Servlets</a></li>
+              <li><a href="preface.html#jsp">0.8 JavaServer Pages and JSP Tag Libraries</a></li>
+              <li><a href="preface.html#xml">0.9 Extensible Markup Language</a></li>
+              <li><a href="preface.html#jaas">0.10 JAAS</a></li>
             </ul></li>
  
            
