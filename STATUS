@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.12 2002/07/09 01:27:00 jholmes Exp $
+$Id: STATUS,v 1.13 2002/07/09 06:41:44 martinc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -11,7 +11,6 @@ $Id: STATUS,v 1.12 2002/07/09 01:27:00 jholmes Exp $
 Controller:
 ----------
  8487 Serializability issues in ActionServlet/RequestProcessor
-10542 The multipartClass init-param is broken
 
 
 Custom Tags:
