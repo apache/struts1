@@ -33,6 +33,7 @@
 <p><a href="http://www.sura.ru/~gonza/bean-factory/"><b>Bean factory</b></a> by Oleg V Alexeev - Adds the ability to easily link data bean creation to any Struts Action. All information about databeans and actions mappings stored in the standard Struts configuraton file. </p>
 <p><a href="http://www.livinglogic.de/Struts/"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
 <p><a href="http://husted.com/struts/resources/struts-menu.zip"><b>Struts Menu</b></a> by Scott Sayles (ZIP file for download) - A Struts-compatible web menuing component (early release - work in progress) - unzip to a &quot;struts-menu&quot; folder, and see the README.</p>
+<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator</b></a> [Now bundled with Struts 1.1] by David Winterfeldt - Perform basic validations to check if a field is required, matches a regular expression, and some basic type checking. Different validation rules can be defined for different locales. The framework has basic support for user defined constants which can be used in some field attributes. The validation routines are modifiable in the validation.xml file so custom validation routines can be created and added to the framework.</p>
 </section>
 
 </chapter></body></document>
