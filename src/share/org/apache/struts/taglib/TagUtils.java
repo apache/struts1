@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.1 2003/07/26 01:00:01 dgraham Exp $
- * $Revision: 1.1 $
- * $Date: 2003/07/26 01:00:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.2 2003/07/26 01:02:30 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/26 01:02:30 $
  *
  * ====================================================================
  *
@@ -77,7 +77,8 @@ import org.apache.struts.util.MessageResources;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
+ * @since Struts 1.2
  */
 public class TagUtils {
 
