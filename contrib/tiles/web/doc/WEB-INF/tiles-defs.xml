@@ -124,8 +124,8 @@
     <putList name="items" >
       <item value="Tiles Tags"     link="/doc/tilesTags.jsp"             
             classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-      <item value="Extension Tags (old)"   link="/doc/extensionsTags.jsp" 
-	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <!-- <item value="Extension Tags (old)"   link="/doc/extensionsTags.jsp" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" /> -->
     </putList>
 </definition>
 

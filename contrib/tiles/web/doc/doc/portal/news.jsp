@@ -3,13 +3,18 @@
 <th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
-      <P><STRONG><EM><FONT color=#ff0000>Tiles-blank application</FONT></EM></STRONG>
+      <FONT size=2>Updated 20 Feb. 2002</FONT></P>
+      <P><STRONG><EM><FONT color=#ff0000>Tiles-blank Applications</FONT></EM></STRONG>
 	  <br><FONT color=#000000 size=2>
-	  A tiles-blanc.war is now provided to help starting a new project using Tiles.
+	  Different <code>tiles-blanc.war</code> files are now provided to help starting new project using Tiles. 
+	    <ul>
+		  <li><code>tiles-blank.war</code> - Tiles without Struts</li>
+		  <li><code>tiles-blank-struts1.1.war</code> - Tiles with Struts1.1</li>
+		  <li><code>tiles-blank-struts1.0.war</code> - Tiles with latest stable Struts1.0.x</li>
+		</ul>
 	  </FONT><FONT color=#ff0000><EM><STRONG></STRONG></EM></FONT></P>
 
-      <P><FONT color=#ff0000><EM><STRONG>Article on Tiles and 
-      Struts</STRONG></EM></FONT>
+      <P><FONT color=#ff0000><EM><STRONG>Article on Tiles and Struts</STRONG></EM></FONT>
 	  <br><FONT color=#000000 size=2>
 	  An article on using Tiles and Struts is available at :
 	  <br>

@@ -368,14 +368,13 @@
   <!-- Skin Settings definitions  									-->
   <!-- =======================================================  -->
 
-    <!-- Rss main page -->
+    <!-- Skin main page -->
   <definition name="examples.skin.settings.page" extends="examples.customizable.layouts.root">
 	  <put name="title"  value="Tiles 1.1 Skin Setting" />
 	  <put name="body"   value="examples.skin.settings.body" />
   </definition>
 
-    <!-- Rss channel body declaration-->
-	<!-- Example to use when connected (online)-->
+    <!-- Skin body declaration-->
   <definition name="examples.skin.settings.body" path="/examples/tiles/mySkinSettings.jsp" 
 			  controllerUrl="/examples/controller/mySkinSettings.do" >
 	  <put name="userSettingsName"   value="tiles.examples.skin.user.settings" />
