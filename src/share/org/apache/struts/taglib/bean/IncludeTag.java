@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.6 2000/10/30 06:02:12 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.7 2000/12/30 19:52:09 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -66,6 +66,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -75,13 +76,16 @@ import org.apache.struts.util.MessageResources;
 
 /**
  * Define the contents of a specified intra-application request as a
- * page scope attribute of type <code>java.lang.String</code>.
+ * page scope attribute of type <code>java.lang.String</code>.  If the
+ * current request is part of a session, the session identifier will be
+ * included in the generated request, so it will be part of the same
+ * session.
  * <p>
  * <strong>FIXME</strong>:  In a servlet 2.3 environment, we can use a
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:12 $
+ * @version $Revision: 1.7 $ $Date: 2000/12/30 19:52:09 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -154,7 +158,18 @@ public class IncludeTag extends TagSupport {
             throw e;
         }
 
-	// Set up a URLConnection to read the requested page
+        // Identify our current session identifier (if any)
+        String sessionId = null;
+        HttpSession session = pageContext.getSession();
+        if (session != null) {
+            try {
+                sessionId = session.getId();
+            } catch (IllegalStateException e) {
+                sessionId = null;
+            }
+        }
+
+        // Calculate the URL of the requested page
 	HttpServletRequest request =
 	    (HttpServletRequest) pageContext.getRequest();
 	StringBuffer url = new StringBuffer();
@@ -167,7 +182,21 @@ public class IncludeTag extends TagSupport {
 	}
 	if (request.getContextPath() != null)
 	    url.append(request.getContextPath());
-	url.append(name);
+        int question = name.indexOf('?');
+        if (sessionId == null) {
+            url.append(name);
+        } else if (question < 0) {
+            url.append(name);
+            url.append(";jsessionid=");
+            url.append(sessionId);
+        } else {
+            url.append(name.substring(0, question));
+            url.append(";jsessionid=");
+            url.append(sessionId);
+            url.append(name.substring(question));
+        }
+
+	// Set up a URLConnection to read the requested page
 	URLConnection conn = null;
 	try {
 	    conn = (new URL(url.toString())).openConnection();

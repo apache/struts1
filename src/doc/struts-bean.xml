@@ -242,7 +242,9 @@
     type <code>String</code>.  This tag has a function similar to that of
     the standard <code>&lt;jsp:include&gt;</code> tag, except that the
     response data is stored in a page scope attribute instead of being
-    written to the output stream.</p>
+    written to the output stream.  If the current request is part of a
+    session, the generated request for the include will also include the
+    session identifier (and thus be part of the same session).</p>
     </info>
 
     <attribute>
