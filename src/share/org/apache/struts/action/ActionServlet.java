@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.50 2001/01/03 19:22:55 craigmcc Exp $
- * $Revision: 1.50 $
- * $Date: 2001/01/03 19:22:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.51 2001/01/06 22:00:02 craigmcc Exp $
+ * $Revision: 1.51 $
+ * $Date: 2001/01/06 22:00:02 $
  *
  * ====================================================================
  *
@@ -227,7 +227,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.50 $ $Date: 2001/01/03 19:22:55 $
+ * @version $Revision: 1.51 $ $Date: 2001/01/06 22:00:02 $
  */
 
 public class ActionServlet
@@ -1423,8 +1423,13 @@ public class ActionServlet
             return;
         }
 
-	// Call the action instance itself
-	processActionPerform(actionInstance, mapping, formInstance,
+	// Call the Action instance itself
+        ActionForward forward =
+            processActionPerform(actionInstance, mapping, formInstance,
+                                 request, response);
+
+        // Process the returned ActionForward (if any)
+        processActionForward(forward, mapping, formInstance,
                              request, response);
 
     }
@@ -1552,9 +1557,11 @@ public class ActionServlet
 
 
     /**
-     * Ask the specified Action instance to handle this request.
+     * Forward to the specified destination, by the specified mechanism,
+     * if an <code>ActionForward</code> instance was returned by the
+     * <code>Action</code>.
      *
-     * @param action The Action to process this request
+     * @param forward The ActionForward returned by our action
      * @param mapping The ActionMapping we are processing
      * @param formInstance The ActionForm we are processing
      * @param request The servlet request we are processing
@@ -1563,18 +1570,13 @@ public class ActionServlet
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      */
-    protected void processActionPerform(Action action,
+    protected void processActionForward(ActionForward forward,
                                         ActionMapping mapping,
                                         ActionForm formInstance,
                                         HttpServletRequest request,
                                         HttpServletResponse response)
 	throws IOException, ServletException {
 
-	// Perform the requested action
-	ActionForward forward =
-	    action.perform(mapping, formInstance, request, response);
-
-        // Obey any returned ActionForward
 	if (forward != null) {
 	    String path = forward.getPath();
 	    if (forward.getRedirect()) {
@@ -1587,6 +1589,34 @@ public class ActionServlet
 		rd.forward(request, response);
 	    }
 	}
+
+    }
+
+
+    /**
+     * Ask the specified Action instance to handle this request.  Return
+     * the <code>ActionForward</code> instance (if any) returned by
+     * the called <code>Action</code>.
+     *
+     * @param action The Action to process this request
+     * @param mapping The ActionMapping we are processing
+     * @param formInstance The ActionForm we are processing
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected ActionForward processActionPerform(Action action,
+                                        ActionMapping mapping,
+                                        ActionForm formInstance,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response)
+	throws IOException, ServletException {
+
+	ActionForward forward =
+	    action.perform(mapping, formInstance, request, response);
+        return (forward);
 
     }
 
