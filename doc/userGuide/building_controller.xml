@@ -954,7 +954,7 @@ throws Exception;
     <exception 
       key="some.key" 
       type="java.io.IOException" 
-      handler="com.yourcorp.ExceptionHandler">
+      handler="com.yourcorp.ExceptionHandler"/>
 </global-exceptions>
 ]]></code></pre>
     
