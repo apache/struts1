@@ -60,7 +60,7 @@ import javax.servlet.jsp.PageContext;
 
 
 import junit.framework.*;
-import org.apache.commons.cactus.*;
+import org.apache.cactus.*;
 
 /**
  * Suite of unit tests for the

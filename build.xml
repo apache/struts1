@@ -39,6 +39,8 @@
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
+        junit.jar                     (optional) JUnit for "test".
+
         servlet.jar                   (required).  The path to the Servlet API
                                       classes to compile against (currently,
                                       either version 2.2 or 2.3 supported).
@@ -120,6 +122,9 @@
     <!-- Source directory for core struts library -->
     <property name="src.share.dir" value="${src.dir}/share"/>
 
+    <!-- Source directory for non-Cactus unit tests -->
+    <property name="src.test.dir" value="${src.dir}/test"/>
+
     <!-- Directory where core struts library configurations files are stored -->
     <property name="conf.share.dir" value="conf/share"/>
 
@@ -140,6 +145,31 @@
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
     </path>
+
+
+<!-- ========== Test Execution Defaults =================================== -->
+
+
+  <!-- Construct unit test classpath -->
+  <path id="test.classpath">
+    <pathelement location="${build.home}/library/classes"/>
+    <pathelement location="${build.home}/test/classes"/>
+    <pathelement location="${cactus.jar}"/>
+    <pathelement location="${commons-beanutils.jar}"/>
+    <pathelement location="${commons-collections.jar}"/>
+    <pathelement location="${commons-digester.jar}"/>
+    <pathelement location="${servlet.jar}"/>
+    <pathelement location="${junit.jar}"/>
+    <pathelement location="${jdbc20ext.jar}"/>
+    <pathelement location="${servlet.jar}"/>
+    <pathelement location="${xerces.jar}"/>
+  </path>
+
+  <!-- Should all tests fail if one does? -->
+  <property name="test.failonerror"        value="true"/>
+
+  <!-- The test runner to execute -->
+  <property name="test.runner"             value="junit.textui.TestRunner"/>
 
 
 <!-- ========== Executable Targets ======================================== -->
@@ -458,5 +488,35 @@
         <ant antfile="build-tests.xml" target="test.tomcat.40"/>
     
     </target>
+
+    <!-- ========== Non-Cactus Unit Tests ================================= -->
+
+    <target name="test" depends="test.compile,test.config"
+     description="Run all non-Cactus based unit tests">
+    </target>
+
+    <target name="test.compile">
+      <mkdir    dir="${build.home}/test/classes"/>
+      <javac srcdir="${src.test.dir}"
+            destdir="${build.home}/test/classes"
+              debug="${compile.debug}"
+           optimize="${compile.optimize}"
+        deprecation="${compile.deprecation}">
+       <classpath refid="test.classpath"/>
+      </javac>
+      <copy   todir="${build.home}/test/classes">
+        <fileset dir="${src.test.dir}" excludes="**/*.java"/>
+      </copy>
+    </target>
+
+    <target name="test.config">
+      <echo message="Running Config Package tests ..."/>
+      <java classname="${test.runner}" fork="yes"
+          failonerror="${test.failonerror}">
+        <arg value="org.apache.struts.config.TestApplicationConfig"/>
+        <classpath refid="test.classpath"/>
+      </java>
+    </target>
+
 
 </project>

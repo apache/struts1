@@ -57,7 +57,7 @@ package org.apache.struts.action;
 import javax.servlet.*;
 
 import junit.framework.*;
-import org.apache.commons.cactus.*;
+import org.apache.cactus.*;
 
 /**
  * Suite of unit tests for the
