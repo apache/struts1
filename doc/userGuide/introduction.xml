@@ -164,7 +164,7 @@
         <p>
           For the simplest applications, an action object can handle the business logic
           associated with a request. However, in most cases, an action object should pass
-          the request to another object, usually a JavaBean. To allow resuse on other
+          the request to another object, usually a JavaBean. To allow reuse on other
           platforms, business-logic JavaBeans should not refer to any Web application
           objects. The action object should translate needed details from the HTTP request
           and pass those along to the business-logic beans as regular Java variables.
