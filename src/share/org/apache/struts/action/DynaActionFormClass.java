@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.7 2002/07/13 18:05:05 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/07/13 18:05:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.8 2002/07/23 01:02:51 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/07/23 01:02:51 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/07/13 18:05:05 $
+ * @version $Revision: 1.8 $ $Date: 2002/07/23 01:02:51 $
  * @since Struts 1.1
  */
 
@@ -316,6 +316,28 @@ public class DynaActionFormClass implements DynaClass, Serializable {
                 dynaClasses.put(config.getName(), dynaClass);
             }
             return (dynaClass);
+        }
+
+    }
+
+
+    /**
+     * Return an existing <code>DynaActionFormClass</code> of the specified
+     * name, if one has been configured previously.  If no such instance has
+     * been configured, return <code>null</code> instead.
+     *
+     * @param name Name of the <code>DynaActionFormClass</code> to be
+     *  returned
+     */
+    public static DynaActionFormClass
+        getDynaActionFormClass(String name) {
+
+        synchronized (lock) {
+            if (dynaClasses == null) {
+                return (null);
+            } else {
+                return ((DynaActionFormClass) dynaClasses.get(name));
+            }
         }
 
     }
