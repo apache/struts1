@@ -120,14 +120,15 @@ public class TestDynaActionFormClass extends TestCase
      * The set of <code>FormPropertyConfig</code> objects to use when
      * creating our <code>FormBeanConfig</code>.
      */
-    // FIXME - initial values for arrays/lists/maps?
     protected static final FormPropertyConfig[] dynaProperties = {
         new FormPropertyConfig("booleanProperty", "boolean", "true"),
         new FormPropertyConfig("booleanSecond", "boolean", "true"),
         new FormPropertyConfig("doubleProperty", "double", "321.0"),
         new FormPropertyConfig("floatProperty", "float", "123.0"),
-        new FormPropertyConfig("intArray", "int[]", null),
-        new FormPropertyConfig("intIndexed", "int[]", null),
+        new FormPropertyConfig("intArray", "int[]",
+                               "{ 0, 10,20, \"30\" '40' }"),
+        new FormPropertyConfig("intIndexed", "int[]",
+                               " 0 100, 200, 300, 400 "),
         new FormPropertyConfig("intProperty", "int", "123"),
         new FormPropertyConfig("listIndexed", "java.util.List", null),
         new FormPropertyConfig("longProperty", "long", "321"),
@@ -135,8 +136,10 @@ public class TestDynaActionFormClass extends TestCase
         new FormPropertyConfig("mappedIntProperty", "java.util.Map", null),
         new FormPropertyConfig("nullProperty", "java.lang.String", null),
         new FormPropertyConfig("shortProperty", "short", "987"),
-        new FormPropertyConfig("stringArray", "java.lang.String[]", null),
-        new FormPropertyConfig("stringIndexed", "java.lang.String[]", null),
+        new FormPropertyConfig("stringArray", "java.lang.String[]",
+                               "{ 'String 0', 'String 1', 'String 2', 'String 3', 'String 4'}"),
+        new FormPropertyConfig("stringIndexed", "java.lang.String[]",
+                               "{ 'String 0', 'String 1', 'String 2', 'String 3', 'String 4'}"),
         new FormPropertyConfig("stringProperty", "java.lang.String",
                                "This is a string"),
    };
@@ -250,8 +253,6 @@ public class TestDynaActionFormClass extends TestCase
         assertEquals("floatProperty value",
                      new Float((float) 123.0),
                      beanConfig.findFormPropertyConfig("floatProperty").initial());
-        // FIXME - intArray
-        // FIXME - intIndexed
         assertEquals("intProperty value",
                      new Integer(123),
                      beanConfig.findFormPropertyConfig("intProperty").initial());

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.5 2002/06/29 00:44:34 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/06/29 00:44:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.6 2002/06/30 01:49:21 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/06/30 01:49:21 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/06/29 00:44:34 $
+ * @version $Revision: 1.6 $ $Date: 2002/06/30 01:49:21 $
  * @since Struts 1.1
  */
 
@@ -253,38 +253,32 @@ public class FormPropertyConfig implements Serializable {
      */
     public Object initial() {
 
+        // Compute our initial value the first time it is requested
         // Don't bother synchronizing, a race is basically harmless
         if (!initialized) {
             try {
-                if (initial == null) {
-                    if ("boolean".equals(type)) {
-                        initialValue = Boolean.FALSE;
-                    } else if ("byte".equals(type)) {
-                        initialValue = new Byte((byte) 0);
-                    } else if ("char".equals(type)) {
-                        initialValue = new Character((char) 0);
-                    } else if ("double".equals(type)) {
-                        initialValue = new Double((double) 0.0);
-                    } else if ("float".equals(type)) {
-                        initialValue = new Float((float) 0.0);
-                    } else if ("int".equals(type)) {
-                        initialValue = new Integer(0);
-                    } else if ("long".equals(type)) {
-                        initialValue = new Long((long) 0);
-                    } else if ("short".equals(type)) {
-                        initialValue = new Short((short) 0);
-                    } else {
-                        initialValue = null;
-                    }
-                } else {
-                    Class clazz = getTypeClass();
-                    initialValue = ConvertUtils.convert(initial, clazz);
-                }
+                Class clazz = getTypeClass();
+                initialValue = ConvertUtils.convert(initial, clazz);
             } catch (Throwable t) {
                 initialValue = null;
             }
             initialized = true;
         }
+
+        // Clone if the initial value is an array
+        if ((initialValue != null) &&
+            (initialValue.getClass().isArray())) {
+            int n = Array.getLength(initialValue);
+            Class componentType =
+                initialValue.getClass().getComponentType();
+            Object newValue = Array.newInstance(componentType, n);
+            for (int j = 0; j < n; j++) {
+                Array.set(newValue, j, Array.get(initialValue, j));
+            }
+            return (newValue);
+        }
+
+        // Return the calculated value
         return (initialValue);
 
     }

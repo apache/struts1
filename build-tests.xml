@@ -98,6 +98,7 @@
       <pathelement location="${cactus.jar}"/>
       <pathelement location="${junit.jar}"/>
       <pathelement location="${servlet.jar}"/>
+      <pathelement location="${struts.jar}"/>
     </path>
 
 <!-- ========== Executable Targets ======================================== -->

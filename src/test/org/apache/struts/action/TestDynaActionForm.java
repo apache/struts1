@@ -63,6 +63,9 @@ import javax.servlet.*;
 import junit.framework.*;
 import org.apache.cactus.*;
 import org.apache.commons.beanutils.DynaProperty;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.FormBeanConfig;
 
 
 /**
@@ -110,9 +113,21 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
 
 
     /**
+     * Dummy ApplicationConfig for calls to reset() and validate().
+     */
+    protected ApplicationConfig appConfig = null;
+
+
+    /**
      * The basic <code>DynaActionForm</code> to use for testing.
      */
     protected DynaActionForm dynaForm = null;
+
+
+    /**
+     * Dummy ActionMapping for calls to reset() and validate().
+     */
+    protected ActionMapping mapping = null;
 
 
     /**
@@ -153,33 +168,10 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         } catch (InstantiationException e) {
             throw new RuntimeException(e.getMessage());
         }
+        setupComplexProperties();
+        appConfig = new TestDynaActionFormConfig(beanConfig);
+        mapping = new TestDynaActionFormMapping(appConfig);
 
-        // Temporarily, set up the complex properties manually
-        int intArray[] = { 0, 10, 20, 30, 40 };
-        dynaForm.set("intArray", intArray);
-        int intIndexed[] = { 0, 10, 20, 30, 40 };
-        dynaForm.set("intIndexed", intIndexed);
-        List listIndexed = new ArrayList();
-        listIndexed.add("String 0");
-        listIndexed.add("String 1");
-        listIndexed.add("String 2");
-        listIndexed.add("String 3");
-        listIndexed.add("String 4");
-        dynaForm.set("listIndexed", listIndexed);
-        Map mappedProperty = new HashMap();
-        mappedProperty.put("First Key", "First Value");
-        mappedProperty.put("Second Key", "Second Value");
-        dynaForm.set("mappedProperty", mappedProperty);
-        Map mappedIntProperty = new HashMap();
-        mappedIntProperty.put("One", new Integer(1));
-        mappedIntProperty.put("Two", new Integer(2));
-        dynaForm.set("mappedIntProperty", mappedIntProperty);
-        String stringArray[] =
-                { "String 0", "String 1", "String 2", "String 3", "String 4" };
-        dynaForm.set("stringArray", stringArray);
-        String stringIndexed[] =
-                { "String 0", "String 1", "String 2", "String 3", "String 4" };
-        dynaForm.set("stringIndexed", stringIndexed);
 
     }
 
@@ -187,8 +179,9 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
     public void tearDown() {
 
         super.tearDown();
+        appConfig = null;
         dynaForm = null;
-        
+        mapping = null;
 
     }
 
@@ -207,8 +200,8 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
                      (Double) dynaForm.get("doubleProperty"));
         assertEquals("floatProperty", new Float((float) 123.0),
                      (Float) dynaForm.get("floatProperty"));
-        // FIXME - intArray
-        // FIXME - intIndexed
+        assertEquals("intProperty", new Integer(123),
+                     (Integer) dynaForm.get("intProperty"));
         // FIXME - listIndexed
         assertEquals("longProperty", new Long((long) 321),
                      (Long) dynaForm.get("longProperty"));
@@ -218,10 +211,60 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
                      (String) dynaForm.get("nullProperty"));
         assertEquals("shortProperty", new Short((short) 987),
                      (Short) dynaForm.get("shortProperty"));
-        // FIXME - stringArray
-        // FIXME - stringIndexed
         assertEquals("stringProperty", "This is a string",
                      (String) dynaForm.get("stringProperty"));
+
+    }
+
+
+    // Test reset() method on indexed values to ensure that the
+    // result returned by FormPropertyConfig().initial() is never clobbered
+    public void testIndexedReset() {
+
+        // Update some values in the indexed properties
+        dynaForm.set("intArray", 1, new Integer(111));
+        assertEquals("intArray[1]", new Integer(111),
+                     (Integer) dynaForm.get("intArray", 1));
+        dynaForm.set("intIndexed", 2, new Integer(222));
+        assertEquals("intIndexed[2]", new Integer(222),
+                     (Integer) dynaForm.get("intIndexed", 2));
+        dynaForm.set("stringArray", 3, "New String 3");
+        assertEquals("stringArray[3]", "New String 3",
+                     (String) dynaForm.get("stringArray", 3));
+        dynaForm.set("stringIndexed", 4, "New String 4");
+        assertEquals("stringIndexed[4]", "New String 4",
+                     (String) dynaForm.get("stringIndexed", 4));
+
+        // Perform reset and revalidate the original values
+        // while ensuring our initial values did not get corrupted
+        dynaForm.reset(mapping, (ServletRequest) null);
+        setupComplexProperties();
+        testGetIndexedValues();
+
+    }
+
+
+    // Test reset() method going back to initial values
+    public void testScalarReset() {
+
+        // Update a bunch of scalar properties to new values
+        dynaForm.set("booleanProperty", Boolean.FALSE);
+        assertEquals("booleanProperty", Boolean.FALSE,
+                     (Boolean) dynaForm.get("booleanProperty"));
+        dynaForm.set("booleanSecond", Boolean.FALSE);
+        dynaForm.set("doubleProperty", new Double(654.0));
+        dynaForm.set("floatProperty", new Float((float) 543.0));
+        dynaForm.set("intProperty", new Integer(555));
+        dynaForm.set("longProperty", new Long((long) 777));
+        dynaForm.set("shortProperty", new Short((short) 222));
+        dynaForm.set("stringProperty", "New String Value");
+        assertEquals("stringProperty", "New String Value",
+                     (String) dynaForm.get("stringProperty"));
+
+        // Reset and revalidate the original values
+        dynaForm.reset(mapping, (ServletRequest) null);
+        setupComplexProperties();
+        testBeanCreate();
 
     }
 
@@ -405,7 +448,7 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
                 assertNotNull("intIndexed returned value " + i, value);
                 assertTrue("intIndexed returned Integer " + i,
                         value instanceof Integer);
-                assertEquals("intIndexed returned correct " + i, i * 10,
+                assertEquals("intIndexed returned correct " + i, i * 100,
                         ((Integer) value).intValue());
             } catch (Throwable t) {
                 fail("intIndexed " + i + " threw " + t);
@@ -962,6 +1005,34 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
 
 
     /**
+     * Set up the complex properties that cannot be configured from the
+     * initial value expression.
+     */
+    protected void setupComplexProperties() {
+
+        List listIndexed = new ArrayList();
+        listIndexed.add("String 0");
+        listIndexed.add("String 1");
+        listIndexed.add("String 2");
+        listIndexed.add("String 3");
+        listIndexed.add("String 4");
+        dynaForm.set("listIndexed", listIndexed);
+
+        Map mappedProperty = new HashMap();
+        mappedProperty.put("First Key", "First Value");
+        mappedProperty.put("Second Key", "Second Value");
+        dynaForm.set("mappedProperty", mappedProperty);
+
+        Map mappedIntProperty = new HashMap();
+        mappedIntProperty.put("One", new Integer(1));
+        mappedIntProperty.put("Two", new Integer(2));
+        dynaForm.set("mappedIntProperty", mappedIntProperty);
+
+    }
+
+
+
+    /**
      * Base for testGetDescriptorXxxxx() series of tests.
      *
      * @param name Name of the property to be retrieved
@@ -980,5 +1051,40 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
 
     }
 
+
+}
+
+
+class TestDynaActionFormMapping extends ActionMapping {
+
+    public TestDynaActionFormMapping(ApplicationConfig appConfig) {
+        this.appConfig = appConfig;
+    }
+
+    private ApplicationConfig appConfig = null;
+
+    public ApplicationConfig getApplicationConfig() {
+        return (this.appConfig);
+    }
+
+    public String getName() {
+        return ("dynaForm");
+    }
+
+}
+
+
+class TestDynaActionFormConfig extends ApplicationConfig {
+
+    public TestDynaActionFormConfig(FormBeanConfig beanConfig) {
+        super("");
+        this.beanConfig = beanConfig;
+    }
+
+    private FormBeanConfig beanConfig = null;
+
+    public FormBeanConfig findFormBeanConfig(String name) {
+        return (this.beanConfig);
+    }
 
 }
