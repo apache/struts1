@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.2 2000/12/29 19:16:37 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/12/29 19:16:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.3 2001/01/08 23:53:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/08 23:53:10 $
  *
  * ====================================================================
  *
@@ -78,7 +78,8 @@ import javax.sql.DataSource;
  * provide connections with different username/password combinations.  It
  * always returns connections based on the username and password configured
  * with <code>setUser()</code> and <code>setPassword()</code>,
- * respectively.</p>
+ * respectively. Calling this version of the implementation using the
+ * getConnection(username,password) signature will throw an exception.</p>
  *
  * <p>The following properties are supported by the standard
  * <code>GenericDataSource</code> implementation:</p>
@@ -156,10 +157,19 @@ import javax.sql.DataSource;
  * the JDBC driver by calling <code>addProperty()</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/12/29 19:16:37 $
+ * @author Ted Husted
+ * @version $Revision: 1.3 $ $Date: 2001/01/08 23:53:10 $
  */
 
 public class GenericDataSource implements DataSource {
+
+
+    // ----------------------------------------------------- Instance Constants
+
+
+    private static final String SQLEXCEPTION_GETCONNECTION =
+     "getConnection(String username, String password)  Method not supported. Use getConnection() instead.";
+
 
 
     // ----------------------------------------------------- Instance Variables
@@ -200,6 +210,7 @@ public class GenericDataSource implements DataSource {
      * The connection properties for use in establishing connections.
      */
     protected Properties properties = new Properties();
+
 
 
     // ------------------------------------------------------------- Properties
@@ -393,7 +404,11 @@ public class GenericDataSource implements DataSource {
             synchronized (connections) {
                 if (!connections.isEmpty()) {
                     useCount++;
-                    return ((Connection) connections.removeFirst());
+                    GenericConnection connection = (GenericConnection) connections.removeFirst();
+                    // unclose the connection's wrapper
+                    connection.setClosed(false);
+                    return(connection);
+                    // return ((Connection) connections.removeFirst()); DEBUG
                 }
             }
 
@@ -430,10 +445,13 @@ public class GenericDataSource implements DataSource {
      *
      * @exception SQLException if a database access error occurs
      */
+
+
+
     public Connection getConnection(String username, String password)
         throws SQLException {
 
-        return (getConnection());
+        throw new SQLException(SQLEXCEPTION_GETCONNECTION); // Not implemented
 
     }
 
@@ -448,7 +466,7 @@ public class GenericDataSource implements DataSource {
         return (this.loginTimeout);
 
     }
-    
+
 
 
     /**

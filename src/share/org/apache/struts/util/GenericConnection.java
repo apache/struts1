@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.3 2000/12/14 09:03:36 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/12/14 09:03:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericConnection.java,v 1.4 2001/01/08 23:53:11 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/08 23:53:11 $
  *
  * ====================================================================
  *
@@ -81,7 +81,9 @@ import javax.sql.DataSource;
  * JDBC driver.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/12/14 09:03:36 $
+ * @author Ted Husted
+ * @version $Revision: 1.4 $ $Date: 2001/01/08 23:53:11 $
+
  */
 
 public class GenericConnection implements Connection {
@@ -108,7 +110,7 @@ public class GenericConnection implements Connection {
         super();
         this.source = source;
         this.conn = conn;
-        
+
         this.autoCommit = autoCommit;
         this.catalog = conn.getCatalog();
         this.level = conn.getTransactionIsolation();
@@ -125,6 +127,12 @@ public class GenericConnection implements Connection {
         this.conn.setReadOnly(this.readOnly);
 
     }
+
+
+    // ----------------------------------------------------- Instance Constants
+
+
+    private final static String SQLEXCEPTION_CLOSED = "Connection was closed.";
 
 
     // ----------------------------------------------------- Instance Variables
@@ -183,6 +191,8 @@ public class GenericConnection implements Connection {
      */
     public void clearWarnings() throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         conn.clearWarnings();
 
     }
@@ -194,6 +204,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public void close() throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         // Clean up any outstanding transaction as best we can
         try {
@@ -234,6 +246,10 @@ public class GenericConnection implements Connection {
             ;
         }
 
+        // Flag that this connection is closed
+        // All methods accessing conn will now throw SQLEXCEPTION_CLOSED
+        closed = true;
+
         // Return this connection to the available connection pool
         source.returnConnection(this);
 
@@ -248,6 +264,8 @@ public class GenericConnection implements Connection {
      */
     public void commit() throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         conn.commit();
 
     }
@@ -260,6 +278,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public Statement createStatement() throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.createStatement());
 
@@ -280,6 +300,8 @@ public class GenericConnection implements Connection {
                                      int resultSetConcurrency)
         throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.createStatement(resultSetType, resultSetConcurrency));
 
     }
@@ -292,6 +314,8 @@ public class GenericConnection implements Connection {
      */
     public boolean getAutoCommit() throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.getAutoCommit());
 
     }
@@ -302,7 +326,11 @@ public class GenericConnection implements Connection {
      *
      * @exception SQLException if a database access error occurs
      */
+
+
     public String getCatalog() throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.getCatalog());
 
@@ -316,6 +344,8 @@ public class GenericConnection implements Connection {
      */
     public DatabaseMetaData getMetaData() throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.getMetaData());
 
     }
@@ -327,6 +357,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public int getTransactionIsolation() throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.getTransactionIsolation());
 
@@ -340,6 +372,8 @@ public class GenericConnection implements Connection {
      */
     public Map getTypeMap() throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.getTypeMap());
 
     }
@@ -352,6 +386,8 @@ public class GenericConnection implements Connection {
      */
     public SQLWarning getWarnings() throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.getWarnings());
 
     }
@@ -360,11 +396,22 @@ public class GenericConnection implements Connection {
     /**
      * Return <code>true</code> if this Connection is closed.
      *
+     * The GenericConnection.isClosed() method is only guaranteed to return true after
+     * GenericConnection.closed() has been called. This method cannot be called, in
+     * general, to determine if a database connection is valid or invalid.
+     *
+     * A typical JDBC client can determine that a connection is invalid by catching the
+     * exception that is thrown when a JDBC operation is attempted.
+     *
      * @exception SQLException if a database access error occurs
      */
+
+
+    private boolean closed = false;
+
     public boolean isClosed() throws SQLException {
 
-        return (false); // FIXME - isClosed()
+      return (closed);
 
     }
 
@@ -375,6 +422,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public boolean isReadOnly() throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.isReadOnly());
 
@@ -387,6 +436,8 @@ public class GenericConnection implements Connection {
      * @param sql Statement to be processed
      */
     public String nativeSQL(String sql) throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.nativeSQL(sql));
 
@@ -402,6 +453,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public CallableStatement prepareCall(String sql) throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.prepareCall(sql));
 
@@ -422,6 +475,8 @@ public class GenericConnection implements Connection {
                                          int resultSetConcurrency)
         throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.prepareCall(sql, resultSetType, resultSetConcurrency));
 
     }
@@ -436,6 +491,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public PreparedStatement prepareStatement(String sql) throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         return (conn.prepareStatement(sql));
 
@@ -456,6 +513,8 @@ public class GenericConnection implements Connection {
                                               int resultSetConcurrency)
         throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         return (conn.prepareStatement(sql, resultSetType,
                                       resultSetConcurrency));
 
@@ -468,6 +527,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public void rollback() throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         conn.rollback();
 
@@ -483,6 +544,8 @@ public class GenericConnection implements Connection {
      */
     public void setAutoCommit(boolean autoCommit) throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         conn.setAutoCommit(autoCommit);
 
     }
@@ -496,6 +559,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public void setCatalog(String catalog) throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         conn.setCatalog(catalog);
 
@@ -511,6 +576,8 @@ public class GenericConnection implements Connection {
      */
     public void setReadOnly(boolean readOnly) throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         conn.setReadOnly(readOnly);
 
     }
@@ -524,6 +591,8 @@ public class GenericConnection implements Connection {
      * @exception SQLException if a database access error occurs
      */
     public void setTransactionIsolation(int level) throws SQLException {
+
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
 
         conn.setTransactionIsolation(level);
 
@@ -539,6 +608,8 @@ public class GenericConnection implements Connection {
      */
     public void setTypeMap(Map map) throws SQLException {
 
+        if (closed) throw new SQLException(SQLEXCEPTION_CLOSED);
+
         conn.setTypeMap(map);
 
     }
@@ -552,7 +623,7 @@ public class GenericConnection implements Connection {
      */
     Connection getConnection() {
 
-        return (this.conn);
+        return (this.conn); // FIXME - Good idea to return if closed?
 
     }
 
@@ -562,9 +633,26 @@ public class GenericConnection implements Connection {
      */
     DataSource getDataSource() {
 
+        // Do not check for closed exception, to allow for a fresh connection
+
         return (this.source);
 
     }
+
+
+    /**
+     * Set the closed status of this connection wrapper.
+     *
+     * Would usually only be called by the owning DataSource (source), with
+     * setClosed(false), when a pooled connection is being recycled.
+     *
+     */
+    void setClosed(boolean closed) {
+
+        this.closed = closed;
+
+    }
+
 
 
 }
