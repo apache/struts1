@@ -1,0 +1,9 @@
+-----------------------------7d21fed3c0352
+Content-Disposition: form-data; name="theText"
+
+test
+-----------------------------7d21fed3c0352
+Content-Disposition: form-data; name="theFile"; filename="C:\hist202.doc"
+Content-Type: application/msword
+
+ÐÏà¡±
