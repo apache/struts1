@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ImageButtonBean.java,v 1.1 2002/09/10 04:04:00 martinc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/09/10 04:04:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ImageButtonBean.java,v 1.2 2002/09/14 21:22:08 martinc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/09/14 21:22:08 $
  *
  * ====================================================================
  *
@@ -76,13 +76,19 @@ import java.io.Serializable;
  *
  * @author  Ted Husted
  * @author  Martin F N Cooper
- * @version $Revision: 1.1 $ $Date: 2002/09/10 04:04:00 $
+ * @version $Revision: 1.2 $ $Date: 2002/09/14 21:22:08 $
  */
 public class ImageButtonBean implements Serializable {
 
 
     // ----------------------------------------------------------- Constructors
 
+
+    /**
+     * Construct an instance with empty property values.
+     */
+    public ImageButtonBean() {
+    }
 
     /**
      * Construct an instance with the supplied property values.
