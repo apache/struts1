@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.9 2002/01/13 00:25:37 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/01/13 00:25:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.10 2002/03/11 04:56:53 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/03/11 04:56:53 $
  *
  * ====================================================================
  *
@@ -60,8 +60,10 @@
  */
 package org.apache.struts.taglib.template;
 
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Stack;
+import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -75,7 +77,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.9 $ $Date: 2002/01/13 00:25:37 $
+ * @version $Revision: 1.10 $ $Date: 2002/03/11 04:56:53 $
  */
 public class InsertTag extends TagSupport {
 
@@ -151,10 +153,12 @@ public class InsertTag extends TagSupport {
       }
       try {
          pageContext.include(prefix + template);
-      }
-      catch(Exception ex) { // IOException or ServletException
+      } catch (IOException ex) {
+        saveException(ex);
+        throw new JspException(ex);
+      } catch(ServletException ex) {
          saveException(ex);
-         throw new JspException(ex.getMessage());
+         throw new JspException(ex);
       }
       ContentMapStack.pop(pageContext);
       return EVAL_PAGE;

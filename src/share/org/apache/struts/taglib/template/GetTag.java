@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.10 2001/04/29 05:59:58 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/04/29 05:59:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.11 2002/03/11 04:56:53 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/03/11 04:56:53 $
  *
  * ====================================================================
  *
@@ -60,8 +60,10 @@
  */
 package org.apache.struts.taglib.template;
 
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Stack;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -75,7 +77,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.10 $ $Date: 2001/04/29 05:59:58 $
+ * @version $Revision: 1.11 $ $Date: 2002/03/11 04:56:53 $
  */
 public class GetTag extends TagSupport {
 
@@ -177,9 +179,9 @@ public class GetTag extends TagSupport {
             try {
                pageContext.getOut().print(content.toString());
             }
-            catch(java.io.IOException ex) {
+            catch(IOException ex) {
                saveException(ex);
-               throw new JspException(ex.getMessage());
+               throw new JspException(ex);
             }
          }
          else {
@@ -187,10 +189,12 @@ public class GetTag extends TagSupport {
                if (flush)
                   pageContext.getOut().flush();
                pageContext.include(content.toString());
-            }
-            catch(Exception ex) { 
+            } catch (IOException ex) {
+              saveException(ex);
+              throw new JspException(ex);
+            } catch(ServletException ex) {
                saveException(ex);
-               throw new JspException(ex.getMessage());
+               throw new JspException(ex);
             }
          }
       }
