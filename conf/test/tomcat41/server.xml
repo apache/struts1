@@ -1,4 +1,4 @@
-<Server port="8005" shutdown="SHUTDOWN" debug="0">
+<Server port="9005" shutdown="SHUTDOWN" debug="0">
 
   <Listener className="org.apache.catalina.mbeans.ServerLifecycleListener"
             debug="0"/>
@@ -29,7 +29,7 @@
   <Service name="Tomcat-Standalone">
 
     <Connector className="org.apache.coyote.tomcat4.CoyoteConnector"
-               port="8080" minProcessors="5" maxProcessors="75"
+               port="9090" minProcessors="5" maxProcessors="75"
                enableLookups="true" redirectPort="8443"
                acceptCount="10" debug="0" connectionTimeout="20000"
                useURIValidationHack="false"/>

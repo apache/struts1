@@ -462,7 +462,7 @@
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:8080/test"
+        <runservertests testURL="http://localhost:9090/test"
             startTarget="start.tomcat.40"
             stopTarget="stop.tomcat.40"
             testTarget="run.test"/>
@@ -545,7 +545,7 @@
              The servlet engine is automatically stopped if the tests fail for
              any reason.-->
 
-        <runservertests testURL="http://localhost:8080/test"
+        <runservertests testURL="http://localhost:9090/test"
             startTarget="start.tomcat.41"
             stopTarget="stop.tomcat.41"
             testTarget="run.test"/>
