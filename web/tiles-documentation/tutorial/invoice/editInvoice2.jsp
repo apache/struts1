@@ -5,7 +5,7 @@
 
 <html:errors/>
 
-<html:form action="/tutorial/invoice/editInvoice.do" >
+<html:form action="/invoice/editInvoice.do" >
 
 <font size="+1">Edit Customer Informations</font>
 			   
