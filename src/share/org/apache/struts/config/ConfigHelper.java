@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.6 2003/07/04 20:53:42 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/04 20:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.7 2003/07/27 05:38:38 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/07/27 05:38:38 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.6 $ $Date: 2003/07/04 20:53:42 $
+ * @version $Revision: 1.7 $ $Date: 2003/07/27 05:38:38 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -234,6 +234,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     /**
      * The <code>org.apache.struts.action.ActionFormBeans</code> collection
      * for this application.
+     * @deprecated deprecated in struts 1.2 ActionFormBeans is replaced by a collection in ModuleConfig.
      */
     public ActionFormBeans getActionFormBeans() {
 
@@ -247,6 +248,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     /**
      * The <code>org.apache.struts.action.ActionForwards</code> collection
      * for this application.
+     * @deprecated deprecated in struts 1.2 ActionForwards is replaced by a collection in ModuleConfig.
+
      */
     public ActionForwards getActionForwards() {
 
@@ -262,6 +265,7 @@ public class ConfigHelper implements ConfigHelperInterface {
      * <code>org.apache.struts.action.ActionMappings</code> collection
      * is normally stored, unless overridden when initializing our
      * ActionServlet.
+     * @deprecated deprecated in struts 1.2 ActionMappings is replaced by a collection in ModuleConfig.
      */
     public ActionMappings getActionMappings() {
         if (this.application == null) {
