@@ -468,6 +468,10 @@ is identified by the <code>name</code> or <code>name</code> and
 <code>property</code> attributes, and the element being processed is exposed
 as a page scope bean named by the <code>id</code> attribute.</p>
 
+<p>On a Java2 (JDK 1.2 or later) platform, you might want to consider using
+the <a href="#iterate">iterate</a> tag instead, which provides a superset of
+the capabilities of this tag.</p>
+
 <table width="100%" border="1">
   <tr>
     <th width="15%">Attribute</th>
@@ -960,7 +964,9 @@ is identified by the <code>name</code> or <code>name</code> and
 <code>property</code> attributes, and the element being processed is exposed
 as a page scope bean named by the <code>id</code> attribute.</p>
 
-<p><em>This tag requires a Java2 (JDK 1.2 or later) platform.</em></p>
+<p>This tag requires a Java2 (JDK 1.2 or later) platform.  For a JDK 1.1
+platform, the <a href="#enumerate">enumerate</a> tag provides similar
+functionality.</p>
 
 <table width="100%" border="1">
   <tr>
@@ -1027,6 +1033,31 @@ specified URL.  URL rewriting will be applied automatically to maintain
 session state in the absence of cookies.  The content displayed for this
 hyperlink will be taken from the body of this tag.</p>
 
+<p>Normally, the hyperlink you specify with the <code>href</code> attribute
+will be unchanged (other than the fact that URL rewriting will be applied
+if necessary for session maintenance in the absence of cookies).  However,
+you can specify instructions for locating a Map implementation that defines
+query parameters to be added to the hyperlink, in one of two manners:</p>
+<ul>
+<li><em>Specify only the <code>name</code> parameter</em> -- The named JSP bean
+    (in any scope) must represent a java.util.Map containing the parameters.
+    </li>
+<li><em>Specify both <code>name</code> and <code>property</code>
+    parameters</em> -- The specified property getter method will be called on
+    the JSP bean named by <code>name</code>, in order to return the Map.</li>
+</ul>
+
+<p>As the Map is processed, the keys are assumed to be the names of query
+parameters to be appended to the hyperlink.  The value associated with each
+key must be either a String or a String array representing the parameter
+values.  If a String array is specified, more than one value for the same
+query parameter name may be created.</p>
+
+<p>This tag works only on a Java2 (JDK 1.2 or later) platform, because of the
+use of the <code>java.util.Map</code> interface.  For a similar tag based on a
+<code>java.util.Dictionary</code>, and therefore works on JDK 1.1, see the
+<a href="#link1">link1</a> tag.</p>
+
 <table width="100%" border="1">
   <tr>
     <th width="15%">Attribute</th>
@@ -1035,9 +1066,106 @@ hyperlink will be taken from the body of this tag.</p>
   <tr>
     <td align="center">href</td>
     <td>
-      URL to which this hyperlink will transfer if activated.
+      URL to which this hyperlink will transfer if activated.  This
+      hyperlink may be dynamically modified by the inclusion of query
+      parameters if the <code>name</code> (or <code>name</code> and
+      <code>property</code>) attributes are also present on this tag.
     </td>
   </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the bean that contains a Map representing the query
+      parameters to be added to our hyperlink, if the <code>property</code>
+      attribute is not present.  If it is, the appropriate property
+      getter will be called to return the Map.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of a property, of the bean specified by the <code>name</code>
+      attribute, that will be called to return a Map representing the query
+      parameters to be added to our hyperlink.  It is not legal to specify
+      this attribute without also specifying a <code>name</code>.
+    </td>
+  <tr>
+    <td align="center">target</td>
+    <td>
+      Window target in which the requested resource will be displayed,
+      such as for use in framed presentations.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="link1"></a>
+<h1><i>link</i> - Render HTML Hyperlink</h1>
+
+<p>Renders an HTML <code>&lt;a&gt;</code> element as a hyperlink to the
+specified URL.  URL rewriting will be applied automatically to maintain
+session state in the absence of cookies.  The content displayed for this
+hyperlink will be taken from the body of this tag.</p>
+
+<p>Normally, the hyperlink you specify with the <code>href</code> attribute
+will be unchanged (other than the fact that URL rewriting will be applied
+if necessary for session maintenance in the absence of cookies).  However,
+you can specify instructions for locating a Dictionary implementation that
+defines query parameters to be added to the hyperlink, in one of two manners:
+</p>
+<ul>
+<li><em>Specify only the <code>name</code> parameter</em> -- The named JSP bean
+    (in any scope) must represent a java.util.Dictionary containing the
+    parameters.</li>
+<li><em>Specify both <code>name</code> and <code>property</code>
+    parameters</em> -- The specified property getter method will be called on
+    the JSP bean named by <code>name</code>, in order to return the required
+    Dictionary.</li>
+</ul>
+
+<p>As the Dictionary is processed, the keys are assumed to be the names of
+query parameters to be appended to the hyperlink.  The value associated with
+each key must be either a String or a String array representing the parameter
+values.  If a String array is specified, more than one value for the same
+query parameter name may be created.</p>
+
+<p>This tag will work on a JDK 1.1 platform.  If you are running on a Java2
+(JDK 1.2 or later) platform, consider using the
+<a href="#link">link</a> tag instead.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">href</td>
+    <td>
+      URL to which this hyperlink will transfer if activated.  This
+      hyperlink may be dynamically modified by the inclusion of query
+      parameters if the <code>name</code> (or <code>name</code> and
+      <code>property</code>) attributes are also present on this tag.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the bean that contains a Dictionary representing the query
+      parameters to be added to our hyperlink, if the <code>property</code>
+      attribute is not present.  If it is, the appropriate property
+      getter will be called to return the Dictionary.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of a property, of the bean specified by the <code>name</code>
+      attribute, that will be called to return a Dictionary representing the
+      query parameters to be added to our hyperlink.  It is not legal to
+      specify this attribute without also specifying a <code>name</code>.
+    </td>
   <tr>
     <td align="center">target</td>
     <td>

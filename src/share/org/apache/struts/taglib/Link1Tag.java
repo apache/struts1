@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.3 2000/06/27 01:58:29 craigmcc Exp $
- * $Revision: 1.3 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.1 2000/06/27 01:58:29 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2000/06/27 01:58:29 $
  *
  * ====================================================================
@@ -65,8 +65,8 @@ package org.apache.struts.taglib;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -77,13 +77,15 @@ import org.apache.struts.util.MessageResources;
 
 
 /**
- * Generate a URL-encoded hyperlink to the specified URI.
+ * Generate a URL-encoded hyperlink to the specified URI.  This tag differs
+ * from <code>LinkTag</code> because it is based on a Dictionary, rather than
+ * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/27 01:58:29 $
+ * @version $Revision: 1.1 $ $Date: 2000/06/27 01:58:29 $
  */
 
-public class LinkTag extends TagSupport {
+public class Link1Tag extends TagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -291,10 +293,10 @@ public class LinkTag extends TagSupport {
 	if (name == null)
 	    return (href);
 
-	// Look up the map we will be using
+	// Look up the dictionary we will be using
 	Object bean = pageContext.findAttribute(name);
-	Map map = null;
-	if (map == null)
+	Dictionary dictionary = null;
+	if (dictionary == null)
 	    throw new JspException
 		(messages.getMessage("linkTag.bean", name));
 	if (property != null) {
@@ -303,14 +305,14 @@ public class LinkTag extends TagSupport {
 	    Method method = null;
 	    try {
 		method = bean.getClass().getMethod(methodName, paramTypes);
-		bean = method.invoke(map, new Object[0]);
+		bean = method.invoke(dictionary, new Object[0]);
 		if (bean == null)
 		    throw new JspException
 			(messages.getMessage("linkTag.property", methodName));
-		map = (Map) bean;
+		dictionary = (Dictionary) bean;
 	    } catch (ClassCastException e) {
 		throw new JspException
-		    (messages.getMessage("linkTag.type"));
+		    (messages.getMessage("linkTag.type1"));
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
 		    (messages.getMessage("linkTag.method", methodName));
@@ -324,10 +326,10 @@ public class LinkTag extends TagSupport {
 	// Append the required query parameters
 	StringBuffer sb = new StringBuffer(href);
 	boolean question = (href.indexOf("?") >= 0);
-	Iterator keys = map.keySet().iterator();
-	while (keys.hasNext()) {
-	    String key = (String) keys.next();
-	    Object value = map.get(key);
+	Enumeration keys = dictionary.keys();
+	while (keys.hasMoreElements()) {
+	    String key = (String) keys.nextElement();
+	    Object value = dictionary.get(key);
 	    if (value instanceof String[]) {
 		String values[] = (String[]) value;
 		for (int i = 0; i < values.length; i++) {

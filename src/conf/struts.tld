@@ -1509,6 +1509,43 @@
       <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>target</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+  <tag>
+    <name>link1</name>
+    <tagclass>org.apache.struts.taglib.Link1Tag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>href</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>target</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
