@@ -2,9 +2,9 @@
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
 <!--
-  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.41 2003/09/26 16:53:42 rleland Exp $
-  $Revision: 1.41 $
-  $Date: 2003/09/26 16:53:42 $
+  $Header: /home/cvs/jakarta-struts/conf/share/validator-rules.xml,v 1.42 2003/10/01 15:07:57 rleland Exp $
+  $Revision: 1.42 $
+  $Date: 2003/10/01 15:07:57 $
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
@@ -52,7 +52,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
                   msg="errors.required">
 
@@ -149,7 +149,7 @@
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
                                org.apache.commons.validator.Field,
-                               org.apache.struts.action.ActionErrors,
+                               org.apache.struts.action.ActionMessages,
                                org.apache.commons.validator.Validator,
                                javax.servlet.http.HttpServletRequest"
                  msg="errors.required">
@@ -162,7 +162,7 @@
                  methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"/>
 
@@ -173,7 +173,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.minlength">
@@ -218,7 +218,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.maxlength">
@@ -263,7 +263,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.invalid">
@@ -313,7 +313,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.byte"
@@ -385,7 +385,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.short"
@@ -456,7 +456,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.integer"
@@ -547,7 +547,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.long"/>
@@ -559,7 +559,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.float"
@@ -638,7 +638,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.double"/>
@@ -650,7 +650,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.date"
@@ -816,7 +816,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends="integer"
                   msg="errors.range">
@@ -870,7 +870,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends="float"
                   msg="errors.range">
@@ -917,7 +917,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.creditcard">
@@ -995,7 +995,7 @@
          methodParams="java.lang.Object,
                        org.apache.commons.validator.ValidatorAction,
                        org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
+                       org.apache.struts.action.ActionMessages,
                        javax.servlet.http.HttpServletRequest"
               depends=""
                   msg="errors.email">
