@@ -382,7 +382,6 @@ public class IterateTag extends BodyTagSupport {
         // Clean up our started state
         started = false;
         iterator = null;
-        collection = null;
 
         // Continue processing this page
         return (EVAL_PAGE);
