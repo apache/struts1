@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTei.java,v 1.5 2001/06/14 04:25:33 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/06/14 04:25:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTei.java,v 1.6 2002/05/27 07:12:57 arron Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/05/27 07:12:57 $
  *
  * ====================================================================
  *
@@ -58,57 +58,60 @@
  * <http://www.apache.org/>.
  *
  */
-
-
 package org.apache.struts.taglib.logic;
-
 
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
 import javax.servlet.jsp.tagext.VariableInfo;
-
 
 /**
  * Implementation of <code>TagExtraInfo</code> for the <b>iterate</b>
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/06/14 04:25:33 $
+ * @version $Revision: 1.6 $ $Date: 2002/05/27 07:12:57 $
  */
-
 public class IterateTei extends TagExtraInfo {
 
+  /**
+   * Return information about the scripting variables to be created.
+   */
+  public VariableInfo[] getVariableInfo(TagData data) {
 
-    /**
-     * Return information about the scripting variables to be created.
-     */
-    public VariableInfo[] getVariableInfo(TagData data) {
+    // prime this array with the maximum potential variables.
+    // will be arraycopy'd out to the final array based on results.
+    VariableInfo[] variables = new VariableInfo[2];
 
-        String type = data.getAttributeString("type");
-        if (type == null)
-            type = "java.lang.Object";
-        VariableInfo typeInfo = new VariableInfo(
-                data.getAttributeString("id"),
-	        type,
-	        true,
-	        VariableInfo.NESTED);
+    // counter for matched results.
+    int counter = 0;
 
-        String indexId = data.getAttributeString("indexId");
-        VariableInfo indexIdInfo = null;
-        if (indexId != null)
-            indexIdInfo = new VariableInfo(
-                indexId,
-	        "java.lang.Integer",
-	        true,
-	        VariableInfo.NESTED);
-
-        if (indexIdInfo == null) {
-            return new VariableInfo[] { typeInfo };
-        } else {
-            return new VariableInfo[] { typeInfo, indexIdInfo };
-        }
-
+    /* id : object of the current iteration */
+    String id = data.getAttributeString("id");
+    String type = data.getAttributeString("type");
+    if (id != null) {
+      if (type == null) {
+        type = "java.lang.Object";
+      }
+      variables[counter++] = new VariableInfo(data.getAttributeString("id"),
+                                              type, true,
+                                              VariableInfo.NESTED);
     }
 
+    /* indexId : number value of the current iteration */
+    String indexId = data.getAttributeString("indexId");
+    if (indexId != null) {
+      variables[counter++] = new VariableInfo(indexId, "java.lang.Integer",
+                                              true, VariableInfo.NESTED);
+    }
 
+    /* create returning array, and copy results */
+    VariableInfo[] result;
+    if (counter > 0) {
+      result = new VariableInfo[counter];
+      System.arraycopy(variables, 0, result, 0, counter);
+    } else {
+      result = new VariableInfo[0];
+    }
+    return result;
+  }
 }
