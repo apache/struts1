@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.3 2002/11/12 03:56:10 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/12 03:56:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/util/TagUtils.java,v 1.4 2002/12/08 06:54:52 rleland Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/12/08 06:54:52 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ public class TagUtils {
     /**
     * Get scope value from string value
     * @param scopeName scope as a String
-    * @param default returned value, if not found.
+    * @param defaultValue returned value, if not found.
     * @return scope as an int, or defaultValue if scope is null.
     * @throws JspException Scope name is not recognize as a valid scope.
     */
@@ -141,8 +141,8 @@ public class TagUtils {
      * Retrieve bean from page context, using specified scope.
      * If scope is not setted, use findAttribute.
      *
-     * @param bean Name Name of bean to retrieve
-     * @param scope Name Scope or null. If null, bean is searched using
+     * @param beanName Name of bean to retrieve
+     * @param scopeName Scope or null. If null, bean is searched using
      *  findAttribute.
      * @param pageContext Current pageContext.
      *
@@ -303,7 +303,7 @@ public class TagUtils {
      *
      * @param pageContext current pageContext
      * @param name Name of the bean
-     * @param value Bean value to store
+     * @param beanValue Bean value to store
      *
      * @exception JspException if an invalid scope name
      *  is requested

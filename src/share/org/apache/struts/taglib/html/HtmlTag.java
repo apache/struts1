@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.8 2002/11/20 05:00:18 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/20 05:00:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.9 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -69,7 +69,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ResponseUtils;
 
@@ -80,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.8 $ $Date: 2002/11/20 05:00:18 $
+ * @version $Revision: 1.9 $ $Date: 2002/12/08 06:54:51 $
  */
 
 public class HtmlTag extends TagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.5 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.tiles.UntyppedAttribute;
  * used in &lt;tiles:insert&gt.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.4 $ $Date: 2002/11/16 04:46:05 $
+ * @version $Revision: 1.5 $ $Date: 2002/12/08 06:54:51 $
  */
 public class DefinitionTag extends DefinitionTagSupport implements PutTagParent, PutListTagParent
 {
@@ -209,7 +209,7 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
 		/**
 		 * Sets the value of the id property.
 		 *
-		 * @param aId the new value of the id property
+		 * @param id the new value of the id property
 		 */
 		public void setId(String id)
 		{

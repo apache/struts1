@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.6 2002/12/06 07:58:39 martinc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/06 07:58:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.7 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -142,9 +142,9 @@ public final class UseAttributeTag extends TagSupport {
 
 
     /**
-     * Set the length.
+     * Set the class name.
      *
-     * @param length The new length
+     * @param name The new class name
      */
     public void setClassname(String name) {
 
@@ -168,9 +168,9 @@ public final class UseAttributeTag extends TagSupport {
   }
 
     /**
-     * Set the offset.
+     * Set the scope.
      *
-     * @param offset The new offset
+     * @param scope The new ecope
      */
     public void setScope(String scope) {
 	this.scopeName = scope;

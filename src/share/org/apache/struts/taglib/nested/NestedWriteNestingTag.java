@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.2 2002/11/16 04:32:38 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:32:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedWriteNestingTag.java,v 1.3 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/08 06:54:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -73,7 +73,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class NestedWriteNestingTag extends BodyTagSupport implements NestedPropertySupport {
   
@@ -85,7 +85,7 @@ public class NestedWriteNestingTag extends BodyTagSupport implements NestedPrope
   }
 
   /** Setter method for the <i>property</i> property
-   * @param property new value for the property property
+   * @param newProperty new value for the property property
    */
   public void setProperty(String newProperty) {
     this.property = newProperty;
@@ -100,7 +100,7 @@ public class NestedWriteNestingTag extends BodyTagSupport implements NestedPrope
   }
 
   /** Setter method for the <i>filter</i> property
-   * @param property new value for the filter property
+   * @param newFilter new value for the filter property
    */
   public void setFilter(boolean newFilter) {
     this.filter = newFilter;

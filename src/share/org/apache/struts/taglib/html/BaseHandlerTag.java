@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.19 2002/11/16 06:04:16 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2002/11/16 06:04:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.20 2002/12/08 06:54:50 rleland Exp $
+ * $Revision: 1.20 $
+ * $Date: 2002/12/08 06:54:50 $
  *
  * ====================================================================
  *
@@ -65,8 +65,6 @@ import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import javax.servlet.jsp.tagext.Tag;
-import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.logic.IterateTag;
@@ -80,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.19 $ $Date: 2002/11/16 06:04:16 $
+ * @version $Revision: 1.20 $ $Date: 2002/12/08 06:54:50 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -774,8 +772,6 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /**
      * Allows HTML tags to find out if they're nested within an %lt;html:html&gt; tag that
      * has xhtml set to true.
-     * @param tag - Tags should pass themselves into the method as a starting point
-     * for finding the parent html tag.
      * @return true if the tag is nested within an html tag with xhtml set to true, false
      * otherwise.
      * @since Struts 1.1
@@ -801,8 +797,6 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     /**
      * Returns the closing brace for an input element depending on xhtml status.  The tag
      * must be nested within an %lt;html:html&gt; tag that has xhtml set to true.
-     * @param tag - Tags should pass themselves into the method as a starting point
-     * for finding the parent html tag.
      * @return String - &gt; if xhtml is false, /&gt; if xhtml is true
      * @since Struts 1.1
      */

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.5 2002/11/16 04:32:38 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 04:32:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.6 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/08 06:54:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,7 +77,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/11/16 04:32:38 $
+ * @version $Revision: 1.6 $ $Date: 2002/12/08 06:54:51 $
  */
 public class NestedPropertyTag extends BodyTagSupport implements NestedParentSupport, NestedNameSupport {
   
@@ -91,7 +91,7 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
   /** Setter method for the <i>property</i> property
    * Also, only setting the original property value to those values not
    * set by the nested logic.
-   * @param property new value for the property property
+   * @param newProperty new value for the property property
    */
   public void setProperty(String newProperty) {
     property = newProperty;
@@ -107,7 +107,7 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedParentSup
     return this.name;
   }
   /** Setter method for the <i>name</i> property
-   * @param property new value for the name property
+   * @param name new value for the name property
    */
   public void setName(String name) {
     this.name = name;

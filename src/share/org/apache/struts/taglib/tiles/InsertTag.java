@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.6 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.7 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.6 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.7 $ $Date: 2002/12/08 06:54:51 $
  */
 public class InsertTag
 	extends DefinitionTagSupport
@@ -612,9 +612,9 @@ public class InsertTag
 	/**
 	 * Process a bean.
 	 * Get bean value, eventually using property and scope. Found value is process by processObjectValue().
-	 * @param name Name of the bean
-	 * @param property Property in the bean, or null.
-	 * @param scope bean scope, or null.
+	 * @param beanName Name of the bean
+	 * @param beanProperty Property in the bean, or null.
+	 * @param beanScope bean scope, or null.
 	 * @return Appropriate TagHandler.
 	 * @throws JspException - NoSuchDefinitionException No value associated to bean.
 	* @throws JspException an error occur while reading bean, or no definition found.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedRootTag.java,v 1.5 2002/11/16 04:32:38 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 04:32:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedRootTag.java,v 1.6 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/08 06:54:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.5 $ $Date: 2002/11/16 04:32:38 $
+ * @version $Revision: 1.6 $ $Date: 2002/12/08 06:54:51 $
  */
 public class NestedRootTag extends BodyTagSupport implements NestedParentSupport, NestedNameSupport {
   
@@ -104,7 +104,7 @@ public class NestedRootTag extends BodyTagSupport implements NestedParentSupport
     return this.name;
   }
   /** Setter method for the <i>name</i> property
-   * @param property new value for the name property
+   * @param name new value for the name property
    */
   public void setName(String name) {
     this.name = name;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.4 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.5 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -137,7 +137,7 @@ public final class ImportAttributeTag extends TagSupport {
     /**
      * Set the scope by its string name.
      *
-     * @param offset The new offset
+     * @param scope The new scope
      */
     public void setScope(String scope)
       {

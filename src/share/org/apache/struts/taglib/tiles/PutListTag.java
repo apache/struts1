@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.2 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutListTag.java,v 1.3 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -128,7 +128,7 @@ public class PutListTag extends TagSupport implements ComponentConstants, AddTag
 
     /**
      * Set role attribute
-     * @param name The role the user must be in to store content.
+     * @param role The role the user must be in to store content.
      */
    public void setRole(String role)
    {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.5 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.6 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -153,7 +153,7 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
 
     /**
      * Set role attribute
-     * @param name The role the user must be in to store content.
+     * @param role The role the user must be in to store content.
      */
    public void setRole(String role) {
       this.role = role;

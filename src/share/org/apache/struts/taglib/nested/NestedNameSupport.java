@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedNameSupport.java,v 1.2 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedNameSupport.java,v 1.3 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/12/08 06:54:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -67,7 +67,7 @@ package org.apache.struts.taglib.nested;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/12/08 06:54:51 $
  */
 public interface NestedNameSupport extends NestedPropertySupport {
   
@@ -79,7 +79,7 @@ public interface NestedNameSupport extends NestedPropertySupport {
   
   /**
    * The setter for the <i>name</i> property
-   * @param newProperty new String value to set the name property to
+   * @param newNamed new String value to set the name property to
    */
   public void setName(String newNamed);
   

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.6 2002/11/16 04:38:36 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/16 04:38:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.7 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/12/08 06:54:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -70,7 +70,7 @@ import org.apache.struts.taglib.nested.NestedPropertyHelper;
  * NestedLinkTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.6 $ $Date: 2002/11/16 04:38:36 $
+ * @version $Revision: 1.7 $ $Date: 2002/12/08 06:54:51 $
  */
 public class NestedLinkTag extends LinkTag implements NestedNameSupport {
 
@@ -146,7 +146,7 @@ public class NestedLinkTag extends LinkTag implements NestedNameSupport {
   /** For the same reasons as the above method, we have to remember this
    * property to keep things correct here also.
    *
-   * @param newProperty new property value
+   * @param newParamProperty new property value
    */
   public void setParamProperty(String newParamProperty) {
     /* let the real tag do its thang */

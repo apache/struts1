@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.14 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.15 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.taglib.template.util.ContentMapStack;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.14 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.15 $ $Date: 2002/12/08 06:54:51 $
  * @deprecated Use Tiles instead.
  */
 public class GetTag extends TagSupport {
@@ -127,7 +127,7 @@ public class GetTag extends TagSupport {
 
    /**
      * Set the role attribute
-     * @param name The role the user must be in to retrieve content.
+     * @param role The role the user must be in to retrieve content.
      * @deprecated Use Tiles instead.
      */
    public void setRole(String role) {

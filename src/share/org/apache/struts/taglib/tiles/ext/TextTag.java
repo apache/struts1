@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ext/Attic/TextTag.java,v 1.1 2002/06/25 03:17:19 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:17:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ext/Attic/TextTag.java,v 1.2 2002/12/08 06:54:52 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 06:54:52 $
  *
  * ====================================================================
  *
@@ -62,19 +62,12 @@
 
 package org.apache.struts.taglib.tiles.ext;
 
-import org.apache.struts.taglib.html.BaseFieldTag;
-import org.apache.struts.taglib.html.Constants;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
 
+import org.apache.struts.taglib.html.BaseFieldTag;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
-import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -83,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/06/25 03:17:19 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 06:54:52 $
  */
 
 public class TextTag extends BaseFieldTag {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.4 2002/11/16 04:42:51 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.5 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -296,7 +296,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
 
     /**
      * Set role attribute
-     * @param name The role the user must be in to store content.
+     * @param role The role the user must be in to store content.
      */
    public void setRole(String role) {
       this.role = role;
@@ -314,7 +314,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
      * Get real value according to tag attribute.
      * Real value is the value compute after attribute processing :
      * @return real value.
-     * @throws JspTagException If something goes wrong while getting value from bean.
+     * @throws JspException If something goes wrong while getting value from bean.
      */
    public Object getRealValue() throws JspException
    {
@@ -326,7 +326,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
 
     /**
      * Compute real value according to tag attributes.
-     * @throws JspTagException If something goes wrong while getting value from bean.
+     * @throws JspException If something goes wrong while getting value from bean.
      */
   protected void computeRealValue() throws JspException
     {
@@ -396,7 +396,7 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
 
     /**
      * Extract real value from specified bean.
-     * @throws JspTagException If something goes wrong while getting value from bean.
+     * @throws JspException If something goes wrong while getting value from bean.
      */
   protected void getRealValueFromBean() throws JspException
     {

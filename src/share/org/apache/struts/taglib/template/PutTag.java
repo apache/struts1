@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.12 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.13 2002/12/08 06:54:51 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/12/08 06:54:51 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.RequestUtils;
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.12 $ $Date: 2002/11/21 03:42:21 $
+ * @version $Revision: 1.13 $ $Date: 2002/12/08 06:54:51 $
  * @deprecated Use Tiles instead.
  */
 public class PutTag extends BodyTagSupport {
@@ -119,7 +119,7 @@ public class PutTag extends BodyTagSupport {
 
    /**
      * 
-     * @param name The role the user must be in to store content.
+     * @param role The role the user must be in to store content.
      * @deprecated Use Tiles instead.
      */
    public void setRole(String role) {

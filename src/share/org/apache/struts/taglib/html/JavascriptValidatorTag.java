@@ -75,7 +75,6 @@ import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorUtil;
 import org.apache.commons.validator.Var;
 import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -88,7 +87,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.18 $ $Date: 2002/11/21 02:02:16 $
+ * @version $Revision: 1.19 $ $Date: 2002/12/08 06:54:51 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
