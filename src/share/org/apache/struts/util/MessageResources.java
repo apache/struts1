@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.4 2000/08/01 20:04:02 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/08/01 20:04:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.5 2000/12/15 03:08:10 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/15 03:08:10 $
  *
  * ====================================================================
  * 
@@ -63,113 +63,120 @@
 package org.apache.struts.util;
 
 
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.text.MessageFormat;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 
 
 /**
- * General purpose utility module that wraps the named resource bundle
- * passed to our constructor and produces messages from it, with parametric
- * replacement of MessageFormat parameters.  Convenience methods allow
- * retrieval of messages for either the default Locale or a specified Locale.
+ * General purpose abstract class that describes an API for retrieving
+ * Locale-sensitive messages from underlying resource locations of an
+ * unspecified design, and optionally utilizing the <code>MessageFormat</code>
+ * class to produce internationalized messages with parametric replacement.
+ * <p>
+ * Calls to <code>getMessage()</code> variants without a <code>Locale</code>
+ * argument are presumed to be requesting a message string in the default
+ * <code>Locale</code> for this JVM.
+ * <p>
+ * Calls to <code>getMessage()</code> with an unknown key, or an unknown
+ * <code>Locale</code> will return <code>null</code> if the
+ * <code>returnNull</code> property is set to <code>true</code>.  Otherwise,
+ * a suitable error message will be returned instead.
+ * <p>
+ * <strong>IMPLEMENTATION NOTE</strong> - Classes that extend this class
+ * must be Serializable so that instances may be used in distributable
+ * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/08/01 20:04:02 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/15 03:08:10 $
  */
 
-public final class MessageResources {
-
-
-    // ----------------------------------------------------------- Constructors
-
-
-    /**
-     * Construct a new resources object that wraps the named ResourceBundles.
-     *
-     * @param base Base name of the ResourceBundles to be wrapped
-     *
-     * @exception MissingResourceException if the specified bundle cannot
-     *  be loaded
-     */
-    public MessageResources(String base) throws MissingResourceException {
-
-	super();
-	this.base = base;
-	this.bundle = ResourceBundle.getBundle(base);
-
-    }
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The base name of resource bundles used for resolving requests for
-     * messages.
-     */
-    private String base = null;
-
-
-    /**
-     * The resource bundle to be used for resolving requests for messages
-     * when no Locale is specified (i.e. the bundle that will be used for
-     * the default Locale).
-     */
-    private ResourceBundle bundle = null;
-
-
-    /**
-     * The set of resource bundles from which we access resources, keyed by
-     * the key computed in <code>getLocaleKey()</code>.
-     */
-    private Hashtable bundles = new Hashtable();
-
-
-    /**
-     * The default Locale for our installation.
-     */
-    private static final Locale defaultLocale = Locale.getDefault();
-
-
-    /**
-     * The set of previously created message format objects, keyed by
-     * the key computed in <code>getResourceKey()</code>.
-     */
-    private Hashtable formats = new Hashtable();
-
-
-    /**
-     * Should we return <code>null</code> for message keys that are not
-     * found (instead of an error code that includes the offending key)?
-     */
-    private boolean returnNull = true;
+public abstract class MessageResources implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
 
 
     /**
-     * Return the "return null" property.
+     * The configuration parameter used to initialize this MessageResources.
      */
-    public boolean getReturnNull() {
+    protected String config = null;
 
-	return (this.returnNull);
+    public String getConfig() {
+        return (this.config);
+    }
+
+
+    /**
+     * The default Locale for our environment.
+     */
+    protected Locale defaultLocale = Locale.getDefault();
+
+
+    /**
+     * The <code>MessageResourcesFactory</code> that created this instance.
+     */
+    protected MessageResourcesFactory factory = null;
+
+    public MessageResourcesFactory getFactory() {
+        return (this.factory);
+    }
+
+
+    /**
+     * The set of previously created MessageFormat objects, keyed by the
+     * key computed in <code>messageKey()</code>.
+     */
+    private HashMap formats = new HashMap();
+
+
+    /**
+     * Should we return <code>null</code> instead of an error message string
+     * if an unknown Locale or key is requested?
+     */
+    protected boolean returnNull = false;
+
+    public boolean getReturnNull() {
+        return (this.returnNull);
+    }
+
+    public void setReturnNull(boolean returnNull) {
+        this.returnNull = returnNull;
+    }
+
+
+    // ----------------------------------------------------------- Constructors
+
+
+    /**
+     * Construct a new MessageResources according to the specified parameters.
+     *
+     * @param factory The MessageResourcesFactory that created us
+     * @param config The configuration parameter for this MessageResources
+     */
+    public MessageResources(MessageResourcesFactory factory, String config) {
+
+        this(factory, config, false);
 
     }
 
 
     /**
-     * Set the "return null" property.
+     * Construct a new MessageResources according to the specified parameters.
      *
-     * @param returnNull The new "return null" property
+     * @param factory The MessageResourcesFactory that created us
+     * @param config The configuration parameter for this MessageResources
+     * @param returnNull The returnNull property we should initialize with
      */
-    public void setReturnNull(boolean returnNull) {
+    public MessageResources(MessageResourcesFactory factory, String config,
+                         boolean returnNull) {
 
-	this.returnNull = returnNull;
+        super();
+        this.factory = factory;
+        this.config = config;
+        this.returnNull = returnNull;
 
     }
 
@@ -179,53 +186,7 @@ public final class MessageResources {
 
 
     /**
-     * Return the resource bundle that will be used to resolve message
-     * requests for the default Locale.
-     *
-     * @exception MissingResourceException if a suitable bundle cannot
-     *  be located
-     */
-    public ResourceBundle getBundle() throws MissingResourceException {
-
-	return (getBundle(null));
-
-    }
-
-
-    /**
-     * Return the resource bundle that will be used to resolve message
-     * requests for the specified Locale, if there is one.  Otherwise,
-     * return <code>null</code>
-     *
-     * @param locale The locale used to select a resource bundle
-     *
-     * @exception MissingResourceException if a suitable bundle cannot
-     *  be located
-     */
-    public ResourceBundle getBundle(Locale locale)
-	throws MissingResourceException {
-
-	if (locale == null)
-	    return (bundle);
-	String localeKey = getLocaleKey(locale);
-
-	ResourceBundle bundle = null;
-	synchronized (bundles) {
-	    bundle = (ResourceBundle) bundles.get(localeKey);
-	    if (bundle == null) {
-		bundle = ResourceBundle.getBundle(base, locale);
-		bundles.put(localeKey, bundle);
-	    }
-	}
-	return (bundle);
-
-    }
-
-
-    /**
      * Returns a text message for the specified key, for the default Locale.
-     * A null string result will be returned by this method if no relevant
-     * message resource is found.
      *
      * @param key The message key to look up
      */
@@ -238,8 +199,7 @@ public final class MessageResources {
 
     /**
      * Returns a text message after parametric replacement of the specified
-     * parameter placeholders.  A null string result will be returned by
-     * this method if no resource bundle has been configured.
+     * parameter placeholders.
      *
      * @param key The message key to look up
      * @param args An array of replacement parameters for placeholders
@@ -253,13 +213,12 @@ public final class MessageResources {
 
     /**
      * Returns a text message after parametric replacement of the specified
-     * parameter placeholders.  A null string result will never be returned
-     * by this method.
+     * parameter placeholders.
      *
      * @param key The message key to look up
      * @param arg0 The replacement for placeholder {0} in the message
      */
-    public String getMessage(String key, String arg0) {
+    public String getMessage(String key, Object arg0) {
 
 	return (getMessage((Locale) null, key, arg0));
 
@@ -268,14 +227,13 @@ public final class MessageResources {
 
     /**
      * Returns a text message after parametric replacement of the specified
-     * parameter placeholders.  A null string result will never be returned
-     * by this method.
+     * parameter placeholders.
      *
      * @param key The message key to look up
      * @param arg0 The replacement for placeholder {0} in the message
      * @param arg1 The replacement for placeholder {1} in the message
      */
-    public String getMessage(String key, String arg0, String arg1) {
+    public String getMessage(String key, Object arg0, Object arg1) {
 
 	return (getMessage((Locale) null, key, arg0, arg1));
 
@@ -284,16 +242,15 @@ public final class MessageResources {
 
     /**
      * Returns a text message after parametric replacement of the specified
-     * parameter placeholders.  A null string result will never be returned
-     * by this method.
+     * parameter placeholders.
      *
      * @param key The message key to look up
      * @param arg0 The replacement for placeholder {0} in the message
      * @param arg1 The replacement for placeholder {1} in the message
      * @param arg2 The replacement for placeholder {2} in the message
      */
-    public String getMessage(String key, String arg0, String arg1,
-			     String arg2) {
+    public String getMessage(String key, Object arg0, Object arg1,
+			     Object arg2) {
 
 	return (getMessage((Locale) null, key, arg0, arg1, arg2));
 
@@ -302,8 +259,7 @@ public final class MessageResources {
 
     /**
      * Returns a text message after parametric replacement of the specified
-     * parameter placeholders.  A null string result will never be returned
-     * by this method.
+     * parameter placeholders.
      *
      * @param key The message key to look up
      * @param arg0 The replacement for placeholder {0} in the message
@@ -311,8 +267,8 @@ public final class MessageResources {
      * @param arg2 The replacement for placeholder {2} in the message
      * @param arg3 The replacement for placeholder {3} in the message
      */
-    public String getMessage(String key, String arg0, String arg1,
-			     String arg2, String arg3) {
+    public String getMessage(String key, Object arg0, Object arg1,
+			     Object arg2, Object arg3) {
 
 	return (getMessage((Locale) null, key, arg0, arg1, arg2, arg3));
 
@@ -322,18 +278,17 @@ public final class MessageResources {
     /**
      * Returns a text message for the specified key, for the default Locale.
      * A null string result will be returned by this method if no relevant
-     * message resource is found.
+     * message resource is found for this key or Locale, if the
+     * <code>returnNull</code> property is set.  Otherwise, an appropriate
+     * error message will be returned.
+     * <p>
+     * This method must be implemented by a concrete subclass.
      *
      * @param locale The requested message Locale, or <code>null</code>
      *  for the system default Locale
      * @param key The message key to look up
      */
-    public String getMessage(Locale locale, String key) {
-
-	Object args[] = new Object[0];
-	return (getMessage(locale, key, args));
-
-    }
+    public abstract String getMessage(Locale locale, String key);
 
 
     /**
@@ -349,20 +304,22 @@ public final class MessageResources {
     public String getMessage(Locale locale, String key, Object args[]) {
 
 	// Cache MessageFormat instances as they are accessed
+        if (locale == null)
+            locale = defaultLocale;
 	MessageFormat format = null;
-	String messageKey = getResourceKey(locale, key);
+	String formatKey = messageKey(locale, key);
 	synchronized (formats) {
-	    format = (MessageFormat) formats.get(messageKey);
+	    format = (MessageFormat) formats.get(formatKey);
 	    if (format == null) {
-		String formatString = (String) getResource(locale, key);
+		String formatString = getMessage(locale, key);
 		if (formatString == null) {
 		    if (returnNull)
 			return (null);
 		    else
-			return ("???" + key + "???");
+			return ("???" + formatKey + "???");
 		}
 		format = new MessageFormat(formatString);
-		formats.put(messageKey, format);
+		formats.put(formatKey, format);
 	    }
 
 	}
@@ -381,7 +338,7 @@ public final class MessageResources {
      * @param key The message key to look up
      * @param arg0 The replacement for placeholder {0} in the message
      */
-    public String getMessage(Locale locale, String key, String arg0) {
+    public String getMessage(Locale locale, String key, Object arg0) {
 
 	Object args[] = new Object[1];
 	args[0] = arg0;
@@ -402,7 +359,7 @@ public final class MessageResources {
      * @param arg1 The replacement for placeholder {1} in the message
      */
     public String getMessage(Locale locale,
-			     String key, String arg0, String arg1) {
+			     String key, Object arg0, Object arg1) {
 
 	Object args[] = new Object[2];
 	args[0] = arg0;
@@ -425,8 +382,8 @@ public final class MessageResources {
      * @param arg2 The replacement for placeholder {2} in the message
      */
     public String getMessage(Locale locale,
-			     String key, String arg0, String arg1,
-			     String arg2) {
+			     String key, Object arg0, Object arg1,
+			     Object arg2) {
 
 	Object args[] = new Object[3];
 	args[0] = arg0;
@@ -451,8 +408,8 @@ public final class MessageResources {
      * @param arg3 The replacement for placeholder {3} in the message
      */
     public String getMessage(Locale locale,
-			     String key, String arg0, String arg1,
-			     String arg2, String arg3) {
+			     String key, Object arg0, Object arg1,
+			     Object arg2, Object arg3) {
 
 	Object args[] = new Object[4];
 	args[0] = arg0;
@@ -464,89 +421,52 @@ public final class MessageResources {
     }
 
 
-    /**
-     * Returns a resource for the specified message key, or <code>null</code>
-     * if no corresponding resource can be found, for the default Locale.
-     *
-     * @param key The resource key to look up
-     */
-    public Object getResource(String key) {
+    // ------------------------------------------------------ Protected Methods
 
-	return (getResource((Locale) null, key));
+
+    /**
+     * Compute and return a key to be used in caching information by a Locale.
+     * <strong>NOTE</strong> - The locale key for the default Locale in our
+     * environment is a zero length String.
+     *
+     * @param locale The locale for which a key is desired
+     */
+    protected String localeKey(Locale locale) {
+
+        if (locale == null)
+            return ("");
+        else if (locale.equals(defaultLocale))
+            return ("");
+        else
+            return (locale.toString());
 
     }
 
 
     /**
-     * Returns a resource for the specified message key, or <code>null</code>
-     * if no corresponding resource can be found, for the specified Locale.
+     * Compute and return a key to be used in caching information
+     * by Locale and message key.
      *
-     * @param locale The requested message Locale, or <code>null</code>
-     *  for the system default Locale
-     * @param key The resource key to look up
+     * @param locale The Locale for which this format key is calculated
+     * @param key The message key for which this format key is calculated
      */
-    public Object getResource(Locale locale, String key) {
+    protected String messageKey(Locale locale, String key) {
 
-	// Look up the resource bundle we will use
-	ResourceBundle bundle = null;
-	try {
-	    bundle = getBundle(locale);
-	} catch (Exception e) {
-	    return (null);
-	}
-
-	// Look up the resource itself in this resource bundle
-	Object result = null;
-	try {
-	    result = bundle.getString(key);
-	} catch (MissingResourceException e) {
-	    return (null);
-	}
-	return (result);
-
-    }
-
-
-    // -------------------------------------------------------- Private Methods
-
-
-    /**
-     * Returns the key under which resources for a particular Locale may be
-     * uniquely accessed.
-     *
-     * @param locale The locale for which a key is to be computed, or
-     *  <code>null</code> for the system default Locale
-     */
-    private String getLocaleKey(Locale locale) {
-
-	if (locale == null)
-	    locale = defaultLocale;
-	StringBuffer sb = new StringBuffer();
-	sb.append(locale.getCountry());
-	sb.append(".");
-	sb.append(locale.getLanguage());
-	sb.append(".");
-	String variant = locale.getVariant();
-	if (variant != null) {
-	    sb.append(variant);
-	    sb.append(".");
-	}
-	return (sb.toString());
+        return (localeKey(locale) + "." + key);
 
     }
 
 
     /**
-     * Returns the key under which a message format for a particular message,
-     * from the resource bundle for a particular locale, may be uniquely
-     * accessed.
+     * Compute and return a key to be used in caching information
+     * by locale key and message key.
      *
-     * @param locale Locale for which this message key is computed
-     * @param id Message identifier for which this message key is computed
+     * @param localeKey The locale key for which this cache key is calculated
+     * @param key The message key for which this cache key is calculated
      */
-    private String getResourceKey(Locale locale, String id) {
+    protected String messageKey(String localeKey, String key) {
 
-	return (getLocaleKey(locale) + "." + id);
+        return (localeKey + "." + key);
 
     }
 
@@ -555,30 +475,61 @@ public final class MessageResources {
 
 
     /**
-     * The MessageResources instances that have been created so far,
-     * keyed by base name.
+     * The default MessageResourcesFactory used to create MessageResources
+     * instances.
      */
-    private static Hashtable cache = new Hashtable();
+    protected static MessageResourcesFactory defaultFactory = null;
 
 
     /**
-     * Return an instance of MessageResources for the specified base name.
+     * Create and return an instance of <code>MessageResources</code> for the
+     * created by the default <code>MessageResourcesFactory</code>.
      *
-     * @param base Base name of the ResourceBundles to be wrapped
-     *
-     * @exception MissingResourcesException if no default resources
-     *  can be loaded
+     * @param config Configuration parameter for this message bundle.
      */
     public synchronized static MessageResources
-	getMessageResources(String base) throws MissingResourceException {
+        getMessageResources(String config) {
 
-	MessageResources messageResources =
-	    (MessageResources) cache.get(base);
-	if (messageResources != null)
-	    return (messageResources);
-	messageResources = new MessageResources(base);
-	cache.put(base, messageResources);
-	return (messageResources);
+        if (defaultFactory == null)
+            defaultFactory = MessageResourcesFactory.createFactory();
+        return defaultFactory.createResources(config);
+
+    }
+
+
+    /**
+     * Log a message to the Writer that has been configured for our use.
+     *
+     * @param message The message to be logged
+     */
+    public void log(String message) {
+
+        PrintWriter writer = factory.getWriter();
+        if (writer != null) {
+            writer.print("MessageResources: ");
+            writer.println(message);
+            writer.flush();
+        }
+
+    }
+
+
+    /**
+     * Log a message and exception to the Writer that has been configured
+     * for our use.
+     *
+     * @param message The message to be logged
+     * @param throwable The exception to be logged
+     */
+    public void log(String message, Throwable throwable) {
+
+        PrintWriter writer = factory.getWriter();
+        if (writer != null) {
+            writer.print("MessageResources: ");
+            writer.println(message);
+            throwable.printStackTrace(writer);
+            writer.flush();
+        }
 
     }
 

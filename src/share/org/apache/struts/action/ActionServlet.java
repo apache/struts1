@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.41 2000/12/06 19:15:58 craigmcc Exp $
- * $Revision: 1.41 $
- * $Date: 2000/12/06 19:15:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.42 2000/12/15 03:08:09 craigmcc Exp $
+ * $Revision: 1.42 $
+ * $Date: 2000/12/15 03:08:09 $
  *
  * ====================================================================
  *
@@ -85,6 +85,8 @@ import org.apache.struts.taglib.form.Constants;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.MessageResourcesFactory;
+import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.SAXException;
 
 
@@ -161,6 +163,9 @@ import org.xml.sax.SAXException;
  * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize in <code>initMapping()</code>, which logs to System.out
  *     instead of the servlet log.  [0]</li>
+ * <li><strong>factory</strong> - The Java class name of the
+ *     <code>MessageResourcesFactory</code> used to create the application
+ *     <code>MessageResources</code> object.</li>
  * <li><strong>forward</strong> - The Java class name of the ActionForward
  *     implementation to use [org.apache.struts.action.ActionForward].
  *     Two convenient classes you may wish to use are:
@@ -203,7 +208,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.41 $ $Date: 2000/12/06 19:15:58 $
+ * @version $Revision: 1.42 $ $Date: 2000/12/15 03:08:09 $
  */
 
 public class ActionServlet
@@ -256,6 +261,13 @@ public class ActionServlet
      * The default Locale for this server.
      */
     protected final Locale defaultLocale = Locale.getDefault();
+
+
+    /**
+     * The Java class name of the <code>MessageResourcesFactory</code>
+     * class for the application message resources bundle.
+     */
+    protected String factoryClass = null;
 
 
     /**
@@ -887,10 +899,21 @@ public class ActionServlet
 	String value = getServletConfig().getInitParameter("application");
 	if (value == null)
 	    return;
+        String factory =
+            getServletConfig().getInitParameter("factory");
 	if (debug >= 1)
 	    log(internal.getMessage("applicationLoading", value));
 	try {
-	    application = MessageResources.getMessageResources(value);
+            MessageResourcesFactory.setDefaultWriter
+                (new ServletContextWriter(getServletContext()));
+            String oldFactory =
+                MessageResourcesFactory.getFactoryClass();      
+            if (factory != null)
+                MessageResourcesFactory.setFactoryClass(factory);
+            MessageResourcesFactory factoryObject =
+                MessageResourcesFactory.createFactory();
+            application = factoryObject.createResources(value);
+            MessageResourcesFactory.setFactoryClass(oldFactory);
 	    value = getServletConfig().getInitParameter("null");
 	    if (value == null)
 		value = "true";
@@ -899,7 +922,7 @@ public class ActionServlet
 		application.setReturnNull(true);
 	    else
 		application.setReturnNull(false);
-	} catch (MissingResourceException e) {
+	} catch (Throwable e) {
 	    log(internal.getMessage("applicationResources", value), e);
 	    throw new UnavailableException
 		(internal.getMessage("applicationResources", value));
