@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.9 2001/06/24 03:22:55 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2001/06/24 03:22:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.10 2001/06/24 03:33:10 rleland Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/06/24 03:33:10 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/06/24 03:22:55 $
+ * @version $Revision: 1.10 $ $Date: 2001/06/24 03:33:10 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -232,7 +232,7 @@ public class ErrorsTag extends TagSupport {
             RequestUtils.present(pageContext, bundle, locale, "errors.footer");
 
         // Render the error messages appropriately
-	StringBuffer results = new StringBuffer();
+	    StringBuffer results = new StringBuffer();
         String message = null;
         if (headerPresent)
             message = RequestUtils.message(pageContext, bundle,
@@ -254,17 +254,17 @@ public class ErrorsTag extends TagSupport {
             message = RequestUtils.message(pageContext, bundle,
                                            locale, report.getKey(),
                                            report.getValues());
-	    if (message != null) {
-		results.append(message);
-		results.append("\r\n");
+	        if (message != null) {
+		        results.append(message);
+		        results.append("\r\n");
+	        }
 	    }
-	}
         message = null;
         if (footerPresent)
             message = RequestUtils.message(pageContext, bundle,
                                            locale, "errors.footer");
 
-        if ((message != null)&&(property == null) || propertyMsgPresent) {
+    if ((message != null)&&(property == null) || propertyMsgPresent) {
 	    results.append(message);
 	    results.append("\r\n");
 	}
