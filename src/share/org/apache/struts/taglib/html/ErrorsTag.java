@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.6 2001/02/20 01:48:46 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/20 01:48:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.7 2001/02/20 03:11:20 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/20 03:11:20 $
  *
  * ====================================================================
  *
@@ -98,7 +98,7 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/20 01:48:46 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/20 03:11:20 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -139,6 +139,13 @@ public class ErrorsTag extends TagSupport {
     public void setLocale(String locale) {
         this.locale = locale;
     }
+
+
+    /**
+     * The message resources for this package.
+     */
+    protected static MessageResources messages =
+     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
 
     /**
@@ -205,6 +212,12 @@ public class ErrorsTag extends TagSupport {
                                new ActionError(keys[i]));
             } else if (value instanceof ActionErrors) {
                 errors = (ActionErrors) value;
+            } else {
+                JspException e = new JspException
+                    (messages.getMessage("errorsTag.errors",
+                                         value.getClass().getName()));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
 	    }
         } catch (Exception e) {
             ;
