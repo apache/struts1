@@ -29,8 +29,8 @@ import javax.faces.context.ResponseWriter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.util.MessageResources;
 
 
@@ -38,7 +38,7 @@ import org.apache.struts.util.MessageResources;
  * <p><code>Renderer</code> implementation for the <code>errors</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.7 $ $Date: 2004/06/09 02:38:12 $
  */
 
 public class ErrorsRenderer extends AbstractRenderer {
@@ -115,7 +115,7 @@ public class ErrorsRenderer extends AbstractRenderer {
         if (errors != null) {
             Iterator reports = errors.get();
             while (reports.hasNext()) {
-                ActionError report = (ActionError) reports.next();
+                ActionMessage report = (ActionMessage) reports.next();
                 if (!headerDone) {
                     writer = context.getResponseWriter();
                     if (headerPresent) {
