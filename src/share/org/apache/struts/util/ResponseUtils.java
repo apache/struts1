@@ -18,23 +18,25 @@
 
 package org.apache.struts.util;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URLEncoder;
 
-import org.apache.struts.taglib.TagUtils;
+import java.io.IOException;
+import org.apache.struts.Globals;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 
 /**
  * General purpose utility methods related to generating a servlet response
  * in the Struts controller framework.
  *
  * @version $Rev$ $Date$
- * @deprecated Use the corresponding TagUtils methods instead.  
- * This class will be removed after Struts 1.2.
  */
 public class ResponseUtils {
 
-
-    // ------------------------------------------------------- Static Variables
+   // ------------------------------------------------------- Static Variables
 
 
     /**
@@ -44,9 +46,37 @@ public class ResponseUtils {
         MessageResources.getMessageResources
         ("org.apache.struts.util.LocalStrings");
 
+    /**
+     * Java 1.4 encode method to use instead of deprecated 1.3 version.
+     */
+    private static Method encode = null;
 
 
-    // --------------------------------------------------------- Public Methods
+    /**
+     * Commons logging instance.
+     */
+    private static final Log log = LogFactory.getLog(ResponseUtils.class);
+
+
+
+    /**
+     * Initialize the encode variable with the
+     * Java 1.4 method if available.
+     */
+    static {
+
+        try {
+            // get version of encode method with two String args
+            Class[] args = new Class[]{String.class, String.class};
+            encode = URLEncoder.class.getMethod("encode", args);
+        } catch (NoSuchMethodException e) {
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        }
+    }
+
+
+
+     // --------------------------------------------------------- Public Methods
 
 
     /**
@@ -58,46 +88,91 @@ public class ResponseUtils {
      * @deprecated
      */
     public static String filter(String value) {
-        return TagUtils.getInstance().filter(value);
-    }
 
+        if (value == null || value.length() == 0) {
+            return value;
+        }
+
+        StringBuffer result = null;
+        String filtered = null;
+        for (int i = 0; i < value.length(); i++) {
+            filtered = null;
+            switch (value.charAt(i)) {
+                case '<':
+                    filtered = "&lt;";
+                    break;
+                case '>':
+                    filtered = "&gt;";
+                    break;
+                case '&':
+                    filtered = "&amp;";
+                    break;
+                case '"':
+                    filtered = "&quot;";
+                    break;
+                case '\'':
+                    filtered = "&#39;";
+                    break;
+            }
+
+            if (result == null) {
+                if (filtered != null) {
+                    result = new StringBuffer(value.length() + 50);
+                    if (i > 0) {
+                        result.append(value.substring(0, i));
+                    }
+                    result.append(filtered);
+                }
+            } else {
+                if (filtered == null) {
+                    result.append(value.charAt(i));
+                } else {
+                    result.append(filtered);
+                }
+            }
+        }
+
+        return result == null ? value : result.toString();
+    }
+	
+    
+    /**
+	 * URLencodes a string assuming the character encoding is UTF-8.
+	 *
+	 * @param url
+	 * @return String The encoded url in UTF-8
+	 */
+	public static String encodeURL(String url) {
+		return encodeURL(url, "UTF-8");
+	}
 
     /**
-     * Write the specified text as the response to the writer associated with
-     * this page.  <strong>WARNING</strong> - If you are writing body content
-     * from the <code>doAfterBody()</code> method of a custom tag class that
-     * implements <code>BodyTag</code>, you should be calling
-     * <code>writePrevious()</code> instead.
-     *
-     * @param pageContext The PageContext object for this page
-     * @param text The text to be written
-     *
-     * @exception JspException if an input/output error occurs (already saved)
-     * @deprecated
+     * Use the new URLEncoder.encode() method from Java 1.4 if available, else
+     * use the old deprecated version.  This method uses reflection to find the
+     * appropriate method; if the reflection operations throw exceptions, this
+     * will return the url encoded with the old URLEncoder.encode() method.
+     * @param enc The character encoding the urlencode is performed on.
+     * @return String The encoded url.
      */
-    public static void write(PageContext pageContext, String text)
-        throws JspException {
+    public static String encodeURL(String url, String enc) {
+        try {
 
-        TagUtils.getInstance().write(pageContext, text);
+			if(enc==null || enc.length()==0){
+				enc = "UTF-8";
+			}
 
-    }
+            // encode url with new 1.4 method and UTF-8 encoding
+            if (encode != null) {
+                return (String) encode.invoke(null, new Object[]{url,  enc});
+            }
 
+        } catch (IllegalAccessException e) {
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+        } catch (InvocationTargetException e) {
+            log.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
+        }
 
-    /**
-     * Write the specified text as the response to the writer associated with
-     * the body content for the tag within which we are currently nested.
-     *
-     * @param pageContext The PageContext object for this page
-     * @param text The text to be written
-     *
-     * @exception JspException if an input/output error occurs (already saved)
-     * @deprecated
-     */
-    public static void writePrevious(PageContext pageContext, String text)
-        throws JspException {
-
-        TagUtils.getInstance().writePrevious(pageContext, text);
-
+        return URLEncoder.encode(url);
     }
 
 

@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts.Globals;
-import org.apache.struts.taglib.html.Constants;
 
 /**
  * TokenProcessor is responsible for handling all token related functionality.  The 
@@ -119,7 +118,7 @@ public class TokenProcessor {
         }
 
         // Retrieve the transaction token included in this request
-        String token = request.getParameter(Constants.TOKEN_KEY);
+        String token = request.getParameter(Globals.TOKEN_KEY);
         if (token == null) {
             return false;
         }

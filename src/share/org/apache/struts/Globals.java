@@ -199,5 +199,30 @@ public class Globals implements Serializable {
     public static final String XHTML_KEY =
         "org.apache.struts.globals.XHTML";
 
+    /**
+     * The name of the taglib package.
+     */
+    public static final String TaglibPackage = "org.apache.struts.taglib.html";
+
+
+
+    /**
+     * The property under which a Cancel button press is reported.
+     */
+    public static final String CANCEL_PROPERTY = TaglibPackage + ".CANCEL";
+
+
+    /**
+     * The property under which a Cancel button press is reported, if the
+     * Cancel button is rendered as an image.
+     */
+    public static final String CANCEL_PROPERTY_X = TaglibPackage + ".CANCEL.x";
+
+
+    /**
+     * The property under which a transaction token is reported.
+     */
+    public static final String TOKEN_KEY = TaglibPackage + ".TOKEN";
+
 
 }

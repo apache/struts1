@@ -233,8 +233,8 @@ public abstract class AbstractPopulateActionForm implements Command {
         Map paramValues = wcontext.getParamValues();
 
         // Set the cancellation attribute if appropriate
-        if ((paramValues.get(org.apache.struts.taglib.html.Constants.CANCEL_PROPERTY) != null) ||
-            (paramValues.get(org.apache.struts.taglib.html.Constants.CANCEL_PROPERTY_X) != null)) {
+        if ((paramValues.get(Globals.CANCEL_PROPERTY) != null) ||
+            (paramValues.get(Globals.CANCEL_PROPERTY_X) != null)) {
             context.put(getCancelKey(), Boolean.TRUE);
             wcontext.getRequestScope().put(Globals.CANCEL_KEY, Boolean.TRUE);
         } else {

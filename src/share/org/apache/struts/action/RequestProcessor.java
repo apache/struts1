@@ -37,7 +37,6 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -797,8 +796,8 @@ public class RequestProcessor {
                               request);
 
         // Set the cancellation request attribute if appropriate
-        if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
-            (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
+        if ((request.getParameter(Globals.CANCEL_PROPERTY) != null) ||
+            (request.getParameter(Globals.CANCEL_PROPERTY_X) != null)) {
                 
             request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
         }
