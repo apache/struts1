@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.7.2.2 2001/11/21 13:29:31 husted Exp $
- * $Revision: 1.7.2.2 $
- * $Date: 2001/11/21 13:29:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.7.2.3 2002/02/06 04:42:10 martinc Exp $
+ * $Revision: 1.7.2.3 $
+ * $Date: 2002/02/06 04:42:10 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.7.2.2 $ $Date: 2001/11/21 13:29:31 $
+ * @version $Revision: 1.7.2.3 $ $Date: 2002/02/06 04:42:10 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -150,7 +150,7 @@ public abstract class ActionForm implements Serializable {
      * "multipart/request-data".
      * @see org.apache.struts.upload.MultipartRequestHandler
      */
-    protected MultipartRequestHandler getMultipartRequestHandler() {
+    public MultipartRequestHandler getMultipartRequestHandler() {
         return multipartRequestHandler;
     }
 
