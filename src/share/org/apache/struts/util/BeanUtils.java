@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.10 2000/08/30 02:15:09 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/08/30 02:15:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.11 2000/08/31 00:11:16 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/08/31 00:11:16 $
  *
  * ====================================================================
  *
@@ -75,6 +75,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.PageContext;
 
 
 /**
@@ -83,7 +84,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.10 $ $Date: 2000/08/30 02:15:09 $
+ * @version $Revision: 1.11 $ $Date: 2000/08/31 00:11:16 $
  */
 
 public final class BeanUtils {
@@ -559,6 +560,42 @@ public final class BeanUtils {
 	} else {
 	    return (value.toString());
 	}
+
+    }
+
+
+    /**
+     * Locate and return the specified bean, from an optionally specified
+     * scope, in the specified page context.  If no such bean is found,
+     * return <code>null</code> instead.
+     *
+     * @param pageContext Page context to be searched
+     * @param name Name of the bean to be retrieved
+     * @param scope Scope to be searched (page, request, session, application)
+     *  or <code>null</code> to use <code>findAttribute()</code> instead
+     *
+     * @exception IllegalArgumentException if an invalid scope name
+     *  is requested
+     */
+    public static Object lookup(PageContext pageContext, String name,
+				String scope) {
+
+        Object bean = null;
+	if (scope == null)
+	    bean = pageContext.findAttribute(name);
+	else if (scope.equalsIgnoreCase("page"))
+	    bean = pageContext.getAttribute(name, PageContext.PAGE_SCOPE);
+	else if (scope.equalsIgnoreCase("request"))
+	    bean = pageContext.getAttribute(name, PageContext.REQUEST_SCOPE);
+	else if (scope.equalsIgnoreCase("session"))
+	    bean = pageContext.getAttribute(name, PageContext.SESSION_SCOPE);
+	else if (scope.equalsIgnoreCase("application"))
+	    bean = 
+	      pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
+	else
+	    throw new IllegalArgumentException(scope);
+
+	return (bean);
 
     }
 

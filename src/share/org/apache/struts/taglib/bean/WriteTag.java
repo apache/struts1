@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.2 2000/08/31 00:11:15 craigmcc Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.1 2000/08/31 00:11:15 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2000/08/31 00:11:15 $
  *
  * ====================================================================
- *
+ * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -23,15 +23,15 @@
  *    distribution.
  *
  * 3. The end-user documentation included with the redistribution, if
- *    any, must include the following acknowlegement:
- *       "This product includes software developed by the
+ *    any, must include the following acknowlegement:  
+ *       "This product includes software developed by the 
  *        Apache Software Foundation (http://www.apache.org/)."
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
  * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
- *    from this software without prior written permission. For written
+ *    from this software without prior written permission. For written 
  *    permission, please contact apache@apache.org.
  *
  * 5. Products derived from this software may not be called "Apache"
@@ -57,7 +57,7 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+ */ 
 
 
 package org.apache.struts.taglib.bean;
@@ -66,6 +66,7 @@ package org.apache.struts.taglib.bean;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.BeanUtils;
@@ -74,31 +75,32 @@ import org.apache.struts.util.PropertyUtils;
 
 
 /**
- * Define a scripting variable based on the value(s) of the specified
- * bean property.
+ * Tag that retrieves the specified property of the specified bean, converts
+ * it to a String representation (if necessary), and writes it to the current
+ * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/31 00:11:15 $
+ * @version $Revision: 1.1 $ $Date: 2000/08/31 00:11:15 $
  */
 
-public final class DefineTag extends TagSupport {
+public final class WriteTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
 
 
     /**
-     * The name of the scripting variable that will be exposed as a page
-     * scope attribute.
+     * Filter the rendered output for characters that are sensitive in HTML
+     * if this property is set to any non-null value.
      */
-    private String id = null;
+    private String filter = null;
 
-    public String getId() {
-        return (this.id);
+    public String getFilter() {
+        return (this.filter);
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 
 
@@ -106,12 +108,12 @@ public final class DefineTag extends TagSupport {
      * The message resources for this package.
      */
     private static MessageResources messages =
-        MessageResources.getMessageResources
-        ("org.apache.struts.taglib.bean.LocalStrings");
+	MessageResources.getMessageResources
+	("org.apache.struts.taglib.bean.LocalStrings");
 
 
     /**
-     * The name of the bean owning the property to be exposed.
+     * Name of the bean that contains the data we will be rendering.
      */
     private String name = null;
 
@@ -125,7 +127,7 @@ public final class DefineTag extends TagSupport {
 
 
     /**
-     * The name of the property to be retrieved.
+     * Name of the property to be accessed on the specified bean.
      */
     private String property = null;
 
@@ -139,7 +141,7 @@ public final class DefineTag extends TagSupport {
 
 
     /**
-     * The scope within which to search for the specified bean.
+     * The scope to be searched to retrieve the specified bean.
      */
     private String scope = null;
 
@@ -152,25 +154,12 @@ public final class DefineTag extends TagSupport {
     }
 
 
-    /**
-     * The fully qualified Java class name of the value to be exposed.
-     */
-    private String type = null;
-
-    public String getType() {
-        return (this.type);
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Retrieve the required property and expose it as a scripting variable.
+     * Process the start tag.
      *
      * @exception JspException if a JSP exception has occurred
      */
@@ -192,6 +181,14 @@ public final class DefineTag extends TagSupport {
                 value = bean;
             else
                 value = PropertyUtils.getProperty(bean, property);
+	    if (value == null)
+	        return (SKIP_BODY);  // Nothing to output
+
+	    // Convert the property value to a String if necessary
+	    // FIXME - deal with array valued properties
+	    // FIXME - use a PropertyEditor as necessary
+	    if (!(value instanceof String))
+	        value = value.toString();
 
         } catch (IllegalAccessException e) {
             throw new JspException
@@ -209,9 +206,21 @@ public final class DefineTag extends TagSupport {
                 (messages.getMessage("getter.method", property, name));
         }
 
-        // Expose this value as a scripting variable
-        pageContext.setAttribute(id, value);
-        return (SKIP_BODY);
+
+	// Print this property value to our output writer, suitably filtered
+	JspWriter writer = pageContext.getOut();
+	try {
+	    if (filter != null)
+	        writer.print(BeanUtils.filter((String) value));
+	    else
+	        writer.print((String) value);
+	} catch (IOException e) {
+	    throw new JspException
+		(messages.getMessage("getter.io", e.toString()));
+	}
+
+	// Continue processing this page
+	return (SKIP_BODY);
 
     }
 
@@ -221,11 +230,10 @@ public final class DefineTag extends TagSupport {
      */
     public void releaseCustomAttributes() {
 
-        id = null;
-        name = null;
-        property = null;
-        scope = null;
-        type = null;
+        filter = null;
+	name = null;
+	property = null;
+	scope = null;
 
     }
 
