@@ -316,6 +316,23 @@
               before committing the patch.
             </p>
 
+            <h4 id="niallp">Niall Pemberton -- PMC Member</h4>
+            <p>
+              I've worked as a developer since 1988 using various technologies/platforms.
+              In the late nineties I kept meaning to learn java but never found the time
+              until 2000. I bought a couple of books (Java in 30 Days and a Certification
+              Study Guide), passed the Sun certification exam and got my first java job.
+            </p>
+            <p>
+              Early in 2001 I was investigating writing the first web app for the company
+              I was working for and came across Struts - just before the 1.0 beta was
+              released. After a while I came off the user list because of the volume of
+              traffic and just monitored the developers list. Late in 2003 I migrated to
+              Struts 1.1, re-joined the user list and started submitting a few patches.
+              Was invited to become a Struts Committer in May 2004 and PMC member in 
+              September 2004.
+            </p>
+
          </section>
 
          <section>
