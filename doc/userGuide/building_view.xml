@@ -890,6 +890,10 @@ return(null);
     fill their needs.
     </p>
 
+    <p>
+    For more see, <a href="../faq/struts-el.html">Struts-El Extension</a> in the FAQ/HOWTO section.
+    </p>
+
 </section>
 
 <section>

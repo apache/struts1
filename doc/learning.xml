@@ -141,8 +141,63 @@
 
 </section>
 
-<section name="Learning More About Struts" href="Docs">
+<section name="Struts by Example" href="Examples">
 
+    <p>
+        To help you see how it all fits together, several example applications are bundled with the Struts
+        distribution:
+    </p>
+
+    <ul>
+        <li>
+            Blank - A simple template for starting new Struts applications.</li>
+        <li>
+            Exercise-Taglib - A set of test pages that also demonstrate use of the custom tags.</li>
+        <li>
+            Documentation - The Struts documentation bundle, as seen on the website.</li>
+        <li>
+            <b>MailReader</b> - The original Struts example application. Try me first.</li>
+        <li>
+            Tiles-Doc - Extensive demonstration of Tiles extension.</li>
+        <li>
+            Upload - Demonstrates using the file upload facilities. (Based on Commons Upload.)</li>
+        <li>
+            Validator - Demonstrate using the Validator extension.</li>
+    </ul>
+
+    <p>
+        These applications provided as standalone WARs in the binary distribution.
+        The source code for each application is available under <code>WEB-INF/src</code> in the binaries and under the
+        <code>web</code> package in the source distribution.
+    </p>
+
+    <p>
+        There are also many third-party example applications available for study, including these:
+    </p>
+
+    <ul>
+        <li>
+            <a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse">AppFuse</a> - Demonstrates using XDoclet with
+            Struts, along with different security packages and Hibernate for database persistence.
+        </li>
+        <li>
+            <a href="http://www.ibatis.com/jpetstore/jpetstore.html">JPetStore</a> - A streamlined version of the Java
+            Petstore application implemented with Struts and iBATIS database layer.
+        </li>
+        <li>
+           <a href="http://www.codeczar.com/products/logweb/index.html">LogWeb</a> - A Struts webapp for configuring
+            Log4J at runtime within a servlet container.
+        </li>
+    </ul>
+
+    <p>
+        See the <a href="resources/examples.html">Resources section</a> for a complete listing of freely-available
+        Struts examples.
+    </p>
+
+</section>
+
+<section name="Learning More About Struts" href="More">
     <p>
     The Struts <a href="using.html#Lists">Mailing Lists</a> are a treasure trove of 
     useful, interactive information. The user list tends to carry a high 

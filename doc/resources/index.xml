@@ -8,9 +8,11 @@
 </properties>
 <body>
 <section name="Struts Resources">
+
  <ul>
     <li><a href="1st.html"><b>Read Me First - A path for newbies</b></a></li>
     <li><a href="tutorials.html">Tutorials</a></li>
+     <li><a href="examples.html">Projects and Examples</a></li>
     <li><a href="articles.html">Articles and Presentations</a></li>
     <li><a href="books.html">Books</a></li>
     <li><a href="seminars.html">Seminars</a></li>
@@ -24,7 +26,6 @@
     <li><a href="guis.html">Code Generators and GUIs</a></li>
     <li><a href="taglibs.html">Contributor Taglibs</a></li>
     <li><a href="extensions.html">Contributor Extensions</a></li>
-    <li><a href="examples.html">Projects and Examples</a></li>
  </ul>
 
  <ul>

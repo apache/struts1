@@ -11,7 +11,8 @@
 
 <section name="Projects and Examples">
 
-<p><a href="http://www.codeczar.com/products/logweb/index.html">LogWeb</a> by Nathan Coast - A Struts webapp for configuring Log4J at runtime within a servlet container.</p>
+<p><a href="http://www.ibatis.com/jpetstore/jpetstore.html"><b>JPetStore 3</b></a> by Clinton Begin - A new JPetStore has arrived! Version 3 takes the best of the previous implementations and puts them together into one comprehensive example of web application architecture using Struts, Data Access Objects and advanced JDBC (via SQL Maps)..</p>
+<p><a href="http://www.codeczar.com/products/logweb/index.html"><b>LogWeb</b></a> by Nathan Coast - A Struts webapp for configuring Log4J at runtime within a servlet container.</p>
 <p><a href="http://raibledesigns.com/wiki/Wiki.jsp?page=StrutsResume"><b>Struts Resume</b></a> by Matt Raible - A resume hosting application built using AppFuse.</p>
 <p><a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse"><b>AppFuse</b></a> by Matt Raible - Demonstrates how to use XDoclet with Struts to generate your Forms, web.xml, struts-config.xml, and validation.xml. AppFuse also shows how you can use the different security packages (i.e. form-based authentication, SSLExt) and advanced Struts techniques (i.e. Tiles, Validator) to build your webapps. AppFuse integrates with Hibernate on the backend to do database persistence.</p>
 <p><a href="http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - How to use iBATIS Database Layer with Struts, lessons and examples.</p>
