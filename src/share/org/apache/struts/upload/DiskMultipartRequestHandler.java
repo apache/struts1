@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.20 2002/11/07 05:18:26 rleland Exp $
- * $Revision: 1.20 $
- * $Date: 2002/11/07 05:18:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.21 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.21 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -70,10 +70,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.Globals;
 
 /**
  * This is a MultipartRequestHandler that writes file data directly to
@@ -127,7 +127,7 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      */
     public void handleRequest(HttpServletRequest request) throws ServletException
     {
-        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Action.APPLICATION_KEY);
+        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
         retrieveTempDir(moduleConfig);
         try
         {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.68 2002/11/08 04:59:49 rleland Exp $
- * $Revision: 1.68 $
- * $Date: 2002/11/08 04:59:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.69 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.69 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -104,6 +104,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestHandler;
+import org.apache.struts.Globals;
 
 
 /**
@@ -112,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.68 $ $Date: 2002/11/08 04:59:49 $
+ * @version $Revision: 1.69 $ $Date: 2002/11/08 05:39:24 $
  */
 
 public class RequestUtils {
@@ -389,12 +390,12 @@ public class RequestUtils {
 
         // Look up the application module configuration for this request
         ApplicationConfig config = (ApplicationConfig)
-            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
         if (config == null) { // Backwards compatibility hack
             config = (ApplicationConfig)
                 pageContext.getServletContext().getAttribute
-                (Action.APPLICATION_KEY);
-            pageContext.getRequest().setAttribute(Action.APPLICATION_KEY,
+                (Globals.MODULE_KEY);
+            pageContext.getRequest().setAttribute(Globals.MODULE_KEY,
                                                   config);
         }
 
@@ -1043,7 +1044,7 @@ public class RequestUtils {
         }
 
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         multipartClass = appConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
@@ -1179,7 +1180,7 @@ public class RequestUtils {
             sb.append(action.getPath());
         } else if (pattern.startsWith("*.")) {
             ApplicationConfig appConfig = (ApplicationConfig)
-                request.getAttribute(Action.APPLICATION_KEY);
+                request.getAttribute(Globals.MODULE_KEY);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
             sb.append(pattern.substring(1));
@@ -1219,7 +1220,7 @@ public class RequestUtils {
 
         // Calculate a context relative path for this ForwardConfig
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         String forwardPattern =
             appConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
@@ -1283,7 +1284,7 @@ public class RequestUtils {
 
         StringBuffer sb = new StringBuffer();
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         String pagePattern =
             appConfig.getControllerConfig().getPagePattern();
         if (pagePattern == null) {
@@ -1411,11 +1412,11 @@ public class RequestUtils {
 
         // Expose the resources for this application module
         ApplicationConfig config = (ApplicationConfig)
-            context.getAttribute(Action.APPLICATION_KEY + prefix);
+            context.getAttribute(Globals.MODULE_KEY + prefix);
         if (config != null) {
-            request.setAttribute(Action.APPLICATION_KEY, config);
+            request.setAttribute(Globals.MODULE_KEY, config);
         } else {
-            request.removeAttribute(Action.APPLICATION_KEY);
+            request.removeAttribute(Globals.MODULE_KEY);
         }
         MessageResources resources = (MessageResources)
             context.getAttribute(Action.MESSAGES_KEY + prefix);
@@ -1502,10 +1503,10 @@ public class RequestUtils {
      */
     public static ApplicationConfig getModuleConfig(PageContext pageContext) {
        ApplicationConfig appConfig = (ApplicationConfig)
-           pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+           pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
        if (appConfig == null) { // Backwards compatibility hack
            appConfig = (ApplicationConfig)
-               pageContext.getServletContext().getAttribute(Action.APPLICATION_KEY);
+               pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
        }
        return appConfig;
     }
@@ -1519,10 +1520,10 @@ public class RequestUtils {
      */
     public static ApplicationConfig getModuleConfig(HttpServletRequest request,ServletContext context) {
         ApplicationConfig appConfig = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         if (appConfig == null) {
             appConfig = (ApplicationConfig)
-                context.getAttribute(Action.APPLICATION_KEY);
+                context.getAttribute(Globals.MODULE_KEY);
         }
        return appConfig;
     }
@@ -1546,10 +1547,10 @@ public class RequestUtils {
         Enumeration names = context.getAttributeNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
-            if (!name.startsWith(Action.APPLICATION_KEY)) {
+            if (!name.startsWith(Globals.MODULE_KEY)) {
                 continue;
             }
-            String prefix = name.substring(Action.APPLICATION_KEY.length());
+            String prefix = name.substring(Globals.MODULE_KEY.length());
             if (prefix.length() > 0) {
                 list.add(prefix);
             }

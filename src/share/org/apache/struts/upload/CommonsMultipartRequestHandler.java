@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.4 2002/11/07 05:18:26 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/07 05:18:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.5 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -78,10 +78,10 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.Globals;
 
 
  /**
@@ -89,7 +89,7 @@ import org.apache.struts.config.ModuleConfig;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.4 $ $Date: 2002/11/07 05:18:26 $
+  * @version $Revision: 1.5 $ $Date: 2002/11/08 05:39:24 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -211,7 +211,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
 
         // Get the app config for the current request.
         ModuleConfig ac = (ModuleConfig) request.getAttribute(
-                Action.APPLICATION_KEY);
+                Globals.MODULE_KEY);
 
         // Create and configure a FileUpload instance.
         FileUpload upload = new FileUpload();

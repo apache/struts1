@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.125 2002/11/01 13:59:02 rleland Exp $
- * $Revision: 1.125 $
- * $Date: 2002/11/01 13:59:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.126 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.126 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -106,6 +106,7 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
+import org.apache.struts.Globals;
 import org.xml.sax.InputSource;
 
 
@@ -294,7 +295,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.125 $ $Date: 2002/11/01 13:59:02 $
+ * @version $Revision: 1.126 $ $Date: 2002/11/08 05:39:24 $
  */
 
 public class ActionServlet
@@ -767,10 +768,10 @@ public class ActionServlet
         (HttpServletRequest request) {
 
         ApplicationConfig config = (ApplicationConfig)
-            request.getAttribute(Action.APPLICATION_KEY);
+            request.getAttribute(Globals.MODULE_KEY);
         if (config == null) {
             config = (ApplicationConfig)
-                getServletContext().getAttribute(Action.APPLICATION_KEY);
+                getServletContext().getAttribute(Globals.MODULE_KEY);
         }
         return (config);
 
@@ -852,7 +853,7 @@ public class ActionServlet
             digester.parse(is);
             input.close();
             getServletContext().setAttribute
-                (Action.APPLICATION_KEY + prefix, config);
+                (Globals.MODULE_KEY + prefix, config);
         } catch (Throwable t) {
             log.error(internal.getMessage("configParse", path), t);
             throw new UnavailableException

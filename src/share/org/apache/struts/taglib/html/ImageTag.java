@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.22 2002/11/04 00:34:38 dmkarr Exp $
- * $Revision: 1.22 $
- * $Date: 2002/11/04 00:34:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.23 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.23 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -66,17 +66,17 @@ package org.apache.struts.taglib.html;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-import org.apache.struts.action.Action;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.Globals;
 
 
 /**
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.22 $ $Date: 2002/11/04 00:34:38 $
+ * @version $Revision: 1.23 $ $Date: 2002/11/08 05:39:24 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -308,8 +308,8 @@ public class ImageTag extends SubmitTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            ApplicationConfig config = (ApplicationConfig)
-                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            ModuleConfig config = (ModuleConfig)
+                pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
@@ -328,8 +328,8 @@ public class ImageTag extends SubmitTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            ApplicationConfig config = (ApplicationConfig)
-                pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            ModuleConfig config = (ModuleConfig)
+                pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             if (config == null) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.6 2002/09/22 05:58:46 martinc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/09/22 05:58:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.7 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.Globals;
 
 
 /**
@@ -92,7 +93,7 @@ import org.apache.struts.util.RequestUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/09/22 05:58:46 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/08 05:39:24 $
  * @since Struts 1.1
  */
 
@@ -152,7 +153,7 @@ public class SwitchAction extends Action {
         // Switch to the requested application module
         RequestUtils.selectApplication(prefix, request,
                                        getServlet().getServletContext());
-        if (request.getAttribute(Action.APPLICATION_KEY) == null) {
+        if (request.getAttribute(Globals.MODULE_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);
             log.error(message);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST,

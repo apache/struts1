@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.21 2002/11/02 00:28:12 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2002/11/02 00:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.22 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.22 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -67,11 +67,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
-import org.apache.struts.action.Action;
-import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.Globals;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -84,7 +84,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -523,8 +523,8 @@ public class ImgTag extends BaseHandlerTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            ApplicationConfig config =
-                (ApplicationConfig) pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            ModuleConfig config =
+                (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
                 return (request.getContextPath() + this.page);
@@ -540,8 +540,8 @@ public class ImgTag extends BaseHandlerTag {
                 RequestUtils.saveException(pageContext, e);
                 throw e;
             }
-            ApplicationConfig config =
-                (ApplicationConfig) pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+            ModuleConfig config =
+                (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
             if (config == null) {
                 return (

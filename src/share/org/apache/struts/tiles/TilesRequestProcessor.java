@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.10 2002/11/08 04:59:49 rleland Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/08 04:59:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.11 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ModuleConfig;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -108,12 +109,26 @@ public class TilesRequestProcessor extends RequestProcessor
      * @param servlet The ActionServlet we are associated with
      * @param appConfig The ApplicationConfig we are associated with.
      * @throws ServletException If an error occur during initialization
+     * @deprecated   use init(ActionServlet, ModuleConfig)
      */
     public void init(ActionServlet servlet, ApplicationConfig appConfig)
       throws ServletException
     {
-    super.init(servlet, appConfig);
-    initDefinitionsMapping();
+       init(servlet,(ModuleConfig)appConfig);
+    }
+
+    /**
+     * Initialize this request processor instance.
+     *
+     * @param servlet The ActionServlet we are associated with
+     * @param moduleConfig The ApplicationConfig we are associated with.
+     * @throws ServletException If an error occur during initialization
+     */
+    public void init(ActionServlet servlet, ModuleConfig moduleConfig)
+      throws ServletException
+    {
+       super.init(servlet, moduleConfig);
+       initDefinitionsMapping();
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.51 2002/11/07 05:18:26 rleland Exp $
- * $Revision: 1.51 $
- * $Date: 2002/11/07 05:18:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.52 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.52 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -112,7 +112,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.51 $ $Date: 2002/11/07 05:18:26 $
+ * @version $Revision: 1.52 $ $Date: 2002/11/08 05:39:24 $
  */
 
 public class Action {
@@ -151,7 +151,7 @@ public class Action {
      * @since Struts 1.1
      * @deprecated  Replaced by {@link org.apache.struts.Globals#MODULE_KEY}
      */
-    public static final String APPLICATION_KEY = Globals.APPLICATION_KEY;
+    public static final String APPLICATION_KEY = Globals.MODULE_KEY;
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.30 2002/10/30 02:31:10 rleland Exp $
- * $Revision: 1.30 $
- * $Date: 2002/10/30 02:31:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.31 2002/11/08 05:39:24 rleland Exp $
+ * $Revision: 1.31 $
+ * $Date: 2002/11/08 05:39:24 $
  *
  * ====================================================================
  *
@@ -76,11 +76,12 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
+import org.apache.struts.Globals;
 
 
 /**
@@ -89,7 +90,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.30 $ $Date: 2002/10/30 02:31:10 $
+ * @version $Revision: 1.31 $ $Date: 2002/11/08 05:39:24 $
  */
 
 public class FormTag extends TagSupport {
@@ -107,7 +108,7 @@ public class FormTag extends TagSupport {
     /**
      * The application configuration for our module.
      */
-    protected ApplicationConfig appConfig = null;
+    protected ModuleConfig moduleConfig = null;
 
 
     /**
@@ -634,7 +635,7 @@ public class FormTag extends TagSupport {
                 // New and improved - use the values from the action mapping
                 bean = RequestUtils.createActionForm(
                     (HttpServletRequest) pageContext.getRequest(),
-                    mapping, appConfig, servlet);
+                    mapping, moduleConfig, servlet);
             }
             if (bean instanceof ActionForm) {
                 ((ActionForm) bean).reset
@@ -730,7 +731,7 @@ public class FormTag extends TagSupport {
 
         super.release();
         action = null;
-        appConfig = null;
+        moduleConfig = null;
         enctype = null;
         focus = null;
         mapping = null;
@@ -792,8 +793,8 @@ public class FormTag extends TagSupport {
         HttpServletRequest request =
             (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        ApplicationConfig config = (ApplicationConfig)
-            pageContext.getRequest().getAttribute(Action.APPLICATION_KEY);
+        ModuleConfig config = (ModuleConfig)
+            pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
         if (config != null) {
             value.append(config.getPrefix());
         }
@@ -848,9 +849,9 @@ public class FormTag extends TagSupport {
     protected void lookup() throws JspException {
 
         // Look up the application module configuration information we need
-        appConfig = RequestUtils.getModuleConfig(pageContext);
+        moduleConfig = RequestUtils.getModuleConfig(pageContext);
 
-        if (appConfig == null) {
+        if (moduleConfig == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.collections"));
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
@@ -862,7 +863,7 @@ public class FormTag extends TagSupport {
 
         // Look up the action mapping we will be submitting to
         String mappingName = getActionMappingName();
-        mapping = (ActionMapping) appConfig.findActionConfig(mappingName);
+        mapping = (ActionMapping) moduleConfig.findActionConfig(mappingName);
         if (mapping == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.mapping", mappingName));
@@ -888,7 +889,7 @@ public class FormTag extends TagSupport {
 
         // Look up the form bean definition
         FormBeanConfig formBeanConfig =
-            appConfig.findFormBeanConfig(mapping.getName());
+            moduleConfig.findFormBeanConfig(mapping.getName());
         if (formBeanConfig == null) {
             JspException e = new JspException
                 (messages.getMessage("formTag.formBean", mapping.getName()));

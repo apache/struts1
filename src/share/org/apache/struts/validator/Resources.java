@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.2 2002/10/27 06:44:00 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/27 06:44:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.3 2002/11/08 05:39:25 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/08 05:39:25 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.Globals;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.2 $ $Date: 2002/10/27 06:44:00 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/08 05:39:25 $
  * @since Struts 1.1
 */
 public class Resources  {
@@ -125,7 +125,7 @@ public class Resources  {
    */
    public static ValidatorResources getValidatorResources(ServletContext application,HttpServletRequest request) {
       return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY +
-                           ((ApplicationConfig)request.getAttribute(Globals.APPLICATION_KEY)).getPrefix());
+                           ((ApplicationConfig)request.getAttribute(Globals.MODULE_KEY)).getPrefix());
    }
 
    /**
