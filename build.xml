@@ -564,6 +564,11 @@
              destdir="${build.home}/documentation/proposals"
            extension=".html" style="../stylesheets/proposals.xsl"
             includes="*.xml"/>
+    <!-- Create the resources -->
+    <style   basedir="${doc.dir}/resources"
+             destdir="${build.home}/documentation/resources"
+           extension=".html" style="../stylesheets/resources.xsl"
+            includes="*.xml"/>
     <!-- Create the user guide -->
     <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
@@ -592,6 +597,16 @@
     <!-- Copy the proposal files -->
     <copy      todir="${build.home}/documentation/proposals">
       <fileset   dir="${doc.dir}/proposals">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+    <!-- Copy the resource files -->
+    <copy      todir="${build.home}/documentation/resources">
+      <fileset   dir="${doc.dir}/resources">
         <include name="**/*.css"/>
         <include name="**/*.gif"/>
         <include name="**/*.html"/>
