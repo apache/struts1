@@ -1,7 +1,7 @@
 <!--
 @author Ted Husted
 @author Craig McClanahan
-@version $Revision: 1.2 $ $Date: 2003/05/17 12:32:19 $
+@version $Revision: 1.3 $ $Date: 2003/05/17 13:15:08 $
 -->
 
 <project name="struts-legacy" default="compile">
@@ -20,6 +20,7 @@
 
     <property name="commons.home"            location="../../../jakarta-commons"/>
     <property name="commons-logging.jar"     location="${commons.home}/commons-logging/dist/commons-logging.jar"/>
+    <property name="jdk.version"             value="1.4"/>
 
     <!-- ========== Local System Paths ==================================== -->
 
@@ -29,14 +30,8 @@
     <property name="source.home"             location="src/java"/>
     <property name="source.jdk.home"         location="src/jdk"/>
 
-    <!-- Must select either JDK 1.3 or 1.4 -->
-    <property name="jdk.version"             value="1.3"/>
-    <!-- Define for JDK 1.3 only -->
-    <property name="jdbc20ext.jar"           value="/opt/Javasoft/lib/jdbc2_0-stdext.jar"/>
-
     <!-- ========== Java Compilation Defaults ============================= -->
     <!-- These defaults may be overridden by user preferences from above    -->
-
 
     <property name="build.compiler"          value="modern"/>
     <property name="compile.debug"           value="true"/>
@@ -49,32 +44,19 @@
       <pathelement location="${jdbc20ext.jar}"/>
     </path>
 
+    <path id="source.path">
+      <pathelement location="${source.jdk.home}/${jdk.version}"/>
+      <pathelement location="${source.home}"/>
+    </path>
 
     <!-- ========== Project Settings ====================================== -->
 
     <property name="project.title"           value="Struts Legacy Distribution"/>
-    <property name="project.version"         value="0.1"/>
+    <property name="project.version"         value="1.0"/>
     <property name="project.distname"        value="struts-legacy"/>
 
 
-    <!-- Path settings -->
-<!--
-    <property name="doc.path" value="./doc/api"/>
-    <property name="doc.src" value="./src/java"/>
--->
-
-    <!-- Build working classpath -->
-<!--
-    <path id="compile.classpath">
-        <pathelement path ="lib/lucene_1_2.jar"/>
-        <pathelement path ="lib/poolman_2_0_4.jar"/>
-        <pathelement path ="classes"/>
-        <pathelement path ="${classpath}"/>
-    </path>
--->
-
-
-<!-- ========== Executable Targets ======================================== -->
+    <!-- ========== Executable Targets ======================================== -->
 
 
     <target name="init"
@@ -112,20 +94,14 @@
 
     <target name="compile" depends="resources"
      description="Compile library classes">
-        <!-- jdk specific -->
-        <javac srcdir="${source.jdk.home}/${jdk.version}"
-              destdir="${build.home}/classes"
-                debug="${compile.debug}"
-          deprecation="${compile.deprecation}"
-             optimize="${compile.optimize}">
-            <classpath refid="compile.classpath"/>
-        </javac>
-        <!-- jdk generic (1.2+) -->
         <javac srcdir="${source.home}"
-              destdir="${build.home}/classes"
+                destdir="${build.home}/classes"
                 debug="${compile.debug}"
           deprecation="${compile.deprecation}"
              optimize="${compile.optimize}">
+            <sourcepath>
+                <pathelement location="${source.jdk.home}/${jdk.version}"/>
+            </sourcepath>
             <classpath refid="compile.classpath"/>
         </javac>
     </target>
