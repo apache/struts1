@@ -1,4 +1,4 @@
-$Id: TODO,v 1.5 2000/09/25 17:55:13 craigmcc Exp $
+$Id: TODO,v 1.6 2000/10/19 01:00:34 craigmcc Exp $
 
 
 			    Struts TODO List
@@ -36,16 +36,6 @@ MVC Framework [org.apache.struts.action]:
 - Add an option on the ActionForward construct that supports some sort of
   switch across SSL-versus-not access to the same application.  For background,
   See STRUTS-DEV (06/26/2000) Chris Audley.
-
-- Provide a "standard" set of actions that can be configured into a Struts
-  application to manage the internal configuration (ActionMappings, etc.) and
-  possibly to reload configuration information on demand.  Consider:  new
-  sub-package org.apache.struts.action.admin?  Motivation:  STRUTS-DEV
-  (07/02/2000) Frank Nestel.
-
-- Add an additional (optional) validate() method that takes useful contextual
-  arguments (request?, servlet?).  DECISIONS:  Break backwards compatibility?
-  new interface?  See: STRUTS-USER (08/01/2000) Chris Audley.
 
 - Consider migrating management of action form population out of ActionServlet
   and into ActionMapping.  Motivation:  STRUTS-DEV (08/14/2000)
@@ -91,11 +81,6 @@ Custom Tag Library [org.apache.struts.taglib]:
 - Add capability to generate client-side JavaScript functions for basic
   format validations, etc.
 
-- Make the "errors" object returned from validators, and used in the
-  <struts:errors> tag, more intelligent and extensible. One option:
-  See STRUTS-DEV (06/25/2000) David Geary, STRUTS-DEV (07/18/2000)
-  Chris Miller, plus follow-ups.
-
 - Decide on whether to include "else"-type tags on the conditionals, and
   what syntax should be supported.  See:  STRUTS-DEV (06/14/2000) Eduardo
   Pelegri-Llopart; STRUTS-DEV (06/26/2000) Frank Nestel.
@@ -133,23 +118,12 @@ Custom Tag Library [org.apache.struts.taglib]:
 - Modify tags that implement BodyTag to refer to body content ONLY
   in doAfterTag(), not in doEndTag().  STRUTS-DEV (08/06/2000) Chris Audley.
 
-- Fix Checkboxes!!!  See many notes, including:  STRUTS-DEV (08/08/2000)
-  Jeff R.  Also see STRUTS-DEV (08/22/2000) Chris Miller.
-
 - Add "type" attribute on <struts:enumerate> and <struts:iterate> (plus
   anywhere else it makes sense) to define the Java class of the object
   that is exposed.  See:  STRUTS-DEV (08/14/2000) Robert Quillen.
 
-- Improve exception handling inside Struts custom tags.  Among other things,
-  encapsulate them as a request attribute to make them visible elsewhere.
-  See: STRUTS-DEV (08/17,21/2000) Ken Horn and follow-ups.
-
 - Support "disabled" modifier (from HTML 4.0) on relevant tags.
   STRUTS-USER (08/23/2000) "Re: A new attribute for struts' button tags".
-
-	Templating Tag Library
-
-- Add "templates" tag library contributed by David Geary.
 
 	XML Friendly Tag Library
 
@@ -197,7 +171,7 @@ Documentation and Examples:
 - Write a more comprehensive example of using a Digester to configure a
   set of related JavaBeans based on the contents of an arbitrary XML file.
 
-- Convert documentation to XML-based source with an XSLT stylesheet.
+- Convert remaining documentation to XML-based source with an XSLT stylesheet.
 
 - Create and maintain a summary of experiences installing and using
   Struts on various container platforms.
@@ -208,4 +182,7 @@ Documentation and Examples:
 
 - Update web site information at <http://jakarta.apache.org/struts> to
   include all of the relevant documentation.
+
+- Document platform-specific installation notes and problem reports.
+
 
