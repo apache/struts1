@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.3 2000/06/16 04:41:07 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/16 04:41:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.4 2000/06/24 03:16:11 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/24 03:16:11 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:07 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/24 03:16:11 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -109,6 +109,11 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	results.append("\" name=\"");
 	results.append(property);
 	results.append("\"");
+	if (accessKey != null) {
+	    results.append(" accesskey=\"");
+	    results.append(accessKey);
+	    results.append("\"");
+	}
 	if (maxlength >= 0) {
 	    results.append(" maxlength=\"");
 	    results.append(maxlength);
@@ -117,6 +122,11 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	if (cols >= 0) {
 	    results.append(" size=\"");
 	    results.append(cols);
+	    results.append("\"");
+	}
+	if (tabIndex != null) {
+	    results.append(" tabindex=\"");
+	    results.append(tabIndex);
 	    results.append("\"");
 	}
 	results.append(" value=\"");

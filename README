@@ -1,4 +1,4 @@
-$Id: README,v 1.4 2000/06/18 22:21:39 craigmcc Exp $
+$Id: README,v 1.5 2000/06/24 03:16:09 craigmcc Exp $
 
 				Struts
 				======
@@ -54,7 +54,7 @@ wish to use the custom tag library:
   <http://jakarta.apache.org>.
 
 - (*) Download and unpack a Struts binary distribution, available from
-  <http://jakarta.apache.org/builds/tomcat/nightly/>.
+  <http://jakarta.apache.org/builds/jakarta-struts/nightly/>.
 
 - (*) Install the Struts documentation application by deploying file
   "lib/struts-documentation.war" into your servlet container, using the
@@ -148,9 +148,9 @@ Using the Struts Source Distribution
 
 If you wish to contribute to the development of the Struts toolkit, you should
 download and install a source distribution of Struts from
-<http://jakarta.apache.org/builds/tomcat/nightly/src>.  You will also need
-a recent nightly build of the Ant project development tool (you *must* use
-a version later than the Ant 3.1 release).
+<http://jakarta.apache.org/builds/jakarta-struts/nightly/src>.  You will also
+need a recent nightly build of the Ant project development tool (you *must*
+use a version later than the Ant 3.1 release).
 
 Before committing any changes to the Struts CVS repository, you must do a
 "build clean" followed by a "build dist", to ensure that everything compiles

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseHandlerTag.java,v 1.2 2000/06/15 03:18:53 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 03:18:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseHandlerTag.java,v 1.3 2000/06/24 03:16:11 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/24 03:16:11 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.2 $ $Date: 2000/06/15 03:18:53 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/24 03:16:11 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -87,6 +87,14 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.LocalStrings");
 
+
+//  Navigation Management
+
+    /** Access key character. */
+    protected String accessKey = null;
+
+    /** Tab index value. */
+    protected String tabIndex = null;
 
 //  Mouse Events
 
@@ -147,6 +155,29 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     private String styleClass = null;
 
     // ------------------------------------------------------------- Properties
+
+//  Navigation Management
+
+    /** Sets the accessKey character. */
+    public void setAccessKey(String accessKey) {
+	this.accessKey = accessKey;
+    }
+
+    /** Returns the accessKey character. */
+    public String getAccessKey() {
+	return (this.accessKey);
+    }
+
+
+    /** Sets the tabIndex value. */
+    public void setTabIndex(String tabIndex) {
+	this.tabIndex = tabIndex;
+    }
+
+    /** Returns the tabIndex value. */
+    public String getTabIndex() {
+	return (this.tabIndex);
+    }
 
 // Mouse Events
 
