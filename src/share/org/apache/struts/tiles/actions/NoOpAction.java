@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.5 2002/12/27 10:36:54 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/27 10:36:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.6 2002/12/29 21:24:58 cedric Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/29 21:24:58 $
  *
  * ====================================================================
  *
@@ -85,11 +85,11 @@ import org.apache.struts.util.RequestUtils;
  * "success".
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2002/12/27 10:36:54 $
+ * @version $Revision: 1.6 $ $Date: 2002/12/29 21:24:58 $
  * @deprecated Use o.a.s.a.ForwardAction instead with the parameter attribute:
  * <code>
  *    &lt;action path="aPath"
- *                type="org.apache.struts.action.ForwardAction"
+ *                type="org.apache.struts.actions.ForwardAction"
  *                parameter="tiles.def.name" /&gt;
  * </code>
  */
