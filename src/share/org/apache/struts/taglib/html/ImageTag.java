@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.5 2001/02/27 01:41:34 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/27 01:41:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImageTag.java,v 1.6 2001/03/06 22:25:42 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/03/06 22:25:42 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "image".
  *
  * @author Oleg V Alexeev
- * @version $Revision: 1.5 $ $Date: 2001/02/27 01:41:34 $
+ * @version $Revision: 1.6 $ $Date: 2001/03/06 22:25:42 $
  */
 
 public class ImageTag extends SubmitTag {
@@ -124,6 +124,20 @@ public class ImageTag extends SubmitTag {
 
     public void setAltKey(String altKey) {
         this.altKey = null;
+    }
+
+
+    /**
+     * The border size around the image.
+     */
+    protected String border = null;
+
+    public String getBorder() {
+        return (this.border);
+    }
+
+    public void setBorder(String border) {
+        this.border = border;
     }
 
 
@@ -266,6 +280,11 @@ public class ImageTag extends SubmitTag {
         if (tmp != null) {
             results.append(" alt=\"");
             results.append(tmp);
+            results.append("\"");
+        }
+        if (border != null) {
+            results.append(" border=\"");
+            results.append(border);
             results.append("\"");
         }
         if (value != null) {

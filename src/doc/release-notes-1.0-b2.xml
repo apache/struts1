@@ -38,6 +38,9 @@
         (possibly calculated) anchor ("#xxx") in the generated hyperlink.</li>
     <li>The <code>&lt;html:base&gt;</code> tag now accepts an optional
         <code>target</code> attribute.</li>
+    <li>The <code>&lt;html:image&gt;</code> tag now accepts an optional
+        <code>border</code> attribute, to define the border with around
+        this image.</li>
     </ul>
 
     <p>The following new features have been added to the

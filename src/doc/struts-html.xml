@@ -1318,6 +1318,15 @@
                 </info>
         </attribute>
 
+        <attribute>
+                <name>border</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                <p>The width (in pixels) of the border around this image.</p>
+                </info>
+        </attribute>
+
         <attribute> 
                 <name>bundle</name> 
                 <required>false</required> 
