@@ -46,7 +46,7 @@
                  <a href="http://jakarta.apache.org/commons/releases/">Releasing Common Components</a>
             </li>
             <li>
-                <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing a release version</a>
+                <a href="http://wiki.apache.org/incubator/SigningReleases">Signing a release version</a>
                 <ul>
                 <li>
                     <small>The MD5 tool is installed on daedalus, and you can create the digests for Struts releases

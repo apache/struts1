@@ -173,7 +173,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         // Create and configure a DIskFileUpload instance.
         DiskFileUpload upload = new DiskFileUpload();
         // The following line is to support an "EncodingFilter"
-        // see http://nagoya.apache.org/bugzilla/show_bug.cgi?id=23255
+        // see http://issues.apache.org/bugzilla/show_bug.cgi?id=23255
         upload.setHeaderEncoding(request.getCharacterEncoding());
         // Set the maximum size before a FileUploadException will be thrown.
         upload.setSizeMax(getSizeMax(ac));

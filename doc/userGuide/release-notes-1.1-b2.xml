@@ -578,14 +578,14 @@
 
     <p>The following known issues will be addressed before Final Release of
        Struts 1.1. The numbers in parentheses are for the corresponding entries
-       in the <a href="http://nagoya.apache.org/bugzilla">Bugzilla</a> bug
+       in the <a href="http://issues.apache.org/bugzilla">Bugzilla</a> bug
        tracking system.</p>
 
     <strong>Custom Tags</strong>
     <ul>
       <li>The &lt;html:form&gt; tag generates incorrect JavaScript when the
           focus is to be set on a radio button.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=1586">#1586</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=1586">#1586</a>)
       </li>
     </ul>
 
@@ -593,7 +593,7 @@
     <ul>
       <li>Some parts of the documentation are incomplete, especially for new
           features in this release. These sections are marked TODO.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10537">#10537</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10537">#10537</a>)
       </li>
     </ul>
 
@@ -601,31 +601,31 @@
     <ul>
       <li>The <em>struts-blank</em> sample webapp fails to run due to problems
           accessing message resources.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10955">#10955</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10955">#10955</a>)
       </li>
     </ul>
 
     <strong>Validator Framework</strong>
     <ul>
       <li>Validator generates incorrect JavaScript for the &lt;select&gt; element.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=7353">#7353</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=7353">#7353</a>)
       </li>
       <li>Validator range checking supports only integer values, and not other
           numeric values such as floats and doubles.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10191">#10191</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10191">#10191</a>)
       </li>
       <li>Validator does not work with Struts application modules other than
           the default module.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10348">#10348</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10348">#10348</a>)
       </li>
       <li>Validator does not successfully validate empty date fields.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10349">#10349</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10349">#10349</a>)
       </li>
       <li>Validator does not validate data when using DynaValidatorActionForm.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10432">#10432</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10432">#10432</a>)
       </li>
       <li>Validator plugin does not correctly configure multiple validation files.
-          (<a href="http://nagoya.apache.org/bugzilla/show_bug.cgi?id=10584">#10584</a>)
+          (<a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=10584">#10584</a>)
       </li>
     </ul>
 

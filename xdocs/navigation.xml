@@ -45,7 +45,7 @@
   
     <menu name="Community">
       <item name="Known Issues (Bugzilla)"    href="http://jakarta.apache.org/site/bugs.html"/>
-      <item name="Wiki Pages"                 href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages"/>
+      <item name="Wiki Pages"                 href="http://wiki.apache.org/struts"/>
       <item name="List Archive"               href="http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42"/>
       <item name="Resource Directory"         href="http://struts.sf.net/community/index.html"/>
     </menu>

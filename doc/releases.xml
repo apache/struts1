@@ -21,7 +21,7 @@
       Any release should follow the same general process used by the
       <a href="http://jakarta.apache.org/site/decisions.html">Jakarta Tomcat</a> team
       and must observe the <a href="http://apache.org/dev/mirrors.html">Apache Mirroring guidelines</a>.
-      See also <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing Releases</a>.
+      See also <a href="http://wiki.apache.org/incubator/SigningReleases">Signing Releases</a>.
       </p>
       <p>Additional remarks:</p>
       <ul>
