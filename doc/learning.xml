@@ -20,18 +20,18 @@
   </p>
   
   <ul>
-  	<li>
-	<a href="userGuide/index.html">User and Developer Guides</a>,
-	</li>
-	<li>
+    <li>
+    <a href="userGuide/index.html">User and Developer Guides</a>,
+    </li>
+    <li>
     <a href="api/index.html">Javadocs</a>,
-	</li>
-	<li>
-	<a href="./faqs/index.html">FAQs and Howtos</a>,
-	</li>
-	<li>
-	and everything else you find here.
-	</li>
+    </li>
+    <li>
+    <a href="./faqs/index.html">FAQs and Howtos</a>,
+    </li>
+    <li>
+    and everything else you find here.
+    </li>
   </ul>
   
   <p>
@@ -113,7 +113,7 @@
   </p>
 
   </section>
-	
+    
   <section name="Learning More About Struts" href="Docs">
 
   <p>
@@ -160,36 +160,6 @@
   The Struts <a href="news/index.html"><b>News &amp; Status</b></a> page highlights current
   events affecting the framework, including new releases, proposals for new features,
   and additions to the Resources page.
-  </p>
-
-  </section>
-
-  <section name="Books and Articles about Struts" href="books">
-
-  <div align="center">
-  <center>
-  <table border="0" cellpadding="6">
-    <tr>
-      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/0471213020.jpg" width="49" height="60" /></a></td>
-      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/0596003285.jpg" width="46" height="60" /></a></td>
-      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/0672324725.jpg" width="49" height="60" /></a></td>
-      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/1558608621.jpg" width="47" height="60" /></a></td>
-      <td width="20%"><a href="resources/books.html"><img border="0" src="images/books/1930110502.jpg" width="49" height="60" /></a></td>
-    </tr>
-  </table>
-  </center>
- </div>
-
-  <p>
-  Printed books about Struts are available now, and several more are on the way.
-  A current list of books about Struts is maintained in <a href="resources/books.html">the
-  resource area</a>. Links to excerpts are provided when available.
-  </p>
-  
-  <p>
-  A great number of online articles and tutorials have also been published about Struts,
-  which are also listed in the
-  <a href="resources/articles.html">the resource area</a>
   </p>
 
   </section>

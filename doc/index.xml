@@ -59,17 +59,80 @@
 
         </section>
 
-        <section>
-        <p align="center">
-        Next: <a href="learning.html">Learning About Struts</a>
-        </p>
-        </section>
+        <section name="Books about Struts" href="books">
 
-        <section>
-        <p align="center">
-        <a href="./faqs/helping.html#release">So when is the next release coming out?</a>
-        </p>
-        </section>
+        <div align="center">
+        <center>
+        <table border="0" cellpadding="6">
+          <tr>
+            <td width="20%">
+                <a href="resources/books.html">
+                <img 
+                    border="0" 
+                    src="images/books/0471213020.jpg" 
+                    width="49" 
+                    height="60" />
+                </a>
+            </td>
+            <td width="20%">
+                <a href="resources/books.html">
+                <img 
+                    border="0" 
+                    src="images/books/0596003285.jpg" 
+                    width="49" 
+                    height="60" />
+                </a>
+            </td>
+            <td width="20%">
+                <a href="resources/books.html">
+                <img 
+                    border="0" 
+                    src="images/books/0672324725.jpg" 
+                    width="49" 
+                    height="60" />
+                </a>
+            </td>
+            <td width="20%"><a href="resources/books.html">
+                <img 
+                    border="0" 
+                    src="images/books/1558608621.jpg" 
+                    width="49" 
+                    height="60" />
+                </a>
+             </td>
+            <td width="20%"><a href="resources/books.html">
+                <img 
+                    border="0" 
+                    src="images/books/1930110502.jpg" 
+                    width="49" 
+                    height="60" />
+                </a>
+            </td>
+          </tr>
+        </table>
+        </center>
+        </div>
+    
+       <p>
+       Several printed books about Struts are available now, and more are on the way.
+       A current list of books about Struts is maintained in the
+       <a href="resources/books.html">resource area</a>. 
+       Links to excerpts are provided when available.
+       </p>
+  
+       </section>
+
+       <section>
+       <p align="center">
+       Next: <a href="learning.html">Learning About Struts</a>
+       </p>
+       </section>
+
+       <section>
+       <p align="center">
+       <a href="./faqs/helping.html#release">So when is the next release coming out?</a>
+       </p>
+       </section>
 
     </body>
 </document>
