@@ -70,10 +70,10 @@
     <td>Header</td>
     <td>present</td>
     <td>
-      <logic:present header="user-agent">
+      <logic:present header="User-Agent">
         present
       </logic:present>
-      <logic:notPresent header="user-agent">
+      <logic:notPresent header="User-Agent">
         notPresent
       </logic:notPresent>
     </td>

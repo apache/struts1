@@ -13,7 +13,7 @@
 
 <jsp:useBean id="bean" scope="page" class="org.apache.struts.test.TestBean"/>
 <bean:cookie    id="cookie" name="JSESSIONID"/>
-<bean:header    id="header" name="user-agent"/>
+<bean:header    id="header" name="User-Agent"/>
 <bean:parameter id="param"  name="param1"/>
 <%
   pageContext.setAttribute("string", "String test value");
@@ -75,10 +75,10 @@
     <td>Mozilla</td>
     <td>contains</td>
     <td>
-      <logic:match header="user-agent" value="Mozilla">
+      <logic:match header="User-Agent" value="Mozilla">
         match
       </logic:match>
-      <logic:notMatch header="user-agent" value="Mozilla">
+      <logic:notMatch header="User-Agent" value="Mozilla">
         notMatch
       </logic:notMatch>
     </td>
@@ -89,10 +89,10 @@
     <td>Mozilla</td>
     <td>ends with</td>
     <td>
-      <logic:match header="user-agent" location="end" value="Mozilla">
+      <logic:match header="User-Agent" location="end" value="Mozilla">
         match
       </logic:match>
-      <logic:notMatch header="user-agent" location="end" value="Mozilla">
+      <logic:notMatch header="User-Agent" location="end" value="Mozilla">
         notMatch
       </logic:notMatch>
     </td>
