@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.4 2002/11/12 03:56:08 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/12 03:56:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.5 2002/11/21 03:42:21 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/21 03:42:21 $
  *
  * ====================================================================
  *
@@ -76,6 +76,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Action Servlet to be used with Tiles and Struts 1.0.x.
@@ -111,7 +112,8 @@ public class ActionComponentServlet extends ActionServlet {
     {
         // Check struts version by checkin PlugIn classes existance.
         try {
-            Class plugInClass = Class.forName("org.apache.struts.action.PlugIn");
+            Class plugInClass = RequestUtils.applicationClass(
+                    "org.apache.struts.action.PlugIn");
             // Class exist ==> struts 1.1 or greater
             log(
                 "Warning - ActionComponentServlet class: This class is to be used with Struts1.0.x only. "

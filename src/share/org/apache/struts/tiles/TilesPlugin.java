@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.10 2002/11/12 03:56:08 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/12 03:56:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.11 2002/11/21 03:42:21 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/11/21 03:42:21 $
  *
  * ====================================================================
  *
@@ -77,6 +77,7 @@ import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Tiles Plugin used to initialize Tiles.
@@ -301,7 +302,8 @@ public class TilesPlugin implements PlugIn, PlugInPatch {
         // Check if specified classname exist
         Class configProcessorClass;
         try {
-            configProcessorClass = Class.forName(configProcessorClassname);
+            configProcessorClass = RequestUtils.applicationClass(
+                    configProcessorClassname);
         } catch (java.lang.ClassNotFoundException ex) {
             log.fatal(
                 "Can't set TilesRequestProcessor: bad class name '"

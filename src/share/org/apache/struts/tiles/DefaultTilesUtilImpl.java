@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/DefaultTilesUtilImpl.java,v 1.2 2002/11/16 06:04:28 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2002/11/16 06:04:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/DefaultTilesUtilImpl.java,v 1.3 2002/11/21 03:42:21 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/21 03:42:21 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
+import org.apache.struts.util.RequestUtils;
 
   /**
    * Default implementation of TilesUtil.
@@ -175,7 +176,7 @@ public class DefaultTilesUtilImpl implements TilesUtilInterface
   {
   try
     {
-    Class factoryClass = Class.forName(classname);
+    Class factoryClass = RequestUtils.applicationClass(classname);
     Object factory = factoryClass.newInstance();
 
       // Backward compatibility : if factory classes implements old interface,

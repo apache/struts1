@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.11 2002/11/12 03:56:09 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/12 03:56:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/PutTag.java,v 1.12 2002/11/21 03:42:21 martinc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/11/21 03:42:21 $
  *
  * ====================================================================
  *
@@ -68,12 +68,13 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.template.util.Content;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Tag handler for &lt;template:put&gt;, which puts content into request scope.
  *
  * @author David Geary
- * @version $Revision: 1.11 $ $Date: 2002/11/12 03:56:09 $
+ * @version $Revision: 1.12 $ $Date: 2002/11/21 03:42:21 $
  * @deprecated Use Tiles instead.
  */
 public class PutTag extends BodyTagSupport {
@@ -279,7 +280,7 @@ public class PutTag extends BodyTagSupport {
 
       Class klass = null; // can’t name variable "class"
       try {
-         klass = Class.forName(className);
+         klass = RequestUtils.applicationClass(className);
       }
       catch(ClassNotFoundException ex) {
          pageContext.setAttribute(Globals.EXCEPTION_KEY, ex,

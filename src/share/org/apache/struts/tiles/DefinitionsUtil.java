@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.6 2002/11/05 14:15:53 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/05 14:15:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/DefinitionsUtil.java,v 1.7 2002/11/21 03:42:21 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/11/21 03:42:21 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import java.util.Enumeration;
 
 import org.apache.struts.tiles.definition.ComponentDefinitionsFactoryWrapper;
 import org.apache.struts.taglib.tiles.ComponentConstants;
+import org.apache.struts.util.RequestUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -261,7 +262,7 @@ public class DefinitionsUtil extends TilesUtil implements ComponentConstants
   {
   try
     {
-    Class factoryClass = Class.forName(classname);
+    Class factoryClass = RequestUtils.applicationClass(classname);
     Object factory = factoryClass.newInstance();
       // Backward compatibility : if factory classes implements old interface,
       // provide appropriate wrapper
