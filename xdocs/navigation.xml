@@ -11,8 +11,8 @@
       <item name="To Do List"              href="/tasks.html"/>
       <item name="Resources"               href="/resources.html"/>
       <item name="Legacy" href="/index.html" collapse="true">   
-	      <item name="Api 1.0" href="/1.0/api/org/apache/struts/package-summary.html" collapse="true"/>
-	      <item name="Api 1.1" href="/1.1/api/org/apache/struts/package-summary.html" collapse="true"/>
+	      <item name="Api 1.0" href="/api-1.0/org/apache/struts/package-summary.html" collapse="true"/>
+	      <item name="Api 1.1" href="/api-1.1/org/apache/struts/package-summary.html" collapse="true"/>
 	  </item>
     </menu>
   </body>
