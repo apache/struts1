@@ -318,9 +318,13 @@
 			usetimestamp="true" ignoreerrors="true" 
 			src="http://www.ibiblio.org/maven/servletapi/jars/servletapi-2.2.jar"/>
 
-		 <get dest="${libdir}/jstl-1.1.1.jar"
+		 <get dest="${libdir}/jstl-1.0.6.jar"
                         usetimestamp="true" ignoreerrors="true"
-                        src="http://www.ibiblio.org/maven/jstl/jars/jstl-1.1.1.jar"/>
+                        src="http://www.ibiblio.org/maven/jstl/jars/jstl-1.0.6.jar"/>
+
+                 <get dest="${libdir}/standard-1.0.6.jar"
+                        usetimestamp="true" ignoreerrors="true"
+                        src="http://www.ibiblio.org/maven/taglibs/jars/standard-1.0.6.jar"/>
 	
 		<property name="commons-beanutils.jar"  value="${libdir}/commons-beanutils.jar"/>
 		<property name="commons-digester.jar"   value="${libdir}/commons-digester.jar"/>
