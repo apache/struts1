@@ -120,6 +120,19 @@
 </logic-el:iterate>
 </ol>
 
+<h3>Test 11 - Iterate Over HTTP Headers</h3>
+
+<table border="1">
+ <tr>
+  <th>Key</th>
+  <th>Value</th>
+ </tr>
+ <logic-el:iterate id="item" collection="${header}" indexId="index">
+  <tr>
+   <td><c:out value="${item.key}"/></td>
+   <td><c:out value="${item.value}"/></td>
+  </tr>
+ </logic-el:iterate>
 
 </body>
 </html-el:html>
