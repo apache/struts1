@@ -1,0 +1,33 @@
+Struts Validator
+==================
+The Struts Validator Jar (dist/Struts_Validator-{date}.jar) and version 1.2 of the 
+Jakarta Regular Expression Package (http://jakarta.apache.org/regexp) needs to be 
+added to /WEB-INF/lib.
+
+     This needs to be added to the web.xml file to load the ValidatorServlet. 
+     <servlet> 
+        <servlet-name>validator</servlet-name> 
+        <servlet-class>com.wintecinc.struts.action.ValidatorServlet</servlet-class> 
+        <init-param> 
+          <param-name>config</param-name> 
+          <param-value>/WEB-INF/validation.xml</param-value> 
+        </init-param> 
+        <init-param> 
+          <param-name>debug</param-name> 
+          <param-value>2</param-value> 
+        </init-param> 
+        <load-on-startup>2</load-on-startup> 
+     </servlet> 
+
+Add the error messages to your ApplicationResources.properties file for the pluggable validators that you
+are using in your project. Make sure that you have errors.header & errors.footer in it if you are going to use
+the Struts' html:errors tag. If you use the Validator errors tag then the header and the footer are optional and
+configurable as to what message resource key is used to create the header and the footer. The message
+resource key a pluggable validator uses to create an error message is configurable in the validation.xml file by
+modifying the pluggable validator's msg attribute. 
+   Example Error Messages:
+      errors.required=<li>{0} is required.</li>
+      errors.invalid=<li>{0} is invalid.</li>
+
+Copy the validators that you want to use from the validation.xml file in /web/example/WEB-INF or make
+your own. 

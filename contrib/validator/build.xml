@@ -1,0 +1,235 @@
+<!--
+   You will need Ant setup properly and have the commons-cactus-ant.jar in the classpath.  The build.properties file 
+   will need to be edited to point to some jar files, java.home, and the application servers you want to 
+   run the tests on.
+-->
+<project name="Struts Validator" default="javadocs" basedir=".">
+  <!-- set global properties for this build -->
+  <property file="build.properties"/>
+  
+  <property name="title" value="Struts Validator" />
+  <property name="name" value="Struts_Validator" />
+  <property name="src" value="src" />
+  <property name="share" value="share" />
+  <property name="example" value="example" />
+  <property name="jdbc.example" value="jdbc-example" />
+  <property name="web"  value="web" />
+  <property name="webapps"  value="webapps" />
+  <property name="build" value="build" />
+  <property name="build.javadocs" value="docs/api" />
+  <property name="dist"  value="dist" />
+  <property name="package.root" value="com/wintecinc/struts"/>
+  <property name="package" value="com/wintecinc/struts/action"/>
+  <property name="package.example" value="com/wintecinc/struts/example/validator"/>
+  <property name="package.jdbc.example" value="com/wintecinc/struts/example/validator/jdbc"/>
+  <property name="package.test" value="com/wintecinc/test"/>
+                                                        
+  <target name="prepare">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}" />
+  </target>
+
+  <target name="compile" depends="prepare">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}/${share}" 
+           destdir="${build}"
+           excludes="${package.example}/**">
+       <classpath>
+          <pathelement path="${servlet.jar}"/>
+          <fileset dir="lib">
+             <include name="**/*.jar" />
+          </fileset>
+       </classpath>      
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile">
+    <!-- Create the ${dist}/lib directory -->
+    <mkdir dir="${dist}" />
+
+    <!-- Put everything in ${build} into the Editor-${DSTAMP}.jar file -->
+    <!-- <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" /> -->
+    <jar jarfile="${dist}/${name}-${DSTAMP}.jar" 
+         basedir="${build}" 
+         includes="${package.root}/**"
+         excludes="${package.example}/**,${package.test}/"/>
+  </target>
+
+  <target name="compile_example" depends="dist">
+    <!-- Compile the java code from ${src}/${example} into ${build} -->
+    <javac srcdir="${src}/${example}" 
+           destdir="${build}">
+       <classpath>
+          <pathelement path="${servlet.jar}"/>
+          <pathelement location="${cactus.jar}"/>
+          <pathelement path="${dist}/${name}-${DSTAMP}.jar" />
+          <fileset dir="lib">
+             <include name="**/*.jar" />
+          </fileset>
+       </classpath>      
+    </javac>
+
+    <!-- Compile the java code from ${src}/${jdbc.example} into ${build} -->
+    <javac srcdir="${src}/${jdbc.example}" 
+           destdir="${build}">
+       <classpath>
+          <pathelement path="${servlet.jar}"/>
+          <pathelement path="${dist}/${name}-${DSTAMP}.jar" />
+          <fileset dir="lib">
+             <include name="**/*.jar" />
+          </fileset>
+       </classpath>      
+    </javac>
+
+  </target>
+
+  <target name="copy_example" depends="compile_example">
+     <copy todir="${build}" >
+       <fileset dir="${src}/${example}" 
+                includes="cactus.properties,${package.example}/*,${package.test}/" 
+                excludes="**/*.java" 
+       />
+     </copy>
+
+     <copy todir="${build}" >
+       <fileset dir="${src}/${jdbc.example}" 
+                includes="${package.jdbc.example}/*" 
+                excludes="**/*.java" 
+       />
+     </copy>
+
+     <copy todir="${web}/${example}/WEB-INF/tlds" >
+       <fileset dir="${dist}" 
+                includes="struts-validator.tld"/>
+     </copy>
+
+     <copy todir="${web}/${jdbc.example}/WEB-INF/tlds" >
+       <fileset dir="${dist}" 
+                includes="struts-validator.tld"/>
+     </copy>
+
+  </target>
+    
+  <target name="war" depends="copy_example">
+    
+    <war warfile="${webapps}/validator.war" webxml="${web}/${example}/WEB-INF/web.xml">
+      <fileset dir="${web}/${example}">
+         <include name="**/**" />
+         <exclude name="WEB-INF/web.xml" />
+      </fileset>
+      <fileset dir="struts">
+         <include name="**/**" />
+      </fileset>
+      <lib dir="lib">
+        <exclude name="jdbc2_0-stdext.jar" />
+      </lib>
+      <lib dir="${dist}">
+         <include name="${name}-${DSTAMP}.jar" />
+      </lib>
+      <classes dir="${build}">
+         <include name="${package.example}/**" />
+         <include name="${package.test}/" />
+      </classes>
+    </war>
+
+    <war warfile="${webapps}/jdbc-validator.war" webxml="${web}/${jdbc.example}/WEB-INF/web.xml">
+      <fileset dir="${web}/${jdbc.example}">
+         <include name="**/**" />
+         <exclude name="WEB-INF/web.xml" />
+      </fileset>
+      <fileset dir="struts">
+         <include name="**/**" />
+      </fileset>
+      <lib dir="lib">
+        <exclude name="jdbc2_0-stdext.jar" />
+      </lib>
+      <lib dir="${dist}">
+         <include name="${name}-${DSTAMP}.jar" />
+      </lib>
+      <classes dir="${build}">
+         <include name="${package.jdbc.example}/**" />
+      </classes>
+    </war>
+    
+  </target>
+
+  <target name="javadocs" depends="war" description="Creates the API documentation">
+    <mkdir dir="${build.javadocs}"/>
+    <javadoc packagenames="com.wintecinc.struts.action.*, 
+                           com.wintecinc.struts.taglib.html.*,
+                           com.wintecinc.struts.validation.*"
+    	     sourcepath="${src}/${share}"
+             destdir="${build.javadocs}"
+             author="true"
+             version="true"
+             windowtitle="${title} API"
+             doctitle="${title}">
+       <classpath>
+          <pathelement path="${servlet.jar}"/>
+          <fileset dir="lib">
+             <include name="**/*.jar" />
+          </fileset>
+       </classpath>    
+    </javadoc>
+  </target>
+
+<!--
+        Run tests on all servers not commented out in the build.properties file.
+-->
+    <target name="test.all" depends="tests_tomcat_32,tests_tomcat_40">
+    </target>
+
+    <!-- 
+       ========================================================================
+         Display a warning message if the needed servlet engine home property
+         is not set
+       ========================================================================
+    -->
+    <target name="check_tests_tomcat_32" depends="war" unless="tomcat.home.32">
+
+        <echo message=""/>
+        <echo message="*********************************************************"/>
+        <echo message="WARNING : The 'tomcat.home.32' property has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*********************************************************"/>
+        <echo message=""/>
+
+    </target>
+    
+    <target name="tests_tomcat_32" depends="check_tests_tomcat_32" if="tomcat.home.32">
+
+        <echo message="tomcat.home.32 = ${tomcat.home.32}"/>
+        
+        <ant antfile="build-test.xml" target="tests_tomcat_32"/>
+    
+    </target>
+
+    <!-- 
+       ========================================================================
+         Display a warning message if the needed servlet engine home property
+         is not set
+       ========================================================================
+    -->
+    <target name="check_tests_tomcat_40" depends="war" unless="tomcat.home.40">
+
+        <echo message=""/>
+        <echo message="*********************************************************"/>
+        <echo message="WARNING : The 'tomcat.home.40' property has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*********************************************************"/>
+        <echo message=""/>
+
+    </target>
+    
+    <target name="tests_tomcat_40" depends="check_tests_tomcat_40" if="tomcat.home.40">
+
+        <echo message="tomcat.home.40 = ${tomcat.home.40}"/>
+        
+        <ant antfile="build-test.xml" target="tests_tomcat_40"/>
+    
+    </target>
+  
+</project>
+
