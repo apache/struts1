@@ -165,9 +165,11 @@
 
 </table>
 
-<app:linkUser page="/editSubscription.do?action=Create">
+<html:link page="/editSubscription.do?action=Create" paramId="username"
+ paramName="registrationForm" paramProperty="username">
   <bean:message key="registration.addSubscription"/>
-</app:linkUser>
+</html:link>
+                     
 
 </logic:equal>
 

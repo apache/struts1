@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.13 2001/05/12 20:34:01 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2001/05/12 20:34:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.14 2001/05/12 22:35:43 craigmcc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2001/05/12 22:35:43 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2001/05/12 20:34:01 $
+ * @version $Revision: 1.14 $ $Date: 2001/05/12 22:35:43 $
  */
 
 public class RequestUtils {
@@ -185,8 +185,9 @@ public class RequestUtils {
         // Locate the Map containing our multi-value parameters map
         Map map = null;
         try {
-            map = (Map) lookup(pageContext, name,
-                               property, scope);
+            if (name != null)
+                map = (Map) lookup(pageContext, name,
+                                   property, scope);
         } catch (ClassCastException e) {
             saveException(pageContext, e);
             throw new JspException
@@ -205,35 +206,44 @@ public class RequestUtils {
             results = new HashMap();
 
         // Add the single-value parameter (if any)
-        if (paramId != null) {
-            String paramValue = null;
+        if ((paramId != null) && (paramName != null)) {
+
+            Object paramValue = null;
             try {
-                paramValue =(String) lookup(pageContext, paramName,
-                                            paramProperty, paramScope);
-            } catch (ClassCastException e) {
-                saveException(pageContext, e);
-                throw new JspException
-                    (messages.getMessage("parameters.single", paramName,
-                                         paramProperty, paramScope));
+                paramValue = lookup(pageContext, paramName,
+                                    paramProperty, paramScope);
             } catch (JspException e) {
                 saveException(pageContext, e);
                 throw e;
             }
-            Object mapValue = map.get(paramId);
-            if (mapValue == null)
-                map.put(paramId, paramValue);
-            else if (mapValue instanceof String) {
-                String newValues[] = new String[2];
-                newValues[0] = (String) mapValue;
-                newValues[1] = paramValue;
-                map.put(paramId, newValues);
-            } else /* if (mapValue instanceof String[]) */ {
-                String oldValues[] = (String[]) mapValue;
-                String newValues[] = new String[oldValues.length + 1];
-                System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
-                newValues[oldValues.length] = paramValue;
-                map.put(paramId, newValues);
+
+            if (paramValue != null) {
+
+                String paramString = null;
+                if (paramValue instanceof String)
+                    paramString = (String) paramValue;
+                else
+                    paramString = paramValue.toString();
+
+                Object mapValue = results.get(paramId);
+                if (mapValue == null)
+                    results.put(paramId, paramString);
+                else if (mapValue instanceof String) {
+                    String newValues[] = new String[2];
+                    newValues[0] = (String) mapValue;
+                    newValues[1] = paramString;
+                    results.put(paramId, newValues);
+                } else /* if (mapValue instanceof String[]) */ {
+                    String oldValues[] = (String[]) mapValue;
+                    String newValues[] = new String[oldValues.length + 1];
+                    System.arraycopy(oldValues, 0, newValues, 0,
+                                     oldValues.length);
+                    newValues[oldValues.length] = paramString;
+                    results.put(paramId, newValues);
+                }
+
             }
+
         }
 
         // Add our transaction control token (if requested)
@@ -244,7 +254,7 @@ public class RequestUtils {
                 token = (String)
                     session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
             if (token != null)
-                map.put(Constants.TOKEN_KEY, token);
+                results.put(Constants.TOKEN_KEY, token);
         }
 
         // Return the completed Map
