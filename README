@@ -1,4 +1,4 @@
-$Id: README,v 1.1 2000/05/31 22:28:09 craigmcc Exp $
+$Id: README,v 1.2 2000/06/11 22:38:32 craigmcc Exp $
 
 				Struts
 				======
@@ -107,8 +107,8 @@ The Struts Documentation Application
 
 Struts comes with a web application that contains all of the documentation
 relevant to a developer (that is, it will when the docs are written :-).  To
-view this documentation, deploy it on your servlet container, and use a
-web browser to access a URL like this:
+view this documentation, deploy the file "webapps/struts-documentation.war"
+into your servlet container, and use a web browser to access a URL like this:
 
 	http://localhost:8080/struts-documentation
 
@@ -129,8 +129,8 @@ code to the JSP pages associated with the example in directory "web/example",
 and the source code to the Java classes in directory "src/example".  The
 source code to the Struts components themselves is in directory "src/share".
 
-To run the example application, deploy it on your servlet container, and use
-a web browser to access a URL like this:
+To run the example application, deploy the file "webaps/struts-example.war"
+into your servlet container, and use a web browser to access a URL like this:
 
 	http://localhost:8080/struts-example
 

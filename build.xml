@@ -42,6 +42,7 @@
     <mkdir   dir="${dist.home}/lib"/>
     <mkdir   dir="${dist.home}/src"/>
     <mkdir   dir="${dist.home}/web"/>
+    <mkdir   dir="${dist.home}/webapps"/>
   </target>
 
   <!-- BUILD:  Compile library directory components -->
@@ -108,13 +109,13 @@
   <!-- DIST:  Construct documentation distributables -->
   <target name="dist.documentation"
        depends="dist.library,compile.documentation,compile.javadoc">
-    <jar  jarfile="${dist.home}/lib/${app.name}-documentation.war"
+    <jar  jarfile="${dist.home}/webapps/${app.name}-documentation.war"
           basedir="${build.home}/documentation"/>
   </target>
 
   <!-- DIST:  Construct example distributables -->
   <target name="dist.example" depends="dist.library,compile.example">
-    <jar  jarfile="${dist.home}/lib/${app.name}-example.war"
+    <jar  jarfile="${dist.home}/webapps/${app.name}-example.war"
           basedir="${build.home}/example"/>
   </target>
 
