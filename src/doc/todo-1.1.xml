@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="./todo.xml">
+<document url="./todo-1.1.xml">
 
   <properties>
     <author>Craig R. McClanahan</author>
@@ -38,6 +38,13 @@
       <p>This is the core controller servlet, with support for the developer's
       action and form bean classes, plus the supporting data structures.</p>
     </info>
+
+    <task name="Remove Deprecations">
+      <info>
+        <p>Clean out all 1.0 deprecated classes and files, framework-wide.</p>
+      </info>
+    </task>
+
 
     <task name="ActionForms With Dynamic Properties">
       <info>
@@ -88,6 +95,8 @@
         work items on this list (such as workflow processing and standard
         validations), so work on this should be coordinated with those
         changes.</p>
+        [STRUTS-DEV, Robert Leland, 10/10/2000]
+        [STRUTS-DEV, David Geary, 12/20/2000]
       </info>
     </task>
 
@@ -96,6 +105,16 @@
         <p>Begin adding design patterns and support for easy integration with
         Enterprise JavaBeans (EJBs) for encapsulation of business logic and
         application data.</p>
+      </info>
+    </task>
+
+    <task name="HTML No-Cache Support">
+      <info>
+        <p>Improve the current Struts support for generating no-cache headers
+        to provide finer-grained, configurable control on a per-page basis.
+        </p>
+        [STRUTS-DEV, Hou Yunfeng, 10/07/2000]
+        [STRUTS-DEV, Matthias Kerkhoff, 11/18/2000]
       </info>
     </task>
 
@@ -118,6 +137,14 @@
       <info>
 	<p>Create more detailed documentation of how the Digester package
 	can be utilized by application developers.</p>
+      </info>
+    </task>
+
+    <task name="Refactor Dependencies">
+      <info>
+        <p>Refactor import dependencies, here and within the utilities package,
+        with the goal of being able to use the Digester package in standalone
+        applications without having to import the servlet API classes.</p>
       </info>
     </task>
 
@@ -166,13 +193,15 @@
         <p>Add the ability to use formatting patterns (suitably localized) for
         presenting numbers, dates, times, timestamps, and so on via formatted
         patterns.</p>
+        [STRUTS-DEV, Oleg Alexeev, 10/27/2000]
+        [STRUTS-DEV, Ned Seagoon, 12/13/2000]
       </info>
     </task>
 
   </task-list>
 
 
-  <task-list name="HTML Forms Tag Library [org.apache.struts.taglib.form]"
+  <task-list name="HTML Forms Tag Library [org.apache.struts.taglib.html]"
              href="HTML">
 
     <info>
@@ -188,14 +217,46 @@
         numeric fields, dates/times/timestamps, and so on.  The required
         validation should mesh with validation enhancements provided in the
         controller servlet itself.</p>
+        [STRUTS-DEV, David Winterfeldt, 07/27/2000]
       </info>
     </task>
 
-    <task name="Generalized Form Handling">
+    <task name="Radio Button Groups">
       <info>
-        <p>Consider how to support more generalized definitions of forms and
-        their fields, perhaps based on emerging XForms standards.  This will
-        most likely require a separate tag library.</p>
+        <p>Add a new tag that supports generation of groups of radio buttons.
+        </p>
+        [STRUTS-DEV, Wellington Silva, 08/28/2000]
+      </info>
+    </task>
+
+    <task name="Improve Options Tag">
+      <info>
+        <p>Improve the mechanism by which you define values and corresponding
+        labels for <code>&lt;html:options&gt;</code>.</p>
+        [STRUTS-DEV, David Winterfeldt, 07/27/2000]
+        [STRUTS-DEV, David Winterfeldt, 08/02/2000]
+        [STRUTS-DEV, Andy Boyko, 11/15/2000]
+        [STRUTS-DEV, Andy Boyko, 12/07/2000]
+      </info>
+    </task>
+
+    <task name="Improve Error Reporting">
+      <info>
+        <p>Improve the ability of the <code>&lt;html:errors&gt;</code> tag
+        to present error messages, especially property-specific messages.
+        </p>
+        [STRUTS-DEV, Oleg Alexeev, 10/23/2000]
+        [STRUTS-DEV, Oleg Alexeev, 11/15/2000]
+        [STRUTS-DEV, Oleg Alexeev, 01/01/2001]
+      </info>
+    </task>
+
+    <task name="Additional Attributes">
+      <info>
+        <p>Support additional HTML 4.0.1 attributes (such as "disabled",
+        "wrap" on textarea)
+        where appropriate.</p>
+        [STRUTS-USER, , 08/23/2000]
       </info>
     </task>
 
@@ -216,6 +277,134 @@
     <task name="Create Tag Library">
       <info>
         <p>Create the initial tag library and documentation.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Logic Tag Library [org.apache.struts.taglib.logic]"
+             href="Logic">
+
+    <info>
+      <p>This tag library provides mechanisms to conditionally process
+      nested body content based on a variety of logical conditions.</p>
+    </info>
+
+    <task name="'Else' and 'Else If' Capability">
+      <info>
+        <p>Add "else" and "else if" constructs to the existing conditional
+        tags, in some reasonable format.</p>
+        [STRUTS-DEV, Eduardo Pelegri-Llopart, 06/14/2000]
+        [STRUTS-DEV, Frank Nestel, 06/26/2000]
+      </info>
+    </task>
+
+    <task name="Other Conditional Structures">
+      <info>
+        <p>Add conditional tags that emulate the "case" or "switch"
+        capability of many programming languages.</p>
+      </info>
+    </task>
+
+    <task name="Iterating Parallel Collections">
+      <info>
+        <p>Enhance <code>&lt;logic:iterate&gt;</code>, or provide a new
+        tag, to iterate over multiple collections in parallel.</p>
+        [STRUTS-DEV, Jeff R., 08/03/2000]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="XFORMS Tag Library [org.apache.struts.taglib.xforms]"
+             href="xforms">
+
+    <info>
+      <p>This potential new tag library provides access to facilities in the
+      emerging XForms standards.</p>
+    </info>
+
+    <task name="Generalized Form Handling">
+      <info>
+        <p>Consider how to support more generalized definitions of forms and
+        their fields, perhaps based on emerging XForms standards.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Tools Support [org.apache.struts.tools]"
+             href="Tools">
+
+    <info>
+      <p>This package contains code generators and other tools that
+      facilitate the creation of Struts-based applications.  Further
+      subdivision into specialized packages should be performed as
+      appropriate.</p>
+    </info>
+
+    <task name="XML --&gt; ActionForm Code Generator">
+      <info>
+        <p>Create a tool that takes an XML-based description of the
+        properties of the form bean, and automatically generates
+        the corresponding Java class.</p>
+        [STRUTS-DEV, Mark Wutka, 06/01/2000 and 06/16/2000]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Utility Classes" href="Util">
+
+    <info>
+      <p>This package contains a variety of utility classes useful within
+      Struts as well as in stand-alone applications.</p>
+    </info>
+
+    <task name="XmlMessageResources">
+      <info>
+        <p>Implementation of <code>MessageResources</code> and
+        <code>MessageResourcesFactory</code> that loads message keys
+        and strings from one or more XML resources or files.</p>
+        [STRUTS-DEV, Scott Sayles, 01/07/2000]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Additional Possibilities" href="Additional">
+
+    <info>
+      <p>This section is a catch-all for additional areas of functionality
+      to be investigated for inclusion into Struts.</p>
+    </info>
+
+    <task name="Coarse Grain Components">
+      <info>
+        [STRUTS-DEV, Cedric Dumoulin, 10/03/2000]
+      </info>
+    </task>
+
+    <task name="Multidimensional Properties">
+      <info>
+        [STRUTS-DEV, Eric, 11/07/2000]
+      </info>
+    </task>
+
+    <task name="Portal Components">
+      <info>
+        [STRUTS-DEV, Phil Grimm, 11/22/2000]
+      </info>
+    </task>
+
+    <task name="Storefront Example App">
+      <info>
+        [STRUTS-DEV, David D'Orto, 12/11/2000]
       </info>
     </task>
 
