@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.23 2002/12/31 03:12:11 martinc Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.24 2003/01/07 04:27:20 craigmcc Exp $</font>
     </p>
 
     <p>
@@ -207,7 +207,7 @@
         </li>
 
         <li>
-        <a href="../proposals/struts-faces.html">struts-faces taglib</a>
+        <a href="proposals/struts-faces.html">struts-faces taglib</a>
         </li>
 
         <li>
