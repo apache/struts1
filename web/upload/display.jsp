@@ -2,6 +2,8 @@
 
 <b>The Text</b>: <%= request.getAttribute("text") %> <br />
 
+<b>The Query Parameter</b>: <%= request.getAttribute("queryValue") %> <br />
+
 <b>The File name</b>: <%= request.getAttribute("fileName") %> <br />
 
 <b>The File content type</b>: <%= request.getAttribute("contentType") %> <br />

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.73 2002/11/24 21:59:43 dgraham Exp $
- * $Revision: 1.73 $
- * $Date: 2002/11/24 21:59:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.74 2002/12/10 06:03:21 martinc Exp $
+ * $Revision: 1.74 $
+ * $Date: 2002/12/10 06:03:21 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -104,6 +105,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestHandler;
+import org.apache.struts.upload.MultipartRequestWrapper;
 
 /**
  * General purpose utility methods related to processing a servlet request
@@ -111,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.73 $ $Date: 2002/11/24 21:59:43 $
+ * @version $Revision: 1.74 $ $Date: 2002/12/10 06:03:21 $
  */
 
 public class RequestUtils {
@@ -121,7 +123,7 @@ public class RequestUtils {
     /**
      * Commons Logging instance.
      */
-    protected static Log LOG = LogFactory.getLog(RequestUtils.class);
+    protected static Log log = LogFactory.getLog(RequestUtils.class);
 
     /**
      * The default Locale for our server.
@@ -538,8 +540,8 @@ public class RequestUtils {
         }
 
         // Look up any existing form bean instance
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(
+        if (log.isDebugEnabled()) {
+            log.debug(
                 " Looking for ActionForm bean instance in scope '"
                     + mapping.getScope()
                     + "' under attribute key '"
@@ -560,13 +562,13 @@ public class RequestUtils {
             if (config.getDynamic()) {
                 String className = ((DynaBean) instance).getDynaClass().getName();
                 if (className.equals(config.getName())) {
-                    if (LOG.isDebugEnabled()) {
-                        LOG.debug(
+                    if (log.isDebugEnabled()) {
+                        log.debug(
                             " Recycling existing DynaActionForm instance "
                                 + "of type '"
                                 + className
                                 + "'");
-                        LOG.trace(" --> " + instance);
+                        log.trace(" --> " + instance);
                     }
                     return (instance);
                 }
@@ -574,19 +576,19 @@ public class RequestUtils {
                 try {
                     Class configClass = applicationClass(config.getType());
                     if (configClass.isAssignableFrom(instance.getClass())) {
-                        if (LOG.isDebugEnabled()) {
-                            LOG.debug(
+                        if (log.isDebugEnabled()) {
+                            log.debug(
                                 " Recycling existing ActionForm instance "
                                     + "of class '"
                                     + instance.getClass().getName()
                                     + "'");
-                            LOG.trace(" --> " + instance);
+                            log.trace(" --> " + instance);
                         }
                         return (instance);
                     }
                     return (instance);
                 } catch (Throwable t) {
-                    LOG.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
+                    log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                     return (null);
                 }
             }
@@ -598,31 +600,31 @@ public class RequestUtils {
                 DynaActionFormClass dynaClass =
                     DynaActionFormClass.createDynaActionFormClass(config);
                 instance = (ActionForm) dynaClass.newInstance();
-                if (LOG.isDebugEnabled()) {
-                    LOG.debug(
+                if (log.isDebugEnabled()) {
+                    log.debug(
                         " Creating new DynaActionForm instance "
                             + "of type '"
                             + config.getType()
                             + "'");
-                    LOG.trace(" --> " + instance);
+                    log.trace(" --> " + instance);
                 }
             } catch (Throwable t) {
-                LOG.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
+                log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                 return (null);
             }
         } else {
             try {
                 instance = (ActionForm) applicationInstance(config.getType());
-                if (LOG.isDebugEnabled()) {
-                    LOG.debug(
+                if (log.isDebugEnabled()) {
+                    log.debug(
                         " Creating new ActionForm instance "
                             + "of type '"
                             + config.getType()
                             + "'");
-                    LOG.trace(" --> " + instance);
+                    log.trace(" --> " + instance);
                 }
             } catch (Throwable t) {
-                LOG.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
+                log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                 return (null);
             }
         }
@@ -877,8 +879,8 @@ public class RequestUtils {
         HashMap properties = new HashMap();
         // Iterator of parameter names
         Enumeration names = null;
-        // Hashtable for multipart values
-        Hashtable multipartElements = null;
+        // Map for multipart parameters
+        Map multipartParameters = null;
 
         String contentType = request.getContentType();
         String method = request.getMethod();
@@ -927,8 +929,9 @@ public class RequestUtils {
                     return;
                 }
                 //retrive form values and put into properties
-                multipartElements = multipartHandler.getAllElements();
-                names = multipartElements.keys();
+                multipartParameters = getAllParametersForMultipartRequest(
+                        request, multipartHandler);
+                names = Collections.enumeration(multipartParameters.keySet());
             }
             request.removeAttribute(Globals.MAPPING_KEY);
         }
@@ -951,7 +954,7 @@ public class RequestUtils {
                 stripped = stripped.substring(0, stripped.length() - suffix.length());
             }
             if (isMultipart) {
-                properties.put(stripped, multipartElements.get(name));
+                properties.put(stripped, multipartParameters.get(name));
             } else {
                 properties.put(stripped, request.getParameterValues(name));
             }
@@ -991,13 +994,13 @@ public class RequestUtils {
             try {
                 multipartHandler = (MultipartRequestHandler) applicationInstance(multipartClass);
             } catch (ClassNotFoundException cnfe) {
-                LOG.error(
+                log.error(
                     "MultipartRequestHandler class \""
                         + multipartClass
                         + "\" in mapping class not found, "
                         + "defaulting to global multipart class");
             } catch (InstantiationException ie) {
-                LOG.error(
+                log.error(
                     "InstantiaionException when instantiating "
                         + "MultipartRequestHandler \""
                         + multipartClass
@@ -1005,7 +1008,7 @@ public class RequestUtils {
                         + "defaulting to global multipart class, exception: "
                         + ie.getMessage());
             } catch (IllegalAccessException iae) {
-                LOG.error(
+                log.error(
                     "IllegalAccessException when instantiating "
                         + "MultipartRequestHandler \""
                         + multipartClass
@@ -1053,6 +1056,44 @@ public class RequestUtils {
         }
 
         return multipartHandler;
+    }
+
+    /**
+     * Create a map containing all of the parameters supplied for a multipart
+     * request, keyed by parameter name. In addition to text and file elements
+     * from the multipart body, query string parameters are included as well.
+     *
+     * @param request The (wrapped) HTTP request whose parameters are to be
+     *                added to the map.
+     * @param multipartHandler The multipart handler used to parse the request.
+     *
+     * @return the map containing all parameters for this multipart request.
+     */
+    private static Map getAllParametersForMultipartRequest(
+            HttpServletRequest request,
+            MultipartRequestHandler multipartHandler) {
+        Map parameters = new HashMap();
+        Enumeration enum;
+
+        Hashtable elements = multipartHandler.getAllElements();
+        enum = elements.keys();
+        while (enum.hasMoreElements()) {
+            String key = (String) enum.nextElement();
+            parameters.put(key, elements.get(key));
+        }
+
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper)request).getRequest();
+            enum = request.getParameterNames();
+            while (enum.hasMoreElements()) {
+                String key = (String) enum.nextElement();
+                parameters.put(key, request.getParameterValues(key));
+            }
+        } else {
+            log.debug("Gathering multipart parameters for unwrapped request");
+        }
+
+        return parameters;
     }
 
     /**
@@ -1455,8 +1496,8 @@ public class RequestUtils {
             matchPath = request.getServletPath();
         }
 
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Get module name for path " + matchPath);
+        if (log.isDebugEnabled()) {
+            log.debug("Get module name for path " + matchPath);
         }
 
         String prefix = ""; // Initialize prefix before we try lookup
@@ -1477,8 +1518,8 @@ public class RequestUtils {
             }
         }
 
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Module name found: " + (prefix.equals("") ? "default" : prefix));
+        if (log.isDebugEnabled()) {
+            log.debug("Module name found: " + (prefix.equals("") ? "default" : prefix));
         }
         return prefix;
     }
@@ -1635,7 +1676,7 @@ public class RequestUtils {
         } catch (JspException e) {
             throw e;
         } catch (Exception e) {
-            LOG.debug(e, e);
+            log.debug(e, e);
         }
 
         return errors;
@@ -1662,11 +1703,11 @@ public class RequestUtils {
             encodedURL = (String) encode.invoke(null, new Object[] { url, "UTF-8" });
 
         } catch (IllegalAccessException e) {
-            LOG.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         } catch (InvocationTargetException e) {
-            LOG.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
+            log.debug("Could not find Java 1.4 encode method. Using deprecated version.", e);
         } catch (NoSuchMethodException e) {
-            LOG.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
+            log.debug("Could not find Java 1.4 encode method.  Using deprecated version.", e);
         }
 
         return encodedURL;

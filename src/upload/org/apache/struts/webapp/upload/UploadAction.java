@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.6 2002/03/11 06:13:13 martinc Exp $
-* $Revision: 1.6 $
-* $Date: 2002/03/11 06:13:13 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.7 2002/12/10 06:03:21 martinc Exp $
+* $Revision: 1.7 $
+* $Date: 2002/12/10 06:03:21 $
 *
 * ====================================================================
 *
@@ -87,7 +87,7 @@ import org.apache.struts.action.ForwardingActionForward;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.6 $ $Date: 2002/03/11 06:13:13 $
+ * @version $Revision: 1.7 $ $Date: 2002/12/10 06:03:21 $
  */
 
 
@@ -113,6 +113,9 @@ public class UploadAction extends Action
 
             //retrieve the text data
             String text = theForm.getTheText();
+
+            //retrieve the query string value
+            String queryValue = theForm.getQueryParam();
 
             //retrieve the file representation
             FormFile file = theForm.getTheFile();
@@ -176,6 +179,7 @@ public class UploadAction extends Action
 
             //place the data into the request for retrieval from display.jsp
             request.setAttribute("text", text);
+            request.setAttribute("queryValue", queryValue);
             request.setAttribute("fileName", fileName);
             request.setAttribute("contentType", contentType);
             request.setAttribute("size", size);

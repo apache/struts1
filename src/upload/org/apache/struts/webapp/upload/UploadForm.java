@@ -1,7 +1,7 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.6 2002/11/16 06:04:29 jmitchell Exp $
-* $Revision: 1.6 $
-* $Date: 2002/11/16 06:04:29 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.7 2002/12/10 06:03:21 martinc Exp $
+* $Revision: 1.7 $
+* $Date: 2002/12/10 06:03:21 $
 *
 * ====================================================================
 *
@@ -80,7 +80,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * that struts uses is org.apache.struts.upload.CommonsMultipartRequestHandler.
  *
  * @author Mike Schachter
- * @version $Revision: 1.6 $ $Date: 2002/11/16 06:04:29 $
+ * @version $Revision: 1.7 $ $Date: 2002/12/10 06:03:21 $
  */
 
 public class UploadForm extends ActionForm
@@ -92,6 +92,11 @@ public class UploadForm extends ActionForm
      * The value of the text the user has sent as form data
      */
     protected String theText;
+
+    /**
+     * The value of the embedded query string parameter
+     */
+    protected String queryParam;
 
     /**
      * Whether or not to write to a file
@@ -122,6 +127,20 @@ public class UploadForm extends ActionForm
      */
     public void setTheText(String theText) {
         this.theText = theText;
+    }
+
+    /**
+     * Retrieve the value of the query string parameter
+     */
+    public String getQueryParam() {
+        return queryParam;
+    }
+
+    /**
+     * Set the value of the query string parameter
+     */
+    public void setQueryParam(String queryParam) {
+        this.queryParam = queryParam;
     }
 
     /**
