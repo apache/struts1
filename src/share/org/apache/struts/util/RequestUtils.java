@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.36 2002/06/16 05:32:50 craigmcc Exp $
- * $Revision: 1.36 $
- * $Date: 2002/06/16 05:32:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.37 2002/06/16 05:39:17 craigmcc Exp $
+ * $Revision: 1.37 $
+ * $Date: 2002/06/16 05:39:17 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.36 $ $Date: 2002/06/16 05:32:50 $
+ * @version $Revision: 1.37 $ $Date: 2002/06/16 05:39:17 $
  */
 
 public class RequestUtils {
@@ -583,7 +583,8 @@ public class RequestUtils {
                 }
             } else {
                 try {
-                    if (Class.forName(config.getType()).isInstance(instance)) {
+                    Class configClass = applicationClass(config.getType());
+                    if (configClass.isAssignableFrom(instance.getClass())) {
                         if (LOG.isDebugEnabled()) {
                             LOG.debug
                                 (" Recycling existing ActionForm instance " +
