@@ -65,27 +65,24 @@
     </p>
 
     <p>
-    The latest <i>beta release</i> of <strong>Struts 1.1</strong> is also
-    available, in the same three distributions. 
-    While not necessarily quite as stable as the latest production release, 
-    the beta release provides an interim release between the nightly builds 
-    and the production release so that developers can start taking advantage 
-    of new functionality without the same degree of risk as using the nightly 
-    builds may entail.
+    A <i>release candidate</i> of <strong>Struts 1.1</strong> is also
+    available, in the same three distributions. As a release candidate, this
+    release is expected to be as stable as a production release, but there may
+    be a few remaining issues which have not been previously encountered.
     </p>
 
     <ul>
     <li><a href="http://www.apache.org/dist/jakarta/struts/binaries/">
-    <b>Struts 1.1 Beta 3 Binary Distribution</b></a></li>
+    <b>Struts 1.1 Release Candidate 1 Binary Distribution</b></a></li>
     <li><a href="http://www.apache.org/dist/jakarta/struts/library/">
-    <b>Struts 1.1 Beta 3 Library Distribution</b></a></li>
+    <b>Struts 1.1 Release Candidate 1 Library Distribution</b></a></li>
     <li><a href="http://www.apache.org/dist/jakarta/struts/source/">
-    <b>Struts 1.1 Beta 3 Source Code Distribution</b></a></li>
+    <b>Struts 1.1 Release Candidate 1 Source Code Distribution</b></a></li>
     </ul>
 
     <p>
     Check the
-    <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html">
+    <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-rc1.html">
     Release Notes</a> for a summary of the changes since the Struts 1.0.2 
     release.
     </p>
