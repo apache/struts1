@@ -160,6 +160,15 @@
       </info>
     </task>
 
+    <task name="Role-Based Action Execution">
+      <info>
+        <p>Add the ability to require the current user to be in a particular
+        security role before they can execute a particular action.
+        </p>
+        [STRUTS-DEV, James W., 01/23/2001]
+      </info>
+    </task>
+
   </task-list>
 
 
