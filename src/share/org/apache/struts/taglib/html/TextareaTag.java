@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.13 2003/03/23 06:10:30 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/03/23 06:10:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/TextareaTag.java,v 1.14 2003/05/18 18:57:13 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/05/18 18:57:13 $
  *
  * ====================================================================
  *
@@ -59,24 +59,19 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
 
-
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.ResponseUtils;
 
+import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/03/23 06:10:30 $
+ * @author David Graham
+ * @version $Revision: 1.14 $ $Date: 2003/05/18 18:57:13 $
  */
-
 public class TextareaTag extends BaseInputTag {
 
 
@@ -107,13 +102,24 @@ public class TextareaTag extends BaseInputTag {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+        
+        ResponseUtils.write(pageContext, this.renderTextareaElement());
 
-        // Create an appropriate "input" element based on our parameters
+        return (EVAL_BODY_TAG);
+    }
+
+    /**
+     * Generate an HTML &lt;textarea&gt; tag.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String renderTextareaElement() throws JspException {
         StringBuffer results = new StringBuffer("<textarea");
+        
         results.append(" name=\"");
         // @since Struts 1.1
         if (indexed) {
-            prepareIndex( results, name );
+            prepareIndex(results, name);
         }
         results.append(property);
         results.append("\"");
@@ -140,47 +146,27 @@ public class TextareaTag extends BaseInputTag {
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(">");
-        if (value != null) {
-            results.append(ResponseUtils.filter(value));
-        } else {
-            Object bean = RequestUtils.lookup(pageContext, name, null);
-            if (bean == null) {
-                throw new JspException
-                    (messages.getMessage("getter.bean", name));
-            }
-            
-            try {
-                String value = BeanUtils.getProperty(bean, property);
-                if (value == null) {
-                    value = "";
-                }
-                results.append(ResponseUtils.filter(value));
-                
-            } catch (IllegalAccessException e) {
-                throw new JspException
-                    (messages.getMessage("getter.access", property, name));
-                    
-            } catch (InvocationTargetException e) {
-                Throwable t = e.getTargetException();
-                throw new JspException
-                    (messages.getMessage("getter.result",
-                                         property, t.toString()));
-                                         
-            } catch (NoSuchMethodException e) {
-                throw new JspException
-                    (messages.getMessage("getter.method", property, name));
-            }
-        }
+        
+        results.append(this.renderData());
+        
         results.append("</textarea>");
-
-        // Print this field to our output writer
-        ResponseUtils.write(pageContext, results.toString());
-
-        // Continue processing this page
-        return (EVAL_BODY_TAG);
-
+        return results.toString();
     }
 
+    /**
+     * Renders the value displayed in the &lt;textarea&gt; tag.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String renderData() throws JspException {
+        String data = this.value;
+
+        if (data == null) {
+            data = this.lookupProperty(this.name, this.property);
+        }
+        
+        return (data == null) ? "" : ResponseUtils.filter(data);
+    }
 
     /**
      * Release any acquired resources.
@@ -191,6 +177,5 @@ public class TextareaTag extends BaseInputTag {
         name = Constants.BEAN_KEY;
 
     }
-
 
 }

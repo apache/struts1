@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.24 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.24 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.25 2003/05/18 18:57:13 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/05/18 18:57:13 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -84,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.24 $ $Date: 2003/03/08 19:23:49 $
+ * @version $Revision: 1.25 $ $Date: 2003/05/18 18:57:13 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -876,6 +877,42 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             return " />";
         } else {
             return ">";
+        }
+    }
+
+    /**
+     * Searches all scopes for the bean and calls BeanUtils.getProperty() with the 
+     * given arguments and converts any exceptions into JspException.
+     * 
+     * @param beanName The name of the object to get the property from.
+     * @param property The name of the property to get.
+     * @return The value of the property.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected String lookupProperty(String beanName, String property)
+        throws JspException {
+            
+        Object bean = RequestUtils.lookup(this.pageContext, beanName, null);
+        if (bean == null) {
+            throw new JspException(messages.getMessage("getter.bean", beanName));
+        }
+
+        try {
+            return BeanUtils.getProperty(bean, property);
+
+        } catch (IllegalAccessException e) {
+            throw new JspException(
+                messages.getMessage("getter.access", property, beanName));
+
+        } catch (InvocationTargetException e) {
+            Throwable t = e.getTargetException();
+            throw new JspException(
+                messages.getMessage("getter.result", property, t.toString()));
+
+        } catch (NoSuchMethodException e) {
+            throw new JspException(
+                messages.getMessage("getter.method", property, beanName));
         }
     }
 

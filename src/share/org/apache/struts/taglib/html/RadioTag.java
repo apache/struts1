@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.22 2003/05/17 03:30:45 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/05/17 03:30:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.23 2003/05/18 18:57:13 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/05/18 18:57:13 $
  *
  * ====================================================================
  *
@@ -61,13 +61,9 @@
 
 package org.apache.struts.taglib.html;
 
-import java.lang.reflect.InvocationTargetException;
-
 import javax.servlet.jsp.JspException;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 /**
@@ -76,7 +72,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author David Graham
- * @version $Revision: 1.22 $ $Date: 2003/05/17 03:30:45 $
+ * @version $Revision: 1.23 $ $Date: 2003/05/18 18:57:13 $
  */
 public class RadioTag extends BaseHandlerTag {
 
@@ -233,12 +229,7 @@ public class RadioTag extends BaseHandlerTag {
             return this.value;
         }
         
-        Object idBean = RequestUtils.lookup(this.pageContext, this.idName, null);
-        if (idBean == null) {
-            throw new JspException(messages.getMessage("getter.bean", this.idName));
-        }
-        
-        String serverValue = this.lookupProperty(idBean, this.value);
+        String serverValue = this.lookupProperty(this.idName, this.value);
         
         return (serverValue == null) ? "" : serverValue;
     }
@@ -250,45 +241,11 @@ public class RadioTag extends BaseHandlerTag {
      * @throws JspException
      */
     private String currentValue() throws JspException {
-        Object bean = RequestUtils.lookup(this.pageContext, name, null);
-        if (bean == null) {
-            throw new JspException(messages.getMessage("getter.bean", name));
-        }
-        
-        String current = this.lookupProperty(bean, this.property);
+        String current = this.lookupProperty(this.name, this.property);
         
         return (current == null) ? "" : current;
     }
     
-    /**
-     * Calls BeanUtils.getProperty with the given arguments and converts any exceptions
-     * into JspException.
-     * @param bean The object to get the property from.
-     * @param property The name of the property to get.
-     * @return The value of the property.
-     * @throws JspException
-     */
-    private String lookupProperty(Object bean, String property)
-        throws JspException {
-            
-        try {
-            return BeanUtils.getProperty(bean, property);
-
-        } catch (IllegalAccessException e) {
-            throw new JspException(
-                messages.getMessage("getter.access", property, name));
-
-        } catch (InvocationTargetException e) {
-            Throwable t = e.getTargetException();
-            throw new JspException(
-                messages.getMessage("getter.result", property, t.toString()));
-
-        } catch (NoSuchMethodException e) {
-            throw new JspException(
-                messages.getMessage("getter.method", property, name));
-        }
-    }
-
     /**
      * Renders an HTML &lt;input type="radio"&gt; element.
      * @param serverValue The data to be used in the tag's <code>value</code> 
