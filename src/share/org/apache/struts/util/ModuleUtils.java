@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.1 2003/08/02 21:03:41 dgraham Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/02 21:03:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.2 2003/08/02 21:04:42 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/02 21:04:42 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.config.ModuleConfig;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ModuleUtils {
 
