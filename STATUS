@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.3 2002/07/07 22:08:53 jholmes Exp $
+$Id: STATUS,v 1.4 2002/07/07 22:14:11 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -17,7 +17,6 @@ Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 10534 <html:link forward> does not add servlet context correctly
-10536 Closing tag is whitespace-sensitive
 
 
 Example Webapps:
