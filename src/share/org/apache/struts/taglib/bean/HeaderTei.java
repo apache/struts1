@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTei.java,v 1.2 2000/08/30 02:15:05 craigmcc Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/HeaderTei.java,v 1.1 2000/08/30 02:15:05 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2000/08/30 02:15:05 $
  *
  * ====================================================================
@@ -63,21 +63,20 @@
 package org.apache.struts.taglib.bean;
 
 
-import javax.servlet.http.Cookie;
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
 import javax.servlet.jsp.tagext.VariableInfo;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>cookie</b>
+ * Implementation of <code>TagExtraInfo</code> for the <b>header/b>
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/30 02:15:05 $
+ * @version $Revision: 1.1 $ $Date: 2000/08/30 02:15:05 $
  */
 
-public final class CookieTei extends TagExtraInfo {
+public final class HeaderTei extends TagExtraInfo {
 
 
     /**
@@ -87,9 +86,9 @@ public final class CookieTei extends TagExtraInfo {
 
         Object type = null;
         if (data.getAttribute("multiple") == null)
-            type = new Cookie("name", "value");
+            type = new String();
         else
-            type = new Cookie[0];
+            type = new String[0];
 	return new VariableInfo[] {
 	  new VariableInfo(data.getAttributeString("id"),
 	                   type.getClass().getName(),

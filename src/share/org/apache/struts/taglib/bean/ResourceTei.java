@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTei.java,v 1.2 2000/08/30 02:15:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/30 02:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTei.java,v 1.1 2000/08/30 02:15:07 craigmcc Exp $
+ * $Revision: 1.1 $
+ * $Date: 2000/08/30 02:15:07 $
  *
  * ====================================================================
  *
@@ -63,21 +63,21 @@
 package org.apache.struts.taglib.bean;
 
 
-import javax.servlet.http.Cookie;
+import java.io.InputStream;
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
 import javax.servlet.jsp.tagext.VariableInfo;
 
 
 /**
- * Implementation of <code>TagExtraInfo</code> for the <b>cookie</b>
+ * Implementation of <code>TagExtraInfo</code> for the <b>resource/b>
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/30 02:15:05 $
+ * @version $Revision: 1.1 $ $Date: 2000/08/30 02:15:07 $
  */
 
-public final class CookieTei extends TagExtraInfo {
+public final class ResourceTei extends TagExtraInfo {
 
 
     /**
@@ -85,14 +85,14 @@ public final class CookieTei extends TagExtraInfo {
      */
     public VariableInfo[] getVariableInfo(TagData data) {
 
-        Object type = null;
-        if (data.getAttribute("multiple") == null)
-            type = new Cookie("name", "value");
+        String type = null;
+        if (data.getAttribute("input") == null)
+            type = "java.lang.String";
         else
-            type = new Cookie[0];
+            type = "java.io.InputStream";
 	return new VariableInfo[] {
 	  new VariableInfo(data.getAttributeString("id"),
-	                   type.getClass().getName(),
+	                   type,
 	                   true,
 	                   VariableInfo.AT_BEGIN)
 	};

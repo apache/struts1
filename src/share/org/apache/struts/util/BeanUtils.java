@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.9 2000/08/14 22:15:45 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/08/14 22:15:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.10 2000/08/30 02:15:09 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/08/30 02:15:09 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.9 $ $Date: 2000/08/14 22:15:45 $
+ * @version $Revision: 1.10 $ $Date: 2000/08/30 02:15:09 $
  */
 
 public final class BeanUtils {
@@ -362,6 +362,79 @@ public final class BeanUtils {
 
 
     /**
+     * Return the value of the specified index of the specified array
+     * property, as a String.  The index is specified by being appended
+     * to the property name in square brackets.  If the specified index
+     * is out of range, <code>null</code> is returned.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name name of the property to be extracted, plus a literal
+     *  integer subscript in square brackets
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static String getIndexedProperty(Object bean, String name)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
+
+	// Parse the property name and subscript expression
+	int left = name.lastIndexOf("[");
+	int right = name.lastIndexOf("]");
+	if ((left < 0) || (right < left) ||
+	    (right < (name.length() - 1)))
+	    return (getScalarProperty(bean, name));
+	int index = -1;
+	try {
+	    index = Integer.parseInt(name.substring(left + 1, right));
+	} catch (NumberFormatException e) {
+	    return (getScalarProperty(bean, name));
+	}
+
+	// Return the value at the specified index
+	return (getIndexedProperty(bean, name, index));
+
+    }
+
+
+
+    /**
+     * Return the value at the specified index of the specified array
+     * property, as a String.  If the specified index is out of range,
+     * <code>null</code> will be returned.
+     *
+     * @param bean Bean whose property is to be extracted
+     * @param name name of the property to be extracted
+     * @param index Index of the property value to be extracted
+     *
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
+     */
+    public static String getIndexedProperty(Object bean, String name,
+					    int index)
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
+
+	if (index < 0)
+	    return (null);
+	String values[] = getArrayProperty(bean, name);
+	if ((values == null) || (index >= values.length))
+	    return (null);
+	else
+	    return (values[index]);
+
+    }
+
+
+    /**
      * Return the PropertyDescriptor for the specified property of the
      * specified bean, if there is one;  Otherwise, return <code>null</code>.
      *
@@ -545,6 +618,9 @@ public final class BeanUtils {
 	while (names.hasMoreElements()) {
 	    String name = (String) names.nextElement();
 	    String stripped = name;
+	    int subscript = stripped.lastIndexOf("[");
+	    if (subscript >= 0)  // Remove subscript expression
+	        stripped = stripped.substring(0, subscript);
 	    if (prefix != null) {
 		if (!stripped.startsWith(prefix))
 		    continue;
