@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.13 2003/01/18 19:48:56 craigmcc Exp $
- * $Revision: 1.13 $
- * $Date: 2003/01/18 19:48:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SaveSubscriptionAction.java,v 1.14 2003/08/16 18:29:09 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/08/16 18:29:09 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,16 +59,15 @@
  *
  */
 
-
 package org.apache.struts.webapp.example;
 
-
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -78,30 +77,24 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.MessageResources;
 
-
 /**
  * Implementation of <strong>Action</strong> that validates and creates or
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2003/01/18 19:48:56 $
+ * @version $Revision: 1.14 $ $Date: 2003/08/16 18:29:09 $
  */
 
 public final class SaveSubscriptionAction extends Action {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The <code>Log</code> instance for this application.
      */
-    private Log log =
-        LogFactory.getLog("org.apache.struts.webapp.Example");
-
+    private Log log = LogFactory.getLog("org.apache.struts.webapp.Example");
 
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -118,86 +111,86 @@ public final class SaveSubscriptionAction extends Action {
      * @exception Exception if the application business logic throws
      *  an exception
      */
-    public ActionForward execute(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws Exception {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
-	// Extract attributes and parameters we will need
-	Locale locale = getLocale(request);
-	MessageResources messages = getResources(request);
-	HttpSession session = request.getSession();
-	SubscriptionForm subform = (SubscriptionForm) form;
-	String action = subform.getAction();
-	if (action == null) {
-	    action = "?";
+        // Extract attributes and parameters we will need
+        MessageResources messages = getResources(request);
+        HttpSession session = request.getSession();
+        SubscriptionForm subform = (SubscriptionForm) form;
+        String action = subform.getAction();
+        if (action == null) {
+            action = "?";
         }
         if (log.isDebugEnabled()) {
-            log.debug("SaveSubscriptionAction:  Processing " + action +
-                      " action");
+            log.debug("SaveSubscriptionAction:  Processing " + action + " action");
         }
 
-	// Is there a currently logged on user?
-	User user = (User) session.getAttribute(Constants.USER_KEY);
-	if (user == null) {
+        // Is there a currently logged on user?
+        User user = (User) session.getAttribute(Constants.USER_KEY);
+        if (user == null) {
             if (log.isTraceEnabled()) {
-                log.trace(" User is not logged on in session "
-                          + session.getId());
+                log.trace(" User is not logged on in session " + session.getId());
             }
-	    return (mapping.findForward("logon"));
+            return (mapping.findForward("logon"));
         }
 
-	// Was this transaction cancelled?
-	if (isCancelled(request)) {
+        // Was this transaction cancelled?
+        if (isCancelled(request)) {
             if (log.isTraceEnabled()) {
-                log.trace(" Transaction '" + action +
-                          "' was cancelled");
+                log.trace(" Transaction '" + action + "' was cancelled");
             }
             session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	    return (mapping.findForward("success"));
-	}
-
-	// Is there a related Subscription object?
-	Subscription subscription =
-	  (Subscription) session.getAttribute(Constants.SUBSCRIPTION_KEY);
-        if ("Create".equals(action)) {
-            subscription =
-                user.createSubscription(request.getParameter("host"));
+            return (mapping.findForward("success"));
         }
-	if (subscription == null) {
-            if (log.isTraceEnabled()) {
-                log.trace(" Missing subscription for user '" +
-                          user.getUsername() + "'");
-            }
-	    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-	                       messages.getMessage("error.noSubscription"));
-	    return (null);
-	}
 
-	// Was this transaction a Delete?
-	if (action.equals("Delete")) {
+        // Is there a related Subscription object?
+        Subscription subscription =
+            (Subscription) session.getAttribute(Constants.SUBSCRIPTION_KEY);
+        if ("Create".equals(action)) {
+            subscription = user.createSubscription(request.getParameter("host"));
+        }
+        if (subscription == null) {
             if (log.isTraceEnabled()) {
-                log.trace(" Deleting mail server '" +
-                          subscription.getHost() + "' for user '" +
-                          user.getUsername() + "'");
+                log.trace(
+                    " Missing subscription for user '" + user.getUsername() + "'");
+            }
+            response.sendError(
+                HttpServletResponse.SC_BAD_REQUEST,
+                messages.getMessage("error.noSubscription"));
+            return (null);
+        }
+
+        // Was this transaction a Delete?
+        if (action.equals("Delete")) {
+            if (log.isTraceEnabled()) {
+                log.trace(
+                    " Deleting mail server '"
+                        + subscription.getHost()
+                        + "' for user '"
+                        + user.getUsername()
+                        + "'");
             }
             user.removeSubscription(subscription);
-	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+            session.removeAttribute(Constants.SUBSCRIPTION_KEY);
             try {
-                UserDatabase database = (UserDatabase)
-                    servlet.getServletContext().
-                    getAttribute(Constants.DATABASE_KEY);
+                UserDatabase database =
+                    (UserDatabase) servlet.getServletContext().getAttribute(
+                        Constants.DATABASE_KEY);
                 database.save();
             } catch (Exception e) {
                 log.error("Database save", e);
             }
-	    return (mapping.findForward("success"));
-	}
+            return (mapping.findForward("success"));
+        }
 
-	// All required validations were done by the form itself
+        // All required validations were done by the form itself
 
-	// Update the persistent subscription information
+        // Update the persistent subscription information
         if (log.isTraceEnabled()) {
             log.trace(" Populating database from form bean");
         }
@@ -215,30 +208,29 @@ public final class SaveSubscriptionAction extends Action {
         }
 
         try {
-            UserDatabase database = (UserDatabase)
-                servlet.getServletContext().
-                getAttribute(Constants.DATABASE_KEY);
+            UserDatabase database =
+                (UserDatabase) servlet.getServletContext().getAttribute(
+                    Constants.DATABASE_KEY);
             database.save();
         } catch (Exception e) {
             log.error("Database save", e);
         }
 
-	// Remove the obsolete form bean and current subscription
-	if (mapping.getAttribute() != null) {
+        // Remove the obsolete form bean and current subscription
+        if (mapping.getAttribute() != null) {
             if ("request".equals(mapping.getScope()))
                 request.removeAttribute(mapping.getAttribute());
             else
                 session.removeAttribute(mapping.getAttribute());
         }
-	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+        session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 
-	// Forward control to the specified success URI
+        // Forward control to the specified success URI
         if (log.isTraceEnabled()) {
             log.trace(" Forwarding to success page");
         }
-	return (mapping.findForward("success"));
+        return (mapping.findForward("success"));
 
     }
-
 
 }

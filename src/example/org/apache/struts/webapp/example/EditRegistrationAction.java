@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.12 2003/07/03 02:54:54 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/03 02:54:54 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.13 2003/08/16 18:29:09 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/08/16 18:29:09 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@
 package org.apache.struts.webapp.example;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -76,7 +75,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
 
 /**
  * Implementation of <strong>Action</strong> that populates an instance of
@@ -84,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/07/03 02:54:54 $
+ * @version $Revision: 1.13 $ $Date: 2003/08/16 18:29:09 $
  */
 public final class EditRegistrationAction extends Action {
 
@@ -120,8 +118,6 @@ public final class EditRegistrationAction extends Action {
         throws Exception {
 
         // Extract attributes we will need
-        Locale locale = getLocale(request);
-        MessageResources messages = getResources(request);
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         if (action == null) {

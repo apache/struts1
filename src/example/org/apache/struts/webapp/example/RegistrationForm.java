@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.7 2003/01/18 19:48:56 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/18 19:48:56 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.8 2003/08/16 18:29:09 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/16 18:29:09 $
  *
  * ====================================================================
  *
@@ -64,9 +64,10 @@ package org.apache.struts.webapp.example;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
+
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.validator.ValidatorForm;
 
 
@@ -90,7 +91,7 @@ import org.apache.struts.validator.ValidatorForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/01/18 19:48:56 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/16 18:29:09 $
  */
 
 public final class RegistrationForm extends ValidatorForm  {
@@ -340,7 +341,7 @@ public final class RegistrationForm extends ValidatorForm  {
         // Only need crossfield validations here
         if (!password.equals(password2)) {
             errors.add("password2",
-                       new ActionError("error.password.match"));
+                       new ActionMessage("error.password.match"));
         }
         return errors;
 

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.7 2003/01/11 03:08:23 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/11 03:08:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.8 2003/08/16 18:29:09 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/08/16 18:29:09 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,46 +59,36 @@
  *
  */
 
-
 package org.apache.struts.webapp.example;
 
-
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
-
 
 /**
  * Implementation of <strong>Action</strong> that processes a
  * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/01/11 03:08:23 $
+ * @version $Revision: 1.8 $ $Date: 2003/08/16 18:29:09 $
  */
-
 public final class LogoffAction extends Action {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The <code>Log</code> instance for this application.
      */
-    private Log log =
-        LogFactory.getLog("org.apache.struts.webapp.Example");
-
+    private Log log = LogFactory.getLog("org.apache.struts.webapp.Example");
 
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
@@ -114,38 +104,39 @@ public final class LogoffAction extends Action {
      *
      * @exception Exception if business logic throws an exception
      */
-    public ActionForward execute(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws Exception {
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
 
-	// Extract attributes we will need
-	Locale locale = getLocale(request);
-	MessageResources messages = getResources(request);
-	HttpSession session = request.getSession();
-	User user = (User) session.getAttribute(Constants.USER_KEY);
+        // Extract attributes we will need
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(Constants.USER_KEY);
 
-	// Process this user logoff
-	if (user != null) {
+        // Process this user logoff
+        if (user != null) {
             if (log.isDebugEnabled()) {
-                log.debug("LogoffAction: User '" + user.getUsername() +
-                          "' logged off in session " + session.getId());
+                log.debug(
+                    "LogoffAction: User '"
+                        + user.getUsername()
+                        + "' logged off in session "
+                        + session.getId());
             }
-	} else {
+        } else {
             if (log.isDebugEnabled()) {
-                log.debug("LogoffActon: User logged off in session " +
-                          session.getId());
+                log.debug(
+                    "LogoffActon: User logged off in session " + session.getId());
             }
-	}
-	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	session.removeAttribute(Constants.USER_KEY);
-	session.invalidate();
+        }
+        session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+        session.removeAttribute(Constants.USER_KEY);
+        session.invalidate();
 
-	// Forward control to the specified success URI
-	return (mapping.findForward("success"));
+        // Forward control to the specified success URI
+        return (mapping.findForward("success"));
 
     }
-
 
 }

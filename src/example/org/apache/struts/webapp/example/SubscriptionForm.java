@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.4 2003/01/11 03:08:23 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/01/11 03:08:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.5 2003/08/16 18:29:09 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/08/16 18:29:09 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,10 +64,11 @@ package org.apache.struts.webapp.example;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
+
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 
 
 /**
@@ -84,7 +85,7 @@ import org.apache.struts.action.ActionMapping;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/01/11 03:08:23 $
+ * @version $Revision: 1.5 $ $Date: 2003/08/16 18:29:09 $
  */
 
 public final class SubscriptionForm extends ActionForm  {
@@ -301,19 +302,19 @@ public final class SubscriptionForm extends ActionForm  {
 
 	if ((host == null) || (host.length() < 1))
             errors.add("host",
-                       new ActionError("error.host.required"));
+                       new ActionMessage("error.host.required"));
 	if ((username == null) || (username.length() < 1))
             errors.add("username",
-                       new ActionError("error.username.required"));
+                       new ActionMessage("error.username.required"));
 	if ((password == null) || (password.length() < 1))
             errors.add("password",
-                       new ActionError("error.password.required"));
+                       new ActionMessage("error.password.required"));
 	if ((type == null) || (type.length() < 1))
             errors.add("type",
-                       new ActionError("error.type.required"));
+                       new ActionMessage("error.type.required"));
 	else if (!"imap".equals(type) && !"pop3".equals(type))
             errors.add("type",
-                       new ActionError("error.type.invalid", type));
+                       new ActionMessage("error.type.invalid", type));
 
 	return (errors);
 
