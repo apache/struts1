@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.24 2001/01/10 01:54:21 craigmcc Exp $
- * $Revision: 1.24 $
- * $Date: 2001/01/10 01:54:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.25 2001/01/28 04:51:13 craigmcc Exp $
+ * $Revision: 1.25 $
+ * $Date: 2001/01/28 04:51:13 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.24 $ $Date: 2001/01/10 01:54:21 $
+ * @version $Revision: 1.25 $ $Date: 2001/01/28 04:51:13 $
  */
 
 public final class BeanUtils {
@@ -164,19 +164,26 @@ public final class BeanUtils {
         if (value == null)
             return (null);
 
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; i < value.length(); i++) {
-            char ch = value.charAt(i);
-            if (ch == '<')
+        char content[] = new char[value.length()];
+        value.getChars(0, value.length(), content, 0);
+        StringBuffer result = new StringBuffer(content.length + 50);
+        for (int i = 0; i < content.length; i++) {
+            switch (content[i]) {
+            case '<':
                 result.append("&lt;");
-            else if (ch == '>')
+                break;
+            case '>':
                 result.append("&gt;");
-            else if (ch == '&')
+                break;
+            case '&':
                 result.append("&amp;");
-            else if (ch == '"')
+                break;
+            case '"':
                 result.append("&quot;");
-            else
-                result.append(ch);
+                break;
+            default:
+                result.append(content[i]);
+            }
         }
         return (result.toString());
 
