@@ -8,8 +8,8 @@ Introduction
 This subproject is an extension of the Struts tag library.  Each JSP custom tag
 in this library is a subclass of an associated tag in the Struts tag library.
 One difference is that this tag library does not use "rtexprvalues", it uses
-the expression evaluation engine in the JSP Standard Tag Library (version 1.0)
-to evaluate attribute values.
+the expression evaluation engine in the Jakarta Taglibs implementation of the
+JSP Standard Tag Library (version 1.0) to evaluate attribute values.
 
 In addition, some of the Struts tags were not ported to this library, as it was
 determined that their functionality was entirely supplied by the JSTL.  These
@@ -30,7 +30,9 @@ that is not covered by the JSTL (1.0) library is mapped into the Struts-EL
 library.  This section reviews which Struts tags are NOT implemented in the
 Struts-EL library, and which JSTL tags provide that feature.
 
-Many of the non-porting decisions were based on the fact that the JSTL expression language itself provides the same functionality.  In those cases, in addition to a possible JSTL tag name, the symbol "EL" will be listed.
+Many of the non-porting decisions were based on the fact that the JSTL
+expression language itself provides the same functionality.  In those cases, in
+addition to a possible JSTL tag name, the symbol "EL" will be listed.
 
 Bean Tag Library Tags NOT Implemented in Struts-EL
 --------------------------------------------------
@@ -57,6 +59,13 @@ lessEqual			c:if, c:when, EL
 lessThan				c:if, c:when, EL
 notEmpty				c:if, c:when, EL
 notEqual				c:if, c:when, EL
+
+(Note that the "iterate" tag was originally ported, even with the presence of
+the "c:forEach" tag, as the "indexed tag" functionality was not supported when
+using "c:forEach" instead of "logic:iterate".  This has since been rectified,
+such that the "indexed tag" functionality checks for being contained in a
+"c:forEach" tag, in addition to the "logic:iterate" tag.  However, the ported
+"iterate" tag has not been removed from Struts-EL, for backward compatibility.)
 
 Html Tag Library Tags NOT Implemented in Struts-EL
 --------------------------------------------------
