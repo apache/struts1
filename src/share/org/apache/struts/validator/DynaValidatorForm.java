@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.3 2002/06/24 16:56:56 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/24 16:56:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.4 2002/06/30 03:28:47 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/30 03:28:47 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
@@ -90,7 +90,7 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/06/24 16:56:56 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/30 03:28:47 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
 */
@@ -99,8 +99,8 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
 
     /**
      * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
+     */
+    private static Log log = LogFactory.getLog(DynaValidatorForm.class);
 
     /**
      * The results returned from the validation performed

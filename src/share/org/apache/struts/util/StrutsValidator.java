@@ -61,7 +61,7 @@ import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.GenericTypeValidator;
 import org.apache.commons.validator.GenericValidator;
@@ -81,8 +81,8 @@ public class StrutsValidator implements Serializable {
 
     /**
      * Commons Logging instance.
-    */
-    private static Log LOG = LogSource.getInstance(StrutsValidator.class.getName());
+     */
+    private static Log LOG = LogFactory.getLog(StrutsValidator.class);
 
     /**
      * <p>Checks if the field isn't null and length of the field is greater than zero not

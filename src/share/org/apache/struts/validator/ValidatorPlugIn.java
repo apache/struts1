@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.4 2002/06/24 16:56:56 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2002/06/24 16:56:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.5 2002/06/30 03:28:47 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/06/30 03:28:47 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.ValidatorResourcesInitializer;
 import org.apache.struts.action.ActionServlet;
@@ -88,7 +88,7 @@ import org.apache.struts.config.ApplicationConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.4 $ $Date: 2002/06/24 16:56:56 $
+ * @version $Revision: 1.5 $ $Date: 2002/06/30 03:28:47 $
  * @since Struts 1.1
 */
 public class ValidatorPlugIn implements PlugIn {
@@ -96,7 +96,7 @@ public class ValidatorPlugIn implements PlugIn {
     /**
      * Commons Logging instance.
     */
-    private Log log = LogSource.getInstance(this.getClass().getName());
+    private static Log log = LogFactory.getLog(ValidatorPlugIn.class);
 
     /**
      * The application configuration for our owning sub-application.

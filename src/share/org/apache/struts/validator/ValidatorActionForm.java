@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.3 2002/06/24 16:56:56 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/24 16:56:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.4 2002/06/30 03:28:47 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/06/30 03:28:47 $
  *
  * ====================================================================
  *
@@ -66,7 +66,7 @@ import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogSource;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
@@ -87,7 +87,7 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.3 $ $Date: 2002/06/24 16:56:56 $
+ * @version $Revision: 1.4 $ $Date: 2002/06/30 03:28:47 $
  * @since Struts 1.1
 */
 
@@ -95,8 +95,8 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
 
     /**
      * Commons Logging instance.
-    */
-    private Log log = LogSource.getInstance(this.getClass().getName());
+     */
+    private static Log log = LogFactory.getLog(ValidatorActionForm.class);
 
     /**
      * Validate the properties that have been set from this HTTP request,
