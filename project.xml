@@ -7,9 +7,10 @@
   <organization>
     <name>Apache Software Foundation</name>
     <url>http://jakarta.apache.org/</url>
-    <logo>http://jakarta.apache.org/images/jakarta-logo-blue.gif</logo>
+    <logo>http://jakarta.apache.org/images/jakarta-logo.gif</logo>
   </organization>
-  <logo>/images/struts-blue-1.gif</logo>
+  <!-- <logo>/images/struts-blue.gif</logo>-->
+  <logo>http://jakarta.apache.org/struts/images/struts.gif</logo>
   <inceptionYear>2000</inceptionYear>
 
   <package>org.apache.struts</package>
@@ -20,22 +21,22 @@
   <gumpRepositoryId>jakarta</gumpRepositoryId>
 
   <description>
-The core of the Struts framework is a flexible control layer based on standard
-technologies like Java Servlets, JavaBeans, ResourceBundles, 
-and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
-Struts encourages application architectures based on the Model 2 approach, a variation
-of the classic  Model-View-Controller (MVC) design paradigm.
-
-Struts provides its own Controller component and integrates with other technologies
-to provide the Model and the View. For the Model, Struts can interact with any standard
-data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge.
-For the View, Struts works well with JavaServer Pages, including JSTL and JSF, 
-as well as Velocity Templates, XSLT, and other presentation systems.
-
-The Struts framework provides the invisible underpinnings every professional 
-web application needs to survive. Struts helps you create an extensible 
-development environment for your application, based on published standards
-and proven design patterns.
+	The core of the Struts framework is a flexible control layer based on standard
+	technologies like Java Servlets, JavaBeans, ResourceBundles, 
+	and Extensible Markup Language (XML), as well as various Jakarta Commons packages.
+	Struts encourages application architectures based on the Model 2 approach, a variation
+	of the classic  Model-View-Controller (MVC) design paradigm.
+	
+	Struts provides its own Controller component and integrates with other technologies
+	to provide the Model and the View. For the Model, Struts can interact with any standard
+	data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge.
+	For the View, Struts works well with JavaServer Pages, including JSTL and JSF, 
+	as well as Velocity Templates, XSLT, and other presentation systems.
+	
+	The Struts framework provides the invisible underpinnings every professional 
+	web application needs to survive. Struts helps you create an extensible 
+	development environment for your application, based on published standards
+	and proven design patterns.
   </description>
 
   <url>http://jakarta.apache.org/</url>
@@ -368,7 +369,7 @@ and proven design patterns.
     <report>maven-tasklist-plugin</report>
     <report>maven-pmd-plugin</report>
     <report>maven-simian-plugin</report>
-    <report>maven-faq-plugin</report>
+    <!-- <report>maven-faq-plugin</report> -->
   </reports>
 
 </project>
