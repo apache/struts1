@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Extension-Name: FactoryService for ServiceManager
+Specification-Title: ServiceManager
+Specification-Vendor: Apache Software Foundation
+Specification-Version: 1.0
+Implementation-Title: FactoryService
+Implementation-Vendor: Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Implementation-Version: 0.1
+
