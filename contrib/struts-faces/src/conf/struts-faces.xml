@@ -177,6 +177,16 @@
     </attribute>
 
     <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        Component of the component for which to render errors.  If not
+        specified, only global messages are rendered.
+      </description>
+    </attribute>
+
+    <attribute>
       <name>rendered</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>

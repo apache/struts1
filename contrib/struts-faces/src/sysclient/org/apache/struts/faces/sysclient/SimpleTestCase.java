@@ -36,15 +36,12 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.commons.httpclient.Cookie;
-import org.apache.commons.httpclient.HttpState;
-
 
 /**
  * <p>Test case for a simple Struts-Faces page that is statically examined
  * to ensure that all of the expected elements have been rendered correctly.</p>
  *
- * @version $Revision: 1.2 $ $Date: 2004/08/07 04:53:35 $
+ * @version $Revision: 1.3 $ $Date: 2004/08/08 03:28:35 $
  */
 
 public class SimpleTestCase extends AbstractTestCase {

@@ -39,7 +39,7 @@ import org.apache.struts.util.MessageResources;
  * <p><code>Renderer</code> implementation for the <code>errors</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/07/26 19:34:49 $
+ * @version $Revision: 1.9 $ $Date: 2004/08/08 03:28:35 $
  */
 
 public class ErrorsRenderer extends AbstractRenderer {
@@ -98,9 +98,18 @@ public class ErrorsRenderer extends AbstractRenderer {
         // Set up to render the error messages appropriately
         boolean headerDone = false;
         ResponseWriter writer = context.getResponseWriter();
+        String id = component.getId();
+        String property = (String) component.getAttributes().get("property");
+        if (id != null) {
+            writer.startElement("span", component);
+            if (id != null) {
+                writer.writeAttribute("id", component.getClientId(context),
+                                      "id");
+            }
+        }
 
         // Render any JavaServer Faces messages
-        Iterator messages = context.getMessages();
+        Iterator messages = context.getMessages(property);
         while (messages.hasNext()) {
             FacesMessage message = (FacesMessage) messages.next();
             if (!headerDone) {
@@ -124,7 +133,8 @@ public class ErrorsRenderer extends AbstractRenderer {
             context.getExternalContext().getRequestMap().get
             (Globals.ERROR_KEY);
         if (errors != null) {
-            Iterator reports = errors.get();
+            Iterator reports = errors.get
+                ((property == null) ? ActionErrors.GLOBAL_ERROR : property);
             while (reports.hasNext()) {
                 ActionMessage report = (ActionMessage) reports.next();
                 if (!headerDone) {
@@ -151,6 +161,9 @@ public class ErrorsRenderer extends AbstractRenderer {
         // Append the list footer if needed
         if (headerDone && footerPresent) {
             writer.write(resources.getMessage(locale, "errors.footer"));
+        }
+        if (id != null) {
+            writer.endElement("span");
         }
 
     }

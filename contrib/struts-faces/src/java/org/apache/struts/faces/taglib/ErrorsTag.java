@@ -17,6 +17,7 @@
 package org.apache.struts.faces.taglib;
 
 
+import javax.faces.component.UIComponent;
 
 
 /**
@@ -24,13 +25,23 @@ package org.apache.struts.faces.taglib;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.8 $ $Date: 2004/07/08 01:11:28 $
+ * @version $Revision: 1.9 $ $Date: 2004/08/08 03:28:35 $
  */
 
 public class ErrorsTag extends AbstractFacesTag {
 
 
     // ---------------------------------------------------------- Tag Attributes
+
+
+    /**
+     * <p>The property name for which to report errors.</p>
+     */
+    protected String property = null;
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
 
 
     // ---------------------------------------------------------- Public Methods
@@ -53,6 +64,33 @@ public class ErrorsTag extends AbstractFacesTag {
     public String getRendererType() {
 
         return ("org.apache.struts.faces.Errors");
+
+    }
+
+
+    /**
+     * <p>Release any variables allocated during use of this tag instance.</p>
+     */
+    public void release() {
+
+        super.release();
+        this.property = null;
+
+    }
+
+
+    // -------------------------------------------------- UIComponentTag Methods
+
+
+    /**
+     * <p>Override attributes set on this tag instance.</p>
+     *
+     * @param component Component whose attributes should be overridden
+     */
+    protected void setProperties(UIComponent component) {
+
+        super.setProperties(component);
+        setStringAttribute(component, "property", property);
 
     }
 

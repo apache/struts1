@@ -113,6 +113,9 @@ public class ViewHandlerImpl extends ViewHandler {
     public void renderView(FacesContext context, UIViewRoot view)
         throws IOException, FacesException {
 
+        if (log.isDebugEnabled()) {
+            log.debug("renderView(" + view.getViewId() + ")");
+        }
         ExternalContext econtext = context.getExternalContext();
         if (econtext.getSession(false) != null) {
             Locale locale = (Locale)

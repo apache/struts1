@@ -56,6 +56,12 @@ public class ErrorsComponent extends UIOutput {
     private String bundle = null;
 
 
+    /**
+     * <p>Property name of the property to report errors for.</p>
+     */
+    private String property = null;
+
+
     // ---------------------------------------------------- Component Properties
 
 
@@ -96,6 +102,33 @@ public class ErrorsComponent extends UIOutput {
     }
 
 
+    /**
+     * <p>Return the property name for which to report errors.</p>
+     */
+    public String getProperty() {
+
+        ValueBinding vb = getValueBinding("property");
+        if (vb != null) {
+            return (String) vb.getValue(getFacesContext());
+        } else {
+            return property;
+        }
+
+    }
+
+
+    /**
+     * <p>Set the property name for which to report errors.</p>
+     *
+     * @param property The new property name
+     */
+    public void setProperty(String property) {
+
+        this.property = property;
+
+    }
+
+
     // ---------------------------------------------------- StateManager Methods
 
 
@@ -110,6 +143,7 @@ public class ErrorsComponent extends UIOutput {
         Object values[] = (Object[]) state;
         super.restoreState(context, values[0]);
         bundle = (String) values[1];
+        property = (String) values[2];
 
     }
 
@@ -121,9 +155,10 @@ public class ErrorsComponent extends UIOutput {
      */
     public Object saveState(FacesContext context) {
 
-        Object values[] = new Object[2];
+        Object values[] = new Object[3];
         values[0] = super.saveState(context);
         values[1] = bundle;
+        values[2] = property;
         return values;
 
     }

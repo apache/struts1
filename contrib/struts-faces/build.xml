@@ -504,19 +504,11 @@
     </copy>
 
     <!-- Copy required configuration files -->
-<!--
-    <copy        todir="${build.home}/webapps/systest/WEB-INF">
-      <fileset     dir="${build.home}/conf">
-        <include  name="*.tld"/>
-      </fileset>
-    </copy>
     <copy        todir="${build.home}/webapps/systest/WEB-INF">
       <fileset     dir="${struts.home}/lib">
-        <include  name="*.tld"/>
         <include  name="valid*.xml"/>
       </fileset>
     </copy>
--->
 
     <!-- Copy required library JAR files -->
     <mkdir         dir="${build.home}/webapps/systest/WEB-INF/lib"/>

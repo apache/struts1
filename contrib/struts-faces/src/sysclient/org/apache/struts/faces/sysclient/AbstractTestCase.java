@@ -23,7 +23,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlHead;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -41,7 +43,7 @@ import org.apache.commons.httpclient.HttpState;
 /**
  * <p>Abstract base class for system integration tests based on HtmlUnit.</p>
  *
- * @version $Revision: 1.1 $ $Date: 2004/08/03 07:01:08 $
+ * @version $Revision: 1.2 $ $Date: 2004/08/08 03:28:35 $
  */
 
 public abstract class AbstractTestCase extends TestCase {
@@ -234,6 +236,24 @@ public abstract class AbstractTestCase extends TestCase {
         */
         this.page = page;
         return (page);
+
+    }
+
+
+    /**
+     * <p>Submit the current page, using the specified component, and retrieve
+     * the subsequent page, saving a reference so that other utility methods
+     * may be used to retrieve information from it.</p>
+     *
+     * @param submit Submit component to click
+     *
+     * @exception IOException if an input/output error occurs
+     */
+    protected HtmlPage submit(HtmlSubmitInput submit) throws IOException {
+
+        HtmlPage page = (HtmlPage) submit.click();
+        this.page = page;
+        return page;
 
     }
 
