@@ -446,7 +446,7 @@ maintain, among other benefits.</i></p>
 &gt;</code></p>
 </blockquote>
 <p>Otherwise, the page just contains the top portion -- a blank data-entry form for creating the user's registration.</p>
-<h4><font face="Arial"><a name="logic:interate">logic:interate</a></font></h4>
+<h4><font face="Arial"><a name="logic:iterate">logic:iterate</a></font></h4>
 <p>Beside making the usual conditional tests, you can also use logic tags to
 forward control to other actions, to redirect control to another path, and to
 iterate over collections. The registration page includes a good example of using the
@@ -598,7 +598,7 @@ Action form (called &quot;subform&quot; in the code)&nbsp; is created and popula
 link them together with a user ID. The Example application implements a different model, a hierarchical database. Here a &quot;table&quot; of subscriptions is stored within each user object, something like the way a filing system stores documents within
 folders.&nbsp;</p>
 <p>In addition to the usual getters and setters, the user object also has two methods for working with subscription objects. findSubscription takes a hostname and returns the subscription object for that host. getSubscriptions returns an array of all the
-subscriptions for the user (ready-made for the interate tag!). Besides the fields needed to manage the SubscriptionForm data, the object also maintains a runtime link to its user object.</p>
+subscriptions for the user (ready-made for the iterate tag!). Besides the fields needed to manage the SubscriptionForm data, the object also maintains a runtime link to its user object.</p>
 <blockquote>
   <p><i>When the application shuts down, the database servlets stores the user objects and their subscriptions in XML. When the application is initialized again, the database servlet (courtesy of the Struts Digester) loads the objects back into memory,
   restoring the runtime links. Of course a production system would want a more permanent storage solution, so all the changes won't be lost if the application ever terminates abnormally.&nbsp;</i></p>
