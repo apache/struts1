@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.8 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.8 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.1 2000/09/20 04:20:21 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2000/09/20 04:20:21 $
  *
  * ====================================================================
@@ -63,21 +63,95 @@
 package org.apache.struts.action;
 
 
-import java.util.Hashtable;
-
-
 /**
- * A minimal implementation of <strong>ActionMapping</strong> that contains
- * only the required properties.  Additional properties can be provided by
- * subclassing this class and adding new "getter" and "setter" methods.
- *
- * @deprecated Now that ActionMapping is a class, you should use it intead
+ * An <strong>ActionFormBean</strong> is the definition of a form bean that
+ * is loaded from a <code>&lt;form-bean&gt;</code> element in the Struts
+ * configuration file.  It can be subclassed as necessary to add additional
+ * properties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.1 $ $Date: 2000/09/20 04:20:21 $
  */
 
-public class ActionMappingBase extends ActionMapping {
+public class ActionFormBean {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The bean name of this action form bean.
+     */
+    private String name = null;
+
+
+    /**
+     * The Java class name of this action form bean.
+     */
+    private String type = null;
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the bean name of this action form bean.
+     */
+    public String getName() {
+
+	return (this.name);
+
+    }
+
+
+    /**
+     * Set the bean name of this action form bean.
+     *
+     * @param name The new bean name
+     */
+    public void setName(String name) {
+
+	this.name = name;
+
+    }
+
+
+    /**
+     * Return the Java class name of this action form bean.
+     */
+    public String getType() {
+
+	return (this.type);
+
+    }
+
+
+    /**
+     * Set the Java class name of this action form bean.
+     *
+     * @param type The new Java class name
+     */
+    public void setType(String type) {
+
+	this.type = type;
+
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Return a string representation of this object.
+     */
+    public String toString() {
+
+        StringBuffer sb = new StringBuffer("ActionFormBean[");
+        sb.append(this.name);
+        sb.append(']');
+        return (sb.toString());
+
+    }
 
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.2 2000/06/30 01:19:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/30 01:19:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.3 2000/09/20 04:20:21 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/09/20 04:20:21 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import java.util.Vector;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/30 01:19:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/09/20 04:20:21 $
  */
 
 public class ActionMappings {
@@ -85,7 +85,68 @@ public class ActionMappings {
     /**
      * The collection of ActionMapping instances, keyed by request path.
      */
-    private Hashtable mappings = new Hashtable();
+    protected Hashtable mappings = new Hashtable();
+
+
+    /**
+     * The ActionServlet instance of our owning application.
+     */
+    protected ActionServlet servlet = null;
+
+
+    /**
+     * The ActionMapping that should handle unknown request paths, if any.
+     */
+    protected ActionMapping unknown = null;
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the Action that should handle unknown request paths, if any.
+     */
+    public ActionMapping getUnknown() {
+
+        if (unknown != null)
+            return (unknown);
+
+        String paths[] = findMappings();
+        for (int i = 0; i < paths.length; i++) {
+            ActionMapping mapping = findMapping(paths[i]);
+            if (mapping.getUnknown()) {
+                unknown = mapping;
+                return (mapping);
+            }
+        }
+
+
+        return (null);
+
+    }
+
+
+    /**
+     * Return the <code>ActionServlet</code> instance of our owning
+     * application.
+     */
+    public ActionServlet getServlet() {
+
+        return (this.servlet);
+
+    }
+
+
+    /**
+     * Set the <code>ActionServlet</code> instance of our owning application.
+     *
+     * @param servlet The new servlet instance
+     */
+    public void setServlet(ActionServlet servlet) {
+
+        this.servlet = servlet;
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -99,6 +160,7 @@ public class ActionMappings {
     public void addMapping(ActionMapping mapping) {
 
 	mappings.put(mapping.getPath(), mapping);
+        mapping.setMappings(this);
 
     }
 
@@ -141,6 +203,7 @@ public class ActionMappings {
     public void removeMapping(ActionMapping mapping) {
 
 	mappings.remove(mapping.getPath());
+        mapping.setMappings(null);
 
     }
 

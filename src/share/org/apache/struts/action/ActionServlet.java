@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.19 2000/08/26 19:52:28 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2000/08/26 19:52:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.20 2000/09/20 04:20:22 craigmcc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2000/09/20 04:20:22 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.action;
 
 import java.io.InputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -147,7 +148,7 @@ import org.xml.sax.SAXException;
  *     containing our configuration information.  [/WEB-INF/action.xml]
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged.  [0]
- * <li><strong>digester</strong> - The debugging detail level for the Digester
+ * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize in <code>initMapping()</code>, which logs to System.out
  *     instead of the servlet log.  [0]
  * <li><strong>forward</strong> - The Java class name of the ActionForward
@@ -164,16 +165,16 @@ import org.xml.sax.SAXException;
  *         <code>true</code>.
  *     </ul>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
- *     implementation to use [org.apache.struts.action.ActionMappingBase].
+ *     implementation to use [org.apache.struts.action.ActionMapping].
  *     Two convenient classes you may wish to use are:
  *     <ul>
  *     <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
- *         of <code>org.apache.struts.action.ActionMappingBase</code> that
+ *         of <code>org.apache.struts.action.ActionMapping</code> that
  *         defaults the <code>formScope</code> property to "request".
  *     <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
- *         of <code>org.apache.struts.action.ActionMappingBase</code> that
+ *         of <code>org.apache.struts.action.ActionMapping</code> that
  *         defaults the <code>formScope</code> property to "session".  (Same
- *         as the ActionMappingBase default value).
+ *         as the ActionMapping default value).
  *     </ul>
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
@@ -182,10 +183,12 @@ import org.xml.sax.SAXException;
  *     resources to return <code>null</code> if an unknown message key is used.
  *     Otherwise, an error message including the offending message key will
  *     be returned.  [true]
+ * <li><strong>validate</strong> - Are we using the new configuration file
+ *     format?  [false]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2000/08/26 19:52:28 $
+ * @version $Revision: 1.20 $ $Date: 2000/09/20 04:20:22 $
  */
 
 public class ActionServlet
@@ -211,6 +214,19 @@ public class ActionServlet
      * The debugging detail level for this servlet.
      */
     protected int debug = 0;
+
+
+    /**
+     * The Java class name of the ActionFormBean implementation class to use.
+     */
+    protected String formBeanClass =
+        "org.apache.struts.action.ActionFormBean";
+
+
+    /**
+     * The global ActionFormBean collection for this controller.
+     */
+    protected ActionFormBeans formBeans = new ActionFormBeans();
 
 
     /**
@@ -242,7 +258,7 @@ public class ActionServlet
      * The Java class name of our ActionMapping implementation class.
      */
     protected String mappingClass =
-	"org.apache.struts.action.ActionMappingBase";
+	"org.apache.struts.action.ActionMapping";
 
 
     /**
@@ -255,6 +271,23 @@ public class ActionServlet
      * Include the no-caching headers in our response?
      */
     protected boolean nocache = false;
+
+
+    /**
+     * The set of public identifiers, and corresponding resource names, for
+     * the versions of the configuration file DTD that we know about.  There
+     * <strong>MUST</strong> be an even number of Strings in this list!
+     */
+    protected String registrations[] = {
+        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN",
+        "/org/apache/struts/resources/struts-config_1_0.dtd",
+    };
+
+
+    /**
+     * Are we using the new configuration file format?
+     */
+    protected boolean validate = false;
 
 
     // ---------------------------------------------------- HttpServlet Methods
@@ -338,11 +371,97 @@ public class ActionServlet
 
 
     /**
+     * Register a form bean definition to the set configured for this servlet.
+     *
+     * @param formBean The form bean definition to be added
+     */
+    public void addFormBean(ActionFormBean formBean) {
+
+        formBeans.addFormBean(formBean);
+
+    }
+
+
+    /**
+     * Register a logical forwarding to the set configured for this servlet.
+     *
+     * @param forward The forwarding to be added
+     */
+    public void addForward(ActionForward forward) {
+
+	forwards.addForward(forward);
+
+    }
+
+
+    /**
+     * Register a mapping to the set configured for this servlet.
+     *
+     * @param mapping The mapping to be added
+     */
+    public void addMapping(ActionMapping mapping) {
+
+	mappings.addMapping(mapping);
+
+    }
+
+
+    /**
+     * Return the form bean definition associated with the specified
+     * logical name, if any; otherwise return <code>null</code>.
+     *
+     * @param name Logical name of the requested form bean definition
+     */
+    public ActionFormBean findFormBean(String name) {
+
+        return (formBeans.findFormBean(name));
+
+    }
+
+
+    /**
+     * Return the forwarding associated with the specified logical name,
+     * if any; otherwise return <code>null</code>.
+     *
+     * @param name Logical name of the requested forwarding
+     */
+    public ActionForward findForward(String name) {
+
+	return (forwards.findForward(name));
+
+    }
+
+
+    /**
+     * Return the mapping associated with the specified request path, if any;
+     * otherwise return <code>null</code>.
+     *
+     * @param path Request path for which a mapping is requested
+     */
+    public ActionMapping findMapping(String path) {
+
+	return (mappings.findMapping(path));
+
+    }
+
+
+    /**
      * Return the debugging detail level for this servlet.
      */
     public int getDebug() {
 
 	return (this.debug);
+
+    }
+
+
+    /**
+     * Return the Java class name of the class used to instantiate
+     * <code>ActionFormBean</code> objects.
+     */
+    public String getFormBeanClass() {
+
+        return (this.formBeanClass);
 
     }
 
@@ -380,51 +499,14 @@ public class ActionServlet
 
 
     /**
-     * Register a logical forwarding to the set configured for this servlet.
+     * Deregister a form bean definition from the set configured for
+     * this servlet.
      *
-     * @param forward The forwarding to be added
+     * @param formBean The form bean definition to be deregistered
      */
-    public void addForward(ActionForward forward) {
+    public void removeFormBean(ActionFormBean formBean) {
 
-	forwards.addForward(forward);
-
-    }
-
-
-    /**
-     * Register a mapping to the set configured for this servlet.
-     *
-     * @param mapping The mapping to be added
-     */
-    public void addMapping(ActionMapping mapping) {
-
-	mappings.addMapping(mapping);
-
-    }
-
-
-    /**
-     * Return the forwarding associated with the specified logical name,
-     * if any; otherwise return <code>null</code>.
-     *
-     * @param name Logical name of the requested forwarding
-     */
-    public ActionForward findForward(String name) {
-
-	return (forwards.findForward(name));
-
-    }
-
-
-    /**
-     * Return the mapping associated with the specified request path, if any;
-     * otherwise return <code>null</code>.
-     *
-     * @param path Request path for which a mapping is requested
-     */
-    public ActionMapping findMapping(String path) {
-
-	return (mappings.findMapping(path));
+        formBeans.removeFormBean(formBean);
 
     }
 
@@ -449,6 +531,45 @@ public class ActionServlet
     public void removeMapping(ActionMapping mapping) {
 
 	mappings.removeMapping(mapping);
+
+    }
+
+
+    /**
+     * Set the Java class name of the class used to instantiate
+     * <code>ActionFormBean</code> objects.
+     *
+     * @param formBeanClass The new class name
+     */
+    public void setFormBeanClass(String formBeanClass) {
+
+        this.formBeanClass = formBeanClass;
+
+    }
+
+
+    /**
+     * Set the Java class name of the class used to instantiate
+     * <code>ActionForward</code> objects.
+     *
+     * @param forwardClass The new class name
+     */
+    public void setForwardClass(String forwardClass) {
+
+        this.forwardClass = forwardClass;
+
+    }
+
+
+    /**
+     * Set the Java class name of the class used to instantiate
+     * <code>ActionMapping</code> objects.
+     *
+     * @param mappingClass The new class name
+     */
+    public void setMappingClass(String mappingClass) {
+
+        this.mappingClass = mappingClass;
 
     }
 
@@ -527,6 +648,120 @@ public class ActionServlet
 
 
     /**
+     * Construct and return a digester that uses the new configuration
+     * file format.
+     */
+    protected Digester initDigester(int detail) {
+
+	// Initialize a new Digester instance
+	Digester digester = new Digester();
+	digester.push(this);
+	digester.setDebug(detail);
+	digester.setValidating(true);
+
+	// Register our local copy of the DTDs that we can find
+        for (int i = 0; i < registrations.length; i += 2) {
+            URL url = this.getClass().getResource(registrations[i+1]);
+            if (url != null)
+                digester.register(registrations[i], url.toString());
+        }
+
+	// Configure the processing rules
+
+        // FIXME "struts-config/action-mappings" type attribute
+
+        digester.addObjectCreate("struts-config/action-mappings/action",
+                                 mappingClass, "className");
+        digester.addSetProperties("struts-config/action-mappings/action");
+        digester.addSetNext("struts-config/action-mappings/action",
+                            "addMapping",
+                            "org.apache.struts.action.ActionMapping");
+
+        digester.addObjectCreate
+            ("struts-config/action-mappings/action/forward",
+             forwardClass, "className");
+        digester.addSetProperties
+            ("struts-config/action-mappings/action/forward");
+        digester.addSetNext("struts-config/action-mappings/action/forward",
+                            "addForward",
+                            "org.apache.struts.action.ActionForward");
+
+        digester.addSetProperty
+            ("struts-config/action-mappings/action/forward/set-property",
+             "property", "value");
+
+        digester.addSetProperty
+            ("struts-config/action-mappings/action/set-property",
+             "property", "value");
+
+        // FIXME "struts-config/form-beans" type attribute
+
+        digester.addObjectCreate("struts-config/form-beans/form-bean",
+                                 formBeanClass, "className");
+        digester.addSetProperties("struts-config/form-beans/form-bean");
+        digester.addSetNext("struts-config/form-beans/form-bean",
+                            "addFormBean",
+                            "org.apache.struts.action.ActionFormBean");
+
+        // FIXME "struts-config/global-forwards" type attribute
+
+        digester.addObjectCreate("struts-config/global-forwards/forward",
+                                 forwardClass, "className");
+        digester.addSetProperties("struts-config/global-forwards/forward");
+        digester.addSetNext("struts-config/global-forwards/forward",
+                            "addForward",
+                            "org.apache.struts.action.ActionForward");
+
+        digester.addSetProperty
+            ("struts-config/global-forwards/forward/set-property",
+             "property", "value");
+
+	return (digester);
+
+    }
+
+
+    /**
+     * Construct and return a digester that uses the old configuration
+     * file format.
+     */
+    protected Digester initDigesterOld(int detail) {
+
+	// Initialize a new Digester instance
+	Digester digester = new Digester();
+	digester.push(this);
+	digester.setDebug(detail);
+	digester.setValidating(false);
+
+	// Configure the processing rules
+	digester.addObjectCreate("action-mappings/action", mappingClass,
+				 "className");
+	digester.addSetProperties("action-mappings/action");
+	digester.addSetNext("action-mappings/action", "addMapping",
+			    "org.apache.struts.action.ActionMapping");
+	digester.addObjectCreate("action-mappings/action/forward",
+				 forwardClass, "className");
+	digester.addSetProperties("action-mappings/action/forward");
+	digester.addSetNext("action-mappings/action/forward", "addForward",
+			    "org.apache.struts.action.ActionForward");
+	digester.addSetProperty("action-mappings/action/forward/property",
+				"name", "value");
+	digester.addSetProperty("action-mappings/action/property",
+				"name", "value");
+	digester.addObjectCreate("action-mappings/forward",
+				 forwardClass, "className");
+	digester.addSetProperties("action-mappings/forward");
+	digester.addSetNext("action-mappings/forward", "addForward",
+			    "org.apache.struts.action.ActionForward");
+	digester.addSetProperty("action-mappings/forward/property",
+				"name", "value");
+
+	return (digester);
+
+    }
+
+
+    /**
      * Initialize our internal MessageResources bundle.
      *
      * @exception ServletException if we cannot initialize these resources
@@ -555,13 +790,26 @@ public class ActionServlet
 
 	String value = null;
 
+        // Link our mappings collection to this servlet instance
+        mappings.setServlet(this);
+
 	// Initialize the debugging detail level we will use
 	int detail;
 	try {
-	    value = getServletConfig().getInitParameter("digester");
+	    value = getServletConfig().getInitParameter("detail");
 	    detail = Integer.parseInt(value);
 	} catch (Throwable t) {
 	    detail = 0;
+	}
+
+	// Initialize the format selector flag
+	value = getServletConfig().getInitParameter("validate");
+	if (value != null) {
+	    if (value.equalsIgnoreCase("true") ||
+	        value.equalsIgnoreCase("yes"))
+	        validate = true;
+	    else
+	        validate = false;
 	}
 
 	// Initialize the name of our ActionForward implementation class
@@ -588,31 +836,11 @@ public class ActionServlet
 		(internal.getMessage("configMissing", config));
 
 	// Build a digester to process our configuration resource
-	Digester digester = new Digester();
-	digester.push(this);
-	digester.setDebug(detail);
-	digester.setValidating(false);
-	digester.addObjectCreate("action-mappings/action", mappingClass,
-				 "className");
-	digester.addSetProperties("action-mappings/action");
-	digester.addSetNext("action-mappings/action", "addMapping",
-			    "org.apache.struts.action.ActionMapping");
-	digester.addObjectCreate("action-mappings/action/forward",
-				 forwardClass, "className");
-	digester.addSetProperties("action-mappings/action/forward");
-	digester.addSetNext("action-mappings/action/forward", "addForward",
-			    "org.apache.struts.action.ActionForward");
-	digester.addSetProperty("action-mappings/action/forward/property",
-				"name", "value");
-	digester.addSetProperty("action-mappings/action/property",
-				"name", "value");
-	digester.addObjectCreate("action-mappings/forward",
-				 forwardClass, "className");
-	digester.addSetProperties("action-mappings/forward");
-	digester.addSetNext("action-mappings/forward", "addForward",
-			    "org.apache.struts.action.ActionForward");
-	digester.addSetProperty("action-mappings/forward/property",
-				"name", "value");
+	Digester digester = null;
+	if (validate)
+	    digester = initDigester(detail);
+	else
+	    digester = initDigesterOld(detail);
 
 	// Parse the input stream to configure our mappings
 	try {
@@ -623,12 +851,20 @@ public class ActionServlet
 		(internal.getMessage("configParse", config), e);
 	}
 
-	// Connect all of our defined mappings to the global forwards
-	String paths[] = mappings.findMappings();
-	for (int i = 0; i < paths.length; i++) {
-	    ActionMapping mapping = mappings.findMapping(paths[i]);
-	    mapping.setForwards(forwards);
-	}
+        // Transitional support for old format
+        if (!validate) {
+            String paths[] = mappings.findMappings();
+            for (int i = 0; i < paths.length; i++) {
+                String name =
+                    mappings.findMapping(paths[i]).getName();
+                if (name == null)
+                    continue;
+                ActionFormBean formBean = new ActionFormBean();
+                formBean.setName(name);
+                formBean.setType(name);
+                formBeans.addFormBean(formBean);
+            }
+        }
 
     }
 
@@ -647,7 +883,8 @@ public class ActionServlet
 	    "yes".equalsIgnoreCase(value))
 	    nocache = true;
 
-	// Publish our ActionForwards and ActionMappings collections
+	// Publish our internal collections as necessary
+        getServletContext().setAttribute(Action.FORM_BEANS_KEY, formBeans);
 	getServletContext().setAttribute(Action.FORWARDS_KEY, forwards);
 	getServletContext().setAttribute(Action.MAPPINGS_KEY, mappings);
 
@@ -815,7 +1052,10 @@ public class ActionServlet
      */
     protected ActionMapping processMapping(String path) {
 
-	return (findMapping(path));
+        ActionMapping mapping = findMapping(path);
+        if (mapping == null)
+            mapping = mappings.getUnknown();
+        return (mapping);
 
     }
 

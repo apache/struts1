@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.6 2000/07/17 00:46:38 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/07/17 00:46:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.7 2000/09/20 04:20:21 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/09/20 04:20:21 $
  *
  * ====================================================================
  *
@@ -71,39 +71,158 @@ package org.apache.struts.action;
  * class itself, enabling access to this information directly.
  * <p>
  * An <code>ActionMapping</code> has the following minimal set of properties.
- * Additional properties can be added by an implementation, simply by
+ * Additional properties can be added by a subclass, simply by
  * providing appropriate public "getter" and "setter" methods.
  * <ul>
- * <li><strong>actionClass</strong> - Fully qualified Java class name of the
+ * <li><em>actionClass</em> - Fully qualified Java class name of the
  *     <code>Action</code> implementation class used by this mapping.  This
- *     property is required.
- * <li><strong>formAttribute</strong> - Name of the session attribute under
+ *     property is required.  <em>DEPRECATED - use <code>type</code>
+ *     instead</em>.
+ * <li><strong>attribute</strong> - Name of the request-scope or
+ *     session-scope attribute under which our form bean is accessed, if it
+ *     is other than the bean's specified name.  Replaces the old
+ *     <code>formAttribute</code> property.
+ * <li><em>formAttribute</em> - Name of the session attribute under
  *     which an <code>ActionForm</code> bean is created and/or updated for
  *     this mapping.  If not present, no <code>ActionForm</code> bean will
- *     be maintained automatically.
- * <li><strong>formClass</strong> - Fully qualified Java class name of the
+ *     be maintained automatically.  <em>DEPRECATED - use
+ *     <code>attribute</code> instead.</em>
+ * <li><em>formClass</em> - Fully qualified Java class name of the
  *     <code>ActionForm</code> implementation class used by this mapping
- *     (if any).
- * <li><strong>formPrefix</strong> - Prefix used to match request parameter
+ *     (if any).  <em>DEPRECATED - use the <code>name</code> attribute
+ *     to look up the corresponding ActionFormBean information</em>.
+ * <li><em>formPrefix</em> - Prefix used to match request parameter
  *     names when populating the properties of our <code>ActionForm</code>
- *     bean (if any).
- * <li><strong>formScope</strong> - Scope within which the form bean associated
+ *     bean (if any).  <em>DEPRECATED - use <code>prefix</code>
+ *     instead</em>.
+ * <li><em>formScope</em> - Scope within which the form bean associated
  *     with this mapping will be created or looked for.  Valid values are
- *     "request" or "session".
- * <li><strong>formSuffix</strong> - Suffix used to match request parameter
+ *     "request" or "session".  <em>DEPRECATED - use <code>scope</code>
+ *     instead</em>.
+ * <li><em>formSuffix</em> - Suffix used to match request parameter
  *     names when populating the properties of our <code>ActionForm</code>
- *     bean (if any).
+ *     bean (if any).  <em>DEPRECATED - use <code>suffix</code>
+ *     instead</em>.
+ * <li><strong>forwards</strong> - The set of ActionForwards locally
+ *     associated with this mapping.
+ * <li><strong>input</strong> - Context-relative path of the input form
+ *     to which control should be returned if a validation error is
+ *     encountered.  Replaces the old <code>inputForm</code> property.
+ * <em>inputForm</em> - Context-relative path of the input form
+ *     to which control should be returned if a validation error is
+ *     encountered.  <em>DEPRECATED - use <code>input</code> instead</em>.
+ * <li><strong>mappings</strong> - The <code>ActionMappings</code>
+ *     collection of which we are a part.
+ * <li><strong>name</strong> - Name of the form bean, if any, associated
+ *     with this action.
  * <li><strong>path</strong> - Request URI path used to select this mapping.
  *     If extension mapping is used for the controller servlet, the extension
  *     will be stripped before comparisions against this value are made.
- *     This parameter is required.
+ * <li><strong>prefix</strong> - Prefix used to match request parameter
+ *     names to form bean property names, if any.  Replaces the old
+ *     <code>formPrefix</code> property.
+ * <li><strong>scope</strong> - Identifier of the scope ("request" or
+ *     "session" within which the form bean, if any, associated with this
+ *     action will be created.  Replaces the old <code>formScope</code>
+ *     attribute.
+ * <li><strong>suffix</strong> - Suffix used to match request parameter
+ *     names when populating the properties of our <code>ActionForm</code>
+ *     bean (if any).  Replaces the old <code>formSuffix</code> property.
+ * <li><strong>type</strong> - Fully qualified Java class name of the
+ *     <code>Action</code> implementation class used by this mapping.
+ *     Replaces the old <code>actionClass</code> property.
+ * <li><strong>unknown</strong> - Set to <code>true</code> if this action
+ *     should be configured as the default for this application, to handle
+ *     all requests not handled by another action.  Only one action can be
+ *     defined as a default within a single application.
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/07/17 00:46:38 $
+ * @version $Revision: 1.7 $ $Date: 2000/09/20 04:20:21 $
  */
 
-public interface ActionMapping {
+public class ActionMapping {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The name of the request-scope or session-scope attribute under which
+     * our form bean, if any, will be created.
+     */
+    protected String attribute = null;
+
+
+    /**
+     * The set of ActionForward objects associated with this mapping.
+     */
+    protected ActionForwards forwards = new ActionForwards();
+
+
+    /**
+     * The context-relative path of the input form to which control should
+     * be returned if a validation error is encountered.
+     */
+    protected String input = null;
+
+
+    /**
+     * The initialized <code>Action</code> instance for this mapping.
+     */
+    protected Action instance = null;
+
+
+    /**
+     * The <code>ActionMappings</code> collection of which we are a part.
+     */
+    protected ActionMappings mappings = null;
+
+
+    /**
+     * The name of the form bean, if any, associated with this action.
+     */
+    protected String name = null;
+
+
+    /**
+     * The context-relative path of the submitted request, starting with a
+     * "/" character, and without the filename extension (if any), that is
+     * mapped to this action.
+     */
+    protected String path = null;
+
+
+    /**
+     * The parameter name prefix used to select parameters for this action.
+     */
+    protected String prefix = null;
+
+
+    /**
+     * The identifier of the scope ("request" or "session") under which the
+     * form bean associated with this mapping, if any, should be created.
+     */
+    protected String scope = "session";
+
+
+    /**
+     * The parameter name suffix used to select parameters for this action.
+     */
+    protected String suffix = null;
+
+
+    /**
+     * The fully qualified Java class name of the <code>Action</code>
+     * implementation class to be used to process requests for this mapping.
+     */
+    protected String type = null;
+
+
+    /**
+     * Should this action be the default for this application?
+     */
+    protected boolean unknown = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -111,120 +230,288 @@ public interface ActionMapping {
 
     /**
      * Return the action class name for this mapping.
+     *
+     * @deprecated Use getType() instead
      */
-    public String getActionClass();
+    public String getActionClass() {
+
+        return (getType());
+
+    }
 
 
     /**
      * Set the action class name for this mapping.
      *
      * @param actionClass The new action class name
+     *
+     * @deprecated Use setType(String) instead
      */
-    public void setActionClass(String actionClass);
+    public void setActionClass(String actionClass) {
+
+        setType(actionClass);
+
+    }
+
+
+    /**
+     * Return the attribute name for our form bean.
+     */
+    public String getAttribute() {
+
+        if (this.attribute == null)
+            return (getName());
+        else
+            return (this.attribute);
+
+    }
+
+
+    /**
+     * Set the attribute name for our form bean.
+     *
+     * @param attribute The new attribute name
+     */
+    public void setAttribute(String attribute) {
+
+        this.attribute = attribute;
+
+    }
 
 
     /**
      * Return the form session attribute key for this mapping, if any.
+     *
+     * @deprecated Use getAttribute() instead
      */
-    public String getFormAttribute();
+    public String getFormAttribute() {
+
+        return (getAttribute());
+
+    }
 
 
     /**
      * Set the form session attribute key for this mapping.
      *
      * @param formAttribute The new form session attribute key
+     *
+     * @deprecated Use setAttribute(String) instead
      */
-    public void setFormAttribute(String formAttribute);
+    public void setFormAttribute(String formAttribute) {
+
+        setAttribute(formAttribute);
+
+    }
 
 
     /**
      * Return the form class name for this mapping.
+     *
+     * @deprecated Use the bean name to look up the corresponding
+     *  ActionFormBean instead
      */
-    public String getFormClass();
+    public String getFormClass() {
+
+        return (getName());
+
+    }
 
 
     /**
      * Set the form class name for this mapping.
      *
      * @param formClass The new form class name
+     *
+     * @deprecated Modify the corresponding ActionFormBean instead
      */
-    public void setFormClass(String formClass);
+    public void setFormClass(String formClass) {
+
+        setName(formClass);
+
+    }
 
 
     /**
      * Return the form parameter name prefix for this mapping.
+     *
+     * @deprecated Use getPrefix() instead
      */
-    public String getFormPrefix();
+    public String getFormPrefix() {
+
+        return (getPrefix());
+
+    }
 
 
     /**
      * Set the form parameter name prefix for this mapping.
      *
      * @param formPrefix The new form prefix
+     *
+     * @deprecated Use setPrefix(String) instead
      */
-    public void setFormPrefix(String formPrefix);
+    public void setFormPrefix(String formPrefix) {
+
+        setPrefix(formPrefix);
+
+    }
 
 
     /**
      * Return the scope within which our form bean will be accessed.
+     *
+     * @deprecated Use getScope() instead
      */
-    public String getFormScope();
+    public String getFormScope() {
+
+        return (getScope());
+
+    }
 
 
     /**
      * Set the scope within which our form bean will be accessed.
      *
      * @param formScope The new scope ("request" or "session")
+     *
+     * @deprecated Use setScope(String) instead
      */
-    public void setFormScope(String formScope);
+    public void setFormScope(String formScope) {
+
+        setScope(formScope);
+
+    }
 
 
     /**
      * Return the form parameter name suffix for this mapping.
+     *
+     * @deprecated Use getSuffix() instead
      */
-    public String getFormSuffix();
+    public String getFormSuffix() {
+
+        return (getSuffix());
+
+    }
 
 
     /**
      * Set the form parameter name suffix for this mapping.
      *
      * @param formSuffix The new form suffix
-     */
-    public void setFormSuffix(String formSuffix);
-
-
-    /**
-     * Return the global forwards collection associated with this mapping.
-     */
-    public ActionForwards getForwards();
-
-
-    /**
-     * Set the global forwards collection associated with this mapping.
      *
-     * @param forwards The associated forwards collection
+     * @deprecated Use setSuffix(String) instead
      */
-    public void setForwards(ActionForwards forwards);
+    public void setFormSuffix(String formSuffix) {
+
+        setSuffix(formSuffix);
+
+    }
+
+
+    /**
+     * Return the input form path for this mapping.
+     */
+    public String getInput() {
+
+        return (this.input);
+
+    }
+
+
+    /**
+     * Set the input form path for this mapping.
+     *
+     * @param input The new input form path
+     */
+    public void setInput(String input) {
+
+        this.input = input;
+
+    }
 
 
     /**
      * Return the input form URI for this mapping.
+     *
+     * @deprecated Use getInput() instead
      */
-    public String getInputForm();
+    public String getInputForm() {
+
+        return (getInput());
+
+    }
 
 
     /**
      * Set the input form URI for this mapping.
      *
      * @param inputForm The new input form URI
+     *
+     * @deprecated Use setInput(String) instead
      */
-    public void setInputForm(String inputForm);
+    public void setInputForm(String inputForm) {
+
+        setInput(inputForm);
+
+    }
+
+
+    /**
+     * Return the <code>ActionMappings</code> collection of which
+     * we are a part.
+     */
+    public ActionMappings getMappings() {
+
+        return (this.mappings);
+
+    }
+
+
+    /**
+     * Set the <code>ActionMappings</code> collection of which
+     * we are a part.
+     *
+     * @param mappings The new ActionMappings collection
+     */
+    public void setMappings(ActionMappings mappings) {
+
+        this.mappings = mappings;
+
+    }
+
+
+    /**
+     * Return the name of the form bean for this mapping.
+     */
+    public String getName() {
+
+        return (this.name);
+
+    }
+
+
+    /**
+     * Set the name of the form bean for this mapping.
+     *
+     * @param name The new name
+     */
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
 
 
     /**
      * Return the request URI path used to select this mapping.
      */
-    public String getPath();
+    public String getPath() {
+
+        return (this.path);
+
+    }
 
 
     /**
@@ -232,7 +519,121 @@ public interface ActionMapping {
      *
      * @param path The new request URI path
      */
-    public void setPath(String path);
+    public void setPath(String path) {
+
+        this.path = path;
+
+    }
+
+
+    /**
+     * Return the parameter name prefix for this mapping.
+     */
+    public String getPrefix() {
+
+        return (this.prefix);
+
+    }
+
+
+    /**
+     * Set the parameter name prefix for this mapping.
+     *
+     * @param prefix The new parameter name prefix
+     */
+    public void setPrefix(String prefix) {
+
+        this.prefix = prefix;
+
+    }
+
+
+    /**
+     * Return the attribute scope for this mapping.
+     */
+    public String getScope() {
+
+        return (this.scope);
+
+    }
+
+
+    /**
+     * Set the attribute scope for this mapping.
+     *
+     * @param scope The new attribute scope
+     */
+    public void setScope(String scope) {
+
+        this.scope = scope;
+
+    }
+
+
+    /**
+     * Return the parameter name suffix for this mapping.
+     */
+    public String getSuffix() {
+
+        return (this.suffix);
+
+    }
+
+
+    /**
+     * Set the parameter name suffix for this mapping.
+     *
+     * @param suffix The new parameter name suffix
+     */
+    public void setSuffix(String suffix) {
+
+        this.suffix = suffix;
+
+    }
+
+
+    /**
+     * Return the fully qualified Action class name.
+     */
+    public String getType() {
+
+        return (this.type);
+
+    }
+
+
+    /**
+     * Set the fully qualified Action class name.
+     *
+     * @param type The new class name
+     */
+    public void setType(String type) {
+
+        this.type = type;
+
+    }
+
+
+    /**
+     * Return the unknown flag for this mapping.
+     */
+    public boolean getUnknown() {
+
+        return (this.unknown);
+
+    }
+
+
+    /**
+     * Set the unknown flag for this mapping.
+     *
+     * @param unknown The new unknown flag
+     */
+    public void setUnknown(boolean unknown) {
+
+        this.unknown = unknown;
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -243,21 +644,57 @@ public interface ActionMapping {
      *
      * @param forward The ActionForward to be added
      */
-    public void addForward(ActionForward forward);
+    public void addForward(ActionForward forward) {
+
+        forwards.addForward(forward);
+
+    }
 
 
     /**
      * Return an initialized instance of our Action class for this mapping.
      * If instantiation fails for any reason, <code>null</code> is returned.
      */
-    public Action createActionInstance();
+    public Action createActionInstance() {
+
+        // Return the already instantiated instance (if any)
+        if (instance != null)
+            return (instance);
+
+        // Instantiate and return a new instance of the Action class
+        try {
+            Class clazz = Class.forName(type);
+            instance = (Action) clazz.newInstance();
+        } catch (Throwable t) {
+            instance = null;
+        }
+
+        return (instance);
+
+    }
 
 
     /**
      * Create and return an initialized instance of our form class.  If
      * instantiation fails for any reason, <code>null</code> is returned.
      */
-    public ActionForm createFormInstance();
+    public ActionForm createFormInstance() {
+
+        // Look up the Java class name to be instantiated
+        ActionFormBean formBean =
+            getMappings().getServlet().findFormBean(getName());
+        if (formBean == null)
+            return (null);
+
+        // Instantiate and return an instance of this class
+        try {
+            Class clazz = Class.forName(formBean.getType());
+            return ((ActionForm) clazz.newInstance());
+        } catch (Throwable t) {
+            return (null);
+        }
+
+    }
 
 
     /**
@@ -269,7 +706,17 @@ public interface ActionMapping {
      *
      * @param name Name of the forward entry to be returned
      */
-    public ActionForward findForward(String name);
+    public ActionForward findForward(String name) {
+
+        // First, check our locally defined forwards
+        ActionForward forward = forwards.findForward(name);
+        if (forward != null)
+            return (forward);
+
+        // Second, check the globally defined forwards
+        return (getMappings().getServlet().findForward(name));
+
+    }
 
 
     /**
@@ -277,7 +724,11 @@ public interface ActionMapping {
      * mapping.  If there are no such forwards, a zero-length array
      * is returned.
      */
-    public String[] findForwards();
+    public String[] findForwards() {
+
+        return (forwards.findForwards());
+
+    }
 
 
     /**
@@ -285,7 +736,21 @@ public interface ActionMapping {
      *
      * @param forward The ActionForward to be removed
      */
-    public void removeForward(ActionForward forward);
+    public void removeForward(ActionForward forward) {
+
+        forwards.removeForward(forward);
+
+    }
+
+
+    /**
+     * Return a String version of this mapping.
+     */
+    public String toString() {
+
+	return ("ActionMapping[" + path + "]");
+
+    }
 
 
 }

@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.8 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.8 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.1 2000/09/20 04:20:21 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2000/09/20 04:20:21 $
  *
  * ====================================================================
@@ -63,21 +63,86 @@
 package org.apache.struts.action;
 
 
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Vector;
 
 
 /**
- * A minimal implementation of <strong>ActionMapping</strong> that contains
- * only the required properties.  Additional properties can be provided by
- * subclassing this class and adding new "getter" and "setter" methods.
- *
- * @deprecated Now that ActionMapping is a class, you should use it intead
+ * Encapsulate a collection of ActionFormBean objects that can be
+ * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.1 $ $Date: 2000/09/20 04:20:21 $
  */
 
-public class ActionMappingBase extends ActionMapping {
+public class ActionFormBeans {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The collection of ActionFormBean instances, keyed by name.
+     */
+    private Hashtable formBeans = new Hashtable();
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Register a form bean to the set configured for this servlet.
+     *
+     * @param formBean The formBean to be added
+     */
+    public void addFormBean(ActionFormBean formBean) {
+
+	formBeans.put(formBean.getName(), formBean);
+
+    }
+
+
+    /**
+     * Return the formBean associated with the specified logical name,
+     * if any; otherwise return <code>null</code>.
+     *
+     * @param name Logical name of the desired form bean
+     */
+    public ActionFormBean findFormBean(String name) {
+
+	return ((ActionFormBean) formBeans.get(name));
+
+    }
+
+
+    /**
+     * Return the set of names for form beans defined in this collection.
+     * If there are no such formBeans, a zero-length array is returned.
+     */
+    public String[] findFormBeans() {
+
+	Vector names = new Vector();
+	Enumeration keys = formBeans.keys();
+	while (keys.hasMoreElements())
+	    names.addElement(keys.nextElement());
+	String results[] = new String[names.size()];
+	names.copyInto(results);
+	return (results);
+
+    }
+
+
+    /**
+     * Deregister a formBean from the set configured for this servlet.
+     *
+     * @param formBean The formBean to be deregistered
+     */
+    public void removeFormBean(ActionFormBean formBean) {
+
+	formBeans.remove(formBean.getName());
+
+    }
 
 
 }

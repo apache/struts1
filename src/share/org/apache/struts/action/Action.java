@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.3 2000/06/30 00:46:35 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/30 00:46:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.4 2000/09/20 04:20:21 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/09/20 04:20:21 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import javax.servlet.http.HttpServletResponse;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/30 00:46:35 $
+ * @version $Revision: 1.4 $ $Date: 2000/09/20 04:20:21 $
  */
 
 public interface Action {
@@ -108,6 +108,15 @@ public interface Action {
      */
     public static final String ERROR_KEY =
       "org.apache.struts.action.ERROR";
+
+
+    /**
+     * The context attributes key under which our ActionFormBeans collection
+     * are normally stored, unless overridden when initializing our
+     * ActionServlet.
+     */
+    public static final String FORM_BEANS_KEY =
+        "org.apache.struts.action.FORM_BEANS";
 
 
     /**
