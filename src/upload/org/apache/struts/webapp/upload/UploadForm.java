@@ -1,13 +1,13 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.7 2002/12/10 06:03:21 martinc Exp $
-* $Revision: 1.7 $
-* $Date: 2002/12/10 06:03:21 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadForm.java,v 1.8 2003/02/28 02:18:23 dgraham Exp $
+* $Revision: 1.8 $
+* $Date: 2003/02/28 02:18:23 $
 *
 * ====================================================================
 *
 * The Apache Software License, Version 1.1
 *
-* Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+* Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
 * reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -80,7 +80,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * that struts uses is org.apache.struts.upload.CommonsMultipartRequestHandler.
  *
  * @author Mike Schachter
- * @version $Revision: 1.7 $ $Date: 2002/12/10 06:03:21 $
+ * @version $Revision: 1.8 $ $Date: 2003/02/28 02:18:23 $
  */
 
 public class UploadForm extends ActionForm

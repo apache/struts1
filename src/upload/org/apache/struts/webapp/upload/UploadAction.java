@@ -1,13 +1,13 @@
 /*
-* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.7 2002/12/10 06:03:21 martinc Exp $
-* $Revision: 1.7 $
-* $Date: 2002/12/10 06:03:21 $
+* $Header: /home/cvs/jakarta-struts/src/upload/org/apache/struts/webapp/upload/Attic/UploadAction.java,v 1.8 2003/02/28 02:18:23 dgraham Exp $
+* $Revision: 1.8 $
+* $Date: 2003/02/28 02:18:23 $
 *
 * ====================================================================
 *
 * The Apache Software License, Version 1.1
 *
-* Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+* Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
 * reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -62,22 +62,21 @@
 package org.apache.struts.webapp.upload;
 
 
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.upload.FormFile;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ForwardingActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
 
 
@@ -87,7 +86,7 @@ import org.apache.struts.action.ForwardingActionForward;
  * page to display them
  *
  * @author Mike Schachter
- * @version $Revision: 1.7 $ $Date: 2002/12/10 06:03:21 $
+ * @version $Revision: 1.8 $ $Date: 2003/02/28 02:18:23 $
  */
 
 
