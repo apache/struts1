@@ -40,7 +40,110 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
 
 <section name="News" href="news">
 
-<h3><a name="20020822">22 Aug 2002</a>Easy Struts Editor 0.5.1 for Eclipse</h3>
+<!--
+<h3><a name=""></a></h3>
+<p><a href=""></a></p>
+<hr size="1" noshade=""/>
+-->
+
+<h3><a name="20020830"></a>30 Aug 2002 - Struts book moves ahead</h3>
+<p>The publication date for Developing Web Applications with Struts by Ted Husted, Cedric Dumoulin,
+George Franciscus, and David Winterfeldt (Foreword by Craig R. McClanahan) has been advanced to October 2002.
+Details about the book are available at Ted Husted's Struts site
+</p>
+<p>
+<a href="http://husted.com/struts/book.html">http://husted.com/struts/book.html</a>
+</p>
+<p>
+Several other Struts books are slated for release. Links are available on the Struts Resource page
+</p>
+<p>
+<a href="http://jakarta.apache.org/struts/resources/books.html">http://jakarta.apache.org/struts/resources/books.html</a>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020831.4"></a>30 Aug 2002 - MockObjects 0.4 released</h3>
+<p>Unit testing is a hot topic among Struts developers. <a href="ttp://strutstestcase.sourceforge.net/">StrutsTestCase</a> provides a slick mock object for testing Struts Actions with JUnit (or Cactus). The MockObjects projects provides a base API for creating tests for the rest of the objects in your Java application. </p>
+<p><a href="">http://mockobjects.sourceforge.net</a></p>
+<p>
+Developers working with the MockObjects project include Struts committers Vincent Massol and Ted Husted.
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020830.2"></a>30 Aug 2002 - Artimus 1.0 beta 2 available</h3>
+<p>Artimus is a sample Struts application for posting news articles that uses JDBC, Lucene, and the Scaffold toolkit.</p>
+<p>Artimus may be downloaded from the Struts Example Application site on SourceForge </p>
+<p><a href="http://sourceforge.net/projects/struts">http://sourceforge.net/projects/struts</a></p>
+<p>Other developers with example applications that they would like to donate to the community are invited to join the Struts Sourceforge site.</p>
+<hr size="1" noshade=""/>
+ 
+<h3><a name="20020830.1"></a>30 Aug 2002 - Struts Console v2.1.1</h3>
+<p>Struts Console version 2.1.1 is now available.
+</p>
+<p>
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+</p>
+<p>
+Struts Console version 2.1 is now available.
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+</p>
+<p>
+Download Now:<br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-2.1.zip">http://www.jamesholmes.com/struts/struts-console-2.1.zip</a><br/>
+  -- OR --<br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz">http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz</a><br/>
+http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz
+</p>
+<p>
+Struts Console is FREE software.
+</p>
+<p>
+This release is a bug fix release and does not
+introduce any new functionality.
+</p>
+<p>
+Changes with Struts Console v2.1.1
+</p>
+<p>
+  *) Fixed bug where "role" attributes weren't being
+     loaded on the Definition panel.
+</p>
+<p>
+  *) Fixed bug where "initial" attribute of the
+     &lt;form-property> element couldn't be changed once
+     it had been set.
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020830.3"></a>28 Aug 2002 - Easy Struts 0.5.2 for Eclipse</h3>
+<p>
+Easy Struts 0.5.2 available (Only Eclipse plugin), I make a little demo for you, this demo require
+Flash 5 and show you some fonctionnality from Easy Struts Editor in Eclipse. Enjoy ;)
+</p>
+<p>
+Demo : http://easystruts.sourceforge.net/editor.html (4Mo, be patient)
+</p>
+<p>
+- [NEW] Add error and warning controls on struts-config.xml editor<br/>
+- [NEW] Possibility to generate classes from struts-config.xml
+        With this feature, you can "generate" an Struts application
+        skeleton with only a struts-config.xml file.<br/>       
+- [NEW] Add view of java classes in Struts config tree.<br/>
+- [FIX] Some bug fix, more info on http://easystruts.sourceforge.net/CHANGES.TXT
+</p>
+<p>  
+<a href="http://easystruts.sourceforge.net">http://easystruts.sourceforge.net</a><br/>
+<a href="http://sourceforge.net/projects/easystruts">http://easystruts.sourceforge.net</a>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020826"></a>26 Aug 2002 - Struts Workflow Extension Package V0.9.1</h3>
+<p>The Bugfix-Version 0.9.1 of the Struts Workflow Extension Package is now available.</p>
+<p>It fixes a bug in the test application's web.xml file, some users have stumbled over.</p>
+<p>Also the web site <a href="http://www.livinglogic.de/Struts/">http://www.livinglogic.de/Struts/</a> has been updated to describe how to use the extension together with Struts 1.1.</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020822"></a>22 Aug 2002 - Easy Struts Editor 0.5.1 for Eclipse</h3>
 <p>
 Re-Hello, I fix some bugs from Easy Struts 0.5. Here the changes:<br/>
   - [FIX] When element removed from Editor UI, elements wasn't removed in xml source.<br/>
@@ -142,6 +245,14 @@ the visual flow of an app, and also features round-trip engineering.
 </p>
 <hr size="1" noshade=""/>
 
+<h3><a name="20020804"></a>O'Reilly Struts book available for ordering</h3>
+<p>The O'Reilly Struts book by Chuck Cavaness, "Programming Jakarta Struts" is 
+now available for pre-ordering from Amazon.
+</p>
+<p>
+http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/
+</p>
+<hr size="1" noshade=""/>
 
 <h3><a name="20020803"></a>3 Aug 2002 - Starting Struts User Group in New Jersey</h3>
 <p>Is anyone interested in joining?  Looks like we have a group of 3-5 people
@@ -154,7 +265,6 @@ speaker.</p>
 <a href="mailto:john@eagleinfosystems.com">john at eagleinfosystems.com</a>
 </p>
 <hr size="1" noshade=""/>
-
 
 <h3><a name="20020728"></a>28 Jul 2002 - New Howto available on basicportal</h3>
 <p>The install instructions for <a href="http://basicportal.sourceforge.net">basicportal</a> now include a
