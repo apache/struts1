@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.47 2002/07/31 01:44:06 jholmes Exp $
+$Id: STATUS,v 1.48 2002/08/01 00:31:33 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -17,6 +17,7 @@ Controller:
 Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
+11330 FormTag permits to define name and type of a form bean.
 
 
 Documentation:
@@ -58,6 +59,7 @@ Validator Framework:
 10349 Validator: date validation does not allow blank input?
 10432 DynaValidatorActionForm does not validate data
 10584 Not all validation files are read in Validation PlugIn
+11339 Validator DTD incorrect for msg, args, etc.
 
 
 Web Site:
