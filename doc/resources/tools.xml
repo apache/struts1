@@ -41,20 +41,20 @@ your business logic and deploy. Also available as an Eclipse plugin.
 <p><a href="http://www.strecl.com/">STRECL</a> - A set of tools offering easier utilization of Struts framework, two-way editing of XML files, code generation using wizards (JDBC DAO), JSP editor and many other functions. Oct 16: JSP editor (beta version) is released.</p>
 <p><a href="http://www.improve-technologies.com/alpha/struts-config-editor/">Improve Struts Configuration File Editor</a> - struts-config graphical view</p>
 <p><a href="http://easystruts.sourceforge.net/"><b>Easy Struts</b></a> by Emmanuel Boudrant - The aim of this project is to provide a bunch of development tools, for Eclipse v2.0 and Borland JBuilder 5-7, in order to facilitate the development of a Struts application. A GUI editor for struts-config.xml files is available in Eclipse 2.0 plugin.</p>
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, Borland JBuilder, and Oracle JDeveloper 9i. </p>
+<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
 <p><a href="http://sourceforge.net/projects/tinman">Tinman Project:</a> Essential Java Documentation</p>
 <p><a href="http://www.sysdeo.com/eclipse/tomcatPlugin.html">Tomcat Launcher Plugin</a> by Sysdeo</p>	
 <p><a href="http://eclipse-plugins.2y.net/eclipse/">More plugins for Eclipse ...</a></p>
 </section>
 
 <section name="IDE Plugins (other)">
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, Borland JBuilder, and Oracle JDeveloper 9i. </p>
+<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
 <p><a href="http://jakarta.apache.org/taglibs/doc/ultradev4-doc/intro.html"><b>UltraDev 4.0 Custom Tag Library Extension</b></a> - Hosted by Jakarta Taglibs.</p>
 </section>
 
 <section name="Visual Tools (GUIs)">
 <p><a href="http://www.objectventure.com/products/objectassembler.html"><b>ObjectAssembler 2.5 Pro</b></a> by ObjectVentur - supports the development of Struts applications, a popular open source web application framework that is part of Apache's Jakarta Project. The same visual development and code synchronization available with J2EE components are available for Struts components.</p>
-<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Sun Forte for Java, NetBeans, Borland JBuilder, and Oracle JDeveloper 9i. </p>
+<p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
 <p><a href="http://www.solanasoft.com"><b>JForms:</b></a> a visual tool for Struts-based Web forms.</p>
 <p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. - A visual tool for Struts. </p>
 <p><a href="http://rivernorth.sourceforge.net"><b>Struts Builder</b></a> by RiverNorth - an Opensource tool (GPL license) originally developed for internal use to aid in development of Struts-based web applications (1.1 style).</p>
