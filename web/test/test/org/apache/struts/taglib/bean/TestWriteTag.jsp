@@ -18,7 +18,15 @@
 	<bean:write name="REQUEST_KEY" formatKey="default.format"/>
 </logic:equal>
 
+<logic:equal name="runTest" value="testWriteTagNameFormatKeyDefaultBundleDouble">
+	<bean:write name="REQUEST_KEY" formatKey="default.format"/>
+</logic:equal>
+
 <logic:equal name="runTest" value="testWriteTagNameFormatKeyAlternateBundle">
+	<bean:write name="REQUEST_KEY" formatKey="alternate.format" bundle="alternate"/>
+</logic:equal>
+
+<logic:equal name="runTest" value="testWriteTagNameFormatKeyAlternateBundleDouble">
 	<bean:write name="REQUEST_KEY" formatKey="alternate.format" bundle="alternate"/>
 </logic:equal>
 
@@ -33,5 +41,4 @@
 <logic:equal name="runTest" value="testWriteTagNameFilter">
 	<bean:write name="REQUEST_KEY" filter="true"/>
 </logic:equal>
-
 

@@ -122,124 +122,122 @@ public class TestWriteTag extends JspTestCase {
 	    assertEquals(compare, output);
 	}
 
+    private void runMyTest(String whichTest, String locale){
+    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+		request.setAttribute("runTest", whichTest);
+        try {
+			pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			fail("There is a problem that is preventing the tests to continue!");
+		}
+    }
+
 	// Name
-    public void testWriteTagName() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagName");
+    public void testWriteTagName(){
 		pageContext.setAttribute(REQUEST_KEY,TEST_STRING_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagName", "");
 	}
 	public void endWriteTagName(WebResponse response){
 		formatAndTest(TEST_STRING_VAL, response.getText());
 	}
 	
 	// Property
-    public void testWriteTagNameProperty() throws IOException, ServletException{
+    public void testWriteTagNameProperty() {
     	SimpleBeanForTesting sbft = new SimpleBeanForTesting(TEST_STRING_VAL);
-		request.setAttribute("runTest", "testWriteTagNameProperty");
 		pageContext.setAttribute(REQUEST_KEY, sbft,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameProperty", "");
 	}
 	public void endWriteTagNameProperty(WebResponse response){
 		formatAndTest(TEST_STRING_VAL, response.getText());
 	}
 	
 	// Name and Format
-    public void testWriteTagNameFormat() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFormat");
+    public void testWriteTagNameFormat(){
 		pageContext.setAttribute(REQUEST_KEY,TEST_INTEGER_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormat", "");
 	}
 	public void endWriteTagNameFormat(WebResponse response){
 		formatAndTest("1,234" , response.getText());
 	}
 	
 	// Name, Format, and FormatKey (default bundle)
-    public void testWriteTagNameFormatKeyDefaultBundle() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFormatKeyDefaultBundle");
+    public void testWriteTagNameFormatKeyDefaultBundle(){
 		pageContext.setAttribute(REQUEST_KEY,TEST_INTEGER_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormatKeyDefaultBundle", "");
 	}
 	public void endWriteTagNameFormatKeyDefaultBundle(WebResponse response){
 		formatAndTest("$1,234" , response.getText());
 	}
 	
 	// Name, Format, and FormatKey (alternate bundle)
-    public void testWriteTagNameFormatKeyAlternateBundle() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFormatKeyAlternateBundle");
+    public void testWriteTagNameFormatKeyAlternateBundle(){
 		pageContext.setAttribute(REQUEST_KEY,TEST_INTEGER_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormatKeyAlternateBundle", "");
 	}
 	public void endWriteTagNameFormatKeyAlternateBundle(WebResponse response){
 		formatAndTest("$1,234" , response.getText());
 	}
 	
 	// Name, Format, and FormatKey (default bundle) (Double)
-    public void testWriteTagNameFormatKeyDefaultBundleDouble() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFormatKeyDefaultBundle");
+    public void testWriteTagNameFormatKeyDefaultBundleDouble(){
 		pageContext.setAttribute(REQUEST_KEY, TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormatKeyDefaultBundleDouble", "");
 	}
 	public void endWriteTagNameFormatKeyDefaultBundleDouble(WebResponse response){
 		formatAndTest("$1,235" , response.getText());
 	}
 	
 	// Name, Format, and FormatKey (alternate bundle) (Double)
-    public void testWriteTagNameFormatKeyAlternateBundleDouble() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFormatKeyAlternateBundle");
+    public void testWriteTagNameFormatKeyAlternateBundleDouble(){
 		pageContext.setAttribute(REQUEST_KEY,TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormatKeyAlternateBundleDouble", "");
 	}
 	public void endWriteTagNameFormatKeyAlternateBundleDouble(WebResponse response){
 		formatAndTest("$1,234.6" , response.getText());
 	}
 	
 	// Name, Format, and FormatKey (default bundle)
-    public void testWriteTagNameFormatKeyDefaultBundle_fr() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFormatKeyDefaultBundle");
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale("fr","fr"), PageContext.SESSION_SCOPE);
+    public void testWriteTagNameFormatKeyDefaultBundle_fr(){
 		pageContext.setAttribute(REQUEST_KEY, TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormatKeyDefaultBundle", "fr");
 	}
 	public void endWriteTagNameFormatKeyDefaultBundle_fr(WebResponse response){
 		formatAndTest("$1234,5961.", response.getText());
 	}
 	
 	// Name, Format, and FormatKey (alternate bundle)
-    public void testWriteTagNameFormatKeyAlternateBundle_fr() throws IOException, ServletException{
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale("fr","fr"), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", "testWriteTagNameFormatKeyAlternateBundle");
+    public void testWriteTagNameFormatKeyAlternateBundle_fr(){
 		pageContext.setAttribute(REQUEST_KEY,TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFormatKeyAlternateBundle", "fr");
 	}
 	public void endWriteTagNameFormatKeyAlternateBundle_fr(WebResponse response){
 		formatAndTest("$1234,5961." , response.getText());
 	}
 	
 	// Name, Property, and Format
-    public void testWriteTagNamePropertyFormat() throws IOException, ServletException{
+    public void testWriteTagNamePropertyFormat(){
     	SimpleBeanForTesting sbft = new SimpleBeanForTesting(TEST_INTEGER_VAL);
-		request.setAttribute("runTest", "testWriteTagNamePropertyFormat");
 		pageContext.setAttribute(REQUEST_KEY, sbft,PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNamePropertyFormat", "");
 	}
 	public void endWriteTagNamePropertyFormat(WebResponse response){
 		formatAndTest("1,234", response.getText());
 	}
 
 	// Name and ignore
-    public void testWriteTagNameIgnore() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameIgnore");
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+    public void testWriteTagNameIgnore(){
+		runMyTest("testWriteTagNameIgnore", "");
 	}
 	public void endWriteTagNameIgnore(WebResponse response){
 		formatAndTest("", response.getText());
 	}
 	
 	// Name and filter
-    public void testWriteTagNameFilter() throws IOException, ServletException{
-		request.setAttribute("runTest", "testWriteTagNameFilter");
+    public void testWriteTagNameFilter(){
 		pageContext.setAttribute(REQUEST_KEY,"<testing&'\">",PageContext.REQUEST_SCOPE);
-		pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+		runMyTest("testWriteTagNameFilter", "");
 	}
 	public void endWriteTagNameFilter(WebResponse response){
 		formatAndTest(ResponseUtils.filter("<testing&'\">"), response.getText());
