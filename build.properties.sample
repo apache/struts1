@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.43 2003/07/01 17:49:25 turner Exp $
+# $Id: build.properties.sample,v 1.44 2003/07/27 04:30:16 rleland Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -184,7 +184,7 @@ struts.home			=../../
 #log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
 
 # JUnit jar file, version 3.81 or newer required.
-#junit.jar = ${cactus.lib}/junit-3.7.jar
+#junit.jar = ${cactus.lib}/junit3.8.1.jar
 
 # Httpclient from Jakarta-Commons
 #commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
@@ -211,7 +211,7 @@ struts.home			=../../
 #log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
 
 # JUnit jar file, version 3.81 or newer required.
-#junit.jar = ${cactus.lib}/junit-3.7.jar
+#junit.jar = ${cactus.lib}/junit3.8.1.jar
 
 # Httpclient from Jakarta-Commons
 #commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
@@ -265,7 +265,7 @@ struts.home			=../../
 #log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
 
 # JUnit jar file, version 3.81 or newer required.
-#junit.jar = ${cactus.lib}/junit-3.7.jar
+#junit.jar = ${cactus.lib}/junit3.8.1.jar
 
 # Httpclient from Jakarta-Commons
 #commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
@@ -291,8 +291,8 @@ httpunit.jar = ${cactus.lib}/httpunit-1.4.1.jar
 # Log4J from Jakarta-Commons
 log4j.jar = ${cactus.lib}/log4j-1.2.5.jar
 
-# JUnit jar file, version 3.81 or newer required.
-junit.jar = ${cactus.lib}/junit-3.7.jar
+# JUnit jar file, version 3.8.1 or newer required.
+junit.jar = ${cactus.lib}/junit3.8.1.jar
 
 # Httpclient from Jakarta-Commons
 commons-httpclient.jar = ${cactus.lib}/commons-httpclient-2.0alpha1-20020606.jar
@@ -306,10 +306,10 @@ cactus.contextURL = http://localhost:9090/test
 
 
 # Ant Optional Jars for Junit task
-ant.optional.jar = ${apache.home}/jakarta-ant-1.5.1/lib/optional.jar
+ant.optional.jar = ${apache.home}/apache-ant-1.5.3-1/lib/optional.jar
 
 # Ant Jar for optional taglib documentation task
-ant.jar=${apache.home}/apache-ant-1.5.2/lib/ant.jar
+ant.jar=${apache.home}/apache-ant-1.5.3-1/lib/ant.jar
 
 # Servlet engine locations for the tests
 
@@ -319,4 +319,4 @@ ant.jar=${apache.home}/apache-ant-1.5.2/lib/ant.jar
 
 tomcat.home.33 = ${apache.home}/jakarta-tomcat-3.3.1
 tomcat.home.40 = ${apache.home}/jakarta-tomcat-4.0.6
-tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.18-LE-jdk14
+tomcat.home.41 = ${apache.home}/jakarta-tomcat-4.1.24
