@@ -708,6 +708,21 @@ XHTML specification</a></p>
 
 <section href="requiredif"
          name="Can you give me a simple example of using the requiredif Validator rule?">
+     <p>First off, there's an even newer Validator rule called <code>validwhen</code>,
+     which is almost certainly what you want to use, since it is much easier and
+     more powerful.  The example shown below could be coded with validwhen as:</p>
+     <pre>
+&lt;form name="medicalStatusForm"&gt;
+
+&lt;field
+    property="pregnancyTest" depends="validwhen"&gt;
+  &lt;arg0 key="medicalStatusForm.pregnancyTest.label"/&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;test&lt;/var-name&gt;
+    &lt;var-value&gt;((((sex == 'm') OR (sex == 'M')) AND (*this* == null)) OR (*this* != null))&lt;/test&gt;
+  &lt;/var&gt;
+&lt;/field&gt;
+</pre>     
      <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.  
      If sex is 'f' or 'F', pregnancyTest is required.  If pregnancyTest is not blank, testResult is required.
      The entry in your validation.xml file would look like this:

@@ -221,6 +221,100 @@
 
 </section>
 
+<section href="validwhen" name="Designing Complex Validations with validwhen">
+    <p>
+    A frequent requirement in validation design is to validate one field
+    against another (for example, if you have asked the user to type in
+    a password twice for confirmation, to make sure that the values match.)
+    In addition, there are fields in a form that may only be required if
+    other fields have certain values.  The new <code>validwhen</code>
+    validation rule is designed to handle these cases.</p>
+    <p>
+    The <code>validwhen</code> rule takes a single <code>var</code> field,
+    called <code>test</code>.  The value of this var is a boolean expression
+    which must be true in order for the validation to success.  The
+    values which are allowed in the expression are:</p>
+    <ul>
+      <li>Single or double-quoted string literals.</li>
+      <li>Integer literals in decimal, hex or octal format</li>
+      <li>The value <code>null</code> which will match against either
+      null or an empty string</li>
+      <li>Other fields in the form referenced by field name, such as
+      <code>customerAge</code></li>
+      <li>Indexed fields in the form referenced by an explicit integer, 
+      such as <code>childLastName[2]</code></li>
+      <li>Indexed fields in the form referenced by an implicit integer, 
+      such as <code>childLastName[]</code>, which will use the same
+      index into the array as the index of the field being tested.</li>
+      <li>Properties of an indexed fields in the form referenced by an 
+      explicit or implicit integer, such as <code>child[].lastName</code>, 
+      which will use the same index into the array as the index of the 
+      field being tested.</li>
+      <li>The literal <code>*this</code>, which contains the value of
+      the field currently being tested</li>
+   </ul>
+   <p>
+      As an example of how this would work, consider a form with
+      fields <code>sendNewsletter</code> and <code>emailAddress</code>.
+      The <code>emailAddress</code> field is only required if the
+      <code>sendNewsletter</code> field is not null.  You could code
+      this using the validwhen rule as:</p>
+<pre><code><![CDATA[
+<field property="emailAddress" depends="validwhen">
+      <arg0 key="userinfo.emailAddress.label"/>
+        <var>
+          <var-name>test</var-name>
+          <var-value>((sendNewsletter == null) or (*this* != null))</var-value>
+        </var>
+      </field>
+]]></code></pre>
+<p>
+      Which reads as: this field is valid if <code>sendNewsletter</code> is 
+      <code>null</code> or the field value is not <code>null</code>.</p>
+<p>
+      Here's a slightly more complicated example using indexed fields.
+      Assume a form with a number of lines to allow the user to enter
+      part numbers and quantities they wish to order.  An array of
+      beans of class <code>orderLine</code> is used to hold the entries in
+      a property called orderLines.
+      If you wished to verify that every line with part number also had
+      a quantity entered, you could do it with:</p>
+<pre><code><![CDATA[
+    <field property="quantity" indexedListProperty="orderLines" depends="validwhen">
+      <arg0 key="orderform.quantity.label"/>
+        <var>
+          <var-name>test</var-name>
+          <var-value>((orderLines[].partNumber == null) or (*this* != null))</var-value>
+        </var>
+      </field>
+]]></code></pre>
+     <p>
+     Which reads as: This field is value if the corresponding <code>partNumber
+     </code> field is <code>null</code>, or this field is not <code>null</code>.
+     </p>
+     <p>
+     As a final example, imagine a form where the user must enter their
+     height in inches, and if they are under 60 inches in height, it is
+     an error to have checked off nbaPointGuard as a career.</p>
+<pre><code><![CDATA[
+    <field property="nbaPointGuard" depends="validwhen">
+      <arg0 key="careers.nbaPointGuard.label"/>
+        <var>
+          <var-name>test</var-name>
+          <var-value>((heightInInches >= 60) or (*this* == null))</var-value>
+        </var>
+      </field>
+]]></code></pre>
+     <p>
+     A few quick notes on the grammer.</p>
+     <ul>
+       <li>All comparisons must be enclosed in parens.</li>
+       <li>Only two items may be joined with <code>and</code> or <code>or</code></li>
+       <li>If both items to be compared are convertable to ints, a numeric
+       comparison is done, otherwise a string comparison is done.
+       </li>
+     </ul>
+</section>
 <section href="plugs" name="Pluggable Validators">
 
     <p>
@@ -497,9 +591,14 @@ public static boolean validateTwoFields(
 
     <p>
     The most fundamental change is the ability to conditionally require
-    validator fields based on the value of other fields.
+    validator fields based on the value of other fields. 
     It allows you to define logic like "only validate this field if field X is
-    non-null and field Y equals 'male'".
+    non-null and field Y equals 'male'".  The recommended way to do this is
+    with the <code>validwhen</code> rule, described above.  The 
+    <code>requiredif</code> validation rule, which was added in Struts 1.1, 
+    has been deprecated in favor of this rule, and will be removed in a 
+    future release.  However, if you are using <code>requiredif</code>, here
+    is a brief tutorial.
     </p>
 
      <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.  
