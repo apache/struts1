@@ -1,6 +1,7 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<app:checkLogon/>
 
 <%-- In real life, these would be loaded from a database --%>
 <%

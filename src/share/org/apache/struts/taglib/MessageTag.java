@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.3 2000/06/29 18:13:37 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/29 18:13:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.4 2000/06/29 21:36:10 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/29 21:36:10 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/29 18:13:37 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/29 21:36:10 $
  */
 
 public final class MessageTag extends TagSupport {
@@ -361,8 +361,13 @@ public final class MessageTag extends TagSupport {
 		(messages.getMessage("getMessageTag.resources", bundle));
 
 	// Calculate the Locale we will be using
-	Locale locale = (Locale)
-	    pageContext.getAttribute(localeKey, PageContext.SESSION_SCOPE);
+	Locale locale = null;
+	try {
+	    locale = (Locale)
+		pageContext.getAttribute(localeKey, PageContext.SESSION_SCOPE);
+	} catch (IllegalStateException e) {	// Invalidated session
+	    locale = null;
+	}
 	if (locale == null)
 	    locale = defaultLocale;
 

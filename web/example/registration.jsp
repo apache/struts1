@@ -1,6 +1,10 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/app.tld"    prefix="app" %>
 <%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
+<struts:ifPropertyEquals name="registrationForm"
+                         property="action" value="Edit">
+  <app:checkLogon/>
+</struts:ifPropertyEquals>
 
 <html>
 <head>

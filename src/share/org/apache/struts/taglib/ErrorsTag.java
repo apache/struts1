@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.4 2000/06/15 18:00:08 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/15 18:00:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.5 2000/06/29 21:36:09 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/29 21:36:09 $
  *
  * ====================================================================
  *
@@ -91,7 +91,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/15 18:00:08 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/29 21:36:09 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -171,8 +171,13 @@ public final class ErrorsTag extends TagSupport {
 	    return (EVAL_BODY_INCLUDE);
 
 	// Render the error messages appropriately
-	Locale locale = (Locale) pageContext.getAttribute
-	  (Action.LOCALE_KEY, PageContext.SESSION_SCOPE);
+	Locale locale = null;
+	try {
+	    locale = (Locale) pageContext.getAttribute
+		(Action.LOCALE_KEY, PageContext.SESSION_SCOPE);
+	} catch (IllegalStateException e) {	// Invalidated session
+	    locale = null;
+	}
 	if (locale == null)
 	    locale = defaultLocale;
 	MessageResources messages = (MessageResources)

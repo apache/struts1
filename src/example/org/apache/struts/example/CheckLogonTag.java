@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.2 2000/06/20 16:33:45 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/20 16:33:45 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.3 2000/06/29 21:36:07 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/29 21:36:07 $
  *
  * ====================================================================
  *
@@ -79,7 +79,8 @@ import org.apache.struts.util.MessageResources;
  * such user, forward control to the logon page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/20 16:33:45 $
+ * @author Marius Barduta
+ * @version $Revision: 1.3 $ $Date: 2000/06/29 21:36:07 $
  */
 
 public final class CheckLogonTag extends TagSupport {
@@ -89,12 +90,40 @@ public final class CheckLogonTag extends TagSupport {
 
 
     /**
+     * The key of the session-scope bean we look for.
+     */
+    private String name = Constants.USER_KEY;
+
+
+    /**
      * The page to which we should forward for the user to log on.
      */
     private String page = "/logon.jsp";
 
 
     // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the bean name.
+     */
+    public String getName() {
+
+	return (this.name);
+
+    }
+
+
+    /**
+     * Set the bean name.
+     *
+     * @param name The new bean name
+     */
+    public void setName(String name) {
+
+	this.name = name;
+
+    }
 
 
     /**
@@ -123,22 +152,35 @@ public final class CheckLogonTag extends TagSupport {
 
 
     /**
-     * Peform the logon check.
+     * Defer our checking until the end of this tag is encountered.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
 
+	return (SKIP_BODY);
+
+    }
+
+
+    /**
+     * Perform our logged-in user check by looking for the existence of
+     * a session scope bean under the specified name.  If this bean is not
+     * present, control is forwarded to the specified logon page.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doEndTag() throws JspException {
+
 	// Is there a valid user logged on?
 	boolean valid = false;
 	HttpSession session = pageContext.getSession();
-	if ((session != null) &&
-	    (session.getAttribute(Constants.USER_KEY) != null))
+	if ((session != null) && (session.getAttribute(name) != null))
 	    valid = true;
 
 	// Forward control based on the results
 	if (valid)
-	    return (EVAL_BODY_INCLUDE);
+	    return (EVAL_PAGE);
 	else {
 	    try {
 		pageContext.forward(page);
