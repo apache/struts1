@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.68.2.4 2001/10/07 04:49:15 martinc Exp $
- * $Revision: 1.68.2.4 $
- * $Date: 2001/10/07 04:49:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.68.2.5 2002/03/16 02:17:34 craigmcc Exp $
+ * $Revision: 1.68.2.5 $
+ * $Date: 2002/03/16 02:17:34 $
  *
  * ====================================================================
  *
@@ -231,7 +231,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.68.2.4 $ $Date: 2001/10/07 04:49:15 $
+ * @version $Revision: 1.68.2.5 $ $Date: 2002/03/16 02:17:34 $
  */
 
 public class ActionServlet
@@ -245,7 +245,7 @@ public class ActionServlet
      * The set of Action instances that have been created and initialized,
      * keyed by the fully qualified Java class name.
      */
-    protected FastHashMap actions = new FastHashMap();
+    protected HashMap actions = new HashMap();
 
 
     /**
@@ -999,9 +999,7 @@ public class ActionServlet
     protected void initActions() {
 
         synchronized (actions) {
-            actions.setFast(false);
             actions.clear();
-            actions.setFast(true);
         }
 
     }
@@ -1609,37 +1607,40 @@ public class ActionServlet
     protected Action processActionCreate(ActionMapping mapping,
                                          HttpServletRequest request) {
 
-        // Acquire the Action instance we will be using
+        // Acquire the Action instance we will be using (if there is one)
         String actionClass = mapping.getType();
-        if (debug >= 1)
+        if (debug >= 1) {
             log(" Looking for Action instance for class " + actionClass);
-        Action actionInstance = (Action) actions.get(actionClass);
-        if (actionInstance == null) {
-            synchronized (actions) {
-                if (debug >= 1)
-                    log("  Double checking for Action instance already there");
-                // Double check to avoid a race condition
-                actionInstance = (Action) actions.get(actionClass);
-                if (actionInstance != null)
-                    return (actionInstance);
-                // Go ahead and create the new Action instance
-                // ASSERT:  This will never ever happen more than once
-                //  for a particular action class name
-                try {
-                    if (debug >= 1)
-                        log("  Creating new Action instance");
-                    Class clazz = Class.forName(actionClass);
-                    actionInstance = (Action) clazz.newInstance();
-                    actionInstance.setServlet(this);
-                    actions.put(actionClass, actionInstance);
-                } catch (Throwable t) {
-                    log("Error creating Action instance for path '" +
-                        mapping.getPath() + "', class name '" +
-                        actionClass + "'", t);
-                    return (null);
+        }
+        Action actionInstance = null;
+        synchronized (actions) {
+
+            // Return any existing Action instance of this class
+            actionInstance = (Action) actions.get(actionClass);
+            if (actionInstance != null) {
+                if (debug >= 2) {
+                    log("  Returning existing Action instance");
                 }
+                return (actionInstance);
+            }
+
+            // Create and return a new Action instance
+            if (debug >= 2) {
+                log("  Creating new Action instance");
+            }
+            try {
+                Class clazz = Class.forName(actionClass);
+                actionInstance = (Action) clazz.newInstance();
+                actionInstance.setServlet(this);
+                actions.put(actionClass, actionInstance);
+            } catch (Throwable t) {
+                log("Error creating Action instance for path '" +
+                    mapping.getPath() + "', class name '" +
+                    actionClass + "'", t);
+                return (null);
             }
         }
+
         return (actionInstance);
 
     }
