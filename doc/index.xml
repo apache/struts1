@@ -167,6 +167,25 @@
 
     </section>
 
+    <section name="Is Struts the best choice for every project?">
+
+        <p>
+            No. If you need to write a very simple application, with a handful of pages,
+            then you might consider a "Model 1" solution that uses only server pages.
+        </p>
+
+        <p>
+            But, if you are writing a more complicated application, with dozens of pages,
+            that need to be maintained over time, then Struts can help. For more about
+            whether Model 1 or or MVC/Model 2 is right for you, see
+            <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">Understanding JavaServer
+            Pages Model 2 architecture</a> and
+            <a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html">
+            Issues in Struts Adoption</a>.
+        </p>
+
+    </section>
+
 <section name="Books about Struts" href="books">
 
     <div class="center">
