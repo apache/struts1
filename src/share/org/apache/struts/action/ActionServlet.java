@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.70 2001/06/02 23:13:36 craigmcc Exp $
- * $Revision: 1.70 $
- * $Date: 2001/06/02 23:13:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.71 2001/06/24 23:49:55 craigmcc Exp $
+ * $Revision: 1.71 $
+ * $Date: 2001/06/24 23:49:55 $
  *
  * ====================================================================
  *
@@ -223,14 +223,12 @@ import org.xml.sax.SAXException;
  * <li><strong>tempDir</strong> - The temporary working directory to use when
  *     processing file uploads.  [The working directory provided to this web
  *     application as a servlet context attribute]</li>
- * <li><strong>validate</strong> - Are we using the new configuration file
- *     format?  [true]</li>
  * <li><strong>validating</strong> - Should we use a validating XML parse to
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.70 $ $Date: 2001/06/02 23:13:36 $
+ * @version $Revision: 1.71 $ $Date: 2001/06/24 23:49:55 $
  */
 
 public class ActionServlet
@@ -385,12 +383,6 @@ public class ActionServlet
      */
     protected String servletName = null;
 
-
-    /**
-     * Are we using the new configuration file format?
-     */
-    protected boolean validate = true;
-    
 
     /**
      * Should we use a validating XML parser to read the configuration file?
@@ -1106,7 +1098,7 @@ public class ActionServlet
 
 
     /**
-     * Construct and return a digester that uses the new configuration
+     * Construct and return a digester that uses the standard configuration
      * file format.
      */
     protected Digester initDigester(int detail) {
@@ -1188,46 +1180,6 @@ public class ActionServlet
 
 
     /**
-     * Construct and return a digester that uses the old configuration
-     * file format.
-     */
-    protected Digester initDigesterOld(int detail) {
-
-	// Initialize a new Digester instance
-	Digester digester = new Digester();
-	digester.push(this);
-	digester.setDebug(detail);
-	digester.setValidating(false);
-
-	// Configure the processing rules
-	digester.addObjectCreate("action-mappings/action", mappingClass,
-				 "className");
-	digester.addSetProperties("action-mappings/action");
-	digester.addSetNext("action-mappings/action", "addMapping",
-			    "org.apache.struts.action.ActionMapping");
-	digester.addObjectCreate("action-mappings/action/forward",
-				 forwardClass, "className");
-	digester.addSetProperties("action-mappings/action/forward");
-	digester.addSetNext("action-mappings/action/forward", "addForward",
-			    "org.apache.struts.action.ActionForward");
-	digester.addSetProperty("action-mappings/action/forward/property",
-				"name", "value");
-	digester.addSetProperty("action-mappings/action/property",
-				"name", "value");
-	digester.addObjectCreate("action-mappings/forward",
-				 forwardClass, "className");
-	digester.addSetProperties("action-mappings/forward");
-	digester.addSetNext("action-mappings/forward", "addForward",
-			    "org.apache.struts.action.ActionForward");
-	digester.addSetProperty("action-mappings/forward/property",
-				"name", "value");
-
-	return (digester);
-
-    }
-
-
-    /**
      * Initialize our internal MessageResources bundle.
      *
      * @exception ServletException if we cannot initialize these resources
@@ -1266,16 +1218,6 @@ public class ActionServlet
 	    detail = Integer.parseInt(value);
 	} catch (Throwable t) {
 	    detail = 0;
-	}
-
-	// Initialize the format selector flag
-	value = getServletConfig().getInitParameter("validate");
-	if (value != null) {
-	    if (value.equalsIgnoreCase("true") ||
-	        value.equalsIgnoreCase("yes"))
-	        validate = true;
-	    else
-	        validate = false;
 	}
 
 	// Initialize the validating XML parser flag
@@ -1317,11 +1259,7 @@ public class ActionServlet
 		(internal.getMessage("configMissing", config));
 
 	// Build a digester to process our configuration resource
-	Digester digester = null;
-	if (validate)
-	    digester = initDigester(detail);
-	else
-	    digester = initDigesterOld(detail);
+	Digester digester = initDigester(detail);
 
 	// Parse the input stream to configure our mappings
 	try {
@@ -1338,21 +1276,6 @@ public class ActionServlet
         } finally {
 	    input.close();
 	}
-
-        // Transitional support for old format
-        if (!validate) {
-            String paths[] = mappings.findMappings();
-            for (int i = 0; i < paths.length; i++) {
-                String name =
-                    mappings.findMapping(paths[i]).getName();
-                if (name == null)
-                    continue;
-                ActionFormBean formBean = new ActionFormBean();
-                formBean.setName(name);
-                formBean.setType(name);
-                formBeans.addFormBean(formBean);
-            }
-        }
 
     }
 
