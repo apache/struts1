@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.2 2000/06/15 01:27:34 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.3 2000/06/15 18:15:17 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/15 18:15:17 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:34 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/15 18:15:17 $
  */
 
 public final class FormTag extends TagSupport {
@@ -130,6 +130,12 @@ public final class FormTag extends TagSupport {
      * is stored.
      */
     private String scope = "session";
+
+
+    /**
+     * The window target.
+     */
+    protected String target = null;
 
 
     /**
@@ -274,6 +280,28 @@ public final class FormTag extends TagSupport {
 
 
     /**
+     * Return the window target.
+     */
+    public String getTarget() {
+
+	return (this.target);
+
+    }
+
+
+    /**
+     * Set the window target.
+     *
+     * @param target The new window target
+     */
+    public void setTarget(String target) {
+
+	this.target = target;
+
+    }
+
+
+    /**
      * Return the Java class of our bean.
      */
     public String getType() {
@@ -325,6 +353,11 @@ public final class FormTag extends TagSupport {
         if (onSubmit != null) {
 	    results.append(" onsubmit=\"");
 	    results.append(onSubmit);
+	    results.append("\"");
+	}
+	if (target != null) {
+	    results.append(" target=\"");
+	    results.append(target);
 	    results.append("\"");
 	}
 	results.append(">");

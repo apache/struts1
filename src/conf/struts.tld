@@ -206,6 +206,11 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>target</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>type</name>
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
@@ -1180,6 +1185,11 @@
     <attribute>
       <name>href</name>
       <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>target</name>
+      <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
   </tag>

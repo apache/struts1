@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.2 2000/06/15 18:15:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/15 18:15:18 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/15 18:15:18 $
  */
 
 public class LinkTag extends TagSupport {
@@ -98,6 +98,12 @@ public class LinkTag extends TagSupport {
     protected static MessageResources messages =
 	MessageResources.getMessageResources
 	("org.apache.struts.taglib.LocalStrings");
+
+
+    /**
+     * The window target.
+     */
+    protected String target = null;
 
 
     // ------------------------------------------------------------- Properties
@@ -125,6 +131,28 @@ public class LinkTag extends TagSupport {
     }
 
 
+    /**
+     * Return the window target.
+     */
+    public String getTarget() {
+
+	return (this.target);
+
+    }
+
+
+    /**
+     * Set the window target.
+     *
+     * @param target The new window target
+     */
+    public void setTarget(String target) {
+
+	this.target = target;
+
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -140,7 +168,13 @@ public class LinkTag extends TagSupport {
 	  (HttpServletResponse) pageContext.getResponse();
 	StringBuffer results = new StringBuffer("<a href=\"");
 	results.append(response.encodeURL(BeanUtils.filter(href)));
-	results.append("\">");
+	results.append("\"");
+	if (target != null) {
+	    results.append(" target=\"");
+	    results.append(target);
+	    results.append("\"");
+	}
+	results.append(">");
 
 	// Print this element to our output writer
 	JspWriter writer = pageContext.getOut();
