@@ -103,14 +103,15 @@
   <!-- ========== Plug Ins Configuration ================================== -->
   
   <!-- 
-     Add multiple validator resource files by setting the pathname property. 
+     Add multiple validator resource files by setting the pathnames property 
+     with a comma delimitted list of resource files to load. 
      Default pluggable validator definitions are contained in validator-rules.xml. 
      Add any validation rules for forms in validator.xml.
   -->
   <!--
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-    <set-property property="pathname" value="/WEB-INF/validator-rules.xml"/>
-    <set-property property="pathname" value="/WEB-INF/validator.xml"/>
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                              /WEB-INF/validation.xml"/>
   </plug-in>
   -->
 
