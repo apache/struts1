@@ -57,10 +57,6 @@
                (jmitchell at apache.org)</li>
 
                <li>
-               <strong>James Turner</strong>
-               (turner at blackbear.com)</li>
-
-               <li>
                <strong>Steve Raeburn</strong>
                (sraeburn at apache.org)</li>
                
@@ -95,6 +91,8 @@
                <li>Oleg Alexeev</li>
 
                <li>Eddie Bush</li>
+
+               <li>James Turner</li>
             </ul>
          </section>
 
@@ -215,7 +213,7 @@
 
             <p>James has been so busy answering users questions and adding test cases that he hasn't taken the time to brag about himself. I thought that I would add a place marker for him until and if he does decide to --blow his own horn-- ! -Rob :-D !</p>
 
-            <h4 id="jturner">James Turner -- PMC Member</h4>
+            <h4 id="jturner">James Turner -- Emeritus Committer</h4>
 
             <p>I discovered Struts somewhat by accident. In 2001 I began writing a book for SAMS on JSP web development (MySQL and JSP Web Development), and as part of it, I decided to write a chapter on Struts in the advanced section. In the process of learning enough about Struts to write about it, I realized that it could simplify some of the projects that I was working on for clients.</p>
 
