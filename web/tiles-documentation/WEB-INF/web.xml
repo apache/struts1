@@ -12,11 +12,17 @@
     <servlet-name>action</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class> 
     <!-- <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class> -->
-	<init-param>
-      <param-name>definitions-config</param-name>
-      <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
-                 /WEB-INF/tiles-examples-defs.xml</param-value>
+
+    <!-- Tiles config files are now declared with each tiles plugin. Declaring a tiles
+         config file here make it available to each tiles plugin. This is useful to 
+         have common declarations.
+    <init-param>
+       <param-name>definitions-config</param-name>
+       <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,
+                    /WEB-INF/tiles-tutorial-defs.xml,
+                    /WEB-INF/tiles-examples-defs.xml</param-value>
     </init-param>
+    -->
     <init-param>
       <param-name>definitions-debug</param-name>
       <param-value>0</param-value>
