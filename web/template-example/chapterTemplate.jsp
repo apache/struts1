@@ -1,10 +1,16 @@
 <%@ taglib uri='/WEB-INF/struts-template.tld' prefix='template' %>
 
-<html><head><title><template:get name='title'/></title></head>
+<html>
+<head>
+<title><template:get name='title'/></title>
+<link rel="stylesheet" href="css/templates.css"
+      charset="ISO-8859-1" type="text/css">
+</head>
 <body background='graphics/blueAndWhiteBackground.gif'>
 
 <table>
-   <tr valign='top'><td><template:get name='sidebar'/></td>
+   <tr valign='top'>
+      <td><template:get name='sidebar'/></td>
       <td><table>
             <tr><td><template:get name='header'/></td></tr>
             <tr><td><template:get name='content'/></td></tr>
@@ -13,7 +19,8 @@
       </td>
    </tr> 
 </table>
-</body></html>
+</body>
+</html>
 
 <%
 /* 
