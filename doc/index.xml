@@ -175,22 +175,57 @@
   
   <p>
   Check the 
-  <a href="http://jakarta.apache.org/doc-1.0.2/release-notes-1.0.2.html">
-  </a> for a summary of the changes since the Struts 1.0.1 release.
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/release-notes-1.0.2.html">
+  Release Notes</a> for a summary of the changes since the Struts 1.0.1 release.
   </p>
 
   <p>
   <b>In addition to a Struts distribution,</b> you will need to ensure that
   you have downloaded and installed all of the
-  <a href="http://jakarta.apache.org/doc-1.0.2/installation.html#Prerequisites">
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Prerequisites">
   prerequisite</a> software applications. Then, follow the appropriate instructions to
-  <a href="http://jakarta.apache.org/doc-1.0.2/installation.html#Installing">
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Installing">
   install and use a Struts binary 
   distribution</a> in your web application or for
-  <a href="http://jakarta.apache.org/doc-1.0.2/installation.html#Building">
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Building">
   building Struts from the source  distribution</a>.
   </p>
 
+  <p>
+  The latest <i>beta release</i> of <strong>Struts 1.1</strong> is also
+  available, in the same three distributions. While not necessarily quite as
+  stable as the latest production release, the beta release provides an interim
+  release between the nightly builds and the production release so that
+  developers can start taking advantage of new functionality without the same
+  degree of risk as using the nightly builds may entail.
+  </p>
+
+  <ul>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1">
+  <b>Struts 1.1 Beta 1 Binary Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/lib">
+  <b>Struts 1.1 Beta 1 Library Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/src">
+  <b>Struts 1.1 Beta 1 Source Code Distribution</b></a></li>
+  </ul>
+
+  <p>
+  Check the 
+  <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b1.html">
+  Release Notes</a> for a summary of the changes since the Struts 1.0.2 release.
+  </p>
+
+  <p>
+  As with the production release, you will need to ensure that you have
+  downloaded and installed all of the
+  <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Prerequisites">
+  prerequisite</a> software applications. Then, follow the appropriate instructions to
+  <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Installing">
+  install and use a Struts binary 
+  distribution</a> in your web application or for
+  <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Building">
+  building Struts from the source distribution</a>.
+  </p>
   </section>
 
   <section name="Nightly Builds" href="Builds">
@@ -215,7 +250,7 @@
 
   <p>
   Be sure to check the 
-  <a href="http://jakarta.apache.org/release-notes.html">
+  <a href="http://jakarta.apache.org/struts/userGuide/release-notes.html">
   Release Notes</a> for the nightly builds so you know what you are getting!
   </p>
 

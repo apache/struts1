@@ -14,6 +14,30 @@
 <section name="News &amp; Status">
 
 
+<h3><a name="20020319"></a>19 March 2002 - Struts 1.1 Beta 1 Released</h3>
+<p>
+The Struts team announces the release of Struts 1.1 Beta 1. This release
+includes substantial new functionality, while retaining full backwards
+compatibility with earlier versions of Struts. It also incorporates fixes
+for a number of bugs which were reported against earlier versions.
+</p>
+<p>
+The binary distribution for this release is available 
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/">
+<b>here</b></a>
+and the source distribution
+is available 
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/src/">
+<b>here</b></a>. 
+In addition, a library distribution, which consists of a minimal
+binary distribution, without sample web applications or additional code, is
+available 
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.1-b1/lib/">
+<b>here</b></a>. 
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020304"></a>04 March 2002 - Best Practice with Expresso-Struts Framework</h3>
 <p>
 In this article, Peter Pilgrim looks at the best practice of using a popular web
@@ -231,7 +255,7 @@ is available
 In addition, a library distribution, which consists of a minimal
 binary distribution, without sample web applications or additional code, is
 available 
-<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.2/src/">
+<a href="http://www.apache.org/dist/jakarta/jakarta-struts/release/v1.0.2/lib/">
 <b>here</b></a>. 
 </p>
 <hr size="1" noshade=""/>
