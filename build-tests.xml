@@ -502,6 +502,8 @@
         <formatter  type="plain" usefile="false"/>
 
         <!-- Initiate test executions -->
+        <test       name="org.apache.struts.action.TestDynaActionForm"/>
+        <test       name="org.apache.struts.action.TestDynaActionFormClass"/>
         <test       name="org.apache.struts.config.TestApplicationConfig"/>
 
       </junit>

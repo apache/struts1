@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/02/23 23:53:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.5 2002/06/29 00:44:34 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/06/29 00:44:34 $
  *
  * ====================================================================
  *
@@ -74,11 +74,41 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
+ * @version $Revision: 1.5 $ $Date: 2002/06/29 00:44:34 $
  * @since Struts 1.1
  */
 
 public class FormPropertyConfig implements Serializable {
+
+
+    // ----------------------------------------------------------- Constructors
+
+
+    /**
+     * Standard no-arguments constructor for dynamic instantiation.
+     */
+    public FormPropertyConfig() {
+
+        super();
+
+    }
+
+
+    /**
+     * Constructor that preconfigures the relevant properties.
+     *
+     * @param name Name of this property
+     * @param type Fully qualified class name of this property
+     * @param initial Initial value of this property (if any)
+     */
+    public FormPropertyConfig(String name, String type, String initial) {
+
+        super();
+        setName(name);
+        setType(type);
+        setInitial(initial);
+
+    }
 
 
     // ----------------------------------------------------- Instance Variables
@@ -192,9 +222,13 @@ public class FormPropertyConfig implements Serializable {
         } else if ("short".equals(baseType)) {
             baseClass = Short.TYPE;
         } else {
-            // FIXME - thread context class loader?
+            ClassLoader classLoader =
+                Thread.currentThread().getContextClassLoader();
+            if (classLoader == null) {
+                classLoader = this.getClass().getClassLoader();
+            }
             try {
-                baseClass = Class.forName(baseType);
+                baseClass = classLoader.loadClass(baseType);
             } catch (Throwable t) {
                 baseClass = null;
             }
@@ -243,7 +277,7 @@ public class FormPropertyConfig implements Serializable {
                         initialValue = null;
                     }
                 } else {
-                    Class clazz = Class.forName(type);
+                    Class clazz = getTypeClass();
                     initialValue = ConvertUtils.convert(initial, clazz);
                 }
             } catch (Throwable t) {
