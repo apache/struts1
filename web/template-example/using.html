@@ -1,113 +1,49 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
-<HEAD>
-<LINK REL="STYLESHEET" HREF="css/templates.css" CHARSET="ISO-8859-1" TYPE="text/css">
-<H3 CLASS="ChapTitle">Using Templates</H3>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1003077"></A>Templates are JSP files that include parameterized content; for instance, <A HREF="templates.html#49484" CLASS="XRef"> A JSP Template (chapterTemplate.jsp)</A> lists a template that can be used to produce web pages with the format shown in <A HREF="templates.html#77639" CLASS="XRef"> A Web Page Layout</A>.</P>
-<DIV>
-<H6 CLASS="CodeCaption-n-n-a-1">
-<A NAME="pgfId-1002818"></A><A NAME="49484"></A>A JSP Template (chapterTemplate.jsp)</H6>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011075"></A>&lt;%@ taglib uri='/WEB-INF/tlds/template.tld' prefix='template' %&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011270"></A>&nbsp;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011271"></A>&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;template:get name='title'/&gt;&lt;/title&gt;&lt;/head&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011272"></A>&lt;body background='graphics/blueAndWhiteBackground.gif'&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011273"></A>&nbsp;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011274"></A>&lt;table width='610'&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011275"></A>	&lt;tr valign='top'&gt;&lt;td&gt;&lt;template:get name='sidebar'/&gt;&lt;/td&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011276"></A>		&lt;td&gt;&lt;table&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011277"></A>				&lt;tr&gt;&lt;td&gt;&lt;template:get name='header'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011278"></A>				&lt;tr&gt;&lt;td&gt;&lt;template:get name='content'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011279"></A>				&lt;tr&gt;&lt;td&gt;&lt;template:get name='footer'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011280"></A>			 &lt;/table&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011281"></A>		&lt;/td&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011282"></A>	&lt;/tr&gt; </P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011283"></A>&lt;/table&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011284"></A>&lt;/body&gt;&lt;/html&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011285"></A>template:get is a custom tag that retrieves a Java bean from request scope. That bean contains the URI of a Web component which is subsequently included by template:get. In the template listed in <A HREF="templates.html#49484" CLASS="XRef"> A JSP Template (chapterTemplate.jsp)</A>, a bean named header is retrieved from request scope, and the URI--/header.html--is obtained from the bean and included.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1003048"></A>Beans retrieved by template:get are put in request scope by template:put, and the template itself is included with template:insert, as illustrated in <A HREF="templates.html#51389" CLASS="XRef"> A JSP Page That Uses theTemplate listed in Example 5-3.a</A>.</P>
-</DIV>
-<DIV>
-<H6 CLASS="CodeCaption-n-n-a-">
-<A NAME="pgfId-1004928"></A><A NAME="51389"></A>A JSP Page That Uses theTemplate listed in <A HREF="templates.html#49484" CLASS="XRef"> A JSP Template (chapterTemplate.jsp)</A></H6>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011091"></A>&lt;%@ taglib uri='/WEB-INF/tlds/template.tld' prefix='template' %&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011287"></A>&nbsp;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011288"></A>&lt;template:insert template='/chapterTemplate.jsp'&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011289"></A>  &lt;template:put name='title' content='Templates' direct='true'/&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011290"></A>  &lt;template:put name='header' content='/header.html' /&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011291"></A>  &lt;template:put name='sidebar' content='/sidebar.jsp' /&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011292"></A>  &lt;template:put name='content' content='/introduction.jsp'/&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011293"></A>  &lt;template:put name='footer' content='/footer.jsp' /&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011294"></A>&lt;/template:insert&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011295"></A>The template:insert start tag specifies the template to be included, in this case chapterTemplate.jsp, listed in <A HREF="templates.html#49484" CLASS="XRef"> A JSP Template (chapterTemplate.jsp)</A>. Each template:put tag stores a bean in request scope and the template:insert end tag includes the template.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1003102"></A>A direct attribute can be specified for template:put; if the attribute is set to true, the content associated with the tag is not included, but is printed directly to the implicit out variable. For example, in <A HREF="templates.html#51389" CLASS="XRef"> A JSP Page That Uses theTemplate listed in Example 5-3.a</A> the title content--'JSP Templates'--is used as the window title.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1004991"></A>A web site that has many pages with an identical format would have one template, such as the one listed in <A HREF="templates.html#49484" CLASS="XRef"> A JSP Template (chapterTemplate.jsp)</A>, and many JSP pages, such as <A HREF="templates.html#51389" CLASS="XRef"> A JSP Page That Uses theTemplate listed in Example 5-3.a</A>, that use the template. If the format is modified, changes are restricted to the template.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1003357"></A>Another benefit of templates, and including content in general, is modular design. For example, the JSP file listed in <A HREF="templates.html#51389" CLASS="XRef"> A JSP Page That Uses theTemplate listed in Example 5-3.a</A> ultimately includes header.html, which is listed in <A HREF="templates.html#16516" CLASS="XRef"> header.html</A>.</P>
-</DIV>
-<DIV>
-<H6 CLASS="CodeCaption-n-n-a-">
-<A NAME="pgfId-1002809"></A><A NAME="16516"></A>header.html</H6>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1010868"></A>&lt;table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011101"></A>	&lt;tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011102"></A>		&lt;td&gt;&lt;img src='graphics/java.gif'/&gt;&lt;/td&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011103"></A>		&lt;td&gt;&lt;img src='graphics/layout.gif'/&gt;&lt;/td&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011104"></A>	&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011105"></A>&lt;/table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011106"></A>&lt;hr&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011107"></A>Although header.html is an HTML file, it does not contain the usual preamble of tags such as &lt;html&gt;, &lt;body&gt;, etc. because those tags are in the template. Because the template takes care of such housekeeping, included files such as header.html are simpler and less prone to errors.</P>
-<TABLE>
-<TR>
-<TD ROWSPAN="1" COLSPAN="1">
-<H6 CLASS="Tiny-spacer">
-<A NAME="pgfId-1004474"></A>&nbsp;</H6>
-<H6 CLASS="TipHead">
-<A NAME="pgfId-1004491"></A>JSP Tip</H6>
-<H6 CLASS="TipHead2">
-<A NAME="pgfId-1004492"></A>When To Use Templates</H6>
-<P CLASS="Tip">
-<A NAME="pgfId-1004478"></A>Templates provide a mechanism to encapsulate web page layout. Because layout is specified in a single template and used for many web pages, the impact of layout changes is reduced to the template itself.</P>
-<P CLASS="Tip">
-<A NAME="pgfId-1004504"></A>Because the main benefit of templates is reducing the impact of layout changes, templates are most applicable to large websites that have many web pages with identical formats.</P>
-</TD>
-</TR>
-</TABLE>
-</DIV>
-</DIV>
+<html>
+<head>
+<link rel="stylesheet" href="css/templates.css" charset="ISO-8859-1" type="text/css">
+</head>
+<body>
+<h3 class="ChapTitle">Using Templates</h3>
+<p class="Paragraph">Templates are JSP files that include parameterized content; for instance, A JSP Template (chapterTemplate.jsp) lists a template that can be used to produce web pages with the format shown in A Web Page Layout.</p>
+<h4 class="CodeCaption">A JSP Template (chapterTemplate.jsp)</h4>
+<p class="Example-Code">&lt;%@ taglib uri='/WEB-INF/tlds/template.tld' prefix='template' %><br>
+&lt;html>&lt;head>&lt;title>&lt;template:get name='title'/>&lt;/title>&lt;/head><br>
+&lt;body background='graphics/blueAndWhiteBackground.gif'&gt;<br>
+&lt;table width='610'><br>
+&lt;tr valign='top'>&lt;td>&lt;template:get name='sidebar'/>&lt;/td><br>
+&lt;td>&lt;table><br>
+&lt;tr>&lt;td>&lt;template:get name='header'/>&lt;/td>&lt;/tr><br>
+&lt;tr>&lt;td>&lt;template:get name='content'/>&lt;/td>&lt;/tr><br>
+&lt;tr>&lt;td>&lt;template:get name='footer'/>&lt;/td>&lt;/tr><br>
+&lt;/table><br>
+&lt;/td><br>
+&lt;/tr>&nbsp;<br>
+&lt;/table><br>
+&lt;/body>&lt;/html></p>
+<p class="Paragraph">template:get is a custom tag that retrieves a Java bean from request scope. That bean contains the URI of a Web component which is subsequently included by template:get. In the template listed in A JSP Template (chapterTemplate.jsp), a bean named header is retrieved from request scope, and the URI--/header.html--is obtained from the bean and included.</p>
+<p class="Paragraph">Beans retrieved by template:get are put in request scope by template:put, and the template itself is included with template:insert, as illustrated in A JSP Page That Uses theTemplate listed in Example 5-3.a.</p>
+<h4 class="CodeCaption">A JSP Page That Uses theTemplate listed in A JSP Template (chapterTemplate.jsp)</h4>
+<p class="Example-Code">&lt;%@ taglib uri='/WEB-INF/tlds/template.tld' prefix='template' %><br>
+&lt;template:insert template='/chapterTemplate.jsp'><br>
+&lt;template:put name='title' content='Templates' direct='true'/><br>
+&lt;template:put name='header' content='/header.html' /><br>
+&lt;template:put name='sidebar' content='/sidebar.jsp' /><br>
+&lt;template:put name='content' content='/introduction.jsp'/><br>
+&lt;template:put name='footer' content='/footer.jsp' /><br>
+&lt;/template:insert&gt;</p>
+<p class="Paragraph">The template:insert start tag specifies the template to be included, in this case chapterTemplate.jsp, listed in A JSP Template (chapterTemplate.jsp). Each template:put tag stores a bean in request scope and the template:insert end tag includes the template.</p>
+<p class="Paragraph">A direct attribute can be specified for template:put; if the attribute is set to true, the content associated with the tag is not included, but is printed directly to the implicit out variable. For example, in A JSP Page That Uses theTemplate listed in Example 5-3.a the title content--'JSP Templates'--is used as the window title. A web site that has many pages with an identical format would have one template, such as the one listed in A JSP Template (chapterTemplate.jsp), and many JSP pages, such as A JSP Page That Uses theTemplate listed in Example 5-3.a, that use the template. If the format is modified, changes are restricted to the template. Another benefit of templates, and including content in general, is modular design. For example, the JSP file listed in A JSP Page That Uses theTemplate listed in Example 5-3.a ultimately includes header.html, which is listed in header.html.</p>
+<h4 class="CodeCaption">header.html</h4>
+<p>&lt;table><br>
+<p class="Example-Code">&lt;tr><br>
+&lt;td>&lt;img src='graphics/java.gif'/>&lt;/td><br>
+&lt;td>&lt;img src='graphics/layout.gif'/>&lt;/td><br>
+&lt;/tr><br>
+&lt;/table><br>
+&lt;hr></p>
+<p class="Paragraph">Although header.html is an HTML file, it does not contain the usual preamble of tags such as &lt;html>, &lt;body>, etc. because those tags are in the template. Because the template takes care of such housekeeping, included files such as header.html are simpler and less prone to errors.</p>
+<h4 class="Tip">JSP Tip - When To Use Templates</h4>
+<p class="Paragraph">Templates provide a mechanism to encapsulate web page layout. Because layout is specified in a single template and used for many web pages, the impact of layout changes is reduced to the template itself.</p>
+<p class="Paragraph">Because the main benefit of templates is reducing the impact of layout changes, templates are most applicable to large websites that have many web pages with identical formats.</p>
+</body>
+</html>

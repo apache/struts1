@@ -12,4 +12,10 @@
     <taglib-location>/WEB-INF/tlds/struts-template.tld</taglib-location>
   </taglib>
 
+
+  <!-- The Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>introduction.jsp</welcome-file>
+  </welcome-file-list>
+
 </web-app>

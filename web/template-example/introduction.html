@@ -1,91 +1,49 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"><HTML>
-<HEAD>
-<LINK REL="STYLESHEET" HREF="css/templates.css" CHARSET="ISO-8859-1" TYPE="text/css">
-<H3 CLASS="ChapTitle">Introduction</H3>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1004668"></A>Window toolkits typically provide a layout mechanism that positions widgets in a container; for example, AWT and Swing have layout managers, whereas VisualWorks Smalltalk has wrappers.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1002484"></A>Because layout undergoes many changes over the course of development, it's important to encapsulate that functionality so layout can be modified with minimal impact to the rest of the application. In fact, layout managers are an example of one of the tenets of object-oriented design: encapsulate the concept that varies,<A HREF="#pgfId-1002493" CLASS="footnote">1</A> which is also a fundamental theme for many design patterns.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1002504"></A>JSP does not provide direct support for encapsulating layout, so web pages with identical formats usually replicate layout code; for example, <A HREF="templates.html#77639" CLASS="XRef"> A Web Page Layout</A> shows a web page containing sections for a header, footer, sidebar, and main content.</P>
-<DIV>
-<H6 CLASS="Spacer-tiny">
-<A NAME="pgfId-1002523"></A>&nbsp;</H6>
-<DIV>
-<MAP NAME="templates-1">
-</MAP>
-<IMG SRC="graphics/templates-1.gif" USEMAP="#templates-1">
-</DIV>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1003852"></A>The layout of the page shown in <A HREF="templates.html#77639" CLASS="XRef"> A Web Page Layout</A> is implemented with HTML table tags, as listed in <A HREF="templates.html#75927" CLASS="XRef">Including Content</A>.</P>
-</DIV>
-<DIV>
-<H6 CLASS="CodeCaption">
-<A NAME="pgfId-1010787"></A><A NAME="75927"></A>Including Content</H6>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1010908"></A>&lt;html&gt;&lt;head&gt;&lt;title&gt;Templates&lt;/title&gt;&lt;/head&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011018"></A>&lt;body background='graphics/blueAndWhiteBackground.gif'&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011019"></A>&nbsp;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011020"></A>&lt;table width='610'&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011021"></A>	&lt;tr valign='top'&gt;&lt;td&gt;&lt;jsp:include page='sidebar.jsp'/&gt;&lt;/td&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011022"></A>		&lt;td&gt;&lt;table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011023"></A>				&lt;tr&gt;&lt;td&gt;&lt;jsp:include page='header.html'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011024"></A>				&lt;tr&gt;&lt;td&gt;&lt;jsp:include page='chapter.jsp'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011025"></A>				&lt;tr&gt;&lt;td&gt;&lt;jsp:include page='footer.jsp'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011026"></A>			 &lt;/table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011027"></A>		&lt;/td&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011028"></A>	&lt;/tr&gt; </P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011029"></A>&lt;/table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011030"></A>&lt;/body&gt;&lt;/html&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011031"></A>In <A HREF="templates.html#75927" CLASS="XRef"> Including Content</A>, content is included with &lt;jsp:include&gt;,<A HREF="#pgfId-1010810" CLASS="footnote">2</A> which allows content to vary without modifying HTML; however, because the layout is hardcoded, layout changes require modifications to the page. If a website has many pages with identical formats, even simple layout changes require modifications to all of the pages.</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1010769"></A>DISCUSSION</P>
-</DIV>
-<DIV>
-<H6 CLASS="CodeCaption">
-<A NAME="pgfId-1010781"></A>Including Dynamic Content</H6>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1010923"></A>&lt;html&gt;&lt;head&gt;&lt;title&gt;Templates&lt;/title&gt;&lt;/head&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011039"></A>&lt;body background='graphics/blueAndWhiteBackground.gif'&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011040"></A>&nbsp;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011041"></A>&lt;table width='610'&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011042"></A>	&lt;tr valign='top'&gt;&lt;td&gt;&lt;jsp:include page='sidebar.jsp'/&gt;&lt;/td&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011043"></A>		&lt;td&gt;&lt;table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011044"></A>				&lt;tr&gt;&lt;td&gt;&lt;jsp:include page='header.html'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011045"></A>				&lt;tr&gt;&lt;td&gt;&lt;jsp:include page='chapter.jsp'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011046"></A>				&lt;tr&gt;&lt;td&gt;&lt;jsp:include page='footer.jsp'/&gt;&lt;/td&gt;&lt;/tr&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011047"></A>			 &lt;/table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011048"></A>		&lt;/td&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011049"></A>	&lt;/tr&gt; </P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011050"></A>&lt;/table&gt;</P>
-<P CLASS="Example-Code">
-<A NAME="pgfId-1011051"></A>&lt;/body&gt;&lt;/html&gt;</P>
-<P CLASS="Paragraph">
-<A NAME="pgfId-1011052"></A>To minimize the impact of layout changes, a mechanism is needed for dynamically including layout in addition to content. That way, both layout and content can be changed without modifying files that use them. For large websites that have many pages with identical formats, such a mechanism is valuable because it localizes changes to layout. That mechanism is JSP templates.</P>
-</DIV>
+<html>
+<head>
+<link rel="stylesheet" href="css/templates.css" charset="ISO-8859-1" type="text/css">
+</head>
+<body>
+<p class="Paragraph"><i>This example application is from <a href="http://www.javaworld.com/javaworld/jw-09-2000/jw-0915-jspweb_p.html">Using JSP templates to encapsulate Webpage layout and encourage modular design</a> by David Geary. Follow that link for the full article, which also covers using role-based and nested templates. The template classes described in the Java World article are the same as those used by Struts 1.0.</i></p>
+<h3 class="ChapTitle">Introduction</h3>
+<p class="Paragraph">Window toolkits typically provide a layout mechanism that positions widgets in a container; for example, AWT and Swing have layout managers, whereas VisualWorks Smalltalk has wrappers.</p>
+<p class="Paragraph">Because layout undergoes many changes over the course of development, it's important to encapsulate that functionality so layout can be modified with minimal impact to the rest of the application. In fact, layout managers are an example of one of the tenets of object-oriented design: encapsulate the concept that varies, which is also a fundamental theme for many design patterns.</p>
+<p class="Paragraph">JSP does not provide direct support for encapsulating layout, so web pages with identical formats usually replicate layout code; for example, <b>A Web Page Layout</b> shows a web page containing sections for a header, footer, sidebar, and main content.</p>
+<p class="Paragraph">The layout of the page shown in <b>A Web Page Layout</b> is implemented with HTML table tags, as listed in Including Content.</p>
+<p><img src="graphics/templates-1.gif"></p>
+<h4 class="CodeCaption">Including Content</h6>
+<p class="Example-Code">
+&lt;html>&lt;head>&lt;title>Templates&lt;/title>&lt;/head><br>
+&lt;body background='graphics/blueAndWhiteBackground.gif'></p>
+<p class="Example-Code">
+&lt;table width='610'><br>
+&lt;tr valign='top'>&lt;td>&lt;jsp:include page='sidebar.jsp'/>&lt;/td><br>
+&lt;td>&lt;table><br>
+&lt;tr>&lt;td>&lt;jsp:include page='header.html'/>&lt;/td>&lt;/tr><br>
+&lt;tr>&lt;td>&lt;jsp:include page='chapter.jsp'/>&lt;/td>&lt;/tr><br>
+&lt;tr>&lt;td>&lt;jsp:include page='footer.jsp'/>&lt;/td>&lt;/tr><br>
+&lt;/table><br>
+&lt;/td><br>
+&lt;/tr>&nbsp;<br>
+&lt;/table><br>
+&lt;/body>&lt;/html></p>
+<p class="Paragraph">In Including Content, content is included with &lt;jsp:include> which allows content to vary without modifying HTML; however, because the layout is hardcoded, layout changes require modifications to the page. If a website has many pages with identical formats, even simple layout changes require modifications to all of the pages.</p>
+<h4 class="ChapTitle">Including Dynamic Content</h4>
+<br>
+<p class="Example-Code">
+&lt;html>&lt;head>&lt;title>Templates&lt;/title>&lt;/head><br>
+&lt;body background='graphics/blueAndWhiteBackground.gif'></p>
+<p class="Example-Code">
+&lt;table width='610'><br>
+&lt;tr valign='top'>&lt;td>&lt;jsp:include page='sidebar.jsp'/>&lt;/td><br>
+&lt;td>&lt;table><br>
+&lt;tr>&lt;td>&lt;jsp:include page='header.html'/>&lt;/td>&lt;/tr><br>
+&lt;tr>&lt;td>&lt;jsp:include page='chapter.jsp'/>&lt;/td>&lt;/tr><br>
+&lt;tr>&lt;td>&lt;jsp:include page='footer.jsp'/>&lt;/td>&lt;/tr><br>
+&lt;/table><br>
+&lt;/td><br>
+&lt;/tr>&nbsp;<br>
+&lt;/table><br>
+&lt;/body>&lt;/html></p>
+<p class="Paragraph">To minimize the impact of layout changes, a mechanism is needed for dynamically including layout in addition to content. That way, both layout and content can be changed without modifying files that use them. For large websites that have many pages with identical formats, such a mechanism is valuable because it localizes changes to layout. That mechanism is JSP templates.</p>
+</body>
+</html>
