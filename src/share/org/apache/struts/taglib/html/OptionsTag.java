@@ -290,10 +290,19 @@ public class OptionsTag extends TagSupport {
 
               // Render the options tags for each element of the values coll.
               while (valuesIterator.hasNext()) {
-                  String value = valuesIterator.next().toString();
+                  Object valueObject = valuesIterator.next();
+                  if (valueObject == null) {
+                      valueObject = "";
+                  }
+                  String value = valueObject.toString();
                   String label = value;
-                  if (labelsIterator.hasNext())
-                      label = labelsIterator.next().toString();
+                  if (labelsIterator.hasNext()) {
+                      Object labelObject = labelsIterator.next();
+                      if (labelObject == null) {
+                          labelObject = "";
+                      }
+                      label = labelObject.toString();
+                  }
                   addOption(sb, value, label,
                             selectTag.isMatched(value));
               }
