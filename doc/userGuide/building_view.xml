@@ -539,6 +539,13 @@ value="/WEB-INF/validator-rules.xml,
     </p>
     
     <p>
+    <strong>Note:</strong> If your required form property is one of the Java object representations of 
+    primitive types (ie. java.lang.Integer), you must set the ActionServlet's convertNull init.
+    parameter to true.  Failing to do this will result in the required validation not being performed
+    on that field because it will default to 0.
+    </p>
+    
+    <p>
     For more about the Struts Validator, see the 
     <a href="./dev_validator.html">Developers Guide</a>.
     </p>
