@@ -159,16 +159,17 @@
         description="Compile individual web applications">
     <!-- Create the taglib documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
-           extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"/>
     <!-- Create the proposals -->
     <style   basedir="${doc.dir}/proposals"
              destdir="${build.home}/documentation/proposals"
-           extension=".html" style="../stylesheets/proposals.xsl"
+           extension=".html" style="${doc.dir}/stylesheets/proposals.xsl"
             includes="*.xml"/>
     <!-- Create the user guide -->
     <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
-           extension=".html" style="../stylesheets/userGuide.xsl"
+           extension=".html" style="${doc.dir}/stylesheets/userGuide.xsl"
             includes="*.xml"/>
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation">

@@ -211,7 +211,7 @@
         <style basedir="${doc.dir}"
             destdir="${build.home}/library"
             extension=".tld"
-            style="stylesheets/tld.xsl"
+            style="${doc.dir}/stylesheets/tld.xsl"
             includes="tiles*.xml"/>
         <copy todir="${build.home}/library/classes/META-INF/tlds">
             <fileset dir="${build.home}/library" includes="*.tld"/>

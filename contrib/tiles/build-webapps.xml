@@ -278,10 +278,12 @@
     </copy>
     <!-- Create the taglib documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
-           extension="Tags.html" style="stylesheets/tiles.xsl" includes="tiles*.xml"/>
+           extension="Tags.html" style="${doc.dir}/stylesheets/tiles.xsl"
+            includes="tiles*.xml"/>
     <!-- Create the xml documentation -->
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation/doc"
-           extension=".html" style="stylesheets/tiles.xsl" includes="*.xml" excludes="tiles*.xml" />
+           extension=".html" style="${doc.dir}/stylesheets/tiles.xsl"
+            includes="*.xml" excludes="tiles*.xml" />
 </target>
 
 

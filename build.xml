@@ -307,7 +307,7 @@
         <style basedir="${doc.dir}/userGuide"
             destdir="${build.home}/library"
             extension=".tld"
-            style="../stylesheets/tld.xsl"
+            style="${doc.dir}/stylesheets/tld.xsl"
             includes="struts-*.xml"/>
         <copy todir="${build.home}/library/classes/META-INF/tlds">
             <fileset dir="${build.home}/library" includes="struts-*.tld"/>
