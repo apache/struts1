@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.5 2002/02/16 16:12:56 arron Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.6 2002/08/03 17:45:47 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -184,6 +184,7 @@
               <th>Description</th>
             </tr>
             <xsl:for-each select="tag">
+              <xsl:sort select="name"/>
               <tr>
                 <td align="center">
                   <xsl:variable name="name">
@@ -200,7 +201,9 @@
         </blockquote>
       </td></tr>
     </table>
-    <xsl:apply-templates select="tag"/>
+    <xsl:apply-templates select="tag">
+      <xsl:sort select="name"/>
+    </xsl:apply-templates>
   </xsl:template>
 
   <!-- Process an individual tag -->
@@ -241,6 +244,7 @@
             <th>Description</th>
           </tr>
           <xsl:for-each select="attribute">
+            <xsl:sort select="name"/>
             <tr>
               <td align="center">
                 <xsl:value-of select="name"/>
