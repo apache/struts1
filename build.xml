@@ -59,6 +59,18 @@
     <copydir src="web/test" dest="${build.home}/test"/>
   </target>
 
+  <!-- BUILD:  Create dieectories and copy files for template example -->
+  <target name="prepare.template-example">
+    <mkdir   dir="${build.home}"/>
+    <mkdir   dir="${build.home}/template-example"/>
+    <mkdir   dir="${build.home}/template-example/css"/>
+    <mkdir   dir="${build.home}/template-example/graphics"/>
+    <mkdir   dir="${build.home}/template-example/WEB-INF"/>
+    <mkdir   dir="${build.home}/template-example/WEB-INF/lib"/>
+    <mkdir   dir="${build.home}/template-example/WEB-INF/tlds"/>
+    <copydir src="web/template-example" dest="${build.home}/template-example"/>
+  </target>
+
   <!-- DIST:  Create directories and copy files for distribution -->
   <target name="prepare.dist">
     <mkdir   dir="${dist.home}"/>
@@ -134,6 +146,17 @@
          includes="*.tld"/>
   </target>
 
+  <!-- BUILD:  Compile example application components -->
+  <target name="compile.template-example"
+       depends="dist.library,prepare.template-example">
+    <copydir  src="web/template-example" dest="${build.home}/template-example"/>
+    <copyfile src="${dist.home}/lib/${app.name}.jar"
+             dest="${build.home}/template-example/WEB-INF/lib/${app.name}.jar"/>
+    <copydir  src="${dist.home}/lib"
+             dest="${build.home}/template-example/WEB-INF/tlds"
+         includes="*.tld"/>
+  </target>
+
   <!-- BUILD:  Compile test application components -->
   <target name="compile.test"
        depends="dist.library,prepare.test">
@@ -190,6 +213,13 @@
           basedir="${build.home}/example" includes="**"/>
   </target>
 
+  <!-- DIST:  Construct template-example distributables -->
+  <target name="dist.template-example" depends="dist.library,compile.template-example">
+    <jar  jarfile="${dist.home}/webapps/${app.name}-template-example.war"
+          basedir="${build.home}/template-example" includes="**"/>
+  </target>
+
+
   <!-- DIST:  Construct test distributables -->
   <target name="dist.test" depends="dist.library,compile.test">
     <jar  jarfile="${dist.home}/webapps/${app.name}-test.war"
@@ -209,7 +239,7 @@
 
   <!-- DIST:  Construct complete release distribution -->
   <target name="dist"
-       depends="dist.library,dist.documentation,dist.example,dist.test,dist.source"/>
+       depends="dist.library,dist.documentation,dist.example,dist.template-example,dist.test,dist.source"/>
 
   <!-- DEPLOY:  Deploy these applications on Catalina -->
   <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.test">
