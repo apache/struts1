@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.10 2004/01/13 12:48:45 husted Exp $
- * $Revision: 1.10 $
- * $Date: 2004/01/13 12:48:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.11 2004/01/29 19:59:18 germuska Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/01/29 19:59:18 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.xml.sax.SAXException;
  * using the Commons Digester and place the root object
  * of that graph into the Application context.</p>
  *
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  * @see org.apache.struts.action.PlugIn
  * @since Struts 1.2
  */
@@ -163,7 +163,7 @@ public class DigestingPlugIn implements PlugIn {
         }
 
         try {
-            log.debug("XML data file: [path: " 
+            log.debug("XML data file: [path: "
                       + this.configPath
                       + ", source: "
                       + this.configSource + "]");
@@ -198,7 +198,7 @@ public class DigestingPlugIn implements PlugIn {
         if (this.digesterPath != null && this.digesterSource != null) {
 
             try {
-                log.debug("Initialize digester from XML [path: " 
+                log.debug("Initialize digester from XML [path: "
                           + this.digesterPath
                           + "; source: "
                           + this.digesterSource + "]");
@@ -213,7 +213,7 @@ public class DigestingPlugIn implements PlugIn {
             }
 
         } else {
-            log.debug("No XML rules for digester; call newDigesterInstance()"); 
+            log.debug("No XML rules for digester; call newDigesterInstance()");
             digester = this.newDigesterInstance();
         }
 
@@ -245,7 +245,12 @@ public class DigestingPlugIn implements PlugIn {
     protected Digester digesterFromXml(String path, String source)
         throws IOException {
 
-        return DigesterLoader.createDigester(this.getConfigURL(path, source));
+        URL configURL = this.getConfigURL(path, source);
+        if (configURL == null)
+        {
+            throw new NullPointerException("No resource '" + path + "' found in '" + source + "'");
+        }
+        return DigesterLoader.createDigester(configURL);
     }
 
     /**
