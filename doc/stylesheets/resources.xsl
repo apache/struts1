@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Resources  -->
-<!-- $Id: resources.xsl,v 1.1 2002/06/23 17:41:14 husted Exp $ -->
+<!-- $Id: resources.xsl,v 1.2 2002/11/11 22:00:03 husted Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -48,7 +48,9 @@
         <a href="http://jakarta.apache.org">
         <img src="../images/jakarta-logo.gif" align="left" border="0"/>
         </a>
+        <a href="http://jakarta.apache.org/struts">
         <img src="../images/struts.gif" align="right" border="0"/>
+        </a>
       </td></tr>
 
       <tr><td colspan="2">
