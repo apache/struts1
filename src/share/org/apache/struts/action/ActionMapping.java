@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.9 2000/10/12 21:51:02 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/10/12 21:51:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.10 2000/11/09 20:34:12 mschachter Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/11/09 20:34:12 $
  *
  * ====================================================================
  *
@@ -138,7 +138,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/10/12 21:51:02 $
+ * @version $Revision: 1.10 $ $Date: 2000/11/09 20:34:12 $
  */
 
 public class ActionMapping {
@@ -177,8 +177,13 @@ public class ActionMapping {
      * The <code>ActionMappings</code> collection of which we are a part.
      */
     protected ActionMappings mappings = null;
-
-
+    
+    /**
+     * The fully qualified class name of the <code>MultipartRequestHandler</code>
+     * implementation class used to process multipart request data for this mapping
+     */
+    protected String multipartClass;
+    
     /**
      * The name of the form bean, if any, associated with this action.
      */
@@ -467,6 +472,17 @@ public class ActionMapping {
         return (this.mappings);
 
     }
+    
+    /**
+     * Get the name of the class used to handle multipart request data
+     *
+     * @return A fully qualified java class name representing the implementation of
+     *         MultipartRequestHandler to use.
+     */
+    public String getMultipartClass() {
+        return multipartClass;
+    }
+
 
 
     /**
@@ -480,6 +496,18 @@ public class ActionMapping {
         this.mappings = mappings;
 
     }
+    
+    /** 
+     * Set the name of the class used to handle multipart request data
+     *
+     * @param multipartClass The fully qualified class name representing the
+     *        MultipartRequestHandler class to use.  If <code>null</code>, 
+     *        the global class specified in "web.xml" will be used.
+     */
+    public void setMultipartClass(String multipartClass) {
+        this.multipartClass = multipartClass;
+    }
+
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.3 2000/10/15 03:29:15 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/15 03:29:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.4 2000/11/09 20:34:12 mschachter Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/11/09 20:34:12 $
  *
  * ====================================================================
  * 
@@ -67,6 +67,8 @@ import java.io.Serializable;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts.upload.MultipartRequestHandler;
+
 
 /**
  * <p>An <strong>ActionForm</strong> is a JavaBean optionally associated with
@@ -92,7 +94,7 @@ import javax.servlet.http.HttpServletRequest;
  * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/15 03:29:15 $
+ * @version $Revision: 1.4 $ $Date: 2000/11/09 20:34:12 $
  */
 
 public abstract class ActionForm implements Serializable {
@@ -105,6 +107,13 @@ public abstract class ActionForm implements Serializable {
      * The controller servlet instance to which we are attached.
      */
     protected ActionServlet servlet = null;
+    
+    
+    /**
+     * The MultipartRequestHandler for this form, can be
+     * <code>null</code>
+     */
+    protected MultipartRequestHandler multipartRequestHandler;
 
 
     // ------------------------------------------------------------- Properties
@@ -117,6 +126,19 @@ public abstract class ActionForm implements Serializable {
 
         return (this.servlet);
 
+    }
+    
+    
+    /**
+     * Return the MultipartRequestHandler for this form
+     * The reasoning behind this is to give form bean developers
+     * control over the lifecycle of their multipart requests
+     * through the use of the finish() and/or rollback() methods
+     * of MultipartRequestHandler
+     * @see org.apache.struts.upload.MultipartRequestHandler
+     */
+    public MultipartRequestHandler getMultipartRequestHandler() {
+        return multipartRequestHandler;
     }
 
 
@@ -133,6 +155,10 @@ public abstract class ActionForm implements Serializable {
 
     }
 
+    
+    public void setMultipartRequestHandler(MultipartRequestHandler multipartRequestHandler) {
+        this.multipartRequestHandler = multipartRequestHandler;
+    }
 
     // --------------------------------------------------------- Public Methods
 
