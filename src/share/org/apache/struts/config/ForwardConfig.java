@@ -301,6 +301,10 @@ public class ForwardConfig implements Serializable {
         sb.append(this.contextRelative);
         sb.append(",module=");
         sb.append(this.module);
+        sb.append(",catalog=");
+        sb.append(this.catalog);
+        sb.append(",command=");
+        sb.append(this.command);
         sb.append("]");
         return (sb.toString());
 

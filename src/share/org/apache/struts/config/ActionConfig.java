@@ -860,6 +860,14 @@ public class ActionConfig implements Serializable {
             sb.append(",attribute=");
             sb.append(attribute);
         }
+        if (catalog != null) {
+            sb.append(",catalog=");
+            sb.append(catalog);
+        }
+        if (command != null) {
+            sb.append(",command=");
+            sb.append(command);
+        }
         if (forward != null) {
             sb.append(",forward=");
             sb.append(forward);
