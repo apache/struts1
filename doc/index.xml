@@ -135,7 +135,7 @@
   OR THE
   <a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">USER LIST DIGEST</a>
   BEFORE POSTING. If you would rather not subscribe to a list, you can go through the
-  <a href="http://www.proj.com/subscribe.jsp">BaseBeanse Struts Newsgroup</a>]<br/> instead.
+  <a href="http://www.proj.com/subscribe.jsp">BaseBeans Struts Newsgroup</a> instead.
   </p>
 
   <p>
@@ -311,6 +311,9 @@
   New additions for the Resources page should posted as an enhancement request to
   <a href="#Bugs">Bugzilla</a>.
   </p>
+  <p>
+  For more, see the <a href="helping.html">How to Help FAQ</a>.
+  </p>
 
   </section>
 
@@ -371,7 +374,7 @@
   All work on Struts and the other Jakarta subprojects is provided on a volunteer
   basis. For more about what you can do, see the
   <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved
-  Overview</a>.
+  Overview</a> and the Struts <a href="helping.html">How to Help FAQ</a>.
   </p>
 
   </section>
