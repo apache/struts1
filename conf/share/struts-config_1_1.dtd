@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.17 2002/06/28 01:09:07 jholmes Exp $
+     $Id: struts-config_1_1.dtd,v 1.18 2002/06/28 01:57:27 jholmes Exp $
 -->
 
 
@@ -494,7 +494,7 @@
      parameter       Configuration parameter to be passed to the
                      createResources() method of our MessageResourcesFactory.
 -->
-<!ELEMENT message-resources EMPTY>
+<!ELEMENT message-resources (set-property*)>
 <!ATTLIST message-resources id          ID              #IMPLIED>
 <!ATTLIST message-resources className   %ClassName;     #IMPLIED>
 <!ATTLIST message-resources factory     %ClassName;     #IMPLIED>
