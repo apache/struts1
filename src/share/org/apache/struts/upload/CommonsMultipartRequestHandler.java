@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.15 2004/03/14 06:23:48 sraeburn Exp $
- * $Revision: 1.15 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.16 2004/03/22 00:41:34 husted Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/03/22 00:41:34 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -47,7 +47,7 @@ import org.apache.struts.Globals;
   * This class implements the <code>MultipartRequestHandler</code> interface
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
-  * @version $Revision: 1.15 $ $Date: 2004/03/14 06:23:48 $
+  * @version $Revision: 1.16 $ $Date: 2004/03/22 00:41:34 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -409,7 +409,11 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         try {
             value = item.getString(request.getCharacterEncoding());
         } catch (Exception e) {
-            value = item.getString();
+            try {
+                 value = item.getString("ISO-8859-1");
+            } catch (java.io.UnsupportedEncodingException uee) {
+                 value = item.getString();
+            }
         }
 
         if (request instanceof MultipartRequestWrapper) {
