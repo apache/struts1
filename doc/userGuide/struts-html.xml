@@ -3699,7 +3699,8 @@
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
                     up, and use the module-relative or context-relative
-                    URI found there.</li>
+                    URI found there. If the forward is module-relative then
+                    it must point to an action and NOT to a page.</li>
                 <li><em>action</em> - Use the value of this attribute as the
                     name of a <code>Action</code> to be looked
                     up, and use the module-relative or context-relative
