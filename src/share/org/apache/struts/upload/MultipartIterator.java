@@ -57,6 +57,16 @@ public class MultipartIterator {
     protected long maxSize = -1;
     
     /**
+     * The total bytes read from this request
+     */
+    protected long totalLength = 0;
+    
+    /**
+     * The content length of this request
+     */
+    protected int contentLength;
+    
+    /**
      * The amount of data read from a request at a time.
      * This also represents the maximum size in bytes of
      * a line read from the request
@@ -110,12 +120,12 @@ public class MultipartIterator {
      *
      * @throws a ServletException if the post size exceeds the maximum file size
      *         passed in the 3 argument constructor
+     * @throws an UnsupportedEncodingException if the "ISO-8859-1" encoding isn't found
      * @return a {@link org.apache.struts.upload.MultipartElement MultipartElement}
      *         representing the next element in the request data
      *
      */
-    public MultipartElement getNextElement() throws ServletException {
-        
+    public MultipartElement getNextElement() throws ServletException, UnsupportedEncodingException {
         //retrieve the "Content-Disposition" header
         //and parse
         String disposition = readLine();
@@ -126,8 +136,6 @@ public class MultipartIterator {
                                    
             String contentType = null;
 
-            byte[] data = null;
-            
             if (filename != null) {
                 filename = new File(filename).getName();
                 
@@ -153,7 +161,7 @@ public class MultipartIterator {
             
             //read data into String form, then convert to bytes
             //for both normal text and file
-            String textData = "";
+            StringBuffer textData = new StringBuffer();
             String line;
             
             //ignore next line (whitespace)
@@ -161,44 +169,28 @@ public class MultipartIterator {
             
             //parse for text data
             line = readLine();
-            long totalReadLength = (long) line.getBytes().length;
          
             while ((line != null) && (!line.startsWith(boundary))) {
-                textData += line;
+                textData.append(line);
                 line = readLine();
-                totalReadLength += (long) line.getBytes().length;
                 
                 if (maxSize > -1) {
-                    if (totalReadLength > maxSize) {
+                    if (totalLength > maxSize) {
                         throw new ServletException("Multipart data size exceeds the maximum " +
                             "allowed post size");
                     }
                 }
             }
             
-            //remove the "\r\n" if it's there
-            if (textData.endsWith("\r\n")) {
-                textData = textData.substring(0, textData.length()-2);
-            }
-            
-            //remove the "\n" if it's there
-            if (textData.endsWith("\n")) {
-                textData = textData.substring(0, textData.length()-1);
-            }
-            
-            //convert data into byte form for MultipartElement
-            try {
-                data = textData.getBytes("ISO-8859-1");
-            }
-            catch (UnsupportedEncodingException uee) {
-                data = textData.getBytes();
-            }
+            if (textData.length() > 1) {
+                //cut off "\r\n" from the end
+                textData.setLength(textData.length()-2);
+            }            
             
             MultipartElement element = new MultipartElement(name,
                                                             filename,
                                                             contentType,
-                                                            data);
-            
+                                                            textData.toString().getBytes("ISO-8859-1"));
             return element;
         }       
         return null;       
@@ -244,6 +236,8 @@ public class MultipartIterator {
      */
     protected void parseRequest() throws ServletException {
         
+        contentLength = request.getContentLength();
+        System.out.println("Content length: " + contentLength);
         //set boundary
         boundary = parseBoundary(request.getContentType());
         
@@ -268,9 +262,14 @@ public class MultipartIterator {
         }
         
         //read first line
-        if (!readLine().startsWith(boundary)) {
-            throw new ServletException("MultipartIterator: invalid multipart request " +
-                                       "data");
+        try {
+            if (!readLine().startsWith(boundary)) {
+                throw new ServletException("MultipartIterator: invalid multipart request " +
+                                           "data");
+            }
+        }
+        catch (UnsupportedEncodingException uee) {
+            throw new ServletException("MultipartIterator: encoding \"ISO-8859-1\" not supported");
         }
     }
       
@@ -372,10 +371,14 @@ public class MultipartIterator {
     /**
      * Reads the input stream until it reaches a new line
      */
-    protected String readLine() {
+    protected String readLine() throws UnsupportedEncodingException {
        
         byte[] bufferByte = new byte[bufferSize];
         int bytesRead;
+        
+        if (totalLength >= contentLength) {
+            return null;
+        }
         
         try {
             bytesRead = inputStream.readLine(bufferByte,
@@ -386,17 +389,10 @@ public class MultipartIterator {
             return null;
         }
         if (bytesRead == -1) {
-            contentRead = true;
             return null;
         }
-        String retString = null;
         
-        try {
-            retString = new String(bufferByte, 0, bytesRead, "ISO-8859-1");
-        }
-        catch (UnsupportedEncodingException uee) {
-            retString = new String(bufferByte);
-        }
-        return retString;
+        totalLength += bytesRead;
+        return new String(bufferByte, 0, bytesRead, "ISO-8859-1");
     }
 }

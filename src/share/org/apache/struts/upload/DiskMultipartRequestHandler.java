@@ -58,32 +58,38 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         fileElements = new Hashtable();
         allElements = new Hashtable();
 
-        while ((element = iterator.getNextElement()) != null) {
-            if ((element.getFileName() == null) && (element.getContentType() == null)) {
-                String textData;
-                try {
-                    textData = new String(element.getData(), "ISO-8859-1");
-                }
-                catch (UnsupportedEncodingException uee) {
-                    textData = new String(element.getData());
-                }
+        try {
+            while ((element = iterator.getNextElement()) != null) {
+                if ((element.getFileName() == null) && (element.getContentType() == null)) {
+                    String textData;
+                    try {
+                        textData = new String(element.getData(), "ISO-8859-1");
+                    }
+                    catch (UnsupportedEncodingException uee) {
+                        textData = new String(element.getData());
+                    }
 
-                textElements.put(element.getName(), textData);
-                allElements.put(element.getName(), textData);
-            }
-            else {
-                try {
-                    DiskFile theFile = writeFile(element);
-                    fileElements.put(element.getName(), theFile);
-                    allElements.put(element.getName(), theFile);
+                    textElements.put(element.getName(), textData);
+                    allElements.put(element.getName(), textData);
                 }
-                catch (IOException ioe) {
-                    throw new ServletException("DiskMultipartRequestHandler." +
-                    "handleRequest(), IOException: " +
-                    ioe.getMessage());
+                else {
+                    try {
+                        DiskFile theFile = writeFile(element);
+                        fileElements.put(element.getName(), theFile);
+                        allElements.put(element.getName(), theFile);
+                    }
+                    catch (IOException ioe) {
+                        throw new ServletException("DiskMultipartRequestHandler." +
+                        "handleRequest(), IOException: " +
+                        ioe.getMessage());
+                    }
                 }
             }
         }
+        catch (UnsupportedEncodingException uee) {
+            throw new ServletException("Encoding \"ISO-8859-1\" not supported");
+        }
+
     }
 
 
@@ -166,11 +172,11 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
     }
 
     public Hashtable getTextElements() {
-        return new Hashtable();
+        return textElements;
     }
 
     public Hashtable getFileElements() {
-        return new Hashtable();
+        return fileElements;
     }
 
     /**
