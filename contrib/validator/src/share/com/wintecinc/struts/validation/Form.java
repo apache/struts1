@@ -110,7 +110,8 @@ public class Form implements Serializable {
     public void addField(Field f) {
        if (f != null && f.getProperty() != null && f.getProperty().length() > 0) {
        	  lFields.add(f);
-          hFields.put(f.getProperty(), f);
+       	  
+          hFields.put(f.getKey(), f);
        }
     }
 

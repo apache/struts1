@@ -57,6 +57,7 @@ package com.wintecinc.struts.validation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -276,12 +277,20 @@ public class Validator implements Serializable {
 	               	  
 	               	  List lParams = va.getMethodParamsList();
 	               	  int size = lParams.size();
+	               	  int beanIndexPos = -1;
+	               	  int fieldIndexPos = -1;
 	               	  Class[] paramClass = new Class[size];
 	               	  Object[] paramValue = new Object[size];
 
 	               	  for (int x = 0; x < size; x++) {
 	               	     String paramKey = (String)lParams.get(x);
-               	     
+               	             
+               	             if (BEAN_KEY.equals(paramKey))
+               	                beanIndexPos = x;
+               	                
+               	             if (FIELD_KEY.equals(paramKey))
+               	                fieldIndexPos = x;
+               	             
 	               	     // There were problems calling getClass on paramValue[]
 	               	     paramClass[x] = Class.forName(paramKey, true, this.getClass().getClassLoader());
 	               	     paramValue[x] = hResources.get(paramKey);
@@ -301,13 +310,44 @@ public class Validator implements Serializable {
 	                                   "of class " + va.getClassname() + ".  " + ex.getMessage());   
 	                     }
 	                  }
+                          
+                          Object result = null;
+                          
+                          if (field.isIndexed()) {
+                             Object oIndexed = PropertyUtils.getProperty(hResources.get(BEAN_KEY), field.getIndexedListProperty());
+                             Object indexedList[] = new Object[0];
+                             
+                             if (oIndexed instanceof Collection)
+                                indexedList = ((Collection)oIndexed).toArray();
+                             else if(oIndexed.getClass().isArray())
+                                indexedList = (Object[])oIndexed;
+                             
+                             for (int pos = 0; pos < indexedList.length; pos++) {
+                                // Set current iteration object to the parameter array
+                                paramValue[beanIndexPos] = indexedList[pos];
+                                
+                                // Set field clone with the key modified to represent 
+                                // the current field
+                                Field indexedField = (Field)field.clone();
+                                indexedField.setKey(ValidatorUtil.replace(indexedField.getKey(), Field.TOKEN_INDEXED, "[" + pos + "]"));
+                                paramValue[fieldIndexPos] = indexedField;
+                                
+                             	result = m.invoke(va.getClassnameInstance(), paramValue);
 
-                          Object result = m.invoke(va.getClassnameInstance(), paramValue);
-
-                          if (result instanceof Boolean) {
-                             Boolean valid = (Boolean)result;
-                             if (!valid.booleanValue())
-                                iErrorCount++;
+                                if (result instanceof Boolean) {
+                                   Boolean valid = (Boolean)result;
+                                   if (!valid.booleanValue())
+                                      iErrorCount++;
+                                }
+                             }
+                          } else {
+                             result = m.invoke(va.getClassnameInstance(), paramValue);
+                             
+                             if (result instanceof Boolean) {
+                                Boolean valid = (Boolean)result;
+                                if (!valid.booleanValue())
+                                   iErrorCount++;
+                             }
                           }
 		       } catch (Exception e) {
 		          bErrors = true;

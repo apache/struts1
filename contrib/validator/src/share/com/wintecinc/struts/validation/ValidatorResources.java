@@ -360,7 +360,7 @@ public class ValidatorResources implements Serializable {
 
              for (Iterator defaultFields = defaultForm.getFields().iterator(); defaultFields.hasNext(); ) {
                 Field defaultField = (Field)defaultFields.next();
-                String fieldKey = defaultField.getProperty();
+                String fieldKey = defaultField.getKey();
 
                 if (form.getFieldMap().containsKey(fieldKey)) {
                    newForm.addField((Field)form.getFieldMap().get(fieldKey));
