@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestCookieTag.java,v 1.11 2004/07/06 06:38:52 craigmcc Exp $
  * $Revision: 1.11 $
- * $Date: 2004/07/06 06:38:52 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -21,18 +21,14 @@ package org.apache.struts.taglib.bean;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
-import org.apache.cactus.WebResponse;
-import org.apache.commons.lang.StringUtils;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.CookieTag</code> class.
  *
  */
-public class TestCookieTag extends JspTestCase {
+public class TestCookieTag extends TaglibTestBase {
 
     protected final static String COOKIE_KEY = "COOKIE_KEY";
     protected final static String COOKIE_VAL = "COOKIE_VAL";
@@ -73,8 +69,8 @@ public class TestCookieTag extends JspTestCase {
 
     private void formatAndTest(String compare, String output) {
         //fix for introduced carriage return / line feeds
-        output = StringUtils.replace(output,"\r","");
-        output = StringUtils.replace(output,"\n","");
+        output = replace(output,"\r","");
+        output = replace(output,"\n","");
         output = output.trim();
         //System.out.println("Testing [" + compare + "] == [" + output + "]");
         assertEquals(compare, output);
