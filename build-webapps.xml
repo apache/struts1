@@ -219,7 +219,8 @@
     <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"
-            excludes="project.xml">
+            excludes="project.xml"
+            reloadstylesheet="true">
       <param name="relative-path" expression="."/>
     </style>            
     <!-- Create the FAQs -->
@@ -227,7 +228,8 @@
              destdir="${build.home}/documentation/faqs"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"
-            excludes="project.xml">
+            excludes="project.xml"
+            reloadstylesheet="true">
       <param name="project-path" expression="../faqs/project.xml"/>
     </style>            
     <!-- Create the news -->
@@ -235,7 +237,8 @@
              destdir="${build.home}/documentation/news"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"
-            excludes="project.xml">
+            excludes="project.xml"
+            reloadstylesheet="true">
       <param name="project-path" expression="../news/project.xml"/>
     </style>            
     <!-- Create the proposals -->
@@ -243,7 +246,8 @@
              destdir="${build.home}/documentation/proposals"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"
-            excludes="project.xml">
+            excludes="project.xml"
+            reloadstylesheet="true">
       <param name="project-path" expression="../proposals/project.xml"/>
     </style>            
     <!-- Create the resources -->
@@ -251,7 +255,8 @@
              destdir="${build.home}/documentation/resources"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"
-            excludes="project.xml">
+            excludes="project.xml"
+            reloadstylesheet="true">
       <param name="project-path" expression="../resources/project.xml"/>
     </style>            
     <!-- Create the user guide -->
@@ -259,7 +264,8 @@
              destdir="${build.home}/documentation/userGuide"
            extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
             includes="*.xml"
-            excludes="project.xml">
+            excludes="project.xml"
+            reloadstylesheet="true">
       <param name="project-path" expression="../userGuide/project.xml"/>
     </style>  
 
