@@ -534,7 +534,7 @@
         <p>Unit tests for the <code>org.apache.struts.action</code> package.</p>
       </info>
       <assigned>
-        <a href="mailto:Robert@freetocreate.org">Rob Leland</a>
+        <a href="mailto:struts-test@freetocreate.org">Rob Leland</a>
       </assigned>
     </task>
 
