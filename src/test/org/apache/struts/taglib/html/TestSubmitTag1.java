@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestSubmitTag1.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
- * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestSubmitTag1.java,v 1.2 2004/09/24 01:17:58 niallp Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/09/24 01:17:58 $
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -84,6 +84,9 @@ public class TestSubmitTag1 extends JspTestCase {
     }
     public void testSubmitPropertyAltKey2() throws Exception {
         runMyTest("testSubmitPropertyAltKey2", "");
+    }
+    public void testSubmitPropertyAltKey3() throws Exception {
+        runMyTest("testSubmitPropertyAltKey3", "");
     }
     public void testSubmitPropertyAltKey_fr1() throws Exception {
         runMyTest("testSubmitPropertyAltKey1_fr", "fr");

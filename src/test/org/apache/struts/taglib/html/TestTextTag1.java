@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestTextTag1.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
- * $Revision: 1.1 $
- * $Date: 2004/09/23 00:37:23 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestTextTag1.java,v 1.2 2004/09/24 01:17:58 niallp Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/09/24 01:17:58 $
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
@@ -87,6 +87,9 @@ public class TestTextTag1 extends JspTestCase {
     }
     public void testTextPropertyAltKey2() throws Exception {
         runMyTest("testTextPropertyAltKey2", "");
+    }
+    public void testTextPropertyAltKey3() throws Exception {
+        runMyTest("testTextPropertyAltKey3", "");
     }
     public void testTextPropertyAltKey_fr1() throws Exception {
         runMyTest("testTextPropertyAltKey1_fr", "fr");

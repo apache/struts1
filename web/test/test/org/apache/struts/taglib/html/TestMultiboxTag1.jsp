@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testMultiboxPropertyTrueAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:multibox property="stringArray" altKey="alternate.bundle.message" value="value1" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="checkbox" name="stringArray" value="value1" checked="checked" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testMultiboxPropertyTrueAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:multibox property="stringArray" altKey="default.bundle.message" value="value1"/>

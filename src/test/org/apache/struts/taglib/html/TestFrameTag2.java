@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFrameTag2.java,v 1.8 2004/03/14 06:23:40 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:40 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFrameTag2.java,v 1.9 2004/09/24 01:17:57 niallp Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/09/24 01:17:57 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -170,6 +170,9 @@ public class TestFrameTag2 extends JspTestCase {
 
     public void testFrameForwardTitleKey() throws Exception {
         runMyTest("testFrameForwardTitleKey", "");
+    }
+    public void testFrameForwardTitleKeyAlt() throws Exception {
+        runMyTest("testFrameForwardTitleKeyAlt", "");
     }
 
     public void testFrameForwardTransaction() throws Exception {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCancelTag1.java,v 1.9 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCancelTag1.java,v 1.10 2004/09/24 01:17:57 niallp Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/09/24 01:17:57 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -83,6 +83,9 @@ public class TestCancelTag1 extends JspTestCase {
     public void testCancelAltKey2() throws Exception {
         runMyTest("testCancelAltKey2", "");
         }
+    public void testCancelAltKey3() throws Exception {
+        runMyTest("testCancelAltKey3", "");
+    }
     public void testCancelAltKey_fr1() throws Exception {
         runMyTest("testCancelAltKey1_fr", "fr");
         }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHiddenTag1.java,v 1.8 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHiddenTag1.java,v 1.9 2004/09/24 01:17:57 niallp Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/09/24 01:17:57 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -88,6 +88,9 @@ public class TestHiddenTag1 extends JspTestCase {
     public void testHiddenPropertyAltKey2() throws Exception {
         runMyTest("testHiddenPropertyAltKey2", "");
         }
+    public void testHiddenPropertyAltKey3() throws Exception {
+        runMyTest("testHiddenPropertyAltKey3", "");
+    }
     public void testHiddenPropertyAltKey_fr1() throws Exception {
         runMyTest("testHiddenPropertyAltKey1_fr", "fr");
         }

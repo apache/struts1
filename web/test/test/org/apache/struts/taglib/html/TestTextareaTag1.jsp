@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testTextareaPropertyAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:textarea property="string" altKey="alternate.bundle.message" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<textarea name="string" alt="Testing Message">Test Value</textarea>
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testTextareaPropertyAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:textarea property="string" altKey="default.bundle.message"/>

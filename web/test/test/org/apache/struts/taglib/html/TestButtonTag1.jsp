@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testButtonPropertyAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:button property="propertyName" altKey="alternate.bundle.message" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="button" name="propertyName" value="Click" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testButtonPropertyAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:button property="propertyName" altKey="default.bundle.message"/>

@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testRadioPropertyAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:radio property="string" altKey="alternate.bundle.message" value="Put Some Value Here" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="radio" name="string" value="Put Some Value Here" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testRadioPropertyAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:radio property="string" altKey="default.bundle.message" value="Put Some Value Here"/>

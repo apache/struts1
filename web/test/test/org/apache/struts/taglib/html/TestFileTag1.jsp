@@ -58,6 +58,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testFilePropertyAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:file property="string" altKey="alternate.bundle.message" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="file" name="string" value="Test Value" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testFilePropertyAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:file property="string" altKey="default.bundle.message"/>

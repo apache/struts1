@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.11 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.11 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.12 2004/09/24 01:17:57 niallp Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/09/24 01:17:57 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -98,6 +98,9 @@ public class TestCheckboxTag1 extends JspTestCase {
     public void testCheckboxPropertybooleanTrueAltKey2() throws Exception {
         runMyTest("testCheckboxPropertybooleanTrueAltKey2", "");
         }
+    public void testCheckboxPropertybooleanTrueAltKey3() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueAltKey3", "");
+    }
     public void testCheckboxPropertybooleanTrueAltKey_fr1() throws Exception {
         runMyTest("testCheckboxPropertybooleanTrueAltKey1_fr", "fr");
         }

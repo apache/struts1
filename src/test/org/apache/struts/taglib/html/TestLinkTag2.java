@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag2.java,v 1.7 2004/03/14 06:23:40 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:40 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag2.java,v 1.8 2004/09/24 01:17:57 niallp Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/09/24 01:17:57 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -201,6 +201,9 @@ public class TestLinkTag2 extends JspTestCase {
 
     public void testLinkForwardTitleKey() throws Exception {
         runMyTest("testLinkForwardTitleKey", "");
+    }
+    public void testLinkForwardTitleKeyAlt() throws Exception {
+        runMyTest("testLinkForwardTitleKeyAlt", "");
     }
 
     public void testLinkForwardTransaction() throws Exception {

@@ -124,6 +124,18 @@
         </attribute>
 
         <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -399,6 +411,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -684,6 +708,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -1074,6 +1110,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -1614,6 +1662,18 @@
 
          </info>
  
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
          <attribute>
            <name>action</name>
            <required>false</required>
@@ -1980,6 +2040,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -3629,6 +3701,18 @@
             </info>
         </attribute>
 
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
                 <attribute>
                   <name>linkName</name>
                   <required>false</required>
@@ -4140,6 +4224,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -4812,6 +4908,18 @@
         </attribute>
 
         <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -5154,6 +5262,18 @@
         </attribute>
 
         <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -5451,6 +5571,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -5962,6 +6094,18 @@
         </attribute>
 
         <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -6270,6 +6414,18 @@
         </attribute>
 
         <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
+        </attribute>
+
+        <attribute>
           <name>disabled</name>
           <required>false</required>
           <rtexprvalue>true</rtexprvalue>
@@ -6539,6 +6695,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>
@@ -6853,6 +7021,18 @@
                 <p>The message resources key of the alternate text for this
                 element.</p>
                 </info>
+        </attribute>
+
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.5</since>
         </attribute>
 
         <attribute>

@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testCancelAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:cancel altKey="alternate.bundle.message" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="submit" name="org.apache.struts.taglib.html.CANCEL" value="Cancel" onclick="bCancel=true;" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testCancelAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:cancel altKey="default.bundle.message"/>

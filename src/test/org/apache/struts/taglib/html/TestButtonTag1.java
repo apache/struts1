@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag1.java,v 1.9 2004/03/14 06:23:40 sraeburn Exp $
- * $Revision: 1.9 $
- * $Date: 2004/03/14 06:23:40 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag1.java,v 1.10 2004/09/24 01:17:57 niallp Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/09/24 01:17:57 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -85,6 +85,9 @@ public class TestButtonTag1 extends JspTestCase {
     public void testButtonPropertyAltKey2() throws Exception {
         runMyTest("testButtonPropertyAltKey2", "");
         }
+    public void testButtonPropertyAltKey3() throws Exception {
+        runMyTest("testButtonPropertyAltKey3", "");
+    }
     public void testButtonPropertyAltKey_fr1() throws Exception {
         runMyTest("testButtonPropertyAltKey1_fr", "fr");
         }

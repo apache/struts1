@@ -31,6 +31,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testSelectPropertyAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:select property="string" altKey="alternate.bundle.message" bundle="alternate">Some Body Here</html:select>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<select name="string" alt="Testing Message">Some Body Here</select>
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testSelectPropertyAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:select property="string" altKey="default.bundle.message">Some Body Here</html:select>

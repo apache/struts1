@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testCheckboxPropertybooleanTrueAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:checkbox property="checked"  altKey="alternate.bundle.message" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="checkbox" name="checked" value="on" checked="checked" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testCheckboxPropertybooleanTrueAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:checkbox property="checked" altKey="default.bundle.message"/>

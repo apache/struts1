@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag1.java,v 1.6 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag1.java,v 1.7 2004/09/24 01:17:58 niallp Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/09/24 01:17:58 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -115,6 +115,9 @@ public class TestMultiboxTag1 extends JspTestCase {
     public void testMultiboxPropertyTrueAltKey2() throws Exception {
         runMyTest("testMultiboxPropertyTrueAltKey2", "");
         }
+    public void testMultiboxPropertyTrueAltKey3() throws Exception {
+        runMyTest("testMultiboxPropertyTrueAltKey3", "");
+    }
     public void testMultiboxPropertyTrueAltKey_fr1() throws Exception {
         runMyTest("testMultiboxPropertyTrueAltKey1_fr", "fr");
         }

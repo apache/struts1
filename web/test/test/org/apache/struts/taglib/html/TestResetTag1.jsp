@@ -49,6 +49,15 @@
 	</bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testResetPropertyAltKey3">
+	<bean:define id="TEST_RESULTS" toScope="page">
+		<html:reset property="propertyName" altKey="alternate.bundle.message" bundle="alternate"/>
+	</bean:define>
+	<bean:define id="EXPECTED_RESULTS" toScope="page">
+		<input type="reset" name="propertyName" value="Reset" alt="Testing Message">
+	</bean:define>
+</logic:equal>
+
 <logic:equal name="runTest" value="testResetPropertyAltKey1_fr">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:reset property="propertyName" altKey="default.bundle.message"/>

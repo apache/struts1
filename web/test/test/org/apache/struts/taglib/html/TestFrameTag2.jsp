@@ -220,6 +220,15 @@
     </bean:define>
 </logic:equal>
 
+<logic:equal name="runTest" value="testFrameForwardTitleKeyAlt">
+    <bean:define id="TEST_RESULTS" toScope="page">
+        <html:frame forward="simpleForward" titleKey="alternate.bundle.message" bundle="alternate"/>
+    </bean:define>
+    <bean:define id="EXPECTED_RESULTS" toScope="page">
+        <frame src="<%=response.encodeURL( request.getContextPath() + "/path/to/non/existing/jsp.jsp")%>" title="Testing Message">
+    </bean:define>
+</logic:equal>
+
 
 <logic:equal name="runTest" value="testFrameForwardTransaction">
     <bean:define id="TEST_RESULTS" toScope="page">
