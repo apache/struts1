@@ -82,6 +82,10 @@
             name="Source Code"             
             href="http://jakarta.apache.org/site/sourceindex.cgi"
             />
+        <item
+            name="Development Releases"
+            href="http://cvs.apache.org/dist/struts/"
+            />
     </menu>
 
     <menu name="Development">

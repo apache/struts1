@@ -34,14 +34,14 @@
         
     <li>
         <a href="http://jakarta.apache.org/site/binindex.cgi">
-        <strong>Struts Binary Distribution - Latest stable release</strong></a>
+        <strong>Struts Binary Distribution - Struts 1.1 is the best available version</strong></a>
     </li>
 
     <li>
         <a href="http://jakarta.apache.org/site/sourceindex.cgi">
-        <strong>Struts Source Code Distribution - Latest stable release</strong></a>
+        <strong>Struts Source Code Distribution - Struts 1.1. is the best available version</strong></a>
     </li>
-    
+
     </ul>
 
     <p>
@@ -57,6 +57,21 @@
     building Struts from the source distribution</a>.
     </p>
     
+</section>
+
+<section name="Development Releases" href="Releases">
+    <p>
+        Development releases are being reviewed for quality by the Struts community.
+        When a release is judged "ready for prime time", it is promoted to
+        "General Availability" status and may be made the "Best Available" version.
+    </p>
+        <ul>
+        <li>
+            <a href="http://cvs.apache.org/dist/struts">Struts Development
+                Releases - Not yet rated "General Availability".</a>
+        </li>
+        </ul>
+
 </section>
 
 <section name="Nightly Builds" href="Builds">
