@@ -1,4 +1,4 @@
-$Id: README,v 1.6 2000/07/09 05:20:48 craigmcc Exp $
+$Id: README,v 1.7 2000/07/18 20:58:03 craigmcc Exp $
 
 				Struts
 				======
@@ -43,7 +43,9 @@ wish to use the custom tag library:
 - Download and install an XML parser that is compatible with the Java
   API for XML Parsing (JAXP) specification.  A useful XML parser is the
   JAXP Reference Implementation, version 1.0.1 or later, that is available
-  at <http://java.sun.com/xml>.  Be sure to add the "jaxp.jar" and
+  at <http://java.sun.com/xml>.  Another JAXP-compatible parser that has
+  been reported to work fine with Struts is Xerces, version 1.1.2 or later,
+  available at <http://xml.apache.org>.  Be sure to add the "jaxp.jar" and
   "parser.jar" (or whatever JAR file comes with your parser) files to
   your CLASSPATH environment variable.
 
