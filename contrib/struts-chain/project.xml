@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <extend>../../project.xml</extend>
+  <name>struts-chain</name>
+  <id>struts-chain</id>
+  <groupId>struts</groupId>
+  <currentVersion>0.5-dev</currentVersion>
+  <inceptionYear>2003</inceptionYear>
+  <package>org.apache.struts.chain</package>
+  <shortDescription>Adaptation layer to use commons-chain as the base of
+  a "ComposableRequestProcessor".</shortDescription>
+  <description>Adaptation layer to use commons-chain as the base of
+  a "ComposableRequestProcessor".</description>
+  <url>http://jakarta.apache.org/</url>
+  <repository>
+    <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts/contrib/struts-chain</connection>
+    <developerConnection>scm:cvs:pserver:${cvs.developer.id}@${cvs.developer.host}:/home/cvs:jakarta-struts/contrib/struts-chain</developerConnection>
+    <url>http://cvs.apache.org/viewcvs/jakarta-struts/contrib/struts-chain/</url>
+  </repository>
+  <versions />
+  <dependencies>
+    <dependency>
+      <groupId>commons-chain</groupId>
+      <artifactId>commons-chain</artifactId>
+      <version>SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts</artifactId>
+      <version>SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
+    <sourceDirectory>src/java</sourceDirectory>
+    <!-- Unit test cases 
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    <integrationUnitTestSourceDirectory />
+    <aspectSourceDirectory />
+    <unitTest>
+      <includes>
+        <include>org/apache/struts/action/TestDynaActionForm.java</include>
+        <include>org/apache/struts/action/TestDynaActionFormClass.java</include>
+        <include>org/apache/struts/config/TestModuleConfig.java</include>
+        <include>org/apache/struts/config/TestActionConfigMatcher.java</include>
+        <include>org/apache/struts/util/Test*.java</include>
+      </includes>
+      <resources>
+        <resource>
+          <directory>${basedir}/conf/share</directory>
+          <targetPath>org/apache/struts/resources</targetPath>
+          <includes>
+            <include>**/*.xml</include>
+            <include>**/*.dtd</include>
+          </includes>
+        </resource>
+        <resource>
+          <directory>${basedir}/src/test</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </resource>
+      </resources>
+    </unitTest>
+-->
+    <!-- J A R  R E S O U R C E S -->
+    <!-- Resources that are packaged up inside the JAR file -->
+    <resources />
+    <!-- Integration unit test cases -->
+    <integrationUnitTest />
+    <jars></jars>
+  </build>
+  <reports>
+    <!--
+             |
+             | These should all be completely self contained. You should be able
+             | to generate each of them individually without needing the final
+             | xdoc transformation.
+             |
+             | Each report plugin with it's POM and plugin.jelly logic should
+             | contain everything needed to produced the report.
+             |
+            -->
+    <report>maven-jdepend-plugin</report>
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+    <!-- <report>maven-faq-plugin</report> -->
+  </reports>
+</project>

@@ -15,8 +15,13 @@
   <!-- Prepare additional Jar resources -->
   <postGoal name="java:jar-resources">
   
+    <!-- 
+        Some contrib projects extend Struts' project.xml (and by extension maven.xml)
+        so only generate the TLDs for 'struts' itself.
+    -->
+    <j:if test="${pom.name.equals('struts')}">
     <!-- Generate TLDs -->
-	${systemScope.setProperty('javax.xml.transform.TransformerFactory','org.apache.xalan.processor.TransformerFactoryImpl')}
+            ${systemScope.setProperty('javax.xml.transform.TransformerFactory','org.apache.xalan.processor.TransformerFactoryImpl')}
 	<ant:style basedir="doc/userGuide"
 		destdir="${maven.build.dir}/classes/META-INF/tlds"
 		extension=".tld"
@@ -29,6 +34,7 @@
         <ant:include name="*.dtd"/>
       </ant:fileset>
     </ant:copy>		
+    </j:if>
   </postGoal>
 
   <postGoal name="dist:prepare-bin-filesystem">
