@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.3 2002/01/13 04:21:18 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/13 04:21:18 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/13 04:21:18 $
  * @since Struts 1.1
  */
 
@@ -183,6 +183,22 @@ public class ControllerConfig implements Serializable {
 
 
     /**
+     * The fully qualified class name of the RequestProcessor implementation
+     * class to be used for this application.
+     */
+    protected String processorClass =
+        "org.apache.struts.action.RequestProcessor";
+
+    public String getProcessorClass() {
+        return (this.processorClass);
+    }
+
+    public void setProcessorClass(String processorClass) {
+        this.processorClass = processorClass;
+    }
+
+
+    /**
      * The temporary working directory to use for file uploads.
      */
     protected String tempDir = null;
@@ -219,6 +235,8 @@ public class ControllerConfig implements Serializable {
         }
         sb.append(",nocache=");
         sb.append(this.nocache);
+        sb.append(",processorClass=");
+        sb.append(this.processorClass);
         if (this.tempDir != null) {
             sb.append(",tempDir=");
             sb.append(this.tempDir);

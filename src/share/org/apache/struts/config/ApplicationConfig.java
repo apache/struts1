@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.5 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.6 2002/01/13 04:21:18 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/01/13 04:21:18 $
  *
  * ====================================================================
  *
@@ -64,8 +64,11 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
+import javax.servlet.ServletException;
+import javax.servlet.UnavailableException;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.RequestProcessor;
  
 
 
@@ -79,7 +82,7 @@ import org.apache.struts.action.ActionServlet;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.6 $ $Date: 2002/01/13 04:21:18 $
  * @since Struts 1.1
  */
 
@@ -204,6 +207,32 @@ public class ApplicationConfig implements Serializable {
 
     public String getPrefix() {
         return (this.prefix);
+    }
+
+
+    /**
+     * The initialized RequestProcessor instance to be used for processing
+     * requests for this application.
+     */
+    protected RequestProcessor processor = null;
+
+    public synchronized RequestProcessor getProcessor()
+        throws ServletException {
+
+        if (processor == null) {
+            try {
+                Class clazz =
+                    Class.forName(getControllerConfig().getProcessorClass());
+                processor = (RequestProcessor) clazz.newInstance();
+                processor.init(servlet, this);
+            } catch (Throwable t) {
+                throw new UnavailableException
+                    ("Cannot initialize RequestProcessor of class " +
+                     getControllerConfig().getProcessorClass() + ": " + t);
+            }
+        }
+        return (this.processor);
+
     }
 
 

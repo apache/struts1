@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.83 2002/01/13 00:25:35 craigmcc Exp $
- * $Revision: 1.83 $
- * $Date: 2002/01/13 00:25:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.84 2002/01/13 04:21:18 craigmcc Exp $
+ * $Revision: 1.84 $
+ * $Date: 2002/01/13 04:21:18 $
  *
  * ====================================================================
  *
@@ -254,9 +254,6 @@ import org.xml.sax.SAXException;
  *     be returned.  [true]
  *     <em>DEPRECATED - Configure this using the "null" attribute of
  *     the &lt;message-resources&gt; element.</em></li>
- * <li><strong>processor</strong> - The fully qualified Java class name of the
- *     <code>RequestProcessor</code> implementation class to be used.
- *     [org.apache.struts.action.RequestProcessor]</li>
  * <li><strong>tempDir</strong> - The temporary working directory to use when
  *     processing file uploads.  [The working directory provided to this web
  *     application as a servlet context attribute]
@@ -268,7 +265,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.83 $ $Date: 2002/01/13 00:25:35 $
+ * @version $Revision: 1.84 $ $Date: 2002/01/13 04:21:18 $
  */
 
 public class ActionServlet
@@ -332,13 +329,6 @@ public class ActionServlet
 
 
     /**
-     * The Java class name of the RequestProcessor implementation to use.
-     */
-    protected String processorClass =
-        "org.apache.struts.action.RequestProcessor";
-
-
-    /**
      * The set of public identifiers, and corresponding resource names, for
      * the versions of the configuration file DTDs that we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!
@@ -389,7 +379,7 @@ public class ActionServlet
         log(internal.getMessage("finalizing"));
 
         destroyDataSources();
-        destroyProcessor();
+        destroyApplications();
         destroyInternal();
 
         // FIXME - destroy ApplicationConfig and message resource instances
@@ -409,7 +399,6 @@ public class ActionServlet
         initInternal();
         initOther();
         initServlet();
-        initProcessor();
 
         // Initialize sub-applications as needed
         ApplicationConfig ac = initApplicationConfig("", config);
@@ -445,7 +434,9 @@ public class ActionServlet
               HttpServletResponse response)
         throws IOException, ServletException {
 
-        processor.process(request, response);
+        RequestUtils.selectApplication(request, getServletContext());
+        getApplicationConfig(request).getProcessor().process
+            (request, response);
 
     }
 
@@ -463,7 +454,9 @@ public class ActionServlet
                HttpServletResponse response)
         throws IOException, ServletException {
 
-        processor.process(request, response);
+        RequestUtils.selectApplication(request, getServletContext());
+        getApplicationConfig(request).getProcessor().process
+            (request, response);
 
     }
 
@@ -586,6 +579,28 @@ public class ActionServlet
 
 
     /**
+     * Gracefully terminate use of any sub-applications associated with this
+     * application (if any).
+     */
+    protected void destroyApplications() {
+
+        Enumeration names = getServletContext().getAttributeNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            Object value = getServletContext().getAttribute(name);
+            if (value instanceof ApplicationConfig) {
+                try {
+                    ((ApplicationConfig) value).getProcessor().destroy();
+                } catch (Throwable t) {
+                    ;
+                }
+            }
+        }
+
+    }
+
+
+    /**
      * Gracefully release any configDigester instance that we have created.
      */
     protected void destroyConfigDigester() {
@@ -636,12 +651,21 @@ public class ActionServlet
 
 
     /**
-     * <p>Gracefully terminate the RequestProcessor instance we were using.
+     * Return the application configuration object for the currently selected
+     * sub-application.
+     *
+     * @param request The servlet request we are processing
      */
-    protected void destroyProcessor() {
+    protected ApplicationConfig getApplicationConfig
+        (HttpServletRequest request) {
 
-        processor.destroy();
-        processor = null;
+        ApplicationConfig config = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        if (config == null) {
+            config = (ApplicationConfig)
+                getServletContext().getAttribute(Action.APPLICATION_KEY);
+        }
+        return (config);
 
     }
 
@@ -922,10 +946,6 @@ public class ActionServlet
         } catch (Throwable t) {
             detail = 0;
         }
-        value = getServletConfig().getInitParameter("processor");
-        if (value != null) {
-            processorClass = value;
-        }
         value = getServletConfig().getInitParameter("validating");
         if (value != null) {
             if (value.equalsIgnoreCase("true") ||
@@ -933,26 +953,6 @@ public class ActionServlet
                 validating = true;
             else
                 validating = false;
-        }
-
-    }
-
-
-    /**
-     * Initialize the RequestProcessor instance we will be using.
-     *
-     * @exception ServletException if we cannot initialize a request processor
-     */
-    protected void initProcessor() throws ServletException {
-
-        try {
-            Class clazz = Class.forName(processorClass);
-            processor = (RequestProcessor) clazz.newInstance();
-            processor.init(this);
-        } catch (Throwable t) {
-            log(internal.getMessage("initProcessor"), t);
-            throw new UnavailableException
-                (internal.getMessage("initProcessor"));
         }
 
     }

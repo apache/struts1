@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.6 2002/01/13 00:25:35 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.7 2002/01/13 04:21:18 craigmcc Exp $
 -->
 
 
@@ -422,6 +422,10 @@
                      HTTP headers for defeating caching to every response.
                      [false]
 
+     processorClass  The fully qualified Java class name of the
+                     RequestProcessor class to be used.
+                     [org.apache.struts.action.RequestProcessor]
+
      tempDir         Temporary working directory to use when processing
                      file uploads.  [Directory provided by servlet container]
 -->
@@ -434,6 +438,7 @@
 <!ATTLIST controller     maxFileSize    CDATA           #IMPLIED>
 <!ATTLIST controller     multipartClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     nocache        %Boolean;       #IMPLIED>
+<!ATTLIST controller     processorClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     tempDir        CDATA           #IMPLIED>
 
 
