@@ -243,7 +243,7 @@
                          form[oByte[x][0]].type == 'radio') &&
                         (form[oByte[x][0]].value.length > 0)) {
                         var iValue = parseInt(form[oByte[x][0]].value);
-                        if (!iValue || !(iValue >= -128 && iValue <= 127)) {
+                        if (isNaN(iValue) || !(iValue >= -128 && iValue <= 127)) {
                             if (i == 0)
                                 focusField = form[oByte[x][0]];
                             fields[i++] = oByte[x][1];
@@ -288,7 +288,7 @@
                          form[oShort[x][0]].type == 'radio') &&
                         (form[oShort[x][0]].value.length > 0)) {
                         var iValue = parseInt(form[oShort[x][0]].value);
-                        if (!iValue || !(iValue >= -32768 && iValue <= 32767)) {
+                        if (isNaN(iValue) || !(iValue >= -32768 && iValue <= 32767)) {
                             if (i == 0) {
                                 focusField = form[oShort[x][0]];
                             }
@@ -334,7 +334,7 @@
                          form[oInteger[x][0]].type == 'radio') &&
                         (form[oInteger[x][0]].value.length > 0)) {
                         var iValue = parseInt(form[oInteger[x][0]].value);
-                        if (!iValue || !(iValue >= -2147483648 && iValue <= 2147483647)) {
+                        if (isNaN(iValue) || !(iValue >= -2147483648 && iValue <= 2147483647)) {
                             if (i == 0) {
                                 focusField = form[oInteger[x][0]];
                             }
@@ -392,7 +392,7 @@
                          form[oFloat[x][0]].type == 'radio') &&
                         (form[oFloat[x][0]].value.length > 0)) {
                         var iValue = parseFloat(form[oFloat[x][0]].value);
-                        if ( isNaN(iValue) ) {
+                        if (isNaN(iValue)) {
                             if (i == 0) {
                                 focusField = form[oFloat[x][0]];
                             }
