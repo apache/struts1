@@ -54,6 +54,10 @@
         <p>Use a "real" database of some sort (while still making Struts
         easy to install.</p>
       </info>
+      <assigned>
+        Ted Husted
+      </assigned>
+
     </task>
 
     <task name="Locale Switching">
@@ -61,6 +65,9 @@
         <p>Add support for switching Locales on the fly to the Struts
         example application.</p>
       </info>
+      <assigned>
+        Ted Husted
+      </assigned>
     </task>
 
   </task-list>
@@ -170,8 +177,8 @@
 
     <task name="Developer Documentation">
       <info>
-	<p>Create more detailed documentation of how the Digester package
-	can be utilized by application developers.</p>
+       <p>Create more detailed documentation of how the Digester package
+       can be utilized by application developers.</p>
       </info>
     </task>
 
@@ -257,6 +264,9 @@
         controller servlet itself.</p>
         [STRUTS-DEV, David Winterfeldt, 07/27/2000]
       </info>
+      <assigned>
+        Ted Husted
+      </assigned>
     </task>
 
     <task name="Radio Button Groups">
@@ -429,6 +439,9 @@
         the corresponding Java class.</p>
         [STRUTS-DEV, Mark Wutka, 06/01/2000 and 06/16/2000]
       </info>
+      <assigned>
+        Martin Cooper
+      </assigned>
     </task>
 
   </task-list>
@@ -485,6 +498,9 @@
       <info>
         [STRUTS-DEV, Phil Grimm, 11/22/2000]
       </info>
+      <assigned>
+        Ted Husted
+      </assigned>
     </task>
 
     <task name="Storefront Example App">
@@ -500,9 +516,17 @@
 
     <info>
       <p>A portion of the Struts web site, and file system, where individually
-      contributed add-ons for Struts can be hosted and downloaded.</p>
-      [STRUTS-USER, Ned Seagoon, 12/22/2000]
+      contributed add-ons for Struts can be hosted and downloaded.</p>      
     </info>
+    
+    <task name="Proposal">
+     <info>
+       <p>Detailed proposal with implementation plan. [STRUTS-USER, Ned Seagoon, 12/22/2000]</p>
+     </info>
+     <assigned>
+      Ted Husted
+     </assigned>
+    </task>
 
   </task-list>
 
