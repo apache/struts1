@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.7 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.8 2003/09/07 03:18:45 dmkarr Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/09/07 03:18:45 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.tiles.ComponentContext;
   *  attributes are imported in page scope.
  */
 
-public final class ImportAttributeTag extends TagSupport {
+public class ImportAttributeTag extends TagSupport {
 
     /**
      * Class name of object.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.9 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.10 2003/09/07 03:18:45 dmkarr Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/09/07 03:18:45 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.tiles.ComponentContext;
  * Custom tag exposing a component attribute to page.
  *
  */
-public final class UseAttributeTag extends TagSupport {
+public class UseAttributeTag extends TagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
