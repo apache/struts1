@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<document>
+
+  <properties>
+    <title>Dependencies</title>
+  </properties>
+
+  <body>
+    <section name="Dependencies">
+          <p> 
+        The following is a list of dependencies for this project.  These
+        dependencies are required to compile and run the application:
+      </p>               
+              <subsection name="antlr:antlr">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>antlr</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>antlr</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>2.7.2</td>
+           </tr> 
+                               </table> 
+       </subsection>
+             <subsection name="cactus:cactus">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>cactus</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>cactus</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>12-1.4.1</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/cactus">http://jakarta.apache.org/cactus</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="cactus:cactus-ant">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>cactus</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>cactus-ant</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.4.1</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/cactus">http://jakarta.apache.org/cactus</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-beanutils:commons-beanutils">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-beanutils</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-beanutils</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.6.1</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/beanutils.html">http://jakarta.apache.org/commons/beanutils.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-collections:commons-collections">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-collections</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-collections</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>2.1</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/collections.html">http://jakarta.apache.org/commons/collections.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-digester:commons-digester">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-digester</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-digester</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.5</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/digester.html">http://jakarta.apache.org/commons/digester.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-fileupload:commons-fileupload">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-fileupload</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-fileupload</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.0</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/fileupload.html">http://jakarta.apache.org/commons/fileupload.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-lang:commons-lang">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-lang</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-lang</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.0.1</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/lang.html">http://jakarta.apache.org/commons/lang.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-logging:commons-logging">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-logging</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-logging</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.0.3</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/logging.html">http://jakarta.apache.org/commons/logging.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="commons-validator:commons-validator">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>commons-validator</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>commons-validator</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>1.1.1-dev</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/commons/validator.html">http://jakarta.apache.org/commons/validator.html</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="junit:junit">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>junit</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>junit</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>3.8.1</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://www.junit.org">http://www.junit.org</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="oro:oro">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>oro</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>oro</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>2.0.7</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://jakarta.apache.org/oro/">http://jakarta.apache.org/oro/</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+             <subsection name="servletapi:servletapi">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>servletapi</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>servletapi</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>2.2</td>
+           </tr> 
+                               </table> 
+       </subsection>
+             <subsection name="xml-apis:xml-apis">
+          <table> 
+            <tr>
+              <td>Group ID</td>
+              <td>xml-apis</td>
+            </tr>
+            <tr>
+              <td>Artifact ID</td> 
+              <td>xml-apis</td>
+            </tr> 
+            <tr>
+             <td>Type</td>
+             <td>jar</td>
+           </tr> 
+           <tr>
+             <td>Version</td>
+             <td>2.0.2</td>
+           </tr> 
+                      <tr>
+             <td>URL</td>
+             <td><a href="http://xml.apache.org/commons/">http://xml.apache.org/commons/</a></td>
+           </tr>        
+                               </table> 
+       </subsection>
+           </section>
+ </body>
+</document>
