@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.44 2002/07/16 16:52:18 craigmcc Exp $
- * $Revision: 1.44 $
- * $Date: 2002/07/16 16:52:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.45 2002/07/24 05:06:05 craigmcc Exp $
+ * $Revision: 1.45 $
+ * $Date: 2002/07/24 05:06:05 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -74,6 +74,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.struts.Globals;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.upload.MultipartRequestHandler;
@@ -109,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.44 $ $Date: 2002/07/16 16:52:18 $
+ * @version $Revision: 1.45 $ $Date: 2002/07/24 05:06:05 $
  */
 
 public class Action {
@@ -118,14 +119,20 @@ public class Action {
     // ----------------------------------------------------- Manifest Constants
 
 
+    // NOTE - The definitions of manifest constant values have moved from
+    // here to the org.apache.struts.Globals class, so that they can be
+    // referenced without having to maintain a reference to the Action class
+    // itself.  Any future new constant values should be defined there
+    // instead of here.
+
+
     /**
      * The context attributes key under which our <code>ActionServlet</code>
      * instance will be stored.
      *
      * @since Struts 1.1
      */
-    public static final String ACTION_SERVLET_KEY =
-        "org.apache.struts.action.ACTION_SERVLET";
+    public static final String ACTION_SERVLET_KEY = Globals.ACTION_SERVLET_KEY;
 
 
     /**
@@ -141,8 +148,7 @@ public class Action {
      *
      * @since Struts 1.1
      */
-    public static final String APPLICATION_KEY =
-        "org.apache.struts.action.APPLICATION";
+    public static final String APPLICATION_KEY = Globals.APPLICATION_KEY;
 
 
     /**
@@ -151,8 +157,7 @@ public class Action {
      * <code>javax.sql.DataSource</code>) is stored,
      * if one is configured for this module.
      */
-    public static final String DATA_SOURCE_KEY =
-      "org.apache.struts.action.DATA_SOURCE";
+    public static final String DATA_SOURCE_KEY = Globals.DATA_SOURCE_KEY;
 
 
     /**
@@ -160,8 +165,7 @@ public class Action {
      * <code>org.apache.struts.action.ActionErrors</code> object, if you
      * are using the corresponding custom tag library elements.
      */
-    public static final String ERROR_KEY =
-      "org.apache.struts.action.ERROR";
+    public static final String ERROR_KEY = Globals.ERROR_KEY;
 
 
     /**
@@ -170,8 +174,7 @@ public class Action {
      * runtime.  This value can be used on an error page to provide more
      * detailed information about what really went wrong.
      */
-    public static final String EXCEPTION_KEY =
-        "org.apache.struts.action.EXCEPTION";
+    public static final String EXCEPTION_KEY = Globals.EXCEPTION_KEY;
 
 
     /**
@@ -182,8 +185,7 @@ public class Action {
      *
      * @deprecated Replaced by collection in ApplicationConfig
      */
-    public static final String FORM_BEANS_KEY =
-        "org.apache.struts.action.FORM_BEANS";
+    public static final String FORM_BEANS_KEY = Globals.FORM_BEANS_KEY;
 
 
     /**
@@ -194,8 +196,7 @@ public class Action {
      *
      * @deprecated Replaced by collection in ApplicationConfig.
      */
-    public static final String FORWARDS_KEY =
-      "org.apache.struts.action.FORWARDS";
+    public static final String FORWARDS_KEY = Globals.FORWARDS_KEY;
 
 
     /**
@@ -205,8 +206,7 @@ public class Action {
      * will be used when retrieving internationalized messages.  If used, this
      * attribute is typically set during user login processing.
      */
-    public static final String LOCALE_KEY =
-      "org.apache.struts.action.LOCALE";
+    public static final String LOCALE_KEY = Globals.LOCALE_KEY;
 
 
     /**
@@ -214,8 +214,7 @@ public class Action {
      * <code>org.apache.struts.ActionMapping</code> instance
      * is passed.
      */
-    public static final String MAPPING_KEY =
-        "org.apache.struts.action.mapping.instance";
+    public static final String MAPPING_KEY = Globals.MAPPING_KEY;
 
 
     /**
@@ -226,8 +225,7 @@ public class Action {
      *
      * @deprecated Replaced by collection in ApplicationConfig
      */
-    public static final String MAPPINGS_KEY =
-      "org.apache.struts.action.MAPPINGS";
+    public static final String MAPPINGS_KEY = Globals.MAPPINGS_KEY;
 
 
     /**
@@ -237,8 +235,7 @@ public class Action {
      *
      * @since Struts 1.1
      */
-    public static final String MESSAGE_KEY =
-      "org.apache.struts.action.ACTION_MESSAGE";
+    public static final String MESSAGE_KEY = Globals.MESSAGE_KEY;
 
 
     /**
@@ -252,15 +249,13 @@ public class Action {
      * the request URI currently being processed will also be exposed under
      * this key as a request attribute.</p>
      */
-    public static final String MESSAGES_KEY =
-      "org.apache.struts.action.MESSAGE";
+    public static final String MESSAGES_KEY = Globals.MESSAGES_KEY;
 
 
     /**
      * The request attributes key under which our multipart class is stored.
      */
-    public static final String MULTIPART_KEY =
-        "org.apache.struts.action.mapping.multipartclass";
+    public static final String MULTIPART_KEY = Globals.MULTIPART_KEY;
 
 
     /**
@@ -270,8 +265,7 @@ public class Action {
      * leading "/" character) to form the actual attributes key.</p>
      * @since Struts 1.1
      */
-    public static final String PLUG_INS_KEY =
-        "org.apache.struts.action.PLUG_INS";
+    public static final String PLUG_INS_KEY = Globals.PLUG_INS_KEY;
 
 
     /**
@@ -282,7 +276,7 @@ public class Action {
      * @since Struts 1.1
      */
     public static final String REQUEST_PROCESSOR_KEY =
-        "org.apache.struts.action.REQUEST_PROCESSOR";
+        Globals.REQUEST_PROCESSOR_KEY;
 
 
     /**
@@ -291,8 +285,7 @@ public class Action {
      * (<code>/action/*</code>) or an extension mapped pattern
      * (<code>*.do</code>).
      */
-    public static final String SERVLET_KEY =
-        "org.apache.struts.action.SERVLET_MAPPING";
+    public static final String SERVLET_KEY = Globals.SERVLET_KEY;
 
 
     /**
@@ -300,7 +293,7 @@ public class Action {
      * stored, if it is used.
      */
     public static final String TRANSACTION_TOKEN_KEY =
-        "org.apache.struts.action.TOKEN";
+        Globals.TRANSACTION_TOKEN_KEY;
 
 
 
