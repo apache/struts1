@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.3 2001/06/12 03:19:07 craigmcc Exp $ -->
+<!-- $Id: struts.xsl,v 1.4 2001/08/11 03:49:19 craigmcc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -135,6 +135,30 @@
     <table border="0" cellspacing="5" cellpadding="5" width="100%">
       <tr><td bgcolor="{$banner-bg}">
         <font color="{$banner-fg}" face="arial,helvetica,sanserif" size="+1">
+          <strong><xsl:value-of select="@name"/></strong>
+        </font>
+      </td></tr>
+      <tr><td>
+        <blockquote>
+          <xsl:apply-templates/>
+        </blockquote>
+      </td></tr>
+    </table>
+  </xsl:template>
+
+  <!-- Process a documentation subsection -->
+  <xsl:template match="subsection">
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:variable name="href">
+          <xsl:value-of select="@href"/>
+        </xsl:variable>
+        <a name="{$href}"></a>
+      </xsl:when>
+    </xsl:choose>
+    <table border="0" cellspacing="5" cellpadding="5" width="100%">
+      <tr><td bgcolor="{$banner-bg}">
+        <font color="{$banner-fg}" face="arial,helvetica,sanserif">
           <strong><xsl:value-of select="@name"/></strong>
         </font>
       </td></tr>

@@ -42,6 +42,10 @@
         <item name="Template Tags"      href="struts-template.html"/>
     </menu>
 
+    <menu name="Proposals (1.1)">
+        <item name="Workflow System"    href="proposal-workflow.html"/>
+    </menu>
+
 </project>
 
 
