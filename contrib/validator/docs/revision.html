@@ -50,6 +50,17 @@
        <!-- Body -->
        <td valign="top">
           <H2>Revision Info</H2>
+	   <font size=-1>Update</font><BR>
+	   <ul>
+              <li>Changed Javascript to validate for a type of 'select-one' instead of 'select'.  
+                  Javascript returns 'select-one' for a field's type value.
+              </li>
+              <li>Added min and max functions.</li>
+              <li>Removed code from Validator retrieving the value to be validated.  It wasn't being used and 
+                  this way as long as you specify a unique name for a field a custom validator that isn't specifically 
+                  tied to a field won't generate an error in the logs.
+              </li>
+	   </ul>
 	   <font size=-1>Update 9/25/2001 (using Struts 9/25/2001 source)</font><BR>
 	   <ul>
               <li>Upgraded to commons packages for Bean Utils, Collections, and the Digester.</li>
