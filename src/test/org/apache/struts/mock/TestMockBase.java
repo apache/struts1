@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.9 2002/12/24 18:49:52 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/24 18:49:52 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.10 2003/02/08 21:01:52 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/02/08 21:01:52 $
  *
  * ====================================================================
  *
@@ -72,7 +72,9 @@ import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.FormPropertyConfig;
+import org.apache.struts.config.ForwardConfig;
 
 
 
@@ -86,7 +88,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/12/24 18:49:52 $
+ * @version $Revision: 1.10 $ $Date: 2003/02/08 21:01:52 $
  */
 
 public class TestMockBase extends TestCase {
@@ -116,6 +118,7 @@ public class TestMockBase extends TestCase {
 
     protected ApplicationConfig appConfig = null;
     protected ApplicationConfig appConfig2 = null;
+    protected ApplicationConfig appConfig3 = null;
     protected MockServletConfig config = null;
     protected MockServletContext context = null;
     protected MockPageContext page = null;
@@ -144,6 +147,7 @@ public class TestMockBase extends TestCase {
         // Set up application configurations for our supported modules
         setUpDefaultApp();
         setUpSecondApp();
+        setUpThirdApp();
 
         // NOTE - we do not initialize the request attribute
         // for the selected module so that fallbacks to the
@@ -256,6 +260,43 @@ public class TestMockBase extends TestCase {
         mapping.setType("org.apache.struts.mock.MockAction");
         appConfig.addActionConfig(mapping);
 
+        // Configure global forward declarations
+        appConfig.addForwardConfig
+            (new ForwardConfig("moduleForward",
+                               "/module/forward",
+                               false,   // No redirect
+                               false)); // Not context relative
+
+        appConfig.addForwardConfig
+            (new ForwardConfig("moduleRedirect",
+                               "/module/redirect",
+                               true,    // Redirect
+                               false)); // Not context relative
+
+        appConfig.addForwardConfig
+            (new ForwardConfig("contextForward",
+                               "/context/forward",
+                               false,   // No redirect
+                               true));  // Context relative
+
+        appConfig.addForwardConfig
+            (new ForwardConfig("contextRedirect",
+                               "/context/redirect",
+                               true,    // Redirect
+                               true));  // Context relative
+
+        appConfig.addForwardConfig
+            (new ForwardConfig("moduleNoslash",
+                               "module/noslash",
+                               false,   // No redirect
+                               false)); // Not context relative
+
+        appConfig.addForwardConfig
+            (new ForwardConfig("contextNoslash",
+                               "context/noslash",
+                               false,   // No redirect
+                               true));  // Not context relative
+
     }
 
 
@@ -325,11 +366,106 @@ public class TestMockBase extends TestCase {
         mapping.setType("org.apache.struts.mock.MockAction");
         appConfig2.addActionConfig(mapping);
 
+        // Configure global forward declarations
+        appConfig2.addForwardConfig
+            (new ForwardConfig("moduleForward",
+                               "/module/forward",
+                               false,   // No redirect
+                               false)); // Not context relative
+
+        appConfig2.addForwardConfig
+            (new ForwardConfig("moduleRedirect",
+                               "/module/redirect",
+                               true,    // Redirect
+                               false)); // Not context relative
+
+        appConfig2.addForwardConfig
+            (new ForwardConfig("contextForward",
+                               "/context/forward",
+                               false,   // No redirect
+                               true));  // Context relative
+
+        appConfig2.addForwardConfig
+            (new ForwardConfig("contextRedirect",
+                               "/context/redirect",
+                               true,    // Redirect
+                               true));  // Context relative
+
+        appConfig2.addForwardConfig
+            (new ForwardConfig("moduleNoslash",
+                               "module/noslash",
+                               false,   // No redirect
+                               false)); // Not context relative
+
+        appConfig2.addForwardConfig
+            (new ForwardConfig("contextNoslash",
+                               "context/noslash",
+                               false,   // No redirect
+                               true));  // Not context relative
+
+    }
+
+
+    // Set up third app for testing URL mapping
+    protected void setUpThirdApp() {
+
+
+        appConfig3 = new ApplicationConfig("/3");
+        context.setAttribute(Action.APPLICATION_KEY + "/3", appConfig3);
+
+        // Instantiate the controller configuration for this app
+        ControllerConfig controller = new ControllerConfig();
+        appConfig3.setControllerConfig(controller);
+
+        // Configure the properties we will be testing
+        controller.setForwardPattern("/forwarding$M$P");
+        controller.setInputForward(true);
+        controller.setPagePattern("/paging$M$P");
+
+        // Configure global forward declarations
+        appConfig3.addForwardConfig
+            (new ForwardConfig("moduleForward",
+                               "/module/forward",
+                               false,   // No redirect
+                               false)); // Not context relative
+
+        appConfig3.addForwardConfig
+            (new ForwardConfig("moduleRedirect",
+                               "/module/redirect",
+                               true,    // Redirect
+                               false)); // Not context relative
+
+        appConfig3.addForwardConfig
+            (new ForwardConfig("contextForward",
+                               "/context/forward",
+                               false,   // No redirect
+                               true));  // Context relative
+
+        appConfig3.addForwardConfig
+            (new ForwardConfig("contextRedirect",
+                               "/context/redirect",
+                               true,    // Redirect
+                               true));  // Context relative
+
+        appConfig3.addForwardConfig
+            (new ForwardConfig("moduleNoslash",
+                               "module/noslash",
+                               false,   // No redirect
+                               false)); // Not context relative
+
+        appConfig3.addForwardConfig
+            (new ForwardConfig("contextNoslash",
+                               "context/noslash",
+                               false,   // No redirect
+                               true));  // Not context relative
+
     }
 
 
     public void tearDown() {
 
+        appConfig3 = null;
+        appConfig2 = null;
         appConfig = null;
         config = null;
         context = null;
