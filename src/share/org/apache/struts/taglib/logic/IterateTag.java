@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.19 2003/02/01 05:12:25 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/02/01 05:12:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.20 2003/02/01 05:30:28 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/02/01 05:30:28 $
  *
  * ====================================================================
  *
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.logic;
-
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -79,7 +77,6 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Custom tag that iterates the elements of a collection, which can be
  * either an attribute or the property of an attribute.  The collection
@@ -88,14 +85,12 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2003/02/01 05:12:25 $
+ * @version $Revision: 1.20 $ $Date: 2003/02/01 05:30:28 $
  */
 
 public class IterateTag extends BodyTagSupport {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * Iterator of the elements of this collection, while we are actually
@@ -103,42 +98,33 @@ public class IterateTag extends BodyTagSupport {
      */
     protected Iterator iterator = null;
 
-
     /**
      * The number of elements we have already rendered.
      */
     protected int lengthCount = 0;
-
 
     /**
      * The actual length value (calculated in the start tag).
      */
     protected int lengthValue = 0;
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.logic.LocalStrings");
-
-
+        MessageResources.getMessageResources("org.apache.struts.taglib.logic.LocalStrings");
 
     /**
      * The actual offset value (calculated in the start tag).
      */
     protected int offsetValue = 0;
 
-
     /**
      * Has this tag instance been started?
      */
     protected boolean started = false;
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The collection over which we will be iterating.
@@ -146,13 +132,12 @@ public class IterateTag extends BodyTagSupport {
     protected Object collection = null;
 
     public Object getCollection() {
-	return (this.collection);
+        return (this.collection);
     }
 
     public void setCollection(Object collection) {
-	this.collection = collection;
+        this.collection = collection;
     }
-
 
     /**
      * The name of the scripting variable to be exposed.
@@ -160,13 +145,12 @@ public class IterateTag extends BodyTagSupport {
     protected String id = null;
 
     public String getId() {
-	return (this.id);
+        return (this.id);
     }
 
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
-
 
     /**
      * <p>Return the zero-relative index of the current iteration through the
@@ -186,20 +170,18 @@ public class IterateTag extends BodyTagSupport {
             return (0);
     }
 
-
     /**
      * The name of the scripting variable to be exposed as the current index.
      */
     protected String indexId = null;
 
     public String getIndexId() {
-	return (this.indexId);
+        return (this.indexId);
     }
 
     public void setIndexId(String indexId) {
-	this.indexId = indexId;
+        this.indexId = indexId;
     }
-
 
     /**
      * The length value or attribute name (<=0 means no limit).
@@ -207,13 +189,12 @@ public class IterateTag extends BodyTagSupport {
     protected String length = null;
 
     public String getLength() {
-	return (this.length);
+        return (this.length);
     }
 
     public void setLength(String length) {
-	this.length = length;
+        this.length = length;
     }
-
 
     /**
      * The name of the collection or owning bean.
@@ -225,9 +206,8 @@ public class IterateTag extends BodyTagSupport {
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
-
 
     /**
      * The starting offset (zero relative).
@@ -235,13 +215,12 @@ public class IterateTag extends BodyTagSupport {
     protected String offset = null;
 
     public String getOffset() {
-	return (this.offset);
+        return (this.offset);
     }
 
     public void setOffset(String offset) {
-	this.offset = offset;
+        this.offset = offset;
     }
-
 
     /**
      * The property name containing the collection.
@@ -249,13 +228,12 @@ public class IterateTag extends BodyTagSupport {
     protected String property = null;
 
     public String getProperty() {
-	return (this.property);
+        return (this.property);
     }
 
     public void setProperty(String property) {
-	this.property = property;
+        this.property = property;
     }
-
 
     /**
      * The scope of the bean specified by the name property, if any.
@@ -270,7 +248,6 @@ public class IterateTag extends BodyTagSupport {
         this.scope = scope;
     }
 
-
     /**
      * The Java class of each exposed element of the collection.
      */
@@ -284,9 +261,7 @@ public class IterateTag extends BodyTagSupport {
         this.type = type;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Construct an iterator for the specified collection, and begin
@@ -296,21 +271,20 @@ public class IterateTag extends BodyTagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Acquire the collection we are going to iterate over
+        // Acquire the collection we are going to iterate over
         Object collection = this.collection;
-	if (collection == null)
-            collection =
-                RequestUtils.lookup(pageContext, name, property, scope);
         if (collection == null) {
-            JspException e = new JspException
-                (messages.getMessage("iterate.collection"));
+            collection = RequestUtils.lookup(pageContext, name, property, scope);
+        }
+
+        if (collection == null) {
+            JspException e = new JspException(messages.getMessage("iterate.collection"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
-
-	// Construct an iterator for this collection
-	if (collection.getClass().isArray()) {
+        // Construct an iterator for this collection
+        if (collection.getClass().isArray()) {
             try {
                 // If we're lucky, it is an array of objects
                 // that we can iterate over with no copying
@@ -324,82 +298,85 @@ public class IterateTag extends BodyTagSupport {
                 }
                 iterator = c.iterator();
             }
-	} else if (collection instanceof Collection)
-	    iterator = ((Collection) collection).iterator();
-	else if (collection instanceof Iterator)
-	    iterator = (Iterator) collection;
-	else if (collection instanceof Map)
-	    iterator = ((Map) collection).entrySet().iterator();
-        else if (collection instanceof Enumeration)
-	    iterator = IteratorUtils.asIterator((Enumeration)collection);
-   	else {
-	    JspException e = new JspException
-	        (messages.getMessage("iterate.iterator"));
+        } else if (collection instanceof Collection) {
+            iterator = ((Collection) collection).iterator();
+        } else if (collection instanceof Iterator) {
+            iterator = (Iterator) collection;
+        } else if (collection instanceof Map) {
+            iterator = ((Map) collection).entrySet().iterator();
+        } else if (collection instanceof Enumeration) {
+            iterator = IteratorUtils.asIterator((Enumeration) collection);
+        } else {
+            JspException e = new JspException(messages.getMessage("iterate.iterator"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
-	// Calculate the starting offset
-	if (offset == null)
-	    offsetValue = 0;
-	else {
-	    try {
-		offsetValue = Integer.parseInt(offset);
-	    } catch (NumberFormatException e) {
-		Integer offsetObject = (Integer)
-                    RequestUtils.lookup(pageContext, offset, null);
-		if (offsetObject == null)
-		    offsetValue = 0;
-		else
-		    offsetValue = offsetObject.intValue();
-	    }
-	}
-	if (offsetValue < 0)
-	    offsetValue = 0;
+        // Calculate the starting offset
+        if (offset == null) {
+            offsetValue = 0;
+        } else {
+            try {
+                offsetValue = Integer.parseInt(offset);
+            } catch (NumberFormatException e) {
+                Integer offsetObject = (Integer) RequestUtils.lookup(pageContext, offset, null);
+                if (offsetObject == null) {
+                    offsetValue = 0;
+                } else {
+                    offsetValue = offsetObject.intValue();
+                }
+            }
+        }
+        if (offsetValue < 0) {
+            offsetValue = 0;
+        }
 
-	// Calculate the rendering length
-	if (length == null)
-	    lengthValue = 0;
-	else {
-	    try {
-		lengthValue = Integer.parseInt(length);
-	    } catch (NumberFormatException e) {
-		Integer lengthObject = (Integer)
-                    RequestUtils.lookup(pageContext, length, null);
-		if (lengthObject == null)
-		    lengthValue = 0;
-		else
-		    lengthValue = lengthObject.intValue();
-	    }
-	}
-	if (lengthValue < 0)
-	    lengthValue = 0;
-	lengthCount = 0;
+        // Calculate the rendering length
+        if (length == null) {
+            lengthValue = 0;
+        } else {
+            try {
+                lengthValue = Integer.parseInt(length);
+            } catch (NumberFormatException e) {
+                Integer lengthObject = (Integer) RequestUtils.lookup(pageContext, length, null);
+                if (lengthObject == null) {
+                    lengthValue = 0;
+                } else {
+                    lengthValue = lengthObject.intValue();
+                }
+            }
+        }
+        if (lengthValue < 0) {
+            lengthValue = 0;
+        }
+        lengthCount = 0;
 
-	// Skip the leading elements up to the starting offset
-	for (int i = 0; i < offsetValue; i++) {
-	    if (iterator.hasNext()) {
-	        iterator.next();
-	    }
-	}
+        // Skip the leading elements up to the starting offset
+        for (int i = 0; i < offsetValue; i++) {
+            if (iterator.hasNext()) {
+                iterator.next();
+            }
+        }
 
-	// Store the first value and evaluate, or skip the body if none
-	if (iterator.hasNext()) {
-	    Object element = iterator.next();
-            if (element == null)
+        // Store the first value and evaluate, or skip the body if none
+        if (iterator.hasNext()) {
+            Object element = iterator.next();
+            if (element == null) {
                 pageContext.removeAttribute(id);
-            else
+            } else {
                 pageContext.setAttribute(id, element);
-	    lengthCount++;
+            }
+            lengthCount++;
             started = true;
-            if (indexId != null)
+            if (indexId != null) {
                 pageContext.setAttribute(indexId, new Integer(getIndex()));
-	    return (EVAL_BODY_TAG);
-        } else
+            }
+            return (EVAL_BODY_TAG);
+        } else {
             return (SKIP_BODY);
+        }
 
     }
-
 
     /**
      * Make the next collection element available and loop, or
@@ -416,23 +393,27 @@ public class IterateTag extends BodyTagSupport {
         }
 
         // Decide whether to iterate or quit
-	if ((lengthValue > 0) && (lengthCount >= lengthValue))
-	    return (SKIP_BODY);
-	if (iterator.hasNext()) {
-	    Object element = iterator.next();
-            if (element == null)
+        if ((lengthValue > 0) && (lengthCount >= lengthValue)) {
+            return (SKIP_BODY);
+        }
+
+        if (iterator.hasNext()) {
+            Object element = iterator.next();
+            if (element == null) {
                 pageContext.removeAttribute(id);
-            else
+            } else {
                 pageContext.setAttribute(id, element);
-	    lengthCount++;
-            if (indexId != null)
+            }
+            lengthCount++;
+            if (indexId != null) {
                 pageContext.setAttribute(indexId, new Integer(getIndex()));
-	    return (EVAL_BODY_TAG);
-	} else
-	    return (SKIP_BODY);
+            }
+            return (EVAL_BODY_TAG);
+        } else {
+            return (SKIP_BODY);
+        }
 
     }
-
 
     /**
      * Clean up after processing this enumeration.
@@ -444,23 +425,22 @@ public class IterateTag extends BodyTagSupport {
         // Clean up our started state
         started = false;
 
-	// Continue processing this page
-	return (EVAL_PAGE);
+        // Continue processing this page
+        return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release all allocated resources.
      */
     public void release() {
 
-	super.release();
+        super.release();
 
-	iterator = null;
-	lengthCount = 0;
-	lengthValue = 0;
-	offsetValue = 0;
+        iterator = null;
+        lengthCount = 0;
+        lengthValue = 0;
+        offsetValue = 0;
 
         id = null;
         collection = null;
@@ -472,6 +452,5 @@ public class IterateTag extends BodyTagSupport {
         started = false;
 
     }
-
 
 }

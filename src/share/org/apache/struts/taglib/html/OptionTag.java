@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.14 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.15 2003/02/01 05:30:28 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/02/01 05:30:28 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import java.util.Locale;
 
@@ -73,43 +71,36 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Tag for select options.  The body of this tag is presented to the user
  * in the option list, while the value attribute is the value returned to
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.15 $ $Date: 2003/02/01 05:30:28 $
  */
 
 public class OptionTag extends BodyTagSupport {
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * The default locale for our server.
      */
     protected static final Locale defaultLocale = Locale.getDefault();
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The message text to be displayed to the user for this tag (if any)
      */
     protected String text = null;
 
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The name of the servlet context attribute containing our message
@@ -125,7 +116,6 @@ public class OptionTag extends BodyTagSupport {
         this.bundle = bundle;
     }
 
-
     /**
      * Is this option disabled?
      */
@@ -138,7 +128,6 @@ public class OptionTag extends BodyTagSupport {
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
     }
-
 
     /**
      * The key used to look up the text displayed to the user for this
@@ -154,7 +143,6 @@ public class OptionTag extends BodyTagSupport {
         this.key = key;
     }
 
-
     /**
      * The name of the attribute containing the Locale to be used for
      * looking up internationalized messages.
@@ -169,7 +157,6 @@ public class OptionTag extends BodyTagSupport {
         this.locale = locale;
     }
 
-
     /**
      * The style associated with this tag.
      */
@@ -182,7 +169,6 @@ public class OptionTag extends BodyTagSupport {
     public void setStyle(String style) {
         this.style = style;
     }
-
 
     /**
      * The named style class associated with this tag.
@@ -230,16 +216,14 @@ public class OptionTag extends BodyTagSupport {
     protected String value = null;
 
     public String getValue() {
-	return (this.value);
+        return (this.value);
     }
 
     public void setValue(String value) {
-	this.value = value;
+        this.value = value;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Process the start of this tag.
@@ -251,11 +235,10 @@ public class OptionTag extends BodyTagSupport {
         // Initialize the placeholder for our body content
         this.text = null;
 
-	// Do nothing until doEndTag() is called
-	return (EVAL_BODY_TAG);
+        // Do nothing until doEndTag() is called
+        return (EVAL_BODY_TAG);
 
     }
-
 
     /**
      * Process the body text of this tag (if any).
@@ -268,14 +251,14 @@ public class OptionTag extends BodyTagSupport {
             String text = bodyContent.getString();
             if (text != null) {
                 text = text.trim();
-                if (text.length() > 0)
+                if (text.length() > 0) {
                     this.text = text;
+                }
             }
         }
         return (SKIP_BODY);
 
     }
-
 
     /**
      * Process the end of this tag.
@@ -284,25 +267,25 @@ public class OptionTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
 
-	// Acquire the select tag we are associated with
-	SelectTag selectTag =
-	  (SelectTag) pageContext.getAttribute(Constants.SELECT_KEY);
-	if (selectTag == null) {
-            JspException e = new JspException
-	        (messages.getMessage("optionTag.select"));
+        // Acquire the select tag we are associated with
+        SelectTag selectTag = (SelectTag) pageContext.getAttribute(Constants.SELECT_KEY);
+        if (selectTag == null) {
+            JspException e = new JspException(messages.getMessage("optionTag.select"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
-	// Generate an HTML <option> element
-	StringBuffer results = new StringBuffer();
-	results.append("<option value=\"");
-	results.append(value);
-	results.append("\"");
-        if (disabled)
+        // Generate an HTML <option> element
+        StringBuffer results = new StringBuffer();
+        results.append("<option value=\"");
+        results.append(value);
+        results.append("\"");
+        if (disabled) {
             results.append(" disabled=\"disabled\"");
-        if (selectTag.isMatched(value))
-	    results.append(" selected=\"selected\"");
+        }
+        if (selectTag.isMatched(value)) {
+            results.append(" selected=\"selected\"");
+        }
         if (style != null) {
             results.append(" style=\"");
             results.append(style);
@@ -318,22 +301,22 @@ public class OptionTag extends BodyTagSupport {
             results.append(styleClass);
             results.append("\"");
         }
-	results.append(">");
+        results.append(">");
         String text = text();
-	if (text == null)
-	    results.append(value);
-	else
-	    results.append(text);
-	results.append("</option>");
+        if (text == null) {
+            results.append(value);
+        } else {
+            results.append(text);
+        }
+        results.append("</option>");
 
-	// Render this element to our writer
+        // Render this element to our writer
         ResponseUtils.write(pageContext, results.toString());
 
-	// Continue evaluating this page
-	return (EVAL_PAGE);
+        // Continue evaluating this page
+        return (EVAL_PAGE);
 
     }
-
 
     /**
      * Release any acquired resources.
@@ -350,9 +333,7 @@ public class OptionTag extends BodyTagSupport {
         value = null;
     }
 
-
     // ------------------------------------------------------ Protected Methods
-
 
     /**
      * Return the text to be displayed to the user for this option (if any).
@@ -361,13 +342,12 @@ public class OptionTag extends BodyTagSupport {
      */
     protected String text() throws JspException {
 
-        if (this.text != null)
+        if (this.text != null) {
             return (this.text);
-        else
-            return (RequestUtils.message(pageContext, bundle,
-                                         locale, key));
+        } else {
+            return (RequestUtils.message(pageContext, bundle, locale, key));
+        }
 
     }
-
 
 }
