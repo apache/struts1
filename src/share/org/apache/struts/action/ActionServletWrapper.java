@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.5 2002/09/22 05:46:52 martinc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/09/22 05:46:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.6 2002/10/27 06:01:48 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/27 06:01:48 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * could be exploited by automatic population of properties.
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.5 $ $Date: 2002/09/22 05:46:52 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/27 06:01:48 $
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {
@@ -100,7 +100,10 @@ public class ActionServletWrapper {
 
     }
 
-
+    /**
+     * Log message
+     * @param message
+     */
     public void log(String message) {
 
             servlet.log(message);
@@ -109,6 +112,7 @@ public class ActionServletWrapper {
 
     /**
      * Set servlet to a MultipartRequestHandler.
+     * @param object The MultipartRequestHandler
      * :FIXME: Should this be based on an "setServlet"
      * interface or introspection for a setServlet method?
      * Or, is it safer to just add the types we want as we want them?
@@ -119,10 +123,10 @@ public class ActionServletWrapper {
 
 
     /**
-     * Create object and set servlet property
-     *
+     * Create object and set servlet property.
+     * @param servlet <code>ActionServlet</code> to wrap
      */
-     public ActionServletWrapper (ActionServlet servlet) {
+     public ActionServletWrapper(ActionServlet servlet) {
         super();
         this.servlet = servlet;
     }

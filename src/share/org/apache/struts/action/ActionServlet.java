@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.122 2002/10/27 05:36:47 rleland Exp $
- * $Revision: 1.122 $
- * $Date: 2002/10/27 05:36:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.123 2002/10/27 06:01:48 rleland Exp $
+ * $Revision: 1.123 $
+ * $Date: 2002/10/27 06:01:48 $
  *
  * ====================================================================
  *
@@ -294,7 +294,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.122 $ $Date: 2002/10/27 05:36:47 $
+ * @version $Revision: 1.123 $ $Date: 2002/10/27 06:01:48 $
  */
 
 public class ActionServlet
@@ -1212,6 +1212,8 @@ public class ActionServlet
      * Initialize the servlet mapping under which our controller servlet
      * is being accessed.  This will be used in the <code>&html:form&gt;</code>
      * tag to generate correct destination URLs for form submissions.
+     * @throws ServletException if error happens while scanning web.xml
+     * FIXME throws ServletException Never thrown by this base method
      */
     protected void initServlet() throws ServletException {
 
