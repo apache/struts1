@@ -1,3 +1,63 @@
+/*
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.2 2002/09/28 04:43:04 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/09/28 04:43:04 $
+ * ====================================================================
+ *
+ * The Apache Software License, Version 1.1
+ *
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution, if
+ *    any, must include the following acknowledgement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
+ *
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their names without prior written
+ *    permission of the Apache Group.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ *
+ */
+
 package org.apache.strutsel.taglib.html;
 
 import org.apache.struts.taglib.html.LinkTag;
@@ -12,303 +72,241 @@ public class ELLinkTag extends LinkTag {
         return (super.doStartTag());
     }
 
+    private Object   evalAttr(String   attrName,
+                              String   attrValue,
+                              Class    attrType)
+        throws JspException, NullAttributeException
+    {
+        return (ExpressionUtil.evalNotNull("link", attrName, attrValue,
+                                           attrType, this, pageContext));
+    }
+    
     private void evaluateExpressions() throws JspException {
         try {
-            setAccesskey((String)ExpressionUtil.
-                         evalNotNull("link", "accessKey", getAccesskey(), 
-                                     String.class, this, pageContext));
+            setAccesskey((String) evalAttr("accessKey", getAccesskey(), String.class));
         } catch (NullAttributeException ex) {
             setAccesskey(null);
         }
 
         try {
-            setAnchor((String)ExpressionUtil.
-                   evalNotNull("link", "anchor", getAnchor(), 
-                               String.class, this, pageContext));
+            setAnchor((String) evalAttr("anchor", getAnchor(), String.class));
         } catch (NullAttributeException ex) {
             setAnchor(null);
         }
 
         try {
-            setForward((String)ExpressionUtil.
-                      evalNotNull("link", "forward", getForward(), 
-                                  String.class, this, pageContext));
+            setForward((String) evalAttr("forward", getForward(), String.class));
         } catch (NullAttributeException ex) {
             setForward(null);
         }
 
         try {
-            setHref((String)ExpressionUtil.
-                      evalNotNull("link", "href", getHref(), 
-                                  String.class, this, pageContext));
+            setHref((String) evalAttr("href", getHref(), String.class));
         } catch (NullAttributeException ex) {
             setHref(null);
         }
 
         try {
-            setIndexed(((Boolean)ExpressionUtil.
-                        evalNotNull("link", "indexed", getIndexed() + "", 
-                                    Boolean.class, this, pageContext)).
+            setIndexed(((Boolean) evalAttr("indexed", getIndexed() + "", Boolean.class)).
                        booleanValue());
         } catch (NullAttributeException ex) {
             setIndexed(false);
         }
 
         try {
-            setIndexId((String)ExpressionUtil.
-                      evalNotNull("link", "indexId", getIndexId(), 
-                                  String.class, this, pageContext));
+            setIndexId((String) evalAttr("indexId", getIndexId(), String.class));
         } catch (NullAttributeException ex) {
             setIndexId(null);
         }
 
         try {
-            setLinkName((String)ExpressionUtil.
-                      evalNotNull("link", "linkName", getLinkName(), 
-                                  String.class, this, pageContext));
+            setLinkName((String) evalAttr("linkName", getLinkName(), String.class));
         } catch (NullAttributeException ex) {
             setLinkName(null);
         }
 
         try {
-            setName((String)ExpressionUtil.
-                      evalNotNull("link", "name", getName(), 
-                                  String.class, this, pageContext));
+            setName((String) evalAttr("name", getName(), String.class));
         } catch (NullAttributeException ex) {
             setName(null);
         }
 
         try {
-            setOnblur((String)ExpressionUtil.
-                      evalNotNull("link", "onblur", getOnblur(), 
-                                  String.class, this, pageContext));
+            setOnblur((String) evalAttr("onblur", getOnblur(), String.class));
         } catch (NullAttributeException ex) {
             setOnblur(null);
         }
 
 //         try {
-//             setOnchange((String)ExpressionUtil.
-//                         evalNotNull("link", "onchange", getOnchange(), 
-//                                     String.class, this, pageContext));
+//             setOnchange((String) evalAttr("onchange", getOnchange(), String.class));
 //         } catch (NullAttributeException ex) {
 //             setOnchange(null);
 //         }
 
         try {
-            setOnclick((String)ExpressionUtil.
-                       evalNotNull("link", "onclick", getOnclick(), 
-                                   String.class, this, pageContext));
+            setOnclick((String) evalAttr("onclick", getOnclick(), String.class));
         } catch (NullAttributeException ex) {
             setOnclick(null);
         }
 
         try {
-            setOndblclick((String)ExpressionUtil.
-                          evalNotNull("link", "ondblclick", getOndblclick(), 
-                                      String.class, this, pageContext));
+            setOndblclick((String) evalAttr("ondblclick", getOndblclick(), String.class));
         } catch (NullAttributeException ex) {
             setOndblclick(null);
         }
 
         try {
-            setOnfocus((String)ExpressionUtil.
-                       evalNotNull("link", "onfocus", getOnfocus(), 
-                                   String.class, this, pageContext));
+            setOnfocus((String) evalAttr("onfocus", getOnfocus(), String.class));
         } catch (NullAttributeException ex) {
             setOnfocus(null);
         }
 
         try {
-            setOnkeydown((String)ExpressionUtil.
-                         evalNotNull("link", "onkeydown", getOnkeydown(), 
-                                     String.class, this, pageContext));
+            setOnkeydown((String) evalAttr("onkeydown", getOnkeydown(), String.class));
         } catch (NullAttributeException ex) {
             setOnkeydown(null);
         }
 
         try {
-            setOnkeypress((String)ExpressionUtil.
-                          evalNotNull("link", "onkeypress", getOnkeypress(), 
-                                      String.class, this, pageContext));
+            setOnkeypress((String) evalAttr("onkeypress", getOnkeypress(), String.class));
         } catch (NullAttributeException ex) {
             setOnkeypress(null);
         }
 
         try {
-            setOnkeyup((String)ExpressionUtil.
-                       evalNotNull("link", "onkeyup", getOnkeyup(), 
-                                   String.class, this, pageContext));
+            setOnkeyup((String) evalAttr("onkeyup", getOnkeyup(), String.class));
         } catch (NullAttributeException ex) {
             setOnkeyup(null);
         }
 
         try {
-            setOnmousedown((String)ExpressionUtil.
-                           evalNotNull("link", "onmousedown", getOnmousedown(), 
-                                       String.class, this, pageContext));
+            setOnmousedown((String) evalAttr("onmousedown", getOnmousedown(), String.class));
         } catch (NullAttributeException ex) {
             setOnmousedown(null);
         }
 
         try {
-            setOnmousemove((String)ExpressionUtil.
-                           evalNotNull("link", "onmousemove",
-                                       getOnmousemove(), 
-                                       String.class, this, pageContext));
+            setOnmousemove((String) evalAttr("onmousemove",
+                                             getOnmousemove(), 
+                                             String.class));
         } catch (NullAttributeException ex) {
             setOnmousemove(null);
         }
 
         try {
-            setOnmouseout((String)ExpressionUtil.
-                          evalNotNull("link", "onmouseout", getOnmouseout(), 
-                                      String.class, this, pageContext));
+            setOnmouseout((String) evalAttr("onmouseout", getOnmouseout(), String.class));
         } catch (NullAttributeException ex) {
             setOnmouseout(null);
         }
 
         try {
-            setOnmouseover((String)ExpressionUtil.
-                           evalNotNull("link", "onmouseover",
-                                       getOnmouseover(), 
-                                       String.class, this, pageContext));
+            setOnmouseover((String) evalAttr("onmouseover",
+                                             getOnmouseover(), 
+                                             String.class));
         } catch (NullAttributeException ex) {
             setOnmouseover(null);
         }
 
         try {
-            setOnmouseup((String)ExpressionUtil.
-                         evalNotNull("link", "onmouseup", getOnmouseup(), 
-                                     String.class, this, pageContext));
+            setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(), String.class));
         } catch (NullAttributeException ex) {
             setOnmouseup(null);
         }
 
         try {
-            setProperty((String)ExpressionUtil.
-                        evalNotNull("link", "property", getProperty(), 
-                                    String.class, this, pageContext));
+            setProperty((String) evalAttr("property", getProperty(), String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
 
         try {
-            setPage((String)ExpressionUtil.
-                        evalNotNull("link", "page", getPage(), 
-                                    String.class, this, pageContext));
+            setPage((String) evalAttr("page", getPage(), String.class));
         } catch (NullAttributeException ex) {
             setPage(null);
         }
 
         try {
-            setParamId((String)ExpressionUtil.
-                        evalNotNull("link", "paramId", getParamId(), 
-                                    String.class, this, pageContext));
+            setParamId((String) evalAttr("paramId", getParamId(), String.class));
         } catch (NullAttributeException ex) {
             setParamId(null);
         }
 
         try {
-            setParamName((String)ExpressionUtil.
-                        evalNotNull("link", "paramName", getParamName(), 
-                                    String.class, this, pageContext));
+            setParamName((String) evalAttr("paramName", getParamName(), String.class));
         } catch (NullAttributeException ex) {
             setParamName(null);
         }
 
         try {
-            setParamProperty((String)ExpressionUtil.
-                        evalNotNull("link", "paramProperty", getParamProperty(), 
-                                    String.class, this, pageContext));
+            setParamProperty((String) evalAttr("paramProperty", getParamProperty(), String.class));
         } catch (NullAttributeException ex) {
             setParamProperty(null);
         }
 
         try {
-            setParamScope((String)ExpressionUtil.
-                        evalNotNull("link", "paramScope", getParamScope(), 
-                                    String.class, this, pageContext));
+            setParamScope((String) evalAttr("paramScope", getParamScope(), String.class));
         } catch (NullAttributeException ex) {
             setParamScope(null);
         }
 
         try {
-            setProperty((String)ExpressionUtil.
-                     evalNotNull("link", "property", getProperty(), 
-                                 String.class, this, pageContext));
+            setProperty((String) evalAttr("property", getProperty(), String.class));
         } catch (NullAttributeException ex) {
             setProperty(null);
         }
 
         try {
-            setScope((String)ExpressionUtil.
-                     evalNotNull("link", "scope", getScope(), 
-                                 String.class, this, pageContext));
+            setScope((String) evalAttr("scope", getScope(), String.class));
         } catch (NullAttributeException ex) {
             setScope(null);
         }
 
         try {
-            setStyle((String)ExpressionUtil.
-                     evalNotNull("link", "style", getStyle(), 
-                                 String.class, this, pageContext));
+            setStyle((String) evalAttr("style", getStyle(), String.class));
         } catch (NullAttributeException ex) {
             setStyle(null);
         }
 
         try {
-            setStyleClass((String)ExpressionUtil.
-                          evalNotNull("link", "styleClass", getStyleClass(), 
-                                      String.class, this, pageContext));
+            setStyleClass((String) evalAttr("styleClass", getStyleClass(), String.class));
         } catch (NullAttributeException ex) {
             setStyleClass(null);
         }
 
         try {
-            setStyleId((String)ExpressionUtil.
-                       evalNotNull("link", "styleId", getStyleId(), 
-                                   String.class, this, pageContext));
+            setStyleId((String) evalAttr("styleId", getStyleId(), String.class));
         } catch (NullAttributeException ex) {
             setStyleId(null);
         }
 
         try {
-            setTabindex((String)ExpressionUtil.
-                        evalNotNull("link", "tabindex", getTabindex(), 
-                                    String.class, this, pageContext));
+            setTabindex((String) evalAttr("tabindex", getTabindex(), String.class));
         } catch (NullAttributeException ex) {
             setTabindex(null);
         }
 
         try {
-            setTarget((String)ExpressionUtil.
-                        evalNotNull("link", "target", getTarget(), 
-                                    String.class, this, pageContext));
+            setTarget((String) evalAttr("target", getTarget(), String.class));
         } catch (NullAttributeException ex) {
             setTarget(null);
         }
 
         try {
-            setTitle((String)ExpressionUtil.
-                     evalNotNull("link", "title", getTitle(), 
-                                 String.class, this, pageContext));
+            setTitle((String) evalAttr("title", getTitle(), String.class));
         } catch (NullAttributeException ex) {
             setTitle(null);
         }
 
         try {
-            setTitleKey((String)ExpressionUtil.
-                        evalNotNull("link", "titleKey", getTitleKey(), 
-                                    String.class, this, pageContext));
+            setTitleKey((String) evalAttr("titleKey", getTitleKey(), String.class));
         } catch (NullAttributeException ex) {
             setTitleKey(null);
         }
 
         try {
-            setTransaction(((Boolean)ExpressionUtil.
-                            evalNotNull("link", "transaction",
-                                        getTransaction() + "", 
-                                        Boolean.class, this, pageContext)).
+            setTransaction(((Boolean) evalAttr("transaction",
+                                               getTransaction() + "", 
+                                               Boolean.class)).
                            booleanValue());
         } catch (NullAttributeException ex) {
             setTransaction(false);
