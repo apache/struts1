@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.48 2004/03/08 23:26:58 rleland Exp $
- * $Revision: 1.48 $
- * $Date: 2004/03/08 23:26:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.49 2004/03/09 16:50:45 germuska Exp $
+ * $Revision: 1.49 $
+ * $Date: 2004/03/09 16:50:45 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.48 $ $Date: 2004/03/08 23:26:58 $
+ * @version $Revision: 1.49 $ $Date: 2004/03/09 16:50:45 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -378,14 +378,25 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         Form form = resources.getForm(locale, formName);
 
-        if ("true".equalsIgnoreCase(dynamicJavascript)) {
-            results.append(
-                this.createDynamicJavascript(config, resources, locale, form));
+        if ("true".equalsIgnoreCase(dynamicJavascript) && form == null)
+        {
+            throw new JspException("No form found under '"
+                                   + formName
+                                   + "' in locale '"
+                                   + locale
+                                   + "'");
+        }
 
-        } else if ("true".equalsIgnoreCase(staticJavascript)) {
-            results.append(this.renderStartElement());
-            if ("true".equalsIgnoreCase(htmlComment)) {
-                results.append(HTML_BEGIN_COMMENT);
+        if (form != null) {
+            if ("true".equalsIgnoreCase(dynamicJavascript)) {
+                results.append(
+                        this.createDynamicJavascript(config, resources, locale, form));
+
+            } else if ("true".equalsIgnoreCase(staticJavascript)) {
+                results.append(this.renderStartElement());
+                if ("true".equalsIgnoreCase(htmlComment)) {
+                    results.append(HTML_BEGIN_COMMENT);
+                }
             }
         }
 
@@ -393,7 +404,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             results.append(getJavascriptStaticMethods(resources));
         }
 
-        if (("true".equalsIgnoreCase(dynamicJavascript)
+        if (form != null
+            && ("true".equalsIgnoreCase(dynamicJavascript)
                 || "true".equalsIgnoreCase(staticJavascript))) {
 
             results.append(getJavascriptEnd());
@@ -413,15 +425,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         ModuleConfig config,
         ValidatorResources resources,
         Locale locale,
-        Form form) throws JspException {
-
-        if (form == null)
-        {
-            throw new JspException("No form found under name "
-                                   + formName
-                                   + ", locale "
-                                   + locale);
-        }
+        Form form) {
 
         StringBuffer results = new StringBuffer();
 
