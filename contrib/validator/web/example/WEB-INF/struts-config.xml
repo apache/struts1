@@ -90,4 +90,9 @@
         
   </action-mappings>
 
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources
+    parameter="org.apache.struts.validator.example.ApplicationResources"/>
+    
 </struts-config>
