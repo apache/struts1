@@ -17,18 +17,12 @@
 package org.apache.struts.chain;
 
 
-import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.impl.ChainBase;
-import org.apache.commons.chain.web.WebContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ActionConfig;
 
 
@@ -38,7 +32,7 @@ import org.apache.struts.config.ActionConfig;
  * proceed normally.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.6 $ $Date: 2004/04/29 03:08:44 $
  */
 
 public abstract class AbstractValidateActionForm implements Command {

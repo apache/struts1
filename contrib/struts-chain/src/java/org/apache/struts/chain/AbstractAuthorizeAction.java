@@ -17,22 +17,13 @@
 package org.apache.struts.chain;
 
 
-import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.commons.chain.web.WebContext;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.action.DynaActionForm;
-import org.apache.struts.action.DynaActionFormClass;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.chain.util.ClassUtils;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.FormBeanConfig;
-import org.apache.struts.util.MessageResources;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.config.ActionConfig;
+import org.apache.struts.util.MessageResources;
 
 
 /**
@@ -41,7 +32,7 @@ import org.apache.commons.logging.LogFactory;
  * message of some kind.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.4 $ $Date: 2004/04/29 03:08:44 $
  */
 
 public abstract class AbstractAuthorizeAction implements Command {
@@ -175,7 +166,7 @@ public abstract class AbstractAuthorizeAction implements Command {
      *
      * @return <code>true</code> if the request is authorized, else 
      * <code>false</code>
-     * @exception If the action cannot be tested for authorization
+     * @exception Exception If the action cannot be tested for authorization
      */
     protected abstract boolean isAuthorized(Context context, String[] roles,    
                                             ActionConfig actionConfig)

@@ -19,7 +19,6 @@ package org.apache.struts.chain;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.struts.Globals;
 import org.apache.commons.chain.web.WebContext;
 import org.apache.struts.config.ModuleConfig;
 
@@ -29,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * <code>String</code> (if any).</p>
  *
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.4 $ $Date: 2004/04/29 03:08:44 $
  */
 
 public abstract class AbstractPerformInclude implements Command {

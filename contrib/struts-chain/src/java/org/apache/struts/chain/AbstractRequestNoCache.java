@@ -20,8 +20,6 @@ package org.apache.struts.chain;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.WebContext;
-import org.apache.struts.Globals;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ModuleConfig;
 
 
@@ -30,7 +28,7 @@ import org.apache.struts.config.ModuleConfig;
  * and if so, request no cache flags to be set.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.2 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.3 $ $Date: 2004/04/29 03:08:44 $
  */
 
 public abstract class AbstractRequestNoCache implements Command {

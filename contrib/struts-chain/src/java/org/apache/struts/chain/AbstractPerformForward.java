@@ -19,8 +19,6 @@ package org.apache.struts.chain;
 
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
-import org.apache.struts.Globals;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ForwardConfig;
 
 
@@ -29,7 +27,7 @@ import org.apache.struts.config.ForwardConfig;
  * <code>ForwardConfig</code> (if any).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2004/04/28 23:37:43 $
+ * @version $Revision: 1.6 $ $Date: 2004/04/29 03:08:44 $
  */
 
 public abstract class AbstractPerformForward implements Command {
