@@ -4,9 +4,9 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-<!-- Definitions for Tiles  -->
 <!-- 
-  This file contains definitions common to all struts module.
+  Definitions for Tiles
+  This file contains definitions common to all Struts modules.
   In particular, it contains the main layout and the common menus.
   There is also the main page as a portal.
 -->
@@ -85,7 +85,9 @@
       <item value="Home"           link="/doc/index.jsp"  />
       <item value="Live Examples"  link="/examples/index.jsp"  />
       <item value="Quick overview" link="/test/quickOverview.jsp"  />
-      <!--<item value="Tutorial"       link="/doc/tutorial.jsp"  />-->
+      <!--
+      <item value="Tutorial"              link="/doc/tutorial.jsp"  />
+      -->
       <item value="Tutorial Live Examples" link="/tutorial/index.jsp" />
 	  <!--
       <item value="Tiles Tags"     link="/doc/tilesTags.jsp" />
@@ -93,7 +95,8 @@
       <item value="Installation"   link="/doc/installation.jsp" />
       <item value="User Guide"	   link="/doc/userGuide.jsp" />
       <item value="Javadoc"        link="/api/index.html" />
-      <item value="Struts Home"    link="http://www.apache.org"   icon="/images/struts-power.gif" />
+      <item value="Struts Home"            link="http://www.apache.org"
+            icon="/images/struts-power.gif" />
 	  -->
     </putList>
 </definition>

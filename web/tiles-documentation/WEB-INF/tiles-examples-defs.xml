@@ -23,8 +23,8 @@
 
   <!-- =======================================================  -->
   <!-- Test complex definition construct						-->
-  <!-- These definitions are not intended to be used. they are 	-->
-  <!-- there to stretch the digester rules					 	-->
+  <!-- These definitions are not intended to be used.           -->
+  <!-- They are	included to stretch the Digester rules. 				-->
   <!-- =======================================================  -->
 
   <!-- Test nested list -->
@@ -53,7 +53,7 @@
   <!-- =======================================================  -->
 
   <!-- Menu bar definition -->
-  <!-- Some definition come from other definition files (ex : doc.menu.*) -->
+  <!-- Some definitions come from other definition files (ex : doc.menu.*) -->
 <definition name="examples.menu.bar" path="/layouts/vboxLayout.jsp" >
   <putList name="list" >
     <add value="common.menu.home" />
@@ -65,16 +65,20 @@
   </putList>
 </definition>
 
-  <!--  menus common ancestor definition -->
-  <!-- This definition is used as common ancestor for menu definitions.
-       It allows to define common attribute in one place.
-	   Actually, it defines the layout used to render menus.
+  <!--
+  Menus common ancestor definition
+  This definition is used as common ancestor for menu definitions.
+  It allows to define common attributes in one place.
+	Actually, it only defines the layout used to render menus.
    -->
 <definition name="examples.menu.root" path="/layouts/menu.jsp"  >
 </definition>
 
-  <!-- User menu definition -->
-  <!-- This menu is customizable by user. Definition only contains default items -->
+  <!--
+  User menu definition
+  This menu is customizable by user.
+  Definition only contains default items.
+  -->
 <definition name="examples.userMenu" extends="examples.menu.root"
             controllerClass="org.apache.struts.webapp.tiles.portal.UserMenuAction"  >
   <put name="catalogSettings" value="examples.myMenu.catalog.settings"/>
@@ -85,8 +89,10 @@
     </putList>
 </definition>
 
-  <!-- Menu bar definition used by customizable menu catalog -->
-  <!-- This definition declare available items in user menu catalog  -->
+  <!--
+  Menu bar definition used by customizable menu catalog
+  This definition declares available items in the user menu catalog.
+  -->
 <definition name="examples.myMenu.catalog.settings" >
   <putList name="list" >
     <add value="examples.userMenu" />
@@ -213,7 +219,8 @@
 
     <!-- Portal settings Body declaration-->
 	<!-- Extends portal body to provide the same default set of tiles -->
-  <definition name="examples.portal.settings.body" path="/examples/tiles/myPortalSettings.jsp"
+  <definition name="examples.portal.settings.body"
+              path="/examples/tiles/myPortalSettings.jsp"
               extends="examples.portal.body"
 			  controllerUrl="/examples/controller/myPortalSettings.do" >
   </definition>
@@ -230,7 +237,8 @@
 
     <!-- Portal settings Body declaration-->
 	<!-- Extends user menu body to provide the same default parameters -->
-  <definition name="examples.userMenu.settings.body" path="/examples/tiles/myMenuSettings.jsp"
+  <definition name="examples.userMenu.settings.body"
+              path="/examples/tiles/myMenuSettings.jsp"
               extends="examples.userMenu"
 			  controllerUrl="/examples/controller/myMenuSettings.do" >
 	  <putList name="defaultChoice" >
@@ -311,7 +319,8 @@
 
     <!-- Rss channel body declaration-->
 	<!-- Example to use when connected (online)-->
-  <definition name="examples.rssChannel.body" path="/examples/tiles/rssChannels.jsp"
+  <definition name="examples.rssChannel.body"
+              path="/examples/tiles/rssChannels.jsp"
 			  controllerUrl="/examples/controller/rssChannel.do" >
     <putList name="urls" >
 	    <!--<add value="http://www.newsforge.com/newsforge.rss" /> -->
@@ -322,7 +331,8 @@
 
     <!-- Rss channel body declaration-->
 	<!-- Example whith local feeds (offline)-->
-  <definition name="examples.rssChannel.offline.body"  path="/examples/tiles/rssChannels.jsp"
+  <definition name="examples.rssChannel.offline.body"
+              path="/examples/tiles/rssChannels.jsp"
 			  controllerUrl="/examples/controller/rssChannel.do" >
       <putList name="urls" >
 	    <add value="/examples/rssFeed/rss-example.xml" />
@@ -341,7 +351,8 @@
   </definition>
 
     <!-- Skin body declaration-->
-  <definition name="examples.skin.settings.body" path="/examples/tiles/mySkinSettings.jsp"
+  <definition name="examples.skin.settings.body"
+              path="/examples/tiles/mySkinSettings.jsp"
 			  controllerUrl="/examples/controller/mySkinSettings.do" >
 	  <put name="userSettingsName"   value="tiles.examples.skin.user.settings" />
 	  <!--<put name="catalogName"   value="tiles.examples.skin.catalog" />-->
@@ -353,8 +364,9 @@
   <!-- =======================================================  -->
 
 
-	  <!-- This definition is used as common ancestor for customible layouts definitions.
-	       It allows to define common attribute in one place.
+  <!--
+  This definition is used as common ancestor for customible layouts definitions.
+  It allows to define common attributes in one place.
 		   Actually, it defines names used by layout controller.
 	   -->
 	<definition name="examples.customizable.layouts.root"

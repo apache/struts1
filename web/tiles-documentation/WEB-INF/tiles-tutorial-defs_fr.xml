@@ -4,7 +4,8 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-<!-- html definition Mappings  -->
+<!-- Definitions for Tiles tutorial - French Version -->
+
 <tiles-definitions>
 
   <!-- Main Layout Definition description  -->

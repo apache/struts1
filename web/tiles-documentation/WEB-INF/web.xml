@@ -11,11 +11,11 @@
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class> 
-    <!-- <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class> -->
 
-    <!-- Tiles config files are now declared with each tiles plugin. Declaring a tiles
-         config file here make it available to each tiles plugin. This is useful to 
-         have common declarations.
+    <!--
+    Tiles config files are now declared with each TilesPlugin in struts-config.xml.
+    Declaring a tiles config file here makes it available to *all* TilesPlugins.
+    This is useful to have common declarations.
     <init-param>
        <param-name>definitions-config</param-name>
        <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,
@@ -23,18 +23,6 @@
                     /WEB-INF/tiles-examples-defs.xml</param-value>
     </init-param>
     -->
-    <init-param>
-      <param-name>definitions-debug</param-name>
-      <param-value>0</param-value>
-    </init-param>
-    <init-param>
-      <param-name>definitions-parser-details</param-name>
-      <param-value>0</param-value>
-    </init-param>
-    <init-param>
-      <param-name>definitions-parser-validate</param-name>
-      <param-value>true</param-value>
-    </init-param>
 
     <init-param>
       <param-name>config</param-name>
@@ -52,7 +40,7 @@
       <param-name>config/tutorial</param-name>
       <param-value>/WEB-INF/struts-tutorial-config.xml</param-value>
     </init-param>
-    <!--
+    <!-- 
     <init-param>
       <param-name>config/doc</param-name>
       <param-value>/WEB-INF/struts-doc-config.xml</param-value>
@@ -62,23 +50,9 @@
       <param-name>validate</param-name>
       <param-value>true</param-value>
     </init-param>
-    <init-param>
-      <param-name>debug</param-name>
-      <param-value>2</param-value>
-    </init-param>
-    <init-param>
-      <param-name>detail</param-name>
-      <param-value>2</param-value>
-    </init-param>
-      <!-- Added as a trick for a bug in Struts -->
-    <init-param>
-      <param-name>application</param-name>
-      <param-value>org.apache.struts.webapp.tiles.dev1-1.ApplicationResources</param-value>
-    </init-param>
     
     <load-on-startup>2</load-on-startup>
   </servlet>
-
 
   <!-- Action Servlet Mapping -->
   <servlet-mapping>
@@ -104,7 +78,7 @@
          <web-resource-name>Protected Area</web-resource-name>
 	 <!-- Define the context-relative URL(s) to be protected -->
          <url-pattern>/test/testRole.jsp</url-pattern>
-	 <!-- If you list http methods, only those methods are protected -->
+      <!-- If you list HTTP methods, only those methods are protected -->
 	 <http-method>DELETE</http-method>
          <http-method>GET</http-method>
          <http-method>POST</http-method>

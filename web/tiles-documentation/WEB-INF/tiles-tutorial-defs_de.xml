@@ -4,18 +4,17 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 
-
-<!-- html definition Mappings  -->
+<!-- Definitions for Tiles tutorial - German Version -->
 
 <tiles-definitions>
 
   <!-- Main Layout Definition description  -->
-  <definition name="mainLayout" path="/layout/classicLayout.jsp">
-	  <put name="title"  value="World Financial Online - Deutsche Version" />
-	  <put name="header" value="/tutorial/common/header.jsp" />
-	  <put name="footer" value="/tutorial/de/common/footer.jsp" />
-	  <put name="menu"   value="menu.main" />
-	  <put name="body"   value="main.portal.body" />
+  <definition name="mainLayout">
+    <put name="title"  value="World Financial Online - Deutsche Version" />
+    <!--<put name="header" value="/tutorial/common/header.jsp"/>-->
+    <put name="footer" value="/tutorial/de/common/footer.jsp" />
+    <!--<put name="menu" value="menu.main"/>
+    <put name="body" value="main.portal.body"/>-->
   </definition>
   
   <!-- select language menu -->
