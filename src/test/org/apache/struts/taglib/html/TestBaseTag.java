@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestBaseTag.java,v 1.7 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/12/11 05:14:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestBaseTag.java,v 1.8 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/12/26 22:10:32 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -101,14 +101,9 @@ public class TestBaseTag extends JspTestCase {
         return new TestSuite(TestBaseTag.class);
     }
 
-    private void runMyTest(String whichTest){
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestBaseTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest) throws Exception {
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestBaseTag.jsp");    
     }
     
 	private void formatAndTest(String compare, String output) {
@@ -118,24 +113,23 @@ public class TestBaseTag extends JspTestCase {
 		output = output.trim();
 	    assertEquals(compare, output);
 	}
-
     /*
      * Testing BaseTag.
      */
-    public void testBase(){ 
-    	runMyTest("testBase");
-	}
+    public void testBase() throws Exception {
+        runMyTest("testBase");
+        }
 
-    public void testBaseTarget(){ 
-    	runMyTest("testBaseTarget");
-	}
+    public void testBaseTarget() throws Exception {
+        runMyTest("testBaseTarget");
+        }
 
-    public void testBaseServer(){ 
-    	runMyTest("testBaseServer");
-	}
+    public void testBaseServer() throws Exception {
+        runMyTest("testBaseServer");
+        }
 
-    public void testBaseServerTarget(){ 
-    	runMyTest("testBaseServerTarget");
-	}
+    public void testBaseServerTarget() throws Exception {
+        runMyTest("testBaseServerTarget");
+        }
 
 }

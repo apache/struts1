@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFrameTag7.java,v 1.4 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFrameTag7.java,v 1.5 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -106,15 +106,10 @@ public class TestFrameTag7 extends JspTestCase {
         return new TestSuite(TestFrameTag7.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestFrameTag7.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestFrameTag7.jsp");
     }
 
     /*
@@ -123,141 +118,141 @@ public class TestFrameTag7 extends JspTestCase {
 
 //--------Testing attributes using forward------
 
-    public void testFramePage(){
+    public void testFramePage() throws Exception {
         runMyTest("testFramePage", "");
     }
 
-    public void testFramePageAnchor(){
+    public void testFramePageAnchor() throws Exception {
         runMyTest("testFramePageAnchor", "");
     }
 
-    public void testFramePageFrameborder(){
+    public void testFramePageFrameborder() throws Exception {
         runMyTest("testFramePageFrameborder", "");
     }
 
-    public void testFramePageFrameName(){
+    public void testFramePageFrameName() throws Exception {
         runMyTest("testFramePageFrameName", "");
     }
 
-    public void testFramePageLongdesc(){
+    public void testFramePageLongdesc() throws Exception {
         runMyTest("testFramePageLongdesc", "");
     }
 
-    public void testFramePageMarginheight(){
+    public void testFramePageMarginheight() throws Exception {
         runMyTest("testFramePageMarginheight", "");
     }
 
-    public void testFramePageMarginwidth(){
+    public void testFramePageMarginwidth() throws Exception {
         runMyTest("testFramePageMarginwidth", "");
     }
 
-    public void testFramePageNameNoScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
+    public void testFramePageNameNoScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
        runMyTest("testFramePageNameNoScope", "");
     }
 
-    public void testFramePageNamePropertyNoScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
+    public void testFramePageNamePropertyNoScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
        runMyTest("testFramePageNamePropertyNoScope", "");
     }
 
-    public void testFramePageNameApplicationScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.APPLICATION_SCOPE);
+    public void testFramePageNameApplicationScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.APPLICATION_SCOPE);
        runMyTest("testFramePageNameApplicationScope", "");
     }
 
-    public void testFramePageNamePropertyApplicationScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.APPLICATION_SCOPE);
+    public void testFramePageNamePropertyApplicationScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.APPLICATION_SCOPE);
        runMyTest("testFramePageNamePropertyApplicationScope", "");
     }
 
-    public void testFramePageNameSessionScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.SESSION_SCOPE);
+    public void testFramePageNameSessionScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.SESSION_SCOPE);
        runMyTest("testFramePageNameSessionScope", "");
     }
 
-    public void testFramePageNamePropertySessionScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.SESSION_SCOPE);
+    public void testFramePageNamePropertySessionScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.SESSION_SCOPE);
        runMyTest("testFramePageNamePropertySessionScope", "");
     }
 
-    public void testFramePageNameRequestScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
+    public void testFramePageNameRequestScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
        runMyTest("testFramePageNameRequestScope", "");
     }
 
-    public void testFramePageNamePropertyRequestScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
+    public void testFramePageNamePropertyRequestScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
        runMyTest("testFramePageNamePropertyRequestScope", "");
     }
 
 
-    public void testFramePageNoresize1(){
+    public void testFramePageNoresize1() throws Exception {
         runMyTest("testFramePageNoresize1", "");
     }
 
-    public void testFramePageNoresize2(){
+    public void testFramePageNoresize2() throws Exception {
         runMyTest("testFramePageNoresize2", "");
     }
 
-    public void testFramePageNoresize3(){
+    public void testFramePageNoresize3() throws Exception {
         runMyTest("testFramePageNoresize3", "");
     }
 
-    public void testFramePageNoresize4(){
+    public void testFramePageNoresize4() throws Exception {
         runMyTest("testFramePageNoresize4", "");
     }
 
-    public void testFramePageNoresize5(){
+    public void testFramePageNoresize5() throws Exception {
         runMyTest("testFramePageNoresize5", "");
     }
 
-    public void testFramePageNoresize6(){
+    public void testFramePageNoresize6() throws Exception {
         runMyTest("testFramePageNoresize6", "");
     }
-	
+
 }

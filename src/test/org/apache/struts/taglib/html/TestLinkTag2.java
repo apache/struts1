@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag2.java,v 1.3 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag2.java,v 1.4 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -105,16 +105,11 @@ public class TestLinkTag2 extends JspTestCase {
         return new TestSuite(TestLinkTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestLinkTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestLinkTag2.jsp");
     }
 
     /*
@@ -122,116 +117,116 @@ public class TestLinkTag2 extends JspTestCase {
      */
 
 //--------Testing attributes using forward------
-    public void testLinkForwardOnblur(){
+    public void testLinkForwardOnblur() throws Exception {
         runMyTest("testLinkForwardOnblur", "");
     }
 
-    public void testLinkForwardOnclick(){
+    public void testLinkForwardOnclick() throws Exception {
         runMyTest("testLinkForwardOnclick", "");
     }
 
-    public void testLinkForwardOndblclick(){
+    public void testLinkForwardOndblclick() throws Exception {
         runMyTest("testLinkForwardOndblclick", "");
     }
 
-    public void testLinkForwardOnfocus(){
+    public void testLinkForwardOnfocus() throws Exception {
         runMyTest("testLinkForwardOnfocus", "");
     }
 
-    public void testLinkForwardOnkeydown(){
+    public void testLinkForwardOnkeydown() throws Exception {
         runMyTest("testLinkForwardOnkeydown", "");
     }
 
-    public void testLinkForwardOnkeypress(){
+    public void testLinkForwardOnkeypress() throws Exception {
         runMyTest("testLinkForwardOnkeypress", "");
     }
 
-    public void testLinkForwardOnkeyup(){
+    public void testLinkForwardOnkeyup() throws Exception {
         runMyTest("testLinkForwardOnkeyup", "");
     }
 
-    public void testLinkForwardOnmousedown(){
+    public void testLinkForwardOnmousedown() throws Exception {
         runMyTest("testLinkForwardOnmousedown", "");
     }
 
-    public void testLinkForwardOnmousemove(){
+    public void testLinkForwardOnmousemove() throws Exception {
         runMyTest("testLinkForwardOnmousemove", "");
     }
 
-    public void testLinkForwardOnmouseout(){
+    public void testLinkForwardOnmouseout() throws Exception {
         runMyTest("testLinkForwardOnmouseout", "");
     }
 
-    public void testLinkForwardOnmouseover(){
+    public void testLinkForwardOnmouseover() throws Exception {
         runMyTest("testLinkForwardOnmouseover", "");
     }
 
-    public void testLinkForwardOnmouseup(){
+    public void testLinkForwardOnmouseup() throws Exception {
         runMyTest("testLinkForwardOnmouseup", "");
     }
 
-    public void testLinkForwardParamIdParamNameNoScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
+    public void testLinkForwardParamIdParamNameNoScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameNoScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameParamPropertyNoScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
+    public void testLinkForwardParamIdParamNameParamPropertyNoScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameParamPropertyNoScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameApplicationScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.APPLICATION_SCOPE);
+    public void testLinkForwardParamIdParamNameApplicationScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.APPLICATION_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameApplicationScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameParamPropertyApplicationScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.APPLICATION_SCOPE);
+    public void testLinkForwardParamIdParamNameParamPropertyApplicationScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.APPLICATION_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameParamPropertyApplicationScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameSessionScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.SESSION_SCOPE);
+    public void testLinkForwardParamIdParamNameSessionScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.SESSION_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameSessionScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameParamPropertySessionScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.SESSION_SCOPE);
+    public void testLinkForwardParamIdParamNameParamPropertySessionScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.SESSION_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameParamPropertySessionScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameRequestScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
+    public void testLinkForwardParamIdParamNameRequestScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameRequestScope", "");
     }
 
-    public void testLinkForwardParamIdParamNameParamPropertyRequestScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
+    public void testLinkForwardParamIdParamNameParamPropertyRequestScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
         runMyTest("testLinkForwardParamIdParamNameParamPropertyRequestScope", "");
     }
 
 
-    public void testLinkForwardStyle(){
+    public void testLinkForwardStyle() throws Exception {
         runMyTest("testLinkForwardStyle", "");
     }
 
-    public void testLinkForwardStyleClass(){
+    public void testLinkForwardStyleClass() throws Exception {
         runMyTest("testLinkForwardStyleClass", "");
     }
 
-    public void testLinkForwardStyleId(){
+    public void testLinkForwardStyleId() throws Exception {
         runMyTest("testLinkForwardStyleId", "");
     }
 
-    public void testLinkForwardTabIndex(){
+    public void testLinkForwardTabIndex() throws Exception {
         runMyTest("testLinkForwardTabIndex", "");
     }
 
-    public void testLinkForwardTarget(){
+    public void testLinkForwardTarget() throws Exception {
         runMyTest("testLinkForwardTarget", "");
     }
 
@@ -241,21 +236,21 @@ public class TestLinkTag2 extends JspTestCase {
 
 
 
-    public void testLinkForwardTitle(){
+    public void testLinkForwardTitle() throws Exception {
         runMyTest("testLinkForwardTitle", "");
     }
 
-    public void testLinkForwardTitleKey(){
+    public void testLinkForwardTitleKey() throws Exception {
         runMyTest("testLinkForwardTitleKey", "");
     }
 
-    public void testLinkForwardTransaction(){
-    	pageContext.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "Some_Token_Here", PageContext.SESSION_SCOPE);
+    public void testLinkForwardTransaction() throws Exception {
+        pageContext.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "Some_Token_Here", PageContext.SESSION_SCOPE);
         runMyTest("testLinkForwardTransaction", "");
     }
 
 
 
 
-	
+
 }

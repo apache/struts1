@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCancelTag2.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCancelTag2.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -103,63 +103,58 @@ public class TestCancelTag2 extends JspTestCase {
         return new TestSuite(TestCancelTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestCancelTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestCancelTag2.jsp");
     }
 
     /*
      * Testing CancelTag.
      */
 
-    public void testCancelStyle(){ 
-    	runMyTest("testCancelStyle", "");
-	}
+    public void testCancelStyle() throws Exception {
+        runMyTest("testCancelStyle", "");
+        }
 
-    public void testCancelStyleClass(){ 
-    	runMyTest("testCancelStyleClass", "");
-	}
+    public void testCancelStyleClass() throws Exception {
+        runMyTest("testCancelStyleClass", "");
+        }
 
-    public void testCancelStyleId(){ 
-    	runMyTest("testCancelStyleId", "");
-	}
+    public void testCancelStyleId() throws Exception {
+        runMyTest("testCancelStyleId", "");
+        }
 
-    public void testCancelTabindex(){ 
-    	runMyTest("testCancelTabindex", "");
-	}
+    public void testCancelTabindex() throws Exception {
+        runMyTest("testCancelTabindex", "");
+        }
 
-    public void testCancelTitle(){ 
-    	runMyTest("testCancelTitle", "");
-	}
+    public void testCancelTitle() throws Exception {
+        runMyTest("testCancelTitle", "");
+        }
 
-    public void testCancelTitleKey(){ 
-    	runMyTest("testCancelTitleKey", "");
-	}
+    public void testCancelTitleKey() throws Exception {
+        runMyTest("testCancelTitleKey", "");
+        }
 
-    public void testCancelTitleKey_fr(){ 
-    	runMyTest("testCancelTitleKey_fr", "fr");
-	}
+    public void testCancelTitleKey_fr() throws Exception {
+        runMyTest("testCancelTitleKey_fr", "fr");
+        }
 
-    public void testCancelValue(){ 
-    	runMyTest("testCancelValue", "");
-	}
+    public void testCancelValue() throws Exception {
+        runMyTest("testCancelValue", "");
+        }
 
-    public void testCancelBodyContent(){ 
-    	runMyTest("testCancelBodyContent", "");
-	}
+    public void testCancelBodyContent() throws Exception {
+        runMyTest("testCancelBodyContent", "");
+        }
 
-    public void testCancelBodyContentMessageKey(){ 
-    	runMyTest("testCancelBodyContentMessageKey", "");
-	}
+    public void testCancelBodyContentMessageKey() throws Exception {
+        runMyTest("testCancelBodyContentMessageKey", "");
+        }
 
-    public void testCancelBodyContentMessageKey_fr(){ 
-    	runMyTest("testCancelBodyContentMessageKey_fr", "fr");
-	}
+    public void testCancelBodyContentMessageKey_fr() throws Exception {
+        runMyTest("testCancelBodyContentMessageKey_fr", "fr");
+        }
 
 }

@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag3.java,v 1.6 2003/12/11 05:14:50 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/11 05:14:50 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestMessageTag3.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/26 22:10:31 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -74,17 +74,17 @@ import org.apache.commons.lang.StringUtils;
 /**
   * These tests attempt to cover every single possible configuration of the
   * org.apache.struts.taglib.bean.MessageTag
-  * 
+  *
   * I've tried to describe what I'm testing as best as possible by the method names.
-  * To see how I'm testing, refer to the jsp file that these tests forward to. 
-  * 
+  * To see how I'm testing, refer to the jsp file that these tests forward to.
+  *
   * All of these tests depend on a value being correctly written on the repose, then
   * checked here in endXXX method.
   *
   * @author James Mitchell
   */
 public class TestMessageTag3 extends JspTestCase {
-	
+
     protected final static String TEST_KEY = "BeanKey";
     protected final static String TEST_VAL = "Testing Message 1 2 3";
 
@@ -109,221 +109,216 @@ public class TestMessageTag3 extends JspTestCase {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestMessageTag3.class);
     }
-    
-    private void runMyTest(String whichTest, Locale locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, locale, PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/bean/TestMessageTag3.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+
+    private void runMyTest(String whichTest, Locale locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, locale, PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/bean/TestMessageTag3.jsp");
     }
-    
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\r","");
-		output = output.trim();
-		//System.out.println("Testing [" + compare + "] == [" + output + "]");
-	    assertEquals(compare, output);
-	}
+
+        private void formatAndTest(String compare, String output) {
+                //fix for introduced carriage return / line feeds
+                output = StringUtils.replace(output,"\r","");
+                output = StringUtils.replace(output,"\r","");
+                output = output.trim();
+                //System.out.println("Testing [" + compare + "] == [" + output + "]");
+            assertEquals(compare, output);
+        }
 
     /*
      * ===========================================================
-     * Testing MessageTag (these comments serve as a divider of 
+     * Testing MessageTag (these comments serve as a divider of
      *                     functionality being tested)
-     * 
+     *
      * Section: 3 Arg
      * Locale:  (default)
      * ===========================================================
      */
 
 
-    public void testMessageTag3ArgKeyNoScopeDefaultBundle(){ 
+    public void testMessageTag3ArgKeyNoScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeyNoScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeyNoScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeyNoScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgKeyApplicationScopeDefaultBundle(){ 
+    public void testMessageTag3ArgKeyApplicationScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeyApplicationScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeyApplicationScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeyApplicationScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgKeySessionScopeDefaultBundle(){ 
+    public void testMessageTag3ArgKeySessionScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeySessionScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeySessionScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeySessionScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgKeyRequestScopeDefaultBundle(){ 
+    public void testMessageTag3ArgKeyRequestScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeyRequestScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeyRequestScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeyRequestScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
 
-    public void testMessageTag3ArgKeyNoScopeAlternateBundle(){ 
+    public void testMessageTag3ArgKeyNoScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeyNoScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeyNoScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeyNoScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgKeyApplicationScopeAlternateBundle(){ 
+    public void testMessageTag3ArgKeyApplicationScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeyApplicationScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeyApplicationScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeyApplicationScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgKeySessionScopeAlternateBundle(){ 
+    public void testMessageTag3ArgKeySessionScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeySessionScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeySessionScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeySessionScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgKeyRequestScopeAlternateBundle(){ 
+    public void testMessageTag3ArgKeyRequestScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgKeyRequestScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgKeyRequestScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgKeyRequestScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
 
 
-    public void testMessageTag3ArgNameNoScopeDefaultBundle(){ 
+    public void testMessageTag3ArgNameNoScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameNoScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameNoScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameNoScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNameApplicationScopeDefaultBundle(){ 
+    public void testMessageTag3ArgNameApplicationScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameApplicationScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameApplicationScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameApplicationScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNameSessionScopeDefaultBundle(){ 
+    public void testMessageTag3ArgNameSessionScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameSessionScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameSessionScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameSessionScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNameRequestScopeDefaultBundle(){ 
+    public void testMessageTag3ArgNameRequestScopeDefaultBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameRequestScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameRequestScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameRequestScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
 
-    public void testMessageTag3ArgNameNoScopeAlternateBundle(){ 
+    public void testMessageTag3ArgNameNoScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameNoScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameNoScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameNoScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNameApplicationScopeAlternateBundle(){ 
+    public void testMessageTag3ArgNameApplicationScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameApplicationScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameApplicationScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameApplicationScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNameSessionScopeAlternateBundle(){ 
+    public void testMessageTag3ArgNameSessionScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameSessionScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameSessionScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameSessionScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNameRequestScopeAlternateBundle(){ 
+    public void testMessageTag3ArgNameRequestScopeAlternateBundle() throws Exception {
      runMyTest("testMessageTag3ArgNameRequestScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNameRequestScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNameRequestScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
 
 
 
-    public void testMessageTag3ArgNamePropertyNoScopeDefaultBundle(){
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.REQUEST_SCOPE);
+    public void testMessageTag3ArgNamePropertyNoScopeDefaultBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.REQUEST_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertyNoScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertyNoScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertyNoScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNamePropertyApplicationScopeDefaultBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.APPLICATION_SCOPE);
+    public void testMessageTag3ArgNamePropertyApplicationScopeDefaultBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.APPLICATION_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertyApplicationScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertyApplicationScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertyApplicationScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNamePropertySessionScopeDefaultBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.SESSION_SCOPE);
+    public void testMessageTag3ArgNamePropertySessionScopeDefaultBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.SESSION_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertySessionScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertySessionScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertySessionScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNamePropertyRequestScopeDefaultBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.REQUEST_SCOPE);
+    public void testMessageTag3ArgNamePropertyRequestScopeDefaultBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("default.bundle.message.3"), PageContext.REQUEST_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertyRequestScopeDefaultBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertyRequestScopeDefaultBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertyRequestScopeDefaultBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
 
-    public void testMessageTag3ArgNamePropertyNoScopeAlternateBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.REQUEST_SCOPE);
+    public void testMessageTag3ArgNamePropertyNoScopeAlternateBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.REQUEST_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertyNoScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertyNoScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertyNoScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNamePropertyApplicationScopeAlternateBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.APPLICATION_SCOPE);
+    public void testMessageTag3ArgNamePropertyApplicationScopeAlternateBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.APPLICATION_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertyApplicationScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertyApplicationScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertyApplicationScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNamePropertySessionScopeAlternateBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.SESSION_SCOPE);
+    public void testMessageTag3ArgNamePropertySessionScopeAlternateBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.SESSION_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertySessionScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertySessionScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertySessionScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
-    public void testMessageTag3ArgNamePropertyRequestScopeAlternateBundle(){ 
-    	pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.REQUEST_SCOPE);
+    public void testMessageTag3ArgNamePropertyRequestScopeAlternateBundle() throws Exception {
+        pageContext.setAttribute("key", new SimpleBeanForTesting("alternate.bundle.message.3"), PageContext.REQUEST_SCOPE);
      runMyTest("testMessageTag3ArgNamePropertyRequestScopeAlternateBundle", new Locale("",""));
-	}
-	public void endMessageTag3ArgNamePropertyRequestScopeAlternateBundle(WebResponse response){
-		formatAndTest(TEST_VAL, response.getText());
-	}
+        }
+        public void endMessageTag3ArgNamePropertyRequestScopeAlternateBundle(WebResponse response){
+                formatAndTest(TEST_VAL, response.getText());
+        }
 
 
 }

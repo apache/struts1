@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFormTag1.java,v 1.4 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFormTag1.java,v 1.5 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,70 +104,65 @@ public class TestFormTag1 extends JspTestCase {
         return new TestSuite(TestFormTag1.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestFormTag1.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestFormTag1.jsp");
     }
 
     /*
      * Testing FormTag.
      */
-    public void testFormAction(){ 
-    	runMyTest("testFormAction", "");
-	}
-    public void testFormActionEnctype(){ 
-    	runMyTest("testFormActionEnctype", "");
-	}
-    public void testFormActionFocus(){ 
-    	runMyTest("testFormActionFocus", "");
-	}
-    public void testFormActionFocusIndexed(){ 
-    	runMyTest("testFormActionFocusIndexed", "");
-	}
-    public void testFormActionMethod1(){ 
-    	runMyTest("testFormActionMethod1", "");
-	}
-    public void testFormActionMethod2(){ 
-    	runMyTest("testFormActionMethod2", "");
-	}
-    public void testFormActionMethod3(){ 
-    	runMyTest("testFormActionMethod3", "");
-	}
-    public void testFormActionMethod4(){ 
-    	runMyTest("testFormActionMethod4", "");
-	}
-    public void testFormActionMethod5(){ 
-    	runMyTest("testFormActionMethod5", "");
-	}
-    public void testFormActionOnreset(){ 
-    	runMyTest("testFormActionOnreset", "");
-	}
-    public void testFormActionOnsubmit(){ 
-    	runMyTest("testFormActionOnsubmit", "");
-	}
-    public void testFormActionStyle(){ 
-    	runMyTest("testFormActionStyle", "");
-	}
-    public void testFormActionStyleClass(){ 
-    	runMyTest("testFormActionStyleClass", "");
-	}
-    public void testFormActionStyleId(){ 
-    	runMyTest("testFormActionStyleId", "");
-	}
-    public void testFormActionTarget(){ 
-    	runMyTest("testFormActionTarget", "");
-	}
+    public void testFormAction() throws Exception {
+        runMyTest("testFormAction", "");
+        }
+    public void testFormActionEnctype() throws Exception {
+        runMyTest("testFormActionEnctype", "");
+        }
+    public void testFormActionFocus() throws Exception {
+        runMyTest("testFormActionFocus", "");
+        }
+    public void testFormActionFocusIndexed() throws Exception {
+        runMyTest("testFormActionFocusIndexed", "");
+        }
+    public void testFormActionMethod1() throws Exception {
+        runMyTest("testFormActionMethod1", "");
+        }
+    public void testFormActionMethod2() throws Exception {
+        runMyTest("testFormActionMethod2", "");
+        }
+    public void testFormActionMethod3() throws Exception {
+        runMyTest("testFormActionMethod3", "");
+        }
+    public void testFormActionMethod4() throws Exception {
+        runMyTest("testFormActionMethod4", "");
+        }
+    public void testFormActionMethod5() throws Exception {
+        runMyTest("testFormActionMethod5", "");
+        }
+    public void testFormActionOnreset() throws Exception {
+        runMyTest("testFormActionOnreset", "");
+        }
+    public void testFormActionOnsubmit() throws Exception {
+        runMyTest("testFormActionOnsubmit", "");
+        }
+    public void testFormActionStyle() throws Exception {
+        runMyTest("testFormActionStyle", "");
+        }
+    public void testFormActionStyleClass() throws Exception {
+        runMyTest("testFormActionStyleClass", "");
+        }
+    public void testFormActionStyleId() throws Exception {
+        runMyTest("testFormActionStyleId", "");
+        }
+    public void testFormActionTarget() throws Exception {
+        runMyTest("testFormActionTarget", "");
+        }
 
 
 
 
-	
-	
+
+
 }

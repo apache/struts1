@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMessagesTag6.java,v 1.2 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMessagesTag6.java,v 1.3 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,122 +104,117 @@ public class TestMessagesTag6 extends JspTestCase {
         return new TestSuite(TestMessagesTag6.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestMessagesTag6.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestMessagesTag6.jsp");
     }
 
     /*
      * Testing MessagesTag.
      */
 
-  public void testMessages(){
+  public void testMessages() throws Exception {
    runMyTest("testMessages", "");
   }
 
-  public void testMessagesDefaultBundleEmpty(){
+  public void testMessagesDefaultBundleEmpty() throws Exception {
    runMyTest("testMessagesDefaultBundleEmpty", "");
   }
 
-  public void testMessagesActionMessageDefaultBundle(){
+  public void testMessagesActionMessageDefaultBundle() throws Exception {
    runMyTest("testMessagesActionMessageDefaultBundle", "");
   }
 
-  public void testMessagesActionMessageDefaultBundleHeader(){
+  public void testMessagesActionMessageDefaultBundleHeader() throws Exception {
    runMyTest("testMessagesActionMessageDefaultBundleHeader", "");
   }
 
 
-  public void testMessagesActionMessageDefaultBundleHeaderFooter(){
+  public void testMessagesActionMessageDefaultBundleHeaderFooter() throws Exception {
    runMyTest("testMessagesActionMessageDefaultBundleHeaderFooter", "");
   }
 
 
-  public void testMessagesNameDefaultBundleEmpty(){
+  public void testMessagesNameDefaultBundleEmpty() throws Exception {
    runMyTest("testMessagesNameDefaultBundleEmpty", "");
   }
 
-  public void testMessagesNamePropertyDefaultBundleEmpty(){
+  public void testMessagesNamePropertyDefaultBundleEmpty() throws Exception {
    runMyTest("testMessagesNamePropertyDefaultBundleEmpty", "");
   }
 
-  public void testMessagesNameActionMessageDefaultBundle(){
+  public void testMessagesNameActionMessageDefaultBundle() throws Exception {
    runMyTest("testMessagesNameActionMessageDefaultBundle", "");
   }
 
-  public void testMessagesNamePropertyActionMessageDefaultBundle(){
+  public void testMessagesNamePropertyActionMessageDefaultBundle() throws Exception {
    runMyTest("testMessagesNamePropertyActionMessageDefaultBundle", "");
   }
 
-  public void testMessagesNameActionMessageDefaultBundleHeader(){
+  public void testMessagesNameActionMessageDefaultBundleHeader() throws Exception {
    runMyTest("testMessagesNameActionMessageDefaultBundleHeader", "");
   }
 
-  public void testMessagesNamePropertyActionMessageDefaultBundleHeader(){
+  public void testMessagesNamePropertyActionMessageDefaultBundleHeader() throws Exception {
    runMyTest("testMessagesNamePropertyActionMessageDefaultBundleHeader", "");
   }
 
-  public void testMessagesNameActionMessageDefaultBundleHeaderFooter(){
+  public void testMessagesNameActionMessageDefaultBundleHeaderFooter() throws Exception {
    runMyTest("testMessagesNameActionMessageDefaultBundleHeaderFooter", "");
   }
 
-  public void testMessagesNamePropertyActionMessageDefaultBundleHeaderFooter(){
+  public void testMessagesNamePropertyActionMessageDefaultBundleHeaderFooter() throws Exception {
    runMyTest("testMessagesNamePropertyActionMessageDefaultBundleHeaderFooter", "");
   }
 
 
-  public void testMessagesAlternateBundleEmpty(){
+  public void testMessagesAlternateBundleEmpty() throws Exception {
    runMyTest("testMessagesAlternateBundleEmpty", "");
   }
 
-  public void testMessagesActionMessageAlternateBundle(){
+  public void testMessagesActionMessageAlternateBundle() throws Exception {
    runMyTest("testMessagesActionMessageAlternateBundle", "");
   }
 
-  public void testMessagesActionMessageAlternateBundleHeader(){
+  public void testMessagesActionMessageAlternateBundleHeader() throws Exception {
    runMyTest("testMessagesActionMessageAlternateBundleHeader", "");
   }
 
 
-  public void testMessagesActionMessageAlternateBundleHeaderFooter(){
+  public void testMessagesActionMessageAlternateBundleHeaderFooter() throws Exception {
    runMyTest("testMessagesActionMessageAlternateBundleHeaderFooter", "");
   }
 
-  public void testMessagesNameAlternateBundleEmpty(){
+  public void testMessagesNameAlternateBundleEmpty() throws Exception {
    runMyTest("testMessagesNameAlternateBundleEmpty", "");
   }
 
-  public void testMessagesNamePropertyAlternateBundleEmpty(){
+  public void testMessagesNamePropertyAlternateBundleEmpty() throws Exception {
    runMyTest("testMessagesNamePropertyAlternateBundleEmpty", "");
   }
 
-  public void testMessagesNameActionMessageAlternateBundle(){
+  public void testMessagesNameActionMessageAlternateBundle() throws Exception {
    runMyTest("testMessagesNameActionMessageAlternateBundle", "");
   }
 
-  public void testMessagesNamePropertyActionMessageAlternateBundle(){
+  public void testMessagesNamePropertyActionMessageAlternateBundle() throws Exception {
    runMyTest("testMessagesNamePropertyActionMessageAlternateBundle", "");
   }
 
-  public void testMessagesNameActionMessageAlternateBundleHeader(){
+  public void testMessagesNameActionMessageAlternateBundleHeader() throws Exception {
    runMyTest("testMessagesNameActionMessageAlternateBundleHeader", "");
   }
 
-  public void testMessagesNamePropertyActionMessageAlternateBundleHeader(){
+  public void testMessagesNamePropertyActionMessageAlternateBundleHeader() throws Exception {
    runMyTest("testMessagesNamePropertyActionMessageAlternateBundleHeader", "");
   }
 
-  public void testMessagesNameActionMessageAlternateBundleHeaderFooter(){
+  public void testMessagesNameActionMessageAlternateBundleHeaderFooter() throws Exception {
    runMyTest("testMessagesNameActionMessageAlternateBundleHeaderFooter", "");
   }
 
-  public void testMessagesNamePropertyActionMessageAlternateBundleHeaderFooter(){
+  public void testMessagesNamePropertyActionMessageAlternateBundleHeaderFooter() throws Exception {
    runMyTest("testMessagesNamePropertyActionMessageAlternateBundleHeaderFooter", "");
   }
 

@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCancelTag1.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCancelTag1.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -103,97 +103,92 @@ public class TestCancelTag1 extends JspTestCase {
         return new TestSuite(TestCancelTag1.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestCancelTag1.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestCancelTag1.jsp");
     }
 
     /*
      * Testing CancelTag.
      */
-    public void testCancelAccesskey(){ 
-    	runMyTest("testCancelAccesskey", "");
-	}
-    public void testCancelAlt(){ 
-    	runMyTest("testCancelAlt", "");
-	}
-    public void testCancelAltKey1(){ 
-    	runMyTest("testCancelAltKey1", "");
-	}
-    public void testCancelAltKey2(){ 
-    	runMyTest("testCancelAltKey2", "");
-	}
-    public void testCancelAltKey_fr1(){ 
-    	runMyTest("testCancelAltKey1_fr", "fr");
-	}
-    public void testCancelAltKey_fr2(){ 
-    	runMyTest("testCancelAltKey2_fr", "fr");
-	}
-    public void testCancelDisabled_True(){ 
-    	runMyTest("testCancelDisabled_True", "");
-	}
-    public void testCancelDisabled_False1(){ 
-    	runMyTest("testCancelDisabled_False1", "");
-	}
-    public void testCancelDisabled_False2(){ 
-    	runMyTest("testCancelDisabled_False2", "");
-	}
-    public void testCancelOnblur(){ 
-    	runMyTest("testCancelOnblur", "");
-	}
+    public void testCancelAccesskey() throws Exception {
+        runMyTest("testCancelAccesskey", "");
+        }
+    public void testCancelAlt() throws Exception {
+        runMyTest("testCancelAlt", "");
+        }
+    public void testCancelAltKey1() throws Exception {
+        runMyTest("testCancelAltKey1", "");
+        }
+    public void testCancelAltKey2() throws Exception {
+        runMyTest("testCancelAltKey2", "");
+        }
+    public void testCancelAltKey_fr1() throws Exception {
+        runMyTest("testCancelAltKey1_fr", "fr");
+        }
+    public void testCancelAltKey_fr2() throws Exception {
+        runMyTest("testCancelAltKey2_fr", "fr");
+        }
+    public void testCancelDisabled_True() throws Exception {
+        runMyTest("testCancelDisabled_True", "");
+        }
+    public void testCancelDisabled_False1() throws Exception {
+        runMyTest("testCancelDisabled_False1", "");
+        }
+    public void testCancelDisabled_False2() throws Exception {
+        runMyTest("testCancelDisabled_False2", "");
+        }
+    public void testCancelOnblur() throws Exception {
+        runMyTest("testCancelOnblur", "");
+        }
 
-    public void testCancelOnchange(){ 
-    	runMyTest("testCancelOnchange", "");
-	}
+    public void testCancelOnchange() throws Exception {
+        runMyTest("testCancelOnchange", "");
+        }
 
-    public void testCancelOnclick(){ 
-    	runMyTest("testCancelOnclick", "");
-	}
+    public void testCancelOnclick() throws Exception {
+        runMyTest("testCancelOnclick", "");
+        }
 
-    public void testCancelOndblclick(){ 
-    	runMyTest("testCancelOndblclick", "");
-	}
+    public void testCancelOndblclick() throws Exception {
+        runMyTest("testCancelOndblclick", "");
+        }
 
-    public void testCancelOnfocus(){ 
-    	runMyTest("testCancelOnfocus", "");
-	}
+    public void testCancelOnfocus() throws Exception {
+        runMyTest("testCancelOnfocus", "");
+        }
 
-    public void testCancelOnkeydown(){ 
-    	runMyTest("testCancelOnkeydown", "");
-	}
+    public void testCancelOnkeydown() throws Exception {
+        runMyTest("testCancelOnkeydown", "");
+        }
 
-    public void testCancelOnkeypress(){ 
-    	runMyTest("testCancelOnkeypress", "");
-	}
+    public void testCancelOnkeypress() throws Exception {
+        runMyTest("testCancelOnkeypress", "");
+        }
 
-    public void testCancelOnkeyup(){ 
-    	runMyTest("testCancelOnkeyup", "");
-	}
+    public void testCancelOnkeyup() throws Exception {
+        runMyTest("testCancelOnkeyup", "");
+        }
 
-    public void testCancelOnmousedown(){ 
-    	runMyTest("testCancelOnmousedown", "");
-	}
+    public void testCancelOnmousedown() throws Exception {
+        runMyTest("testCancelOnmousedown", "");
+        }
 
-    public void testCancelOnmousemove(){ 
-    	runMyTest("testCancelOnmousemove", "");
-	}
+    public void testCancelOnmousemove() throws Exception {
+        runMyTest("testCancelOnmousemove", "");
+        }
 
-    public void testCancelOnmouseout(){ 
-    	runMyTest("testCancelOnmouseout", "");
-	}
+    public void testCancelOnmouseout() throws Exception {
+        runMyTest("testCancelOnmouseout", "");
+        }
 
-    public void testCancelOnmouseover(){ 
-    	runMyTest("testCancelOnmouseover", "");
-	}
+    public void testCancelOnmouseover() throws Exception {
+        runMyTest("testCancelOnmouseover", "");
+        }
 
-    public void testCancelOnmouseup(){ 
-    	runMyTest("testCancelOnmouseup", "");
-	}
+    public void testCancelOnmouseup() throws Exception {
+        runMyTest("testCancelOnmouseup", "");
+        }
 
 }

@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag2.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag2.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -107,111 +107,106 @@ public class TestFileTag2 extends JspTestCase {
         return new TestSuite(TestFileTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestFileTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestFileTag2.jsp");
     }
 
     /*
      * Testing FileTag.
      */
 
-    public void testFilePropertyStyle(){ 
-    	runMyTest("testFilePropertyStyle", "");
-	}
+    public void testFilePropertyStyle() throws Exception {
+        runMyTest("testFilePropertyStyle", "");
+        }
 
-    public void testFilePropertyStyleClass(){ 
-    	runMyTest("testFilePropertyStyleClass", "");
-	}
+    public void testFilePropertyStyleClass() throws Exception {
+        runMyTest("testFilePropertyStyleClass", "");
+        }
 
-    public void testFilePropertyStyleId(){ 
-    	runMyTest("testFilePropertyStyleId", "");
-	}
+    public void testFilePropertyStyleId() throws Exception {
+        runMyTest("testFilePropertyStyleId", "");
+        }
 
-    public void testFilePropertyTabindex(){ 
-    	runMyTest("testFilePropertyTabindex", "");
-	}
+    public void testFilePropertyTabindex() throws Exception {
+        runMyTest("testFilePropertyTabindex", "");
+        }
 
-    public void testFilePropertyTitle(){ 
-    	runMyTest("testFilePropertyTitle", "");
-	}
+    public void testFilePropertyTitle() throws Exception {
+        runMyTest("testFilePropertyTitle", "");
+        }
 
-    public void testFilePropertyTitleKey(){ 
-    	runMyTest("testFilePropertyTitleKey", "");
-	}
+    public void testFilePropertyTitleKey() throws Exception {
+        runMyTest("testFilePropertyTitleKey", "");
+        }
 
-    public void testFilePropertyTitleKey_fr(){ 
-    	runMyTest("testFilePropertyTitleKey_fr", "fr");
-	}
+    public void testFilePropertyTitleKey_fr() throws Exception {
+        runMyTest("testFilePropertyTitleKey_fr", "fr");
+        }
 
-    public void testFilePropertyValue(){ 
-    	runMyTest("testFilePropertyValue", "");
-	}
+    public void testFilePropertyValue() throws Exception {
+        runMyTest("testFilePropertyValue", "");
+        }
 
-    public void testFilePropertyBodyContent(){ 
-    	runMyTest("testFilePropertyBodyContent", "");
-	}
+    public void testFilePropertyBodyContent() throws Exception {
+        runMyTest("testFilePropertyBodyContent", "");
+        }
 
-    public void testFilePropertyBodyContentMessageKey(){ 
-    	runMyTest("testFilePropertyBodyContentMessageKey", "");
-	}
+    public void testFilePropertyBodyContentMessageKey() throws Exception {
+        runMyTest("testFilePropertyBodyContentMessageKey", "");
+        }
 
-    public void testFilePropertyBodyContentMessageKey_fr(){ 
-    	runMyTest("testFilePropertyBodyContentMessageKey_fr", "fr");
-	}
+    public void testFilePropertyBodyContentMessageKey_fr() throws Exception {
+        runMyTest("testFilePropertyBodyContentMessageKey_fr", "fr");
+        }
 
-    public void testFilePropertyIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testFilePropertyIndexedArray", "");
-	}
+    public void testFilePropertyIndexedArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testFilePropertyIndexedArray", "");
+        }
 
-    public void testFilePropertyIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testFilePropertyIndexedArrayProperty", "");
-	}
+    public void testFilePropertyIndexedArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testFilePropertyIndexedArrayProperty", "");
+        }
 
-    public void testFilePropertyIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testFilePropertyIndexedMap", "");
-	}
+    public void testFilePropertyIndexedMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testFilePropertyIndexedMap", "");
+        }
 
-    public void testFilePropertyIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testFilePropertyIndexedMapProperty", "");
-	}
+    public void testFilePropertyIndexedMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testFilePropertyIndexedMapProperty", "");
+        }
 
-    public void testFilePropertyIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testFilePropertyIndexedEnumeration", "");
-	}
+    public void testFilePropertyIndexedEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testFilePropertyIndexedEnumeration", "");
+        }
 
-    public void testFilePropertyIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testFilePropertyIndexedEnumerationProperty", "");
-	}
+    public void testFilePropertyIndexedEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testFilePropertyIndexedEnumerationProperty", "");
+        }
 
 
 

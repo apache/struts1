@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImgTag3a.java,v 1.3 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImgTag3a.java,v 1.4 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -106,16 +106,11 @@ public class TestImgTag3a extends JspTestCase {
         return new TestSuite(TestImgTag3a.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestImgTag3a.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestImgTag3a.jsp");
     }
 
     /*
@@ -124,87 +119,87 @@ public class TestImgTag3a extends JspTestCase {
 
 //--------Testing attributes using page------
 
-    public void testImgPageKeyNameNoScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMapNoScope", map, PageContext.REQUEST_SCOPE);
+    public void testImgPageKeyNameNoScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMapNoScope", map, PageContext.REQUEST_SCOPE);
        runMyTest("testImgPageKeyNameNoScope", "");
     }
 
-    public void testImgPageKeyNamePropertyNoScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMapNoScope", sbft, PageContext.REQUEST_SCOPE);
+    public void testImgPageKeyNamePropertyNoScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMapNoScope", sbft, PageContext.REQUEST_SCOPE);
        runMyTest("testImgPageKeyNamePropertyNoScope", "");
     }
 
-    public void testImgPageKeyNameApplicationScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMapApplicationScope", map, PageContext.APPLICATION_SCOPE);
+    public void testImgPageKeyNameApplicationScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMapApplicationScope", map, PageContext.APPLICATION_SCOPE);
        runMyTest("testImgPageKeyNameApplicationScope", "");
     }
 
-    public void testImgPageKeyNamePropertyApplicationScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMapApplicationScope", sbft, PageContext.APPLICATION_SCOPE);
+    public void testImgPageKeyNamePropertyApplicationScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMapApplicationScope", sbft, PageContext.APPLICATION_SCOPE);
        runMyTest("testImgPageKeyNamePropertyApplicationScope", "");
     }
 
-    public void testImgPageKeyNameSessionScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMapSessionScope", map, PageContext.SESSION_SCOPE);
+    public void testImgPageKeyNameSessionScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMapSessionScope", map, PageContext.SESSION_SCOPE);
        runMyTest("testImgPageKeyNameSessionScope", "");
     }
 
-    public void testImgPageKeyNamePropertySessionScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMapSessionScope", sbft, PageContext.SESSION_SCOPE);
+    public void testImgPageKeyNamePropertySessionScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMapSessionScope", sbft, PageContext.SESSION_SCOPE);
        runMyTest("testImgPageKeyNamePropertySessionScope", "");
     }
 
-    public void testImgPageKeyNameRequestScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMapRequestScope", map, PageContext.REQUEST_SCOPE);
+    public void testImgPageKeyNameRequestScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMapRequestScope", map, PageContext.REQUEST_SCOPE);
        runMyTest("testImgPageKeyNameRequestScope", "");
     }
 
-    public void testImgPageKeyNamePropertyRequestScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMapRequestScope", sbft, PageContext.REQUEST_SCOPE);
+    public void testImgPageKeyNamePropertyRequestScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMapRequestScope", sbft, PageContext.REQUEST_SCOPE);
        runMyTest("testImgPageKeyNamePropertyRequestScope", "");
     }
 

@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHiddenTag2.java,v 1.4 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHiddenTag2.java,v 1.5 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -107,95 +107,90 @@ public class TestHiddenTag2 extends JspTestCase {
         return new TestSuite(TestHiddenTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestHiddenTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestHiddenTag2.jsp");
     }
 
     /*
      * Testing HiddenTag.
      */
 
-    public void testHiddenPropertyStyle(){ 
-    	runMyTest("testHiddenPropertyStyle", "");
-	}
+    public void testHiddenPropertyStyle() throws Exception {
+        runMyTest("testHiddenPropertyStyle", "");
+        }
 
-    public void testHiddenPropertyStyleClass(){ 
-    	runMyTest("testHiddenPropertyStyleClass", "");
-	}
+    public void testHiddenPropertyStyleClass() throws Exception {
+        runMyTest("testHiddenPropertyStyleClass", "");
+        }
 
-    public void testHiddenPropertyStyleId(){ 
-    	runMyTest("testHiddenPropertyStyleId", "");
-	}
+    public void testHiddenPropertyStyleId() throws Exception {
+        runMyTest("testHiddenPropertyStyleId", "");
+        }
 
-    public void testHiddenPropertyTitle(){ 
-    	runMyTest("testHiddenPropertyTitle", "");
-	}
+    public void testHiddenPropertyTitle() throws Exception {
+        runMyTest("testHiddenPropertyTitle", "");
+        }
 
-    public void testHiddenPropertyTitleKey(){ 
-    	runMyTest("testHiddenPropertyTitleKey", "");
-	}
+    public void testHiddenPropertyTitleKey() throws Exception {
+        runMyTest("testHiddenPropertyTitleKey", "");
+        }
 
-    public void testHiddenPropertyTitleKey_fr(){ 
-    	runMyTest("testHiddenPropertyTitleKey_fr", "fr");
-	}
+    public void testHiddenPropertyTitleKey_fr() throws Exception {
+        runMyTest("testHiddenPropertyTitleKey_fr", "fr");
+        }
 
-    public void testHiddenPropertyValue(){ 
-    	runMyTest("testHiddenPropertyValue", "");
-	}
+    public void testHiddenPropertyValue() throws Exception {
+        runMyTest("testHiddenPropertyValue", "");
+        }
 
-    public void testHiddenPropertyIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testHiddenPropertyIndexedArray", "");
-	}
+    public void testHiddenPropertyIndexedArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testHiddenPropertyIndexedArray", "");
+        }
 
-    public void testHiddenPropertyIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testHiddenPropertyIndexedArrayProperty", "");
-	}
+    public void testHiddenPropertyIndexedArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testHiddenPropertyIndexedArrayProperty", "");
+        }
 
-    public void testHiddenPropertyIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testHiddenPropertyIndexedMap", "");
-	}
+    public void testHiddenPropertyIndexedMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testHiddenPropertyIndexedMap", "");
+        }
 
-    public void testHiddenPropertyIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testHiddenPropertyIndexedMapProperty", "");
-	}
+    public void testHiddenPropertyIndexedMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testHiddenPropertyIndexedMapProperty", "");
+        }
 
-    public void testHiddenPropertyIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testHiddenPropertyIndexedEnumeration", "");
-	}
+    public void testHiddenPropertyIndexedEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testHiddenPropertyIndexedEnumeration", "");
+        }
 
-    public void testHiddenPropertyIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testHiddenPropertyIndexedEnumerationProperty", "");
-	}
+    public void testHiddenPropertyIndexedEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testHiddenPropertyIndexedEnumerationProperty", "");
+        }
 
 
 

@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestCookieTag.java,v 1.6 2003/12/11 05:14:50 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/11 05:14:50 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestCookieTag.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/26 22:10:31 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -74,7 +74,7 @@ import org.apache.commons.lang.StringUtils;
  * @author James Mitchell
  */
 public class TestCookieTag extends JspTestCase {
-	
+
     protected final static String COOKIE_KEY = "COOKIE_KEY";
     protected final static String COOKIE_VAL = "COOKIE_VAL";
 
@@ -104,79 +104,69 @@ public class TestCookieTag extends JspTestCase {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestCookieTag.class);
     }
-    
 
-    
-    private void runMyTest(String whichTest){
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/bean/TestCookieTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+
+
+    private void runMyTest(String whichTest) throws Exception {
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/bean/TestCookieTag.jsp");
     }
-    
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-                output = StringUtils.replace(output,"\r","");
-                output = StringUtils.replace(output,"\n","");
-		output = output.trim();
-		//System.out.println("Testing [" + compare + "] == [" + output + "]");
-	    assertEquals(compare, output);
-	}
+
+    private void formatAndTest(String compare, String output) {
+        //fix for introduced carriage return / line feeds
+        output = StringUtils.replace(output,"\r","");
+        output = StringUtils.replace(output,"\n","");
+        output = output.trim();
+        //System.out.println("Testing [" + compare + "] == [" + output + "]");
+        assertEquals(compare, output);
+    }
 
 
     /*
      * Testing CookieTag, with Name specified in tags.
      */
     public void beginCookieTagName(WebRequest webRequest) {
-		webRequest.addCookie(COOKIE_KEY, COOKIE_VAL);
-      	webRequest.addParameter("cacheId", "1");
+                webRequest.addCookie(COOKIE_KEY, COOKIE_VAL);
+        webRequest.addParameter("cacheId", "1");
     }
-    public void testCookieTagName(){ 
-    	runMyTest("testCookieTagName");
-	}
-	public void endCookieTagName(WebResponse response){
-		formatAndTest(COOKIE_VAL, response.getText());
-	}
+    public void testCookieTagName() throws Exception {
+        runMyTest("testCookieTagName");
+    }
+    public void endCookieTagName(WebResponse response){
+        formatAndTest(COOKIE_VAL, response.getText());
+    }
 
 
     /*
      * Testing CookieTag, with Name and Multiple specified in tags.
      */
     public void beginCookieTagNameMultiple(WebRequest webRequest) {
-    	for (int i = 0; i < 10; i++) {
-	       webRequest.addCookie(COOKIE_KEY, COOKIE_VAL + i);
-		}
-      	webRequest.addParameter("cacheId", "1");
+        for (int i = 0; i < 10; i++) {
+            webRequest.addCookie(COOKIE_KEY, COOKIE_VAL + i);
+        }
+        webRequest.addParameter("cacheId", "1");
     }
-    public void testCookieTagNameMultiple(){ 
-    	runMyTest("testCookieTagNameMultiple");
-	}
-	public void endCookieTagNameMultiple(WebResponse response){
-	    String compareTo = "";
-    	for (int i = 0; i < 10; i++) {
-			compareTo += COOKIE_VAL + i;
-		}
-		formatAndTest(compareTo, response.getText());
-	}
+    public void testCookieTagNameMultiple() throws Exception {
+        runMyTest("testCookieTagNameMultiple");
+    }
+    public void endCookieTagNameMultiple(WebResponse response){
+        String compareTo = "";
+        for (int i = 0; i < 10; i++) {
+            compareTo += COOKIE_VAL + i;
+        }
+        formatAndTest(compareTo, response.getText());
+    }
 
     /*
      * Testing CookieTag, with Name and Value specified in tags.
      */
     public void beginCookieTagNameValue(WebRequest webRequest) {
-      	webRequest.addParameter("cacheId", "1");
+        webRequest.addParameter("cacheId", "1");
     }
-    public void testCookieTagNameValue(){ 
-    	runMyTest("testCookieTagNameValue");
-	}
-	public void endCookieTagNameValue(WebResponse response){
-		formatAndTest(COOKIE_VAL, response.getText());
-	}
-
-
-
-
-
+    public void testCookieTagNameValue() throws Exception {
+        runMyTest("testCookieTagNameValue");
+    }
+    public void endCookieTagNameValue(WebResponse response){
+        formatAndTest(COOKIE_VAL, response.getText());
+    }
 }

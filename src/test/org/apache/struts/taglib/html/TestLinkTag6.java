@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag6.java,v 1.3 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag6.java,v 1.4 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -105,16 +105,11 @@ public class TestLinkTag6 extends JspTestCase {
         return new TestSuite(TestLinkTag6.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestLinkTag6.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestLinkTag6.jsp");
     }
 
     /*
@@ -122,116 +117,116 @@ public class TestLinkTag6 extends JspTestCase {
      */
 
 //--------Testing attributes using forward------
-    public void testLinkHrefOnblur(){
+    public void testLinkHrefOnblur() throws Exception {
         runMyTest("testLinkHrefOnblur", "");
     }
 
-    public void testLinkHrefOnclick(){
+    public void testLinkHrefOnclick() throws Exception {
         runMyTest("testLinkHrefOnclick", "");
     }
 
-    public void testLinkHrefOndblclick(){
+    public void testLinkHrefOndblclick() throws Exception {
         runMyTest("testLinkHrefOndblclick", "");
     }
 
-    public void testLinkHrefOnfocus(){
+    public void testLinkHrefOnfocus() throws Exception {
         runMyTest("testLinkHrefOnfocus", "");
     }
 
-    public void testLinkHrefOnkeydown(){
+    public void testLinkHrefOnkeydown() throws Exception {
         runMyTest("testLinkHrefOnkeydown", "");
     }
 
-    public void testLinkHrefOnkeypress(){
+    public void testLinkHrefOnkeypress() throws Exception {
         runMyTest("testLinkHrefOnkeypress", "");
     }
 
-    public void testLinkHrefOnkeyup(){
+    public void testLinkHrefOnkeyup() throws Exception {
         runMyTest("testLinkHrefOnkeyup", "");
     }
 
-    public void testLinkHrefOnmousedown(){
+    public void testLinkHrefOnmousedown() throws Exception {
         runMyTest("testLinkHrefOnmousedown", "");
     }
 
-    public void testLinkHrefOnmousemove(){
+    public void testLinkHrefOnmousemove() throws Exception {
         runMyTest("testLinkHrefOnmousemove", "");
     }
 
-    public void testLinkHrefOnmouseout(){
+    public void testLinkHrefOnmouseout() throws Exception {
         runMyTest("testLinkHrefOnmouseout", "");
     }
 
-    public void testLinkHrefOnmouseover(){
+    public void testLinkHrefOnmouseover() throws Exception {
         runMyTest("testLinkHrefOnmouseover", "");
     }
 
-    public void testLinkHrefOnmouseup(){
+    public void testLinkHrefOnmouseup() throws Exception {
         runMyTest("testLinkHrefOnmouseup", "");
     }
 
-    public void testLinkHrefParamIdParamNameNoScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
+    public void testLinkHrefParamIdParamNameNoScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameNoScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameParamPropertyNoScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
+    public void testLinkHrefParamIdParamNameParamPropertyNoScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameParamPropertyNoScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameApplicationScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.APPLICATION_SCOPE);
+    public void testLinkHrefParamIdParamNameApplicationScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.APPLICATION_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameApplicationScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameParamPropertyApplicationScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.APPLICATION_SCOPE);
+    public void testLinkHrefParamIdParamNameParamPropertyApplicationScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.APPLICATION_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameParamPropertyApplicationScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameSessionScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.SESSION_SCOPE);
+    public void testLinkHrefParamIdParamNameSessionScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.SESSION_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameSessionScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameParamPropertySessionScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.SESSION_SCOPE);
+    public void testLinkHrefParamIdParamNameParamPropertySessionScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.SESSION_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameParamPropertySessionScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameRequestScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
+    public void testLinkHrefParamIdParamNameRequestScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameRequestScope", "");
     }
 
-    public void testLinkHrefParamIdParamNameParamPropertyRequestScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
+    public void testLinkHrefParamIdParamNameParamPropertyRequestScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
         runMyTest("testLinkHrefParamIdParamNameParamPropertyRequestScope", "");
     }
 
 
-    public void testLinkHrefStyle(){
+    public void testLinkHrefStyle() throws Exception {
         runMyTest("testLinkHrefStyle", "");
     }
 
-    public void testLinkHrefStyleClass(){
+    public void testLinkHrefStyleClass() throws Exception {
         runMyTest("testLinkHrefStyleClass", "");
     }
 
-    public void testLinkHrefStyleId(){
+    public void testLinkHrefStyleId() throws Exception {
         runMyTest("testLinkHrefStyleId", "");
     }
 
-    public void testLinkHrefTabIndex(){
+    public void testLinkHrefTabIndex() throws Exception {
         runMyTest("testLinkHrefTabIndex", "");
     }
 
-    public void testLinkHrefTarget(){
+    public void testLinkHrefTarget() throws Exception {
         runMyTest("testLinkHrefTarget", "");
     }
 
@@ -241,21 +236,21 @@ public class TestLinkTag6 extends JspTestCase {
 
 
 
-    public void testLinkHrefTitle(){
+    public void testLinkHrefTitle() throws Exception {
         runMyTest("testLinkHrefTitle", "");
     }
 
-    public void testLinkHrefTitleKey(){
+    public void testLinkHrefTitleKey() throws Exception {
         runMyTest("testLinkHrefTitleKey", "");
     }
 
-    public void testLinkHrefTransaction(){
-    	pageContext.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "Some_Token_Here", PageContext.SESSION_SCOPE);
+    public void testLinkHrefTransaction() throws Exception {
+        pageContext.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "Some_Token_Here", PageContext.SESSION_SCOPE);
         runMyTest("testLinkHrefTransaction", "");
     }
 
 
 
 
-	
+
 }

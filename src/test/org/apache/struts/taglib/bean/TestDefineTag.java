@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestDefineTag.java,v 1.6 2003/12/11 05:14:50 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/11 05:14:50 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestDefineTag.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/26 22:10:31 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -76,9 +76,9 @@ import org.apache.commons.lang.StringUtils;
  */
 public class TestDefineTag extends JspTestCase {
 
-	protected final static String TEST_KEY   = "TestDefineTag";
-	protected final static String TEST_VALUE = "Test Value";
-	
+        protected final static String TEST_KEY   = "TestDefineTag";
+        protected final static String TEST_VALUE = "Test Value";
+
     /**
      * Defines the testcase name for JUnit.
      *
@@ -105,169 +105,164 @@ public class TestDefineTag extends JspTestCase {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestDefineTag.class);
     }
-    
-    private void runMyTest(String whichTest){
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/bean/TestDefineTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+
+    private void runMyTest(String whichTest) throws Exception{
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/bean/TestDefineTag.jsp");
     }
-    
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\n","");
-		output = output.trim();
-	    assertEquals(compare, output);
-	}
+
+        private void formatAndTest(String compare, String output) {
+                //fix for introduced carriage return / line feeds
+                output = StringUtils.replace(output,"\r","");
+                output = StringUtils.replace(output,"\n","");
+                output = output.trim();
+            assertEquals(compare, output);
+        }
 
     /*
      * Testing DefineTag using Application scope, with Application Scope specified in tags.
      */
-    public void testDefineNameApplicationScope(){ 
-    	pageContext.setAttribute(TEST_KEY, TEST_VALUE, PageContext.APPLICATION_SCOPE);
-    	runMyTest("testDefineNameApplicationScope");
-	}
-	public void endDefineNameApplicationScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNameApplicationScope() throws Exception {
+        pageContext.setAttribute(TEST_KEY, TEST_VALUE, PageContext.APPLICATION_SCOPE);
+        runMyTest("testDefineNameApplicationScope");
+        }
+        public void endDefineNameApplicationScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineNamePropertyApplicationScope(){ 
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
-    	pageContext.setAttribute(TEST_KEY, lvb, PageContext.APPLICATION_SCOPE);
-    	runMyTest("testDefineNamePropertyApplicationScope");
-	}
-	public void endDefineNamePropertyApplicationScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNamePropertyApplicationScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
+        pageContext.setAttribute(TEST_KEY, lvb, PageContext.APPLICATION_SCOPE);
+        runMyTest("testDefineNamePropertyApplicationScope");
+        }
+        public void endDefineNamePropertyApplicationScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineValueApplicationScope(){
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
-    	pageContext.setAttribute(TEST_KEY, lvb, PageContext.APPLICATION_SCOPE);
-    	runMyTest("testDefineValueApplicationScope");
-	}
-	public void endDefineValueApplicationScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineValueApplicationScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
+        pageContext.setAttribute(TEST_KEY, lvb, PageContext.APPLICATION_SCOPE);
+        runMyTest("testDefineValueApplicationScope");
+        }
+        public void endDefineValueApplicationScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineBodyApplicationScope(){ 
-    	runMyTest("testDefineBodyApplicationScope");
-	}
-	public void endDefineBodyApplicationScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineBodyApplicationScope() throws Exception {
+        runMyTest("testDefineBodyApplicationScope");
+        }
+        public void endDefineBodyApplicationScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
 
     /*
      * Testing DefineTag using Session scope, with Session Scope specified in tags.
      */
-    public void testDefineNameSessionScope(){ 
-    	pageContext.setAttribute(TEST_KEY, TEST_VALUE, PageContext.SESSION_SCOPE);
-    	runMyTest("testDefineNameSessionScope");
-	}
-	public void endDefineNameSessionScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNameSessionScope() throws Exception {
+        pageContext.setAttribute(TEST_KEY, TEST_VALUE, PageContext.SESSION_SCOPE);
+        runMyTest("testDefineNameSessionScope");
+        }
+        public void endDefineNameSessionScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineNamePropertySessionScope(){ 
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
-    	pageContext.setAttribute(TEST_KEY, lvb, PageContext.SESSION_SCOPE);
-    	runMyTest("testDefineNamePropertySessionScope");
-	}
-	public void endDefineNamePropertySessionScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNamePropertySessionScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
+        pageContext.setAttribute(TEST_KEY, lvb, PageContext.SESSION_SCOPE);
+        runMyTest("testDefineNamePropertySessionScope");
+        }
+        public void endDefineNamePropertySessionScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineValueSessionScope(){
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
-    	pageContext.setAttribute(TEST_KEY, lvb, PageContext.SESSION_SCOPE);
-    	runMyTest("testDefineValueSessionScope");
-	}
-	public void endDefineValueSessionScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineValueSessionScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
+        pageContext.setAttribute(TEST_KEY, lvb, PageContext.SESSION_SCOPE);
+        runMyTest("testDefineValueSessionScope");
+        }
+        public void endDefineValueSessionScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineBodySessionScope(){ 
-    	runMyTest("testDefineBodySessionScope");
-	}
-	public void endDefineBodySessionScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineBodySessionScope() throws Exception {
+        runMyTest("testDefineBodySessionScope");
+        }
+        public void endDefineBodySessionScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
     /*
      * Testing DefineTag using Request scope, with Request Scope specified in tags.
      */
-    public void testDefineNameRequestScope(){ 
-    	pageContext.setAttribute(TEST_KEY, TEST_VALUE, PageContext.REQUEST_SCOPE);
-    	runMyTest("testDefineNameRequestScope");
-	}
-	public void endDefineNameRequestScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNameRequestScope() throws Exception {
+        pageContext.setAttribute(TEST_KEY, TEST_VALUE, PageContext.REQUEST_SCOPE);
+        runMyTest("testDefineNameRequestScope");
+        }
+        public void endDefineNameRequestScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineNamePropertyRequestScope(){ 
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
-    	pageContext.setAttribute(TEST_KEY, lvb, PageContext.REQUEST_SCOPE);
-    	runMyTest("testDefineNamePropertyRequestScope");
-	}
-	public void endDefineNamePropertyRequestScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNamePropertyRequestScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
+        pageContext.setAttribute(TEST_KEY, lvb, PageContext.REQUEST_SCOPE);
+        runMyTest("testDefineNamePropertyRequestScope");
+        }
+        public void endDefineNamePropertyRequestScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineValueRequestScope(){
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
-    	pageContext.setAttribute(TEST_KEY, lvb, PageContext.REQUEST_SCOPE);
-    	runMyTest("testDefineValueRequestScope");
-	}
-	public void endDefineValueRequestScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineValueRequestScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
+        pageContext.setAttribute(TEST_KEY, lvb, PageContext.REQUEST_SCOPE);
+        runMyTest("testDefineValueRequestScope");
+        }
+        public void endDefineValueRequestScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineBodyRequestScope(){ 
-    	runMyTest("testDefineBodyRequestScope");
-	}
-	public void endDefineBodyRequestScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineBodyRequestScope() throws Exception {
+        runMyTest("testDefineBodyRequestScope");
+        }
+        public void endDefineBodyRequestScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
     /*
      * Testing DefineTag using Request scope, with no Scope specified in tags.
      */
-    public void testDefineNameNoScope(){ 
-    	request.setAttribute(TEST_KEY, TEST_VALUE);
-    	runMyTest("testDefineNameNoScope");
-	}
-	public void endDefineNameNoScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNameNoScope() throws Exception {
+        request.setAttribute(TEST_KEY, TEST_VALUE);
+        runMyTest("testDefineNameNoScope");
+        }
+        public void endDefineNameNoScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineNamePropertyNoScope(){ 
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
-    	request.setAttribute(TEST_KEY, lvb);
-    	runMyTest("testDefineNamePropertyNoScope");
-	}
-	public void endDefineNamePropertyNoScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineNamePropertyNoScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE);
+        request.setAttribute(TEST_KEY, lvb);
+        runMyTest("testDefineNamePropertyNoScope");
+        }
+        public void endDefineNamePropertyNoScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineValueNoScope(){
-    	LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
-    	request.setAttribute(TEST_KEY, lvb);
-    	runMyTest("testDefineValueNoScope");
-	}
-	public void endDefineValueNoScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineValueNoScope() throws Exception {
+        LabelValueBean lvb = new LabelValueBean("key", TEST_VALUE + " this will be set to the correct value");
+        request.setAttribute(TEST_KEY, lvb);
+        runMyTest("testDefineValueNoScope");
+        }
+        public void endDefineValueNoScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
-    public void testDefineBodyNoScope(){ 
-    	runMyTest("testDefineBodyNoScope");
-	}
-	public void endDefineBodyNoScope(WebResponse response){
-		formatAndTest(TEST_VALUE, response.getText());
-	}
+    public void testDefineBodyNoScope() throws Exception {
+        runMyTest("testDefineBodyNoScope");
+        }
+        public void endDefineBodyNoScope(WebResponse response){
+                formatAndTest(TEST_VALUE, response.getText());
+        }
 
 
 

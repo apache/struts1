@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFrameTag8.java,v 1.4 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFrameTag8.java,v 1.5 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -105,16 +105,11 @@ public class TestFrameTag8 extends JspTestCase {
         return new TestSuite(TestFrameTag8.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestFrameTag8.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestFrameTag8.jsp");
     }
 
     /*
@@ -122,109 +117,109 @@ public class TestFrameTag8 extends JspTestCase {
      */
 
 //--------Testing attributes using forward------
-    public void testFramePageParamIdParamNameNoScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
+    public void testFramePageParamIdParamNameNoScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
         runMyTest("testFramePageParamIdParamNameNoScope", "");
     }
 
-    public void testFramePageParamIdParamNameParamPropertyNoScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
+    public void testFramePageParamIdParamNameParamPropertyNoScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
         runMyTest("testFramePageParamIdParamNameParamPropertyNoScope", "");
     }
 
-    public void testFramePageParamIdParamNameApplicationScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.APPLICATION_SCOPE);
+    public void testFramePageParamIdParamNameApplicationScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.APPLICATION_SCOPE);
         runMyTest("testFramePageParamIdParamNameApplicationScope", "");
     }
 
-    public void testFramePageParamIdParamNameParamPropertyApplicationScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.APPLICATION_SCOPE);
+    public void testFramePageParamIdParamNameParamPropertyApplicationScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.APPLICATION_SCOPE);
         runMyTest("testFramePageParamIdParamNameParamPropertyApplicationScope", "");
     }
 
-    public void testFramePageParamIdParamNameSessionScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.SESSION_SCOPE);
+    public void testFramePageParamIdParamNameSessionScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.SESSION_SCOPE);
         runMyTest("testFramePageParamIdParamNameSessionScope", "");
     }
 
-    public void testFramePageParamIdParamNameParamPropertySessionScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.SESSION_SCOPE);
+    public void testFramePageParamIdParamNameParamPropertySessionScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.SESSION_SCOPE);
         runMyTest("testFramePageParamIdParamNameParamPropertySessionScope", "");
     }
 
-    public void testFramePageParamIdParamNameRequestScope(){
-		pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
+    public void testFramePageParamIdParamNameRequestScope() throws Exception {
+                pageContext.setAttribute("paramName", "paramValue", PageContext.REQUEST_SCOPE);
         runMyTest("testFramePageParamIdParamNameRequestScope", "");
     }
 
-    public void testFramePageParamIdParamNameParamPropertyRequestScope(){
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
-		pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
+    public void testFramePageParamIdParamNameParamPropertyRequestScope() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting("paramPropertyValue");
+                pageContext.setAttribute("testingParamProperty", sbft, PageContext.REQUEST_SCOPE);
         runMyTest("testFramePageParamIdParamNameParamPropertyRequestScope", "");
     }
 
-    public void testFramePageScrolling1(){
+    public void testFramePageScrolling1() throws Exception {
         runMyTest("testFramePageScrolling1", "");
     }
 
-    public void testFramePageScrollin2g(){
+    public void testFramePageScrollin2g() throws Exception {
         runMyTest("testFramePageScrolling2", "");
     }
 
-    public void testFramePageScrolling3(){
+    public void testFramePageScrolling3() throws Exception {
         runMyTest("testFramePageScrolling3", "");
     }
 
-    public void testFramePageScrolling4(){
+    public void testFramePageScrolling4() throws Exception {
         runMyTest("testFramePageScrolling4", "");
     }
 
-    public void testFramePageScrolling5(){
+    public void testFramePageScrolling5() throws Exception {
         runMyTest("testFramePageScrolling5", "");
     }
 
-    public void testFramePageScrolling6(){
+    public void testFramePageScrolling6() throws Exception {
         runMyTest("testFramePageScrolling6", "");
     }
 
-    public void testFramePageScrolling7(){
+    public void testFramePageScrolling7() throws Exception {
         runMyTest("testFramePageScrolling7", "");
     }
 
-    public void testFramePageScrolling8(){
+    public void testFramePageScrolling8() throws Exception {
         runMyTest("testFramePageScrolling8", "");
     }
 
-    public void testFramePageScrolling9(){
+    public void testFramePageScrolling9() throws Exception {
         runMyTest("testFramePageScrolling9", "");
     }
 
-    public void testFramePageScrolling10(){
+    public void testFramePageScrolling10() throws Exception {
         runMyTest("testFramePageScrolling10", "");
     }
 
-    public void testFramePageStyle(){
+    public void testFramePageStyle() throws Exception {
         runMyTest("testFramePageStyle", "");
     }
 
-    public void testFramePageTitle(){
+    public void testFramePageTitle() throws Exception {
         runMyTest("testFramePageTitle", "");
     }
 
-    public void testFramePageTitleKey(){
+    public void testFramePageTitleKey() throws Exception {
         runMyTest("testFramePageTitleKey", "");
     }
 
-    public void testFramePageTransaction(){
-    	pageContext.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "Some_Token_Here", PageContext.SESSION_SCOPE);
+    public void testFramePageTransaction() throws Exception {
+        pageContext.setAttribute(Globals.TRANSACTION_TOKEN_KEY, "Some_Token_Here", PageContext.SESSION_SCOPE);
         runMyTest("testFramePageTransaction", "");
     }
 
 
 
 
-	
+
 }

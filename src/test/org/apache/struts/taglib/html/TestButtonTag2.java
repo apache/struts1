@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag2.java,v 1.7 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.7 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag2.java,v 1.8 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -107,110 +107,105 @@ public class TestButtonTag2 extends JspTestCase {
         return new TestSuite(TestButtonTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag2.jsp");
     }
 
     /*
      * Testing ButtonTag.
      */
 
-    public void testButtonPropertyStyle(){ 
-    	runMyTest("testButtonPropertyStyle", "");
-	}
+    public void testButtonPropertyStyle() throws Exception {
+        runMyTest("testButtonPropertyStyle", "");
+        }
 
-    public void testButtonPropertyStyleClass(){ 
-    	runMyTest("testButtonPropertyStyleClass", "");
-	}
+    public void testButtonPropertyStyleClass() throws Exception {
+        runMyTest("testButtonPropertyStyleClass", "");
+        }
 
-    public void testButtonPropertyStyleId(){ 
-    	runMyTest("testButtonPropertyStyleId", "");
-	}
+    public void testButtonPropertyStyleId() throws Exception {
+        runMyTest("testButtonPropertyStyleId", "");
+        }
 
-    public void testButtonPropertyTabindex(){ 
-    	runMyTest("testButtonPropertyTabindex", "");
-	}
+    public void testButtonPropertyTabindex() throws Exception {
+        runMyTest("testButtonPropertyTabindex", "");
+        }
 
-    public void testButtonPropertyTitle(){ 
-    	runMyTest("testButtonPropertyTitle", "");
-	}
+    public void testButtonPropertyTitle() throws Exception {
+        runMyTest("testButtonPropertyTitle", "");
+        }
 
-    public void testButtonPropertyTitleKey(){ 
-    	runMyTest("testButtonPropertyTitleKey", "");
-	}
+    public void testButtonPropertyTitleKey() throws Exception {
+        runMyTest("testButtonPropertyTitleKey", "");
+        }
 
-    public void testButtonPropertyTitleKey_fr(){ 
-    	runMyTest("testButtonPropertyTitleKey_fr", "fr");
-	}
+    public void testButtonPropertyTitleKey_fr() throws Exception {
+        runMyTest("testButtonPropertyTitleKey_fr", "fr");
+        }
 
-    public void testButtonPropertyValue(){ 
-    	runMyTest("testButtonPropertyValue", "");
-	}
+    public void testButtonPropertyValue() throws Exception {
+        runMyTest("testButtonPropertyValue", "");
+        }
 
-    public void testButtonPropertyBodyContent(){ 
-    	runMyTest("testButtonPropertyBodyContent", "");
-	}
+    public void testButtonPropertyBodyContent() throws Exception {
+        runMyTest("testButtonPropertyBodyContent", "");
+        }
 
-    public void testButtonPropertyBodyContentMessageKey(){ 
-    	runMyTest("testButtonPropertyBodyContentMessageKey", "");
-	}
+    public void testButtonPropertyBodyContentMessageKey() throws Exception {
+        runMyTest("testButtonPropertyBodyContentMessageKey", "");
+        }
 
-    public void testButtonPropertyBodyContentMessageKey_fr(){ 
-    	runMyTest("testButtonPropertyBodyContentMessageKey_fr", "fr");
-	}
+    public void testButtonPropertyBodyContentMessageKey_fr() throws Exception {
+        runMyTest("testButtonPropertyBodyContentMessageKey_fr", "fr");
+        }
 
-    public void testButtonPropertyIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedArray", "");
-	}
+    public void testButtonPropertyIndexedArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testButtonPropertyIndexedArray", "");
+        }
 
-    public void testButtonPropertyIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedArrayProperty", "");
-	}
+    public void testButtonPropertyIndexedArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testButtonPropertyIndexedArrayProperty", "");
+        }
 
-    public void testButtonPropertyIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedMap", "");
-	}
+    public void testButtonPropertyIndexedMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testButtonPropertyIndexedMap", "");
+        }
 
-    public void testButtonPropertyIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedMapProperty", "");
-	}
+    public void testButtonPropertyIndexedMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testButtonPropertyIndexedMapProperty", "");
+        }
 
-    public void testButtonPropertyIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedEnumeration", "");
-	}
+    public void testButtonPropertyIndexedEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testButtonPropertyIndexedEnumeration", "");
+        }
 
-    public void testButtonPropertyIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedEnumerationProperty", "");
-	}
+    public void testButtonPropertyIndexedEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testButtonPropertyIndexedEnumerationProperty", "");
+        }
 
 
 

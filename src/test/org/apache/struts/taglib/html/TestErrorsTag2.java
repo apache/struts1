@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestErrorsTag2.java,v 1.6 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestErrorsTag2.java,v 1.7 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,159 +104,154 @@ public class TestErrorsTag2 extends JspTestCase {
         return new TestSuite(TestErrorsTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-		request.setAttribute("runTest", whichTest);
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestErrorsTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        request.setAttribute("runTest", whichTest);
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestErrorsTag2.jsp");
     }
-    
+
 
     /*
      * Testing ErrorsTag.
      */
 
-    public void testErrorsDefaultBundle0ErrorsProperty(){ 
-    	runMyTest("testErrorsDefaultBundle0ErrorsProperty", "");
-	}
-    public void testErrorsDefaultBundle2ErrorsProperty(){ 
-    	runMyTest("testErrorsDefaultBundle2ErrorsProperty", "");
-	}
+    public void testErrorsDefaultBundle0ErrorsProperty() throws Exception {
+        runMyTest("testErrorsDefaultBundle0ErrorsProperty", "");
+        }
+    public void testErrorsDefaultBundle2ErrorsProperty() throws Exception {
+        runMyTest("testErrorsDefaultBundle2ErrorsProperty", "");
+        }
 
-    public void testErrorsAlternateBundle0ErrorsProperty(){ 
-    	runMyTest("testErrorsAlternateBundle0ErrorsProperty", "");
-	}
-    public void testErrorsAlternateBundle2ErrorsProperty(){ 
-    	runMyTest("testErrorsAlternateBundle2ErrorsProperty", "");
-	}
+    public void testErrorsAlternateBundle0ErrorsProperty() throws Exception {
+        runMyTest("testErrorsAlternateBundle0ErrorsProperty", "");
+        }
+    public void testErrorsAlternateBundle2ErrorsProperty() throws Exception {
+        runMyTest("testErrorsAlternateBundle2ErrorsProperty", "");
+        }
 
-    public void testErrorsDefaultBundle0ErrorsProperty_fr(){ 
-    	runMyTest("testErrorsDefaultBundle0ErrorsProperty_fr", "fr");
-	}
-    public void testErrorsDefaultBundle2ErrorsProperty_fr(){ 
-    	runMyTest("testErrorsDefaultBundle2ErrorsProperty_fr", "fr");
-	}
+    public void testErrorsDefaultBundle0ErrorsProperty_fr() throws Exception {
+        runMyTest("testErrorsDefaultBundle0ErrorsProperty_fr", "fr");
+        }
+    public void testErrorsDefaultBundle2ErrorsProperty_fr() throws Exception {
+        runMyTest("testErrorsDefaultBundle2ErrorsProperty_fr", "fr");
+        }
 
-    public void testErrorsAlternateBundle0ErrorsProperty_fr(){ 
-    	runMyTest("testErrorsAlternateBundle0ErrorsProperty_fr", "fr");
-	}
-    public void testErrorsAlternateBundle2ErrorsProperty_fr(){ 
-    	runMyTest("testErrorsAlternateBundle2ErrorsProperty_fr", "fr");
-	}
-
-
-
-    public void testErrorsDefaultBundle0ErrorsLocaleProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle0ErrorsLocaleProperty", "");
-	}
-    public void testErrorsDefaultBundle2ErrorsLocaleProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle2ErrorsLocaleProperty", "");
-	}
-
-    public void testErrorsAlternateBundle0ErrorsLocaleProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle0ErrorsLocaleProperty", "");
-	}
-    public void testErrorsAlternateBundle2ErrorsLocaleProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle2ErrorsLocaleProperty", "");
-	}
-
-    public void testErrorsDefaultBundle0ErrorsLocaleProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle0ErrorsLocaleProperty_fr", "");
-	}
-    public void testErrorsDefaultBundle2ErrorsLocaleProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle2ErrorsLocaleProperty_fr", "");
-	}
-
-    public void testErrorsAlternateBundle0ErrorsLocaleProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle0ErrorsLocaleProperty_fr", "");
-	}
-    public void testErrorsAlternateBundle2ErrorsLocaleProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle2ErrorsLocaleProperty_fr", "");
-	}
+    public void testErrorsAlternateBundle0ErrorsProperty_fr() throws Exception {
+        runMyTest("testErrorsAlternateBundle0ErrorsProperty_fr", "fr");
+        }
+    public void testErrorsAlternateBundle2ErrorsProperty_fr() throws Exception {
+        runMyTest("testErrorsAlternateBundle2ErrorsProperty_fr", "fr");
+        }
 
 
+
+    public void testErrorsDefaultBundle0ErrorsLocaleProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle0ErrorsLocaleProperty", "");
+        }
+    public void testErrorsDefaultBundle2ErrorsLocaleProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle2ErrorsLocaleProperty", "");
+        }
+
+    public void testErrorsAlternateBundle0ErrorsLocaleProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle0ErrorsLocaleProperty", "");
+        }
+    public void testErrorsAlternateBundle2ErrorsLocaleProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle2ErrorsLocaleProperty", "");
+        }
+
+    public void testErrorsDefaultBundle0ErrorsLocaleProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle0ErrorsLocaleProperty_fr", "");
+        }
+    public void testErrorsDefaultBundle2ErrorsLocaleProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle2ErrorsLocaleProperty_fr", "");
+        }
+
+    public void testErrorsAlternateBundle0ErrorsLocaleProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle0ErrorsLocaleProperty_fr", "");
+        }
+    public void testErrorsAlternateBundle2ErrorsLocaleProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle2ErrorsLocaleProperty_fr", "");
+        }
 
 
 
 
 
-    public void testErrorsDefaultBundle0ErrorsNameProperty(){ 
-    	runMyTest("testErrorsDefaultBundle0ErrorsNameProperty", "");
-	}
-    public void testErrorsDefaultBundle2ErrorsNameProperty(){ 
-    	runMyTest("testErrorsDefaultBundle2ErrorsNameProperty", "");
-	}
-
-    public void testErrorsAlternateBundle0ErrorsNameProperty(){ 
-    	runMyTest("testErrorsAlternateBundle0ErrorsNameProperty", "");
-	}
-    public void testErrorsAlternateBundle2ErrorsNameProperty(){ 
-    	runMyTest("testErrorsAlternateBundle2ErrorsNameProperty", "");
-	}
-
-    public void testErrorsDefaultBundle0ErrorsNameProperty_fr(){ 
-    	runMyTest("testErrorsDefaultBundle0ErrorsNameProperty_fr", "fr");
-	}
-    public void testErrorsDefaultBundle2ErrorsNameProperty_fr(){ 
-    	runMyTest("testErrorsDefaultBundle2ErrorsNameProperty_fr", "fr");
-	}
-
-    public void testErrorsAlternateBundle0ErrorsNameProperty_fr(){ 
-    	runMyTest("testErrorsAlternateBundle0ErrorsNameProperty_fr", "fr");
-	}
-    public void testErrorsAlternateBundle2ErrorsNameProperty_fr(){ 
-    	runMyTest("testErrorsAlternateBundle2ErrorsNameProperty_fr", "fr");
-	}
 
 
+    public void testErrorsDefaultBundle0ErrorsNameProperty() throws Exception {
+        runMyTest("testErrorsDefaultBundle0ErrorsNameProperty", "");
+        }
+    public void testErrorsDefaultBundle2ErrorsNameProperty() throws Exception {
+        runMyTest("testErrorsDefaultBundle2ErrorsNameProperty", "");
+        }
 
-    public void testErrorsDefaultBundle0ErrorsLocaleNameProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle0ErrorsLocaleNameProperty", "");
-	}
-    public void testErrorsDefaultBundle2ErrorsLocaleNameProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle2ErrorsLocaleNameProperty", "");
-	}
+    public void testErrorsAlternateBundle0ErrorsNameProperty() throws Exception {
+        runMyTest("testErrorsAlternateBundle0ErrorsNameProperty", "");
+        }
+    public void testErrorsAlternateBundle2ErrorsNameProperty() throws Exception {
+        runMyTest("testErrorsAlternateBundle2ErrorsNameProperty", "");
+        }
 
-    public void testErrorsAlternateBundle0ErrorsLocaleNameProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle0ErrorsLocaleNameProperty", "");
-	}
-    public void testErrorsAlternateBundle2ErrorsLocaleNameProperty(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle2ErrorsLocaleNameProperty", "");
-	}
+    public void testErrorsDefaultBundle0ErrorsNameProperty_fr() throws Exception {
+        runMyTest("testErrorsDefaultBundle0ErrorsNameProperty_fr", "fr");
+        }
+    public void testErrorsDefaultBundle2ErrorsNameProperty_fr() throws Exception {
+        runMyTest("testErrorsDefaultBundle2ErrorsNameProperty_fr", "fr");
+        }
 
-    public void testErrorsDefaultBundle0ErrorsLocaleNameProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle0ErrorsLocaleNameProperty_fr", "");
-	}
-    public void testErrorsDefaultBundle2ErrorsLocaleNameProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsDefaultBundle2ErrorsLocaleNameProperty_fr", "");
-	}
+    public void testErrorsAlternateBundle0ErrorsNameProperty_fr() throws Exception {
+        runMyTest("testErrorsAlternateBundle0ErrorsNameProperty_fr", "fr");
+        }
+    public void testErrorsAlternateBundle2ErrorsNameProperty_fr() throws Exception {
+        runMyTest("testErrorsAlternateBundle2ErrorsNameProperty_fr", "fr");
+        }
 
-    public void testErrorsAlternateBundle0ErrorsLocaleNameProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle0ErrorsLocaleNameProperty_fr", "");
-	}
-    public void testErrorsAlternateBundle2ErrorsLocaleNameProperty_fr(){ 
-    	pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
-    	runMyTest("testErrorsAlternateBundle2ErrorsLocaleNameProperty_fr", "");
-	}
+
+
+    public void testErrorsDefaultBundle0ErrorsLocaleNameProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle0ErrorsLocaleNameProperty", "");
+        }
+    public void testErrorsDefaultBundle2ErrorsLocaleNameProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle2ErrorsLocaleNameProperty", "");
+        }
+
+    public void testErrorsAlternateBundle0ErrorsLocaleNameProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle0ErrorsLocaleNameProperty", "");
+        }
+    public void testErrorsAlternateBundle2ErrorsLocaleNameProperty() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle2ErrorsLocaleNameProperty", "");
+        }
+
+    public void testErrorsDefaultBundle0ErrorsLocaleNameProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle0ErrorsLocaleNameProperty_fr", "");
+        }
+    public void testErrorsDefaultBundle2ErrorsLocaleNameProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsDefaultBundle2ErrorsLocaleNameProperty_fr", "");
+        }
+
+    public void testErrorsAlternateBundle0ErrorsLocaleNameProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle0ErrorsLocaleNameProperty_fr", "");
+        }
+    public void testErrorsAlternateBundle2ErrorsLocaleNameProperty_fr() throws Exception {
+        pageContext.setAttribute("MY_LOCALE_KEY", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+        runMyTest("testErrorsAlternateBundle2ErrorsLocaleNameProperty_fr", "");
+        }
 
 
 

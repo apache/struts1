@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag3.java,v 1.3 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag3.java,v 1.4 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -108,15 +108,10 @@ public class TestLinkTag3 extends JspTestCase {
         return new TestSuite(TestLinkTag3.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestLinkTag3.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestLinkTag3.jsp");
     }
 
     /*
@@ -125,196 +120,196 @@ public class TestLinkTag3 extends JspTestCase {
 
 //--------Testing attributes using forward------
 
-    public void testLinkAction(){
+    public void testLinkAction() throws Exception {
         runMyTest("testLinkAction", "");
     }
 
-    public void testLinkActionAccesskey(){
+    public void testLinkActionAccesskey() throws Exception {
         runMyTest("testLinkActionAccesskey", "");
     }
 
-    public void testLinkActionAnchor(){
+    public void testLinkActionAnchor() throws Exception {
         runMyTest("testLinkActionAnchor", "");
     }
 
-    public void testLinkActionIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedArray", "");
-	}
+    public void testLinkActionIndexedArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedArray", "");
+        }
 
-    public void testLinkActionIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedArrayProperty", "");
-	}
+    public void testLinkActionIndexedArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedArrayProperty", "");
+        }
 
-    public void testLinkActionIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedMap", "");
-	}
+    public void testLinkActionIndexedMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedMap", "");
+        }
 
-    public void testLinkActionIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedMapProperty", "");
-	}
+    public void testLinkActionIndexedMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedMapProperty", "");
+        }
 
-    public void testLinkActionIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedEnumeration", "");
-	}
+    public void testLinkActionIndexedEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedEnumeration", "");
+        }
 
-    public void testLinkActionIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedEnumerationProperty", "");
-	}
+    public void testLinkActionIndexedEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedEnumerationProperty", "");
+        }
 
 
-    public void testLinkActionIndexedAlternateIdArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedAlternateIdArray", "");
-	}
+    public void testLinkActionIndexedAlternateIdArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedAlternateIdArray", "");
+        }
 
-    public void testLinkActionIndexedAlternateIdArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedAlternateIdArrayProperty", "");
-	}
+    public void testLinkActionIndexedAlternateIdArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedAlternateIdArrayProperty", "");
+        }
 
-    public void testLinkActionIndexedAlternateIdMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedAlternateIdMap", "");
-	}
+    public void testLinkActionIndexedAlternateIdMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedAlternateIdMap", "");
+        }
 
-    public void testLinkActionIndexedAlternateIdMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedAlternateIdMapProperty", "");
-	}
+    public void testLinkActionIndexedAlternateIdMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedAlternateIdMapProperty", "");
+        }
 
-    public void testLinkActionIndexedAlternateIdEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedAlternateIdEnumeration", "");
-	}
+    public void testLinkActionIndexedAlternateIdEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedAlternateIdEnumeration", "");
+        }
 
-    public void testLinkActionIndexedAlternateIdEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testLinkActionIndexedAlternateIdEnumerationProperty", "");
-	}
+    public void testLinkActionIndexedAlternateIdEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testLinkActionIndexedAlternateIdEnumerationProperty", "");
+        }
 
-    public void testLinkActionLinkName(){
+    public void testLinkActionLinkName() throws Exception {
        runMyTest("testLinkActionLinkName", "");
     }
 
-    public void testLinkActionNameNoScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
+    public void testLinkActionNameNoScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
        runMyTest("testLinkActionNameNoScope", "");
     }
 
-    public void testLinkActionNamePropertyNoScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
+    public void testLinkActionNamePropertyNoScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
        runMyTest("testLinkActionNamePropertyNoScope", "");
     }
 
-    public void testLinkActionNameApplicationScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.APPLICATION_SCOPE);
+    public void testLinkActionNameApplicationScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.APPLICATION_SCOPE);
        runMyTest("testLinkActionNameApplicationScope", "");
     }
 
-    public void testLinkActionNamePropertyApplicationScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.APPLICATION_SCOPE);
+    public void testLinkActionNamePropertyApplicationScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.APPLICATION_SCOPE);
        runMyTest("testLinkActionNamePropertyApplicationScope", "");
     }
 
-    public void testLinkActionNameSessionScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.SESSION_SCOPE);
+    public void testLinkActionNameSessionScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.SESSION_SCOPE);
        runMyTest("testLinkActionNameSessionScope", "");
     }
 
-    public void testLinkActionNamePropertySessionScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.SESSION_SCOPE);
+    public void testLinkActionNamePropertySessionScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.SESSION_SCOPE);
        runMyTest("testLinkActionNamePropertySessionScope", "");
     }
 
-    public void testLinkActionNameRequestScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
+    public void testLinkActionNameRequestScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                pageContext.setAttribute("paramMap", map, PageContext.REQUEST_SCOPE);
        runMyTest("testLinkActionNameRequestScope", "");
     }
 
-    public void testLinkActionNamePropertyRequestScope(){
- 		HashMap map = new HashMap();
-		map.put("param1","value1");
-		map.put("param2","value2");
-		map.put("param3","value3");
-		map.put("param4","value4");
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
-		pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
+    public void testLinkActionNamePropertyRequestScope() throws Exception {
+                HashMap map = new HashMap();
+                map.put("param1","value1");
+                map.put("param2","value2");
+                map.put("param3","value3");
+                map.put("param4","value4");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(map);
+                pageContext.setAttribute("paramPropertyMap", sbft, PageContext.REQUEST_SCOPE);
        runMyTest("testLinkActionNamePropertyRequestScope", "");
     }
 

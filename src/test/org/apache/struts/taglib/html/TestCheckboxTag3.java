@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag3.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag3.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,101 +104,96 @@ public class TestCheckboxTag3 extends JspTestCase {
         return new TestSuite(TestCheckboxTag3.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting(false), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestCheckboxTag3.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting(false), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestCheckboxTag3.jsp");
     }
 
     /*
      * Testing CheckboxTag.
      */
-    public void testCheckboxPropertybooleanFalse(){ 
-    	runMyTest("testCheckboxPropertybooleanFalse", "");
-	}
-    public void testCheckboxPropertybooleanFalseAccesskey(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseAccesskey", "");
-	}
-    public void testCheckboxPropertybooleanFalseAlt(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseAlt", "");
-	}
-    public void testCheckboxPropertybooleanFalseAltKey1(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseAltKey1", "");
-	}
-    public void testCheckboxPropertybooleanFalseAltKey2(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseAltKey2", "");
-	}
-    public void testCheckboxPropertybooleanFalseAltKey_fr1(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseAltKey1_fr", "fr");
-	}
-    public void testCheckboxPropertybooleanFalseAltKey_fr2(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseAltKey2_fr", "fr");
-	}
-    public void testCheckboxPropertybooleanFalseDisabled_True(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseDisabled_True", "");
-	}
-    public void testCheckboxPropertybooleanFalseDisabled_False1(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseDisabled_False1", "");
-	}
-    public void testCheckboxPropertybooleanFalseDisabled_False2(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseDisabled_False2", "");
-	}
-    public void testCheckboxPropertybooleanFalseOnblur(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnblur", "");
-	}
+    public void testCheckboxPropertybooleanFalse() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalse", "");
+        }
+    public void testCheckboxPropertybooleanFalseAccesskey() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseAccesskey", "");
+        }
+    public void testCheckboxPropertybooleanFalseAlt() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseAlt", "");
+        }
+    public void testCheckboxPropertybooleanFalseAltKey1() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseAltKey1", "");
+        }
+    public void testCheckboxPropertybooleanFalseAltKey2() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseAltKey2", "");
+        }
+    public void testCheckboxPropertybooleanFalseAltKey_fr1() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseAltKey1_fr", "fr");
+        }
+    public void testCheckboxPropertybooleanFalseAltKey_fr2() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseAltKey2_fr", "fr");
+        }
+    public void testCheckboxPropertybooleanFalseDisabled_True() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseDisabled_True", "");
+        }
+    public void testCheckboxPropertybooleanFalseDisabled_False1() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseDisabled_False1", "");
+        }
+    public void testCheckboxPropertybooleanFalseDisabled_False2() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseDisabled_False2", "");
+        }
+    public void testCheckboxPropertybooleanFalseOnblur() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnblur", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnchange(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnchange", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnchange() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnchange", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnclick(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnclick", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnclick() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnclick", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOndblclick(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOndblclick", "");
-	}
+    public void testCheckboxPropertybooleanFalseOndblclick() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOndblclick", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnfocus(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnfocus", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnfocus() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnfocus", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnkeydown(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnkeydown", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnkeydown() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnkeydown", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnkeypress(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnkeypress", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnkeypress() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnkeypress", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnkeyup(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnkeyup", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnkeyup() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnkeyup", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnmousedown(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnmousedown", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnmousedown() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnmousedown", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnmousemove(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnmousemove", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnmousemove() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnmousemove", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnmouseout(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnmouseout", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnmouseout() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnmouseout", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnmouseover(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnmouseover", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnmouseover() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnmouseover", "");
+        }
 
-    public void testCheckboxPropertybooleanFalseOnmouseup(){ 
-    	runMyTest("testCheckboxPropertybooleanFalseOnmouseup", "");
-	}
+    public void testCheckboxPropertybooleanFalseOnmouseup() throws Exception {
+        runMyTest("testCheckboxPropertybooleanFalseOnmouseup", "");
+        }
 
 }

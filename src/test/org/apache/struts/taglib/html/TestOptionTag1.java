@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestOptionTag1.java,v 1.2 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/12/11 05:14:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestOptionTag1.java,v 1.3 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/26 22:10:32 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -83,7 +83,7 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
  *
  *  TestMultiboxTag3 - These test validate true (a value was in the array) on our form.
  *  TestMultiboxTag4 - Same as 3, but using BodyContent instead of value attribute
- * 
+ *
  *  5 thru 8 test multiple checkboxes
  *  TestMultiboxTag5 - These test validate true (a value was in the array) on our form.
  *  TestMultiboxTag6 - Same as 5, but using BodyContent instead of value attribute
@@ -122,88 +122,83 @@ public class TestOptionTag1 extends JspTestCase {
         return new TestSuite(TestOptionTag1.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY,
-    			new Locale(locale, locale),
-    			PageContext.SESSION_SCOPE);
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY,
+                        new Locale(locale, locale),
+                        PageContext.SESSION_SCOPE);
 
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting("SelectMe");
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting("SelectMe");
 
-    	pageContext.setAttribute(Constants.BEAN_KEY, sbft, PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestOptionTag1.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+        pageContext.setAttribute(Constants.BEAN_KEY, sbft, PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestOptionTag1.jsp");
     }
 
     /*
      * Testing MultiboxTag.
      */
-    public void testOptionBodySelected(){
-    	runMyTest("testOptionBodySelected", "");
-	}
+    public void testOptionBodySelected() throws Exception {
+        runMyTest("testOptionBodySelected", "");
+        }
 
-    public void testOptionBodyNotSelected(){
-    	runMyTest("testOptionBodyNotSelected", "");
-	}
+    public void testOptionBodyNotSelected() throws Exception {
+        runMyTest("testOptionBodyNotSelected", "");
+        }
 
-    public void testOptionBodySelectedDisabled_true(){
-    	runMyTest("testOptionBodySelectedDisabled_true", "");
-	}
+    public void testOptionBodySelectedDisabled_true() throws Exception {
+        runMyTest("testOptionBodySelectedDisabled_true", "");
+        }
 
-    public void testOptionBodyNotSelectedDisabled_true(){
-    	runMyTest("testOptionBodyNotSelectedDisabled_true", "");
-	}
+    public void testOptionBodyNotSelectedDisabled_true() throws Exception {
+        runMyTest("testOptionBodyNotSelectedDisabled_true", "");
+        }
 
-    public void testOptionBodySelectedDisabled_false(){
-    	runMyTest("testOptionBodySelectedDisabled_false", "");
-	}
+    public void testOptionBodySelectedDisabled_false() throws Exception {
+        runMyTest("testOptionBodySelectedDisabled_false", "");
+        }
 
-    public void testOptionBodyNotSelectedDisabled_false(){
-    	runMyTest("testOptionBodyNotSelectedDisabled_false", "");
-	}
+    public void testOptionBodyNotSelectedDisabled_false() throws Exception {
+        runMyTest("testOptionBodyNotSelectedDisabled_false", "");
+        }
 
-    public void testOptionBodySelectedDisabled_other(){
-    	runMyTest("testOptionBodySelectedDisabled_other", "");
-	}
+    public void testOptionBodySelectedDisabled_other() throws Exception {
+        runMyTest("testOptionBodySelectedDisabled_other", "");
+        }
 
-    public void testOptionBodyNotSelectedDisabled_other(){
-    	runMyTest("testOptionBodyNotSelectedDisabled_other", "");
-	}
+    public void testOptionBodyNotSelectedDisabled_other() throws Exception {
+        runMyTest("testOptionBodyNotSelectedDisabled_other", "");
+        }
 
-    public void testOptionKeySelected(){
-    	runMyTest("testOptionKeySelected", "");
-	}
+    public void testOptionKeySelected() throws Exception {
+        runMyTest("testOptionKeySelected", "");
+        }
 
-    public void testOptionKeyNotSelected(){
-    	runMyTest("testOptionKeyNotSelected", "");
-	}
+    public void testOptionKeyNotSelected() throws Exception {
+        runMyTest("testOptionKeyNotSelected", "");
+        }
 
-    public void testOptionKeySelectedAlternateBundle(){
-    	runMyTest("testOptionKeySelectedAlternateBundle", "");
-	}
+    public void testOptionKeySelectedAlternateBundle() throws Exception {
+        runMyTest("testOptionKeySelectedAlternateBundle", "");
+        }
 
-    public void testOptionKeyNotSelectedAlternateBundle(){
-    	runMyTest("testOptionKeyNotSelectedAlternateBundle", "");
-	}
+    public void testOptionKeyNotSelectedAlternateBundle() throws Exception {
+        runMyTest("testOptionKeyNotSelectedAlternateBundle", "");
+        }
 
-    public void testOptionKeySelectedLocale_fr(){
-    	runMyTest("testOptionKeySelectedLocale_fr", "fr");
-	}
+    public void testOptionKeySelectedLocale_fr() throws Exception {
+        runMyTest("testOptionKeySelectedLocale_fr", "fr");
+        }
 
-    public void testOptionKeyNotSelectedLocale_fr(){
-    	runMyTest("testOptionKeyNotSelectedLocale_fr", "fr");
-	}
+    public void testOptionKeyNotSelectedLocale_fr() throws Exception {
+        runMyTest("testOptionKeyNotSelectedLocale_fr", "fr");
+        }
 
-    public void testOptionKeySelectedAlternateBundleLocale_fr(){
-    	runMyTest("testOptionKeySelectedAlternateBundleLocale_fr", "fr");
-	}
+    public void testOptionKeySelectedAlternateBundleLocale_fr() throws Exception {
+        runMyTest("testOptionKeySelectedAlternateBundleLocale_fr", "fr");
+        }
 
-    public void testOptionKeyNotSelectedAlternateBundleLocale_fr(){
-    	runMyTest("testOptionKeyNotSelectedAlternateBundleLocale_fr", "fr");
-	}
+    public void testOptionKeyNotSelectedAlternateBundleLocale_fr() throws Exception {
+        runMyTest("testOptionKeyNotSelectedAlternateBundleLocale_fr", "fr");
+        }
 
 }

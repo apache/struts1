@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag1.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag1.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,104 +104,99 @@ public class TestFileTag1 extends JspTestCase {
         return new TestSuite(TestFileTag1.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestFileTag1.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestFileTag1.jsp");
     }
 
     /*
      * Testing FileTag.
      */
-    public void testFileProperty(){ 
-    	runMyTest("testFileProperty", "");
-	}
-    public void testFilePropertyAccept(){ 
-    	runMyTest("testFilePropertyAccept", "");
-	}
-    public void testFilePropertyAccesskey(){ 
-    	runMyTest("testFilePropertyAccesskey", "");
-	}
-    public void testFilePropertyAlt(){ 
-    	runMyTest("testFilePropertyAlt", "");
-	}
-    public void testFilePropertyAltKey1(){ 
-    	runMyTest("testFilePropertyAltKey1", "");
-	}
-    public void testFilePropertyAltKey2(){ 
-    	runMyTest("testFilePropertyAltKey2", "");
-	}
-    public void testFilePropertyAltKey_fr1(){ 
-    	runMyTest("testFilePropertyAltKey1_fr", "fr");
-	}
-    public void testFilePropertyAltKey_fr2(){ 
-    	runMyTest("testFilePropertyAltKey2_fr", "fr");
-	}
-    public void testFilePropertyDisabled_True(){ 
-    	runMyTest("testFilePropertyDisabled_True", "");
-	}
-    public void testFilePropertyDisabled_False1(){ 
-    	runMyTest("testFilePropertyDisabled_False1", "");
-	}
-    public void testFilePropertyDisabled_False2(){ 
-    	runMyTest("testFilePropertyDisabled_False2", "");
-	}
-    public void testFilePropertyOnblur(){ 
-    	runMyTest("testFilePropertyOnblur", "");
-	}
+    public void testFileProperty() throws Exception {
+        runMyTest("testFileProperty", "");
+        }
+    public void testFilePropertyAccept() throws Exception {
+        runMyTest("testFilePropertyAccept", "");
+        }
+    public void testFilePropertyAccesskey() throws Exception {
+        runMyTest("testFilePropertyAccesskey", "");
+        }
+    public void testFilePropertyAlt() throws Exception {
+        runMyTest("testFilePropertyAlt", "");
+        }
+    public void testFilePropertyAltKey1() throws Exception {
+        runMyTest("testFilePropertyAltKey1", "");
+        }
+    public void testFilePropertyAltKey2() throws Exception {
+        runMyTest("testFilePropertyAltKey2", "");
+        }
+    public void testFilePropertyAltKey_fr1() throws Exception {
+        runMyTest("testFilePropertyAltKey1_fr", "fr");
+        }
+    public void testFilePropertyAltKey_fr2() throws Exception {
+        runMyTest("testFilePropertyAltKey2_fr", "fr");
+        }
+    public void testFilePropertyDisabled_True() throws Exception {
+        runMyTest("testFilePropertyDisabled_True", "");
+        }
+    public void testFilePropertyDisabled_False1() throws Exception {
+        runMyTest("testFilePropertyDisabled_False1", "");
+        }
+    public void testFilePropertyDisabled_False2() throws Exception {
+        runMyTest("testFilePropertyDisabled_False2", "");
+        }
+    public void testFilePropertyOnblur() throws Exception {
+        runMyTest("testFilePropertyOnblur", "");
+        }
 
-    public void testFilePropertyOnchange(){ 
-    	runMyTest("testFilePropertyOnchange", "");
-	}
+    public void testFilePropertyOnchange() throws Exception {
+        runMyTest("testFilePropertyOnchange", "");
+        }
 
-    public void testFilePropertyOnclick(){ 
-    	runMyTest("testFilePropertyOnclick", "");
-	}
+    public void testFilePropertyOnclick() throws Exception {
+        runMyTest("testFilePropertyOnclick", "");
+        }
 
-    public void testFilePropertyOndblclick(){ 
-    	runMyTest("testFilePropertyOndblclick", "");
-	}
+    public void testFilePropertyOndblclick() throws Exception {
+        runMyTest("testFilePropertyOndblclick", "");
+        }
 
-    public void testFilePropertyOnfocus(){ 
-    	runMyTest("testFilePropertyOnfocus", "");
-	}
+    public void testFilePropertyOnfocus() throws Exception {
+        runMyTest("testFilePropertyOnfocus", "");
+        }
 
-    public void testFilePropertyOnkeydown(){ 
-    	runMyTest("testFilePropertyOnkeydown", "");
-	}
+    public void testFilePropertyOnkeydown() throws Exception {
+        runMyTest("testFilePropertyOnkeydown", "");
+        }
 
-    public void testFilePropertyOnkeypress(){ 
-    	runMyTest("testFilePropertyOnkeypress", "");
-	}
+    public void testFilePropertyOnkeypress() throws Exception {
+        runMyTest("testFilePropertyOnkeypress", "");
+        }
 
-    public void testFilePropertyOnkeyup(){ 
-    	runMyTest("testFilePropertyOnkeyup", "");
-	}
+    public void testFilePropertyOnkeyup() throws Exception {
+        runMyTest("testFilePropertyOnkeyup", "");
+        }
 
-    public void testFilePropertyOnmousedown(){ 
-    	runMyTest("testFilePropertyOnmousedown", "");
-	}
+    public void testFilePropertyOnmousedown() throws Exception {
+        runMyTest("testFilePropertyOnmousedown", "");
+        }
 
-    public void testFilePropertyOnmousemove(){ 
-    	runMyTest("testFilePropertyOnmousemove", "");
-	}
+    public void testFilePropertyOnmousemove() throws Exception {
+        runMyTest("testFilePropertyOnmousemove", "");
+        }
 
-    public void testFilePropertyOnmouseout(){ 
-    	runMyTest("testFilePropertyOnmouseout", "");
-	}
+    public void testFilePropertyOnmouseout() throws Exception {
+        runMyTest("testFilePropertyOnmouseout", "");
+        }
 
-    public void testFilePropertyOnmouseover(){ 
-    	runMyTest("testFilePropertyOnmouseover", "");
-	}
+    public void testFilePropertyOnmouseover() throws Exception {
+        runMyTest("testFilePropertyOnmouseover", "");
+        }
 
-    public void testFilePropertyOnmouseup(){ 
-    	runMyTest("testFilePropertyOnmouseup", "");
-	}
+    public void testFilePropertyOnmouseup() throws Exception {
+        runMyTest("testFilePropertyOnmouseup", "");
+        }
 
 }

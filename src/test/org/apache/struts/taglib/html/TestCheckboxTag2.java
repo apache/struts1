@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag2.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag2.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -107,111 +107,106 @@ public class TestCheckboxTag2 extends JspTestCase {
         return new TestSuite(TestCheckboxTag2.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting(true), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestCheckboxTag2.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting(true), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestCheckboxTag2.jsp");
     }
 
     /*
      * Testing CheckboxTag.
      */
 
-    public void testCheckboxPropertybooleanTrueStyle(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueStyle", "");
-	}
+    public void testCheckboxPropertybooleanTrueStyle() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueStyle", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueStyleClass(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueStyleClass", "");
-	}
+    public void testCheckboxPropertybooleanTrueStyleClass() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueStyleClass", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueStyleId(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueStyleId", "");
-	}
+    public void testCheckboxPropertybooleanTrueStyleId() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueStyleId", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueTabindex(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueTabindex", "");
-	}
+    public void testCheckboxPropertybooleanTrueTabindex() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueTabindex", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueTitle(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueTitle", "");
-	}
+    public void testCheckboxPropertybooleanTrueTitle() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueTitle", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueTitleKey(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueTitleKey", "");
-	}
+    public void testCheckboxPropertybooleanTrueTitleKey() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueTitleKey", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueTitleKey_fr(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueTitleKey_fr", "fr");
-	}
+    public void testCheckboxPropertybooleanTrueTitleKey_fr() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueTitleKey_fr", "fr");
+        }
 
-    public void testCheckboxPropertybooleanTrueValue(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueValue", "");
-	}
+    public void testCheckboxPropertybooleanTrueValue() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueValue", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueBodyContent(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueBodyContent", "");
-	}
+    public void testCheckboxPropertybooleanTrueBodyContent() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueBodyContent", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueBodyContentMessageKey(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueBodyContentMessageKey", "");
-	}
+    public void testCheckboxPropertybooleanTrueBodyContentMessageKey() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueBodyContentMessageKey", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueBodyContentMessageKey_fr(){ 
-    	runMyTest("testCheckboxPropertybooleanTrueBodyContentMessageKey_fr", "fr");
-	}
+    public void testCheckboxPropertybooleanTrueBodyContentMessageKey_fr() throws Exception {
+        runMyTest("testCheckboxPropertybooleanTrueBodyContentMessageKey_fr", "fr");
+        }
 
-    public void testCheckboxPropertybooleanTrueIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testCheckboxPropertybooleanTrueIndexedArray", "");
-	}
+    public void testCheckboxPropertybooleanTrueIndexedArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testCheckboxPropertybooleanTrueIndexedArray", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testCheckboxPropertybooleanTrueIndexedArrayProperty", "");
-	}
+    public void testCheckboxPropertybooleanTrueIndexedArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testCheckboxPropertybooleanTrueIndexedArrayProperty", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testCheckboxPropertybooleanTrueIndexedMap", "");
-	}
+    public void testCheckboxPropertybooleanTrueIndexedMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testCheckboxPropertybooleanTrueIndexedMap", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testCheckboxPropertybooleanTrueIndexedMapProperty", "");
-	}
+    public void testCheckboxPropertybooleanTrueIndexedMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testCheckboxPropertybooleanTrueIndexedMapProperty", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testCheckboxPropertybooleanTrueIndexedEnumeration", "");
-	}
+    public void testCheckboxPropertybooleanTrueIndexedEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testCheckboxPropertybooleanTrueIndexedEnumeration", "");
+        }
 
-    public void testCheckboxPropertybooleanTrueIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testCheckboxPropertybooleanTrueIndexedEnumerationProperty", "");
-	}
+    public void testCheckboxPropertybooleanTrueIndexedEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testCheckboxPropertybooleanTrueIndexedEnumerationProperty", "");
+        }
 
 
 

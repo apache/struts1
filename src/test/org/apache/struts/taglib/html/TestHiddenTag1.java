@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHiddenTag1.java,v 1.4 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHiddenTag1.java,v 1.5 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,92 +104,87 @@ public class TestHiddenTag1 extends JspTestCase {
         return new TestSuite(TestHiddenTag1.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestHiddenTag1.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestHiddenTag1.jsp");
     }
 
     /*
      * Testing HiddenTag.
      */
-    public void testHiddenProperty(){ 
-    	runMyTest("testHiddenProperty", "");
-	}
-    public void testHiddenPropertyAccesskey(){ 
-    	runMyTest("testHiddenPropertyAccesskey", "");
-	}
-    public void testHiddenPropertyAlt(){ 
-    	runMyTest("testHiddenPropertyAlt", "");
-	}
-    public void testHiddenPropertyAltKey1(){ 
-    	runMyTest("testHiddenPropertyAltKey1", "");
-	}
-    public void testHiddenPropertyAltKey2(){ 
-    	runMyTest("testHiddenPropertyAltKey2", "");
-	}
-    public void testHiddenPropertyAltKey_fr1(){ 
-    	runMyTest("testHiddenPropertyAltKey1_fr", "fr");
-	}
-    public void testHiddenPropertyAltKey_fr2(){ 
-    	runMyTest("testHiddenPropertyAltKey2_fr", "fr");
-	}
-    public void testHiddenPropertyOnblur(){ 
-    	runMyTest("testHiddenPropertyOnblur", "");
-	}
+    public void testHiddenProperty() throws Exception {
+        runMyTest("testHiddenProperty", "");
+        }
+    public void testHiddenPropertyAccesskey() throws Exception {
+        runMyTest("testHiddenPropertyAccesskey", "");
+        }
+    public void testHiddenPropertyAlt() throws Exception {
+        runMyTest("testHiddenPropertyAlt", "");
+        }
+    public void testHiddenPropertyAltKey1() throws Exception {
+        runMyTest("testHiddenPropertyAltKey1", "");
+        }
+    public void testHiddenPropertyAltKey2() throws Exception {
+        runMyTest("testHiddenPropertyAltKey2", "");
+        }
+    public void testHiddenPropertyAltKey_fr1() throws Exception {
+        runMyTest("testHiddenPropertyAltKey1_fr", "fr");
+        }
+    public void testHiddenPropertyAltKey_fr2() throws Exception {
+        runMyTest("testHiddenPropertyAltKey2_fr", "fr");
+        }
+    public void testHiddenPropertyOnblur() throws Exception {
+        runMyTest("testHiddenPropertyOnblur", "");
+        }
 
-    public void testHiddenPropertyOnchange(){ 
-    	runMyTest("testHiddenPropertyOnchange", "");
-	}
+    public void testHiddenPropertyOnchange() throws Exception {
+        runMyTest("testHiddenPropertyOnchange", "");
+        }
 
-    public void testHiddenPropertyOnclick(){ 
-    	runMyTest("testHiddenPropertyOnclick", "");
-	}
+    public void testHiddenPropertyOnclick() throws Exception {
+        runMyTest("testHiddenPropertyOnclick", "");
+        }
 
-    public void testHiddenPropertyOndblclick(){ 
-    	runMyTest("testHiddenPropertyOndblclick", "");
-	}
+    public void testHiddenPropertyOndblclick() throws Exception {
+        runMyTest("testHiddenPropertyOndblclick", "");
+        }
 
-    public void testHiddenPropertyOnfocus(){ 
-    	runMyTest("testHiddenPropertyOnfocus", "");
-	}
+    public void testHiddenPropertyOnfocus() throws Exception {
+        runMyTest("testHiddenPropertyOnfocus", "");
+        }
 
-    public void testHiddenPropertyOnkeydown(){ 
-    	runMyTest("testHiddenPropertyOnkeydown", "");
-	}
+    public void testHiddenPropertyOnkeydown() throws Exception {
+        runMyTest("testHiddenPropertyOnkeydown", "");
+        }
 
-    public void testHiddenPropertyOnkeypress(){ 
-    	runMyTest("testHiddenPropertyOnkeypress", "");
-	}
+    public void testHiddenPropertyOnkeypress() throws Exception {
+        runMyTest("testHiddenPropertyOnkeypress", "");
+        }
 
-    public void testHiddenPropertyOnkeyup(){ 
-    	runMyTest("testHiddenPropertyOnkeyup", "");
-	}
+    public void testHiddenPropertyOnkeyup() throws Exception {
+        runMyTest("testHiddenPropertyOnkeyup", "");
+        }
 
-    public void testHiddenPropertyOnmousedown(){ 
-    	runMyTest("testHiddenPropertyOnmousedown", "");
-	}
+    public void testHiddenPropertyOnmousedown() throws Exception {
+        runMyTest("testHiddenPropertyOnmousedown", "");
+        }
 
-    public void testHiddenPropertyOnmousemove(){ 
-    	runMyTest("testHiddenPropertyOnmousemove", "");
-	}
+    public void testHiddenPropertyOnmousemove() throws Exception {
+        runMyTest("testHiddenPropertyOnmousemove", "");
+        }
 
-    public void testHiddenPropertyOnmouseout(){ 
-    	runMyTest("testHiddenPropertyOnmouseout", "");
-	}
+    public void testHiddenPropertyOnmouseout() throws Exception {
+        runMyTest("testHiddenPropertyOnmouseout", "");
+        }
 
-    public void testHiddenPropertyOnmouseover(){ 
-    	runMyTest("testHiddenPropertyOnmouseover", "");
-	}
+    public void testHiddenPropertyOnmouseover() throws Exception {
+        runMyTest("testHiddenPropertyOnmouseover", "");
+        }
 
-    public void testHiddenPropertyOnmouseup(){ 
-    	runMyTest("testHiddenPropertyOnmouseup", "");
-	}
+    public void testHiddenPropertyOnmouseup() throws Exception {
+        runMyTest("testHiddenPropertyOnmouseup", "");
+        }
 
 }

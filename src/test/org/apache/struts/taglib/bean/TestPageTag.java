@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestPageTag.java,v 1.6 2003/12/11 05:14:50 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/11 05:14:50 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestPageTag.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/26 22:10:31 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -74,7 +74,7 @@ import org.apache.commons.lang.StringUtils;
  * @author James Mitchell
  */
 public class TestPageTag extends JspTestCase {
-	
+
     protected final static String PAGETAG_KEY = "PAGETAG_KEY";
     protected final static String PAGETAG_VAL = "PAGETAG_VAL";
 
@@ -104,65 +104,60 @@ public class TestPageTag extends JspTestCase {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestPageTag.class);
     }
-    
-    private void runMyTest(String whichTest){
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/bean/TestPageTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+
+    private void runMyTest(String whichTest) throws Exception {
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/bean/TestPageTag.jsp");
     }
-    
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\n","");
-		output = output.trim();
-		//System.out.println("Testing [" + compare + "] == [" + output + "]");
-	    assertEquals(compare, output);
-	}
 
-    public void testPageTagApplication(){
-    	pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.APPLICATION_SCOPE);
-    	runMyTest("testPageTagApplication");
-	}
-	public void endPageTagApplication(WebResponse response){
-		formatAndTest(PAGETAG_VAL, response.getText());
-	}
+        private void formatAndTest(String compare, String output) {
+                //fix for introduced carriage return / line feeds
+                output = StringUtils.replace(output,"\r","");
+                output = StringUtils.replace(output,"\n","");
+                output = output.trim();
+                //System.out.println("Testing [" + compare + "] == [" + output + "]");
+            assertEquals(compare, output);
+        }
 
-    public void testPageTagSession(){
-    	pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.SESSION_SCOPE);
-    	runMyTest("testPageTagSession");
-	}
-	public void endPageTagSession(WebResponse response){
-		formatAndTest(PAGETAG_VAL, response.getText());
-	}
+    public void testPageTagApplication() throws Exception {
+        pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.APPLICATION_SCOPE);
+        runMyTest("testPageTagApplication");
+        }
+        public void endPageTagApplication(WebResponse response){
+                formatAndTest(PAGETAG_VAL, response.getText());
+        }
 
-    public void testPageTagRequest(){
-    	pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.REQUEST_SCOPE);
-    	runMyTest("testPageTagRequest");
-	}
-	public void endPageTagRequest(WebResponse response){
-		formatAndTest(PAGETAG_VAL, response.getText());
-	}
+    public void testPageTagSession() throws Exception {
+        pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.SESSION_SCOPE);
+        runMyTest("testPageTagSession");
+        }
+        public void endPageTagSession(WebResponse response){
+                formatAndTest(PAGETAG_VAL, response.getText());
+        }
 
-    public void testPageTagResponse(){
-    	pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.APPLICATION_SCOPE);
-    	runMyTest("testPageTagResponse");
-	}
-	public void endPageTagResponse(WebResponse response){
-		formatAndTest(PAGETAG_VAL, response.getText());
-	}
+    public void testPageTagRequest() throws Exception {
+        pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.REQUEST_SCOPE);
+        runMyTest("testPageTagRequest");
+        }
+        public void endPageTagRequest(WebResponse response){
+                formatAndTest(PAGETAG_VAL, response.getText());
+        }
 
-    public void testPageTagConfig(){
-    	config.getServletContext().setAttribute(PAGETAG_KEY, PAGETAG_VAL);
-    	runMyTest("testPageTagConfig");
-	}
-	public void endPageTagConfig(WebResponse response){
-		formatAndTest(PAGETAG_VAL, response.getText());
-	}
+    public void testPageTagResponse() throws Exception {
+        pageContext.setAttribute(PAGETAG_KEY, PAGETAG_VAL, PageContext.APPLICATION_SCOPE);
+        runMyTest("testPageTagResponse");
+        }
+        public void endPageTagResponse(WebResponse response){
+                formatAndTest(PAGETAG_VAL, response.getText());
+        }
+
+    public void testPageTagConfig() throws Exception {
+        config.getServletContext().setAttribute(PAGETAG_KEY, PAGETAG_VAL);
+        runMyTest("testPageTagConfig");
+        }
+        public void endPageTagConfig(WebResponse response){
+                formatAndTest(PAGETAG_VAL, response.getText());
+        }
 
 
 }

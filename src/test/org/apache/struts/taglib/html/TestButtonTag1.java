@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag1.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestButtonTag1.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -103,100 +103,94 @@ public class TestButtonTag1 extends JspTestCase {
         return new TestSuite(TestButtonTag1.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag1.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
-    }
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag1.jsp");    }
 
     /*
      * Testing ButtonTag.
      */
-    public void testButtonProperty(){ 
-    	runMyTest("testButtonProperty", "");
-	}
-    public void testButtonPropertyAccesskey(){ 
-    	runMyTest("testButtonPropertyAccesskey", "");
-	}
-    public void testButtonPropertyAlt(){ 
-    	runMyTest("testButtonPropertyAlt", "");
-	}
-    public void testButtonPropertyAltKey1(){ 
-    	runMyTest("testButtonPropertyAltKey1", "");
-	}
-    public void testButtonPropertyAltKey2(){ 
-    	runMyTest("testButtonPropertyAltKey2", "");
-	}
-    public void testButtonPropertyAltKey_fr1(){ 
-    	runMyTest("testButtonPropertyAltKey1_fr", "fr");
-	}
-    public void testButtonPropertyAltKey_fr2(){ 
-    	runMyTest("testButtonPropertyAltKey2_fr", "fr");
-	}
-    public void testButtonPropertyDisabled_True(){ 
-    	runMyTest("testButtonPropertyDisabled_True", "");
-	}
-    public void testButtonPropertyDisabled_False1(){ 
-    	runMyTest("testButtonPropertyDisabled_False1", "");
-	}
-    public void testButtonPropertyDisabled_False2(){ 
-    	runMyTest("testButtonPropertyDisabled_False2", "");
-	}
-    public void testButtonPropertyOnblur(){ 
-    	runMyTest("testButtonPropertyOnblur", "");
-	}
+    public void testButtonProperty() throws Exception {
+        runMyTest("testButtonProperty", "");
+        }
+    public void testButtonPropertyAccesskey() throws Exception {
+        runMyTest("testButtonPropertyAccesskey", "");
+        }
+    public void testButtonPropertyAlt() throws Exception {
+        runMyTest("testButtonPropertyAlt", "");
+        }
+    public void testButtonPropertyAltKey1() throws Exception {
+        runMyTest("testButtonPropertyAltKey1", "");
+        }
+    public void testButtonPropertyAltKey2() throws Exception {
+        runMyTest("testButtonPropertyAltKey2", "");
+        }
+    public void testButtonPropertyAltKey_fr1() throws Exception {
+        runMyTest("testButtonPropertyAltKey1_fr", "fr");
+        }
+    public void testButtonPropertyAltKey_fr2() throws Exception {
+        runMyTest("testButtonPropertyAltKey2_fr", "fr");
+        }
+    public void testButtonPropertyDisabled_True() throws Exception {
+        runMyTest("testButtonPropertyDisabled_True", "");
+        }
+    public void testButtonPropertyDisabled_False1() throws Exception {
+        runMyTest("testButtonPropertyDisabled_False1", "");
+        }
+    public void testButtonPropertyDisabled_False2() throws Exception {
+        runMyTest("testButtonPropertyDisabled_False2", "");
+        }
+    public void testButtonPropertyOnblur() throws Exception {
+        runMyTest("testButtonPropertyOnblur", "");
+        }
 
-    public void testButtonPropertyOnchange(){ 
-    	runMyTest("testButtonPropertyOnchange", "");
-	}
+    public void testButtonPropertyOnchange() throws Exception {
+        runMyTest("testButtonPropertyOnchange", "");
+        }
 
-    public void testButtonPropertyOnclick(){ 
-    	runMyTest("testButtonPropertyOnclick", "");
-	}
+    public void testButtonPropertyOnclick() throws Exception {
+        runMyTest("testButtonPropertyOnclick", "");
+        }
 
-    public void testButtonPropertyOndblclick(){ 
-    	runMyTest("testButtonPropertyOndblclick", "");
-	}
+    public void testButtonPropertyOndblclick() throws Exception {
+        runMyTest("testButtonPropertyOndblclick", "");
+        }
 
-    public void testButtonPropertyOnfocus(){ 
-    	runMyTest("testButtonPropertyOnfocus", "");
-	}
+    public void testButtonPropertyOnfocus() throws Exception {
+        runMyTest("testButtonPropertyOnfocus", "");
+        }
 
-    public void testButtonPropertyOnkeydown(){ 
-    	runMyTest("testButtonPropertyOnkeydown", "");
-	}
+    public void testButtonPropertyOnkeydown() throws Exception {
+        runMyTest("testButtonPropertyOnkeydown", "");
+        }
 
-    public void testButtonPropertyOnkeypress(){ 
-    	runMyTest("testButtonPropertyOnkeypress", "");
-	}
+    public void testButtonPropertyOnkeypress() throws Exception {
+        runMyTest("testButtonPropertyOnkeypress", "");
+        }
 
-    public void testButtonPropertyOnkeyup(){ 
-    	runMyTest("testButtonPropertyOnkeyup", "");
-	}
+    public void testButtonPropertyOnkeyup() throws Exception {
+        runMyTest("testButtonPropertyOnkeyup", "");
+        }
 
-    public void testButtonPropertyOnmousedown(){ 
-    	runMyTest("testButtonPropertyOnmousedown", "");
-	}
+    public void testButtonPropertyOnmousedown() throws Exception {
+        runMyTest("testButtonPropertyOnmousedown", "");
+        }
 
-    public void testButtonPropertyOnmousemove(){ 
-    	runMyTest("testButtonPropertyOnmousemove", "");
-	}
+    public void testButtonPropertyOnmousemove() throws Exception {
+        runMyTest("testButtonPropertyOnmousemove", "");
+        }
 
-    public void testButtonPropertyOnmouseout(){ 
-    	runMyTest("testButtonPropertyOnmouseout", "");
-	}
+    public void testButtonPropertyOnmouseout() throws Exception {
+        runMyTest("testButtonPropertyOnmouseout", "");
+        }
 
-    public void testButtonPropertyOnmouseover(){ 
-    	runMyTest("testButtonPropertyOnmouseover", "");
-	}
+    public void testButtonPropertyOnmouseover() throws Exception {
+        runMyTest("testButtonPropertyOnmouseover", "");
+        }
 
-    public void testButtonPropertyOnmouseup(){ 
-    	runMyTest("testButtonPropertyOnmouseup", "");
-	}
+    public void testButtonPropertyOnmouseup() throws Exception {
+        runMyTest("testButtonPropertyOnmouseup", "");
+        }
 
 }

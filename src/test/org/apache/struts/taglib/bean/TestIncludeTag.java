@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.8 2003/12/11 05:14:50 jmitchell Exp $
- * $Revision: 1.8 $
- * $Date: 2003/12/11 05:14:50 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.9 2003/12/26 22:10:31 germuska Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/12/26 22:10:31 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -71,7 +71,7 @@ import org.apache.cactus.JspTestCase;
  * @author James Mitchell
  */
 public class TestIncludeTag extends JspTestCase {
-	
+
     /**
      * Defines the testcase name for JUnit.
      *
@@ -98,47 +98,40 @@ public class TestIncludeTag extends JspTestCase {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestIncludeTag.class);
     }
-    
 
-    
-    private void runMyTest(String whichTest){
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward(
-				request.getRequestURI() + "/org/apache/struts/taglib/bean/TestIncludeTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest) throws Exception {
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward(
+        request.getRequestURI() + "/org/apache/struts/taglib/bean/TestIncludeTag.jsp");
     }
 
     /*
      * Testing IncludeTag using the forward attribute.
      */
-    public void testIncludeTagForward(){ 
-		//@TODO problem with Cactus' request wrapper causing wrong value when request.getServerPort()
+    public void testIncludeTagForward() throws Exception {
+                //@TODO problem with Cactus' request wrapper causing wrong value when request.getServerPort()
 //		System.out.println("[TestIncludeTag.java]========>request.getServerPort():" + request.getServerPort());
 //		System.out.println("[TestIncludeTag.java]========>request.getRequestURI():" + request.getRequestURI());
 //		System.out.println("[TestIncludeTag.java]========>request.getRequestURL():" + request.getRequestURL());
 //		System.out.println("[TestIncludeTag.java]========>request.getQueryString():" + request.getQueryString());
 //    	runMyTest("testIncludeTagForward");
-	}
+        }
 
     /*
      * Testing IncludeTag using the href attribute.
      */
-    public void testIncludeTagHref(){ 
-		//@TODO problem with Cactus' request wrapper causing wrong value when request.getServerPort()
+    public void testIncludeTagHref() throws Exception {
+                //@TODO problem with Cactus' request wrapper causing wrong value when request.getServerPort()
 //    	runMyTest("testIncludeTagHref");
-	}
+        }
 
     /*
      * Testing IncludeTag using the page attribute
      */
-    public void testIncludeTagPage(){ 
-		//@TODO problem with Cactus' request wrapper causing wrong value when request.getServerPort()
+    public void testIncludeTagPage() throws Exception {
+                //@TODO problem with Cactus' request wrapper causing wrong value when request.getServerPort()
 //    	runMyTest("testIncludeTagPage");
-	}
+        }
 
 
 }

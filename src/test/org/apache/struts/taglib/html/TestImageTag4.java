@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag4.java,v 1.5 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag4.java,v 1.6 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -108,16 +108,11 @@ public class TestImageTag4 extends JspTestCase {
         return new TestSuite(TestImageTag4.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestImageTag4.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestImageTag4.jsp");
     }
 
     /*
@@ -126,111 +121,111 @@ public class TestImageTag4 extends JspTestCase {
 
 //--------Testing attributes using page------
 
-    public void testImagePageKeyOnmousedown(){
+    public void testImagePageKeyOnmousedown() throws Exception {
         runMyTest("testImagePageKeyOnmousedown", "");
     }
 
-    public void testImagePageKeyOnmousemove(){
+    public void testImagePageKeyOnmousemove() throws Exception {
         runMyTest("testImagePageKeyOnmousemove", "");
     }
 
-    public void testImagePageKeyOnmouseout(){
+    public void testImagePageKeyOnmouseout() throws Exception {
         runMyTest("testImagePageKeyOnmouseout", "");
     }
 
-    public void testImagePageKeyOnmouseover(){
+    public void testImagePageKeyOnmouseover() throws Exception {
         runMyTest("testImagePageKeyOnmouseover", "");
     }
 
-    public void testImagePageKeyOnmouseup(){
+    public void testImagePageKeyOnmouseup() throws Exception {
         runMyTest("testImagePageKeyOnmouseup", "");
     }
 
-    public void testImagePageKeyProperty(){
+    public void testImagePageKeyProperty() throws Exception {
         runMyTest("testImagePageKeyProperty", "");
     }
 
-    public void testImagePageKeyStyle(){
+    public void testImagePageKeyStyle() throws Exception {
         runMyTest("testImagePageKeyStyle", "");
     }
 
-    public void testImagePageKeyStyleClass(){
+    public void testImagePageKeyStyleClass() throws Exception {
         runMyTest("testImagePageKeyStyleClass", "");
     }
 
-    public void testImagePageKeyStyleId(){
+    public void testImagePageKeyStyleId() throws Exception {
         runMyTest("testImagePageKeyStyleId", "");
     }
 
-    public void testImagePageKeyTabindex(){
+    public void testImagePageKeyTabindex() throws Exception {
         runMyTest("testImagePageKeyTabindex", "");
     }
 
-    public void testImagePageKeyTitle(){
+    public void testImagePageKeyTitle() throws Exception {
         runMyTest("testImagePageKeyTitle", "");
     }
 
-    public void testImagePageKeyTitleKeyDefaultBundle(){
+    public void testImagePageKeyTitleKeyDefaultBundle() throws Exception {
         runMyTest("testImagePageKeyTitleKeyDefaultBundle", "");
     }
 
-    public void testImagePageKeyTitleKeyAlternateBundle(){
+    public void testImagePageKeyTitleKeyAlternateBundle() throws Exception {
         runMyTest("testImagePageKeyTitleKeyAlternateBundle", "");
     }
 
-    public void testImagePageKeyTitleKeyDefaultBundle_fr(){
+    public void testImagePageKeyTitleKeyDefaultBundle_fr() throws Exception {
         runMyTest("testImagePageKeyTitleKeyDefaultBundle_fr", "fr");
     }
 
-    public void testImagePageKeyTitleKeyAlternateBundle_fr(){
+    public void testImagePageKeyTitleKeyAlternateBundle_fr() throws Exception {
         runMyTest("testImagePageKeyTitleKeyAlternateBundle_fr", "fr");
     }
 
-    public void testImagePageKeyIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testImagePageKeyIndexedArray", "");
-	}
+    public void testImagePageKeyIndexedArray() throws Exception {
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
+        runMyTest("testImagePageKeyIndexedArray", "");
+        }
 
-    public void testImagePageKeyIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testImagePageKeyIndexedArrayProperty", "");
-	}
+    public void testImagePageKeyIndexedArrayProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        ArrayList lst = new ArrayList();
+        lst.add("Test Message");
+        sbft.setList(lst);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testImagePageKeyIndexedArrayProperty", "");
+        }
 
-    public void testImagePageKeyIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testImagePageKeyIndexedMap", "");
-	}
+    public void testImagePageKeyIndexedMap() throws Exception {
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
+        runMyTest("testImagePageKeyIndexedMap", "");
+        }
 
-    public void testImagePageKeyIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testImagePageKeyIndexedMapProperty", "");
-	}
+    public void testImagePageKeyIndexedMapProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        HashMap map = new HashMap();
+        map.put("tst1", "Test Message");
+        sbft.setMap(map);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testImagePageKeyIndexedMapProperty", "");
+        }
 
-    public void testImagePageKeyIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testImagePageKeyIndexedEnumeration", "");
-	}
+    public void testImagePageKeyIndexedEnumeration() throws Exception {
+        StringTokenizer st = new StringTokenizer("Test Message");
+        pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
+        runMyTest("testImagePageKeyIndexedEnumeration", "");
+        }
 
-    public void testImagePageKeyIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testImagePageKeyIndexedEnumerationProperty", "");
-	}
+    public void testImagePageKeyIndexedEnumerationProperty() throws Exception {
+        SimpleBeanForTesting sbft = new SimpleBeanForTesting();
+        StringTokenizer st = new StringTokenizer("Test Message");
+        sbft.setEnumeration(st);
+        pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
+        runMyTest("testImagePageKeyIndexedEnumerationProperty", "");
+        }
 
 
 

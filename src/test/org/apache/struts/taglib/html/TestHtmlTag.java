@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHtmlTag.java,v 1.4 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHtmlTag.java,v 1.5 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -104,120 +104,115 @@ public class TestHtmlTag extends JspTestCase {
         return new TestSuite(TestHtmlTag.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestHtmlTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestHtmlTag.jsp");
     }
 
     /*
      * Testing HtmlTag.
      */
-    public void testHtml(){ 
-    	runMyTest("testHtml", "");
-	}
+    public void testHtml() throws Exception {
+        runMyTest("testHtml", "");
+        }
 
-    public void testHtmlLocale1(){ 
-    	runMyTest("testHtmlLocale1", "");
-	}
+    public void testHtmlLocale1() throws Exception {
+        runMyTest("testHtmlLocale1", "");
+        }
 
-    public void testHtmlLocale2(){ 
-    	runMyTest("testHtmlLocale2", "");
-	}
+    public void testHtmlLocale2() throws Exception {
+        runMyTest("testHtmlLocale2", "");
+        }
 
-    public void testHtmlLocale3(){ 
-    	runMyTest("testHtmlLocale3", "");
-	}
+    public void testHtmlLocale3() throws Exception {
+        runMyTest("testHtmlLocale3", "");
+        }
 
-    public void testHtmlLocale4(){ 
-    	runMyTest("testHtmlLocale4", "");
-	}
+    public void testHtmlLocale4() throws Exception {
+        runMyTest("testHtmlLocale4", "");
+        }
 
-    public void testHtmlLocale5(){ 
-    	runMyTest("testHtmlLocale5", "");
-	}
+    public void testHtmlLocale5() throws Exception {
+        runMyTest("testHtmlLocale5", "");
+        }
 
-    public void testHtmlLocale6(){ 
-    	runMyTest("testHtmlLocale6", "");
-	}
+    public void testHtmlLocale6() throws Exception {
+        runMyTest("testHtmlLocale6", "");
+        }
 
-    public void testHtmlLocale_fr1(){ 
-    	runMyTest("testHtmlLocale_fr1", "fr");
-	}
+    public void testHtmlLocale_fr1() throws Exception {
+        runMyTest("testHtmlLocale_fr1", "fr");
+        }
 
-    public void testHtmlLocale_fr2(){ 
-    	runMyTest("testHtmlLocale_fr2", "fr");
-	}
+    public void testHtmlLocale_fr2() throws Exception {
+        runMyTest("testHtmlLocale_fr2", "fr");
+        }
 
-    public void testHtmlLocale_fr3(){ 
-    	runMyTest("testHtmlLocale_fr3", "fr");
-	}
+    public void testHtmlLocale_fr3() throws Exception {
+        runMyTest("testHtmlLocale_fr3", "fr");
+        }
 
-    public void testHtmlLocale_fr4(){ 
-    	runMyTest("testHtmlLocale_fr4", "fr");
-	}
+    public void testHtmlLocale_fr4() throws Exception {
+        runMyTest("testHtmlLocale_fr4", "fr");
+        }
 
-    public void testHtmlLocale_fr5(){ 
-    	runMyTest("testHtmlLocale_fr5", "fr");
-	}
+    public void testHtmlLocale_fr5() throws Exception {
+        runMyTest("testHtmlLocale_fr5", "fr");
+        }
 
-    public void testHtmlLocale_fr6(){ 
-    	runMyTest("testHtmlLocale_fr6", "fr");
-	}
+    public void testHtmlLocale_fr6() throws Exception {
+        runMyTest("testHtmlLocale_fr6", "fr");
+        }
 
-    public void testHtmlXhtml1(){ 
-    	runMyTest("testHtmlXhtml1", "");
-	}
+    public void testHtmlXhtml1() throws Exception {
+        runMyTest("testHtmlXhtml1", "");
+        }
 
-    public void testHtmlXhtml2(){ 
-    	runMyTest("testHtmlXhtml2", "");
-	}
+    public void testHtmlXhtml2() throws Exception {
+        runMyTest("testHtmlXhtml2", "");
+        }
 
-    public void testHtmlXhtml3(){ 
-    	runMyTest("testHtmlXhtml3", "");
-	}
+    public void testHtmlXhtml3() throws Exception {
+        runMyTest("testHtmlXhtml3", "");
+        }
 
-    public void testHtmlXhtml4(){ 
-    	runMyTest("testHtmlXhtml4", "");
-	}
+    public void testHtmlXhtml4() throws Exception {
+        runMyTest("testHtmlXhtml4", "");
+        }
 
-    public void testHtmlXhtml5(){ 
-    	runMyTest("testHtmlXhtml5", "");
-	}
+    public void testHtmlXhtml5() throws Exception {
+        runMyTest("testHtmlXhtml5", "");
+        }
 
-    public void testHtmlXhtml6(){ 
-    	runMyTest("testHtmlXhtml6", "");
-	}
+    public void testHtmlXhtml6() throws Exception {
+        runMyTest("testHtmlXhtml6", "");
+        }
 
-    public void testHtmlLocaleXhtml1(){ 
-    	runMyTest("testHtmlLocaleXhtml1", "");
-	}
+    public void testHtmlLocaleXhtml1() throws Exception {
+        runMyTest("testHtmlLocaleXhtml1", "");
+        }
 
-    public void testHtmlLocaleXhtml2(){ 
-    	runMyTest("testHtmlLocaleXhtml2", "");
-	}
+    public void testHtmlLocaleXhtml2() throws Exception {
+        runMyTest("testHtmlLocaleXhtml2", "");
+        }
 
-    public void testHtmlLocaleXhtml3(){ 
-    	runMyTest("testHtmlLocaleXhtml3", "");
-	}
+    public void testHtmlLocaleXhtml3() throws Exception {
+        runMyTest("testHtmlLocaleXhtml3", "");
+        }
 
-    public void testHtmlLocaleXhtml_fr1(){ 
-    	runMyTest("testHtmlLocaleXhtml_fr1", "fr");
-	}
+    public void testHtmlLocaleXhtml_fr1() throws Exception {
+        runMyTest("testHtmlLocaleXhtml_fr1", "fr");
+        }
 
-    public void testHtmlLocaleXhtml_fr2(){ 
-    	runMyTest("testHtmlLocaleXhtml_fr2", "fr");
-	}
+    public void testHtmlLocaleXhtml_fr2() throws Exception {
+        runMyTest("testHtmlLocaleXhtml_fr2", "fr");
+        }
 
-    public void testHtmlLocaleXhtml_fr3(){ 
-    	runMyTest("testHtmlLocaleXhtml_fr3", "fr");
-	}
+    public void testHtmlLocaleXhtml_fr3() throws Exception {
+        runMyTest("testHtmlLocaleXhtml_fr3", "fr");
+        }
 
 
 }

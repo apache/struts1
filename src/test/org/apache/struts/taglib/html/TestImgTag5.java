@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImgTag5.java,v 1.3 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/12/11 05:14:48 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImgTag5.java,v 1.4 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/12/26 22:10:32 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -105,16 +105,11 @@ public class TestImgTag5 extends JspTestCase {
         return new TestSuite(TestImgTag5.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-    	pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestImgTag5.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+        pageContext.setAttribute(Constants.BEAN_KEY, new SimpleBeanForTesting("Test Value"), PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestImgTag5.jsp");
     }
 
     /*
@@ -123,92 +118,92 @@ public class TestImgTag5 extends JspTestCase {
 
 //--------Testing attributes using page------
 
-    public void testImgSrcAlign1(){
+    public void testImgSrcAlign1() throws Exception {
         runMyTest("testImgSrcAlign1", "");
     }
 
-    public void testImgSrcAlign2(){
+    public void testImgSrcAlign2() throws Exception {
         runMyTest("testImgSrcAlign2", "");
     }
 
-    public void testImgSrcAlign3(){
+    public void testImgSrcAlign3() throws Exception {
         runMyTest("testImgSrcAlign3", "");
     }
 
-    public void testImgSrcAlign4(){
+    public void testImgSrcAlign4() throws Exception {
         runMyTest("testImgSrcAlign4", "");
     }
 
-    public void testImgSrcAlign5(){
+    public void testImgSrcAlign5() throws Exception {
         runMyTest("testImgSrcAlign5", "");
     }
 
-    public void testImgSrcAlign6(){
+    public void testImgSrcAlign6() throws Exception {
         runMyTest("testImgSrcAlign6", "");
     }
 
-    public void testImgSrcAlign7(){
+    public void testImgSrcAlign7() throws Exception {
         runMyTest("testImgSrcAlign7", "");
     }
 
-    public void testImgSrcAlign8(){
+    public void testImgSrcAlign8() throws Exception {
         runMyTest("testImgSrcAlign8", "");
     }
 
-    public void testImgSrcAlign9(){
+    public void testImgSrcAlign9() throws Exception {
         runMyTest("testImgSrcAlign9", "");
     }
 
-    public void testImgSrcAlign10(){
+    public void testImgSrcAlign10() throws Exception {
         runMyTest("testImgSrcAlign10", "");
     }
 
-    public void testImgSrcAlt(){
+    public void testImgSrcAlt() throws Exception {
         runMyTest("testImgSrcAlt", "");
     }
 
-    public void testImgSrcAltKeyDefaultBundle(){
+    public void testImgSrcAltKeyDefaultBundle() throws Exception {
         runMyTest("testImgSrcAltKeyDefaultBundle", "");
     }
 
-    public void testImgSrcAltKeyAlternateBundle(){
+    public void testImgSrcAltKeyAlternateBundle() throws Exception {
         runMyTest("testImgSrcAltKeyAlternateBundle", "");
     }
 
-    public void testImgSrcAltKeyDefaultBundle_fr(){
+    public void testImgSrcAltKeyDefaultBundle_fr() throws Exception {
         runMyTest("testImgSrcAltKeyDefaultBundle_fr", "fr");
     }
 
-    public void testImgSrcAltKeyAlternateBundle_fr(){
+    public void testImgSrcAltKeyAlternateBundle_fr() throws Exception {
         runMyTest("testImgSrcAltKeyAlternateBundle_fr", "fr");
     }
 
-    public void testImgSrcBorder(){
+    public void testImgSrcBorder() throws Exception {
         runMyTest("testImgSrcBorder", "");
     }
 
-    public void testImgSrcHeight1(){
+    public void testImgSrcHeight1() throws Exception {
         runMyTest("testImgSrcHeight1", "");
     }
 
-    public void testImgSrcHeight2(){
+    public void testImgSrcHeight2() throws Exception {
         runMyTest("testImgSrcHeight2", "");
     }
 
-    public void testImgSrcHspace(){
+    public void testImgSrcHspace() throws Exception {
         runMyTest("testImgSrcHspace", "");
     }
 
-    public void testImgSrcImageName(){
+    public void testImgSrcImageName() throws Exception {
         runMyTest("testImgSrcImageName", "");
     }
 
-    public void testImgSrcImageIsmap(){
+    public void testImgSrcImageIsmap() throws Exception {
         runMyTest("testImgSrcImageIsmap", "");
     }
 
-    public void testImgSrcLocale(){
-    	pageContext.setAttribute("secret locale", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
+    public void testImgSrcLocale() throws Exception {
+        pageContext.setAttribute("secret locale", new Locale("fr", "fr"), PageContext.SESSION_SCOPE);
         runMyTest("testImgSrcLocale", "");
     }
 

@@ -1,8 +1,8 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestHeaderTag.java,v 1.6 2003/12/11 05:14:50 jmitchell Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/11 05:14:50 $
- * 
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestHeaderTag.java,v 1.7 2003/12/26 22:10:31 germuska Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/12/26 22:10:31 $
+ *
  * ====================================================================
  * The Apache Software License, Version 1.1
  *
@@ -74,7 +74,7 @@ import org.apache.commons.lang.StringUtils;
  * @author James Mitchell
  */
 public class TestHeaderTag extends JspTestCase {
-	
+
     protected final static String HEADER_KEY = "HEADER_KEY";
     protected final static String HEADER_VAL = "HEADER_VAL";
 
@@ -104,78 +104,71 @@ public class TestHeaderTag extends JspTestCase {
         // All methods starting with "test" will be executed in the test suite.
         return new TestSuite(TestHeaderTag.class);
     }
-    
 
-    
-    private void runMyTest(String whichTest){
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/bean/TestHeaderTag.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+    private void runMyTest(String whichTest) throws Exception {
+                request.setAttribute("runTest", whichTest);
+                pageContext.forward("/test/org/apache/struts/taglib/bean/TestHeaderTag.jsp");
     }
-    
-	private void formatAndTest(String compare, String output) {
-		//fix for introduced carriage return / line feeds
-		output = StringUtils.replace(output,"\r","");
-		output = StringUtils.replace(output,"\n","");
-		output = output.trim();
-	    assertEquals(compare, output);
-	}
+
+        private void formatAndTest(String compare, String output) {
+                //fix for introduced carriage return / line feeds
+                output = StringUtils.replace(output,"\r","");
+                output = StringUtils.replace(output,"\n","");
+                output = output.trim();
+            assertEquals(compare, output);
+        }
 
 
     /*
      * Testing HeaderTag, with Name specified in tags.
      */
     public void beginHeaderTagName(WebRequest webRequest) {
-		webRequest.addHeader(HEADER_KEY, HEADER_VAL);
-      	webRequest.addParameter("cacheId", "1");
+                webRequest.addHeader(HEADER_KEY, HEADER_VAL);
+        webRequest.addParameter("cacheId", "1");
     }
-    public void testHeaderTagName(){ 
-    	runMyTest("testHeaderTagName");
-	}
-	public void endHeaderTagName(WebResponse response){
-		formatAndTest(HEADER_VAL, response.getText());
-	}
+    public void testHeaderTagName() throws Exception {
+        runMyTest("testHeaderTagName");
+        }
+        public void endHeaderTagName(WebResponse response){
+                formatAndTest(HEADER_VAL, response.getText());
+        }
 
 
     /*
      * Testing HeaderTag, with Name and Multiple specified in tags.
      */
     public void beginHeaderTagNameMultiple(WebRequest webRequest) {
-    	for (int i = 0; i < 10; i++) {
-	       webRequest.addHeader(HEADER_KEY, HEADER_VAL + i);
-		}
-      	webRequest.addParameter("cacheId", "1");
+        for (int i = 0; i < 10; i++) {
+               webRequest.addHeader(HEADER_KEY, HEADER_VAL + i);
+                }
+        webRequest.addParameter("cacheId", "1");
     }
-    public void testHeaderTagNameMultiple(){ 
-    	runMyTest("testHeaderTagNameMultiple");
-	}
-	public void endHeaderTagNameMultiple(WebResponse response){
-	    String compareTo = "";
-	    //Multiple Headers are comma delimited
-    	for (int i = 0; i < 10; i++) {
-			compareTo += HEADER_VAL + i + ",";
-		}
-		//remove the trailing comma
-		compareTo = compareTo.substring(0, compareTo.length() - 1);
-		formatAndTest(compareTo, response.getText());
-	}
+    public void testHeaderTagNameMultiple() throws Exception {
+        runMyTest("testHeaderTagNameMultiple");
+        }
+        public void endHeaderTagNameMultiple(WebResponse response){
+            String compareTo = "";
+            //Multiple Headers are comma delimited
+        for (int i = 0; i < 10; i++) {
+                        compareTo += HEADER_VAL + i + ",";
+                }
+                //remove the trailing comma
+                compareTo = compareTo.substring(0, compareTo.length() - 1);
+                formatAndTest(compareTo, response.getText());
+        }
 
     /*
      * Testing HeaderTag, with Name and Value specified in tags.
      */
     public void beginHeaderTagNameValue(WebRequest webRequest) {
-      	webRequest.addParameter("cacheId", "1");
+        webRequest.addParameter("cacheId", "1");
     }
-    public void testHeaderTagNameValue(){ 
-    	runMyTest("testHeaderTagNameValue");
-	}
-	public void endHeaderTagNameValue(WebResponse response){
-		formatAndTest(HEADER_VAL, response.getText());
-	}
+    public void testHeaderTagNameValue() throws Exception {
+        runMyTest("testHeaderTagNameValue");
+        }
+        public void endHeaderTagNameValue(WebResponse response){
+                formatAndTest(HEADER_VAL, response.getText());
+        }
 
 
 

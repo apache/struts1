@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag4.java,v 1.2 2003/12/11 05:14:48 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/12/11 05:14:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestMultiboxTag4.java,v 1.3 2003/12/26 22:10:32 germuska Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/12/26 22:10:32 $
  *
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -83,7 +83,7 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
  *
  *  TestMultiboxTag3 - These test validate true (a value was in the array) on our form.
  *  TestMultiboxTag4 - Same as 3, but using BodyContent instead of value attribute
- * 
+ *
  *  5 thru 8 test multiple checkboxes
  *  TestMultiboxTag5 - These test validate true (a value was in the array) on our form.
  *  TestMultiboxTag6 - Same as 5, but using BodyContent instead of value attribute
@@ -123,110 +123,105 @@ public class TestMultiboxTag4 extends JspTestCase {
         return new TestSuite(TestMultiboxTag4.class);
     }
 
-    private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY,
-    			new Locale(locale, locale),
-    			PageContext.SESSION_SCOPE);
+    private void runMyTest(String whichTest, String locale) throws Exception {
+        pageContext.setAttribute(Globals.LOCALE_KEY,
+                        new Locale(locale, locale),
+                        PageContext.SESSION_SCOPE);
 
-		String[] s = new String[7];
-		for(int i = 1; i < 7; i++){
-			s[i] = "value" + i;
-		}
-		SimpleBeanForTesting sbft = new SimpleBeanForTesting(s);
+                String[] s = new String[7];
+                for(int i = 1; i < 7; i++){
+                        s[i] = "value" + i;
+                }
+                SimpleBeanForTesting sbft = new SimpleBeanForTesting(s);
 
-    	pageContext.setAttribute(Constants.BEAN_KEY, sbft, PageContext.REQUEST_SCOPE);
-		request.setAttribute("runTest", whichTest);
-        try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestMultiboxTag4.jsp");
-		}
-		catch (Exception e) {
-			fail("" + e.getMessage());
-		}
+        pageContext.setAttribute(Constants.BEAN_KEY, sbft, PageContext.REQUEST_SCOPE);
+        request.setAttribute("runTest", whichTest);
+        pageContext.forward("/test/org/apache/struts/taglib/html/TestMultiboxTag4.jsp");
     }
 
     /*
      * Testing MultiboxTag.
      */
-    public void testMultiboxBodyPropertyFalse(){
-    	runMyTest("testMultiboxBodyPropertyFalse", "");
-	}
-    public void testMultiboxBodyPropertyFalseAccesskey(){
-    	runMyTest("testMultiboxBodyPropertyFalseAccesskey", "");
-	}
-    public void testMultiboxBodyPropertyFalseAlt(){
-    	runMyTest("testMultiboxBodyPropertyFalseAlt", "");
-	}
-    public void testMultiboxBodyPropertyFalseAltKey1(){
-    	runMyTest("testMultiboxBodyPropertyFalseAltKey1", "");
-	}
-    public void testMultiboxBodyPropertyFalseAltKey2(){
-    	runMyTest("testMultiboxBodyPropertyFalseAltKey2", "");
-	}
-    public void testMultiboxBodyPropertyFalseAltKey_fr1(){
-    	runMyTest("testMultiboxBodyPropertyFalseAltKey1_fr", "fr");
-	}
-    public void testMultiboxBodyPropertyFalseAltKey_fr2(){
-    	runMyTest("testMultiboxBodyPropertyFalseAltKey2_fr", "fr");
-	}
-    public void testMultiboxBodyPropertyFalseDisabled_False(){
-    	runMyTest("testMultiboxBodyPropertyFalseDisabled_True", "");
-	}
-    public void testMultiboxBodyPropertyFalseDisabled_False1(){
-    	runMyTest("testMultiboxBodyPropertyFalseDisabled_False1", "");
-	}
-    public void testMultiboxBodyPropertyFalseDisabled_False2(){
-    	runMyTest("testMultiboxBodyPropertyFalseDisabled_False2", "");
-	}
-    public void testMultiboxBodyPropertyFalseOnblur(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnblur", "");
-	}
+    public void testMultiboxBodyPropertyFalse() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalse", "");
+        }
+    public void testMultiboxBodyPropertyFalseAccesskey() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseAccesskey", "");
+        }
+    public void testMultiboxBodyPropertyFalseAlt() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseAlt", "");
+        }
+    public void testMultiboxBodyPropertyFalseAltKey1() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseAltKey1", "");
+        }
+    public void testMultiboxBodyPropertyFalseAltKey2() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseAltKey2", "");
+        }
+    public void testMultiboxBodyPropertyFalseAltKey_fr1() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseAltKey1_fr", "fr");
+        }
+    public void testMultiboxBodyPropertyFalseAltKey_fr2() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseAltKey2_fr", "fr");
+        }
+    public void testMultiboxBodyPropertyFalseDisabled_False() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseDisabled_True", "");
+        }
+    public void testMultiboxBodyPropertyFalseDisabled_False1() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseDisabled_False1", "");
+        }
+    public void testMultiboxBodyPropertyFalseDisabled_False2() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseDisabled_False2", "");
+        }
+    public void testMultiboxBodyPropertyFalseOnblur() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnblur", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnchange(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnchange", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnchange() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnchange", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnclick(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnclick", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnclick() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnclick", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOndblclick(){
-    	runMyTest("testMultiboxBodyPropertyFalseOndblclick", "");
-	}
+    public void testMultiboxBodyPropertyFalseOndblclick() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOndblclick", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnfocus(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnfocus", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnfocus() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnfocus", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnkeydown(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnkeydown", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnkeydown() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnkeydown", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnkeypress(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnkeypress", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnkeypress() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnkeypress", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnkeyup(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnkeyup", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnkeyup() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnkeyup", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnmousedown(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnmousedown", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnmousedown() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnmousedown", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnmousemove(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnmousemove", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnmousemove() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnmousemove", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnmouseout(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnmouseout", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnmouseout() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnmouseout", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnmouseover(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnmouseover", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnmouseover() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnmouseover", "");
+        }
 
-    public void testMultiboxBodyPropertyFalseOnmouseup(){
-    	runMyTest("testMultiboxBodyPropertyFalseOnmouseup", "");
-	}
+    public void testMultiboxBodyPropertyFalseOnmouseup() throws Exception {
+        runMyTest("testMultiboxBodyPropertyFalseOnmouseup", "");
+        }
 
 }
