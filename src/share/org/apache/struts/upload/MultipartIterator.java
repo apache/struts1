@@ -147,7 +147,7 @@ public class MultipartIterator {
         }
         else {
             //default to system-wide tempdir
-            tempDir = System.getProperty("java.io.tmpdir");
+            this.tempDir = System.getProperty("java.io.tmpdir");
         }
         parseRequest();
     }
