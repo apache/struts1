@@ -119,7 +119,7 @@
     </summary>
     <tagclass>org.apache.struts.taglib.bean.DefineTag</tagclass>
     <teiclass>org.apache.struts.taglib.bean.DefineTei</teiclass>
-    <bodycontent>empty</bodycontent>
+    <bodycontent>JSP</bodycontent>
     <info>
     <p>Retrieve the value of a specified bean property, and define it
     as an attribute (in the scope specified by the <code>toScope</code>
@@ -130,6 +130,12 @@
 
     <p>If you specify a "value" attribute, the exposed bean will be of type
     <code>java.lang.String</code> and initialized to the specified value.</p>
+
+    <p>If you specify a body, the exposed bean will be of type
+    <code>java.lang.String</code> and initialized to the body content.</p>
+
+    <p>You can not specify a "value" attribute and body simultaneously - 
+    JspException will be thrown.</p>
 
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
