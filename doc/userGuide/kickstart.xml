@@ -134,7 +134,7 @@
 <p>Jakarta products are released on the basis of merit, and ~not~ according
 to a strict timetable. The volunteers devote whatever time they can to working
 on the product. But all volunteers have real jobs and real lives, that 
-do take precedence. Since Struts does have have paid personnel working 
+do take precedence. Since Struts does not have paid personnel working 
 on the project, we simply cannot make date-orientated commitments.</p>
 <p>All Jakarta products must circulate a public beta before release. If a
 beta is not in circulation, then it's a good bet that a release is not
@@ -146,7 +146,7 @@ compromise the quality of our software by watching the calendar (and
 then ship something ready or not). A release is ready when it is ready.</p>
 <p>That may sound flip, but it ~is~ the truth. The delivery of
 production-quality, leading-edge software is not something anyone can 
-prognasticate. If anyone tries, they are lying to you. That, we won't 
+prognosticate. If anyone tries, they are lying to you. That, we won't 
 do ;-)</p>
 <p>What we ~will~ do is release all of our development software as soon as it
 is developed. This way you can judge for yourself how quickly the
