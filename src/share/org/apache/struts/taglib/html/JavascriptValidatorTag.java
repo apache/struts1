@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.47 2004/02/24 22:32:54 germuska Exp $
- * $Revision: 1.47 $
- * $Date: 2004/02/24 22:32:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.48 2004/03/08 23:26:58 rleland Exp $
+ * $Revision: 1.48 $
+ * $Date: 2004/03/08 23:26:58 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.47 $ $Date: 2004/02/24 22:32:54 $
+ * @version $Revision: 1.48 $ $Date: 2004/03/08 23:26:58 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -440,6 +440,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             int jscriptVar = 0;
             String functionName = null;
 
+
             if (va.getJsFunctionName() != null
                 && va.getJsFunctionName().length() > 0) {
                 functionName = va.getJsFunctionName();
@@ -447,7 +448,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 functionName = va.getName();
             }
 
-            results.append("    function " + functionName + " () { \n");
+            String formName = form.getName();
+            results.append("    function " + formName + "_" + functionName + " () { \n");
             for (Iterator x = form.getFields().iterator(); x.hasNext();) {
                 Field field = (Field) x.next();
 
