@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.66 2001/04/23 22:45:36 craigmcc Exp $
- * $Revision: 1.66 $
- * $Date: 2001/04/23 22:45:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.67 2001/05/10 02:31:35 craigmcc Exp $
+ * $Revision: 1.67 $
+ * $Date: 2001/05/10 02:31:35 $
  *
  * ====================================================================
  *
@@ -228,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.66 $ $Date: 2001/04/23 22:45:36 $
+ * @version $Revision: 1.67 $ $Date: 2001/05/10 02:31:35 $
  */
 
 public class ActionServlet
@@ -1048,8 +1048,10 @@ public class ActionServlet
     /**
      * Initialize use of the data sources associated with this
      * application (if any).
+     *
+     * @exception ServletException if a fatal initialization error occurs
      */
-    protected void initDataSources() {
+    protected void initDataSources() throws ServletException {
 
         synchronized (dataSources) {
             Iterator keys = dataSources.keySet().iterator();
@@ -1063,6 +1065,8 @@ public class ActionServlet
                         ((GenericDataSource) dataSource).open();
                     } catch (SQLException e) {
                         log(internal.getMessage("initDataSource", key), e);
+                        throw new ServletException
+                            (internal.getMessage("initDataSource", key), e);
                     }
                 }
                 getServletContext().setAttribute(key, dataSource);
