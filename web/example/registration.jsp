@@ -4,10 +4,12 @@
 
 <html>
 <head>
-<struts:ifPropertyEquals name="registrationForm" property="action" value="Create">
+<struts:ifPropertyEquals name="registrationForm"
+                         property="action" value="Create">
   <title><struts:message key="registration.title.create"/></title>
 </struts:ifPropertyEquals>
-<struts:ifPropertyEquals name="registrationForm" property="action" value="Edit">
+<struts:ifPropertyEquals name="registrationForm"
+                         property="action" value="Edit">
   <title><struts:message key="registration.title.edit"/></title>
 </struts:ifPropertyEquals>
 </head>
@@ -17,7 +19,7 @@
 
 <struts:form action="saveRegistration.do" name="registrationForm"
                type="org.apache.struts.example.RegistrationForm">
-<struts:hidden name="action"/>
+<struts:hidden property="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -25,12 +27,14 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-      <struts:ifPropertyEquals name="registrationForm" property="action" value="Create">
-        <struts:text name="username" size="16" maxlength="16"/>
+      <struts:ifPropertyEquals name="registrationForm"
+                               property="action" value="Create">
+        <struts:text property="username" size="16" maxlength="16"/>
       </struts:ifPropertyEquals>
-      <struts:ifPropertyEquals name="registrationForm" property="action" value="Edit">
-        <struts:property name="username"/>
-	<struts:hidden name="username"/>
+      <struts:ifPropertyEquals name="registrationForm"
+                               property="action" value="Edit">
+        <struts:property property="username"/>
+	<struts:hidden property="username"/>
       </struts:ifPropertyEquals>
     </td>
   </tr>
@@ -40,7 +44,7 @@
       <struts:message key="prompt.password"/>
     </th>
     <td align="left">
-      <struts:password name="password" size="16" maxlength="16"/>
+      <struts:password property="password" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -49,7 +53,7 @@
       <struts:message key="prompt.password2"/>
     </th>
     <td align="left">
-      <struts:password name="password2" size="16" maxlength="16"/>
+      <struts:password property="password2" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -58,7 +62,7 @@
       <struts:message key="prompt.fullName"/>
     </th>
     <td align="left">
-      <struts:text name="fullName" size="50"/>
+      <struts:text property="fullName" size="50"/>
     </td>
   </tr>
 
@@ -67,7 +71,7 @@
       <struts:message key="prompt.fromAddress"/>
     </th>
     <td align="left">
-      <struts:text name="fromAddress" size="50"/>
+      <struts:text property="fromAddress" size="50"/>
     </td>
   </tr>
 
@@ -76,7 +80,7 @@
       <struts:message key="prompt.replyToAddress"/>
     </th>
     <td align="left">
-      <struts:text name="replyToAddress" size="50"/>
+      <struts:text property="replyToAddress" size="50"/>
     </td>
   </tr>
 
@@ -100,7 +104,8 @@
 </table>
 </struts:form>
 
-<struts:ifPropertyEquals name="registrationForm" property="action" value="Edit">
+<struts:ifPropertyEquals name="registrationForm"
+                         property="action" value="Edit">
 
 <div align="center">
 <h3><struts:message key="heading.subscriptions"/></h3>

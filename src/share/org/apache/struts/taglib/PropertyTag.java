@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.2 2000/06/15 01:27:35 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.3 2000/06/16 04:41:08 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 04:41:08 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Display the value of the specified bean property as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:35 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:08 $
  */
 
 public class PropertyTag extends BaseInputTag {
@@ -101,8 +101,8 @@ public class PropertyTag extends BaseInputTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", name));
-	    String methodName = "get" + BeanUtils.capitalize(name);
+		    (messages.getMessage("baseFieldTag.missing", property));
+	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    Object value = null;

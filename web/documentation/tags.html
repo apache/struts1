@@ -33,13 +33,6 @@ of this tag body.  This tag is only valid when nested inside a
     <th width="85%">Description</th>
   </tr>
   <tr>
-    <td align="center">name</td>
-    <td>
-      Name of the request parameter that will be included with this
-      submission, set to the specified value.
-    </td>
-  </tr>
-  <tr>
     <td align="center">onBlur</td>
     <td>
       JavaScript event handler executed when this element loses input focus.
@@ -126,6 +119,13 @@ of this tag body.  This tag is only valid when nested inside a
     <td>
       JavaScript event handler executed when this element is under the mouse
       pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of the request parameter that will be included with this
+      submission, set to the specified value.
     </td>
   </tr>
   <tr>
@@ -167,14 +167,6 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     <th width="85%">Description</th>
   </tr>
   <tr>
-    <td align="center">name</td>
-    <td>
-      Name of this input field, and the name of the corresponding bean
-      property if <code>value</code> is not specified.  The corresponding
-      bean property (if any) must be of type <code>boolean</code>.
-    </td>
-  </tr>
-  <tr>
     <td align="center">onBlur</td>
     <td>
       JavaScript event handler executed when this element loses input focus.
@@ -261,6 +253,14 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     <td>
       JavaScript event handler executed when this element is under the mouse
       pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>boolean</code>.
     </td>
   </tr>
   <tr>
@@ -517,7 +517,7 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     <th width="85%">Description</th>
   </tr>
   <tr>
-    <td align="center">name</td>
+    <td align="center">property</td>
     <td>
       Name of this input field, and the name of the corresponding bean
       property if <code>value</code> is not specified.  The corresponding
@@ -913,14 +913,6 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     </td>
   </tr>
   <tr>
-    <td align="center">name</td>
-    <td>
-      Name of this input field, and the name of the corresponding bean
-      property if <code>value</code> is not specified.  The corresponding
-      bean property (if any) must be of type <code>String</code>.
-    </td>
-  </tr>
-  <tr>
     <td align="center">onBlur</td>
     <td>
       JavaScript event handler executed when this element loses input focus.
@@ -1017,6 +1009,14 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     </td>
   </tr>
   <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
+    </td>
+  </tr>
+  <tr>
     <td align="center">size</td>
     <td>
       Number of character positions to allocate.  [Browser default]
@@ -1060,7 +1060,7 @@ only valid when nested inside a <code>form</code> tag body.</p>
     <th width="85%">Description</th>
   </tr>
   <tr>
-    <td align="center">name</td>
+    <td align="center">property</td>
     <td>
       Name of this input field, and the name of the corresponding bean
       property if <code>value</code> is not specified.  The corresponding
@@ -1091,14 +1091,6 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
   <tr>
     <th width="15%">Attribute</th>
     <th width="85%">Description</th>
-  </tr>
-  <tr>
-    <td align="center">name</td>
-    <td>
-      Name of this input field, and the name of the corresponding bean
-      property.  The corresponding bean property must be of type
-      <code>String</code>.
-    </td>
   </tr>
   <tr>
     <td align="center">onBlur</td>
@@ -1187,6 +1179,14 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     <td>
       JavaScript event handler executed when this element is under the mouse
       pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property.  The corresponding bean property must be of type
+      <code>String</code>.
     </td>
   </tr>
   <tr>
@@ -1377,14 +1377,6 @@ tag body of this tag.  This tag is only valid when nested inside a
     <th width="85%">Description</th>
   </tr>
   <tr>
-    <td align="center">name</td>
-    <td>
-      Name of this input field, and the name of the corresponding bean
-      property if <code>value</code> is not specified.  The corresponding
-      bean property (if any) must be of type <code>String</code>.
-    </td>
-  </tr>
-  <tr>
     <td align="center">onBlur</td>
     <td>
       JavaScript event handler executed when this element loses input focus.
@@ -1471,6 +1463,14 @@ tag body of this tag.  This tag is only valid when nested inside a
     <td>
       JavaScript event handler executed when this element is under the mouse
       pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
     </td>
   </tr>
   <tr>
@@ -1510,13 +1510,6 @@ tag body of this tag.  This tag is only valid when nested inside a
     <th width="85%">Description</th>
   </tr>
   <tr>
-    <td align="center">name</td>
-    <td>
-      Name of the request parameter that will be included with this
-      submission, set to the specified value.  [submit]
-    </td>
-  </tr>
-  <tr>
     <td align="center">onBlur</td>
     <td>
       JavaScript event handler executed when this element loses input focus.
@@ -1603,6 +1596,13 @@ tag body of this tag.  This tag is only valid when nested inside a
     <td>
       JavaScript event handler executed when this element is under the mouse
       pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of the request parameter that will be included with this
+      submission, set to the specified value.  [submit]
     </td>
   </tr>
   <tr>
@@ -1647,14 +1647,6 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     <td align="center">maxlength</td>
     <td>
       Maximum number of input characters to accept.  [No limit]
-    </td>
-  </tr>
-  <tr>
-    <td align="center">name</td>
-    <td>
-      Name of this input field, and the name of the corresponding bean
-      property if <code>value</code> is not specified.  The corresponding
-      bean property (if any) must be of type <code>String</code>.
     </td>
   </tr>
   <tr>
@@ -1751,6 +1743,14 @@ tag is only valid when nested inside a <code>form</code> tag body.</p>
     <td>
       JavaScript event handler executed when this element has focus and
       some text is selected.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
     </td>
   </tr>
   <tr>
@@ -1802,14 +1802,6 @@ specified attributes.  This tag is only valid when nested inside a
     </td>
   </tr>
   <tr>
-    <td align="center">name</td>
-    <td>
-      Name of this input field, and the name of the corresponding bean
-      property if <code>value</code> is not specified.  The corresponding
-      bean property (if any) must be of type <code>String</code>.
-    </td>
-  </tr>
-  <tr>
     <td align="center">onBlur</td>
     <td>
       JavaScript event handler executed when this element loses input focus.
@@ -1903,6 +1895,14 @@ specified attributes.  This tag is only valid when nested inside a
     <td>
       JavaScript event handler executed when this element has focus and
       some text is selected.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property if <code>value</code> is not specified.  The corresponding
+      bean property (if any) must be of type <code>String</code>.
     </td>
   </tr>
   <tr>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SubmitTag.java,v 1.2 2000/06/15 01:27:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SubmitTag.java,v 1.3 2000/06/16 04:41:08 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 04:41:08 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:36 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:08 $
  */
 
 public final class SubmitTag extends BaseHandlerTag {
@@ -96,7 +96,7 @@ public final class SubmitTag extends BaseHandlerTag {
     /**
      * The name of the generated input field.
      */
-    private String name = "submit";
+    private String property = "submit";
 
 
     /**
@@ -109,23 +109,23 @@ public final class SubmitTag extends BaseHandlerTag {
 
 
     /**
-     * Return the field name.
+     * Return the property.
      */
-    public String getName() {
+    public String getProperty() {
 
-	return (this.name);
+	return (this.property);
 
     }
 
 
     /**
-     * Set the field name.
+     * Set the property name.
      *
-     * @param name The field name
+     * @param property The property name
      */
-    public void setName(String name) {
+    public void setProperty(String property) {
 
-	this.name = name;
+	this.property = property;
 
     }
 
@@ -186,7 +186,7 @@ public final class SubmitTag extends BaseHandlerTag {
 	// Generate an HTML element
 	StringBuffer results = new StringBuffer();
 	results.append("<input type=\"submit\" name=\"");
-	results.append(name);
+	results.append(property);
 	results.append("\" value=\"");
 	results.append(label);
 	results.append("\"");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.2 2000/06/15 01:27:34 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.3 2000/06/16 04:41:07 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 04:41:07 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various input tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:34 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:07 $
  */
 
 public abstract class BaseInputTag extends BaseHandlerTag {
@@ -107,7 +107,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * The name of the field (and associated property) being processed.
      */
-    protected String name = null;
+    protected String property = null;
 
 
     /**
@@ -203,23 +203,23 @@ public abstract class BaseInputTag extends BaseHandlerTag {
 
 
     /**
-     * Return the field name.
+     * Return the property name.
      */
-    public String getName() {
+    public String getProperty() {
 
-	return (this.name);
+	return (this.property);
 
     }
 
 
     /**
-     * Set the object name.
+     * Set the property name.
      *
-     * @param name The new object name
+     * @param property The new property name
      */
-    public void setName(String name) {
+    public void setProperty(String property) {
 
-	this.name = name;
+	this.property = property;
 
     }
 

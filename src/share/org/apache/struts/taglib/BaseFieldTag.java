@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.2 2000/06/15 01:27:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.3 2000/06/16 04:41:07 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 04:41:07 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:07 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -107,7 +107,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	StringBuffer results = new StringBuffer("<input type=\"");
 	results.append(type);
 	results.append("\" name=\"");
-	results.append(name);
+	results.append(property);
 	results.append("\"");
 	if (maxlength >= 0) {
 	    results.append(" maxlength=\"");
@@ -126,8 +126,8 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", name));
-	    String methodName = "get" + BeanUtils.capitalize(name);
+		    (messages.getMessage("baseFieldTag.missing", property));
+	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    Object value = null;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.3 2000/06/15 01:27:34 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/15 01:27:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.4 2000/06/16 04:41:08 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/06/16 04:41:08 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/06/15 01:27:34 $
+ * @version $Revision: 1.4 $ $Date: 2000/06/16 04:41:08 $
  */
 
 public final class CheckboxTag extends BaseHandlerTag {
@@ -94,9 +94,9 @@ public final class CheckboxTag extends BaseHandlerTag {
 
 
     /**
-     * The field name for this field.
+     * The property name for this field.
      */
-    private String name = null;
+    private String property = null;
 
 
     /**
@@ -109,23 +109,23 @@ public final class CheckboxTag extends BaseHandlerTag {
 
 
     /**
-     * Return the field name.
+     * Return the property name.
      */
-    public String getName() {
+    public String getProperty() {
 
-	return (this.name);
+	return (this.property);
 
     }
 
 
     /**
-     * Set the field name.
+     * Set the property name.
      *
-     * @param name The new field name
+     * @param property The new property name
      */
-    public void setName(String name) {
+    public void setProperty(String property) {
 
-	this.name = name;
+	this.property = property;
 
     }
 
@@ -165,15 +165,15 @@ public final class CheckboxTag extends BaseHandlerTag {
 	// Create an appropriate "input" element based on our parameters
 	StringBuffer results = new StringBuffer("<input type=\"checkbox\"");
 	results.append(" name=\"");
-	results.append(this.name);
+	results.append(this.property);
 	results.append("\"");
 	String value = this.value;
 	if (value == null) {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", name));
-	    String methodName = "get" + BeanUtils.capitalize(name);
+		    (messages.getMessage("baseFieldTag.missing", property));
+	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    try {
@@ -190,7 +190,8 @@ public final class CheckboxTag extends BaseHandlerTag {
 					 methodName, e.toString()));
 	    }
 	}
-	if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes"))
+	if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes")
+	    || value.equalsIgnoreCase("on"))
 	    results.append(" checked");
 	results.append(prepareEventHandlers());
 	results.append(prepareStyles());

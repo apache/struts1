@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ButtonTag.java,v 1.1 2000/06/15 01:27:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/15 01:27:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ButtonTag.java,v 1.2 2000/06/16 04:41:07 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 04:41:07 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.BeanUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.1 $ $Date: 2000/06/15 01:27:34 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 04:41:07 $
  */
 
 public final class ButtonTag extends BaseHandlerTag {
@@ -83,9 +83,9 @@ public final class ButtonTag extends BaseHandlerTag {
     // ----------------------------------------------------- Instance Variables
 
     /**
-     * The name of the generated button.
+     * The property name of the generated button.
      */
-    private String name = null;
+    private String property = null;
 
 
     /**
@@ -98,18 +98,19 @@ public final class ButtonTag extends BaseHandlerTag {
 
 
     /**
-     * Return the component name.
+     * Return the property name.
      */
-    public String getName() {
-        return (name);
+    public String getProperty() {
+        return (property);
     }
 
     /**
-     * Set the component name.
-     * @param name The component name
+     * Set the property name.
+     *
+     * @param name The property name
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setProperty(String property) {
+        this.property = property;
     }
 
 
@@ -156,9 +157,9 @@ public final class ButtonTag extends BaseHandlerTag {
     // Generate an HTML element
     StringBuffer results = new StringBuffer();
     results.append("<input type=\"button\"");
-    if (name != null) {
+    if (property != null) {
         results.append(" name=\"");
-        results.append(name);
+        results.append(property);
         results.append("\"");
     }
     results.append(" value=\"");

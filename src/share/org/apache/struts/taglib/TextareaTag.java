@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.5 2000/06/12 18:31:20 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/12 18:31:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.6 2000/06/16 04:41:08 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/06/16 04:41:08 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/12 18:31:20 $
+ * @version $Revision: 1.6 $ $Date: 2000/06/16 04:41:08 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -109,7 +109,7 @@ public class TextareaTag extends BaseInputTag {
 	// Create an appropriate "input" element based on our parameters
 	StringBuffer results = new StringBuffer("<textarea");
 	results.append(" name=\"");
-	results.append(name);
+	results.append(property);
 	results.append("\"");
 	if (cols >= 0) {
 	    results.append(" cols=\"");
@@ -128,8 +128,8 @@ public class TextareaTag extends BaseInputTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", name));
-	    String methodName = "get" + BeanUtils.capitalize(name);
+		    (messages.getMessage("baseFieldTag.missing", property));
+	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    Object value = null;

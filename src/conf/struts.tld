@@ -276,11 +276,6 @@
     <name>button</name>
     <tagclass>org.apache.struts.taglib.ButtonTag</tagclass>
     <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -343,6 +338,11 @@
     <attribute>
       <name>onMouseUp</name>
       <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -367,11 +367,6 @@
     <name>checkbox</name>
     <tagclass>org.apache.struts.taglib.CheckboxTag</tagclass>
     <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -437,6 +432,11 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>property</name>
+      <required>true</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>style</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -458,8 +458,8 @@
     <name>hidden</name>
     <tagclass>org.apache.struts.taglib.HiddenTag</tagclass>
     <attribute>
-      <name>name</name>
-      <required>name</required>
+      <name>property</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -487,11 +487,6 @@
     <attribute>
       <name>maxlength</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <name>name</name>
-      <required>name</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -565,6 +560,11 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
+      <name>property</name>
+      <required>name</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
       <name>size</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -591,8 +591,8 @@
     <name>property</name>
     <tagclass>org.apache.struts.taglib.PropertyTag</tagclass>
     <attribute>
-      <name>name</name>
-      <required>name</required>
+      <name>property</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -606,11 +606,6 @@
   <tag>
     <name>radio</name>
     <tagclass>org.apache.struts.taglib.RadioTag</tagclass>
-    <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
     <attribute>
       <name>onBlur</name>
       <required>false</required>
@@ -674,6 +669,11 @@
     <attribute>
       <name>onMouseUp</name>
       <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -780,11 +780,6 @@
     <tagclass>org.apache.struts.taglib.SelectTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
-      <name>name</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -847,6 +842,11 @@
     <attribute>
       <name>onMouseUp</name>
       <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -871,11 +871,6 @@
     <name>submit</name>
     <tagclass>org.apache.struts.taglib.SubmitTag</tagclass>
     <attribute>
-      <name>name</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -937,6 +932,11 @@
     </attribute>
     <attribute>
       <name>onMouseUp</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
@@ -964,11 +964,6 @@
     <attribute>
       <name>maxlength</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
-      <name>name</name>
-      <required>name</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -1039,6 +1034,11 @@
     <attribute>
       <name>onSelect</name>
       <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>true</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
@@ -1073,11 +1073,6 @@
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>
-      <name>name</name>
-      <required>name</required>
-      <rtexprvalue>false</rtexprvalue>
-    </attribute>
-    <attribute>
       <name>onBlur</name>
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
@@ -1145,6 +1140,11 @@
     <attribute>
       <name>onSelect</name>
       <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>property</name>
+      <required>name</required>
       <rtexprvalue>false</rtexprvalue>
     </attribute>
     <attribute>

@@ -4,15 +4,18 @@
 
 <html>
 <head>
-<struts:ifParameterEquals name="action" value="Create">
+<struts:ifPropertyEquals name="subscriptionForm"
+                         property="action" value="Create">
   <title><struts:message key="subscription.title.create"/></title>
-</struts:ifParameterEquals>
-<struts:ifParameterEquals name="action" value="Delete">
+</struts:ifPropertyEquals>
+<struts:ifPropertyEquals name="subscriptionForm"
+                         property="action" value="Delete">
   <title><struts:message key="subscription.title.delete"/></title>
-</struts:ifParameterEquals>
-<struts:ifParameterEquals name="action" value="Edit">
+</struts:ifPropertyEquals>
+<struts:ifPropertyEquals name="subscriptionForm"
+                         property="action" value="Edit">
   <title><struts:message key="subscription.title.edit"/></title>
-</struts:ifParameterEquals>
+</struts:ifPropertyEquals>
 </head>
 <body bgcolor="white">
 
@@ -20,7 +23,7 @@
 
 <struts:form action="saveSubscription.do" name="subscriptionForm"
                type="org.apache.struts.example.SubscriptionForm">
-<struts:hidden name="action"/>
+<struts:hidden property="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -37,7 +40,7 @@
       <struts:message key="prompt.mailHostname"/>
     </th>
     <td align="left">
-      <struts:text name="host" size="50"/>
+      <struts:text property="host" size="50"/>
     </td>
   </tr>
 
@@ -46,7 +49,7 @@
       <struts:message key="prompt.mailUsername"/>
     </th>
     <td align="left">
-      <struts:text name="username" size="50"/>
+      <struts:text property="username" size="50"/>
     </td>
   </tr>
 
@@ -55,7 +58,7 @@
       <struts:message key="prompt.mailPassword"/>
     </th>
     <td align="left">
-      <struts:password name="password" size="50"/>
+      <struts:password property="password" size="50"/>
     </td>
   </tr>
 
@@ -65,7 +68,7 @@
     </th>
     <td align="left">
 <%--
-      <struts:select name="type">
+      <struts:select property="type">
         <struts:option value="pop3">
           <struts:message key="option.pop3"/>
         </struts:option>
@@ -74,10 +77,10 @@
         </struts:option>
       </struts:select>
 --%>
-      <struts:radio name="type" value="imap">
+      <struts:radio property="type" value="imap">
         <struts:message key="option.imap"/>
       </struts:radio>
-      <struts:radio name="type" value="pop3">
+      <struts:radio property="type" value="pop3">
         <struts:message key="option.pop3"/>
       </struts:radio>
     </td>
@@ -110,8 +113,5 @@
   </tr>
 
 </table>
-
-<input type="hidden" name="action"
- value="<struts:parameter name="action"/>">
 
 </struts:form>

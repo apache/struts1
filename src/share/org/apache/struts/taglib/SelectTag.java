@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.2 2000/06/15 01:27:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 01:27:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.3 2000/06/16 04:41:08 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 04:41:08 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 01:27:36 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 04:41:08 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -105,7 +105,7 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * The property name we are associated with.
      */
-    private String name = null;
+    private String property = null;
 
 
     /**
@@ -130,9 +130,9 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * Return the property name.
      */
-    public String getName() {
+    public String getProperty() {
 
-	return (this.name);
+	return (this.property);
 
     }
 
@@ -140,11 +140,11 @@ public final class SelectTag extends BaseHandlerTag {
     /**
      * Set the property name.
      *
-     * @param name The new attribute key name
+     * @param property The new property name
      */
-    public void setName(String name) {
+    public void setProperty(String property) {
 
-	this.name = name;
+	this.property = property;
 
     }
 
@@ -184,7 +184,7 @@ public final class SelectTag extends BaseHandlerTag {
 	// Create an appropriate "form" element based on our parameters
 	StringBuffer results = new StringBuffer("<select");
 	results.append(" name=\"");
-	results.append(name);
+	results.append(property);
 	results.append("\"");
 	results.append(prepareEventHandlers());
 	results.append(prepareStyles());
@@ -209,8 +209,8 @@ public final class SelectTag extends BaseHandlerTag {
 	    Object bean = pageContext.findAttribute(Constants.BEAN_KEY);
 	    if (bean == null)
 		throw new JspException
-		    (messages.getMessage("baseFieldTag.missing", name));
-	    String methodName = "get" + BeanUtils.capitalize(name);
+		    (messages.getMessage("baseFieldTag.missing", property));
+	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    Object value = null;

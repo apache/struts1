@@ -18,7 +18,7 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-      <struts:text name="username" size="16" maxlength="16"/>
+      <struts:text property="username" size="16" maxlength="16"/>
     </td>
   </tr>
 
@@ -27,13 +27,13 @@
       <struts:message key="prompt.password"/>
     </th>
     <td align="left">
-      <struts:password name="password" size="16" maxlength="16"/>
+      <struts:password property="password" size="16" maxlength="16"/>
     </td>
   </tr>
 
   <tr>
     <td align="right">
-      <struts:submit name="submit" value="Submit"/>
+      <struts:submit property="submit" value="Submit"/>
     </td>
     <td align="left">
       <struts:reset/>
