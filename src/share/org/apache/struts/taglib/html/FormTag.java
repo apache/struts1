@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.28 2002/10/14 18:16:18 rleland Exp $
- * $Revision: 1.28 $
- * $Date: 2002/10/14 18:16:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.29 2002/10/26 00:05:02 dgraham Exp $
+ * $Revision: 1.29 $
+ * $Date: 2002/10/26 00:05:02 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.28 $ $Date: 2002/10/14 18:16:18 $
+ * @version $Revision: 1.29 $ $Date: 2002/10/26 00:05:02 $
  */
 
 public class FormTag extends TagSupport {
@@ -550,7 +550,7 @@ public class FormTag extends TagSupport {
         results.append(beanName);
         results.append("\"");
         results.append(" method=\"");
-        results.append(method == null ? "POST" : method);
+        results.append(method == null ? "post" : method);
         results.append("\" action=\"");
         results.append(response.encodeURL(getActionMappingURL()));
         results.append("\"");
