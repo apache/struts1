@@ -33,7 +33,7 @@
         <p>
             A fully-compatible point release does not always need a "preview" beta or milestone release.
             If appropriate, a Release Candidate can be cut, uploaded to the Release Manager's home directory
-            on cvs.apache.org (~/public_html), and voted to be released to the general public from there.
+            on svn.apache.org (~/public_html), and voted to be released to the general public from there.
         </p>
 
         <p>

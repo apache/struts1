@@ -81,12 +81,16 @@
     </menu>
 
     <menu name="Development">
+        <!-- Not sure what would go here for Subversion
         <item name="CVS Access"  href="reports/cvs-usage.html"/>
+        -->
         <item
-            name="CVS Repository"
-            href="http://cvs.apache.org/viewcvs/jakarta-struts/"
+            name="Subversion Repository"
+            href="http://svn.apache.org/viewcvs.cgi/struts/trunk/?root=Apache-SVN/"
             />
+        <!-- Again, is there a Subversion equivalent?     
         <item name="CVS Changelog"  href="reports/changelog-report.html"/>
+        -->
         <item name="File Activity"  href="reports/file-activity-report.html"/>
         <item name="Build Dependencies"  href="reports/dependencies.html"/>
         <item

@@ -363,7 +363,7 @@ about how to configure additional security manager permissions.</p>
         </ul></li>
 
 
-   <li>If you are a Struts developer with write access to the CVS repository,
+   <li>If you are a Struts developer with write access to the Subversion repository,
         be sure that you do <strong>NOT</strong> check in a copy of the
         <code>build.properties</code> file, since it will be different for
         each individual developer.</li>

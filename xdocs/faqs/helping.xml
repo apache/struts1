@@ -301,7 +301,7 @@ This way you can judge for yourself how quickly the development is proceeding,
 and whether what is being developed will meet your needs. 
 If you need a feature right now, you can use the nightly build, or roll your 
 own patch. 
-There are no private CVS's or private development lists. 
+There are no private Subversion repositories or private development lists. 
 What you see is what we got. 
 If you are following the DEV list, then you know everything the developers 
 know. 

@@ -268,7 +268,7 @@ each individual web app!  Doing so will cause problems with
             (required only if you wish to use the <code>deploy.catalina</code>
             target).</li>
         </ul></li>
-    <li>If you are a Struts developer with write access to the CVS repository,
+    <li>If you are a Struts developer with write access to the Subversion repository,
         be sure that you do <strong>NOT</strong> check in a copy of the
         <code>build.properties</code> file, since it will be different for
         each individual developer.</li>

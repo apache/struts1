@@ -128,7 +128,7 @@ the environment of a running servlet container.</p>
 <p>
 For static unit tests, we use the <a href="http://www.junit.org">JUnit framework</a>.
 The sources for these tests are in the "src/test"
-hierarchy in the CVS repository, and are executed via the "test.junit"
+hierarchy in the Subversion repository, and are executed via the "test.junit"
 target in the top-level build.xml file.  Such tests are focused on the
 low-level functionality of individual methods, are particularly
 suitable for the static methods in the org.apache.struts.util utility

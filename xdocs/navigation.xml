@@ -56,9 +56,13 @@
     </menu>
 
     <menu name="Development">
-      <item name="CVS Access"                 href="cvs-usage.html"/>
-      <item name="CVS Repository"             href="http://cvs.apache.org/viewcvs/jakarta-struts/"/>
-      <item name="CVS Changelog"              href="changelog-report.html"/>
+    <!-- cvs-usage.html doesn't exist so I'm commenting this out
+      <item name="CVS Access"          href="cvs-usage.html"/>
+    -->  
+      <item name="Subversion Repository"             href="http://svn.apache.org/repos/asf/struts/trunk/"/>
+    <!-- Is there a Subversion equivalent? 
+      <item name="Subversion Changelog"              href="changelog-report.html"/>
+    -->  
       <item name="File Activity"              href="file-activity-report.html"/>
       <item name="Build Dependencies"         href="dependencies.html"/>
       <item name="Release Guidelines"         href="releases.html"/>
