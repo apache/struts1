@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.11 2000/12/27 00:16:02 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/12/27 00:16:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.12 2000/12/27 04:50:16 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2000/12/27 04:50:16 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/12/27 00:16:02 $
+ * @version $Revision: 1.12 $ $Date: 2000/12/27 04:50:16 $
  */
 
 public class Action {
@@ -174,6 +174,14 @@ public class Action {
 
 
     /**
+     * The request attribute key under which our ActionMapping instance
+     * is passed.
+     */
+    public static final String MAPPING_KEY =
+        "org.apache.struts.action.mapping.instance";
+
+
+    /**
      * The context attributes key under which our ActionMappings collection
      * are normally stored, unless overridden when initializing our
      * ActionServlet.
@@ -188,6 +196,14 @@ public class Action {
      */
     public static final String MESSAGES_KEY =
       "org.apache.struts.action.MESSAGE";
+
+
+    /**
+     * The request attributes key under which our multipart class is stored.
+     */
+    public static final String MULTIPART_KEY =
+        "org.apache.struts.action.mapping.multipartclass";
+
 
 
     // ----------------------------------------------------- Instance Variables

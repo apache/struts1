@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.44 2000/12/27 02:29:25 craigmcc Exp $
- * $Revision: 1.44 $
- * $Date: 2000/12/27 02:29:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.45 2000/12/27 04:50:16 craigmcc Exp $
+ * $Revision: 1.45 $
+ * $Date: 2000/12/27 04:50:16 $
  *
  * ====================================================================
  *
@@ -212,7 +212,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.44 $ $Date: 2000/12/27 02:29:25 $
+ * @version $Revision: 1.45 $ $Date: 2000/12/27 04:50:16 $
  */
 
 public class ActionServlet
@@ -1707,11 +1707,12 @@ public class ActionServlet
         //place the mapping's multipart request handler class
         //into the request to be read by the BeanUtils.populate
         //method in the event of a multipart request
-        request.setAttribute("org.apache.struts.action.mapping.multipartclass", 
+        if (mapping.getMultipartClass() != null)
+            request.setAttribute(Action.MULTIPART_KEY,
                                 mapping.getMultipartClass());
         //also pass the mapping through the request
-        request.setAttribute("org.apache.struts.action.mapping.instance",
-                                mapping);
+        request.setAttribute(Action.MAPPING_KEY,
+                             mapping);
         BeanUtils.populate(formInstance, mapping.getPrefix(),
                            mapping.getSuffix(), request);
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.15 2000/11/13 17:31:05 mschachter Exp $
- * $Revision: 1.15 $
- * $Date: 2000/11/13 17:31:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.16 2000/12/27 04:50:17 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2000/12/27 04:50:17 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
-
+import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
@@ -90,7 +90,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.15 $ $Date: 2000/11/13 17:31:05 $
+ * @version $Revision: 1.16 $ $Date: 2000/12/27 04:50:17 $
  */
 
 public final class BeanUtils {
@@ -651,9 +651,9 @@ public final class BeanUtils {
                 "\"" + bean.getClass().getName() + "\"");
             }
             String multipartClass = (String)
-            request.getAttribute("org.apache.struts.action.mapping.multipartclass");
+                request.getAttribute(Action.MULTIPART_KEY);
 
-            request.removeAttribute("org.apache.struts.action.mapping.multipartclass");
+            request.removeAttribute(Action.MULTIPART_KEY);
 
             if (multipartClass != null) {
                 //try to initialize the mapping specific request handler
@@ -711,8 +711,8 @@ public final class BeanUtils {
             //set servlet and mapping info
             multipart.setServlet(servlet);
             multipart.setMapping((ActionMapping)
-            request.getAttribute("org.apache.struts.action.mapping.instance"));
-            request.removeAttribute("org.apache.struts.action.mapping.instance");
+                                 request.getAttribute(Action.MAPPING_KEY));
+            request.removeAttribute(Action.MAPPING_KEY);
 
             //initialize request class handler
             multipart.handleRequest(request);
