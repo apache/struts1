@@ -25,7 +25,9 @@
                                       installation. This is required only when
                                       executing the "deploy.catalina" target.
 
-        servlet.jar                   The path to the Servlet API jar.
+        servletapi.home               (required).  The path to the binary
+                                      distribution directory of your
+                                      servlet API distribution.
 
         tomcat.home                   (optional). The path to the Tomcat 3.x
                                       installation. This is required only when
@@ -36,13 +38,17 @@
                                       when executing the "deploy.catalina"
                                       target.
 
-        The values defined below are default values for properties that were
-        not defined
 -->
 
-    <property name="servlet.jar"   value="../jakarta-servletapi/lib/servlet.jar"/>
-    <property name="catalina.home" value="../jakarta-tomcat-4.0/build"/>
-    <property name="tomcat.home"   value="../build/tomcat"/>
+    <!-- Load local and user build preferences -->
+    <property file="build.properties"/>
+    <property file="${user.home}/.build.properties"/>
+
+    <!-- Default values for unspecified properties -->
+    <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
+    <property name="servletapi.home" value="../jakarta-servletapi"/>
+    <property name="tomcat.home"     value="../build/tomcat"/>
+    <property name="xerces.home"     value="../xml-xerces"/>
 
 
 <!-- ========== Initialization Properties ================================= -->
@@ -106,6 +112,8 @@
     <!-- Web directory -->
     <property name="web.dir" value="web"/>
 
+    <!-- Location of the "servlet.jar" file to compile against -->
+    <property name="servlet.jar"     value="${servletapi.home}/lib/servlet.jar"/>
 
 <!-- ========== Executable Targets ======================================== -->
 
