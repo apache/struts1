@@ -24,13 +24,13 @@
 
     <!-- Logon form bean -->
     <form-bean      name="invoiceForm"
-                    type="org.apache.struts.example.tiles.invoice.InvoiceForm"/>
+                    type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
     <form-bean      name="myPortalSettingsForm"
-                    type="org.apache.struts.example.tiles.portal.PortalSettingsForm"/>
+                    type="org.apache.struts.webapp.tiles.portal.PortalSettingsForm"/>
     <form-bean      name="myMenuSettingsForm"
-                    type="org.apache.struts.example.tiles.portal.MenuSettingsForm"/>
+                    type="org.apache.struts.webapp.tiles.portal.MenuSettingsForm"/>
     <form-bean      name="mySkinSettingsForm"
-                    type="org.apache.struts.example.tiles.skin.LayoutSettingsForm"/>
+                    type="org.apache.struts.webapp.tiles.skin.LayoutSettingsForm"/>
 
   </form-beans>
 
@@ -46,46 +46,46 @@
 
     <!-- Edit user registration -->
     <action    path="/tutorial/forwardExampleAction"
-               type="org.apache.struts.example.tiles.tutorial.ForwardExampleAction">
+               type="org.apache.struts.webapp.tiles.tutorial.ForwardExampleAction">
       <forward name="success"              path="forward.example.success.page"/>
     </action>
 
   <!-- Edit invoice example -->
     <action     path="/tutorial/lang"
-                type="org.apache.struts.example.tiles.lang.SelectLocaleAction">
+                type="org.apache.struts.webapp.tiles.lang.SelectLocaleAction">
       <forward  name="failure"        path="/tutorial/index.jsp"/>
       <forward  name="success"        path="/tutorial/index.jsp"/>
   </action>
   
   <!-- Dynamic template example -->
     <action     path="/tutorial/dynTemplate"
-                type="org.apache.struts.example.tiles.template.DynTemplateAction">
+                type="org.apache.struts.webapp.tiles.template.DynTemplateAction">
       <forward  name="success"        path="/tutorial/dynFramesetPage.jsp"/>
   </action>
   
   
     <!-- Edit invoice example -->
   <action     path="/tutorial/invoice/editInvoice"
-       		  type="org.apache.struts.example.tiles.invoice.EditInvoiceAction"
+       		  type="org.apache.struts.webapp.tiles.invoice.EditInvoiceAction"
 			  name="invoiceForm" >
       <forward  name="success"        path="/tutorial/invoice/index.jsp"/>
   </action>
 
     <!-- Test Struts action and Tiles integration -->
   <action     path="/test/testAction"
-       		  type="org.apache.struts.example.tiles.test.TestActionTileAction">
+       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction">
       <forward  name="success"        path="test.struts.action"/>
       <forward  name="failure"        path="test.struts.action.fail"/>
   </action>
 
     <!-- Test Struts Forwardintegration -->
   <action     path="/test/testForward"
-       		  type="org.apache.struts.example.tiles.test.TestActionTileAction"
+       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction"
 			  forward="test.struts.action"/>
 
     <!-- Test Struts action and Tiles integration -->
   <action     path="/test/testActionForwardJsp"
-       		  type="org.apache.struts.example.tiles.test.TestActionTileAction">
+       		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction">
       <forward  name="success"        path="/test/layout.jsp"/>
       <forward  name="failure"        path="test.struts.action.fail"/>
   </action>
@@ -94,6 +94,7 @@
                 type="org.apache.struts.tiles.actions.DefinitionDispatcherAction"
 				parameter="def">
 	 <forward  name="success" path="anything" />
+	 <forward  name="error"   path="anything" />
   </action>
   
   <!-- =======================================================  -->
@@ -101,7 +102,7 @@
   <!-- =======================================================  -->
     <!-- Dynamic Portal user lists retrieving action -->
   <action     path="/actions/myPortal"
-       		  type="org.apache.struts.example.tiles.dynPortal.RetrievePortalAction">
+       		  type="org.apache.struts.webapp.tiles.dynPortal.RetrievePortalAction">
       <forward  name="success"        path="main.portal.body"/>
   </action>
 
@@ -114,7 +115,7 @@
 
     <!-- Dynamic Portal user lists set tile-action : -->
   <action     path="/actions/myPortalPrefs.tile"
-       		  type="org.apache.struts.example.tiles.dynPortal.SetPortalPrefsAction"
+       		  type="org.apache.struts.webapp.tiles.dynPortal.SetPortalPrefsAction"
 			  name="portalPrefsForm">
       <forward  name="preferences"    path="/tutorial/dynPortal/myPortalPrefTile.jsp"/>
       <forward  name="portal"         path="dynamic.portal.body"/>
@@ -126,12 +127,12 @@
   <!-- =======================================================  -->
     <!-- Dynamic Portal user lists retrieving action -->
   <action     path="/portal/myPortal"
-       		  type="org.apache.struts.example.tiles.portal.UserPortalAction">
+       		  type="org.apache.struts.webapp.tiles.portal.UserPortalAction">
   </action>
 
     <!-- Tiles Action associated to portal settings -->
   <action     path="/examples/controller/myPortalSettings"
-       		  type="org.apache.struts.example.tiles.portal.UserPortalSettingsAction"
+       		  type="org.apache.struts.webapp.tiles.portal.UserPortalSettingsAction"
 			  name="myPortalSettingsForm" >
   </action>
 
@@ -144,7 +145,7 @@
 
     <!-- Tiles Action associated to Tile myMenuSettings -->
   <action     path="/examples/controller/myMenuSettings"
-       		  type="org.apache.struts.example.tiles.portal.UserMenuSettingsAction"
+       		  type="org.apache.struts.webapp.tiles.portal.UserMenuSettingsAction"
 			  name="myMenuSettingsForm" >
   </action>
 
@@ -166,12 +167,12 @@
   </action>
 
     <action     path="/examples/controller/mySkinSettings"
-                type="org.apache.struts.example.tiles.skin.LayoutSettingsAction"
+                type="org.apache.struts.webapp.tiles.skin.LayoutSettingsAction"
 				name="mySkinSettingsForm" >
    </action>
 
     <action     path="/examples/controller/layoutSwitch"
-                type="org.apache.struts.example.tiles.skin.LayoutSwitchAction"  >
+                type="org.apache.struts.webapp.tiles.skin.LayoutSwitchAction"  >
    </action>
 
 
@@ -179,7 +180,7 @@
   <!-- Tiles 1.1 Rss Channel -->
   <!-- =======================================================  -->
     <action     path="/examples/controller/rssChannel"
-                type="org.apache.struts.example.tiles.rssChannel.RssChannelsAction">
+                type="org.apache.struts.webapp.tiles.rssChannel.RssChannelsAction">
    </action>
 
 
@@ -187,7 +188,7 @@
   <!-- Rss Channel -->
   <!-- =======================================================  -->
     <action     path="/actions/rssChannel"
-                type="org.apache.struts.example.tiles.rssChannel.Channels">
+                type="org.apache.struts.webapp.tiles.rssChannel.Channels">
       <forward  name="continue"        path="/tutorial/dynPortal/Channels.jsp"/>
       <forward  name="error"           path="/tutorial/dynPortal/Errors.jsp"/>
    </action>
@@ -196,13 +197,13 @@
   <!-- test, to be removed -->
   <!-- =======================================================  -->
     <action     path="/tutorial/testAction"
-                type="org.apache.struts.example.tiles.lang.SelectLocaleAction">
+                type="org.apache.struts.webapp.tiles.lang.SelectLocaleAction">
       <forward  name="failure"        path="/tutorial/common/footer.jsp"/>
       <forward  name="success"        path="/tutorial/common/footer.jsp"/>
   </action>
   
     <action     path="/tutorial/testAction2"
-                type="org.apache.struts.example.tiles.tutorial.ForwardExampleAction">
+                type="org.apache.struts.webapp.tiles.tutorial.ForwardExampleAction">
       <forward  name="failure"        path="forward.example.success.page"/>
       <forward  name="success"        path="forward.example.success.page"/>
   </action>
@@ -220,12 +221,25 @@
 			   
   </action-mappings>
 
-  <!-- ========== Associated Request Processor settings =================== -->
-  <!-- Here we specified the tiles processor -->
-  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"  />
   
+  <!-- ========== Tiles plug-in setting settings =================== -->
+  <!-- Here we specified the tiles plug-in.
+       This plug-in register appropriate Request Processor -->
+  <!--  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"  />  -->
+
   <!-- ========== Associated Messages Ressource settings =================== -->
   <!-- Not used by tiles or this website, but needed due to a bug in actual Struts version -->
-  <message-resources parameter="org.apache.struts.example.tiles.dev1-1.ApplicationResources" null="false" />
+  <message-resources parameter="org.apache.struts.webapp.tiles.dev1-1.ApplicationResources" null="false" />
+
+  
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml,
+                            /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
+                            /WEB-INF/tiles-examples-defs.xml" />
+    <set-property property="definitions-debug" value="1" />
+    <set-property property="definitions-parser-details" value="0" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
 
 </struts-config>

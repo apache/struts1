@@ -67,7 +67,7 @@
 
   <!-- Test Tiles Controller -->
 <definition name="test.struts.controller" path="/test/layout.jsp"
-      controllerClass="org.apache.struts.example.tiles.test.TestTileController" >
+      controllerClass="org.apache.struts.webapp.tiles.test.TestTileController" >
   <put name="title"  value="Test Tile Controller : call to Controller" />
   <put name="header" value="header.jsp"/>
   <put name="body"   value="body.jsp" />

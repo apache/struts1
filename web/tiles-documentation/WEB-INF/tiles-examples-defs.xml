@@ -67,7 +67,7 @@
   <!-- User menu definition -->
   <!-- This menu is customizable by user. Definition only contains default items -->
 <definition name="examples.userMenu" extends="examples.menu.root"
-            controllerClass="org.apache.struts.example.tiles.portal.UserMenuAction"  >
+            controllerClass="org.apache.struts.webapp.tiles.portal.UserMenuAction"  >
   <put name="catalogSettings" value="examples.myMenu.catalog.settings"/>
   <put name="catalogName" value="examples.portal.menuCatalog"/>
   <put name="title" value="My Menu" />

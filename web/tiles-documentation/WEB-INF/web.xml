@@ -9,8 +9,8 @@
   <!-- Action Servlet Configuration -->
   <servlet>
     <servlet-name>action</servlet-name>
-    <!-- <servlet-class>org.apache.struts.action.ActionServlet</servlet-class> --> 
-    <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class> 
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class> 
+    <!-- <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class> -->
 	<init-param>
       <param-name>definitions-config</param-name>
       <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
@@ -18,7 +18,7 @@
     </init-param>
     <init-param>
       <param-name>definitions-debug</param-name>
-      <param-value>1</param-value>
+      <param-value>0</param-value>
     </init-param>
     <init-param>
       <param-name>definitions-parser-details</param-name>
