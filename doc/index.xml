@@ -42,6 +42,36 @@
 
   </section>
 
+  <section name="Learning About Struts" href="Docs">
+
+  <p>The <a href="userGuide/kickstart.html"><b>Kickstart FAQ</b></a> quickly answers 
+  the most common questions about Struts.</p>
+
+  <p>A concise <a href="userGuide/index.html"><b>Users Guide</b></a> is also provided 
+  with the distribution. The User Guide introduces the Model View Controller 
+  architecture, and how it relates to the major components of Struts.</p>
+
+  <p>For more detail about a specific class or package, the Struts 
+  <a href="http://jakarta.apache.org/struts/api-1.0/index.html"><b>Javadocs</b></a>
+  are comprehensive and carefully maintained. It is strongly recommended that 
+  you refer to the <a href="http://jakarta.apache.org/struts/api-1.0/index.html">Javadoc</a> 
+  for each class as you begin to use it, to be sure important features and options 
+  are not overlooked. What you don't know, can't help you.</p>
+
+  <p>Several Developer Guides are also provided, to help you get started with the 
+  Struts tag extensions and utility packages.</p>
+
+  <p>Of course, the only true documentation is the code itself. If you have any questions 
+  about how Struts actually works, do not hestate to <i>use the source</i>. For the 
+  complete, buildable source code to the entire Struts framework, see the "src" folder in 
+  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src/"><b>Struts 1.0 source distribution</b></a>.</p>
+
+  <p>The Struts <a href="userGuide/resources.html"><b>Resources</b></a> page provides links to 
+  everything else written about  Struts, including books, articles, tutorials, and sample 
+  applications. There are also links to public sites "Powered by Struts". </p>
+
+  </section>
+
   <section name="Acquiring Struts" href="Acquiring">
 
   <p>The production release of <strong>Struts 1.0</strong> is available in

@@ -7,9 +7,9 @@
 
     <menu name="Welcome">
         <item name="Home"                    href="index.html"/>
+        <item name="Kickstart FAQ"           href="userGuide/kickstart.html"/> 
         <item name="User Guide"              href="userGuide/index.html"/>
         <item name="Resources"               href="userGuide/resources.html"/>
-        <item name="Kickstart FAQ"           href="userGuide/kickstart.html"/> 
         <item name="Who We Are"              href="userGuide/volunteers.html"/>
     </menu>
 

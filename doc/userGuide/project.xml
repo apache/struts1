@@ -7,12 +7,12 @@
 
     <menu name="User's Guide">
       <item name="Table of Contents"     href="index.html"/>
+      <item name="Kickstart FAQ"         href="kickstart.html"/>
       <item name="Introduction"          href="introduction.html"/>
       <item name="Model Components"      href="building_model.html"/>
       <item name="View Components"       href="building_view.html"/>
       <item name="Controller Components" href="building_controller.html"/>
       <item name="Resources"             href="resources.html"/>
-      <item name="Kickstart FAQ"         href="kickstart.html"/>
       <item name="Who We Are"            href="volunteers.html"/>
       <item name="Struts Home"           href="../index.html"/>
     </menu>

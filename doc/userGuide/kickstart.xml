@@ -49,11 +49,13 @@
 </section>
 
 <section href="who" name="Who wrote Struts?">
-<p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig actively leads the Struts project, and is also the lead developer on the Tomcat 4.0 project. There are now several committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;.</p>
+<p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig is the primary developer of both Struts and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>, the official reference implementation for a Java servlet container. With stable releases of Struts and Tomcat 4 in circulation, Craig is now working as the Implementation Engineer for Sun's new <a href="http://java.sun.com/pr/2001/06/pr010604-03.html">Web Services Pack</a>. </p>
+
+<p>There are now many active committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;. All told, 17 individual developers and committers contributed to the Struts 1.0 codebase.</p>
 </section>
 
 <section href="struts" name="Why is it called Struts?">
-<p>It's a reference to struts in the architechtural sense, a reminder of the nearly invisible pieces that hold up buildings, houses, and bridges.</p>
+<p>It's a reference to struts in the architectural sense, a reminder of the nearly invisible pieces that hold up buildings, houses, and bridges.</p>
 </section>
 
 <section href="license" name="How is Struts licensed?">
@@ -88,13 +90,12 @@
 </section>
 
 <section href="help" name="Where can I get help with Struts?">
-<p>The Struts package comes complete with a <a href="http://jakarta.apache.org/struts/userGuide/index.html"> users guide</a> to introduce people to the framework and its underlying technologies. Various components also have their own in-depth developers guide, to cover more advanced topics. Of course, standard &quot;JavaDocs&quot; are included along with the<b> full source code</b>. The <a href="http://jakarta.apache.org/site/mail.html"> Strut's mailing list</a> is also very active, and welcomes posts from new users.</p>
-<p>There are also many third-party tutorials, articles, and books that cover Struts. See our <a href="resources.html#tutorials">Resources page</a> for current listings and links</p>
+<p>The Struts package comes complete with a <a href="http://jakarta.apache.org/struts/userGuide/index.html">users guide</a> to introduce people to the framework and its underlying technologies. Various components also have their own in-depth developers guide, to cover more advanced topics. Comprehesive <a href="http://jakarta.apache.org/struts/api-1.0/index.html">Javadocs</a> are included along with the <b>full source code</b>. The <a href="http://jakarta.apache.org/site/mail.html">Strut's mailing list</a> is also very active, and welcomes posts from new users.</p>
+<p>There are also many third-party tutorials, articles, and books that cover Struts. See our <a href="resources.html#tutorials">Resources page</a> for current listings and links. Two very useful resources are the <a href="http://www.mail-archive.com/index.php3?hunt=struts">mailing list archives</a> and the <a href="http://www.jguru.com/forums/Struts">Struts Forum at JGuru</a>.</p>
 </section>
 
 <section href="support" name="Is commercial support available?">
 <p>There is no official, commercial support for Struts, though third parties may offer different degrees of support. A list of Struts consultants is available on our <a href="resources.html#consultants">Resources page</a></p>
-<p>There are also many third-party tutorials, articles, and books that cover Struts. See our <a href="resources.html#tutorials">Resources page</a> for more information about these.</p>
 </section>
 
 <section href="providers" name="Are there ISPs that will host my Struts application?">
@@ -120,11 +121,11 @@
 <section href="bugs" name="Where can I report bugs or make feature requests?">
 <p>You can research and report outstanding fixes and feature requests using <a href="http://jakarta.apache.org/site/bugs.html">Jakarta Bugzilla</a>.</p>
 <p>If you are unsure if this is in actual problem, feel free to bring it up on the list first. But to be sure an issue is resolved, always report it to <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>.</p>
-<p>Struts also maintains a <a href="../todo-1.1.html">TODO list</a> regarding planned features.</p>
+<p>Struts also maintains a <a href="../todo-1.1.html">TODO list</a> outlining features being planned or developed.</p>
 </section>
 
 <section href="contribute" name="How can I contribute to the development of Struts?">
-<p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>. These are the same people who distribute the Apache Web server. Like all ASF projects, Struts is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>, <a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and <a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can contribute patches, new code, and documentation. The most active Developers may become Committers, who make the actual decisions about the Strut's codebase.</p>
+<p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>. These are the same people who distribute the Apache Web server. Like all ASF projects, Struts is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>, <a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and <a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can contribute patches, new code, and documentation. The most active Developers may become <a href="http://jakarta.apache.org/site/roles.html">Committers</a>, who make the actual decisions about the Strut's codebase.</p>
 <p>You can start by joining the Struts User list. If you enjoy participating there, then sign up for the Struts Developer list too. If you find any problems with Struts, or find a missing feature, you can enter a record to our <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> database.</p>
 </section>
 
@@ -160,7 +161,7 @@ DEV list, then you know everything the developers know. Really, you do.</p>
 <section href="unsubscribe" name="How do I unsubscribe from the mailing list?">
 <p><b>From the email account used to subscribe to the list,</b> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.</p>
 
-  <p>Next: <a href="volunteers.html">Who We Are</a></p>
+  <p>Next: <a href="introduction.html">Introduction to the Users Guide</a></p>
 
 </section>
 
