@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.8 2003/07/12 00:06:01 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/07/12 00:06:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.9 2003/07/31 03:45:41 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/31 03:45:41 $
  *
  * ====================================================================
  *
@@ -78,6 +78,7 @@ import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
+import org.apache.struts.tiles.TilesUtil;
 
 /**
  * <p>An <strong>Action</strong> that dispatches to a Tiles Definition
@@ -109,7 +110,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.8 $ $Date: 2003/07/12 00:06:01 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/31 03:45:41 $
  */
 public class DefinitionDispatcherAction extends Action {
     
@@ -158,7 +159,7 @@ public class DefinitionDispatcherAction extends Action {
         try {
             // Read definition from factory, but we can create it here.
             ComponentDefinition definition =
-                DefinitionsUtil.getDefinition(
+                TilesUtil.getDefinition(
                     name,
                     request,
                     getServlet().getServletContext());
