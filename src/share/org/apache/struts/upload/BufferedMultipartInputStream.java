@@ -1,3 +1,64 @@
+/*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/BufferedMultipartInputStream.java,v 1.3.2.5 2003/04/21 02:52:28 rleland Exp $
+ * $Revision: 1.3.2.5 $
+ * $Date: 2003/04/21 02:52:28 $
+ *
+ * ====================================================================
+ *
+ * The Apache Software License, Version 1.1
+ *
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution, if
+ *    any, must include the following acknowlegement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
+ *
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their names without prior written
+ *    permission of the Apache Group.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ *
+ */
+
 package org.apache.struts.upload;
 
 import java.io.IOException;
@@ -10,60 +71,60 @@ import java.io.ByteArrayOutputStream;
  * readLine() method.
  */
 public class BufferedMultipartInputStream extends InputStream {
-
+   
     /**
      * The underlying InputStream used by this class
      */
     protected InputStream inputStream;
-
+    
     /**
      * The byte array used to hold buffered data
      */
     protected byte[] buffer;
-
+    
     /**
      * The current offset we're at in the buffer's byte array
      */
     protected int bufferOffset = 0;
-
+    
     /**
      * The size of the byte array buffer
      */
     protected int bufferSize = 8192;
-
+    
     /**
      * The number of bytes read from the underlying InputStream that are
      * in the buffer
      */
     protected int bufferLength = 0;
-
+    
     /**
      * The total number of bytes read so far
      */
     protected int totalLength = 0;
-
+    
     /**
      * The content length of the multipart data
      */
     protected long contentLength;
-
+    
     /**
      * The maximum allowed size for the multipart data, or -1 for an unlimited
      * maximum file length
      */
     protected long maxSize = -1;
-
+    
     /**
      * Whether or not bytes up to the Content-Length have been read
      */
     protected boolean contentLengthMet = false;
-
+    
     /**
      * Whether or not bytes up to the maximum length have been read
      */
     protected boolean maxLengthMet = false;
-
-
+    
+    
     /**
      * Public constructor for this class, just wraps the InputStream
      * given
@@ -81,14 +142,14 @@ public class BufferedMultipartInputStream extends InputStream {
         this.bufferSize = bufferSize;
         this.contentLength = contentLength;
         this.maxSize = maxSize;
-
-        if (maxSize < contentLength) {
+        
+        if ((maxSize != -1) && (maxSize < contentLength)) {
             throw new MaxLengthExceededException(maxSize);
         }
         buffer = new byte[bufferSize];
         fill();
     }
-
+    
     /**
      * This method returns the number of available bytes left to read
      * in the buffer before it has to be refilled
@@ -96,50 +157,50 @@ public class BufferedMultipartInputStream extends InputStream {
     public int available() {
         return bufferLength - bufferOffset;
     }
-
+    
     /**
      * This method attempts to close the underlying InputStream
      */
     public void close() throws IOException {
         inputStream.close();
     }
-
+    
     /**
      * This method calls on the mark() method of the underlying InputStream
      */
     public void mark(int position) {
-        inputStream.mark(position);
-    }
-
+        inputStream.mark(position);  
+    } 
+    
     /**
      * This method calls on the markSupported() method of the underlying InputStream
      * @return Whether or not the underlying InputStream supports marking
      */
     public boolean markSupported() {
-        return inputStream.markSupported();
+        return inputStream.markSupported();        
     }
-
+    
     /**
      * @return true if the maximum length has been reached, false otherwise
      */
     public boolean maxLengthMet() {
         return maxLengthMet;
     }
-
+    
     /**
      * @return true if the content length has been reached, false otherwise
      */
     public boolean contentLengthMet() {
         return contentLengthMet;
     }
-
+    
     /**
      * This method returns the next byte in the buffer, and refills it if necessary.
      * @return The next byte read in the buffer, or -1 if the end of the stream has
      *         been reached
      */
     public int read() throws IOException {
-
+        
         if (maxLengthMet) {
             throw new MaxLengthExceededException(maxSize);
         }
@@ -149,34 +210,34 @@ public class BufferedMultipartInputStream extends InputStream {
         if (buffer == null) {
             return -1;
         }
-
-        if (bufferOffset < bufferLength) {
-            return (int)(char) buffer[bufferOffset++];
+        
+        if (bufferOffset < bufferLength) {            
+            return (int)(char) buffer[bufferOffset++];            
         }
         fill();
-        return read();
+        return read();        
     }
-
+    
     /**
      * This method populates the byte array <code>b</code> with data up to
      * <code>b.length</code> bytes
      */
     public int read(byte[] b) throws IOException {
-        return read(b, 0, b.length);
+        return read(b, 0, b.length);        
     }
-
+    
     /**
-     * This method populates the byte array <code>b</code> with data up to
+     * This method populates the byte array <code>b</code> with data up to 
      * <code>length</code> starting at b[offset]
      */
     public int read(byte[] b, int offset, int length) throws IOException {
-
+        
+        int count = 0;
         int read = read();
         if (read == -1) {
             return -1;
         }
-        int count = 1;
-
+        
         while ((read != -1) && (count < length)) {
             b[offset] = (byte) read;
             read = read();
@@ -185,20 +246,20 @@ public class BufferedMultipartInputStream extends InputStream {
         }
         return count;
     }
-
+    
     /**
      * This method reads into the byte array <code>b</code> until
      * a newline ('\n') character is encountered or the number of bytes
      * specified by <code>length</code> have been read
      */
     public int readLine(byte[] b, int offset, int length) throws IOException {
-
+        
         int count = 0;
         int read = read();
         if (read == -1) {
             return -1;
         }
-
+        
         while ((read != -1) && (count < length)) {
             if (read == '\n')
                 break;
@@ -236,7 +297,7 @@ public class BufferedMultipartInputStream extends InputStream {
      * InputStream
      */
     public void reset() throws IOException {
-        inputStream.reset();
+        inputStream.reset();        
     }
 
     /**
@@ -270,7 +331,7 @@ public class BufferedMultipartInputStream extends InputStream {
             else {
                 bufferLength = bytesRead;
                 totalLength += bytesRead;
-                bufferOffset = 0;
+                bufferOffset = 0;            
             }
         }
     }

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartBoundaryInputStream.java,v 1.2 2002/07/06 04:44:07 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/06 04:44:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartBoundaryInputStream.java,v 1.2.2.1 2003/04/21 02:52:28 rleland Exp $
+ * $Revision: 1.2.2.1 $
+ * $Date: 2003/04/21 02:52:28 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without

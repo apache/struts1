@@ -1,12 +1,73 @@
+/*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/MultipartIterator.java,v 1.13.2.7 2003/04/21 02:52:28 rleland Exp $
+ * $Revision: 1.13.2.7 $
+ * $Date: 2003/04/21 02:52:28 $
+ *
+ * ====================================================================
+ *
+ * The Apache Software License, Version 1.1
+ *
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
+ * reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in
+ *    the documentation and/or other materials provided with the
+ *    distribution.
+ *
+ * 3. The end-user documentation included with the redistribution, if
+ *    any, must include the following acknowlegement:
+ *       "This product includes software developed by the
+ *        Apache Software Foundation (http://www.apache.org/)."
+ *    Alternately, this acknowlegement may appear in the software itself,
+ *    if and wherever such third-party acknowlegements normally appear.
+ *
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
+ *    Foundation" must not be used to endorse or promote products derived
+ *    from this software without prior written permission. For written
+ *    permission, please contact apache@apache.org.
+ *
+ * 5. Products derived from this software may not be called "Apache"
+ *    nor may "Apache" appear in their names without prior written
+ *    permission of the Apache Group.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED.  IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+ * USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This software consists of voluntary contributions made by many
+ * individuals on behalf of the Apache Software Foundation.  For more
+ * information on the Apache Software Foundation, please see
+ * <http://www.apache.org/>.
+ *
+ */
+
 package org.apache.struts.upload;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
-import java.io.UnsupportedEncodingException;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -30,12 +91,38 @@ import javax.servlet.http.HttpServletRequest;
  * @see org.apache.struts.upload.MultipartElement
  * @author Mike Schachter
  */
-public class MultipartIterator {
+public class MultipartIterator
+{
 
     /**
-     * The maximum size in bytes of the buffer used to read lines [4K]
+     * The default encoding of a text element if none is specified.
      */
-    public static int MAX_LINE_SIZE = 4096;
+    private static final String DEFAULT_ENCODING = "iso-8859-1";
+
+    /**
+     * The size in bytes to copy of text data at a time.
+     */
+    private static final int TEXT_BUFFER_SIZE = 1000;
+
+    /**
+     * The name of the Content-Type header.
+     */
+    public static String HEADER_CONTENT_TYPE = "Content-Type";
+
+    /**
+     * The name of the Content-Disposition header.
+     */
+    public static final String HEADER_CONTENT_DISPOSITION = "Content-Disposition";
+
+    /**
+     * The exception message for when the boundary of a multipart request can't be determined.
+     */
+    public static final String MESSAGE_CANNOT_RETRIEVE_BOUNDARY =
+                                                    "MultipartIterator: cannot retrieve boundary for multipart request";
+
+    private static final String PARAMETER_BOUNDARY = "boundary=";
+
+    private static final String FILE_PREFIX = "strts";
 
     /**
      * The request instance for this class
@@ -43,9 +130,9 @@ public class MultipartIterator {
     protected HttpServletRequest request;
 
     /**
-     * The input stream instance for this class
+     * The InputStream to use to read the multipart data.
      */
-    protected BufferedMultipartInputStream inputStream;
+    protected MultipartBoundaryInputStream inputStream;
 
     /**
      * The boundary for this multipart request
@@ -53,24 +140,9 @@ public class MultipartIterator {
     protected String boundary;
 
     /**
-     * The byte array representing the boundary for this multipart request
-     */
-    protected byte[] boundaryBytes;
-
-    /**
-     * Whether or not the input stream is finished
-     */
-    protected boolean contentRead = false;
-
-    /**
      * The maximum file size in bytes allowed. Ignored if -1
      */
     protected long maxSize = -1;
-
-    /**
-     * The total bytes read from this request
-     */
-    protected long totalLength = 0;
 
     /**
      * The content length of this request
@@ -95,12 +167,23 @@ public class MultipartIterator {
     protected String tempDir;
 
     /**
+     * The content-type.
+     */
+    protected String contentType;
+
+    /**
+     * Whether the maximum length has been exceeded.
+     */
+    protected boolean maxLengthExceeded;
+
+    /**
      * Constructs a MultipartIterator with a default buffer size and no file size
      * limit
      *
      * @param request The multipart request to iterate
      */
-    public MultipartIterator(HttpServletRequest request) throws ServletException{
+    public MultipartIterator(HttpServletRequest request) throws IOException
+    {
         this(request, -1);
     }
 
@@ -112,8 +195,9 @@ public class MultipartIterator {
      * @param bufferSize The size in bytes that should be read from the input
      *                   stream at a times
      */
-    public MultipartIterator(HttpServletRequest request, int bufferSize) throws ServletException {
-       this (request, bufferSize, -1);
+    public MultipartIterator(HttpServletRequest request, int bufferSize) throws IOException
+    {
+        this (request, bufferSize, -1);
     }
 
     /**
@@ -125,140 +209,148 @@ public class MultipartIterator {
      *                   stream at a times
      * @param maxSize The maximum size in bytes allowed for a multipart element's data
      */
-    public MultipartIterator(HttpServletRequest request, int bufferSize, long maxSize)
-                                                                 throws ServletException {
-
+    public MultipartIterator(HttpServletRequest request, int bufferSize, long maxSize) throws IOException
+    {
         this(request, bufferSize, maxSize, null);
-
     }
 
-    public MultipartIterator(HttpServletRequest request,
-                             int bufferSize,
-                             long maxSize,
-                             String tempDir) throws ServletException {
-
+    public MultipartIterator(HttpServletRequest request, int bufferSize, long maxSize, String tempDir) throws IOException
+    {
         this.request = request;
         this.maxSize = maxSize;
-        if (bufferSize > -1) {
+        if (bufferSize > -1)
+        {
             this.bufferSize = bufferSize;
         }
-        if (tempDir != null) {
+        if (tempDir != null)
+        {
             this.tempDir = tempDir;
         }
-        else {
+        else
+        {
             //default to system-wide tempdir
-            tempDir = System.getProperty("java.io.tmpdir");
+            this.tempDir = System.getProperty("java.io.tmpdir");
         }
+        this.maxLengthExceeded = false;
+        this.inputStream = new MultipartBoundaryInputStream();
         parseRequest();
+    }
+
+    /**
+     * Handles retrieving the boundary and setting the input stream
+     */
+    protected void parseRequest() throws IOException
+    {
+        //get the content-type header, which contains the boundary used for separating multipart elements
+        getContentTypeOfRequest();
+        //get the content-length header, used to prevent denial of service attacks and for detecting
+        //whether a file size is over the limit before the client sends the file
+        this.contentLength = this.request.getContentLength();
+        //parse the boundary from the content-type header's value
+        getBoundaryFromContentType();
+        //don't let the stream read past the content length
+        this.inputStream.setMaxLength(this.contentLength+1);
+        //just stop now if the content length is bigger than the maximum allowed size
+        if (this.contentLength > this.maxSize)
+        {
+            this.maxLengthExceeded = true;
+        }
+        else
+        {
+            InputStream requestInputStream = this.request.getInputStream();
+            //mark the input stream to allow multiple reads
+            if (requestInputStream.markSupported())
+            {
+                requestInputStream.mark(contentLength+1);
+            }
+            this.inputStream.setBoundary(this.boundary);
+            this.inputStream.setInputStream(requestInputStream);
+        }
     }
 
     /**
      * Retrieves the next element in the iterator if one exists.
      *
-     * @throws a ServletException if the post size exceeds the maximum file size
-     *         passed in the 3 argument constructor
-     * @throws an UnsupportedEncodingException if the "ISO-8859-1" encoding isn't found
+     * @throws IOException if the post size exceeds the maximum file size
+     *         passed in the 3 argument constructor or if the "ISO-8859-1" encoding isn't found
      * @return a {@link org.apache.struts.upload.MultipartElement MultipartElement}
      *         representing the next element in the request data
      *
      */
-    public MultipartElement getNextElement() throws ServletException, UnsupportedEncodingException {
-        //retrieve the "Content-Disposition" header
-        //and parse
-        String disposition = readLine();
-
-
-        if ((disposition != null) && (disposition.startsWith("Content-Disposition"))) {
-            String name = parseDispositionName(disposition);
-            String filename = parseDispositionFilename(disposition);
-
-            String contentType = null;
-            boolean isFile = (filename != null);
-
-            if (isFile) {
-                filename = new File(filename).getName();
-
-                //check for windows filenames,
-                //from linux jdk's the entire filepath
-                //isn't parsed correctly from File.getName()
-                int colonIndex = filename.indexOf(":");
-                if (colonIndex == -1) {
-                    //check for Window's SMB server file paths
-                    colonIndex = filename.indexOf("\\\\");
+    public MultipartElement getNextElement() throws IOException
+    {
+        //the MultipartElement to return
+        MultipartElement element = null;
+        if (!isMaxLengthExceeded())
+        {
+            if (!this.inputStream.isFinalBoundaryEncountered())
+            {
+                if (this.inputStream.isElementFile())
+                {
+                    //attempt to create the multipart element from the collected data
+                    element = createFileMultipartElement();
                 }
-                int slashIndex = filename.lastIndexOf("\\");
-
-                if ((colonIndex > -1) && (slashIndex > -1)) {
-                    //then consider this filename to be a full
-                    //windows filepath, and parse it accordingly
-                    //to retrieve just the file name
-                    filename = filename.substring(slashIndex+1, filename.length());
+                //process a text element
+                else
+                {
+                    String encoding = getElementEncoding();
+                    element = createTextMultipartElement(encoding);
                 }
-
-                //get the content type
-                contentType = readLine();
-                contentType = parseContentType(contentType);
-            }
-
-
-
-            //ignore next line (whitespace) (unless it's a file
-            //without content-type)
-	    if (! ((isFile) && contentType == null)) {
-		readLine();
-            }
-
-            MultipartElement element = null;
-
-            //process a file element
-            if (isFile) {
-                try {
-                    //create a local file on disk representing the element
-                    File elementFile = createLocalFile();
-
-                    element = new MultipartElement(name, filename, contentType, elementFile);
-                } catch (IOException ioe) {
-                    ioe.printStackTrace(System.err);
-                    throw new ServletException("IOException while reading file element: " + ioe.getMessage(), ioe);
-                }
-            }
-            else {
-                 //read data into String form, then convert to bytes
-                //for text
-                StringBuffer textData = new StringBuffer();
-                String line;
-                //parse for text data
-                line = readLine();
-
-                while ((line != null) && (!line.startsWith(boundary))) {
-                    textData.append(line);
-                    line = readLine();
-                }
-
-                if (textData.length() > 0) {
-                    //cut off "\r" from the end if necessary
-                    if (textData.charAt(textData.length()-1) == '\r') {
-                        textData.setLength(textData.length()-1);
-                    }
-                }
-
-                //create the element
-                element = new MultipartElement(name, textData.toString());
-            }
-            return element;
-        }
-
-        //reset stream
-        if (inputStream.markSupported()) {
-            try {
-                inputStream.reset();
-            }
-            catch (IOException ioe) {
-                throw new ServletException("IOException while resetting input stream: " +
-                    ioe.getMessage());
+                this.inputStream.resetForNextBoundary();
             }
         }
-        return null;
+        return element;
+    }
+
+    /**
+     * Get the character encoding used for this current multipart element.
+     */
+    protected String getElementEncoding()
+    {
+        String encoding = this.inputStream.getElementCharset();
+        if (encoding == null)
+        {
+            encoding = this.request.getCharacterEncoding();
+            if (encoding == null)
+            {
+                encoding = DEFAULT_ENCODING;
+            }
+        }
+        return encoding;
+    }
+
+    /**
+     * Create a text element from the data in the body of the element.
+     * @param encoding The character encoding of the string.
+     */
+    protected MultipartElement createTextMultipartElement(String encoding) throws IOException
+    {
+        MultipartElement element;
+
+        int read = 0;
+        byte[] buffer = new byte[TEXT_BUFFER_SIZE];
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        while ((read = this.inputStream.read(buffer, 0, TEXT_BUFFER_SIZE)) > 0)
+        {
+            baos.write(buffer, 0, read);
+        }
+        //create the element
+        String value = baos.toString(encoding);
+        element = new MultipartElement(this.inputStream.getElementName(), value);
+        return element;
+    }
+
+    /**
+     * Create a multipart element instance representing the file in the stream.
+     */
+    protected MultipartElement createFileMultipartElement() throws IOException
+    {
+        MultipartElement element;
+        //create a local file on disk representing the element
+        File elementFile = createLocalFile();
+        element = new MultipartElement(this.inputStream.getElementName(), this.inputStream.getElementFileName(),
+                                       this.inputStream.getElementContentType(), elementFile);
+        return element;
     }
 
     /**
@@ -292,270 +384,72 @@ public class MultipartIterator {
      * Get the maximum post data size allowed for a multipart request
      * @return The maximum post data size in bytes
      */
-    public long getMaxSize() {
-        return maxSize;
+    public long getMaxSize()
+    {
+        return this.maxSize;
     }
 
     /**
-     * Handles retrieving the boundary and setting the input stream
+     * Whether or not the maximum length has been exceeded by the client.
      */
-    protected void parseRequest() throws ServletException {
-
-        contentLength = request.getContentLength();
-
-        //set boundary
-        boundary = parseBoundary(request.getContentType());
-        boundaryBytes = boundary.getBytes();
-
-        try {
-            //set the input stream
-            inputStream = new BufferedMultipartInputStream(request.getInputStream(),
-                                                           bufferSize,
-                                                           contentLength,
-                                                           maxSize);
-            //mark the input stream to allow multiple reads
-            if (inputStream.markSupported()) {
-                inputStream.mark(contentLength+1);
-            }
-
-        }
-        catch (IOException ioe) {
-            throw new ServletException("Problem while reading request: " +
-                ioe.getMessage(), ioe);
-        }
-
-        if ((boundary == null) || (boundary.length() < 1)) {
-            //try retrieving the header through more "normal" means
-            boundary = parseBoundary(request.getHeader("Content-type"));
-        }
-
-        if ((boundary == null) || (boundary.length() < 1)) {
-            throw new ServletException("MultipartIterator: cannot retrieve boundary " +
-                                       "for multipart request");
-        }
-
-        //read first line
-        try {
-	    String firstLine = readLine();
-
-	    if (firstLine == null) {
-		throw new ServletException("MultipartIterator: no multipart request data " +
-					   "sent");
-	    }
-            if (!firstLine.startsWith(boundary)) {
-                throw new ServletException("MultipartIterator: invalid multipart request " +
-                                           "data, doesn't start with boundary");
-            }
-        }
-        catch (UnsupportedEncodingException uee) {
-            throw new ServletException("MultipartIterator: encoding \"ISO-8859-1\" not supported");
-        }
-    }
-
-    /**
-     * Parses a content-type String for the boundary.  Appends a
-     * "--" to the beginning of the boundary, because thats the
-     * real boundary as opposed to the shortened one in the
-     * content type.
-     */
-    public static String parseBoundary(String contentType) {
-        if (contentType.lastIndexOf("boundary=") != -1) {
-            String _boundary = "--" +
-                               contentType.substring(contentType.lastIndexOf("boundary=")+9);
-            if (_boundary.endsWith("\n")) {
-                //strip it off
-                return _boundary.substring(0, _boundary.length()-1);
-            }
-            return _boundary;
-        }
-        return null;
-    }
-
-    /**
-     * Parses the "Content-Type" line of a multipart form for a content type
-     *
-     * @param contentTypeString A String reprsenting the Content-Type line,
-     *        with a trailing "\n"
-     * @return The content type specified, or <code>null</code> if one can't be
-     *         found.
-     */
-    public static String parseContentType(String contentTypeString) {
-        int nameIndex = contentTypeString.indexOf("Content-Type: ");
-        if (nameIndex == -1)
-            nameIndex = contentTypeString.indexOf("\n");
-
-        if (nameIndex != -1) {
-            int endLineIndex = contentTypeString.indexOf("\n");
-            if (endLineIndex == -1) {
-                endLineIndex = contentTypeString.length()-1;
-            }
-            return contentTypeString.substring(nameIndex+14, endLineIndex);
-        }
-        return null;
-    }
-
-    /**
-     * Retrieves the "name" attribute from a content disposition line
-     *
-     * @param dispositionString The entire "Content-disposition" string
-     * @return <code>null</code> if no name could be found, otherwise,
-     *         returns the name
-     * @see #parseForAttribute(String, String)
-     */
-    public static String parseDispositionName(String dispositionString) {
-        return parseForAttribute("name", dispositionString);
-    }
-
-    /**
-     * Retrieves the "filename" attribute from a content disposition line
-     *
-     * @param dispositionString The entire "Content-disposition" string
-     * @return <code>null</code> if no filename could be found, otherwise,
-     *         returns the filename
-     * @see #parseForAttribute(String, String)
-     */
-    public static String parseDispositionFilename(String dispositionString) {
-        return parseForAttribute("filename", dispositionString);
+    public boolean isMaxLengthExceeded()
+    {
+        return (this.maxLengthExceeded || this.inputStream.isMaxLengthMet());
     }
 
 
     /**
-     * Parses a string looking for a attribute-value pair, and returns the value.
-     * For example:
-     * <pre>
-     *      String parseString = "Content-Disposition: filename=\"bob\" name=\"jack\"";
-     *      MultipartIterator.parseForAttribute(parseString, "name");
-     * </pre>
-     * That will return "bob".
-     *
-     * @param attribute The name of the attribute you're trying to get
-     * @param parseString The string to retrieve the value from
-     * @return The value of the attribute, or <code>null</code> if none could be found
+     * Parses a content-type String for the boundary.
      */
-    public static String parseForAttribute(String attribute, String parseString) {
-        int nameIndex = parseString.indexOf(attribute + "=\"");
-        if (nameIndex != -1) {
-
-            int endQuoteIndex = parseString.indexOf("\"", nameIndex+attribute.length()+3);
-
-            if (endQuoteIndex != -1) {
-                return parseString.substring(nameIndex+attribute.length()+2, endQuoteIndex);
-            }
-            return "";
-        }
-        return null;
-    }
-
-    /**
-     * Reads the input stream until it reaches a new line
-     */
-    protected String readLine() throws ServletException, UnsupportedEncodingException {
-
-        byte[] bufferByte;
-        int bytesRead;
-
-        if (totalLength >= contentLength) {
-            return null;
-        }
-
-        try {
-            bufferByte = inputStream.readLine();
-            if (bufferByte == null)
-                return null;
-            bytesRead  = bufferByte.length;
-        }
-        catch (IOException ioe) {
-            throw new ServletException("IOException while reading multipart request: " +
-				       ioe.getMessage());
-        }
-        if (bytesRead == -1) {
-            return null;
-        }
-
-        totalLength += bytesRead;
-        return new String(bufferByte, 0, bytesRead, "ISO-8859-1");
-    }
-
-    /**
-     * Creates a file on disk from the current mulitpart element
-     * @param fileName the name of the multipart file
-     */
-    protected File createLocalFile() throws IOException {
-
-        File tempFile = File.createTempFile("strts", null, new File(tempDir));
-        BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(tempFile),
-                                                            diskBufferSize);
-        byte[] lineBuffer = inputStream.readLine();
-        if (lineBuffer == null)
+    private final void getBoundaryFromContentType() throws IOException
+    {
+        if (this.contentType.lastIndexOf(PARAMETER_BOUNDARY) != -1)
         {
-            throw new IOException("Premature end of stream while reading multipart request");
-        }
-	    int bytesRead = lineBuffer.length;
-
-        boolean cutCarriage = false;
-        boolean cutNewline = false;
-
-        try {
-            while ((bytesRead != -1) && (!equals(lineBuffer, 0, boundaryBytes.length,
-                    boundaryBytes))) {
-
-                        if (cutCarriage) {
-                            fos.write('\r');
-                        }
-                        if (cutNewline) {
-                            fos.write('\n');
-                        }
-                        cutCarriage = false;
-                        if (bytesRead > 0) {
-                            if (lineBuffer[bytesRead-1] == '\r') {
-                                bytesRead--;
-                                cutCarriage = true;
-                            }
-                        }
-                        cutNewline = true;
-                        fos.write(lineBuffer, 0, bytesRead);
-                        lineBuffer = inputStream.readLine();
-                        if (lineBuffer == null)
-                        {
-                            throw new IOException("Premature end of stream while reading multipart request");
-                        }
-                        bytesRead = lineBuffer.length;
+            String _boundary = this.contentType.substring(this.contentType.lastIndexOf(PARAMETER_BOUNDARY) + 9);
+            if (_boundary.endsWith("\n"))
+            {
+                //strip it off
+                this.boundary = _boundary.substring(0, _boundary.length()-1);
             }
+            this.boundary = _boundary;
         }
-        catch (IOException ioe) {
-            fos.close();
-            tempFile.delete();
-            throw ioe;
+        else
+        {
+            this.boundary = null;
         }
+        //throw an exception if we're unable to obtain a boundary at this point
+        if ((this.boundary == null) || (this.boundary.length() < 1))
+        {
+            throw new IOException(MESSAGE_CANNOT_RETRIEVE_BOUNDARY);
+        }
+    }
+    /**
+     * Gets the value of the Content-Type header of the request.
+     */
+    private final void getContentTypeOfRequest()
+    {
+        this.contentType = request.getContentType();
+        if (this.contentType == null)
+        {
+            this.contentType = this.request.getHeader(HEADER_CONTENT_TYPE);
+        }
+    }
 
+    /**
+     * Creates a file on disk from the current mulitpart element.
+     */
+    protected File createLocalFile() throws IOException
+    {
+        File tempFile = File.createTempFile(FILE_PREFIX, null, new File(this.tempDir));
+        BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(tempFile), this.diskBufferSize);
+        int read = 0;
+        byte buffer[] = new byte[this.diskBufferSize];
+        while ((read = this.inputStream.read(buffer, 0, this.diskBufferSize)) > 0)
+        {
+            fos.write(buffer, 0, read);
+        }
         fos.flush();
         fos.close();
         return tempFile;
     }
-
-   /**
-    * Checks bytes for equality.  Two byte arrays are equal if
-    * each of their elements are the same.  This method checks
-    * comp[offset] with source[0] to source[length-1] with
-    * comp[offset + length - 1]
-    * @param comp The byte to compare to <code>source</code>
-    * @param offset The offset to start at in <code>comp</code>
-    * @param length The length of <code>comp</code> to compare to
-    * @param source The reference byte array to test for equality
-    */
-   public static boolean equals(byte[] comp, int offset, int length,
-                                byte[] source) {
-
-       if ((length != source.length) || (comp.length - offset < length)) {
-            return false;
-       }
-
-       for (int i = 0; i < length; i++) {
-           if (comp[offset+i] != source[i]) {
-               return false;
-           }
-       }
-       return true;
-   }
-
 }
