@@ -21,7 +21,7 @@
 #   TOMCAT_HOME           Build directory for "jakarta-tomcat".
 #                         [../build/tomcat]
 #
-# $Id: build.sh,v 1.3 2000/09/20 04:21:48 craigmcc Exp $
+# $Id: build.sh,v 1.4 2000/11/19 01:39:52 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 
@@ -56,9 +56,9 @@ fi
 # ----- Set Up The Runtime Classpath ------------------------------------------
 
 if [ "$CLASSPATH" = "" ] ; then
-  CP=$ANT_HOME/lib/ant.jar:$SERVLETAPI_HOME/lib/servlet.jar:$JAVA_HOME/lib/tools.jar
+  CP=$ANT_HOME/lib/ant.jar:$ANT_HOME/lib/optional.jar:$SERVLETAPI_HOME/lib/servlet.jar:$JAVA_HOME/lib/tools.jar
 else
-  CP=$ANT_HOME/lib/ant.jar:$SERVLETAPI_HOME/lib/servlet.jar:$JAVA_HOME/lib/tools.jar:$CLASSPATH
+  CP=$ANT_HOME/lib/ant.jar:$ANT_HOME/lib/optional.jar:$SERVLETAPI_HOME/lib/servlet.jar:$JAVA_HOME/lib/tools.jar:$CLASSPATH
 fi
 
 

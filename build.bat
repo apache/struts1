@@ -21,7 +21,7 @@ rem
 rem   TOMCAT_HOME           Build directory for "jakarta-tomcat".
 rem                         [../build/tomcat]
 rem
-rem $Id: build.bat,v 1.7 2000/09/20 04:21:48 craigmcc Exp $
+rem $Id: build.bat,v 1.8 2000/11/19 01:39:51 craigmcc Exp $
 rem ---------------------------------------------------------------------------
 
 
@@ -62,10 +62,10 @@ set TOMCAT_HOME=..\build\tomcat
 rem ----- Set Up The Runtime Classpath ----------------------------------------
 
 if "%CLASSPATH%" == "" goto noClasspath
-set CP=%ANT_HOME%\lib\ant.jar;%JAVA_HOME%\lib\tools.jar;%CLASSPATH%
+set CP=%ANT_HOME%\lib\ant.jar;%ANT_HOME%\lib\optional.jar;%JAVA_HOME%\lib\tools.jar;%CLASSPATH%
 goto gotClasspath
 :noClasspath
-set CP=%ANT_HOME%\lib\ant.jar;%JAVA_HOME%\lib\tools.jar
+set CP=%ANT_HOME%\lib\ant.jar;%ANT_HOME%\lib\optional.jar;%JAVA_HOME%\lib\tools.jar
 :gotClasspath
 
 
