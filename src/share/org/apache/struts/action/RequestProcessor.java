@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.27 2003/02/25 05:14:17 dgraham Exp $
- * $Revision: 1.27 $
- * $Date: 2003/02/25 05:14:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.28 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.28 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.27 $ $Date: 2003/02/25 05:14:17 $
+ * @version $Revision: 1.28 $ $Date: 2003/04/15 00:18:45 $
  * @since Struts 1.1
  */
 

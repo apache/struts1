@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.9 2002/12/19 16:21:46 ekbush Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/19 16:21:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/PlugIn.java,v 1.10 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -83,7 +83,7 @@ import org.apache.struts.config.ModuleConfig;
  * been called before the <code>init()</code> method is invoked.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/12/19 16:21:46 $
+ * @version $Revision: 1.10 $ $Date: 2003/04/15 00:18:45 $
  * @since Struts 1.1
  */
 

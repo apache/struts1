@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.7 2003/01/07 06:32:25 martinc Exp $
- * $Revision: 1.7 $
- * $Date: 2003/01/07 06:32:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.8 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,7 +72,7 @@ import org.apache.commons.collections.FastHashMap;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2003/01/07 06:32:25 $
+ * @version $Revision: 1.8 $ $Date: 2003/04/15 00:18:45 $
  *
  * @deprecated Replaced by collection of FormBeanConfig instances
  *  in {@link org.apache.struts.config.ModuleConfig}

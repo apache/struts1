@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.5 2002/06/24 18:53:01 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2002/06/24 18:53:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessage.java,v 1.6 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,7 +75,7 @@ import java.io.Serializable;
  *
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @version $Revision: 1.5 $ $Date: 2002/06/24 18:53:01 $
+ * @version $Revision: 1.6 $ $Date: 2003/04/15 00:18:45 $
  * @since Struts 1.1
  */
 

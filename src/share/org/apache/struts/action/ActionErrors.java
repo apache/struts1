@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.10 2003/01/07 06:32:25 martinc Exp $
- * $Revision: 1.10 $
- * $Date: 2003/01/07 06:32:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.11 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -83,7 +83,7 @@ import java.io.Serializable;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2003/01/07 06:32:25 $
+ * @version $Revision: 1.11 $ $Date: 2003/04/15 00:18:45 $
  */
 
 public class ActionErrors extends ActionMessages implements Serializable {
@@ -110,6 +110,7 @@ public class ActionErrors extends ActionMessages implements Serializable {
      * messages.
      * 
      * @param messages The messages to be initially added to this object.
+     * This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
     public ActionErrors(ActionErrors messages) {

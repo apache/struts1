@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RedirectingActionForward.java,v 1.3 2003/01/07 06:32:25 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/01/07 06:32:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RedirectingActionForward.java,v 1.4 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,7 +68,7 @@ package org.apache.struts.action;
  * <code>redirect</code> attribute to <code>true</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2003/01/07 06:32:25 $
+ * @version $Revision: 1.4 $ $Date: 2003/04/15 00:18:45 $
  */
 
 public class RedirectingActionForward extends ActionForward {

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionException.java,v 1.3 2002/06/24 17:10:35 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2002/06/24 17:10:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionException.java,v 1.4 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -93,7 +93,7 @@ import org.apache.struts.config.ExceptionConfig;
  * </ul>
  *
  * @author ldonlan
- * @version $Revision: 1.3 $ $Date: 2002/06/24 17:10:35 $
+ * @version $Revision: 1.4 $ $Date: 2003/04/15 00:18:45 $
  *
  * @since Struts 1.1
  * @deprecated Replaced by org.apache.struts.config.ExceptionConfig

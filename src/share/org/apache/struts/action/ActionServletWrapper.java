@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.6 2002/10/27 06:01:48 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/10/27 06:01:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.7 2003/04/15 00:18:45 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/04/15 00:18:45 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -73,7 +73,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * could be exploited by automatic population of properties.
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.6 $ $Date: 2002/10/27 06:01:48 $
+ * @version $Revision: 1.7 $ $Date: 2003/04/15 00:18:45 $
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {
