@@ -1,0 +1,677 @@
+<?xml version="1.0"?>
+<document url="./todo-1.1.xml">
+
+  <properties>
+    <author>Craig R. McClanahan</author>
+    <title>The Struts Project TODO List for Version 1.1</title>
+  </properties>
+
+  <body>
+
+
+  <section name="Introduction" href="Intro">
+
+  <p>Application frameworks, like the applications we build with them,
+  never seem to be completed.  The following major areas of improvement
+  are being considered for implementation in version <strong>1.1</strong>
+  of Struts, with work to begin as soon as version 1.0 is released.</p>
+
+  <p>An external development that is likely to affect the development of
+  Struts 1.1 will be the emerging Standard Tag Library, being produced under
+  the Java Community Process (see JSR #52 for more information), at
+  <a href="http://java.sun.com/jcp">http://java.sun.com/jcp</a>.  The existing
+  Struts tags will certainly be used as input to the standardization process,
+  but in the case where standard tags with similar functionality are adopted,
+  we should migrate Struts tags to maintain maximum compatibility with the
+  new standard library.</p>
+
+  <p>The TODO list tasks are divided into functional areas that correspond
+  to the major components of the Struts Framework.  References in square
+  brackets are the Java package containing the corresponding source code.</p>
+
+  </section>
+
+
+  <task-list name="Struts Documentation" href="Docs">
+
+    <info>
+      <p>Omnibus task list for items related to the Struts Documentation,
+      which do not have direct relationships with code bases.</p>
+    </info>
+
+  </task-list>
+
+
+  <task-list name="Struts Example Application" href="Example">
+
+    <info>
+      <p>An example web application utilizing the Struts framework and
+      custom tag library.</p>
+    </info>
+
+    <task name="Better Database Support">
+      <info>
+        <p>Use a "real" database of some sort (while still making Struts
+        easy to install.</p>
+      </info>
+      <assigned>
+        <a href="mailto:news.ted@husted.com">Ted Husted</a>
+      </assigned>
+
+    </task>
+
+    <task name="Locale Switching">
+      <info>
+        <p>Add support for switching Locales on the fly to the Struts
+        example application.</p>
+      </info>
+      <assigned>
+        <a href="mailto:news.ted@husted.com">Ted Husted</a>
+      </assigned>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="MVC Framework [org.apache.struts.action]" href="MVC">
+
+    <info>
+      <p>This is the core controller servlet, with support for the developer's
+      action and form bean classes, plus the supporting data structures.</p>
+    </info>
+
+    <task name="Remove Deprecations">
+      <info>
+        <p>Clean out all 1.0 deprecated classes and files, framework-wide.</p>
+      </info>
+    </task>
+
+
+    <task name="ActionForms With Dynamic Properties">
+      <info>
+        <p>Create mechanisms to support ActionForm implementations where the
+        set of properties to be included is dynamically calculated, in addition
+        to the current support for properties that are accessed through the
+        Java Reflection APIs and are therefore fixed.</p>
+      </info>
+    </task>
+
+    <task name="Workflow Processing">
+      <info>
+        <p>Create a mechanism by which business logic (now encoded in
+        <code>Action</code> classes) can be subdivided into individual work
+        <code>Tasks</code> that are combined according to configuration
+        information (including flow control and iteration support) in the
+        <code>struts-config.xml</code> file.  Support for workflow processing
+        would be provided by a set of standard <code>Actions</code>, and
+        will offer an alternative mechanism (not a replacement of Actions)
+        to organizing your business logic.</p>
+      </info>
+      <assigned>
+        <a href="mailto:craiger@tataryn.net">Craig Tataryn</a>,
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
+    </task>
+
+    <task name="Standard Validations">
+      <info>
+        <p>Add the ability to configure standard validations on particular
+        properties to be enforced by the controller servlet automatically.
+        Where feasible, client-side JavaScript validations may also be
+        generated based on the same configuration rules.</p>
+      </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>,
+        <a href="mailto:dwinterfeldt@yahoo.com">Dave Winterfeldt</a>
+      </assigned>
+    </task>
+
+    <task name="PropertyEditor Support">
+      <info>
+        <p>Add support for JavaBeans that include a <code>PropertyEditor</code>
+        class for conversion to and from the string representation used in an
+        HTML input field.  This support should operate in a manner consistent
+        with the way that standard JSP tags do in JSP 1.2.</p>
+      </info>
+    </task>
+
+    <task name="Event and Listener Model">
+      <info>
+        <p>Retrofit the Struts controller framework with supports for event
+        generation (and the corresponding registration of listeners) for all
+        interesting events created by the framework.  The list of interesting
+        events will undoubtedly be influenced by changes related to other
+        work items on this list (such as workflow processing and standard
+        validations), so work on this should be coordinated with those
+        changes.</p>
+        [STRUTS-DEV, Robert Leland, 10/10/2000]
+        [STRUTS-DEV, David Geary, 12/20/2000]
+        [STRUTS-USER, Ted Husted, 12/23/2000]
+      </info>
+    </task>
+
+    <task name="EJB Design Patterns">
+      <info>
+        <p>Begin adding design patterns and support for easy integration with
+        Enterprise JavaBeans (EJBs) for encapsulation of business logic and
+        application data.</p>
+      </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
+    </task>
+
+    <task name="HTML No-Cache Support">
+      <info>
+        <p>Improve the current Struts support for generating no-cache headers
+        to provide finer-grained, configurable control on a per-page basis.
+        </p>
+        [STRUTS-DEV, Hou Yunfeng, 10/07/2000]
+        [STRUTS-DEV, Matthias Kerkhoff, 11/18/2000]
+      </info>
+    </task>
+
+    <task name="Role-Based Action Execution">
+      <info>
+        <p>Add the ability to require the current user to be in a particular
+        security role before they can execute a particular action.
+        </p>
+        [STRUTS-DEV, James W., 01/23/2001]
+      </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="XML Digester [org.apache.struts.digester]" href="Digester">
+
+    <info>
+      <p>The Digester package supports scripted firing of "rules" based on
+      matching a particular pattern of nested XML tags.  Among the predefined
+      rules that can be utilized are rules to create new objects, set bean
+      properties from the contents of attributes, or call arbitrary methods
+      with arguments based on the XML content being parsed.  A common
+      use for this technology (illustrated in the Struts ActionServlet), is
+      parsing configuration files and building corresponding object trees.</p>
+    </info>
+
+    <task name="Developer Documentation">
+      <info>
+       <p>Create more detailed documentation of how the Digester package
+       can be utilized by application developers.</p>
+      </info>
+    </task>
+
+    <task name="Refactor Dependencies">
+      <info>
+        <p>Refactor import dependencies, here and within the utilities package,
+        with the goal of being able to use the Digester package in standalone
+        applications without having to import the servlet API classes.</p>
+        [STRUTS-USER, Martin Cooper, 01/02/2001]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Bean Tag Library [org.apache.struts.taglib.bean]"
+             href="BEAN">
+
+    <info>
+      <p>This tag library contains basic tags useful in manipulating JavaBeans
+      and their properties.  It includes support for getting and setting bean
+      properties using simple, nested, and subscripted accessor expressions.
+      </p>
+    </info>
+
+    <task name="XPath Support">
+      <info>
+        <p>Update all of the relevant tags to include property accessor support
+        using the syntax specified by the XPath standard (www.w3c.org).</p>
+      </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
+    </task>
+
+    <task name="XML DOM Support">
+      <info>
+        <p>Update all of the relevant tags to get and set attributes from a
+        Java object that implements the XML Document Object Model, as well as
+        from the current tree of JavaBean objects.  How the underlying data
+        object is stored should be transparent to page writers using these
+        tags.</p>
+      </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
+    </task>
+
+    <task name="JDBC RowSet Support">
+      <info>
+        <p>Update all of the relevant tags to get and set attributes from a
+        JDBC RowSet (or ResultSet) object, as well as from XML DOM objects and
+        the current tree of JavaBean objects.  How the underlying data object
+        is stored should be transparent to page writers using these tags.
+        </p>
+      </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
+    </task>
+
+    <task name="Formatting Support">
+      <info>
+        <p>Add the ability to use formatting patterns (suitably localized) for
+        presenting numbers, dates, times, timestamps, and so on via formatted
+        patterns.</p>
+        [STRUTS-DEV, Oleg Alexeev, 10/27/2000]
+        [STRUTS-USER, Ned Seagoon, 12/11/2000]
+        [STRUTS-DEV, Ned Seagoon, 12/13/2000]
+        [STRUTS-USER, Ned Seagoon, 01/04/2001]
+      </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="HTML Tag Library [org.apache.struts.taglib.html]"
+             href="HTML">
+
+    <info>
+    <p>This tag library contains tags useful in preparing web applications that
+    use HTML forms as their primary mechanism for user data entry, as well as
+    support for internationalized and localized applications.</p>
+    </info>
+
+    <task name="Client Side Validation">
+      <info>
+        <p>Add the ability to automatically generate optional JavaScript code
+        to perform client-side validations for things like required fields,
+        numeric fields, dates/times/timestamps, and so on.  The required
+        validation should mesh with validation enhancements provided in the
+        controller servlet itself.</p>
+        [STRUTS-DEV, David Winterfeldt, 07/27/2000]
+      </info>
+      <assigned>
+        <a href="mailto:news.ted@husted.com">Ted Husted</a>,
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>,
+        <a href="mailto:dwinterfeldt@yahoo.com">Dave Winterfeldt</a>,
+        <a href="mailto:spencer@newdestiny.net">Spencer Smith</a>
+      </assigned>
+    </task>
+
+    <task name="Radio Button Groups">
+      <info>
+        <p>Add a new tag that supports generation of groups of radio buttons.
+        </p>
+        [STRUTS-DEV, Wellington Silva, 08/28/2000]
+      </info>
+    </task>
+
+    <task name="Improve Options Tag">
+      <info>
+        <p>Improve the mechanism by which you define values and corresponding
+        labels for <code>&lt;html:options&gt;</code>.</p>
+        [STRUTS-DEV, David Winterfeldt, 07/27/2000]
+        [STRUTS-DEV, David Winterfeldt, 08/02/2000]
+        [STRUTS-DEV, Andy Boyko, 11/15/2000]
+        [STRUTS-DEV, Andy Boyko, 12/07/2000]
+      </info>
+    </task>
+
+    <task name="Improve Error Reporting">
+      <info>
+        <p>Improve the ability of the <code>&lt;html:errors&gt;</code> tag
+        to present error messages, especially property-specific messages.
+        </p>
+        [STRUTS-DEV, Oleg Alexeev, 10/23/2000]
+        [STRUTS-DEV, Oleg Alexeev, 11/15/2000]
+        [STRUTS-DEV, Oleg Alexeev, 01/01/2001]
+      </info>
+    </task>
+
+    <task name="Additional Attributes">
+      <info>
+        <p>Support additional HTML 4.0.1 attributes (such as "disabled",
+        "readonly", "wrap" on textarea)
+        where appropriate.</p>
+        [STRUTS-USER, , 08/23/2000]
+      </info>
+    </task>
+
+    <task name="Improved Iteration Support">
+      <info>
+        <p>Improve the ability to use the <code>&lt;logic:iterate&gt;</code>
+        tag over a collection, and generate a set of input fields for each
+        member of the collection (perhaps auto-generating a subscript?).
+        A significant use case is master-detail relationships (say, a
+        customer and their current orders) where you allow editing of any
+        and all fields.</p>
+        [STRUTS-USER, Lars, 12/06/2000]
+        [STRUTS-USER, Chandan Kulkarni, 12/26/2000]
+      </info>
+    </task>
+
+    <task name="Multi-Page Form Support">
+      <info>
+        <p>Create design patterns and improved internal support for forms that
+        span multiple pages.</p>
+      </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="JDBC Tag Library [org.apache.struts.taglib.jdbc]"
+             href="JDBC">
+
+    <info>
+      <p>This tag library will provide mechanisms to acquire information from
+      a database that is useful in the presentation logic of an application
+      (such as populating the values shown in an HTML <code>select</code>
+      element).  They will interact with a data source object created and
+      initialized by the controller servlet.</p>
+    </info>
+
+    <task name="Create Tag Library">
+      <info>
+        <p>Create the initial tag library and documentation.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Logic Tag Library [org.apache.struts.taglib.logic]"
+             href="Logic">
+
+    <info>
+      <p>This tag library provides mechanisms to conditionally process
+      nested body content based on a variety of logical conditions.</p>
+    </info>
+
+    <task name="'Else' and 'Else If' Capability">
+      <info>
+        <p>Add "else" and "else if" constructs to the existing conditional
+        tags, in some reasonable format.</p>
+        [STRUTS-DEV, Eduardo Pelegri-Llopart, 06/14/2000]
+        [STRUTS-DEV, Frank Nestel, 06/26/2000]
+      </info>
+    </task>
+
+    <task name="Other Conditional Structures">
+      <info>
+        <p>Add conditional tags that emulate the "case" or "switch"
+        capability of many programming languages.</p>
+      </info>
+    </task>
+
+    <task name="Iterating Parallel Collections">
+      <info>
+        <p>Enhance <code>&lt;logic:iterate&gt;</code>, or provide a new
+        tag, to iterate over multiple collections in parallel.</p>
+        [STRUTS-DEV, Jeff R., 08/03/2000]
+      </info>
+    </task>
+
+    <task name="Enhance Role Checking">
+      <info>
+        <p>Enhance <code>&lt;logic:present&gt;</code> to accept a comma
+        delimited list of roles in the <code>role</code> attribute, and
+        process the nested body content if <em>any</em> of the listed roles
+        where owned by the current user.  A corresponding change to
+        <code>&lt;logic:notPresent&gt;</code> would process the nested body
+        content only if <em>none</em> of the listed roles were owned by
+        the present user.</p>
+        [STRUTS-USER, David Winterfeldt, 01/03/2001]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="WML Tag Library [org.apache.struts.taglib.wml]"
+             href="WML">
+
+    <info>
+    <p>This tag library will contain tags useful in preparing web applications
+    similar to those supported by the HTML tag library, but render output that
+    is well-formed XML in accordance with WML specifications.</p>
+    </info>
+
+  </task-list>
+
+
+  <task-list name="XFORMS Tag Library [org.apache.struts.taglib.xforms]"
+             href="xforms">
+
+    <info>
+      <p>This potential new tag library provides access to facilities in the
+      emerging XForms standards.</p>
+    </info>
+
+    <task name="Generalized Form Handling">
+      <info>
+        <p>Consider how to support more generalized definitions of forms and
+        their fields, perhaps based on emerging XForms standards.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="XHTML Tag Library [org.apache.struts.taglib.xhtml]"
+             href="XHTML">
+
+    <info>
+    <p>This tag library will contain tags useful in preparing web applications
+    similar to those supported by the HTML tag library, but render output that
+    is well-formed XML in accordance with the XHTML 1.0 specification.</p>
+    </info>
+
+  </task-list>
+
+
+  <task-list name="Tools Support [org.apache.struts.tools]"
+             href="Tools">
+
+    <info>
+      <p>This package contains code generators and other tools that
+      facilitate the creation of Struts-based applications.  Further
+      subdivision into specialized packages should be performed as
+      appropriate.</p>
+    </info>
+
+    <task name="XML --&gt; ActionForm Code Generator">
+      <info>
+        <p>Create a tool that takes an XML-based description of the
+        properties of the form bean, and automatically generates
+        the corresponding Java class.</p>
+        [STRUTS-DEV, Mark Wutka, 06/01/2000 and 06/16/2000]
+      </info>
+      <assigned>
+        <a href="mailto:martin.cooper@tumbleweed.com">Martin Cooper</a>
+      </assigned>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Utility Classes [org.apache.struts.util]" href="Util">
+
+    <info>
+      <p>This package contains a variety of utility classes useful within
+      Struts as well as in stand-alone applications.</p>
+    </info>
+
+    <task name="XmlMessageResources">
+      <info>
+        <p>Implementation of <code>MessageResources</code> and
+        <code>MessageResourcesFactory</code> that loads message keys
+        and strings from one or more XML resources or files.</p>
+        [STRUTS-DEV, Scott Sayles, 01/07/2000]
+      </info>
+    </task>
+
+    <task name="GenericDataSource Improvements">
+      <info>
+        <p>Improve the connection pool implementation by including checking
+        for dead connections before a connection is returned.  (The means
+        used for checking needs to be configurable somehow).</p>
+        [STRUTS-USER, David Winterfeldt, 01/04/2001]
+      </info>
+    </task>
+
+    <task name="Enhanced Collections Support">
+      <info>
+        <p>Improve support in <code>BeanUtils</code>,
+        <code>ConvertUtils</code>, and <code>PropertyUtils</code> for property
+        values that implement <code>Collection</code>, <code>List</code>, or
+        <code>Set</code>, treating them in a manner similar to the way that
+        indexed or array-valued properties are handled.</p>
+        [Bugzilla #640]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Unit Test Suites" href="Unit Tests">
+
+    <info>
+      <p>Unit test components compatible with the JUnit and J2EEUnit testing
+      frameworks, to test and validate internal APIs of the Struts framework.
+      Volunteers will typically agree to develop tests for an entire package
+      within the Java source code of Struts.
+      </p>
+    </info>
+
+    <task name="Action">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.action</code> package.</p>
+      </info>
+      <assigned>
+        <a href="mailto:struts-test@freetocreate.org">Rob Leland</a>
+      </assigned>
+    </task>
+
+    <task name="Actions">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.actions</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Digester">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.digester</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Bean">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.bean</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Html">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.html</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Logic">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.logic</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Taglib.Template">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.template</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Upload">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.taglib.upload</code> package.</p>
+      </info>
+    </task>
+
+    <task name="Util">
+      <info>
+        <p>Unit tests for the <code>org.apache.struts.util</code> package.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Additional Possibilities" href="Additional">
+
+    <info>
+      <p>This section is a catch-all for additional areas of functionality
+      to be investigated for inclusion into Struts.</p>
+    </info>
+
+    <task name="Coarse Grain Components">
+      <info>
+        [STRUTS-DEV, Cedric Dumoulin, 10/03/2000]
+      </info>
+    </task>
+
+    <task name="Multidimensional Properties">
+      <info>
+        [STRUTS-DEV, Eric, 11/07/2000]
+      </info>
+    </task>
+
+    <task name="Portal Components">
+      <info>
+        [STRUTS-DEV, Phil Grimm, 11/22/2000]
+      </info>
+      <assigned>
+        <a href="mailto:news.ted@husted.com">Ted Husted</a>
+      </assigned>
+    </task>
+
+    <task name="Storefront Example App">
+      <info>
+        [STRUTS-DEV, David D'Orto, 12/11/2000]
+      </info>
+    </task>
+
+  </task-list>
+
+
+  <task-list name="Contributors Area" href="Contrib">
+
+    <info>
+      <p>A portion of the Struts web site, and file system, where individually
+      contributed add-ons for Struts can be hosted and downloaded.</p>      
+    </info>
+    
+    <task name="Proposal">
+     <info>
+       <p>Detailed proposal with implementation plan. [STRUTS-USER, Ned Seagoon, 12/22/2000]</p>
+     </info>
+     <assigned>
+      <a href="mailto:news.ted@husted.com">Ted Husted</a>
+     </assigned>
+    </task>
+
+  </task-list>
+
+
+  </body>
+
+</document>

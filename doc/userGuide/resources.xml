@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<document url="./resources.xml">
+<properties>
+<author>Mike Schachter</author>
+<author>Ted Husted</author> 
+<title>The Struts User's Guide - Resources</title>
+</properties>
+<body> 
+<chapter name="Struts Resources" href="resources"> 
+<section name="Struts Tutorials" href="tutorials"> 
+<h3>Articles</h3>
+<p><b>Introduction to MVC and the Jakarta Struts Framework</b> (online presentation), 
+  <a href="mailto:craiger@tataryn.net">Craig Tataryn</a> -- <a href="http://www.us-eh.com/craiger/articles/struts/">http://www.us-eh.com/craiger/articles/struts/</a> 
+</p>
+<p><b>Struts, an open-source MVC implementation</b>, <a href="mailto:malcolm@nuearth.com">Malcom 
+  Davis</a> -- <a href="http://www-106.ibm.com/developerworks/library/j-struts/?n-j-2151">http://www-106.ibm.com/developerworks/library/j-struts/?n-j-2151</a> 
+</p>
+<p><b>Strut Your Stuff With JSP Tags</b>, <a href="mailto:Thor.Kristmundsson@javaworld.com">Thor 
+  Kristmundsson</a> -- <a href="http://www.javaworld.com/javaworld/jw-12-2000/jw-1201-struts.html">http://www.javaworld.com/javaworld/jw-12-2000/jw-1201-struts.html</a> 
+</p>
+<p><b>Using the Struts Framework to Develop a Message Board</b>, Maneesh Sahu 
+  -- <a href="http://informit.com/books/authors/author_template/index.asp?authorid={A08A00B0-71BB-42DB-9B29-08879A9A7ABE}&amp;t={94AE5B48-1D7D-462A-A4A6-83CE19EC0705}&amp;n={4641FAF9-E21F-4902-8F6E-0C8FAF114C62}">Author's 
+  Page</a> (article requires registration with informit.com) </p>
+<p><b>JSP templates</b>, <a href="mailto:david.geary@javaworld.com">David Geary</a> 
+  -- <a href="http://www.javaworld.com/javaworld/jw-09-2000/jw-0915-jspweb_p.html">http://www.javaworld.com/javaworld/jw-09-2000/jw-0915-jspweb_p.html</a></p>
+<h3>Tutorials</h3>
+<p><b>Welcome to the Struts Framework</b>, <a href="http://www.bluestone.com">Bluestone 
+  Software</a> -- <a href="http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp">http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp</a> 
+</p>
+<h3>Mailing List Archives</h3>
+<p><a href="http://archive.covalent.net/"><b>covalent.net</b></a><br />
+  <a href="http://mail-archive.com/"><b>mail-archive.com</b></a> </p>
+<h3>Other Resource Pages</h3>
+<p><b>About Struts</b>, <a href="mailto:support@husted.com">Husted dot Com</a> 
+  -- <a href="http://www.husted.com/about/struts/">http://www.husted.com/about/struts/</a> 
+</p>
+</section>
+</chapter> 
+</body></document>

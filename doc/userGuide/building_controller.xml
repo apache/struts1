@@ -1,0 +1,621 @@
+<?xml version="1.0"?>
+<document url="./building_controller.xml">
+
+  <properties>
+    <author>Craig R. McClanahan</author>
+    <author>Mike Schachter</author>
+    <author>Ted Husted</author>
+    <title>The Struts User's Guide - Building Controller Components</title>
+  </properties>
+  
+  <body>  
+  <chapter name="4. Building Controller Components" href="building_controller">
+  
+      <section name="4.1 Overview" href="overview">
+        
+        <p>
+          Now that we understand how to construct the Model and View components
+        of your application, it is time to focus on the <code>Controller</code>
+        components.  Struts includes a servlet that implements the primary function
+        of mapping a request URI to an <code>Action</code> class.  Therefore, your
+        primary responsibilities related to the Controller are:
+      </p>
+      
+      <ul>
+        <li>Write an <code>Action</code> class (that is, an extension of the
+            <code>Action</code> class) for each logical request
+            that may be received.</li>
+        <li>[Optionally] Write an <code>ActionMapping</code> class (that is, an
+           extension of the <code>ActionMapping</code> class) that defines the class
+           names and other information associated with each possible mapping.</li>
+        <li>Write the action mapping configuration file (in XML) that is used
+            to configure the controller servlet.</li>
+        <li>Update the web application deployment descriptor file (in XML)
+            for your application to include the necessary Struts components.</li>
+        <li>Add the appropriate Struts components to your application.</li>
+      </ul>
+    </section>
+    
+    <section name="4.2 Action Classes" href="action_classes">
+      
+      <p>The <code>Action</code> class defines two methods that could be
+        executed depending on your servlet environment:
+      </p>
+
+<pre>
+public ActionForward perform(ActionMapping mapping,
+                             ActionForm form,
+                             ServletRequest request,
+                             ServletResponse response)
+  throws IOException, ServletException;
+
+public ActionForward perform(ActionMapping mapping,
+                             ActionForm form,
+                             HttpServletRequest request,
+                             HttpServletResponse response)
+  throws IOException, ServletException;
+</pre>
+      
+      <p>
+        Most people would only use the "HttpServletRequest" version. 
+      </p>
+      <p>
+        The goal of an <code>Action</code> class is to process this request,
+        and then to return an <code>ActionForward</code> object that identifies
+        the JSP page (if any) to which control should be forwarded to generate
+        the corresponding response.  In the <i>MVC/Model 2</i> design pattern,
+        a typical <code>Action</code> class will implement the following
+        logic in its <code>perform()</code> method:
+      </p>
+      <ul>
+        <li>Validate the current state of the user's session (for example, checking
+            that the user has successfully logged on).  If the <code>Action</code>
+            class finds that no logon exists, the request should be forwarded to
+            the JSP page that displays the username and password prompts for
+            logging on.  This could occur because a user tried to enter your
+            application "in the middle" (say, from a bookmark), or because the
+            session has timed out, and the servlet container created a new one.</li>
+        <li>If validation has not yet occurred,
+            validate the form bean properties as necessary.  If a problem is found,
+            store the appropriate error message keys as a request attribute, and
+            forward control back to the input form so that the errors can be
+            corrected.</li>
+        <li>Perform the processing required to deal with this request (such as
+            saving a row into a database).  This can be done by code embedded within
+            the <code>Action</code> class itself, but should generally be performed
+            by calling an appropriate method of a business logic bean.</li>
+        <li>Update the server-side objects that will be used to create the next
+            page of the user interface (typically request scope or session scope
+            beans, depending on how long you need to keep these items available).</li>
+        <li>Return an appropriate <code>ActionForward</code> object that identifies
+            the JSP page to be used to generate this response, based on the newly
+            updated beans.  Typically, you will acquire a reference to such an
+            object by calling <code>findForward()</code> on either the
+            <code>ActionMapping</code> object you received (if you are using a
+            logical name local to this mapping), or on the controller servlet
+            itself (if you are using a logical name global to the application).</li>
+      </ul>
+        
+      <p>
+        Design issues to remember when coding <code>Action</code> classes
+        include the following:
+      </p>
+      
+      <ul>
+        <li>The controller servlet creates only one instance of your
+            <code>Action</code> class, and uses it for all requests.  Thus,
+            you need to code your <code>Action</code> class so that it operates
+            correctly in a multi-threaded environment, just as you must code a
+            servlet's <code>service()</code> method safely.</li>
+        <li>The most important principle that aids in thread-safe coding is to
+            use only local variables, not instance variables, in your
+            <code>Action</code> class.  Local variables are created on a
+            stack that is assigned (by your JVM) to each request thread, so
+            there is no need to worry about sharing them.</li>
+        <li>The beans that represent the Model of your system may throw exceptions
+            due to problems accessing databases or other resources.
+            You should trap all such exceptions
+            in the logic of your <code>perform()</code> method, and log them to the
+            application logfile (along with the corresponding stack trace) by
+            calling:<br />
+            <code>servlet.log("Error message text", exception);</code></li>
+        <li>As a general rule, allocating scarce resources and keeping them across
+            requests from the same user (in the user's session) can cause
+            scalability problems.  You should strive to release such resources
+            (such as database connections) prior to forwarding control to the
+            appropriate View component -- even if a bean method you have called
+            throws an exception.</li>
+      </ul>
+        
+      <p>
+        In addition, you will want to guard against <code>Action</code> classes
+        that are too large.  The easiest way for this to happen is to embed your
+        functional logic in the <code>Action</code> class itself, rather than
+        coding it in separate business logic beans.  Besides making the
+        <code>Action</code> class itself hard to understand and maintain, this
+        approach also makes it harder to re-use the business logic code, because
+        it is embedded inside a component (the <code>Action</code> class) that
+        is tied to being executed in a web application environment.
+      </p>
+        
+      <p>
+        The example application included with Struts stretches this design
+        principle somewhat, because the business logic itself is embedded in the
+        <code>Action</code> classes.  This should be considered something of a
+        bug in the design of the sample application, rather than an intrinsic
+        feature of the Struts architecture, or an approach to be emulated.
+      </p>
+    </section>
+        
+    <section name="4.3 The ActionMapping Implementation" href="actionmapping">
+      
+      <p>
+        In order to operate successfully, the Struts controller servlet needs
+        to know several things about how each request URI should be mapped to an
+        appropriate <code>Action</code> class.  The required knowledge has been
+        encapsulated in a Java interface named <code>ActionMapping</code>, the most
+        important properties are as follows:
+      </p>
+      
+      <ul>
+        <li><b>type</b> - Fully qualified Java class name of the
+          <code>Action</code> implementation class used by this mapping.</li>
+        <li><b>name</b> - The name of the form bean defined in the config file
+          that this action will use</li>
+        <li><b>path</b> - The request URI path that is matched to select this
+            mapping.  See below for examples of how matching works.</li>
+            
+        <li><b>unknown</b> - Set to <code>true</code> if this action
+          should be configured as the default for this application, to handle
+          all requests not handled by another action.  Only one action can be
+          defined as a default within a single application.</li>
+        <li><b>validate</b> - Set to <code>true</code> if the
+          <code>validate()</code> method of the action associated
+          with this mapping should be called.</li>
+      </ul>
+               
+    </section>
+    
+    <section name="4.4 The Action Mappings Configuration File" href="config">
+      
+      <p>
+        How does the controller servlet learn about the mappings you want?  It
+        would be possible (but tedious) to write a small Java class that simply
+        instantiated new <code>ActionMapping</code> instances, and called all of
+        the appropriate setter methods.  To make this process easier, Struts includes
+        a Digester module that is capable of reading an XML-based description of
+        the desired mappings, creating the appropriate objects along the way.
+        See the <a href="../api/index.html">API documentation</a> for more information
+        about Digester.
+      </p>
+        
+      <p>
+        The developer's responsibility is to create an XML file named
+        <code>struts-config.xml</code>, and place it in the WEB-INF directory of your
+        application. This format of this document is constrained by it's definition in 
+        "struts-config_1_0.dtd".  The outermost XML element must be <code>&lt;struts-config&gt;</code>.       
+      </p>
+      
+      <p>
+        Inside of the &lt;struts-config&gt; element, there two important elements that use
+        to describe your actions:
+        
+        <blockquote>
+          <b>&lt;form-beans&gt;</b><br />
+            This section contains your form bean definitions.  You use a &lt;form-bean&gt; element
+            for each form bean, which has the following important attributes:
+            <ul>
+              <li>
+                <b>name</b>: The name of the request or session level attribute that this form
+                bean will be stored as
+              </li>
+              <li>
+                <b>type</b>: The fully-qualified Java classname of your form bean
+              </li>
+            </ul>
+        </blockquote>
+        <blockquote>
+          <b>&lt;action-mappings&gt;</b><br />
+            This section contains your action definitions.  You use an &lt;action&gt; element
+            for each of your actions you would like to define.  Each action element has requires
+            the following attributes to be defined:
+            
+            <ul>
+              <li>
+                <b>path</b>: The application context-relative path to the action
+              </li>
+              <li>
+                <b>type</b>: The fully qualified java classname of your Action class
+              </li>
+              <li>
+                <b>name</b>: The name of your &lt;form-bean&gt; element to use with this action
+              </li>
+            </ul>
+          </blockquote>
+        
+      </p>
+        
+      <p>
+        The <code>struts-config.xml</code> file from the example application includes
+        the following mapping entry for the "log on" function, which we will use
+        to illustrate the requirements.  Note that the entries for all the other actions
+        are left out:
+      </p>
+
+<pre>
+&lt;struts-config>
+  &lt;form-beans>
+    &lt;form-bean
+      name="logonForm"
+      type="org.apache.struts.example.LogonForm" />
+  &lt;/form-beans>      
+  &lt;global-forwards
+      type="org.apache.struts.action.ActionForward" />
+    &lt;forward name="logon" path="/logon.jsp"
+         redirect="false" /> 
+  &lt;/global-forwards>      
+  &lt;action-mappings&gt;     
+    &lt;action
+        path="/logon" 
+        type="org.apache.struts.example.LogonAction"
+        name="logonForm"
+       scope="request"
+       input="/logon.jsp"
+     unknown="false"
+    validate="true" />          
+  &lt;/action-mappings&gt;
+&lt;/struts-config>
+</pre>      
+
+      <p>
+        First the form bean is defined.  A basic bean of class "<code>org.apache.struts.example.LogonForm</code>"
+        is mapped to the logical name "<code>logonForm</code>".  This name is used as a session or request attribute
+        name for the form bean.
+      </p>
+      <p>
+        The "<code>global-forwards</code>" section is used to create logical name mappings between commonly used
+        jsp pages.  Each of these forwards is available through a call to your action mapping instance,
+        i.e. <code>actionMappingInstace.findForward("logicalName")</code>.
+      </p>
+      <p>
+        As you can see, this mapping matches the path <code>/logon</code> (actually,
+        because the example application uses extension mapping, the request URI you
+        specify in a JSP page would end in <code>/logon.do</code>).  When a request
+        that matches this path is received, an instance of the <code>LogonAction</code>
+        class will be created (the first time only) and used.  The controller servlet
+        will look for a session scoped bean under key <code>logonForm</code>, creating
+        and saving a bean of the specified class if needed.
+      </p>
+      <p>
+        An optional but very useful section is the local "local <code>forwards</code>". In the example 
+        application, many actions include a local "success" and/or "failure" forward as 
+        part of an Action mapping. 
+      </p>
+<pre>
+&lt;!-- Edit mail subscription -->
+&lt;action    path="/editSubscription"
+  type="org.apache.struts.example.EditSubscriptionAction"
+  name="subscriptionForm"
+  scope="request"
+  validate="false">
+  &lt;forward name="failure" path="/mainMenu.jsp"/>
+  &lt;forward name="success" path="/subscription.jsp"/>
+  &lt;/action>
+</pre>   
+
+      <p>Using just these two extra properties, the <code>Action</code> classes in the example 
+        application are almost totally independent of the actual names of the JSP pages 
+        that are used by the page designers. The pages can be renamed (for example) during 
+        a redesign, with negligible impact on the <code>Action</code> classes themselves.  
+        If the names of the "next" JSP pages were hard coded into the <code>Action</code> 
+        classes, all of these classes would also need to be modified. Of course, you can define
+        whatever local forward properties makes sense for your own application.
+      </p>
+        
+      <p>
+        One more section of good use is the <code>&lt;data-sources></code> section, which 
+        specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
+        of struts-config.xml:
+      </p>
+
+<pre>
+&lt;struts-config>
+  &lt;data-sources>
+    &lt;data-source
+      autoCommit="false"
+     description="Example Data Source Description"
+     driverClass="org.postgresql.Driver"
+        maxCount="4"
+        minCount="2"
+        password="mypassword"
+             url="jdbc:postgresql://localhost/mydatabase"
+            user="myusername"/>
+  &lt;/data-sources>
+&lt;/struts-config>
+</pre>
+
+      <p>
+        For information on how to retrieve the data source, see the 
+        <a href="building_model.html#databases">Accessing Relational Databases</a> section.  
+      </p>
+    </section>
+    
+    <section name="4.5 The Web Application Deployment Descriptor" href="dd_config">
+      
+      <p>
+        The final step in setting up the application is to configure the application
+        deployment descriptor (stored in file <code>WEB-INF/web.xml</code>) to include
+        all the Struts components that are required.  Using the deployment descriptor
+        for the example application as a guide, we see that the following entries need
+        to be created or modified.
+      </p>
+      
+      <section name="4.5.1 Configure the Action Servlet Instance" href="dd_config_servlet">
+        
+        <p>
+          Add an entry defining the action servlet itself, along with the appropriate
+          initialization parameters.  Such an entry might look like this:
+        </p>
+
+<pre>
+&lt;servlet&gt;
+  &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;
+    org.apache.struts.action.ActionServlet
+  &lt;/servlet-class&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;application&lt;/param-name&gt;
+    &lt;param-value&gt;
+      org.apache.struts.example.ApplicationResources
+    &lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;config&lt;/param-name&gt;
+    &lt;param-value&gt;
+      /WEB-INF/struts-config.xml
+    &lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;debug&lt;/param-name&gt;
+    &lt;param-value&gt;2&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;mapping&lt;/param-name&gt;
+    &lt;param-value&gt;
+      org.apache.struts.example.ApplicationMapping
+    &lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+</pre>
+        
+        <p>
+          The initialization parameters supported by the controller servlet are
+          described below. (You can also find these details in the <a 
+          href="../api/index.html">Javadocs</a> for the ActionServlet class.) Square brackets 
+          describe the default values that are assumed if you do not provide a value for 
+          that initialization parameter.
+        </p>
+        <ul>
+  
+          <li><strong>application</strong> - Java class name of the application
+               resources bundle base class.  [NONE]</li>
+          <li><strong>bufferSize</strong> - The size of the input buffer used when
+               processing file uploads.  [4096]</li>
+          <li><strong>config</strong> - Context-relative path to the XML resource
+              containing our configuration information.
+              [/WEB-INF/struts-config.xml]</li>
+          <li><strong>content</strong> - Default content type and character encoding
+              to be set on each response; may be overridden by a forwarded-to
+              servlet or JSP page.  [text/html]</li>
+          <li><strong>debug</strong> - The debugging detail level for this
+              servlet, which controls how much information is logged.  [0]</li>
+          <li><strong>detail</strong> - The debugging detail level for the Digester
+              we utilize in <code>initMapping()</code>, which logs to System.out
+              instead of the servlet log.  [0]</li>
+          <li><strong>factory</strong> - The Java class name of the
+              <code>MessageResourcesFactory</code> used to create the application
+              <code>MessageResources</code> object.</li>
+          <li><strong>formBean</strong> - The Java class name of the ActionFormBean
+              implementation to use [org.apache.struts.action.ActionFormBean].</li>
+          <li><strong>forward</strong> - The Java class name of the ActionForward
+              implementation to use [org.apache.struts.action.ActionForward].
+              Two convenient classes you may wish to use are:
+              <ul>
+              <li><em>org.apache.struts.action.ForwardingActionForward</em> -
+                  Subclass of <code>org.apache.struts.action.ActionForward</code>
+                  that defaults the <code>redirect</code> property to
+                  <code>false</code> (same as the ActionForward default value).</li>
+              <li><em>org.apache.struts.action.RedirectingActionForward</em> -
+                  Subclass of <code>org.apache.struts.action.ActionForward</code>
+                  that defaults the <code>redirect</code> property to
+                  <code>true</code>.</li>
+              </ul></li>
+          <li><strong>locale</strong> - If set to <code>true</code>, and there is a
+              user session, identify and store an appropriate
+              <code>java.util.Locale</code> object (under the standard key
+              identified by <code>Action.LOCALE_KEY</code>) in the user's session
+              if there is not a Locale object there already.</li>
+          <li><strong>mapping</strong> - The Java class name of the ActionMapping
+              implementation to use [org.apache.struts.action.ActionMapping].
+              Two convenient classes you may wish to use are:
+              <ul>
+              <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
+                  of <code>org.apache.struts.action.ActionMapping</code> that
+                  defaults the <code>scope</code> property to "request".</li>
+              <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
+                  of <code>org.apache.struts.action.ActionMapping</code> that
+                  defaults the <code>scope</code> property to "session".  (Same
+                  as the ActionMapping default value).</li>
+              </ul></li>
+          <li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
+              to be accepted as a file upload.  Can be expressed as a number followed
+              by a "K" "M", or "G", which are interpreted to mean kilobytes,
+              megabytes, or gigabytes, respectively.  [250M]</li>
+          <li><strong>multipartClass</strong> - The fully qualified name of the
+              MultiplartRequestHandler implementation class to be used for processing
+              file uploads.  [org.apache.struts.upload.DiskMultipartRequestHandler]
+              </li>
+          <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
+              to every response intended to defeat browser caching of any response we
+              generate or forward to.  [false]</li>
+          <li><strong>null</strong> - If set to <code>true</code>, set our application
+              resources to return <code>null</code> if an unknown message key is used.
+              Otherwise, an error message including the offending message key will
+              be returned.  [true]</li>
+          <li><strong>tempDir</strong> - The temporary working directory to use when
+              processing file uploads.  [The working directory provided to this web
+              application as a servlet context attribute]</li>
+          <li><strong>validate</strong> - Are we using the new configuration file
+              format?  [true]</li>  
+        </ul>
+      </section>
+      
+      <section name="4.5.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
+      
+        <p>
+          There are two common approaches to defining the URLs that will
+          be processed by the controller servlet -- prefix matching and extension
+          matching.  An appropriate mapping entry for each approach will be
+          described below.
+        </p>
+          
+        <p>
+          Prefix matching means that you want all URLs that start (after the context
+          path part) with a particular value to be passed to this servlet.  Such an
+          entry might look like this:
+        </p>
+
+<pre>
+  &lt;servlet-mapping&gt;
+     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+     &lt;url-pattern&gt;/execute/*&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+</pre>
+        
+        <p>
+          which means that a request URI to match the <code>/logon</code> path
+          described earlier might look like this:</p>
+
+<pre>
+http://www.mycompany.com/myapplication/execute/logon
+</pre>
+
+        <p>
+          where <code>/myapplication</code> is the context path under which your
+          application is deployed.
+        </p>
+          
+        <p>
+          Extension mapping, on the other hand, matches request URIs to the action
+          servlet based on the fact that the URI ends with a period followed by a
+          defined set of characters.  For example, the JSP processing servlet is mapped
+          to the <code>*.jsp</code> pattern so that it is called to process every
+          JSP page that is requested.  To use the <code>*.do</code> extension (which
+          implies "do something"), the mapping entry would look like this:
+        </p>
+
+<pre>
+  &lt;servlet-mapping&gt;
+     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+     &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+   &lt;/servlet-mapping&gt;
+</pre>
+        
+        <p>
+          and a request URI to match the <code>/logon</code> path described
+          earlier might look like this:
+        </p>
+
+<pre>
+http://www.mycompany.com/myapplication/logon.do
+</pre>
+      </section>
+      
+      <section name="4.5.3 Configure the Struts Tag Library" href="dd_config_taglib">
+        
+        <p>
+          Next, you must add an entry defining the Struts tag library.  There are currently four
+          taglibs that struts is packaged with.
+        </p>
+        <p>
+          The struts-bean taglib contains tags useful in accessing
+          beans and their properties, as well as defining new beans (based on these accesses) that are
+          accessible to the remainder of the page via scripting variables and page scope attributes.
+          Convenient mechanisms to create new beans based on the value of request cookies, headers, 
+          and parameters are also provided.
+        </p>
+        <p>
+          The struts-html taglib contains tags used to create struts input forms, as well as other
+          tags generally useful in the creation of HTML-based user interfaces.
+        </p>
+        <p>
+          The struts-logic taglib contains tags that are useful in managing conditional generation
+          of output text, looping over object collections for repetitive generation of output text,
+          and application flow management.
+        </p>
+        <p>
+          The struts-template taglib contains tags that define a template mechanism.
+        </p>
+        
+        <p>
+          Below is how you would define all taglibs for use within your application,
+          in reality you would only specify the taglib's that your application will use:
+        </p>
+
+<pre>
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-bean.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-bean.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-html.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-html.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-logic.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-logic.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-template.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-template.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+</pre>
+
+        <p>
+          This tells the JSP system where to find the tag library descriptor
+          for this library (in your application's WEB-INF directory, instead of
+          out on the Internet somewhere).
+        </p>
+      </section>
+      
+      <section name="4.5.4 Add Struts Components To Your Application" href="config_add">
+        
+        <p>
+          To use struts, you must copy the .tld files that you require into your
+          WEB-INF directory, and copy struts.jar into your WEB-INF/lib directory.
+        </p>
+                                <p>
+                                        Next: <a href="resources.html">Struts Resources</a>
+                                </p>
+      </section>
+    </section>
+  </chapter>
+  </body>
+</document>
