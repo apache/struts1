@@ -410,7 +410,7 @@
 <!--
         Build the contrib modules that are packaged with the binary
 -->
-    <target name="dist.contrib" depends="dist.source">
+    <target name="dist.contrib" depends="dist.source" if="jstl.jar">
 
         <mkdir  dir="${dist.home}/contrib"/>
 
