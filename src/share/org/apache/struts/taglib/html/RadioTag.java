@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.20 2003/03/22 18:39:10 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/03/22 18:39:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RadioTag.java,v 1.21 2003/03/22 18:46:12 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/03/22 18:46:12 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.20 $ $Date: 2003/03/22 18:39:10 $
+ * @version $Revision: 1.21 $ $Date: 2003/03/22 18:46:12 $
  */
 
 public class RadioTag extends BaseHandlerTag {
@@ -231,6 +231,9 @@ public class RadioTag extends BaseHandlerTag {
             throw new JspException(messages.getMessage("getter.bean", name));
         }
         
+        // Cannot change this.value so use a temp variable
+        String tempValue = this.value;
+        
         try {
             current = BeanUtils.getProperty(bean, property);
             if (current == null) {
@@ -243,9 +246,9 @@ public class RadioTag extends BaseHandlerTag {
                 if (idBean == null) {
                     throw new JspException(messages.getMessage("getter.bean", idName));
                 }
-                value = BeanUtils.getProperty(idBean, value);
-                if (value == null) {
-                    value = "";
+                tempValue = BeanUtils.getProperty(idBean, this.value);
+                if (tempValue == null) {
+                    tempValue = "";
                 }
             }
         
@@ -281,9 +284,9 @@ public class RadioTag extends BaseHandlerTag {
             results.append("\"");
         }
         results.append(" value=\"");
-        results.append(this.value);
+        results.append(tempValue);
         results.append("\"");
-        if (value.equals(current.toString())) {
+        if (tempValue.equals(current.toString())) {
             results.append(" checked=\"checked\"");
         }
         results.append(prepareEventHandlers());
