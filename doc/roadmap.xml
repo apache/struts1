@@ -134,21 +134,25 @@
             The initial release of Struts EL is provided as an optional package.
             </li>
 
-            <li>Struts 1.2.x -
+            <li>Struts 1.2.x (alpha) -
                 Continued refactorings of the Struts 1.x product series. The current release trigger for 1.2.0 is resolving outstanding <a href="#Bugzilla">problem reports</a>. There are also <a href="#Bugzilla">several patches</a> that could be applied prior to rolling 1.2.0.
                 <ul>
                     <li>Remove deprecations created in the 1.0 to 1.1 timeframe, and prior</li>
                     <li>Add support for wildcard mappings.</li>
-                    <li>Move build platform to Maven when convenient</li>
                     <li>Other minor enhancements and refactorings</li>
                 </ul>
             </li>
 
-            <li>Struts 1.3.x -
+            <li>Struts 1.3.x (pending) -
             More substantial enhancements to product base
                 <ul>
-                    <li>Move to Commons Resources</li>
-                    <li>Move taglibs into separate JARs</li>
+                    <li>Consider moving repository to Subversion (pending)</li>
+                    <li>Complete support for Maven builds (pending)</li>
+                    <li>Move taglibs and apps into separate subprojects</li>
+                    <li>Launch <a href="http://struts.sourceforge.net/struts-flow/index.html">Flow subproject</a></li>
+                    <li>Launch <a href="http://struts.sf.net/struts-bsf/">Scripting</a> subproject</li>
+                    <li>Move to "Struts Chain" Request Processor (now in Contrib)</li>
+                    <li>Move to Commons Resources when available</li>
                     <li>Enhance all configs to extend one configuration element from another,
                         as is done with Tiles Definitions</li>
                 </ul>
@@ -157,8 +161,6 @@
             <li>Struts 1.4.x -
             More substantial enhancements to product base
                 <ul>
-                    <li>Consider new Request Processor, if available (which might be based on the Commons Chain
-                        of Responsiblity package)</li>
                     <li>Consider migration to an Action context (which also might be based on the Commons Chain
                         of Responsiblity package)</li>
                     <li>Consider enhanced support for other platforms (2.3/1.2) if this can be accomplished by
@@ -168,17 +170,14 @@
 
             <li>Other potential enhancements for the 1.x.x series
                 <ul>
-                    <li>Move to <a href="http://xml.apache.org/forrest/">Forrest</a> or
-                        <a href="http://maven.apache.org/">Maven</a> for project management</li>
+                    <li>Consider <a href="http://struts.sf.net/struts-cocoon/">Cocoon Plugin</a></li>
+                    <li>Consider <a href="http://struts.sourceforge.net/struts-spring/index.html">Spring Plugin</a></li>
                     <li>Consider adopting several popular extensions, including:
                         <ul>
                             <li><a href="http://sslext.sourceforge.net/">SSL Ext</a></li>
                             <li><a href="http://strutstestcase.sourceforge.net/">TestCase</a></li>
                             <li><a href="http://stxx.sourceforge.net">Stxx</a> (XLST)</li>
                             <li><a href="http://www.livinglogic.de/Struts/">Workflow</a></li>
-                            <li><a href="http://struts.sf.net/struts-cocoon/">Cocoon Plugin</a></li>
-                            <li><a href="http://struts.sf.net/struts-bsf/">Scriptable Actions using BSF</a> (Bean Scripting
-                                Framework)</li>
                         </ul>
                     </li>
                 </ul>
@@ -452,7 +451,7 @@
     </section>
 
 <section>
-    <p class="version">Website updated from CVS: 2004 JUL 11 by husted.</p>
+    <p class="version">Website updated from CVS: 2004 JUL 15 by husted.</p>
     <p class="version">Javadocs updated from CVS: 2004 JUL 07 by husted.</p>
 </section>
 </chapter>
