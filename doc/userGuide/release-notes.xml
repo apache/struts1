@@ -160,6 +160,11 @@
           <strong>Build Changes</strong>
         </p>
         <ul>
+            <li>
+                2004-07-08: Add a simplified build.properties file for use by developers who are not actively involved in Jakarta development. This template assumes the developer is using JARS from our "lib" distribution.
+            </li>
+        </ul>
+        <ul>
          <li>2004-04-14 - project.properties: Adjust properties to use alternate repo for nightly builds.</li>
         </ul>
         <ul>
@@ -288,7 +293,8 @@
             <li>2004-01-14 - struts-chain: Add support for 'unknown' actions.</li>
         </ul>
         <ul>
-          <li>2004-03-08 - Struts-Faces updated for JSF 1.0 final release.</li>
+          <li>2004-07-07 - struts-faces: correct operation of &lt;s:base&gt; tag and add portlet specific version.</li>
+          <li>2004-03-08 - struts-faces: updated for JSF 1.0 final release.</li>
           <li>2003-12-31 - struts-faces: Initial support for Tiles; partial "Tilesization" of example app; *not* ready for prime time but comments definately welcome.</li>
           <li>2003-12-29 - struts-faces: Various updates regarding the JSF Final Draft and to prepare for Tiles support.</li>
           <li>2003-12-17 - struts-jericho: Whiteboard directory for Struts-Jericho, a working proposal for Struts 2.x.</li>
@@ -470,6 +476,11 @@
         <strong>Utility Package Changes</strong> [
         <code>org.apache.struts.util</code>]:</p>
         <ul>
+            <li>
+                2004-07-07 - TokenProcessor: Ensure that tokens returned differ even if called quickly by tracking last value used.
+            </li>
+        </ul>
+        <ul>
           <li>2004-04-08 - RequestUtils: Fixed inappropriate serialization of ModuleConfig when a DynaActionForm was put in the session.</li>
         </ul>
         <ul>
@@ -531,6 +542,10 @@
         <p>
         <strong>Documentation Application Changes</strong> [
         <code>struts-documentation.war</code>]:</p>
+        <ul>
+            <li>2004-07-07 - Rename "status.xml" to "roadmap.xml" to avoid confusion with STATUS.txt file.</li>
+            <li>2004-07-07 - Extend prior draft of bylaws page with additional material from Jakarta site and link to main menu.</li>
+        </ul>
         <ul>
           <li>2004-03-28 - Added Trifork server to Installing Struts on Various Containers section.</li>
           <li>2004-03-24 - Document new exception-throwing behavior in html:javascript when dynamicJavascript is true but no form can be identified.</li>
