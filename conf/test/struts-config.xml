@@ -22,7 +22,7 @@
 
     <!-- Registration form bean -->
     <form-bean      name="testFormBean"
-                    type="org.apache.struts.taglib.SimpleFormBeanForTesting"/>
+                    type="org.apache.struts.taglib.SimpleBeanForTesting"/>
 
 
   </form-beans>
@@ -34,6 +34,9 @@
     <!-- Example logon forward 
      <forward   name="logon"                path="/logon.jsp"/>
      -->
+     <forward name="simpleForward" 
+     			path="/path/to/non/existing/jsp.jsp"/>
+     			
      <forward name="testIncludeTagForward" 
      			path="/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
 </global-forwards>
@@ -45,7 +48,15 @@
     <action    path="/testIncludeTagTransaction"
                type="org.apache.struts.taglib.bean.resources.IncludeTagTransactionTestAction">
       <forward name="success"              
-      			path="/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
+      		   path="/test/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
+    </action>
+
+    <action    path="/testFormTag"
+               type="org.apache.struts.taglib.html.resources.FormTagTestAction"
+               name="testFormBean"
+              scope="request">
+      <forward name="success"              
+      			path="/test/org/apache/struts/taglib/html/TestFormTag1.jsp"/>
     </action>
 
   </action-mappings>
