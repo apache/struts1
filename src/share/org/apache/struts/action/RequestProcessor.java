@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.7 2002/03/10 01:23:29 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/03/10 01:23:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.8 2002/03/16 02:07:11 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/03/16 02:07:11 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.action;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import javax.servlet.RequestDispatcher;
@@ -72,7 +73,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.ActionConfig;
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/03/10 01:23:29 $
+ * @version $Revision: 1.8 $ $Date: 2002/03/16 02:07:11 $
  * @since Struts 1.1
  */
 
@@ -127,7 +127,7 @@ public class RequestProcessor {
      * The set of Action instances that have been created and initialized,
      * keyed by the fully qualified Java class name of the Action class.
      */
-    protected FastHashMap actions = new FastHashMap();
+    protected HashMap actions = new HashMap();
 
 
     /**
@@ -181,9 +181,7 @@ public class RequestProcessor {
            throws ServletException {
 
         synchronized (actions) {
-            actions.setFast(false);
             actions.clear();
-            actions.setFast(true);
         }
         this.servlet = servlet;
         this.appConfig = appConfig;
@@ -296,21 +294,22 @@ public class RequestProcessor {
         if (log.isDebugEnabled()) {
             log.debug(" Looking for Action instance for class " + className);
         }
-        Action instance = (Action) actions.get(className);
-        if (instance != null) {
-            if (log.isTraceEnabled()) {
-                log.trace("  Returning existing Action instance of class '" +
-                          className + "'");
-            }
-            return (instance);
-        }
-
-        // Create a new Action instance if necessary
-        if (log.isTraceEnabled()) {
-            log.trace("  Creating new Action instance of class '" +
-                      className + "'");
-        }
+        Action instance = null;
         synchronized (actions) {
+
+            // Return any existing Action instance of this class
+            instance = (Action) actions.get(className);
+            if (instance != null) {
+                if (log.isTraceEnabled()) {
+                    log.trace("  Returning existing Action instance");
+                }
+                return (instance);
+            }
+
+            // Create and return a new Action instance
+            if (log.isTraceEnabled()) {
+                log.trace("  Creating new Action instance");
+            }
             try {
                 instance = (Action)
                     RequestUtils.applicationInstance(className);
@@ -325,8 +324,11 @@ public class RequestProcessor {
                                               mapping.getPath()));
                 return (null);
             }
+
         }
+
         return (instance);
+
     }
 
 
