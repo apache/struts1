@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.14 2003/05/15 02:35:58 dgraham Exp $
- * $Revision: 1.14 $
- * $Date: 2003/05/15 02:35:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.15 2003/05/15 02:42:23 dgraham Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/05/15 02:42:23 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.14 $ $Date: 2003/05/15 02:35:58 $
+ * @version $Revision: 1.15 $ $Date: 2003/05/15 02:42:23 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -243,53 +243,51 @@ public class MessagesTag extends BodyTagSupport {
         }
 
         // Acquire the collection we are going to iterate over
-        if (property == null) {
-            iterator = messages.get();
-        } else {
-            iterator = messages.get(property);
-        }
+        this.iterator = (property == null) ? messages.get() : messages.get(property);
 
         // Store the first value and evaluate, or skip the body if none
-        if (iterator.hasNext()) {
-            ActionMessage report = (ActionMessage) iterator.next();
-            String msg =
-                RequestUtils.message(
-                    pageContext,
-                    bundle,
-                    locale,
-                    report.getKey(),
-                    report.getValues());
+        if (!this.iterator.hasNext()) {
+            return SKIP_BODY;
+        }
+        
+        ActionMessage report = (ActionMessage) this.iterator.next();
+        String msg =
+            RequestUtils.message(
+                pageContext,
+                bundle,
+                locale,
+                report.getKey(),
+                report.getValues());
 
-            if (msg != null) {
-                pageContext.setAttribute(id, msg);
-            } else {
-                pageContext.removeAttribute(id);
-
-                // log missing key to ease debugging
-                if (log.isDebugEnabled()) {
-                    log.debug(messageResources.getMessage("messageTag.resources", report.getKey()));
-                }
-            }
-
-            if (header != null && header.length() > 0) {
-                String headerMessage = RequestUtils.message(pageContext, bundle, locale, header);
-                if (headerMessage != null) {
-                    // Print the results to our output writer
-                    ResponseUtils.write(pageContext, headerMessage);
-                }
-            }
-
-            // Set the processed variable to true so the
-            // doEndTag() knows processing took place
-            processed = true;
-
-            return (EVAL_BODY_TAG);
+        if (msg != null) {
+            pageContext.setAttribute(id, msg);
         } else {
-            return (SKIP_BODY);
+            pageContext.removeAttribute(id);
+
+            // log missing key to ease debugging
+            if (log.isDebugEnabled()) {
+                log.debug(
+                    messageResources.getMessage(
+                        "messageTag.resources",
+                        report.getKey()));
+            }
         }
 
-    }
+        if (header != null && header.length() > 0) {
+            String headerMessage =
+                RequestUtils.message(pageContext, bundle, locale, header);
+                
+            if (headerMessage != null) {
+                ResponseUtils.write(pageContext, headerMessage);
+            }
+        }
 
+        // Set the processed variable to true so the
+        // doEndTag() knows processing took place
+        processed = true;
+
+        return (EVAL_BODY_TAG);
+    }
 
     /**
      * Make the next collection element available and loop, or
