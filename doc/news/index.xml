@@ -71,7 +71,7 @@ Download counts for Struts binary distributions in October 2002:
 </pre>
 
 <p>
-or around 940 per day. That's second highest among Jakarta projects, 
+or around 940 per day. That's second highest among Jakarta projects,
 the highest being Tomcat with 80k-100k downloads per month.
 </p>
 
@@ -84,7 +84,7 @@ but terrible for bean counters ...)
 </p>
 
 <p>
-As of November 14, the subscription counts to the Struts user mailing 
+As of November 14, the subscription counts to the Struts user mailing
 lists (counting digest subscribers) is:
 </p>
 
@@ -93,13 +93,13 @@ lists (counting digest subscribers) is:
 </pre>
 
 <p>
-which only just trails Tomcat:  
+which only just trails Tomcat:
 </p>
 
 <pre>
   TOMCAT-USER:     2,454
 </pre>
-    
+
 </section>
 
 <section name="Recent News" href="news">
@@ -112,903 +112,273 @@ which only just trails Tomcat:
 <hr size="1" noshade=""/>
 -->
 
-<h3><a name="20021230"></a>30 Dec 2002 - Struts 1.1 Beta 3 Released</h3>
-<p>The Struts team is proud to announce the release of Struts 1.1 Beta 3. This
-release includes significant new functionality, while retaining full
-backwards compatibility with earlier versions of Struts. It also
-incorporates fixes for a number of bugs which were reported against earlier
-versions.
-</p>
-<p>
-The binary distribution is available at:
-</p>
-<p>
-<a href="http://www.apache.org/dist/jakarta/struts/binaries/">
-http://www.apache.org/dist/jakarta/struts/binaries/</a>
-</p>
-<p>
-and the source distribution is available at:
-</p>
-<p>
-<a href="http://www.apache.org/dist/jakarta/struts/source/">
-http://www.apache.org/dist/jakarta/struts/source/</a>
-</p>
-<p>
-In addition, the library distribution, which contains updated binaries
-without the sample applications, is available at:
-</p>
-<p>
-<a href="http://www.apache.org/dist/jakarta/struts/library/">
-http://www.apache.org/dist/jakarta/struts/library/</a>
-</p>
-<p>
-Details of the changes in this release are available in the Release Notes,
-which can be found here:
-</p>
-<p>
-<a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html">
-http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html</a>
-</p>
-<hr size="1" noshade=""/>
+    <h3><a name="20030211"></a>11 Feb 2003 - Scioworks Camino 3.0</h3>
+    <p>
+        Announcing Scioworks Camino 3.0, visual modelling tool for Jakarta Struts (v1.0 to v1.1-b3).
+        For general information and list of new features, see
+        <a href="">http://www.scioworks.net/servlets/ShowPage?pid=48&amp;dp=2</a>
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030206.1"></a>06 Feb 2003 - Expresso 5.0.3 Available for Download</h3>
+    <p>
+        [Side note:  As you may know, Version 4 of Expresso incorporated Struts for its
+        MVC patterns and since then we have never looked back!
+        Great job to the Struts development team!!!
+        We will probably have Struts 1.1 integrated by the next .1 release (5.1)]
+    </p>
+    <p>
+        The Expresso development team would like to announce the release of Expresso 5.0.3.
+        Changes in this release include the introduction of the JSTL tag library and
+        changes to allow full compatibility with JSTL's expression language.
+    </p>
+    <p>
+        Bugfixes of note include better support for JNDI connections, initialization race
+        condition fixes in the DBObject,
+        and a SQL Injection fix in DBObject.searchAndRetrieve(String).
+    </p>
+    <p>
+        For the last reason, it is recommended that all Expresso 5.0 users upgrade to 5.0.3 as soon as possible.
+    </p>
+    <hr size="1" noshade=""/>
 
 
-<h3><a name="20021213"></a>12 December 2002 - Struts book #1 and #2</h3>
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/">
-<b>Struts Kick Start</b></a> 
-by James Turner and Kevin Bedell is now available from Amazon for immediate delivery:
-</p>
-<p>
-Buy one, buy two. They make great stocking stuffers. Use them as door
-stops. Learn to use the enclosed CD as a lethal thrown weapon. Fun for
-the whole family.
-</p>
-<hr size="1" noshade=""/>
+    <h3><a name="20030206"></a>06 Feb 2003 -  Easy Struts 0.6.3 for Eclipse is out</h3>
+    <p>
+        Easy Struts 0.6.3 for Eclipse is now available.
+        This release has no new features, only bug correction.
+    </p>
+    <p>
+    <a href="http://easystruts.sf.net">http://easystruts.sf.net</a>
+    </p>
+    <p>
+        Changes on 0.6.3<br/>
+        * Fix root dir problem with Tomcat Sysdeo plugin<br/>
+        * Fix roles generation in &lt;action.../><br/>
+        * XML elements forward/form-property/exception/set-property respect DTD order
+    </p>
+    <hr size="1" noshade=""/>
+
+    <h3><a name="20030205"></a>05 Feb 2003 - Live Internet based Intermediate Struts Training by "Best Training"
+        as voted by Java Developers Journal.</h3>
+
+    <p>
+    Live Internet based Intermediate Struts Training by "Best Training" as voted
+    by Java Developers Journal. Learn good (best?) practices of web application
+    development!
+    </p>
+
+    <ul>
+    <li>
+    Multi row processing to DB
+    </li>
+    <li>
+    Master/Detail processing
+    </li>
+    <li>
+    Java Script Navigation
+    </li>
+    <li>
+    and lots more, full agenda available, and it's all practical, no theory from me!
+    </li>
+    </ul>
+
+    <p>
+    The title of the class is "Pretenders vs. Pros" used to be Best and Worst
+    Practices. This is version 3 of my intermediate advanced class.
+    </p>
+
+    <p>
+    The class will meet online over 4 weeks, Saturdays at 10 AM Eastern on WebEx for
+    about an hour or a bit more or less. My goal is to start on the 2/22.
+    </p>
+
+    <p>
+    You should have a DSL or Cable connection, ( not sure how modem will work,
+    Web Ex says yeah, I say nay. Maybe you can go to work on Saturday?), and the
+    call in on a phone # to hear voice
+    </p>
+
+    <p>
+    You will have a mail list and newsgroup to ask questions on, I expect a lot
+    of questions on the labs.
+    </p>
+
+    <p>
+    This is NOT a intro to MVC, it is suitable for people that did one
+    Struts/MVC project or are very familiar with Servelts/JDBC/JSP/SQL. If you
+    are a Struts experienced, this is the class for you! If you are new to Java
+    / Web, this is not class for you. It help if you have production web/mvc
+    experience.
+    </p>
+
+    <p>
+    This is NOT for hands off types, it is lab based, for each hour of lecture,
+    there is at least 8 hours of labs each week. I promise the labs will be
+    challenging.
+    </p>
+
+    <p>
+    If you can't or don't do the web labs, the next lesson will make no sense to
+    you. Not doing "home work" labs, you will be invited not to attend the rest.
+    I want to avoid pretenders, and nurturer pros.
+    </p>
+
+    <p>
+    Scared?  The labs are doable. Clients like BEA, Borland, Cisco, IBM, etc.
+    already did the hand on in person labs. That is how baseBeans.com got voted
+    for "Best Training" by Java Developers Journal. I am willing to put it on
+    the line! by teaching the class over the web via WebEx.com.  I really want
+    to be the teach of the year next year as well!
+    </p>
+
+    <p>
+    I also did Struts project recovery, and worked on 40,000 concurrent users
+    Struts site, I guess I did more Struts training than all others combined,
+    plus more.
+    </p>
+
+    <p>
+    I am certified OO instructor, certified SQL performance and Tuning, J2EE
+    certified and Java Certified by 3 different J2EE vendors! You will enjoy the
+    class and learn, guranteed.
+    </p>
+
+    <p>
+    You charges will be mostly for the WebEx + voice, so you can see my screen.
+    When you register early, you will get a CD mailed to you with the lab
+    materials. (International clients will have another way)
+    </p>
+
+    <p>
+    If you register earlier, you get a cheaper price, goes up every few days,
+    just like for seminars, the later your register, the more you pay.
+    </p>
+
+    <p>
+    Since the cost is low, you can only register via the web, no P.O. or checks.
+    </p>
+
+    <p>
+    To find the price, to discuss the class before hand, as well as lab
+    questions later, etc. sign up at
+    </p>
+
+    <p>
+    <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers">
+    http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers
+    </a>
+    </p>
+
+    <p>
+    Please use the
+    <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers">
+    MVC mail list</a>
+    for any questions regarding this!
+    </p>
+
+    <p>
+    </p>
+
+    <p>
+    Click here to register:
+    <br/>
+    <a href="http://www.basebeans.com/do/classReservation">http://www.basebeans.com/do/classReservation</a>
+    </p>
+
+    <p>
+    The seminar is being given at near cost, on Open Source principles.
+    </p>
+
+    <p>
+    Questions? Comments? On the
+    <a href="http://www.basebeans.net:8080/mailman/listinfo/mvc-programmers">
+    MVC mail list
+    </a>.
+    </p>
+
+    <p>
+    Vic Cekvenich &lt;<a href="mailto:vic@basebeans.com">vic@basebeans.com</a>&gt;
+    </p>
+    <hr size="1" noshade=""/>
 
 
-<h3><a name="20021212"></a>12 December 2002 - Struts book #1 and #2</h3>
-<p>
-<a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13"><img border="0" src="../images/books/topsellers.jpg" width="284" height="220" align="right" valign="top"/></a>
-Struts books top the #1 <strong>and</strong> #2 slots on Amazon's <a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13">Java Programming bestseller list</a>!
-</p>
-<hr size="1" noshade=""/>
+    <h3><a name="20030204"></a>04 Feb 2003 - Struts Console v3.2</h3>
+    <p>
+    Struts Console version 3.2 is now available.<br />
+    <a href=" http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+    </p>
 
+    <p>
+    Download Now: <br />
+    http://www.jamesholmes.com/struts/struts-console-3.2.zip
+      -- OR --
+    http://www.jamesholmes.com/struts/struts-console-3.2.tar.gz
+    </p>
 
-<h3><a name="20021203"></a>3 December 2002 - Struts book rated 11 out of 10</h3>
-<p>
-<small>(3 December 2002)</small><br /><strong>Struts in Action</strong> rated 11 out of 10 by <a href="http://books.slashdot.org/article.pl?sid=02/11/25/1731249&amp;mode=thread&amp;tid=156">Slashdot</a>.
-</p>
-<hr size="1" noshade=""/>
+    <p>
+        Struts Console is FREE software.
+    </p>
 
+    <p>
+    This release fixes some bugs and adds a few small
+    features.
+    </p>
 
-<h3><a name="20021127"></a>27 Nov 2002 - Expresso 5.0.2 Released</h3>
-<p>
-Expresso 5.0.2 can be downloaded freely from:
-</p>
-<p>
-<a href="http://www.jcorporate.com/product/expresso.html">http://www.jcorporate.com/product/expresso.html</a>
-</p>
-<p>
-Both Expresso source and binaries are available. 
-</p>
-<p>
-This minor release is primarily a bug fix release. Bug Fixes include a
-NPE fix in JDBC Executor, a Blob Field fix, Validation improvements, and
-ComponentManager link fixes. 
-</p>
-<p>
-New Features (not affecting existing code) include a proper Struts-based
-ExLink tag by Malcolm Wise.
-</p>
-<hr size="1" noshade=""/>
+    <p>
+        Changes with Struts Console v3.2
+    </p>
 
+    <ul>
+        <li>
+      Fixed bug where Page and Forward Pattern were not
+         being displayed on the Controller screen for
+         Struts 1.1 config files.
+        </li>
+        <li>
+      Fixed bug where Form Bean add dialog would throw
+         exceptions if a type was not entered.
+        </li>
+        <li>
+      Fixed bug where Resource checkbox was not being
+         properly set for &lt;field> elements in Validator
+         config files.
+        </li>
+        <li>
+      Fixed bug where Page Converter dialog was
+         chopping off some of its tabs' contents.
+        </li>
+        <li>
+      Fixed bug in Page Converter to properly convert
+         &lt;img> tags.
+        </li>
+        <li>
+      Added support for new "size" attribute of
+         &lt;form-property> element.
+         </li>
+         <li>
+      Added missing "indexListProperty" field for
+         Validator config files.
+         </li>
+         <li>
+      Added support for turning off config file
+         validation in IDEA plugin.
+         </li>
+         <li>
+     Removed "Debug" field from Controller screen for
+         Struts 1.1 config files since it has been
+         deprecated.
+         </li>
+         <li>
+      Updated standalone version to preserve window
+         size and location.
+        </li>
+    </ul>
+    <hr size="1" noshade=""/>
 
-<h3><a name="20021124"></a>24 Nov 2002 - O'Reilly Struts Book Now Available</h3>
-<p>
-Programming Jakarta Struts by Chuck Cavaness (ISBN: 0596003285) is now available and shipping. 
-</p>
-<ul>
-<li>
-    <a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/">Amazon</a>
-</li>
-<li>
-    <a href="http://www.bookpool.com/.x/6kq93k1kim/sm/0596003285">Bookpool</a>
-</li>
-<li>
-    <a href="http://www.oreilly.com/catalog/jakarta">O’Reilly</a>
-</li>
-</ul>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="2002117"></a>17 Nov 2002 - Struts At ApacheCon 2002</h3>
-<p>
-If you're coming to Las Vegas this week for ApacheCon, there will be two
-sessions and a Birds of Feather meet specifically focused on Struts:
-</p>
-<ul>
-<li>
-  Session TU07 (Tuesday, 1:30-2:30) - What's New In Struts 1.1
-</li>
-<li>
-  Session WE06 (Wednesday, 10:00-11:00) - Building Web Applications
-  With Struts
-</li>
-<li>
-  BOF BOF03 (Tuesday, 8:00p-9:00p) - Struts After 1.1 -- Where Do We
-  Go From Here?
-</li>
-</ul>
-<p>
-The BOF is primarily an opportunity to gather input from folks on our
-initial thinking about the 1.2 and 2.0 roadmaps, and to answer any general
-questions that people have.
-</p>
-<p>
-The sessions and BOF will be lead by Craig McClanahan. Craig looks forward 
-to meeting any Struts users (and developers) attending the
-conference. You can find him at one of these sessions, or hanging around
-the Sun booths in the Exhibit Hall.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021115.2"></a>15 Nov 2002 - Struts ImageButtonBeanManager v0.2d</h3>
-<p>
-Version 0.2d of the ImageButtonBeanManager is now available on 
-<a href="http://sourceforge.net/projects/imagebuttonbean/">SourceForge.net</a>.
-</p>
-
-<p>
-ImageButtonBeanManager is a Struts Extension Package that supports the Struts
-HTML Image Tag and the ImageButtonBean class in a manner that is analgous to
-the support provided by Struts for the Struts HTML Submit Tag.
-</p>
-
-<p>
-It extends Ted Husted's 
-<a href="http://husted.com/struts/tips/001.html">ImageButtonBean</a> 
-approach with a few new features, such as automatically mapping the selected 
-ImageButton to an ActionForward and eliminating the need to define ImageButtonBean 
-instances in the ActionForm.  
-</p>
-
-<p>
-It builds on this capability and adds some features for similar support of the
-SubmitButton, yielding several new DispatchAction classes. The DispatchAction
-classes can be used to develop "Action Flows", which are analgous to
-server-side Action scripts. "Action Flows" are discussed in detail in the 
-documentation (please see the 
-"<a href="http://imagebuttonbeanmgr.webhop.org/">DispatchAction Classes page</a>".)
-</p>
-
-<p>
-The ImageButtonBeanManager DispatchAction classes are "ready-to-use" in that
-they don't need to be extended or require any application-specific code.  They
-can be used in lieu of an application's extensions of the Struts DispatchAction
-or LookupDispatchAction classes. They have the potential for relieving much of
-the dispatching duties of application-specific Actions. That should bring the
-side benefit of reducing the level of coupling between JSPs and Actions.
-</p>
-
-<p>
-Larger development projects might get more benefit from this than smaller ones
-...
-</p>
-
-<p>
-The developer documentation, JavaDoc, Java code and a sample WebApp are running
-at:
-</p>
-
-<p>
-<a href="http://imagebuttonbeanmgr.webhop.org/">http://imagebuttonbeanmgr.webhop.org/</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021115"></a>15 Nov 2002 - [FRIDAY] Top 10 things likely to be overheard from a Klingon Programmer</h3>
-<p>
-From: Andrew Hill
-</p>
-<p>
-10. Specifications are for the weak and timid!
-</p>
-<p>
-9. You question the worthiness of my code? I should kill you where you
-stand!
-</p>
-<p>
-8. Indentation?! - I will show you how to indent when I indent your skull!
-</p>
-<p>
-7. What is this talk of 'release'? Klingons do not make software 'releases'.
-Our software 'escapes' leaving a bloody trail of designers and quality
-assurance people in its wake.
-</p>
-<p>
-6. Klingon function calls do not have 'parameters' - they have 'arguments' -
-and they ALWAYS WIN THEM.
-</p>
-<p>
-5. Debugging? Klingons do not debug. Our software does not coddle the weak.
-</p>
-<p>
-4. A TRUE Klingon Warrior does not comment on his code!
-Klingon software does NOT have BUGS. It has FEATURES, and those features are
-too sophisticated for a Romulan pig like you to understand.
-</p>
-<p>
-3. You cannot truly appreciate Dilbert unless you've read it in the original
-Klingon.
-</p>
-<p>
-2. Our users will know fear and cower before our software!
-</p>
-<p>
-1. Ship it! Ship it and let them flee like the dogs they are!
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021113"></a>13 Nov 2002 - Easy Struts 0.6.1 Eclipse plugin</h3>
-<p><a href=""></a>
-Easy Struts 0.6.1 was just released, all the wizard was refactored, a Struts view was
-added and Struts 1.1 modules are supported.
-</p>
-<p>
-Easy Struts Features:
-</p>
-<ul>
-<li>
-  Easy Struts plugin can be used with most popular J2EE plugin like
-  Sysdeo TomcatResin, Lomboz... (or simply a Java project).
-</li>
-<li>
-  Provide Struts configuration editor for Struts 1.0 and Struts 1.1 files.
-</li>
-<li>
-  Now use XSLT generation.
-</li>
-<li>
-  Provide a global tree view of any Java project with Easy Struts support.
-</li>
-<li>
-  Full support for Struts 1.1 modules (with 1 last nightly build).
-</li>
-<li>
-  Tool tips extracted from Struts DTD.
-</li>
-<li>
-  Input helper (chooser dialog and validation).
-</li>
-<li>
-  Compatible with IBM WSAD 5
-</li>
-</ul>
-<p>
-Install it from update manager: 
-</p>
-<p>
-<a href="http://easystruts.sourceforge.net/update.html">http://easystruts.sourceforge.net/update.html</a>
-</p>
-<p>
-  or
-</p>
-<p>
-Download it: 
-<a href="http://easystruts.sourceforge.net">http://easystruts.sourceforge.net</a>
-</p>
-<hr size="1" noshade=""/>
-
-    
-    
-<h3><a name="20021113"></a>13 Nov 2002 - Tiles and Validator Support in ObjectAssembler 2.5</h3>
-<p>
-ObjectAssembler 2.5 Pro is now available:
-</p>
-<p>
-<a href="http://www.objectventure.com/objectassembler.html">http://www.objectventure.com/objectassembler.html</a>
-</p>
-<p>
-New Struts features in this release:
-</p>
-<ul>
-<li>
-    Full support for Tiles definitions
-</li>
-<li>
-    Full support for Validator 1.0 configurations
-</li>
-<li>
-    Jump from any element in our visual editor to its associated XML
-</li>
-<li>
-    Two-way development. Changes made to XML are immediately reflected in
-    the visual editor and vice versa
-</li>
-<li>
-    Two additional component types: Struts Exception and Validator
-    (allows the implementation of Validator rules). For each of these
-    components that are created, their use is automated in the Struts,
-    Tiles, and Validator configuration editor
-</li> 
-<li>
-    Updated all Struts support to the latest 1.1 builds.
-</li>
-</ul>
-<p>
-ObjectAssembler doesn't just help you generate configuration files. It
-is a component-based Struts development environment that assists you in
-building both Struts components and configuration files. It also
-automates the process of packaging them in a WAR and generating the WAR
-itself.
-</p>
-<p>
-ObjectAssembler is currently supported in Jbuilder, Netbeans, Sun ONE
-Studio, and as a standalone IDE. We are working on the next supported
-IDE (the most popular requests being IDEA and Eclipse).
-</p>
-<p>
-I invite you to take ObjectAssembler for a spin. The User Manual, which
-is provided with the installation, explains how to make use of
-ObjectAssembler's Struts support. We also have some simple Struts
-Viewlets available here if you aren't quite up to downloading yet:
-http://www.objectventure.com/demos.html. If you have any
-questions/problems/feedback, please contact me directly or join me here:
-</p>
-<p>
-<a href="http://support.objectventure.net/">http://support.objectventure.net</a>.
-</p>
-<hr size="1" noshade=""/>
-
-
-<!--
-<h3><a name="20021112"></a>12 Nov 2002 - display tag: added columns functionality</h3>
-<p>
-In recent weeks I've noticed several people inquire about Ed Hill's
-awesome 
-<a href=" http://edhill.its.uiowa.edu/display-0.8/">display tag</a>
-and the ability to only display certain columns.
-</p>
-<p>
-I modified the jar and tld so that you can now provide a
-"columnsToDisplay" attribute in the display:table tag.
-columnsToDisplay just needs to be a String array of the columns you
-want to display. The only caveat is the Strings in the array should
-represent the titles of the columns and not the names of the fields.
-(I suppose I should change that, but I wasn't sure if it would still
-work when you use one of the table decorators. It shouldn't be a problem,
-though, so I'll probably change that).
-</p>
-<p>
-If anyone wants the jar/tld feel free to e-mail me or if I hear from
-Ed, I'll see if he wants to include it in his latest release or I
-could provide a link to the code somewhere else.
-</p>
-<hr size="1" noshade=""/>
-
-<h3><a name="20021109.3"></a>09 Nov 2002 - Sample chapter from "Struts Kick Start" available</h3>
-<p>
-Chapter 17 (DynaForms and the Validator) from the upcoming SAMS title
-"Struts Kick Start" is now available at 
-<a href="http://www.strutskickstart.com/">www.strutskickstart.com</a>.
-</p>
-<hr size="1" noshade=""/>
--->
-
-
-<h3><a name="20021109.2"></a>09 Nov 2002 - Management-oriented Powerpoint Presentation for Struts</h3>
-<p>
-James Turner and Kevin Bedell have collaborated on a Management Powerpoint
-presentation that can be used to make the case for using Struts for
-development.
-</p>
-<p>
-<a href="http://www.strutskickstart.com">http://www.strutskickstart.com</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021108"></a>08 Nov 2002 - 2 Part Series on Onjava.com</h3>
-<p>
-Part I of a two part series on Struts v1.1 is posted on Onjava.com at
-</p>
-<p>
-<a href="http://www.onjava.com/pub/a/onjava/pub/a/2002/11/06/struts1.html">
-http://www.onjava.com/pub/a/onjava/pub/a/2002/11/06/struts1.html
-</a>
-</p>
-<p>
-Part II will be posted next week.
-</p>
-<p>
-'The Struts Framework: A Practical Guide for Java Programmers' (MK) is now
-shipping. Order your copy now from the featured online store:
-<a href="http://www.softpro.com/1-55860-862-1.html">http://www.softpro.com/1-55860-862-1.html</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021107"></a>07 Nov 2002 - Struts in Action now in print</h3>
-<p>
-The Manning book, Struts in Action, is now available for sale at the publisher's website and will arrive at bookstores everywhere over the next few weeks.
-Struts solves the most common problems of Web development by providing an open source framework for building Web applications.
-As the only book with full coverage of both Struts 1.0 and the upcoming Struts 1.1, Struts in Action points out the differences between the two and builds a case study that illustrates the transition from one to the other.
-The authors of the Manning book are core members of the Struts community who are intimately involved in the Struts development process.
-</p>
-<p>
-Manning makes this text available in either ebook edition for $22.47 or print edition for $44.95 at <a href="http://www.manning.com/husted">www.manning.com/husted</a>.
-If you order the ebook from Manning's website first, you will receive a special offer on the print edition.
-If you later purchase the print edition from the publisher's website, Manning will deduct the cost of the ebook from the print edition order - that's both editions for $44.95!
-Please remember, to get this deal, you must order the ebook first.
-</p>
-<p>
-Struts in Action<br />
-By Ted N. Husted, Cedric Dumoulin, George Franciscus, David Winterfeldt <br />
-ISBN 1930110502 <br />
-Softbound, 664 pages, $44.95 <br />
-Ebook, 2.5 Mb PDF, $22.47 <br />
-<a href="http://www.manning.com/husted">www.manning.com/husted</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021106"></a>06 Nov 2002 - Struts News Roundup</h3>
-<p>
-The
-<a href="http://jakarta.apache.org/struts/volunteers.html">Struts team</a> is proud to welcome 4 new Committers this month, David Karr, Eddie Bush, David Graham, and James Mitchell</p>
-<p>
-Everyone is working steadily toward the release of Struts 1.1 beta 3. To help keep everyone on track, the team added a
-<a href="http://jakarta.apache.org/struts/status.html">Development Roadmap</a>.
-</p>
-<p>
-There are a number of "nice to haves" that won't make Struts 1.1 which are now slated for Struts 1.2. Farther down the road, Struts 2.0 will rely upon the new standards, like JavaServer Faces and JSTL.
-</p>
-<p>
-The platform for Struts 1.1 will remain Servlet 2.2 and JSP 1.1. However, a Struts JSTL taglib is available in the nightly build contrib directory and will be released with Struts 1.1 as a separate download.
-</p>
-<p>
-Solid Struts support for the other new standard,
-<a href="http://jakarta.apache.org/struts/proposals/struts-faces.html">Struts JavaServer Faces</a>,
-is under development, but cannot be released quite yet.
-</p>
-<p>
-Meanwhile, the Struts User list will continue to enjoy its "casual Friday" policy. Off-topic messages are tolerated on Fridays so long as the message is prefixed with the token [FRIDAY]. Posting [FRIDAY] articles on any other weekday is strongly discouraged.
-</p>
-<hr size="1" noshade=""/>
-
-
-
-<h3><a name="20021105.2"></a>2002 Nov 05 - Struts Article on theServerSide.com</h3>
-<p>
-An article on Struts has been published on www.theServerSide.com. This
-article titled 'Fast Track to Struts: What it Does and How' is primarily
-written to assist new users get quickly familiar with Struts. It is
-complementary to the information already available at
-http://jakarta.apache.org/struts/userGuide/index.html. I am hoping that this
-article will complement the efforts of the people already evangelizing
-Struts adoption.
-</p>
-<p>
-The introduction to the article is reproduced below.
-</p>
-<p>
-Introduction<br />
-------------<br />
-The objective of this article is to introduce prospective Struts users to
-the key benefits of using Struts, and at the same time illustrate its
-configuration and usage semantics. We will define the requirements of a
-robust presentation framework and simultaneously discuss how these
-requirements are implemented in the Struts framework. We will also explore
-the design patterns implemented by Struts, the semantics of the controller,
-and the semantics of the associated helper components; this knowledge will
-be useful when designing components that will interact with the framework,
-and when there is a need for extending the framework for accommodating
-special needs of a project. This article complements the information
-available at http://jakarta.apache.org/struts.
-</p>
-<p>
-For more visit<br />
-<a href="http://www2.theserverside.com/home/thread.jsp?thread_id=16336">
-http://www2.theserverside.com/home/thread.jsp?thread_id=16336</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021005.1"></a>2002 Nov 05 - Struts Workflow Extension Package 0.9.2</h3>
-<p>
-The Bugfix-Version 0.9.2 of the Struts Workflow
-Extension Package is now available.
-The release received the following changes:
-</p>
-<ul>
-<li>
-  fix for a bug that caused an exception in GenericAction in very
-special configuration situations
-</li>
-<li>
-  bugfix in the test application's web.xml file, some containers
-stumbled over
-</li>
-</ul>
-<p>
-For more information about this package visit
-<a href="http://www.livinglogic.de/Struts/">http://www.livinglogic.de/Struts/</a>.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021101"></a>2002 Nov 01 - New Struts Article posted on OnJava</h3>
-<p>
-Sorry for the self promotion, but I thought this article
-might help some on this list. I wrote a Struts "lessons
-learned" article for O'Reilly that contains information
-that is discussed here on the list frequently, but never
-hurts to be explained in more detail.
-</p>
-<p>
-Here's the link to the article:<br />
-<a href="http://www.onjava.com/pub/a/onjava/2002/10/30/jakarta.html">
-http://www.onjava.com/pub/a/onjava/2002/10/30/jakarta.html</a>
-</p>
-<p>
-Enjoy,
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021030"></a>2002 Oct 30 - Struts Console version 3.0 is now available</h3>
-<p>
-<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
-</p>
-<p>
-Download Now:<br />
-<a href="http://www.jamesholmes.com/struts/struts-console-3.0.zip">
-http://www.jamesholmes.com/struts/struts-console-3.0.zip</a><br />
-  -- OR --<br />
-<a href="http://www.jamesholmes.com/struts/struts-console-3.0.tar.gz">
-http://www.jamesholmes.com/struts/struts-console-3.0.tar.gz</a></p>
-<p>
-Struts Console is FREE software.
-</p>
-<p>
-Eclipse plugin support and Validator config file
-support is finally here.  This release also makes
-working with DynaActionForms more convenient.
-</p>
-<p>
-Changes with Struts Console v3.0
-</p>
-<ul>
-<li>
-  Fixed bug where Forwards' "Configuration Class"
-     attribute was incorrect.
-</li>
-<li>
-  Added support for Validator config files.
-</li>
-<li>
-  Added plugin support for Eclipse.
-</li>
-<li>
-  Added support for "className" attribute of
-&lt;data-source> elements.
-</li>
-<li>
-  Added support for "className" attribute of
-&lt;exception> elements.
-</li>
-<li>
-  Added support for "className" attribute of
-&lt;form-bean> elements.
-</li>
-<li>
-  Added support for "className" attribute of
-&lt;form-property> elements.
-</li>
-<li>
-  Added support for adding &lt;set-property> elements
-     to &lt;form-property> elements.
-</li>
-<li>
-  Added drop down list of values for "Type" field
-     of Form Properties for FormBeans.
-</li>
-<li>
-  Added drop down list of values for
-     FormBean's "Type" field.
-</li>
-</ul>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021016"></a>2002 Oct 16 - Architectural framework Brings Next Level of Best Practices, Interoperability, Re-use and Configurability to J2EE Web Development With Release 5.0.</h3>
-<p>
-Jcorporate Ltd. today announces the release of Expresso 5.0, the most popular architectural framework for Java web development.
-</p>
-<p>
-The Expresso 5.0 release is a major new release with more than 50 new features, breaks new ground in software with new workflow engine and raises the bar by providing 100% higher release stability than the previous version.
-</p>
-<p>
-The Release 5.0 release has brewed more than 50 new features, as well as many feature updates, performance improvements, bug fixes and updated documentation. Here are some highlights:
-</p>
-<p>
-   1. Additional Struts Integration including Tiles integration, ActionForms, Radio Input types, Combobox tag, and an Expresso-aware html:link tag that will work with Transitions.<br />
-   2. Container-based authentication integration.<br />
-   3. Authentication and Registration: refactored with many improvements including email address validation, login redirecting to original destination.<br />
-   4. SSL Integration Capabilities: now can transition into and out of SSL web pages and still maintain session state.<br />
-   5. DBObjects: Has many new improvements including a new class of DBObjects that can have Row level permissions.<br />
-   6. Basic Workflow Capabilities<br />
-   7. BLOB/CLOB datatypes Support<br />
-   8. JNDI Compatible Data Connections: Expresso can now retrieve connections to databases through JNDI lookups. This is critical for JTA compatibility as well as some drivers for, for example, DB-2 databases.<br />
-   9. i18n Improvements: Error Collections can have keys to Message Bundles with this tag. Polish and Chinese language support added.<br />
-  10. Clean &amp; universal URLs: allows for clean URLS without lots of URL parameters<br />
-  11. Performance improvements to overall web application performance.<br />
-  12. Security Enhancements have been made.<br />
-  13. Expresso Developer's Guide has been substantially updated.<br />
-  14. and much more.
-</p>
-<p>
-Expresso is available free of charge for download at <a href="http://www.jcorporate.com/product/expresso.html">http://www.jcorporate.com/product/expresso.html</a>.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021009"></a>2002 Oct 9 -  StrutsCX: Struts with Castor XML and XSLT</h3>
-<p>
-StrutsCX is a small Struts add-on framework that combines Struts with Castor XML and XSLT.
-</p>
-<p>
-Features:
-</p>
-<ul>
-<li>
-Lightweight framework running on any Servlet Engine or J2EE Application Server.Simple and fast to implement.
-</li>
-<li>
-Support of internationalization. IS0-8859-1 and any other language, like Chinese, Korean, Arabic, too!
-</li>
-<li>
-StrutsCXServlet: Replaces Struts JSP and MessageResources features with a pure XML and XSLT solution 100% internationalizable.
-</li>
-<li>
-Output of 100% standard conform XML, XHTML, XSL-FO, WML or whatever you like.
-</li>
-<li>
-Simple validation error mechanism.
-</li>
-<li>
-Prototype persists via Castor XML.
-</li>
-<li>
-Prototype featuring the CRUD cycle (Create, Retrieve, Update, Delete) and support for English, German and Korean language.
-</li>
-</ul>
-<p>
-StrutsCX takes further the idea of the Model 2X by Julien Mercay and Gilbert Bouzeid. Check out the StrutsCX website:
-</p>
-<p>
-<a href="http://it.cappuccinonet.com/strutscx">http://it.cappuccinonet.com/strutscx</a>
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020910"></a>2002 Sep 10 - ApplicationResources.properties from Database</h3>
-<p>
-For anyone interested, I have finished implementing DBMessageResources
-which allows you to keep the key-value pairs (from your
-ApplicationResources.properties) in a single database table.
-</p>
-<p>
-You can load your property files into a table (generic schema is provided)
-and with this extension, by only modifying &lt;message-resources> in the
-struts-config.xml your application will run WITHOUT ANY code changes. (See
-the readme.txt file included)
-</p>
-<p>
-This extension uses OJB (http://jakarta.apache.org/ojb) O/R mapping for
-database configuration and connection pool management.
-</p>
-<p>
-I have included a modified version of the (1.1b2) struts-example to
-demonstrate.
-</p>
-<p>
-I have tested this with Struts 1.1b2, and I'm sure it will work with 1.1b1
-(If anyone requires a 1.0.x compatible, I can look at that also)
-</p>
-<p>
-I will get this project available as soon as I work through some cvs issues
-on sf.net:
-</p>
-<p>
-If anyone is REALLY itching to get their hands on it sooner, send me a
-<a href="mailto:jholmes@apache.org">email</a>.
-</p>
-<p>
-For those who were waiting, thanks for your patience.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020908"></a>2002 Sep 08 - French book</h3>
-<p>A new book about UML named "Mod?liser un site e-commerce en UML" from Pascal Roques will be available mid September.<br />
-Summary: <a href="http://www.dotnetguru.org/downloads/tabledesmatieres.pdf">http://www.dotnetguru.org/downloads/tabledesmatieres.pdf</a>
-</p>
-<p>
-Implementation code is provided with Struts, .Net and PHP
-</p>
-<hr size="1" noshade=""/>
-
-<h3><a name="20020906"></a>Struts Q&amp;A Distilled, Vol#2</h3>
-<p>
-"Struts Q&amp;A Distilled" is a catalogue of question-and-answers distilled
-from Struts mailing lists and other sources. The catalogue is organized in
-topics. New entries are added to the catalogue periodically in batches.
-</p>
-<p>
-Volume #2: <br />
-<a href="http://www.scioworks.net/servlets/ShowPage?pid=34&amp;dp=3">http://www.scioworks.net/servlets/ShowPage?pid=34&amp;dp=3</a>
-</p>
-<p>
-Covers:
-</p>
-<p>
-Q1: It is recommended properties of the FormBeans should be String
-properties. In that case, where do I do the type conversions?
-</p>
-<p>
-Q2: How much does Struts depend on the session object and when is the
-object created?
-</p>
-<p>
-Q3: I have problem with using ActionErrors and &lt;html:errors>. I don't see
-my messages. Why?
-</p>
-<p>
-Q4: My error messages generated by &lt;html:errors> contain "null" at the
-start and the end. What have I done wrong?
-</p>
-<p>
-Q5: How do I prevent my form from being validated when it is displayed the
-first time, if the JSP is fronted by an Action?
-</p>
-<p>
-Q6: Struts 1.1 seems to support multiple resource bundles. How to use it?
-</p>
-<p>
-Q7: After I replace my &lt;input type="submit"...> to &lt;html:submit...>, my
-Javascript document.forms[0].submit() does not work anymore and returns me
-"Object doesn't support this property or method". Why?
-</p>
-<p>
-Q8: How do I configure Struts to intercept requests and perform some logic
-before passing them to the controller servlet for processing?
-</p>
-<p>
-Q9: How do I send binary data to the controller servlet? (e.g. a
-Swing-based client sends serialized object to the controller servlet.)
-</p>
-<p>
-Q10: I want to associate data with &lt;html:check> and return the selected
-value as a String property in the FormBean. But I got exception coming from
-RequestUtils.populate(). Why?
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020905"></a>2002 Sep 05 - Struts 1.1: Should I Upgrade?</h3>
-<p>
-Built on the success of Struts 1.0, Struts 1.1 beta was released in March
-this year and showcased at JavaOne 2002. This article describes the new
-features found in Apache Struts 1.1 beta and the impact of migration from
-Struts 1.0 to Struts 1.1. It also offers advice on the migration decision
-and the upgrade process.
-</p>
-<p>
-Read the article by John Yu
-<a href="http://lists.theserverside.com/t/12337/870556/204/181/">http://lists.theserverside.com/t/12337/870556/204/181/</a>
-at the ServerSide.
-</p>
-<hr size="1" noshade=""/>
-
-<h3><a name=""></a>Map -&gt; JavaBean API, arbitrary property names! dynclass.sourceforge.net</h3>
-<p>
-<a href="http://dynclass.sourceforge.net/">http://dynclass.sourceforge.net/</a> - a Class-creation API with very simple but powerful Map-to-JavaBeans translation.
-</p>
-<p>
-I have recently added support for arbitrary property names (i.e. names
-that contain spaces, operator chars, you name it).  So for example:
-</p>
-<pre>
-<code>
-Map myMap = ...;
-myMap.put("email address", emailAddr);
-Object myBean = BeanCreator.createBeanFromMap(myMap);
-
-//...
-&lt;bean:write name='myBean' property='email address'/>
-</code>
-</pre>
-<p>
-Much better than lots of Bean inner-classes!
-</p>
-<p>
-I know a lot of Struts developers are using DynaBean et al and it seems to be working fine for
-them.  If you need your beans to work within non-DynaBean-aware
-frameworks this API would be a big help to you.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20020902"></a>2002 Sep 02 - JDeveloper9i 9.0.3 w/ Struts, J2EE 1.3, et. al.</h3>
-<p>
-A quick announcement for any Struts users who might be using
-(or might want to evaluate) Oracle's JDeveloper Java IDE.
-</p>
-<p>
-We've just published a Developer's Preview of our new 9.0.3 major release
-on our Oracle Technet website:
-</p>
-<p>
-   <a href="http://otn.oracle.com/products/jdev/content.html">http://otn.oracle.com/products/jdev/content.html</a>
-</p>
-<p>
-List of new features in this release is at:
-</p>
-<p>
-<a href="http://otn.oracle.com/products/jdev/htdocs/jdev903Preview_fo.html">http://otn.oracle.com/products/jdev/htdocs/jdev903Preview_fo.html</a>
-</p>
-<p>
-Of particular interest to Struts developers are the following new features:
-</p>
-<ul>
-<li>
-  Easily work with struts-config.xml settings
-</li>
-<li>
-  Quickly create new actions and action forms
-</li>
-<li>
-  Run/debug Struts apps in the embedded J2EE 1.3-compliant
-  container for fast, no-deploy code/test/debug turnaround time
-</li>
-<li>
-  Easily use Oracle's J2EE framework, Business Components for Java (BC4J),
-  as the Model layer for your Struts application
-</li>
-<li>
-  Auto-generate a fully-working Struts/JSP/BC4J database
-  application using the new "Complete Struts-Based JSP App" wizard
-</li>
-</ul>
-<p>
-Plus many other features of general interest to anyone doing Java/J2EE
-development. Software is free to download and use, and $995 for a full
-commercial license (which includes free use of the BC4J J2EE Framework).
-</p>
-<p>
-For a quick overview of how the BC4J framework implements all of
-the J2EE design patterns you normally have to write by hand, see:
-</p>
-<p>
-<a href="http://otn.oracle.com/products/jdev/htdocs/j2ee_bc4j.html">http://otn.oracle.com/products/jdev/htdocs/j2ee_bc4j.html</a>
-</p>
-<p>
-and an overview of how the framework implements collections of
-Value Objects for you easily, see:
-</p>
-<p>
-<a href="http://otn.oracle.com/products/jdev/howtos/bc4j/bc4j-collections.html">http://otn.oracle.com/products/jdev/howtos/bc4j/bc4j-collections.html</a>
-</p>
-<p>
-Have fun.
-</p>
-<hr size="1" noshade=""/>
 
 <p align="center">
-<a href="news_2002_q3.html">
+<a href="news_2002_q4.html">
 <b>MORE NEWS</b></a>
 </p>
 
