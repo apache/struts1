@@ -42,37 +42,53 @@
 
   </section>
 
-
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>The final release of <strong>Struts 1.0</strong> has been created and
-  made available at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0</a>.  The
-  source code for this version of Struts can also be downloaded at
-  <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src">
-  http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src</a>.</p>
-
-  <p>Check the <a href="release-notes-1.0.html">Release Notes</a>
-  for a summary of what new features have been added, and other significant
-  changes, since the Struts 1.0-beta-3 release.</p>
-
-  <hr width="75%"/>
-
-  <p>You can acquire interim binary and source distributions of Struts from the
-  following locations:</p>
+  <p>The production release of <strong>Struts 1.0</strong> is available in
+  in convenient binary distribution and also with complete source code.</p>
 
   <ul>
-  <li>Download the source directly via
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0">
+  <b>Struts 1.0 Binary Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src">
+  <b>Struts 1.0 Source Code Distribution</b></a></li>
+  </ul>
+  
+  <p>Check the <a href="release-notes-1.0.html">Release Notes</a>
+  for a summary of what new features have been added and other 
+  changes since the Struts 1.0-beta-3 release.</p>
+
+  <p><b>In addition to a Struts distribution,</b> you will need to ensure that
+  you have downloaded and installed all of the
+  <a href="installation.html#Prerequisites">prerequisite</a> software
+  applications. Then, follow the appropriate instructions to
+  <a href="installation.html#Installing">install and use a Struts binary 
+  distribution</a> in your web application or for
+  <a href="installation.html#Building">building Struts from the source
+  distribution</a>.</p>
+
+  </section>
+
+  <section name="Nightly Builds" href="Builds">
+
+  <p>For developers who are helping to develop Struts, or who just want 
+  "the latest bits", the latest development version is made available each 
+  morning. Use at your own risk!</p>
+
+  <ul>
+  <li>Nightly builds - download the source directly via
       <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
       Anonymous CVS</a>.</li>
-  <li>Download nightly binary distributions from
+  <li>Nightly builds - Download the binary distributions from
       <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly">
       here</a>.</li>
-  <li>Download nightly source distributions from
+  <li>Nightly builds - Download the source distributions from
       <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/src">
       here</a>.</li>
   </ul>
+
+  <p>Be sure to check the <a href="release-notes.html">Release Notes</a> for the nightly 
+  builds so you know what you are getting!</p>
 
   <p>Access to the CVS source repository for Struts is available through both
   <a href="http://jakarta.apache.org/cvsweb/index.cgi/jakarta-struts/">web
@@ -80,28 +96,18 @@
   <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">CVS client</a>
   interfaces.</p>
 
-  <p>In addition to the Struts distribution, you will need to ensure that
-  you have downloaded and installed all of the
-  <a href="installation.html#Prerequisites">prerequisite</a> software
-  applications.  Then, follow the appropriate instructions to
-  <a href="installation.html#Building">build Struts from the source
-  distribution</a>, or <a href="installation.html#Installing">install and
-  use a Struts binary distribution</a> in your web application.</p>
-
   </section>
-
 
   <section name="Reporting Bugs and Feature Requests" href="Bugs">
 
-  <p>Tracking of bug reports and new feature requests for Struts is hosted at
-  <a href="http://nagoya.apache.org/bugzilla/">http://nagoya.apache.org/bugzilla/</a>.
+  <p>Tracking of bug reports and enhancement requests for Struts is handled through 
+  the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a>.
   Please select <strong>Struts</strong> from the product list, along with the
   details of which component of Struts you feel this report relates to,
-  and details of your operating environment.  You will automatically be
-  notified by Email as the status of your bug report changes.</p>
+  and details of your operating environment. You will automatically be
+  notified by email as the status of your bug or enhancement report changes.</p>
 
   </section>
-
 
   <section name="Getting Involved" href="Involved">
 

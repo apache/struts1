@@ -13,6 +13,11 @@
         <item name="Who We Are"              href="userGuide/volunteers.html"/>
     </menu>
 
+    <menu name="Downloads">
+        <item name="Binaries"                href="http://jakarta.apache.org/site/binindex.html"/>
+        <item name="Source Code"             href="http://jakarta.apache.org/site/sourceindex.html"/>
+    </menu>
+
     <menu name="Getting Started">
         <item name="Installation"            href="installation-1.0.html"/>
         <item name="Release Notes"           href="release-notes-1.0.html"/>
