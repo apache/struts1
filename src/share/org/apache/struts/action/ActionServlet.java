@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.5 2000/06/15 01:27:30 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/06/15 01:27:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.6 2000/06/15 19:39:01 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/06/15 19:39:01 $
  *
  * ====================================================================
  *
@@ -88,13 +88,13 @@ import org.xml.sax.SAXException;
 
 
 /**
- * <strong>ActionServlet</strong> represents the "controller" in the
+ * <p><strong>ActionServlet</strong> represents the "controller" in the
  * Model-View-Controller (MVC) design pattern for web applications that is
  * commonly known as "Model 2".  This nomenclature originated with a
  * description in the JavaServerPages Specification, version 0.92, and has
- * persisted ever since (in the absence of a better name).
- * <p>
- * Generally, a "Model 2" application is architected as follows:
+ * persisted ever since (in the absence of a better name).</p>
+ * 
+ * <p>Generally, a "Model 2" application is architected as follows:</p>
  * <ul>
  * <li>The user interface will generally be created with JSP pages, which
  *     will not themselves contain any business logic.  These pages represent
@@ -119,9 +119,11 @@ import org.xml.sax.SAXException;
  *     to pass control to an appropriate JSP page to produce the next page
  *     of the user interface.
  * </ul>
- * <p>
- * The specific function of the controller is to perform the following logic
- * for each incoming HTTP request:
+ *
+ * <p>The standard version of <code>ActionServlet</code> implements the
+ *    following logic for each incoming HTTP request.  You can override
+ *    some or all of this functionality by subclassing this servlet and
+ *    implementing your own version of the processing.</p>
  * <ul>
  * <li>Identify, from the incoming request URI, the substring that will be
  *     used to select an action procedure.
@@ -137,10 +139,25 @@ import org.xml.sax.SAXException;
  *     specialized properties of the mapping itself), and the request and
  *     response that were passed to the controller by the servlet container.
  * </ul>
- * <p>
+ *
+ * <p>The standard version of <code>ActionServlet</code> is configured based
+ * on the following servlet initialization parameters, which you will specify
+ * in the web application deployment descriptor (<code>/WEB-INF/web.xml</code>)
+ * for your application.  Subclasses that specialize this servlet are free to
+ * define additional initialization parameters.</p>
+ * <ul>
+ * <li><strong>application</strong> - Java class name of the application
+ *     resources bundle base class.  [NONE].
+ * <li><strong>config</strong> - Context-relative path to the XML resource
+ *     containing our configuration information.  [/WEB-INF/action.xml]
+ * <li><strong>debug</strong> - The debugging detail level for this
+ *     servlet, which controls how much information is logged.  [0]
+ * <li><strong>mapping</strong> - The Java class name of the ActionMapping
+ *     implementation to use [org.apache.struts.action.ActionMappingBase]
+ * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/06/15 01:27:30 $
+ * @version $Revision: 1.6 $ $Date: 2000/06/15 19:39:01 $
  */
 
 public class ActionServlet
@@ -154,12 +171,6 @@ public class ActionServlet
      * The resources object for our application resources (if any).
      */
     protected MessageResources application = null;
-
-
-    /**
-     * The Java base name of our application resources (if any).
-     */
-    protected String applicationName = null;
 
 
     /**
@@ -211,72 +222,27 @@ public class ActionServlet
 	if (debug >= 1)
 	    log(internal.getMessage("finalizing"));
 
-	if (application != null)
-	    getServletContext().removeAttribute(Action.MESSAGES_KEY);
+	destroyApplication();
+	destroyMapping();
+	destroyInternal();
 
     }
 
 
     /**
-     * Initialize this servlet, including loading the configuration information
-     * for our mapping tables.  The following servlet initialization parameters
-     * are processed, with default values in square brackets:
-     * <ul>
-     * <li><strong>application</strong> - Java class name of the application
-     *     resources bundle base class.  [NONE].
-     * <li><strong>config</strong> - Context-relative path to the XML resource
-     *     containing our configuration information.  [/WEB-INF/action.xml]
-     * <li><strong>debug</strong> - The debugging detail level for this
-     *     servlet, which controls how much information is logged.  [0]
-     * <li><strong>mapping</strong> - The Java class name of the ActionMapping
-     *     implementation to use [org.apache.struts.action.ActionMappingBase]
-     * </ul>
+     * Initialize this servlet.  Most of the processing has been factored into
+     * support methods so that you can override particular functionality at a
+     * fairly granular level.
      *
      * @exception ServletException if we cannot configure ourselves correctly
      */
     public void init() throws ServletException {
 
-	// Load our internationalized resource bundle
-	internal = MessageResources.getMessageResources(internalName);
-	if (internal == null)
-	    throw new UnavailableException("Cannot load internal resources from '"
-	                                   + internalName + "'");
-
-	// Process our servlet initialization parameters
-	String value;
-	value = getServletConfig().getInitParameter("application");
-	if (value != null)
-	    applicationName = value;
-	value = getServletConfig().getInitParameter("config");
-	if (value != null)
-	    config = value;
-	value = getServletConfig().getInitParameter("debug");
+	initInternal();
+	initDebug();
+	initApplication();
 	try {
-	    debug = Integer.parseInt(value);
-	} catch (Throwable t) {
-	    debug = 0;
-	}
-	value = getServletConfig().getInitParameter("mapping");
-	if (value != null)
-	    mappingClass = value;
-
-	// Load the application resource bundle (if any)
-	if (applicationName != null) {
-	    if (debug >= 1)
-		log("Loading application resources from bundle " + applicationName);
-	    application =
-		MessageResources.getMessageResources(applicationName);
-	    if (application == null)
-		throw new UnavailableException
-		    (internal.getMessage("applicationResources",
-					 applicationName));
-	    getServletContext().setAttribute(Action.MESSAGES_KEY,
-					     application);
-	}
-
-	// Process our configuration resource
-	try {
-	    configure();
+	    initMapping();
 	} catch (IOException e) {
 	    throw new UnavailableException
 		(internal.getMessage("configIO", config));
@@ -385,13 +351,108 @@ public class ActionServlet
 
 
     /**
-     * Process our configuration resource to establish the required mappings.
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if we cannot successfully configure
+     * Gracefully terminate use of the application MessageResources (if any).
      */
-    protected void configure() throws IOException, ServletException {
+    protected void destroyApplication() {
 
+	if (application != null)
+	    getServletContext().removeAttribute(Action.MESSAGES_KEY);
+	application = null;
+
+    }
+
+
+    /**
+     * Gracefully terminate use of the internal MessageResources.
+     */
+    protected void destroyInternal() {
+
+	internal = null;
+
+    }
+
+
+    /**
+     * Gracefully terminate use of the mapping information for this
+     * application.
+     */
+    protected void destroyMapping() {
+
+	mappings.clear();
+
+    }
+
+
+    /**
+     * Initialize the MessageResources bundle for this application, if any.
+     *
+     * @exception ServletException if we cannot initialize these resources
+     */
+    protected void initApplication() throws ServletException {
+
+	String value = getServletConfig().getInitParameter("application");
+	if (value == null)
+	    return;
+	if (debug >= 1)
+	    log(internal.getMessage("applicationLoading", value));
+	application = MessageResources.getMessageResources(value);
+	if (application == null)
+	    throw new UnavailableException
+		(internal.getMessage("applicationResources", value));
+	getServletContext().setAttribute(Action.MESSAGES_KEY, application);
+
+    }
+
+
+    /**
+     * Initialize the debugging detail level for this application.
+     *
+     * @exception ServletException if we cannot initialize these resources
+     */
+    protected void initDebug() throws ServletException {
+
+	String value = getServletConfig().getInitParameter("debug");
+	try {
+	    debug = Integer.parseInt(value);
+	} catch (Throwable t) {
+	    debug = 0;
+	}
+    }
+
+
+    /**
+     * Initialize our internal MessageResources bundle.
+     *
+     * @exception ServletException if we cannot initialize these resources
+     */
+    protected void initInternal() throws ServletException {
+
+	internal = MessageResources.getMessageResources(internalName);
+	if (internal == null)
+	    throw new UnavailableException
+		("Cannot load internal resources from '" + internalName + "'");
+    }
+
+
+    /**
+     * Initialize the mapping information for this application.
+     *
+     * @exception IOException if an input/output error is encountered
+     * @exception ServletException if we cannot initialize these resources
+     */
+    protected void initMapping() throws IOException, ServletException {
+
+	String value = null;
+
+	// Initialize the name of our ActionMapping implementation class
+	value = getServletConfig().getInitParameter("mapping");
+	if (value != null)
+	    mappingClass = value;
+
+	// Initialize the context-relative path to our configuration resources
+	value = getServletConfig().getInitParameter("config");
+	if (value != null)
+	    config = value;
 	if (debug >= 1)
 	    log(internal.getMessage("configInit", config));
 
@@ -437,16 +498,20 @@ public class ActionServlet
 	throws IOException, ServletException {
 
 	// Identify the path component we will use to select a mapping
-	String path = request.getServletPath();
-	int slash = path.lastIndexOf("/");
-	int period = path.lastIndexOf(".");
-	if ((period >= 0) && (period > slash))	// Strip the extenson (if any)
-	    path = path.substring(0, period);
+	String path = processPath(request);
+	if (path == null) {
+	    if (debug >= 1)
+		log(" No path available for request URI " +
+		    request.getRequestURI());
+	    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+			       internal.getMessage("processPath"));
+	    return;
+	}
 	if (debug >= 1)
 	    log("Processing a " + request.getMethod() + " for " + path);
 
 	// Look up the corresponding mapping
-	ActionMapping mapping = getMapping(path);
+	ActionMapping mapping = processMapping(path);
 	if (mapping == null) {
 	    if (debug >= 1)
 		log(" No mapping available for path " + path);
@@ -456,19 +521,36 @@ public class ActionServlet
 	}
 
 	// Process any ActionForm bean related to this request
+	ActionForm formInstance = processActionForm(request, mapping);
+
+	// Call the action instance itself
+	processActionInstance(mapping, formInstance, request, response);
+
+    }
+
+
+    /**
+     * Process the <code>ActionForm</code> bean associated with this
+     * mapping, if any.  Return the <code>ActionForm</code> instance if
+     * we created or utilized one.
+     *
+     * @param request The servlet request we are processing
+     * @param mapping The ActionMapping we are processing
+     *
+     * @exception ServletException if thrown by BeanUtils.populate()
+     */
+    protected ActionForm processActionForm(HttpServletRequest request,
+					   ActionMapping mapping)
+	throws ServletException {
+
 	HttpSession session = null;
 	ActionForm formInstance = null;
 	String formAttribute = mapping.getFormAttribute();
 	if (formAttribute != null) {
 	    if (debug >= 1)
-	        log(" Looking for ActionForm bean under attribute " + formAttribute);
+	        log(" Looking for ActionForm bean under attribute '" +
+		    formAttribute + "'");
 	    session = request.getSession();
-	    if (session == null) {
-		response.sendError
-		    (HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-		     internal.getMessage("sessionCreate"));
-		return;
-	    }
 	    formInstance = (ActionForm) session.getAttribute(formAttribute);
 	    if (formInstance == null) {
 		if (debug >= 1)
@@ -476,7 +558,8 @@ public class ActionServlet
 		formInstance = mapping.createFormInstance();
 		if (formInstance != null) {
 		    if (debug >= 1)
-		        log(" Storing instance under attribute " + formAttribute);
+		        log(" Storing instance under attribute '" +
+			    formAttribute + "'");
 		    session.setAttribute(formAttribute, formInstance);
 	        }
 	    }
@@ -487,18 +570,73 @@ public class ActionServlet
 	    BeanUtils.populate(formInstance, mapping.getFormPrefix(),
 			       mapping.getFormSuffix(), request);
         }
+	return (formInstance);
 
-	// Call the action instance itself
+    }
+
+
+    /**
+     * Identify and call an appropriate <code>Action</code> instance
+     * to handle this request.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param formInstance The ActionForm we are processing
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected void processActionInstance(ActionMapping mapping,
+					 ActionForm formInstance,
+					 HttpServletRequest request,
+					 HttpServletResponse response)
+	throws IOException, ServletException {
+
 	Action actionInstance = mapping.createActionInstance();
 	if (actionInstance == null) {
 	    if (debug >= 1)
-	        log("Could not create an ActionInstance");
+	        log("Could not create an ActionInstance for '" +
+		    mapping.getPath() + "'");
 	    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-			       internal.getMessage("actionCreate", path));
+			       internal.getMessage("actionCreate",
+						   mapping.getPath()));
 	    return;
 	}
 	actionInstance.perform(this, mapping, formInstance,
 			       request, response);
+
+    }
+
+
+    /**
+     * Identify and return an appropriate ActionMapping for the specified
+     * path.  If no such mapping can be identified, return <code>null</code>.
+     *
+     * @param path Path component used to select a mapping
+     */
+    protected ActionMapping processMapping(String path) {
+
+	return (getMapping(path));
+
+    }
+
+
+    /**
+     * Identify and return the path component (from the request URI) that
+     * we will use to select an ActionMapping to dispatch with.  If no such
+     * path can be identified, return <code>null</code>.
+     *
+     * @param request The servlet request we are processing
+     */
+    protected String processPath(HttpServletRequest request) {
+
+	String path = request.getServletPath();
+	int slash = path.lastIndexOf("/");
+	int period = path.lastIndexOf(".");
+	if ((period >= 0) && (period > slash))	// Strip the extenson (if any)
+	    path = path.substring(0, period);
+	return (path);
 
     }
 
