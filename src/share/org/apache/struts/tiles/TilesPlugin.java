@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.16 2002/12/27 10:55:15 cedric Exp $
- * $Revision: 1.16 $
- * $Date: 2002/12/27 10:55:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.17 2002/12/29 21:31:36 cedric Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/12/29 21:31:36 $
  *
  * ====================================================================
  *
@@ -381,11 +381,11 @@ public class TilesPlugin implements PlugIn {
     /**
      * Method used by the ActionServlet initializing this plugin.
      * Set the plugin config object read from module config.
-     * @param currentPlugInConfigObject
+     * @param plugInConfigObject
      */
-  public void setCurrentPlugInConfigObject(PlugInConfig currentPlugInConfigObject)
+  public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject)
   {
-    this.currentPlugInConfigObject = currentPlugInConfigObject;
+    this.currentPlugInConfigObject = plugInConfigObject;
   }
 
 }
