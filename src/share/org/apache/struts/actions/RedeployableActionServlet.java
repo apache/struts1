@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.tiles.DefinitionsFactory;
 import org.apache.struts.tiles.DefinitionsFactoryException;
@@ -36,7 +37,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
 public class RedeployableActionServlet extends ActionServlet {
     private TilesRequestProcessor tileProcessor;
 
-    protected synchronized org.apache.struts.action.RequestProcessor
+    protected synchronized RequestProcessor
             getRequestProcessor(ModuleConfig config) throws ServletException {
 
         if (tileProcessor != null) {

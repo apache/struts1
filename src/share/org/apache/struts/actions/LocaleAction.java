@@ -37,7 +37,7 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * Implementation of <strong>Action</strong> that changes the user's
- * @link(java.util.Locale and forwards to a page, based on request level
+ * {@link java.util.Locale} and forwards to a page, based on request level
  * parameters that are set  (language, country, &amp; page).
  *
 */

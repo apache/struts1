@@ -23,9 +23,9 @@ import org.apache.struts.upload.MultipartRequestHandler;
 
 
 /**
- * <p>Provide a wrapper around an @link(ActionServlet) to expose only
+ * <p>Provide a wrapper around an {@link ActionServlet} to expose only
  * those methods needed by other objects. When used with an
- * @link(ActionForm), subclasses must be careful that they do
+ * {@link ActionForm}, subclasses must be careful that they do
  * not return an object with public getters and setters that
  * could be exploited by automatic population of properties.</p>
  *

@@ -168,8 +168,9 @@ public class SubmitTag extends BaseHandlerTag {
     }
 
     /**
-     * Render the openning element
-     * @param results The StringBuffer that output will be appended to.
+     * Render the opening element.
+     *
+     * @return The opening part of the element.
      */
     protected String getElementOpen() {
         return "<input type=\"submit\"";
@@ -227,8 +228,9 @@ public class SubmitTag extends BaseHandlerTag {
     }
 
     /**
-     * Return the default value
-     * @param defaultValue The default value if none supplied
+     * Return the default value.
+     *
+     * @return The default value if none supplied.
      */
     protected String getDefaultValue() {
         return "Submit";

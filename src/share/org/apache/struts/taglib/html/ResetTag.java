@@ -28,8 +28,9 @@ import javax.servlet.jsp.JspException;
 public class ResetTag extends SubmitTag {
 
     /**
-     * Render the openning element
-     * @param results The StringBuffer that output will be appended to.
+     * Render the opening element.
+     *
+     * @return The opening part of the element.
      */
     protected String getElementOpen() {
         return "<input type=\"reset\"";
@@ -44,8 +45,9 @@ public class ResetTag extends SubmitTag {
     }
 
     /**
-     * Return the default value
-     * @param defaultValue The default value if none supplied
+     * Return the default value.
+     *
+     * @return The default value if none supplied.
      */
     protected String getDefaultValue() {
         return "Reset";

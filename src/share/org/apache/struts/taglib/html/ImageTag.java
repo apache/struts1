@@ -140,8 +140,9 @@ public class ImageTag extends SubmitTag {
     // --------------------------------------------------------- Protected Methods
 
     /**
-     * Render the openning element
-     * @param results The StringBuffer that output will be appended to.
+     * Render the opening element.
+     *
+     * @return The opening part of the element.
      */
     protected String getElementOpen() {
         return "<input type=\"image\"";
