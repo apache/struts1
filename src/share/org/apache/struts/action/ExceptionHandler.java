@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.19 2003/07/26 00:13:20 dgraham Exp $
- * $Revision: 1.19 $
- * $Date: 2003/07/26 00:13:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.20 2003/08/07 00:39:05 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/08/07 00:39:05 $
  *
  * ====================================================================
  *
@@ -69,6 +69,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ExceptionConfig;
+import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.ModuleException;
 
 /**
@@ -83,6 +84,13 @@ public class ExceptionHandler {
      * Commons logging instance.
      */
     private static final Log log = LogFactory.getLog(ExceptionHandler.class);
+    
+    /**
+     * The message resources for this package.
+     */
+    private static MessageResources messages =
+        MessageResources.getMessageResources(
+            "org.apache.struts.action.LocalStrings");
     
     /**
      * Handle the exception.
@@ -144,7 +152,7 @@ public class ExceptionHandler {
      * @since Struts 1.2
      */
     protected void logException(Exception e){
-        log.debug(e);
+        log.debug(messages.getMessage("exception.log"), e);
     }
 
     /**
