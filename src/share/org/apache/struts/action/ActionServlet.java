@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.160 2003/07/08 00:39:21 dgraham Exp $
- * $Revision: 1.160 $
- * $Date: 2003/07/08 00:39:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.161 2003/07/08 00:50:54 dgraham Exp $
+ * $Revision: 1.161 $
+ * $Date: 2003/07/08 00:50:54 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.160 $ $Date: 2003/07/08 00:39:21 $
+ * @version $Revision: 1.161 $ $Date: 2003/07/08 00:50:54 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -534,11 +534,9 @@ public class ActionServlet extends HttpServlet {
             }
             
             ModuleConfig config = (ModuleConfig) value;
-            try {
-                getRequestProcessor(config).destroy();
-                
-            } catch (ServletException e) {
-                log.error(e);
+
+            if (this.getProcessorForModule(config) != null) {
+                this.getProcessorForModule(config).destroy();
             }
 
             getServletContext().removeAttribute(name);
@@ -616,9 +614,7 @@ public class ActionServlet extends HttpServlet {
     protected synchronized RequestProcessor getRequestProcessor(ModuleConfig config)
         throws ServletException {    
             
-        String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
-        RequestProcessor processor = (RequestProcessor)
-            getServletContext().getAttribute(key);
+        RequestProcessor processor = this.getProcessorForModule(config);
             
         if (processor == null) {
             try {
@@ -635,11 +631,23 @@ public class ActionServlet extends HttpServlet {
             }
 
             processor.init(this, config);
+            
+            String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
             getServletContext().setAttribute(key, processor);
 
         }
+        
         return (processor);
 
+    }
+    
+    /**
+     * Returns the RequestProcessor for the given module or null if one does not 
+     * exist.  This method will not create a RequestProcessor.
+     */
+    private RequestProcessor getProcessorForModule(ModuleConfig config) {
+        String key = Globals.REQUEST_PROCESSOR_KEY + config.getPrefix();
+        return (RequestProcessor) getServletContext().getAttribute(key);
     }
 
     /**
