@@ -26,15 +26,14 @@
     <p>The binary distribution of this release includes the following
     files relevant to Struts 1.0:</p>
     <ul>
-    <li><code>INSTALL</code> - </li>
+    <li><code>INSTALL</code> - Brief installation instructions.  See
+        the <code>Struts Documentation Application</code>, or online at
+        <a href="http://jakarta.apache.org/struts/">http://jakarta.apache.org/struts/</a>
+        for more information.</li>
     <li><code>LICENSE</code> - The Apache Software Foundation license that
         defines the terms under which you can use Struts (and other software
         licensed by Apache).</li>
-    <li><code>README</code> - </li>
-    <li><code>etc/</code> - Directory containing the Ant build scripts
-        used to construct the Struts binary release.  These are useful
-        as examples of how Ant can be used, but are not required to use
-        Struts in your own applications.</li>
+    <li><code>README</code> - A brief introduction to Struts.</li>
     <li><code>lib/</code> - Directory containing files you will need in
         your own applications.  The individual files of interest are:
         <ul>
@@ -67,11 +66,6 @@
             for web.xml files conforming to the Servlet 2.3 specification.
             This copy is for reference purposes only.</li>
         </ul></li>
-    <li><code>src/</code> - Directory containing the Java source code for the
-        entire Struts framework, for reference purposes.  <strong>NOTE</strong>
-        - if you wish to build Struts from scratch, you should download and
-        install the Struts Source Distribution instead of trying to build
-        from this directory.</li>
     <li><code>webapps/</code> - Web Application Archive (WAR) files for the
         web applications that are included with Struts.</li>
     </ul>
@@ -130,7 +124,7 @@
     <li>It is now possible to integrate business logic that is already
         encapsulated as a servlet or JSP page, via use of two new standard
         actions:  <code>org.apache.struts.actions.ForwardAction</code> and
-        <code>org.apache.struts.actions.IncludeAction</code>  These actions
+        <code>org.apache.struts.actions.IncludeAction</code>.  These actions
         let you take advantage of the standard processing perfomed by the
         controller servlet (including form bean population and calling the
         <code>validate()</code> method), but not have to write Java code to

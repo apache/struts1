@@ -14,7 +14,7 @@
   <tlibversion>1.0</tlibversion>
   <jspversion>1.1</jspversion>
   <shortname>html</shortname>
-  <display-name>Form Construction Tags</display-name>
+  <display-name>Page Construction Tags</display-name>
   <info>
   <p>
         This taglib contains tags used to create struts
