@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.177 2004/06/09 00:25:15 niallp Exp $
- * $Revision: 1.177 $
- * $Date: 2004/06/09 00:25:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.178 2004/09/03 02:48:50 niallp Exp $
+ * $Revision: 1.178 $
+ * $Date: 2004/09/03 02:48:50 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -166,7 +166,7 @@ import org.xml.sax.SAXException;
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  *
- * @version $Revision: 1.177 $ $Date: 2004/06/09 00:25:15 $
+ * @version $Revision: 1.178 $ $Date: 2004/09/03 02:48:50 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -1155,7 +1155,14 @@ public class ActionServlet extends HttpServlet {
         throws IOException, ServletException {
 
         ModuleUtils.getInstance().selectModule(request, getServletContext());
-        getRequestProcessor(getModuleConfig(request)).process(request, response);
+        ModuleConfig config = getModuleConfig(request);
+
+        RequestProcessor processor = getProcessorForModule(config);
+        if (processor == null) {
+           processor = getRequestProcessor(config);
+        }
+        processor.process(request, response);
+
     }
 
 }
