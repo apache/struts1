@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.4 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/definition/ReloadableDefinitionsFactory.java,v 1.5 2002/12/17 00:59:47 cedric Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/12/17 00:59:47 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.tiles.ComponentDefinitionsFactory;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.tiles.TilesUtil;
 
 /**
  * A reloadable factory.
@@ -86,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Cedric Dumoulin
  * @since 1.1
- * @version $Revision: 1.4 $ $Date: 2002/11/21 03:42:21 $
+ * @version $Revision: 1.5 $ $Date: 2002/12/17 00:59:47 $
  */
 public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
 {
@@ -143,7 +143,7 @@ public class ReloadableDefinitionsFactory implements ComponentDefinitionsFactory
     // Try to create from classname
   try
     {
-    Class factoryClass = RequestUtils.applicationClass(classname);
+    Class factoryClass = TilesUtil.applicationClass(classname);
     ComponentDefinitionsFactory factory = (ComponentDefinitionsFactory)factoryClass.newInstance();
     factory.initFactory( servletContext, properties);
     return factory;
