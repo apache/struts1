@@ -3245,10 +3245,7 @@
             <info>
                <p>
                   If set to "true" and XHTML has been enabled, the JavaScript will
-                  be wrapped in a CDATA section to prevent XML parsing.  Current browsers
-                  don't support this convention, causing the scripts to fail.  To allow the
-                  script to work in current browsers as well as hide it from XML parsers you 
-                  need to set this attribute to "false" and htmlComment to "true".  The default is
+                  be wrapped in a CDATA section to prevent XML parsing. The default is
                   "true" to comply with the W3C's recommendation.
                </p>
             </info>
@@ -3331,7 +3328,10 @@
             <info>
                <p>
                   Whether or not to enclose the javascript
-                  with html comments.
+                  with HTML comments.  This attribute is ignored in XHTML
+                  mode because the script would be deleted by the XML parser.  See
+                  the cdata attribute for details on hiding scripts from XML
+                  parsers. 
                   Defaults to <code>true</code>.
                </p>
             </info>
