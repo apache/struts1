@@ -68,7 +68,7 @@ public final class SaveSubscriptionAction extends Action {
      * already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *

@@ -201,7 +201,7 @@ public final class RegistrationForm extends ValidatorForm  {
     /**
      * Set the confirmation password.
      *
-     * @param password The new confirmation password
+     * @param password2 The new confirmation password
      */
     public void setPassword2(String password2) {
 
