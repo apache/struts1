@@ -34,7 +34,14 @@
             href="announce.html"
             />
 </menu>
-
+ 
+    <menu name="Subprojects">
+        <item
+            name="BSF Scripting"
+            href="bsf/index.html"
+            />
+    </menu>        
+ 
     <menu name="Documentation">
         <item
             name="User and Developer Guides"
