@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<document url="release-notes.html">
+  <properties>
+    <title>Struts Release Notes (since 1.2.4)</title>
+  </properties>
+ <body>
+      <section name="Introduction" href="Introduction">
+        <p>
+            This section contains release notes for changes that have taken
+            place since
+            <a href="release-notes-1.2.4.html">Version 1.2.4</a>.
+        </p>
+        <p>
+            The number in [square brackets] refers to the Subversion
+            revision number. References to "#12345" are to the
+            <a href="http://issues.apache.org/">Bugzilla</a> ticket number (if
+            any).
+        </p>
+        <p>
+            To keep up-to-date on all changes to Struts, subscribe to the
+            dev@ list.
+        </p>
+      </section>
+
+     <section name="Version 1.2.6 [DEV]" href="STRUTS_1_2_6">
+
+         <p>
+            2004-10-29 [56018] - Change BeanUtils dependency to 1.7.0 and
+             remove Collections Dependency
+         </p>
+
+         <p>
+             2004-10-29 [56011] - Add "actions/DownloadAction.java", an abstract
+             action that provides the nuts and bolts for downloading files.
+         </p>
+
+         <p>
+             2004-10-29 [55980] - Document that if a link to a forward is used to
+             switch modules, the path must point to an action.
+         </p>
+
+         <p>
+             2004-10-15 [55577] - Resolve #31399 "Message resources file in
+             Struts Blank is misplaced". [55584] Update README with new
+             layout.
+         </p>
+
+         <p>
+             2004-10-25 [55576] - Resolve #31348 "Using a tiles definition as
+             errorPage causes infinite looping".
+         </p>
+
+         <p>
+             2004-10-24 [55416] - Resolve #31761 "NullPointerException in
+             ActionServlet".
+         </p>
+
+         <p>
+             2004-10-22 [55318] - Resolve #31850. Implement Serializable on
+             ActionServletWrapper.
+        </p>
+
+         <p>
+             2004-10-19 [55110] - Add documentation to base chain-config.xml to
+             help Tiles users.
+         </p>
+
+         <p>
+             2004-10-18 [55025] - Resolve #31755. Document the default value
+             for "scope" on an &lt;action> element in the DTD for a
+             struts-config.xml file (along with all the other documentation).
+         </p>
+
+     </section>
+
+     <section name="Version 1.2.5 [54947]" href="STRUTS_1_2_5">
+         <p>
+            2004-10-16 [54947] - Version 1.2.5 tagged.
+         </p>
+
+         <p>
+            2004-10-16 [54936] - Update several Javadoc parameter names to resolve
+            Javadoc generation warnings.
+         </p>
+
+         <p>
+             2004-10-15 [54892] - Remove dependency on commons-lang.
+         </p>
+
+         <p>
+             2004-10-15 [54889] - Update roadmap for 1.2.4 / 1.2.5 releases.
+         </p>
+
+         <p>
+             2004-10-09 [54187] - Move Struts-Faces from "contrib" to the
+             trunk.
+         </p>
+
+         <p>
+             2004-10-03 [51829] "Add header,footer,prefix,suffix attributes to
+             ErrorsTag".
+         </p>
+
+         <p>
+             2004-10-03 [51825] - Resolve #31481 Have Tiles ControllerSupport
+             execute() call perform() for backward compatibility.
+             To be removed after version 1.2.
+         </p>
+
+         <p>
+             2004-10-02 [51824] - Add validwhen test to compare two Strings containing numbers
+         </p>
+
+         <p>
+             2004-10-02 [51873] - Resolve #31514 "Do numeric compare when both
+             items convertable to Integer".
+         </p>
+
+         <p>
+             2004-10-01 [51759] - Move repository to Subversion.
+         </p>
+
+         <p>
+             2004-09-23 - Resolve #17708 "Better i18n and alternate bundle
+             support for html tags".
+             Add missing "bundle" attribute to tld for html tags.
+             Tags affected are ButtonTag, CancelTag, CheckboxTag, FileTag,
+             FrameTag, HiddenTag, LinkTag, MultiboxTag, PasswordTag, RadioTag,
+             ResetTag, SelectTag, SubmitTag,TextTag, TextareaTag. Also added a
+             test for the bundle attribute for each of the above tags
+         </p>
+
+         <p>
+             2004-09-23 - Add missing nested tag attributes.
+             Resolve #31212 "nested:link module attribute not specified in tld".
+             Resolve #20417 "Attribute idName not declared for NestedRadioTag".
+         </p>
+
+         <p>
+             2004-09-23 - Resolve #31374 "Forward path in Validator
+             struts-config.xml in struts-examples incorrect".
+         </p>
+
+         <p>
+             2004-09-23 -  Refactor some of the HTML tags make extending them
+             easier. * added prepareOtherAttributes() method * added
+             prepareName() method * use getters rather than instance variables
+             * Refactored SubmitTag * ButtonTag, CancelTag and ResetTag now
+             inherit from SubmitTag.
+          </p>
+      </section>
+
+     <section>
+       <p class="right">Next:
+       <a href="installation.html">Installation</a></p>
+     </section>
+</body>
+</document>
