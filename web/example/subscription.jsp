@@ -41,7 +41,7 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-        <jsp:getProperty name="user" property="username"/>
+        <struts:htmlProperty name="user" property="username"/>
     </td>
   </tr>
 
