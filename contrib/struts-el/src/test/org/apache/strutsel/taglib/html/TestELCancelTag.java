@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELCancelTag.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELCancelTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 05:12:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,25 +60,17 @@
 
 package org.apache.strutsel.taglib.html;
 
-import com.meterware.httpunit.*;
+import java.util.HashMap;
 
-import java.io.*;
-import java.util.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspException;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.jsp.*;
-import javax.xml.transform.*;
-
-import junit.framework.*;
-
-import org.apache.cactus.*;
-import org.apache.struts.taglib.html.*;
-import org.apache.strutsel.taglib.utils.*;
-import org.apache.taglibs.standard.tag.common.core.*;
-import org.apache.taglibs.standard.tag.el.core.*;
-import org.w3c.dom.*;
-import org.xml.sax.*;
+import org.apache.strutsel.taglib.utils.DOMHelper;
+import org.apache.strutsel.taglib.utils.JspTagTestCase;
+import org.apache.strutsel.taglib.utils.TestHelper;
 
 
 public class TestELCancelTag

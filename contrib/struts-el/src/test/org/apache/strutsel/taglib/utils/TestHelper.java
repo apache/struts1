@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/TestHelper.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/TestHelper.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 05:12:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,10 +60,10 @@
 
 package org.apache.strutsel.taglib.utils;
 
-import java.io.*;
-import org.apache.cactus.*;
-import org.apache.commons.logging.*;
-import org.apache.strutsel.taglib.utils.*;
+import java.io.IOException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 public class TestHelper {

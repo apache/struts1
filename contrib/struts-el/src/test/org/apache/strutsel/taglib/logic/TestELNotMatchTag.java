@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/logic/TestELNotMatchTag.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/logic/TestELNotMatchTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 05:12:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,14 +60,14 @@
 
 package org.apache.strutsel.taglib.logic;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import junit.framework.*;
-import org.apache.cactus.*;
-import org.apache.struts.taglib.logic.*;
+import javax.servlet.ServletException;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.Tag;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
+import org.apache.cactus.JspTestCase;
+import org.apache.cactus.WebRequest;
 import org.apache.strutsel.taglib.utils.TestFormBean;
 
 public class TestELNotMatchTag

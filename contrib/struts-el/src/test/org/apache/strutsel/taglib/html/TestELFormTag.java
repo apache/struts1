@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFormTag.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFormTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 05:12:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -60,30 +60,27 @@
 
 package org.apache.strutsel.taglib.html;
 
-import java.util.Enumeration;
 import java.util.HashMap;
-import org.apache.strutsel.taglib.utils.JspTagTestCase;
-import org.apache.strutsel.taglib.utils.TestHelper;
-import org.apache.strutsel.taglib.utils.DOMHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+
 import javax.servlet.ServletException;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.GenericServlet;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.w3c.dom.Element;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionFormBean;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.config.FormBeanConfig;
+import org.apache.strutsel.taglib.utils.DOMHelper;
+import org.apache.strutsel.taglib.utils.JspTagTestCase;
+import org.apache.strutsel.taglib.utils.TestHelper;
+import org.w3c.dom.Element;
 
 public class TestELFormTag extends JspTagTestCase 
 {
