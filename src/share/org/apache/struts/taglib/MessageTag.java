@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.6 2000/07/17 16:37:47 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/07/17 16:37:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MessageTag.java,v 1.7 2000/08/23 01:17:02 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/08/23 01:17:02 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/07/17 16:37:47 $
+ * @version $Revision: 1.7 $ $Date: 2000/08/23 01:17:02 $
  */
 
 public final class MessageTag extends TagSupport {
@@ -395,7 +395,7 @@ public final class MessageTag extends TagSupport {
 	}
 
 	// Continue processing this page
-	return (EVAL_BODY_INCLUDE);
+	return (SKIP_BODY);
 
     }
 
