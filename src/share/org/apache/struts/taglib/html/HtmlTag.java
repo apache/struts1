@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.7 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.8 2002/11/20 05:00:18 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/20 05:00:18 $
  *
  * ====================================================================
  *
@@ -79,7 +79,8 @@ import org.apache.struts.util.ResponseUtils;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/11/16 06:05:21 $
+ * @author David Graham
+ * @version $Revision: 1.8 $ $Date: 2002/11/20 05:00:18 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -135,31 +136,33 @@ public class HtmlTag extends TagSupport {
         StringBuffer sb = new StringBuffer("<html");
 
         // Use the current Locale to set our language preferences
-        Locale currentLocale = currentLocale();
-        if (currentLocale != null) {
-            String lang = currentLocale.getLanguage();
-            if ((lang != null) && (lang.length() > 0)) {
-                sb.append(" lang=\"");
-                sb.append(lang);
-                sb.append("\"");
-                
-                if (this.xhtml) {
-                    this.pageContext.setAttribute(
-                        Globals.XHTML_KEY,
-                        "true",
-                        this.pageContext.PAGE_SCOPE);
-                        
-                    sb.append(" xml:lang=\"");
-                    sb.append(lang);
-                    sb.append("\"");
-                    sb.append(" xmlns=\"http://www.w3.org/1999/xhtml\"");
-                }
-            }
+        Locale currentLocale = this.getCurrentLocale();
+        String lang = currentLocale.getLanguage();
+
+        // Does the locale have a language?
+        boolean validLanguage = ((lang != null) && (lang.length() > 0));
+
+        if (this.xhtml) {
+            this.pageContext.setAttribute(Globals.XHTML_KEY, "true", this.pageContext.PAGE_SCOPE);
+            sb.append(" xmlns=\"http://www.w3.org/1999/xhtml\"");
         }
+
+        if ((this.locale || this.xhtml) && validLanguage) {
+            sb.append(" lang=\"");
+            sb.append(lang);
+            sb.append("\"");
+        }
+
+        if (this.xhtml && validLanguage) {
+            sb.append(" xml:lang=\"");
+            sb.append(lang);
+            sb.append("\"");
+        }
+
         sb.append(">");
 
         // Write out the beginning tag for this page
-        ResponseUtils.write(pageContext, sb.toString());
+        ResponseUtils.write(this.pageContext, sb.toString());
 
         // Evaluate the included content of this tag
         return (EVAL_BODY_INCLUDE);
@@ -180,7 +183,6 @@ public class HtmlTag extends TagSupport {
 
     }
 
-
     /**
      * Release any acquired resources.
      */
@@ -199,31 +201,66 @@ public class HtmlTag extends TagSupport {
      * Return the current Locale for this request, creating a new one if
      * necessary.  If there is no current Locale, and locale support is not
      * requested, return <code>null</code>.
+     * @deprecated Use getCurrentLocale instead because it makes the display logic
+     * easier.
      */
     protected Locale currentLocale() {
 
         // Create a new session if necessary
         HttpSession session = pageContext.getSession();
-        if (locale && (session == null))
+        if (locale && (session == null)) {
             session =
                 ((HttpServletRequest) pageContext.getRequest()).getSession();
-        if (session == null)
+        }
+        
+        // Return any currently set Locale in our session
+        Locale current = (Locale) session.getAttribute(Globals.LOCALE_KEY);
+        if (current != null) {
+            return (current);
+        }
+
+        // Configure a new current Locale, if requested
+        if (!locale) {
             return (null);
+        }
+        
+         // If client doesn't specify locale then default for server will be returned
+        current = pageContext.getRequest().getLocale();
+        session.setAttribute(Globals.LOCALE_KEY, current);       
+        return (current);
+    }
+
+    /**
+     * Return the current Locale for this request.  If there is no locale in the session and
+     * the locale attribute is set to "true", this method will create a Locale based on the 
+     * client's Accept-Language header or the server's default locale and store it in the 
+     * session.  This will always return a Locale and never null.
+     * @since Struts 1.1
+     */
+    protected Locale getCurrentLocale() {
+
+        // Create a new session if necessary
+        HttpSession session = pageContext.getSession();
+        if (this.locale && (session == null)) {
+            session = ((HttpServletRequest) this.pageContext.getRequest()).getSession();
+        }
 
         // Return any currently set Locale in our session
         Locale current = (Locale) session.getAttribute(Globals.LOCALE_KEY);
-        if (current != null)
+        if (current != null) {
             return (current);
+        }
 
-        // Configure a new current Locale, if requested
-        if (!locale)
-            return (null);
+        // If client doesn't specify a locale preference in header then default for 
+        // server will be returned.
         current = pageContext.getRequest().getLocale();
-        if (current != null)
+
+        // Store a new current Locale, if requested
+        if (this.locale) {
             session.setAttribute(Globals.LOCALE_KEY, current);
+        }
+
         return (current);
-
     }
-
 
 }
