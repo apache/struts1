@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.12 2003/10/05 17:48:57 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/10/05 17:48:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.13 2004/01/10 03:29:19 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/01/10 03:29:19 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.util.ModuleUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/10/05 17:48:57 $
+ * @version $Revision: 1.13 $ $Date: 2004/01/10 03:29:19 $
  * @since Struts 1.1
  */
 public class SwitchAction extends Action {
@@ -119,19 +119,7 @@ public class SwitchAction extends Action {
     // --------------------------------------------------------- Public Methods
 
 
-    /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it),
-     * with provision for handling exceptions thrown by the business logic.
-     *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception Exception if the application business logic throws
-     *  an exception
-     */
+    // See superclass for JavaDoc
     public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
                                  HttpServletRequest request,

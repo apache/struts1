@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.12 2003/12/19 03:20:44 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2003/12/19 03:20:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionError.java,v 1.13 2004/01/10 03:29:19 husted Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/01/10 03:29:19 $
  *
  * ====================================================================
  *
@@ -79,8 +79,8 @@ import java.io.Serializable;
  * <p>Since Struts 1.1 <code>ActionError</code> extends <code>ActionMessage</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2003/12/19 03:20:44 $
- * @deprecated Please use <code>ActionMessage</code> instead, deprecated in struts 1.2.1 
+ * @version $Revision: 1.13 $ $Date: 2004/01/10 03:29:19 $
+ * @deprecated Please use <code>ActionMessage</code> instead, deprecated since 1.2.0.
  */
 public class ActionError extends ActionMessage implements Serializable {
 
