@@ -72,6 +72,7 @@
   <global-forwards>
     <forward   name="logoff"               path="/logoff.do"/>
     <forward   name="logon"                path="/logon.jsp"/>
+    <forward   name="registration"         path="/registration.jsp"/>
     <forward   name="success"              path="/mainMenu.jsp"/>
   </global-forwards>
 
@@ -109,7 +110,7 @@
                type="org.apache.struts.webapp.example.LogonAction"
                name="logonForm"
               scope="request"
-              input="/logon.jsp">
+              input="logon">
       <exception
                 key="expired.password"
                type="org.apache.struts.webapp.example.ExpiredPasswordException"
@@ -121,14 +122,15 @@
                type="org.apache.struts.webapp.example.SaveRegistrationAction"
                name="registrationForm"
               scope="request"
-              input="/registration.jsp"/>
+              input="registration"/>
 
     <!-- Save mail subscription -->
     <action    path="/saveSubscription"
                type="org.apache.struts.webapp.example.SaveSubscriptionAction"
                name="subscriptionForm"
               scope="request"
-              input="/subscription.jsp">
+              input="subscription">
+      <forward name="subscription"    path="/subscription.jsp"/>
       <forward name="success"         path="/editRegistration.do?action=Edit"/>
     </action>
 
@@ -139,6 +141,15 @@
     </action>
 
   </action-mappings>
+
+
+  <!-- ========== Controller Configuration ================================ -->
+
+  <controller>
+    <!-- The "input" parameter on "action" elements is the name of a
+         local or global "forward" rather than a subapp-relative path -->
+    <set-property property="inputForward" value="true"/>
+  </controller>
 
 
   <!-- ========== Message Resources Definitions =========================== -->

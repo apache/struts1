@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.12 2002/06/30 03:38:29 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2002/06/30 03:38:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.13 2002/07/05 22:09:21 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2002/07/05 22:09:21 $
  *
  * ====================================================================
  *
@@ -80,6 +80,7 @@ import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
@@ -95,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.12 $ $Date: 2002/06/30 03:38:29 $
+ * @version $Revision: 1.13 $ $Date: 2002/07/05 22:09:21 $
  * @since Struts 1.1
  */
 
@@ -396,22 +397,12 @@ public class RequestProcessor {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
 
-        String path = forward.getPath();
+        String uri = RequestUtils.forwardURL(request, forward);
         if (forward.getRedirect()) {
-            if (path.startsWith("/")) {
-                if (forward.getContextRelative()) {
-                    path = request.getContextPath() + path;
-                } else {
-                    path = request.getContextPath() +
-                        appConfig.getPrefix() + path;
-                }
-            }
-            response.sendRedirect(response.encodeRedirectURL(path));
+            response.sendRedirect
+                (response.encodeRedirectURL(request.getContextPath() + uri));
         } else {
-            if (path.startsWith("/") && !forward.getContextRelative()) {
-                path = appConfig.getPrefix() + path;
-            }
-            doForward( path, request, response);
+            doForward(uri, request, response);
         }
 
     }
@@ -949,7 +940,13 @@ public class RequestProcessor {
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
-        String uri = appConfig.getPrefix() + input;
+        String uri = null;
+        if (appConfig.getControllerConfig().getInputForward()) {
+            ForwardConfig forward = mapping.findForward(input);
+            uri = RequestUtils.forwardURL(request, forward);
+        } else {
+            uri = appConfig.getPrefix() + input;
+        }
         doForward(uri, request, response);
         return (false);
 
@@ -958,7 +955,7 @@ public class RequestProcessor {
     /**
      * Do a forward to specified uri using request dispatcher.
      * This method is used by all internal method needi
-     * @param uri Uri or Definition name to forward
+     * @param uri Context-relative URI to forward to
      * @param request Current page request
      * @param response Current page response
      * @since Struts 1.1
@@ -982,7 +979,7 @@ public class RequestProcessor {
     /**
      * Do an include of specified uri using request dispatcher.
      * This method is used by all internal method needi
-     * @param uri Uri of page to include
+     * @param uri Context-relative URI to include
      * @param request Current page request
      * @param response Current page response
      * @since Struts 1.1

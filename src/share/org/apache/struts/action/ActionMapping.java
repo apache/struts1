@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.24 2002/06/24 18:53:01 husted Exp $
- * $Revision: 1.24 $
- * $Date: 2002/06/24 18:53:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.25 2002/07/05 22:09:21 craigmcc Exp $
+ * $Revision: 1.25 $
+ * $Date: 2002/07/05 22:09:21 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.config.ForwardConfig;
  * are using.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.24 $ $Date: 2002/06/24 18:53:01 $
+ * @version $Revision: 1.25 $ $Date: 2002/07/05 22:09:21 $
  */
 
 public class ActionMapping extends ActionConfig {
@@ -166,6 +166,23 @@ public class ActionMapping extends ActionConfig {
             results.add(fcs[i].getName());
         }
         return ((String[]) results.toArray(new String[results.size()]));
+
+    }
+
+
+    /**
+     * <p>Create (if necessary) and return an {@link ActionForward} that
+     * corresponds to the <code>input</code> property of this Action.
+     *
+     * @since Struts 1.1b2
+     */
+    public ActionForward getInputForward() {
+
+        if (getApplicationConfig().getControllerConfig().getInputForward()) {
+            return (findForward(getInput()));
+        } else {
+            return (new ActionForward(getInput()));
+        }
 
     }
 
