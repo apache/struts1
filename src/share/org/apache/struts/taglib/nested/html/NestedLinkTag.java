@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.2 2002/01/22 03:30:50 arron Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/22 03:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedLinkTag.java,v 1.3 2002/02/20 01:30:23 arron Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/02/20 01:30:23 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,7 +68,7 @@ import org.apache.struts.taglib.html.LinkTag;
  * NestedLinkTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/01/22 03:30:50 $
+ * @version $Revision: 1.3 $ $Date: 2002/02/20 01:30:23 $
  */
 public class NestedLinkTag extends LinkTag implements NestedNameSupport {
   
@@ -80,22 +80,45 @@ public class NestedLinkTag extends LinkTag implements NestedNameSupport {
    */
   public int doStartTag() throws JspException {
     
-    /* if no paramName is supplied, we'll default to the current */
+    /* decide the incoming options. Always two there are */
+    boolean doProperty = (origProperty != null && origProperty.length() > 0);
+    boolean doParam = (origParam != null && origParam.length() > 0);
+    
+    /* if paramId is the way, set the name according to our bean */
     if (getParamName() == null || "".equals(getParamName().trim())) {
-      setParamName(getName());
+      if (doParam) {
+        setParamName(getName());
+      }
+    }
+    
+    /* set name */
+    if (doProperty) {
+      super.setName(NestedPropertyHelper.getNestedNameProperty(this));
     }
     
     /* singleton tag implementations will need the original property to be
        set before running */
-    super.setProperty(originalProperty);
-    super.setParamProperty(originalParamProperty);
+    if (doProperty) {
+      super.setProperty(origProperty);
+    }
+    if (doParam) {
+      super.setParamProperty(origParam);
+    }
     
     /* let the NestedHelper set the properties it can */
     isNesting = true;
     Tag pTag = NestedPropertyHelper.getNestingParentTag(this);
-    setProperty(NestedPropertyHelper.getNestedProperty(getProperty(), pTag));
-    setParamProperty(NestedPropertyHelper.getNestedProperty(getParamProperty(),
-                                                            pTag));
+
+    /* set the nested property value */    
+    if (doProperty) {
+      setProperty(NestedPropertyHelper.getNestedProperty(getProperty(), pTag));
+    }
+    
+    /* set the nested version of the paramId */
+    if (doParam) {
+      setParamProperty(NestedPropertyHelper.getNestedProperty(getParamProperty(),pTag));
+    }
+    
     isNesting = false;
     
     /* do the tag */
@@ -114,7 +137,7 @@ public class NestedLinkTag extends LinkTag implements NestedNameSupport {
     super.setProperty(newProperty);
     /* if it's the JSP setting it, remember the value */
     if (!isNesting) {
-      originalProperty = newProperty;
+      origProperty = newProperty;
     }
   }
   
@@ -128,12 +151,12 @@ public class NestedLinkTag extends LinkTag implements NestedNameSupport {
     super.setParamProperty(newParamProperty);
     /* if it's the JSP setting it, remember the value */
     if (!isNesting) {
-      originalParamProperty = newParamProperty;
+      origParam = newParamProperty;
     }
   }
   
   /* hold original property */
-  private String originalProperty = null;
-  private String originalParamProperty = null;
+  private String origProperty = null;
+  private String origParam = null;
   private boolean isNesting = false;
 }
