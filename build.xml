@@ -408,9 +408,30 @@
     </target>
 
 <!--
+        Build the contrib modules that are packaged with the binary
+-->
+    <target name="dist.contrib" depends="dist.source">
+
+        <mkdir  dir="${dist.home}/contrib"/>
+
+        <!-- The STRUTS-EL Tag Library -->
+        <ant    dir="${basedir}/contrib/struts-el"
+             target="clean" inheritAll="false"/>
+        <ant    dir="${basedir}/contrib/struts-el"
+             target="dist" inheritAll="false"/>
+        <mkdir  dir="${dist.home}/contrib/struts-el"/>
+        <copy todir="${dist.home}/contrib/struts-el">
+           <fileset dir="${basedir}/contrib/struts-el/dist"/>
+        </copy>
+
+    </target>
+
+
+<!--
         Construct complete binary distribution
 -->
-    <target name="dist" depends="dist.library,dist.webapps,dist.source"
+    <target name="dist"
+         depends="dist.library,dist.webapps,dist.source,dist.contrib"
      description="Construct binary distribution"/>
 
 <!--
