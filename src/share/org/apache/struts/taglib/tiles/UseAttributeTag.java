@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/26 16:18:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.4 2002/10/07 15:43:55 cedric Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/07 15:43:55 $
  *
  * ====================================================================
  *
@@ -213,6 +213,8 @@ public final class UseAttributeTag extends TagSupport {
      */
   public int doStartTag() throws JspException
     {
+      // Do a local copy of id
+    String id=this.id;
     if( id==null )
       id=attributeName;
 
