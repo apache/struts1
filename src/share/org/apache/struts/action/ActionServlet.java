@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.75 2001/10/04 02:54:04 craigmcc Exp $
- * $Revision: 1.75 $
- * $Date: 2001/10/04 02:54:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.76 2001/10/07 04:48:08 martinc Exp $
+ * $Revision: 1.76 $
+ * $Date: 2001/10/07 04:48:08 $
  *
  * ====================================================================
  *
@@ -172,7 +172,8 @@ import org.xml.sax.SAXException;
  *     instead of the servlet log.  [0]</li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
- *     <code>MessageResources</code> object.</li>
+ *     <code>MessageResources</code> object.
+ *     [org.apache.struts.util.PropertyMessageResourcesFactory]</li>
  * <li><strong>formBean</strong> - The Java class name of the ActionFormBean
  *     implementation to use [org.apache.struts.action.ActionFormBean].
  * <li><strong>forward</strong> - The Java class name of the ActionForward
@@ -192,7 +193,7 @@ import org.xml.sax.SAXException;
  *     user session, identify and store an appropriate
  *     <code>java.util.Locale</code> object (under the standard key
  *     identified by <code>Action.LOCALE_KEY</code>) in the user's session
- *     if there is not a Locale object there already.</li>
+ *     if there is not a Locale object there already. [true]</li>
  * <li><strong>mapping</strong> - The Java class name of the ActionMapping
  *     implementation to use [org.apache.struts.action.ActionMapping].
  *     Two convenient classes you may wish to use are:
@@ -229,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.75 $ $Date: 2001/10/04 02:54:04 $
+ * @version $Revision: 1.76 $ $Date: 2001/10/07 04:48:08 $
  */
 
 public class ActionServlet

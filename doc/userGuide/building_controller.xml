@@ -197,8 +197,8 @@ public ActionForward perform(ActionMapping mapping,
       </p>
       
       <p>
-        Inside of the &lt;struts-config&gt; element, there two important elements that use
-        to describe your actions:
+        Inside of the &lt;struts-config&gt; element, there are two important
+        elements that are used to describe your actions:
         
         <blockquote>
           <b>&lt;form-beans&gt;</b><br />
@@ -217,7 +217,7 @@ public ActionForward perform(ActionMapping mapping,
         <blockquote>
           <b>&lt;action-mappings&gt;</b><br />
             This section contains your action definitions.  You use an &lt;action&gt; element
-            for each of your actions you would like to define.  Each action element has requires
+            for each of your actions you would like to define.  Each action element requires
             the following attributes to be defined:
             
             <ul>
@@ -273,7 +273,7 @@ public ActionForward perform(ActionMapping mapping,
         name for the form bean.
       </p>
       <p>
-        The "<code>global-forwards</code>" section is used to create logical name mappings between commonly used
+        The "<code>global-forwards</code>" section is used to create logical name mappings for commonly used
         jsp pages.  Each of these forwards is available through a call to your action mapping instance,
         i.e. <code>actionMappingInstace.findForward("logicalName")</code>.
       </p>
@@ -287,7 +287,7 @@ public ActionForward perform(ActionMapping mapping,
         and saving a bean of the specified class if needed.
       </p>
       <p>
-        An optional but very useful section is the local "local <code>forwards</code>". In the example 
+        Optional but very useful are the local "<code>forward</code>" elements. In the example 
         application, many actions include a local "success" and/or "failure" forward as 
         part of an Action mapping. 
       </p>
@@ -415,7 +415,8 @@ public ActionForward perform(ActionMapping mapping,
               instead of the servlet log.  [0]</li>
           <li><strong>factory</strong> - The Java class name of the
               <code>MessageResourcesFactory</code> used to create the application
-              <code>MessageResources</code> object.</li>
+              <code>MessageResources</code> object.
+              [org.apache.struts.util.PropertyMessageResourcesFactory]</li>
           <li><strong>formBean</strong> - The Java class name of the ActionFormBean
               implementation to use [org.apache.struts.action.ActionFormBean].</li>
           <li><strong>forward</strong> - The Java class name of the ActionForward
@@ -435,7 +436,7 @@ public ActionForward perform(ActionMapping mapping,
               user session, identify and store an appropriate
               <code>java.util.Locale</code> object (under the standard key
               identified by <code>Action.LOCALE_KEY</code>) in the user's session
-              if there is not a Locale object there already.</li>
+              if there is not a Locale object there already. [true]</li>
           <li><strong>mapping</strong> - The Java class name of the ActionMapping
               implementation to use [org.apache.struts.action.ActionMapping].
               Two convenient classes you may wish to use are:
@@ -453,7 +454,7 @@ public ActionForward perform(ActionMapping mapping,
               by a "K" "M", or "G", which are interpreted to mean kilobytes,
               megabytes, or gigabytes, respectively.  [250M]</li>
           <li><strong>multipartClass</strong> - The fully qualified name of the
-              MultiplartRequestHandler implementation class to be used for processing
+              MultipartRequestHandler implementation class to be used for processing
               file uploads.  [org.apache.struts.upload.DiskMultipartRequestHandler]
               </li>
           <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
@@ -468,11 +469,19 @@ public ActionForward perform(ActionMapping mapping,
               application as a servlet context attribute]</li>
           <li><strong>validate</strong> - Are we using the new configuration file
               format?  [true]</li>  
+          <li><strong>validating</strong> - Should we use a validating XML parse to
+              process the configuration file (strongly recommended)? [true]</li>  
         </ul>
       </section>
       
       <section name="4.5.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
       
+        <p>
+          <strong>Note:</strong> The material in this section is not specific to
+          Struts. The configuration of servlet mappings is defined in the Java
+          Servlet Specification. This section describes the most common means
+          of configuring a Struts application.
+        </p>
         <p>
           There are two common approaches to defining the URLs that will
           be processed by the controller servlet -- prefix matching and extension

@@ -122,7 +122,7 @@
         
         <p>
           The form bean can be used by a JSP to collect data from the user ... by an
-          action object to validate the user entered ... and then by the JSP again to
+          action object to validate the user-entered data ... and then by the JSP again to
           re-populate the form fields. In the case of validation errors, Struts has a
           shared mechanism for raising and displaying error messages.
         </p>
