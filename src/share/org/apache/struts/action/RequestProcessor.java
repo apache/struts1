@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.17 2002/07/24 15:05:25 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2002/07/24 15:05:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.18 2002/08/27 00:38:12 craigmcc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/08/27 00:38:12 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.17 $ $Date: 2002/07/24 15:05:25 $
+ * @version $Revision: 1.18 $ $Date: 2002/08/27 00:38:12 $
  * @since Struts 1.1
  */
 
@@ -387,8 +387,12 @@ public class RequestProcessor {
                                         HttpServletResponse response,
                                         ActionForward forward)
         throws IOException, ServletException {
-    processForwardConfig( request, response, forward );
+
+        processForwardConfig( request, response, forward );
+
     }
+
+
     /**
      * Forward or redirect to the specified destination, by the specified
      * mechanism.
@@ -407,6 +411,9 @@ public class RequestProcessor {
 
         if (forward == null) {
             return;
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("processForwardConfig(" + forward + ")");
         }
 
         String uri = RequestUtils.forwardURL(request, forward);

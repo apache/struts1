@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.9 2002/07/27 21:53:13 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/07/27 21:53:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.10 2002/08/27 00:38:13 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/08/27 00:38:13 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/07/27 21:53:13 $
+ * @version $Revision: 1.10 $ $Date: 2002/08/27 00:38:13 $
  * @since Struts 1.1
  */
 
@@ -358,14 +358,26 @@ public class ControllerConfig implements Serializable {
             sb.append(",contentType=");
             sb.append(this.contentType);
         }
+        if (this.forwardPattern != null) {
+            sb.append(",forwardPattern=");
+            sb.append(this.forwardPattern);
+        }
+        sb.append(",inputForward=");
+        sb.append(this.inputForward);
         sb.append(",locale=");
         sb.append(this.locale);
         if (this.maxFileSize != null) {
             sb.append(",maxFileSzie=");
             sb.append(this.maxFileSize);
         }
+        sb.append(",multipartClass=");
+        sb.append(this.multipartClass);
         sb.append(",nocache=");
         sb.append(this.nocache);
+        if (this.pagePattern != null) {
+            sb.append(",pagePattern=");
+            sb.append(this.pagePattern);
+        }
         sb.append(",processorClass=");
         sb.append(this.processorClass);
         if (this.tempDir != null) {
