@@ -111,6 +111,20 @@ public class OptionsTag extends TagSupport {
 
 
     /**
+     * Should the label values be filtered for HTML sensitive characters?
+     */
+    protected boolean filter = true;
+
+    public boolean getFilter() {
+        return filter;
+    }
+
+    public void setFilter(boolean filter) {
+        this.filter = filter;
+    }
+
+
+    /**
      * The name of the bean containing the labels collection.
      */
     protected String labelName = null;
@@ -324,6 +338,7 @@ public class OptionsTag extends TagSupport {
 
 	super.release();
         collection = null;
+        filter = true;
 	labelName = null;
 	labelProperty = null;
 	name = null;
@@ -365,7 +380,11 @@ public class OptionsTag extends TagSupport {
             sb.append("\"");
         }
         sb.append(">");
-        sb.append(ResponseUtils.filter(label));
+        if (filter) {
+            sb.append(ResponseUtils.filter(label));
+        } else {
+            sb.append(label);
+        }
         sb.append("</option>\r\n");
 
     }

@@ -3494,6 +3494,17 @@
                 </attribute>
 
         <attribute>
+            <name>filter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Set to <code>false</code> if you do NOT want the option labels
+                filtered for sensitive characters in HTML.  By default, such
+                values are filtered.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>labelName</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
