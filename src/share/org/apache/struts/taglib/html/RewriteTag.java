@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.5 2001/05/09 19:31:18 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/05/09 19:31:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.6 2001/05/12 20:34:01 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/05/12 20:34:01 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/05/09 19:31:18 $
+ * @version $Revision: 1.6 $ $Date: 2001/05/12 20:34:01 $
  */
 
 public class RewriteTag extends LinkTag {
@@ -108,7 +108,7 @@ public class RewriteTag extends LinkTag {
         Map params = RequestUtils.computeParameters
             (pageContext, paramId, paramName, paramProperty, paramScope,
              name, property, scope, transaction);
-        URL url = null;
+        String url = null;
         try {
             url = RequestUtils.computeURL(pageContext, forward, href,
                                           page, params, anchor, false);
@@ -119,7 +119,7 @@ public class RewriteTag extends LinkTag {
         }
 
 	// Print this element to our output writer
-        ResponseUtils.write(pageContext, url.toString());
+        ResponseUtils.write(pageContext, url);
 
 	// Skip the body of this tag
 	return (SKIP_BODY);

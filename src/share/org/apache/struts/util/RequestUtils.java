@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.12 2001/05/11 22:33:37 mschachter Exp $
- * $Revision: 1.12 $
- * $Date: 2001/05/11 22:33:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.13 2001/05/12 20:34:01 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/05/12 20:34:01 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/05/11 22:33:37 $
+ * @version $Revision: 1.13 $ $Date: 2001/05/12 20:34:01 $
  */
 
 public class RequestUtils {
@@ -135,16 +135,7 @@ public class RequestUtils {
     public static URL absoluteURL(HttpServletRequest request, String path)
         throws MalformedURLException {
 
-        int port = request.getServerPort();
-        String scheme = request.getScheme();
-        String serverName = request.getServerName();
-        String uri = request.getContextPath() + path;
-        if ("http".equals(scheme) && (80 == port))
-            return (new URL(scheme, serverName, uri));
-        else if ("https".equals(scheme) && (443 == port))
-            return (new URL(scheme, serverName, uri));
-        else // Nonstandard port for the specified protocol
-            return (new URL(scheme, serverName, port, uri));
+        return (new URL(serverURL(request), path));
 
     }
 
@@ -263,27 +254,31 @@ public class RequestUtils {
 
 
     /**
-     * Compute an absolute URL based on the <code>forward</code>,
+     * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, or <code>page</code> parameter that is not null.
      * The returned URL will have already been passed to
      * <code>response.encodeURL()</code> for adding a session identifier.
      *
      * @param pageContext PageContext for the tag making this call
+     *
      * @param forward Logical forward name for which to look up
      *  the context-relative URI (if specified)
      * @param href URL to be utilized unmodified (if specified)
      * @param page Context-relative page for which a URL should
      *  be created (if specified)
+     *
      * @param params Map of parameters to be dynamically included (if any)
      * @param anchor Anchor to be dynamically included (if any)
+     *
      * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
      *
      * @exception MalformedURLException if a URL cannot be created
      *  for the specified parameters
      */
-    public static URL computeURL(PageContext pageContext, String forward,
-                                 String href, String page,
-                                 Map params, String anchor, boolean redirect)
+    public static String computeURL(PageContext pageContext, String forward,
+                                    String href, String page,
+                                    Map params, String anchor,
+                                    boolean redirect)
         throws MalformedURLException {
 
         // Validate that exactly one specifier was included
@@ -299,7 +294,9 @@ public class RequestUtils {
                 (messages.getMessage("computeURL.specifier"));
 
         // Calculate the appropriate URL
-        URL url = null;
+        StringBuffer url = new StringBuffer();
+        HttpServletRequest request =
+            (HttpServletRequest) pageContext.getRequest();
         if (forward != null) {
             ActionForwards forwards = (ActionForwards)
                 pageContext.getAttribute(Action.FORWARDS_KEY,
@@ -311,15 +308,16 @@ public class RequestUtils {
             if (af == null)
                 throw new MalformedURLException
                     (messages.getMessage("computeURL.forward", forward));
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            url = absoluteURL(request, af.getPath());
+            if (af.getRedirect())
+                redirect = true;
+            if (af.getPath().startsWith("/"))
+                url.append(request.getContextPath());
+            url.append(af.getPath());
         } else if (href != null) {
-            url = new URL(href);
+            url.append(href);
         } else /* if (page != null) */ {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            url = absoluteURL(request, page);
+            url.append(request.getContextPath());
+            url.append(page);
         }
 
         // Add anchor if requested (replacing any existing anchor)
@@ -327,11 +325,9 @@ public class RequestUtils {
             String temp = url.toString();
             int hash = temp.indexOf('#');
             if (hash >= 0)
-                temp = temp.substring(0, hash);
-            StringBuffer sb = new StringBuffer(temp);
-            sb.append('#');
-            sb.append(URLEncoder.encode(anchor));
-            url = new URL(sb.toString());
+                url.setLength(hash);
+            url.append('#');
+            url.append(URLEncoder.encode(anchor));
         }
         
         // Add dynamic parameters if requested
@@ -342,57 +338,54 @@ public class RequestUtils {
             int hash = temp.indexOf('#');
             if (hash >= 0) {
                 anchor = temp.substring(hash + 1);
-                temp = temp.substring(0, hash);
+                url.setLength(hash);
+                temp = url.toString();
             } else
                 anchor = null;
 
             // Add the required request parameters
             boolean question = temp.indexOf('?') >= 0;
-            StringBuffer sb = new StringBuffer(temp);
             Iterator keys = params.keySet().iterator();
             while (keys.hasNext()) {
                 String key = (String) keys.next();
                 Object value = params.get(key);
                 if (value == null) {
                     if (!question) {
-                        sb.append('?');
+                        url.append('?');
                         question = true;
                     } else
-                        sb.append('&');
-                    sb.append(URLEncoder.encode(key));
-                    sb.append('='); // Interpret null as "no value"
+                        url.append('&');
+                    url.append(URLEncoder.encode(key));
+                    url.append('='); // Interpret null as "no value"
                 } else if (value instanceof String) {
                     if (!question) {
-                        sb.append('?');
+                        url.append('?');
                         question = true;
                     } else
-                        sb.append('&');
-                    sb.append(URLEncoder.encode(key));
-                    sb.append('=');
-                    sb.append(URLEncoder.encode((String) value));
+                        url.append('&');
+                    url.append(URLEncoder.encode(key));
+                    url.append('=');
+                    url.append(URLEncoder.encode((String) value));
                 } else /* if (value instanceof String[]) */ {
                     String values[] = (String[]) value;
                     for (int i = 0; i < values.length; i++) {
                         if (!question) {
-                            sb.append('?');
+                            url.append('?');
                             question = true;
                         } else
-                            sb.append('&');
-                        sb.append(URLEncoder.encode(key));
-                        sb.append('=');
-                        sb.append(URLEncoder.encode(values[i]));
+                            url.append('&');
+                        url.append(URLEncoder.encode(key));
+                        url.append('=');
+                        url.append(URLEncoder.encode(values[i]));
                     }
                 }
             }
 
             // Re-add the saved anchor (if any)
             if (anchor != null) {
-                sb.append('#');
-                sb.append(anchor);
+                url.append('#');
+                url.append(anchor);
             }
-
-            // Update to the completed URL
-            url = new URL(sb.toString());
 
         }
 
@@ -401,11 +394,11 @@ public class RequestUtils {
             HttpServletResponse response =
                 (HttpServletResponse) pageContext.getResponse();
             if (redirect)
-                url = new URL(response.encodeRedirectURL(url.toString()));
+                return (response.encodeRedirectURL(url.toString()));
             else
-                url = new URL(response.encodeURL(url.toString()));
-        }
-        return (url);
+                return (response.encodeURL(url.toString()));
+        } else
+            return (url.toString());
 
     }
 
@@ -804,6 +797,93 @@ public class RequestUtils {
 
         // Return the requested message presence indicator
         return (resources.isPresent(userLocale, key));
+
+    }
+
+
+    /**
+     * Compute the printable representation of a URL, leaving off the
+     * scheme/host/port part if no host is specified.  This will typically
+     * be the case for URLs that were originally created from relative
+     * or context-relative URIs.
+     *
+     * @param url URL to render in a printable representation
+     */
+    public static String printableURL(URL url) {
+
+        if (url.getHost() != null)
+            return (url.toString());
+
+        String file = url.getFile();
+        String ref = url.getRef();
+        if (ref == null)
+            return (file);
+        else {
+            StringBuffer sb = new StringBuffer(file);
+            sb.append('#');
+            sb.append(ref);
+            return (sb.toString());
+        }
+
+    }
+
+
+    /**
+     * Return the URL representing the current request.  This is equivalent
+     * to <code>HttpServletRequest.getRequestURL()</code> in Servlet 2.3.
+     *
+     * @param request The servlet request we are processing
+     *
+     * @exception MalformedURLException if a URL cannot be created
+     */
+    public static URL requestURL(HttpServletRequest request)
+        throws MalformedURLException {
+
+        StringBuffer url = new StringBuffer();
+        String scheme = request.getScheme();
+        int port = request.getServerPort();
+        if (port < 0)
+            port = 80; // Work around java.net.URL bug
+        url.append(scheme);
+        url.append("://");
+        url.append(request.getServerName());
+        if ((scheme.equals("http") && (port != 80)) ||
+            (scheme.equals("https") && (port != 443))) {
+            url.append(':');
+            url.append(port);
+        }
+        url.append(request.getRequestURI());
+        return (new URL(url.toString()));
+
+    }
+
+
+    /**
+     * Return the URL representing the scheme, server, and port number of
+     * the current request.  Server-relative URLs can be created by simply
+     * appending the server-relative path (starting with '/') to this.
+     *
+     * @param request The servlet request we are processing
+     *
+     * @exception MalformedURLException if a URL cannot be created
+     */
+    public static URL serverURL(HttpServletRequest request)
+        throws MalformedURLException {
+
+        StringBuffer url = new StringBuffer();
+        String scheme = request.getScheme();
+        int port = request.getServerPort();
+        if (port < 0)
+            port = 80; // Work around java.net.URL bug
+        url.append(scheme);
+        url.append("://");
+        url.append(request.getServerName());
+        if ((scheme.equals("http") && (port != 80)) ||
+            (scheme.equals("https") && (port != 443))) {
+            url.append(':');
+            url.append(port);
+        }
+        return (new URL(url.toString()));
 
     }
 

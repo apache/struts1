@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.13 2001/05/09 19:31:10 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.14 2001/05/12 20:34:01 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -92,7 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2001/05/09 19:31:10 $
+ * @version $Revision: 1.14 $ $Date: 2001/05/12 20:34:01 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -227,10 +227,17 @@ public class IncludeTag extends TagSupport {
         Map params = RequestUtils.computeParameters
             (pageContext, null, null, null, null,
              null, null, null, transaction); // FIXME - <html:link> attributes
+        String urlString = null;
         URL url = null;
         try {
-            url = RequestUtils.computeURL(pageContext, forward, href,
-                                          page, params, anchor, false);
+            urlString = RequestUtils.computeURL(pageContext, forward, href,
+                                                page, params, anchor, false);
+            if (urlString.indexOf(':') == 0) {
+                HttpServletRequest request = (HttpServletRequest)
+                    pageContext.getRequest();
+                url = new URL(RequestUtils.requestURL(request), urlString);
+            } else
+                url = new URL(urlString);
         } catch (MalformedURLException e) {
             RequestUtils.saveException(pageContext, e);
             throw new JspException
