@@ -20,18 +20,14 @@ package org.apache.struts.chain.servlet;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.AbstractAuthorizeAction;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.util.MessageResources;
 
 
 /**
  * <p>Determine if the action is authorized for the given roles.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/08 02:50:54 $
+ * @version $Revision: 1.5 $ $Date: 2004/06/24 01:03:00 $
  */
 
 public class AuthorizeAction extends AbstractAuthorizeAction {

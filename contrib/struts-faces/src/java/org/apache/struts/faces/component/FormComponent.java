@@ -22,7 +22,6 @@ import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,7 +40,7 @@ import org.apache.struts.util.RequestUtils;
  * <code>javax.faces.component.UIForm</code> that supports automatic
  * creation of form beans in request or session scope.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/06/09 02:28:28 $
+ * @version $Revision: 1.10 $ $Date: 2004/06/24 01:16:44 $
  */
 public class FormComponent extends UIForm {
 

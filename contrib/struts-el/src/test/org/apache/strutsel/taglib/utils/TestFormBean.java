@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/TestFormBean.java,v 1.3 2004/03/14 07:15:06 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/TestFormBean.java,v 1.4 2004/06/24 01:02:01 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/06/24 01:02:01 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,7 +20,6 @@
 
 package org.apache.strutsel.taglib.utils;
 
-import java.io.Serializable;
 import org.apache.struts.action.ActionForm;
 
 public class TestFormBean extends ActionForm

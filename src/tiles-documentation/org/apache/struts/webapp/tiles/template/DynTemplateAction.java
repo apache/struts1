@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/template/DynTemplateAction.java,v 1.5 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/template/DynTemplateAction.java,v 1.6 2004/06/24 01:08:50 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/06/24 01:08:50 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,12 +20,8 @@
 
 package org.apache.struts.webapp.tiles.template;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;

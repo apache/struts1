@@ -21,20 +21,16 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.chain.Constants;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.upload.MultipartRequestWrapper;
-
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.chain.Constants;
+import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.upload.MultipartRequestWrapper;
 
 
 /**
@@ -48,7 +44,7 @@ import org.apache.commons.logging.LogFactory;
  * whatever chain is stored under id <code>servlet-standard</code> (currently
  * hardcoded; needs to be made configurable) to process this request.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/08 02:50:53 $
+ * @version $Revision: 1.8 $ $Date: 2004/06/24 01:08:22 $
  * @since Struts 1.1
  */
 

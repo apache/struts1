@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.6 2004/03/14 06:23:54 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:54 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.7 2004/06/24 01:07:23 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/06/24 01:07:23 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -25,16 +25,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.DefinitionsUtil;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.xmlDefinition.DefinitionsFactory;
 import org.apache.struts.tiles.xmlDefinition.FactorySet;

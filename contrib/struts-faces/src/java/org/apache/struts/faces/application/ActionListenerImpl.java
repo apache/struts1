@@ -27,7 +27,6 @@ import javax.faces.event.ActionListener;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -45,7 +44,7 @@ import org.apache.struts.util.RequestUtils;
  * into execution of the corresponding Struts request processing lifecycle.
  * </p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/06/09 02:28:28 $
+ * @version $Revision: 1.9 $ $Date: 2004/06/24 01:02:31 $
  */
 
 public final class ActionListenerImpl implements ActionListener {

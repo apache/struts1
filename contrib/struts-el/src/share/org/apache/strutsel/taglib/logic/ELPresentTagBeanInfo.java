@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELPresentTagBeanInfo.java,v 1.3 2004/03/14 07:15:05 sraeburn Exp $
- * $Revision: 1.3 $
- * $Date: 2004/03/14 07:15:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELPresentTagBeanInfo.java,v 1.4 2004/06/24 01:16:44 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/06/24 01:16:44 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -20,11 +20,10 @@
 
 package org.apache.strutsel.taglib.logic;
 
-import java.beans.PropertyDescriptor;
 import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 import java.util.ArrayList;
-import java.lang.reflect.Method;
 
 /**
  * This is the <code>BeanInfo</code> descriptor for the
