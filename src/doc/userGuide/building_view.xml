@@ -8,7 +8,7 @@
   </properties>
   
   <body>  
-  <chapter name="Building View Components" href="building_view">
+  <chapter name="3. Building View Components" href="building_view">
   
       <section name="3.1 Overview" href="overview">
         
@@ -132,10 +132,10 @@
         <code>username</code> field might look like this (in JSP):
        </p>
       
-      <p>
-        <code>&lt;input type="text" name="username" 
-        value="&lt;%= loginBean.getUsername() %&gt;"></code>
-      </p>
+<pre>
+&lt;input type="text" name="username"
+      value="&lt;%= loginBean.getUsername() %&gt;"/&gt;
+</pre>
       
       <p>
         which is difficult to type correctly, confuses HTML developers who are
@@ -144,11 +144,11 @@
         building forms, based on the Custom Tag Library facility of JSP 1.1.
         The case above would be rendered like this using Struts:
       </p>
-      
-      <p>        
-        <code>&lt;html:text property="username"/&gt;</code>
-      </p>
-        
+
+<pre>        
+&lt;html:text property="username"/&gt;
+</pre>
+
       <p> 
         with no need to explicitly refer to the JavaBean from which the initial
         value is retrieved.  That is handled automatically by the framework.
@@ -170,12 +170,18 @@
           and standard JSP facilities.  Consider the following page (based on the
           example application included with Struts) named <code>logon.jsp</code>:
         </p>       
-<pre><font size="-1">&lt;%@ page language="java" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
-&lt;html&gt;
+
+<pre>
+&lt;%@ page language="java" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-html.tld"
+        prefix="html" %&gt;
+&lt;%@ taglib uri="/WEB-INF/struts-bean.tld"
+        prefix="bean" %&gt;
+&lt;html:html&gt;
 &lt;head&gt;
-&lt;title&gt;&lt;bean:message key="logon.title"/&gt;&lt;/title&gt;
+&lt;title&gt;
+  &lt;bean:message key="logon.title"/&gt;
+&lt;/title&gt;
 &lt;body bgcolor="white"&gt;
 &lt;html:errors/&gt;
 &lt;html:form name="logonForm" action="logon.do"&gt;
@@ -185,7 +191,8 @@
       &lt;html:message key="prompt.username"/&gt;
     &lt;/th&gt;
     &lt;td align="left"&gt;
-      &lt;html:text property="username" size="16"/&gt;
+      &lt;html:text property="username"
+                     size="16"/&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -193,7 +200,8 @@
       &lt;html:message key="prompt.password"/&gt;
     &lt;/th&gt;
     &lt;td align="left"&gt;
-      &lt;html:password property="password" size="16"/&gt;
+      &lt;html:password property="password"
+                         size="16"/&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -211,7 +219,9 @@
 &lt;/table&gt;
 &lt;/html:form&gt;
 &lt;/body&gt;
-&lt;/html&gt;</font></pre>         
+&lt;/html:html&gt;
+</pre>         
+
         <p>
           The following items illustrate the key features of form handling in Struts,
           based on this example:
@@ -279,22 +289,25 @@
           page:
         </p>
           
-        <p>
-<pre><font size="-1">&lt;%@page language="java">
-&lt;%@taglib uri="/WEB-INF/struts-html.tld" prefix="html">
+<pre>
+&lt;%@page language="java">
+&lt;%@taglib uri="/WEB-INF/struts-html.tld"
+       prefix="html">
 &lt;html:form action="uploadAction.do">
-  Please Input Text: &lt;html:text property="myText">&lt;br />
-  Please Input The File You Wish to Upload:&lt;br />
+  Please Input Text:
+  &lt;html:text property="myText">&lt;br/>
+  Please Input The File You Wish to Upload:&lt;br/>
   &lt;html:file property="myFile">&lt;br />
   &lt;html:submit />
 &lt;/html:form>
-</font></pre>
-        </p>
+</pre>
+
         <p>
           The next step is to create your ActionForm bean:
         </p>
-        <p>
-<pre><font size="-1">import javax.servlet.http.HttpServletRequest;
+
+<pre>
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -314,8 +327,8 @@ public class UploadForm extends ActionForm {
   public FormFile getMyFile() {
     return myFile;
   }
-}</font></pre>
-        </p>
+}
+</pre>
         
         <p>
           Look at the <a href="../api/index.html">javadocs</a> for FormFile to see the
@@ -397,10 +410,13 @@ public class UploadForm extends ActionForm {
           offers an additional facility to validate the input fields it has received.
           To utilize this feature, override the following method in your ActionForm 
           class:
-  <pre><font size="-1">public ActionErrors validate(ActionMapping mapping,
-                              HttpServletRequest request)
-  </font></pre>
         </p>
+
+<pre>
+public ActionErrors
+           validate(ActionMapping mapping,
+                    HttpServletRequest request);
+</pre>
         
         <p>
           The validate() method is called by the controller servlet after the bean

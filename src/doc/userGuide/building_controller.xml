@@ -8,7 +8,7 @@
   </properties>
   
   <body>  
-  <chapter name="Building Controller Components" href="building_controller">
+  <chapter name="4. Building Controller Components" href="building_controller">
   
       <section name="4.1 Overview" href="overview">
         
@@ -39,19 +39,21 @@
       
       <p>The <code>Action</code> class defines two methods that could be
         executed depending on your servlet environment:
-<pre><font size="-1">public ActionForward perform(ActionMapping mapping,
-                      ActionForm form,
-                      ServletRequest request,
-                    ServletResponse response)
-  throws IOException, ServletException
-
-   public ActionForward perform(ActionMapping mapping,
-                      ActionForm form,
-                      HttpServletRequest request,
-                    HttpServletResponse response)
-  throws IOException, ServletException   
-</font></pre>
       </p>
+
+<pre>
+public ActionForward perform(ActionMapping mapping,
+                             ActionForm form,
+                             ServletRequest request,
+                             ServletResponse response)
+  throws IOException, ServletException;
+
+public ActionForward perform(ActionMapping mapping,
+                             ActionForm form,
+                             HttpServletRequest request,
+                             HttpServletResponse response)
+  throws IOException, ServletException;
+</pre>
       
       <p>
         Most people would only use the "HttpServletRequest" version. 
@@ -265,25 +267,32 @@
         to illustrate the requirements.  Note that the entries for all the other actions
         are left out:
       </p>
-<pre><font size="-1">&lt;struts-config>
-      &lt;form-beans>
-        &lt;form-bean name="logonForm"
-                type="org.apache.struts.example.LogonForm">
-      &lt;/form-beans>      
-      &lt;global-forwards type="org.apache.struts.action.ActionForward">
-      &lt;forward name="logon" path="/logon.jsp" redirect="false" /> 
-    &lt;/global-forwards>      
-    &lt;action-mappings&gt;     
-      &lt;action path="/logon" 
-              type="org.apache.struts.example.LogonAction"
-              name="logonForm"
-              scope="request"
-              input="/logon.jsp"
-              unknown="false"
-              validate="true" />          
-    &lt;/action-mappings&gt;
- &lt;/struts-config>
-</font></pre>      
+
+<pre>
+&lt;struts-config>
+  &lt;form-beans>
+    &lt;form-bean
+      name="logonForm"
+      type="org.apache.struts.example.LogonForm" />
+  &lt;/form-beans>      
+  &lt;global-forwards
+      type="org.apache.struts.action.ActionForward" />
+    &lt;forward name="logon" path="/logon.jsp"
+         redirect="false" /> 
+  &lt;/global-forwards>      
+  &lt;action-mappings&gt;     
+    &lt;action
+        path="/logon" 
+        type="org.apache.struts.example.LogonAction"
+        name="logonForm"
+       scope="request"
+       input="/logon.jsp"
+     unknown="false"
+    validate="true" />          
+  &lt;/action-mappings&gt;
+&lt;/struts-config>
+</pre>      
+
       <p>
         First the form bean is defined.  A basic bean of class "org.apache.struts.example.LogonForm"
         is mapped to the logical name "logonForm".  This name is used as a session or request attribute
@@ -309,21 +318,23 @@
         specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
         of struts-config.xml:
       </p>
-      <p>
-<pre><font size="-1">&lt;struts-config>
-    &lt;data-sources>
-      &lt;data-source autoCommit="false"
-                 description="Example Data Source Description"
-                 driverClass="org.postgresql.Driver"
-                   maxCount="4"
-                   minCount="2"
-                   password="mypassword"
-                   url="jdbc:postgresql://localhost/mydatabase"
-                   user="myusername"/>
-    &lt;/data-sources>
-  &lt;/struts-config>
-</font></pre>
-      </p>  
+
+<pre>
+&lt;struts-config>
+  &lt;data-sources>
+    &lt;data-source
+      autoCommit="false"
+     description="Example Data Source Description"
+     driverClass="org.postgresql.Driver"
+        maxCount="4"
+        minCount="2"
+        password="mypassword"
+             url="jdbc:postgresql://localhost/mydatabase"
+            user="myusername"/>
+  &lt;/data-sources>
+&lt;/struts-config>
+</pre>
+
       <p>
         For information on how to retrieve the data source, see the 
         <a href="building_model.html#databases">Accessing Relational Databases</a> section.  
@@ -345,29 +356,39 @@
         <p>
           Add an entry defining the action servlet itself, along with the appropriate
           initialization parameters.  Such an entry might look like this:
-<pre><font size="-1">&lt;servlet&gt;
-     &lt;servlet-name&gt;action&lt;/servlet-name&gt;
-     &lt;servlet-class&gt;org.apache.struts.action.ActionServlet&lt;/servlet-class&gt;
-     &lt;init-param&gt;
-       &lt;param-name&gt;application&lt;/param-name&gt;
-       &lt;param-value&gt;org.apache.struts.example.ApplicationResources&lt;/param-value&gt;
-     &lt;/init-param&gt;
-     &lt;init-param&gt;
-       &lt;param-name&gt;config&lt;/param-name&gt;
-       &lt;param-value&gt;/WEB-INF/struts-config.xml&lt;/param-value&gt;
-     &lt;/init-param&gt;
-     &lt;init-param&gt;
-       &lt;param-name&gt;debug&lt;/param-name&gt;
-       &lt;param-value&gt;2&lt;/param-value&gt;
-     &lt;/init-param&gt;
-     &lt;init-param&gt;
-       &lt;param-name&gt;mapping&lt;/param-name&gt;
-       &lt;param-value&gt;org.apache.struts.example.ApplicationMapping&lt;/param-value&gt;
-     &lt;/init-param&gt;
-     &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
-   &lt;/servlet&gt;
-</font></pre>
         </p>
+
+<pre>
+&lt;servlet&gt;
+  &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;
+    org.apache.struts.action.ActionServlet
+  &lt;/servlet-class&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;application&lt;/param-name&gt;
+    &lt;param-value&gt;
+      org.apache.struts.example.ApplicationResources
+    &lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;config&lt;/param-name&gt;
+    &lt;param-value&gt;
+      /WEB-INF/struts-config.xml
+    &lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;debug&lt;/param-name&gt;
+    &lt;param-value&gt;2&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;mapping&lt;/param-name&gt;
+    &lt;param-value&gt;
+      org.apache.struts.example.ApplicationMapping
+    &lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+</pre>
         
         <p>
           The initialization parameters supported by the controller servlet are
@@ -465,19 +486,22 @@
           path part) with a particular value to be passed to this servlet.  Such an
           entry might look like this:
         </p>
-<pre><font size="-1">&lt;servlet-mapping&gt;
+
+<pre>
+  &lt;servlet-mapping&gt;
      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
      &lt;url-pattern&gt;/execute/*&lt;/url-pattern&gt;
    &lt;/servlet-mapping&gt;
-</font></pre>
+</pre>
         
         <p>
           which means that a request URI to match the <code>/logon</code> path
           described earlier might look like this:</p>
-        <p>
-          <code> http://www.mycompany.com/myapplication/execute/logon</code>
-        </p>
-        
+
+<pre><font size="-1">
+http://www.mycompany.com/myapplication/execute/logon
+</font></pre>
+
         <p>
           where <code>/myapplication</code> is the context path under which your
           application is deployed.
@@ -490,18 +514,23 @@
           to the <code>*.jsp</code> pattern so that it is called to process every
           JSP page that is requested.  To use the <code>*.do</code> extension (which
           implies "do something"), the mapping entry would look like this:
-<pre><font size="-1">&lt;servlet-mapping&gt;
+        </p>
+
+<pre>
+  &lt;servlet-mapping&gt;
      &lt;servlet-name&gt;action&lt;/servlet-name&gt;
      &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
    &lt;/servlet-mapping&gt;
-</font></pre>
-        </p>
+</pre>
         
         <p>
           and a request URI to match the <code>/logon</code> path described
-          earlier might look like this:<br />
-          <code> http://www.mycompany.com/myapplication/logon.do</code>
+          earlier might look like this:
         </p>
+
+<pre><font size="-1">
+http://www.mycompany.com/myapplication/logon.do
+</font></pre>
       </section>
       
       <section name="4.5.3 Configure the Struts Tag Library" href="dd_config_taglib">
@@ -532,26 +561,44 @@
         
         <p>
           Below is how you would define all taglibs for use within your application,
-          in reality you would only specify the taglib's that your application will use:          
-<pre><font size="-1">&lt;taglib&gt;
-   &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
-   &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
- &lt;/taglib&gt;
- &lt;taglib&gt;
-   &lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;
-   &lt;taglib-location&gt;/WEB-INF/struts-html.tld&lt;/taglib-location&gt;
- &lt;/taglib&gt;
- &lt;taglib&gt;
-   &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
-   &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
- &lt;/taglib&gt;
- &lt;taglib&gt;
-   &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
-   &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
- &lt;/taglib&gt;
-</font></pre>
+          in reality you would only specify the taglib's that your application will use:
         </p>
-          
+
+<pre>
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-bean.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-bean.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-html.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-html.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-logic.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-logic.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;
+    /WEB-INF/struts-template.tld
+  &lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;
+    /WEB-INF/struts-template.tld
+  &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+</pre>
+
         <p>
           This tells the JSP system where to find the tag library descriptor
           for this library (in your application's WEB-INF directory, instead of
@@ -573,5 +620,3 @@
   </chapter>
   </body>
 </document>
-          
-                    

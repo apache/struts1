@@ -8,7 +8,7 @@
   </properties>
   
   <body>  
-  <chapter name="Building Model Components" href="building_model">
+  <chapter name="2. Building Model Components" href="building_model">
   
       <section name="2.1 Overview" href="overview">
         
@@ -227,31 +227,33 @@
       </p>
       <p>
         After the datasource is defined, here is an example of establishing a connection 
-        from within a Action perform method. 
+        from within a Action perform method.
       </p>
 <pre>
-  public ActionForward perform(ActionMapping mapping,
-                               ActionForm form,
-                               HttpServletRequest request,
-                               HttpServletResponse response) {
+public ActionForward
+       perform(ActionMapping mapping,
+               ActionForm form,
+               HttpServletRequest request,
+               HttpServletResponse response)
+{
+  try {
+    javax.sql.DataSource dataSource =
+      servlet.findDataSource(null);      
+    java.sql.Connection myConnection =
+      dataSource.getConnection();
+    //do what you wish with myConnection
+  } catch (SQLException sqle) {
+    getServlet().log("Connection.process", sqle);
+  } finally {
+    //enclose this in a finally block to make
+    //sure the connection is closed
     try {
-      javax.sql.DataSource dataSource = servlet.findDataSource(null);      
-      java.sql.Connection myConnection = dataSource.getConnection();
-      //do what you wish with myConnection
-    }
-    catch (SQLException sqle) {
-      getServlet().log("Connection.process", sqle);
-    }
-    finally {
-      //enclose this in a finally block to make
-      //sure the connection is closed
-      try {
-        myConnection.close();
-      } catch (SQLException e) {
-        getServlet().log("Connection.close", e);
-      }
+      myConnection.close();
+    } catch (SQLException e) {
+      getServlet().log("Connection.close", e);
     }
   }
+}
 </pre>
       
       <p align="center">
