@@ -92,6 +92,17 @@ public class SimpleBeanForTesting {
 	private Enumeration enumeration;
 	private Collection collection;
 
+	//Copied right from the FAQ
+	private String strAry[] =
+    	{ "String 0", "String 1", "String 2", "String 3", "String 4" };
+
+    public String getStringIndexed(int index) { 
+    	return (strAry[index]); 
+    }
+    public void setStringIndexed(int index, String value){ 
+    	strAry[index] = value; 
+    }
+
 	/**
 	 * Returns the lst.
 	 * @return List
