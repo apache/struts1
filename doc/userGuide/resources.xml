@@ -143,7 +143,7 @@
 
 <section name="Other Resource Pages" href="other"> 
 <p><a href="http://www.jguru.com/faq/home.jsp?topic=Struts"><b>JGuru FAQ</b></a></p>
-<p><a href="http://husted.com/about/struts/"><b>Scaffolding</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
+<p><a href="http://husted.com/about/struts/scaffolding.htm"><b>Scaffolding</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
 <p><a href="http://habweb.de/struts/"><b>German Translation of Users Guide</b></a> by Hartmut Bernecker.</p>
 <p><a href="http://java.sun.com/docs/books/tutorial/"><b>Javasoft Tutorials</b></a></p>
 <p><a href="http://archives.java.sun.com"><b>Javasoft Mailing Lists</b></a></p>
@@ -213,6 +213,7 @@
   <li><b>U</b><b>pco</b> -<a href="http://www.upco.co.uk">upco.co.uk</a> - <a href="mailto:Jon.Ridgway@upco.co.uk">Jon Ridgeway</a>.</li>
   <li><b>viadee <font size="1">UNTERNEHMENSBERATUNG GmbH</font></b> - <a href="http://www.viadee.de/">www.viadee.de</a> - <a href="mailto:friedrich.budde@viadee.de">Frido Budde</a>.</li>
 </ul>
+  <p>Next: <a href="kickstart.html">Kickstart FAQ</a></p>
 </section>
 
 </chapter></body></document>

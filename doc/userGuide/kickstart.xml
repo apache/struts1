@@ -13,6 +13,7 @@
     <li><a href="#how">How does Struts work?</a></li>
     <li><a href="#compat">Is Struts compatible with other Java technologies?</a></li>
     <li><a href="#who">Who wrote Struts?</a></li>
+    <li><a href="#struts">Why is it called Struts?</a></li>
     <li><a href="#license">How is Struts licensed?</a></li>
     <li><a href="#usage">Can Struts be used in a commercial application?</a></li>
 
@@ -30,6 +31,7 @@
   
     <li><a href="#bugs">Where can I report bugs or make feature requests?</a></li>
     <li><a href="#contribute">How can I contribute to the development of Struts?</a></li>
+    <li><a href="#release">When is the next release coming out?</a></li>
     <li><a href="#unsubscribe">How do I unsubscribe from the mailing list?</a></li>
   </ul>
 </section>
@@ -46,6 +48,14 @@
 <p>Yes. Struts is committed to supporting industry standards. Our lead developer is a member of <a href="http://java.sun.com/aboutJava/communityprocess/jsr/jsr_052_jsptaglib.html">JSR052</a>, Sun's Expert group for developing a standard library of custom JSP tags. A primary design criteria is that Struts must be compatible with Sun's J2EE platform for corporate enterprises. In fact, Struts really acts as an integrator of Java technologies, so that they can be used in the &quot;real world&quot;.</p>
 </section>
 
+<section href="who" name="Who wrote Struts?">
+<p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig actively leads the Struts project, and is also the lead developer on the Tomcat 4.0 project. There are now several committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;.</p>
+</section>
+
+<section href="struts" name="Why is it called Struts?">
+<p>It's a reference to Struts in the architechtural sense - To brace, strengthen, or provide structure.</p>
+</section>
+
 <section href="license" name="How is Struts licensed?">
 <p>Struts is copyrighted software available under a &quot;free-to-use-license&quot; by the Apache Software Foundation. The license appears at the head of every source code file. A reference copy of the license is available <a href="http://www.apache.org/LICENSE-1.1">here</a>.</p>
 </section>
@@ -53,10 +63,6 @@
 <section href="usage" name="Can Struts be used in a commercial product?">
 <p>Yes. The only requirements you must meet are those listed in the Apache Software Foundation license, which is included at the top of each source file and in the file LICENSE in the top-level directory of the distribution.</p>
 <p>In addition, contributions of patches, improved code, new features, or even just requests for features are also welcome.</p>
-</section>
-
-<section href="who" name="Who wrote Struts?">
-<p>Struts was created by Craig R. McClanahan, and donated to the Apache Software Foundation in May 2000. Craig actively leads the Struts project, and is also the lead developer on the Tomcat 4.0 project. There are now several committers to the Struts project, working cooperatively from around the globe. Other Java developers are invited to <a href="#contribute">contribute to the project</a>. Struts is an <a href="http://jakarta.apache.org/">Apache Jakarta</a>  project, with the common mission to &quot;provide commercial-quality server solutions based on the Java Platform that are developed in an open and cooperative fashion&quot;.</p>
 </section>
 
 <section href="where" name="Where I can I get a copy of Struts?">
@@ -122,8 +128,40 @@
 <p>You can start by joining the Struts User list. If you enjoy participating there, then sign up for the Struts Developer list too. If you find any problems with Struts, or find a missing feature, you can enter a record to our <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> database.</p>
 </section>
 
+<section href="release" name="When is the next release coming out?">
+<p>Here is the truth regarding releases:</p>
+<p>Jakarta products are released on the basis of merit, and ~not~ according
+to a strict timetable. The volunteers devote whatever time they can to working
+on the product. But all volunteers have real jobs and real lives, that 
+do take precedence. Since Struts does have have paid personnel working 
+on the project, we simply cannot make date-orientated commitments.</p>
+<p>All Jakarta products must circulate a public beta before release. If a
+beta is not in circulation, then it's a good bet that a release is not
+forthcoming any time soon. Products sometimes go through several betas
+before final release. So if this is beta 1, then it still may not be
+released any time soon.</p>
+<p>The bottom line is that Jakarta takes releases very seriously. We do not
+compromise the quality of our software by watching the calendar (and
+then ship something ready or not). A release is ready when it is ready.</p>
+<p>That may sound flip, but it ~is~ the truth. The delivery of
+production-quality, leading-edge software is not something anyone can 
+prognasticate. If anyone tries, they are lying to you. That, we won't 
+do ;-)</p>
+<p>What we ~will~ do is release all of our development software as soon as it
+is developed. This way you can judge for yourself how quickly the
+development is proceeding, and whether what is being developed will meet
+your needs. If you need a feature right now, you can use the nightly
+build, or roll your own patch. There are no private CVS's or a private
+development lists. What you see is what we got. If you are following the
+DEV list, then you know everything the developers know. Really, you do.</p>
+
+</section>
+
 <section href="unsubscribe" name="How do I unsubscribe from the mailing list?">
 <p><b>From the email account used to subscribe to the list,</b> <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">send a blank message</a> to &lt; <a href="mailto:struts-user-unsubscribe@jakarta.apache.org">struts-user-unsubscribe@jakarta.apache.org</a>&gt;.</p>
+
+  <p>Next: <a href="volunteers.html">Who We Are</a></p>
+
 </section>
 
 </chapter></body></document>
