@@ -685,7 +685,8 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                         The value to be transmitted if this checkbox is
-                        checked when the form is submitted.
+                        checked when the form is submitted.  If not specified,
+                        the value "on" will be returned.
             </info>
         </attribute>
     </tag>

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.2 2001/01/08 21:36:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 21:36:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/CheckboxTag.java,v 1.3 2001/03/10 23:27:31 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/03/10 23:27:31 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -64,19 +64,19 @@ package org.apache.struts.taglib.html;
 
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/08 21:36:05 $
+ * @version $Revision: 1.3 $ $Date: 2001/03/10 23:27:31 $
  */
 
 public class CheckboxTag extends BaseHandlerTag {
@@ -190,44 +190,29 @@ public class CheckboxTag extends BaseHandlerTag {
 	    results.append(tabindex);
 	    results.append("\"");
 	}
-	String value = this.value;
-	if (value == null) {
-	    Object bean = pageContext.findAttribute(name);
-	    if (bean == null)
-		throw new JspException
-		    (messages.getMessage("getter.bean", name));
-	    try {
-		value = BeanUtils.getProperty(bean, property);
-		if (value == null)
-		    value = "";
-	    } catch (IllegalAccessException e) {
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (NoSuchMethodException e) {
-		throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
-	}
-	if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes")
-	    || value.equalsIgnoreCase("on"))
+        results.append(" value=\"");
+        if (value == null)
+            results.append("on");
+        else
+            results.append(value);
+        results.append("\"");
+        Object result = RequestUtils.lookup(pageContext, name,
+                                            property, null);
+        if (result == null)
+            result = "";
+        if (!(result instanceof String))
+            result = result.toString();
+        String checked = (String) result;
+	if (checked.equalsIgnoreCase("true")
+            || checked.equalsIgnoreCase("yes")
+	    || checked.equalsIgnoreCase("on"))
 	    results.append(" checked");
 	results.append(prepareEventHandlers());
 	results.append(prepareStyles());
 	results.append(">");
 
 	// Print this field to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue processing this page
 	return (EVAL_BODY_TAG);
@@ -241,21 +226,26 @@ public class CheckboxTag extends BaseHandlerTag {
      *
      * @exception JspException if a JSP exception has occurred
      */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            String value = bodyContent.getString().trim();
+            if (value.length() > 0)
+                ResponseUtils.write(pageContext, value);
+        }
+        return (SKIP_BODY);
+
+    }
+
+
+    /**
+     * Process the remainder of this page normally.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doEndTag() throws JspException {
 
-	if (bodyContent == null)
-	    return (EVAL_PAGE);
-
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(bodyContent.getString().trim());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
-
-	// Continue evaluating this page
-	return (EVAL_PAGE);
+        return (EVAL_PAGE);
 
     }
 
