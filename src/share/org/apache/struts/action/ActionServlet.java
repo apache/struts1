@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.123 2002/10/27 06:01:48 rleland Exp $
- * $Revision: 1.123 $
- * $Date: 2002/10/27 06:01:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.124 2002/10/28 01:29:39 dgraham Exp $
+ * $Revision: 1.124 $
+ * $Date: 2002/10/28 01:29:39 $
  *
  * ====================================================================
  *
@@ -194,7 +194,7 @@ import org.xml.sax.InputSource;
  *     instances that should be added to the <code>Digester</code> that will
  *     be processing <code>struts-config.xml</code> files.  By default, only
  *     the <code>RuleSet</code> for the standard configuration elements is
- *     loaded.  (Since Struts 1.1)<li>
+ *     loaded.  (Since Struts 1.1)</li>
  * <li><strong>validating</strong> - Should we use a validating XML parser to
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
@@ -294,7 +294,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.123 $ $Date: 2002/10/27 06:01:48 $
+ * @version $Revision: 1.124 $ $Date: 2002/10/28 01:29:39 $
  */
 
 public class ActionServlet
