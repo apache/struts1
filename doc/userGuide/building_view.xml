@@ -7,6 +7,7 @@
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <author>Ed Burns</author>
+    <author>James DeVries</author> 
     <title>The Struts User's Guide - Building View Components</title>
   </properties>
   
@@ -53,7 +54,7 @@
             language (plus an optional language variant), and also a set of
             formatting assumptions for things like numbers and dates.</li>
         <li><b>ResourceBundle</b> - The <code>java.util.ResourceBundle</code> class
-            provides the fundmental tools for supporting messages in multiple
+            provides the fundamental tools for supporting messages in multiple
             languages.  See the Javadocs for the <code>ResourceBundle</code> class,
             and the information on Internationalization in the documentation bundle
             for your JDK release, for more information.</li>
@@ -396,7 +397,7 @@ public class UploadForm extends ActionForm {
           methods it exposes to manipulate files in file uploading.  Also look at the
           Javadocs for ActionServlet and ActionMapping for the various parameters
           you can specify to change how files are uploaded.  Basically in your
-          peform() method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
+          perform() method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
           to retrieve the FormFile and do what you want with it.
         </p>        
               
@@ -601,7 +602,7 @@ public class UploadForm extends ActionForm {
           <li>An <code>&lt;%@ include file="xxxxx" %&gt;</code> directive can include a file that contains
           Java code or JSP tags. The code in the included file can even reference
           variables declared earlier in the outer jsp page. The code is inlined into
-          the other JavaServer Page before it is compiled so it can definately contain more than
+          the other JavaServer Page before it is compiled so it can definitely contain more than
           just HTML.</li>
           <li>The include <i>action</i> (<code>&lt;jsp:include page="xxxxx"
               flush="true" /&gt;</code>) is processed at request time, and is handled

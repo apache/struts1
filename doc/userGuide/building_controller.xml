@@ -114,8 +114,8 @@ public ActionForward perform(ActionMapping mapping,
         <li>The beans that represent the Model of your system may throw exceptions
             due to problems accessing databases or other resources.
             You should trap all such exceptions
-            in the logic of your <code>perform()</code> method, and log them to the
-            application logfile (along with the corresponding stack trace) by
+            in the logic of your <code>perform()</code> method, and record them in the
+            application's log (along with the corresponding stack trace) by
             calling:<br />
             <code>servlet.log("Error message text", exception);</code></li>
         <li>As a general rule, allocating scarce resources and keeping them across

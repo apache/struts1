@@ -8,6 +8,7 @@
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
     <author>Ed Burns</author>
+    <author>Dominique Plante</author>
     <title>The Struts User's Guide - Introduction</title>
   </properties>
 
@@ -113,9 +114,17 @@
       
         <p>
           True to the Model-View-Controller design pattern, Struts applications have three 
-          major components: a servlet controller, which is provided by Struts itself,
-          JSP pages (the "view"), and the application's business logic (or the
-          "model"). Let's step through how this all fits together.
+          major components:
+        </p>
+
+        <ul>
+        <li>a servlet controller, which is provided by Struts itself,</li>
+        <li>JSP pages (the "view"), and</li>
+        <li>the application's business logic (or the "model").</li>
+        </ul>
+
+        <p>
+         Let's step through how this all fits together.
         </p>
 
         <p>
@@ -129,16 +138,17 @@
         </p>
         
         <p>
-          An ActionMapping will usually specify:</p>
+        An ActionMapping will usually contain a number of properties including:</p>
         <ul>
-          <li><b>a request path</b> (or "URI"),</li>
-          <li>the <b>object type</b> (Action subclass) to act upon the request, </li>
-          <li>and other properties as needed. </li>
+          <li>a <b>request path</b> (or "URI"),</li>
+          <li>the <b>object type</b> (Action subclass) to act upon the request, and</li>
+          <li>other properties as needed. </li>
         </ul>
-        <p>The Action object can handle the request and respond 
-          to the client (usually a Web browser), or indicate that control should be forwarded 
-          elsewhere. For example, if a login succeeds, a login action may wish 
-          to forward the request onto the mainMenu.
+        <p>
+          The Action object can handle the request and respond to the client (usually a Web 
+          browser) or indicate that control should be forwarded elsewhere. For example, if 
+          a login succeeds, a login action may wish to forward the request onto the 
+          mainMenu page.
         </p>
       
         <p>
@@ -149,14 +159,15 @@
         </p>
         
         <p>
-          An Action object can create a shopping cart bean, add an item to the
+          For example, an Action object can create a shopping cart bean, add an item to the
           cart, place the bean in the session collection, and then forward control to
           another mapping. That mapping may use a JavaServer Page to display the contents of the user's cart.
           Since each client has their own session, they will each also have their own
           shopping cart. In a Struts application, most of the business logic can be
           represented using JavaBeans. An Action can call the properties of a JavaBean 
           without knowing how it actually works. This encapsulates the business logic, 
-          so that the Action can focus on error handling and where to forward control.</p>
+          so that the Action can focus on error handling and where to forward control.
+        </p>
         
         <p>
           JavaBeans can also be used to manage input forms. A key problem in designing
@@ -177,15 +188,21 @@
         
         <p>
           A Struts form bean is declared in the configuration resource, defined in a Java
-          source file, and linked to an ActionMapping using a common property name. When
-          a request calls for an Action that uses a form bean, the controller servlet
-          either retrieves or creates the form bean, and passes it to the Action object.
-          The Action object can then check the contents of the form bean before its input
-          form is displayed, and also queue messages to be handled by the form. When
-          ready, the Action object can return control with a forwarding to its input
-          form, usually a JSP. The controller can then respond to the HTTP request and
-          direct the client to the JavaServer Page.
+          source file, and linked to an ActionMapping using a common property name. Here is 
+          the sequence of events that occur when a request calls for an action that uses a 
+          form bean:
         </p>
+         
+        <ul>
+        <li>The controller servlet either retrieves or creates the form bean.</li>
+        <li>The controller servlet passes the form bean to the Action object.</li>
+        <li>If the request is being used to to submit an input page, the Action object 
+        can examine the data. If necessary, the data can be sent back to the input 
+        form along with a list of messages to display on the page. Otherwise the data can 
+        be passed along to the business tier.</li>
+        <li>If the request is being used to create an input page, the Action object can 
+        populate the form bean with any data that the input page might need. </li>
+        </ul>
         
         <p>
           The Struts framework includes custom tags that can automatically populate

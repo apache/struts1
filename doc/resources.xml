@@ -27,14 +27,15 @@
     <li><a href="#articles">Articles and Presentations</a></li>
     <li><a href="#books">Books</a></li>
     <li><a href="#seminars">Seminars</a></li>
-    <li><a href="#sigs">Struts Special Interest Groups</a></li>
+    <li><a href="#guides">User Guide Translations</a></li>
     <li><a href="#archives">Mailing List Archives</a></li>
  </ul>
 
  <ul>
-    <li><a href="#hosts">Java / Struts ISPs</a></li>        
+    <li><a href="#sigs">Struts Special Interest Groups</a></li>
+    <li><a href="#consultants">Struts Consultants</a></li>
     <li><a href="#powered">Powered by Struts</a></li>
-    <li><a href="#consultants">Struts Consultants</a>  </li>
+    <li><a href="#hosts">Java / Struts ISPs</a></li>
  </ul>
 
  <ul>
@@ -117,6 +118,9 @@
 
 
 <section href="projects" name="Projects and Examples">
+
+<p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip">
+<b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
 <p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
 <p><a href="http://husted.com/struts/resources/artimus.zip"><b>Artimus</b></a> by Ted  Husted - Simple news poster application. Demonstrates using helper beans and a JDBC database with Struts. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
 <p><a href="http://husted.com/struts/resources/scaffold.zip"><b>Scaffold</b></a> by Ted Husted - Utility package of classes that can be used with various Web applications.</p>
@@ -280,16 +284,6 @@
 </section>
 
 
-<section href="sigs" name="Special Interest Groups">
-<p><a href="http://www.open-tools.org/index.jsp"><b>Atlanta Struts Users Group</b></a> - The Atlanta Struts Users 
-Group (ASUG) is a free, informal, all-volunteer, technically-savvy group of Atlanta Struts enthusiasts, 
-professionals and zealots who keep each other informed about issues and innovations in the Struts Framework. 
-We meet in real space the first Tuesday of the month from 7:00 to 9:00pm to see presentations from members 
-and vendors. The rest of the time, members communicate virtually via the ASUG mailing list. Come to the 
-meetings and contribute! </p>
-</section>
-
-
 <section href="archives" name="Mailing List Archives">
 <p><a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html"><b>How To Ask Questions The Smart Way</b></a>
 <ul><li><a href="http://expita.com/nomime.html">Turn off HTML</a></li>
@@ -302,124 +296,22 @@ meetings and contribute! </p>
 </section>
 
 
-<section name="Enabling Technologies" href="enabling"> 
-
-<p><b>Sun technologies</b></p>
-<p><a href="http://java.sun.com/products/servlet/download.html">Java Servlet API</a></p>
-<p><a href="http://java.sun.com/products/jsp/technical.html">JavaServer Pages</a></p>
-<p><a href="http://java.sun.com/products/javabeans/docs/">JavaBeans</a></p>
-<p><a href="http://java.sun.com/products/jsp/technical.html">JSP Tag Libraries</a>
-<ul><li><a href="http://jakarta.apache.org/taglibs/doc/jsptl-doc/intro.html">JavaServer Pages Standard Tag Library (JSTL) Early Release</a></li></ul>
-</p>
-<p><a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces JSR</a>
-<ul><li><a href="http://servlet.java.sun.com/javaone/sf2002/conf/sessions/display-1697.en.jsp">JavaServer Faces JavaOne Presentation</a></li></ul>
-</p>
-<p><a href="http://java.sun.com/j2ee/blueprints/">Java2 Enterprise Edition (J2EE) Blueprints</a></p>
-<p><a href="http://java.sun.com/j2se/1.3/docs/guide/jdbc/index.html">JDBC API Documentation</a></p>
-<p><a href="http://java.sun.com/products/jaas/index-10.html">Java Authentication and Authorization Service</a> (JAAS)</p>
-
-<p><b>Internet technologies</b></p>
-<p><a href="http://www.w3.org/MarkUp/">HyperText Markup Language (HTML)</a> (w3c)
-<ul><li><a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a></li></ul>
-<ul><li><a href="http://www.w3.org/TR/xhtml1/">Extensible HyperText Markup Language (XHMTL)</a></li></ul>
-</p>
-
-<p><a href="http://www.ietf.org/rfc/rfc2396.txt">Uniform Resource Identifiers (URI): Generic Syntax</a>
-<ul><li><a href="http://www.w3.org/Addressing/#9808uri">Naming and Addressing: URIs, URLs, ...</a></li></ul>
-</p>
-<p><a href="ftp://ftp.isi.edu/in-notes/rfc2616.txt">Hypertext Transfer Protocol -- HTTP/1.1</a>
-<ul>
-<li><a href="ftp://ftp.isi.edu/in-notes/rfc2617.txt">HTTP Authentication: Basic and Digest Access Authentication</a></li>
-<li><a href="ftp://ftp.isi.edu/in-notes/rfc2660.txt">The Secure HyperText Transfer Protocol</a></li>
-<li><a href="ftp://ftp.isi.edu/in-notes/rfc2936.txt">HTTP MIME Type Handler Detection</a></li>
-<li><a href="ftp://ftp.isi.edu/in-notes/rfc2854.txt">The 'text/html' Media Type</a></li>
-</ul>
-</p>
-<p><a href="ftp://ftp.isi.edu/in-notes/rfc2518.txt">WebDAV: HTTP Extensions for Distributed Authoring RFC</a>
-<ul>
-<li><a href="http://www.ics.uci.edu/pub/ietf/webdav/intro/webdav_intro.pdf">WebDAV: IETF Standard for Collaborative Authoring on the Web (pdf)</a></li>
-<li><a href="http://jakarta.apache.org/slide/index.html">Jakarta Slide</a></li>
-</ul>
-</p>
-
-<p><b>Other standard technologies</b></p>
-<p><a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">Regular Expressions</a> (Struts Validator)
-<ul>
-<li><a href="http://developer.java.sun.com/developer/JDCTechTips/2002/tt0423.html">JDC Tech Tip - Pattern Matching</a></li>
-<li><a href="http://etext.lib.virginia.edu/helpsheets/regex.html">Using Regular Expressions by Stephen Ramsey</a></li>
-</ul>
-</p>
-
-<p><b>Other indices</b></p>
-<p><a href="http://www.rfc-editor.org/"><b>RFC Editor (index)</b></a></p>
-<p><a href="http://jcp.org/jsr/overview/index.jsp"><b>JSR Index</b></a></p>
-</section>
-
-
-<section name="Java / Struts ISPs" href="hosts">
-<p><b>Provided as a reference only. No endorsements given or implied. To be listed, post a documentation enhancement request in Bugzilla.</b></p>
-<p><a href="http://www.aoindustries.com/servlet/com.aoindustries.website.HomePage"><b>AO Industries</b></a></p>
-<p><a href="http://www.cqhost.com/"><b>CQhost</b></a></p>
-<p><a href="http://www.digitalspace.net/">DigitalSpace</a></p>
-<p><a href="http://www.eryxma.com/"><b>Eryxma</b></a></p>
-<p><a href="http://www.hostjsp.com"><b>host<font size="-1">JSP</font>.com</b></a></p>
-<p><a href="http://www.imagineis.com"><b>Imagine Internet Services</b></a></p>
-<p><a href="http://www.indaco.net"><b>Indaco Informatica</b></a></p>
-<p><a href="http://www.infinitehost.com/"><b>Infinite Host</b></a></p>
-<p><a href="http://www.irdesign.com/services/hosting/website_hosting.html"><b>irdesign.com</b></a></p>
-<p><a href="http://www.kattare.com/">Kattare Internet</a></p>
-<p><a href="http://www.kgbinternet.com/"><b>KGB Internet Solutions</b></a></p>    <p><a href="http://www.mmaweb.net/"><b>mma</b></a></p>
-<p><a href="http://www.rackspace.com/"><b>Rackspace</b></a> (hosts JGuru)</p>
-<p><a href="http://www.webappcabaret.com"><b>Web App Cabaret</b></a></p>
-<p><b>For more,</b> see also <a href="http://www.webhostingratings.com/">Web Hosting Ratings</a> and <a href="http://www.servlets.com/isps/servlet/ISPViewAll">Servlet.com's ISP list</a></p>
-</section>
-
-
-<section name="Powered by Struts" href="powered">
-<p><b><font color="red">As of 2002-Jul-31, pages linked here must indicate that they are "powered by Struts" 
-or otherwise credit the Apache Software Foundation pursuant to item 3 of the <a href="http://apache.org/LICENSE">
-Apache Software License</a> ("This product includes software developed by the Apache Software Foundation 
-(http://www.apache.org/)."</font></b></p>
-<p><a href="http://www.application-servers.com/"><b>Application-Servers.com</b></a> - French site.</p>
-<p><a href="http://amalregistry.webhop.org/"><b>Alaskan Malamute Registry</b></a></p>
-<p><a href="http://www.clickstarttutoring.com/index.jsp"><b>Clickstart Tutoring</b></a> - One on one in home tutoring.</p>
-<p><a href="http://dbforms.org/"><b>dbForms</b></a> - RAD framework for database applications.</p>
-<p><a href="http://www.e-involve.com"><b>E-Involve</b></a></p>
-<p><a href="http://adminweb.enitel.no/login.jsp"><b>Enitel</b></a> - French site.</p>
-<p><a href="http://www.hallmarkstories.com"><b>Hallmark Stories</b></a> - "Tell the story behind your photos".</p>
-<p><a href="http://www.iknowbase.com/"><b>iKnowBase</b></a> - The Knowledge Engine.</p>
-<p><a href="http://ironmax.com/"><b>IronMax</b></a> - B2B site; see Equipment Information Products.</p>
-<p><a href="http://www.ipipi.com/index.jsp"><b>IPIPI</b></a> - e-Mail to SMS delivery service.</p>
-<p><a href="http://www.jcorporate.com"><b>Jcorporate.com</b></a> - open source and shared source commercial applications.</p>
-<p><a href="http://get2hawaii.com/"><b>Get To Hawaii</b></a> - B2B Travel Service Provider</p>
-<p><a href="http://www.militaryhire.com"><b>MilitaryHire</b></a> - Job and resume site for veterans</p>
-<p><a href="http://www.newdawnart.com/"><b>New Dawn Art</b></a> - Social and spiritual art on the Internet.</p>
-<p><a href="http://www.webappcabaret.com/normad"><b>Normad</b></a> - Web Timesheet Management System.</p>
-<p><a href="https://www.organox.com.br/"><b>Organonx</b></a></p>
-<p><a href="http://www.pizzahut.com.au/"><b>Pizza Hut Online / Sydney Metro</b></a> - For pickup or delivery in the Syndey Metro area.</p>
-<p><!-- href="http://www.penza.ru/povolgie"--><b>Povoglie</b> [403] - Goverment regional press services news center in Russia, middle Volga.</p>
-<p><a href="http://www.readymindsjobs.com"><b>ReadyMinds Jobs</b></a> - Online job posting and placement system using Struts and Tiles on JBoss and Tomcat.</p>
-<p><a href="http://www.reviewalert.com"><b>Review Alert</b></a> - Free service that allows you to be notified when new reviews are posted on Amazon.com for dvds, music cds, books on any topic.</p>
-<p><a href="http://www.ipayment.co.za"><b>South African Revenue Services</b></a> - Directive and certificate service.</p>
-<p><a href="http://www.citlocate.com/cit-framework/citExampleWelcome.jsp"><b>SpatialFX</b></a></p>
-<p><a href="http://www.redgalleon.com/"><b>Red Galleon</b></a> - Offer aggregator.</p>
-<p><a href="http://www.reviewalert.com/"><b>Review Alert</b></a> - Review notification service for monitoring reviews on Amazon.com products.</p>
-<p><a href="http://www.webappcabaret.com/teatimej/"><b>TeaTimeJ</b></a> - Website and Java hosting.</p>
-<p><a href="http://www.webappwriter.com/"><b>webAppWriter</b></a> - write and deploy a J2EE app in 15 minutes.</p>
-<p><a href="http://www.windsurfpassion.com/"><b>WindSurfPassion</b></a> - Dedicated to windsurfing.</p>
-<p><a href="http://wxxi.org/"><b>WXXI Spring MarketPlace 2001</b></a> - Online auction for Public Television station.</p>
+<section href="sigs" name="Special Interest Groups">
+<p><a href="http://www.open-tools.org/index.jsp"><b>Atlanta Struts Users Group</b></a> - The Atlanta Struts Users 
+Group (ASUG) is a free, informal, all-volunteer, technically-savvy group of Atlanta Struts enthusiasts, 
+professionals and zealots who keep each other informed about issues and innovations in the Struts Framework. 
+We meet in real space the first Tuesday of the month from 7:00 to 9:00pm to see presentations from members 
+and vendors. The rest of the time, members communicate virtually via the ASUG mailing list. Come to the 
+meetings and contribute! </p>
 </section>
 
 
 <section name="Consultants" href="consultants">
-
 <p><b>Provided as a reference only. No endorsements given or implied.
 To be listed, post a documentation enhancement request in Bugzilla.</b></p>
-
 <p><b><font color="red">As of 2002-Jul-15, pages linked here must specifically
 mention Struts consulting. Listings that do not reference Struts will be
 removed.</font></b></p>
-
 <p><a href="http://www.accessdc.com/">AccessData</a> - <a href="mailto:cassenza@Accessdc.com">Chris Assenza</a>.</p>
 <p><a href="http://www.aragost.com">aragost (Switzerland)</a> - <a href="mailto:klaus@aragost.com">Klaus Bucka-Lassen</a>.</p>
 <p><a href="http://www.athensgroup.com/">Athens Group</a> - <a href="mailto:flawlor@athensgroup.com">Frank Lawlor</a>.</p>
@@ -462,6 +354,116 @@ removed.</font></b></p>
 <p><a href="http://www.tngtech.de/">TNGtech</a> - <a href="mailto:henrik.klagges@tngtech.com">Henrik Klagges</a>.</p>
 <p><a href="http://www.upco.co.uk">Upco [UK]</a> - <a href="mailto:Jon.Ridgway@upco.co.uk">Jon Ridgeway</a>.</p>
 <p><a href="http://www.viadee.de/">viadee <font size="1">UNTERNEHMENSBERATUNG GmbH</font> [DE]</a> - <a href="mailto:friedrich.budde@viadee.de">Frido Budde</a>.</p>
+</section>
+
+
+<section name="Powered by Struts" href="powered">
+<p><b><font color="red">As of 2002-Jul-31, pages linked here must indicate that they are "powered by Struts" 
+or otherwise credit the Apache Software Foundation pursuant to item 3 of the <a href="http://apache.org/LICENSE">
+Apache Software License</a> ("This product includes software developed by the Apache Software Foundation 
+(http://www.apache.org/)."</font></b></p>
+<p><a href="http://www.application-servers.com/"><b>Application-Servers.com</b></a> - French site.</p>
+<p><a href="http://amalregistry.webhop.org/"><b>Alaskan Malamute Registry</b></a></p>
+<p><a href="http://www.clickstarttutoring.com/index.jsp"><b>Clickstart Tutoring</b></a> - One on one in home tutoring.</p>
+<p><a href="http://dbforms.org/"><b>dbForms</b></a> - RAD framework for database applications.</p>
+<p><a href="http://www.e-involve.com"><b>E-Involve</b></a></p>
+<p><a href="http://adminweb.enitel.no/login.jsp"><b>Enitel</b></a> - French site.</p>
+<p><a href="http://www.hallmarkstories.com"><b>Hallmark Stories</b></a> - "Tell the story behind your photos".</p>
+<p><a href="http://www.iknowbase.com/"><b>iKnowBase</b></a> - The Knowledge Engine.</p>
+<p><a href="http://ironmax.com/"><b>IronMax</b></a> - B2B site; see Equipment Information Products.</p>
+<p><a href="http://www.ipipi.com/index.jsp"><b>IPIPI</b></a> - e-Mail to SMS delivery service.</p>
+<p><a href="http://www.jcorporate.com"><b>Jcorporate.com</b></a> - open source and shared source commercial applications.</p>
+<p><a href="http://get2hawaii.com/"><b>Get To Hawaii</b></a> - B2B Travel Service Provider</p>
+<p><a href="http://www.militaryhire.com"><b>MilitaryHire</b></a> - Job and resume site for veterans</p>
+<p><a href="http://www.newdawnart.com/"><b>New Dawn Art</b></a> - Social and spiritual art on the Internet.</p>
+<p><a href="http://www.webappcabaret.com/normad"><b>Normad</b></a> - Web Timesheet Management System.</p>
+<p><a href="https://www.organox.com.br/"><b>Organonx</b></a></p>
+<p><a href="http://www.pizzahut.com.au/"><b>Pizza Hut Online / Sydney Metro</b></a> - For pickup or delivery in the Syndey Metro area.</p>
+<p><!-- href="http://www.penza.ru/povolgie"--><b>Povoglie</b> [403] - Goverment regional press services news center in Russia, middle Volga.</p>
+<p><a href="http://www.readymindsjobs.com"><b>ReadyMinds Jobs</b></a> - Online job posting and placement system using Struts and Tiles on JBoss and Tomcat.</p>
+<p><a href="http://www.reviewalert.com"><b>Review Alert</b></a> - Free service that allows you to be notified when new reviews are posted on Amazon.com for dvds, music cds, books on any topic.</p>
+<p><a href="http://www.ipayment.co.za"><b>South African Revenue Services</b></a> - Directive and certificate service.</p>
+<p><a href="http://www.citlocate.com/cit-framework/citExampleWelcome.jsp"><b>SpatialFX</b></a></p>
+<p><a href="http://www.redgalleon.com/"><b>Red Galleon</b></a> - Offer aggregator.</p>
+<p><a href="http://www.reviewalert.com/"><b>Review Alert</b></a> - Review notification service for monitoring reviews on Amazon.com products.</p>
+<p><a href="http://www.webappcabaret.com/teatimej/"><b>TeaTimeJ</b></a> - Website and Java hosting.</p>
+<p><a href="http://www.webappwriter.com/"><b>webAppWriter</b></a> - write and deploy a J2EE app in 15 minutes.</p>
+<p><a href="http://www.windsurfpassion.com/"><b>WindSurfPassion</b></a> - Dedicated to windsurfing.</p>
+<p><a href="http://wxxi.org/"><b>WXXI Spring MarketPlace 2001</b></a> - Online auction for Public Television station.</p>
+</section>
+
+
+<section name="Java / Struts ISPs" href="hosts">
+<p><b>Provided as a reference only. No endorsements given or implied. To be listed, post a documentation enhancement request in Bugzilla.</b></p>
+<p><a href="http://www.aoindustries.com/servlet/com.aoindustries.website.HomePage"><b>AO Industries</b></a></p>
+<p><a href="http://www.cqhost.com/"><b>CQhost</b></a></p>
+<p><a href="http://www.digitalspace.net/">DigitalSpace</a></p>
+<p><a href="http://www.eryxma.com/"><b>Eryxma</b></a></p>
+<p><a href="http://www.hostjsp.com"><b>host<font size="-1">JSP</font>.com</b></a></p>
+<p><a href="http://www.imagineis.com"><b>Imagine Internet Services</b></a></p>
+<p><a href="http://www.indaco.net"><b>Indaco Informatica</b></a></p>
+<p><a href="http://www.infinitehost.com/"><b>Infinite Host</b></a></p>
+<p><a href="http://www.irdesign.com/services/hosting/website_hosting.html"><b>irdesign.com</b></a></p>
+<p><a href="http://www.kattare.com/">Kattare Internet</a></p>
+<p><a href="http://www.kgbinternet.com/"><b>KGB Internet Solutions</b></a></p>    <p><a href="http://www.mmaweb.net/"><b>mma</b></a></p>
+<p><a href="http://www.rackspace.com/"><b>Rackspace</b></a> (hosts JGuru)</p>
+<p><a href="http://www.webappcabaret.com"><b>Web App Cabaret</b></a></p>
+<p><b>For more,</b> see also <a href="http://www.webhostingratings.com/">Web Hosting Ratings</a> and <a href="http://www.servlets.com/isps/servlet/ISPViewAll">Servlet.com's ISP list</a></p>
+</section>
+
+<section name="Enabling Technologies" href="enabling"> 
+
+<p><b>Sun technologies</b></p>
+<p><a href="http://java.sun.com/products/servlet/download.html">Java Servlet API</a></p>
+<p><a href="http://java.sun.com/products/jsp/technical.html">JavaServer Pages</a></p>
+<p><a href="http://java.sun.com/products/javabeans/docs/">JavaBeans</a></p>
+<p><a href="http://java.sun.com/products/jsp/technical.html">JSP Tag Libraries</a>
+<ul><li><a href="http://jakarta.apache.org/taglibs/doc/jsptl-doc/intro.html">JavaServer Pages Standard Tag Library (JSTL) Early Release</a></li></ul>
+</p>
+<p><a href="http://jcp.org/jsr/detail/127.jsp">JavaServer Faces JSR</a>
+<ul><li><a href="http://servlet.java.sun.com/javaone/sf2002/conf/sessions/display-1697.en.jsp">JavaServer Faces JavaOne Presentation</a></li></ul>
+</p>
+<p><a href="http://java.sun.com/j2ee/blueprints/">Java2 Enterprise Edition (J2EE) Blueprints</a></p>
+<p><a href="http://java.sun.com/j2se/1.3/docs/guide/jdbc/index.html">JDBC API Documentation</a></p>
+<p><a href="http://java.sun.com/products/jaas/index-10.html">Java Authentication and Authorization Service</a> (JAAS)</p>
+
+<p><b>Internet technologies</b></p>
+<p><a href="http://www.w3.org/MarkUp/">HyperText Markup Language (HTML)</a> (w3c)
+<ul><li><a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a></li></ul>
+<ul><li><a href="http://www.w3.org/TR/xhtml1/">Extensible HyperText Markup Language (XHMTL)</a></li></ul>
+</p>
+
+<p><a href="http://www.ietf.org/rfc/rfc2396.txt">Uniform Resource Identifiers (URI): Generic Syntax</a>
+<ul><li><a href="http://www.w3.org/Addressing/#9808uri">Naming and Addressing: URIs, URLs, ...</a></li></ul>
+</p>
+<p><a href="ftp://ftp.isi.edu/in-notes/rfc2616.txt">Hypertext Transfer Protocol -- HTTP/1.1</a>
+<ul>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2617.txt">HTTP Authentication: Basic and Digest Access Authentication</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2660.txt">The Secure HyperText Transfer Protocol</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2936.txt">HTTP MIME Type Handler Detection</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2854.txt">The 'text/html' Media Type</a></li>
+</ul>
+</p>
+<p><a href="ftp://ftp.isi.edu/in-notes/rfc2518.txt">WebDAV: HTTP Extensions for Distributed Authoring RFC</a>
+<ul>
+<li><a href="http://www.ics.uci.edu/pub/ietf/webdav/intro/webdav_intro.pdf">WebDAV: IETF Standard for Collaborative Authoring on the Web (pdf)</a></li>
+<li><a href="http://jakarta.apache.org/slide/index.html">Jakarta Slide</a></li>
+</ul>
+</p>
+
+
+<p><b>Other standard technologies</b></p>
+<p><a href="http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html">Regular Expressions</a> (Struts Validator)
+<ul>
+<li><a href="http://developer.java.sun.com/developer/JDCTechTips/2002/tt0423.html">JDC Tech Tip - Pattern Matching</a></li>
+<li><a href="http://etext.lib.virginia.edu/helpsheets/regex.html">Using Regular Expressions by Stephen Ramsey</a></li>
+</ul>
+</p>
+
+
+<p><b>Other indices</b></p>
+<p><a href="http://www.rfc-editor.org/"><b>RFC Editor (index)</b></a></p>
+<p><a href="http://jcp.org/jsr/overview/index.jsp"><b>JSR Index</b></a></p>
 </section>
 
 
@@ -522,7 +524,10 @@ look desired.</p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/">Core J2EE Patterns</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=0130882488/hitchhikeguidetoA/">Core JSP</a></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=193011009X/hitchhikeguidetoA/">JSP Tag Libraries</a></p>
-<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777996/hitchhikeguidetoA/"><b>Web Development with JavaServer Pages 2nd Edition</b></a></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=1884777996/hitchhikeguidetoA/">Web Development with JavaServer Pages 2nd Edition</a></p>
+
+<p><b>Software Development</b></p>
+<p><a href="http://www.amazon.com/exec/obidos/ISBN=158880173X/hitchhikeguidetoA/">Open Source Development with CVS</a></p>
 
 <p><b>Software Engineering</b></p>
 <p><a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">Cathedral and the Bazaar</a></p>
@@ -540,7 +545,6 @@ look desired.</p>
 <p><b>Struts and Jakarta mailing lists in Japanese</b> - <a href="mailto:struts-user@freeml.com">struts-user@freeml.com</a> and <a href="mailto:jajakarta-general@jajakarta.good-day.net">jajakarta-general@jajakarta.good-day.net</a></p>
 <p><a href="http://www.jguru.com/faq/home.jsp?topic=Struts"><b>JGuru FAQ</b></a></p>
 <p><a href="http://husted.com/struts/"><b>More About Struts</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
-<p><a href="http://habweb.de/struts/"><b>German Translation of Users Guide</b></a> by Hartmut Bernecker.</p>
 <p><a href="http://java.sun.com/docs/books/tutorial/"><b>Javasoft Tutorials</b></a></p>
 <p><a href="http://archives.java.sun.com"><b>Javasoft Mailing Lists</b></a></p>
 </section>
