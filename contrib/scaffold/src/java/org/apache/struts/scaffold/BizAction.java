@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BizAction.java,v 1.4 2004/03/14 07:15:03 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 07:15:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BizAction.java,v 1.5 2004/03/14 14:32:19 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/03/14 14:32:19 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -17,31 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/*
- *
- *    Copyright (c) 2002 Synthis Corporation.
- *    430 10th Street NW, Suite S-108, Atlanta GA 30318, U.S.A.
- *    All rights reserved.
- *
- *    This software is licensed to you free of charge under
- *    the Apache Software License, so long as this copyright
- *    statement, list of conditions, and comments,  remains
- *    in the source code.  See bottom of file for more
- *    license information.
- *
- *    This software was written to support code generation
- *    for the Apache Struts J2EE architecture by Synthis'
- *    visual application modeling tool Adalon.
- *
- *    For more information on Adalon and Struts code
- *    generation please visit http://www.synthis.com
- *
- */ 
- 
 package org.apache.struts.scaffold;
-
-
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -70,12 +46,11 @@ import org.apache.commons.scaffold.util.Message;
 import org.apache.commons.scaffold.util.ResultList;
 import org.apache.commons.scaffold.util.ResultListBase;
 
-
 /**
  * Advanced framework class to invoke a business service
  * and process the response.
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/14 07:15:03 $
+ * @version $Revision: 1.5 $ $Date: 2004/03/14 14:32:19 $
  */
 public class BizAction extends BaseHelperAction {
 

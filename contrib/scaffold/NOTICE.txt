@@ -3,6 +3,9 @@ The Apache Software Foundation (http://www.apache.org/).
 
 --------------------------------------------------------------------------------
 
+Regarding: BaseAction, BaseForm, BaseHelperAction, BaseMapForm, BizAction,
+ProcessAction, ProdcessDispatchAction and ProcessFormAction
+
 Copyright (c) 2002 Synthis Corporation.
 430 10th Street NW, Suite S-108, Atlanta GA 30318, U.S.A.
 All rights reserved.
@@ -10,8 +13,7 @@ All rights reserved.
 This software is licensed to you free of charge under
 the Apache Software License, so long as this copyright
 statement, list of conditions, and comments,  remains
-in the source code.  See bottom of file for more
-license information.
+in the source code.
 
 This software was written to support code generation
 for the Apache Struts J2EE architecture by Synthis'
@@ -22,7 +24,7 @@ generation please visit http://www.synthis.com
 
 --------------------------------------------------------------------------------
 
-Contains code derived from the Jetty SnoopServlet
+"SnoopAction.java" contains code derived from the Jetty SnoopServlet
 http://www.thecortex.net/clover/eg/jetty/report/default-pkg/SnoopServlet.html>
 and distributed under its open source license
 http://jetty.mortbay.org/jetty/LICENSE.html>.
