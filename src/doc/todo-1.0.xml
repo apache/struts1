@@ -62,7 +62,10 @@
         <p>Create developer guide documentation for this package, in
         file "package.html".</p>
       </info>
-    </task>
+      <assigned>
+	    Ted Husted
+	  </assigned>
+   </task>
 
     <task name="Deprecation Warnings">
       <info>
