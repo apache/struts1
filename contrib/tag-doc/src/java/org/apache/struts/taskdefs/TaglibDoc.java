@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/TaglibDoc.java,v 1.1 2003/03/29 05:51:41 jmitchell Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/29 05:51:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/TaglibDoc.java,v 1.2 2003/04/02 02:22:16 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/04/02 02:22:16 $
  *
  * ====================================================================
  *
@@ -82,11 +82,11 @@ import org.w3c.dom.Element;
 
 /**
  * Given a list of files compatible with the Tag-Library
- * Descriptor (TLD) format, creates a matrix of Tags Vs
- * Attributes for each Tag-Library.
+ * Descriptor (TLD) format, generates a JavaDoc like
+ * documentation for each Tag-Library.
  *
  * @author <a href="mailto:mohankishore@yahoo.com">Mohan Kishore</a>
- * @version $Revision: 1.1 $ $Date: 2003/03/29 05:51:41 $
+ * @version $Revision: 1.2 $ $Date: 2003/04/02 02:22:16 $
  */
 public class TaglibDoc extends EnhMatchingTask {
 	private File destdir;

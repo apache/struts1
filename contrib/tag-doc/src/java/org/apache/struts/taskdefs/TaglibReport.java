@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/TaglibReport.java,v 1.1 2003/03/29 05:51:41 jmitchell Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/29 05:51:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tag-doc/src/java/org/apache/struts/taskdefs/TaglibReport.java,v 1.2 2003/04/02 02:22:16 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/04/02 02:22:16 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.w3c.dom.Element;
  * Attributes for each Tag-Library.
  *
  * @author <a href="mailto:mohankishore@yahoo.com">Mohan Kishore</a>
- * @version $Revision: 1.1 $ $Date: 2003/03/29 05:51:41 $
+ * @version $Revision: 1.2 $ $Date: 2003/04/02 02:22:16 $
  */
 public class TaglibReport extends EnhMatchingTask {
 	private File destdir;
@@ -186,6 +186,9 @@ public class TaglibReport extends EnhMatchingTask {
 			Util.copyFile(
 				"/resources/taglibreport/stylesheet.css",
 				new File(destdir, "stylesheet.css"));
+			Util.copyFile(
+				"/resources/taglibreport/xbPositionableElement.js",
+				new File(destdir, "xbPositionableElement.js"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
