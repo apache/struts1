@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.6 2001/02/20 01:48:46 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/20 01:48:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.7 2001/02/23 18:42:25 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/02/23 18:42:25 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/20 01:48:46 $
+ * @version $Revision: 1.7 $ $Date: 2001/02/23 18:42:25 $
  */
 
 public class RequestUtils {
@@ -273,7 +273,7 @@ public class RequestUtils {
      *  saved in the request already)
      */
     public static String message(PageContext pageContext, String bundle,
-                                 String locale, String key, Object args)
+                                 String locale, String key, Object args[])
         throws JspException {
 
         // Look up the requested MessageResources
