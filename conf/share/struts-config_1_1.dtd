@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.21 2002/07/05 22:05:58 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.22 2002/07/06 01:09:20 jholmes Exp $
 -->
 
 
@@ -459,7 +459,7 @@
                      "forward" element used to calculate the ultimate URL.
                      Set to false (the default) to treat the "input" parameter
                      of "action" elements as a subapp-relative path to the
-                     resource used for the input form.
+                     resource used for the input form.  [false]
 
      locale          Set to true if you want a Locale object stored in the
                      user's session if not already present.  [true]
