@@ -1,7 +1,7 @@
 /*
  * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.12 2004/03/14 06:23:48 sraeburn Exp $
  * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:48 $
+ * $Date$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -21,15 +21,14 @@ package org.apache.struts.taglib.bean;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-import org.apache.cactus.JspTestCase;
+import org.apache.struts.taglib.TaglibTestBase;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.bean.IncludeTag</code> class.
  *
  */
-public class TestIncludeTag extends JspTestCase {
+public class TestIncludeTag extends TaglibTestBase {
 
     /**
      * Defines the testcase name for JUnit.
