@@ -108,18 +108,18 @@
     same way.  The following Commons packages contain the replacements for the
     corresponding Struts 1.0 classes:</p>
     <ul>
-    <li><strong>BeanUtils Package</strong> (org.apache.commons.beanutils) -
+    <li><strong>BeanUtils Package</strong> [<code>org.apache.commons.beanutils</code>] -
         <code>org.apache.struts.utils.BeanUtils</code>,
         <code>org.apache.struts.utils.ConvertUtils</code>, and
         <code>org.apache.struts.utils.PropertyUtils</code>.</li>
     <li><strong>Collections Package</strong>
-        (org.apache.commons.collections) -
+        [<code>org.apache.commons.collections</code>]  -
         <code>org.apache.struts.util.ArrayStack</code>,
         <code>org.apache.struts.util.FastArrayList</code>,
         <code>org.apache.struts.util.FastHashMap</code>,
         <code>org.apache.struts.util.FastTreeMap</code>.</li>
     <li><strong>Digester Package</strong> -
-        (org.apache.commons.digester) -
+        [<code>org.apache.commons.digester</code>] -
         <code>org.apache.struts.digester.*</code>.</li>
     </ul>
 
@@ -178,53 +178,45 @@
 
     <p><strong>Util Package Additions</strong></p>
     <p>The following new features have been added to the utility classes
-    (package <code>org.apache.struts.util</code>):</p>
+    [<code>org.apache.struts.util</code>]:</p>
     <ul>
-    <li>LocalStrings: Correct message regarding replaceable parameter so that it does not append an extraneous character.</li>
-    <li>Add LabelValueBean class. This defines a collection of name/value pairs that can be used with the &lt;html:options&gt; tag, and elsewhere.</li>
-    <li>MessageResources: Escape any single quote characters that are included in the specified message string.</li>
-    <li>Allow a transaction token to be the only parameter in computeParameters().</li>
-    <li>Change RequestUtils to encode ampersands when building a query string.</li>
+    <li><code>LocalStrings:</code> Correct message regarding replaceable parameter so that it does not append an extraneous character.</li>
+    <li><code>LabelValueBean:</code> New class that defines a collection of name/value pairs that can be used with the &lt;html:options&gt; tag, and elsewhere.</li>
+    <li><code>MessageResources:</code> Escape any single quote characters that are included in the specified message string.</li>
+    <li><code>computeParameters:</code> Allow a transaction token to be the only parameter in .</li>
+    <li><code>RequestUtils:</code> Change to encode ampersands when building a query string.</li>
     </ul>
 
     <p><strong>Bean Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
-    <em>struts-bean</em> custom tag library (package
-    <code>org.apache.struts.taglib.bean</code>):</p>
+    <em>struts-bean</em> custom tag library 
+    [<code>org.apache.struts.taglib.bean</code>]:</p>
     <ul>
-    <li>Add format, locale and bundle attributes to bean:write to support values formatting according to current
-user locale, format string from attribute or format string from string resources.</li>
-    <li>Correct the generated scripting variable type when the &lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter> tag is used with the "multiple" attribute.</li>
-    <li>Added <code>name</code>, <code>property</code>, and
-        <code>scope</code> attributes to the <code>&lt;bean:message&gt;</code>
-        tag, so that the message source key can be obtained dynamically from
-        a bean or bean property.</li>
+    <li><code>&lt;bean:write></code>: Add format, locale and bundle attributes to to support formatting values according to current
+    user locale, format string from attribute or format string from string resources.</li>
+    <li><code>&lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter>:</code> Correct the generated scripting variable type when tag is used with the "multiple" attribute.</li>
+    <li><code>&lt;bean:message&gt;:</code> Added <code>name</code>, <code>property</code>, and  <code>scope</code> attributes to the tag, so that the message source key can be obtained dynamically from a bean or bean property.</li>
     </ul>
 
     <p><strong>HTML Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
-    <em>struts-html</em> custom tag library (package
-    <code>org.apache.struts.taglib.html</code>):</p>
+    <em>struts-html</em> custom tag library [<code>org.apache.struts.taglib.html</code>]:</p>
     <ul>
-    <li>On the Options tag, if the property specified by the "property" attribute returns null, it now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
-    <li>Added 'style' and 'styleClass' attributes for &lt;html:option&gt; and &lt;html:options&gt; tags.</li>
-    <li>Added 'name', 'property' and 'scope' attributes to
-        <code>&lt;bean:message&gt;</code> so that
-        the message resource key can be obtained dynamically from a bean.</li>
-    <li>Added a new <code>&lt;html:messages&gt;</code> tag to iterate through
-        a message collection in the new <code>ActionMessages</code> class.</li>
-    <li><code>ActionForm</code> will now call <code>reset()</code> if it 
-        instantiates the ActionForm bean.</li>
-    <li>Added indexed property to the SubmitTag, SelectTag, LinkTag.java, CheckboxTag, ButtonTag, ImageTag, RadioTag, and TextArea.Tag.</li>
+    <li><code>&lt;options&gt;:</code> If the property specified by the 'property' attribute returns null, tag now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
+    <li><code>&lt;html:option&gt; and &lt;html:options&gt;:</code> Added 'style' and 'styleClass' attributes.</li>
+    <li><code>&lt;bean:message&gt;:</code> Added 'name', 'property' and 'scope' attributes so that the message resource key can be obtained dynamically from a bean.</li>
+    <li><code>&lt;html:messages&gt;:</code> New tag to iterate through a message collection in the new <code>ActionMessages</code> class.</li>
+    <li><code>ActionForm:</code> Tag will now call <code>reset()</code> if it instantiates the ActionForm bean. This also requires that the bean instantiated by the tag to be an <code>ActionForm</code> subclass. </li>
+    <li><code>&lt;html:image>:</code> Added the 'align' attribute.</li>
+    <li><code>SubmitTag, SelectTag, LinkTag.java, CheckboxTag, ButtonTag, ImageTag, RadioTag, and TextArea tags:</code> Added indexed property. </li>
     </ul>
 
     <p><strong>Logic Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
-    <em>struts-logic</em> custom tag library (package
-    <code>org.apache.struts.taglib.logic</code>):</p>
+    <em>struts-logic</em> custom tag library [<code>org.apache.struts.taglib.logic</code>]:</p>
     <ul>
-    <li>Added <code>&lt;logic:empty&gt;</code> and
-        <code>&lt;logic:notEmpty&gt;</code> tags, which are similar to
+    <li><code>&lt;logic:empty&gt;</code> and 
+        <code>&lt;logic:notEmpty&gt;</code>: New tags that are similar to
         <code>&lt;logic:present&gt;</code> and
         <code>&lt;logic:notPresent&gt;</code> except for the treatment of
         empty strings.</li>
@@ -232,8 +224,8 @@ user locale, format string from attribute or format string from string resources
 
     <p><strong>Template Taglib Package Additions</strong></p>
     <p>The following new features have been added to the
-    <em>struts-template</em> custom tag library (package
-    <code>org.apache.struts.taglib.template</code>):</p>
+    <em>struts-template</em> custom tag library 
+    [<code>org.apache.struts.taglib.template</code>]:</p>
     <ul>
     <li>None.</li>
     </ul>
@@ -242,75 +234,80 @@ user locale, format string from attribute or format string from string resources
     <p>The following new features have been added to the Struts Documentation
     application (and corresponding contents on the Struts web site):</p>
     <ul>
-    <li>Added "cover page" to Develper Guides. These then link to the Package Descriptions and the API guides. 
-    Removed separate links to taglib documentation, since these are now in the Developer Guide.</li>
-    <li>Move Tag Library documentation into User's Guide.</li>
-    <li>Added Kickstart FAQ.</li>
-    <li>Added Reference copy of 1.0 JavaDoc.</li>
-    <li>Revised the example page in the User's Guide (Building View Components) to reflect current practice.</li>
-    <li>Revised installation instructions for SilverStream and Resin.</li>
+    <li>Version Differences: New section in Release Notes to link to the JavaDocs for all Struts classes and members added or changed between versions.</li>
+    <li>User Guide Preface: New section to overview the enabling technologies behind Struts.</li>
+    <li>Developer Guides: Added "cover page" to guides. These then link to the Package Descriptions and the API guides.</li>
+    <li>HTML tag documentation: expanded to cover using indexed properties with iterate.</li>
+    <li>Site Menu: Removed separate links to taglib documentation, since these are now in the Developer Guide.</li>
+    <li>Newbie FAQ: The questions most likely to be asked by new developers using Struts. Still under development.</li>
+    <li>Kickstart FAQ: The questions most likely to be asked when selecting Struts.</li>
+    <li>1.0 JavaDoc: Added archival copy to web site for future reference.</li>
+    <li>The UserGuide "Building" pages: General revisions to reflect new features and current practices.</li>
+    <li>Installation: Upated instructions for SilverStream and Resin. Add installation notes for Jetty. Added RexIP to list of nominal containers.</li>
+    <li>JavaDocs: New <code>@since Struts 1.1</code> tag to indicate new packages, classes, and members added after the Struts 1.0.x version</li>
     </ul>
 
   </section>
 
-  <section name="Changes and Bug Fixes" href="Changes">
+  <section name="Operational Changes and Bug Fixes" href="Changes">
 
     <p><strong>Struts Configuration Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the configuration
     files related to Struts:</p>
     <ul>
-    <li>Remove deprecated support for the old (Struts 0.5) configuration file
-  format.</li>
+    <li>Deprecated (Struts 0.5) configuration file format: Remove support.</li>
+    <li>Deprecated (Struts 0.5) methods: Remove from codebase.</li>
     </ul>
     <p><strong>Action Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
-    <li>ActionForms and related classes now use a StringBuffer when responding a toString request in order to conserve resources.</li>
-    <li>Add standard LookupDispatchAction to help select between internationalized buttons.</li>
-    <li>Modify ActionForm class to use ActionServletWrapper rather than expose ActionServlet.</li>
-    <li>Add ActionServletWrapper class. Used by ActionForm to prevent the Public String properties of ActionServlet from being changed via a query string.</li>
-    <li>Unconditionally pass the selected mapping as a request attribute under key Action.MAPPING_KEY, even if no form bean is specified.</li>
-    <li>Avoid a NullPointerException in corner cases caused by failed initialization of ActionServlet.</li>
-    <li>The <code>ActionForm</code> class is now truly serializable, because
+    <li>ActionForms and related classes: now use a StringBuffer when responding a toString request in order to conserve resources.</li>
+    <li>LookupDispatchAction: Added standard Action to help select between internationalized buttons.</li>
+    <li>ActionForm class: Modified to use ActionServletWrapper rather than expose ActionServlet.</li>
+    <li>ActionServletWrapper class: Added for use by ActionForm to prevent the Public String properties of ActionServlet from being changed via a query string.</li>
+    <li>Action.MAPPING_KEY request attribute: Unconditionally pass the selected mapping as a request attribute ("org.apache.struts.action.mapping.instance") even if no form bean is specified.</li>
+    <li>ActionServlet: Avoid a NullPointerException in corner cases caused by failed initialization of servlet.</li>
+    <li>ActionForm class: Now truly serializable, because
         the two non-serializable instance variables (servlet and
         multipartRequestHandler) have been made transient.  However, if you
         actually do serialize and deserialize such instances, it is your
         responsibility to reset these two properties.</li>
-    <li>Removed deprecated Struts 0.5 methods, and support for the Struts 0.5
-        configuration file format.</li>
-    <li>The initial order a property/key is added in is now maintained by ActionMessages class.</li>
+    <li>ActionMessages and ActionErrors: The initial order a property/key is added in is now retained.</li>
     </ul>
 
     <p><strong>Upload Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the file upload
-    package (package <code>org.apache.struts.upload</code>):</p>
+    package [<code>org.apache.struts.upload</code>]:</p>
     <ul>
-    <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
-    <li>Fixed lost byte problem in BufferedMultipartInputStream</li>
-    <li>Fixed ArrayIndexOutOfBoundsException situations</li>
-    <li>Better reporting for premature closing of input streams while reading
+    <li>MultiboxTagdoAfterBody(): Corrected to return SKIP_BODY instead of SKIP_PAGE.</li>
+    <li>BufferedMultipartInputStream: Fixed lost byte problem</li>
+    <li>ArrayIndexOutOfBoundsException: Fixed situations where this was known to occur</li>
+    <li>Multipart requests: Better reporting for premature closing of input streams while reading
 multipart requests.</li>
-    <li>Additional fix for file corruption problem with uploads and new line characters.</li>
+    <li>New line characters: Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
     <p><strong>Utility Package Changes</strong></p>
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
-    <li>Modify RequestUtils class to use ActionServletWrapper rather than expose ActionServlet.</li>
+    <li>RequestUtils class: Modify to use ActionServletWrapper rather than expose ActionServlet.</li>
     <li>Added error message for the getActionErrors and getActionMessages method.</li>
-    <li>Added a getActionErrors and getActionMessages methods to generate the correct corresponding object based on the object retrieved from request scope based on the key passed in.</li>
-    <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
-    <li><code>ConvertUtils.convertCharacter()</code> will now detect empty strings and return the default value.</li>
+    <li>getActionErrors and getActionMessages: Added methods to generate the correct corresponding 
+    object based on the object retrieved from request scope based on the key passed in.</li>
+    <li>ActionErrors or ActionMessages: The logic for creating one of these objects has been moved 
+    to a utility method in RequestUtils.</li>
+    <li>JspException message: Now generated in RequestUtils.</li>
+    <li>ConvertUtils.convertCharacter(): Will now detect empty strings and return the default value.</li>
     </ul>
 
     <p><strong>Bean Taglib Package Changes</strong></p>
     <p>The following changes and bug fixes have occured in the
-    <em>struts-bean</em> custom tag library (package
-    <code>org.apache.struts.taglib.bean</code>):</p>
+    <em>struts-bean</em> custom tag library 
+    [<code>org.apache.struts.taglib.bean</code>]:</p>
     <ul>
-    <li>The <code>&lt;html:errors&gt;</code> when the property tag is
+    <li>&lt;html:errors&gt;: When the property tag is
     specified, errors are no longer printed if the specified property
     has no errors. Previously errors were always printed ! Future
     enhancements would include additional attributes to always turn
@@ -324,11 +321,8 @@ multipart requests.</li>
     <em>struts-html</em> custom tag library (package
     <code>org.apache.struts.taglib.html</code>):</p>
     <ul>
-    <li>Fixed FormTag to exclude query string when identifying action mapping name.</li>
-    <li>Added the 'align' attribute to the &lt;html:image> tag.</li>
-    <li>Added indexed attribute to ImageTag, RadioTag, and TextAreaTag.</li>
-    <li>Added MessagesTag.</li>
-    <li>Correctly URLEncode the query string parameter value on ImgTag, even if there is only a single parameter.</li>
+    <li>FormTag: Fixed to exclude query string when identifying action mapping name.</li>
+    <li>ImgTag: Correctly URLEncode the query string parameter value even if there is only a single parameter.</li>
     </ul>
 
     <p><strong>Logic Taglib Package Changes</strong></p>
@@ -344,15 +338,12 @@ multipart requests.</li>
     application (and corresponding contents on the Struts web site) have
     occurred:</p>
     <ul>
-    <li>In the HTML tag documentation, expand to cover using indexed properties with iterate.</li>
-    <li>Add installation notes for Jetty.</li>
+    <li>Reorganized Resources into separate pages..</li>
     <li>In the Tag Developers Guide, add more detail regarding file upload requirements.</li>
-    <li>In the Introduction, added references to basic background material.</li>
     <li>In Building View Components, clarify that additional i18n support may be provided by the browser, and is outside the scope of the framework.</li>
     <li>In Building Controller Components, document 'validating' init-param, add defaults for various parameters, clarify that some web.xml settings are not Struts-specific.</li>
+    <li>Tag library documentation: Moved under User's Guide.</li>
     <li>Reorganized to separate 1.0 material from nightly build material.</li>
-    <li>Expanded Resources section.</li>
-    <li>Various updates regarding other release notes.</li>
     </ul>
 
     <p><strong>MailReader Example Application Changes</strong></p>
@@ -376,18 +367,42 @@ multipart requests.</li>
     Application have occurred:</p>
     <ul>
     <li>Added test case for &lt;html:select> using &lt;html:options> based on a collection
-  saved in the page context.</li>
+    saved in the page context.</li>
     </ul> 
 
   </section>
 
   <section name="What's different?" href="diff">
 
-  <p>This section provides links to the Struts JavaDoc for any classes that have
-  been added or deprecated since the Struts 1.0 release.
-  </p>
+    <p>This section provides links to the Struts JavaDoc for any classes that have
+    been added or deprecated since the Struts 1.0 release.
+    </p>
 
-    <strong>Packages added in Struts 1.1</strong>
+    <p><strong>Previously deprecated classes and packages removed in Struts 1.1</strong></p>
+    <ul>
+    <li>Removed: 
+      <code>org.apache.struts.utils.BeanUtils</code>, 
+      <code>org.apache.struts.utils.ConvertUtils</code>, and
+      <code>org.apache.struts.utils.PropertyUtils</code> - replaced by 
+      <a href ="http://jakarta.apache.org/commons/beanutils.html"><code>org.apache.commons.beanutils</code></a>
+    </li>
+    <li>Removed: 
+     <code>org.apache.struts.util.ArrayStack</code>,
+     <code>org.apache.struts.util.FastArrayList</code>,
+     <code>org.apache.struts.util.FastHashMap</code>,
+     <code>org.apache.struts.util.FastTreeMap</code> - replaced by 
+     <a href ="http://jakarta.apache.org/commons/collections.html"><code>org.apache.commons.collections</code></a>
+    </li>
+    <li>Removed: <code>org.apache.struts.digester.*</code> - replaced by 
+    <a href ="http://jakarta.apache.org/commons/digester.html"><code>org.apache.commons.digester</code></a>
+    </li>
+    <li>Removed: The <code>struts-config.dtd</code> - Replaced by <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"><code>struts-config_1_1.dtd</code></a>.</li>
+    <li>Removed: The omnibus "struts" taglib and its associated TLD - replaced by separate bean, logic, and html taglibs.</li>
+    <li>Removed: The "form" taglib and its associated TLD - replaced by (renamed as) the html taglib.</li>
+    </ul>
+
+    <p><strong>Packages added in Struts 1.1</strong></p>
+
     <ul>
     <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/config/package-summary.html">config</a></li>
     <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/taglib/nested/package-summary.html">taglib.nested</a></li>
@@ -397,7 +412,7 @@ multipart requests.</li>
     <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/validator/package-frame.html">validator</a></li>
     </ul>
 
-    <strong>Classes added in Struts 1.1</strong>
+    <p><strong>Classes added in Struts 1.1</strong></p>
     <p>action</p>
     <ul>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMessage.html"> ActionMessage</a></li>
@@ -428,7 +443,7 @@ multipart requests.</li>
     <ul>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/util/LabelValueBean.html"> LabelValueBean</a></li>
     </ul>
-    <strong>Classes with members added in Struts 1.1</strong>
+    <p><strong>Classes with members added in Struts 1.1</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html">action.Action</a></p>
     <ul>
       <li>ACTION_SERVLET_KEY</li>
@@ -472,7 +487,7 @@ multipart requests.</li>
       <li>setIndexed</li>
       <li>getIndexed</li>
     </ul>
-    <strong>Classes deprecated between Struts 1.0 and Struts 1.1</strong>
+    <p><strong>Classes deprecated between Struts 1.0 and Struts 1.1</strong></p>
     <p>action</p>
     <ul>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionException.html"> ActionException</a></li>
@@ -480,7 +495,7 @@ multipart requests.</li>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionForwards.html"> ActionForwards</a></li>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMappings.html"> ActionMappings</a></li>
     </ul>
-    <strong>Classes with members deprecated between Struts 1.0 and Struts 1.1</strong>
+    <p><strong>Classes with members deprecated between Struts 1.0 and Struts 1.1</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/Action.html">action.Action</a></p>
 
     <ul>
@@ -508,9 +523,7 @@ multipart requests.</li>
       </li>
     </ul>
 
-    <p>
-            Next: <a href="installation.html">Installation</a>
-    </p>
+    <p>Next: <a href="installation.html">Installation</a></p>
 
 </section>  
 
