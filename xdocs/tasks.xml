@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<document>
+  <properties>
+    <title>TODO</title>
+    <author email="rleland at apache.org">Robert Leland</author>
+  </properties>
+
+  <body>
+    <section name="TODO list">
+      <p>
+        The following is a list of items that need to be completed in
+        Struts.  Contributions are welcome! 
+      </p>
+    
+    <subsection name="High priority"> 
+      <ul>
+      	<li>
+      		Remove functionality deprecated in 1.1.0 release in 1.2.0 release.
+      	</li>
+       </ul>
+    </subsection>
+    
+    <subsection name="Medium priority"> 
+      <ul>
+      </ul>
+    </subsection>
+    
+    <subsection name="Low priority"> 
+      <ul>
+       </ul>
+    </subsection>
+</section>
+<section name='Completed'>
+    <subsection name='Since 1.1 Release'>
+        <ul>
+         </ul>
+    </subsection>
+</section>
+<section name='Deprecated'>
+    <subsection name='Since 1.1 Release'>
+    	<p>See the javadoc for details and replacements.</p>
+        <ul>
+       </ul>
+    </subsection>
+</section>
+<section name='Backwards Incompatible Changes'>
+    <subsection name='Since 1.1 Release'>
+        <ul>
+        </ul>
+    </subsection>
+</section>
+<section name='Semantic Changes'>
+    <subsection name='Since 1.1 Release'>
+        <ul>	
+        </ul>
+    </subsection>
+</section>
+</body>
+</document>
+

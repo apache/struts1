@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<document>
+
+  <properties>
+    <title>Struts FAQ</title>
+  </properties>
+
+  <body>
+
+  <section name="Frequently Asked Questions">
+    <p>
+      This document will be derived from the FAQ maintained in the 
+      <a href='http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages'>
+      Struts Wiki</a>.So these questions and answers are user provided.
+      and should be searched before posting to the mailing lists.  
+    </p>
+
+    <p><strong>Building Struts</strong></p>
+    <ol>
+      <li>
+        <a href="#how-to-build">
+          How do I build Struts?
+        </a>
+      </li>
+    </ol>
+
+
+    <subsection name="Building Struts">
+      <dl>
+        <dt>
+          <a name="how-to-build">
+            How do I build Struts?
+          </a>
+        </dt>
+        <dd>
+          Struts uses Maven for its build system. So you should be able to build Struts just like
+          any other Maven enabled project. By typing'maven' Please see the 
+          <a href="http://maven.apache.org/start/index.html">Maven</a> 
+          documentation for details.
+        </dd>
+      </dl>
+    </subsection>
+  </section>
+</body>
+</document>

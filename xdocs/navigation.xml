@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts">
+
+  <title>Struts</title>
+  <organizationLogo href="/images/jakarta-logo-blue.gif">Jakarta</organizationLogo>
+
+  <body>
+    <menu name="Struts">
+      <item name="Overview"                href="/index.html"/>
+      <item name="Community"               href="/community.html"/>
+      <item name="To Do List"              href="/tasks.html"/>
+      <item name="Resources"               href="/resources.html"/>
+      <item name="Legacy 1.0"              href="/1.0/api/org/apache/struts/package-summary.html"/>
+      <item name="Legacy 1.1"              href="/1.1/api/org/apache/struts/package-summary.html"/>
+    </menu>
+  </body>
+</project>
