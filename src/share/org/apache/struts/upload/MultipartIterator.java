@@ -192,6 +192,16 @@ public class MultipartIterator {
                                                             textData.toString().getBytes("ISO-8859-1"));
             return element;
         }       
+        //reset stream
+        if (inputStream.markSupported()) {
+            try {
+                inputStream.reset();
+            }
+            catch (IOException ioe) {
+                throw new ServletException("IOException while resetting input stream: " +
+                    ioe.getMessage());
+            }
+        }
         return null;       
     }
     
@@ -234,7 +244,7 @@ public class MultipartIterator {
      * Handles retrieving the boundary and setting the input stream
      */
     protected void parseRequest() throws ServletException {
-        
+             
         contentLength = request.getContentLength();
         
         //set boundary
@@ -243,13 +253,18 @@ public class MultipartIterator {
         try {
             //set the input stream
             inputStream = request.getInputStream();
+            //mark the input stream to allow multiple reads
+            if (inputStream.markSupported()) {
+                inputStream.mark(contentLength+1);
+            }
+                
         }
         catch (IOException ioe) {
             throw new ServletException("MultipartIterator.parseRequest(): " +
                                        "IOException while trying to obtain " +
                                        "ServletInputStream");
         }
-        
+       
         if ((boundary == null) || (boundary.length() < 1)) {
             //try retrieving the header through more "normal" means
             boundary = parseBoundary(request.getHeader("Content-type"));
