@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.12 2004/03/14 06:23:43 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.13 2004/08/10 02:36:15 niallp Exp $
+ * $Revision: 1.13 $
+ * $Date: 2004/08/10 02:36:15 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -134,7 +134,7 @@ public class TilesUtil {
      */
     public static void doInclude(String uri, PageContext pageContext)
         throws IOException, ServletException {
-        TilesUtilImpl.doInclude(uri, pageContext);
+        tilesUtilImpl.doInclude(uri, pageContext);
     }
 
     /**

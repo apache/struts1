@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.8 2004/03/14 06:23:43 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilImpl.java,v 1.9 2004/08/10 02:36:15 niallp Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/08/10 02:36:15 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -95,7 +95,7 @@ public class TilesUtilImpl implements Serializable {
      * @param uri Uri or Definition name to forward.
      * @param pageContext Current page context.
      */
-    public static void doInclude(String uri, PageContext pageContext)
+    public void doInclude(String uri, PageContext pageContext)
         throws IOException, ServletException {
             
         pageContext.include(uri);
