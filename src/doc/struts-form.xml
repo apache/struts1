@@ -703,7 +703,7 @@
 		<summary>
 			Render A File Select Input Field
 		</summary>
-		<tagclass>org.apache.struts.taglib.form.CheckboxTag</tagclass>
+		<tagclass>org.apache.struts.taglib.form.FileTag</tagclass>
 		<info>
 			<p>
 				Renders an HTML &lt;input&gt; element of type file, defaulting to
