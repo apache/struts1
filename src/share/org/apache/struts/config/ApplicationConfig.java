@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.2 2001/12/26 23:14:50 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/26 23:14:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.3 2001/12/31 01:42:13 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/12/31 01:42:13 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.action.ActionServlet;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/12/26 23:14:50 $
+ * @version $Revision: 1.3 $ $Date: 2001/12/31 01:42:13 $
  * @since Struts 1.1
  */
 
@@ -119,6 +119,13 @@ public class ApplicationConfig {
      * application, if any, keyed by the <code>key</code> property.
      */
     protected FastHashMap dataSources = new FastHashMap();
+
+
+    /**
+     * The set of exception handling configurations for this
+     * application, if any, keyed by the <code>type</code> property.
+     */
+    protected FastHashMap exceptions = new FastHashMap();
 
 
     /**
@@ -250,6 +257,24 @@ public class ApplicationConfig {
 
 
     /**
+     * Add a new <code>ExceptionConfig</code> object to the set associated
+     * with this application.
+     *
+     * @param config The new configuration object to be added
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void addExceptionConfig(ExceptionConfig config) {
+
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        exceptions.put(config.getType(), config);
+
+    }
+
+
+    /**
      * Add a new <code>FormBeanConfig</code> object to the set associated
      * with this application.
      *
@@ -331,6 +356,31 @@ public class ApplicationConfig {
 
         DataSourceConfig results[] = new DataSourceConfig[dataSources.size()];
         return ((DataSourceConfig[]) dataSources.values().toArray(results));
+
+    }
+
+
+    /**
+     * Return the exception configuration for the specified type, if any;
+     * otherwise return <code>null</code>.
+     *
+     * @param type Exception class name to find a configuration for
+     */
+    public ExceptionConfig findExceptionConfig(String type) {
+
+        return ((ExceptionConfig) exceptions.get(type));
+
+    }
+
+
+    /**
+     * Return the exception configurations for this application.  If there
+     * are none, a zero-length array is returned.
+     */
+    public ExceptionConfig[] findExceptionConfigs() {
+
+        ExceptionConfig results[] = new ExceptionConfig[exceptions.size()];
+        return ((ExceptionConfig[]) exceptions.values().toArray(results));
 
     }
 

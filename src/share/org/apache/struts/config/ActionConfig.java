@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.1 2001/12/26 19:16:25 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/26 19:16:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.2 2001/12/31 01:42:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/31 01:42:13 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.collections.FastHashMap;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/26 19:16:25 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/31 01:42:13 $
  * @since Struts 1.1
  */
 
@@ -82,6 +82,13 @@ public class ActionConfig {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The set of exception handling configurations for this
+     * action, if any, keyed by the <code>type</code> property.
+     */
+    protected FastHashMap exceptions = new FastHashMap();
 
 
     /**
@@ -362,8 +369,24 @@ public class ActionConfig {
 
 
     /**
+     * Add a new <code>ExceptionConfig</code> object to the set associated
+     * with this action.
+     *
+     * @param config The new configuration object to be added
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void addExceptionConfig(ExceptionConfig config) {
+
+        exceptions.put(config.getType(), config);
+
+    }
+
+
+    /**
      * Add a new <code>ForwardConfig</code> object to the set of global
-     * forwards associated with this application.
+     * forwards associated with this action.
      *
      * @param config The new configuration object to be added
      *
@@ -373,6 +396,31 @@ public class ActionConfig {
     public void addForwardConfig(ForwardConfig config) {
 
         forwards.put(config.getName(), config);
+
+    }
+
+
+    /**
+     * Return the exception configuration for the specified type, if any;
+     * otherwise return <code>null</code>.
+     *
+     * @param type Exception class name to find a configuration for
+     */
+    public ExceptionConfig findExceptionConfig(String type) {
+
+        return ((ExceptionConfig) exceptions.get(type));
+
+    }
+
+
+    /**
+     * Return the exception configurations for this action.  If there
+     * are none, a zero-length array is returned.
+     */
+    public ExceptionConfig[] findExceptionConfigs() {
+
+        ExceptionConfig results[] = new ExceptionConfig[exceptions.size()];
+        return ((ExceptionConfig[]) exceptions.values().toArray(results));
 
     }
 

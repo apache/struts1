@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.1 2001/12/26 23:14:50 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/26 23:14:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.2 2001/12/31 01:42:13 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/31 01:42:13 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.commons.digester.RuleSetBase;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/26 23:14:50 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/31 01:42:13 $
  * @since Struts 1.1
  */
 
@@ -126,6 +126,21 @@ public class ConfigRuleSet extends RuleSetBase {
              "property", "value");
 
         digester.addObjectCreate
+            ("struts-config/action-mappings/action/exception",
+             "org.apache.struts.config.ExceptionConfig",
+             "className");
+        digester.addSetProperties
+            ("struts-config/action-mappings/action/exception");
+        digester.addSetNext
+            ("struts-config/action-mappings/action/exception",
+             "addExceptionConfig",
+             "org.apache.struts.config.ExceptionConfig");
+
+        digester.addSetProperty
+            ("struts-config/action-mappings/action/exception/set-property",
+             "property", "value");
+
+        digester.addObjectCreate
             ("struts-config/action-mappings/action/forward",
              "org.apache.struts.config.ForwardConfig",
              "className");
@@ -168,6 +183,21 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addSetProperty
             ("struts-config/form-beans/form-bean/set-property",
+             "property", "value");
+
+        digester.addObjectCreate
+            ("struts-config/global-exceptions/exception",
+             "org.apache.struts.config.ExceptionConfig",
+             "className");
+        digester.addSetProperties
+            ("struts-config/global-exceptions/exception");
+        digester.addSetNext
+            ("struts-config/global-exceptions/exception",
+             "addExceptionConfig",
+             "org.apache.struts.config.ExceptionConfig");
+
+        digester.addSetProperty
+            ("struts-config/global-exceptions/exception/set-property",
              "property", "value");
 
         digester.addObjectCreate
