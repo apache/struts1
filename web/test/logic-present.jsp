@@ -44,7 +44,11 @@
   </tr>
   <tr>
     <td>Cookie</td>
+<% if (request.isRequestedSessionIdFromCookie()) { %>
     <td>present</td>
+<% } else { %>
+    <td>notPresent</td>
+<% } %>
     <td>
       <logic:present cookie="JSESSIONID">
         present

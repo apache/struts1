@@ -10,9 +10,10 @@
 <h1>Test struts-bean:cookie Tag</h1>
 </div>
 
-Display the properties of our current session ID cookie
+<p>Display the properties of our current session ID cookie (if there is
+one):</p>
 
-<bean:cookie id="sess" name="JSESSIONID"/>
+<bean:cookie id="sess" name="JSESSIONID" value="JSESSIONID-IS-UNDEFINED"/>
 
 <table border="1">
   <tr>
@@ -61,6 +62,11 @@ Display the properties of our current session ID cookie
     <td><bean:write name="sess" property="version"/></td>
   </tr>
 </table>
+
+<br><br>
+
+<p>Display the properties of an undefined cookie that was given the default
+value <code>UNKNOWN_VALUE</code>:</p>
 
 <bean:cookie id="dummy" name="UNKNOWN_COOKIE" value="UNKNOWN_VALUE"/>
 

@@ -12,8 +12,8 @@
 </div>
 
 <jsp:useBean id="bean" scope="page" class="org.apache.struts.test.TestBean"/>
-<bean:cookie    id="cookie" name="JSESSIONID"/>
-<bean:header    id="header" name="User-Agent"/>
+<bean:cookie    id="cookie" name="JSESSIONID" value="JSESSIONID-IS-UNDEFINED"/>
+<bean:header    id="header" name="User-Agent" value="USER-AGENT-IS-UNDEFINED"/>
 <bean:parameter id="param"  name="param1"/>
 <%
   pageContext.setAttribute("string", "String test value");
