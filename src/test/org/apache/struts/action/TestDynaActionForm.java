@@ -169,8 +169,8 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
             throw new RuntimeException(e.getMessage());
         }
         setupComplexProperties();
-        appConfig = new TestDynaActionFormConfig(beanConfig);
-        mapping = new TestDynaActionFormMapping(appConfig);
+        appConfig = new DynaActionFormConfig(beanConfig);
+        mapping = new DynaActionFormMapping(appConfig);
 
 
     }
@@ -1055,9 +1055,9 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
 }
 
 
-class TestDynaActionFormMapping extends ActionMapping {
+class DynaActionFormMapping extends ActionMapping {
 
-    public TestDynaActionFormMapping(ApplicationConfig appConfig) {
+    public DynaActionFormMapping(ApplicationConfig appConfig) {
         this.appConfig = appConfig;
     }
 
@@ -1074,9 +1074,9 @@ class TestDynaActionFormMapping extends ActionMapping {
 }
 
 
-class TestDynaActionFormConfig extends ApplicationConfig {
+class DynaActionFormConfig extends ApplicationConfig {
 
-    public TestDynaActionFormConfig(FormBeanConfig beanConfig) {
+    public DynaActionFormConfig(FormBeanConfig beanConfig) {
         super("");
         this.beanConfig = beanConfig;
     }
