@@ -53,6 +53,10 @@
                                       of the Jakarta Commons FileUpload
                                       package (version 1.0 or later)
 
+        commons-lang.jar              (required).  The path to the JAR file
+                                      of the Jakarta Commons Lang
+                                      package (version 1.0 or later).
+
         commons-logging.jar           (required).  The path to the JAR file
                                       of the Jakarta Commons Logging
                                       package (version 1.0 or later).
@@ -191,6 +195,7 @@
       <pathelement location="${commons-dbcp.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-fileupload.jar}"/>
+      <pathelement location="${commons-lang.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-pool.jar}"/>
       <pathelement location="${commons-resources.jar}"/>
@@ -244,6 +249,8 @@
             tofile="${build.home}/library/commons-digester.jar"/>
         <copy file="${commons-fileupload.jar}"
             tofile="${build.home}/library/commons-fileupload.jar"/>
+        <copy file="${commons-lang.jar}"
+            tofile="${build.home}/library/commons-lang.jar"/>
         <copy file="${commons-logging.jar}"
             tofile="${build.home}/library/commons-logging.jar"/>
         <copy file="${commons-pool.jar}"
