@@ -182,6 +182,10 @@ public class MultipartIterator {
                 //from linux jdk's the entire filepath
                 //isn't parsed correctly from File.getName()
                 int colonIndex = filename.indexOf(":");
+                if (colonIndex == -1) {
+                    //check for Window's SMB server file paths
+                    colonIndex = filename.indexOf("\\\\");
+                }
                 int slashIndex = filename.lastIndexOf("\\");
                 
                 if ((colonIndex > -1) && (slashIndex > -1)) {

@@ -192,20 +192,20 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * property, or a system property, in that order
      */
     protected void retrieveTempDir() { 
-        //get a handle to some temporary file and open
-        //a stream to it
-        tempDir = servlet.getTempDir();
-        if (tempDir == null) {
-            //attempt to retrieve the servlet container's temporary directory
-            ServletContext context = servlet.getServletConfig().getServletContext();
-
-            try {
-                tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
-            }
-            catch (ClassCastException cce) {
-                tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
-            }
-            
+        
+        //attempt to retrieve the servlet container's temporary directory
+        ServletContext context = servlet.getServletConfig().getServletContext();
+       
+        try {
+            tempDir = (String) context.getAttribute("javax.servlet.context.tempdir");
+        }
+        catch (ClassCastException cce) {
+            tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
+        }           
+        
+        if (tempDir == null) {            
+            //attempt to retrieve the temporary directory from the controller
+            tempDir = servlet.getTempDir();
 
             if (tempDir == null) {
                 //default to system-wide tempdir
