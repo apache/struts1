@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.4 2002/10/12 19:19:18 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/12 19:19:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/EmptyTag.java,v 1.5 2002/10/26 04:44:28 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/10/26 04:44:28 $
  *
  * ====================================================================
  *
@@ -73,7 +73,7 @@ import org.apache.struts.util.RequestUtils;
  * is empty for this request.
  *
  * @author Martin Cooper
- * @version $Revision: 1.4 $ $Date: 2002/10/12 19:19:18 $
+ * @version $Revision: 1.5 $ $Date: 2002/10/26 04:44:28 $
  * @since Struts 1.1
  */
 
@@ -131,7 +131,7 @@ public class EmptyTag extends ConditionalTagBase {
             }
         } else {
             JspException e = new JspException
-                (messages.getMessage("logic.selector"));
+                (messages.getMessage("empty.noNameAttribute"));
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
