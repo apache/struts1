@@ -70,18 +70,18 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
 
 /**
  * Suite of unit tests for the
- * <code>org.apache.struts.taglib.bean.ButtonTag</code> class.
+ * <code>org.apache.struts.taglib.bean.CheckboxTag</code> class.
  *
  * @author James Mitchell
  */
-public class TestButtonTag2 extends JspTestCase {
+public class TestCheckboxTag8 extends JspTestCase {
 
     /**
      * Defines the testcase name for JUnit.
      *
      * @param theName the testcase's name.
      */
-    public TestButtonTag2(String theName) {
+    public TestCheckboxTag8(String theName) {
         super(theName);
     }
 
@@ -91,7 +91,7 @@ public class TestButtonTag2 extends JspTestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[] {TestButtonTag2.class.getName()});
+        junit.awtui.TestRunner.main(new String[] {TestCheckboxTag8.class.getName()});
     }
 
     /**
@@ -100,14 +100,18 @@ public class TestButtonTag2 extends JspTestCase {
      */
     public static Test suite() {
         // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestButtonTag2.class);
+        return new TestSuite(TestCheckboxTag8.class);
     }
 
     private void runMyTest(String whichTest, String locale){
-    	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
+    	pageContext.setAttribute(Globals.LOCALE_KEY, 
+    		new Locale(locale, locale), PageContext.SESSION_SCOPE);
+    	pageContext.setAttribute(Constants.BEAN_KEY, 
+    		new SimpleBeanForTesting(
+    			new Boolean(false) ), PageContext.REQUEST_SCOPE);
 		request.setAttribute("runTest", whichTest);
         try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag2.jsp");
+			pageContext.forward("/test/org/apache/struts/taglib/html/TestCheckboxTag8.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -116,97 +120,97 @@ public class TestButtonTag2 extends JspTestCase {
     }
 
     /*
-     * Testing ButtonTag.
+     * Testing CheckboxTag.
      */
 
-    public void testButtonPropertyStyle(){ 
-    	runMyTest("testButtonPropertyStyle", "");
+    public void testCheckboxPropertyBooleanWrapperFalseStyle(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseStyle", "");
 	}
 
-    public void testButtonPropertyStyleClass(){ 
-    	runMyTest("testButtonPropertyStyleClass", "");
+    public void testCheckboxPropertyBooleanWrapperFalseStyleClass(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseStyleClass", "");
 	}
 
-    public void testButtonPropertyStyleId(){ 
-    	runMyTest("testButtonPropertyStyleId", "");
+    public void testCheckboxPropertyBooleanWrapperFalseStyleId(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseStyleId", "");
 	}
 
-    public void testButtonPropertyTabindex(){ 
-    	runMyTest("testButtonPropertyTabindex", "");
+    public void testCheckboxPropertyBooleanWrapperFalseTabindex(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseTabindex", "");
 	}
 
-    public void testButtonPropertyTitle(){ 
-    	runMyTest("testButtonPropertyTitle", "");
+    public void testCheckboxPropertyBooleanWrapperFalseTitle(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseTitle", "");
 	}
 
-    public void testButtonPropertyTitleKey(){ 
-    	runMyTest("testButtonPropertyTitleKey", "");
+    public void testCheckboxPropertyBooleanWrapperFalseTitleKey(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseTitleKey", "");
 	}
 
-    public void testButtonPropertyTitleKey_fr(){ 
-    	runMyTest("testButtonPropertyTitleKey_fr", "fr");
+    public void testCheckboxPropertyBooleanWrapperFalseTitleKey_fr(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseTitleKey_fr", "fr");
 	}
 
-    public void testButtonPropertyValue(){ 
-    	runMyTest("testButtonPropertyValue", "");
+    public void testCheckboxPropertyBooleanWrapperFalseValue(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseValue", "");
 	}
 
-    public void testButtonPropertyBodyContent(){ 
-    	runMyTest("testButtonPropertyBodyContent", "");
+    public void testCheckboxPropertyBooleanWrapperFalseBodyContent(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseBodyContent", "");
 	}
 
-    public void testButtonPropertyBodyContentMessageKey(){ 
-    	runMyTest("testButtonPropertyBodyContentMessageKey", "");
+    public void testCheckboxPropertyBooleanWrapperFalseBodyContentMessageKey(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseBodyContentMessageKey", "");
 	}
 
-    public void testButtonPropertyBodyContentMessageKey_fr(){ 
-    	runMyTest("testButtonPropertyBodyContentMessageKey_fr", "fr");
+    public void testCheckboxPropertyBooleanWrapperFalseBodyContentMessageKey_fr(){ 
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseBodyContentMessageKey_fr", "fr");
 	}
 
-    public void testButtonPropertyIndexedArray(){ 
+    public void testCheckboxPropertyBooleanWrapperFalseIndexedArray(){ 
     	ArrayList lst = new ArrayList();
     	lst.add("Test Message");
     	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedArray", "");
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseIndexedArray", "");
 	}
 
-    public void testButtonPropertyIndexedArrayProperty(){ 
+    public void testCheckboxPropertyBooleanWrapperFalseIndexedArrayProperty(){ 
     	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
     	ArrayList lst = new ArrayList();
     	lst.add("Test Message");
     	sbft.setList(lst);
     	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedArrayProperty", "");
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseIndexedArrayProperty", "");
 	}
 
-    public void testButtonPropertyIndexedMap(){ 
+    public void testCheckboxPropertyBooleanWrapperFalseIndexedMap(){ 
     	HashMap map = new HashMap();
     	map.put("tst1", "Test Message");
     	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedMap", "");
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseIndexedMap", "");
 	}
 
-    public void testButtonPropertyIndexedMapProperty(){ 
+    public void testCheckboxPropertyBooleanWrapperFalseIndexedMapProperty(){ 
     	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
     	HashMap map = new HashMap();
     	map.put("tst1", "Test Message");
     	sbft.setMap(map);
     	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedMapProperty", "");
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseIndexedMapProperty", "");
 	}
 
-    public void testButtonPropertyIndexedEnumeration(){ 
+    public void testCheckboxPropertyBooleanWrapperFalseIndexedEnumeration(){ 
     	StringTokenizer st = new StringTokenizer("Test Message");
     	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedEnumeration", "");
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseIndexedEnumeration", "");
 	}
 
-    public void testButtonPropertyIndexedEnumerationProperty(){ 
+    public void testCheckboxPropertyBooleanWrapperFalseIndexedEnumerationProperty(){ 
     	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
     	StringTokenizer st = new StringTokenizer("Test Message");
     	sbft.setEnumeration(st);
     	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedEnumerationProperty", "");
+    	runMyTest("testCheckboxPropertyBooleanWrapperFalseIndexedEnumerationProperty", "");
 	}
 
 

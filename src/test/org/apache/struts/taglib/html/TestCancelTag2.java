@@ -56,7 +56,6 @@ package org.apache.struts.taglib.html;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -70,18 +69,18 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
 
 /**
  * Suite of unit tests for the
- * <code>org.apache.struts.taglib.bean.ButtonTag</code> class.
+ * <code>org.apache.struts.taglib.bean.CancelTag</code> class.
  *
  * @author James Mitchell
  */
-public class TestButtonTag2 extends JspTestCase {
+public class TestCancelTag2 extends JspTestCase {
 
     /**
      * Defines the testcase name for JUnit.
      *
      * @param theName the testcase's name.
      */
-    public TestButtonTag2(String theName) {
+    public TestCancelTag2(String theName) {
         super(theName);
     }
 
@@ -91,7 +90,7 @@ public class TestButtonTag2 extends JspTestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[] {TestButtonTag2.class.getName()});
+        junit.awtui.TestRunner.main(new String[] {TestCancelTag2.class.getName()});
     }
 
     /**
@@ -100,14 +99,14 @@ public class TestButtonTag2 extends JspTestCase {
      */
     public static Test suite() {
         // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestButtonTag2.class);
+        return new TestSuite(TestCancelTag2.class);
     }
 
     private void runMyTest(String whichTest, String locale){
     	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
 		request.setAttribute("runTest", whichTest);
         try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag2.jsp");
+			pageContext.forward("/test/org/apache/struts/taglib/html/TestCancelTag2.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -116,99 +115,51 @@ public class TestButtonTag2 extends JspTestCase {
     }
 
     /*
-     * Testing ButtonTag.
+     * Testing CancelTag.
      */
 
-    public void testButtonPropertyStyle(){ 
-    	runMyTest("testButtonPropertyStyle", "");
+    public void testCancelStyle(){ 
+    	runMyTest("testCancelStyle", "");
 	}
 
-    public void testButtonPropertyStyleClass(){ 
-    	runMyTest("testButtonPropertyStyleClass", "");
+    public void testCancelStyleClass(){ 
+    	runMyTest("testCancelStyleClass", "");
 	}
 
-    public void testButtonPropertyStyleId(){ 
-    	runMyTest("testButtonPropertyStyleId", "");
+    public void testCancelStyleId(){ 
+    	runMyTest("testCancelStyleId", "");
 	}
 
-    public void testButtonPropertyTabindex(){ 
-    	runMyTest("testButtonPropertyTabindex", "");
+    public void testCancelTabindex(){ 
+    	runMyTest("testCancelTabindex", "");
 	}
 
-    public void testButtonPropertyTitle(){ 
-    	runMyTest("testButtonPropertyTitle", "");
+    public void testCancelTitle(){ 
+    	runMyTest("testCancelTitle", "");
 	}
 
-    public void testButtonPropertyTitleKey(){ 
-    	runMyTest("testButtonPropertyTitleKey", "");
+    public void testCancelTitleKey(){ 
+    	runMyTest("testCancelTitleKey", "");
 	}
 
-    public void testButtonPropertyTitleKey_fr(){ 
-    	runMyTest("testButtonPropertyTitleKey_fr", "fr");
+    public void testCancelTitleKey_fr(){ 
+    	runMyTest("testCancelTitleKey_fr", "fr");
 	}
 
-    public void testButtonPropertyValue(){ 
-    	runMyTest("testButtonPropertyValue", "");
+    public void testCancelValue(){ 
+    	runMyTest("testCancelValue", "");
 	}
 
-    public void testButtonPropertyBodyContent(){ 
-    	runMyTest("testButtonPropertyBodyContent", "");
+    public void testCancelBodyContent(){ 
+    	runMyTest("testCancelBodyContent", "");
 	}
 
-    public void testButtonPropertyBodyContentMessageKey(){ 
-    	runMyTest("testButtonPropertyBodyContentMessageKey", "");
+    public void testCancelBodyContentMessageKey(){ 
+    	runMyTest("testCancelBodyContentMessageKey", "");
 	}
 
-    public void testButtonPropertyBodyContentMessageKey_fr(){ 
-    	runMyTest("testButtonPropertyBodyContentMessageKey_fr", "fr");
+    public void testCancelBodyContentMessageKey_fr(){ 
+    	runMyTest("testCancelBodyContentMessageKey_fr", "fr");
 	}
-
-    public void testButtonPropertyIndexedArray(){ 
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	pageContext.setAttribute("lst", lst, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedArray", "");
-	}
-
-    public void testButtonPropertyIndexedArrayProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	ArrayList lst = new ArrayList();
-    	lst.add("Test Message");
-    	sbft.setList(lst);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedArrayProperty", "");
-	}
-
-    public void testButtonPropertyIndexedMap(){ 
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	pageContext.setAttribute("lst", map, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedMap", "");
-	}
-
-    public void testButtonPropertyIndexedMapProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	HashMap map = new HashMap();
-    	map.put("tst1", "Test Message");
-    	sbft.setMap(map);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedMapProperty", "");
-	}
-
-    public void testButtonPropertyIndexedEnumeration(){ 
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	pageContext.setAttribute("lst", st, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedEnumeration", "");
-	}
-
-    public void testButtonPropertyIndexedEnumerationProperty(){ 
-    	SimpleBeanForTesting sbft = new SimpleBeanForTesting();
-    	StringTokenizer st = new StringTokenizer("Test Message");
-    	sbft.setEnumeration(st);
-    	pageContext.setAttribute("lst", sbft, PageContext.REQUEST_SCOPE);
-    	runMyTest("testButtonPropertyIndexedEnumerationProperty", "");
-	}
-
-
 
 }

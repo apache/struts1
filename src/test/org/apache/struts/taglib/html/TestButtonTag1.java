@@ -69,14 +69,14 @@ import org.apache.struts.Globals;
  *
  * @author James Mitchell
  */
-public class TestButtonTag extends JspTestCase {
+public class TestButtonTag1 extends JspTestCase {
 
     /**
      * Defines the testcase name for JUnit.
      *
      * @param theName the testcase's name.
      */
-    public TestButtonTag(String theName) {
+    public TestButtonTag1(String theName) {
         super(theName);
     }
 
@@ -86,7 +86,7 @@ public class TestButtonTag extends JspTestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[] {TestButtonTag.class.getName()});
+        junit.awtui.TestRunner.main(new String[] {TestButtonTag1.class.getName()});
     }
 
     /**
@@ -95,14 +95,14 @@ public class TestButtonTag extends JspTestCase {
      */
     public static Test suite() {
         // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestButtonTag.class);
+        return new TestSuite(TestButtonTag1.class);
     }
 
     private void runMyTest(String whichTest, String locale){
     	pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
 		request.setAttribute("runTest", whichTest);
         try {
-			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag.jsp");
+			pageContext.forward("/test/org/apache/struts/taglib/html/TestButtonTag1.jsp");
 		}
 		catch (Exception e) {
 			e.printStackTrace();

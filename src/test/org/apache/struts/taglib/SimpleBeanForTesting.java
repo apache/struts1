@@ -72,6 +72,12 @@ public class SimpleBeanForTesting {
 	public SimpleBeanForTesting(List lst){
 		this.lst = lst;
 	}
+	public SimpleBeanForTesting(boolean checked){
+		this.checked = checked;
+	}
+	public SimpleBeanForTesting(Boolean checked){
+		this.checkedWrapper = checkedWrapper;
+	}
 	public SimpleBeanForTesting(Map map){
 		this.map = map;
 	}
@@ -91,6 +97,8 @@ public class SimpleBeanForTesting {
 	private Object[] array;
 	private Enumeration enumeration;
 	private Collection collection;
+	private boolean checked;
+	private Boolean checkedWrapper;
 
 	//Copied right from the FAQ
 	private String strAry[] =
@@ -261,6 +269,38 @@ public class SimpleBeanForTesting {
 	 */
 	public void setIntegerValue(Integer integerValue) {
 		this.integerValue = integerValue;
+	}
+
+	/**
+	 * Returns the checked.
+	 * @return boolean
+	 */
+	public boolean isChecked() {
+		return checked;
+	}
+
+	/**
+	 * Sets the checked.
+	 * @param checked The checked to set
+	 */
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
+	/**
+	 * Returns the checkedWrapper.
+	 * @return Boolean
+	 */
+	public Boolean getCheckedWrapper() {
+		return checkedWrapper;
+	}
+
+	/**
+	 * Sets the checkedWrapper.
+	 * @param checkedWrapper The checkedWrapper to set
+	 */
+	public void setCheckedWrapper(Boolean checkedWrapper) {
+		this.checkedWrapper = checkedWrapper;
 	}
 
 }

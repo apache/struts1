@@ -42,7 +42,6 @@
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
 
-    <!-- Process a user logoff -->
     <action    path="/testIncludeTagTransaction"
                type="org.apache.struts.taglib.bean.resources.IncludeTagTransactionTestAction">
       <forward name="success"              
