@@ -745,6 +745,36 @@
 
 
 <!--
+        Source code analysis targets
+-->
+    <target name="checkstyle" if="checkstyle.jar"
+            description="Checks source code against Sun coding guidelines"
+            depends="init">
+        <taskdef name="checkstyle"
+                 classname="com.puppycrawl.tools.checkstyle.CheckStyleTask">
+            <classpath location="${checkstyle.jar}"/>
+        </taskdef>
+        <checkstyle>
+            <formatter type="plain"/>
+            <fileset dir="${src.share.dir}" includes="**/*.java"/>
+        </checkstyle>
+    </target>
+
+    <target name="pmd" if="pmd.jar"
+            description="Locates unused imports, unused variables, etc."
+            depends="init">
+        <taskdef name="pmd"
+                 classname="net.sourceforge.pmd.ant.PMDTask">
+            <classpath location="${pmd.jar}"/>
+        </taskdef>
+        <pmd reportFile="pmdreport.html" format="html"
+             rulesetfiles="rulesets/unusedcode.xml,rulesets/imports.xml">
+            <fileset dir="${src.share.dir}" includes="**/*.java"/>
+        </pmd>
+    </target>
+
+
+<!--
         Compile Website documenation
 -->
 
