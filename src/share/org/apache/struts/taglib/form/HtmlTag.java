@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/HtmlTag.java,v 1.2 2000/11/19 02:38:40 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/11/19 02:38:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/HtmlTag.java,v 1.3 2000/11/22 20:08:22 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/22 20:08:22 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/11/19 02:38:40 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/22 20:08:22 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -129,14 +129,35 @@ public class HtmlTag extends TagSupport {
         sb.append(">");
         JspWriter out = pageContext.getOut();
         try {
-            out.print(sb.toString());
+            out.println(sb.toString());
         } catch (IOException e) {
             pageContext.setAttribute(Action.EXCEPTION_KEY, e,
                                      PageContext.REQUEST_SCOPE);
             throw new JspException
                 (messages.getMessage("common.io", e.toString()));
         }
-        return (SKIP_BODY);
+        return (EVAL_BODY_INCLUDE);
+
+    }
+
+
+    /**
+     * Process the end of this tag.
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doEndTag() throws JspException {
+
+        JspWriter out = pageContext.getOut();
+        try {
+            out.println("</html>");
+        } catch (IOException e) {
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw new JspException
+                (messages.getMessage("common.io", e.toString()));
+        }
+        return (EVAL_PAGE);
 
     }
 

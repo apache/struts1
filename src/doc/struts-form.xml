@@ -1158,7 +1158,7 @@
           <name>html</name>
           <summary>Render an HTML &lt;html&gt; Element</summary>
           <tagclass>org.apache.struts.taglib.form.HtmlTag</tagclass>
-          <bodycontent>empty</bodycontent>
+          <bodycontent>JSP</bodycontent>
           <info>
           <p>Renders an HTML <code>&lt;html&gt;</code> element with
           language attributes extracted from the user's current Locale

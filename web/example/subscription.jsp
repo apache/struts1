@@ -13,7 +13,7 @@
     new String[] { "IMAP Protocol", "POP3 Protocol" });
 %>
 
-<form:html/>
+<form:html>
 <head>
 <logic:equal name="subscriptionForm" property="action"
             scope="request" value="Create">
@@ -137,4 +137,4 @@
 </form:form>
 
 </body>
-</html>
+</form:html>

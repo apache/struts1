@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 
-<form:html/>
+<form:html>
 <head>
 <title><bean:message key="index.title"/></title>
 <form:base/>
@@ -32,4 +32,4 @@
 </ul>
 
 </body>
-</html>
+</form:html>
