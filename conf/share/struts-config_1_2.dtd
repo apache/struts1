@@ -8,7 +8,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
        "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 
-     $Id: struts-config_1_2.dtd,v 1.8 2004/04/06 23:30:23 husted Exp $
+     $Id$
 -->
 
 
@@ -415,7 +415,7 @@ The "form-bean" element describes a particular form bean, which is a
 
      scope           The context ("request" or "session") that is used to
                      access our ActionForm bean, if any.  Optional if "name" is
-                     specified, else not valid.
+                     specified, else not valid. [session]
 
      suffix          Suffix used to match request parameter names to ActionForm
                      bean property names, if any. Optional if "name" is
