@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.8 2003/03/05 02:53:15 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/03/05 02:53:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.9 2003/05/01 17:54:04 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/05/01 17:54:04 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2003/03/05 02:53:15 $
+ * @version $Revision: 1.9 $ $Date: 2003/05/01 17:54:04 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */
@@ -140,19 +140,19 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         if (props.containsKey("page")) {
             this.page = ((Integer) props.get("page")).intValue();
         }
-    
+
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
-    
+
         Validator validator =
             Resources.initValidator(mapping.getAttribute(), this, application, request, errors, page);
-    
+
         try {
             validatorResults = validator.validate();
         } catch (ValidatorException e) {
             log.error(e.getMessage(), e);
         }
-    
+
         return errors;
     }
 
@@ -162,6 +162,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
      * servlet log file.
      *
      * @param   message     String that describes the error or exception
+     * @deprecated Use common-logging, or other logging implementation to log debug messages.
      */
     protected void log(String message) {
         if (getServlet().getDebug() >= 1) {
@@ -176,6 +177,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
      *
      * @param   message     String that describes the error or exception
      * @param   throwable   Throwable error or exception
+     * @deprecated Use common-logging, or other logging implementation to log debug messages.
      */
     protected void log(String message, Throwable throwable) {
         if (getServlet().getDebug() >= 1) {
