@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.2 2001/01/16 03:52:57 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/16 03:52:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.3 2001/01/24 17:25:36 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/24 17:25:36 $
  *
  * ====================================================================
  * 
@@ -63,6 +63,9 @@
 package org.apache.struts.util;
 
 
+import java.io.Serializable;
+
+
 /**
  * Factory for <code>MessageResources</code> instances.  The general usage
  * pattern for this class is:
@@ -78,10 +81,10 @@ package org.apache.struts.util;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/16 03:52:57 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/24 17:25:36 $
  */
 
-public abstract class MessageResourcesFactory {
+public abstract class MessageResourcesFactory implements Serializable {
 
 
     // ---------------------------------------------------- Instance Properties
@@ -121,7 +124,7 @@ public abstract class MessageResourcesFactory {
      * The Java class to be used for
      * <code>MessageResourcesFactory</code> instances.
      */
-    protected static Class clazz = null;
+    protected static transient Class clazz = null;
 
 
     /**
