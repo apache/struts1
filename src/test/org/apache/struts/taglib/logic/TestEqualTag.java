@@ -55,6 +55,9 @@
 package org.apache.struts.taglib.logic;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.PageContext;
 
 import junit.framework.*;
 import org.apache.cactus.*;
@@ -64,8 +67,27 @@ import org.apache.cactus.*;
  * <code>org.apache.struts.taglib.logic.EqualTag</code> class.
  *
  * @author David Winterfeldt
+ * @author Dominique Plante
  */
 public class TestEqualTag extends JspTestCase {
+
+    protected final static String COOKIE_KEY =
+        "org.apache.struts.taglib.logic.COOKIE_KEY";
+    protected final static String HEADER_KEY =
+        "org.apache.struts.taglib.logic.HEADER_KEY";
+    protected final static String PARAMETER_KEY =
+        "org.apache.struts.taglib.logic.PARAMETER_KEY";
+
+    protected final static String testStringKey = "testString";
+    protected final static String testStringValue = "abc";
+    protected final static String testStringValue1 = "abcd";
+    protected final static String testIntegerKey = "testInteger";
+    protected final static Integer testIntegerValue = new Integer(21);
+    protected final static Integer testIntegerValue1 =
+        new Integer(testIntegerValue.intValue() + 1);
+
+    protected EqualTag et = null;
+
     /**
      * Defines the testcase name for JUnit.
      *
@@ -93,73 +115,213 @@ public class TestEqualTag extends JspTestCase {
         return new TestSuite(TestEqualTag.class);
     }
 
-    //----- Test initApplication() method --------------------------------------
-
-    /**
-     * Verify that two <code>String</code>s match using the <code>EqualTag</code>.
-     */
-    public void testStringEquals() throws ServletException,  javax.servlet.jsp.JspException {
-        EqualTag et = new EqualTag();
-        String testStringKey = "testString";
-        String testStringValue = "abc";
-        
-        request.setAttribute(testStringKey, testStringValue);
+    public void setUp() {
+        et = new EqualTag();
         et.setPageContext(pageContext);
-	et.setName(testStringKey);
-	et.setValue(testStringValue);
-	
-        assertEquals("String equals comparison", true, et.condition(0, 0));
+
     }
 
-    /**
-     * Verify that two <code>String</code>s do not match using the <code>EqualTag</code>.
-     */
-    public void testStringNotEquals() throws ServletException,  javax.servlet.jsp.JspException {
-        EqualTag et = new EqualTag();
-        String testStringKey = "testString";
-        String testStringValue = "abc";
-        String testStringValue1 = "abcd";
-        
-        request.setAttribute(testStringKey, testStringValue);
-        et.setPageContext(pageContext);
-	et.setName(testStringKey);
-	et.setValue(testStringValue1);
-	
-        assertEquals("String not equals comparison", false, et.condition(0, 0));
+    public void tearDown() {
+        et = null;
     }
 
-    /**
-     * Verify that an <code>Integer</code> and a <code>String</code>
-     * match using the <code>EqualTag</code>.
-     */
-    public void testIntegerEquals() throws ServletException,  javax.servlet.jsp.JspException {
-        EqualTag et = new EqualTag();
-        String testIntegerKey = "testInteger";
-        Integer testIntegerValue = new Integer(21);
-        
+
+
+    // --------------------------------------------------- Cookie String Equals
+
+
+    public void beginCookieStringEquals(WebRequest testRequest) {
+
+        testRequest.addCookie(COOKIE_KEY, "abc");
+
+    }
+
+
+    public void testCookieStringEquals()
+        throws ServletException, JspException {
+
+        et.setCookie(COOKIE_KEY);
+        et.setValue(testStringValue);
+
+        assertEquals("Cookie string equals comparison", true,
+                     et.condition(0, 0));
+
+    }
+
+
+    // ----------------------------------------------- Cookie String Not Equals
+
+
+    public void beginCookieStringNotEquals(WebRequest testRequest) {
+
+        testRequest.addCookie(COOKIE_KEY, "abc");
+
+    }
+
+
+    public void testCookieStringNotEquals()
+        throws ServletException, JspException {
+
+        et.setCookie(COOKIE_KEY);
+        et.setValue(testStringValue1);
+
+        assertEquals("Cookie string not equals comparison", false,
+                     et.condition(0, 0));
+
+    }
+
+
+    // --------------------------------------------------- Header String Equals
+
+
+    public void beginHeaderStringEquals(WebRequest testRequest) {
+
+        testRequest.addHeader(HEADER_KEY, "abc");
+
+    }
+
+
+    public void testHeaderStringEquals()
+        throws ServletException, JspException {
+
+        et.setHeader(HEADER_KEY);
+        et.setValue(testStringValue);
+
+        assertEquals("Header string equals comparison", true,
+                     et.condition(0, 0));
+
+    }
+
+
+    // ----------------------------------------------- Header String Not Equals
+
+
+    public void beginHeaderStringNotEquals(WebRequest testRequest) {
+
+        testRequest.addHeader(HEADER_KEY, "abc");
+
+    }
+
+
+    public void testHeaderStringNotEquals()
+        throws ServletException, JspException {
+
+        et.setHeader(HEADER_KEY);
+        et.setValue(testStringValue1);
+
+        assertEquals("Header string not equals comparison", false,
+                     et.condition(0, 0));
+
+    }
+
+
+    // --------------------------------------------------------- Integer Equals
+
+
+    public void testIntegerEquals()
+        throws ServletException, JspException {
+
         request.setAttribute(testIntegerKey, testIntegerValue);
-        et.setPageContext(pageContext);
 	et.setName(testIntegerKey);
 	et.setValue(testIntegerValue.toString());
 	
-        assertEquals("Integer equals comparison", true, et.condition(0, 0));
+        assertEquals("Integer equals comparison", true,
+                     et.condition(0, 0));
+
     }
 
-    /**
-     * Verify that two <code>String</code>s do not match using the <code>EqualTag</code>.
-     */
-    public void testIntegerNotEquals() throws ServletException,  javax.servlet.jsp.JspException {
-        EqualTag et = new EqualTag();
-        String testIntegerKey = "testInteger";
-        Integer testIntegerValue = new Integer(21);
-        Integer testIntegerValue1 = new Integer(testIntegerValue.intValue() + 1);
-        
+
+    // ----------------------------------------------------- Integer Not Equals
+
+
+    public void testIntegerNotEquals()
+        throws ServletException, JspException {
+
         request.setAttribute(testIntegerKey, testIntegerValue);
-        et.setPageContext(pageContext);
 	et.setName(testIntegerKey);
 	et.setValue(testIntegerValue1.toString());
 	
-        assertEquals("Integer equals comparison", false, et.condition(0, 0));
+        assertEquals("Integer not equals comparison", false,
+                     et.condition(0, 0));
+
     }
+
+
+    // ------------------------------------------------ Parameter String Equals
+
+
+    public void beginParameterStringEquals(WebRequest testRequest) {
+
+        testRequest.addParameter(PARAMETER_KEY, "abc");
+
+    }
+
+
+    public void testParameterStringEquals()
+        throws ServletException, JspException {
+
+        et.setParameter(PARAMETER_KEY);
+        et.setValue(testStringValue);
+
+        assertEquals("Parameter string equals comparison", true,
+                     et.condition(0, 0));
+
+    }
+
+
+    // -------------------------------------------- Parameter String Not Equals
+
+
+    public void beginParameterStringNotEquals(WebRequest testRequest) {
+
+        testRequest.addParameter(PARAMETER_KEY, "abc");
+
+    }
+
+
+    public void testParameterStringNotEquals()
+        throws ServletException, JspException {
+
+        et.setParameter(PARAMETER_KEY);
+        et.setValue(testStringValue1);
+
+        assertEquals("Parameter string not equals comparison", false,
+                     et.condition(0, 0));
+
+    }
+
+
+    // ---------------------------------------------------------- String Equals
+
+
+    public void testStringEquals()
+        throws ServletException, JspException {
+
+        request.setAttribute(testStringKey, testStringValue);
+	et.setName(testStringKey);
+	et.setValue(testStringValue);
+	
+        assertEquals("String equals comparison", true,
+                     et.condition(0, 0));
+
+    }
+
+
+    // ------------------------------------------------------ String Not Equals
+
+
+    public void testStringNotEquals()
+        throws ServletException, JspException {
+
+        request.setAttribute(testStringKey, testStringValue);
+	et.setName(testStringKey);
+	et.setValue(testStringValue1);
+	
+        assertEquals("String not equals comparison", false,
+                     et.condition(0, 0));
+
+    }
+
+
 
 }
