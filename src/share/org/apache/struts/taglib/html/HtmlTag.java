@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.2 2001/02/11 00:14:50 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/11 00:14:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.3 2001/04/18 23:45:02 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/18 23:45:02 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -71,13 +71,15 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
+
 
 /**
  * Renders an HTML <html> element with appropriate language attributes if
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/02/11 00:14:50 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/18 23:45:02 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -151,15 +153,9 @@ public class HtmlTag extends TagSupport {
         sb.append(">");
 
         // Write out the beginning tag for this page
-        JspWriter out = pageContext.getOut();
-        try {
-            out.println(sb.toString());
-        } catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("common.io", e.toString()));
-        }
+        ResponseUtils.write(pageContext, sb.toString());
+
+        // Evaluate the included content of this tag
         return (EVAL_BODY_INCLUDE);
 
     }
@@ -172,15 +168,9 @@ public class HtmlTag extends TagSupport {
      */
     public int doEndTag() throws JspException {
 
-        JspWriter out = pageContext.getOut();
-        try {
-            out.println("</html>");
-        } catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw new JspException
-                (messages.getMessage("common.io", e.toString()));
-        }
+        ResponseUtils.write(pageContext, "</html>");
+
+        // Evaluate the remainder of this page
         return (EVAL_PAGE);
 
     }
