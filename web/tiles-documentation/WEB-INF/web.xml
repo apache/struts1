@@ -5,6 +5,7 @@
   "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 
 <web-app>
+	<display-name>Struts Tiles Documentation</display-name>
 
   <!-- Action Servlet Configuration -->
   <servlet>

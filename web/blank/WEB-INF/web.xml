@@ -5,7 +5,8 @@
   "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 
 <web-app>
-
+  <display-name>Struts Blank Application</display-name>
+  
   <!-- Standard Action Servlet Configuration (with debugging) -->
   <servlet>
     <servlet-name>action</servlet-name>
