@@ -105,6 +105,7 @@
         <p>Support the ability to include unique tokens in forms used to
         detect duplicate or out-of-order submissions.  Will probably also
         require additions to the <code>&lt;html:form&gt;</code> tag.</p>
+        [STRUTS-USER, William Jaynes, 12/05/2000]
         [STRUTS-DEV, William Jaynes, 12/07/2000]
         [STRUTS-DEV, David Geary, 12/22/2000]
       </info>
@@ -197,6 +198,7 @@
         [STRUTS-DEV, Ken X Horn, 10/18/2000]
         [STRUTS-DEV, Matthias Kerkhoff, 11/18/2000]
         [STRUTS-DEV, Eric, 12/15/2000]
+        [STRUTS-USER, Kevin Wang, 12/21/2000]
       </info>
       <assigned>
       Michael Schachter

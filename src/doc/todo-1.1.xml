@@ -97,6 +97,7 @@
         changes.</p>
         [STRUTS-DEV, Robert Leland, 10/10/2000]
         [STRUTS-DEV, David Geary, 12/20/2000]
+        [STRUTS-USER, Ted Husted, 12/23/2000]
       </info>
     </task>
 
@@ -195,6 +196,7 @@
         presenting numbers, dates, times, timestamps, and so on via formatted
         patterns.</p>
         [STRUTS-DEV, Oleg Alexeev, 10/27/2000]
+        [STRUTS-USER, Ned Seagoon, 12/11/2000]
         [STRUTS-DEV, Ned Seagoon, 12/13/2000]
         [STRUTS-USER, Ned Seagoon, 01/04/2001]
       </info>
@@ -203,7 +205,7 @@
   </task-list>
 
 
-  <task-list name="HTML Forms Tag Library [org.apache.struts.taglib.html]"
+  <task-list name="HTML Tag Library [org.apache.struts.taglib.html]"
              href="HTML">
 
     <info>
@@ -256,9 +258,22 @@
     <task name="Additional Attributes">
       <info>
         <p>Support additional HTML 4.0.1 attributes (such as "disabled",
-        "wrap" on textarea)
+        "readonly", "wrap" on textarea)
         where appropriate.</p>
         [STRUTS-USER, , 08/23/2000]
+      </info>
+    </task>
+
+    <task name="Improved Iteration Support">
+      <info>
+        <p>Improve the ability to use the <code>&lt;logic:iterate&gt;</code>
+        tag over a collection, and generate a set of input fields for each
+        member of the collection (perhaps auto-generating a subscript?).
+        A significant use case is master-detail relationships (say, a
+        customer and their current orders) where you allow editing of any
+        and all fields.</p>
+        [STRUTS-USER, Lars, 12/06/2000]
+        [STRUTS-USER, Chandan Kulkarni, 12/26/2000]
       </info>
     </task>
 
@@ -351,6 +366,18 @@
   </task-list>
 
 
+  <task-list name="XHTML Tag Library [org.apache.struts.taglib.xhtml]"
+             href="XHTML">
+
+    <info>
+    <p>This tag library will contain tags useful in preparing web applications
+    similar to those supported by the HTML tag library, but render output that
+    is well-formed XML in accordance with the XHTML 1.0 specification.</p>
+    </info>
+
+  </task-list>
+
+
   <task-list name="Tools Support [org.apache.struts.tools]"
              href="Tools">
 
@@ -431,6 +458,17 @@
         [STRUTS-DEV, David D'Orto, 12/11/2000]
       </info>
     </task>
+
+  </task-list>
+
+
+  <task-list name="Contributors Area" href="Contrib">
+
+    <info>
+      <p>A portion of the Struts web site, and file system, where individually
+      contributed add-ons for Struts can be hosted and downloaded.</p>
+      [STRUTS-USER, Ned Seagoon, 12/22/2000]
+    </info>
 
   </task-list>
 
