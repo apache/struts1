@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.2 2000/06/15 18:00:02 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 18:00:02 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.3 2000/06/16 01:32:22 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 01:32:22 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:02 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 01:32:22 $
  */
 
 public final class SaveSubscriptionAction extends ActionBase {
@@ -181,33 +181,7 @@ public final class SaveSubscriptionAction extends ActionBase {
 	    return;
 	}
 
-	// Validate the request parameters specified by the user
-	String value = null;
-	Vector errors = new Vector();
-	value = subform.getHost();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.host.required");
-	value = subform.getUsername();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.username.required");
-	value = subform.getPassword();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.password.required");
-	value = subform.getType();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.type.required");
-	else if (!"imap".equals(value) && !"pop3".equals(value))
-	    errors.addElement("error.type.invalid");
-
-	// Report any errors we have discovered back to the original form
-	if (errors.size() > 0) {
-	    saveErrors(request, errors);
-	    String uri = ((ApplicationMapping) mapping).getFailure();
-	    RequestDispatcher rd =
-	      servlet.getServletContext().getRequestDispatcher(uri);
-	    rd.forward(request, response);
-	    return;
-	}
+	// All required validations were done by the form itself
 
 	// Update the persistent subscription information
 	if (subform.getHost().length() > 0)

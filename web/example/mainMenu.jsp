@@ -13,7 +13,7 @@
 <h3><struts:message key="mainMenu.heading"/>
 <jsp:getProperty name="user" property="username"/></h3>
 <ul>
-<li><struts:link href="editRegistration.do"><struts:message key="mainMenu.registration"/></struts:link>
+<li><struts:link href="editRegistration.do?action=Edit"><struts:message key="mainMenu.registration"/></struts:link>
 <li><struts:link href="logoff.do"><struts:message key="mainMenu.logoff"/></struts:link>
 </ul>
 

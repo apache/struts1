@@ -7,8 +7,8 @@
      actionClass="org.apache.struts.example.EditRegistrationAction"
    formAttribute="registrationForm"
        formClass="org.apache.struts.example.RegistrationForm"
-         success="/registration.jsp?action=Edit"
-         failure="/mainMenu.jsp"
+         success="/registration.jsp"
+         failure="/logon.jsp"
   />
 
   <!-- Edit mail subscription -->
@@ -33,7 +33,7 @@
    formAttribute="logonForm"
        formClass="org.apache.struts.example.LogonForm"
          success="/mainMenu.jsp"
-         failure="/logon.jsp"
+       inputForm="/logon.jsp"
   />
 
   <!-- Save user registration -->
@@ -42,7 +42,7 @@
    formAttribute="registrationForm"
        formClass="org.apache.struts.example.RegistrationForm"
          success="/mainMenu.jsp"
-         failure="/registration.jsp"
+       inputForm="/registration.jsp"
   />
 
   <!-- Save mail subscription -->
@@ -50,8 +50,8 @@
      actionClass="org.apache.struts.example.SaveSubscriptionAction"
    formAttribute="subscriptionForm"
        formClass="org.apache.struts.example.SubscriptionForm"
-         success="/registration.jsp?action=Edit"
-         failure="/subscription.jsp"
+         success="/editRegistration.do?action=Edit"
+       inputForm="/subscription.jsp"
   />
 
 </action-mappings>

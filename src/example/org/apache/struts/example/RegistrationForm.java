@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/RegistrationForm.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 01:32:21 $
  *
  * ====================================================================
  *
@@ -63,13 +63,16 @@
 package org.apache.struts.example;
 
 
-import org.apache.struts.action.ActionForm;
+import java.util.Vector;
+import org.apache.struts.action.ValidatingActionForm;
 
 
 /**
  * Form bean for the user registration page.  This form has the following fields,
  * with default values in square brackets:
  * <ul>
+ * <li><b>action</b> - The maintenance action we are performing (Create, Delete,
+ *     or Edit).
  * <li><b>fromAddress</b> - The EMAIL address of the sender, to be included
  *     on sent messages.  [REQUIRED]
  * <li><b>fullName</b> - The full name of the sender, to be included on
@@ -79,18 +82,25 @@ import org.apache.struts.action.ActionForm;
  *     when changing or setting.
  * <li><b>replyToAddress</b> - The "Reply-To" address to be included on
  *     sent messages.  [Same as from address]
+ * <li><b>submit</b> - The submit button that was pressed.
  * <li><b>username</b> - The registered username, which must be unique.
  *     [REQUIRED]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
  */
 
-public final class RegistrationForm implements ActionForm  {
+public final class RegistrationForm implements ValidatingActionForm  {
 
 
     // --------------------------------------------------- Instance Variables
+
+
+    /**
+     * The maintenance action we are performing (Create or Edit).
+     */
+    private String action = "Create";
 
 
     /**
@@ -125,12 +135,43 @@ public final class RegistrationForm implements ActionForm  {
 
 
     /**
+     * The submit button that was pressed.
+     */
+    private String submit = "";
+
+
+    /**
      * The username.
      */
     private String username = "";
 
 
     // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the maintenance action.
+     */
+    public String getAction() {
+
+	return (this.action);
+
+    }
+
+
+    /**
+     * Set the maintenance action.
+     *
+     * @param action The new maintenance action.
+     */
+    public void setAction(String action) {
+
+	if (action == null)
+	    this.action = "";
+	else
+	    this.action = action;
+
+    }
 
 
     /**
@@ -259,6 +300,31 @@ public final class RegistrationForm implements ActionForm  {
 
 
     /**
+     * Return the submit button that was pressed.
+     */
+    public String getSubmit() {
+
+	return (this.submit);
+
+    }
+
+
+    /**
+     * Set the submit button that was pressed.
+     *
+     * @param submit The new submit button
+     */
+    public void setSubmit(String submit) {
+
+	if (submit == null)
+	    this.submit = "";
+	else
+	    this.submit = submit;
+
+    }
+
+
+    /**
      * Return the username.
      */
     public String getUsername() {
@@ -279,6 +345,49 @@ public final class RegistrationForm implements ActionForm  {
 	    this.username = "";
 	else
 	    this.username = username;
+
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Validate the properties of this form bean, and return an array of
+     * message keys for any errors we encounter.
+     */
+    public String[] validate() {
+
+	if ("Cancel".equals(submit))
+	    return (null);
+
+        Vector errors = new Vector();
+	if ((username == null) || (username.length() < 1))
+	    errors.addElement("error.username.required");
+	if (!password.equals(password))
+	    errors.addElement("error.password.match");
+	if ((fromAddress == null) || (fromAddress.length() < 1))
+	    errors.addElement("error.fromAddress.required");
+	else {
+	    int atSign = fromAddress.indexOf("@");
+	    if ((atSign < 1) || (atSign >= (fromAddress.length() - 1)))
+		errors.addElement("error.fromAddress.format");
+	}
+	if ((fullName == null) || (fullName.length() < 1))
+	    errors.addElement("error.fullName.required");
+	if ((replyToAddress != null) && (replyToAddress.length() > 0)) {
+	    int atSign = replyToAddress.indexOf("@");
+	    if ((atSign < 1) || (atSign >= (replyToAddress.length() - 1)))
+		errors.addElement("error.replyToAddress.format");
+	}
+
+        String[] results = null;
+        if (errors.size() > 0) {
+            results = new String[errors.size()];
+            for (int i = 0; i < results.length; i++)
+                results[i] = (String) errors.elementAt(i);
+        }
+        return results;
 
     }
 

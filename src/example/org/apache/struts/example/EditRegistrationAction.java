@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 01:32:21 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
  */
 
 public final class EditRegistrationAction extends ActionBase {
@@ -118,18 +118,24 @@ public final class EditRegistrationAction extends ActionBase {
 	Locale locale = getLocale(request);
 	MessageResources messages = getResources(servlet);
 	HttpSession session = request.getSession();
+	String action = request.getParameter("action");
+	if (action == null)
+	    action = "Create";
 
 	// Is there a currently logged on user?
-	User user = (User) session.getAttribute(Constants.USER_KEY);
-	if (user == null) {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log("EditRegistrationAction: User is not logged on in session "
-	                    + session.getId());
-	    String uri = Constants.LOGON_PAGE;
-	    RequestDispatcher rd =
-	      servlet.getServletContext().getRequestDispatcher(uri);
-	    rd.forward(request, response);
-	    return;
+	User user = null;
+	if (!"Create".equals(action)) {
+	    user = (User) session.getAttribute(Constants.USER_KEY);
+	    if (user == null) {
+		if (servlet.getDebug() >= 1)
+		    servlet.log("EditRegistrationAction: User is not logged on in session "
+	                        + session.getId());
+	        String uri = Constants.LOGON_PAGE;
+	        RequestDispatcher rd =
+	          servlet.getServletContext().getRequestDispatcher(uri);
+	        rd.forward(request, response);
+	        return;
+	    }
 	}
 
 	// Populate the user registration form
@@ -138,12 +144,15 @@ public final class EditRegistrationAction extends ActionBase {
 	    session.setAttribute(mapping.getFormAttribute(), form);
 	}
 	RegistrationForm regform = (RegistrationForm) form;
-	regform.setUsername(user.getUsername());
-	regform.setPassword(null);
-	regform.setPassword2(null);
-	regform.setFullName(user.getFullName());
-	regform.setFromAddress(user.getFromAddress());
-	regform.setReplyToAddress(user.getReplyToAddress());
+	regform.setAction(action);
+	if (user != null) {
+	    regform.setUsername(user.getUsername());
+	    regform.setPassword(null);
+	    regform.setPassword2(null);
+	    regform.setFullName(user.getFullName());
+	    regform.setFromAddress(user.getFromAddress());
+	    regform.setReplyToAddress(user.getReplyToAddress());
+	}
 
 	// Forward control to the edit user registration page
 	String uri = ((ApplicationMapping) mapping).getSuccess();

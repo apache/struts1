@@ -20,6 +20,7 @@
 
 <struts:form action="saveSubscription.do" name="subscriptionForm"
                type="org.apache.struts.example.SubscriptionForm">
+<struts:hidden name="action"/>
 <table border="0" width="100%">
 
   <tr>

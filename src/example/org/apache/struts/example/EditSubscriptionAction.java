@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditSubscriptionAction.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 01:32:21 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
  */
 
 public final class EditSubscriptionAction extends ActionBase {
@@ -161,6 +161,7 @@ public final class EditSubscriptionAction extends ActionBase {
 	    session.setAttribute(mapping.getFormAttribute(), form);
 	}
 	SubscriptionForm subform = (SubscriptionForm) form;
+	subform.setAction(action);
 	subform.setHost(subscription.getHost());
 	subform.setUsername(subscription.getUsername());
 	subform.setPassword(subscription.getPassword());

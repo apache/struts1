@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.6 2000/06/15 19:39:01 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/06/15 19:39:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.7 2000/06/16 01:32:23 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/06/16 01:32:23 $
  *
  * ====================================================================
  *
@@ -63,27 +63,21 @@
 package org.apache.struts.action;
 
 
-import java.util.Hashtable;
-import java.util.MissingResourceException;
 import java.io.InputStream;
 import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.apache.struts.digester.Digester;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
@@ -93,7 +87,7 @@ import org.xml.sax.SAXException;
  * commonly known as "Model 2".  This nomenclature originated with a
  * description in the JavaServerPages Specification, version 0.92, and has
  * persisted ever since (in the absence of a better name).</p>
- * 
+ *
  * <p>Generally, a "Model 2" application is architected as follows:</p>
  * <ul>
  * <li>The user interface will generally be created with JSP pages, which
@@ -157,7 +151,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/06/15 19:39:01 $
+ * @version $Revision: 1.7 $ $Date: 2000/06/16 01:32:23 $
  */
 
 public class ActionServlet
@@ -521,7 +515,9 @@ public class ActionServlet
 	}
 
 	// Process any ActionForm bean related to this request
-	ActionForm formInstance = processActionForm(request, mapping);
+	ActionForm formInstance = processActionForm(mapping, request);
+	if (!processValidate(mapping, formInstance, request, response))
+	    return;
 
 	// Call the action instance itself
 	processActionInstance(mapping, formInstance, request, response);
@@ -534,13 +530,13 @@ public class ActionServlet
      * mapping, if any.  Return the <code>ActionForm</code> instance if
      * we created or utilized one.
      *
-     * @param request The servlet request we are processing
      * @param mapping The ActionMapping we are processing
+     * @param request The servlet request we are processing
      *
      * @exception ServletException if thrown by BeanUtils.populate()
      */
-    protected ActionForm processActionForm(HttpServletRequest request,
-					   ActionMapping mapping)
+    protected ActionForm processActionForm(ActionMapping mapping,
+    					   HttpServletRequest request)
 	throws ServletException {
 
 	HttpSession session = null;
@@ -637,6 +633,53 @@ public class ActionServlet
 	if ((period >= 0) && (period > slash))	// Strip the extenson (if any)
 	    path = path.substring(0, period);
 	return (path);
+
+    }
+
+
+    /**
+     * If this form is a ValidatingActionForm, perform the required validation
+     * and forward back to the input form if there are any errors.  Return
+     * <code>true</code> if we should continue processing (and call the Action
+     * class perform() method), or <code>false</code> if have already forwarded
+     * control back to the input form.
+     *
+     * @param mapping The ActionMapping we are processing
+     * @param formInstance The ActionForm we are processing
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are processing
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected boolean processValidate(ActionMapping mapping,
+        ActionForm formInstance, HttpServletRequest request,
+        HttpServletResponse response)
+        throws IOException, ServletException {
+
+	// Skip validation if it is not appropriate
+	if (formInstance == null)
+	    return (true);
+	if (!(formInstance instanceof ValidatingActionForm))
+	    return (true);
+	if (mapping.getInputForm() == null)
+	    return (true);
+
+	// Perform the requested validation
+	if (debug >= 1)
+	    log(" Validating bean properties");
+	String errors[] = ((ValidatingActionForm) formInstance).validate();
+	if ((errors == null) || (errors.length == 0))
+	    return (true);
+
+	// Save our error messages and return to the input form
+	String uri = mapping.getInputForm();
+	if (debug >= 1)
+	    log(" Form validation error: redirecting to: " + uri);
+	request.setAttribute(Action.ERROR_KEY, errors);
+	RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
+	rd.forward(request, response);
+	return (false);
 
     }
 

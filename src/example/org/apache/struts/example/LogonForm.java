@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.2 2000/06/16 01:32:21 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 01:32:21 $
  *
  * ====================================================================
  *
@@ -63,7 +63,8 @@
 package org.apache.struts.example;
 
 
-import org.apache.struts.action.ActionForm;
+import java.util.Vector;
+import org.apache.struts.action.ValidatingActionForm;
 
 
 /**
@@ -75,10 +76,10 @@ import org.apache.struts.action.ActionForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:21 $
  */
 
-public final class LogonForm implements ActionForm {
+public final class LogonForm implements ValidatingActionForm {
 
 
     // --------------------------------------------------- Instance Variables
@@ -145,6 +146,32 @@ public final class LogonForm implements ActionForm {
 	    this.username = "";
 	else
 	    this.username = username;
+
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Validate the properties of this form bean, and return an array of
+     * message keys for any errors we encounter.
+     */
+    public String[] validate() {
+
+        Vector errors = new Vector();
+	if ((username == null) || (username.length() < 1))
+	    errors.addElement("error.username.required");
+	if ((password == null) || (password.length() < 1))
+	    errors.addElement("error.password.required");
+
+        String[] results = null;
+        if (errors.size() > 0) {
+            results = new String[errors.size()];
+            for (int i = 0; i < results.length; i++)
+                results[i] = (String) errors.elementAt(i);
+        }
+        return results;
 
     }
 

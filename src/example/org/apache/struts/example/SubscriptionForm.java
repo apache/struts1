@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.1 2000/05/31 22:28:14 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:14 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.2 2000/06/16 01:32:22 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 01:32:22 $
  *
  * ====================================================================
  *
@@ -63,28 +63,38 @@
 package org.apache.struts.example;
 
 
-import org.apache.struts.action.ActionForm;
+import java.util.Vector;
+import org.apache.struts.action.ValidatingActionForm;
 
 
 /**
  * Form bean for the user profile page.  This form has the following fields,
  * with default values in square brackets:
  * <ul>
+ * <li><b>action</b> - The maintenance action we are performing (Create, Delete,
+ *     or Edit).
  * <li><b>host</b> - The mail host for this subscription.  [REQUIRED]
  * <li><b>password</b> - The password for this subscription.  [REQUIRED]
+ * <li><b>submit</b> - The submit button that was pressed.
  * <li><b>type</b> - The subscription type (imap,pop3)
        for this subscription.  [REQUIRED]
  * <li><b>username</b> - The username of this subscription.  [REQUIRED]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:14 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:22 $
  */
 
-public final class SubscriptionForm implements ActionForm  {
+public final class SubscriptionForm implements ValidatingActionForm  {
 
 
     // --------------------------------------------------- Instance Variables
+
+
+    /**
+     * The maintenance action we are performing (Create or Edit).
+     */
+    private String action = "Create";
 
 
     /**
@@ -100,6 +110,12 @@ public final class SubscriptionForm implements ActionForm  {
 
 
     /**
+     * The submit button that was pressed.
+     */
+    private String submit = "";
+
+
+    /**
      * The subscription type.
      */
     private String type = "";
@@ -112,6 +128,31 @@ public final class SubscriptionForm implements ActionForm  {
 
 
     // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the maintenance action.
+     */
+    public String getAction() {
+
+	return (this.action);
+
+    }
+
+
+    /**
+     * Set the maintenance action.
+     *
+     * @param action The new maintenance action.
+     */
+    public void setAction(String action) {
+
+	if (action == null)
+	    this.action = "";
+	else
+	    this.action = action;
+
+    }
 
 
     /**
@@ -165,6 +206,31 @@ public final class SubscriptionForm implements ActionForm  {
 
 
     /**
+     * Return the submit button that was pressed.
+     */
+    public String getSubmit() {
+
+	return (this.submit);
+
+    }
+
+
+    /**
+     * Set the submit button that was pressed.
+     *
+     * @param submit The new submit button
+     */
+    public void setSubmit(String submit) {
+
+	if (submit == null)
+	    this.submit = "";
+	else
+	    this.submit = submit;
+
+    }
+
+
+    /**
      * Return the subscription type.
      */
     public String getType() {
@@ -210,6 +276,41 @@ public final class SubscriptionForm implements ActionForm  {
 	    this.username = "";
 	else
 	    this.username = username;
+
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Validate the properties of this form bean, and return an array of
+     * message keys for any errors we encounter.
+     */
+    public String[] validate() {
+
+	if ("Cancel".equals(submit))
+	    return (null);
+
+        Vector errors = new Vector();
+	if ((host == null) || (host.length() < 1))
+	    errors.addElement("error.host.required");
+	if ((username == null) || (username.length() < 1))
+	    errors.addElement("error.username.required");
+	if ((password == null) || (password.length() < 1))
+	    errors.addElement("error.password.required");
+	if ((type == null) || (type.length() < 1))
+	    errors.addElement("error.type.required");
+	else if (!"imap".equals(type) && !"pop3".equals(type))
+	    errors.addElement("error.type.invalid");
+
+        String[] results = null;
+        if (errors.size() > 0) {
+            results = new String[errors.size()];
+            for (int i = 0; i < results.length; i++)
+                results[i] = (String) errors.elementAt(i);
+        }
+        return results;
 
     }
 

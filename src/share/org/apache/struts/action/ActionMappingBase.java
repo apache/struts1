@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.2 2000/06/16 01:32:23 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/16 01:32:23 $
  *
  * ====================================================================
  *
@@ -69,7 +69,7 @@ package org.apache.struts.action;
  * subclassing this class and adding new "getter" and "setter" methods.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/16 01:32:23 $
  */
 
 public class ActionMappingBase implements ActionMapping {
@@ -123,6 +123,12 @@ public class ActionMappingBase implements ActionMapping {
      * against form instance properties (if any).
      */
     protected String formSuffix = null;
+
+
+    /**
+     * The input form URI for this mapping.
+     */
+    protected String inputForm = null;
 
 
     /**
@@ -241,6 +247,28 @@ public class ActionMappingBase implements ActionMapping {
     public void setFormSuffix(String formSuffix) {
 
 	this.formSuffix = formSuffix;
+
+    }
+
+
+    /**
+     * Return the input form URI for this mapping.
+     */
+    public String getInputForm() {
+
+	return (this.inputForm);
+
+    }
+
+
+    /**
+     * Set the input form URI for this mapping.
+     *
+     * @param inputForm The new input form URI
+     */
+    public void setInputForm(String inputForm) {
+
+	this.inputForm = inputForm;
 
     }
 

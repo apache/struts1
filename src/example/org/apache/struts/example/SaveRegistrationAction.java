@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.2 2000/06/15 18:00:01 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 18:00:01 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.3 2000/06/16 01:32:22 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 01:32:22 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:01 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 01:32:22 $
  */
 
 public final class SaveRegistrationAction extends ActionBase {
@@ -121,6 +121,8 @@ public final class SaveRegistrationAction extends ActionBase {
 	HttpSession session = request.getSession();
 	RegistrationForm regform = (RegistrationForm) form;
 	String action = request.getParameter("action");
+	if (action == null)
+	    action = "Create";
 	Hashtable database = (Hashtable)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 
@@ -152,12 +154,12 @@ public final class SaveRegistrationAction extends ActionBase {
 	    return;
 	}
 
+	// All required validations were done in the form bean
+
 	// Validate the request parameters specified by the user
 	String value = null;
 	Vector errors = new Vector();
 	value = regform.getUsername();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.username.required");
 	if (("Create".equals(action)) &&
 	    (database.get(value) != null))
 	    errors.addElement("error.username.unique");
@@ -169,30 +171,11 @@ public final class SaveRegistrationAction extends ActionBase {
 	    if ((value == null) || (value.length() < 1))
 		errors.addElement("error.password2.required");
 	}
-	if (!regform.getPassword().equals(regform.getPassword2()))
-	    errors.addElement("error.password.match");
-	value = regform.getFromAddress();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.fromAddress.required");
-	else {
-	    int atSign = value.indexOf("@");
-	    if ((atSign < 1) || (atSign >= (value.length() - 1)))
-		errors.addElement("error.fromAddress.format");
-	}
-	value = regform.getFullName();
-	if ((value == null) || (value.length() < 1))
-	    errors.addElement("error.fullName.required");
-	value = regform.getReplyToAddress();
-	if ((value != null) && (value.length() > 0)) {
-	    int atSign = value.indexOf("@");
-	    if ((atSign < 1) || (atSign >= (value.length() - 1)))
-		errors.addElement("error.replyToAddress.format");
-	}
 
 	// Report any errors we have discovered back to the original form
 	if (errors.size() > 0) {
 	    saveErrors(request, errors);
-	    String uri = ((ApplicationMapping) mapping).getFailure();
+	    String uri = mapping.getInputForm();
 	    RequestDispatcher rd =
 	      servlet.getServletContext().getRequestDispatcher(uri);
 	    rd.forward(request, response);

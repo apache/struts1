@@ -4,12 +4,12 @@
 
 <html>
 <head>
-<struts:ifParameterEquals name="action" value="Create">
+<struts:ifPropertyEquals name="registrationForm" property="action" value="Create">
   <title><struts:message key="registration.title.create"/></title>
-</struts:ifParameterEquals>
-<struts:ifParameterEquals name="action" value="Edit">
+</struts:ifPropertyEquals>
+<struts:ifPropertyEquals name="registrationForm" property="action" value="Edit">
   <title><struts:message key="registration.title.edit"/></title>
-</struts:ifParameterEquals>
+</struts:ifPropertyEquals>
 </head>
 <body bgcolor="white">
 
@@ -17,6 +17,7 @@
 
 <struts:form action="saveRegistration.do" name="registrationForm"
                type="org.apache.struts.example.RegistrationForm">
+<struts:hidden name="action"/>
 <table border="0" width="100%">
 
   <tr>
@@ -24,13 +25,13 @@
       <struts:message key="prompt.username"/>
     </th>
     <td align="left">
-      <struts:ifParameterEquals name="action" value="Create">
+      <struts:ifPropertyEquals name="registrationForm" property="action" value="Create">
         <struts:text name="username" size="16" maxlength="16"/>
-      </struts:ifParameterEquals>
-      <struts:ifParameterEquals name="action" value="Edit">
+      </struts:ifPropertyEquals>
+      <struts:ifPropertyEquals name="registrationForm" property="action" value="Edit">
         <struts:property name="username"/>
 	<struts:hidden name="username"/>
-      </struts:ifParameterEquals>
+      </struts:ifPropertyEquals>
     </td>
   </tr>
 
@@ -97,13 +98,9 @@
   </tr>
 
 </table>
-
-<input type="hidden" name="action"
- value="<struts:parameter name="action"/>">
-
 </struts:form>
 
-<struts:ifParameterEquals name="action" value="Edit">
+<struts:ifPropertyEquals name="registrationForm" property="action" value="Edit">
 
 <div align="center">
 <h3><struts:message key="heading.subscriptions"/></h3>
@@ -154,7 +151,7 @@
   <struts:message key="registration.addSubscription"/>
 </app:linkUser>
 
-</struts:ifParameterEquals>
+</struts:ifPropertyEquals>
 
 </body>
 </html>

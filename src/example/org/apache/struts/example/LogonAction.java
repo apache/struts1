@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.2 2000/06/15 18:00:01 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/15 18:00:01 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.3 2000/06/16 01:32:21 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/16 01:32:21 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/15 18:00:01 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/16 01:32:21 $
  */
 
 public final class LogonAction extends ActionBase {
@@ -119,14 +119,9 @@ public final class LogonAction extends ActionBase {
 	User user = null;
 
 	// Validate the request parameters specified by the user
-	String value = null;
 	Vector errors = new Vector();
 	String username = ((LogonForm) form).getUsername();
-	if ((username == null) || (username.length() < 1))
-	    errors.addElement("error.username.required");
 	String password = ((LogonForm) form).getPassword();
-	if ((password == null) || (password.length() < 1))
-	    errors.addElement("error.password.required");
 	Hashtable database = (Hashtable)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)
@@ -142,7 +137,7 @@ public final class LogonAction extends ActionBase {
 	// Report any errors we have discovered back to the original form
 	if (errors.size() > 0) {
 	    saveErrors(request, errors);
-	    String uri = ((ApplicationMapping) mapping).getFailure();
+	    String uri = mapping.getInputForm();
 	    RequestDispatcher rd =
 	      servlet.getServletContext().getRequestDispatcher(uri);
 	    rd.forward(request, response);
