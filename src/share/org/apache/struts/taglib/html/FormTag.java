@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.34 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.34 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.35 2002/11/17 00:56:19 dgraham Exp $
+ * $Revision: 1.35 $
+ * $Date: 2002/11/17 00:56:19 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.34 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.35 $ $Date: 2002/11/17 00:56:19 $
  */
 
 public class FormTag extends TagSupport {
@@ -627,7 +627,7 @@ public class FormTag extends TagSupport {
             results.append("\r\n");
             results.append(this.getJsStartElement());
             results.append("  <!--\r\n");
-            results.append(" if (document.forms[\"");
+            results.append("  if (document.forms[\"");
             results.append(beanName);
             results.append("\"].elements[\"");
             results.append(tempFocus);
@@ -636,15 +636,32 @@ public class FormTag extends TagSupport {
                 results.append(refocus.toString());
             }
             results.append(".type != \"hidden\") \r\n");
-            results.append("    document.forms[\"");
+            
+            
+            results.append("     var focusControl = document.forms[\"");
             results.append(beanName);
             results.append("\"].elements[\"");
             results.append(tempFocus);
-            results.append("\"]");
+            results.append("\"];");
             if (refocus.length() > 1) {
                 results.append(refocus.toString());
             }
-            results.append(".focus()\r\n");
+            results.append("\r\n");
+
+            results.append("     if (focusControl.name == null) {\r\n");
+            results.append("         focusControl = focusControl[0];\r\n");
+            results.append("     }\r\n");
+            results.append("     focusControl.focus();\r\n");
+//            results.append("    document.forms[\"");
+//            results.append(beanName);
+//            results.append("\"].elements[\"");
+//            results.append(tempFocus);
+//            results.append("\"]");
+//            if (refocus.length() > 1) {
+//                results.append(refocus.toString());
+//            }
+//            results.append(".focus();\r\n");
+            
             results.append("  // -->\r\n");
             results.append("</script>\r\n");
         }
