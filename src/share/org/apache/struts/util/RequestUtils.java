@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.120 2003/07/26 17:21:02 rleland Exp $
- * $Revision: 1.120 $
- * $Date: 2003/07/26 17:21:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.121 2003/07/26 17:39:33 rleland Exp $
+ * $Revision: 1.121 $
+ * $Date: 2003/07/26 17:39:33 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.120 $ $Date: 2003/07/26 17:21:02 $
+ * @version $Revision: 1.121 $ $Date: 2003/07/26 17:39:33 $
  */
 
 public class RequestUtils {
@@ -244,6 +244,9 @@ public class RequestUtils {
      * @exception JspException if we cannot look up the required beans
      * @exception JspException if a class cast exception occurs on a
      *  looked-up bean or property
+     * @deprecated To be removed after Struts 1.2.
+     * Use {@link org.apache.struts.taglib.TagUtils#computeParameters(PageContext,String,String,String,String,String,String,String,boolean)} instead.
+
      */
     public static Map computeParameters(
         PageContext pageContext,
@@ -256,89 +259,8 @@ public class RequestUtils {
         String scope,
         boolean transaction)
         throws JspException {
-
-        // Short circuit if no parameters are specified
-        if ((paramId == null) && (name == null) && !transaction) {
-            return (null);
-        }
-
-        // Locate the Map containing our multi-value parameters map
-        Map map = null;
-        try {
-            if (name != null) {
-                map = (Map) TagUtils.getInstance().lookup(pageContext, name, property, scope);
-            }
-        } catch (ClassCastException e) {
-            saveException(pageContext, e);
-            throw new JspException(messages.getMessage("parameters.multi", name, property, scope));
-        } catch (JspException e) {
-            saveException(pageContext, e);
-            throw e;
-        }
-
-        // Create a Map to contain our results from the multi-value parameters
-        Map results = null;
-        if (map != null) {
-            results = new HashMap(map);
-        } else {
-            results = new HashMap();
-        }
-        
-        // Add the single-value parameter (if any)
-        if ((paramId != null) && (paramName != null)) {
-
-            Object paramValue = null;
-            try {
-                paramValue = TagUtils.getInstance().lookup(pageContext, paramName, paramProperty, paramScope);
-            } catch (JspException e) {
-                saveException(pageContext, e);
-                throw e;
-            }
-
-            if (paramValue != null) {
-
-                String paramString = null;
-                if (paramValue instanceof String) {
-                    paramString = (String) paramValue;
-                } else {
-                    paramString = paramValue.toString();
-                }
-                
-                Object mapValue = results.get(paramId);
-                if (mapValue == null) {
-                    results.put(paramId, paramString);
-                } else if (mapValue instanceof String) {
-                    String newValues[] = new String[2];
-                    newValues[0] = (String) mapValue;
-                    newValues[1] = paramString;
-                    results.put(paramId, newValues);
-                } else /* if (mapValue instanceof String[]) */ {
-                    String oldValues[] = (String[]) mapValue;
-                    String newValues[] = new String[oldValues.length + 1];
-                    System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
-                    newValues[oldValues.length] = paramString;
-                    results.put(paramId, newValues);
-                }
-
-            }
-
-        }
-
-        // Add our transaction control token (if requested)
-        if (transaction) {
-            HttpSession session = pageContext.getSession();
-            String token = null;
-            if (session != null) {
-                token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
-            }
-            if (token != null) {
-                results.put(Constants.TOKEN_KEY, token);
-            }
-        }
-
-        // Return the completed Map
-        return (results);
-
+         return TagUtils.getInstance().computeParameters(pageContext,paramId,paramName,paramProperty,paramScope,
+                                                                                 name,property,scope,transaction);
     }
 
     /**
