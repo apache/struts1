@@ -16,7 +16,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.44 2003/09/15 12:18:48 husted Exp $
+    $Id: status.xml,v 1.45 2003/09/15 12:23:04 husted Exp $
     </p>
 
     <p>
@@ -377,12 +377,12 @@
 
         <p>
             Work on such an implementation could be undertaken by Struts, either here at Jakarta or after our applying
-            for status as a top-level Apache project. Or, "Apache Faces" it could also be undertaken as a separate
+            for status as a top-level Apache project. <b>Or</b>, "Apache Faces" could also be undertaken as a separate
             project, with Struts simply using the technology as we now use technologies from the Commons today.
         </p>
 
         <p>
-            However, At this point, there is no "code on the table". Apache products leave decisions such as these to
+            However, at this point, there is no "code on the table". Apache products leave decisions such as these to
             the people who create and maintain the codebase. So, lacking a codebase, no binding decision
             can be made. But, anyone wishing to pursue an "Apache Faces" implementation should be aware that the option
             certainly exists.
