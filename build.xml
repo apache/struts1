@@ -16,16 +16,15 @@
     <mkdir   dir="${build.home}/library/classes"/>
     <mkdir   dir="${build.home}/library/classes/META-INF"/>
     <mkdir   dir="${build.home}/library/classes/META-INF/tlds"/>
-    <copyfile src="src/conf/struts.tld"
-             dest="${build.home}/library/classes/META-INF/taglib.tld"/>
+    <copy   file="src/conf/struts.tld"
+          tofile="${build.home}/library/classes/META-INF/taglib.tld"/>
     <mkdir   dir="${build.home}/library/classes/org"/>
     <mkdir   dir="${build.home}/library/classes/org/apache"/>
     <mkdir   dir="${build.home}/library/classes/org/apache/struts"/>
     <mkdir   dir="${build.home}/library/classes/org/apache/struts/resources"/>
-    <copydir src="src/conf"
-            dest="${build.home}/library/classes/org/apache/struts/resources">
-      <include name="**/*.dtd"/>
-    </copydir>
+    <copy  todir="${build.home}/library/classes/org/apache/struts/resources">
+      <fileset dir="src/conf" includes="**/*.dtd"/>
+    </copy>
   </target>
 
   <!-- BUILD:  Create directories and copy files for documentation app -->
@@ -33,14 +32,15 @@
     <mkdir   dir="${build.home}"/>
     <mkdir   dir="${build.home}/documentation"/>
     <mkdir   dir="${build.home}/documentation/dtds"/>
-    <copydir src="src/conf"
-            dest="${build.home}/documentation/dtds">
-      <include name="**/*.dtd"/>
-    </copydir>
+    <copy  todir="${build.home}/documentation/dtds">
+      <fileset dir="src/conf" includes="**/*.dtd"/>
+    </copy>
     <mkdir   dir="${build.home}/documentation/WEB-INF"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/documentation/WEB-INF/lib"/>
-    <copydir src="web/documentation" dest="${build.home}/documentation"/>
+    <copy  todir="${build.home}/documentation">
+      <fileset dir="web/documentation"/>
+    </copy>
   </target>
 
   <!-- BUILD:  Create directories and copy files for example application -->
@@ -50,7 +50,9 @@
     <mkdir   dir="${build.home}/example/WEB-INF"/>
     <mkdir   dir="${build.home}/example/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/example/WEB-INF/lib"/>
-    <copydir src="web/example" dest="${build.home}/example"/>
+    <copy  todir="${build.home}/example">
+      <fileset dir="web/example"/>
+    </copy>
   </target>
 
   <!-- BUILD:  Create directories and copy files for test application -->
@@ -60,19 +62,23 @@
     <mkdir   dir="${build.home}/test/WEB-INF"/>
     <mkdir   dir="${build.home}/test/WEB-INF/classes"/>
     <mkdir   dir="${build.home}/test/WEB-INF/lib"/>
-    <copydir src="web/test" dest="${build.home}/test"/>
+    <copy  todir="${build.home}/test">
+      <fileset dir="web/test"/>
+    </copy>
   </target>
 
-  <!-- BUILD:  Create dieectories and copy files for template example -->
-  <target name="prepare.template-example">
+  <!-- BUILD:  Create directories and copy files for template example -->
+  <target name="prepare.template">
     <mkdir   dir="${build.home}"/>
-    <mkdir   dir="${build.home}/template-example"/>
-    <mkdir   dir="${build.home}/template-example/css"/>
-    <mkdir   dir="${build.home}/template-example/graphics"/>
-    <mkdir   dir="${build.home}/template-example/WEB-INF"/>
-    <mkdir   dir="${build.home}/template-example/WEB-INF/lib"/>
-    <mkdir   dir="${build.home}/template-example/WEB-INF/tlds"/>
-    <copydir src="web/template-example" dest="${build.home}/template-example"/>
+    <mkdir   dir="${build.home}/template"/>
+    <mkdir   dir="${build.home}/template/css"/>
+    <mkdir   dir="${build.home}/template/graphics"/>
+    <mkdir   dir="${build.home}/template/WEB-INF"/>
+    <mkdir   dir="${build.home}/template/WEB-INF/lib"/>
+    <mkdir   dir="${build.home}/template/WEB-INF/tlds"/>
+    <copy  todir="${build.home}/template">
+      <fileset dir="web/template-example"/>
+    </copy>
   </target>
 
   <!-- DIST:  Create directories and copy files for distribution -->
@@ -90,18 +96,19 @@
     <javac srcdir="src/share"     destdir="${build.home}/library/classes"
            classpath="${servlet.jar}"
 	   debug="true" optimize="false" deprecation="false"/>
-    <copydir src="src/share"         dest="${build.home}/library/classes">
-      <include name="**/*.properties" />
-    </copydir>
-    <copydir src="src/conf" dest="${build.home}/library">
-      <exclude name="**/*.MF"/>
-    </copydir>
+    <copy   todir="${build.home}/library/classes">
+      <fileset dir="src/share" includes="**/*.properties"/>
+    </copy>
+    <copy   todir="${build.home}/library">
+      <fileset dir="src/conf" includes="*.dtd"/>
+      <fileset dir="src/conf" includes="*.tld"/>
+    </copy>
     <style basedir="src/doc" destdir="${build.home}/library"
          extension=".tld" style="stylesheets/tld.xsl"
           includes="struts-*.xml"/>
-    <copydir src="${build.home}/library"
-            dest="${build.home}/library/classes/META-INF/tlds"
-        includes="struts-*.tld"/>
+    <copy    todir="${build.home}/library/classes/META-INF/tlds">
+      <fileset dir="${build.home}/library" includes="struts-*.tld"/>
+    </copy>
   </target>
 
   <!-- BUILD:  Compile documentation application components -->
@@ -117,22 +124,30 @@
 -->
 
     <!-- Copy Struts JAR file and TLDs to the documentation app -->
-    <copyfile src="${dist.home}/lib/${app.name}.jar"
-             dest="${build.home}/documentation/WEB-INF/lib/${app.name}.jar"/>
-    <copydir  src="${dist.home}/lib"
-             dest="${build.home}/documentation/WEB-INF"
-         includes="*.tld"/>
+    <copy    file="${dist.home}/lib/${app.name}.jar"
+           tofile="${build.home}/documentation/WEB-INF/lib/${app.name}.jar"/>
+    <copy   todir="${build.home}/documentation/WEB-INF">
+      <fileset dir="${dist.home}/lib" includes="*.tld"/>
+    </copy>
 
     <!-- Copy static documentation content -->
-    <copyfile src="TODO" dest="${build.home}/documentation/todo.txt"/>
-    <copydir src="web/documentation" dest="${build.home}/documentation"/>
+    <copy    file="TODO" tofile="${build.home}/documentation/todo.txt"/>
+    <copy   todir="${build.home}/documentation">
+      <fileset dir="web/documentation"/>
+    </copy>
 
     <!-- Create dynamically generated documentation -->
     <style   basedir="src/doc" destdir="${build.home}/documentation"
            extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
-    <copydir src="src/doc" dest="${build.home}/documentation"
-        includes="**/*.css,**/*.gif,**/*.html,**/*.jpg,**/*.js"/>
-
+    <copy      todir="${build.home}/documentation">
+      <fileset   dir="src/doc">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
   </target>
 
   <!-- BUILD:  Compile example application components -->
@@ -142,26 +157,30 @@
           destdir="${build.home}/example/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
             debug="true" optimize="false" deprecation="false"/>
-    <copydir src="src/example" dest="${build.home}/example/WEB-INF/classes">
-      <include name="**/*.properties" />
-    </copydir>
-    <copydir  src="web/example" dest="${build.home}/example"/>
-    <copyfile src="${dist.home}/lib/${app.name}.jar"
-             dest="${build.home}/example/WEB-INF/lib/${app.name}.jar"/>
-    <copydir  src="${dist.home}/lib"
-             dest="${build.home}/example/WEB-INF"
-         includes="*.tld"/>
+    <copy   todir="${build.home}/example/WEB-INF/classes">
+      <fileset dir="src/example" includes="**/*.properties"/>
+    </copy>
+    <copy   todir="${build.home}/example">
+      <fileset dir="web/example"/>
+    </copy>
+    <copy    file="${dist.home}/lib/${app.name}.jar"
+           tofile="${build.home}/example/WEB-INF/lib/${app.name}.jar"/>
+    <copy   todir="${build.home}/example/WEB-INF">
+      <fileset dir="${dist.home}/lib" includes="*.tld"/>
+    </copy>
   </target>
 
-  <!-- BUILD:  Compile example application components -->
-  <target name="compile.template-example"
-       depends="dist.library,prepare.template-example">
-    <copydir  src="web/template-example" dest="${build.home}/template-example"/>
-    <copyfile src="${dist.home}/lib/${app.name}.jar"
-             dest="${build.home}/template-example/WEB-INF/lib/${app.name}.jar"/>
-    <copydir  src="${dist.home}/lib"
-             dest="${build.home}/template-example/WEB-INF/tlds"
-         includes="*.tld"/>
+  <!-- BUILD:  Compile template example application components -->
+  <target name="compile.template"
+       depends="dist.library,prepare.template">
+    <copy   todir="${build.home}/template">
+      <fileset dir="web/template-example"/>
+    </copy>
+    <copy    file="${dist.home}/lib/${app.name}.jar"
+           tofile="${build.home}/template/WEB-INF/lib/${app.name}.jar"/>
+    <copy   todir="${build.home}/template/WEB-INF/tlds">
+      <fileset dir="${dist.home}/lib" includes="*.tld"/>
+    </copy>
   </target>
 
   <!-- BUILD:  Compile test application components -->
@@ -171,20 +190,22 @@
           destdir="${build.home}/test/WEB-INF/classes"
         classpath="${build.home}/library/classes:${servlet.jar}"
             debug="true" optimize="false" deprecation="false"/>
-    <copydir src="src/test" dest="${build.home}/test/WEB-INF/classes">
-      <include name="**/*.properties" />
-    </copydir>
-    <copydir  src="web/test" dest="${build.home}/test"/>
-    <copyfile src="${dist.home}/lib/${app.name}.jar"
-             dest="${build.home}/test/WEB-INF/lib/${app.name}.jar"/>
-    <copydir  src="${dist.home}/lib"
-             dest="${build.home}/test/WEB-INF"
-         includes="*.tld"/>
+    <copy  todir="${build.home}/test/WEB-INF/classes">
+      <fileset dir="src/test" includes="**/*.properties"/>
+    </copy>
+    <copy   todir="${build.home}/test">
+      <fileset dir="web/test"/>
+    </copy>
+    <copy    file="${dist.home}/lib/${app.name}.jar"
+           tofile="${build.home}/test/WEB-INF/lib/${app.name}.jar"/>
+    <copy   todir="${build.home}/test/WEB-INF">
+      <fileset dir="${dist.home}/lib" includes="*.tld"/>
+    </copy>
   </target>
 
   <!-- BUILD:  Create Javadoc documentation -->
   <target name="compile.javadoc">
-    <deltree  dir="${build.home}/documentation/api"/>
+    <delete   dir="${build.home}/documentation/api"/>
     <mkdir    dir="${build.home}/documentation/api"/>
     <javadoc sourcepath="src/share"
                 destdir="${build.home}/documentation/api"
@@ -199,9 +220,10 @@
 
   <!-- DIST:  Construct library distributables -->
   <target name="dist.library" depends="prepare.dist,compile.library">
-    <copydir  src="${build.home}/library"
-             dest="${dist.home}/lib"
-         includes="*.tld"/>
+    <copy   todir="${dist.home}/lib">
+      <fileset dir="${build.home}/library" includes="*.dtd"/>
+      <fileset dir="${build.home}/library" includes="*.tld"/>
+    </copy>
     <jar  jarfile="${dist.home}/lib/${app.name}.jar"
          manifest="src/conf/MANIFEST.MF"
           basedir="${build.home}/library/classes" includes="**"/>
@@ -220,10 +242,10 @@
           basedir="${build.home}/example" includes="**"/>
   </target>
 
-  <!-- DIST:  Construct template-example distributables -->
-  <target name="dist.template-example" depends="dist.library,compile.template-example">
-    <jar  jarfile="${dist.home}/webapps/${app.name}-template-example.war"
-          basedir="${build.home}/template-example" includes="**"/>
+  <!-- DIST:  Construct template example distributables -->
+  <target name="dist.template" depends="dist.library,compile.template">
+    <jar  jarfile="${dist.home}/webapps/${app.name}-template.war"
+          basedir="${build.home}/template" includes="**"/>
   </target>
 
 
@@ -235,43 +257,63 @@
 
   <!-- DIST:  Copy sources -->
   <target name="dist.source" depends="prepare.dist">
-    <copydir  src="."       dest="${dist.home}/etc"   includes="build.*"/>
-    <copyfile src="INSTALL" dest="${dist.home}/INSTALL"/>
-    <copyfile src="LICENSE" dest="${dist.home}/LICENSE"/>
-    <copyfile src="README"  dest="${dist.home}/README"/>
-    <copyfile src="TODO"    dest="${dist.home}/TODO"/>
-    <copydir  src="src"     dest="${dist.home}/src"/>
-    <copydir  src="web"     dest="${dist.home}/web"/>
+    <copy   todir="${dist.home}/etc">
+      <fileset dir="." includes="build.*"/>
+    </copy>
+    <copy    file="INSTALL" tofile="${dist.home}/INSTALL"/>
+    <copy    file="LICENSE" tofile="${dist.home}/LICENSE"/>
+    <copy    file="README"  tofile="${dist.home}/README"/>
+    <copy    file="TODO"    tofile="${dist.home}/TODO"/>
+    <copy   todir="${dist.home}/src">
+      <fileset dir="src"/>
+    </copy>
+    <copy   todir="${dist.home}/web">
+      <fileset dir="web"/>
+    </copy>
   </target>
 
   <!-- DIST:  Construct complete release distribution -->
   <target name="dist"
-       depends="dist.library,dist.documentation,dist.example,dist.template-example,dist.test,dist.source"/>
+       depends="dist.library,dist.documentation,dist.example,dist.template,dist.test,dist.source"/>
 
   <!-- DEPLOY:  Deploy these applications on Catalina -->
-  <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.test">
+  <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.template,compile.test">
     <mkdir   dir="${catalina.home}/webapps/struts-documentation"/>
-    <copydir src="${build.home}/documentation"
-            dest="${catalina.home}/webapps/struts-documentation"/>
+    <copy  todir="${catalina.home}/webapps/struts-documentation">
+      <fileset dir="${build.home}/documentation"/>
+    </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-example"/>
-    <copydir src="${build.home}/example"
-            dest="${catalina.home}/webapps/struts-example"/>
+    <copy  todir="${catalina.home}/webapps/struts-example">
+      <fileset dir="${build.home}/example"/>
+    </copy>
+    <mkdir   dir="${catalina.home}/webapps/struts-template"/>
+    <copy  todir="${catalina.home}/webapps/struts-template">
+      <fileset dir="${build.home}/template"/>
+    </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-test"/>
-    <copydir src="${build.home}/test"
-            dest="${catalina.home}/webapps/struts-test"/>
+    <copy  todir="${catalina.home}/webapps/struts-test">
+      <fileset dir="${build.home}/test"/>
+    </copy>
   </target>
 
   <!-- DEPLOY:  Deploy these applications on Tomcat -->
-  <target name="deploy.tomcat" depends="compile.documentation,compile.example,compile.test">
+  <target name="deploy.tomcat" depends="compile.documentation,compile.example,compile.template,compile.test">
     <mkdir   dir="${tomcat.home}/webapps/struts-documentation"/>
-    <copydir src="${build.home}/documentation"
-            dest="${tomcat.home}/webapps/struts-documentation"/>
+    <copy  todir="${tomcat.home}/webapps/struts-documentation">
+      <fileset dir="${build.home}/documentation"/>
+    </copy>
     <mkdir   dir="${tomcat.home}/webapps/struts-example"/>
-    <copydir src="${build.home}/example"
-            dest="${tomcat.home}/webapps/struts-example"/>
+    <copy  todir="${tomcat.home}/webapps/struts-example">
+      <fileset dir="${build.home}/example"/>
+    </copy>
+    <mkdir   dir="${tomcat.home}/webapps/struts-template"/>
+    <copy  todir="${tomcat.home}/webapps/struts-template">
+      <fileset dir="${build.home}/template"/>
+    </copy>
     <mkdir   dir="${tomcat.home}/webapps/struts-test"/>
-    <copydir src="${build.home}/test"
-            dest="${tomcat.home}/webapps/struts-test"/>
+    <copy  todir="${tomcat.home}/webapps/struts-test">
+      <fileset dir="${build.home}/test"/>
+    </copy>
   </target>
 
   <!-- UTILITY:  Display all targets intended for developer use -->
@@ -286,7 +328,8 @@
     <echo message="  compile.examples       Builds the examples webapp"/>
     <echo message="  compile.javadoc        Builds Javadoc API docs for Struts"/>
     <echo message="  compile.library        Builds the main packages"/>
-    <echo message="  compile.tests          Builds the tests webapp"/>
+    <echo message="  compile.template       Builds the template example webapp"/>
+    <echo message="  compile.test           Builds the tests webapp"/>
     <echo message="  deploy.catalina        Deploys build to Catalina build directory"/>
     <echo message="  deploy.tomcat          Depoys build to Tomcat build directory"/>
     <echo message="  dist                   Builds binary distribution in dist directory"/>
@@ -296,8 +339,8 @@
 
   <!-- UTILITY:  Clean up build and distribution directories -->
   <target name="clean">
-    <deltree dir="${build.home}"/>
-    <deltree dir="${dist.home}"/>
+    <delete dir="${build.home}"/>
+    <delete dir="${dist.home}"/>
   </target>
 
   <!-- UTILITY:  All-in-one build target -->
