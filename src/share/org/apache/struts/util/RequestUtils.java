@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.108 2003/07/04 20:53:42 dgraham Exp $
- * $Revision: 1.108 $
- * $Date: 2003/07/04 20:53:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.109 2003/07/14 04:21:05 martinc Exp $
+ * $Revision: 1.109 $
+ * $Date: 2003/07/14 04:21:05 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.108 $ $Date: 2003/07/04 20:53:42 $
+ * @version $Revision: 1.109 $ $Date: 2003/07/14 04:21:05 $
  */
 
 public class RequestUtils {
@@ -388,8 +388,8 @@ public class RequestUtils {
         boolean redirect)
         throws MalformedURLException {
 
-	return computeURL(pageContext, forward, href, page, null, params,
-			  anchor, redirect);
+        return computeURL(pageContext, forward, href, page, null, params,
+                          anchor, redirect);
     }
     
     /**
@@ -529,7 +529,7 @@ public class RequestUtils {
         } else if (href != null) {
             url.append(href);
         } else if (action != null) {
-	    	url.append(getActionMappingURL(action, pageContext));
+            url.append(getActionMappingURL(action, pageContext));
 
         } else /* if (page != null) */ {
             url.append(request.getContextPath());
@@ -866,15 +866,15 @@ public class RequestUtils {
         throws JspException {
             
         if (scopeName == null) {
-        	return pageContext.findAttribute(name);
+            return pageContext.findAttribute(name);
         }
         
         try {
-        	return pageContext.getAttribute(name, getScope(scopeName));
+            return pageContext.getAttribute(name, getScope(scopeName));
         
         } catch (JspException e) {
-        	saveException(pageContext, e);
-        	throw e;
+            saveException(pageContext, e);
+            throw e;
         }
 
     }
@@ -888,13 +888,13 @@ public class RequestUtils {
      * @since Struts 1.1
      */
     public static int getScope(String scopeName) throws JspException {
-		Integer scope = (Integer) scopes.get(scopeName.toLowerCase());
+        Integer scope = (Integer) scopes.get(scopeName.toLowerCase());
 
-		if (scope == null) {
-			throw new JspException(messages.getMessage("lookup.scope", scope));
-		}
+        if (scope == null) {
+            throw new JspException(messages.getMessage("lookup.scope", scope));
+        }
 
-		return scope.intValue();
+        return scope.intValue();
     }
 
     /**
@@ -1035,8 +1035,8 @@ public class RequestUtils {
         Object args[])
         throws JspException {
 
-       	MessageResources resources =
-			retrieveMessageResources(pageContext, bundle, false);
+        MessageResources resources =
+            retrieveMessageResources(pageContext, bundle, false);
 
         Locale userLocale = retrieveUserLocale(pageContext, locale);
         
@@ -1067,11 +1067,11 @@ public class RequestUtils {
         boolean checkPageScope)
         throws JspException {
             
-		MessageResources resources = null;
+        MessageResources resources = null;
 
-		if (bundle == null) {
-			bundle = Globals.MESSAGES_KEY;
-		}
+        if (bundle == null) {
+            bundle = Globals.MESSAGES_KEY;
+        }
 
         if (checkPageScope) {
             resources =
@@ -1080,29 +1080,29 @@ public class RequestUtils {
                     PageContext.PAGE_SCOPE);
         }
 
-		if (resources == null) {
-			resources =
-				(MessageResources) pageContext.getAttribute(
-					bundle,
-					PageContext.REQUEST_SCOPE);
-		}
+        if (resources == null) {
+            resources =
+                (MessageResources) pageContext.getAttribute(
+                    bundle,
+                    PageContext.REQUEST_SCOPE);
+        }
 
-		if (resources == null) {
-			resources =
-				(MessageResources) pageContext.getAttribute(
-					bundle,
-					PageContext.APPLICATION_SCOPE);
-		}
+        if (resources == null) {
+            resources =
+                (MessageResources) pageContext.getAttribute(
+                    bundle,
+                    PageContext.APPLICATION_SCOPE);
+        }
 
-		if (resources == null) {
-			JspException e =
-				new JspException(messages.getMessage("message.bundle", bundle));
-			saveException(pageContext, e);
-			throw e;
-		}
+        if (resources == null) {
+            JspException e =
+                new JspException(messages.getMessage("message.bundle", bundle));
+            saveException(pageContext, e);
+            throw e;
+        }
 
-		return resources;
-	}
+        return resources;
+    }
 
     /**
      * Populate the properties of the specified JavaBean from the specified
@@ -1393,20 +1393,20 @@ public class RequestUtils {
      * @exception JspException if a lookup error occurs (will have been
      *  saved in the request already)
      */
-	public static boolean present(
-		PageContext pageContext,
-		String bundle,
-		String locale,
-		String key)
-		throws JspException {
+    public static boolean present(
+        PageContext pageContext,
+        String bundle,
+        String locale,
+        String key)
+        throws JspException {
 
-		MessageResources resources =
-			retrieveMessageResources(pageContext, bundle, true);
+        MessageResources resources =
+            retrieveMessageResources(pageContext, bundle, true);
 
-		Locale userLocale = retrieveUserLocale(pageContext, locale);
+        Locale userLocale = retrieveUserLocale(pageContext, locale);
 
-		return (resources.isPresent(userLocale, key));
-	}
+        return (resources.isPresent(userLocale, key));
+    }
 
     /**
      * Compute the printable representation of a URL, leaving off the
