@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+
+     NOTE:  You would only flesh out the details in the "form-bean"
+     declarations if you had a generator tool that used them to create
+     the corresponding Java classes for you.  Otherwise, you would
+     need only the "form-bean" element itself, with the corresponding
+     "name" and "type" attributes.
+-->
+
+
+<struts-config>
+
+
+  
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <!-- Logon form bean -->
+    <form-bean      name="invoiceForm"
+                    type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
+    <form-bean      name="portalPrefsForm"
+                    type="org.apache.struts.webapp.tiles.dynPortal.PortalPrefsForm"/>
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward   name="failure"              path="forward.example.failure.page"/>
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+    <!-- Main page url entry. 
+	     This action is used to map an URL to an internal jsp.
+	     A side effect is that the struts module is switched to the module 
+		 associated to this config file  -->
+    <action    path="/index"
+               type="org.apache.struts.actions.ForwardAction"
+               parameter="mainLayout"/>
+
+    <!-- Edit user registration -->
+    <action    path="/forwardExampleAction"
+               type="org.apache.struts.webapp.tiles.tutorial.ForwardExampleAction">
+      <forward name="success"              path="forward.example.success.page"/>
+    </action>
+
+  <!-- Edit invoice example -->
+    <action     path="/lang"
+                type="org.apache.struts.webapp.tiles.lang.SelectLocaleAction">
+      <forward  name="failure"        path="/index.jsp"/>
+      <forward  name="success"        path="/index.jsp"/>
+  </action>
+  
+  <!-- Dynamic template example -->
+    <action     path="/dynTemplate"
+                type="org.apache.struts.webapp.tiles.template.DynTemplateAction">
+      <forward  name="success"        path="/dynFramesetPage.jsp"/>
+  </action>
+  
+  
+    <!-- Edit invoice example -->
+  <action     path="/invoice/editInvoice"
+       		  type="org.apache.struts.webapp.tiles.invoice.EditInvoiceAction"
+			  name="invoiceForm" >
+      <forward  name="success"        path="/invoice/index.jsp"/>
+  </action>
+
+  <!-- =======================================================  -->
+  <!-- Tutorial Dynamic portal actions  -->
+  <!-- =======================================================  -->
+    <!-- Dynamic Portal user lists retrieving action -->
+  <action     path="/actions/myPortal"
+       		  type="org.apache.struts.webapp.tiles.dynPortal.RetrievePortalAction">
+      <forward  name="success"        path="main.portal.body"/>
+  </action>
+
+    <!-- Dynamic Portal user lists set action : no op action forwarding to tile -->
+  <action     path="/actions/myPortalPrefs"
+       		  type="org.apache.struts.tiles.actions.NoOpAction"
+			  name="portalPrefsForm">
+      <forward  name="success"        path="myDynamicPortalPreferences"/>
+  </action>
+
+    <!-- Dynamic Portal user lists set tile-action : -->
+  <action     path="/actions/myPortalPrefs.tile"
+       		  type="org.apache.struts.webapp.tiles.dynPortal.SetPortalPrefsAction"
+			  name="portalPrefsForm">
+      <forward  name="preferences"    path="/dynPortal/myPortalPrefTile.jsp"/>
+      <forward  name="portal"         path="dynamic.portal.body"/>
+  </action>
+
+
+
+  <!-- =======================================================  -->
+  <!-- Rss Channel -->
+  <!-- =======================================================  -->
+    <action     path="/actions/rssChannel"
+                type="org.apache.struts.webapp.tiles.rssChannel.Channels">
+      <forward  name="continue"        path="/dynPortal/Channels.jsp"/>
+      <forward  name="error"           path="/dynPortal/Errors.jsp"/>
+   </action>
+
+  <!-- =======================================================  -->
+  <!-- test, to be removed -->
+  <!-- =======================================================  -->
+    <action     path="/testAction"
+                type="org.apache.struts.webapp.tiles.lang.SelectLocaleAction">
+      <forward  name="failure"        path="/common/footer.jsp"/>
+      <forward  name="success"        path="/common/footer.jsp"/>
+  </action>
+  
+    <action     path="/testAction2"
+                type="org.apache.struts.webapp.tiles.tutorial.ForwardExampleAction">
+      <forward  name="failure"        path="forward.example.success.page"/>
+      <forward  name="success"        path="forward.example.success.page"/>
+  </action>
+  
+  </action-mappings>
+
+  
+  <!-- ========== Tiles plug-in setting settings =================== -->
+  <!-- Here we specified the tiles plug-in.
+       This plug-in register appropriate Request Processor -->
+  <!--  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"  />  -->
+
+  <!-- ========== Associated Messages Ressource settings =================== -->
+  <!-- Not used by tiles or this website, but needed due to a bug in actual Struts version -->
+  <message-resources parameter="org.apache.struts.webapp.tiles.dev1-1.ApplicationResources" null="false" />
+
+  
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml,
+					        /WEB-INF/tiles-tutorial-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+  </plug-in>
+
+</struts-config>
