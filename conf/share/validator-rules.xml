@@ -132,12 +132,14 @@
                 var fields = new Array();
                 oMinLength = new minlength();
                 for (x in oMinLength) {
-                    if (form[oMinLength[x][0]].type == 'text' ||
-                        form[oMinLength[x][0]].type == 'textarea') {
+                    var field = form[oMinLength[x][0]];
+                    
+                    if (field.type == 'text' ||
+                        field.type == 'textarea') {
                         var iMin = parseInt(oMinLength[x][2]("minlength"));
-                        if (form[oMinLength[x][0]].value.length < iMin) {
+                        if (field.value.length < iMin) {
                             if (i == 0) {
-                                focusField = form[oMinLength[x][0]];
+                                focusField = field;
                             }
                             fields[i++] = oMinLength[x][1];
                             bValid = false;
@@ -174,12 +176,14 @@
                 var fields = new Array();
                 oMaxLength = new maxlength();
                 for (x in oMaxLength) {
-                    if (form[oMaxLength[x][0]].type == 'text' ||
-                        form[oMaxLength[x][0]].type == 'textarea') {
+                    var field = form[oMaxLength[x][0]];
+                    
+                    if (field.type == 'text' ||
+                        field.type == 'textarea') {
                         var iMax = parseInt(oMaxLength[x][2]("maxlength"));
-                        if (form[oMaxLength[x][0]].value.length > iMax) {
+                        if (field.value.length > iMax) {
                             if (i == 0) {
-                                focusField = form[oMaxLength[x][0]];
+                                focusField = field;
                             }
                             fields[i++] = oMaxLength[x][1];
                             bValid = false;
