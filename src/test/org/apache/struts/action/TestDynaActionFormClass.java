@@ -129,7 +129,7 @@ public class TestDynaActionFormClass extends TestCase
         new FormPropertyConfig("intArray", "int[]", null),
         new FormPropertyConfig("intIndexed", "int[]", null),
         new FormPropertyConfig("intProperty", "int", "123"),
-        new FormPropertyConfig("listProperty", "java.util.List", null),
+        new FormPropertyConfig("listIndexed", "java.util.List", null),
         new FormPropertyConfig("longProperty", "long", "321"),
         new FormPropertyConfig("mappedProperty", "java.util.Map", null),
         new FormPropertyConfig("mappedIntProperty", "java.util.Map", null),
@@ -255,7 +255,7 @@ public class TestDynaActionFormClass extends TestCase
         assertEquals("intProperty value",
                      new Integer(123),
                      beanConfig.findFormPropertyConfig("intProperty").initial());
-        // FIXME - listProperty
+        // FIXME - listIndexed
         assertEquals("longProperty value",
                      new Long(321),
                      beanConfig.findFormPropertyConfig("longProperty").initial());

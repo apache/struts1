@@ -54,10 +54,15 @@
  */
 package org.apache.struts.action;
 
-import javax.servlet.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.*;
 import junit.framework.*;
 import org.apache.cactus.*;
+import org.apache.commons.beanutils.DynaProperty;
 
 
 /**
@@ -110,6 +115,31 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
     protected DynaActionForm dynaForm = null;
 
 
+    /**
+     * The set of property names we expect to have returned when calling
+     * <code>getDynaProperties()</code>.  You should update this list
+     * when new properties are added to TestBean.
+     */
+    protected final static String[] properties = {
+        "booleanProperty",
+        "booleanSecond",
+        "doubleProperty",
+        "floatProperty",
+        "intArray",
+        "intIndexed",
+        "intProperty",
+        "listIndexed",
+        "longProperty",
+        "mappedProperty",
+        "mappedIntProperty",
+        "nullProperty",
+        "shortProperty",
+        "stringArray",
+        "stringIndexed",
+        "stringProperty",
+    };
+
+
     // ----------------------------------------------------- Setup and Teardown
 
 
@@ -123,6 +153,33 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         } catch (InstantiationException e) {
             throw new RuntimeException(e.getMessage());
         }
+
+        // Temporarily, set up the complex properties manually
+        int intArray[] = { 0, 10, 20, 30, 40 };
+        dynaForm.set("intArray", intArray);
+        int intIndexed[] = { 0, 10, 20, 30, 40 };
+        dynaForm.set("intIndexed", intIndexed);
+        List listIndexed = new ArrayList();
+        listIndexed.add("String 0");
+        listIndexed.add("String 1");
+        listIndexed.add("String 2");
+        listIndexed.add("String 3");
+        listIndexed.add("String 4");
+        dynaForm.set("listIndexed", listIndexed);
+        Map mappedProperty = new HashMap();
+        mappedProperty.put("First Key", "First Value");
+        mappedProperty.put("Second Key", "Second Value");
+        dynaForm.set("mappedProperty", mappedProperty);
+        Map mappedIntProperty = new HashMap();
+        mappedIntProperty.put("One", new Integer(1));
+        mappedIntProperty.put("Two", new Integer(2));
+        dynaForm.set("mappedIntProperty", mappedIntProperty);
+        String stringArray[] =
+                { "String 0", "String 1", "String 2", "String 3", "String 4" };
+        dynaForm.set("stringArray", stringArray);
+        String stringIndexed[] =
+                { "String 0", "String 1", "String 2", "String 3", "String 4" };
+        dynaForm.set("stringIndexed", stringIndexed);
 
     }
 
@@ -152,7 +209,7 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
                      (Float) dynaForm.get("floatProperty"));
         // FIXME - intArray
         // FIXME - intIndexed
-        // FIXME - listProperty
+        // FIXME - listIndexed
         assertEquals("longProperty", new Long((long) 321),
                      (Long) dynaForm.get("longProperty"));
         // FIXME - mappedProperty
@@ -165,6 +222,761 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
         // FIXME - stringIndexed
         assertEquals("stringProperty", "This is a string",
                      (String) dynaForm.get("stringProperty"));
+
+    }
+
+
+    // --------------------------------------- Tests from BasicDynaBeanTestCase
+
+
+    /**
+     * Corner cases on getDynaProperty invalid arguments.
+     */
+    public void testGetDescriptorArguments() {
+
+        try {
+            DynaProperty descriptor =
+                    dynaForm.getDynaClass().getDynaProperty("unknown");
+            assertNull("Unknown property descriptor should be null",
+                    descriptor);
+        } catch (Throwable t) {
+            fail("Threw " + t + " instead of returning null");
+        }
+
+        try {
+            dynaForm.getDynaClass().getDynaProperty(null);
+            fail("Should throw IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            ; // Expected response
+        } catch (Throwable t) {
+            fail("Threw " + t + " instead of IllegalArgumentException");
+        }
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>booleanProperty</code>.
+     */
+    public void testGetDescriptorBoolean() {
+
+        testGetDescriptorBase("booleanProperty", Boolean.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>doubleProperty</code>.
+     */
+    public void testGetDescriptorDouble() {
+
+        testGetDescriptorBase("doubleProperty", Double.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>floatProperty</code>.
+     */
+    public void testGetDescriptorFloat() {
+
+        testGetDescriptorBase("floatProperty", Float.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>intProperty</code>.
+     */
+    public void testGetDescriptorInt() {
+
+        testGetDescriptorBase("intProperty", Integer.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>longProperty</code>.
+     */
+    public void testGetDescriptorLong() {
+
+        testGetDescriptorBase("longProperty", Long.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>booleanSecond</code>
+     * that uses an "is" method as the getter.
+     */
+    public void testGetDescriptorSecond() {
+
+        testGetDescriptorBase("booleanSecond", Boolean.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>shortProperty</code>.
+     */
+    public void testGetDescriptorShort() {
+
+        testGetDescriptorBase("shortProperty", Short.TYPE);
+
+    }
+
+
+    /**
+     * Positive getDynaProperty on property <code>stringProperty</code>.
+     */
+    public void testGetDescriptorString() {
+
+        testGetDescriptorBase("stringProperty", String.class);
+
+    }
+
+
+    /**
+     * Positive test for getDynaPropertys().  Each property name
+     * listed in <code>properties</code> should be returned exactly once.
+     */
+    public void testGetDescriptors() {
+
+        DynaProperty pd[] = dynaForm.getDynaClass().getDynaProperties();
+        assertNotNull("Got descriptors", pd);
+        int count[] = new int[properties.length];
+        for (int i = 0; i < pd.length; i++) {
+            String name = pd[i].getName();
+            for (int j = 0; j < properties.length; j++) {
+                if (name.equals(properties[j]))
+                    count[j]++;
+            }
+        }
+        for (int j = 0; j < properties.length; j++) {
+            if (count[j] < 0)
+                fail("Missing property " + properties[j]);
+            else if (count[j] > 1)
+                fail("Duplicate property " + properties[j]);
+        }
+
+    }
+
+
+    /**
+     * Corner cases on getIndexedProperty invalid arguments.
+     */
+    public void testGetIndexedArguments() {
+
+        try {
+            dynaForm.get("intArray", -1);
+            fail("Should throw IndexOutOfBoundsException");
+        } catch (IndexOutOfBoundsException e) {
+            ; // Expected response
+        } catch (Throwable t) {
+            fail("Threw " + t + " instead of IndexOutOfBoundsException");
+        }
+
+
+    }
+
+
+    /**
+     * Positive and negative tests on getIndexedProperty valid arguments.
+     */
+    public void testGetIndexedValues() {
+
+        Object value = null;
+
+        for (int i = 0; i < 5; i++) {
+
+            try {
+                value = dynaForm.get("intArray", i);
+                assertNotNull("intArray returned value " + i, value);
+                assertTrue("intArray returned Integer " + i,
+                        value instanceof Integer);
+                assertEquals("intArray returned correct " + i, i * 10,
+                        ((Integer) value).intValue());
+            } catch (Throwable t) {
+                fail("intArray " + i + " threw " + t);
+            }
+
+            try {
+                value = dynaForm.get("intIndexed", i);
+                assertNotNull("intIndexed returned value " + i, value);
+                assertTrue("intIndexed returned Integer " + i,
+                        value instanceof Integer);
+                assertEquals("intIndexed returned correct " + i, i * 10,
+                        ((Integer) value).intValue());
+            } catch (Throwable t) {
+                fail("intIndexed " + i + " threw " + t);
+            }
+
+            try {
+                value = dynaForm.get("listIndexed", i);
+                assertNotNull("listIndexed returned value " + i, value);
+                assertTrue("list returned String " + i,
+                        value instanceof String);
+                assertEquals("listIndexed returned correct " + i,
+                        "String " + i, (String) value);
+            } catch (Throwable t) {
+                fail("listIndexed " + i + " threw " + t);
+            }
+
+            try {
+                value = dynaForm.get("stringArray", i);
+                assertNotNull("stringArray returned value " + i, value);
+                assertTrue("stringArray returned String " + i,
+                        value instanceof String);
+                assertEquals("stringArray returned correct " + i,
+                        "String " + i, (String) value);
+            } catch (Throwable t) {
+                fail("stringArray " + i + " threw " + t);
+            }
+
+            try {
+                value = dynaForm.get("stringIndexed", i);
+                assertNotNull("stringIndexed returned value " + i, value);
+                assertTrue("stringIndexed returned String " + i,
+                        value instanceof String);
+                assertEquals("stringIndexed returned correct " + i,
+                        "String " + i, (String) value);
+            } catch (Throwable t) {
+                fail("stringIndexed " + i + " threw " + t);
+            }
+
+        }
+
+
+    }
+
+
+    /**
+     * Corner cases on getMappedProperty invalid arguments.
+     */
+    public void testGetMappedArguments() {
+
+
+        try {
+            Object value = dynaForm.get("mappedProperty", "unknown");
+            assertNull("Should not return a value", value);
+        } catch (Throwable t) {
+            fail("Threw " + t + " instead of returning null");
+        }
+
+
+    }
+
+
+    /**
+     * Positive and negative tests on getMappedProperty valid arguments.
+     */
+    public void testGetMappedValues() {
+
+        Object value = null;
+
+        try {
+            value = dynaForm.get("mappedProperty", "First Key");
+            assertEquals("Can find first value", "First Value", value);
+        } catch (Throwable t) {
+            fail("Finding first value threw " + t);
+        }
+
+        try {
+            value = dynaForm.get("mappedProperty", "Second Key");
+            assertEquals("Can find second value", "Second Value", value);
+        } catch (Throwable t) {
+            fail("Finding second value threw " + t);
+        }
+
+        try {
+            value = dynaForm.get("mappedProperty", "Third Key");
+            assertNull("Can not find third value", value);
+        } catch (Throwable t) {
+            fail("Finding third value threw " + t);
+        }
+
+    }
+
+
+    /**
+     * Corner cases on getSimpleProperty invalid arguments.
+     */
+    public void testGetSimpleArguments() {
+
+        try {
+            dynaForm.get(null);
+            fail("Should throw IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            ; // Expected response
+        } catch (Throwable t) {
+            fail("Threw " + t + " instead of IllegalArgumentException");
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a boolean property.
+     */
+    public void testGetSimpleBoolean() {
+
+        try {
+            Object value = dynaForm.get("booleanProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof Boolean));
+            assertTrue("Got correct value",
+                    ((Boolean) value).booleanValue() == true);
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a double property.
+     */
+    public void testGetSimpleDouble() {
+
+        try {
+            Object value = dynaForm.get("doubleProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof Double));
+            assertEquals("Got correct value",
+                    ((Double) value).doubleValue(),
+                    (double) 321.0,
+                    (double) 0.005);
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a float property.
+     */
+    public void testGetSimpleFloat() {
+
+        try {
+            Object value = dynaForm.get("floatProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof Float));
+            assertEquals("Got correct value",
+                    ((Float) value).floatValue(),
+                    (float) 123.0,
+                    (float) 0.005);
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a int property.
+     */
+    public void testGetSimpleInt() {
+
+        try {
+            Object value = dynaForm.get("intProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof Integer));
+            assertEquals("Got correct value",
+                    ((Integer) value).intValue(),
+                    (int) 123);
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a long property.
+     */
+    public void testGetSimpleLong() {
+
+        try {
+            Object value = dynaForm.get("longProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof Long));
+            assertEquals("Got correct value",
+                    ((Long) value).longValue(),
+                    (long) 321);
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a short property.
+     */
+    public void testGetSimpleShort() {
+
+        try {
+            Object value = dynaForm.get("shortProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof Short));
+            assertEquals("Got correct value",
+                    ((Short) value).shortValue(),
+                    (short) 987);
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test getSimpleProperty on a String property.
+     */
+    public void testGetSimpleString() {
+
+        try {
+            Object value = dynaForm.get("stringProperty");
+            assertNotNull("Got a value", value);
+            assertTrue("Got correct type", (value instanceof String));
+            assertEquals("Got correct value",
+                    (String) value,
+                    "This is a string");
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test <code>contains()</code> method for mapped properties.
+     */
+    public void testMappedContains() {
+
+        try {
+            assertTrue("Can see first key",
+                    dynaForm.contains("mappedProperty", "First Key"));
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+
+        try {
+            assertTrue("Can not see unknown key",
+                    !dynaForm.contains("mappedProperty", "Unknown Key"));
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Test <code>remove()</code> method for mapped properties.
+     */
+    public void testMappedRemove() {
+
+        try {
+            assertTrue("Can see first key",
+                    dynaForm.contains("mappedProperty", "First Key"));
+            dynaForm.remove("mappedProperty", "First Key");
+            assertTrue("Can not see first key",
+                    !dynaForm.contains("mappedProperty", "First Key"));
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+        try {
+            assertTrue("Can not see unknown key",
+                    !dynaForm.contains("mappedProperty", "Unknown Key"));
+            dynaForm.remove("mappedProperty", "Unknown Key");
+            assertTrue("Can not see unknown key",
+                    !dynaForm.contains("mappedProperty", "Unknown Key"));
+        } catch (Throwable t) {
+            fail("Exception: " + t);
+        }
+
+    }
+
+
+    /**
+     * Corner cases on setIndexedProperty invalid arguments.
+     */
+    public void testSetIndexedArguments() {
+
+        try {
+            dynaForm.set("intArray", -1, new Integer(0));
+            fail("Should throw IndexOutOfBoundsException");
+        } catch (IndexOutOfBoundsException e) {
+            ; // Expected response
+        } catch (Throwable t) {
+            fail("Threw " + t + " instead of IndexOutOfBoundsException");
+        }
+
+    }
+
+
+    /**
+     * Positive and negative tests on setIndexedProperty valid arguments.
+     */
+    public void testSetIndexedValues() {
+
+        Object value = null;
+
+        try {
+            dynaForm.set("intArray", 0, new Integer(1));
+            value = (Integer) dynaForm.get("intArray", 0);
+            assertNotNull("Returned new value 0", value);
+            assertTrue("Returned Integer new value 0",
+                    value instanceof Integer);
+            assertEquals("Returned correct new value 0", 1,
+                    ((Integer) value).intValue());
+        } catch (Throwable t) {
+            fail("Threw " + t);
+        }
+
+        try {
+            dynaForm.set("intIndexed", 1, new Integer(11));
+            value = (Integer) dynaForm.get("intIndexed", 1);
+            assertNotNull("Returned new value 1", value);
+            assertTrue("Returned Integer new value 1",
+                    value instanceof Integer);
+            assertEquals("Returned correct new value 1", 11,
+                    ((Integer) value).intValue());
+        } catch (Throwable t) {
+            fail("Threw " + t);
+        }
+
+        try {
+            dynaForm.set("listIndexed", 2, "New Value 2");
+            value = (String) dynaForm.get("listIndexed", 2);
+            assertNotNull("Returned new value 2", value);
+            assertTrue("Returned String new value 2",
+                    value instanceof String);
+            assertEquals("Returned correct new value 2", "New Value 2",
+                    (String) value);
+        } catch (Throwable t) {
+            fail("Threw " + t);
+        }
+
+        try {
+            dynaForm.set("stringArray", 3, "New Value 3");
+            value = (String) dynaForm.get("stringArray", 3);
+            assertNotNull("Returned new value 3", value);
+            assertTrue("Returned String new value 3",
+                    value instanceof String);
+            assertEquals("Returned correct new value 3", "New Value 3",
+                    (String) value);
+        } catch (Throwable t) {
+            fail("Threw " + t);
+        }
+
+        try {
+            dynaForm.set("stringIndexed", 4, "New Value 4");
+            value = (String) dynaForm.get("stringIndexed", 4);
+            assertNotNull("Returned new value 4", value);
+            assertTrue("Returned String new value 4",
+                    value instanceof String);
+            assertEquals("Returned correct new value 4", "New Value 4",
+                    (String) value);
+        } catch (Throwable t) {
+            fail("Threw " + t);
+        }
+
+
+    }
+
+
+    /**
+     * Positive and negative tests on setMappedProperty valid arguments.
+     */
+    public void testSetMappedValues() {
+
+        Object value = null;
+
+        try {
+            dynaForm.set("mappedProperty", "First Key", "New First Value");
+            assertEquals("Can replace old value",
+                    "New First Value",
+                    (String) dynaForm.get("mappedProperty", "First Key"));
+        } catch (Throwable t) {
+            fail("Finding fourth value threw " + t);
+        }
+
+        try {
+            dynaForm.set("mappedProperty", "Fourth Key", "Fourth Value");
+            assertEquals("Can set new value",
+                    "Fourth Value",
+                    (String) dynaForm.get("mappedProperty", "Fourth Key"));
+        } catch (Throwable t) {
+            fail("Finding fourth value threw " + t);
+        }
+
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a boolean property.
+     */
+    public void testSetSimpleBoolean() {
+
+        try {
+            boolean oldValue =
+                    ((Boolean) dynaForm.get("booleanProperty")).booleanValue();
+            boolean newValue = !oldValue;
+            dynaForm.set("booleanProperty", new Boolean(newValue));
+            assertTrue("Matched new value",
+                    newValue ==
+                    ((Boolean) dynaForm.get("booleanProperty")).booleanValue());
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a double property.
+     */
+    public void testSetSimpleDouble() {
+
+        try {
+            double oldValue =
+                    ((Double) dynaForm.get("doubleProperty")).doubleValue();
+            double newValue = oldValue + 1.0;
+            dynaForm.set("doubleProperty", new Double(newValue));
+            assertEquals("Matched new value",
+                    newValue,
+                    ((Double) dynaForm.get("doubleProperty")).doubleValue(),
+                    (double) 0.005);
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a float property.
+     */
+    public void testSetSimpleFloat() {
+
+        try {
+            float oldValue =
+                    ((Float) dynaForm.get("floatProperty")).floatValue();
+            float newValue = oldValue + (float) 1.0;
+            dynaForm.set("floatProperty", new Float(newValue));
+            assertEquals("Matched new value",
+                    newValue,
+                    ((Float) dynaForm.get("floatProperty")).floatValue(),
+                    (float) 0.005);
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a int property.
+     */
+    public void testSetSimpleInt() {
+
+        try {
+            int oldValue =
+                    ((Integer) dynaForm.get("intProperty")).intValue();
+            int newValue = oldValue + 1;
+            dynaForm.set("intProperty", new Integer(newValue));
+            assertEquals("Matched new value",
+                    newValue,
+                    ((Integer) dynaForm.get("intProperty")).intValue());
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a long property.
+     */
+    public void testSetSimpleLong() {
+
+        try {
+            long oldValue =
+                    ((Long) dynaForm.get("longProperty")).longValue();
+            long newValue = oldValue + 1;
+            dynaForm.set("longProperty", new Long(newValue));
+            assertEquals("Matched new value",
+                    newValue,
+                    ((Long) dynaForm.get("longProperty")).longValue());
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a short property.
+     */
+    public void testSetSimpleShort() {
+
+        try {
+            short oldValue =
+                    ((Short) dynaForm.get("shortProperty")).shortValue();
+            short newValue = (short) (oldValue + 1);
+            dynaForm.set("shortProperty", new Short(newValue));
+            assertEquals("Matched new value",
+                    newValue,
+                    ((Short) dynaForm.get("shortProperty")).shortValue());
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    /**
+     * Test setSimpleProperty on a String property.
+     */
+    public void testSetSimpleString() {
+
+        try {
+            String oldValue = (String) dynaForm.get("stringProperty");
+            String newValue = oldValue + " Extra Value";
+            dynaForm.set("stringProperty", newValue);
+            assertEquals("Matched new value",
+                    newValue,
+                    (String) dynaForm.get("stringProperty"));
+        } catch (Throwable e) {
+            fail("Exception: " + e);
+        }
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Base for testGetDescriptorXxxxx() series of tests.
+     *
+     * @param name Name of the property to be retrieved
+     * @param type Expected class type of this property
+     */
+    protected void testGetDescriptorBase(String name, Class type) {
+
+        try {
+            DynaProperty descriptor =
+                    dynaForm.getDynaClass().getDynaProperty(name);
+            assertNotNull("Got descriptor", descriptor);
+            assertEquals("Got correct type", type, descriptor.getType());
+        } catch (Throwable t) {
+            fail("Threw an exception: " + t);
+        }
 
     }
 
