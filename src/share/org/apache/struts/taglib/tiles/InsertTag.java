@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.16 2003/03/22 00:25:31 cedric Exp $
- * $Revision: 1.16 $
- * $Date: 2003/03/22 00:25:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.17 2003/03/22 18:33:05 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/03/22 18:33:05 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.TilesUtil;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.16 $ $Date: 2003/03/22 00:25:31 $
+ * @version $Revision: 1.17 $ $Date: 2003/03/22 18:33:05 $
  */
 public class InsertTag
     extends DefinitionTagSupport
@@ -876,10 +876,7 @@ public class InsertTag
                     pageContext.getOut().flush();
                 }
 
-                // removed if statement for further investigation
-                //if ((page != null) && (page.length() > 0)) {
-                    doInclude(page);
-                //}
+                doInclude(page);                
 
             } catch (IOException ex) {
                 processException(
