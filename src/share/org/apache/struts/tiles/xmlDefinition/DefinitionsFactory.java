@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/DefinitionsFactory.java,v 1.1 2002/06/25 03:15:43 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/DefinitionsFactory.java,v 1.2 2002/11/16 07:22:55 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 07:22:55 $
  *
  * ====================================================================
  *
@@ -62,10 +62,8 @@
 
 package org.apache.struts.tiles.xmlDefinition;
 
-import org.apache.struts.tiles.ComponentDefinitionsFactory;
 import org.apache.struts.tiles.ComponentDefinition;
 import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
 
 import java.util.Map;
@@ -74,9 +72,7 @@ import java.util.Iterator;
 import java.io.Serializable;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * A factory for definitions.
@@ -114,7 +110,6 @@ public class DefinitionsFactory implements Serializable
     * Constructor.
     * Create a factory initialized with definitions from XmlDefinitionsSet.
     * @param xmlDefinitions resolved definition from XmlDefinitionSet.
-    * @throws DefinitionsFactoryException If an error occurs while creating a definition.
     * @throws NoSuchDefinitionException If an error occurs while resolving inheritance
     */
    public DefinitionsFactory(XmlDefinitionsSet xmlDefinitions)

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.2 2002/07/11 16:46:40 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:46:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.3 2002/11/16 07:20:09 rleland Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/16 07:20:09 $
  *
  * ====================================================================
  *
@@ -67,13 +67,11 @@ import org.apache.struts.tiles.ComponentContext;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 
 /**
  * Base class for Tiles Actions.
@@ -84,7 +82,7 @@ import org.apache.struts.action.ActionServlet;
  * execute(ComponentContext ...) method instead of Struts
  * execute(ActionMapping ...) method.
  * Backward compatibility is ensure with the perform(ComponentContext ...) method.
- * @version $Revision: 1.2 $ $Date: 2002/07/11 16:46:40 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/16 07:20:09 $
  */
 
 public abstract class TilesAction extends Action
@@ -157,7 +155,7 @@ public abstract class TilesAction extends Action
      *
      * @param context The current Tile context, containing Tile attributes
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
