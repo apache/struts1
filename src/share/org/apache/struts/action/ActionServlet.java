@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.87 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.87 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.88 2002/01/20 05:34:08 craigmcc Exp $
+ * $Revision: 1.88 $
+ * $Date: 2002/01/20 05:34:08 $
  *
  * ====================================================================
  *
@@ -266,7 +266,7 @@ import org.xml.sax.SAXException;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.87 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.88 $ $Date: 2002/01/20 05:34:08 $
  */
 
 public class ActionServlet
@@ -759,7 +759,12 @@ public class ActionServlet
         }
 
         // Special handling for the default app's MessageResourcesConfig
-        MessageResourcesConfig mrc = config.getMessageResourcesConfig();
+        MessageResourcesConfig mrc =
+            config.findMessageResourcesConfig(Action.MESSAGES_KEY);
+        if (mrc == null) {
+            mrc = new MessageResourcesConfig();
+            config.addMessageResourcesConfig(mrc);
+        }
         value = getServletConfig().getInitParameter("application");
         if (value != null) {
             mrc.setParameter(value);
@@ -827,7 +832,8 @@ public class ActionServlet
                 throw new UnavailableException
                     (internal.getMessage("dataSource.init", dscs[i].getKey()));
             }
-            getServletContext().setAttribute(dscs[i].getKey(), ds);
+            getServletContext().setAttribute
+                (dscs[i].getKey() + config.getPrefix(), ds);
             dataSources.put(dscs[i].getKey(), ds);
         }
         dataSources.setFast(true);
@@ -851,31 +857,36 @@ public class ActionServlet
     protected void initApplicationMessageResources
         (ApplicationConfig config) throws ServletException {
 
-        MessageResourcesConfig mrc = config.getMessageResourcesConfig();
-        if ((mrc.getFactory() == null) || (mrc.getParameter() == null)) {
-            return;
-        }
-        if (debug >= 1) {
-            log("Initializing application path '" + config.getPrefix() +
-                "' message resources from '" + mrc.getParameter() + "'");
-        }
+        MessageResourcesConfig mrcs[] =
+            config.findMessageResourcesConfigs();
+        for (int i = 0; i < mrcs.length; i++) {
+            if ((mrcs[i].getFactory() == null) ||
+                (mrcs[i].getParameter() == null)) {
+                continue;
+            }
+            if (debug >= 1) {
+                log("Initializing application path '" + config.getPrefix() +
+                    "' message resources from '" +
+                    mrcs[i].getParameter() + "'");
+            }
 
-        try {
-            String factory = mrc.getFactory();
-            MessageResourcesFactory.setFactoryClass(factory);
-            MessageResourcesFactory factoryObject =
-                MessageResourcesFactory.createFactory();
-            MessageResources resources =
-                factoryObject.createResources(mrc.getParameter());
-            resources.setReturnNull(mrc.getNull());
-            getServletContext().setAttribute
-                (Action.MESSAGES_KEY + config.getPrefix(), resources);
-        } catch (Throwable t) {
-            log(internal.getMessage
-                ("applicationResources", mrc.getParameter()), t);
-            throw new UnavailableException
-                (internal.getMessage
-                 ("applicationResources", mrc.getParameter()));
+            try {
+                String factory = mrcs[i].getFactory();
+                MessageResourcesFactory.setFactoryClass(factory);
+                MessageResourcesFactory factoryObject =
+                    MessageResourcesFactory.createFactory();
+                MessageResources resources =
+                    factoryObject.createResources(mrcs[i].getParameter());
+                resources.setReturnNull(mrcs[i].getNull());
+                getServletContext().setAttribute
+                    (mrcs[i].getKey() + config.getPrefix(), resources);
+            } catch (Throwable t) {
+                log(internal.getMessage
+                    ("applicationResources", mrcs[i].getParameter()), t);
+                throw new UnavailableException
+                    (internal.getMessage
+                     ("applicationResources", mrcs[i].getParameter()));
+            }
         }
 
     }

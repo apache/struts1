@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.3 2002/01/20 05:34:08 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/20 05:34:08 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
+import org.apache.struts.action.Action;
 
 
 /**
@@ -72,7 +73,7 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/20 05:34:08 $
  * @since Struts 1.1
  */
 
@@ -95,6 +96,21 @@ public class MessageResourcesConfig implements Serializable {
 
     public void setFactory(String factory) {
         this.factory = factory;
+    }
+
+
+    /**
+     * The servlet context attributes key under which this MessageResources
+     * instance is stored.
+     */
+    protected String key = Action.MESSAGES_KEY;
+
+    public String getKey() {
+        return (this.key);
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.7 2002/01/15 18:39:36 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/01/15 18:39:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.8 2002/01/20 05:34:08 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/01/20 05:34:08 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.action.RequestProcessor;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/01/15 18:39:36 $
+ * @version $Revision: 1.8 $ $Date: 2002/01/20 05:34:08 $
  * @since Struts 1.1
  */
 
@@ -146,6 +146,13 @@ public class ApplicationConfig implements Serializable {
     protected FastHashMap forwards = new FastHashMap();
 
 
+    /**
+     * The set of message resources configurations for this
+     * application, if any, keyed by the <code>key</code> property.
+     */
+    protected FastHashMap messageResources = new FastHashMap();
+
+
     // ------------------------------------------------------------- Properties
 
 
@@ -176,24 +183,6 @@ public class ApplicationConfig implements Serializable {
         if (configured)
             throw new IllegalStateException("Configuration is frozen");
         this.controllerConfig = cc;
-    }
-
-
-    /**
-     * The message resources configuration object for this application.
-     */
-    protected MessageResourcesConfig messageResourcesConfig = null;
-
-    public MessageResourcesConfig getMessageResourcesConfig() {
-        if (this.messageResourcesConfig == null)
-            this.messageResourcesConfig = new MessageResourcesConfig();
-        return (this.messageResourcesConfig);
-    }
-
-    public void setMessageResourcesConfig(MessageResourcesConfig mrc) {
-        if (configured)
-            throw new IllegalStateException("Configuration is frozen");
-        this.messageResourcesConfig = mrc;
     }
 
 
@@ -342,6 +331,24 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
+     * Add a new <code>MessageResourcesConfig</code> instance to the set
+     * associated with this application.
+     *
+     * @param config The new configuration instance to be added
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void addMessageResourcesConfig(MessageResourcesConfig config) {
+
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        messageResources.put(config.getKey(), config);
+
+    }
+
+
+    /**
      * Return the action configuration for the specified path, if any;
      * otherwise return <code>null</code>.
      *
@@ -467,6 +474,33 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
+     * Return the message resources configuration for the specified key,
+     * if any; otherwise return <code>null</code>.
+     *
+     * @param key Key of the data source configuration to return
+     */
+    public MessageResourcesConfig findMessageResourcesConfig(String key) {
+
+        return ((MessageResourcesConfig) messageResources.get(key));
+
+    }
+
+
+    /**
+     * Return the message resources configurations for this application.
+     * If there are none, a zero-length array is returned.
+     */
+    public MessageResourcesConfig[] findMessageResourcesConfigs() {
+
+        MessageResourcesConfig results[] =
+            new MessageResourcesConfig[messageResources.size()];
+        return ((MessageResourcesConfig[])
+                messageResources.values().toArray(results));
+
+    }
+
+
+    /**
      * Freeze the configuration of this application.  After this method
      * returns, any attempt to modify the configuration will return
      * an IllegalStateException.
@@ -479,6 +513,7 @@ public class ApplicationConfig implements Serializable {
         exceptions.setFast(true);
         formBeans.setFast(true);
         forwards.setFast(true);
+        messageResources.setFast(true);
         ActionConfig[] configs = findActionConfigs();
         for (int i = 0; i < configs.length; i++) {
             configs[i].freeze();
@@ -569,6 +604,23 @@ public class ApplicationConfig implements Serializable {
         if (configured)
             throw new IllegalStateException("Configuration is frozen");
         forwards.remove(config.getName());
+
+    }
+
+
+    /**
+     * Remove the specified message resources configuration instance.
+     *
+     * @param config MessageResourcesConfig instance to be removed
+     *
+     * @exception IllegalStateException if this application configuration
+     *  has been frozen
+     */
+    public void removeMessageResourcesConfig(MessageResourcesConfig config) {
+
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        messageResources.remove(config.getKey());
 
     }
 

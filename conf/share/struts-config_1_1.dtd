@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.10 2002/01/17 00:15:05 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.11 2002/01/20 05:34:08 craigmcc Exp $
 -->
 
 
@@ -85,7 +85,7 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources?)>
+<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
 
@@ -111,6 +111,10 @@
      key             Servlet context attribute key under which this data
                      source will be stored.  Default is the value specified
                      by string constant Action.DATA_SOURCE_KEY.
+
+                     NOTE:  The attribute under which this data source is
+                     actually stored will be the key value suffixed by
+                     the application prefix for this sub-application
 
      type            Fully qualified Java class name of the data source
                      implementation class.  This class must implement
@@ -467,6 +471,15 @@
                      By default, this is set to
                      org.apache.struts.util.PropertyMessageResourcesFactory.
 
+     key             Servlet context attribute key under which this
+                     message resources bundle will be stored.  Default is the
+                     value specified by the string constant
+                     Action.MESSAGES_KEY.
+
+                     NOTE:  The attribute under which this message resources is
+                     actually stored will be the key value suffixed by
+                     the application prefix for this sub-application
+
      null            Set to true if you want our message resources to return
                      a null string for unknown message keys, or false to
                      return a message with the bad key value.  [true]
@@ -478,6 +491,7 @@
 <!ATTLIST message-resources id          ID              #IMPLIED>
 <!ATTLIST message-resources className   %ClassName;     #IMPLIED>
 <!ATTLIST message-resources factory     %ClassName;     #IMPLIED>
+<!ATTLIST message-resources key         %AttributeName; #IMPLIED>
 <!ATTLIST message-resources null        %Boolean;       #IMPLIED>
 <!ATTLIST message-resources parameter   CDATA           #REQUIRED>
 
