@@ -1,3 +1,5 @@
+<%@ taglib uri="/tags/struts-html" prefix="html" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -16,24 +18,26 @@
   <p>Each of these links lead to a separate "module" within this application.</p>
 
   <ul>
-    <li><a href="./exercise/welcome.do">Taglib Test Pages</a></li>
+    <li><html:link module="/exercise" action="/welcome">Taglib Test Pages</html:link></li>
 
-    <li><a href="./upload/upload.do">Upload examples</a></li>
+    <li><html:link module="/upload" action="/upload">Upload examples</html:link></li>
 
-    <li><a href="./validator/welcome.do">Validator and Localization examples</a></li>
+    <li><html:link module="/validator" action="/welcome">Validator and Localization examples</html:link></li>
   </ul>
 
   <p>These modules follow the "learn by example" school. Be sure to "look under the hood" to see how it's done.</p>
 
-  <h2><a href="./exercise/welcome.do">Taglib Test Pages</a></h2>
+  <!-- For the sake of example, use the page form with this set of links: -->
+
+  <h2><html:link module="/exercise" page="/welcome.do">Taglib Test Pages</html:link></h2>
 
   <p>These pages are designed to test the operation of the various taglibs that come bundled with Struts. If you examine the JSP templates, you'll see that these pages use a lot of scriptlets. We use scriptlets here in order to test the tags. <strong>Most production pages will not need to use scriplets.</strong> In fact many Struts developers <em>never</em> use scriplets in a production page.</p>
 
-  <h2><a href="./upload/upload.do">Upload example</a></h2>
+  <h2><html:link module="/upload" page="/upload.do">Upload example</html:link></h2>
 
   <p>Struts uses the Commons Upload package to provide support for uploading files. This example shows you how to upload a page for processing or how to just display it.</p>
 
-  <h2><a href="./validator/welcome.do">Validator examples</a></h2>
+  <h2><html:link module="/validator" page="/welcome.do">Validator examples</html:link></h2>
 
   <p>The Struts Validator uses the same resource bundles as the rest of your Struts application, making localization easy to do. These examples show you how to use the validator with and without JavaScript, as well as how to localize your validations.</p>
 
