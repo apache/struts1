@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.145 2003/04/17 04:03:47 dgraham Exp $
- * $Revision: 1.145 $
- * $Date: 2003/04/17 04:03:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.146 2003/04/17 04:56:24 dgraham Exp $
+ * $Revision: 1.146 $
+ * $Date: 2003/04/17 04:56:24 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -118,6 +119,7 @@ import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ServletContextWriter;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 
 /**
@@ -306,7 +308,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.145 $ $Date: 2003/04/17 04:03:47 $
+ * @version $Revision: 1.146 $ $Date: 2003/04/17 04:56:24 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -893,70 +895,50 @@ public class ActionServlet extends HttpServlet {
      * @exception ServletException if initialization cannot be performed
      * @since Struts 1.1
      */
-    protected ModuleConfig initModuleConfig
-        (String prefix, String paths) throws ServletException {
+    protected ModuleConfig initModuleConfig(String prefix, String paths)
+        throws ServletException {
 
         if (log.isDebugEnabled()) {
-            log.debug("Initializing module path '" + prefix +
-                "' configuration from '" + paths + "'");
+            log.debug(
+                "Initializing module path '"
+                    + prefix
+                    + "' configuration from '"
+                    + paths
+                    + "'");
         }
 
         // Parse the configuration for this module
-        ModuleConfig config = null;
-        InputStream input = null;
-        String mapping = null;
-        try {
-            //@todo & FIXME replace with a FactoryMethod
-            ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
-            config = factoryObject.createModuleConfig(prefix);
+        //@todo & FIXME replace with a FactoryMethod
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
+        ModuleConfig config = factoryObject.createModuleConfig(prefix);
 
-            // Support for module-wide ActionMapping type override
-            mapping = getServletConfig().getInitParameter("mapping");
-            if (mapping != null) {
-                config.setActionMappingClass(mapping);
+        // Support for module-wide ActionMapping type override
+        String mapping = getServletConfig().getInitParameter("mapping");
+        if (mapping != null) {
+            config.setActionMappingClass(mapping);
+        }
+
+        // Configure the Digester instance we will use
+        Digester digester = initConfigDigester();
+
+        // Process each specified resource path
+        while (paths.length() > 0) {
+            digester.push(config);
+            String path = null;
+            int comma = paths.indexOf(',');
+            if (comma >= 0) {
+                path = paths.substring(0, comma).trim();
+                paths = paths.substring(comma + 1);
+            } else {
+                path = paths.trim();
+                paths = "";
             }
 
-            // Configure the Digester instance we will use
-            Digester digester = initConfigDigester();
-
-            // Process each specified resource path
-            while (paths.length() > 0) {
-                digester.push(config);
-                String path = null;
-                int comma = paths.indexOf(',');
-                if (comma >= 0) {
-                    path = paths.substring(0, comma).trim();
-                    paths = paths.substring(comma + 1);
-                } else {
-                    path = paths.trim();
-                    paths = "";
-                }
-                if (path.length() < 1) {
-                    break;
-                }
-                URL url = getServletContext().getResource(path);
-                InputSource is = new InputSource(url.toExternalForm());
-                input = getServletContext().getResourceAsStream(path);
-                is.setByteStream(input);
-                digester.parse(is);
-                getServletContext().setAttribute
-                    (Globals.MODULE_KEY + prefix, config);
-                input.close();
+            if (path.length() < 1) {
+                break;
             }
-
-        } catch (Throwable t) {
-            log.error(internal.getMessage("configParse", paths), t);
-            throw new UnavailableException
-                (internal.getMessage("configParse", paths));
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    ;
-                }
-            }
+            
+            this.parseModuleConfigFile(prefix, paths, config, digester, path);
         }
 
         // Force creation and registration of DynaActionFormClass instances
@@ -984,6 +966,60 @@ public class ActionServlet extends HttpServlet {
 
     }
 
+    /**
+     * Parses one module config file.
+     * @param prefix
+     * @param paths
+     * @param config
+     * @param digester Digester instance that does the parsing
+     * @param path The path to the config file to parse.
+     * @throws UnavailableException
+     */
+    private void parseModuleConfigFile(
+        String prefix,
+        String paths,
+        ModuleConfig config,
+        Digester digester,
+        String path)
+        throws UnavailableException {
+
+        InputStream input = null;
+        try {
+            URL url = getServletContext().getResource(path);
+            InputSource is = new InputSource(url.toExternalForm());
+            input = getServletContext().getResourceAsStream(path);
+            is.setByteStream(input);
+            digester.parse(is);
+            getServletContext().setAttribute(Globals.MODULE_KEY + prefix, config);
+            
+        } catch (MalformedURLException e) {
+            handleConfigException(paths, e);
+        } catch (IOException e) {
+            handleConfigException(paths, e);
+        } catch (SAXException e) {
+            handleConfigException(paths, e);
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    throw new UnavailableException(e.getMessage());
+                }
+            }
+        }
+    }
+
+    /**
+     * Simplifies exception handling in the parseModuleConfigFile() method.
+     * @param paths
+     * @param e
+     * @throws UnavailableException
+     */
+    private void handleConfigException(String paths, Exception e)
+        throws UnavailableException {
+        log.error(internal.getMessage("configParse", paths), e);
+        throw new UnavailableException(internal.getMessage("configParse", paths));
+    }
 
     /**
      * <p>Initialize the data sources for the specified module.</p>
@@ -1193,13 +1229,12 @@ public class ActionServlet extends HttpServlet {
         // Check the status of the "validating" initialization parameter
         boolean validating = true;
         String value = getServletConfig().getInitParameter("validating");
-        if (value != null) {
-            if ("false".equalsIgnoreCase(value) ||
-                "no".equalsIgnoreCase(value) ||
-                "n".equalsIgnoreCase(value) ||
-                "0".equalsIgnoreCase(value)) {
-                validating = false;
-            }
+        if ("false".equalsIgnoreCase(value)
+            || "no".equalsIgnoreCase(value)
+            || "n".equalsIgnoreCase(value)
+            || "0".equalsIgnoreCase(value)) {
+
+            validating = false;
         }
 
         // Create a new Digester instance with standard capabilities
@@ -1232,12 +1267,10 @@ public class ActionServlet extends HttpServlet {
                 rulesets = rulesets.substring(comma + 1).trim();
             }
             if (log.isDebugEnabled()) {
-                log.debug("Configuring custom Digester Ruleset of type " +
-                          ruleset);
+                log.debug("Configuring custom Digester Ruleset of type " + ruleset);
             }
             try {
-                RuleSet instance = (RuleSet)
-                    RequestUtils.applicationInstance(ruleset);
+                RuleSet instance = (RuleSet) RequestUtils.applicationInstance(ruleset);
                 configDigester.addRuleSet(instance);
             } catch (Exception e) {
                 log.error("Exception configuring custom Digester RuleSet", e);
@@ -1319,14 +1352,11 @@ public class ActionServlet extends HttpServlet {
         }
         if (convertNull) {
             ConvertUtils.deregister();
-            ConvertUtils.register(new BigDecimalConverter(null),
-                                  BigDecimal.class);
-            ConvertUtils.register(new BigIntegerConverter(null),
-                                  BigInteger.class);
+            ConvertUtils.register(new BigDecimalConverter(null), BigDecimal.class);
+            ConvertUtils.register(new BigIntegerConverter(null), BigInteger.class);
             ConvertUtils.register(new BooleanConverter(null), Boolean.class);
             ConvertUtils.register(new ByteConverter(null), Byte.class);
-            ConvertUtils.register(new CharacterConverter(null),
-                                  Character.class);
+            ConvertUtils.register(new CharacterConverter(null), Character.class);
             ConvertUtils.register(new DoubleConverter(null), Double.class);
             ConvertUtils.register(new FloatConverter(null), Float.class);
             ConvertUtils.register(new IntegerConverter(null), Integer.class);
