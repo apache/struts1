@@ -58,10 +58,10 @@
   changes, since the Struts 1.0-beta-3 release.</p>
 
   <hr width="75%"/>
-  
+
   <p>You can acquire interim binary and source distributions of Struts from the
   following locations:</p>
-  
+
   <ul>
   <li>Download the source directly via
       <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
@@ -111,7 +111,6 @@
   <ul>
   <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
       to communicate with other developers that are using
-      mailing list to communicate with other developers that are using
       Struts for their own applications, including questions about the
       installation of Struts, and the usage of particular Struts features.
       [<a href="mailto:struts-user-subscribe@jakarta.apache.org">Subscribe</a>]
