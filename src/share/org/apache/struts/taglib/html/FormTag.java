@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.46 2003/04/23 00:01:18 dgraham Exp $
- * $Revision: 1.46 $
- * $Date: 2003/04/23 00:01:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.47 2003/05/15 02:33:40 dgraham Exp $
+ * $Revision: 1.47 $
+ * $Date: 2003/05/15 02:33:40 $
  *
  * ====================================================================
  *
@@ -88,9 +88,9 @@ import org.apache.struts.util.ResponseUtils;
  * @author Craig R. McClanahan
  * @author Martin Cooper
  * @author James Turner
- * @version $Revision: 1.46 $ $Date: 2003/04/23 00:01:18 $
+ * @author David Graham
+ * @version $Revision: 1.47 $ $Date: 2003/05/15 02:33:40 $
  */
-
 public class FormTag extends TagSupport {
 
     // ----------------------------------------------------- Instance Variables
@@ -503,7 +503,7 @@ public class FormTag extends TagSupport {
     public int doStartTag() throws JspException {
 
         // Look up the form bean name, scope, and type if necessary
-        lookup();
+        this.lookup();
 
         // Create an appropriate "form" element based on our parameters
         StringBuffer results = new StringBuffer();
@@ -512,17 +512,28 @@ public class FormTag extends TagSupport {
 
         results.append(this.renderToken());
 
-        // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
         // Store this tag itself as a page attribute
         pageContext.setAttribute(Constants.FORM_KEY, this, PageContext.REQUEST_SCOPE);
 
-        // Locate or create the bean associated with our form
+        this.initFormBean();
+
+        return (EVAL_BODY_INCLUDE);
+
+    }
+
+    /**
+     * Locate or create the bean associated with our form.
+     * @throws JspException
+     * @since Struts 1.1
+     */
+    protected void initFormBean() throws JspException {
         int scope = PageContext.SESSION_SCOPE;
-        if ("request".equals(beanScope)) {
+        if ("request".equalsIgnoreCase(beanScope)) {
             scope = PageContext.REQUEST_SCOPE;
         }
+        
         Object bean = pageContext.getAttribute(beanName, scope);
         if (bean == null) {
             if (type != null) {
@@ -554,10 +565,6 @@ public class FormTag extends TagSupport {
             pageContext.setAttribute(beanName, bean, scope);
         }
         pageContext.setAttribute(Constants.BEAN_KEY, bean, PageContext.REQUEST_SCOPE);
-
-        // Continue processing this page
-        return (EVAL_BODY_INCLUDE);
-
     }
 
     /**
