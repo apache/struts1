@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchSupport.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchSupport.java,v 1.4 2003/08/10 03:02:59 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/08/10 03:02:59 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,7 +63,7 @@ package org.apache.strutsel.taglib.logic;
 import org.apache.struts.util.MessageResources;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.taglib.TagUtils;
 
 /**
  * This class is used as a helper class for both the
@@ -113,7 +113,7 @@ class ELMatchSupport {
             } else {
                 JspException e = new JspException
                     (messages.getMessage("logic.location", location));
-                RequestUtils.saveException(pageContext, e);
+                TagUtils.getInstance().saveException(pageContext, e);
                 throw e;
             }
 
