@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTei.java,v 1.4 2001/02/12 01:26:57 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/12 01:26:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTei.java,v 1.5 2002/09/22 06:32:46 martinc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/09/22 06:32:46 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.InputStream;
 import javax.servlet.jsp.tagext.TagData;
 import javax.servlet.jsp.tagext.TagExtraInfo;
 import javax.servlet.jsp.tagext.VariableInfo;
@@ -74,7 +73,7 @@ import javax.servlet.jsp.tagext.VariableInfo;
  * tag, identifying the scripting object(s) to be made visible.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.5 $ $Date: 2002/09/22 06:32:46 $
  */
 
 public class ResourceTei extends TagExtraInfo {

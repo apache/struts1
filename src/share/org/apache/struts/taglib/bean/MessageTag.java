@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.6 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.7 2002/09/22 06:32:46 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/09/22 06:32:46 $
  *
  * ====================================================================
  *
@@ -63,11 +63,8 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
 import java.util.Locale;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
@@ -82,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.7 $ $Date: 2002/09/22 06:32:46 $
  */
 
 public class MessageTag extends TagSupport {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.18 2002/06/30 03:02:19 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2002/06/30 03:02:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.19 2002/09/22 06:32:45 martinc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2002/09/22 06:32:45 $
  *
  * ====================================================================
  *
@@ -63,8 +63,6 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
@@ -77,7 +75,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/06/30 03:02:19 $
+ * @version $Revision: 1.19 $ $Date: 2002/09/22 06:32:45 $
  */
 
 public class DefineTag extends BodyTagSupport {

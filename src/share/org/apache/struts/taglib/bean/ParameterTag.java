@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.7 2001/04/23 22:52:21 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/04/23 22:52:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ParameterTag.java,v 1.8 2002/09/22 06:32:46 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/09/22 06:32:46 $
  *
  * ====================================================================
  *
@@ -63,10 +63,7 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -78,7 +75,7 @@ import org.apache.struts.util.RequestUtils;
  * parameter received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/04/23 22:52:21 $
+ * @version $Revision: 1.8 $ $Date: 2002/09/22 06:32:46 $
  */
 
 public class ParameterTag extends TagSupport {

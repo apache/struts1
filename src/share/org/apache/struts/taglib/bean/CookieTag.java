@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.9 2001/04/23 22:52:20 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/04/23 22:52:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/CookieTag.java,v 1.10 2002/09/22 06:32:45 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/09/22 06:32:45 $
  *
  * ====================================================================
  *
@@ -63,13 +63,10 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
@@ -80,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * cookie received with this request.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/04/23 22:52:20 $
+ * @version $Revision: 1.10 $ $Date: 2002/09/22 06:32:45 $
  */
 
 public class CookieTag extends TagSupport {

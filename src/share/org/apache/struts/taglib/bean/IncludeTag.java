@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.17 2002/01/13 00:25:36 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.18 2002/09/22 06:32:45 martinc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,15 +68,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Map;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -92,7 +86,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.18 $ $Date: 2002/09/22 06:32:45 $
  */
 
 public class IncludeTag extends TagSupport {

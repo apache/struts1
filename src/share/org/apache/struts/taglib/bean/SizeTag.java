@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.2 2001/04/23 22:52:21 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/23 22:52:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/SizeTag.java,v 1.3 2002/09/22 06:32:46 martinc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/09/22 06:32:46 $
  *
  * ====================================================================
  *
@@ -63,10 +63,8 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -80,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * found in a specified array, Collection, or Map.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/23 22:52:21 $
+ * @version $Revision: 1.3 $ $Date: 2002/09/22 06:32:46 $
  */
 
 public class SizeTag extends TagSupport {

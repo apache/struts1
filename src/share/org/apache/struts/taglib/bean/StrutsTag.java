@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.9 2002/07/09 23:57:57 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2002/07/09 23:57:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.10 2002/09/22 06:32:46 martinc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/09/22 06:32:46 $
  *
  * ====================================================================
  *
@@ -63,9 +63,7 @@
 package org.apache.struts.taglib.bean;
 
 
-import java.io.IOException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.config.ApplicationConfig;
@@ -78,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/07/09 23:57:57 $
+ * @version $Revision: 1.10 $ $Date: 2002/09/22 06:32:46 $
  */
 
 public class StrutsTag extends TagSupport {

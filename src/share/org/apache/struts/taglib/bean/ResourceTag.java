@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.10 2002/07/09 23:57:57 husted Exp $
- * $Revision: 1.10 $
- * $Date: 2002/07/09 23:57:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/ResourceTag.java,v 1.11 2002/09/22 06:32:46 martinc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/09/22 06:32:46 $
  *
  * ====================================================================
  *
@@ -66,11 +66,8 @@ package org.apache.struts.taglib.bean;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
@@ -81,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * web application resource.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/07/09 23:57:57 $
+ * @version $Revision: 1.11 $ $Date: 2002/09/22 06:32:46 $
  */
 
 public class ResourceTag extends TagSupport {
