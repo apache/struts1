@@ -59,6 +59,7 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionError;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.validator.Resources;
+import java.io.StringReader;
 
 /**
  *  <p>
@@ -119,9 +120,20 @@ public class ValidWhen {
     }
     String test = field.getVarValue("test");
     if (test == null) return false;
-    try {
-	valid = ValidWhenParser.evaluateExpression(test, form, index, value);
-    } catch  (ParseException ex) {
+	ValidWhenLexer l = new ValidWhenLexer(new StringReader(test));
+
+       	ValidWhenParser p = new ValidWhenParser(l);
+
+	p.setForm(form);
+	p.setIndex(index);
+	p.setValue(value);
+
+	try {
+	    p.expression();
+	    valid = p.getResult();
+    } catch  (Exception ex) {
+	ex.printStackTrace();
+        errors.add(field.getKey(), Resources.getActionError(request, va, field));
 	return false;
     }
     if (!valid) {
