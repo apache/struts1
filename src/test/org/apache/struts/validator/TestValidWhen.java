@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/validator/TestValidWhen.java,v 1.1 2004/09/03 18:12:26 niallp Exp $
- * $Revision: 1.1 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.8 2004/04/01 17:56:47 mrdon Exp $
- * $Revision: 1.8 $
- * $Date: 2004/04/01 17:56:47 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -35,7 +33,7 @@ import org.apache.struts.mock.TestMockBase;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.ActionConfigMatcher</code>.</p>
  *
- * @version $Revision: 1.8 $ $Date: 2004/04/01 17:56:47 $
+ * @version $Revision: 1.8 $ $Date$
  */
 
 public class TestActionConfigMatcher extends TestMockBase {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestIterateTag.java,v 1.9 2004/07/01 00:52:02 husted Exp $
- * $Revision: 1.9 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestLinkTag2.java,v 1.8 2004/09/24 01:17:57 niallp Exp $
- * $Revision: 1.8 $
- * $Date: 2004/09/24 01:17:57 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

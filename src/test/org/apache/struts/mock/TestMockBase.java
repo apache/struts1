@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.16 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.16 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.struts.config.ModuleConfigFactory;
  * tests included in this class are simple validations that the basic
  * environment was set up correctly.</p>
  *
- * @version $Revision: 1.16 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Revision: 1.16 $ $Date$
  */
 
 public class TestMockBase extends TestCase {

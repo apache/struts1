@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.26 2004/03/14 06:23:54 sraeburn Exp $
- * $Revision: 1.26 $
- * $Date: 2004/03/14 06:23:54 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -47,7 +45,7 @@ import org.apache.struts.taglib.html.Constants;
 /**
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
- * @version $Revision: 1.26 $ $Date: 2004/03/14 06:23:54 $
+ * @version $Revision: 1.26 $ $Date$
  */
 
 public class TestRequestUtils extends TestMockBase {

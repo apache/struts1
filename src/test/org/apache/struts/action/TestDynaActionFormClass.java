@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestDynaActionFormClass.java,v 1.12 2004/07/01 00:45:04 husted Exp $
- * $Revision: 1.12 $
- * $Date: 2004/07/01 00:45:04 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

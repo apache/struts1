@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockEnumeration.java,v 1.4 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -30,7 +28,7 @@ import java.util.Iterator;
  * <p>General purpose <code>Enumeration</code> wrapper around an
  * <code>Iterator</code> specified to our controller.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Revision: 1.4 $ $Date$
  */
 
 public class MockEnumeration implements Enumeration {

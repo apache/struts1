@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockActionServlet.java,v 1.4 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.4 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -42,7 +40,7 @@ import org.apache.struts.action.ActionServlet;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Revision: 1.4 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Revision: 1.4 $ $Date$
  */
 public class MockActionServlet extends ActionServlet
 {

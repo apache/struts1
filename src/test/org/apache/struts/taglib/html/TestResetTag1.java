@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestResetTag1.java,v 1.2 2004/09/24 01:17:58 niallp Exp $
- * $Revision: 1.2 $
- * $Date: 2004/09/24 01:17:58 $
+ * $Id$ 
  *
  * Copyright 2004 The Apache Software Foundation.
  * 

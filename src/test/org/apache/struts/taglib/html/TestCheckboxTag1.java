@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestCheckboxTag1.java,v 1.12 2004/09/24 01:17:57 niallp Exp $
- * $Revision: 1.12 $
- * $Date: 2004/09/24 01:17:57 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestHtmlTag.java,v 1.8 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

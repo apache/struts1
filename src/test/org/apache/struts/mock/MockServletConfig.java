@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockServletConfig.java,v 1.5 2004/03/14 06:23:52 sraeburn Exp $
- * $Revision: 1.5 $
- * $Date: 2004/03/14 06:23:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -43,7 +41,7 @@ import javax.servlet.ServletContext;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Revision: 1.5 $ $Date: 2004/03/14 06:23:52 $
+ * @version $Revision: 1.5 $ $Date$
  */
 
 public class MockServletConfig implements ServletConfig {

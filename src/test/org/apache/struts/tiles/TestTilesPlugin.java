@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/tiles/TestTilesPlugin.java,v 1.7 2004/03/14 06:23:53 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:53 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -39,7 +37,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:53 $
+ * @version $Revision: 1.7 $ $Date$
  */
 
 public class TestTilesPlugin extends TestMockBase {

@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag6.java,v 1.7 2004/03/14 06:23:41 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:41 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

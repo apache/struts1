@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestLessEqualTag.java,v 1.6 2004/03/14 06:23:43 sraeburn Exp $
- * $Revision: 1.6 $
- * $Date: 2004/03/14 06:23:43 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

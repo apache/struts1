@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/validator/PojoBean.java,v 1.1 2004/09/03 18:12:26 niallp Exp $
- * $Revision: 1.1 $
- * $Date: 2004/09/03 18:12:26 $
+ * $Id$ 
  *
  * Copyright 2004 The Apache Software Foundation.
  * 

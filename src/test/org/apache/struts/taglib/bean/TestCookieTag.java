@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestCookieTag.java,v 1.11 2004/07/06 06:38:52 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

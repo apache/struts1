@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestModuleConfig.java,v 1.9 2004/04/08 22:53:19 mrdon Exp $
- * $Revision: 1.9 $
- * $Date: 2004/04/08 22:53:19 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -34,7 +32,7 @@ import org.apache.struts.Globals;
 /**
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
- * @version $Revision: 1.9 $ $Date: 2004/04/08 22:53:19 $
+ * @version $Revision: 1.9 $ $Date$
  */
 
 public class TestModuleConfig extends TestCase {

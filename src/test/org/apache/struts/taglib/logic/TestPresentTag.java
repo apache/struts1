@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/logic/TestPresentTag.java,v 1.19 2004/07/06 06:38:52 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2004/07/06 06:38:52 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

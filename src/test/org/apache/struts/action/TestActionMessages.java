@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/action/TestActionMessages.java,v 1.7 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.7 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -29,7 +27,7 @@ import junit.framework.TestSuite;
 /**
  * Unit tests for the <code>org.apache.struts.action.ActionMessages</code> class.
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/14 06:23:51 $
+ * @version $Revision: 1.7 $ $Date$
  */
 
 public class TestActionMessages extends TestCase {

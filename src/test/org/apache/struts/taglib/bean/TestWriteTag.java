@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestWriteTag.java,v 1.12 2004/03/14 06:23:48 sraeburn Exp $
- * $Revision: 1.12 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 

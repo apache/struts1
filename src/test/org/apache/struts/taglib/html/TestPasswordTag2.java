@@ -1,7 +1,5 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestPasswordTag2.java,v 1.1 2004/09/23 00:37:23 niallp Exp $
- * $Revision: 1.1 $
- * $Date$
+ * $Id$ 
  *
  * Copyright 2004 The Apache Software Foundation.
  * 
