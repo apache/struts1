@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.14 2002/03/12 05:35:40 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/03/12 05:35:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.15 2002/08/03 23:53:45 craigmcc Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/08/03 23:53:45 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.taglib.logic;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -88,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/03/12 05:35:40 $
+ * @version $Revision: 1.15 $ $Date: 2002/08/03 23:53:45 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -311,12 +312,19 @@ public class IterateTag extends BodyTagSupport {
 
 	// Construct an iterator for this collection
 	if (collection.getClass().isArray()) {
-            int length = Array.getLength(collection);
-            ArrayList c = new ArrayList(length);
-            for (int i = 0; i < length; i++) {
-                c.add(Array.get(collection, i));
+            try {
+                // If we're lucky, it is an array of objects
+                // that we can iterate over with no copying
+                iterator = Arrays.asList((Object[]) collection).iterator();
+            } catch (ClassCastException e) {
+                // Rats -- it is an array of primitives
+                int length = Array.getLength(collection);
+                ArrayList c = new ArrayList(length);
+                for (int i = 0; i < length; i++) {
+                    c.add(Array.get(collection, i));
+                }
+                iterator = c.iterator();
             }
-            iterator = c.iterator();
 	} else if (collection instanceof Collection)
 	    iterator = ((Collection) collection).iterator();
 	else if (collection instanceof Iterator)
