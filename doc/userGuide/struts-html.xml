@@ -5697,6 +5697,7 @@
 			   for linking to other modules.</p>
 						   
 			   </info>
+                   <since>Struts 1.2.0</since>
 			 </attribute>
 					
 			 <attribute>
