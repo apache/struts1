@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.130 2003/08/02 20:35:28 dgraham Exp $
- * $Revision: 1.130 $
- * $Date: 2003/08/02 20:35:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.131 2003/08/02 20:40:18 dgraham Exp $
+ * $Revision: 1.131 $
+ * $Date: 2003/08/02 20:40:18 $
  *
  * ====================================================================
  *
@@ -61,11 +61,8 @@
 
 package org.apache.struts.util;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -110,7 +107,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.130 $ $Date: 2003/08/02 20:35:28 $
+ * @version $Revision: 1.131 $ $Date: 2003/08/02 20:40:18 $
  */
 
 public class RequestUtils {
@@ -1180,44 +1177,11 @@ public class RequestUtils {
      *  (<strong>MUST</strong> start with a slash)
      * @return context-relative URL
      * @since Struts 1.1
+     * @deprecated Use TagUtils.pageURL() instead.  This will be removed
+     * after Struts 1.2.
      */
     public static String pageURL(HttpServletRequest request, String page) {
-
-        StringBuffer sb = new StringBuffer();
-        ModuleConfig moduleConfig = getRequestModuleConfig(request);
-        String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
-        if (pagePattern == null) {
-            sb.append(moduleConfig.getPrefix());
-            sb.append(page);
-        } else {
-            boolean dollar = false;
-            for (int i = 0; i < pagePattern.length(); i++) {
-                char ch = pagePattern.charAt(i);
-                if (dollar) {
-                    switch (ch) {
-                        case 'M' :
-                            sb.append(moduleConfig.getPrefix());
-                            break;
-                        case 'P' :
-                            sb.append(page);
-                            break;
-                        case '$' :
-                            sb.append('$');
-                            break;
-                        default :
-                            ; // Silently swallow
-                    }
-                    dollar = false;
-                    continue;
-                } else if (ch == '$') {
-                    dollar = true;
-                } else {
-                    sb.append(ch);
-                }
-            }
-        }
-        return (sb.toString());
-
+        return TagUtils.getInstance().pageURL(request, page);
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.18 2003/08/02 20:35:28 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/08/02 20:35:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.19 2003/08/02 20:40:18 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/08/02 20:40:18 $
  *
  * ====================================================================
  *
@@ -101,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -438,7 +438,7 @@ public class TagUtils {
 
         } else /* if (page != null) */ {
             url.append(request.getContextPath());
-            url.append(RequestUtils.pageURL(request, page));
+            url.append(this.pageURL(request, page));
         }
 
         // Add anchor if requested (replacing any existing anchor)
@@ -1008,6 +1008,61 @@ public class TagUtils {
             return resources.getMessage(userLocale, key, args);
         }
 
+    }
+    
+    /**
+     * <p>Return the context-relative URL that corresponds to the specified
+     * <code>page</code> attribute value, calculated based on the
+     * <code>pagePattern</code> property of the current module's
+     * {@link ModuleConfig}.</p>
+     *
+     * @param request The servlet request we are processing
+     * @param page The module-relative URL to be substituted in
+     * to the <code>pagePattern</code> pattern for the current module
+     * (<strong>MUST</strong> start with a slash)
+     * @return context-relative URL
+     */
+    public String pageURL(HttpServletRequest request, String page) {
+
+        StringBuffer sb = new StringBuffer();
+        ModuleConfig moduleConfig = RequestUtils.getRequestModuleConfig(request);
+        String pagePattern = moduleConfig.getControllerConfig().getPagePattern();
+        
+        if (pagePattern == null) {
+            sb.append(moduleConfig.getPrefix());
+            sb.append(page);
+            
+        } else {
+            boolean dollar = false;
+            for (int i = 0; i < pagePattern.length(); i++) {
+                char ch = pagePattern.charAt(i);
+                if (dollar) {
+                    switch (ch) {
+                        case 'M' :
+                            sb.append(moduleConfig.getPrefix());
+                            break;
+                        case 'P' :
+                            sb.append(page);
+                            break;
+                        case '$' :
+                            sb.append('$');
+                            break;
+                        default :
+                            ; // Silently swallow
+                    }
+                    dollar = false;
+                    continue;
+                    
+                } else if (ch == '$') {
+                    dollar = true;
+                    
+                } else {
+                    sb.append(ch);
+                }
+            }
+        }
+        
+        return sb.toString();
     }
     
     /**
