@@ -70,6 +70,17 @@
       properties) only if the checkbox was actually checked.</li>
   </ul>
 
+  <p>The following major new features have been added to the utility classes
+  library (package <code>org.apache.struts.util</code>):</p>
+  <ul>
+  <li>Initial implementation of a JDBC data source that implements the
+      <code>javax.sql.DataSource</code> interface from the JDBC 2.0 Standard
+      Extensions API.  This implementation may be configured based on new
+      extensions to the Struts configuration file DTD, and the configured
+      data source / connection pool is made available to application components
+      as a servlet context attribute (i.e. an application scope bean).</li>
+  </ul>
+
   <p>The following major new features have been added to the
   <em>struts-bean</em> custom tag library (package
   <code>org.apache.struts.taglib.bean</code>):</p>

@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.1 2000/09/20 04:16:11 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.2 2000/11/26 05:11:28 craigmcc Exp $
 -->
 
 
@@ -36,6 +36,13 @@
      instantiated to provide the functionality of the enclosing element.
 -->
 <!ENTITY % ClassName "CDATA">
+
+
+<!-- An "Integer" is a character string consisting solely of numeric digits,
+     optionally preceeded by a minus sign, that can be converted to a
+     32-bit integer.
+-->
+<!ENTITY % Integer "CDATA">
 
 
 <!-- A "Location" is a relative path, delimited by "/" characters, that
@@ -72,8 +79,61 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (form-beans?, global-forwards?, action-mappings?)>
+<!ELEMENT struts-config (data-source, form-beans?, global-forwards?, action-mappings?)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
+
+
+<!-- The "data-source" element describes a JDBC 2.0 Standard Extension data
+     source object (that implements javax.sql.DataSource) which will be
+     configured according to the properties and nested elements found here,
+     and made available as a servlet context attribute (i.e. application
+     scope bean).  The following attributes are defined:
+
+     type            Fully qualified Java class name of the implementation
+                     class (must implement javax.sql.DataSource).
+
+     NOTE:  The following attributes are defined by the default data source
+     implementation, and only take effect for that class or subclasses of
+     that class.
+
+     autoCommit      The default auto-commit state for newly created
+                     connections.
+
+     description     The description of this data source.
+
+     driverClass     The Java class name of the JDBC driver to be used.
+                     [REQUIRED]
+
+     loginTimeout    The maximum number of seconds to wait for a connection
+                     to be created or returned.
+
+     maxCount        The maximum number of connections to be created.
+
+     minCount        The minimum number of connections to be created.
+
+     password        The database password to use when connecting. [REQUIRED]
+
+     readOnly        The default read-only state for newly created
+                     connections.
+
+     url             The JDBC URL to use when connecting. [REQUIRED]
+
+     user            The database username to use when connecting. [REQUIRED]
+
+-->
+<!ELEMENT data-source (set-property*)>
+<!ATTLIST data-source    id             ID              #IMPLIED>
+<!ATTLIST data-source    type           %ClassName;     "org.apache.struts.util.GenericDataSource">
+<!ATTLIST data-source    autoCommit     %Boolean;       "true">
+<!ATTLIST data-source    description    CDATA           #IMPLIED>
+<!ATTLIST data-source    driverClass    %ClassName;     #REQUIRED>
+<!ATTLIST data-source    loginTimeout   %Integer;       #IMPLIED>
+<!ATTLIST data-source    maxCount       %Integer;       "2">
+<!ATTLIST data-source    minCount       %Integer;       "1">
+<!ATTLIST data-source    password       CDATA           #REQUIRED>
+<!ATTLIST data-source    readOnly       %Boolean;       "false">
+<!ATTLIST data-source    url            CDATA           #REQUIRED>
+<!ATTLIST data-source    user           CDATA           #REQUIRED>
 
 
 <!-- The "form-beans" element is the root of the set of form bean descriptors

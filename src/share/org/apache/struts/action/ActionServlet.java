@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.35 2000/11/19 02:11:15 craigmcc Exp $
- * $Revision: 1.35 $
- * $Date: 2000/11/19 02:11:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.36 2000/11/26 05:11:30 craigmcc Exp $
+ * $Revision: 1.36 $
+ * $Date: 2000/11/26 05:11:30 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ package org.apache.struts.action;
 import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Enumeration;
 import java.util.Locale;
@@ -78,9 +79,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import org.apache.struts.digester.Digester;
 import org.apache.struts.taglib.form.Constants;
 import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.xml.sax.SAXException;
 
@@ -200,7 +203,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.35 $ $Date: 2000/11/19 02:11:15 $
+ * @version $Revision: 1.36 $ $Date: 2000/11/26 05:11:30 $
  */
 
 public class ActionServlet
@@ -234,6 +237,13 @@ public class ActionServlet
      * response (may be overridden by forwarded-to resources).
      */
     protected String content = "text/html";
+
+
+    /**
+     * The JDBC data source that has been configured for this application,
+     * if any.
+     */
+    protected DataSource dataSource = null;
 
 
     /**
@@ -372,6 +382,7 @@ public class ActionServlet
 
         destroyActions();
 	destroyApplication();
+        destroyDataSource();
 	destroyInternal();
 
     }
@@ -396,6 +407,7 @@ public class ActionServlet
 		(internal.getMessage("configIO", config));
 	}
         initUpload();
+        initDataSource();
 	initOther();
 
     }
@@ -522,7 +534,9 @@ public class ActionServlet
      * @return The size in bytes of the buffer
      */
     public int getBufferSize() {
+
         return bufferSize;
+
     }
 
 
@@ -533,6 +547,16 @@ public class ActionServlet
     public int getDebug() {
 
 	return (this.debug);
+
+    }
+
+
+    /**
+     * Return the JDBC data source associated with this application, if any.
+     */
+    public DataSource getDataSource() {
+
+        return (this.dataSource);
 
     }
 
@@ -697,7 +721,21 @@ public class ActionServlet
      * @param bufferSize The size in bytes of the buffer
      */
     public void setBufferSize(int bufferSize) {
+
         this.bufferSize = bufferSize;
+
+    }
+
+
+    /**
+     * Set the data source object to be used by this application.
+     *
+     * @param dataSource The data source to be used
+     */
+    public void setDataSource(DataSource dataSource) {
+
+        this.dataSource = dataSource;
+
     }
 
 
@@ -807,6 +845,29 @@ public class ActionServlet
 
 
     /**
+     * Gracefully terminate use of the data source associated with this
+     * application (if any).
+     */
+    protected void destroyDataSource() {
+
+        if (dataSource == null)
+            return;
+        if (dataSource instanceof GenericDataSource) {
+            if (debug >= 1)
+                log(internal.getMessage("dataSource.destroy"));
+            try {
+                ((GenericDataSource) dataSource).close();
+            } catch (SQLException e) {
+                log(internal.getMessage("destroyDataSource"), e);
+            }
+            dataSource = null;
+            getServletContext().removeAttribute(Action.DATA_SOURCE_KEY);
+        }
+
+    }
+
+
+    /**
      * Gracefully terminate use of the internal MessageResources.
      */
     protected void destroyInternal() {
@@ -849,6 +910,29 @@ public class ActionServlet
 
 
     /**
+     * Initialize use of the data source associated with this
+     * application (if any).
+     */
+    protected void initDataSource() {
+
+        if (dataSource == null)
+            return;
+        if (dataSource instanceof GenericDataSource) {
+            if (debug >= 1)
+                log(internal.getMessage("dataSource.init"));
+            try {
+                ((GenericDataSource) dataSource).open();
+            } catch (SQLException e) {
+                log(internal.getMessage("initDataSource"), e);
+            }
+            getServletContext().setAttribute(Action.DATA_SOURCE_KEY,
+                                             dataSource);
+        }
+
+    }
+
+
+    /**
      * Initialize the debugging detail level for this application.
      *
      * @exception ServletException if we cannot initialize these resources
@@ -886,6 +970,15 @@ public class ActionServlet
 	// Configure the processing rules
 
         // FIXME "struts-config/action-mappings" type attribute
+
+        digester.addObjectCreate("struts-config/data-source",
+                                 "org.apache.struts.util.GenericDataSource",
+                                 "type");
+        digester.addSetProperties("struts-config/data-source");
+        digester.addSetNext("struts-config/data-source",
+                            "setDataSource", "javax.sql.DataSource");
+        digester.addSetProperty("struts-config/data-source/set-property",
+                                "property", "value");
 
         digester.addObjectCreate("struts-config/action-mappings/action",
                                  mappingClass, "className");
