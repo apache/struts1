@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.11 2003/07/26 18:58:37 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/07/26 18:58:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.12 2003/07/26 19:01:12 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/26 19:01:12 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -353,11 +353,7 @@ public class TagUtils {
             value = value.substring(0, period);
         }
         
-        if (value.startsWith("/")) {
-            return (value);
-        } else {
-            return ("/" + value);
-        }
+        return value.startsWith("/") ? value : ("/" + value);
     }
 
     /**
@@ -601,9 +597,9 @@ public class TagUtils {
         Locale userLocale = getUserLocale(pageContext, locale);
         
         if (args == null) {
-            return (resources.getMessage(userLocale, key));
+            return resources.getMessage(userLocale, key);
         } else {
-            return (resources.getMessage(userLocale, key, args));
+            return resources.getMessage(userLocale, key, args);
         }
 
     }
@@ -633,7 +629,7 @@ public class TagUtils {
 
         Locale userLocale = getUserLocale(pageContext, locale);
 
-        return (resources.isPresent(userLocale, key));
+        return resources.isPresent(userLocale, key);
     }
     
     /**
