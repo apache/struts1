@@ -124,7 +124,7 @@
     <code>config/</code>.  
     For each of these elements, Struts loads the configuration file specified 
     by the value of that <code>init-param</code>, and assigns a "prefix" 
-    value to that module's ApplicationConfig instance consisting of the piece 
+    value to that module's ModuleConfig instance consisting of the piece
     of the <code>init-param</code> name following "config/".  
     For example, the module prefix specified by the 
     <code>init-param config/foo</code> would be "foo". 
