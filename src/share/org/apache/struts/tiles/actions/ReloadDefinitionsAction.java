@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ReloadDefinitionsAction.java,v 1.3 2003/01/05 01:24:48 martinc Exp $
- * $Revision: 1.3 $
- * $Date: 2003/01/05 01:24:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/ReloadDefinitionsAction.java,v 1.4 2003/02/04 02:23:08 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/04 02:23:08 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -85,10 +85,10 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.3 $ $Date: 2003/01/05 01:24:48 $
+ * @version $Revision: 1.4 $ $Date: 2003/02/04 02:23:08 $
  */
 
-public final class ReloadDefinitionsAction extends Action {
+public class ReloadDefinitionsAction extends Action {
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP

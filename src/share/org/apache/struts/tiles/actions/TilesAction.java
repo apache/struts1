@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.3 2002/11/16 07:20:09 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 07:20:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/TilesAction.java,v 1.4 2003/02/04 02:23:08 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/04 02:23:08 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -82,7 +82,7 @@ import org.apache.struts.action.ActionMapping;
  * execute(ComponentContext ...) method instead of Struts
  * execute(ActionMapping ...) method.
  * Backward compatibility is ensure with the perform(ComponentContext ...) method.
- * @version $Revision: 1.3 $ $Date: 2002/11/16 07:20:09 $
+ * @version $Revision: 1.4 $ $Date: 2003/02/04 02:23:08 $
  */
 
 public abstract class TilesAction extends Action

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.5 2003/01/31 06:33:20 dgraham Exp $
- * $Revision: 1.5 $
- * $Date: 2003/01/31 06:33:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.6 2003/02/04 02:23:08 dgraham Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/04 02:23:08 $
  *
  * ====================================================================
  *
@@ -109,10 +109,10 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.5 $ $Date: 2003/01/31 06:33:20 $
+ * @version $Revision: 1.6 $ $Date: 2003/02/04 02:23:08 $
  */
 
-public final class DefinitionDispatcherAction extends Action {
+public class DefinitionDispatcherAction extends Action {
     /** Commons Logging instance. */
    protected static Log log = LogFactory.getLog(DefinitionDispatcherAction.class);
 
