@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.2 2000/12/07 19:31:01 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/12/07 19:31:01 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.3 2000/12/26 20:49:06 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/12/26 20:49:06 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import java.util.HashMap;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @revision $Revision: 1.2 $ $Date: 2000/12/07 19:31:01 $
+ * @revision $Revision: 1.3 $ $Date: 2000/12/26 20:49:06 $
  */
 
 public class ActionErrors implements Serializable {
@@ -200,6 +200,20 @@ public class ActionErrors implements Serializable {
             return (empty.iterator());
         else
             return (list.iterator());
+
+    }
+
+
+    /**
+     * Return the set of property names for which at least one error has
+     * been recorded.  If there are no errors, an empty Iterator is returned.
+     * If you have recorded global errors, the String value of
+     * <code>ActionErrors.GLOBAL_ERROR</code> will be one of the returned
+     * property names.
+     */
+    public Iterator properties() {
+
+        return (errors.keySet().iterator());
 
     }
 
