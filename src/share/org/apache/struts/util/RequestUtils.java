@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.7 2001/02/23 18:42:25 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/23 18:42:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.8 2001/03/11 00:58:45 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/03/11 00:58:45 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/02/23 18:42:25 $
+ * @version $Revision: 1.8 $ $Date: 2001/03/11 00:58:45 $
  */
 
 public class RequestUtils {
@@ -126,11 +126,18 @@ public class RequestUtils {
      */
     public static String absoluteURL(HttpServletRequest request, String path) {
 
+        URL url = null;
+        int port = request.getServerPort();
+        String scheme = request.getScheme();
+        String serverName = request.getServerName();
+        String uri = request.getContextPath() + path;
         try {
-            URL url = new URL(request.getScheme(),
-                              request.getServerName(),
-                              request.getServerPort(),
-                              request.getContextPath() + path);
+            if ("http".equals(scheme) && (80 == port))
+                url = new URL(scheme, serverName, uri);
+            else if ("https".equals(scheme) && (443 == port))
+                url = new URL(scheme, serverName, uri);
+            else
+                url = new URL(scheme, serverName, port, uri);
             return (url.toString());
         } catch (MalformedURLException e) {
             return (null);

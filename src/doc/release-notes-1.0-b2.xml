@@ -88,6 +88,11 @@
         server if this checkbox is checked at submit time.  In addition, a
         default value of <code>on</code> is sent if no value attribute is
         specified.</li>
+    <li>The hyperlinks created by the <code>&lt;html:link&gt;</code> and
+        <code>&lt;html:redirect&gt;</code> tags now properly omit the port
+        number if it is the default port for the current request scheme (80
+        for http, or 443 for https).  Among other things, this corrects
+        session management behavior on the standard port numbers.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Documentation
