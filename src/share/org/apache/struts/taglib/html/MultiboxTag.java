@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.6 2001/04/18 23:45:02 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/04/18 23:45:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.6.2.1 2001/06/01 20:39:43 craigmcc Exp $
+ * $Revision: 1.6.2.1 $
+ * $Date: 2001/06/01 20:39:43 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/04/18 23:45:02 $
+ * @version $Revision: 1.6.2.1 $ $Date: 2001/06/01 20:39:43 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -273,7 +273,7 @@ public class MultiboxTag extends BaseHandlerTag {
 	}
 	for (int i = 0; i < values.length; i++) {
 	    if (value.equals(values[i])) {
-		results.append(" checked");
+		results.append(" checked=\"true\"");
 		break;
 	    }
 	}
