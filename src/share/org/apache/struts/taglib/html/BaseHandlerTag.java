@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.27 2003/07/03 04:50:28 dgraham Exp $
- * $Revision: 1.27 $
- * $Date: 2003/07/03 04:50:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.28 2003/07/03 04:54:35 dgraham Exp $
+ * $Revision: 1.28 $
+ * $Date: 2003/07/03 04:54:35 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.27 $ $Date: 2003/07/03 04:50:28 $
+ * @version $Revision: 1.28 $ $Date: 2003/07/03 04:54:35 $
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
@@ -703,17 +703,17 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     protected String prepareStyles() throws JspException {
         String value = null;
         StringBuffer styles = new StringBuffer();
-        if (style != null) {
+        if (getStyle() != null) {
             styles.append(" style=\"");
             styles.append(getStyle());
             styles.append("\"");
         }
-        if (styleClass != null) {
+        if (getStyleClass() != null) {
             styles.append(" class=\"");
             styles.append(getStyleClass());
             styles.append("\"");
         }
-        if (styleId != null) {
+        if (getStyleId() != null) {
             styles.append(" id=\"");
             styles.append(getStyleId());
             styles.append("\"");
@@ -752,43 +752,43 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * @param handlers The StringBuffer that output will be appended to.
      */
     protected void prepareMouseEvents(StringBuffer handlers) {
-        if (onclick != null) {
+        if (getOnclick() != null) {
             handlers.append(" onclick=\"");
             handlers.append(getOnclick());
             handlers.append("\"");
         }
 
-        if (ondblclick != null) {
+        if (getOndblclick() != null) {
             handlers.append(" ondblclick=\"");
             handlers.append(getOndblclick());
             handlers.append("\"");
         }
 
-        if (onmouseover != null) {
+        if (getOnmouseover() != null) {
             handlers.append(" onmouseover=\"");
             handlers.append(getOnmouseover());
             handlers.append("\"");
         }
 
-        if (onmouseout != null) {
+        if (getOnmouseout() != null) {
             handlers.append(" onmouseout=\"");
             handlers.append(getOnmouseout());
             handlers.append("\"");
         }
 
-        if (onmousemove != null) {
+        if (getOnmousemove() != null) {
             handlers.append(" onmousemove=\"");
             handlers.append(getOnmousemove());
             handlers.append("\"");
         }
 
-        if (onmousedown != null) {
+        if (getOnmousedown() != null) {
             handlers.append(" onmousedown=\"");
             handlers.append(getOnmousedown());
             handlers.append("\"");
         }
 
-        if (onmouseup != null) {
+        if (getOnmouseup() != null) {
             handlers.append(" onmouseup=\"");
             handlers.append(getOnmouseup());
             handlers.append("\"");
@@ -802,19 +802,19 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     protected void prepareKeyEvents(StringBuffer handlers) {
 
-        if (onkeydown != null) {
+        if (getOnkeydown() != null) {
             handlers.append(" onkeydown=\"");
             handlers.append(getOnkeydown());
             handlers.append("\"");
         }
 
-        if (onkeyup != null) {
+        if (getOnkeyup() != null) {
             handlers.append(" onkeyup=\"");
             handlers.append(getOnkeyup());
             handlers.append("\"");
         }
 
-        if (onkeypress != null) {
+        if (getOnkeypress() != null) {
             handlers.append(" onkeypress=\"");
             handlers.append(getOnkeypress());
             handlers.append("\"");
@@ -828,13 +828,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     protected void prepareTextEvents(StringBuffer handlers) {
 
-        if (onselect != null) {
+        if (getOnselect() != null) {
             handlers.append(" onselect=\"");
             handlers.append(getOnselect());
             handlers.append("\"");
         }
 
-        if (onchange != null) {
+        if (getOnchange() != null) {
             handlers.append(" onchange=\"");
             handlers.append(getOnchange());
             handlers.append("\"");
@@ -848,23 +848,23 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      */
     protected void prepareFocusEvents(StringBuffer handlers) {
 
-        if (onblur != null) {
+        if (getOnblur() != null) {
             handlers.append(" onblur=\"");
             handlers.append(getOnblur());
             handlers.append("\"");
         }
 
-        if (onfocus != null) {
+        if (getOnfocus() != null) {
             handlers.append(" onfocus=\"");
             handlers.append(getOnfocus());
             handlers.append("\"");
         }
 
-        if (disabled) {
+        if (getDisabled()) {
             handlers.append(" disabled=\"disabled\"");
         }
 
-        if (readonly) {
+        if (getReadonly()) {
             handlers.append(" readonly=\"readonly\"");
         }
 
