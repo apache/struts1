@@ -159,14 +159,24 @@ Jakarta Taglibs</a> site.
 </section>
 
 <section href="bugs" name="Where can I report bugs or make feature requests?">
-<p>You can research and report outstanding fixes and feature requests using <a href="http://jakarta.apache.org/site/bugs.html">Jakarta Bugzilla</a>.</p>
-<p>If you are unsure if this is in actual problem, feel free to bring it up on the list first. But to be sure an issue is resolved, always report it to <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>.</p>
-<p>Struts also maintains a <a href="../todo-1.1.html">TODO list</a> outlining features being planned or developed.</p>
+<p>You can research and report outstanding fixes and feature requests using 
+<a href="http://jakarta.apache.org/site/bugs.html">Jakarta Bugzilla</a>. If you 
+are unsure if this is an actual problem, feel free to bring it up on the list 
+first. But to be sure that an issue is resolved, read 
+<a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report 
+Bugs Effectively</a> and report it to 
+<a href="http://jakarta.apache.org/site/bugs.html"><b>Bugzilla</b></a>.</p>
+<p>Feature requests are also maintained in the Bugzilla database. Some older 
+requests are still listed on the <a href="../todo-1.1.html">wish list</a> 
+page.</p>
 </section>
 
 <section href="contribute" name="How can I contribute to the development of Struts?">
 <p>Struts is distributed by the <a href="http://apache.org/">Apache Software Foundation</a>. These are the same people who distribute the Apache Web server. Like all ASF projects, Struts is managed as a &quot;meritocracy&quot;, where everyone's contribution is welcome. Users can help other users on the <a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>, <a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and <a href="http://jakarta.apache.org/site/bugs.html">request new features</a>. Developers can contribute patches, new code, and documentation. The most active Developers may become <a href="http://jakarta.apache.org/site/roles.html">Committers</a>, who make the actual decisions about the Strut's codebase.</p>
-<p>You can start by joining the Struts User list. If you enjoy participating there, then sign up for the Struts Developer list too. If you find any problems with Struts, or find a missing feature, you can enter a record to our <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> database.</p>
+<p>You can start by joining the Struts User list. If you enjoy participating there, 
+then sign up for the Struts Developer list too. If you find any problems with Struts, 
+or find a missing feature, you can enter a record to our 
+<a href="#bugs">Bugzilla</a> database.</p>
 </section>
 
 <section href="release" name="When is the next release coming out?">

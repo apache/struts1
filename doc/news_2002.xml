@@ -13,6 +13,29 @@
 
 <section name="News &amp; Status">
 
+<h3>01 Mar 2002  - Simper 0.2</h3>
+
+<p>
+Simper is a simple JDBC persistence mechanism for Java web apps. It
+features many of the interesting features of EJB, such as automatic
+transaction demarcation (by way of Servlet Filters), and automatic
+change detection of database rows (by way of DynaBeans). Lastly, the
+notation by which you reference rows, as well as relations between
+tables, is extremely JSP friendly.
+</p>
+<p>
+<a href="http://www.netmeme.org/simper/">http://www.netmeme.org/simper/</a>
+</p>
+<p>
+0.2 is not a new release (it's been out for about a month), but, a
+SourceForge project has been set up, with mailing lists, CVS, etc., so
+that others can discuss and contribute (as I am getting quite busy
+lately)
+</p>
+<hr size="1" noshade=""/>
+
+
+
 <h3><a name="20020212"></a>12 February 2002 - Stxx for transforming XML</h3>
 
 <p>
@@ -105,6 +128,52 @@ available
 <hr size="1" noshade=""/>
 
 
+<h3>6 February 2002 - Struts Console v1.4</h3>
+<p>
+Struts Console version 1.4 is now available.
+</p>
+<p>
+<a href="http://www.jamesholmes.com/struts/">
+http://www.jamesholmes.com/struts/</a><br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-1.4.zip">
+http://www.jamesholmes.com/struts/struts-console-1.4.zip</a>
+</p>
+<p>
+This release adds plugin support for the new Oracle
+JDeveloper 9i IDE.  This release also adds significant
+new funcionality to the "JSP Converter" and renames it
+to "Page Converter".
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3>26 January 2002 - Free Struts Development Tool</h3>
+<p>
+"ObjectAssembler Standard is focused on supporting developers whose sole
+area of concern is developing Servlets, JSPs, JavaBeans and Struts
+components. It provides a visual development and code synchronization
+environment for the creation and assembly of these components into web
+applications."
+</p>
+<p>
+Here is the download page:<br/>
+<a href="http://www.objectventure.com/products/objectassembler.html">
+http://www.objectventure.com/products/objectassembler.html</a>
+</p>
+<p>
+Here is a Viewlet showing some of ObjectAssembler's features:<br/>
+<a href="http://www.objectventure.com/demo/IntroStruts_viewlet.html">
+http://www.objectventure.com/demo/IntroStruts_viewlet.html</a>
+</p>
+<p>
+Please give it a try and tell us what you think. We are currently working on
+our next major release that will provide J2EE 1.3 support. We also plan to
+support Struts as it evolves (multi-app support, etc.), so any input we
+receive would make that support even better.
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3><a name="20020118"></a>18 Jan 2002 - Nested Taglib added to nightly build</h3>
 <p>
 Struts tags support a dotted notation to refer to a nested beans. The Nested 
@@ -117,10 +186,37 @@ deep.
 <hr size="1" noshade=""/>
 
 
+<h3>17 January 2002 - Chiki v0.23</h3>
+<p>
+Chiki is a Wiki-like webapp built using Struts. This is the first
+publicly available release, so as much feedback as possible would be
+greatly appreciated. 
+</p>
+<p> 
+Chiki can be found at:<br/>
+<a href="http://chiki.emaho.org">
+http://chiki.emaho.org </a>
+</p>
+<hr size="1" noshade=""/>
+
+
 <h3>14 January 2002 - New Committer, Arron Bates </h3>
 <p>
 Arron Bates, known for his interesting and popular nesting extension to 
 the Struts taglibs has been elected as a Struts Committer. 
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3>13 Janaury 2002 - Scioworks Camino v1.0</h3>
+<p>
+We are pleased to announce the general availability of the Scioworks Camino 
+v1.0, visual tool for Struts application development.
+</p>
+<p>
+Download is available at <br/>
+<a href="http://www.scioworks.com/scioworks_camino_download.html.">
+http://www.scioworks.com/scioworks_camino_download.html.</a>
 </p>
 <hr size="1" noshade=""/>
 

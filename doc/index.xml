@@ -5,7 +5,7 @@
     <author>Craig R. McClanahan</author>
     <author>Ted Husted</author>
     <author>Martin Cooper</author>
-    <title>The Struts Framework Project</title>
+    <title>The Struts Web Application Framework</title>
   </properties>
 
   <body>
@@ -114,15 +114,20 @@
   <p>
   The Struts <a href="#Involved">Mailing Lists</a> are an treasure trove of useful, 
   interactive information. The list tends to carry a high volume, so always check the 
-  published documentation and 
-  the <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
-  <b>MAILING LIST ARCHIVE</b></a> before posting a new question. Like as not, it's 
-  already been asked and answered.
+  published documentation and the 
+  <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
+  <b>MAILING LIST ARCHIVE</b></a> before 
+  <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">posting a new question</a>. 
+  Like as not, it's already been asked and answered.
   </p>
 
   <p>
   The Struts <a href="resources.html"><b>Resources</b></a> page provides links to 
-  everything else published about  Struts, including books, articles, tutorials, seminars, 
+  everything else published about  Struts, including 
+  <a href="resources.html#books">books</a>, 
+  <a href="resources.html#articles">articles</a>, 
+  <a href="resources.html#tutorials">tutorials</a>, 
+  <a href="resources.html#seminars">seminars</a>, 
   and sample applications. There are also links to public sites "Powered by Struts" and
   a directory of professional Struts consultants.
   </p>
@@ -219,17 +224,47 @@
   Apache Bug Database</a>. Please select <strong>Struts</strong> from the product 
   list, along with the details of which component of Struts you feel this report 
   relates to, and details of your operating environment. You will automatically be
-  notified by email as the status of your bug or enhancement report changes.
+  notified by email as the status of your bug or enhancement report changes. Please 
+  be sure to read 
+  <a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report 
+  Bugs Effectively</a> before posting.
   </p>
 
   </section>
 
-  <section name="Getting Involved" href="Involved">
+  <section name="Contributing Patches to Code or Documentation" href="Patches">
 
   <p>
-  There are a number of ways to get more involved in the Struts
-  community, including contributing to the future development of Struts.
-  Check out the following resources:
+  You can upload a proposed <a href="http://jakarta.apache.org/site/source.html#Patches">
+  patch</a> to either the code or documentation by creating a feature request in 
+  <a href="#Bugs">Bugzilla</a>. <b>After creating the ticket</b>, you can go back 
+  and upload a file containing your patch. 
+  </p>
+  <p>
+  The documentation is maintained in the <code>doc</code> folder of the CVS in a 
+  XML format. In the Nightly Build, there is a "compile.website" target in the 
+  <code>build.xml</code> file, which renders the XML into the HTML we post to the 
+  Website. If you would like to help with the documentation, it is important to 
+  provide patches and new pages in the XML source. Otherwise, some other volunteer 
+  will have to do this for you, and it may never get done. (Sad but true.) If you 
+  are submitting new material, it is important to decide exactly where you would 
+  put this in relation to the rest of the documentation. Someone has to figure that 
+  out before it can be added, and that someone might as well be you.
+  </p>
+  <p>
+  New additions for the Resources page should be posted as an enhancement request to 
+  <a href="#Bugs">Bugzilla</a>.
+  </p>
+
+  </section>
+
+  <section name="Joining the Mailing Lists" href="lists">
+
+  <p>
+  Before joining any mailing list at Jakarta, please be sure to read the 
+  <a href="http://jakarta.apache.org/site/mail.html">Mailing Lists - Guidelines</a>. 
+  If you have read and understood these guidelines, you are welcome to join the 
+  Jakarta Struts mailing lists:
   </p>
   <ul>
   <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
@@ -256,24 +291,34 @@
       [<a href="http://news.basebeans.com/forums.jsp">Struts Newsgroup</a>]<br/>
       Our thanks to BaseBeans Engineering for providing this much-needed service!
       </li>
-  <li><strong>Bug Reports and Feature Requests</strong> Use the
-      <a href="#Bugs">Bug Reporting System</a> to submit these reports.</li>
-  <li><strong>Patches and Modules</strong> - You can contribute patches and
-      new modules to Struts by posting them to the STRUTS-DEV mailing list.
-      After discussion and acceptance, one of the existing Committers will
-      add your contribution to the Struts source code base (with credit to
-      you, of course).</li>
-  <li><strong>Become A Committer</strong> - If you wish to contribute directly
-      to the development of Struts, and have commit access to the CVS source
-      repository, you can be nominated (or nominate yourself) for Committer
-      status on this project.  The rules by which committers are voted on are
-      listed at the
-      <a href="http://jakarta.apache.org/guidelines/index.html">Jakarta
-      web site</a>.</li>
   </ul>
 
   </section>
 
+  <section name="Posting a Question to a Mailing List" href="questions">
+
+  <p>
+  Before posting a new question, be sure to consult the 
+  <a href="http://www.mail-archive.com/struts-user%40jakarta.apache.org/">
+  <b>MAILING LIST ARCHIVE</b></a> and the very excellent
+  <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">
+  How To Ask Questions The Smart Way</a> by Eric Raymond. Please do be sure 
+  to <a href="http://expita.com/nomime.html">turn off HTML</a> in your 
+  email client before posting.
+  </p>
+
+  </section>
+
+  <section name="Getting Involved" href="Involved">
+
+  <p>
+  All work on Struts and the other Jakarta subprojects is provided a volunteer 
+  basis. For more about what you can do, see the 
+  <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved 
+  Overview</a>.
+  </p>
+
+  </section>
 
   </body>
 </document>

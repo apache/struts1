@@ -8,7 +8,7 @@
 <chapter href="faq" name="Newbie FAQ"> 
 <section href="contents" name="Table of Contents">
 <p><font color="red"><b>UNDER CONSTRUCTION</b></font> (contributions welcome)</p>
-<p>Here are answers to twenty common questions people ask when using Struts on 
+<p>Here are answers to 21 common questions people ask when using Struts on 
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
     <li>Why is ActionForm a base class rather than an interface?</li>
@@ -16,16 +16,17 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
     <li>Can I use other beans or hashmaps with ActionForms?</li>
     <li>How can I prepopulate a form?</li>
     <li>Can I use multiple HTML form elements with the same name?</li>
-    <li><a href="#actionforms">hy are my checkboxes not being set from ON to OFF?</a></li>
+    <li><a href="#actionforms">Why are my checkboxes not being set from ON to OFF?</a></li>
     <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
     <li>Why do my option lists disappear when validation fails?</li>
-    <li>Can't I just create some of my JavaBeans on the JSP using a scriptlet?</li>
+    <li><a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP using a scriptlet?</a></li>
     <li>When is the best time to validate input?</li>
     <li>How can I avoid validating a form before data is entered?</li>
     <li>How can I create a "wizard" workflow?</li>
     <li>How can I "chain" Actions?</li>
     <li>Can I have an Action without a form?</li>
     <li>How do I access my database?</li>
+    <li>How can I authenticate my users?</li>
     <li>Can I have multiple submit buttons on the same form?</li>
     <li>Why can't my Javascript submit a form?</li>
     <li>Can I create dynamic ActionFowards?</li>
@@ -67,5 +68,32 @@ default values for an ActionForm correctly, and to implement the reset method
 when the ActionForm might kept in session scope.
 </p>
 </section>
+
+<section href="scriptlets" name="Can't I just create some of my JavaBeans in the JSP using a scriptlet?">
+<p>
+Struts is designed to encourage a 
+<a href="http://www.javaworld.com/javaworld/jw-12-1999/f_jw-12-ssj-jspmvc.html">
+Model 2/MVC architecture</a>. But there is nothing that prevents you from using Model 1 
+techniques in your JavaServer Pages, so the answer  to the question is "Yes, you can". 
+</p>
+<p>
+Though, using Model 1 techniques in a Struts application does go against the grain. 
+The approach recommended by most Struts developers is to create and populate whatever 
+objects the view may need in the Action, and then forward these through the request. 
+Some objects may also be created and stored in the session or application context, 
+depending on how they are used. 
+</p>
+<p>
+Likewise, there is nothing to prevent you from using scriptlets along with JSP 
+tags in your pages. Though, many Struts developers report writing very complex 
+scriplet-free applications and recommend the JSP tag approach to others.
+</p>
+<p>
+For help with Model 1 techniques and scriptlets, you might consider joining the 
+<a href="http://archives.java.sun.com/jsp-interest.html">Javasoft JSP-interest 
+mailing list</a>, where there are more people still using these approaches. 
+</p>
+</section>
+
 
 </chapter></body></document>

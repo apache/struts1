@@ -80,7 +80,7 @@
 <p><a href="http://bist77.multimania.com/struts.php#rose"><b>Struts .. in Rose</b></a> by Emmanuel.Boudrant - Use Struts with the Rational Rose UML model. </p>
 <p><a href="http://husted.com/struts/resources/multi-struts.htm"><b>Multi-Controller</b></a> by Sukachevin, Stoehr - Use more than once ActionServlet in your Struts application </p>
 <p><a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg16093.html"><b>JavaScript with html:errors - new Struts validation</b></a> by Adam Grohs.  </p>
-<p><a href="http://jcorporate.com/"><b>Expresso</b></a> by jCorporate - Expresso provides a foundation set of reusable, standards-based Java software components designed to shorten time-to-delivery of Web applications, and is integrated with the Struts framework. See also <a href="http://www.xenonsoft.demon.co.uk/products/java.html"><b>Best Practice with Expresso Framework 4.0</b></a>.</p>
+<p><a href="http://jcorporate.com/"><b>Expresso</b></a> by jCorporate - Expresso provides a foundation set of reusable, standards-based Java software components designed to shorten time-to-delivery of Web applications, and is integrated with the Struts framework. See also <a href="http://www.xenonsoft.demon.co.uk/products/java.html">Best Practice with Expresso Framework 4.0</a>.</p>
 <p><a href="http://husted.com/struts/resources/DynamicProperties.htm"><b>Dynamic ActionForm Properties</b></a> by Jan Sorensen.</p>
 <p><a href="http://husted.com/struts/resources/bean-util.htm"><b>Bean Utils with Indexed Strings</b></a> by Gregor Rayman.</p>
 <p><a href="http://husted.com/struts/resources/struts-security.htm"><b>Role-Based Actions</b></a> by Nic Hobs. Set a security role for an Action from with struts-config.</p>
@@ -89,7 +89,7 @@
 <p><a href="http://www.rpsenterprises.com/struts/index.html"><b>Struts Extender</b></a> by Ron Smith - Add extensions to the struts framework via entries in the Struts configuration file.</p>
 <p><a href="http://husted.com/struts/resources/mapper.htm"><b>Mapper Framework</b></a> by Capco - The Mapper framework can be used for automating the process of validating/converting/transferring data fields. <font size="2">(See README to get started. Updated 18-JUL-2001.)</font></p>
 <p><a href="http://www.sura.ru/~gonza/bean-factory/"><b>Bean factory</b></a> by Oleg V Alexeev - Adds the ability to easily link data bean creation to any Struts Action. All information about databeans and actions mappings stored in the standard Struts configuraton file. </p>
-<p><a href="http://husted.com/struts/resources/workflow.htm"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
+<p><a href="http://www.livinglogic.de/Struts/"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
 <p><a href="http://husted.com/struts/resources/struts-menu.zip"><b>Struts Menu</b></a> by Scott Sayles (ZIP file for download) - A Struts-compatible web menuing component (early release - work in progress) - unzip to a &quot;struts-menu&quot; folder, and see the README.</p>
 <p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator</b></a>  [<b>Also in the nightly build /contrib folder</b>] by David Winterfeldt - Perform basic validations to check if a field is required, matches a regular expression, or some other Javascript check, and some basic type checking. </p>
 <p><a href="http://www.lifl.fr/~dumoulin/tiles/"><b>Tiles Library for building JSP views</b></a>  [<b>Also in the nightly build /contrib folder</b>] by Cedric Dumoulin - A component is a JSP page that can be inserted in another JSP page, like templates, but can take "parameters" (URLs or 'direct' string intemplates). See also <a href="http://www.javaworld.com/javaworld/jw-01-2002/jw-0104-tilestrut.html"><b>UI design with Tiles and Struts</b></a>.</p>
@@ -112,6 +112,7 @@
 
 
 <section href="tutorials" name="Tutorials">
+<p><a href="http://www.anassina.com/struts/i18n/i18n.html"><b>Struts i18n</b></a> by Aaron Rustad.</p>
 <p><a href="http://husted.com/struts/resources/fb-auth.htm"><b>How To: (Form-Based Authentication) use the form-error page to login</b></a> by Matt Raible.</p>
 <p><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>WebSphere 4 Application Development Handbook</b></a> - IBM &quot;Redbook&quot; - See &quot;Designing with Frameworks (Chapter 7).</p>
 <p><a href="http://husted.com/about/scaffolding/catalog.htm"><b>Struts Catalog</b></a> by Ted Husted - Overview of Struts Design Patterns and Strategies.</p>
@@ -130,6 +131,8 @@
 
 
 <section href="articles" name="Articles">
+<p><a href="http://stealthis.athensgroup.com/presentations/Model_Layer_Framework/Struts_Whitepaper.doc"><b>Using Struts</b></a> (Word document) by Larry Maturo</p>
+<p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0215-ssl.html"><b>Mix protocols transparently in Web applications</b></a> by Steve Ditlinger.</p>
 <p><a href="http://www.theserverside.com/events/videos/CraigMcClanahan/dsl/interview.html"><b>About Struts Interview With Craig McClanahan</b></a> - The Server Side.</p>
 <p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0201-strutsxslt.html"><b>Boost Struts with XSLT and XML</b></a> By Julien Mercay and Gilbert Bouzeid.</p>
 <p><a href="http://www.sysdeo.com/docs/struts1.pdf"><b>Struts, vous avez dit Struts?</b></a> (in french) by Arnaud Buisine </p>
@@ -141,7 +144,7 @@
 <p><a href="http://www.javadude.com/articles/layering.html"><b>Layering Applications</b></a> by Scott Stanchfield.</p>
 <p><a href="http://www.sys-con.com/java/article.cfm?id=1175"><b>MVC and Struts</b></a> by Steven Sweeting, Clive Jones, and Aaron Rustad.</p>
 <p><a href="http://www.onjava.com/pub/a/onjava/2001/09/11/jsp_servlets.html"><b>Introduction to Jakarta Struts Framework</b></a> by Sue Spielman.<br/>- <a href="http://www.onjava.com/pub/a/onjava/2001/10/31/struts2.html"><b>Learning Jakarta Struts, Part 2</b></a></p>
-<p><a href="http://husted.com/scaffolding/performant.htm"><b>Is Struts Performant?</b></a> by Ted Husted -- An analysis of framework components, and how they contribute to overall efficiency.</p>
+<p><a href="http://husted.com/struts/resources/performant.htm"><b>Is Struts Performant?</b></a> by Ted Husted -- An analysis of framework components, and how they contribute to overall efficiency.</p>
 <p><a href="http://husted.com/struts/resources/strutsforeveryone.zip"><b>Struts for Everyone</b></a> by Jonathan Asbell -- Word document zipped for download. Early release: still in working draft form.</p>
 <p><a href="http://husted.com/struts/resources/1291-authentication.zip"><b>Approaches to User Authentication and Access Control in Web Applications</b></a> by Craig McClanahan. Slides from the JavaOne BOF (June 2001 #1291). Star Office Format. Zipped for download.</p>
 <p><b>Support your application development with Struts</b> <font color="#FF0000">[<a href="http://www.sys-con.com/java/archives/0603/mcclanahan/">404</a>]</font> by McClanahan, McCay, and Bergenholtz.</p>
@@ -155,17 +158,17 @@
 
 
 <section href="books" name="Books">
-          <ul>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a><b> </b>by Victor Cekvenich - Practical Application with Database Access and Struts Extensions</li>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book - Features Struts throughout.</li>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. Several chapters regarding Struts.</li>
-            <li><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks,</li>
-            <li><a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.</li>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> - Many of these patterns are deployed in Struts.</li>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=1861004958/hitchhikeguidetoA/"><b>Professional JSP 2nd Edition</b></a> - Wrox book - long chapter on Struts.</li>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary - Features template tag library from Struts 1.0</li>
-            <li><a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/"><b>Design Patterns: Elements of Reusable Object-Orientated Software</b></a> by Gama, Helm, Johnson, and Vlissides - Inspired the core patterns used by Struts.</li>
-          </ul>
+<ul>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0971661901/hitchhikeguidetoA/"><b>Struts Fast Track: J2EE / JSP Framework</b></a><b> </b>by Victor Cekvenich - Practical Application with Database Access and Struts Extensions</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book - Features Struts throughout.</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. Several chapters regarding Struts.</li>
+<li><a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks,</li>
+<li><a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> - Many of these patterns are deployed in Struts.</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=1861004958/hitchhikeguidetoA/"><b>Professional JSP 2nd Edition</b></a> - Wrox book - long chapter on Struts.</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary - Features template tag library from Struts 1.0</li>
+<li><a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/"><b>Design Patterns: Elements of Reusable Object-Orientated Software</b></a> by Gama, Helm, Johnson, and Vlissides - Inspired the core patterns used by Struts.</li>
+</ul>
 </section>
 
 
@@ -178,6 +181,13 @@
 
 
 <section href="archives" name="Mailing List Archives">
+<blockquote>
+  <ul>
+    <li><a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html"><b>How To Ask Questions The Smart Way</b></a></li>
+    <li><a href="http://expita.com/nomime.html">Turn off HTML</a></li>
+    <li><a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report Bugs Effectively</a></li>
+  </ul>
+</blockquote>
 <p><a href="http://mail-archive.com/"><b>mail-archive.com</b></a>.</p>
 <p><a href="http://news.basebeans.com/forums.jsp"><b>BaseBeans Struts Newsgroup</b></a></p>
 <p><a href="http://archive.covalent.net/"><b>covalent.net</b></a>.</p>
@@ -282,6 +292,7 @@
     <li><a href="http://www.pizzahut.com.au/"><b>Pizza Hut Online / Sydney Metro</b></a> - For pickup or delivery in the Syndey Metro area.</li>
     <li><!-- href="http://www.penza.ru/povolgie"--><b>Povoglie</b> [403] - Goverment regional press services news center in Russia, middle Volga.</li>
     <li><a href="http://www.ipayment.co.za"><b>South African Revenue Services</b></a> - Directive and certificate service.</li>
+    <li><a href="http://www.citlocate.com/cit-framework/citExampleWelcome.jsp"><b>SpatialFX</b></a></li>
     <li><a href="http://www.redgalleon.com/"><b>Red Galleon</b></a> - Offer aggregator.</li>
     <li><a href="http://www.webappcabaret.com/teatimej/"><b>TeaTimeJ</b></a> - Website and Java hosting.</li>
     <li><a href="http://www.webappwriter.com/"><b>webAppWriter</b></a> - write and deploy a J2EE app in 15 minutes.</li>
@@ -301,7 +312,7 @@
   <li><b>Bravepoint</b> - <a href="http://www.bravepoint.com">www.bravepoint.com</a> - <a href="mailto:struts@bravepoint.com">Struts Info</a>.</li>
   <li><b>Creatrix</b> - <a href="http://www.creatrixs.com">www.creatrixs.com</a> - <a href="mailto:sami.elhini@creatrixs.com">sami.elhini@creatrixs.com</a>.</li>
   <li><b>eBlox</b> - <a href="http://www.eblox.com/">www.eblox.com</a> - <a href="mailto:andrewb@eblox.com">andrewb@eblox.com</a>.</li>
-  <li><b>Husted dot Com</b>   - <a href="http://husted.com/">www.husted.com</a> - <a href="mailto:ted@husted.com">Ted Husted</a>.</li>
+  <li><b>Husted dot Com</b>   - <a href="http://husted.com/about/services">www.husted.com</a> - <a href="mailto:ted@husted.com">Ted Husted</a>.</li>
   <li><b>Indaco Informatica</b> - <a href="http://www.indaco.net/">www.indaco.net</a> - <a href="mailto:massimo@ino.it">Massimo Vassalli</a>.</li>
   <li><font size="1"><b>JATEC AG</b></font> - <a href="http://www.jatec.ch"> www.jatec.ch</a> - <a href="mailto:sascha.urfer@jatec.net">Sascha Urfer</a>.</li>
   <li><b>jCorporate</b> - <a href="http://www.jcorporate.com">jcorporate.com</a> - <a href="mailto:scann@jcorporate.com">Sandra Cann</a>.</li>
