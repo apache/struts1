@@ -57,7 +57,6 @@ package org.apache.struts.util;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -80,7 +79,7 @@ import org.apache.struts.action.ActionErrors;
  *
  *@author     David Winterfeldt
  *@author     James Turner
- *@created    March 18, 2002
+ *@author     Rob Leland
  *@since      Struts 1.1
  */
 public class StrutsValidator implements Serializable {
@@ -469,7 +468,7 @@ public class StrutsValidator implements Serializable {
      *
      *  Checks if a fields value is within a range (min &amp; max specified in the
      *  vars attribute).</p>
-     *
+     *@deprecated  As of Struts 1.1, replaced by {@link #validateIntRange(Object,ValidatorAction,Field,ActionErrors,HttpServletRequest)}
      *@param  bean     The bean validation is being performed on.
      *@param  va       The <code>ValidatorAction</code> that is currently being performed.
      *@param  field    The <code>Field</code> object associated with the current
@@ -512,6 +511,104 @@ public class StrutsValidator implements Serializable {
 
         return true;
     }
+
+   /**
+    *  <p>
+    *
+    *  Checks if a fields value is within a range (min &amp; max specified in the
+    *  vars attribute).</p>
+    *
+    *@param  bean     The bean validation is being performed on.
+    *@param  va       The <code>ValidatorAction</code> that is currently being performed.
+    *@param  field    The <code>Field</code> object associated with the current
+    *      field being validated.
+    *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+    *      validation errors occur.
+    *@param  request  Current request object.
+    *@return          True if in range, false otherwise.
+    */
+   public static boolean validateIntRange(Object bean,
+           ValidatorAction va, Field field,
+           ActionErrors errors,
+           HttpServletRequest request) {
+
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
+       String sMin = field.getVarValue("min");
+       String sMax = field.getVarValue("max");
+
+       if (!GenericValidator.isBlankOrNull(value)) {
+           try {
+               int iValue = Integer.parseInt(value);
+               int min = Integer.parseInt(sMin);
+               int max = Integer.parseInt(sMax);
+
+               if (!GenericValidator.isInRange(iValue, min, max)) {
+                   errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
+
+                   return false;
+               }
+           } catch (Exception e) {
+               errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
+               return false;
+           }
+       }
+
+       return true;
+   }
+
+   /**
+    *  <p>
+    *
+    *  Checks if a fields value is within a range (min &amp; max specified in the
+    *  vars attribute).</p>
+    *
+    *@param  bean     The bean validation is being performed on.
+    *@param  va       The <code>ValidatorAction</code> that is currently being performed.
+    *@param  field    The <code>Field</code> object associated with the current
+    *      field being validated.
+    *@param  errors   The <code>ActionErrors</code> object to add errors to if any
+    *      validation errors occur.
+    *@param  request  Current request object.
+    *@return          True if in range, false otherwise.
+    */
+   public static boolean validateDoubleRange(Object bean,
+           ValidatorAction va, Field field,
+           ActionErrors errors,
+           HttpServletRequest request) {
+
+       String value = null;
+       if (isString(bean)) {
+           value = (String) bean;
+       } else {
+           value = ValidatorUtil.getValueAsString(bean, field.getProperty());
+       }
+       String sMin = field.getVarValue("min");
+       String sMax = field.getVarValue("max");
+
+       if (!GenericValidator.isBlankOrNull(value)) {
+           try {
+               double dValue = Integer.parseInt(value);
+               double min = Double.parseDouble(sMin);
+               double max = Double.parseDouble(sMax);
+
+               if (!GenericValidator.isInRange(dValue, min, max)) {
+                   errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
+
+                   return false;
+               }
+           } catch (Exception e) {
+               errors.add(field.getKey(), StrutsValidatorUtil.getActionError(request, va, field));
+               return false;
+           }
+       }
+
+       return true;
+   }
 
 
     /**
