@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.14 2002/06/30 03:38:30 craigmcc Exp $
- * $Revision: 1.14 $
- * $Date: 2002/06/30 03:38:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.15 2002/10/17 03:20:31 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/10/17 03:20:31 $
  *
  * ====================================================================
  * 
@@ -91,7 +91,7 @@ import org.apache.commons.logging.LogFactory;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14 $ $Date: 2002/06/30 03:38:30 $
+ * @version $Revision: 1.15 $ $Date: 2002/10/17 03:20:31 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -110,6 +110,10 @@ public abstract class MessageResources implements Serializable {
      */
     protected String config = null;
 
+    /**
+     * The configuration parameter used to initialize this MessageResources.
+     * @return parameter used to initialize this MessageResources
+     */
     public String getConfig() {
         return (this.config);
     }
@@ -126,6 +130,10 @@ public abstract class MessageResources implements Serializable {
      */
     protected MessageResourcesFactory factory = null;
 
+    /**
+     * The <code>MessageResourcesFactory</code> that created this instance.
+     * @return<code>MessageResourcesFactory</code> that created instance
+     */
     public MessageResourcesFactory getFactory() {
         return (this.factory);
     }
@@ -139,15 +147,26 @@ public abstract class MessageResources implements Serializable {
 
 
     /**
-     * Should we return <code>null</code> instead of an error message string
-     * if an unknown Locale or key is requested?
+     * Indicate is a <code>null</code> is returned instead of an error message string
+     * when an unknown Locale or key is requested.
      */
     protected boolean returnNull = false;
 
+    /**
+     * Indicates that a <code>null</code> is returned instead of an error message string
+     * if an unknown Locale or key is requested.
+     * @return true if null is returned if unknown key or locale is requested
+     */
     public boolean getReturnNull() {
         return (this.returnNull);
     }
 
+    /**
+     * Indicates that a <code>null</code> is returned instead of an error message string
+     * if an unknown Locale or key is requested.
+     * @param returnNull true Indicates that a <code>null</code> is returned
+     * if an unknown Locale or key is requested.
+     */
     public void setReturnNull(boolean returnNull) {
         this.returnNull = returnNull;
     }

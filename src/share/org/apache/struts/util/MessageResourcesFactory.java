@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.7 2002/03/10 01:23:30 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/03/10 01:23:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.8 2002/10/17 03:20:31 rleland Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/10/17 03:20:31 $
  *
  * ====================================================================
  * 
@@ -83,7 +83,7 @@ import org.apache.commons.logging.LogFactory;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/03/10 01:23:30 $
+ * @version $Revision: 1.8 $ $Date: 2002/10/17 03:20:31 $
  */
 
 public abstract class MessageResourcesFactory implements Serializable {
@@ -98,10 +98,21 @@ public abstract class MessageResourcesFactory implements Serializable {
      */
     protected boolean returnNull = true;
 
+    /**
+     * Get default value of the "returnNull" property used to initialize newly created
+     * MessageResourcess.
+     * @return default value of the "returnNull" property newly created
+     * MessageResourcess are initialized to.
+     */
     public boolean getReturnNull() {
         return (this.returnNull);
     }
 
+    /**
+     * Set the default value of the "returnNull" property newly created
+     * MessageResourcess are initialized to.
+     * @param  returnNull default value of the "returnNull" MessageResourcess are initialized to.
+     */
     public void setReturnNull(boolean returnNull) {
         this.returnNull = returnNull;
     }
@@ -142,10 +153,22 @@ public abstract class MessageResourcesFactory implements Serializable {
     protected static String factoryClass =
         "org.apache.struts.util.PropertyMessageResourcesFactory";
 
+    /**
+     * The fully qualified class name that is used for
+     * <code>MessageResourcesFactory</code> instances.
+     * @return class name that is used for
+     *   <code>MessageResourcesFactory</code> instances
+     */
     public static String getFactoryClass() {
         return (MessageResourcesFactory.factoryClass);
     }
 
+    /**
+     * Set the fully qualified class name that is used for
+     * <code>MessageResourcesFactory</code> instances.
+     * @param factoryClass name that is used for
+     *   <code>MessageResourcesFactory</code> instances
+     */
     public static void setFactoryClass(String factoryClass) {
         MessageResourcesFactory.factoryClass = factoryClass;
         MessageResourcesFactory.clazz = null;
