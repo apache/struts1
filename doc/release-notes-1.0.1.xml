@@ -135,6 +135,8 @@
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
+    <li>Modify ActionForm class to use ActionServletWrapper rather than expose ActionServlet.</li>
+    <li>Add ActionServletWrapper class. Used by ActionForm to prevent the Public String properties of ActionServlet from being changed via a query string.</li>
     <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
     <li>Unconditionally pass the selected mapping as a request attribute under key Action.MAPPING_KEY, even if no form bean is specified.</li>
     <li>Avoid a NullPointerException in corner cases caused by failed initialization of ActionServlet.</li>
@@ -150,6 +152,7 @@
     <p>The following changes and bug fixes have occurred in the utilities
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
+    <li>Modify RequestUtils class to use ActionServletWrapper rather than expose ActionServlet.</li>
     <li>Added error message for the getActionErrors and getActionMessages method.</li>
     <li>Added a getActionErrors and getActionMessages methods to generate the correct corresponding object based on the object retrieved from request scope based on the key passed in.</li>
     <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
