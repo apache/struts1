@@ -50,4 +50,8 @@
     </action>
   </action-mappings>
 
+  <message-resources
+    parameter="org.apache.struts.webapp.exercise.ApplicationResources"
+    null="false" />
+
 </struts-config>
