@@ -1,8 +1,9 @@
 Who We Are
 ==========
 
-Craig R. McClanahan
--------------------
+
+Craig R. McClanahan -- Committer
+---------------------------------
 
 I've been involved with servlet and JSP technology since around 1998.  It
 started out that I needed a way to build some web applications for several
@@ -67,8 +68,9 @@ I'm going to corrupt him with Java eventually :-), and a daughter in college.
 I'll happily let the other committers speak for themselves.
 
 
-Kevin Duffy
------------
+
+Kevin Duffy -- Developer
+------------------------
 
 That's a lie. Craig stole my ideas!! It was me who started Struts..who just
 took it from under my nose and finished it!
@@ -112,8 +114,9 @@ Craig). I only wish I could work on his team!! Hey..and I live 20 minutes
 from Cupertino too! ;) (hint hint)
 
 
-Ted Husted
-----------
+
+Ted Husted -- Committer
+-----------------------
 
 My primary interest in Struts is to put it to work writing lots of
 real-life Web applications:-) To do that effectively means having good
@@ -122,7 +125,7 @@ with the Struts product so far.
 
 I've been writing software for hire since 1984, but only recently jumped
 on the Java bandwagon. My initial interest was with electronic
-publishing, and started converting my various print projects to
+publishing, and started by converting my various print projects to
 electronic media. The "Information Superhighway" was still the private
 stomping ground of Universities and government agencies then. The rest
 of us had to make do with diskettes and bulletin boards.
@@ -131,13 +134,12 @@ Between 1985 and 1994, I created and marketed several software products
 for publishing on disk, the most popular being "Dart" and "Iris". In
 1992, Dart was awarded the Digital Quill for software excellence,
 featured in PC Magazine (February 1992), and bundled with McGraw Hill's
-bookset, "Paperless Publishing" by Colin Hayes (McGraw Hill 1994). Dart
-won an unprecedented second Digital Quill in 1993. Several titles that
-used Iris for a publishing system have also won awards and been widely
-distributed, including "Hermitville USA." I was also fortunate to find
-kindred souls on CompuServe and America Online, who helped me pioneer
-resources areas in 1993 and 1994 for the nascent electronic publishing
-industry.
+bookset,"Paperless Publishing" by Colin Hayes (McGraw Hill 1994). Dart
+won a second Digital Quill in 1993. Several titles that used Iris for a 
+publishing system have also won awards and been widely distributed, 
+including "Hermitville USA." I was also fortunate to find kindred souls 
+on CompuServe and America Online, who helped me pioneer resources areas 
+in 1993 and 1994 for the nascent electronic publishing industry.
 
 I finally cut loose on the Internet in 1995, launching Epub News, an
 electronic newspage about electronic publishing. After taking on several
@@ -151,16 +153,16 @@ Fiction. This was one of my earliest hypertext projects (it started as a
 print-book idea), and I had a lot of fun bringing it forward onto the
 Web. (Now, if I only had time to bring it current and dress it up!)
 
-One of my best clients is WXXI Public Broadcasting Council, where
-serving as the station's Webmaster. WXXI provides public broadcasting
-services for television and radio, and we are working to do the same
-online. Along with providing companion Web sites for every WXXI
+My favorite all-time client is is WXXI Public Broadcasting Council, 
+where serving as the station's Webmaster. WXXI provides public 
+broadcasting services for television and radio, and we are working to do 
+the same online. Along with providing companion Web sites for every WXXI
 production, we stream both our AM and FM signals, in both Real and 
 QuickTime, with online archives in the works. It's a long journey, but 
 we've taken the first steps. I'm responsible for most of the regular 
 updates to the site, and much of the overall layout and design. We're 
 grateful to have won the PBS award for best Web site in our market for 
-two years in a row.
+two years running.
 
 Our most ambitious projects at WXXI have been Spring Marketplace 2000
 and the NY Election Finder. For Spring Marketplace, we put our annual
@@ -171,8 +173,8 @@ people could also check their registration status and polling place. I
 developed the Web-enabled database applications for both projects.
 
 Currently, I'm expanding the WXXI online auction software into a
-complete package for hosting live and online auctions as fund-raisers;
-this is to be an open-source project called Gavel, and will, of course,
-rely heavily on Struts.
+complete package for hosting online auctions as fund-raisers; this is 
+to be an open-source project called Gavel, and will, of course, rely 
+heavily on Struts.
 
 ###
