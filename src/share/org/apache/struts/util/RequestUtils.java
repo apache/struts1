@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.102 2003/05/17 01:56:51 dgraham Exp $
- * $Revision: 1.102 $
- * $Date: 2003/05/17 01:56:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.103 2003/06/14 18:36:19 dgraham Exp $
+ * $Revision: 1.103 $
+ * $Date: 2003/06/14 18:36:19 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.102 $ $Date: 2003/05/17 01:56:51 $
+ * @version $Revision: 1.103 $ $Date: 2003/06/14 18:36:19 $
  */
 
 public class RequestUtils {
@@ -980,7 +980,7 @@ public class RequestUtils {
         throws JspException {
 
        	MessageResources resources =
-			retrieveMessageResources(pageContext, bundle);
+			retrieveMessageResources(pageContext, bundle, false);
 
         Locale userLocale = retrieveUserLocale(pageContext, locale);
         
@@ -1005,10 +1005,11 @@ public class RequestUtils {
      * @FIXME The bundle name needs the module prefix appended to it before searching
      * to fix PR# 11932.
      */
-	private static MessageResources retrieveMessageResources(
-		PageContext pageContext,
-		String bundle)
-		throws JspException {
+    private static MessageResources retrieveMessageResources(
+        PageContext pageContext,
+        String bundle,
+        boolean checkPageScope)
+        throws JspException {
             
 		MessageResources resources = null;
 
@@ -1016,10 +1017,12 @@ public class RequestUtils {
 			bundle = Globals.MESSAGES_KEY;
 		}
 
-		resources =
-			(MessageResources) pageContext.getAttribute(
-				bundle,
-				PageContext.PAGE_SCOPE);
+        if (checkPageScope) {
+            resources =
+                (MessageResources) pageContext.getAttribute(
+                    bundle,
+                    PageContext.PAGE_SCOPE);
+        }
 
 		if (resources == null) {
 			resources =
@@ -1342,7 +1345,7 @@ public class RequestUtils {
 		throws JspException {
 
 		MessageResources resources =
-			retrieveMessageResources(pageContext, bundle);
+			retrieveMessageResources(pageContext, bundle, true);
 
 		Locale userLocale = retrieveUserLocale(pageContext, locale);
 
