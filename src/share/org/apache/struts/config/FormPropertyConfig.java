@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.2 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.3 2002/01/17 21:26:18 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/17 21:26:18 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import org.apache.commons.beanutils.ConvertUtils;
 
 
@@ -73,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/17 21:26:18 $
  * @since Struts 1.1
  */
 
@@ -140,6 +141,59 @@ public class FormPropertyConfig implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+
+    /**
+     * Return a Class corresponds to the value specified for the
+     * <code>type</code> property, taking into account the trailing "[]"
+     * for arrays (as well as the ability to specify primitive Java types).
+     */
+    public Class getTypeClass() {
+
+        // Identify the base class (in case an array was specified)
+        String baseType = getType();
+        boolean indexed = false;
+        if (baseType.endsWith("[]")) {
+            baseType = baseType.substring(0, baseType.length() - 2);
+            indexed = true;
+        }
+
+        // Construct an appropriate Class instance for the base class
+        Class baseClass = null;
+        if ("boolean".equals(baseType)) {
+            baseClass = Boolean.TYPE;
+        } else if ("byte".equals(baseType)) {
+            baseClass = Byte.TYPE;
+        } else if ("char".equals(baseType)) {
+            baseClass = Character.TYPE;
+        } else if ("double".equals(baseType)) {
+            baseClass = Double.TYPE;
+        } else if ("float".equals(baseType)) {
+            baseClass = Float.TYPE;
+        } else if ("int".equals(baseType)) {
+            baseClass = Integer.TYPE;
+        } else if ("long".equals(baseType)) {
+            baseClass = Long.TYPE;
+        } else if ("short".equals(baseType)) {
+            baseClass = Short.TYPE;
+        } else {
+            // FIXME - thread context class loader?
+            try {
+                baseClass = Class.forName(baseType);
+            } catch (Throwable t) {
+                baseClass = null;
+            }
+        }
+
+        // Return the base class or an array appropriately
+        if (indexed) {
+            return (Array.newInstance(baseClass, 0).getClass());
+        } else {
+            return (baseClass);
+        }
+
+    }
+
 
 
     // --------------------------------------------------------- Public Methods

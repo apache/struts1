@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.1 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.2 2002/01/17 21:26:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/17 21:26:18 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/17 21:26:18 $
  * @since Struts 1.1
  */
 
@@ -341,19 +341,9 @@ public class DynaActionFormClass implements DynaClass {
         // Create corresponding dynamic property definitions
         properties = new DynaProperty[descriptors.length];
         for (int i = 0; i < descriptors.length; i++) {
-            // FIXME - special handling needed for arrays???
-            Class clazz = null;
-            try {
-                // FIXME - thread context class loader?
-                clazz = Class.forName(descriptors[i].getType());
-            } catch (Throwable t) {
-                throw new IllegalArgumentException
-                    ("Cannot instantiate property class '" +
-                     descriptors[i].getType() + "' for property '" +
-                     descriptors[i].getName() + "'");
-            }
             properties[i] =
-                new DynaProperty(descriptors[i].getName(), clazz);
+                new DynaProperty(descriptors[i].getName(),
+                                 descriptors[i].getTypeClass());
             propertiesMap.put(properties[i].getName(),
                               properties[i]);
         }
