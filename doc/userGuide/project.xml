@@ -39,6 +39,8 @@
               href="struts-nested.html"/>
         <item name="Template Tags"
               href="struts-template.html"/>
+        <item name="Tiles Tags"
+              href="struts-tiles.html"/>
     </menu>
 
     <menu name="Getting Started">
