@@ -22,6 +22,7 @@
     <li><a href="ssl.html">Using the SSL protocol</a></li>
     <li><a href="eclipse.html">Installing the Eclipse IDE</a></li>
     <li><a href="netbeans.html">Installing the Netbeans IDE</a></li>
+    <li><a href="indexedprops.html">Indexed Properties, Mapped Properties, and Indexed Tags</a></li>
  </ul>
 
 </section>

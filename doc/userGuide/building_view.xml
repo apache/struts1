@@ -539,14 +539,35 @@ public class UploadForm extends ActionForm {
     <p>[:TODO:]</p>
     </section>
 
+    <section name="3.3.6 Indexed &amp; Mapped Properties" href="indexed">
+    <p>
+     Property references in JSP pages using the Struts framework can reference
+     Java Bean properties as described in the JavaBeans specification. Most of
+     these references refer to "scalar" bean properties, referring to primitive
+     or single Object properties.  However, Struts, along with the Jakarta
+     Commons Beanutils library, allow you to use property references which
+     refer to individual items in an array, collection, or map, which are
+     represented by bean methods using well-defined naming and signature
+     schemes.
+    </p>
+    <p>
+     Documentation on the Beanutils package can be found at <a
+     href="http://jakarta.apache.org/commons/beanutils/api/index.html">http://jakarta.apache.org/commons/beanutils/api/index.html</a>.
+     More information about using indexed and mapped properties in Struts can
+     be found in the FAQ describing <a
+     href="../faqs/indexedprops.html"><i>Indexed Properties, Mapped Properties,
+     and Indexed Tags</i></a>.
+    </p>
+    </section>
+
     <section name="3.4 Other Presentation Techniques" href="other_presentations">
 
       <p>
-        Although the look and feel of your application can be completely constructed
-        based on the standard capabilities of JSP and the Struts custom tag library,
-        you should consider employing other techniques that will improve component
-        reuse, reduce maintenance efforts, and/or reduce errors.  Several options
-        are discussed in the following sections.
+        Although the look and feel of your application can be completely
+        constructed based on the standard capabilities of JSP and the Struts
+        custom tag library, you should consider employing other techniques that
+        will improve component reuse, reduce maintenance efforts, and/or reduce
+        errors.  Several options are discussed in the following sections.
       </p>
     </section>
 
