@@ -123,7 +123,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "propertyName[34]". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -684,7 +684,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -1075,7 +1075,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -1922,7 +1922,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -2127,7 +2127,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -3056,7 +3056,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then indexed parameter with name from indexId attribute
+                If <code>true</code> then indexed parameter with name from indexId attribute
                 will be added to the query string. Indexed parameter looks like
                 "index[32]". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
@@ -4230,7 +4230,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -4571,7 +4571,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -5295,7 +5295,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -5598,7 +5598,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "propertyName[34]". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -5868,7 +5868,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
@@ -6189,7 +6189,7 @@
             <rtexprvalue>true</rtexprvalue>
             <info>
                 Valid only inside of logic:iterate tag.
-                If "true" then name of the html tag will be rendered as
+                If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
                 for every iteration and taken from ancestor logic:iterate tag.
             </info>
