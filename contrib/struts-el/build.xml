@@ -38,6 +38,9 @@
         jstl-standard.jar             The path to the JSTL 1.0 "standard" jar
                                       file.
 
+        jstl.tld.dir                  The path to the directory containing the
+                                      TLD files for JSTL 1.0.
+
         commons-beanutils.jar         The path to the JAR file of the Jakarta
                                       Commons BeanUtils package (version 1.0
                                       or later).
