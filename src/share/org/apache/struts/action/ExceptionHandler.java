@@ -66,7 +66,12 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.util.AppException;
 
-
+/**
+ * An ExceptionHandler is configured in the Struts configuration file to handle a specific
+ * type of exception thrown by an Action's execute method.
+ * 
+ * @since Struts 1.1
+ */
 public class ExceptionHandler {
     /**
      * Handle the exception.
