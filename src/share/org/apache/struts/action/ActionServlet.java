@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.65 2001/03/13 22:31:50 craigmcc Exp $
- * $Revision: 1.65 $
- * $Date: 2001/03/13 22:31:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.66 2001/04/23 22:45:36 craigmcc Exp $
+ * $Revision: 1.66 $
+ * $Date: 2001/04/23 22:45:36 $
  *
  * ====================================================================
  *
@@ -83,8 +83,6 @@ import javax.sql.DataSource;
 import org.apache.struts.digester.Digester;
 import org.apache.struts.digester.Rule;
 import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.ConvertUtils;
 import org.apache.struts.util.FastHashMap;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
@@ -230,7 +228,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.65 $ $Date: 2001/03/13 22:31:50 $
+ * @version $Revision: 1.66 $ $Date: 2001/04/23 22:45:36 $
  */
 
 public class ActionServlet
