@@ -1,12 +1,12 @@
 STATUS
 ======
-$Id: STATUS,v 1.49 2002/08/01 00:33:59 jholmes Exp $
+$Id: STATUS,v 1.50 2002/08/02 20:50:38 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           13 open bugs to swat!!
+                           14 open bugs to swat!!
 
 
 Controller:
@@ -18,6 +18,7 @@ Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 11330 FormTag permits to define name and type of a form bean.
+11387 FormTag.method initial value is "POST", not null
 
 
 Documentation:
