@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.13 2004/01/21 03:53:49 husted Exp $
- * $Revision: 1.13 $
- * $Date: 2004/01/21 03:53:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.14 2004/01/24 23:39:18 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2004/01/24 23:39:18 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.Globals;
   * This class implements the <code>MultipartRequestHandler</code> interface
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
-  * @version $Revision: 1.13 $ $Date: 2004/01/21 03:53:49 $
+  * @version $Revision: 1.14 $ $Date: 2004/01/24 23:39:18 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -218,7 +218,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         // see http://nagoya.apache.org/bugzilla/show_bug.cgi?id=23255
         upload.setHeaderEncoding(request.getCharacterEncoding());
         // Set the maximum size before a FileUploadException will be thrown.
-        upload.setSizeMax((int) getSizeMax(ac));
+        upload.setSizeMax(getSizeMax(ac));
         // Set the maximum size that will be stored in memory.
         upload.setSizeThreshold((int) getSizeThreshold(ac));
         // Set the the location for saving data on disk.
