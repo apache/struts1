@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.40 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.40 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.41 2004/08/24 22:53:35 husted Exp $
+ * $Revision: 1.41 $
+ * $Date: 2004/08/24 22:53:35 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -31,6 +31,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ModuleUtils;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -41,7 +42,7 @@ import org.apache.struts.util.MessageResources;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.40 $
+ * @version $Revision: 1.41 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -567,8 +568,12 @@ public class ImgTag extends BaseHandlerTag {
             if ((this.src != null) || (this.srcKey != null) || (this.pageKey != null)) {
                 throwImgTagSrcException();
             }
-            ModuleConfig config =
-                (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
+            ModuleConfig config = 
+                ModuleUtils.getInstance().getModuleConfig(
+                        this.module,
+                        (HttpServletRequest) pageContext.getRequest(),
+                        pageContext.getServletContext());                
+            
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
             if (srcDefaultReference(config)) {
                 return (request.getContextPath() + this.page);
@@ -583,7 +588,11 @@ public class ImgTag extends BaseHandlerTag {
                 throwImgTagSrcException();
             }
             ModuleConfig config =
-                (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
+                ModuleUtils.getInstance().getModuleConfig(
+                        this.module,
+                        (HttpServletRequest) pageContext.getRequest(),
+                        pageContext.getServletContext());
+            
             HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
             if (srcDefaultReference(config)) {
                 return (
