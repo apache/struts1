@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.12 2003/07/02 02:46:12 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/07/02 02:46:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.13 2003/07/02 03:19:43 dgraham Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/07/02 03:19:43 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.12 $ $Date: 2003/07/02 02:46:12 $
+ * @version $Revision: 1.13 $ $Date: 2003/07/02 03:19:43 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -195,10 +195,10 @@ public class Resources  {
    public static ActionError getActionError(HttpServletRequest request,
                                             ValidatorAction va, Field field) {
 
-      String arg[] = getArgs(va.getName(), getMessageResources(request), getLocale(request), field);
+      String args[] = getArgs(va.getName(), getMessageResources(request), getLocale(request), field);
       String msg = (field.getMsg(va.getName()) != null ? field.getMsg(va.getName()) : va.getMsg());
 
-      return new ActionError(msg, arg[0], arg[1], arg[2], arg[3]);
+      return new ActionError(msg, args);
    }
 
    /**
