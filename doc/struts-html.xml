@@ -917,6 +917,18 @@
         </attribute>
 
         <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>maxlength</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -1335,6 +1347,18 @@
                 nested inside a form tag body.
             </p>
         </info>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
 
         <attribute>
             <name>name</name>
@@ -3220,6 +3244,18 @@
         </attribute>
 
         <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
+        </attribute>
+
+        <attribute>
             <name>maxlength</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -4602,6 +4638,18 @@
           Set to <code>true</code> if this input field should be
           disabled.
           </info>
+        </attribute>
+
+        <attribute>
+            <name>indexed</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+                Valid only inside of logic:iterate tag.
+                If yes then name of the html tag will be rendered as 
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor logic:iterate tag.
+            </info>
         </attribute>
 
         <attribute>
