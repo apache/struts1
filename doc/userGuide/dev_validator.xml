@@ -131,7 +131,7 @@
 <pre><code><![CDATA[
 <field
     property="integer"
-    depends="required,integer,range">
+    depends="required,integer,intRange">
     <arg0 key="typeForm.integer.displayname"/>
     <arg1
         name="range"
@@ -198,7 +198,7 @@
 <pre><code><![CDATA[
 <field
     property="integer"
-    depends="required,integer,range">
+    depends="required,integer,intRange">
     <arg0 key="typeForm.integer.displayname"/>
     <arg1
         name="range"
@@ -357,12 +357,12 @@
 
 <pre><code><![CDATA[
 <validator name="required"
-     classname="org.apache.struts.validator.util.StrutsValidatorUtil"
+     classname="org.apache.struts.validator.validator.FieldChecks"
      method="validateRequired"
      msg="errors.required"/>
 
 <validator name="mask"
-     classname="org.apache.struts.validator.util.StrutsValidatorUtil"
+     classname="org.apache.struts.validator.validator.FieldChecks"
      method="validateMask"
      depends="required"
      msg="errors.invalid"/>
@@ -473,11 +473,11 @@ public static boolean validateTwoFields(
     HttpServletRequest request, 
     ServletContext application) {
 
-    String value = ValidatorUtil.getValueAsString(
+    String value = ValidatorUtils.getValueAsString(
         bean, 
         field.getProperty());
     String sProperty2 = field.getVarValue("secondProperty");
-    String value2 = ValidatorUtil.getValueAsString(
+    String value2 = ValidatorUtils.getValueAsString(
         bean, 
         sProperty2);
 
@@ -485,7 +485,7 @@ public static boolean validateTwoFields(
        try {
           if (!value.equals(value2)) {
              errors.add(field.getKey(),
-                ValidatorUtil.getActionError(
+                Resources.getActionError(
                     application,
                     request,
                     va,
@@ -495,7 +495,7 @@ public static boolean validateTwoFields(
           }
        } catch (Exception e) {
              errors.add(field.getKey(),
-                ValidatorUtil.getActionError(
+                Resources.getActionError(
                     application,
                     request,
                     va,
