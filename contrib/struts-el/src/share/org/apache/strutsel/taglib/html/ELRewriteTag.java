@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTag.java,v 1.6 2003/03/09 05:47:25 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/09 05:47:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTag.java,v 1.7 2003/08/10 21:42:21 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/08/10 21:42:21 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,10 +74,15 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELRewriteTag extends RewriteTag {
 
+    /**
+     * Instance variable mapped to "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String actionExpr;
     /**
      * Instance variable mapped to "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -140,6 +145,11 @@ public class ELRewriteTag extends RewriteTag {
     private String transactionExpr;
 
     /**
+     * Getter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getActionExpr() { return (actionExpr); }
+    /**
      * Getter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -200,6 +210,11 @@ public class ELRewriteTag extends RewriteTag {
      */
     public String getTransactionExpr() { return (transactionExpr); }
 
+    /**
+     * Setter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
     /**
      * Setter method for "anchor" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -267,6 +282,7 @@ public class ELRewriteTag extends RewriteTag {
     public void release()
     {
         super.release();
+        setActionExpr(null);
         setAnchorExpr(null);
         setForwardExpr(null);
         setHrefExpr(null);
@@ -300,6 +316,10 @@ public class ELRewriteTag extends RewriteTag {
     private void evaluateExpressions() throws JspException {
         String  string  = null;
         Boolean bool    = null;
+
+        if ((string = EvalHelper.evalString("action", getActionExpr(),
+                                            this, pageContext)) != null)
+            setAction(string);
 
         if ((string = EvalHelper.evalString("anchor", getAnchorExpr(),
                                             this, pageContext)) != null)

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.3 2003/03/09 05:51:09 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/09 05:51:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.4 2003/08/10 21:42:21 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/08/10 21:42:21 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,6 +84,10 @@ public class ELRewriteTagBeanInfo extends SimpleBeanInfo
     {
         ArrayList proplist = new ArrayList();
 
+        try {
+            proplist.add(new PropertyDescriptor("action", ELRewriteTag.class,
+                                                null, "setActionExpr"));
+        } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("anchor", ELRewriteTag.class,
                                                 null, "setAnchorExpr"));
