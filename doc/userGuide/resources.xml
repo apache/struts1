@@ -17,7 +17,7 @@ the official distribution (yet).</p>
 Cedric Dumoulin - A component is a JSP page that can be inserted in another JSP page, 
 like templates, but can take "parameters" (URLs or 'direct' string intemplates). </p>
 
-<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator by David Winderfeldt</b></a> - Perform basic validations to check if a field
+<p><a href="http://home.earthlink.net/~dwinterfeldt/"><b>Struts Validator by David Winterfeldt</b></a> - Perform basic validations to check if a field
 is required, matches a regular expression, and some basic type checking. Different validation rules can be
 defined for different locales. The framework has basic support for user defined constants which can be used
 in some field attributes. The validation routines are modifiable in the validation.xml file so custom validation
