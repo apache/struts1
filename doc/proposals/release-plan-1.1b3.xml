@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<document url="./release-plan-1.1-b3.xml">
+
+  <properties>
+    <author>Martin F N Cooper</author>
+    <title>Struts Release Plan (Version 1.1-b3)</title>
+  </properties>
+
+  <body>
+
+
+  <section name="Objective" href="Objective">
+
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.1 2002/12/12 06:02:25 martinc Exp $</font></p>
+
+  <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
+  create a milestone release against which a final series of bug fixes and
+  documentation updates can occur before a <strong>Struts 1.1 Final</strong>
+  release is created.</p>
+
+  </section>
+
+
+  <section name="The Plan" href="Plan">
+
+  <p>A number of new features have been added to the nightly builds since the
+  second Beta release of Struts 1.1, and many bugs have been fixed. It is time,
+  therefore, to take the next step in the release process, and make the latest
+  code base available as a third Beta release. The goal is to move towards a
+  release candidate and then a final <strong>Struts 1.1</strong> release as
+  soon as is practicable.</p>
+
+  <p>Therefore, the following release plan is proposed for Struts 1.1 Beta 3:
+  </p>
+  <ul>
+  <li><em>Code Freeze / Tag Date</em> - Saturday, December 14, 2002</li>
+  <li><em>Release Manager</em> - Martin Cooper</li>
+  <li><em>Release Announcement</em> - To the following mailing lists:
+      <ul>
+      <li>announcements@jakarta.apache.org</li>
+      <li>struts-dev@jakarta.apache.org</li>
+      <li>struts-user@jakarta.apache.org</li>
+      </ul></li>
+  </ul>
+
+  </section>
+
+
+  <section name="Release Criteria" href="Criteria">
+
+  <p>Prior to the release of Struts 1.1 Beta 3, the following action items
+  must be completed:</p>
+  <ul>
+  <li>The Struts 1.1 Release Notes document shall be updated to describe
+      substantial changes and improvements since the Struts 1.0.2 release,
+      along with associated updates to the main Struts Documentation
+      Application pages describing the new release.</li>
+  <li>All of the Struts example applications that are included with the release
+      shall operate successfully in the following servlet containers:
+      <ul>
+      <li><a href="http://jakarta.apache.org/tomcat">Tomcat 3.3.1</a></li>
+      <li><a href="http://jakarta.apache.org/tomcat">Tomcat 4.0.6</a></li>
+      <li><a href="http://jakarta.apache.org/tomcat">Tomcat 4.1.12</a></li>
+      </ul></li>
+  <li>A release vote shall take place on the STRUTS-DEV mailing list to
+      approve this plan.  The release vote MUST pass by "Majority Approval"
+      of Struts committers.</li>
+  </ul>
+
+  <p>Prior to the release of a subsequent Struts 1.1 release candidate, the
+  following action items must be completed:</p>
+  <ul>
+  <li>All <a href="http://nagoya.apache.org/bugzilla/">Bugzilla</a> bug reports
+      against Struts 1.1 nightly builds MUST be marked as "Resolved", with any
+      of the legal Bugzilla resolutions (FIXED, INVALID, WONTFIX, LATER,
+      REMIND, WORKSFORME).</li>
+  <li>Bug reports that are resolved as LATER or REMIND will include comments
+      as to whether those specific issues will be dealt with in a subsequent
+      beta, release candidate, or final release, or whether they will be
+      scheduled for consideration in a subsequent release time frame.</li>
+  </ul>
+
+  </section>
+
+
+  <section name="Bugs To Be Addressed" href="Bugs">
+
+  <p>The following bugs must be addressed before Final Release of Struts 1.1.</p>
+
+  <table>
+
+    <!-- Custom tags -->
+    <tr>
+      <td colspan="2"><strong>Custom Tags</strong></td>
+    </tr>
+    <tr>
+      <td width="75">11021</td>
+	  <td>ActionForward or &lt;html:link&gt; tag does not support absolute URIs</td>
+	</tr>
+    <tr>
+      <td width="75">12302</td>
+	  <td>Sporadic error in html:form action attribute</td>
+    </tr>
+    <tr>
+      <td width="75">12470</td>
+      <td>Web Site Cancel does not work correctly when using dynamic validation</td>
+    </tr>
+    <tr>
+      <td width="75">15044</td>
+      <td>Taglib - Index Attribute in html:Checkbox doesn't set correctly</td>
+    </tr>
+    <tr>
+      <td width="75">15196</td>
+      <td>Bug on the RequestUtils.computeParameters using a DynaValidatorForm as map of the parameter</td>
+    </tr>
+    <tr>
+      <td width="75">15298</td>
+      <td>html:form and context-root of '/' causes page action to have // prepended to action</td>
+    </tr>
+
+    <!-- Controller -->
+    <tr>
+      <td colspan="2"><strong>Controller</strong></td>
+    </tr>
+    <tr>
+      <td width="75">12871</td>
+	  <td>ExceptionHandler does not obey controller inputForward rule</td>
+    </tr>
+    <tr>
+      <td width="75">14054</td>
+	  <td>Rename "Application" components to "Module"</td>
+    </tr>
+    <tr>
+      <td width="75">14669</td>
+	  <td>reset() in DynaActionForm act the same as ActionForm</td>
+    </tr>
+    <tr>
+      <td width="75">14749</td>
+	  <td>Action "input" not starting with '/' and not a valid forward will cause an internal server error</td>
+    </tr>
+
+    <!-- Documentation -->
+    <tr>
+      <td colspan="2"><strong>Documentation</strong></td>
+    </tr>
+    <tr>
+      <td width="75">10537</td>
+	  <td>[:TODO:] sections</td>
+    </tr>
+
+    <!-- File Upload -->
+    <tr>
+      <td colspan="2"><strong>File Upload</strong></td>
+    </tr>
+    <tr>
+      <td width="75">2017</td>
+	  <td>Text entered in forms using multi-part/formdata cannot be utf8</td>
+    </tr>
+
+    <!-- Utilities -->
+    <tr>
+      <td colspan="2"><strong>Utilities</strong></td>
+    </tr>
+    <tr>
+      <td width="75">11932</td>
+	  <td>(Message Resource is not multi-app aware) Multi-Resource not work in Multi-Appliction config environment</td>
+    </tr>
+    <tr>
+      <td width="75">14800</td>
+	  <td>Fix initialization bug and add size parameter to form-property</td>
+    </tr>
+
+    <!-- Unknown -->
+    <tr>
+      <td colspan="2"><strong>Unknown</strong></td>
+    </tr>
+    <tr>
+      <td width="75">14042</td>
+	  <td>Unknown Memory leaks with JBoss 3.x +(Tomcat/Jetty)</td>
+    </tr>
+
+  </table>
+
+  </section>
+
+
+  </body>
+
+</document>
