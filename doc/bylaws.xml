@@ -55,15 +55,15 @@
     subproject of the Project can have their status promoted to that of
     a &quot;<em>Committer</em>&quot; for that subproject. A Committer
     has write access to the source code repository. Committer status is
-    granted by the Project Management Committee.
+    granted by the Project Management Committee by majority vote.
     </p>
 
     <p>
     <strong>Project Management Committee (PMC).</strong>
-    Committers who frequently participate with valuable contributions may
-    have their status promoted to that of a &quot;<em>Project Management
-    Committee Member</em>&quot;. The PMC is responsible for the
-    day-to-day management of the Project.
+    Committers and other volunteers who frequently participate with
+    valuable contributions may have their status promoted to that of a
+    &quot;<em>Project Management Committee Member</em>&quot;. The PMC
+    is responsible for the day-to-day management of the Project.
     </p>
 
     </section>
@@ -114,12 +114,11 @@
     </p>
 
     <p>
-    PMC members may propose the creation
-    of new subprojects. Proposals are to contain the scope of the project,
-    identify the initial source from which the project is to be populated,
-    identify the mailing list(s), if any. which are to be created, and
-    identify the initial set of committers. Creation of a new subproject
-    requires approval by a 3/4 majority vote of the PMC.
+    PMC members may propose the creation of new subprojects. Proposals are
+    to contain the scope of the project, identify the initial source from
+    which the project is to be populated, identify any mailing lists or
+    repositories, if any, which are to be created. Creation of a new
+    subproject requires approval by a 3/4 majority vote of the PMC.
     </p>
 
     </section>
@@ -127,9 +126,8 @@
     <section name="Decision Making">
 
     <p>
-    All <a href="./roles.html">Volunteers</a> are encouraged
-    to participate in decisions, but the decision itself is made by
-    the <a href="./roles.html">PMC Members</a> of the Project.
+    All Volunteers are encouraged to participate in decisions, but the
+    decision itself is made by the Project Management Committee.
     The Project is a &quot;<em>Minimum Threshod Meritocracy</em>&quot;.
     </p>
 
@@ -171,14 +169,21 @@
     <tr>
     <td><strong>-1</strong></td>
     <td>
+        <p>
         &quot;No.&quot; On issues where consensus is required, this vote
         counts as a <strong>veto</strong>. All vetos must contain an
         explanation of why the veto is appropriate. Vetos with no
-        explanation are void. No veto can be overruled. If you disagree
+        explanation are void. A veto cannot be overruled. If you disagree
         with the veto, you should lobby the person who cast the veto.
         Voters intending to veto an action item should make their opinions
         known to the group immediately so that the problem can be remedied
         as early as possible.
+        </p>
+        <p>
+        If a Committer tries to "override" a veto by restoring a vetoed
+        change, the PMC may ask the infrastructure team to revoke that
+        Committer's write privileges.
+        </p>
     </td>
     </tr>
 
@@ -195,7 +200,13 @@
     either consensus or majority vote, depending on the type of action
     item.
     </p>
-
+    <p>
+    Voting represent consensus and votes are never final. Circumstances
+    change, and so may votes. A veto may be converted to a +1 after
+    discussion, and likewise a +1 may be converted to a -1.
+    By convention, Committers should allow a vote to circulate for 72
+    hours before taking action.
+    </p>
      </section>
 
     <section name="Action Items">
