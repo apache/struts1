@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.1 2002/03/21 01:42:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/03/21 01:42:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/SwitchAction.java,v 1.2 2002/03/23 01:38:15 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/03/23 01:38:15 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -94,7 +95,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/03/21 01:42:42 $
+ * @version $Revision: 1.2 $ $Date: 2002/03/23 01:38:15 $
  * @since 1.1
  */
 
@@ -152,24 +153,14 @@ public class SwitchAction extends Action {
         }
 
         // Switch to the requested sub-application
-        ApplicationConfig config = (ApplicationConfig)
-            getServlet().getServletContext().getAttribute
-            (Action.APPLICATION_KEY + prefix);
-        if (config == null) {
+        RequestUtils.selectApplication(prefix, request,
+                                       getServlet().getServletContext());
+        if (request.getAttribute(Action.APPLICATION_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);
             log.error(message);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST,
                                message);
             return (null);
-        }
-        request.setAttribute(Action.APPLICATION_KEY + prefix, config);
-        MessageResources resources = (MessageResources)
-            getServlet().getServletContext().getAttribute
-            (Action.MESSAGES_KEY + prefix);
-        if (resources != null) {
-            request.setAttribute(Action.MESSAGES_KEY + prefix, resources);
-        } else {
-            request.removeAttribute(Action.MESSAGES_KEY + prefix);
         }
 
         // Forward control to the specified application-relative URI

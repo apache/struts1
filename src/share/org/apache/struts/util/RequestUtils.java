@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.33 2002/03/10 01:23:30 craigmcc Exp $
- * $Revision: 1.33 $
- * $Date: 2002/03/10 01:23:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.34 2002/03/23 01:38:15 craigmcc Exp $
+ * $Revision: 1.34 $
+ * $Date: 2002/03/23 01:38:15 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.33 $ $Date: 2002/03/10 01:23:30 $
+ * @version $Revision: 1.34 $ $Date: 2002/03/23 01:38:15 $
  */
 
 public class RequestUtils {
@@ -1203,6 +1203,37 @@ public class RequestUtils {
      * Select the sub-application to which the specified request belongs, and
      * add corresponding request attributes to this request.
      *
+     * @param prefix The sub-application prefix of the desired sub-application
+     * @param request The servlet request we are processing
+     * @param context The ServletContext for this web application
+     */
+    public static void selectApplication(String prefix,
+                                         HttpServletRequest request,
+                                         ServletContext context) {
+
+        // Expose the resources for this sub-application
+        ApplicationConfig config = (ApplicationConfig)
+            context.getAttribute(Action.APPLICATION_KEY + prefix);
+        if (config != null) {
+            request.setAttribute(Action.APPLICATION_KEY, config);
+        } else {
+            request.removeAttribute(Action.APPLICATION_KEY);
+        }
+        MessageResources resources = (MessageResources)
+            context.getAttribute(Action.MESSAGES_KEY + prefix);
+        if (resources != null) {
+            request.setAttribute(Action.MESSAGES_KEY, resources);
+        } else {
+            request.removeAttribute(Action.MESSAGES_KEY);
+        }
+
+    }
+
+
+    /**
+     * Select the sub-application to which the specified request belongs, and
+     * add corresponding request attributes to this request.
+     *
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      */
@@ -1223,14 +1254,7 @@ public class RequestUtils {
         }
 
         // Expose the resources for this sub-application
-        ApplicationConfig config = (ApplicationConfig)
-            context.getAttribute(Action.APPLICATION_KEY + prefix);
-        if (config != null)
-            request.setAttribute(Action.APPLICATION_KEY, config);
-        MessageResources resources = (MessageResources)
-            context.getAttribute(Action.MESSAGES_KEY + prefix);
-        if (resources != null)
-            request.setAttribute(Action.MESSAGES_KEY, resources);
+        selectApplication(prefix, request, context);
 
     }
 
