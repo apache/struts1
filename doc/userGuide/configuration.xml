@@ -34,8 +34,8 @@
 
     <p>
     The <a href="building_controller.html#config">Building Controller
-    Components</a> chapter covered writing the form-bean and action-mapping
-    portions of the Struts configuration file.
+    Components</a> chapter covered writing the <code>&lt;form-bean&gt;</code> and
+    <code>&lt;action-mapping&gt;</code> portions of the Struts configuration file.
     These elements usually play an important role in the development of a
     Struts application.
     The other elements in Struts configuration file tend to be static:
@@ -49,19 +49,19 @@
     <ul>
 
         <li>
-            controller
+            &lt;controller&gt;
         </li>
 
         <li>
-            message-resources
+            &lt;message-resources&gt;
         </li>
 
         <li>
-            plug-in
+            &lt;plug-in&gt;
         </li>
 
         <li>
-            data-sources
+            &lt;data-sources&gt;
         </li>
 
     </ul>
@@ -82,7 +82,7 @@
     struts-config_1_2.dtd</a> or the list below.
     </p>
 
-    
+
 
     <ul>
 
@@ -226,7 +226,7 @@
 
     </ul>
 
-    
+
 
     <p>
     This example uses the default values for several controller parameters.
@@ -237,7 +237,6 @@
 <pre><code><![CDATA[
 <controller
     processorClass="org.apache.struts.action.RequestProcessor"
-             debug="0"
        contentType="text/html"/>;
 ]]></code></pre>
 
@@ -253,7 +252,7 @@
     attribute is used to specify the desired bundle.
     </p>
 
-    
+
 
     <ul>
 
@@ -285,14 +284,14 @@
 
     </ul>
 
-    
+
 
     <p>Example configuration:</p>
 
 <pre><code><![CDATA[
 <message-resources
     parameter="MyWebAppResources"
-    null="false" />
+         null="false" />
 ]]></code></pre>
 
     <p>
@@ -323,10 +322,10 @@
     </p>
 
 <pre><code><![CDATA[
-<plug-in className="org.apache.struts.tiles.TilesPlugin" >
-<set-property
-  property="definitions-config"
-  value="/WEB-INF/tiles-defs.xml"/>
+<plug-in className="org.apache.struts.tiles.TilesPlugin">
+    <set-property
+        property="definitions-config"
+           value="/WEB-INF/tiles-defs.xml"/>
 </plug-in>
 ]]></code></pre>
 
@@ -354,9 +353,9 @@
     <p>
     Since DataSource implementations vary in what properties need to be
     set, unlike other Struts configuration elements, the
-    <code>data-source</code> element does not pre-define a slate of
+    <code>&lt;data-source&gt;</code> element does not pre-define a slate of
     properties.
-    Instead, the generic <code>set-property</code> feature is used to set
+    Instead, the generic <code>&lt;set-property&gt;</code> feature is used to set
     whatever properties your implementation may require.
     Typically, these settings would include:
     </p>
@@ -390,13 +389,13 @@
     <p>
     Since Struts 1.2.0, the GenericDataSource has been removed, and it is
     recommended that you use the Commons BasicDataSource or other DataSource
-    implementation instead. In practice, if you need to use the DataSource 
-    manager, you should use whatever DataSource implementation works best 
+    implementations instead. In practice, if you need to use the DataSource
+    manager, you should use whatever DataSource implementation works best
     with your container or database.
     </p>
 
     <p>
-    For examples of specifying a data-sources element and using the
+    For examples of specifying a <code>&lt;data-sources&gt;</code> element and using the
     DataSource with an Action, see the
     <a href="../faqs/database.html">Accessing a Database HowTo</a>.
     </p>
@@ -416,7 +415,7 @@
     <ol>
 
       <li>
-      Prepare a config file for each module.
+      Prepare a configuration file for each module.
       </li>
 
       <li>
@@ -424,7 +423,7 @@
       </li>
 
       <li>
-      Use actions to refer to your pages.
+      Use Actions to refer to your pages.
       </li>
 
     </ol>
@@ -434,9 +433,9 @@
 <section name="5.3.1 Module Configuration Files" href="module_config-files">
 
     <p>
-    Back in Struts 1.0, a few "boot-strap" options were placed in the web.xml
+    Back in Struts 1.0, a few "boot-strap" options were placed in the <code>web.xml</code>
     file, and the bulk of the configuration was done in a single
-    struts-config.xml file.
+    <code>struts-config.xml</code> file.
     Obviously, this wasn't ideal for a team environment, since multiple users
     had to share the same configuration file.
     </p>
@@ -463,13 +462,13 @@
 
     <p>
     Since Struts 1.0, you listed your configuration file as an initialization
-    parameter to the action servlet in web.xml.
-    This is still done in 1.1, but it's augmented a little.
+    parameter to the action servlet in <code>web.xml</code>.
+    This is still done since Struts 1.1, but the parameter can be extended.
     In order to tell the Struts machinery about your different modules, you
-    specify multiple config initialization parameters, with a slight twist.
-    You'll still use "config" to tell the action servlet about your "default"
+    specify multiple 'config' initialization parameters, with a slight twist.
+    You'll still use 'config' to tell the ActionServlet about your "default"
     module, however, for each additional module, you will
-    list an initialization parameter named "config/module", where module is
+    list an initialization parameter named "config/<em>module</em>", where <em>module</em> is
     the name of your module (this gets used when determining which URIs fall
     under a given module, so choose something meaningful!).
     For example:
@@ -478,34 +477,34 @@
 <pre><code><![CDATA[
     ...
     <init-param>
-      <param-name>config</param-name>
-      <param-value>/WEB-INF/conf/struts-default.xml</param-value>
+        <param-name>config</param-name>
+        <param-value>/WEB-INF/conf/struts-default.xml</param-value>
     </init-param>
     <init-param>
-      <param-name>config/module1</param-name>
-      <param-value>/WEB-INF/conf/struts-module1.xml</param-value>
+        <param-name>config/module1</param-name>
+        <param-value>/WEB-INF/conf/struts-module1.xml</param-value>
     </init-param>
     ...
 ]]></code></pre>
 
     <p>
-    This says I have two modules.
-    One happens to be the "default" module, which has no "/module" in it's
-    name, and one named "module1" (config/module1).
-    I've told the controller it can find their respective configurations
-    under /WEB-INF/conf (which is where I put all my configuration files).
+    Here we have two modules.
+    One happens to be the "default" module, which has no "/module" in its
+    name, and the other one named "module1" (config/module1).
+    The controller is configured to find the respective configuration files
+    under <code>/WEB-INF/conf/</code> (which is the recommended place to put all configuration files).
     Pretty simple!
     </p>
 
     <p>
-    (My struts-default.xml would be equivalent to what most folks call
-    struts-config.xml.
-    I just like the symmetry of having all my Struts module files being
-    named struts-&lt;module&gt;.xml)
+    (The <code>struts-default.xml</code> would be equivalent to what most folks call
+    <code>struts-config.xml</code>.
+    I just like the symmetry of having all my Struts module configuration files being
+    named <code>struts-<em>modulename</em>.xml</code>)
     </p>
 
     <p>
-        If you'd like to vary where the pages for each module is stored,
+        If you'd like to vary where the pages for each module are stored,
         see the <a href="#controller_config">forwardPattern</a> setting for the
         Controller.
     </p>
@@ -517,8 +516,8 @@
 
     <p>
     There are three approaches for switching from one module to another.
-    You can you can use the built-in <code>org.apache.struts.actions.SwitchAction</code>,
-    you can use a forward (global or local) and specify the contextRelative attribute with a value of true,
+    You can use the built-in <code>org.apache.struts.actions.SwitchAction</code>,
+    you can use a <code>&lt;forward&gt;</code> (global or local) and specify the contextRelative attribute with a value of true,
     or you can specify the "module" parameter as part of any of the Struts hyperlink tags (Include, Img, Link, Rewrite, or Forward).
     </p>
 
@@ -558,18 +557,13 @@
     </p>
 
 <pre><code><![CDATA[
-    ...
-    <struts-config>
-    ...
-    <global-forwards>
-    <forward name="toModuleB"
-       contextRelative="true"
-       path="/moduleB/index.do"
-       redirect="true"/>
-    ...
-    </global-forwards>
-    ...
-    </struts-config>
+<global-forwards>
+    <forward       name="toModuleB"
+        contextRelative="true"
+                   path="/moduleB/index.do"
+               redirect="true"/>
+   ...
+</global-forwards>
 ]]></code></pre>
 
     <p>
@@ -578,22 +572,37 @@
     </p>
 
 <pre><code><![CDATA[
-    ...
-    <struts-config>
-    ...
-    <action-mappings>
-    ...
-    <action ... >
-    <forward name="success"
-         contextRelative="true"
-         path="/moduleB/index.do"
-         redirect="true"/>
-    </action>
-    ...
-    </action-mappings>
-    ...
-    </struts-config>
-]]></code></pre>
+   <action-mappings>
+   <action ... >
+       <forward       name="success"
+           contextRelative="true"
+                      path="/moduleB/index.do"
+                  redirect="true"/>
+   </action>
+   ...
+   </action-mappings>
+   ]]></code></pre>
+
+   <p>
+    Or, you can use
+    <code>org.apache.struts.actions.SwitchAction</code>:
+   </p>
+
+   <pre><code><![CDATA[
+   <action-mappings>
+   <action path="/toModule"
+           type="org.apache.struts.actions.SwitchAction"/>
+   ...
+   </action-mappings>
+   ]]></code></pre>
+
+   <p>
+   Now, to change to ModuleB, we would use a URI like this:
+   </p>
+
+   <pre><code>
+   http://localhost:8080/toModule.do?prefix=/moduleB&amp;page=/index.do
+    </code></pre>
 
     <p>
     Using the module parameter with a hyperlink tag is even simplier:
@@ -623,7 +632,7 @@
 </section>
 
 <section
-    name="5.4.1 Configure the Action Servlet Instance"
+    name="5.4.1 Configure the ActionServlet Instance"
     href="dd_config_servlet">
 
     <p>
@@ -634,22 +643,22 @@
 
 <pre><code><![CDATA[
 <servlet>
-  <servlet-name>action</servlet-name>
-  <servlet-class>
-    org.apache.struts.action.ActionServlet
-  </servlet-class>
-  <init-param>
-    <param-name>config</param-name>
-    <param-value>
-      /WEB-INF/struts-config.xml
-    </param-value>
-  </init-param>
-  <load-on-startup>1</load-on-startup>
+    <servlet-name>action</servlet-name>
+    <servlet-class>
+        org.apache.struts.action.ActionServlet
+    </servlet-class>
+    <init-param>
+        <param-name>config</param-name>
+        <param-value>
+         /WEB-INF/struts-config.xml
+        </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
 </servlet>
 ]]></code></pre>
 
     <p>
-    The initialization parameters supported by the controller servlet are
+    The initialization parameters supported by the action servlet are
     described below.
     (You can also find these details in the
     <a href="../api/index.html">Javadocs</a> for the ActionServlet class.)
@@ -681,7 +690,7 @@
         <li>
         <strong>convertNull</strong> - Force simulation of the Struts 1.0
         behavior when populating forms.
-        If set to true, the numeric Java wrapper class types (like
+        If set to "true", the numeric Java wrapper class types (like
         <code>java.lang.Integer</code>) will default to null (rather than 0).
         (Since Struts 1.1) [false]
         </li>
@@ -716,7 +725,7 @@
 </section>
 
 <section
-    name="5.4.2 Configure the Action Servlet Mapping"
+    name="5.4.2 Configure the ActionServlet Mapping"
     href="dd_config_mapping">
 
     <p>
@@ -742,10 +751,10 @@
     </p>
 
 <pre><code><![CDATA[
-  <servlet-mapping>
-     <servlet-name>action</servlet-name>
-     <url-pattern>/do/*</url-pattern>
-   </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>/do/*</url-pattern>
+</servlet-mapping>
 ]]></code></pre>
 
         <p>
@@ -772,10 +781,10 @@
         </p>
 
 <pre><code><![CDATA[
-  <servlet-mapping>
-     <servlet-name>action</servlet-name>
-     <url-pattern>*.do</url-pattern>
-   </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+</servlet-mapping>
 ]]></code></pre>
 
         <p>
@@ -805,12 +814,12 @@
     href="dd_config_taglib">
 
         <p>
-        Next, you must add an entry defining the Struts tag library.
+        Next, you must add an entry defining the Struts tag libraries.
         </p>
 
         <p>
-        The struts-bean taglib contains tags useful in accessing beans and their
-        properties,  as well as defining new beans (based on these accesses)
+        The <a href="dev_bean.html">struts-bean</a> taglib contains tags useful in accessing beans and their
+        properties, as well as defining new beans (based on these accesses)
         that are accessible to the remainder of the page via scripting
         variables and page scope attributes.
         Convenient mechanisms to create new beans based on the value of request
@@ -818,30 +827,30 @@
         </p>
 
         <p>
-        The struts-html taglib contains tags used to create struts input forms,
+        The <a href="dev_html.html">struts-html</a> taglib contains tags used to create Struts input forms,
         as well as other tags generally useful in the creation of HTML-based
         user interfaces.
         </p>
 
         <p>
-        The struts-logic taglib contains tags that are useful in managing
+        The <a href="dev_logic.html">struts-logic</a> taglib contains tags that are useful in managing
         conditional generation of output text,
         looping over object collections for repetitive generation of output
         text,  and application flow management.
         </p>
 
         <p>
-        The struts-tiles taglib contains tags used for combining various view
+        The <a href="dev_tiles.html">struts-tiles</a> taglib contains tags used for combining various view
         components, called "tiles", into a final composite view.
         </p>
 
         <p>
-        The struts-nested taglib is an extension of other struts taglibs that
+        The <a href="dev_nested.html">struts-nested</a> taglib is an extension of other struts taglibs that
         allows the use of nested beans.
         </p>
 
         <p>
-        Below is how you would define all taglibs for use within your
+        Below is how you would define all Struts taglibs for use within your
         application.
         In practice, you would only specify the taglibs that your application
         uses:
@@ -849,42 +858,50 @@
 
 <pre><code><![CDATA[
 <taglib>
-  <taglib-uri>
-    /tags/struts-bean
-  </taglib-uri>
-  <taglib-location>
-    /WEB-INF/struts-bean.tld
-  </taglib-location>
+     <taglib-uri>
+     http://jakarta.apache.org/struts/tags-bean
+     </taglib-uri>
+     <taglib-location>
+     /WEB-INF/struts-bean.tld
+     </taglib-location>
 </taglib>
 <taglib>
-  <taglib-uri>
-    /tags/struts-html
-  </taglib-uri>
-  <taglib-location>
-    /WEB-INF/struts-html.tld
-  </taglib-location>
+     <taglib-uri>
+     http://jakarta.apache.org/struts/tags-html
+     </taglib-uri>
+     <taglib-location>
+     /WEB-INF/struts-html.tld
+     </taglib-location>
 </taglib>
 <taglib>
-  <taglib-uri>
-    /tags/struts-logic
-  </taglib-uri>
-  <taglib-location>
-    /WEB-INF/struts-logic.tld
-  </taglib-location>
+     <taglib-uri>
+     http://jakarta.apache.org/struts/tags-logic
+     </taglib-uri>
+     <taglib-location>
+     /WEB-INF/struts-logic.tld
+     </taglib-location>
 </taglib>
 <taglib>
-  <taglib-uri>
-    /tags/struts-tiles
-  </taglib-uri>
-  <taglib-location>
-    /WEB-INF/struts-tiles.tld
-  </taglib-location>
+     <taglib-uri>
+     http://jakarta.apache.org/struts/tags-tiles
+     </taglib-uri>
+     <taglib-location>
+     /WEB-INF/struts-tiles.tld
+     </taglib-location>
+</taglib>
+<taglib>
+     <taglib-uri>
+     http://jakarta.apache.org/struts/tags-nested
+     </taglib-uri>
+     <taglib-location>
+     /WEB-INF/struts-nested.tld
+     </taglib-location>
 </taglib>
 ]]></code></pre>
 
     <p>
     This tells the JSP system where to find the tag library descriptor
-    for this library (in your application's WEB-INF directory, instead of
+    for this library (in your application's <code>WEB-INF</code> directory, instead of
     out on the Internet somewhere).
     </p>
 
@@ -895,7 +912,7 @@
     href="dd_config_taglib_23">
 
     <p>
-    <strong>Servlet 2.3 Users only:</strong> The Servlet 2.3 specification simplifies
+    <strong>Servlet 2.3 users only:</strong> The Servlet 2.3 specification simplifies
     the deployment and configuration of tag libraries.
     The instructions above will work on older containers as well as 2.3
     containers (Struts only requires a servlet 2.2 container);
@@ -904,8 +921,8 @@
     </p>
 
     <p>
-    All that's required to install the struts tag libraries is to copy
-    struts.jar into your /WEB-INF/lib directory and reference the tags in
+    All that's required to install the Struts tag libraries is to copy
+    <code>struts.jar</code> into your <code>/WEB-INF/lib</code> directory and reference the tags in
     your code like this:
     </p>
 
@@ -916,9 +933,10 @@
     </code></pre>
 
     <p>
-    Note that you <strong>must use the full uri</strong> defined in the various struts
-    tlds so that the container knows where to find the tag's class files.
-    You don't have to alter your web.xml file or copy tlds into any
+    Note that you <strong>must use the full uri</strong> defined in the various
+    tlds (see the <a href="#dd_config_taglib">example configuration</a> for reference)
+    so that the container knows where to find the tag's class files.
+    You don't have to alter your <code>web.xml</code> file or copy tlds into any
     application directories.
     </p>
 
@@ -974,7 +992,7 @@
           Classes loaded from the shared class loader cannot see classes
           in the web application's class loader, unless they are specifically
           programmed to use the Thread context class loader.
-          
+
             For example, Struts dynamically loads your action and form bean
             classes, and normally would not be able to find those classes.
             Struts has been programmed to deal with this in <em>most</em>
@@ -982,7 +1000,7 @@
             it works in <em>all</em> scenarios.  The Commons libraries that
             Struts uses have <strong>NOT</strong> been audited to catch all
             possible scenarios where this might become a problem.
-          
+
         </li>
         <li>
           When a class is loaded from a shared class loader, static variables
@@ -990,13 +1008,13 @@
           inter-webapp conflicts when the underlying code assumes that the
           statics are global only within a particular web applicaiton (which
           would be true if the class was loaded from the webapp class loader).
-          
+
             There are many cases where Struts, and the Commons libraries it
             relies on, use static variables to maintain information that is
             presumed to be visible only within a single web applicaiton.
             Sharing these JAR files can cause unwanted interactions, and
             probably cause incorrect behavior.
-          
+
         </li>
         <li>
           When JAR files are shared like this, it is not possible to update
@@ -1034,8 +1052,8 @@
   Since Struts 1.0, the logging functionality was fairly limited.  You could
   set a debugging detail level with a servlet initialization parameter, and
   all log messages were written to wherever <code>ServletContext.log()</code>
-  output is sent by your servlet container.  WIth Struts 1.1, however, all
-  logging messages written by Struts itself, as well as the commons librarires
+  output is sent by your servlet container.  With Struts 1.1, however, all
+  logging messages written by Struts itself, as well as the commons libraries
   that it utilizes, flow through an abstract wrapper called
   <a href="http://jakarta.apache.org/commons/logging">Commons Logging</a>,
   which can be used as a wrapper around any logging implementation.  The most
@@ -1061,7 +1079,7 @@
   created by a <code>Log</code> instance.  By convention, the <code>Log</code>
   instances for Struts (and the Commons packages in general) are named the
   fully qualified class name of the class whose messages are being logged.
-  Therefore, log messages created by the RequestProcessor class are, naturally
+  Therefore, log messages created by the <code>RequestProcessor</code> class are, naturally
   enough, directed to a logger named
   <code>org.apache.struts.action.RequestProcessor</code>.
   </p>
@@ -1077,7 +1095,7 @@
   detail level if no configuration for any level of the hierarchy has been
   explicitly set.  In the case of our messages from <code>RequestProcessor</code>,
   the logging system will look for explicit settings of the following loggers,
-  in this order, until it finds one.
+  in this order, until it finds one:
   </p>
 
   <ul>
