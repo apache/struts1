@@ -67,6 +67,12 @@
 <!-- The directory into which Struts JAR and TLD files have been created -->
 <property name="struts.home"           value="${build.home}/library" />
 
+<!-- Directory where core struts library configurations files are stored -->
+<property name="conf.share.dir" value="conf/share"/>
+
+<!-- Doc directory -->
+<property name="doc.dir" value="doc"/>
+
 
 <!-- ========== Executable Targets ======================================== -->
 
@@ -91,9 +97,9 @@
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="template-example"/>
   </ant>
-  <ant  antfile="build-webapp.xml"    target="static">
+  <!--ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="test"/>
-  </ant>
+  </ant-->
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="upload"/>
   </ant>
@@ -108,11 +114,11 @@
         description="Copy static resources for individual web applications">
     <!-- Copy DTDs for Struts constructs -->
     <copy  todir="${build.home}/documentation/dtds">
-      <fileset dir="src/conf" includes="**/*.dtd"/>
+      <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
     </copy>
     <!-- Copy required image for the Struts example application -->
     <copy tofile="${build.home}/example/struts-power.gif"
-            file="src/doc/images/struts-power.gif"/>
+            file="${doc.dir}/images/struts-power.gif"/>
 </target>
 
 
@@ -136,9 +142,9 @@
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="template-example"/>
   </ant>
-  <ant  antfile="build-webapp.xml"    target="compile">
+  <!--ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="test"/>
-  </ant>
+  </ant-->
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="upload"/>
   </ant>
@@ -152,16 +158,16 @@
 <target name="compile" depends="compile.generic"
         description="Compile individual web applications">
     <!-- Create the taglib documentation -->
-    <style   basedir="src/doc" destdir="${build.home}/documentation"
+    <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
            extension=".html" style="stylesheets/struts.xsl" includes="*.xml"/>
     <!-- Create the user guide -->
-    <style   basedir="src/doc/userGuide"
+    <style   basedir="${doc.dir}/userGuide"
              destdir="${build.home}/documentation/userGuide"
            extension=".html" style="../stylesheets/userGuide.xsl"
             includes="*.xml"/>
     <!-- Copy the basic documentation files -->
     <copy      todir="${build.home}/documentation">
-      <fileset   dir="src/doc">
+      <fileset   dir="${doc.dir}">
         <include name="**/*.css"/>
         <include name="**/*.gif"/>
         <include name="**/*.html"/>
@@ -171,7 +177,7 @@
     </copy>
     <!-- Copy the basic user guide files -->
     <copy      todir="${build.home}/documentation/userGuide">
-      <fileset   dir="src/doc/userGuide">
+      <fileset   dir="${doc.dir}/userGuide">
         <include name="**/*.css"/>
         <include name="**/*.gif"/>
         <include name="**/*.html"/>
@@ -208,10 +214,10 @@
     <property name="webapp.name"      value="template-example"/>
     <property name="webapp.war"       value="struts-template.war"/>
   </ant>
-  <ant  antfile="build-webapp.xml"    target="dist">
+  <!--ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="test"/>
     <property name="webapp.war"       value="struts-test.war"/>
-  </ant>
+  </ant-->
   <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="upload"/>
     <property name="webapp.war"       value="struts-upload.war"/>
@@ -248,9 +254,9 @@
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="template-example"/>
   </ant>
-  <ant  antfile="build-webapp.xml"    target="clean">
+  <!--ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="test"/>
-  </ant>
+  </ant-->
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="upload"/>
   </ant>
