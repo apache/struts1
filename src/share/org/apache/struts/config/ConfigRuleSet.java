@@ -296,19 +296,19 @@ final class SetActionFormBeanClassRule extends Rule {
 }
 
 /**
- * A variant of the standard Digester <code>SetPropertyRule</code> which
- * accepts one of two "naming" attributes.  If the element being processed
- * has an attribute whose name matches <code>nameAttrName</code>, then the 
- * standard <code>SetPropertyRule</code> behavior is invoked, and the value will
+ * A variant of the standard Digester <code>SetPropertyRule</code>.  If the element 
+ * being processed has a "key" attribute, then the value will be used to call 
+ * <code>setProperty(key,value)</code> on the object on top of the stack, which 
+ * will be assumed to be of type <code>ActionConfig</code>.  Otherwise, the standard 
+ * <code>SetPropertyRule</code> behavior is invoked, and the value will
  * be used to set a bean property on the object on top of the Digester stack.  
- * However, if there is an attribute whose name matches <code>keyAttrName</code>,
- * then the value will be used to call <code>setProperty(key,value)</code> on the object
- * on top of the stack, which will be assumed to be of type <code>ActionConfig</code>.
+ * In that case, the element being processed is assumed to have attributes
+ * "property" and "value".
  */
 final class ActionConfigSetPropertyRule extends SetPropertyRule {
 
     public ActionConfigSetPropertyRule() {
-        super("name", "value");
+        super("property", "value");
     }
 
     public void begin(Attributes attributes) throws Exception {
@@ -318,8 +318,8 @@ final class ActionConfigSetPropertyRule extends SetPropertyRule {
             return;
         }
 
-        if (attributes.getIndex("name") != -1) {
-            throw new IllegalArgumentException("<set-property> inside <action> accepts only one of 'key' or 'name' attributes.");
+        if (attributes.getIndex("property") != -1) {
+            throw new IllegalArgumentException("<set-property> inside <action> accepts only one of 'key' or 'property' attributes.");
         }
 
         ActionConfig actionConfig = (ActionConfig) digester.peek();
