@@ -87,14 +87,15 @@
             properties required. This wrapper can also provide a filter to be 
             sure runtime properties are not set to inappropriate values.</li> 
       </ul>    
-    </section>
 
-    <section name="4.2.1 DynaActionForm Classes" href="dyna_action_form_classes">
-    <p>[:TODO:]</p>
-    </section>
+      <section name="4.2.1 DynaActionForm Classes" href="dyna_action_form_classes">
+      <p>[:TODO:]</p>
+      </section>
 
-    <section name="4.2.3 Map-backed ActionForms" href="map_action_form_classes">
-    <p>[:TODO:]</p>
+      <section name="4.2.2 Map-backed ActionForms" href="map_action_form_classes">
+      <p>[:TODO:]</p>
+      </section>
+
     </section>
 
     <section name="4.3 Action Classes" href="action_classes">
@@ -228,20 +229,32 @@ public ActionForward execute(ActionMapping mapping,
     </p>
     </section>
         
-    <section name="4.3.1 Plugin Classes" href="plugin_classes">
-    <p>[:TODO:]</p>
-    </section>
-
     <section name="4.4 The ActionServlet" href="action_servlet">
     <p>[:TODO:]</p>
-    </section>
 
-    <section name="4.4.1 Request Processor" href="request_processor">
-    <p>[:TODO:]</p>
-    </section>
+      <section name="4.4.1 Request Processor" href="request_processor">
+      <p>[:TODO:]</p>
+      </section>
 
-    <section name="4.4.2 Exception Handler" href="exception_handler">
-    <p>[:TODO:]</p>
+      <section name="4.4.2 Exception Handler" href="exception_handler">
+      <p>[:TODO:]</p>
+      </section>
+
+      <section name="4.4.3 PlugIn Classes" href="plugin_classes">
+        <p>
+          The <code>PlugIn</code> interface allows applications to easily hook
+          into the <code>ActionServlet</code> lifecycle. This interface defines
+          two methods, <code>init()</code> and <code>destroy()</code>, which
+          are called at application startup and shutdown, respectively. A common
+          use of a plugin is to configure or load application-specific data as
+          the web application is starting up.
+        </p>
+        <p>
+          PlugIns are configured using &lt;plug-in&gt; elements within the
+          Struts configuration file. See <a href="#plugin_config">
+          PlugIn Configuration</a> for details.
+        </p>
+      </section>
     </section>
 
     <section name="4.5 The ActionMapping Implementation" href="actionmapping">
@@ -366,8 +379,6 @@ public ActionForward execute(ActionMapping mapping,
         
       </p>
 
-      </section>
-
       <section name="4.6.1 ActionMapping Example" href="action_mapping_example">       
 
       <p>
@@ -448,7 +459,33 @@ public ActionForward execute(ActionMapping mapping,
       </p>
         
       </section>
-      <section name="4.6.2 Other Configuration Objects" href="other_config">
+
+      <section name="4.6.2 Controller Configuration" href="controller_config">
+      <p>
+        [:TODO:]
+      </p>
+      </section>
+
+      <section name="4.6.3 Message Resources Configuration" href="resources_config">
+      <p>
+        [:TODO:]
+      </p>
+      </section>
+
+      <section name="4.6.4 PlugIn Configuration" href="plugin_config">
+      <p>
+        Struts PlugIns are configured using the &lt;plug-in&gt; element within
+        the Struts configuration file. This element has only one valid attribute,
+        'className', which is the fully qualified name of the Java class which
+        implements the <code>PlugIn</code> interface.
+      </p>
+      <p>
+        For PlugIns that require configuration themselves, the nested
+        &lt;set-property&gt; element is available.
+      </p>
+      </section>
+
+      <section name="4.6.5 Other Configuration Objects" href="other_config">
 
       <p>
         Besides the objects related to defining ActionMappings, the Struts configuration may 
@@ -491,17 +528,8 @@ public ActionForward execute(ActionMapping mapping,
         <a href="building_model.html#databases">Accessing Relational Databases</a> section.  
       </p>
 
-      <p>
-        [:TODO: MessageResources, Controller, PlugIn ]
-      </p>
-
     </section>
 
-      <section name="4.6.3 Configuring your application for modules (sub-applications)" href="module_config">
-
-      <p>
-        [:TODO:]
-      </p>
     </section>
 
     <section name="4.7 The Web Application Deployment Descriptor" href="dd_config">
@@ -514,7 +542,6 @@ public ActionForward execute(ActionMapping mapping,
         to be created or modified.
       </p>
 
-      </section>
       <section name="4.7.1 Configure the Action Servlet Instance" href="dd_config_servlet">
         
         <p>
@@ -791,7 +818,16 @@ http://www.mycompany.com/myapplication/logon.do
           out on the Internet somewhere).
         </p>
       </section>
-      
+
+      <section name="4.7.4 Configuring your application for modules" href="dd_config_modules">
+
+      <p>
+        [:TODO:]
+      </p>
+      </section>
+
+    </section>
+
       <section name="4.8 Add Struts Components To Your Application" href="config_add">
         
         <p>
