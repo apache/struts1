@@ -108,7 +108,8 @@
         to organizing your business logic.</p>
       </info>
       <assigned>
-        <a href="mailto:craiger@tataryn.net">Craig Tataryn</a>
+        <a href="mailto:craiger@tataryn.net">Craig Tataryn</a>,
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
       </assigned>
     </task>
 
@@ -119,6 +120,9 @@
         Where feasible, client-side JavaScript validations may also be
         generated based on the same configuration rules.</p>
       </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
     </task>
 
     <task name="PropertyEditor Support">
@@ -151,6 +155,9 @@
         Enterprise JavaBeans (EJBs) for encapsulation of business logic and
         application data.</p>
       </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
     </task>
 
     <task name="HTML No-Cache Support">
@@ -170,6 +177,9 @@
         </p>
         [STRUTS-DEV, James W., 01/23/2001]
       </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
     </task>
 
   </task-list>
@@ -277,7 +287,8 @@
         [STRUTS-DEV, David Winterfeldt, 07/27/2000]
       </info>
       <assigned>
-        <a href="mailto:news.ted@husted.com">Ted Husted</a>
+        <a href="mailto:news.ted@husted.com">Ted Husted</a>,
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
       </assigned>
     </task>
 
@@ -331,6 +342,16 @@
         [STRUTS-USER, Lars, 12/06/2000]
         [STRUTS-USER, Chandan Kulkarni, 12/26/2000]
       </info>
+    </task>
+
+    <task name="Multi-Page Form Support">
+      <info>
+        <p>Create design patterns and improved internal support for forms that
+        span multiple pages.</p>
+      </info>
+      <assigned>
+        <a href="mailto:nic.hobbs@uk.pwcglobal.com">Nic Hobbs</a>
+      </assigned>
     </task>
 
   </task-list>
