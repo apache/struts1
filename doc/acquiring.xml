@@ -57,9 +57,6 @@
     When a build is judged "ready for prime time", it is promoted to "General
     Availability" status and may be made the "Best Available" release.
     </p>
-    <p>
-    The current development build is Struts v1.2.5 and is available <a href="http://svn.apache.org/dist/struts/v1.2.5/">here</a>
-    </p>
 
 </section>
 

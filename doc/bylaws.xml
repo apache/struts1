@@ -275,30 +275,27 @@
     <section name="Release Plan">
 
       <p>
-      A release plan may be used to keep all volunteers aware of when a
-      release is desired, who will be the release manager, when the
-      repository will be tagged to create a release, and other assorted
-      information to keep volunteers from tripping over each other. Lazy
-      majority decides each issue in a release plan.
+      A release plan must be used to keep all volunteers aware of when a
+      release is desired, whether it will be a major, minor, or
+      milestone release, who will be the release manager, when the
+      repository will be tagged to create the distribution, and other assorted
+      information to keep volunteers from tripping over each other. A release
+      plan must be announced to the DEV list. Lazy majority decides each issue
+      in a release plan.
       </p>
 
-      </section>
+    </section>
 
     <section name="Release Grade">
 
     <p>
-    After a new release is built, it must be tested and classified before
-    being released to the general public. A release is automatically
-    assigned an "Alpha" status. The release grade may be changed to
-    "Beta" or "General Availability" by majority vote. Once a release is
-    classified by the PMC Members, it can be distributed to the general
-    public on behalf of the Foundation.
-    </p>
-
-    <p>
-    Once a release is tagged and built (or "rolled"), it should not be
-    rebuilt. If a problem is found, that release may be left at Alpha
-    or Beta status and the next release created.
+    After a proposed release is built, it must be tested and classified before
+    being released to the general public. The proposed release may be assigned
+    "Alpha", "Beta" or "General Availability" classifications by majority vote.
+    Once a release is classified by the PMC Members, it may be distributed to
+    the general public on behalf of the Foundation. Distributions may be
+    reclassified or withdrawn by majority vote, but the release number may not
+    be reused by another distribution.
     </p>
 
     </section>

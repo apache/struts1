@@ -416,7 +416,7 @@
 
 
         <li>
-        <a href="http://wiki.apache.org/struts/StrutsRelease124">Release Plan 1.2.4</a>
+        <a href="http://wiki.apache.org/struts/StrutsRelease125">Release Plan 1.2.5</a>
         </li>
 
         <li>
@@ -433,7 +433,7 @@
     </section>
 
 <section>
-    <p class="version">Website updated from repository: 2004 OCT 15 by husted.</p>
+    <p class="version">Website updated from repository: 2004 OCT 23 by husted.</p>
     <p class="version">Javadocs updated from repository: 2004 OCT 15 by husted.</p>
 </section>
 </chapter>

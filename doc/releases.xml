@@ -15,47 +15,36 @@
       <a href="acquiring.html">available for download</a>.</p>
     </section>
     <section href="Releases" name="Release Guidelines">
-      <p>A 
-      <a href="http://jakarta.apache.org/commons/versioning.html">point release</a> should be made before and after any product change that is not a "fully-compatible change" (see link). This includes moving a dependency from an internal package to an external product, including products distributed through the Jakarta Commons. We should place any fully-compatible changes in the hands of the community before starting on a change that is only "interface" or "external-interface" compatible.</p>
-      <p>A fully-compatible point release does not always need a "preview" beta or milestone release. If appropriate, a Release Candidate can be cut, uploaded to the development distribution directories on svn.apache.org (/www/svn.apache.org/dist/struts/ and http://svn.apache.org/repository/struts/), and voted to be released to the general public from there. </p>
-      <p>Any release should follow the same general process used by the Jakarta Commons and the Apache HTTP Server project.</p>
-      <ul>
-        <li>
-          <a href="http://jakarta.apache.org/commons/releases/">Releasing Common Components</a>
-        </li>
-        <li>
-          <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing a release version</a>
-          <ul>
-            <li>
-              <small>The MD5 tool is installed on daedalus, and you can create the digests for Struts releases there.</small>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="http://httpd.apache.org/dev/release.html">Apache HTTPD Server Release Guidelines</a>
-        </li>
-          <li>
-            <a href="http://apache.org/dev/">Apache Developer Resources</a>
-          </li>
-      </ul>
+      <p>A
+      <a href="http://jakarta.apache.org/commons/releases/versioning.html">point release</a> should be made before and after any product change that is not a "fully-compatible change" (see link). This includes moving a dependency from an internal package to an external product, including products distributed through the Jakarta Commons. We should place any fully-compatible changes in the hands of the community before starting on a change that is only "interface" or "external-interface" compatible.</p>
+      <p>Any release should follow the same general process used by the Jakarta Tomcat team and the <a href="http://httpd.apache.org/dev/release.html">Apache HTTP Server project</a>,
+      and must observe the <a href="http://apache.org/dev/mirrors.html">Apache Mirroring guidelines</a>.
+      See also <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?SigningReleases">Signing Releases</a>.
+      </p>
       <p>Additional remarks:</p>
       <ul>
+        <li>Every committer is encouraged to participate in the release process, either as the release manager or a helper. Committers may also share the release manager role.</li>
         <li>The release process can seem daunting when you review it for the first time. But, essentially, it breaks down into four phases of just a few steps each:
         <ul>
           <li><strong>Rolling</strong> - Bugzilla, dependencies, release notes, JAR manifest, licenses, copyrights, and build (using the release target).</li>
           <li><strong>Testing</strong> - JUnit, Cactus, web apps (for all "supported" containers).</li>
-          <li><strong>Voting</strong> - Upload to home directory, post majority vote on DEV list as to release grade: Alpha, Beta, General Availability.</li>
+          <li><strong>Voting</strong> - Upload test build to internal directory, post majority vote on DEV list as to release grade: Alpha, Beta, General Availability.</li>
           <li><strong>Distributing</strong> - Checksum, sign, mirror, update download page, announce.</li>
         </ul></li>
-        <li>Our dependencies on external JARs (including Commons JARs) should be in line with our own release status. Our nightly build can be dependant on another nightly build. Our beta can be dependant on another beta, but should avoid a dependance on a nightly build. Our release candidate can have a dependance on another RC, but should not have a dependance on a beta (and certainly 
-        <strong>not</strong>a nightly build). Our General Availability release can only have dependencies on other GA, final, or stable releases.</li>
-        <li>Use your own discretion as to detail needed by the Release Notes. A high-level description of the changes is more important than providing uninterpreted detail. At a minimum, new features and deprecations should be summarized, since these are commonly asked questions. Ideally, the release notes should be maintained continuously for the nightly build so that we do not need to quickly assembled them on the eve of a Release.</li>
-        <li>Test building the distribution under prior version of J2SE, if possible, to ensure that we are still backwardly-compatible. But, our Release distribution should be built using the 
-        <strong>latest release of J2SE</strong>, to take advantage of all available compiler enhancements.</li>
-        <li>Before building the release, run the JUnit and Cactus tests using the same configuration used that will be used to build the Release distribution.</li>
-        <li>There is a "release" target in the buildfile that will zip and tar the releases. Before uploading the release, extract the sample web applications and deploy the WARs under each of the "supported" containers. Play test each application under each container to be sure they operate nominally.</li>
-        <li>The Alpha release can be posted to your Apache home directory (www.apache.org/~$USERNAME) for initial testing. Once it is voted to Beta or GA status, the release can be submitted to the distribution channels.</li>
-        <li>After announcing a release, remember to update the Acquiring and Announcements pages.</li>
+        <li>Committers are <b>required</b> to post a release plan before tagging the repository and should wait the traditional 72 hours before proceeding.</li>
+        <li>A checklist format can be used for the <a href="http://wiki.apache.org/struts/StrutsRelease125">release plan</a>, to help step through the process. The plan may be maintained in the repository or on the <a href="http://wiki.apache.org/struts/">Struts wiki</a>.</li>
+        <li>Our dependencies on external JARs (including Commons JARs) should be in line with our own release status. Our nightly build can be dependant on another nightly build. Our beta can be dependant on another beta (or "release candidate"), but should avoid a dependance on a nightly build.
+        Our General Availability release may only have dependencies on other GA, final, or stable releases.</li>
+        <li>Use your own discretion as to detail needed by the Release Notes. A high-level description of the changes is more important than providing uninterpreted detail. At a minimum, new features and deprecations should be summarized, since these are commonly asked questions. Ideally, the release notes should be maintained continuously for the nightly build so that we they do not need to be assembled at the last minute.</li>
+        <li>Try building the distribution under prior version of J2SE, if possible, to ensure that we are still backwardly-compatible. But, our distributions should be built using the
+        <strong>latest production release of J2SE</strong>, to take advantage of all available compiler enhancements.</li>
+        <li>If you have multiple J2SE versions configured, run the JUnit and Cactus tests using the same configuration that will be used to build the distribution.</li>
+        <li>There is a "release" target in the buildfile that will zip and tar the distribution. Before uploading the distribution, extract the sample web applications and deploy the WARs under each of the "supported" containers (if you can). Play test each application under each container to be sure they operate nominally.</li>
+        <li>The test build can be posted to the internal distribution directory (cvs.apache.org/struts/) and announced to the Struts DEV and PMC lists (only!). Do not announce a test build on any other Apache lists or link to it from an Apache website.</li>
+        <li>If the test build is voted to Alpha, Beta, or GA status, the release can announced to the User list and linked from the website.</li>
+        <li>Any formal release may be submitted for mirroring. All GA releases <b>must</b> be mirrored.</li>
+        <li>After announcing a release, remember to update the Acquiring and Announcements pages. If the release is to be mirrored, wait at least 24 hours after submittal before making public announcements (as stated in the <a href="http://apache.org/dev/mirrors.html">Apache Mirroring guidelines</a>).</li>
+        <li>If a serious flaw if found in a test build or release, it may be withdrawn by a majority vote of the PMC and removed from ASF distribution channels.</li>
       </ul>
     </section>
     <section href="Coding" name="Coding Conventions and Guidelines">
@@ -97,10 +86,11 @@
         <a href="http://sourceforge.net/projects/mockobjects">MockObjects project</a>.</li>
         <li>As files are updated from year to year, the copyright on each file should be extended to include the current year. 
         <b>You do not need to change the copyright year unless you change the file.</b>Every source file should include the ASF copyright notice and current Apache License and copyright.</li>
-        <li>Provide high-level API compatibility for any changes made within the same major release series (#.x). Changes which adversely affect compatibility should be slotted for the next major release series (++#.x).</li>
+        <li>Provide high-level API compatibility for any changes made within the same major release series (#.x.x). Changes which adversely affect compatibility should be slotted for the next major release series (++#.x.x).</li>
         <li>Our favorite books about programming are 
-        <a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns</a> and
-        <a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring</a>.</li>
+        <a href="http://www.amazon.com/exec/obidos/ISBN=0201633612/hitchhikeguidetoA/">Design Patterns</a>,
+        <a href="http://www.amazon.com/exec/obidos/ISBN=0201485672/hitchhikeguidetoA/">Refactoring</a>, and
+        <a href="http://www.amazon.com/exec/obidos/ISBN=0735619670/hitchhikeguidetoA/">Code Complete</a> (2d).</li>
         <li>Our favorite book about open source development is the 
         <a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">The Cathedral and the Bazaar</a>.</li>
         <li>Our favorite science fiction author is 
