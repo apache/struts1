@@ -218,7 +218,7 @@ And the Cancel button submits to the <code>/cancel</code> action path.
 <html:submit value="cancel" onclick="this.form.action='/acme/cancel.do'"/>
 ]]></code></pre>
 
-The full example is <a href="dispatch-validator-src.zip"> here </a>.
+The full example is <a href="dispatchValidator.zip"> here </a>.
 
 </section>
 

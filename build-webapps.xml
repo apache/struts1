@@ -269,7 +269,13 @@
         <include name="**/*.js"/>
       </fileset>
     </copy>
-    
+    <!-- Copy the FAQ files -->
+    <copy      todir="${build.home}/documentation/faqs">
+      <fileset   dir="${doc.dir}/faqs">
+        <include name="**/*.zip"/>
+      </fileset>
+    </copy>
+
 </target>
 
 
