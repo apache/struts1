@@ -53,7 +53,8 @@
     </menu>
 
     <menu name="Current Development">
-        <item name="Release Notes (1.0.1)"    href="release-notes-1.0.1.html"/>
+        <item name="Release Notes (1.0.1)"   href="release-notes-1.0.1.html"/>
+        <item name="Release Plan (1.0.1)"    href="release-plan-1.0.1.html"/>
         <item name="Installation (nightly)"  href="installation.html"/>
         <item name="Release Notes (nightly)" href="release-notes.html"/>
         <item name="Javadoc (nightly)"       href="api/index.html"/>
