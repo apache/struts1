@@ -45,7 +45,7 @@
   <!-- ========== Form Bean Definitions =================================== -->
   <form-beans>
 
-    <!-- Logon form bean -->
+    <!-- Logon form bean can be one of 3 types -->
 <!--
     <form-bean      name="logonForm"
                     type="org.apache.struts.webapp.example.LogonForm"/>
@@ -53,6 +53,9 @@
 <!--
     <form-bean      name="logonForm"
                     type="org.apache.struts.action.DynaActionForm">
+      <form-property name="username" type="java.lang.String"/>
+      <form-property name="password" type="java.lang.String"/>
+    </form-bean>
 -->
     <form-bean      name="logonForm"
                     type="org.apache.struts.validator.DynaValidatorForm">
