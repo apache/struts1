@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.11 2001/05/09 19:31:29 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2001/05/09 19:31:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.12 2001/05/11 22:33:37 mschachter Exp $
+ * $Revision: 1.12 $
+ * $Date: 2001/05/11 22:33:37 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/05/09 19:31:29 $
+ * @version $Revision: 1.12 $ $Date: 2001/05/11 22:33:37 $
  */
 
 public class RequestUtils {
@@ -609,6 +609,9 @@ public class RequestUtils {
      * If you specify a non-null <code>prefix</code> and a non-null
      * <code>suffix</code>, the parameter name must match <strong>both</strong>
      * conditions for its value(s) to be used in populating bean properties.
+     * If the request's content type is "multipart/form-data" and the
+     * method is "POST", the HttpServletRequest object will be wrapped in
+     * a MultipartRequestWrapper object.
      *
      * @param bean The JavaBean whose properties are to be set
      * @param prefix The prefix (if any) to be prepend to bean property
@@ -634,8 +637,10 @@ public class RequestUtils {
 
         boolean isMultipart = false;
         String contentType = request.getContentType();
+        String method = request.getMethod();
         if ((contentType != null) &&
-            (contentType.startsWith("multipart/form-data"))) {
+            (contentType.startsWith("multipart/form-data")) &&
+            (method.equalsIgnoreCase("POST"))) {
             isMultipart = true;
             //initialize a MultipartRequestHandler
             MultipartRequestHandler multipart = null;

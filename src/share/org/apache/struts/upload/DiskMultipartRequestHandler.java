@@ -16,7 +16,7 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * This is a MultipartRequestHandler that writes file data directly to
- * to temporary files on disk
+ * to temporary files on disk.
  *
  * @author Mike Schachter
  */
@@ -52,6 +52,12 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      */
     protected String tempDir;
     
+    
+    /**
+     * This method populates the internal hashtables with multipart request data.
+     * If the request argument is an instance of MultipartRequestWrapper,
+     * the request wrapper will be populated as well.
+     */
     public void handleRequest(HttpServletRequest request) throws ServletException {
         
         retrieveTempDir();
@@ -70,8 +76,13 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
             while ((element = iterator.getNextElement()) != null) {
                 if (!element.isFile()) {
                     
+                    if (request instanceof MultipartRequestWrapper) {
+                        ((MultipartRequestWrapper) request).setParameter(element.getName(),
+                                                                         element.getValue());
+                    }
                     String[] textValues = (String[]) textElements.get(element.getName());
-                    if (textValues != null) {                        
+                    
+                    if (textValues != null) {
                         String[] textValues2 = new String[textValues.length + 1];
                         System.arraycopy(textValues, 0, textValues2, 0, textValues.length);
                         textValues2[textValues.length] = element.getValue();
@@ -81,7 +92,6 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                         textValues = new String[1];
                         textValues[0] = element.getValue();
                     }
-                    
                     textElements.put(element.getName(), textValues);
                     allElements.put(element.getName(), textValues);
                 }

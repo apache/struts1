@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.67 2001/05/10 02:31:35 craigmcc Exp $
- * $Revision: 1.67 $
- * $Date: 2001/05/10 02:31:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.68 2001/05/11 22:33:32 mschachter Exp $
+ * $Revision: 1.68 $
+ * $Date: 2001/05/11 22:33:32 $
  *
  * ====================================================================
  *
@@ -88,6 +88,7 @@ import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.upload.MultipartRequestWrapper;
 import org.xml.sax.AttributeList;
 import org.xml.sax.SAXException;
 
@@ -228,7 +229,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.67 $ $Date: 2001/05/10 02:31:35 $
+ * @version $Revision: 1.68 $ $Date: 2001/05/11 22:33:32 $
  */
 
 public class ActionServlet
@@ -1500,6 +1501,18 @@ public class ActionServlet
 			   HttpServletResponse response)
 	throws IOException, ServletException {
 
+        String contentType = request.getContentType();
+        String method = request.getMethod();
+        
+        //if this is a multipart request, wrap the HttpServletRequest object
+        //with a MultipartRequestWrapper to keep the process sub-methods
+        //from failing when checking for certain request parameters
+        //for command tokens and cancel button detection
+        if ((contentType != null) && (contentType.startsWith("multipart/form-data"))
+            && (method.equals("POST"))) {
+                request = new MultipartRequestWrapper(request);
+        }
+            
 	// Identify the path component we will use to select a mapping
 	String path = processPath(request);
 	if (path == null) {
@@ -1539,7 +1552,7 @@ public class ActionServlet
         processPopulate(formInstance, mapping, request);
 	if (!processValidate(mapping, formInstance, request, response))
 	    return;
-
+        
         // Execute a forward if specified by this mapping
         if (!processForward(mapping, request, response))
             return;
@@ -1561,6 +1574,11 @@ public class ActionServlet
         ActionForward forward =
             processActionPerform(actionInstance, mapping, formInstance,
                                  request, response);
+        //set the request back to it's normal state if it's currently wrapped,
+        //to avoid ClassCastExceptions from ServletContainers if forwarding
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
 
         // Process the returned ActionForward (if any)
         processActionForward(forward, mapping, formInstance,
