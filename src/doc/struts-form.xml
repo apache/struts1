@@ -1355,11 +1355,12 @@
         <tag>
 
                 <name>link</name>
-                <summary>Render an HTML hyperlink</summary>
+                <summary>Render an HTML anchor or hyperlink</summary>
                 <tagclass>org.apache.struts.taglib.form.LinkTag</tagclass>
                 <info>
 
-                <p>Renders an HTML <code>&lt;a&gt;</code> element as a
+                <p>Renders an HTML <code>&lt;a&gt;</code> element as an
+                anchor definition (if "linkName" is specified) or as a
                 hyperlink to the specified URL.  URL rewriting will be
                 applied automatically, to maintain session state in the
                 absence of cookies.  The content displayed for this
@@ -1407,6 +1408,16 @@
                 </info>
 
                 <attribute>
+                  <name>accesskey</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The keyboard character used to move focus immediately
+                  to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>forward</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1417,8 +1428,8 @@
                   modified by the inclusion of query parameters, as described
                   in the tag description.  You <strong>must</strong> specify
                   exactly one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, or the <code>page</code>
-                  attribute.</p>
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -1432,8 +1443,153 @@
                   by the inclusion of query parameters, as described in the
                   tag description.  You <strong>must</strong> specify
                   exactly one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, or the <code>page</code>
-                  attribute.</p>
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>linkName</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The anchor name to be defined within this page, so that
+                  you can reference it with intra-page hyperlinks.  In other
+                  words, the value specified here will render a "name" element
+                  in the generated anchor tag.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that contains a <code>Map</code>
+                  representing the query parameters (if <code>property</code>
+                  is not specified), or a JSP bean whose property getter is
+                  called to return a <code>Map</code> (if <code>property</code>
+                  is specified).</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onblur</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element loses input focus.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onclick</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse click.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>ondblclick</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse double click.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onfocus</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives input focus.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onkeydown</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a key down event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onkeypress</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a key press event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onkeyup</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a key up event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onmousedown</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse down event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onmousemove</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse move event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onmouseout</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse out event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onmouseover</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse over event.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>onmouseup</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>JavaScript event handler that is executed when
+                  this element receives a mouse up event.</p>
                   </info>
                 </attribute>
 
@@ -1448,21 +1604,8 @@
                   by the inclusion of query parameters, as described in the
                   tag description.  You <strong>must</strong> specify exactly
                   one of the <code>forward</code> attribute, the
-                  <code>href</code> attribute, or the <code>page</code>
-                  attribute.</p>
-                  </info>
-                </attribute>
-
-                <attribute>
-                  <name>name</name>
-                  <required>false</required>
-                  <rtexprvalue>true</rtexprvalue>
-                  <info>
-                  <p>The name of a JSP bean that contains a <code>Map</code>
-                  representing the query parameters (if <code>property</code>
-                  is not specified), or a JSP bean whose property getter is
-                  called to return a <code>Map</code> (if <code>property</code>
-                  is specified).</p>
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
                   </info>
                 </attribute>
 
@@ -1488,6 +1631,34 @@
                   <p>The scope within which to search for the bean specified
                   by the <code>name</code> attribute.  If not specified, all
                   scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>style</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>CSS styles to be applied to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>styleClass</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>CSS stylesheet class to be applied to this element.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>tabindex</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The tab order (ascending positive integers) for
+                  this element.</p>
                   </info>
                 </attribute>
 

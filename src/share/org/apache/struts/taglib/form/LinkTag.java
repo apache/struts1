@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.4 2000/12/30 02:19:30 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/12/30 02:19:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.5 2000/12/30 20:37:57 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/30 20:37:57 $
  *
  * ====================================================================
  *
@@ -73,7 +73,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
@@ -85,10 +84,10 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/12/30 02:19:30 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/30 20:37:57 $
  */
 
-public class LinkTag extends TagSupport {
+public class LinkTag extends BaseHandlerTag {
 
 
     // ------------------------------------------------------------- Properties
@@ -119,6 +118,20 @@ public class LinkTag extends TagSupport {
 
     public void setHref(String href) {
 	this.href = href;
+    }
+
+
+    /**
+     * The link name for named links.
+     */
+    protected String linkName = null;
+
+    public String getLinkName() {
+        return (this.linkName);
+    }
+
+    public void setLinkName(String linkName) {
+        this.linkName = linkName;
     }
 
 
@@ -210,17 +223,28 @@ public class LinkTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Generate the hyperlink start element
+	// Generate the name definition or hyperlink element
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
-	StringBuffer results = new StringBuffer("<a href=\"");
-	results.append(response.encodeURL(BeanUtils.filter(hyperlink())));
-	results.append("\"");
+	StringBuffer results = new StringBuffer("<a");
+        String hyperlink = hyperlink();
+        if (hyperlink != null) {
+            results.append(" href=\"");
+            results.append(response.encodeURL(BeanUtils.filter(hyperlink)));
+            results.append("\"");
+        }
+        if (linkName != null) {
+            results.append(" name=\"");
+            results.append(linkName);
+            results.append("\"");
+        }
 	if (target != null) {
 	    results.append(" target=\"");
 	    results.append(target);
 	    results.append("\"");
 	}
+        results.append(prepareStyles());
+        results.append(prepareEventHandlers());
 	results.append(">");
 
 	// Print this element to our output writer
@@ -271,6 +295,7 @@ public class LinkTag extends TagSupport {
 	super.release();
 	forward = null;
 	href = null;
+        linkName = null;
 	name = null;
         page = null;
 	property = null;
@@ -285,11 +310,15 @@ public class LinkTag extends TagSupport {
 
     /**
      * Return the specified hyperlink, modified as necessary with optional
-     * request parameters.
+     * request parameters.  Return <code>null</code> if we are generating
+     * a name anchor rather than a hyperlink.
      *
      * @exception JspException if an error occurs preparing the hyperlink
      */
     protected String hyperlink() throws JspException {
+
+        if (linkName != null)
+            return (null);      // We are not generating a hyperlink
 
         // Validate the number of href specifiers that were specified
         int n = 0;
