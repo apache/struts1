@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.11 2004/01/13 12:48:47 husted Exp $
- * $Revision: 1.11 $
- * $Date: 2004/01/13 12:48:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.12 2004/02/10 16:40:16 germuska Exp $
+ * $Revision: 1.12 $
+ * $Date: 2004/02/10 16:40:16 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.taglib.TagUtils;
  * currently no rewriting is supported.  The attribute is set directly from
  * the property value.
  *
- * @version $Revision: 1.11 $ $Date: 2004/01/13 12:48:47 $
+ * @version $Revision: 1.12 $ $Date: 2004/02/10 16:40:16 $
  * @since Struts 1.1
  */
 public class FrameTag extends LinkTag {
@@ -136,27 +136,27 @@ public class FrameTag extends LinkTag {
     /**
      * The margin height in pixels, or zero for no setting.
      */
-    protected int marginheight = 0;
+    protected Integer marginheight = null;
 
-    public int getMarginheight() {
+    public Integer getMarginheight() {
         return (this.marginheight);
     }
 
-    public void setMarginheight(int marginheight) {
+    public void setMarginheight(Integer marginheight) {
         this.marginheight = marginheight;
     }
 
 
     /**
-     * The margin width in pixels, or zero for no setting.
+     * The margin width in pixels, or null for no setting.
      */
-    protected int marginwidth = 0;
+    protected Integer marginwidth = null;
 
-    public int getMarginwidth() {
+    public Integer getMarginwidth() {
         return (this.marginwidth);
     }
 
-    public void setMarginwidth(int marginwidth) {
+    public void setMarginwidth(Integer marginwidth) {
         this.marginwidth = marginwidth;
     }
 
@@ -217,12 +217,12 @@ public class FrameTag extends LinkTag {
             results.append(scrolling);
             results.append("\"");
         }
-        if (marginheight > 0) {
+        if (marginheight != null) {
             results.append(" marginheight=\"");
             results.append(marginheight);
             results.append("\"");
         }
-        if (marginwidth > 0) {
+        if (marginwidth != null) {
             results.append(" marginwidth=\"");
             results.append(marginwidth);
             results.append("\"");
@@ -267,8 +267,8 @@ public class FrameTag extends LinkTag {
         frameborder = null;
         frameName = null;
         longdesc = null;
-        marginheight = 0;
-        marginwidth = 0;
+        marginheight = null;
+        marginwidth = null;
         noresize = false;
         scrolling = null;
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.9 2004/01/18 13:43:11 husted Exp $
- * $Revision: 1.9 $
- * $Date: 2004/01/18 13:43:11 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.10 2004/02/10 16:40:16 germuska Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/02/10 16:40:16 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -86,7 +86,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ELFrameTag extends FrameTag {
 
@@ -552,11 +552,11 @@ public class ELFrameTag extends FrameTag {
 
         if ((integer = EvalHelper.evalInteger("marginheight", getMarginheightExpr(),
                                               this, pageContext)) != null)
-            setMarginheight(integer.intValue());
+            setMarginheight(integer);
 
         if ((integer = EvalHelper.evalInteger("marginwidth", getMarginwidthExpr(),
                                               this, pageContext)) != null)
-            setMarginwidth(integer.intValue());
+            setMarginwidth(integer);
 
         if ((string = EvalHelper.evalString("name", getNameExpr(),
                                             this, pageContext)) != null)
