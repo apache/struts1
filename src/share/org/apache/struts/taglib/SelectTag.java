@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.8 2000/07/17 16:37:51 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/07/17 16:37:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.9 2000/07/17 16:54:11 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/07/17 16:54:11 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/07/17 16:37:51 $
+ * @version $Revision: 1.9 $ $Date: 2000/07/17 16:54:11 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -102,6 +102,21 @@ public final class SelectTag extends BaseHandlerTag {
 
 
     /**
+     * Should multiple selections be allowed?  Any non-null value will
+     * trigger rendering this.
+     */
+    private String multiple = null;
+
+    public String getMultiple() {
+	return (this.multiple);
+    }
+
+    public void setMultiple(String multiple) {
+	this.multiple = multiple;
+    }
+
+
+    /**
      * The name of the bean containing our underlying property.
      */
     private String name = Constants.BEAN_KEY;
@@ -119,6 +134,21 @@ public final class SelectTag extends BaseHandlerTag {
      * The property name we are associated with.
      */
     private String property = null;
+
+
+    /**
+     * How many available options should be displayed when this element
+     * is rendered?
+     */
+    private String size = null;
+
+    public String getSize() {
+	return (this.size);
+    }
+
+    public void setSize(String size) {
+	this.size = size;
+    }
 
 
     /**
@@ -202,6 +232,14 @@ public final class SelectTag extends BaseHandlerTag {
 	if (accessKey != null) {
 	    results.append(" accesskey=\"");
 	    results.append(accessKey);
+	    results.append("\"");
+	}
+	if (multiple != null) {
+	    results.append(" multiple");
+	}
+	if (size != null) {
+	    results.append(" size=\"");
+	    results.append(size);
 	    results.append("\"");
 	}
 	if (tabIndex != null) {
@@ -292,8 +330,10 @@ public final class SelectTag extends BaseHandlerTag {
 
 	super.release();
 	match = null;
+	multiple = null;
 	name = Constants.BEAN_KEY;
 	property = null;
+	size = null;
 	value = null;
 
     }
