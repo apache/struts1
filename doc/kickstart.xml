@@ -33,6 +33,7 @@
   
     <li><a href="#bugs">Where can I report bugs or make feature requests?</a></li>
     <li><a href="#contribute">How can I contribute to the development of Struts?</a></li>
+    <li><a href="#documentation">How can I contribute to the documentation?</a></li>
     <li><a href="#release">When is the next release coming out?</a></li>
     <li><a href="#unsubscribe">How do I unsubscribe from the mailing list?</a></li>
     <li><a href="#digest">Is there a digest for the mailing list?</a></li>
@@ -201,6 +202,27 @@ page.</p>
 then sign up for the Struts Developer list too. If you find any problems with Struts, 
 or find a missing feature, you can enter a record to our 
 <a href="#bugs">Bugzilla</a> database.</p>
+</section>
+
+<section href="documentation" name="How can I contribute to the documentation?">
+<p>The only difference is that the documentation is keptin XML rather than Java 
+source code. Otherwise, all the same precepts and procedures pertain. </p>
+<p>The trick is to getting started is to download the nightly build and try 
+building the documentation WAR. Then try adding your own XML page under doc/ to see 
+if the build succeeds. If it doesn't, it will report where the bad element is, much 
+like it reports where a bad programming expression is. If it does, then your page 
+should be available under target/documention/. </p>
+<p>The website portion of the package is the root directory of doc/. The User Guide 
+portion is under the userGuide/ folder. If the material you'd to add doesn't 
+fit right in with what's there, the best thing may be to start a new section after 
+the existing material. The navigation column can be found in the project.xml document.</p>
+<p>To display markup, substitute &amp;lt; for &lt;. The unmatched trailing > will be 
+ignored. Since it is XML, all elements also need to be closed. So elements like 
+&lt;br> and &lt;hr> need to be set out as &lt;br/> and &lt;hr/>.</p>
+<p>Also watch for the length of code samples. These do not wrap. If a line is too long, 
+it will force the right margin out past the edge of the screen or printed page. </p>
+<p>The stylesheets we use are adequate, but could certainly be improved by an XML 
+guru, if you happen to be one of those.</p>
 </section>
 
 <section href="release" name="When is the next release coming out?">
