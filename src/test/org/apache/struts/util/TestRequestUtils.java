@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.9 2002/07/24 13:01:46 cedric Exp $
- * $Revision: 1.9 $
- * $Date: 2002/07/24 13:01:46 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.10 2002/07/27 23:26:09 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/07/27 23:26:09 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/07/24 13:01:46 $
+ * @version $Revision: 1.10 $ $Date: 2002/07/27 23:26:09 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -605,7 +605,8 @@ public class TestRequestUtils extends TestMockBase {
         }
         assertNotNull("url present", url);
         assertEquals("url value",
-                     "/myapp/relative.jsp",
+                     //                     "/myapp/relative.jsp",
+                     "relative.jsp",
                      url);
     }
 
@@ -625,7 +626,28 @@ public class TestRequestUtils extends TestMockBase {
         }
         assertNotNull("url present", url);
         assertEquals("url value",
-                     "/myapp/relative.jsp",
+                     //                     "/myapp/relative.jsp",
+                     "relative.jsp",
+                     url);
+    }
+
+
+    // Default subapp -- Forward with external path
+    public void testComputeURL1h() {
+
+        request.setPathElements("/myapp", "/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, "external",
+                 null, null,
+                 null, null, false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "http://jakarta.apache.org/",
                      url);
     }
 
@@ -760,7 +782,8 @@ public class TestRequestUtils extends TestMockBase {
         }
         assertNotNull("url present", url);
         assertEquals("url value",
-                     "/myapp/2/relative.jsp",
+                     //                     "/myapp/2/relative.jsp",
+                     "relative.jsp",
                      url);
     }
 
@@ -781,7 +804,29 @@ public class TestRequestUtils extends TestMockBase {
         }
         assertNotNull("url present", url);
         assertEquals("url value",
-                     "/myapp/relative.jsp",
+                     //                     "/myapp/relative.jsp",
+                     "relative.jsp",
+                     url);
+    }
+
+
+    // Second subapp -- Forward with external path
+    public void testComputeURL2h() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setPathElements("/myapp", "/2/action.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.computeURL
+                (page, "external",
+                 null, null,
+                 null, null, false);
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("url present", url);
+        assertEquals("url value",
+                     "http://jakarta.apache.org/",
                      url);
     }
 

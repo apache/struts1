@@ -1,17 +1,16 @@
 STATUS
 ======
-$Id: STATUS,v 1.43 2002/07/27 22:50:38 craigmcc Exp $
+$Id: STATUS,v 1.44 2002/07/27 23:26:08 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           13 open bugs to swat!!
+                           12 open bugs to swat!!
 
 
 Controller:
 ----------
-11021 ActionForward or <html:link> tag does not support absolute URIs
 11089 Data source keys are global, even when using application modules
 
 

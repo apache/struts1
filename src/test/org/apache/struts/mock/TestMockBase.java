@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.4 2002/07/10 20:36:23 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/07/10 20:36:23 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.5 2002/07/27 23:26:09 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/07/27 23:26:09 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/07/10 20:36:23 $
+ * @version $Revision: 1.5 $ $Date: 2002/07/27 23:26:09 $
  */
 
 public class TestMockBase extends TestCase {
@@ -160,6 +160,11 @@ public class TestMockBase extends TestCase {
         appConfig = new ApplicationConfig("");
         context.setAttribute(Action.APPLICATION_KEY, appConfig);
 
+        // Forward "external" to "http://jakarta.apache.org/"
+        appConfig.addForwardConfig
+            (new ActionForward("external", "http://jakarta.apache.org/",
+                               false, false));
+
         // Forward "foo" to "/bar.jsp"
         appConfig.addForwardConfig
             (new ActionForward("foo", "/bar.jsp", false, false));
@@ -223,6 +228,11 @@ public class TestMockBase extends TestCase {
 
         appConfig2 = new ApplicationConfig("/2");
         context.setAttribute(Action.APPLICATION_KEY + "/2", appConfig2);
+
+        // Forward "external" to "http://jakarta.apache.org/"
+        appConfig2.addForwardConfig
+            (new ActionForward("external", "http://jakarta.apache.org/",
+                               false, false));
 
         // Forward "foo" to "/baz.jsp" (different from default)
         appConfig2.addForwardConfig

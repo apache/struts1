@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.50 2002/07/27 18:55:56 craigmcc Exp $
- * $Revision: 1.50 $
- * $Date: 2002/07/27 18:55:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.51 2002/07/27 23:26:08 craigmcc Exp $
+ * $Revision: 1.51 $
+ * $Date: 2002/07/27 23:26:08 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.50 $ $Date: 2002/07/27 18:55:56 $
+ * @version $Revision: 1.51 $ $Date: 2002/07/27 23:26:08 $
  */
 
 public class RequestUtils {
@@ -412,8 +412,12 @@ public class RequestUtils {
             if (fc.getRedirect()) {
                 redirect = true;
             }
-            url.append(request.getContextPath());
-            url.append(forwardURL(request, fc));
+            if (fc.getPath().startsWith("/")) {
+                url.append(request.getContextPath());
+                url.append(forwardURL(request, fc));
+            } else {
+                url.append(fc.getPath());
+            }
         } else if (href != null) {
             url.append(href);
         } else /* if (page != null) */ {
