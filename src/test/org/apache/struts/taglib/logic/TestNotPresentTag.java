@@ -54,13 +54,7 @@
  */
 package org.apache.struts.taglib.logic;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
-
-
-import junit.framework.*;
-import org.apache.cactus.*;
+import javax.servlet.ServletException;import javax.servlet.jsp.PageContext;import junit.framework.Test;import junit.framework.TestSuite;import org.apache.cactus.JspTestCase;import org.apache.cactus.WebRequest;
 
 /**
  * Suite of unit tests for the

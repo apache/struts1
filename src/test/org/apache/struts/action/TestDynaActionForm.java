@@ -59,14 +59,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.*;
-import junit.framework.*;
-import org.apache.cactus.*;
+
+import javax.servlet.ServletRequest;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
 import org.apache.commons.beanutils.DynaProperty;
-import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.FormBeanConfig;
+import org.apache.struts.config.ModuleConfig;
 
 
 /**

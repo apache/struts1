@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.6 2002/10/18 15:27:43 jholmes Exp $
- * $Revision: 1.6 $
- * $Date: 2002/10/18 15:27:43 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.7 2002/11/16 04:58:48 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/11/16 04:58:48 $
  *
  * ====================================================================
  *
@@ -63,7 +63,10 @@
 package org.apache.struts.mock;
 
 
-import junit.framework.*;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
@@ -83,7 +86,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/10/18 15:27:43 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/16 04:58:48 $
  */
 
 public class TestMockBase extends TestCase {

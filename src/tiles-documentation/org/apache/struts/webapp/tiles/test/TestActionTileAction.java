@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestActionTileAction.java,v 1.1 2002/07/11 15:35:20 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:20 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/test/TestActionTileAction.java,v 1.2 2002/11/16 04:58:47 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 04:58:47 $
  *
  * ====================================================================
  *
@@ -61,24 +61,22 @@
 
 package org.apache.struts.webapp.tiles.test;
 
-import org.apache.struts.tiles.*;
-
 import java.io.IOException;
-import java.util.Locale;
-import java.util.Vector;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.MessageResources;
-
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.tiles.ComponentContext;
+import org.apache.struts.tiles.ComponentDefinition;
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.FactoryNotFoundException;
+import org.apache.struts.tiles.NoSuchDefinitionException;
 
 
 /**
@@ -87,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/07/11 15:35:20 $
+ * @version $Revision: 1.2 $ $Date: 2002/11/16 04:58:47 $
  */
 
 public final class TestActionTileAction extends Action {

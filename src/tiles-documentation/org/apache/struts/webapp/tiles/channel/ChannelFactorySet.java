@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.1 2002/07/11 15:35:21 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/11 15:35:21 $
+ * $Header: /home/cvs/jakarta-struts/src/tiles-documentation/org/apache/struts/webapp/tiles/channel/ChannelFactorySet.java,v 1.2 2002/11/16 04:58:47 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/11/16 04:58:47 $
  *
  * ====================================================================
  *
@@ -61,27 +61,24 @@
 
 package org.apache.struts.webapp.tiles.channel;
 
-import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.FactoryNotFoundException;
-import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.struts.tiles.xmlDefinition.*;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.Map;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.StringTokenizer;
-import java.io.InputStream;
-import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts.tiles.DefinitionsFactoryException;
+import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.FactoryNotFoundException;
+import org.apache.struts.tiles.xmlDefinition.DefinitionsFactory;
+import org.apache.struts.tiles.xmlDefinition.FactorySet;
+import org.apache.struts.tiles.xmlDefinition.XmlDefinitionsSet;
+import org.apache.struts.tiles.xmlDefinition.XmlParser;
 import org.xml.sax.SAXException;
 
 /**

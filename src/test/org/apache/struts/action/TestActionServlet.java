@@ -54,11 +54,11 @@
  */
 package org.apache.struts.action;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-import junit.framework.*;
-import org.apache.cactus.*;
-
+import org.apache.cactus.ServletTestCase;
 import org.apache.struts.util.MessageResources;
 
 /**

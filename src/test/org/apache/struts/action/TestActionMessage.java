@@ -55,13 +55,13 @@
 
 package org.apache.struts.action;
 
-import junit.framework.*;
+import junit.framework.Test;import junit.framework.TestCase;import junit.framework.TestSuite;
 
 /**
  * Unit tests for the <code>org.apache.struts.action.ActionMessage</code> class.
  *
  * @author Dominique Plante
- * @version $Revision: 1.1 $ $Date: 2002/06/22 20:50:36 $
+ * @version $Revision: 1.2 $ $Date: 2002/11/16 04:58:47 $
  */
 
 public class TestActionMessage extends TestCase
