@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.13 2002/03/04 05:38:23 martinc Exp $
+     $Id: struts-config_1_1.dtd,v 1.14 2002/03/12 04:52:45 craigmcc Exp $
 -->
 
 
@@ -168,7 +168,7 @@
 <!ATTLIST exception      id             ID              #IMPLIED>
 <!ATTLIST exception      className      %ClassName;     #IMPLIED>
 <!ATTLIST exception      handler        %ClassName;     #IMPLIED>
-<!ATTLIST exception      key            CDATA           #IMPLIED>
+<!ATTLIST exception      key            CDATA           #REQUIRED>
 <!ATTLIST exception      path           %RequestPath;   #IMPLIED>
 <!ATTLIST exception      scope          CDATA           #IMPLIED>
 <!ATTLIST exception      type           %ClassName;     #REQUIRED>
