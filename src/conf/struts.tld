@@ -222,7 +222,7 @@
     <attribute>
       <name>action</name>
       <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
       <name>method</name>
@@ -1239,7 +1239,7 @@
     <attribute>
       <name>href</name>
       <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
+      <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
       <name>target</name>
