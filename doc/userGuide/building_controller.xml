@@ -918,12 +918,12 @@ public ActionForward execute(ActionMapping mapping,
      instances that should be added to the <code>Digester</code> that will
      be processing <code>struts-config.xml</code> files.  By default, only
      the <code>RuleSet</code> for the standard configuration elements is
-     loaded.  (Since Struts 1.1)<li>
+     loaded.  (Since Struts 1.1)</li>
  <li><strong>validating</strong> - Should we use a validating XML parser to
      process the configuration file (strongly recommended)? [true]</li>
  </ul>
  <p>The following parameters may still be used with the Struts 1.1 release but
- are <b>deprecated</b>.
+ are <b>deprecated</b>.</p>
  <ul>
  <li><strong>application</strong> - Java class name of the application
      resources bundle base class.  [NONE]
@@ -955,11 +955,11 @@ public ActionForward execute(ActionMapping mapping,
      <li><em>org.apache.struts.action.ForwardingActionForward</em> -
          Subclass of <code>org.apache.struts.action.ActionForward</code>
          that defaults the <code>redirect</code> property to
-         <code>false</code> (same as the ActionForward default value).
+         <code>false</code> (same as the ActionForward default value).</li>
      <li><em>org.apache.struts.action.RedirectingActionForward</em> -
          Subclass of <code>org.apache.struts.action.ActionForward</code>
          that defaults the <code>redirect</code> property to
-         <code>true</code>.
+         <code>true</code>.</li>
      </ul>
      <em>DEPRECATED - Configure this using the "className" attribute of
      each &lt;forward&gt; element.</em></li>
@@ -976,11 +976,11 @@ public ActionForward execute(ActionMapping mapping,
      <ul>
      <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
          of <code>org.apache.struts.action.ActionMapping</code> that
-         defaults the <code>scope</code> property to "request".
+         defaults the <code>scope</code> property to "request".</li>
      <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
          of <code>org.apache.struts.action.ActionMapping</code> that
          defaults the <code>scope</code> property to "session".  (Same
-         as the ActionMapping default value).
+         as the ActionMapping default value).</li>
      </ul>
      <em>DEPRECATED - Configure this using the "className" attribute of
      each &lt;action&gt; element, or globally for a module by using the
