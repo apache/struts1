@@ -44,10 +44,11 @@
 				<u>Using the Struts Framework to Develop a Message Board</u>, Maneesh Sahu<br />
 				<a href="http://informit.com/books/authors/author_template/index.asp?authorid={A08A00B0-71BB-42DB-9B29-08879A9A7ABE}&amp;t={94AE5B48-1D7D-462A-A4A6-83CE19EC0705}&amp;n={4641FAF9-E21F-4902-8F6E-0C8FAF114C62}">Author Page (article requires registration with informit.com)</a>
 			</p>
-				
-			
-		
-		
+
+                        <p>
+                                <u>JSP templates</u>, <a href="david.geary@javaworld.com">David Geary</a><br />
+                                <a href="http://www.javaworld.com/javaworld/jw-09-2000/jw-0915-jspweb_p.html">http://www.javaworld.com/javaworld/jw-09-2000/jw-0915-jspweb_p.html</a>
+                        </p>		
 		</section>
 		
 		<section name="Struts Mailing List Archives" href="archives">
