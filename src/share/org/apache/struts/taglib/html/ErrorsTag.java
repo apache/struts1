@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.5 2001/02/13 17:30:00 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/13 17:30:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.6 2001/02/20 01:48:46 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/20 01:48:46 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -76,6 +76,8 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.ErrorMessages;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -96,7 +98,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/13 17:30:00 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/20 01:48:46 $
  */
 
 public class ErrorsTag extends TagSupport {
@@ -126,8 +128,21 @@ public class ErrorsTag extends TagSupport {
 
 
     /**
-     * Name of the request scope attribute containing our error messages,
-     * if any.
+     * The session attribute key for our locale.
+     */
+    protected String locale = Action.LOCALE_KEY;
+
+    public String getLocale() {
+        return (this.locale);
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+
+    /**
+     * The request attribute key for our error messages (if any).
      */
     protected String name = Action.ERROR_KEY;
 
@@ -197,25 +212,10 @@ public class ErrorsTag extends TagSupport {
         if (errors.empty())
 	    return (EVAL_BODY_INCLUDE);
 
-	// Render the error messages appropriately
-	Locale locale = null;
-	try {
-	    locale = (Locale) pageContext.getAttribute
-		(Action.LOCALE_KEY, PageContext.SESSION_SCOPE);
-	} catch (IllegalStateException e) {	// Invalidated session
-	    locale = null;
-	}
-	if (locale == null)
-	    locale = defaultLocale;
-	MessageResources messages = (MessageResources)
-	  pageContext.getAttribute(bundle,
-				   PageContext.APPLICATION_SCOPE);
-	String message = null;
+        // Render the error messages appropriately
 	StringBuffer results = new StringBuffer();
-        if (messages != null)
-            message = messages.getMessage(locale, "errors.header");
-        else
-            message = "MISSING APPLICATION RESOURCES";
+        String message = RequestUtils.message(pageContext, bundle,
+                                              locale, "errors.header");
 	if (message != null) {
 	    results.append(message);
 	    results.append("\r\n");
@@ -227,33 +227,23 @@ public class ErrorsTag extends TagSupport {
             reports = errors.get(property);
         while (reports.hasNext()) {
             ActionError report = (ActionError) reports.next();
-            if (messages != null)
-                message =
-                    messages.getMessage(locale,
-                                        report.getKey(), report.getValues());
-            else
-                message = null;
+            message = RequestUtils.message(pageContext, bundle,
+                                           locale, report.getKey(),
+                                           report.getValues());
 	    if (message != null) {
 		results.append(message);
 		results.append("\r\n");
 	    }
 	}
-        if (messages != null)
-            message = messages.getMessage(locale, "errors.footer");
-        else
-            message = null;
+        message = RequestUtils.message(pageContext, bundle,
+                                       locale, "errors.footer");
 	if (message != null) {
 	    results.append(message);
 	    results.append("\r\n");
 	}
 
 	// Print the results to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException(e.toString());
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue processing this page
 	return (EVAL_BODY_INCLUDE);
@@ -268,6 +258,7 @@ public class ErrorsTag extends TagSupport {
 
 	super.release();
         bundle = Action.MESSAGES_KEY;
+        locale = Action.LOCALE_KEY;
 	name = Action.ERROR_KEY;
         property = null;
 

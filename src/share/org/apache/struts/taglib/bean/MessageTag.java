@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.3 2001/02/12 01:26:57 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/02/12 01:26:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/MessageTag.java,v 1.4 2001/02/20 01:48:45 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/02/20 01:48:45 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * <code>ActionServlet</code> implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/02/12 01:26:57 $
+ * @version $Revision: 1.4 $ $Date: 2001/02/20 01:48:45 $
  */
 
 public class MessageTag extends TagSupport {
@@ -227,27 +227,6 @@ public class MessageTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Acquire the resources object containing our messages
-	MessageResources resources = (MessageResources)
-	    pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
-	if (resources == null) {
-            JspException e = new JspException
-		(messages.getMessage("message.resources", bundle));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-
-	// Calculate the Locale we will be using
-	Locale locale = null;
-	try {
-	    locale = (Locale)
-		pageContext.getAttribute(localeKey, PageContext.SESSION_SCOPE);
-	} catch (IllegalStateException e) {	// Invalidated session
-	    locale = null;
-	}
-	if (locale == null)
-	    locale = defaultLocale;
-
 	// Construct the optional arguments array we will be using
 	Object args[] = new Object[5];
 	args[0] = arg0;
@@ -257,7 +236,8 @@ public class MessageTag extends TagSupport {
 	args[4] = arg4;
 
 	// Retrieve the message string we are looking for
-	String message = resources.getMessage(locale, key, args);
+	String message = RequestUtils.message(pageContext, this.bundle,
+                                              this.localeKey, this.key, args);
 	if (message == null) {
 	    JspException e = new JspException
 		(messages.getMessage("message.message", key));

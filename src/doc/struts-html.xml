@@ -715,6 +715,17 @@
                 </attribute> 
 
                 <attribute>
+                    <name>locale</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    The session attribute key for the Locale used to select
+                    messages to be displayed.  If not specified, defaults to
+                    the Struts standard value.
+                    </info>
+                </attribute>
+
+                <attribute>
                   <name>name</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -2493,31 +2504,72 @@
 		
 		<name>option</name>
 		<summary>
-			Render A Select Option
+                Render A Select Option
 		</summary>
 		<tagclass>org.apache.struts.taglib.html.OptionTag</tagclass>
 		<info>
-			<p>
-				Renders an HTML &lt;option&gt; element, representing one of the choices
-				for a &lt;select&gt; element. The text displayed to the user comes from
-				the body of this tag. If the value of the corresponding bean
-				property matches the specified value, this option will be marked
-				selected. This tag is only valid when nested inside a select tag
-				body.
-			</p>
+                <p>Render an HTML <code>&lt;option&gt;</code> element,
+                representing one of the choices for an enclosing
+                <code>&lt;select&gt;</code> element.  The text displayed to the
+                user comes from either the body of this tag, or from a message
+                string looked up based on the <code>bundle</code>,
+                <code>locale</code>, and <code>key</code> attributes.</p>
+
+                <p>If the value of the corresponding bean property matches the
+                specified value, this option will be marked selected.  This tag
+                is only valid when nested inside a
+                <code>&lt;html:select&gt;</code> tag body.</p>
 		</info>
 		
+                <attribute>
+                    <name>bundle</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>key</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    If specified, defines the message key to be looked up in
+                    the resource bundle specified by <code>bundle</code> for
+                    the text displayed to the user for this option.  If not
+                    specified, the text to be displayed is taken from the body
+                    content of this tag.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>locale</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    The session attributes key for the Locale instance to use
+                    for looking up the message specified by the
+                    <code>key</code> attribute.  If not specified, uses the
+                    standard Struts session attribute name.
+                    </info>
+                </attribute>
+
 		<attribute>
-			<name>value</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<info>
-				Value to be submitted for this field if this option is selected by
-				the user. 
-			</info>
+                    <name>value</name>
+                    <required>true</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    Value to be submitted for this field if this option is
+                    selected by the uuser.
+                    </info>
 		</attribute>
+
 	</tag>
 	
+
 	<tag>
 		
 		<name>options</name>

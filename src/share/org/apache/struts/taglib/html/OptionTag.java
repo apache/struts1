@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.2 2001/01/08 21:36:07 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 21:36:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.3 2001/02/20 01:48:46 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/20 01:48:46 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -65,11 +65,15 @@ package org.apache.struts.taglib.html;
 
 import java.lang.reflect.Method;
 import java.io.IOException;
+import java.util.Locale;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import org.apache.struts.action.Action;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -78,13 +82,19 @@ import org.apache.struts.util.MessageResources;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/01/08 21:36:07 $
+ * @version $Revision: 1.3 $ $Date: 2001/02/20 01:48:46 $
  */
 
 public class OptionTag extends BodyTagSupport {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The default locale for our server.
+     */
+    protected static final Locale defaultLocale = Locale.getDefault();
 
 
     /**
@@ -95,33 +105,72 @@ public class OptionTag extends BodyTagSupport {
 
 
     /**
-     * The server value for this option.
+     * The message text to be displayed to the user for this tag (if any)
      */
-    protected String value = null;
+    protected String text = null;
 
 
     // ------------------------------------------------------------- Properties
 
 
     /**
-     * Return the server value.
+     * The name of the servlet context attribute containing our message
+     * resources.
      */
-    public String getValue() {
+    protected String bundle = Action.MESSAGES_KEY;
 
-	return (this.value);
+    public String getBundle() {
+        return (this.bundle);
+    }
 
+    public void setBundle(String bundle) {
+        this.bundle = bundle;
     }
 
 
     /**
-     * Set the server value.
-     *
-     * @param value The new server value
+     * The key used to look up the text displayed to the user for this
+     * option, if any.
      */
+    protected String key = null;
+
+    public String getKey() {
+        return (this.key);
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+
+    /**
+     * The name of the attribute containing the Locale to be used for
+     * looking up internationalized messages.
+     */
+    protected String locale = Action.LOCALE_KEY;
+
+    public String getLocale() {
+        return (this.locale);
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+
+    /**
+     * The server value for this option, also used to match against the
+     * current property value to determine whether this option should be
+     * marked as selected.
+     */
+    protected String value = null;
+
+    public String getValue() {
+	return (this.value);
+    }
+
     public void setValue(String value) {
-
 	this.value = value;
-
     }
 
 
@@ -141,6 +190,23 @@ public class OptionTag extends BodyTagSupport {
     }
 
 
+    /**
+     * Process the body text of this tag (if any).
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        String text = bodyContent.getString();
+        if (text != null) {
+            text = text.trim();
+            if (text.length() > 0)
+                this.text = text;
+        }
+        return (SKIP_BODY);
+
+    }
+
 
     /**
      * Process the end of this tag.
@@ -152,11 +218,14 @@ public class OptionTag extends BodyTagSupport {
 	// Acquire the select tag we are associated with
 	SelectTag selectTag =
 	  (SelectTag) pageContext.getAttribute(Constants.SELECT_KEY);
-	if (selectTag == null)
-	    throw new JspException
+	if (selectTag == null) {
+            JspException e = new JspException
 	        (messages.getMessage("optionTag.select"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
 
-	// Generate an HTML element
+	// Generate an HTML <option> element
 	StringBuffer results = new StringBuffer();
 	results.append("<option value=\"");
 	results.append(value);
@@ -164,20 +233,15 @@ public class OptionTag extends BodyTagSupport {
 	if (value.equals(selectTag.getMatch()))
 	    results.append(" selected");
 	results.append(">");
-	if (bodyContent == null)
+        String text = text();
+	if (text == null)
 	    results.append(value);
 	else
-	    results.append(bodyContent.getString().trim());
+	    results.append(text);
 	results.append("</option>");
 
 	// Render this element to our writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.println(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue evaluating this page
 	return (EVAL_PAGE);
@@ -191,7 +255,30 @@ public class OptionTag extends BodyTagSupport {
     public void release() {
 
 	super.release();
+        bundle = Action.MESSAGES_KEY;
+        key = null;
+        locale = Action.LOCALE_KEY;
+        text = null;
 	value = null;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the text to be displayed to the user for this option (if any).
+     *
+     * @exception JspException if an error occurs
+     */
+    protected String text() throws JspException {
+
+        if (this.text != null)
+            return (this.text);
+        else
+            return (RequestUtils.message(pageContext, bundle,
+                                         locale, key));
 
     }
 

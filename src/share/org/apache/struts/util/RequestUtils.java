@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.5 2001/02/12 00:32:14 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/12 00:32:14 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.6 2001/02/20 01:48:46 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/20 01:48:46 $
  *
  * ====================================================================
  *
@@ -70,6 +70,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -88,13 +89,19 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/12 00:32:14 $
+ * @version $Revision: 1.6 $ $Date: 2001/02/20 01:48:46 $
  */
 
 public class RequestUtils {
 
 
     // ------------------------------------------------------- Static Variables
+
+
+    /**
+     * The default Locale for our server.
+     */
+    private static final Locale defaultLocale = Locale.getDefault();
 
 
     /**
@@ -227,6 +234,73 @@ public class RequestUtils {
             throw new JspException
                 (messages.getMessage("lookup.method", property, name));
         }
+
+    }
+
+
+    /**
+     * Look up and return a message string, based on the specified parameters.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     *
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     */
+    public static String message(PageContext pageContext, String bundle,
+                                 String locale, String key)
+        throws JspException {
+
+        return (message(pageContext, bundle, locale, key, null));
+
+    }
+
+
+    /**
+     * Look up and return a message string, based on the specified parameters.
+     *
+     * @param pageContext The PageContext associated with this request
+     * @param bundle Name of the servlet context attribute for our
+     *  message resources bundle
+     * @param locale Name of the session attribute for our user's Locale
+     * @param key Message key to be looked up and returned
+     * @param args Replacement parameters for this message
+     *
+     * @exception JspException if a lookup error occurs (will have been
+     *  saved in the request already)
+     */
+    public static String message(PageContext pageContext, String bundle,
+                                 String locale, String key, Object args)
+        throws JspException {
+
+        // Look up the requested MessageResources
+        if (bundle == null)
+            bundle = Action.MESSAGES_KEY;
+        MessageResources resources = (MessageResources)
+            pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
+        if (resources == null) {
+            JspException e = new JspException
+                (messages.getMessage("message.bundle", bundle));
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        // Look up the requested Locale
+        if (locale == null)
+            locale = Action.LOCALE_KEY;
+        Locale userLocale = (Locale)
+            pageContext.getAttribute(locale, PageContext.SESSION_SCOPE);
+        if (userLocale == null)
+            userLocale = defaultLocale;
+
+        // Return the requested message
+        if (args == null)
+            return (resources.getMessage(userLocale, key));
+        else
+            return (resources.getMessage(userLocale, key, args));
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.5 2001/02/20 00:18:52 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/20 00:18:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.6 2001/02/20 01:48:46 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/02/20 01:48:46 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -703,26 +703,9 @@ public class ImgTag extends BaseHandlerTag {
             }
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            MessageResources resources = (MessageResources)
-                pageContext.getAttribute(this.bundle,
-                                         PageContext.APPLICATION_SCOPE);
-            if (resources == null) {
-                JspException e = new JspException
-                    (messages.getMessage("imgTag.bundle", this.bundle));
-                RequestUtils.saveException(pageContext, e);
-            }
-            Locale locale = null;
-            try {
-                locale = (Locale)
-                    pageContext.getAttribute(this.locale,
-                                             PageContext.SESSION_SCOPE);
-            } catch (IllegalStateException e) {
-                locale = null; // Invalidated session
-            }
-            if (locale == null)
-                locale = defaultLocale;
             return (request.getContextPath() +
-                    resources.getMessage(locale, this.pageKey));
+                    RequestUtils.message(pageContext, bundle,
+                                         locale, this.pageKey));
         }
 
         // Deal with an absolute source that has been specified
@@ -743,26 +726,8 @@ public class ImgTag extends BaseHandlerTag {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
-        MessageResources resources = (MessageResources)
-            pageContext.getAttribute(this.bundle,
-                                     PageContext.APPLICATION_SCOPE);
-        if (resources == null) {
-            JspException e = new JspException
-                (messages.getMessage("imgTag.bundle", this.bundle));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-        Locale locale = null;
-        try {
-            locale = (Locale)
-                pageContext.getAttribute(this.locale,
-                                         PageContext.SESSION_SCOPE);
-        } catch (IllegalStateException e) {
-            locale = null; // Invalidated session
-        }
-        if (locale == null)
-            locale = defaultLocale;
-        return (resources.getMessage(locale, this.srcKey));
+        return (RequestUtils.message(pageContext, bundle,
+                                     locale, this.srcKey));
 
     }
 
