@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.6 2003/07/04 18:26:19 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2003/07/04 18:26:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.7 2003/09/22 01:18:03 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/09/22 01:18:03 $
  *
  * ====================================================================
  *
@@ -62,19 +62,37 @@
 package org.apache.struts.util;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * A simple JavaBean to represent label-value pairs. This is most commonly used
  * when constructing user interface elements which have a label to be displayed
  * to the user, and a corresponding value to be returned to the server. One
  * example is the <code>&lt;html:options&gt;</code> tag.
- *
+ * 
+ * <p>
+ * Note: this class has a natural ordering that is inconsistent with equals.
+ * </p>
+ * 
  * @author Craig R. McClanahan
  * @author Martin F N Cooper
  * @author David Graham
- * @version $Revision: 1.6 $ $Date: 2003/07/04 18:26:19 $
+ * @author Paul Sundling
+ * @version $Revision: 1.7 $ $Date: 2003/09/22 01:18:03 $
  */
-public class LabelValueBean implements Serializable {
+public class LabelValueBean implements Comparable, Serializable {
+
+    /**
+     * Comparator that can be used for a case insensitive sort of 
+     * <code>LabelValueBean</code> objects.
+     */
+    public static final Comparator CASE_INSENSITIVE_ORDER = new Comparator() {
+    	public int compare(Object o1, Object o2) {
+    		String label1 = ((LabelValueBean) o1).getLabel();
+    		String label2 = ((LabelValueBean) o2).getLabel();
+    		return label1.compareToIgnoreCase(label2);
+    	}
+    };
 
 
     // ----------------------------------------------------------- Constructors
@@ -132,6 +150,18 @@ public class LabelValueBean implements Serializable {
 
     // --------------------------------------------------------- Public Methods
 
+	/**
+	 * Compare LabelValueBeans based on the label, because that's the human 
+     * viewable part of the object.
+	 * @see Comparable
+	 */
+	public int compareTo(Object o) {
+		// Implicitly tests for the correct type, throwing 
+        // ClassCastException as required by interface
+		String otherLabel = ((LabelValueBean) o).getLabel();
+
+		return this.getLabel().compareTo(otherLabel);
+	}
 
     /**
      * Return a string representation of this object.
