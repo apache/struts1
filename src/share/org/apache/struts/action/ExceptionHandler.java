@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.17 2003/04/15 00:18:45 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/04/15 00:18:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.18 2003/04/19 01:20:32 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/04/19 01:20:32 $
  *
  * ====================================================================
  *
@@ -75,6 +75,7 @@ import org.apache.struts.util.ModuleException;
  * @since Struts 1.1
  */
 public class ExceptionHandler {
+    
     /**
      * Handle the exception.
      * Return the <code>ActionForward</code> instance (if any) returned by
@@ -99,7 +100,7 @@ public class ExceptionHandler {
                                  HttpServletResponse response)
         throws ServletException {
 
-    ActionForward forward = null;
+        ActionForward forward = null;
         ActionError error = null;
         String property = null;
 
@@ -140,13 +141,13 @@ public class ExceptionHandler {
      * @param error - The error generated from the exception mapping
      * @param forward - The forward generated from the input path (from the form or exception mapping)
      * @param scope - The scope of the exception mapping.
-     *
      */
     protected void storeException(HttpServletRequest request,
                         String property,
                         ActionError error,
                         ActionForward forward,
                         String scope) {
+                            
         ActionErrors errors = new ActionErrors();
         errors.add(property, error);
 
