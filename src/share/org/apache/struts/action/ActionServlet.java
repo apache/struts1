@@ -700,6 +700,13 @@ public class ActionServlet extends HttpServlet {
         InputStream input = null;
         try {
             URL url = getServletContext().getResource(path);
+
+	    if (url == null) {
+		String msg = internal.getMessage("configMissing", path);
+		log.error(msg);
+		throw new UnavailableException(msg);
+	    }
+	    
             InputSource is = new InputSource(url.toExternalForm());
             input = getServletContext().getResourceAsStream(path);
             is.setByteStream(input);
