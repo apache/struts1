@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.13 2003/02/05 01:03:28 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/02/05 01:03:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/DispatchAction.java,v 1.14 2003/02/18 04:01:07 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/02/18 04:01:07 $
  *
  * ====================================================================
  *
@@ -126,7 +126,7 @@ import org.apache.struts.util.MessageResources;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.13 $ $Date: 2003/02/05 01:03:28 $
+ * @version $Revision: 1.14 $ $Date: 2003/02/18 04:01:07 $
  */
 
 public abstract class DispatchAction extends Action {
@@ -208,15 +208,12 @@ public abstract class DispatchAction extends Action {
             return (null);
         }
 
-        // Identify the method name to be dispatched to
+        // Identify the method name to be dispatched to.
+        // dispatchMethod() will call unspecified() if name is null
         String name = request.getParameter(parameter);
-        if (name == null) {
-            name = "unspecified";
-        }
 
         // Invoke the named method, and return the result
-        return dispatchMethod(mapping,form,request,response,name);
-
+        return dispatchMethod(mapping, form, request, response, name);
     }
 
 
