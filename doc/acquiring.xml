@@ -19,9 +19,10 @@
     <section name="Acquiring Struts" href="Acquiring">
 
     <p>
-    The latest <em>production release</em> of Struts is
-    available in a convenient binary distribution and also with complete
-    source code.
+    Struts is available in a convenient binary distribution and also with complete
+    source code. You may choose to download a production release or one of the
+    development builds. All downloads are available to the general public at
+    no charge and are distributed under the <a href="http://apache.org/licenses/">Apache License</a>.
     </p>
 
         <p>
@@ -31,11 +32,15 @@
             to the <strong>Struts</strong> download.
         </p>
 
-    <ul>
+    <a name="Releases"></a><ul>
 
     <li>
+        <!--
         <a href="http://struts.apache.org/download.cgi">
         <strong>Struts Binary and Source Code Distributions - Struts 1.2.2 is the best available version</strong></a>
+        -->
+        <strong>Struts "General Availability" Release - Jakarta Struts 1.1 is the best
+            available version</strong> - [<a href="http://jakarta.apache.org/site/binindex.cgi">BINARY</a>] - [<a href="http://jakarta.apache.org/site/sourceindex.cgi">FULL SOURCE</a>]
     </li>
 
     </ul>
@@ -55,26 +60,27 @@
 
 </section>
 
-<section name="Development Releases" href="Releases">
+<section name="Development Builds" href="Milestones">
     <p>
-    The latest <em>development release</em> of Struts is
+    The latest <em>development build</em> of Struts is
     available in a convenient binary distribution and also with complete
     source code.
     </p>
     <p>
-        Development releases are being reviewed for quality by the Struts community.
-        When a release is judged "ready for prime time", it is promoted to
-        "General Availability" status and may be made the "Best Available" version.
+        Development builds are being reviewed for quality by the Struts community.
+        When a build is judged "ready for prime time", it is promoted to
+        "General Availability" status and may be made the "Best Available" release.
     </p>
         <ul>
         <li>
-            <a href="http://cvs.apache.org/dist/struts/v1.2.2">Struts Development
-                Releases - Not yet rated "General Availability" - Struts 1.2.2 (Alpha) 
+            <a href="http://cvs.apache.org/dist/struts/v1.2.3">Struts Development
+                Builds - Not rated "General Availability" - Struts 1.2.3 (Alpha)
                 is the most recent.</a>
         </li>
             <li>
                 <a href="http://cvs.apache.org/repository/struts/jars">Struts Development
-                    Repository (Maven) - Not yet rated "General Availability" -  Struts 1.2.2 (Alpha) is the most recent.</a>
+                    Repository (Maven) - Not rated "General Availability" -  Struts
+                    1.2.3 (Alpha) is the most recent.</a>
             </li>
         </ul>
 
