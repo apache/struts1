@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InitDefinitionsTag.java,v 1.2 2002/07/11 16:44:24 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:44:24 $
  *
  * ====================================================================
  *
@@ -63,7 +63,8 @@
 package org.apache.struts.taglib.tiles;
 
 import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.struts.tiles.ComponentDefinitionsFactory;
+import org.apache.struts.tiles.DefinitionsFactory;
+import org.apache.struts.tiles.DefinitionsFactoryConfig;
 import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.struts.tiles.ComponentDefinition;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
@@ -120,18 +121,17 @@ public class InitDefinitionsTag extends TagSupport implements ComponentConstants
      */
   public int doStartTag() throws JspException
   {
-  ComponentDefinitionsFactory factory = DefinitionsUtil.getDefinitionsFactory(pageContext);
+  DefinitionsFactory factory = DefinitionsUtil.getDefinitionsFactory(pageContext.getServletContext());
   if(factory != null )
     return SKIP_BODY;
 
-  Map properties = new HashMap();
-    // Read properties
-    // Not so nice, but works for default factory ;-(
-  properties.put( I18nFactorySet.DEFINITIONS_CONFIG_PARAMETER_NAME, filename);
+  DefinitionsFactoryConfig factoryConfig = new DefinitionsFactoryConfig();
+  factoryConfig.setFactoryClassname( classname );
+  factoryConfig.setDefinitionConfigFiles( filename );
 
   try
     {
-    factory = DefinitionsUtil.createDefinitionsFactory(pageContext.getServletContext(), properties, classname);
+    factory = DefinitionsUtil.createDefinitionsFactory(pageContext.getServletContext(), factoryConfig);
     }
    catch( DefinitionsFactoryException ex )
       {

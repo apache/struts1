@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.2 2002/07/07 23:15:36 martinc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/07 23:15:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.3 2002/07/11 16:44:24 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/11 16:44:24 $
  *
  * ====================================================================
  *
@@ -82,6 +82,8 @@ import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
 /**
+ * Action Servlet to be used with Tiles and Struts 1.0.x.
+ * For Struts 1.1, use TilesPlugin and eventualy TilesRequestProcessor.
  * This servlet extends struts one. It adds channels and screens dispatching
  * capabilities.
  * We overide all methods that do request forward (i.e. 'processActionForward'
@@ -95,7 +97,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
 public class ActionComponentServlet extends ActionServlet
 {
     /** Definitions factory */
-  private ComponentDefinitionsFactory definitionsFactory;
+  private DefinitionsFactory definitionsFactory;
 
     /**
      * Init method.
@@ -113,17 +115,32 @@ public class ActionComponentServlet extends ActionServlet
      */
   public void initComponentDefinitionsMapping() throws ServletException // IOException,
     {
+      // Check struts version by checkin PlugIn classes existance.
+    try
+      {
+      Class plugInClass = Class.forName( "org.apache.struts.action.PlugIn" );
+        // Class exist ==> struts 1.1 or greater
+      log( "Warning - ActionComponentServlet class: This class is to be used with Struts1.0.x only. "
+           + "Please modify web.xml to use regular ActionServlet class instead in conjugaison "
+           + "with appropriate plugin declared in struts-config.xml." );
+      //return;
+        // Let create factory for backward compatibility
+      }
+     catch( ClassNotFoundException ex )
+      { // Not found ==> struts 1.0.x
+      }
+
      try
       {
-        // init component instances
-      definitionsFactory = DefinitionsUtil.createDefinitionsFactory(getServletContext(), getServletConfig());
+        // create definition factory
+      definitionsFactory = DefinitionsUtil.createDefinitionsFactory(getServletContext(), getServletConfig(), true);
       }
      catch( DefinitionsFactoryException ex )
       {
-      log( "Fail to load Tiles definition factory", ex);
+      log( "Fail to load Tiles definition factory from ActionComponentServlet", ex);
       throw new ServletException( ex.getMessage(), ex );
       }
-    log( "Tiles definition factory loaded" );
+    log( "Tiles definition factory loaded from ActionComponentServlet" );
     }
 
 
