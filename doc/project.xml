@@ -16,7 +16,6 @@
     <menu name="Downloads">
         <item name="Binaries"                href="http://jakarta.apache.org/site/binindex.html"/>
         <item name="Source Code"             href="http://jakarta.apache.org/site/sourceindex.html"/>
-        <item name="Release Candidate"       href="http://jakarta.apache.org/builds/jakarta-struts/archives/v1.0.1-b1"/>
     </menu>
 
     <menu name="Getting Started">
