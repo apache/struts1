@@ -10,12 +10,15 @@
 <chapter href="faq" name="Newbie FAQ">
 
 <section href="contents" name="Index">
-<p>
-Here are answers to the most common questions people ask when using Struts on their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
-</p>
 
-<p><font color="red"><b>UNDER CONSTRUCTION</b></font> (contributions welcome)</p>
-  <ul>
+    <p>
+    Here are answers to the most common questions people ask when using 
+    Struts on their first project. 
+    <b>For an in-depth, searchable FAQ, visit our friends at 
+    <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b>
+    </p>
+
+    <ul>
 
     <li><a href="#reload">Why was reload removed from Struts 1.1?</a></li>
 
@@ -23,25 +26,11 @@ Here are answers to the most common questions people ask when using Struts on th
 
     <li><a href="#naming">Why are some of the class and element names counter-intuitive?</a></li>
 
-    <li>Why is ActionForm a base class rather than an interface?</li>
-
-    <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
-
-    <li>do ActionForms have to be true JavaBeans?</li>
-
-    <li>Can I use other beans or hashmaps with ActionForms?</li>
-
-    <li>How can I prepopulate a form?</li>
-
     <li><a href="#multiple">Can I use multiple HTML form elements with the same name?</a></li>
 
     <li><a href="#actionforms">Why are my checkboxes not being set from ON to OFF?</a></li>
 
     <li><a href="#reset"></a>Do I need to implement reset and set all my form properties to their initial values? </li>
-
-    <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
-
-    <li>Why do my option lists disappear when validation fails?</li>
 
     <li><a href="#scriptlets">Can't I just create some of my JavaBeans in the JSP using a scriptlet?</a></li>
 
@@ -49,37 +38,16 @@ Here are answers to the most common questions people ask when using Struts on th
 
     <li><a href="#link">Why does the &lt;html:link> tag URL-encode javascript and mailto links?"</a></li>
 
-    <li>Why can't I disable URL-encoding in the Struts taglibs?</li>
-
-    <li>When is the best time to validate input?</li>
-
-    <li>How can I avoid validating a form before data is entered?</li>
-
-    <li>How can I create a "wizard" workflow?</li>
-
-    <li>How can I "chain" Actions?</li>
-
-    <li>Can I have an Action without a form?</li>
-
-    <li>How do I access my database?</li>
-
-    <li>How can I authenticate my users?</li>
-
-    <li>How can I scroll through list of pages like the search results in google?</li>
-
-    <li>Can I have multiple submit buttons on the same form?</li>
-
-    <li>Why can't my Javascript submit a form?</li>
-
     <li><a href="minimization">Why does the option tag render selected="selected" instead of just "selected"?</a></li>
 
-    <li>Can I create dynamic ActionForwards?</li>
+    </ul>
+ 
+    <p>
+    If you like to <a href="helping.html">contribute</a>, 
+    there is a list of <a href="#undocumented"> undocumented questions</a> 
+    at the end of this page. 
+    </p>
 
-    <li>How can I use my own (ActionForm, ActionForward, ActionMapping, ActionServlet) class?</li>
-
-    <li>Do I have to use JSPs with my application?</li>
-
-  </ul>
 </section>
 
 <section href="reload" name="Why was reload removed from Struts 1.1?">
@@ -422,5 +390,60 @@ browsers that expect XHTML-compliant syntax. Struts is following the
 behavior recommended by the <a href="http://www.w3.org/TR/xhtml1/#h-4.5">
 XHTML specification</a></p>
 </section>
+
+
+<section 
+    href="undocumented" 
+    name="If you would like to contribute, here is a list of 
+    popular but undocumented questions">
+    
+    <ul>
+    
+    <li>Why is ActionForm a base class rather than an interface?</li>
+
+    <li>Do I have to have a separate ActionForm bean for every HTML form?</li>
+
+    <li>do ActionForms have to be true JavaBeans?</li>
+
+    <li>Can I use other beans or hashmaps with ActionForms?</li>
+
+    <li>How can I prepopulate a form?</li>
+
+    <li>How can I capture binary or formatted values, like dates or telephone numbers?</li>
+
+    <li>Why do my option lists disappear when validation fails?</li>
+
+    <li>Why can't I disable URL-encoding in the Struts taglibs?</li>
+
+    <li>When is the best time to validate input?</li>
+
+    <li>How can I avoid validating a form before data is entered?</li>
+
+    <li>How can I create a "wizard" workflow?</li>
+
+    <li>How can I "chain" Actions?</li>
+
+    <li>Can I have an Action without a form?</li>
+
+    <li>How do I access my database?</li>
+
+    <li>How can I authenticate my users?</li>
+
+    <li>How can I scroll through list of pages like the search results in google?</li>
+
+    <li>Can I have multiple submit buttons on the same form?</li>
+
+    <li>Why can't my Javascript submit a form?</li>    
+    
+    <li>Can I create dynamic ActionForwards?</li>
+
+    <li>How can I use my own (ActionForm, ActionForward, ActionMapping, ActionServlet) class?</li>
+
+    <li>Do I have to use JSPs with my application?</li>
+
+    </ul>
+    
+</section>    
+    
 
 </chapter></body></document>
