@@ -353,6 +353,17 @@
     </info>
 
     <attribute>
+      <name>anchor</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Optional anchor tag ("#xxx") to be added to the generated
+      hyperlink.  Specify this value <strong>without</strong> any
+      "#" character.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>forward</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -404,6 +415,17 @@
       <info>
       <p>Context-relative URI (starting with a '/') of the web application
       resource to be included.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>transaction</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+        <p>Set to <code>true</code> if you want the current
+        transaction control token included in the generated
+        URL for this include.</p>
       </info>
     </attribute>
 

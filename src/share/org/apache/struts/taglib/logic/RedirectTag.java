@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.8 2001/05/03 03:29:38 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2001/05/03 03:29:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.9 2001/05/09 19:31:23 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/05/09 19:31:23 $
  *
  * ====================================================================
  *
@@ -65,6 +65,7 @@ package org.apache.struts.taglib.logic;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
@@ -88,13 +89,27 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/05/03 03:29:38 $
+ * @version $Revision: 1.9 $ $Date: 2001/05/09 19:31:23 $
  */
 
 public class RedirectTag extends TagSupport {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The anchor to be added to the end of the generated hyperlink.
+     */
+    protected String anchor = null;
+
+    public String getAnchor() {
+        return (this.anchor);
+    }
+
+    public void setAnchor(String anchor) {
+        this.anchor = anchor;
+    }
 
 
     /**
@@ -246,6 +261,20 @@ public class RedirectTag extends TagSupport {
     }
 
 
+    /**
+     * Include our transaction control token?
+     */
+    protected boolean transaction = false;
+
+    public boolean getTransaction() {
+        return (this.transaction);
+    }
+
+    public void setTransaction(boolean transaction) {
+        this.transaction = transaction;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -268,12 +297,25 @@ public class RedirectTag extends TagSupport {
      */
     public int doEndTag() throws JspException {
 
+        // Calculate the redirect URL
+        Map params = RequestUtils.computeParameters
+            (pageContext, paramId, paramName, paramProperty, paramScope,
+             name, property, scope, transaction);
+        URL url = null;
+        try {
+            url = RequestUtils.computeURL(pageContext, forward, href,
+                                          page, params, anchor, true);
+        } catch (MalformedURLException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("redirect.url", e.toString()));
+        }
+
         // Perform the redirection
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
-        String hyperlink = hyperlink();
         try {
-            response.sendRedirect(response.encodeRedirectURL(hyperlink));
+            response.sendRedirect(url.toString());
         } catch (IOException e) {
             RequestUtils.saveException(pageContext, e);
             throw new JspException(e.getMessage());
@@ -291,6 +333,7 @@ public class RedirectTag extends TagSupport {
     public void release() {
 
 	super.release();
+        anchor = null;
 	forward = null;
 	href = null;
 	name = null;
@@ -301,188 +344,6 @@ public class RedirectTag extends TagSupport {
 	paramScope = null;
 	property = null;
         scope = null;
-
-    }
-
-
-    // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Return the specified hyperlink, modified as necessary with optional
-     * request parameters.  Return <code>null</code> if we are generating
-     * a name anchor rather than a hyperlink.
-     *
-     * @exception JspException if an error occurs preparing the hyperlink
-     */
-    protected String hyperlink() throws JspException {
-
-        // Validate the number of href specifiers that were specified
-        int n = 0;
-        if (forward != null)
-            n++;
-        if (href != null)
-            n++;
-        if (page != null)
-            n++;
-        if (n != 1) {
-            JspException e = new JspException
-                (messages.getMessage("redirect.destination"));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-
-        // Start with an unadorned "href"
-	String href = null;
-
-        // If "href" was specified, use it as is
-        if (this.href != null) {
-            href = this.href;
-        }
-
-	// If "forward" was specified, compute the "href" to forward to
-	else if (forward != null) {
-	    ActionForwards forwards = (ActionForwards)
-		pageContext.getAttribute(Action.FORWARDS_KEY,
-					 PageContext.APPLICATION_SCOPE);
-	    if (forwards == null) {
-                JspException e = new JspException
-		    (messages.getMessage("redirect.forwards"));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-	    ActionForward forward = forwards.findForward(this.forward);
-	    if (forward == null) {
-                JspException e = new JspException
-		    (messages.getMessage("redirect.forward", this.forward));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-	    HttpServletRequest request =
-		(HttpServletRequest) pageContext.getRequest();
-            try {
-                href = RequestUtils.absoluteURL(request, forward.getPath());
-            } catch (MalformedURLException mue) {
-                RequestUtils.saveException(pageContext, mue);
-                ServletContext sc = pageContext.getServletContext();
-                sc.log(messages.getMessage("redirect.url",
-                                           request.getScheme(),
-                                           request.getServerName(),
-                                           "" + request.getServerPort(),
-                                           forward.getPath()),
-                       mue);
-                JspException e = new JspException
-                    (messages.getMessage("redirect.url",
-                                         request.getScheme(),
-                                         request.getServerName(),
-                                         "" + request.getServerPort(),
-                                         forward.getPath()));
-                throw e;
-            }
-	}
-
-        // If "page" was specified, compute the "href" to forward to
-        else if (page != null) {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            try {
-                href = RequestUtils.absoluteURL(request, page);
-            } catch (MalformedURLException mue) {
-                RequestUtils.saveException(pageContext, mue);
-                ServletContext sc = pageContext.getServletContext();
-                sc.log(messages.getMessage("redirect.url",
-                                           request.getScheme(),
-                                           request.getServerName(),
-                                           "" + request.getServerPort(),
-                                           page),
-                       mue);
-                JspException e = new JspException
-                    (messages.getMessage("redirect.url",
-                                         request.getScheme(),
-                                         request.getServerName(),
-                                         "" + request.getServerPort(),
-                                         page));
-                throw e;
-            }
-        }
-
-        // Append a single-parameter name and value, if requested
-        if ((paramId != null) && (paramName != null)) {
-            if (href.indexOf('?') < 0)
-                href += '?';
-            else
-                href += '&';
-            href += paramId;
-            href += '=';
-            Object value =
-                RequestUtils.lookup(pageContext, paramName, paramProperty,
-                                    paramScope);
-            if (value != null)
-                href += value.toString();
-        }
-
-	// Just return the "href" attribute if there is no bean to look up
-	if (name == null)
-	    return (href);
-
-	// Look up the map we will be using
-        Object value =
-            RequestUtils.lookup(pageContext, name, property, scope);
-        if (value == null)
-            return (href);
-        if (!(value instanceof Map)) {
-            JspException e = new JspException
-                (messages.getMessage("redirect.map", property, name));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-        Map map = (Map) value;
-
-	// Append the required query parameters
-	StringBuffer sb = new StringBuffer(href);
-	boolean question = (href.indexOf("?") >= 0);
-	Iterator keys = map.keySet().iterator();
-	while (keys.hasNext()) {
-	    String key = (String) keys.next();
-	    value = map.get(key);
-            if (value == null) {
-                if (question)
-                    sb.append('&');
-                else {
-                    sb.append('?');
-                    question = true;
-                }
-                sb.append(key);
-                sb.append('=');
-                // Interpret null as "no value specified"
-	    } else if (value instanceof String[]) {
-		String values[] = (String[]) value;
-		for (int i = 0; i < values.length; i++) {
-		    if (question)
-			sb.append('&');
-		    else {
-			sb.append('?');
-			question = true;
-		    }
-		    sb.append(key);
-		    sb.append('=');
-		    sb.append(URLEncoder.encode(values[i]));
-		}
-	    } else {
-		if (question)
-		    sb.append('&');
-		else {
-		    sb.append('?');
-		    question = true;
-		}
-		sb.append(key);
-		sb.append('=');
-		sb.append(URLEncoder.encode(value.toString()));
-	    }
-	}
-
-	// Return the final result
-	return (sb.toString());
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.12 2001/05/03 03:29:36 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2001/05/03 03:29:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.13 2001/05/09 19:31:15 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/05/09 19:31:15 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ package org.apache.struts.taglib.html;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
@@ -88,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/05/03 03:29:36 $
+ * @version $Revision: 1.13 $ $Date: 2001/05/09 19:31:15 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -320,21 +321,32 @@ public class LinkTag extends BaseHandlerTag {
      */
     public int doStartTag() throws JspException {
 
-	// Generate the name definition or hyperlink element
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
-	StringBuffer results = new StringBuffer("<a");
-        String hyperlink = hyperlink();
-        if (hyperlink != null) {
-            results.append(" href=\"");
-            results.append(response.encodeURL(hyperlink));
-            results.append("\"");
-        }
+        // Special case for name anchors
         if (linkName != null) {
-            results.append(" name=\"");
+            StringBuffer results = new StringBuffer("<a name=\"");
             results.append(linkName);
-            results.append("\"");
+            results.append("\">");
+            return (EVAL_BODY_TAG);
         }
+
+	// Generate the hyperlink URL
+        Map params = RequestUtils.computeParameters
+            (pageContext, paramId, paramName, paramProperty, paramScope,
+             name, property, scope, transaction);
+        URL url = null;
+        try {
+            url = RequestUtils.computeURL(pageContext, forward, href,
+                                          page, params, anchor, false);
+        } catch (MalformedURLException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("rewrite.url", e.toString()));
+        }
+
+        // Generate the opening anchor element
+        StringBuffer results = new StringBuffer("<a href=\"");
+        results.append(url.toString());
+        results.append("\"");
 	if (target != null) {
 	    results.append(" target=\"");
 	    results.append(target);
@@ -419,116 +431,7 @@ public class LinkTag extends BaseHandlerTag {
     }
 
 
-    // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Return the specified hyperlink, modified as necessary with optional
-     * request parameters.  Return <code>null</code> if we are generating
-     * a name anchor rather than a hyperlink.
-     *
-     * @exception JspException if an error occurs preparing the hyperlink
-     */
-    protected String hyperlink() throws JspException {
-
-        if (linkName != null)
-            return (null);      // We are not generating a hyperlink
-
-        // Validate the number of href specifiers that were specified
-        int n = 0;
-        if (forward != null)
-            n++;
-        if (href != null)
-            n++;
-        if (linkName != null)
-            n++;
-        if (page != null)
-            n++;
-        if (n != 1) {
-            JspException e = new JspException
-                (messages.getMessage("linkTag.destination"));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-
-        // Start with an unadorned "href"
-	String href = null;
-
-        // If "href" was specified, use it as is
-        if (this.href != null) {
-            href = this.href;
-        }
-
-	// If "forward" was specified, compute the "href" to forward to
-	else if (forward != null) {
-	    ActionForwards forwards = (ActionForwards)
-		pageContext.getAttribute(Action.FORWARDS_KEY,
-					 PageContext.APPLICATION_SCOPE);
-	    if (forwards == null) {
-                JspException e = new JspException
-		    (messages.getMessage("linkTag.forwards"));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-	    ActionForward forward = forwards.findForward(this.forward);
-	    if (forward == null) {
-                JspException e = new JspException
-		    (messages.getMessage("linkTag.forward"));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-	    HttpServletRequest request =
-		(HttpServletRequest) pageContext.getRequest();
-            try {
-                href = RequestUtils.absoluteURL(request, forward.getPath());
-            } catch (MalformedURLException mue) {
-                RequestUtils.saveException(pageContext, mue);
-                ServletContext sc = pageContext.getServletContext();
-                sc.log(messages.getMessage("linkTag.url",
-                                           request.getScheme(),
-                                           request.getServerName(),
-                                           "" + request.getServerPort(),
-                                           forward.getPath()),
-                       mue);
-                JspException e = new JspException
-                    (messages.getMessage("linkTag.url",
-                                         request.getScheme(),
-                                         request.getServerName(),
-                                         "" + request.getServerPort(),
-                                         forward.getPath()));
-                throw e;
-            }
-	}
-
-        // If "linkName" was specified, return null (not making an href)
-        else if (linkName != null) {
-            return (null);
-        }
-
-        // If "page" was specified, compute the "href" to forward to
-        else if (page != null) {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            try {
-                href = RequestUtils.absoluteURL(request, page);
-            } catch (MalformedURLException mue) {
-                RequestUtils.saveException(pageContext, mue);
-                ServletContext sc = pageContext.getServletContext();
-                sc.log(messages.getMessage("linkTag.url",
-                                           request.getScheme(),
-                                           request.getServerName(),
-                                           "" + request.getServerPort(),
-                                           page),
-                       mue);
-                JspException e = new JspException
-                    (messages.getMessage("linkTag.url",
-                                         request.getScheme(),
-                                         request.getServerName(),
-                                         "" + request.getServerPort(),
-                                         page));
-                throw e;
-            }
-        }
+    /*
 
         // Save any currently specified anchor string
         String anchor = this.anchor;
@@ -652,7 +555,7 @@ public class LinkTag extends BaseHandlerTag {
 	// Return the final result
 	return (sb.toString());
 
-    }
+    */
 
 
 }

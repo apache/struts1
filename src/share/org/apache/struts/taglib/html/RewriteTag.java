@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.4 2001/04/29 00:38:04 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/04/29 00:38:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.5 2001/05/09 19:31:18 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/05/09 19:31:18 $
  *
  * ====================================================================
  *
@@ -65,6 +65,8 @@ package org.apache.struts.taglib.html;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
@@ -78,6 +80,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -85,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/04/29 00:38:04 $
+ * @version $Revision: 1.5 $ $Date: 2001/05/09 19:31:18 $
  */
 
 public class RewriteTag extends LinkTag {
@@ -101,14 +104,22 @@ public class RewriteTag extends LinkTag {
      */
     public int doStartTag() throws JspException {
 
-	// Generate the hyperlink start element
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
-        StringBuffer results = new StringBuffer();
-	results.append(response.encodeURL(hyperlink()));
+	// Generate the hyperlink URL
+        Map params = RequestUtils.computeParameters
+            (pageContext, paramId, paramName, paramProperty, paramScope,
+             name, property, scope, transaction);
+        URL url = null;
+        try {
+            url = RequestUtils.computeURL(pageContext, forward, href,
+                                          page, params, anchor, false);
+        } catch (MalformedURLException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("rewrite.url", e.toString()));
+        }
 
 	// Print this element to our output writer
-        ResponseUtils.write(pageContext, results.toString());
+        ResponseUtils.write(pageContext, url.toString());
 
 	// Skip the body of this tag
 	return (SKIP_BODY);

@@ -3704,6 +3704,17 @@
                 </info>
 
                 <attribute>
+                  <name>anchor</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Optional anchor tag ("#xxx") to be added to the generated
+                  hyperlink.  Specify this value <strong>without</strong> any
+                  "#" character.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>forward</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -3735,6 +3746,19 @@
                 </attribute>
 
                 <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that contains a <code>Map</code>
+                  representing the query parameters (if <code>property</code>
+                  is not specified), or a JSP bean whose property getter is
+                  called to return a <code>Map</code> (if <code>property</code>
+                  is specified).</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>page</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -3751,15 +3775,54 @@
                 </attribute>
 
                 <attribute>
-                  <name>name</name>
+                  <name>paramId</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p>The name of a JSP bean that contains a <code>Map</code>
-                  representing the query parameters (if <code>property</code>
-                  is not specified), or a JSP bean whose property getter is
-                  called to return a <code>Map</code> (if <code>property</code>
-                  is specified).</p>
+                  <p>The name of the request parameter that will be dynamically
+                  added to the generated hyperlink.  The corresponding value is
+                  defined by the <code>paramName</code> and (optional)
+                  <code>paramProperty</code> attributes, optionally scoped by
+                  the <code>paramScope</code> attributel</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramName</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that is a String containing the
+                  value for the request parameter named by <code>paramId</code>
+                  (if <code>paramProperty</code> is not specified), or a JSP
+                  bean whose property getter is called to return a String
+                  (if <code>paramProperty</code> is specified).  The JSP bean
+                  is constrained to the bean scope specified by the
+                  <code>paramScope</code> property, if it is specified.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramProperty</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>paramName</code> attribute, whose return value must
+                  be a String containing the value of the request parameter
+                  (named by the <code>paramId</code> attribute) that will be
+                  dynamically added to this hyperlink.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramScope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>paramName</code> attribute.  If not specified,
+                  all scopes are searched.</p>
                   </info>
                 </attribute>
 
@@ -3785,6 +3848,18 @@
                   <p>The scope within which to search for the bean specified
                   by the <code>name</code> attribute.  If not specified, all
                   scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>transaction</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>If set to <code>true</code>, any current transaction
+                  control token will be included in the generated hyperlink,
+                  so that it will pass an <code>isTokenValid()</code> test
+                  in the receiving Action.</p>
                   </info>
                 </attribute>
 

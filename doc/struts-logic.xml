@@ -1318,6 +1318,17 @@
                 </info>
 
                 <attribute>
+                  <name>anchor</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Optional anchor tag ("#xxx") to be added to the generated
+                  hyperlink.  Specify this value <strong>without</strong> any
+                  "#" character.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
                   <name>forward</name>
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
@@ -1451,6 +1462,17 @@
                   <p>The scope within which to search for the bean specified
                   by the <code>name</code> attribute.  If not specified, all
                   scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>transaction</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                    <p>Set to <code>true</code> if you want the current
+                    transaction control token included in the generated
+                    URL for this redirect.</p>
                   </info>
                 </attribute>
 

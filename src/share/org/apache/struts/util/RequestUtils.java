@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.10 2001/05/03 03:29:38 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/05/03 03:29:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.11 2001/05/09 19:31:29 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2001/05/09 19:31:29 $
  *
  * ====================================================================
  *
@@ -66,6 +66,7 @@ package org.apache.struts.util;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -74,12 +75,17 @@ import java.util.Locale;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionForwards;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 
@@ -89,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/05/03 03:29:38 $
+ * @version $Revision: 1.11 $ $Date: 2001/05/09 19:31:29 $
  */
 
 public class RequestUtils {
@@ -119,28 +125,287 @@ public class RequestUtils {
     /**
      * Create and return an absolute URL for the specified context-relative
      * path, based on the server and context information in the specified
-     * request.  If no valid URL can be created, returns <code>null</code>.
+     * request.
      *
      * @param request The servlet request we are processing
      * @param path The context-relative path (must start with '/')
      *
      * @exception MalformedURLException if we cannot create an absolute URL
      */
-    public static String absoluteURL(HttpServletRequest request, String path)
+    public static URL absoluteURL(HttpServletRequest request, String path)
         throws MalformedURLException {
 
-        URL url = null;
         int port = request.getServerPort();
         String scheme = request.getScheme();
         String serverName = request.getServerName();
         String uri = request.getContextPath() + path;
         if ("http".equals(scheme) && (80 == port))
-            url = new URL(scheme, serverName, uri);
+            return (new URL(scheme, serverName, uri));
         else if ("https".equals(scheme) && (443 == port))
-            url = new URL(scheme, serverName, uri);
+            return (new URL(scheme, serverName, uri));
+        else // Nonstandard port for the specified protocol
+            return (new URL(scheme, serverName, port, uri));
+
+    }
+
+
+    /**
+     * Compute a set of query parameters that will be dynamically added to
+     * a generated URL.  The returned Map is keyed by parameter name, and the
+     * values are either null (no value specified), a String (single value
+     * specified), or a String[] array (multiple values specified).  Parameter
+     * names correspond to the corresponding attributes of the
+     * <code>&lt;html:link&gt;</code> tag.  If no query parameters are
+     * identified, return <code>null</code>.
+     *
+     * @param pageContext PageContext we are operating in
+     *
+     * @param paramId Single-value request parameter name (if any)
+     * @param paramName Bean containing single-value parameter value
+     * @param paramProperty Property (of bean named by <code>paramName</code>
+     *  containing single-value parameter value
+     * @param paramScope Scope containing bean named by
+     *  <code>paramScope</code>
+     *
+     * @param name Bean containing multi-value parameters Map (if any)
+     * @param property Property (of bean named by <code>name</code>
+     *  containing multi-value parameters Map
+     * @param scope Scope containing bean named by
+     *  <code>name</code>
+     *
+     * @param transaction Should we add our transaction control token?
+     *
+     * @exception JspException if we cannot look up the required beans
+     * @exception JspException if a class cast exception occurs on a
+     *  looked-up bean or property
+     */
+    public static Map computeParameters(PageContext pageContext,
+                                        String paramId, String paramName,
+                                        String paramProperty,
+                                        String paramScope, String name,
+                                        String property, String scope,
+                                        boolean transaction)
+        throws JspException {
+
+        // Short circuit if no parameters are specified
+        if ((paramId == null) && (name == null))
+            return (null);
+
+        // Locate the Map containing our multi-value parameters map
+        Map map = null;
+        try {
+            map = (Map) lookup(pageContext, name,
+                               property, scope);
+        } catch (ClassCastException e) {
+            saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("parameters.multi", name,
+                                     property, scope));
+        } catch (JspException e) {
+            saveException(pageContext, e);
+            throw e;
+        }
+
+        // Create a Map to contain our results from the multi-value parameters
+        Map results = null;
+        if (map != null)
+            results = new HashMap(map);
         else
-            url = new URL(scheme, serverName, port, uri);
-        return (url.toString());
+            results = new HashMap();
+
+        // Add the single-value parameter (if any)
+        if (paramId != null) {
+            String paramValue = null;
+            try {
+                paramValue =(String) lookup(pageContext, paramName,
+                                            paramProperty, paramScope);
+            } catch (ClassCastException e) {
+                saveException(pageContext, e);
+                throw new JspException
+                    (messages.getMessage("parameters.single", paramName,
+                                         paramProperty, paramScope));
+            } catch (JspException e) {
+                saveException(pageContext, e);
+                throw e;
+            }
+            Object mapValue = map.get(paramId);
+            if (mapValue == null)
+                map.put(paramId, paramValue);
+            else if (mapValue instanceof String) {
+                String newValues[] = new String[2];
+                newValues[0] = (String) mapValue;
+                newValues[1] = paramValue;
+                map.put(paramId, newValues);
+            } else /* if (mapValue instanceof String[]) */ {
+                String oldValues[] = (String[]) mapValue;
+                String newValues[] = new String[oldValues.length + 1];
+                System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
+                newValues[oldValues.length] = paramValue;
+                map.put(paramId, newValues);
+            }
+        }
+
+        // Add our transaction control token (if requested)
+        if (transaction) {
+            HttpSession session = pageContext.getSession();
+            String token = null;
+            if (session != null)
+                token = (String)
+                    session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
+            if (token != null)
+                map.put(Constants.TOKEN_KEY, token);
+        }
+
+        // Return the completed Map
+        return (results);
+
+    }
+
+
+    /**
+     * Compute an absolute URL based on the <code>forward</code>,
+     * <code>href</code>, or <code>page</code> parameter that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.
+     *
+     * @param pageContext PageContext for the tag making this call
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Context-relative page for which a URL should
+     *  be created (if specified)
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+     *
+     * @exception MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     */
+    public static URL computeURL(PageContext pageContext, String forward,
+                                 String href, String page,
+                                 Map params, String anchor, boolean redirect)
+        throws MalformedURLException {
+
+        // Validate that exactly one specifier was included
+        int n = 0;
+        if (forward != null)
+            n++;
+        if (href != null)
+            n++;
+        if (page != null)
+            n++;
+        if (n != 1)
+            throw new MalformedURLException
+                (messages.getMessage("computeURL.specifier"));
+
+        // Calculate the appropriate URL
+        URL url = null;
+        if (forward != null) {
+            ActionForwards forwards = (ActionForwards)
+                pageContext.getAttribute(Action.FORWARDS_KEY,
+                                         PageContext.APPLICATION_SCOPE);
+            if (forwards == null)
+                throw new MalformedURLException
+                    (messages.getMessage("computeURL.forwards"));
+            ActionForward af = forwards.findForward(forward);
+            if (af == null)
+                throw new MalformedURLException
+                    (messages.getMessage("computeURL.forward", forward));
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            url = absoluteURL(request, af.getPath());
+        } else if (href != null) {
+            url = new URL(href);
+        } else /* if (page != null) */ {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            url = absoluteURL(request, page);
+        }
+
+        // Add anchor if requested (replacing any existing anchor)
+        if (anchor != null) {
+            String temp = url.toString();
+            int hash = temp.indexOf('#');
+            if (hash >= 0)
+                temp = temp.substring(0, hash);
+            StringBuffer sb = new StringBuffer(temp);
+            sb.append('#');
+            sb.append(URLEncoder.encode(anchor));
+            url = new URL(sb.toString());
+        }
+        
+        // Add dynamic parameters if requested
+        if ((params != null) && (params.size() > 0)) {
+
+            // Save any existing anchor
+            String temp = url.toString();
+            int hash = temp.indexOf('#');
+            if (hash >= 0) {
+                anchor = temp.substring(hash + 1);
+                temp = temp.substring(0, hash);
+            } else
+                anchor = null;
+
+            // Add the required request parameters
+            boolean question = temp.indexOf('?') >= 0;
+            StringBuffer sb = new StringBuffer(temp);
+            Iterator keys = params.keySet().iterator();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                Object value = params.get(key);
+                if (value == null) {
+                    if (!question) {
+                        sb.append('?');
+                        question = true;
+                    } else
+                        sb.append('&');
+                    sb.append(URLEncoder.encode(key));
+                    sb.append('='); // Interpret null as "no value"
+                } else if (value instanceof String) {
+                    if (!question) {
+                        sb.append('?');
+                        question = true;
+                    } else
+                        sb.append('&');
+                    sb.append(URLEncoder.encode(key));
+                    sb.append('=');
+                    sb.append(URLEncoder.encode((String) value));
+                } else /* if (value instanceof String[]) */ {
+                    String values[] = (String[]) value;
+                    for (int i = 0; i < values.length; i++) {
+                        if (!question) {
+                            sb.append('?');
+                            question = true;
+                        } else
+                            sb.append('&');
+                        sb.append(URLEncoder.encode(key));
+                        sb.append('=');
+                        sb.append(URLEncoder.encode(values[i]));
+                    }
+                }
+            }
+
+            // Re-add the saved anchor (if any)
+            if (anchor != null) {
+                sb.append('#');
+                sb.append(anchor);
+            }
+
+            // Update to the completed URL
+            url = new URL(sb.toString());
+
+        }
+
+        // Perform URL rewriting to include our session ID (if any)
+        if (pageContext.getSession() != null) {
+            HttpServletResponse response =
+                (HttpServletResponse) pageContext.getResponse();
+            if (redirect)
+                url = new URL(response.encodeRedirectURL(url.toString()));
+            else
+                url = new URL(response.encodeURL(url.toString()));
+        }
+        return (url);
 
     }
 

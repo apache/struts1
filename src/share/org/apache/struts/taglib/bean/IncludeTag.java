@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.12 2001/05/09 04:42:10 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.13 2001/05/09 19:31:10 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -66,6 +66,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,7 +92,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/05/09 04:42:10 $
+ * @version $Revision: 1.13 $ $Date: 2001/05/09 19:31:10 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -104,6 +105,20 @@ public class IncludeTag extends TagSupport {
      * Buffer size to use when reading the input stream.
      */
     protected static final int BUFFER_SIZE = 256;
+
+
+    /**
+     * The anchor to be added to the end of the generated hyperlink.
+     */
+    protected String anchor = null;
+
+    public String getAnchor() {
+        return (this.anchor);
+    }
+
+    public void setAnchor(String anchor) {
+        this.anchor = anchor;
+    }
 
 
     /**
@@ -183,6 +198,20 @@ public class IncludeTag extends TagSupport {
     }
 
 
+    /**
+     * Include transaction token (if any) in the hyperlink?
+     */
+    protected boolean transaction = false;
+
+    public boolean getTransaction() {
+        return (this.transaction);
+    }
+
+    public void setTransaction(boolean transaction) {
+        this.transaction = transaction;
+    }
+
+
     // --------------------------------------------------------- Public Methods
 
 
@@ -195,7 +224,19 @@ public class IncludeTag extends TagSupport {
     public int doStartTag() throws JspException {
 
 	// Set up a URLConnection to read the requested resource
-        URL url = hyperlink();
+        Map params = RequestUtils.computeParameters
+            (pageContext, null, null, null, null,
+             null, null, null, transaction); // FIXME - <html:link> attributes
+        URL url = null;
+        try {
+            url = RequestUtils.computeURL(pageContext, forward, href,
+                                          page, params, anchor, false);
+        } catch (MalformedURLException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("include.url", e.toString()));
+        }
+
 	URLConnection conn = null;
 	try {
 	    conn = url.openConnection();
@@ -247,124 +288,12 @@ public class IncludeTag extends TagSupport {
     public void release() {
 
         super.release();
+        anchor = null;
         forward = null;
         href = null;
         id = null;
         page = null;
-
-    }
-
-
-    // ------------------------------------------------------ Protected Methods
-
-
-    /**
-     * Return a URL to the requested resource, modified to include the session
-     * identifier if necessary.
-     *
-     * @exception JspException if an error occurs preparing the hyperlink
-     */
-    protected URL hyperlink() throws JspException {
-
-        // Validate the number of href specifiers that were specified
-        int n = 0;
-        if (forward != null)
-            n++;
-        if (href != null)
-            n++;
-        if (page != null)
-            n++;
-        if (n != 1) {
-            JspException e = new JspException
-                (messages.getMessage("include.destination"));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-
-        // Calculate the appropriate hyperlink
-        String href = null;
-        boolean includeSession = true;
-        if (this.forward != null) {
-            ActionForwards forwards = (ActionForwards)
-                pageContext.getAttribute(Action.FORWARDS_KEY,
-                                         PageContext.APPLICATION_SCOPE);
-            if (forwards == null) {
-                JspException e = new JspException
-                    (messages.getMessage("include.forwards"));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-            ActionForward forward = forwards.findForward(this.forward);
-            if (forward == null) {
-                JspException e = new JspException
-                    (messages.getMessage("include.forward", this.forward));
-                RequestUtils.saveException(pageContext, e);
-                throw e;
-            }
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            try {
-                href = RequestUtils.absoluteURL(request, forward.getPath());
-            } catch (MalformedURLException mue) {
-                RequestUtils.saveException(pageContext, mue);
-                ServletContext sc = pageContext.getServletContext();
-                sc.log(messages.getMessage("include.url",
-                                           request.getScheme(),
-                                           request.getServerName(),
-                                           "" + request.getServerPort(),
-                                           forward.getPath()),
-                       mue);
-                JspException e = new JspException
-                    (messages.getMessage("include.url",
-                                         request.getScheme(),
-                                         request.getServerName(),
-                                         "" + request.getServerPort(),
-                                         forward.getPath()));
-                throw e;
-            }
-        } else if (this.href != null) {
-            href = this.href;
-            includeSession = false;
-        } else /* if (this.page != null) */ {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            try {
-                href = RequestUtils.absoluteURL(request, this.page);
-            } catch (MalformedURLException mue) {
-                RequestUtils.saveException(pageContext, mue);
-                ServletContext sc = pageContext.getServletContext();
-                sc.log(messages.getMessage("include.url",
-                                           request.getScheme(),
-                                           request.getServerName(),
-                                           "" + request.getServerPort(),
-                                           this.page),
-                       mue);
-                JspException e = new JspException
-                    (messages.getMessage("include.url",
-                                         request.getScheme(),
-                                         request.getServerName(),
-                                         "" + request.getServerPort(),
-                                         this.page));
-                throw e;
-            }
-        }
-
-        // Append the session identifier if appropriate
-        if (includeSession) {
-            HttpServletResponse response =
-                (HttpServletResponse) pageContext.getResponse();
-            href = response.encodeURL(href);
-        }
-
-        // Convert the hyperlink to a URL
-        try {
-            return (new URL(href));
-        } catch (MalformedURLException e) {
-            RequestUtils.saveException(pageContext, e);
-            JspException f = new JspException
-                (messages.getMessage("include.malformed", href));
-            throw f;
-        }
+        transaction = false;
 
     }
 
