@@ -8,7 +8,7 @@
 <body> 
 <chapter name="Struts Resources" href="resources"> 
 
-<section name="Contributor Tabligs" href="taglibs"> 
+<section name="Contributor Taglibs" href="taglibs"> 
 
 <p><a href="http://husted.com/about/struts/indexed-tags.htm"><b>Indexed Tags</b></a> by Dave Hays - Produce indexed names 
 such as &lt;input type="text" name="parameter[0].value" value="Mac">. Link, Submit, and 
