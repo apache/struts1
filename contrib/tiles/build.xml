@@ -113,10 +113,10 @@
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${servlet.jar}"/>
-	  <fileset dir="${commons-lib.home}">
-        <include name="commons-*.jar"/>
-      </fileset>
-      <pathelement location="${commons-lib.home}"/>
+      <pathelement location="${commons-beanutils.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
     </path>
 
     <path id="compile.classpath.struts1.1">

@@ -248,10 +248,16 @@
     <fileset dir="${struts.libs}"     includes="*.tld"/>
   </copy>
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
-  <copy  todir="${webapp.target}/WEB-INF/lib">
-    <fileset dir="${commons-lib.home}" includes="commons-*.jar"/>
-    <fileset dir="${struts.libs}" includes="struts.jar"/>
-  </copy>
+  <copy file="${struts.libs}/struts.jar"
+      tofile="${webapp.target}/WEB-INF/lib/struts.jar"/>
+  <copy file="${commons-beanutils.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-beanutils.jar"/>
+  <copy file="${commons-collections.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-collections.jar"/>
+  <copy file="${commons-digester.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-digester.jar"/>
+  <copy file="${commons-logging.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-logging.jar"/>
 </target>
 
 <!--
@@ -265,8 +271,15 @@
     <fileset dir="${tiles.libs}" includes="*.tld"/>
   </copy>
   <mkdir   dir="${webapp.target}/WEB-INF/lib"/>
+  <copy file="${commons-beanutils.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-beanutils.jar"/>
+  <copy file="${commons-collections.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-collections.jar"/>
+  <copy file="${commons-digester.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-digester.jar"/>
+  <copy file="${commons-logging.jar}"
+      tofile="${webapp.target}/WEB-INF/lib/commons-logging.jar"/>
   <copy  todir="${webapp.target}/WEB-INF/lib">
-    <fileset dir="${commons-lib.home}" includes="commons-*.jar"/>
     <fileset dir="${tiles.libs}" includes="*.jar"/>
   </copy>
 </target>
