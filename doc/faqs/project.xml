@@ -48,7 +48,10 @@
             name="Eclipse"/>
         <item 
             href="netbeans.html" 
-            name="Netbeans"/>
+            name="Netbeans 3.4"/>
+        <item 
+            href="netbeans40.html" 
+            name="Netbeans 4.0"/>
     </menu>
 
     <menu name="Quick Links">
