@@ -222,11 +222,19 @@ and proven design patterns.
       <url>http://jakarta.apache.org/commons/logging.html</url>
     </dependency>
     
+	<!--
     <dependency>
       <id>commons-validator</id>
       <version>SNAPSHOT</version>
       <url>http://jakarta.apache.org/commons/validator.html</url>
     </dependency>
+    -->
+
+    <dependency>
+      <id>commons-validator</id>
+      <version>1.1.1-dev</version>
+      <url>http://jakarta.apache.org/commons/validator.html</url>
+    </dependency>    
     
     <dependency>
       <id>oro</id>
@@ -286,7 +294,7 @@ and proven design patterns.
 
     <sourceDirectory>src/share</sourceDirectory>
 
-      <!-- Unit test cases
+      <!-- Unit test cases -->
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
     <integrationUnitTestSourceDirectory/>
 
@@ -294,13 +302,13 @@ and proven design patterns.
 
     <unitTest>
       <includes>
-        <include>**/*Test.java</include>
+        <include>org/apache/struts/action/TestDynaActionForm.java</include>
+        <include>org/apache/struts/action/TestDynaActionFormClass.java</include>
+        <include>org/apache/struts/config/TestModuleConfig.java</include>
+        <include>org/apache/struts/config/TestActionConfigMatcher.java</include>
+        <include>org/apache/struts/util/Test*.java</include>
       </includes>
-      <excludes>
-        <exclude>**/RepositoryTest.java</exclude>
-      </excludes>
     </unitTest>
-    -->
 
     <!-- J A R  R E S O U R C E S -->
     <!-- Resources that are packaged up inside the JAR file -->
