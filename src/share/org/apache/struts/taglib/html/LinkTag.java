@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.37 2004/08/01 01:55:57 niallp Exp $
- * $Revision: 1.37 $
- * $Date: 2004/08/01 01:55:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.38 2004/08/01 03:00:28 niallp Exp $
+ * $Revision: 1.38 $
+ * $Date: 2004/08/01 03:00:28 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -33,7 +33,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
- * @version $Revision: 1.37 $ $Date: 2004/08/01 01:55:57 $
+ * @version $Revision: 1.38 $ $Date: 2004/08/01 03:00:28 $
  */
 public class LinkTag extends BaseHandlerTag {
 
@@ -319,17 +319,21 @@ public class LinkTag extends BaseHandlerTag {
     public int doStartTag() throws JspException {
 
         // Generate the opening anchor element
-        StringBuffer results = new StringBuffer("<a ");
+        StringBuffer results = new StringBuffer("<a");
+
         // Special case for name anchors
         if (linkName != null) {
             results.append(" name=\"");
             results.append(linkName);
             results.append("\"");            
-        }        
+        }
         // * @since Struts 1.1
-        results.append(" href=\"");        
-        results.append(calculateURL());
-        results.append("\"");
+        if (linkName == null || forward != null  || href != null ||
+            page != null || action != null) {
+            results.append(" href=\"");
+            results.append(calculateURL());
+            results.append("\"");
+        }
         if (target != null) {
             results.append(" target=\"");
             results.append(target);
