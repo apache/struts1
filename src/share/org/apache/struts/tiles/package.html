@@ -169,29 +169,38 @@
 </li>
 
           <li>moduleAware: (optional)
-<ul>
+           <ul>
               <li>Specify if the Tiles definition factory is module aware. If true (default), 
 			there will be one factory for each Struts module. 
 			If false, there will be one common factory for all module. In this later case, 
 			it is still needed to declare one plugin per module. The factory will be 
 			initialized with parameters found in the first initialized plugin (generally the
 			one associated with the default module). 
-                <ul>
-                  <li>true : validate. DTD should be specified in file header (default)</li>
-<li>false : no validation	  
-         </li>
-
-
-
+            <ul>
+             <li>true : Tiles framework is module aware </li>
+             <li>false :Tiles framework has one single factoy shared among modules (default)</li>
+            </ul>
+           </li>
 </ul>
 </li>
-</ul>
+
+<li>tilesUtilImplClassname: (optional - for advanced user)
+ <ul>
+    <li>Specify The classname of the TilesUtil implementation to use. The specified class should
+	be a subclass of TilesUtilStrutsImpl. This option disable the moduleAware option.
+	<br>Specifying "TilesUtilStrutsImpl" is equivalent to moduleAware = false.</br>
+	<br>Specifying "TilesUtilStrutsModuleImpl" is equivalent to moduleAware = true.</br>
+	This option is taken into account only once, when it is first encountered. To avoid problems,
+	it is advice to specify the same values in all TilesPlugin declaration.
+    </li>
+ </ul>
 </li>
+
 </ul>
-        <p>The TilesPlugin class creates one defintion factory for each struts module.
+        <p>The TilesPlugin class creates one definition factory for each struts module.
 		</p>
 		<p>
-		If the flag moduleAware is false, only one shared factory is created for all module. 
+		If the flag moduleAware is false, only one shared factory is created for all modules. 
 		In this later case, the factory is initialized with parameters found in the first plugin.
 		The plugins should be declared in all modules, and the moduleAware flag should be 
 		the same for the entire application.</p> 
