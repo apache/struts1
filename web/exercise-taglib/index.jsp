@@ -32,6 +32,7 @@
 <h3>LOGIC Tags</h3>
 <ul>
 <li><a href="logic-compare.jsp">Comparison Tags</a></li>
+<li><a href="logic-compare-numeric.jsp">Comparison Tags (Numeric)</a></li>
 <li><a href="logic-iterate.jsp">Iterate Tag</a></li>
 <li><a href="logic-match.jsp?param1=value1">Match Tags</a></li>
 <li><a href="logic-present.jsp?param1=value1">Presence Tags</a></li>
