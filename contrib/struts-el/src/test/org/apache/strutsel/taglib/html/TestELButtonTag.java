@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELButtonTag.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELButtonTag.java,v 1.3 2002/10/12 05:21:34 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/12 05:21:34 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,6 +77,7 @@ import org.apache.struts.taglib.html.*;
 import org.apache.strutsel.taglib.utils.*;
 import org.apache.taglibs.standard.tag.common.core.*;
 import org.apache.taglibs.standard.tag.el.core.*;
+import org.apache.struts.util.LabelValueBean;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 
@@ -90,6 +91,13 @@ public class TestELButtonTag
     protected static final String REQUIRED_VALUE_VALUE_KEY = 
             "RequiredValueValue";
     protected ELButtonTag         elButtonTag              = null;
+
+    protected  static   String[] eventHandlers  =
+    {
+        "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown",
+        "onkeypress", "onkeyup", "onmousedown", "onmousemove", "onmouseout",
+        "onmouseover", "onmouseup"
+    };
 
     public TestELButtonTag(String theName) {
         super(theName);
@@ -118,7 +126,8 @@ public class TestELButtonTag
      */
     public void testPlain()
                    throws ServletException, JspException {
-        HttpServletResponse response          = (HttpServletResponse)pageContext.getResponse();
+        HttpServletResponse response          =
+            (HttpServletResponse)pageContext.getResponse();
         String              requiredTypeValue = "button";
         response.addHeader(REQUIRED_TYPE_VALUE_KEY, requiredTypeValue);
 
@@ -184,6 +193,58 @@ public class TestELButtonTag
                                               true);
             checkAttrValue(attrMap, testResponse, REQUIRED_DISABLED_VALUE_KEY, 
                            "button", "disabled");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            fail();
+        }
+    }
+
+    public void testEventHandlers()
+        throws ServletException, JspException 
+    {
+        LabelValueBean  bean  = new LabelValueBean("junk", "stuff");
+        pageContext.setAttribute("testFormBean", bean);
+
+        String expr  = "${" + "testFormBean.value" + "}";
+
+        elButtonTag.setOnblur(expr);
+        elButtonTag.setOnchange(expr);
+        elButtonTag.setOnclick(expr);
+        elButtonTag.setOndblclick(expr);
+        elButtonTag.setOnfocus(expr);
+        elButtonTag.setOnkeydown(expr);
+        elButtonTag.setOnkeypress(expr);
+        elButtonTag.setOnkeyup(expr);
+        elButtonTag.setOnmousedown(expr);
+        elButtonTag.setOnmousemove(expr);
+        elButtonTag.setOnmouseout(expr);
+        elButtonTag.setOnmouseover(expr);
+        elButtonTag.setOnmouseup(expr);
+
+        int startTagReturn  = elButtonTag.doStartTag();
+        int afterBodyReturn = elButtonTag.doAfterBody();
+        int endTagReturn    = elButtonTag.doEndTag();
+    }
+
+    public void
+        endEventHandlers(com.meterware.httpunit.WebResponse testResponse) {
+        try {
+            TestHelper.printResponse(testResponse);
+
+            org.w3c.dom.Document document = testResponse.getDOM();
+            DOMHelper.printNode(document.getDocumentElement());
+
+            HashMap attrMap = new HashMap();
+            DOMHelper.recordFoundAttributes(testResponse.getDOM(), 
+                                            "/html/body/input", attrMap);
+            DOMHelper.verifyAttributesPresent(attrMap, eventHandlers, true);
+            for (int ctr = 0; ctr < eventHandlers.length; ++ ctr) {
+                if (!((String) attrMap.get(eventHandlers[ctr])).
+                    equals("stuff")) {
+                    fail();
+                }
+            }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
             fail();
