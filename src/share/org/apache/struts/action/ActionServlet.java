@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.51 2001/01/06 22:00:02 craigmcc Exp $
- * $Revision: 1.51 $
- * $Date: 2001/01/06 22:00:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.52 2001/01/06 22:14:34 craigmcc Exp $
+ * $Revision: 1.52 $
+ * $Date: 2001/01/06 22:14:34 $
  *
  * ====================================================================
  *
@@ -227,7 +227,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.51 $ $Date: 2001/01/06 22:00:02 $
+ * @version $Revision: 1.52 $ $Date: 2001/01/06 22:14:34 $
  */
 
 public class ActionServlet
@@ -1245,13 +1245,14 @@ public class ActionServlet
             forwards.setFast(false);
             mappings.setFast(false);
 	    digester.parse(input);
-	    input.close();
             mappings.setFast(true);
             forwards.setFast(true);
             formBeans.setFast(true);
 	} catch (SAXException e) {
 	    throw new ServletException
 		(internal.getMessage("configParse", config), e);
+        } finally {
+	    input.close();
 	}
 
         // Transitional support for old format
