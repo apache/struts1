@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.76 2001/10/07 04:48:08 martinc Exp $
- * $Revision: 1.76 $
- * $Date: 2001/10/07 04:48:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.77 2001/12/16 16:41:21 husted Exp $
+ * $Revision: 1.77 $
+ * $Date: 2001/12/16 16:41:21 $
  *
  * ====================================================================
  *
@@ -165,6 +165,8 @@ import org.xml.sax.SAXException;
  * <li><strong>content</strong> - Default content type and character encoding
  *     to be set on each response; may be overridden by a forwarded-to
  *     servlet or JSP page.  [text/html]</li>
+ * <li><strong>context</strong> - The request attribute name under which our
+ *     ContextHelper is stored.[org.apache.struts.action.CONTEXT_HELPER]</li>
  * <li><strong>debug</strong> - The debugging detail level for this
  *     servlet, which controls how much information is logged.  [0]</li>
  * <li><strong>detail</strong> - The debugging detail level for the Digester
@@ -230,7 +232,8 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.76 $ $Date: 2001/10/07 04:48:08 $
+ * @author Ted Husted
+ * @version $Revision: 1.77 $ $Date: 2001/12/16 16:41:21 $
  */
 
 public class ActionServlet
@@ -264,6 +267,12 @@ public class ActionServlet
      * response (may be overridden by forwarded-to resources).
      */
     protected String content = "text/html";
+
+
+    /**
+     * The request attribute name for our ContextHelper object.
+     */
+    protected String contextHelper = Action.CONTEXT_HELPER_KEY;
 
 
     /**
@@ -310,7 +319,7 @@ public class ActionServlet
      * The Java class name of the ActionForward implementation class to use.
      */
     protected String forwardClass =
-	"org.apache.struts.action.ActionForward";
+    "org.apache.struts.action.ActionForward";
 
 
     /**
@@ -342,7 +351,7 @@ public class ActionServlet
      * The Java class name of our ActionMapping implementation class.
      */
     protected String mappingClass =
-	"org.apache.struts.action.ActionMapping";
+    "org.apache.struts.action.ActionMapping";
 
 
     /**
@@ -398,22 +407,22 @@ public class ActionServlet
      * The size in bytes of the buffer used to read files from a client upload
      */
     protected int bufferSize = 4096;
-    
+
     /**
      * The maximum size allowed for a client upload.  A suffix of "K"
-     * represents Kilobytes, a suffix of "M" represents "Megabytes", 
+     * represents Kilobytes, a suffix of "M" represents "Megabytes",
      * a suffix of "G" represents Gigabytes, and no suffix is taken
      * as bytes.
      */
     protected String maxFileSize = "250M";
-    
+
     /**
      * The MultipartRequestHandler class name used for handling
      * multipart form requests.  This is the global default value,
      * the handler can also be set in individual mapping entries
      */
     protected String multipartClass = "org.apache.struts.upload.DiskMultipartRequestHandler";
-    
+
     /**
      * The directory used to store temporary files for the DiskMultipartRequestHandler
      * multipart implementation
@@ -433,13 +442,13 @@ public class ActionServlet
      */
     public void destroy() {
 
-	if (debug >= 1)
-	    log(internal.getMessage("finalizing"));
+    if (debug >= 1)
+        log(internal.getMessage("finalizing"));
 
         destroyActions();
-	destroyApplication();
+    destroyApplication();
         destroyDataSources();
-	destroyInternal();
+    destroyInternal();
 
     }
 
@@ -454,18 +463,18 @@ public class ActionServlet
     public void init() throws ServletException {
 
         initActions();
-	initInternal();
-	initDebug();
-	initApplication();
-	try {
-	    initMapping();
-	} catch (IOException e) {
-	    throw new UnavailableException
-		(internal.getMessage("configIO", config));
-	}
+    initInternal();
+    initDebug();
+    initApplication();
+    try {
+        initMapping();
+    } catch (IOException e) {
+        throw new UnavailableException
+        (internal.getMessage("configIO", config));
+    }
         initUpload();
         initDataSources();
-	initOther();
+    initOther();
         initServlet();
 
     }
@@ -481,10 +490,10 @@ public class ActionServlet
      * @exception ServletException if a servlet exception occurs
      */
     public void doGet(HttpServletRequest request,
-		      HttpServletResponse response)
-	throws IOException, ServletException {
+              HttpServletResponse response)
+    throws IOException, ServletException {
 
-	process(request, response);
+    process(request, response);
 
     }
 
@@ -499,10 +508,10 @@ public class ActionServlet
      * @exception ServletException if a servlet exception occurs
      */
     public void doPost(HttpServletRequest request,
-		       HttpServletResponse response)
-	throws IOException, ServletException {
+               HttpServletResponse response)
+    throws IOException, ServletException {
 
-	process(request, response);
+    process(request, response);
 
     }
 
@@ -545,7 +554,7 @@ public class ActionServlet
      */
     public void addForward(ActionForward forward) {
 
-	forwards.addForward(forward);
+    forwards.addForward(forward);
 
     }
 
@@ -573,7 +582,7 @@ public class ActionServlet
         }
 
         // Add this mapping to our global collection
-	mappings.addMapping(mapping);
+    mappings.addMapping(mapping);
 
     }
 
@@ -635,7 +644,7 @@ public class ActionServlet
      */
     public ActionForward findForward(String name) {
 
-	return (forwards.findForward(name));
+    return (forwards.findForward(name));
 
     }
 
@@ -648,15 +657,15 @@ public class ActionServlet
      */
     public ActionMapping findMapping(String path) {
 
-	return (mappings.findMapping(path));
+    return (mappings.findMapping(path));
 
     }
-    
-    /** 
+
+    /**
      * Get the buffer size (how large of a chunk of data is
      * recieved by the input stream at once) used for file
      * uploading.
-     * 
+     *
      * @return The size in bytes of the buffer
      */
     public int getBufferSize() {
@@ -671,7 +680,7 @@ public class ActionServlet
      */
     public int getDebug() {
 
-	return (this.debug);
+    return (this.debug);
 
     }
 
@@ -693,7 +702,7 @@ public class ActionServlet
      */
     public String getForwardClass() {
 
-	return (this.forwardClass);
+    return (this.forwardClass);
 
     }
 
@@ -704,11 +713,11 @@ public class ActionServlet
      */
     public String getMappingClass() {
 
-	return (this.mappingClass);
+    return (this.mappingClass);
 
     }
-    
-    
+
+
     /**
      * Get the maximum file size.  See {@link #setMaxFileSize(java.lang.String) setMaxFileSize}
      * for information on the number format used.
@@ -716,10 +725,10 @@ public class ActionServlet
     public String getMaxFileSize() {
         return maxFileSize;
     }
-    
+
     /**
      * Get the class name of the MultipartRequestHandler implementation
-     * 
+     *
      * @return A qualified classname of the MultipartRequestHandler implementation
      */
      public String getMultipartClass() {
@@ -733,10 +742,10 @@ public class ActionServlet
      */
     public MessageResources getResources() {
 
-	return (application);
+    return (application);
 
     }
-    
+
     /**
      * Get the directory used to temporarily store form files
      *
@@ -815,7 +824,7 @@ public class ActionServlet
      */
     public void removeForward(ActionForward forward) {
 
-	forwards.removeForward(forward);
+    forwards.removeForward(forward);
 
     }
 
@@ -827,12 +836,12 @@ public class ActionServlet
      */
     public void removeMapping(ActionMapping mapping) {
 
-	mappings.removeMapping(mapping);
+    mappings.removeMapping(mapping);
 
     }
 
-    
-    /** 
+
+    /**
      * Set the buffer size (how large of a chunk of data is
      * recieved by the input stream at once) used for file
      * uploading.
@@ -883,7 +892,7 @@ public class ActionServlet
         this.mappingClass = mappingClass;
 
     }
-    
+
     /**
      * Set the maximum file size that a client can upload,  number String with a trailing
      * letter indicating the size.  "K" indicates "kilobytes", "M" indicates "megabytes",
@@ -896,7 +905,7 @@ public class ActionServlet
     public void setMaxFileSize(String maxFileSize) {
         this.maxFileSize = maxFileSize;
     }
-    
+
     /**
      * Set the class name of the MultipartRequestHandler implementation
      *
@@ -906,7 +915,7 @@ public class ActionServlet
         this.multipartClass = multipartClass;
     }
 
-    
+
     /**
      * Set the directory used to temporarily store files for MultipartRequestHandler
      * implementations that write to the disk
@@ -943,9 +952,9 @@ public class ActionServlet
      */
     protected void destroyApplication() {
 
-	if (application != null)
-	    getServletContext().removeAttribute(Action.MESSAGES_KEY);
-	application = null;
+    if (application != null)
+        getServletContext().removeAttribute(Action.MESSAGES_KEY);
+    application = null;
 
     }
 
@@ -983,7 +992,7 @@ public class ActionServlet
      */
     protected void destroyInternal() {
 
-	internal = null;
+    internal = null;
 
     }
 
@@ -1009,36 +1018,36 @@ public class ActionServlet
      */
     protected void initApplication() throws ServletException {
 
-	String value = getServletConfig().getInitParameter("application");
-	if (value == null)
-	    return;
+    String value = getServletConfig().getInitParameter("application");
+    if (value == null)
+        return;
         String factory =
             getServletConfig().getInitParameter("factory");
-	if (debug >= 1)
-	    log(internal.getMessage("applicationLoading", value));
-	try {
+    if (debug >= 1)
+        log(internal.getMessage("applicationLoading", value));
+    try {
             String oldFactory =
-                MessageResourcesFactory.getFactoryClass();      
+                MessageResourcesFactory.getFactoryClass();
             if (factory != null)
                 MessageResourcesFactory.setFactoryClass(factory);
             MessageResourcesFactory factoryObject =
                 MessageResourcesFactory.createFactory();
             application = factoryObject.createResources(value);
             MessageResourcesFactory.setFactoryClass(oldFactory);
-	    value = getServletConfig().getInitParameter("null");
-	    if (value == null)
-		value = "true";
-	    if (value.equalsIgnoreCase("true") ||
-		value.equalsIgnoreCase("yes"))
-		application.setReturnNull(true);
-	    else
-		application.setReturnNull(false);
-	} catch (Throwable e) {
-	    log(internal.getMessage("applicationResources", value), e);
-	    throw new UnavailableException
-		(internal.getMessage("applicationResources", value));
-	}
-	getServletContext().setAttribute(Action.MESSAGES_KEY, application);
+        value = getServletConfig().getInitParameter("null");
+        if (value == null)
+        value = "true";
+        if (value.equalsIgnoreCase("true") ||
+        value.equalsIgnoreCase("yes"))
+        application.setReturnNull(true);
+        else
+        application.setReturnNull(false);
+    } catch (Throwable e) {
+        log(internal.getMessage("applicationResources", value), e);
+        throw new UnavailableException
+        (internal.getMessage("applicationResources", value));
+    }
+    getServletContext().setAttribute(Action.MESSAGES_KEY, application);
 
     }
 
@@ -1092,12 +1101,12 @@ public class ActionServlet
      */
     protected void initDebug() throws ServletException {
 
-	String value = getServletConfig().getInitParameter("debug");
-	try {
-	    debug = Integer.parseInt(value);
-	} catch (Throwable t) {
-	    debug = 0;
-	}
+    String value = getServletConfig().getInitParameter("debug");
+    try {
+        debug = Integer.parseInt(value);
+    } catch (Throwable t) {
+        debug = 0;
+    }
     }
 
 
@@ -1107,21 +1116,21 @@ public class ActionServlet
      */
     protected Digester initDigester(int detail) {
 
-	// Initialize a new Digester instance
-	Digester digester = new Digester();
-	digester.push(this);
-	digester.setDebug(detail);
+    // Initialize a new Digester instance
+    Digester digester = new Digester();
+    digester.push(this);
+    digester.setDebug(detail);
         digester.setNamespaceAware(true);
-	digester.setValidating(validating);
+    digester.setValidating(validating);
 
-	// Register our local copy of the DTDs that we can find
+    // Register our local copy of the DTDs that we can find
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);
             if (url != null)
                 digester.register(registrations[i], url.toString());
         }
 
-	// Configure the processing rules
+    // Configure the processing rules
 
         digester.addObjectCreate("struts-config/data-sources/data-source",
                                  "org.apache.struts.util.GenericDataSource",
@@ -1179,7 +1188,7 @@ public class ActionServlet
             ("struts-config/global-forwards/forward/set-property",
              "property", "value");
 
-	return (digester);
+    return (digester);
 
     }
 
@@ -1191,14 +1200,14 @@ public class ActionServlet
      */
     protected void initInternal() throws ServletException {
 
-	try {
-	    internal = MessageResources.getMessageResources(internalName);
-	} catch (MissingResourceException e) {
-	    log("Cannot load internal resources from '" + internalName + "'",
-		e);
-	    throw new UnavailableException
-		("Cannot load internal resources from '" + internalName + "'");
-	}
+    try {
+        internal = MessageResources.getMessageResources(internalName);
+    } catch (MissingResourceException e) {
+        log("Cannot load internal resources from '" + internalName + "'",
+        e);
+        throw new UnavailableException
+        ("Cannot load internal resources from '" + internalName + "'");
+    }
 
     }
 
@@ -1211,76 +1220,76 @@ public class ActionServlet
      */
     protected void initMapping() throws IOException, ServletException {
 
-	String value = null;
+    String value = null;
 
         // Link our mappings collection to this servlet instance
         mappings.setServlet(this);
 
-	// Initialize the debugging detail level we will use
-	int detail;
-	try {
-	    value = getServletConfig().getInitParameter("detail");
-	    detail = Integer.parseInt(value);
-	} catch (Throwable t) {
-	    detail = 0;
-	}
+    // Initialize the debugging detail level we will use
+    int detail;
+    try {
+        value = getServletConfig().getInitParameter("detail");
+        detail = Integer.parseInt(value);
+    } catch (Throwable t) {
+        detail = 0;
+    }
 
-	// Initialize the validating XML parser flag
-	value = getServletConfig().getInitParameter("validating");
-	if (value != null) {
-	    if (value.equalsIgnoreCase("true") ||
-	        value.equalsIgnoreCase("yes"))
-	        validating = true;
-	    else
-	        validating = false;
-	}
+    // Initialize the validating XML parser flag
+    value = getServletConfig().getInitParameter("validating");
+    if (value != null) {
+        if (value.equalsIgnoreCase("true") ||
+            value.equalsIgnoreCase("yes"))
+            validating = true;
+        else
+            validating = false;
+    }
 
         // Initialize the name of our ActionFormBean implementation class
         value = getServletConfig().getInitParameter("formBean");
         if (value != null)
             formBeanClass = value;
 
-	// Initialize the name of our ActionForward implementation class
-	value = getServletConfig().getInitParameter("forward");
-	if (value != null)
-	    forwardClass = value;
+    // Initialize the name of our ActionForward implementation class
+    value = getServletConfig().getInitParameter("forward");
+    if (value != null)
+        forwardClass = value;
 
-	// Initialize the name of our ActionMapping implementation class
-	value = getServletConfig().getInitParameter("mapping");
-	if (value != null)
-	    mappingClass = value;
+    // Initialize the name of our ActionMapping implementation class
+    value = getServletConfig().getInitParameter("mapping");
+    if (value != null)
+        mappingClass = value;
 
-	// Initialize the context-relative path to our configuration resources
-	value = getServletConfig().getInitParameter("config");
-	if (value != null)
-	    config = value;
-	if (debug >= 1)
-	    log(internal.getMessage("configInit", config));
+    // Initialize the context-relative path to our configuration resources
+    value = getServletConfig().getInitParameter("config");
+    if (value != null)
+        config = value;
+    if (debug >= 1)
+        log(internal.getMessage("configInit", config));
 
-	// Acquire an input stream to our configuration resource
-	InputStream input = getServletContext().getResourceAsStream(config);
-	if (input == null)
-	    throw new UnavailableException
-		(internal.getMessage("configMissing", config));
+    // Acquire an input stream to our configuration resource
+    InputStream input = getServletContext().getResourceAsStream(config);
+    if (input == null)
+        throw new UnavailableException
+        (internal.getMessage("configMissing", config));
 
-	// Build a digester to process our configuration resource
-	Digester digester = initDigester(detail);
+    // Build a digester to process our configuration resource
+    Digester digester = initDigester(detail);
 
-	// Parse the input stream to configure our mappings
-	try {
+    // Parse the input stream to configure our mappings
+    try {
             formBeans.setFast(false);
             forwards.setFast(false);
             mappings.setFast(false);
-	    digester.parse(input);
+        digester.parse(input);
             mappings.setFast(true);
             forwards.setFast(true);
             formBeans.setFast(true);
-	} catch (SAXException e) {
-	    throw new ServletException
-		(internal.getMessage("configParse", config), e);
+    } catch (SAXException e) {
+        throw new ServletException
+        (internal.getMessage("configParse", config), e);
         } finally {
-	    input.close();
-	}
+        input.close();
+    }
 
     }
 
@@ -1293,12 +1302,16 @@ public class ActionServlet
      */
     protected void initOther() throws ServletException {
 
-	// Process the "content", "locale", and "nocache" parameters
-	String value = null;
+    // Process the "content", "locale", and "nocache" parameters
+    String value = null;
 
         value = getServletConfig().getInitParameter("content");
         if (value != null)
             content = value;
+
+        value = getServletConfig().getInitParameter("context");
+        if (value != null)
+            contextHelper = value;
 
         value = getServletConfig().getInitParameter("locale");
         if (value != null) {
@@ -1316,14 +1329,14 @@ public class ActionServlet
                 nocache = true;
         }
 
-	// Publish our internal collections as necessary
+    // Publish our internal collections as necessary
         getServletContext().setAttribute(Action.FORM_BEANS_KEY, formBeans);
-	getServletContext().setAttribute(Action.FORWARDS_KEY, forwards);
-	getServletContext().setAttribute(Action.MAPPINGS_KEY, mappings);
+    getServletContext().setAttribute(Action.FORWARDS_KEY, forwards);
+    getServletContext().setAttribute(Action.MAPPINGS_KEY, mappings);
 
     }
-    
-    
+
+
     /**
      * Initialize the servlet mapping under which our controller servlet
      * is being accessed.  This will be used in the <code>&html:form&gt;</code>
@@ -1341,7 +1354,7 @@ public class ActionServlet
         digester.setNamespaceAware(true);
         digester.setValidating(false);
 
-	// Register our local copy of the DTDs that we can find
+    // Register our local copy of the DTDs that we can find
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);
             if (url != null)
@@ -1387,10 +1400,10 @@ public class ActionServlet
      * @exception ServletException if there are invalid parameters
      */
     protected void initUpload() throws ServletException {
-      
+
         //buffer size
         String bufferValue = getServletConfig().getInitParameter("bufferSize");
-        
+
         if ((bufferValue != null) && (bufferValue.length() > 0)) {
             int oldBufferSize = bufferSize;
             try {
@@ -1405,27 +1418,27 @@ public class ActionServlet
                 bufferSize = oldBufferSize;
             }
         }
-        
+
         //multipart class
         String classValue = getServletConfig().getInitParameter("multipartClass");
-        
+
         if ((classValue != null) && (classValue.length() > 0)) {
             if (classValue.equals("none"))
                 multipartClass = null;
             else
                 multipartClass = classValue;
         }
-        
+
         //maximum file size
         String maxsizeValue = getServletConfig().getInitParameter("maxFileSize");
-        
+
         if ((maxsizeValue != null) && (maxsizeValue.length() > 0)) {
             maxFileSize = maxsizeValue;
         }
-        
+
         //temp directory
         String tempDirValue = getServletConfig().getInitParameter("tempDir");
-        
+
         if ((tempDirValue != null) && (tempDirValue.length() > 0)) {
             tempDir = tempDirValue;
         }
@@ -1443,12 +1456,15 @@ public class ActionServlet
      * @exception ServletException if a servlet exception occurs
      */
     protected void process(HttpServletRequest request,
-			   HttpServletResponse response)
-	throws IOException, ServletException {
+               HttpServletResponse response)
+    throws IOException, ServletException {
+
+        // Insert ContextHelper object before processing request
+        ContextHelper context = processContext(request,response);
 
         String contentType = request.getContentType();
         String method = request.getMethod();
-        
+
         //if this is a multipart request, wrap the HttpServletRequest object
         //with a MultipartRequestWrapper to keep the process sub-methods
         //from failing when checking for certain request parameters
@@ -1457,47 +1473,47 @@ public class ActionServlet
             && (method.equals("POST"))) {
                 request = new MultipartRequestWrapper(request);
         }
-            
-	// Identify the path component we will use to select a mapping
-	String path = processPath(request);
-	if (path == null) {
-	    if (debug >= 1)
-		log(" No path available for request URI " +
-		    request.getRequestURI());
-	    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-			       internal.getMessage("processPath"));
-	    return;
-	}
-	if (debug >= 1)
-	    log("Processing a " + request.getMethod() + " for " + path);
+
+    // Identify the path component we will use to select a mapping
+    String path = processPath(request);
+    if (path == null) {
+        if (debug >= 1)
+        log(" No path available for request URI " +
+            request.getRequestURI());
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                   internal.getMessage("processPath"));
+        return;
+    }
+    if (debug >= 1)
+        log("Processing a " + request.getMethod() + " for " + path);
 
         // Automatically select a locale for this user if requested
         processLocale(request);
 
-	// Set the content type and no-caching headers if requested
+    // Set the content type and no-caching headers if requested
         processContent(response);
-	processNoCache(response);
+    processNoCache(response);
 
         // General purpose preprocessing hook
         if (!processPreprocess(request, response))
             return;
 
-	// Look up the corresponding mapping
-	ActionMapping mapping = processMapping(path, request);
-	if (mapping == null) {
-	    if (debug >= 1)
-		log(" No mapping available for path " + path);
-	    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-			       internal.getMessage("processInvalid", path));
-	    return;
-	}
+    // Look up the corresponding mapping
+    ActionMapping mapping = processMapping(path, request);
+    if (mapping == null) {
+        if (debug >= 1)
+        log(" No mapping available for path " + path);
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                   internal.getMessage("processInvalid", path));
+        return;
+    }
 
-	// Process any ActionForm bean related to this request
-	ActionForm formInstance = processActionForm(mapping, request);
+    // Process any ActionForm bean related to this request
+    ActionForm formInstance = processActionForm(mapping, request);
         processPopulate(formInstance, mapping, request);
-	if (!processValidate(mapping, formInstance, request, response))
-	    return;
-        
+    if (!processValidate(mapping, formInstance, request, response))
+        return;
+
         // Execute a forward if specified by this mapping
         if (!processForward(mapping, request, response))
             return;
@@ -1515,7 +1531,7 @@ public class ActionServlet
             return;
         }
 
-	// Call the Action instance itself
+    // Call the Action instance itself
         ActionForward forward =
             processActionPerform(actionInstance, mapping, formInstance,
                                  request, response);
@@ -1587,10 +1603,10 @@ public class ActionServlet
      * @param request The servlet request we are processing
      */
     protected ActionForm processActionForm(ActionMapping mapping,
-    					   HttpServletRequest request) {
+                           HttpServletRequest request) {
 
         // Is there a form bean associated with this mapping?
-	String attribute = mapping.getAttribute();
+    String attribute = mapping.getAttribute();
         if (attribute == null)
             return (null);
 
@@ -1598,8 +1614,8 @@ public class ActionServlet
         if (debug >= 1)
             log(" Looking for ActionForm bean under attribute '" +
                 attribute + "'");
-	ActionForm instance = null;
-	HttpSession session = null;
+    ActionForm instance = null;
+    HttpSession session = null;
         if ("request".equals(mapping.getScope())) {
             instance = (ActionForm) request.getAttribute(attribute);
         } else {
@@ -1607,36 +1623,36 @@ public class ActionServlet
             instance = (ActionForm) session.getAttribute(attribute);
         }
 
-	// Determine the form bean class that we expect to use
+    // Determine the form bean class that we expect to use
         String name = mapping.getName();
         String className = null;
         ActionFormBean formBean = findFormBean(name);
         if (formBean != null)
             className = formBean.getType();
-	else
+    else
             return (null);
 
-	// Can we recycle the existing form bean instance?
-	if ((instance != null) &&
-	    className.equals(instance.getClass().getName())) {
-	    if (debug >= 1)
-	        log(" Recycling existing ActionForm bean instance of class '"
-		    + className + "'");
-	    return (instance);
-	}
+    // Can we recycle the existing form bean instance?
+    if ((instance != null) &&
+        className.equals(instance.getClass().getName())) {
+        if (debug >= 1)
+            log(" Recycling existing ActionForm bean instance of class '"
+            + className + "'");
+        return (instance);
+    }
 
         // Create a new form bean if we need to
         if (debug >= 1)
             log(" Creating new ActionForm instance of class '"
-		+ className + "'");
-	try {
-	    instance = null;
-	    Class clazz = Class.forName(className);
-	    instance = (ActionForm) clazz.newInstance();
+        + className + "'");
+    try {
+        instance = null;
+        Class clazz = Class.forName(className);
+        instance = (ActionForm) clazz.newInstance();
         } catch (Throwable t) {
-	    log("Error creating ActionForm instance of class '" +
-		className + "'", t);
-	}
+        log("Error creating ActionForm instance of class '" +
+        className + "'", t);
+    }
         if (instance == null)
             return (null);
 
@@ -1672,26 +1688,33 @@ public class ActionServlet
                                         ActionForm formInstance,
                                         HttpServletRequest request,
                                         HttpServletResponse response)
-	throws IOException, ServletException {
+    throws IOException, ServletException {
 
-	if (forward != null) {
-	    String path = forward.getPath();
-	    if (forward.getRedirect()) {
-	        if (path.startsWith("/"))
+    if (forward != null) {
+        String path = forward.getPath();
+        if (forward.getRedirect()) {
+            if (path.startsWith("/"))
                     path = request.getContextPath() + path;
-		response.sendRedirect(response.encodeRedirectURL(path));
-	    } else {
-		RequestDispatcher rd =
-		    getServletContext().getRequestDispatcher(path);
+        response.sendRedirect(response.encodeRedirectURL(path));
+        } else {
+        RequestDispatcher rd =
+            getServletContext().getRequestDispatcher(path);
                 if (rd == null) {
                     response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                        internal.getMessage("requestDispatcher",
                                                            path));
                     return;
                 }
-		rd.forward(request, response);
-	    }
-	}
+
+        // Update ContextHelper object before forwarding request
+        ContextHelper context = (ContextHelper)
+            request.getAttribute(contextHelper);
+        if (context!=null)
+            context.setForward(forward);
+
+        rd.forward(request, response);
+        }
+    }
 
     }
 
@@ -1715,11 +1738,28 @@ public class ActionServlet
                                         ActionForm formInstance,
                                         HttpServletRequest request,
                                         HttpServletResponse response)
-	throws IOException, ServletException {
+    throws IOException, ServletException {
 
-	ActionForward forward =
-	    action.perform(mapping, formInstance, request, response);
+    ActionForward forward =
+        action.perform(mapping, formInstance, request, response);
         return (forward);
+
+    }
+
+
+    /**
+     * Instantiate an ContextHelper object for this request.
+     *
+     * @param request The request we are processing
+     * @param response The response we are processing
+     */
+    protected ContextHelper processContext(HttpServletRequest request,
+            HttpServletResponse response) {
+
+        ContextHelper context =
+            new ContextHelper(getServletContext(), request, response);
+        request.setAttribute(contextHelper, context);
+        return (context);
 
     }
 
@@ -1889,14 +1929,14 @@ public class ActionServlet
      * @exception ServletException if a servlet exception occurs
      */
     protected void processNoCache(HttpServletResponse response)
-	throws IOException, ServletException {
+    throws IOException, ServletException {
 
-	if (!nocache)
-	    return;
+    if (!nocache)
+        return;
 
-	response.setHeader("Pragma", "No-cache");
-	response.setHeader("Cache-Control", "no-cache");
-	response.setDateHeader("Expires", 1);
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-Control", "no-cache");
+    response.setDateHeader("Expires", 1);
 
     }
 
@@ -1910,26 +1950,26 @@ public class ActionServlet
      */
     protected String processPath(HttpServletRequest request) {
 
-	String path = null;
+    String path = null;
 
-	// For prefix matching, we want to match on the path info (if any)
+    // For prefix matching, we want to match on the path info (if any)
         path =
             (String) request.getAttribute("javax.servlet.include.path_info");
         if (path == null)
             path = request.getPathInfo();
-	if ((path != null) && (path.length() > 0))
-	    return (path);
+    if ((path != null) && (path.length() > 0))
+        return (path);
 
-	// For extension matching, we want to strip the extension (if any)
+    // For extension matching, we want to strip the extension (if any)
         path =
            (String) request.getAttribute("javax.servlet.include.servlet_path");
         if (path == null)
             path = request.getServletPath();
-	int slash = path.lastIndexOf("/");
-	int period = path.lastIndexOf(".");
-	if ((period >= 0) && (period > slash))
-	    path = path.substring(0, period);
-	return (path);
+    int slash = path.lastIndexOf("/");
+    int period = path.lastIndexOf(".");
+    if ((period >= 0) && (period > slash))
+        path = path.substring(0, period);
+    return (path);
 
     }
 
@@ -1974,7 +2014,7 @@ public class ActionServlet
     protected void processPopulate(ActionForm formInstance,
                                    ActionMapping mapping,
                                    HttpServletRequest request)
-	throws ServletException {
+    throws ServletException {
 
         if (formInstance == null)
             return;
@@ -2024,7 +2064,7 @@ public class ActionServlet
             log(" Validating input form properties");
 
         // Was this submit cancelled?
-	if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
+    if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
             (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
             if (debug >= 1)
                 log("  Cancelled transaction, no validation");
@@ -2042,19 +2082,19 @@ public class ActionServlet
                 log("  No errors detected, accepting input");
             return (true);
         }
-        
+
         //does our form have a multipart request?
         if (formInstance.getMultipartRequestHandler() != null) {
             //rollback the request
             if (debug > 1) {
                 log("  Rolling back the multipart request");
             }
-            
+
             formInstance.getMultipartRequestHandler().rollback();
         }
 
         // Has an input form been specified for this mapping?
-	String uri = mapping.getInput();
+    String uri = mapping.getInput();
         if (uri == null) {
             if (debug >= 1)
                 log("  No input form, but validation returned errors");
@@ -2064,23 +2104,23 @@ public class ActionServlet
             return (false);
         }
 
-	// Save our error messages and return to the input form if possible
-	if (debug >= 1)
-	    log("  Validation error(s), redirecting to: " + uri);
-	request.setAttribute(Action.ERROR_KEY, errors);
+    // Save our error messages and return to the input form if possible
+    if (debug >= 1)
+        log("  Validation error(s), redirecting to: " + uri);
+    request.setAttribute(Action.ERROR_KEY, errors);
         //unwrap the multipart request if there is one
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();
         }
-	RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
+    RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                                internal.getMessage("requestDispatcher",
                                                    uri));
             return (false);
         }
-	rd.forward(request, response);
-	return (false);
+    rd.forward(request, response);
+    return (false);
 
     }
 

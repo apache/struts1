@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.25 2001/08/16 03:52:09 craigmcc Exp $
- * $Revision: 1.25 $
- * $Date: 2001/08/16 03:52:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.26 2001/12/16 16:41:21 husted Exp $
+ * $Revision: 1.26 $
+ * $Date: 2001/12/16 16:41:21 $
  *
  * ====================================================================
  *
@@ -108,7 +108,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.25 $ $Date: 2001/08/16 03:52:09 $
+ * @version $Revision: 1.26 $ $Date: 2001/12/16 16:41:21 $
  */
 
 public class Action {
@@ -237,6 +237,14 @@ public class Action {
 
 
 
+    /**
+     * The request attributes key under which our ActionContext is
+     * normally stored, unless overridden when initializing our ActionServlet.
+     */
+    public static final String CONTEXT_HELPER_KEY =
+        "org.apache.struts.action.CONTEXT_HELPER";
+
+
     // ----------------------------------------------------- Instance Variables
 
 
@@ -333,10 +341,10 @@ public class Action {
      * @exception ServletException if a servlet exception occurs
      */
     public ActionForward perform(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws IOException, ServletException {
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws IOException, ServletException {
 
         return (null);  // Override this method to provide functionality
 
@@ -370,7 +378,7 @@ public class Action {
         }
 
     }
-    
+
 
     /**
      * Return the user's currently selected Locale.
@@ -379,11 +387,11 @@ public class Action {
      */
     protected Locale getLocale(HttpServletRequest request) {
 
-	HttpSession session = request.getSession();
-	Locale locale = (Locale) session.getAttribute(LOCALE_KEY);
-	if (locale == null)
-	    locale = defaultLocale;
-	return (locale);
+    HttpSession session = request.getSession();
+    Locale locale = (Locale) session.getAttribute(LOCALE_KEY);
+    if (locale == null)
+        locale = defaultLocale;
+    return (locale);
 
     }
 
@@ -393,7 +401,7 @@ public class Action {
      */
     protected MessageResources getResources() {
 
-	return (servlet.getResources());
+    return (servlet.getResources());
 
     }
 
@@ -412,11 +420,11 @@ public class Action {
      */
     protected boolean isCancelled(HttpServletRequest request) {
 
-	return ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
+    return ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
                 (request.getParameter(Constants.CANCEL_PROPERTY_X) != null));
 
     }
-    
+
     /**
      * Return <code>true</code> if there is a transaction token stored in
      * the user's current session, and the value submitted as a request
@@ -512,39 +520,39 @@ public class Action {
      * @param errors Error messages object
      */
     protected void saveErrors(HttpServletRequest request,
-			      ActionErrors errors) {
+                  ActionErrors errors) {
 
-	// Remove any error messages attribute if none are required
-	if ((errors == null) || errors.empty()) {
-	    request.removeAttribute(ERROR_KEY);
-	    return;
-	}
+    // Remove any error messages attribute if none are required
+    if ((errors == null) || errors.empty()) {
+        request.removeAttribute(ERROR_KEY);
+        return;
+    }
 
-	// Save the error messages we need
-	request.setAttribute(ERROR_KEY, errors);
+    // Save the error messages we need
+    request.setAttribute(ERROR_KEY, errors);
 
     }
 
     /**
      * Save the specified messages keys into the appropriate request
      * attribute for use by the &lt;struts:messages&gt; tag (if messages="true" is set),
-     * if any messages are required.  Otherwise, ensure that the request 
+     * if any messages are required.  Otherwise, ensure that the request
      * attribute is not created.
      *
-     * @param request 	The servlet request we are processing
-     * @param messages 	Messages object
+     * @param request   The servlet request we are processing
+     * @param messages  Messages object
      */
     protected void saveMessages(HttpServletRequest request,
-			        ActionMessages messages) {
+                    ActionMessages messages) {
 
-	// Remove any messages attribute if none are required
-	if ((messages == null) || messages.empty()) {
-	    request.removeAttribute(MESSAGE_KEY);
-	    return;
-	}
+    // Remove any messages attribute if none are required
+    if ((messages == null) || messages.empty()) {
+        request.removeAttribute(MESSAGE_KEY);
+        return;
+    }
 
-	// Save the messages we need
-	request.setAttribute(MESSAGE_KEY, messages);
+    // Save the messages we need
+    request.setAttribute(MESSAGE_KEY, messages);
 
     }
 
@@ -573,10 +581,10 @@ public class Action {
      */
     protected void setLocale(HttpServletRequest request, Locale locale) {
 
-	HttpSession session = request.getSession();
-	if (locale == null)
-	    locale = defaultLocale;
-	session.setAttribute(LOCALE_KEY, locale);
+    HttpSession session = request.getSession();
+    if (locale == null)
+        locale = defaultLocale;
+    session.setAttribute(LOCALE_KEY, locale);
 
     }
 
