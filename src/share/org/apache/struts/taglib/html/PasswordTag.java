@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/PasswordTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/PasswordTag.java,v 1.2 2002/10/05 22:52:13 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/10/05 22:52:13 $
  *
  * ====================================================================
  * 
@@ -64,10 +64,10 @@ package org.apache.struts.taglib.html;
 
 
 /**
- * Custom tag for input fields of type "text".
+ * Custom tag for input fields of type "password".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2002/10/05 22:52:13 $
  */
 
 public class PasswordTag extends BaseFieldTag {
