@@ -410,7 +410,27 @@ public ActionForward execute(ActionMapping mapping,
       </section>
 
       <section name="4.4.2 Exception Handler" href="exception_handler">
-      <p>[:TODO:]</p>
+      <p>
+      You can define an ExceptionHandler to execute when an Action's execute 
+      method throws an Exception.  First, you need to subclass 
+      org.apache.struts.action.ExceptionHandler and override the execute method.
+      Your execute method should process the Exception and return an ActionForward
+      object to tell Struts where to forward to next.  Then you configure your 
+      handler in struts-config.xml like this:<br/>
+      <pre>
+      	<global-exceptions>
+    		<exception key="some.key" type="java.io.IOException" handler="com.yourcorp.ExceptionHandler"/>
+    	</global-exceptions>
+      </pre>
+      <br/>
+      That configuration says that com.yourcorp.ExceptionHandler.execute() will be called 
+      when any IOException is thrown by an Action.  The key is a key from your message resources
+      properties file that can be used to display an error message.
+      </p>
+      <p>
+      A common use of ExceptionHandler's is to configure one for java.lang.Exception so it's called
+      for any exception and log the exception to some data store.
+      </p>
       </section>
 
       <section name="4.4.3 PlugIn Classes" href="plugin_classes">
