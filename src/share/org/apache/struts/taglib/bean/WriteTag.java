@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.12 2001/11/21 18:47:05 oalexeev Exp $
- * $Revision: 1.12 $
- * $Date: 2001/11/21 18:47:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.13 2001/12/06 17:59:34 oalexeev Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/12/06 17:59:34 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/11/21 18:47:05 $
+ * @version $Revision: 1.13 $ $Date: 2001/12/06 17:59:34 $
  */
 
 public class WriteTag extends TagSupport {
@@ -300,37 +300,6 @@ public class WriteTag extends TagSupport {
 
         if ( value instanceof java.lang.String ) {
                 return (String)value;
-        } else if (  value instanceof java.sql.Timestamp ) {
-                if( formatStr==null )
-                        formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, TIMESTAMP_FORMAT_KEY );
-                if( formatStr==null )
-                        format = DateFormat.getDateTimeInstance(
-                                DateFormat.SHORT, DateFormat.SHORT, locale);
-                else
-                        format = new SimpleDateFormat( formatStr, locale );
-        } else if (  value instanceof java.sql.Date ) {
-                if( formatStr==null )
-                        formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, DATE_FORMAT_KEY );
-                if( formatStr==null )
-                        format = DateFormat.getDateInstance(DateFormat.SHORT, locale);
-                else
-                        format = new SimpleDateFormat( formatStr, locale );
-        } else if (  value instanceof java.sql.Time ) {
-                if( formatStr==null )
-                        formatStr = RequestUtils.message(pageContext, this.bundle,
-                                              this.localeKey, TIME_FORMAT_KEY );
-                if( formatStr==null )
-                        format = DateFormat.getTimeInstance(DateFormat.SHORT, locale);
-                else
-                        format = new SimpleDateFormat( formatStr, locale );
-        } else if (  value instanceof java.util.Date ) {
-                if( formatStr==null )
-                        format = DateFormat.getDateTimeInstance(
-                                DateFormat.SHORT, DateFormat.SHORT, locale);
-                else
-                        format = new SimpleDateFormat( formatStr, locale );
         } else if ( value instanceof Number ) {
                 if( formatStr==null ) {
                         if( ( value instanceof Byte )    ||
@@ -357,11 +326,29 @@ public class WriteTag extends TagSupport {
                                 throw e;
                         }
                 }
-        } else {
-                return value.toString();
-        }
+        } else if (  value instanceof java.util.Date ) {
+                if( formatStr==null ) {
+                        if (  value instanceof java.sql.Timestamp ) {
+                                formatStr = RequestUtils.message(pageContext, this.bundle,
+                                              this.localeKey, TIMESTAMP_FORMAT_KEY );
+                        } else if (  value instanceof java.sql.Date ) {
+                                formatStr = RequestUtils.message(pageContext, this.bundle,
+                                              this.localeKey, DATE_FORMAT_KEY );
+                        } else if (  value instanceof java.sql.Time ) {
+                                formatStr = RequestUtils.message(pageContext, this.bundle,
+                                              this.localeKey, TIME_FORMAT_KEY );
+                        }
+                }
+                
+                if( formatStr!=null )
+                        format = new SimpleDateFormat( formatStr, locale );
 
-        return format.format( value );
+        } 
+
+        if( format!=null )
+                return format.format( value );
+        else
+                return value.toString();
 
     }
 
