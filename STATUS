@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.4 2002/07/07 22:14:11 craigmcc Exp $
+$Id: STATUS,v 1.5 2002/07/07 22:18:45 husted Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -17,6 +17,11 @@ Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
 10534 <html:link forward> does not add servlet context correctly
+
+
+Documentation
+-------------
+10537 [:TODO:] sections (18)
 
 
 Example Webapps:
@@ -56,7 +61,6 @@ Utilities:
 Validator Framework:
 -------------------
  7347 Validator contrib directory should be dead
- 7348 No Validator Documentation
  7351 Validator JavaScript Primitive Validation Error
  7352 Struts 1.1 Beta 1 Release incorrectly reference contrib/validator
  7353 Validator JavaScript Select Error
