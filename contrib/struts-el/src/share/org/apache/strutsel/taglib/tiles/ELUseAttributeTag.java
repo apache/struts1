@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELUseAttributeTag.java,v 1.1 2003/09/07 03:22:45 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/09/07 03:22:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELUseAttributeTag.java,v 1.2 2003/12/20 17:34:51 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/12/20 17:34:51 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,7 +74,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ELUseAttributeTag extends UseAttributeTag {
 
@@ -83,6 +83,11 @@ public class ELUseAttributeTag extends UseAttributeTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String idExpr;
+    /**
+     * Instance variable mapped to "classname" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String classnameExpr;
     /**
      * Instance variable mapped to "scope" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -105,6 +110,11 @@ public class ELUseAttributeTag extends UseAttributeTag {
      */
     public String getIdExpr() { return (idExpr); }
     /**
+     * Getter method for "classname" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getClassnameExpr() { return (classnameExpr); }
+    /**
      * Getter method for "scope" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -125,6 +135,11 @@ public class ELUseAttributeTag extends UseAttributeTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setIdExpr(String idExpr) { this.idExpr = idExpr; }
+    /**
+     * Setter method for "classname" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setClassnameExpr(String classnameExpr) { this.classnameExpr = classnameExpr; }
     /**
      * Setter method for "scope" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -148,6 +163,7 @@ public class ELUseAttributeTag extends UseAttributeTag {
     {
         super.release();
         setIdExpr(null);
+        setClassnameExpr(null);
         setScopeExpr(null);
         setNameExpr(null);
         setIgnoreExpr(null);
@@ -176,6 +192,9 @@ public class ELUseAttributeTag extends UseAttributeTag {
         if ((string = EvalHelper.evalString("id", getIdExpr(),
                                             this, pageContext)) != null)
             setId(string);
+        if ((string = EvalHelper.evalString("classname", getClassnameExpr(),
+                                            this, pageContext)) != null)
+            setClassname(string);
         if ((string = EvalHelper.evalString("scope", getScopeExpr(),
                                             this, pageContext)) != null)
             setScope(string);

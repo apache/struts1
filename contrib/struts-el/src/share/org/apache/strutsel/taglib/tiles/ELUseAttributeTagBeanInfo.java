@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELUseAttributeTagBeanInfo.java,v 1.1 2003/09/07 03:22:45 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/09/07 03:22:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELUseAttributeTagBeanInfo.java,v 1.2 2003/12/20 17:34:35 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/12/20 17:34:35 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -80,6 +80,10 @@ public class ELUseAttributeTagBeanInfo extends SimpleBeanInfo
         try {
             proplist.add(new PropertyDescriptor("id", ELUseAttributeTag.class,
                                                 null, "setIdExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("classname", ELUseAttributeTag.class,
+                                                null, "setClassnameExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("scope", ELUseAttributeTag.class,
