@@ -145,7 +145,6 @@
                </nested:messages>
             </ul>
          </nested:messagesPresent>
-
          <nested:text property="value" size="15" maxlength="15"/>
        </td>
      </tr>

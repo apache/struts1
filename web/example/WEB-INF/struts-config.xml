@@ -46,7 +46,8 @@
 
       <!-- Display welcome page -->
       <action    path="/welcome"
-                 forward="/welcome.jsp"/>
+                 type="org.apache.struts.actions.ForwardAction"
+                 parameter="/welcome.jsp"/>
 
       <!-- Display registration page -->
       <action    path="/registration"
@@ -107,11 +108,11 @@
 
   <!-- ========== Controller Configuration ================================ -->
 
-  <controller>
-    <!-- The "input" parameter on "action" elements is the name of a
+  <controller pagePattern="$M$P" inputForward="true" />
+    <!-- pagePattern: use this pattern when creating URIs to resources.
+        $M=module, $P=path -->
+    <!-- inputForward: The "input" parameter on "action" elements is the name of a
          local or global "forward" rather than a module-relative path -->
-    <set-property property="inputForward" value="true"/>
-  </controller>
 
 
   <!-- ========== Message Resources Definitions =========================== -->

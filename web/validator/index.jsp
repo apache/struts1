@@ -66,7 +66,7 @@
       <bean:message key="localeForm.frCA"/>
    </li>
    <li>
-      <html:link action="/locale.?language=ja">Japanese | Japonais</html:link> -
+      <html:link action="/locale.?language=ja" useLocalEncoding="true">Japanese | Japonais</html:link> -
       <bean:message key="localeForm.ja"/>
    </li>
 </ul>
