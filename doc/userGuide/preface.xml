@@ -195,7 +195,7 @@
     <p>
     JavaBeans store data as properties and may act on that data through other methods. 
     JavaBeans are flexible and powerful objects but are not the only object that programmers use to store data. 
-    Other popular object is the Map [<code>java.util.Map</code>]. 
+    Another popular object is the Map [<code>java.util.Map</code>]. 
     A Map is a simple collection of name and value pairs. 
     Maps are often used "behind the scenes" as a flexible way to store dynamic data.      
     </p>
