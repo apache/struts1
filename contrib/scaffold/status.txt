@@ -8,18 +8,35 @@ TODO
 StatementUtils
  * :TODO: Refactor executeUpdate methods like getCollection methods.
 
+
+21-Feb-2002
+-----------
++ Add SuperServlet (1.0.2 compatible)
++ Add setLocale to SuperAction.
+
+
+// ...
+
+
+24-Jan-2002
+-----------
++ Add base Action and base Form with enhanced functionality.
+- - Need to review in context of latest ActionServlet before proposing for core Action package. Could/should extend ValidatorForm.
++ Remove obsolete TaskAction class.
++ Add ResetAction.java RemoveHelper.java Parameter.java ModelRelay.java
+
 01-Jan-2002
 -----------
 + Added source zip inside the scaffold main distributable
 
 31-Dec-2001
 -----------
-+ Modified ModelHelper to extend BaseHelperAction
-+ Added BaseHelperAction
++ Modifu ModelHelper to extend BaseHelperAction
++ Add BaseHelperAction
 + ModelDetailHelper - update JavaDocs.
-+ Added SetModelHelper - standard action to set ModelBean as session attribute.
-+ Added RemoveModelHelper - standard action to remove session attribute.
-+ Added FindForwardAction - Scan parameters for a matching forward name.
++ Add SetModelHelper - standard action to set ModelBean as session attribute.
++ Add RemoveModelHelper - standard action to remove session attribute.
++ Add FindForwardAction - Scan parameters for a matching forward name.
 + ModelResult, ModelResultBase - Change parameter names in signature. 
 
 
