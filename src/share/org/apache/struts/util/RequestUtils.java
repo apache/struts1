@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.114 2003/07/26 00:34:24 dgraham Exp $
- * $Revision: 1.114 $
- * $Date: 2003/07/26 00:34:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.115 2003/07/26 01:01:11 dgraham Exp $
+ * $Revision: 1.115 $
+ * $Date: 2003/07/26 01:01:11 $
  *
  * ====================================================================
  *
@@ -103,6 +103,7 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.upload.MultipartRequestWrapper;
@@ -115,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.114 $ $Date: 2003/07/26 00:34:24 $
+ * @version $Revision: 1.115 $ $Date: 2003/07/26 01:01:11 $
  */
 
 public class RequestUtils {
@@ -1902,37 +1903,13 @@ public class RequestUtils {
      * @param paramName     Key for parameter value
      * @return ActionErrors from request scope
      * @exception JspException
+     * @deprecated Use TagUtils.getActionErrors() instead.  This will be removed
+     * after Struts 1.2.
      */
     public static ActionErrors getActionErrors(PageContext pageContext, String paramName)
         throws JspException {
 
-        ActionErrors errors = new ActionErrors();
-
-        Object value = pageContext.findAttribute(paramName);
-
-        try {
-            if (value == null) {
-                ;
-            } else if (value instanceof String) {
-                errors.add(ActionErrors.GLOBAL_ERROR, new ActionError((String) value));
-            } else if (value instanceof String[]) {
-                String keys[] = (String[]) value;
-                for (int i = 0; i < keys.length; i++) {
-                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
-                }
-            } else if (value instanceof ActionErrors) {
-                errors = (ActionErrors) value;
-            } else {
-                throw new JspException(
-                    messages.getMessage("actionErrors.errors", value.getClass().getName()));
-            }
-        } catch (JspException e) {
-            throw e;
-        } catch (Exception e) {
-            log.debug(e, e);
-        }
-
-        return errors;
+        return TagUtils.getInstance().getActionErrors(pageContext, paramName);
     }
 
     /**
