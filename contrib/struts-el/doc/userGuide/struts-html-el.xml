@@ -134,12 +134,11 @@
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "propertyName[34]". Number in
-                brackets will be generated for every iteration and taken from
-                ancestor iteration tag.
+                  <info>
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -699,11 +698,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -991,7 +989,7 @@
                   <info>
                   Name of the request scope bean under which our error messages
                   have been stored.  If not present, the name specified by the
-                  <code>Action.ERROR_KEY</code> constant string will be used.
+                  <code>Globals.ERROR_KEY</code> constant string will be used.
                   </info>
                 </attribute>
 
@@ -1090,11 +1088,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.  
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -1504,7 +1501,8 @@
                 for use in framed presentations.
             </info>
         </attribute>
-   </tag>
+
+    </tag>
 
     <tag>
 
@@ -1526,12 +1524,12 @@
             <ul>
             <li><em>forward</em> - Use the value of this attribute as the
                 name of a global <code>ActionForward</code> to be looked
-                up, and use the application-relative or context-relative
+                up, and use the module-relative or context-relative
                 URI found there.</li>
             <li><em>href</em> - Use the value of this attribute unchanged.
                 </li>
             <li><em>page</em> - Use the value of this attribute as a
-                application-relative URI, and generate a server-relative
+                module-relative URI, and generate a server-relative
                 URI by including the context path and application
                 prefix.</li>
             <li><em>action</em> - Use the value of this attribute as the
@@ -1600,7 +1598,7 @@
             end of the URL that is created by any of the above mechanisms,
             by using the <code>anchor</code> attribute.</p>
 
-        </info>
+         </info>
 
          <attribute>
            <name>action</name>
@@ -1619,7 +1617,7 @@
            </info>
        </attribute>
 
-        <attribute>
+       <attribute>
             <name>anchor</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
@@ -1966,11 +1964,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+                Valid only inside of <code>logic-el:iterate</code> or  <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -2250,7 +2247,7 @@
               <p>Set to <code>true</code> in order to render 
               <code>xml:lang</code> and <code>xmlns</code> attributes 
               on the generated <code>html</code> element.  This also 
-              causes all other html tags to render as XHTML (the 
+              causes all other html tags to render as XHTML 1.0 (the 
               &lt;html:xhtml/&gt; tag has a similar purpose).
               </p>
             </info>
@@ -2359,11 +2356,11 @@
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <info>
-                Valid only inside of logic:iterate tag.  If <code>true</code>
-                then name of the html tag will be rendered as
-                "propertyName[34]". Number in brackets will be generated for
-                every iteration and taken from ancestor logic:iterate tag.
+             <info>
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -2645,21 +2642,22 @@
                 <p>Renders an HTML <code>&lt;img&gt;</code> element with
                 the image at the specified URL.  Like the link tag, URL
                 rewriting will be applied automatically to the value
-                specified in <code>src</code> or <code>page</code>,
-                to maintain session state
+                specified in <code>src</code>, <code>page</code>, or
+                <code>action</code> to maintain session state
                 in the absence of cookies.  This will allow dynamic
                 generation of an image where the content displayed for this
                 image will be taken from the attributes of this tag.</p>
 
                 <p>The base URL for this image is calculated directly based on
-                the value specified in <code>src</code> or <code>page</code>,
+                the value specified in <code>src</code>, <code>page</code>, or
+                <code>action</code> or <code>page</code>,
                 or indirectly by looking up a message resource string based on
                 the <code>srcKey</code> or <code>pageKey</code> attributes.
                 You <strong>must</strong> specify exactly one of these
                 attributes.</p>
 
-                <p>Normally, the <code>src</code> or <code>page</code> that
-                you specify will be left
+                <p>Normally, the <code>src</code>, <code>page</code>, or
+                <code>action</code> that you specify will be left
                 unchanged (other than URL rewriting if necessary).  However,
                 there are two ways you can append one or more dynamically
                 defined query parameters to the <code>src</code> URL --
@@ -2805,16 +2803,16 @@
                   </info>
                 </attribute>
 
-            <attribute>
-                <name>contextRelative</name>
-                <required>false</required>
-                <rtexprvalue>true</rtexprvalue>
-                <info>
-                <p>If set to "true", this "anchors" the image src at the
-                application context rather than the module context when the
-                'page' attribute is used to specify an image path.</p>
-                </info>
-            </attribute>
+                <attribute>
+                    <name>contextRelative</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+						  <info>
+						  <p>If set to "true", this "anchors" the image src at the
+						  application context rather than the module context when the
+						  'page' attribute is used to specify an image path.</p>
+						  </info>
+                </attribute>
 
                 <attribute>
                   <name>height</name>
@@ -3385,17 +3383,17 @@
                 <ul>
                 <li><em>forward</em> - Use the value of this attribute as the
                     name of a global <code>ActionForward</code> to be looked
-                    up, and use the application-relative or context-relative
+                    up, and use the module-relative or context-relative
                     URI found there.</li>
                 <li><em>action</em> - Use the value of this attribute as the
                     name of a <code>Action</code> to be looked
-                    up, and use the application-relative or context-relative
+                    up, and use the module-relative or context-relative
                     URI found there.</li>
                  <li><em>href</em> - Use the value of this attribute unchanged.
                      </li>
                  <li><em>page</em> - Use the value of this attribute as a
-                    application-relative URI, and generate a server-relative
-                    URI by including the context path and application
+                    module-relative URI, and generate a server-relative
+                    URI by including the context path and module
                     prefix.</li>
                 </ul>
 
@@ -3470,7 +3468,7 @@
                   <p>The keyboard character used to move focus immediately
                   to this element.</p>
                   </info>
-                </attribute>
+                 </attribute>
 
                  <attribute>
                   <name>action</name>
@@ -3537,13 +3535,11 @@
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then indexed
-                parameter with name from indexId attribute will be added to the
-                query string. Indexed parameter looks like "index[32]". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+              <info>
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -3951,7 +3947,7 @@
                   <info>
                   Name of the bean in any scope under which our messages
                   have been stored.  If not present, the name specified by the
-                  <code>Action.ERROR_KEY</code> constant string will be used.
+                  <code>Globals.ERROR_KEY</code> constant string will be used.
                   </info>
                 </attribute>
 
@@ -4759,11 +4755,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -5101,12 +5096,11 @@
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+             <info>
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -5891,11 +5885,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -6200,11 +6193,10 @@
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "propertyName[34]". Number in
-                brackets will be generated for every iteration and taken from
-                ancestor iteration tag.
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -6472,12 +6464,11 @@
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <info>
-                Valid only inside of <code>logic-el:iterate</code> or
-                <code>c:forEach</code> tags.  If <code>true</code> then name of
-                the html tag will be rendered as "id[34].propertyName". Number
-                in brackets will be generated for every iteration and taken
-                from ancestor iteration tag.
+             <info>
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
+                If <code>true</code> then name of the html tag will be rendered as
+                "id[34].propertyName". Number in brackets will be generated
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 
@@ -6796,11 +6787,11 @@
             <name>indexed</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <info>
-                Valid only inside of logic:iterate tag.
+              <info>
+                Valid only inside of <code>logic-el:iterate</code> or <code>c:forEach</code> tags.
                 If <code>true</code> then name of the html tag will be rendered as
                 "id[34].propertyName". Number in brackets will be generated
-                for every iteration and taken from ancestor logic:iterate tag.
+                for every iteration and taken from ancestor iteration tag.
             </info>
         </attribute>
 

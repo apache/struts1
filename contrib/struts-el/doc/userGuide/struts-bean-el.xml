@@ -52,13 +52,13 @@
     <teiclass>org.apache.struts.taglib.bean.IncludeTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
-
-    <p>Perform an internal dispatch to the specified application component (or
-    external URL) and make the response data from that request available as a
-    scoped variable of type <code>String</code>.  This tag has a function
-    similar to that of the standard <code>&lt;jsp:include&gt;</code> tag,
-    except that the response data is stored in a page scope attribute instead
-    of being written to the output stream.  If the current request is part of a
+    <p>Perform an internal dispatch to the specified application component
+    (or external URL)
+    and make the response data from that request available as a scoped variable of
+    type <code>String</code>.  This tag has a function similar to that of
+    the standard <code>&lt;jsp:include&gt;</code> tag, except that the
+    response data is stored in a page scope attribute instead of being
+    written to the output stream.  If the current request is part of a
     session, the generated request for the include will also include the
     session identifier (and thus be part of the same session).</p>
 
@@ -68,12 +68,12 @@
     <ul>
     <li><em>forward</em> - Use the value of this attribute as the name
         of a global <code>ActionForward</code> to be looked up, and
-        use the application-relative or context-relative URI found there.</li>
+        use the module-relative or context-relative URI found there.</li>
     <li><em>href</em> - Use the value of this attribute unchanged (since
         this might link to a resource external to the application, the
         session identifier is <strong>not</strong> included.</li>
     <li><em>page</em> - Use the value of this attribute as an
-        application-relative URI to the desired resource.</li>
+        module-relative URI to the desired resource.</li>
     </ul>
     </info>
 
@@ -123,9 +123,9 @@
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
-      <p>Specifies the name of the associated page scope attribute that will be
-      made available with the value of the specified web application
-      resource.</p>
+      <p>Specifies the name of the scripting variable (and associated page
+      scope attribute) that will be made available with the value of the
+      specified web application resource.</p>
       </info>
     </attribute>
 
@@ -134,7 +134,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Application-relative name (starting with a '/') of the web application
+      <p>Module-relative name (starting with a '/') of the web application
       resource to be dispatched, and whose response data is to be made
       available as a bean.</p>
       </info>
@@ -148,7 +148,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Application-relative URI (starting with a '/') of the web application
+      <p>Module-relative URI (starting with a '/') of the web application
       resource to be included.</p>
       </info>
     </attribute>
@@ -165,6 +165,7 @@
     </attribute>
 
   </tag>
+
 
   <tag>
 
@@ -248,7 +249,7 @@
       <code>MessageResources</code> object containing our messages
       is stored.</p>
       </info>
-      <default>Action.MESSAGES_KEY</default>
+      <default>Globals.MESSAGES_KEY</default>
     </attribute>
 
     <attribute>
@@ -271,7 +272,7 @@
       <p>The name of the session scope bean under which our currently
       selected <code>Locale</code> object is stored.</p>
       </info>
-      <default>Action.LOCALE_KEY</default>
+      <default>Globals.LOCALE_KEY</default>
     </attribute>
 
     <attribute>
@@ -355,6 +356,7 @@
 
   </tag>
 
+
   <tag>
 
     <name>resource</name>
@@ -378,9 +380,9 @@
       <required>true</required>
       <rtexprvalue>false</rtexprvalue>
       <info>
-      <p>Specifies the name of the associated page scope attribute that will be
-      made available with the value of the specified web application
-      resource.</p>
+      <p>Specifies the name of the scripting variable (and associated page
+      scope attribute) that will be made available with the value of the
+      specified web application resource.</p>
       </info>
     </attribute>
 
@@ -401,12 +403,13 @@
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>Application-relative name (starting with a '/') of the web application
+      <p>Module-relative name (starting with a '/') of the web application
       resource to be loaded and made available.</p>
       </info>
     </attribute>
 
   </tag>
+
 
   <tag>
 
