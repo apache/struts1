@@ -19,7 +19,7 @@
 -->
 
 
-<project name="Struts 2.0 'Shale' Proposal" default="library" basedir=".">
+<project name="Struts 2.X 'Shale' Proposal" default="library" basedir=".">
 
 
   <!-- ===================== Initialize Property Values ==================== -->
@@ -36,7 +36,6 @@
   <property name="jsf.home"         value="/usr/local/jsf-1_1_01"/>
   <property name="junit.home"       value="/usr/local/junit-3.8.1"/>
   <property name="server.home"      value="/usr/local/jakarta-tomcat-5.0.28"/>
-  <property name="struts.home"      value="/usr/local/jakarta-struts"/>
 
 
   <!-- Dependency library defaults -->
@@ -76,7 +75,7 @@
   <!-- Build Defaults -->
   <property name="build.home"      value="${basedir}/target"/>
   <property name="dist.home"       value="${basedir}/dist"/>
-  <property name="project.name"    value="Struts 2.0 'Shale' Proposal"/>
+  <property name="project.name"    value="Struts 2.X 'Shale' Proposal"/>
   <property name="project.package" value="org.apache.shale"/>
   <property name="project.version" value="0.1-dev"/>
 
@@ -150,10 +149,6 @@
     <echo  message="jsf-impl.jar =   ${jsf-impl.jar}"/>
     <echo  message="jsfri.present =  ${jsfri.present}"/>
     <echo  message="myfaces.present= ${myfaces.present}"/>
-    <echo  message="jsp-api.jar = ${server.home}/common/lib/jsp-api.jar"/>
-    <echo  message="junit.jar = ${junit.home}/junit.jar"/>
-    <echo  message="servlet-api.jar = ${server.home}/common/lib/servlet-api.jar"/>
-    <echo  message="commons-logging.jar = ${commons-logging.jar}"/>
   </target>
 
 
