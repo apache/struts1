@@ -18,7 +18,7 @@
 <section href="status" name="Development Roadmap">
 
     <p>
-    <font size="-2">$Id: status.xml,v 1.18 2002/12/01 16:03:21 husted Exp $</font>
+    <font size="-2">$Id: status.xml,v 1.19 2002/12/24 19:23:14 craigmcc Exp $</font>
     </p>
 
     <p>
@@ -69,12 +69,15 @@
 
         <li>
         Other routine changes per
-        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;amp;bug_status=NEW&amp;amp;bug_status=ASSIGNED&amp;amp;bug_status=REOPENED&amp;amp;email1=&amp;amp;emailtype1=substring&amp;amp;emailassigned_to1=1&amp;amp;email2=&amp;amp;emailtype2=substring&amp;amp;emailreporter2=1&amp;amp;bugidtype=include&amp;amp;bug_id=&amp;amp;changedin=&amp;amp;votes=&amp;amp;chfieldfrom=&amp;amp;chfieldto=Now&amp;amp;chfieldvalue=&amp;amp;product=Struts&amp;amp;version=Unknown&amp;amp;version=1.0.1+Final&amp;amp;version=1.0+Final&amp;amp;version=1.0+Beta+3&amp;amp;version=1.0+Beta+2&amp;amp;version=1.0+Beta+1&amp;amp;version=0.5+Final&amp;amp;version=1.0.2+Final&amp;amp;version=1.1+Beta+1&amp;amp;version=1.1+Beta+2&amp;amp;version=Nightly+Build&amp;amp;short_desc=&amp;amp;short_desc_type=allwordssubstr&amp;amp;long_desc=&amp;amp;long_desc_type=allwordssubstr&amp;amp;bug_file_loc=&amp;amp;bug_file_loc_type=allwordssubstr&amp;amp;keywords=&amp;amp;keywords_type=anywords&amp;amp;field0-0-0=noop&amp;amp;type0-0-0=noop&amp;amp;value0-0-0=&amp;amp;cmdtype=doit&amp;amp;order=Bug+Number">
-        Bugzilla</a> and 
-        <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41">Dev list</a>
+        <a href="http://issues.apache.org/bugzilla/">Bugzilla</a> and the
+        <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41">
+        Developer mailing list</a>.
         </li>
 
     </ul>
+
+    <p>A live query of the current outstanding bugs can be found
+       <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;order=%27Importance%27">here</a>.</p>
 
 </section>
 
@@ -83,7 +86,8 @@
     <p>
     Struts 1.2.x will include additional functional enhancements along the 
     same lines as Struts 1.1, such as the items marked
-    <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Unknown&amp;version=1.0+Beta+2&amp;version=1.0+Beta+1&amp;version=0.5+Final&amp;version=1.0.2+Final&amp;version=1.0.1+Final&amp;version=1.0+Final&amp;version=1.0+Beta+3&amp;version=1.1+Beta+2&amp;version=1.1+Beta+1&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">LATER in Bugzilla</a>.
+    <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=%27Importance%27">
+    LATER or REMIND in Bugzilla</a>.
     The platform requirements will remain the same (Servlet 2.2 / JSP 1.1). 
     The release will focus on refactoring of existing functionality, with a 
     continued emphasis on backward compatibility.
