@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <meta name=Generator content="Microsoft Word 10 (filtered)">
-<title>Tiles Framework</title>
+<title>JSP Framework</title>
 
 <style>
 <!--
@@ -284,7 +284,7 @@ Tutorial v0.</span></a><span lang=EN-US>4</span></p>
 lang=EN-US>14 Nov. 2000</span></p>
 
 <p class=MsoFooter align=center style='text-align:center'><span lang=EN-US>Rev
-: </span><span lang=EN-US>1 Aug. 2001</span></p>
+: </span><span lang=EN-US>9 Sep. 2001</span></p>
 
 <p class=MsoFooter align=center style='text-align:center'><span lang=EN-US>&nbsp;</span></p>
 
@@ -3072,33 +3072,35 @@ dir=LTR><span lang=EN-US>View Sources Component</span></span></a></h2>
 
 <h2><a name="_Toc521292391"></a><a name="_Toc513222198"><span lang=EN-US>7.3<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
-dir=LTR><span lang=EN-US>Body Including Twice the Same Component</span></span></a></h2>
+dir=LTR><span lang=EN-US>Body Including Twice (or more) the Same </span></span></a><span
+lang=EN-US>Tile</span></h2>
 
-<p class=MsoBodyText><span lang=EN-US>Covered topics : use of sub-component in
-a component.</span></p>
+<p class=MsoBodyText><span lang=EN-US>Covered topics : use of sub-Tiles in a Tile.</span></p>
 
 <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
 
 <p class=MsoNormal><span lang=EN-US>In this chapter you will learn how to write
-components that can be reused more than one time in a page. As example, we
-develop an “address” component, included two times in an “invoice”. </span></p>
+Tiles that can be reused more than one time in a page. As example, we develop
+an “address” Tile, included two times in an “invoice”. </span></p>
 
 <p class=MsoNormal><span lang=EN-US>Problems come when you have input fields in
-the <i>address</i> component : how to have two different names while using one
-component description ? As a solution, you will provide names prefixed with a
-component’s name. This later is passed as a parameter of the component.</span></p>
+the <i>address</i> tile : how to have two different names for input while using
+the same tile description ? As a solution, you will prefix input field names by
+a prefix pass as parameter to the Tile.</span></p>
 
 <p class=MsoNormal><span lang=EN-US>Second difficulty is how to retrieve data
-to be shown in the <i>address</i> component ? Here, you will pass a Java object
-of class “Address”, and deal with it in the <i>address</i> component.</span></p>
+to be shown in the <i>address</i> <i>Tile</i> ? Here, you will pass Java bean (Java
+object), and deal with it in the <i>address</i> component. Data to be edited
+must be accessible from the bean using the prefix and the property name/</span></p>
 
 <p class=MsoNormal><span lang=EN-US>All Java classes are already written and
-compiled for you. You can check sources from the Component Library
-distribution, under directory </span><span class=code><span lang=EN-US
-style='font-size:10.0pt'>src/s1/example/invoice</span></span><span lang=EN-US>.</span></p>
+compiled for you. You can check sources from the Tile Library distribution,
+under directory </span><span class=code><span lang=EN-US style='font-size:10.0pt'>src/org/apache/struts/example/invoice</span></span><span
+lang=EN-US>.</span></p>
 
 <h3><a name="_Toc513222199"><span lang=EN-US>7.3.1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span dir=LTR><span lang=EN-US>Address Component</span></span></a></h3>
+</span></span><span dir=LTR><span lang=EN-US>Address </span></span></a><span
+lang=EN-US>Tile</span></h3>
 
 <p class=MsoNormal><span lang=EN-US>Create a new file and save it under </span><span
 class=code><span lang=EN-US style='font-size:10.0pt'>invoice/editAddress.jsp</span></span><span
@@ -3108,7 +3110,7 @@ lang=EN-US>.</span></p>
 columns : one containing fields names, one containing html input fields. Use
 Struts tags “text” for the input fields.</span></p>
 
-<p class=MsoNormal><span lang=EN-US>Following is the code for this component :</span></p>
+<p class=MsoNormal><span lang=EN-US>Following is the code for this tile :</span></p>
 
 <div style='border:solid windowtext 1.0pt;padding:1.0pt 1.0pt 1.0pt 1.0pt'>
 
@@ -3116,10 +3118,7 @@ Struts tags “text” for the input fields.</span></p>
 taglib uri=&quot;/WEB-INF/tiles.tld&quot;    prefix=&quot;tiles&quot; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
-taglib uri=&quot;/WEB-INF/extensions.tld&quot;    prefix=&quot;ext&quot; %&gt;</span></p>
-
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
-taglib uri=&quot;/WEB-INF/struts.tld&quot; prefix=&quot;struts&quot; %&gt;</span></p>
+taglib uri=&quot;/WEB-INF/struts-html.tld&quot; prefix=&quot;html&quot; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
 taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;</span></p>
@@ -3130,11 +3129,10 @@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;</s
 Edit an Address object</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-@param address An address object to edit.</span></p>
+@param bean An address object to edit.</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-@param compName UI Component name. Use as prefix for html fields and
-sub-components</span></p>
+@param beanName The path to add between the bean and the properties to edit.</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>--%&gt;</span></p>
 
@@ -3143,18 +3141,21 @@ Retrieve parameters from component context, and declare them as page variable
 --%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;tiles:useAttribute
-id=&quot;addr&quot; name=&quot;address&quot; scope=&quot;page&quot;/&gt;</span></p>
+id=&quot;beanName&quot; name=&quot;property&quot;
+classname=&quot;java.lang.String&quot; ignore=&quot;true&quot; /&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;tiles:useAttribute
-id=&quot;prefix&quot; name=&quot;compName&quot;
-classname=&quot;String&quot;/&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;tiles:importAttribute
+name=&quot;bean&quot; /&gt;</span></p>
+
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%--
-Add a separator tothe component name, in order to have html fields prefix name
-: 'compName.'--%&gt;</span></p>
+Add a '.' separator to the path (beanName), in order to access the property
+from the given bean --%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%
-prefix = prefix + &quot;.&quot;; %&gt;</span></p>
+if( beanName == null ) beanName = &quot;&quot;; else if (beanName
+!=&quot;&quot; ) beanName = beanName + &quot;.&quot;; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
@@ -3182,14 +3183,21 @@ Street</span></p>
 &lt;%-- Declare an html input field.                                                                             --%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;%-- We use a tag that extends Struts 'text' tag. This extension add          --%&gt;</span></p>
+&lt;%-- We use the bean passed as parameter.                                                             --%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;%-- attribute 'prefix', allowing to give a prefix to the normal name         --%&gt;</span></p>
+&lt;%-- Property name is prefixed by the sub-bean name if any.                      
+--%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;ext:text name=&quot;addr&quot; prefix=&quot;&lt;%=prefix%&gt;&quot;
-property=&quot;street1&quot; size=&quot;50&quot;/&gt;</span></p>
+</span></p>
+
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
+&lt;html:text name=&quot;bean&quot; property='&lt;%=beanName+&quot;street1&quot;%&gt;'
+size=&quot;50&quot;/&gt;</span></p>
+
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
+</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
@@ -3215,8 +3223,8 @@ Street (con't)</span></p>
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;ext:text prefix=&quot;&lt;%=prefix%&gt;&quot; name=&quot;addr&quot;
-property=&quot;street2&quot; size=&quot;50&quot;/&gt;</span></p>
+&lt;html:text property='&lt;%=beanName+&quot;street2&quot;%&gt;'
+size=&quot;50&quot;/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
@@ -3242,8 +3250,8 @@ City</span></p>
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;ext:text prefix=&quot;&lt;%=prefix%&gt;&quot; name=&quot;addr&quot;
-property=&quot;city&quot; size=&quot;50&quot;/&gt;</span></p>
+&lt;html:text name=&quot;bean&quot;
+property='&lt;%=beanName+&quot;city&quot;%&gt;' size=&quot;50&quot;/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
@@ -3269,8 +3277,8 @@ Country</span></p>
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;ext:text prefix=&quot;&lt;%=prefix%&gt;&quot; name=&quot;addr&quot;
-property=&quot;country&quot; size=&quot;50&quot;/&gt;</span></p>
+&lt;html:text property='&lt;%=beanName+&quot;country&quot;%&gt;'
+size=&quot;50&quot;/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
@@ -3296,8 +3304,8 @@ Zip code</span></p>
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;ext:text prefix=&quot;&lt;%=prefix%&gt;&quot; name=&quot;addr&quot;
-property=&quot;zipCode&quot; size=&quot;50&quot;/&gt;</span></p>
+&lt;html:text property='&lt;%=beanName+&quot;zipCode&quot;%&gt;'
+size=&quot;50&quot;/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
@@ -3311,63 +3319,62 @@ property=&quot;zipCode&quot; size=&quot;50&quot;/&gt;</span></p>
 
 </div>
 
-<p class=MsoNormal><span lang=EN-US>In this code, Struts “struts:text” tags are
-replaced by “ext:text” tags. This new tag is an extension of struts one,
-allowing addition of a prefix to the html input name. This tag will be
-integrated to Struts one when the Component Library will be.</span></p>
+<p class=MsoNormal><span lang=EN-US>This Tile takes two parameters : </span></p>
 
-<p class=MsoNormal><span lang=EN-US>Prefix is computed at the beginning of the
-component, just after parameters retrieval.</span></p>
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal><span lang=EN-US>beanName : the path from the bean to the
+     properties to edit. This path is the name(s) of sub-bean(s) containing
+     properties.</span></li>
+ <li class=MsoNormal><span lang=EN-US>bean : the root bean exposing data to
+     edit</span></li>
+</ul>
 
-<p class=MsoNormal><span lang=EN-US>Name of generated html input tag will be
-“compName.fieldname”. This will allows to retrieve value in the controller.</span></p>
+<p class=MsoNormal><span lang=EN-US>First, we retrieve parameters, then we
+compute the prefix if any.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>Names of generated html input tags will be
+“beanName.fieldname”. This will allows to retrieve value in the controller.</span></p>
 
 <h3><a name="_Toc513222200"><span lang=EN-US>7.3.2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span dir=LTR><span lang=EN-US>Invoice Component</span></span></a></h3>
+</span></span><span dir=LTR><span lang=EN-US>Invoice </span></span></a><span
+lang=EN-US>Tile</span></h3>
 
 <p class=MsoNormal><span lang=EN-US>Create a new file and save it under </span><span
 class=code><span lang=EN-US style='font-size:10.0pt'>invoice/editInvoice.jsp</span></span><span
 lang=EN-US>.</span></p>
 
 <p class=MsoNormal><span lang=EN-US>This invoice contains two times the address
-component, and two html input fields :</span></p>
+tile, and two html input fields :</span></p>
 
 <div style='border:solid windowtext 1.0pt;padding:1.0pt 1.0pt 1.0pt 1.0pt'>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=FR-BE>&lt;%@
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
 page language=&quot;java&quot; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
 taglib uri=&quot;/WEB-INF/tiles.tld&quot;    prefix=&quot;tiles&quot; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
-taglib uri=&quot;/WEB-INF/struts.tld&quot; prefix=&quot;struts&quot; %&gt;</span></p>
+taglib uri=&quot;/WEB-INF/struts-html.tld&quot; prefix=&quot;html&quot; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;%@
 taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;struts:errors/&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;html:errors/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;struts:form
-action=&quot;editInvoice.do&quot; name=&quot;invoiceForm&quot; </span></p>
-
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>            
-type=&quot;s1.struts.example.invoice.InvoiceForm&quot;&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;html:form
+action=&quot;/tutorial/invoice/editInvoice.do&quot; &gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;bean:define
-id=&quot;invoiceForm&quot; name=&quot;invoiceForm&quot;
-type=&quot;s1.struts.example.invoice.InvoiceForm&quot; /&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;font
+size=&quot;+1&quot;&gt;Edit Customer Informations&lt;/font&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;h1&gt;Edit
-Customer Informations&lt;/h1&gt;</span></p>
-
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>                          
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>                          
 </span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;table
@@ -3391,13 +3398,12 @@ First Name</span></p>
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;struts:text property=&quot;firstname&quot; size=&quot;50&quot;/&gt;</span></p>
+&lt;html:text property=&quot;firstname&quot; size=&quot;50&quot;/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
@@ -3417,13 +3423,12 @@ Last Name</span></p>
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;struts:text property=&quot;lastname&quot; size=&quot;50&quot;/&gt;</span></p>
+&lt;html:text property=&quot;lastname&quot; size=&quot;50&quot;/&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> </span></p>
 
@@ -3442,38 +3447,33 @@ Shipping Address</span></p>
 &lt;/th&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
-&lt;td align=&quot;left&quot;&gt;</span></p>
+&lt;td align=&quot;left&quot;&gt;&amp;nbsp;&lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&amp;nbsp;</span></p>
-
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
-&lt;/td&gt;</span></p>
-
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
 &lt;tr&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>    &lt;td
-align=&quot;center&quot; colspan=&quot;2&quot;&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
+&lt;td align=&quot;center&quot; colspan=&quot;2&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;%-- Include an &quot;address editor&quot; component.                   --%&gt;</span></p>
+&lt;%-- Include an &quot;address editor&quot; component.                   --%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
 &lt;%-- Pass the component name and component value as parameter --%&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
-&lt;tiles:insert page=&quot;/invoice/editAddress.jsp&quot; &gt;</span></p>
+&lt;%-- Value comes from the form bean --%&gt;</span></p>
+
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
+&lt;tiles:insert page=&quot;/tutorial/invoice/editAddress2.jsp&quot; &gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>           
-&lt;tiles:put name=&quot;compName&quot; value=&quot;shippingAddress&quot; /&gt;</span></p>
+&lt;tiles:put name=&quot;property&quot; value=&quot;shippingAddress&quot; /&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>           
-&lt;tiles:put name=&quot;address&quot; value=&quot;&lt;%=invoiceForm.getShippingAddress()%&gt;&quot;
-/&gt;</span></p>
+&lt;tiles:put name=&quot;bean&quot; beanName=&quot;invoiceForm&quot;  /&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
 &lt;/tiles:insert&gt;</span></p>
@@ -3481,8 +3481,7 @@ align=&quot;center&quot; colspan=&quot;2&quot;&gt;</span></p>
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
@@ -3507,8 +3506,7 @@ Billing Address</span></p>
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
 &lt;tr&gt;</span></p>
@@ -3516,98 +3514,92 @@ Billing Address</span></p>
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;td align=&quot;center&quot; colspan=&quot;2&quot;&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;tiles:insert
-page=&quot;/invoice/editAddress.jsp&quot; &gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>      &lt;tiles:insert
+page=&quot;/tutorial/invoice/editAddress2.jsp&quot; &gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
-&lt;tiles:put name=&quot;compName&quot; value=&quot;billAddress&quot; /&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>        &lt;tiles:put
+name=&quot;property&quot; value=&quot;billAddress&quot; /&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
-&lt;tiles:put name=&quot;address&quot; value=&quot;&lt;%=invoiceForm.getBillAddress()%&gt;&quot;
-/&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>        &lt;tiles:put
+name=&quot;bean&quot; beanName=&quot;invoiceForm&quot; /&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tiles:insert&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>      &lt;/tiles:insert&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&nbsp;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
 &lt;tr&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>    &lt;td
-align=&quot;right&quot;&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
+&lt;td align=&quot;right&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;struts:submit&gt;</span></p>
+&lt;html:submit&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
 save</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;/struts:submit&gt;</span></p>
+&lt;/html:submit&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;struts:submit&gt;</span></p>
+&lt;html:submit&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
 confirm</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;/struts:submit&gt;</span></p>
+&lt;/html:submit&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
-&lt;/td&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>    &lt;/td&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;td align=&quot;left&quot;&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;struts:reset&gt;</span></p>
+&lt;html:reset&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>         
 reset</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
-&lt;/struts:reset&gt;</span></p>
+&lt;/html:reset&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>     
 &amp;nbsp;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>     
-&lt;struts:cancel&gt;</span></p>
+&lt;html:cancel&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>       
 cancel</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>     
-&lt;/struts:cancel&gt;</span></p>
+&lt;/html:cancel&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>   
 &lt;/td&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US> 
-&lt;/tr&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>  &lt;/tr&gt;</span></p>
 
 <p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;/table&gt;</span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>                          
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>                          
 </span></p>
 
-<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;/struts:form&gt;</span></p>
+<p class=CodewithBorder style='border:none;padding:0cm'><span lang=EN-US>&lt;/html:form&gt;</span></p>
 
 </div>
 
-<p class=MsoNormal><span lang=EN-US>You include an address component where you
-want it to reside. You pass it its name, and the Java object containing values.
-This object comes from “invoiceForm” object, and is retrieved using getter
-method. Don’t forget to provide two different name for each component included
-!</span></p>
+<p class=MsoNormal><span lang=EN-US>You insert an address <i>Tile</i> where you
+want it to reside. You pass it its name, and the Java bean containing values.
+This bean comes from “invoiceForm” object, and is retrieved using getter
+method. Don’t forget to provide two different name for each Tile inserted !</span></p>
 
 <h3><a name="_Toc513222201"><span lang=EN-US>7.3.3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span dir=LTR><span lang=EN-US>Try Your Page</span></span></a></h3>
@@ -3638,9 +3630,20 @@ name=&quot;body&quot; value=&quot;/tutorial/invoice/editInvoice.jsp&quot; /&gt;<
 
 <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
 
-<h1><a name="_Toc521292392"></a><a name="_Toc513222202"><span lang=EN-US>8<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span dir=LTR><span lang=EN-US>Internationalization (i18n)</span></span></a></h1>
+<h3><a name="_Toc521292392"></a><a name="_Toc513222202"><span lang=EN-US>7.3.4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+dir=LTR><span lang=EN-US>Variant</span></span></a></h3>
+
+<p class=MsoNormal><span lang=EN-US>If you don't like to use scriplets (&lt;%= …%&gt;)
+inside your tags, you can extend Struts tags to add a 'prefix' attribute. This
+solution was used in an older example accessible in the invoice directory (editAddress2.jsp
+and editInvoice2.jsp).</span></p>
+
+<p class=MsoNormal><span lang=EN-US>As example, we provide an extended version
+of tag text, available in library &quot;extensions.tld&quot;.</span></p>
+
+<h1><span lang=EN-US>8<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR><span lang=EN-US>Internationalization (i18n)</span></span></h1>
 
 <p class=MsoBodyText><span lang=EN-US>Covered topics : use of i18n description
 files.</span></p>
