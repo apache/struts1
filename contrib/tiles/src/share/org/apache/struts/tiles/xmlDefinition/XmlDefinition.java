@@ -127,8 +127,11 @@ public class XmlDefinition extends ComponentDefinition
       if( !getAttributes().containsKey(name) )
         putAttribute( name, parent.getAttribute(name) );
       }
-      // Set path
-    setPath( parent.getPath() );
+      // Set path and role if not setted
+    if( path == null )
+      setPath( parent.getPath() );
+    if( role == null )
+      setRole( parent.getRole() );
     }
 
   /**
