@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.32 2003/07/27 07:13:04 rleland Exp $
- * $Revision: 1.32 $
- * $Date: 2003/07/27 07:13:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.33 2003/08/07 00:48:59 dgraham Exp $
+ * $Revision: 1.33 $
+ * $Date: 2003/08/07 00:48:59 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.32 $ $Date: 2003/07/27 07:13:04 $
+ * @version $Revision: 1.33 $ $Date: 2003/08/07 00:48:59 $
  */
 public abstract class BaseHandlerTag extends BodyTagSupport {
 
@@ -98,6 +98,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
     /**
      * The default Locale for our server.
+     * @deprecated Use Locale.getDefault() directly.
      */
     protected static final Locale defaultLocale = Locale.getDefault();
 
@@ -118,8 +119,8 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     //  Indexing ability for Iterate
 
     /** Whether to created indexed names for fields
-      * @since Struts 1.1
-      */
+     * @since Struts 1.1
+     */
     protected boolean indexed = false;
 
     //  Mouse Events
@@ -236,15 +237,15 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     //  Indexing ability for Iterate [since Struts 1.1]
 
     /** Sets the indexed value.
-      * @since Struts 1.1
-      */
+     * @since Struts 1.1
+     */
     public void setIndexed(boolean indexed) {
         this.indexed = indexed;
     }
 
     /** Returns the indexed value.
-      * @since Struts 1.1
-      */
+     * @since Struts 1.1
+     */
     public boolean getIndexed() {
         return (this.indexed);
     }
@@ -719,13 +720,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             styles.append(getStyleId());
             styles.append("\"");
         }
-        value = message(title, titleKey);
+        value = message(this.getTitle(), this.getTitleKey());
         if (value != null) {
             styles.append(" title=\"");
             styles.append(value);
             styles.append("\"");
         }
-        value = message(alt, altKey);
+        value = message(this.getAlt(), this.getAltKey());
         if (value != null) {
             styles.append(" alt=\"");
             styles.append(value);
