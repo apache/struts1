@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.5 2000/07/17 16:37:46 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/07/17 16:37:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.6 2000/07/18 05:35:12 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/18 05:35:12 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/07/17 16:37:46 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/18 05:35:12 $
  */
 
 public class Link1Tag extends TagSupport {
@@ -340,6 +340,8 @@ public class Link1Tag extends TagSupport {
      */
     protected String hyperlink() throws JspException {
 
+	String href = this.href;
+
 	// If "forward" was specified, compute the "href" to forward to
 	if (forward != null) {
 	    ActionForwards forwards = (ActionForwards)
@@ -354,7 +356,7 @@ public class Link1Tag extends TagSupport {
 		    (messages.getMessage("linkTag.forward"));
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
-	    this.href = request.getContextPath() + forward.getPath();
+	    href = request.getContextPath() + forward.getPath();
 	}
 
 	// Just return the "href" attribute if there is no bean to look up

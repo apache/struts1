@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.8 2000/07/17 16:37:47 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/07/17 16:37:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.9 2000/07/18 05:35:12 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/07/18 05:35:12 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/07/17 16:37:47 $
+ * @version $Revision: 1.9 $ $Date: 2000/07/18 05:35:12 $
  */
 
 public class LinkTag extends TagSupport {
@@ -339,6 +339,8 @@ public class LinkTag extends TagSupport {
      */
     protected String hyperlink() throws JspException {
 
+	String href = this.href;
+
 	// If "forward" was specified, compute the "href" to forward to
 	if (forward != null) {
 	    ActionForwards forwards = (ActionForwards)
@@ -353,7 +355,7 @@ public class LinkTag extends TagSupport {
 		    (messages.getMessage("linkTag.forward"));
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
-	    this.href = request.getContextPath() + forward.getPath();
+	    href = request.getContextPath() + forward.getPath();
 	}
 
 	// Just return the "href" attribute if there is no bean to look up
