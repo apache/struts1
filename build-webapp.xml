@@ -291,6 +291,10 @@
      deprecation="${compile.deprecation}"
         optimize="${compile.optimize}">
     <classpath refid="classpath"/>
+    <!-- Excludes for tiles-documentation to reflect the fact that
+         Commons Digester 1.6 no longer ships the RSS demo classes
+    -->
+    <exclude name="org/apache/struts/webapp/tiles/rssChannel/*.java"/>
   </javac>
   <copy    todir="${webapp.target}/WEB-INF/classes">
     <fileset dir="${webapp.src}">
