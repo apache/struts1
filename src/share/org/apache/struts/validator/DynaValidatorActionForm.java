@@ -51,8 +51,8 @@
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  */
- 
- 
+
+
 package org.apache.struts.validator;
 
 import java.io.Serializable;
@@ -72,13 +72,13 @@ import org.apache.struts.util.StrutsValidatorUtil;
 
 
 /**
- * <p>This class extends <strong>DynaValidatorForm/strong> and provides 
- * basic field validation based on an XML file.  The key passed into the 
- * validator is the action element's 'path' attribute from the 
- * struts-config.xml which should match the form element's name attribute 
+ * <p>This class extends <strong>DynaValidatorForm</strong> and provides
+ * basic field validation based on an XML file.  The key passed into the
+ * validator is the action element's 'path' attribute from the
+ * struts-config.xml which should match the form element's name attribute
  * in the validation.xml.</p>
  *
- * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
+ * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
  * @since 1.1
@@ -106,13 +106,13 @@ public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBe
                                  HttpServletRequest request) {
 
         ServletContext application = getServlet().getServletContext();
-        ActionErrors errors = new ActionErrors();	
-	
-	Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(), 
+        ActionErrors errors = new ActionErrors();
+
+	Validator validator = StrutsValidatorUtil.initValidator(mapping.getPath(),
 	                                                        this,
-	                                                        application, request, 
+	                                                        application, request,
 	                                                        errors, page);
-	
+
 	try {
 	   validator.validate();
         } catch (ValidatorException e) {
