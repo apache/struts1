@@ -25,7 +25,6 @@ import org.apache.commons.chain.Filter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.Constants;
-import org.apache.struts.chain.Constants;
 
 
 /**
