@@ -251,7 +251,7 @@
 
     <p>
     If the <a href="struts-html.html#javascript">Javascript Tag</a> is used,
-    the client side Javascript  eneration looks for a value in the validator's
+    the client side Javascript generation looks for a value in the validator's
     javascript attribute and generates an object that the supplied method can
     use to validate the form.
     For a more detailed explanation of how the Javascript Validator Tag works,
@@ -341,9 +341,9 @@
     <p>
     The field element has an optional page attribute.
     It can be set to an integer.
-    All validation for the any field page value less than or equal to the
+    All validation for any field on a page less than or equal to the
     current page is performed server side.
-    All validation for the any field page equal to the current page is
+    All validation for any field on a page equal to the current page is
     generated for the client side Javascript.
     A mutli-part form expects the page attribute to be set.
     </p>
