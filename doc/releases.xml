@@ -34,7 +34,7 @@
           <li><strong>Distributing</strong> - Checksum, sign, mirror, update download page, announce.</li>
         </ul></li>
         <li>Committers are <b>required</b> to post a release plan before tagging the repository and should wait the traditional 72 hours before proceeding.</li>
-        <li>A checklist format can be used for the <a href="http://wiki.apache.org/struts/StrutsRelease125">release plan</a>, to help step through the process. The plan may be maintained in the repository or on the <a href="http://wiki.apache.org/struts/">Struts wiki</a>.</li>
+        <li>A checklist format can be used for the <a href="http://wiki.apache.org/struts/StrutsRelease126">release plan</a>, to help step through the process. The plan may be maintained in the repository or on the <a href="http://wiki.apache.org/struts/">Struts wiki</a>.</li>
         <li>Our dependencies on external JARs (including Commons JARs) should be in line with our own release status. Our nightly build can be dependant on another nightly build. Our beta can be dependant on another beta (or "release candidate"), but should avoid a dependance on a nightly build.
         Our General Availability release may only have dependencies on other GA, final, or stable releases.</li>
         <li>Use your own discretion as to detail needed by the Release Notes. A high-level description of the changes is more important than providing uninterpreted detail. At a minimum, new features and deprecations should be summarized, since these are commonly asked questions. Ideally, the release notes should be maintained continuously for the nightly build so that we they do not need to be assembled at the last minute.</li>
