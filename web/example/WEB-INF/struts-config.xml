@@ -113,7 +113,7 @@
     <action    path="/logon"
                type="org.apache.struts.webapp.example.LogonAction"
                name="logonForm"
-              scope="request"
+              scope="session"
               input="logon">
       <exception
                 key="expired.password"

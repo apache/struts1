@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.40 2002/07/25 00:53:45 jholmes Exp $
+$Id: STATUS,v 1.41 2002/07/27 18:55:56 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -43,7 +43,6 @@ Standard Actions:
 ----------------
 10322 Problems with LookupDispatchAction and other locales
 10953 sub-application loses message resource
-10979 DynaActionForm in session losts datas.
 
 
 Tiles Framework:
