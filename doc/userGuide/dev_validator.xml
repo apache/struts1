@@ -34,34 +34,387 @@
     </p>
 
     <p>
-    [:TODO: Cover basic functionality as documented on David's web site.
-    <a href="http://home.earthlink.net/~dwinterfeldt/">Validation Framework for
-    Struts </a>]
+    Once you have configured the Validator Plug-In, so that it can load your
+    Validator Resources you just have to extend
+    <code>org.apache.struts.validator.action.ValidatorForm</code> instead of
+    <code>org.apache.struts.action.ActionForm</code>.
+    Then when the <code>validate</code> method is called, the action's name
+    attribute from the struts-config.xml is used to load the validations for
+    the current form.
+    So the form element's <code>name</code> attribute in the
+    validator-rules.xml should match  action element's <code>name</code>
+    attribute.
     </p>
 
-<p>
-Changes in the validator behavior and deprecation of functionality from
-original validator
-</p>
+    <p>
+    Another alternative is to use the action mapping you are currently on by
+    extending the ValidatorActionForm instead of the ValidatorForm.
+    The ValidatorActionForm uses the action element's <code>path</code>
+    attribute from the struts-config.xml which should match the form element's
+    <code>name</code> attribute in the validator-rules.xml.
+    </p>
+
+    <p>
+    Then a separate action can be defined for each page in a multi-page form
+    and the validation rules can be associated with the action and not a page
+    number as in the example of a multi-page form in the validator example.
+    </p>
+
+</section>
+
+<section href="i18n" name="Internationalization">
+
+    <p>
+    Validation rules for forms can be grouped under a <code>FormSet</code>
+    element in the validator-rules.xml file.
+    The <code>FormSet</code> has language, country, and variant attributes that
+    correspond with the <code>java.util.Locale</code> class.
+    If they are not used, the <code>FormSet</code>  will be set to the default
+    locale.
+    A <code>FormSet</code>  can also have constants associated with it.
+    On the same level as a <code>FormSet</code>  there can be a global element
+    which can also have constants and have validator actions that perform
+    validations.
+    </p>
+
+    <p>
+    The default error message for a pluggable validator can be overriden with
+    the <code>msg</code> element.
+    So instead of using the <code>msg</code> attribute for the mask validator
+    to generate the error message the <code>msg</code> attribute from the
+    field will be used if the name of the field's name attribute matches the
+    validator's name attribute.
+    </p>
+
+<pre><code><![CDATA[
+<field
+    property="lastName"
+    depends="required,mask">
+    <msg
+        name="mask"
+        key="registrationForm.lastname.maskmsg"/>
+    <arg0 key="registrationForm.lastname.displayname"/>
+    <var>
+        <var-name>mask</var-name>
+        <var-value>^[a-zA-Z]*$</var-value>
+    </var>
+</field>
+]]></code></pre>
+
+    <p>
+    The arguments for error messages can be set with the arg0-arg3 elements.
+    If the arg0-arg3 elements' name attribute isn't set, it will become the
+    default arg value for the different error messages constructed.
+    If the name attribute is set, you can specify the argument for a specific
+    pluggable validator and then this will be used for constructing the error
+    message.
+    </p>
+
+<pre><code><![CDATA[
+<field
+    property="lastName"
+    depends="required,mask">
+    <msg
+        name="mask"
+        key="registrationForm.lastname.maskmsg"/>
+    <arg0 key="registrationForm.lastname.displayname"/>
+    <var>
+        <var-name>mask</var-name>
+        <var-value>^[a-zA-Z]*$</var-value>
+    </var>
+</field>
+]]></code></pre>
+
+    <p>
+    By default the arg0-arg3 elements will try to look up the <code>key</code>
+    attribute in the message resources.
+    If the resource attribute is set to false, it will pass in the value directly
+    without retrieving the value from the message resources.
+    </p>
+
+<pre><code><![CDATA[
+<field
+    property="integer"
+    depends="required,integer,range">
+    <arg0 key="typeForm.integer.displayname"/>
+    <arg1
+        name="range"
+        key="${var:min}"
+        resource="false"/>
+    <arg2
+        name="range"
+        key="${var:max}"
+        resource="false"/>
+    <var>
+        <var-name>min</var-name>
+        <var-value>10</var-value>
+    </var>
+    <var>
+        <var-name>max</var-name>
+        <var-value>20</var-value>
+    </var>
+    </field>
+]]></code></pre>
+
+</section>
+
+<section href="members" name="Constants/Variables">
+
+    <p>
+    Global constants can be inside the global tags and FormSet/Locale
+    constants can be created in the formset tags.
+    Constants are currently only replaced in the Field's property attribute,
+    the Field's var element value attribute, the Field's msg element key
+    attribute, and Field's arg0-arg3 element's key attribute.
+    A Field's variables can also be substituted in the arg0-arg3
+    elements (ex: ${var:min}).
+    The order of replacement is FormSet/Locale constants are replaced first,
+    Global constants second, and for the arg elements variables are replaced
+    last.
+    </p>
+
+<pre><code><![CDATA[
+<global>
+    <constant
+        name="zip"
+        value="^\d{5}(-\d{4})?$" />
+</global>
+
+<field
+   property="zip"
+   depends="required,mask">
+<arg0 key="registrationForm.zippostal.displayname"/>
+<var>
+ <var-name>mask</var-name>
+ <var-value>${zip}</var-value>
+</var>
+</field>
+]]></code></pre>
+
+    <p>
+    The var element under a field can be used to store variables for use by a
+    pluggable validator.
+    These variables are available through the Field's
+    <code>getVar(String key)</code> method.
+    </p>
+
+<pre><code><![CDATA[
+<field
+    property="integer"
+    depends="required,integer,range">
+    <arg0 key="typeForm.integer.displayname"/>
+    <arg1
+        name="range"
+        key="${var:min}"
+        resource="false"/>
+    <arg2
+        name="range"
+        key="${var:max}"
+        resource="false"/>
+    <var>
+        <var-name>min</var-name>
+        <var-value>10</var-value>
+    </var>
+    <var>
+        <var-name>max</var-name>
+        <var-value>20</var-value>
+    </var>
+    </field>
+]]></code></pre>
+
+</section>
+
+<section href="plugs" name="Pluggable Validators">
+
+    <p>
+    Validation actions are read from the validation.xml file.
+    The default actions are setup in the validation.xml file.
+    The ones currently configured are required, mask ,byte, short, int, long,
+    float, double, date (without locale support), and a numeric range.
+    </p>
+
+    <p>
+    The 'mask' action depends on required in the default setup.
+    That means that 'required' has to successfully completed before 'mask' will
+    run.
+    The 'required' and 'mask' action are partially built into the framework.
+    Any field that isn't 'required' will skip other actions if the field is null
+    or has a length of zero.
+    </p>
+
+    <p>
+    If the <a href="struts-html.html#javascript">Javascript Tag</a> is used,
+    the client side Javascript  eneration looks for a value in the validator's
+    javascript attribute and generates an object that the supplied method can
+    use to validate the form.
+    For a more detailed explanation of how the Javascript Validator Tag works,
+    see the <a href="struts-html.html">html taglib API reference</a>.
+    </p>
 
 
-<p>
-Struts 1.1 has also added additional functionality over the original validator
-contributed by David Winterfeldt.
-</p>
+    <p>
+    The 'mask' action lets you validate a regular expression mask to the field.
+    It uses the Regular Expression Package from the jakarta site.
+    All validation rules can be stored in the validator-rules.xml file.
+    The main class used is <code>org.apache.regexp.RE</code>.
+    </p>
 
-<ul>
+    <p>
+    Example Validator Configuration from validation.xml.
+    </p>
 
-<li>
-Conditionally required fields
-</li>
+<pre><code><![CDATA[
+<validator name="required"
+     classname="org.apache.struts.validator.util.StrutsValidatorUtil"
+     method="validateRequired"
+     msg="errors.required"/>
 
-<li>
-<code>intRange</code> &amp; <code>floatRange</code> methods in both JavaScript
-and Java
-</li>
+<validator name="mask"
+     classname="org.apache.struts.validator.util.StrutsValidatorUtil"
+     method="validateMask"
+     depends="required"
+     msg="errors.invalid"/>
+]]></code></pre>
 
-</ul>
+    <p>
+    <strong>Creating Pluggable Validators</strong>
+    </p>
+
+    <p>
+    The ValidatorAction method needs to have the following signature.
+    </p>
+
+<pre><code><![CDATA[
+(java.lang.Object,
+ org.apache.commons.validator.ValidatorAction,
+ org.apache.commons.validator.Field,
+ org.apache.struts.action.ActionErrors,
+ javax.servlet.http.HttpServletRequest,
+ javax.servlet.ServletContext)
+]]></code></pre>
+
+    <ul>
+
+        <li>
+        <code>java.lang.Object</code>
+        - Bean validation is being performed on.
+        </li>
+
+        <li>
+        <code>org.apache.commons.validator.ValidatorAction</code>
+        - The current ValidatorAction being performed.
+        </li>
+
+        <li>
+        <code>org.apache.commons.validator.Field</code>
+        - Field object being validated.
+        </li>
+
+        <li>
+        <code>org.apache.struts.action.ActionErrors</code>
+        - The errors objects to add an ActionError to if the validation fails.
+        </li>
+
+        <li>
+        <code>javax.servlet.http.HttpServletRequest</code>
+        - Current request object.
+        </li>
+
+        <li>
+        <code>javax.servlet.ServletContext</code>
+        - The application's ServletContext.
+        </li>
+
+    </ul>
+
+    <p>
+    <strong>Multi Page Forms</strong>
+    </p>
+
+    <p>
+    The field element has an optional page attribute.
+    It can be set to an integer.
+    All validation for the any field page value less than or equal to the
+    current page is performed server side.
+    All validation for the any field page equal to the current page is
+    generated for the client side Javascript.
+    A mutli-part form expects the page attribute to be set.
+    </p>
+
+<pre><code><![CDATA[
+<html:hidden property="page" value="1"/>
+]]></code></pre>
+
+    <p>
+    <strong>Comparing Two Fields</strong>
+    </p>
+
+    <p>
+    This is an example of how you could compare two fields to see if they
+    have the same value.
+    A good example of this is when you are validating a user changing their
+    password and there is the main password field and a confirmation field.
+    </p>
+
+<pre><code><![CDATA[
+<validator name="twofields"
+       classname="com.mysite.StrutsValidator"
+       method="validateTwoFields"
+       msg="errors.twofields"/>
+
+<field property="password"
+       depends="required,twofields">
+          <arg0 key="typeForm.password.displayname"/>
+          <var>
+             <var-name>secondProperty</var-name>
+             <var-value>password2</var-value>
+          </var>
+</field>
+]]></code></pre>
+
+<pre><code><![CDATA[
+public static boolean validateTwoFields(
+    Object bean,
+    ValidatorAction va, 
+    Field field,
+    ActionErrors errors,
+    HttpServletRequest request, 
+    ServletContext application) {
+
+    String value = ValidatorUtil.getValueAsString(
+        bean, 
+        field.getProperty());
+    String sProperty2 = field.getVarValue("secondProperty");
+    String value2 = ValidatorUtil.getValueAsString(
+        bean, 
+        sProperty2);
+
+    if (!GenericValidator.isBlankOrNull(value)) {
+       try {
+          if (!value.equals(value2)) {
+             errors.add(field.getKey(),
+                ValidatorUtil.getActionError(
+                    application,
+                    request,
+                    va,
+                    field));
+
+             return false;
+          }
+       } catch (Exception e) {
+             errors.add(field.getKey(),
+                ValidatorUtil.getActionError(
+                    application,
+                    request,
+                    va,
+                    field));
+             return false;
+       }
+    }
+
+    return true;
+}
+]]></code></pre>
 
 </section>
 
@@ -90,6 +443,15 @@ and Java
 </section>
 
 <section href="validator-changes" name="Changes and deprecations">
+
+    <p>
+    <strong>New tag attributes.</strong>
+    </p>
+
+    <p>
+    The <a href="struts-html.html#javascript">&lt;html:javascript&gt; tag</a>
+    has new attributes defined.
+    </p>
 
     <p>
     <strong>Validating against the DTD in the commons-validator.jar.</strong>
@@ -124,33 +486,13 @@ and Java
     </p>
 
     <p>
-    <strong>New tag attributes.</strong>
+    <strong>New range methods.</strong>
     </p>
 
     <p>
-    The <a href="struts-html.html#javascript">&lt;html:javascript&gt; tag</a>
-    has new attributes defined.
+    <code>intRange</code> &amp; <code>floatRange</code> methods in both
+    JavaScript and Java
     </p>
-
-    <p>
-    <strong>Deprecations.</strong>
-    </p>
-
-    <ul>
-
-        <li>
-        Deprecation of <code>range</code> methods in both JavaScript and Java.
-        </li>
-
-        <li>
-        Deprecation of StrutsValidator &amp; StrutsValidatorUtil.
-        </li>
-
-    </ul>
-
-</section>
-
-<section href="validator-new" name="New features">
 
     <p>
     <strong>Conditionally required fields.</strong>
@@ -293,6 +635,22 @@ and Java
     You can have an arbitrary number of fields by using the [n] syntax,
     the only restriction is that they must all be AND or OR, you can't mix.
     </p>
+
+    <p>
+    <strong>Deprecations.</strong>
+    </p>
+
+    <ul>
+
+        <li>
+        Deprecation of <code>range</code> methods in both JavaScript and Java.
+        </li>
+
+        <li>
+        Deprecation of StrutsValidator &amp; StrutsValidatorUtil.
+        </li>
+
+    </ul>
 
 </section>
 
