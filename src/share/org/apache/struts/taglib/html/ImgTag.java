@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.15 2002/01/13 03:38:38 craigmcc Exp $
- * $Revision: 1.15 $
- * $Date: 2002/01/13 03:38:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.16 2002/01/22 01:18:07 craigmcc Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/01/22 01:18:07 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -623,15 +623,10 @@ public class ImgTag extends BaseHandlerTag {
     /**
      * Return the specified src URL, modified as necessary with optional
      * request parameters.
-     * <p>
-     * This is based on the way a
-     * <a href="LinkTag.html#hyperlink">hyperlink</a>
-     * is generated for the <a href="LinkTag.html">LinkTag</a>.
      *
      * @param url The URL to be modified (or null if this url will not be used)
      *
      * @exception JspException if an error occurs preparing the URL
-     * @see LinkTag#hyperlink
      */
     protected String url(String url) throws JspException {
 

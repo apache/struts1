@@ -48,6 +48,14 @@
                                       of the Jakarta Commons POOL
                                       package (version 1.0 or later).
 
+        commons-services.jar          (required).  The path to the JAR file
+                                      of the Jakarta Commons SERVICES
+                                      package (version 1.0 or later).
+
+        commons-validator.jar         (required).  The path to the JAR file
+                                      of the Jakarta Commons VALIDATOR
+                                      package (version 1.0 or later).
+
         jdbc20ext.jar                 (required).  The path to the JAR file
                                       for the JDBC 2.0 Optional Package APIs.
 
@@ -163,8 +171,11 @@
       <pathelement location="${commons-digester.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-pool.jar}"/>
+      <pathelement location="${commons-services.jar}"/>
+      <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${jdbc20ext.jar}"/>
       <pathelement location="${servlet.jar}"/>
+      <pathelement location="${xerces.jar}"/>
     </path>
 
 
@@ -182,6 +193,8 @@
     <pathelement location="${commons-digester.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
     <pathelement location="${commons-pool.jar}"/>
+    <pathelement location="${commons-services.jar}"/>
+    <pathelement location="${commons-validator.jar}"/>
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${junit.jar}"/>
     <pathelement location="${jdbc20ext.jar}"/>
@@ -236,6 +249,10 @@
             tofile="${build.home}/library/commons-logging.jar"/>
         <copy file="${commons-pool.jar}"
             tofile="${build.home}/library/commons-pool.jar"/>
+        <copy file="${commons-services.jar}"
+            tofile="${build.home}/library/commons-services.jar"/>
+        <copy file="${commons-validator.jar}"
+            tofile="${build.home}/library/commons-validator.jar"/>
         <copy file="${jdbc20ext.jar}"
             tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
     </target>
@@ -304,7 +321,9 @@
             version="true"
             windowtitle="Apache Struts API Documentation"
             doctitle="&lt;h1&gt;Apache Struts Framework (Version ${project.version})&lt;/h1&gt;"
-            bottom="Copyright &#169; 2000-2001 - Apache Software Foundation"/>
+            bottom="Copyright &#169; 2000-2001 - Apache Software Foundation">
+            <classpath refid="compile.classpath"/>
+        </javadoc>
     </target>
 
 <!--

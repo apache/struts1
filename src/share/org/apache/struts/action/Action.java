@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.35 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.35 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.36 2002/01/22 01:18:07 craigmcc Exp $
+ * $Revision: 1.36 $
+ * $Date: 2002/01/22 01:18:07 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.35 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.36 $ $Date: 2002/01/22 01:18:07 $
  */
 
 public class Action {
@@ -518,8 +518,7 @@ public class Action {
      * skipped by the controller servlet.
      *
      * @param request The servlet request we are processing
-     * @see org.apache.struts.taglib.CancelTag
-     * @see org.apache.struts.action.ValidatingActionForm
+     * @see org.apache.struts.taglib.html.CancelTag
      */
     protected boolean isCancelled(HttpServletRequest request) {
 
