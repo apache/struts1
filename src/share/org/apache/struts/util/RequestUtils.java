@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.29 2002/02/26 03:38:57 dwinterfeldt Exp $
- * $Revision: 1.29 $
- * $Date: 2002/02/26 03:38:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.30 2002/03/01 06:24:00 martinc Exp $
+ * $Revision: 1.30 $
+ * $Date: 2002/03/01 06:24:00 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.29 $ $Date: 2002/02/26 03:38:57 $
+ * @version $Revision: 1.30 $ $Date: 2002/03/01 06:24:00 $
  */
 
 public class RequestUtils {
@@ -730,7 +730,9 @@ public class RequestUtils {
         if (bundle == null) {
             bundle = Action.MESSAGES_KEY;
             resources = (MessageResources)
-                pageContext.getAttribute(bundle);
+                pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
+
+
         }
         if (resources == null) {
             resources = (MessageResources)
@@ -1205,7 +1207,7 @@ public class RequestUtils {
                 context.getAttribute(name);
             String prefix = name.substring(Action.APPLICATION_KEY.length());
             if (prefix.length() > 0) {
-                list.add(name);
+                list.add(prefix);
             }
         }
         prefixes = (String[]) list.toArray(new String[list.size()]);
