@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.5 2002/12/17 00:57:36 cedric Exp $
- * $Revision: 1.5 $
- * $Date: 2002/12/17 00:57:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.6 2003/01/25 05:52:35 martinc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/01/25 05:52:35 $
  *
  * ====================================================================
  *
@@ -113,17 +113,6 @@ public class ComponentDefinition implements Serializable
    * Lazy creation : only on first request
    */
   private Controller controllerInstance;
-
-  /**
-   * Sets the value of the attributes property.
-   *
-   * @param aAttributes the new value of the attributes property
-   * @deprecated No replacement
-   */
-  private void setAttributes(Map aAttributes)
-    {
-    attributes = aAttributes;
-    }
 
   /**
    * Constructor.

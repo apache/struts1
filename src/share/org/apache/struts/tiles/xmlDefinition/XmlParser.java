@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.6 2002/12/11 06:30:21 martinc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/11 06:30:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.7 2003/01/25 05:52:35 martinc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/01/25 05:52:35 $
  *
  * ====================================================================
  *
@@ -371,7 +371,7 @@ public class XmlParser
   System.out.println( "Read file '" + filename  +"'" );
 
   InputStream input = null;
-  InputStream input2 = null;
+  // InputStream input2 = null;
     // Open file
     try
       {

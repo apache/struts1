@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.3 2002/10/10 16:32:27 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/10 16:32:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.4 2003/01/25 05:52:35 martinc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/01/25 05:52:35 $
  *
  * ====================================================================
  *
@@ -62,8 +62,6 @@
 
 package org.apache.struts.tiles;
 
-import org.apache.struts.tiles.DefinitionsUtil;
-import org.apache.struts.tiles.DefinitionsFactoryException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

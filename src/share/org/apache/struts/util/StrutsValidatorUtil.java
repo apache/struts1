@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.8 2002/11/22 05:15:39 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2002/11/22 05:15:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/StrutsValidatorUtil.java,v 1.9 2003/01/25 05:52:35 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/01/25 05:52:35 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.util.MessageResources;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorAction;
@@ -81,7 +80,7 @@ import org.apache.commons.validator.ValidatorResources;
  * @deprecated  As of Struts 1.1b3, replaced by {@link org.apache.struts.validator.Resources}
  * @author David Winterfeldt
  * @author Eddie Bush
- * @version $Revision: 1.8 $ $Date: 2002/11/22 05:15:39 $
+ * @version $Revision: 1.9 $ $Date: 2003/01/25 05:52:35 $
  * @since Struts 1.1
 */
 public class StrutsValidatorUtil  {
