@@ -22,7 +22,7 @@
   list. If there is a feature here that you need, or already have, please 
   start a thread and show us the code!</p>
 
-  <p align="center"><a href="userGuide/kickstart.html#release"><b>So, when is the next release coming out?</b></a></p>
+  <p align="center"><a href="../kickstart.html#release"><b>So, when is the next release coming out?</b></a></p>
 
   <p>An external development that is likely to affect the development of
   Struts 1.1 will be the emerging Standard Tag Library, being produced under
