@@ -245,13 +245,17 @@ public class ErrorsTag extends TagSupport {
                 results.append(message);
             }
             
-            message =
-                TagUtils.getInstance().message(
-                    pageContext,
-                    bundle,
-                    locale,
-                    report.getKey(),
-                    report.getValues());
+            if (report.isResource()) {
+                message =
+                    TagUtils.getInstance().message(
+                        pageContext,
+                        bundle,
+                        locale,
+                        report.getKey(),
+                        report.getValues());
+            } else {
+                message = report.getKey();
+            }
                     
             if (message != null) {
                 results.append(message);

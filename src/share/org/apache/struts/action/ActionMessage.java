@@ -110,6 +110,20 @@ public class ActionMessage implements Serializable {
 
         this.key = key;
         this.values = values;
+        this.resource = true;
+
+    }
+
+    /**
+     * <p>Construct an action message with the specified replacement values.</p>
+     *
+     * @param key Message key for this message
+     * @param resource Indicates whether the key is a bundle key or literal value
+     */
+    public ActionMessage(String key, boolean resource) {
+ 
+        this.key = key;
+        this.resource = resource;
 
     }
 
@@ -127,6 +141,11 @@ public class ActionMessage implements Serializable {
      * <p>The replacement values for this mesasge.</p>
      */
     protected Object values[] = null;
+
+    /**
+     * <p>Indicates whether the key is taken to be as a  bundle key [true] or literal value [false].</p>
+     */
+    protected boolean resource = true;
 
 
     // --------------------------------------------------------- Public Methods
@@ -148,6 +167,16 @@ public class ActionMessage implements Serializable {
     public Object[] getValues() {
 
         return (this.values);
+
+    }
+
+
+    /**
+     * <p>Indicate whether the key is taken to be as a  bundle key [true] or literal value [false].</p>
+     */
+    public boolean isResource() {
+
+        return (this.resource);
 
     }
     

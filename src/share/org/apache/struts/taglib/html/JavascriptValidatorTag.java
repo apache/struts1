@@ -27,12 +27,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.validator.Field;
+import org.apache.commons.validator.Msg;
 import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
@@ -322,6 +325,20 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
+     * Sets the servlet context attribute key for our resources.
+     */
+    public String getBundle() {
+        return bundle;
+    }
+
+    /**
+     * Gets the servlet context attribute key for our resources.
+     */
+    public void setBundle(String bundle) {
+        this.bundle = bundle;
+    }
+
+    /**
      * Render the JavaScript for to perform validations based on the form name.
      *
      * @exception JspException if a JSP exception has occurred
@@ -408,10 +425,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         StringBuffer results = new StringBuffer();
 
-        MessageResources messages =
-            (MessageResources) pageContext.getAttribute(
-                bundle + config.getPrefix(),
-                PageContext.APPLICATION_SCOPE);
+        MessageResources messages = 
+            TagUtils.getInstance().retrieveMessageResources(pageContext, bundle, true);
+ 
+        HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+        ServletContext application = pageContext.getServletContext();
 
         List actions = this.createActionList(resources, form);
 
@@ -459,7 +477,12 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     continue;
                 }
 
-                String message = Resources.getMessage(messages, locale, va, field);
+                String message =  Resources.getMessage(application,
+                                                       request,
+                                                       messages,
+                                                       locale,
+                                                       va,
+                                                       field);
 
                 message = (message != null) ? message : "";
 

@@ -1207,7 +1207,7 @@ public class TagUtils {
      * @return MessageResources The bundle's resources stored in some scope.
      * @throws JspException if the MessageResources object could not be found.
      */
-    private MessageResources retrieveMessageResources(
+    public MessageResources retrieveMessageResources(
             PageContext pageContext,
             String bundle,
             boolean checkPageScope)

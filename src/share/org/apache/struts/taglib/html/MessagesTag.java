@@ -201,13 +201,17 @@ public class MessagesTag extends BodyTagSupport {
         }
 
         ActionMessage report = (ActionMessage) this.iterator.next();
-        String msg =
-            TagUtils.getInstance().message(
-                pageContext,
-                bundle,
-                locale,
-                report.getKey(),
-                report.getValues());
+        String msg = null;
+        if (report.isResource()) {
+            msg = TagUtils.getInstance().message(
+                     pageContext,
+                     bundle,
+                     locale,
+                     report.getKey(),
+                     report.getValues());
+        } else {
+            msg = report.getKey();
+        }
 
         if (msg == null) {
             pageContext.removeAttribute(id);

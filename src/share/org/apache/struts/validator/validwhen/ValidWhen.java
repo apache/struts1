@@ -117,7 +117,7 @@ public class ValidWhen {
             
             errors.add(
                 field.getKey(),
-                Resources.getActionMessage(request, va, field));
+                Resources.getActionMessage(validator, request, va, field));
                 
             return false;
         }
@@ -125,7 +125,7 @@ public class ValidWhen {
         if (!valid) {
             errors.add(
                 field.getKey(),
-                Resources.getActionMessage(request, va, field));
+                Resources.getActionMessage(validator, request, va, field));
                 
             return false;
         }
