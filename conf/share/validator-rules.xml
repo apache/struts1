@@ -37,7 +37,7 @@
 <form-validation>
    <global>
       <validator name="required"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateRequired"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -75,7 +75,7 @@
       </validator>
 
       <validator name="minlength"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateMinLength"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -118,7 +118,7 @@
       </validator>
 
       <validator name="maxlength"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateMaxLength"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -161,7 +161,7 @@
       </validator>
 
       <validator name="mask"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateMask"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -211,7 +211,7 @@
       </validator>
 
       <validator name="byte"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateByte"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -255,7 +255,7 @@
       </validator>
 
       <validator name="short"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateShort"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -299,7 +299,7 @@
       </validator>
 
       <validator name="integer"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateInteger"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -343,7 +343,7 @@
       </validator>
       
       <validator name="long"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateLong"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -354,7 +354,7 @@
                  msg="errors.long"
       />
       <validator name="float"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateFloat"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -398,7 +398,7 @@
       </validator>
 
       <validator name="double"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateDouble"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -409,7 +409,7 @@
                  msg="errors.double"/>
 
       <validator name="date"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateDate"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -581,7 +581,7 @@
       </validator>
 
       <validator name="range"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateRange"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -626,7 +626,7 @@
       </validator>
 
       <validator name="creditCard"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateCreditCard"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
@@ -700,7 +700,7 @@
       </validator>
 
       <validator name="email"
-                 classname="org.apache.struts.validator.util.StrutsValidator"
+                 classname="org.apache.struts.util.StrutsValidator"
                  method="validateEmail"
                  methodParams="java.lang.Object,
                                org.apache.commons.validator.ValidatorAction,
