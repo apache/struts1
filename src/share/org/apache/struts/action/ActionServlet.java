@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.162 2003/07/16 04:40:53 dgraham Exp $
- * $Revision: 1.162 $
- * $Date: 2003/07/16 04:40:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.163 2003/07/26 04:21:06 rleland Exp $
+ * $Revision: 1.163 $
+ * $Date: 2003/07/26 04:21:06 $
  *
  * ====================================================================
  *
@@ -188,6 +188,11 @@ import org.xml.sax.SAXException;
  *     containing the configuration information for the module that
  *     will use the specified prefix (/${module}). This can be repeated as many
  *     times as required for multiple modules. (Since Struts 1.1)</li>
+ * <li><strong>configFactory</strong> - The Java class name of the
+ *     <code>ModuleConfigFactory</code> used to create the implementation of the
+ *     <code>ModuleConfig</code> interface.
+ *     [org.apache.struts.config.impl.DefaultModuleConfigFactory]
+ * </li>
  * <li><strong>convertNull</strong> - Force simulation of the Struts 1.0 behavior
  *     when populating forms. If set to true, the numeric Java wrapper class types
  *     (like <code>java.lang.Integer</code>) will default to null (rather than 0).
@@ -229,7 +234,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.162 $ $Date: 2003/07/16 04:40:53 $
+ * @version $Revision: 1.163 $ $Date: 2003/07/26 04:21:06 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -379,7 +384,7 @@ public class ActionServlet extends HttpServlet {
         initServlet();
 
         getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
-        
+        initModuleConfigFactory();
         // Initialize modules as needed
         ModuleConfig moduleConfig = initModuleConfig("", config);
         initModuleMessageResources(moduleConfig);
@@ -649,8 +654,20 @@ public class ActionServlet extends HttpServlet {
         return (RequestProcessor) getServletContext().getAttribute(key);
     }
 
+
     /**
-     * <p>Initialize the application configuration information for the
+     * <p>Initialize the factory used to create the module configuration.</p>
+     * @since Struts 1.2
+     */
+    protected void initModuleConfigFactory(){
+        String configFactory = getServletConfig().getInitParameter("configFactory");
+        if (configFactory != null) {
+            ModuleConfigFactory.setFactoryClass(configFactory);
+        }
+    }
+
+    /**
+     * <p>Initialize the module configuration information for the
      * specified module.</p>
      *
      * @param prefix Module prefix for this module
@@ -673,7 +690,6 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Parse the configuration for this module
-        // TODO Replace with a FactoryMethod
         ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
         ModuleConfig config = factoryObject.createModuleConfig(prefix);
 
