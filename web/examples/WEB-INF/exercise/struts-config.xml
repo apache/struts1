@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config SYSTEM "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+  <form-beans>
+    <form-bean name="testbean" type="org.apache.struts.webapp.exercise.TestBean" />
+    <!-- Locale form bean -->
+    <form-bean name="localeForm" type="org.apache.struts.action.DynaActionForm">
+      <form-property name="language" type="java.lang.String" />
+      <form-property name="country" type="java.lang.String" />
+      <form-property name="page" type="java.lang.String" />
+    </form-bean>
+  </form-beans>
+  <global-forwards>
+    <forward name="absolute" path="http://jakarta.apache.org/struts" />
+    <forward name="context-relative" path="/welcome.do" contextRelative="true" />
+    <forward name="relative" path="/welcome.do" />
+  </global-forwards>
+  <action-mappings>
+    <action path="/welcome" forward="/index.html" />
+    <action path="/html-link" forward="/html-link.jsp" />
+    <action path="/html-link-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
+      <forward name="input" path="/html-link.do" />
+    </action>
+    <action path="/html-multibox" forward="/html-multibox.jsp" />
+    <action path="/html-multibox-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
+      <forward name="input" path="/html-multibox.do" />
+    </action>
+    <action path="/html-select" forward="/html-select.jsp" />
+    <action path="/html-select-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
+      <forward name="input" path="/html-select.do" />
+    </action>
+    <action path="/html-setters" forward="/html-setters.jsp" />
+    <action path="/html-setters-submit" type="org.apache.struts.webapp.exercise.HtmlSettersAction" name="testbean" scope="session" validate="false">
+      <forward name="input" path="/html-setters.do" />
+    </action>
+    <action path="/bean-write-2" forward="/bean-write-2.jsp" />
+    <!-- Locale Action -->
+    <action path="/locale" type="org.apache.struts.webapps.validator.LocaleAction" name="localeForm" scope="request">
+      <forward name="success" path="/welcome.do" />
+    </action>
+  </action-mappings>
+  <message-resources parameter="org.apache.struts.webapp.exercise.MessageResources" null="false" />
+</struts-config>
