@@ -20,7 +20,7 @@
 
     <menu name="Getting Started">
         <item name="Installation"            href="installation-1.0.html"/>
-        <item name="Release Notes"           href="release-notes-1.0.html"/>
+        <item name="Release Notes"           href="release-notes-1.0.1.html"/>
         <item name="Javadoc"                 href="api-1.0/index.html"/>
         <item name="Mailing Lists"           href="http://jakarta.apache.org/site/mail.html"/>
         <item name="Bug Database"            href="http://jakarta.apache.org/site/bugs.html"/>
@@ -53,8 +53,6 @@
     </menu>
 
     <menu name="Current Development">
-        <item name="Release Notes (1.0.1)"   href="release-notes-1.0.1.html"/>
-        <item name="Release Plan (1.0.1)"    href="release-plan-1.0.1.html"/>
         <item name="Installation (nightly)"  href="installation.html"/>
         <item name="Release Notes (nightly)" href="release-notes.html"/>
         <item name="Javadoc (nightly)"       href="api/index.html"/>

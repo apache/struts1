@@ -5,6 +5,7 @@
     <author>Craig R. McClanahan</author>
     <author>Robert Leland</author>
     <author>Ted Husted</author>
+    <author>Martin Cooper</author>
     <title>Struts Release Notes (Version 1.0.1)</title>
   </properties>
 
@@ -20,11 +21,7 @@
     <a href="#New">New Features</a> and <a href="#Changes">Changes</a>
     to Struts.</p>
 
-    <p>Struts 1.0.1 is not yet released, but a Release Candidate
-    is available for download
-    <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1-rc1/">here</a>.
-    This version is intended as a near-term release to cover
-    bug-fixes only; no new functionality.</p>
+    <p>This version covers bug-fixes only; no new functionality.</p>
 
   </section>
 
@@ -32,7 +29,7 @@
   <section name="What's Included?" href="Included">
 
     <p>The binary distribution of this release includes the following
-    files relevant to Struts 1.1:</p>
+    files relevant to Struts 1.0.1:</p>
     <ul>
     <li><code>INSTALL</code> - Brief installation instructions.  See
         the <code>Struts Documentation Application</code>, or online at
@@ -50,7 +47,7 @@
             place this file in the <code>/WEB-INF/lib</code> directory of
             your web application.</li>
         <li><code>struts-xxxxx.tld</code> - The tag library descriptor files
-            for the Struts 1.1 tag libraries (bean, html, logic, and
+            for the Struts 1.0.1 tag libraries (bean, html, logic, and
             template).  You must place these files in the <code>/WEB-INF</code>
             directory of your web application, and reference them with
             appropriate <code>&lt;taglib&gt;</code> directives in your
@@ -60,7 +57,7 @@
             include this file in the <code>/WEB-INF/lib</code> directory
             of your application, if it is not already made visible to web
             applications by your servlet container.</li>
-        <li><code>struts-config_1_1.dtd</code> - The document type descriptor
+        <li><code>struts-config_1_0.dtd</code> - The document type descriptor
             (DTD) for the Struts configuration file (which is typically named
             <code>/WEB-INF/struts-config.xml</code>.  Your configuration file
             will be validated against an internal copy of this DTD -- this
@@ -76,8 +73,8 @@
             web applications that are included with Struts.</li>
     </ul>
 
-    <p>The struts 0.5 milestone API release is no longer supported.
-       and has been removed as of Struts 1.1:</p>
+    <p>The struts 0.5 milestone API release is no longer supported,
+       and has been removed as of Struts 1.1.</p>
     <ul>
     </ul>
 
@@ -96,7 +93,6 @@
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
     <li>LocalStrings: Correct message regarding replaceable parameter so that it does not append an extraneous character.</li>
-    <li>Add LabelValueBean class. This defines a collection of name/value pairs that can be used with the &gt;html:options> tag, and elsewhere.</li>
     <li>MessageResources: Escape any single quote characters that are included in the specified message string.</li>
     <li>Allow a transaction token to be the only parameter in computeParameters().</li>
     <li>Change RequestUtils to encode ampersands when building a query string.</li>
@@ -140,7 +136,6 @@
     <ul>
     <li>Modify ActionForm class to use ActionServletWrapper rather than expose ActionServlet.</li>
     <li>Add ActionServletWrapper class. Used by ActionForm to prevent the Public String properties of ActionServlet from being changed via a query string.</li>
-    <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
     <li>Unconditionally pass the selected mapping as a request attribute under key Action.MAPPING_KEY, even if no form bean is specified.</li>
     <li>Avoid a NullPointerException in corner cases caused by failed initialization of ActionServlet.</li>
     </ul>
@@ -150,8 +145,7 @@
     <ul>
     <li>Fixed lost byte problem in BufferedMultipartInputStream</li>
     <li>Fixed ArrayIndexOutOfBoundsException situations</li>
-    <li>Better reporting for premature closing of input streams while reading
-multipart requests.</li>
+    <li>Better reporting for premature closing of input streams while reading multipart requests.</li>
     <li>Additional fix for file corruption problem with uploads and new line characters.</li>
     </ul>
 
@@ -159,9 +153,6 @@ multipart requests.</li>
     (package <code>org.apache.struts.util</code>):</p>
     <ul>
     <li>Modify RequestUtils class to use ActionServletWrapper rather than expose ActionServlet.</li>
-    <li>Added error message for the getActionErrors and getActionMessages method.</li>
-    <li>Added a getActionErrors and getActionMessages methods to generate the correct corresponding object based on the object retrieved from request scope based on the key passed in.</li>
-    <li>The logic for creating an ActionErrors or ActionMessages object has been moved to a utility method in RequestUtils. The JspException message is also generated in RequestUtils.</li>
     <li><code>ConvertUtils.convertCharacter()</code> will now detect empty strings and return the default value.</li>
     </ul>
 
@@ -169,7 +160,7 @@ multipart requests.</li>
     <em>struts-bean</em> custom tag library (package
     <code>org.apache.struts.taglib.bean</code>):</p>
     <ul>
-    <li>Correct the generated scripting variable type when the &lt;bean:cookie>, &lt;bean:header>, or &lt;bean:parameter> tag is used with the "multiple" attribute.</li>
+    <li>Correct the generated scripting variable type when the &lt;bean:cookie&gt;, &lt;bean:header&gt;, or &lt;bean:parameter&gt; tag is used with the "multiple" attribute.</li>
     </ul>
 
     <p>The following changes and bug fixes have occured in the
@@ -178,7 +169,7 @@ multipart requests.</li>
     <ul>
     <li>Fixed FormTag to exclude query string when identifying action mapping name.</li>
     <li>Correct MultiboxTagdoAfterBody() to return SKIP_BODY instead of SKIP_PAGE.</li>
-    <li>Added the 'align' attribute to the &lt;html:image> tag.</li>
+    <li>Added the 'align' attribute to the &lt;html:image&gt; tag.</li>
     <li>On the Options tag, if the property specified by the "property" attribute returns null, it now throws an error message that indicates what the real problem is, rather than causing an NPE.</li>
     <li>Added 'style' and 'styleClass' attributes for &lt;html:option&gt; and &lt;html:options&gt; tags.</li>
     <li>Correctly URLEncode the query string parameter value on ImgTag, even if there is only a single parameter.</li>
@@ -189,7 +180,6 @@ multipart requests.</li>
     <em>struts-logic</em> custom tag library (package
     <code>org.apache.struts.taglib.logic</code>):</p>
     <ul>
-    <li>Added tags for checking if a message is present in general or for a specific property. They retrieve an object from request scope just like the html:errors and html:messages tags.</li>
     <li>The <code>&lt;html:errors&gt;</code> when the property tag is
     specified, errors are no longer printed if the specified property
     has no errors. Previously errors were always printed! Future

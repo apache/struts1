@@ -3,6 +3,7 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>Martin Cooper</author>
     <title>The Struts Framework Project</title>
   </properties>
 
@@ -63,7 +64,7 @@
   <p>Of course, the only true documentation is the code itself. If you have any questions 
   about how Struts actually works, do not hestate to <i>use the source</i>. For the 
   complete, buildable source code to the entire Struts framework, see the "src" folder in 
-  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src/"><b>Struts 1.0 source distribution</b></a>.</p>
+  the <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1/src/"><b>Struts 1.0.1 source distribution</b></a>.</p>
 
   <p>The Struts <a href="userGuide/resources.html"><b>Resources</b></a> page provides links to 
   everything else written about  Struts, including books, articles, tutorials, and sample 
@@ -73,19 +74,24 @@
 
   <section name="Acquiring Struts" href="Acquiring">
 
-  <p>The production release of <strong>Struts 1.0</strong> is available in
-  in convenient binary distribution and also with complete source code.</p>
+  <p>The production release of <strong>Struts 1.0.1</strong> is available in
+  in convenient binary distribution and also with complete source code. In
+  addition, a library distribution is available, which contains the latest
+  Struts binaries without the sample applications, providing a smaller,
+  faster download.</p>
 
   <ul>
-  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0">
-  <b>Struts 1.0 Binary Distribution</b></a></li>
-  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0/src">
-  <b>Struts 1.0 Source Code Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1">
+  <b>Struts 1.0.1 Binary Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1/lib">
+  <b>Struts 1.0.1 Library Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.1/src">
+  <b>Struts 1.0.1 Source Code Distribution</b></a></li>
   </ul>
   
-  <p>Check the <a href="release-notes-1.0.html">Release Notes</a>
+  <p>Check the <a href="release-notes-1.0.1.html">Release Notes</a>
   for a summary of what new features have been added and other 
-  changes since the Struts 1.0-beta-3 release.</p>
+  changes since the Struts 1.0 release.</p>
 
   <p><b>In addition to a Struts distribution,</b> you will need to ensure that
   you have downloaded and installed all of the
