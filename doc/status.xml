@@ -52,7 +52,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.55 2003/12/22 21:52:50 mrdon Exp $
+    $Id: status.xml,v 1.56 2003/12/30 15:39:24 husted Exp $
     </p>
 
     <p>
@@ -85,7 +85,11 @@
                 <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Blocker&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;order=bugs.bug_id">normal/minor problem reports</a></li>
                 </ul>
                 </li>
-            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Enhancement&amp;order=bugs.bug_id">Open enhancement reports</a></li>
+            <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Enhancement&amp;order=Bug+Number">Open enhancement reports</a>
+                <ul>
+                    <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Enhancement&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=PatchAvailable&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Bug+Number">Patch Available</a></li>
+                </ul>
+                </li>
             <li><a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=bugs.bug_id">Reports to be handled "LATER"</a></li>
         </ul>
 
