@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.5 2002/11/16 04:46:05 jmitchell Exp $
- * $Revision: 1.5 $
- * $Date: 2002/11/16 04:46:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.6 2002/12/06 07:58:39 martinc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/12/06 07:58:39 $
  *
  * ====================================================================
  *
@@ -211,9 +211,9 @@ public final class UseAttributeTag extends TagSupport {
   public int doStartTag() throws JspException
     {
       // Do a local copy of id
-    String id=this.id;
-    if( id==null )
-      id=attributeName;
+    String localId=this.id;
+    if( localId==null )
+      localId=attributeName;
 
     ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, pageContext.REQUEST_SCOPE);
     if( compContext == null )
@@ -231,10 +231,10 @@ public final class UseAttributeTag extends TagSupport {
       {
       scope = TagUtils.getScope( scopeName, PageContext.PAGE_SCOPE );
       if(scope!=ComponentConstants.COMPONENT_SCOPE)
-        pageContext.setAttribute(id, value, scope);
+        pageContext.setAttribute(localId, value, scope);
       }
      else
-      pageContext.setAttribute(id, value);
+      pageContext.setAttribute(localId, value);
 
 	    // Continue processing this page
     return SKIP_BODY;
