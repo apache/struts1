@@ -22,8 +22,8 @@
     This tag library provides tiles tags.
 	<br></br>
 	<br></br>
-	Tiles were previously called Components. For historical reasons, names pages, components and templates
-	are used indiferently to design a tile. Also, a lot of tags and attribute names are
+	Tiles were previously called Components. For historical reasons, names, pages, components and templates
+	are used indifferently to design a tile. Also, a lot of tags and attribute names are
 	left for backward compatibility.
 	<br></br>To know more about tags defined in this library, check the associated documentation:
 	tiles-doc.
