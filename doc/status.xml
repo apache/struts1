@@ -10,7 +10,7 @@
 <chapter href="status" name="Development Roadmap">
 
 <section href="status" name="Development Roadmap">
-<p><font size="-2">$Id: status.xml,v 1.13 2002/11/14 20:23:15 husted Exp $</font></p>
+<p><font size="-2">$Id: status.xml,v 1.14 2002/11/15 02:08:10 jmitchell Exp $</font></p>
 <p>
 This document outlines some of changes we expect to
 see in future releases of Struts.
@@ -199,7 +199,7 @@ as core references regarding the formatting of code and documentation.
  As files are updated from year to year, the copyright on each file should be 
  extended to include the current year. 
  You do not need to change the copyright year unless you change the file. 
- Every source file should include the current Apache License and copright.
+ Every source file should include the current Apache License and copyright.
 </li>
 <li>
  Provide high-level API compatibility for any changes made within the same major 
@@ -214,7 +214,7 @@ as core references regarding the formatting of code and documentation.
 </li>
 <li>
  Our favorite book about open source development is the 
- <a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">Cathedral and Bazaar</a>.
+ <a href="http://www.amazon.com/exec/obidos/ISBN=1565927249/hitchhikeguidetoA/">The Cathedral and the Bazaar</a>.
 </li>
 <li>
  Our favorite science fiction author is 
