@@ -17,29 +17,154 @@
 The <b>stable production release</b> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
 </p>
 <p>
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b1/">Struts 1.1b</a> is in its first <b>beta release</b> (19 March 2002). 
-A second beta is anticipated in mid-July.
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/">Struts 1.1b</a> is in its second <b>beta release</b> (12 August 2002).
 </p>
 <hr size="1" noshade=""/>
 <ul>
 <li>See <a href="http://jakarta.apache.org/site/bugs.html">the Apache Bug Database</a> for outstanding issues and enhancement requests. </li>
-<li>See <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">the Struts Nightly Build</a> for the latest development distribution.</li>. 
+<li>See <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">the Struts Nightly Build</a> for the latest development distribution.</li>.
 <li>See <a href="http://jakarta.apache.org/site/mail.html">the Jakarta Struts-Dev list</a> for current development communications.</li>
 <li>See <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">the Jakarta Struts CVS</a> for the current development codebase. </li>
 </ul>
 <hr size="1" noshade=""/>
 <p>
-Struts is a completely open product. The 
-<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development 
-business using the resources cited here, which are all available to the public. Only 
-Struts Committers may write to the 
-<a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted 
+Struts is a completely open product. The
+<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development
+business using the resources cited here, which are all available to the public. Only
+Struts Committers may write to the
+<a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted
 to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a>.
 </p>
 
 </section>
- 
+
 <section name="News" href="news">
+
+<h3><a name="20020822">22 Aug 2002</a>Easy Struts Editor 0.5.1 for Eclipse</h3>
+<p>
+Re-Hello, I fix some bugs from Easy Struts 0.5. Here the changes:<br/>
+  - [FIX] When element removed from Editor UI, elements wasn't removed in xml source.<br/>
+  - [FIX] Synchronisation with Easy Struts wizards when editor is open.<br/>
+  - [FIX] When editor is re-open (after closed), struts-config.xml was in read only mode.<br/>
+  - [FIX] Some editor bugs... I include some screenshots :http://easystruts.sourceforge.net/editor.htmlhttp://easystruts.sourceforge.net<br/>
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020820"></a>20 Aug 2002 - Struts Console v2.1</h3>
+<p>
+Struts Console version 2.1 is now available.
+<a href="http://www.jamesholmes.com/struts/">http://www.jamesholmes.com/struts/</a>
+</p>
+<p>
+Download Now:<br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-2.1.zip">http://www.jamesholmes.com/struts/struts-console-2.1.zip</a><br/>
+  -- OR --<br/>
+<a href="http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz">http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz</a><br/>
+http://www.jamesholmes.com/struts/struts-console-2.1.tar.gz
+</p>
+<p>
+Struts Console is FREE software.
+</p>
+<p>
+This release adds support for the IntelliJ IDEA IDE,
+one of the favorites of many developers.
+</p>
+<p>
+Changes with Struts Console v2.1
+</p>
+<ul>
+<li>
+Fixed bug where the "initial" attribute of the
+&lt;form-property> element was getting set to blank
+when it wasn't specified.
+</li>
+<li>
+Added plugin support for IntelliJ IDEA.
+</li>
+</ul>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020813"></a>12 Aug 2002 - Struts 1.1 Beta 2 Released</h3>
+<p>The Struts team is proud to announce the release of Struts 1.1 Beta 2. This
+release includes significant new functionality, while retaining full
+backwards compatibility with earlier versions of Struts. It also
+incorporates fixes for a number of bugs which were reported against earlier
+versions.
+</p>
+<p>
+The binary distribution is available at:
+</p>
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/</a>
+</p>
+<p>
+and the source distribution is available at:
+</p>
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/src/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/src/</a>
+</p>
+<p>
+In addition, the library distibution, which contains updated binaries
+without the sample applications, is available at:
+</p>
+<p>
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/lib/
+</p>
+<p>
+Details of the changes in this release are available in the Release Notes,
+which can be found here:
+</p>
+<p>
+  http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b2.html
+</p>
+<hr size="1" noshade=""/>
+
+<h3><a name="20020808"></a>08 Aug 2002 - JPetStore in Scioworks Camino</h3>
+<p>
+We have recently modified and repackaged the JPetStore application as a
+sample application for Camino. It illustrates how Camino's Storyboard can
+help Struts developers to visualize the flow of their web-applications.
+Visit the following link for details:
+</p>
+<p>
+   http://www.scioworks.net/servlets/ShowPage?pid=29&amp;dp=1
+</p>
+<p>
+About JPetStore: JPetStore from iBatis is a completely rewritten Pet Store
+application based on Sun's original J2EE Pet Store. JPetStore uses Struts
+as the MVC presentation layer.
+</p>
+<p>
+About Scioworks Camino: Scioworks Camino is a visual modelling tool for
+Struts that provides a visual drag-and-connect GUI for rapid development
+and re-wiring of web applications, automatically generates code based on
+the visual flow of an app, and also features round-trip engineering.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020803"></a>3 Aug 2002 - Starting Struts User Group in New Jersey</h3>
+<p>Is anyone interested in joining?  Looks like we have a group of 3-5 people
+already interested. We are thinking about having meetings in the New
+Brunswick area. I have made arrangements for website hosting for the group
+and have a committment from Vic Cekvenich at BaseBeans to be a guest
+speaker.</p>
+<p>I'm not duplicating an already existing group am I?</p>
+<p>Anyone intersted in participating please contact me at
+<a href="mailto:john@eagleinfosystems.com">john at eagleinfosystems.com</a>
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020728"></a>28 Jul 2002 - New Howto available on basicportal</h3>
+<p>The install instructions for <a href="http://basicportal.sourceforge.net">basicportal</a> now include a
+detailed howto for postgresql and poolman usage with basicportal.  Vic has
+reorganized the source and we are working towards developing a howto for
+basicportal and eclipse.</p>
+<p>I'm looking forward to basicportal growing!  We are already talking about
+the addition of the shopping cart module.  Next few months will be
+interesting.</p><hr size="1" noshade=""/>
+
 
 <h3><a name="20020730"></a>30 July 2002 - Struts Console version 2.0.1</h3>
 <p>
@@ -104,8 +229,8 @@ Project page :
 
 <h3><a name="20020724"></a>24 July 2002 - ObjectAssembler 2.0</h3>
 <p>
-ObjectVenture is pleased to announce the release of ObjectAssembler 
-2.0, a visual two-way development environment for J2EE applications - 
+ObjectVenture is pleased to announce the release of ObjectAssembler
+2.0, a visual two-way development environment for J2EE applications -
 including native support for Struts 1.1. Thanks to all of you who
 participated in our open beta!
 </p>
@@ -115,7 +240,7 @@ development, is FREE! You may download it here:
 <a href="http://www.objectventure.com/products/objectassembler.html">http://www.objectventure.com/products/objectassembler.html</a>
 </p>
 <p>
-The new user manual is available here (4.5 MB). It includes information 
+The new user manual is available here (4.5 MB). It includes information
 on how to get started with the Struts support.
 <a href="http://www.objectventure.com/files/oa/ObjectAssembler-UserManual.pdf">http://www.objectventure.com/files/oa/ObjectAssembler-UserManual.pdf</a>
 </p>
@@ -183,6 +308,84 @@ Other features of interest:
 <h3><a name="20020724"></a>24 July 2002 - JavaPro Struts Tutorial</h3>
 <p><a href="http://www.fawcette.com/javapro/2002_07/online/kjones/"><b>Create Better Web Apps with Struts</b></a> by Kevin Jones.</p>
 <hr size="1" noshade=""/>
+
+<h3><a name=""></a>23 Jul 2002 - STL (Standard Tags) + Struts (MVC) live web Demo</h3>
+<p>If you are starting a Java Web, you should use MVC and Standard tags,
+this "kit" is a sample of "best" (at least good) practices.
+</p><p>
+It is MVC (Struts/Tiles)+JSTL +XSLT+ DAO (Open Source Data Access Object
+w/ SQL) + DB CRUD (Create update delete and SQL DLL scripts)+ J2EE
+Security ( to make Tomcat run like Apache )
+</p><p>
+It is KISS (you'll see how simple and how very standard) , good
+practices Free Open Source Framework to develop any web app, with the
+aim of being 80% of any app, but done as simple as possible and easy to
+teach. Again, everything is standard and simple. And it is the fastest,
+most efficient way to develop maintainable code I know of.
+</p><p>
+Samples include CMS (Authorize content, XSLT, CMS Comments, sinkable,
+single sign on, etc.),  Issue tracking, + more coming.
+</p><p>
+Please download and install and see if you want to attend. Details:
+<a href="http://basicportal.sourceforge.net">http://basicportal.sourceforge.net</a>
+</p><p>
+I use it to teach Struts + JSTL public and private classes. I epically
+teach WHY you should want to do something in a certain way, not just how.
+</p><p>
+To attend and see "best practices"
+http://www.basebeans.com/webEx.jsp
+The seminar requires you know servlets, jsp,  SQL, JDBC, and at least
+some MVC. (a plus is if you have already deployed and MVC web app in the
+past) Oh...it is $10.00 ( but free to baseBeans clients and/or apache.org
+committers.)
+</p><p>
+To keep in touch on this join "MVC-Programmers" mail list at
+http://www.netbean.net/mailman/listinfo/mvc-programmers
+</p><p>
+To keep in touch with open source projects go to
+http://news.netbean.net/cgi-bin/webnews.cgi
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20020723"></a>23 Jul 2002 - STL (Standard Tags) + Struts (MVC) live web Demo</h3>
+<p>If you are starting a Java Web, you should use MVC and Standard tags,
+this "kit" is a sample of "best" (at least good) practices.
+</p><p>
+It is MVC (Struts/Tiles)+JSTL +XSLT+ DAO (Open Source Data Access Object
+w/ SQL) + DB CRUD (Create update delete and SQL DLL scripts)+ J2EE
+Security ( to make Tomcat run like Apache )
+</p><p>
+It is KISS (you'll see how simple and how very standard) , good
+practices Free Open Source Framework to develop any web app, with the
+aim of being 80% of any app, but done as simple as possible and easy to
+teach. Again, everything is standard and simple. And it is the fastest,
+most efficient way to develop maintainable code I know of.
+</p><p>
+Samples include CMS (Authorize content, XSLT, CMS Comments, sinkable,
+single sign on, etc.),  Issue tracking, + more coming.
+</p><p>
+Please download and install and see if you want to attend. Details:
+http://basicportal.sourceforge.net
+</p><p>
+I use it to teach Struts + JSTL public and private classes. I epically
+teach WHY you should want to do something in a certain way, not just how.
+</p><p>
+To attend and see "best practices"
+http://www.basebeans.com/webEx.jsp
+The seminar requires you know servlets, jsp,  SQL, JDBC, and at least
+some MVC. (a plus is if you have already deployed and MVC web app in the
+past) Oh...it is $10.00 ( but free to baseBeans clients and/or apache.org
+committers.)
+</p><p>
+To keep in touch on this join "MVC-Programmers" mail list at
+http://www.netbean.net/mailman/listinfo/mvc-programmers
+</p><p>
+To keep in touch with open source projects go to
+http://news.netbean.net/cgi-bin/webnews.cgi
+</p>
+<hr size="1" noshade=""/>
+
 
 <h3><a name="20020718"></a>18 July 2002 - JavaBoutique Struts Tutorials</h3>
 <p><a href="http://javaboutique.internet.com/tutorials/Struts/"><b>Stepping through Jakarta Struts</b></a> by Keld H. Hansen.</p>
@@ -255,7 +458,7 @@ Changes
 <li>New icons</li>
 </ul>
 <p>
-Project page : 
+Project page :
 </p>
 <ul>
 <li><a href="http://easystruts.sourceforge.net/">http://easystruts.sourceforge.net/</a></li>
@@ -323,7 +526,7 @@ Changes with Struts Console v2.0
 
 <h3><a name="20020708"></a>08 July 2002 - Struts article in e-Promagazine</h3>
 <p>
-The e-Promag.com site is featuring a new article entitled 
+The e-Promag.com site is featuring a new article entitled
 "<a href="http://www.e-promag.com/eparchive/index.cfm?fuseaction=viewarticle&amp;ContentID=1742">
 <b>Struts: A Standard Architecture for Web Applications</b></a>" by Don Denoncourt.
 </p>
