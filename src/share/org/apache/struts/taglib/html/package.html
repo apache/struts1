@@ -84,7 +84,7 @@ from the configuration, via a Form Bean definition.</p>
 &lt;/pre&gt;
 </pre>
 
-<p>Given this configuration, the HTML form tag for <code>input.jsp</code> will default
+<p>Given this configuration, the HTML form tag for <code>logon.jsp</code> will default
 to using "<code>logonForm</code>" as its name property and
 "<code>org.apache.struts.example.LogonForm</code>" as the attribute's type. This way you
 can manage the namespace for your framework components from the configuration file.</p>
@@ -478,7 +478,7 @@ session, application), it creates one using the specified type.</p>
 <p>Most often, error messages are displayed in a particular way. To make it easy
   to format your messages, you can also specific an <code>errors.header</code>
   and <code>errors.footer</code> string in your message resource. Typically, you
-  might want to render the messages in a different color, or set them up them
+  might want to render the messages in a different color, or set them up
   to appear in an unordered list. Using the <code>errors.header</code> and <code>errors.footer</code>
   strings keeps the setup codes out of your JSP until a message actually prints.</p>
 <pre>
@@ -536,7 +536,7 @@ session, application), it creates one using the specified type.</p>
   holding the value using the <code>paramName</code> attribute, and a particular
   property using <code>paramProperty</code>. </p>
 <p>So, a tag like</p>
-<pre>   &lt;html:link paramID=&quot;target&quot;
+<pre>   &lt;html:link paramId=&quot;target&quot;
      paramName=&quot;linkParams&quot; <br>     paramProperty=&quot;target&quot;
      paramScope=&quot;request&quot;<br>   &gt;detail.html&lt;/html:link&gt;</pre>
 <p>would correspond to something like</p>
@@ -549,7 +549,7 @@ session, application), it creates one using the specified type.</p>
   named bean identifies a value that can be converted to a String.
 <p>To pass multiple dynamic parameters, you can store them in a <code><a href="http://java.sun.com/j2se/1.3/docs/api/java/util/Map.html">java.util.Map</a></code>,
   and use the name of the map for the <code>paramName</code>. The map must then
-  contain one or more <code>paramIDs</code> and their corresponding values. As
+  contain one or more <code>paramIds</code> and their corresponding values. As
   the Map is processed, the keys are assumed to be the names of query parameters
   to be appended. The value associated with each key must be either a String or
   a String array representing the parameter value(s). If a String array is specified,

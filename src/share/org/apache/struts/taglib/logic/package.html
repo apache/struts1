@@ -31,8 +31,8 @@
 <a name="doc.Functionality"></a>
 <h3>Logic Tag Functionality<a name="doc.Functionality"></a></h3>
 <p> The functionality of the logic tags can be divided into four groups:</p>
-<p><b>Value Comparisions -</b> The purpose of these tags is to print out the body
-  of the tag if the comparision evaluates to <i>true. </i></p>
+<p><b>Value Comparisons -</b> The purpose of these tags is to print out the body
+  of the tag if the comparison evaluates to <i>true. </i></p>
 <ul>
   <li><b><a href="../../../../../../struts-logic.html#equal">equal,</a> <a href="../../../../../../struts-logic.html#notEqual">notEqual</a></b>
   </li>
@@ -59,26 +59,26 @@
 <p>Each of the four groups of logic tags have a common set of attributes associated
   with them. :</p>
 <blockquote>
-  <p><b>Value Comparisions</b> (equal, notEqual, greaterEqual, lessEqual, greaterThan,
+  <p><b>Value Comparisons</b> (equal, notEqual, greaterEqual, lessEqual, greaterThan,
     lessThan, present, notPresent)</p>
-  <p>Each of the value comparision tags takes a <i>value</i> and compares it to
-    the value of a comparision attribute. If the value given can be successfully
-    converted to a <i>float</i> or <i>double</i>, then a number comparision is
-    performed on the value given and the value of the comparision attribute. Otherwise
-    a String comparision is performed. You have to specify one of the comparision
+  <p>Each of the value comparison tags takes a <i>value</i> and compares it to
+    the value of a comparison attribute. If the value given can be successfully
+    converted to a <i>float</i> or <i>double</i>, then a number comparison is
+    performed on the value given and the value of the comparison attribute. Otherwise
+    a String comparison is performed. You have to specify one of the comparison
     attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>, <i>property</i>
-    or <i>name. </i>For each of the examples, the tag &quot;<i>someComparisionTag&quot;</i>can
-    be replaced by any of the value comparision tags.</p>
+    or <i>name. </i>For each of the examples, the tag &quot;<i>someComparisonTag&quot;</i>can
+    be replaced by any of the value comparison tags.</p>
   <ul>
     <li>value - the value to which this tag is going to compare, used in conjunction
-      with one of the comparision attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>,
+      with one of the comparison attributes: <i>cookie</i>, <i>header</i>, <i>parameter</i>,
       <i>and property</i> and/or <i>name. </i></li>
     <li>cookie - the name of the cookie to compare to <i>value</i>
       <ul>
         <li>example:
-          <pre>&lt;logic:<i>someComparisionTag</i> value=&quot;someUserName&quot; cookie=&quot;userName&quot;&gt;
+          <pre>&lt;logic:<i>someComparisonTag</i> value=&quot;someUserName&quot; cookie=&quot;userName&quot;&gt;
   User Logged In
-&lt;/logic:<i>someComparisionTag</i>&gt;
+&lt;/logic:<i>someComparisonTag</i>&gt;
 </pre>
         </li>
       </ul>
@@ -86,9 +86,9 @@
     <li>header - the name of the HTTP header to compare to <i>value</i>
       <ul>
         <li>example:
-          <pre>&lt;logic:<i>someComparisionTag</i> value=&quot;en_US&quot; header=&quot;Accept-Language&quot;&gt;
+          <pre>&lt;logic:<i>someComparisonTag</i> value=&quot;en_US&quot; header=&quot;Accept-Language&quot;&gt;
   Welcome English-speaking User*
-&lt;/logic:<i>someComparisionTag</i>&gt;
+&lt;/logic:<i>someComparisonTag</i>&gt;
 </pre>
         </li>
         <li>
@@ -107,9 +107,9 @@
   pageContext.setAttribute(&quot;testString&quot;, testString, PageContext.PAGE_SCOPE);
 %&gt;
 &lt;jsp:useBean id=&quot;testString&quot; scope=&quot;page&quot; type=&quot;java.lang.String&quot; /&gt;
-&lt;logic:<i>someComparisionTag</i> name=&quot;testString&quot; value=&quot;pantalones&quot;&gt;
+&lt;logic:<i>someComparisonTag</i> name=&quot;testString&quot; value=&quot;pantalones&quot;&gt;
   Usted tiene pantalones!
-&lt;/logic:<i>someComparision</i>&gt;
+&lt;/logic:<i>someComparison</i>&gt;
 </pre>
         </li>
       </ul>
@@ -117,9 +117,9 @@
     <li>parameter - the name of the request parameter to compare to <i>value</i>
       <ul>
         <li>example:
-          <pre>&lt;logic:<i>someComparisionTag</i> value=&quot;&quot; parameter=&quot;username&quot;&gt;
+          <pre>&lt;logic:<i>someComparisonTag</i> value=&quot;&quot; parameter=&quot;username&quot;&gt;
   Error: a username must be specified
-&lt;/logic:<i>someComparisionTag</i>&gt;
+&lt;/logic:<i>someComparisonTag</i>&gt;
 </pre>
         </li>
       </ul>
@@ -136,8 +136,8 @@
       scope&quot; </li>
   </ul>
   <p><b>Substring Matching</b> (match, notMatch)</p>
-  <p>The substring matching tags take all the same arguments as the value comparision
-    tags. You compare the String specified by <i>value</i> to any of the comparision
+  <p>The substring matching tags take all the same arguments as the value comparison
+    tags. You compare the String specified by <i>value</i> to any of the comparison
     values you give it, specified by <i>cookie</i>, <i>header</i>, <i>parameter</i>,
     <i>property</i> or <i>name.</i> Note that in the examples, <i>matchTag</i>
     corresponds either the <i>match </i>or <i>notMatch</i> tag. Matching tags
@@ -149,13 +149,13 @@
       matched to the end of the String
       <ul>
         <li>example:
-          <pre>&lt;logic:<i>matchTag</i> parameter=&quot;action&quot; value=&quot;processLogin&quot;&gt;
+          <pre>&lt;logic:<i>matchTag</i> parameter=&quot;action&quot; value=&quot;processLogin&quot; location=&quot;start&quot;&gt;
   Processing Login....
 &lt;/logic:<i>matchTag</i>&gt;
 
-Basically, in this short example, a request parameter &quot;action&quot;
-was compared to see if it was equal to the String value &quot;processLogin&quot;.
-In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
+In this example, a request parameter &quot;action&quot; was compared to see if
+its value started with the String &quot;processLogin&quot;. In this case,
+<i>matchTag</i> would have to be &lt;logic:match&gt;.
 </pre>
         </li>
       </ul>
@@ -183,7 +183,7 @@ In this case, <i>matchTag</i> would have to be &lt;logic:match&gt;.
     <li>name - The logical name of the ActionForward to use</li>
   </ul>
   <p><b>Collection Utilities</b> (iterate)</p>
-  <p>The <i>iterate</i> tag is responsible for executing it's body content once
+  <p>The <i>iterate</i> tag is responsible for executing its body content once
     for every element inside of the specified Collection. There is one required
     attribute:</p>
   <ul>
@@ -280,7 +280,7 @@ list.add(&quot;Fifth&quot;);
 </blockquote>
 <h3>Logic Examples</h3>
 <blockquote>
-  <p><b>Value Comparisions</b></p>
+  <p><b>Value Comparisons</b></p>
   <blockquote>
     <p><u></u><u></u><u>Logic Equivalence Tags (equal, notEqual, greaterEqual,
       lessEqual, lessThan, greaterThan)</u></p>
@@ -339,7 +339,7 @@ Please Enter a Number From 1-10: &lt;input type=&quot;text&quot; name=&quot;numb
         is higher or lower than 7, and prints out a hint. As said before, this
         is a horribly designed small application, with no validity checks on the
         number input, but shows the basic usage of the logic equal tags</p>
-      <p>For String comparisions, the equal tags use the java.lang.String.compareTo()
+      <p>For String comparisons, the equal tags use the java.lang.String.compareTo()
         method. See the javadocs on the compareTo() method for more information,
         located <a href="http://www.javasoft.com/products/jdk/1.2/docs/api/java/lang/String.html#compareTo(java.lang.Object)">here</a>.</p>
     </blockquote>

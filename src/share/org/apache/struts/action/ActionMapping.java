@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.19 2001/10/04 03:02:27 craigmcc Exp $
- * $Revision: 1.19 $
- * $Date: 2001/10/04 03:02:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.20 2001/11/04 07:42:21 martinc Exp $
+ * $Revision: 1.20 $
+ * $Date: 2001/11/04 07:42:21 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import java.io.Serializable;
  *     selected by this <code>ActionMapping</code>.</li>
  * <li><strong>path</strong> - Request URI path used to select this mapping.
  *     If extension mapping is used for the controller servlet, the extension
- *     will be stripped before comparisions against this value are made.</li>
+ *     will be stripped before comparisons against this value are made.</li>
  * <li><strong>prefix</strong> - Prefix used to match request parameter
  *     names to form bean property names, if any.</li>
  * <li><strong>scope</strong> - Identifier of the scope ("request" or
@@ -130,7 +130,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.19 $ $Date: 2001/10/04 03:02:27 $
+ * @version $Revision: 1.20 $ $Date: 2001/11/04 07:42:21 $
  */
 
 public class ActionMapping implements Serializable {
