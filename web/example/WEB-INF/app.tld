@@ -49,20 +49,20 @@
       Generate a URL-encoded hyperlink to the a URL made up of the
       specified base value, plus optional query parameters that
       select the specified Subscription object.
-      
-      href     - Base URL of the generated link
-      
+
       name     - Name of the attribute containing the specified
                  Subscription.  [subscription]
+
+      page     - Context-relative URL of the generated link
     </info>
-    <attribute>
-      <name>href</name>
-      <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
     <attribute>
       <name>name</name>
       <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>page</name>
+      <required>true</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
   </tag>
@@ -75,20 +75,20 @@
       Generate a URL-encoded hyperlink to the a URL made up of the
       specified base value, plus optional query parameters that
       select the specified User object.
-      
-      href     - Base URL of the generated link
-      
+
       name     - Name of the attribute containing the specified user.
                  [user]
+
+      href     - Context-relative URL of the generated link
     </info>
-    <attribute>
-      <name>href</name>
-      <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
-    </attribute>
     <attribute>
       <name>name</name>
       <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>page</name>
+      <required>true</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
   </tag>

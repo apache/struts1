@@ -27,8 +27,8 @@
 
 <h3><bean:message key="index.heading"/></h3>
 <ul>
-<li><form:link href="editRegistration.do?action=Create"><bean:message key="index.registration"/></form:link></li>
-<li><form:link href="logon.jsp"><bean:message key="index.logon"/></form:link></li>
+<li><form:link page="/editRegistration.do?action=Create"><bean:message key="index.registration"/></form:link></li>
+<li><form:link page="/logon.jsp"><bean:message key="index.logon"/></form:link></li>
 </ul>
 
 </body>

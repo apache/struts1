@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkSubscriptionTag.java,v 1.2 2000/08/01 20:03:23 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:23 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkSubscriptionTag.java,v 1.3 2000/11/18 22:11:56 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/11/18 22:11:56 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.example;
 
 
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -78,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * associated query parameters selecting a specified Subscription.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:23 $
+ * @version $Revision: 1.3 $ $Date: 2000/11/18 22:11:56 $
  */
 
 public class LinkSubscriptionTag extends TagSupport {
@@ -88,9 +89,9 @@ public class LinkSubscriptionTag extends TagSupport {
 
 
     /**
-     * The hyperlink URI.
+     * The context-relative URI.
      */
-    protected String href = null;
+    protected String page = null;
 
 
     /**
@@ -111,23 +112,23 @@ public class LinkSubscriptionTag extends TagSupport {
 
 
     /**
-     * Return the hyperlink URI.
+     * Return the context-relative URI.
      */
-    public String getHref() {
+    public String getPage() {
 
-	return (this.href);
+	return (this.page);
 
     }
 
 
     /**
-     * Set the hyperlink URI.
+     * Set the context-relative URI.
      *
-     * @param href Set the hyperlink URI
+     * @param page Set the context-relative URI
      */
-    public void setHref(String href) {
+    public void setPage(String page) {
 
-	this.href = href;
+	this.page = page;
 
     }
 
@@ -165,7 +166,10 @@ public class LinkSubscriptionTag extends TagSupport {
     public int doStartTag() throws JspException {
 
 	// Generate the URL to be encoded
-	StringBuffer url = new StringBuffer(href);
+        HttpServletRequest request =
+          (HttpServletRequest) pageContext.getRequest();
+        StringBuffer url = new StringBuffer(request.getContextPath());
+        url.append(page);
 	Subscription subscription = null;
 	try {
 	    subscription = (Subscription) pageContext.findAttribute(name);
@@ -175,7 +179,7 @@ public class LinkSubscriptionTag extends TagSupport {
 	if (subscription == null)
 	    throw new JspException
 	        (messages.getMessage("linkSubscription.noSubscription", name));
-	if (href.indexOf("?") < 0)
+	if (page.indexOf("?") < 0)
 	    url.append("?");
 	else
 	    url.append("&");

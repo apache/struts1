@@ -15,8 +15,8 @@
 <h3><bean:message key="mainMenu.heading"/>
 <jsp:getProperty name="user" property="username"/></h3>
 <ul>
-<li><form:link href="editRegistration.do?action=Edit"><bean:message key="mainMenu.registration"/></form:link></li>
-<li><form:link href="logoff.do"><bean:message key="mainMenu.logoff"/></form:link></li>
+<li><form:link page="/editRegistration.do?action=Edit"><bean:message key="mainMenu.registration"/></form:link></li>
+<li><form:link page="/logoff.do"><bean:message key="mainMenu.logoff"/></form:link></li>
 </ul>
 
 </body>

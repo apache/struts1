@@ -154,10 +154,10 @@
       <bean:write name="subscription" property="autoConnect"/>
     </td>
     <td align="center">
-      <app:linkSubscription href="editSubscription.do?action=Delete">
+      <app:linkSubscription page="/editSubscription.do?action=Delete">
         <bean:message key="registration.deleteSubscription"/>
       </app:linkSubscription>
-      <app:linkSubscription href="editSubscription.do?action=Edit">
+      <app:linkSubscription page="/editSubscription.do?action=Edit">
         <bean:message key="registration.editSubscription"/>
       </app:linkSubscription>
     </td>
@@ -166,7 +166,7 @@
 
 </table>
 
-<app:linkUser href="editSubscription.do?action=Create">
+<app:linkUser page="/editSubscription.do?action=Create">
   <bean:message key="registration.addSubscription"/>
 </app:linkUser>
 
