@@ -173,6 +173,7 @@
           <version>2.5.1</version>
           <url>http://xml.apache.org/xalan</url>
       </dependency>
+    </dependencies>
 
   <build>
     <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
