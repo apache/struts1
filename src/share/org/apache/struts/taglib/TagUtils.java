@@ -762,7 +762,14 @@ public class TagUtils {
     public String getActionMappingURL(String action, String module, PageContext pageContext, boolean contextRelative) {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        StringBuffer value = new StringBuffer(request.getContextPath());
+
+        String contextPath = request.getContextPath();
+        StringBuffer value = new StringBuffer();
+        // Avoid setting two slashes at the beginning of an action:
+        //  the length of contextPath should be more than 1
+        //  in case of non-root context, otherwise length==1 (the slash)
+        if (contextPath.length() > 1) value.append(contextPath);
+
         ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(module, request, pageContext.getServletContext());
 
         if ((moduleConfig != null) && (!contextRelative)) {
