@@ -1,5 +1,5 @@
 The Struts-Faces Integration Library (Version 0.4) README File
-$Id: README.txt,v 1.2 2003/06/04 17:38:12 craigmcc Exp $
+$Id: README.txt,v 1.3 2003/11/27 23:01:22 martinc Exp $
 
 
 ============
@@ -294,7 +294,7 @@ Install An Ant Distribution:
 ---------------------------
 
 If you have downloaded the JWSDP 1.2ea release described above, Ant is already
-included.  Otherwise, download Apache Ant, version 1.5.1 or later, from:
+included.  Otherwise, download Apache Ant, version 1.5.2 or later, from:
 
     http://jakarta.apache.org/site/binindex.cgi
 

@@ -1,4 +1,4 @@
-$Id: README,v 1.16 2002/03/21 02:57:24 craigmcc Exp $
+$Id: README,v 1.17 2003/11/27 23:01:22 martinc Exp $
 
 				Struts
 				======
@@ -169,7 +169,7 @@ If you wish to contribute to the development of the Struts toolkit, you should
 download and install a source distribution of Struts from
 <http://jakarta.apache.org/builds/jakarta-struts/nightly/src>.  You will also
 need a recent nightly build of the Ant project development tool (you *must*
-use version 1.3 or later of Ant).
+use version 1.5.2 or later of Ant).
 
 Before committing any changes to the Struts CVS repository, you must do a
 "build clean" followed by a "build dist", to ensure that everything compiles

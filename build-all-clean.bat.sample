@@ -16,7 +16,7 @@ rem         jakarta-struts-current
 rem are checked out of CVS in the same directory.
 rem Also assumes uses of 
 rem           maven beta 10 or above,
-rem           ant 1.5.1
+rem           ant 1.5.2
 rem           cactus v 1.4.1 & v1.2
 rem              v 1.2 Because the commons (resources) use an old version
 rem                    of cactus for units test, that maven doesn't precompile 
@@ -24,7 +24,7 @@ rem                    anymore. You'll need to copy the cactus.jar into the
 rem                    maven repository directory. I filed a bug report for this.
 rem              
 rem
-rem $Id: build-all-clean.bat.sample,v 1.10 2003/08/12 04:37:57 rleland Exp $
+rem $Id: build-all-clean.bat.sample,v 1.11 2003/11/27 23:01:22 martinc Exp $
 
 cd ..
 

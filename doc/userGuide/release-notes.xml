@@ -162,7 +162,7 @@
     reference implementation, and Xerces 1.3.1.</p>
 
     <p><strong>SOURCE DEVELOPERS NOTE! Ant Prerequisite Updated</strong></p>
-    <p>To build Struts from source Ant 1.4 or later is now required. This
+    <p>To build Struts from source Ant 1.5.2 or later is now required. This
     does not affect developers that use Struts from the binary distribution.</p>
 
 

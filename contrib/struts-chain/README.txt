@@ -1,5 +1,5 @@
 The Chain Of Responsibility Adapter README File
-$Id: README.txt,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
+$Id: README.txt,v 1.2 2003/11/27 23:01:22 martinc Exp $
 
 
 INTRODUCTION:
@@ -139,7 +139,7 @@ Follow these steps:
 Install An Ant Distribution:
 ---------------------------
 
-The provided build.xml script requires Ant, version 1.5.1 or later.  You can
+The provided build.xml script requires Ant, version 1.5.2 or later.  You can
 get it from:
 
     http://ant.apache.org/
