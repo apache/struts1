@@ -58,4 +58,6 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Utilize JodaBeans <http://www.joda.org/> as a foundation class for core components.
 
+* Load all configuration defaults form a core.properties file so that less is hardcoded, including a PlugIn class to bootstrap loading the core configuraiton.
+
 ###
