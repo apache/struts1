@@ -1,0 +1,50 @@
+-COMPONENT OVERVIEW-
+
+Configuration registry
+* At initialiation, each request adapter (servlet, filter, et cetera), adds its configuration to a single registry at a global location under a unique key.
+
+Command Context
+* Extends CoR Context to encapsulate framework members needed to process request and render response
+
+Request Adapter (module, portlet, mock)
+* Receives request from container (or TestRunner)
+* Normalizes request path (masks pattern registered with container)
+* Creates context to wrap request and response objects
+* Adds reference to its configuration (stored in global registry)
+* Invokes Controller
+* When control returns, dispatches to Location (if any)
+
+Controller
+* Receives context and selects the matching mapping
+* Adds reference to mapping instance to context
+* Removes any expired messages from context
+* Invokes processor for mapping
+
+Processor
+* Invokes series of methods ("Chain of Commands") to handle request. The default series includes
+  * Multipart
+  * Locale
+  * ContentType
+  * NoCache
+  * PreProcess
+  * Roles
+  * FormHandler
+    * Cancel
+    * Reset
+    * Populate
+    * Validate
+    * Invalid
+  * MappingHandler
+    * Command | Script | Forward | Include
+
+ExceptionHandler
+* Intercept any Exception thrown by Processor and dispatch to designated error page.
+
+Tags/Tools
+* Reference Command Context (stored in request) to access framework members
+
+Server Pages
+* Utilize tags and tools to render dynamic data.
+
+###
+
