@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.8 2003/02/08 19:34:19 cedric Exp $
- * $Revision: 1.8 $
- * $Date: 2003/02/08 19:34:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.9 2003/02/08 20:01:45 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/02/08 20:01:45 $
  *
  * ====================================================================
  *
@@ -85,11 +85,6 @@ public class XmlParser
      */
     protected boolean validating = false;
     /**
-     * Digester debug level. DEfault = 0.
-     */
-    protected int digesterDebugLevel = 0;
-
-    /**
      * The set of public identifiers, and corresponding resource names, for
      * the versions of the configuration file DTDs that we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!
@@ -116,7 +111,6 @@ public class XmlParser
   public XmlParser()
   {
 	digester = new Digester();
-	digester.setDebug(digesterDebugLevel);
 	digester.setValidating(validating);
 	digester.setNamespaceAware(true);
 	digester.setUseContextClassLoader(true);
@@ -142,10 +136,11 @@ public class XmlParser
 
     /**
      * Set digester detail level.
+     * @deprecated Use the commons-logging to set digester debug level.
+
      */
   public void setDetailLevel( int detailLevel )
     {
-    digester.setDebug( detailLevel);
     }
 
    /**
