@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/SessionActionMapping.java,v 1.1 2000/07/17 00:46:39 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/07/17 00:46:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/SessionActionMapping.java,v 1.2 2000/12/30 21:24:00 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/30 21:24:00 $
  *
  * ====================================================================
  *
@@ -64,14 +64,14 @@ package org.apache.struts.action;
 
 
 /**
- * Subclass of <code>ActionMappingBase</code> that defaults the form bean
+ * Subclass of <code>ActionMapping</code> that defaults the form bean
  * scope to <code>session</code>.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/07/17 00:46:39 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/30 21:24:00 $
  */
 
-public class SessionActionMapping extends ActionMappingBase {
+public class SessionActionMapping extends ActionMapping {
 
 
     /**
@@ -81,7 +81,7 @@ public class SessionActionMapping extends ActionMappingBase {
     public SessionActionMapping() {
 
 	super();
-	setFormScope("session");
+	setScope("session");
 
     }
 
