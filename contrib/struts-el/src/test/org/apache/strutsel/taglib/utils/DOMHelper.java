@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/DOMHelper.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/utils/DOMHelper.java,v 1.3 2002/10/14 03:21:34 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/10/14 03:21:34 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -61,15 +61,10 @@
 package org.apache.strutsel.taglib.utils;
 
 import java.util.*;
-
 import javax.xml.transform.*;
-
 import org.apache.xpath.*;
-
 import org.w3c.dom.*;
-
 import org.xml.sax.*;
-
 import org.apache.commons.logging.*;
 
 
