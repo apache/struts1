@@ -182,6 +182,12 @@
           className="org.apache.struts.chain.commands.servlet.SelectInput"/>
        
        
+      <!-- Lookup and execute a chain command if the current ActionConfig is 
+           so-configured. -->
+      <command
+          className="org.apache.struts.chain.commands.ExecuteCommand"/>
+       
+       
       <!-- Select the appropriate ForwardConfig for action mappings that only
            have an ActionForward -->
       <command
@@ -209,15 +215,8 @@
 
 
       <!--
-      If you want to use Tiles, uncomment this command, and modify your 
-      Struts Configuration to use this PlugIn:
-      "org.apache.struts.chain.legacy.TilesPlugin"
-      
-      This PlugIn is required because the basic TilesPlugIn tests at initialization
-      time to make sure that you are specific using the TilesRequestProcessor 
-      (or a subclass), and the struts-chain ComposableRequestProcessor fails that test.  
-      In every other respect, the struts-chain TilesPlugin is identical to the normal 
-      TilesPlugIn, and is configured in the same way.
+      If you want to use Tiles, uncomment this command and make sure you have 
+      the struts-tiles JAR included in your web application.
 
       <command
           className="org.apache.struts.chain.commands.servlet.TilesPreProcessor"/>

@@ -533,6 +533,78 @@ public class ActionConfig implements Serializable {
         this.validate = validate;
     }
 
+    /**
+     * The name of a <code>commons-chain</code> command which should 
+     * be executed as part of the processing of this action.
+     * @since Struts 1.3.0
+     */
+    protected String command = null;
+
+    /**
+     * The name of a <code>commons-chain</code> catalog in which <code>command</code> 
+     * should be sought.  If a <code>command</code> is defined and this property is undefined,
+     * the "default" catalog will be used.
+     * This is likely to be infrequently
+     * used after a future release of <code>commons-chain</code> supports
+     * a one-string expression of a catalog/chain combination.
+     * @since Struts 1.3.0
+     */
+    protected String catalog = null;
+
+    /**
+     * Get the name of a <code>commons-chain</code> command which should 
+     * be executed as part of the processing of this action.
+     * @return name of a <code>commons-chain</code> command which should 
+     * be executed as part of the processing of this action.
+     * @since Struts 1.3.0
+     */
+    public String getCommand() {
+        return (this.command);
+    }
+
+    /**
+     * Get the name of a <code>commons-chain</code> catalog in which
+     * a specified command should be sought.  This is likely to be infrequently
+     * used after a future release of <code>commons-chain</code> supports
+     * a one-string expression of a catalog/chain combination.
+     * @return name of a <code>commons-chain</code> catalog in which
+     * a specified command should be sought.
+     * @since Struts 1.3.0
+     */
+    public String getCatalog() {
+        return (this.catalog);
+    }
+
+    /**
+     * Set the name of a <code>commons-chain</code> command which should 
+     * be executed as part of the processing of this action.
+     * @param command name of a <code>commons-chain</code> command which should 
+     * be executed as part of the processing of this action.
+     * @since Struts 1.3.0
+     */
+    public void setCommand(String command) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.command = command;
+    }
+
+    /**
+     * Set the name of a <code>commons-chain</code> catalog in which
+     * a specified command should be sought. This is likely to be infrequently
+     * used after a future release of <code>commons-chain</code> supports
+     * a one-string expression of a catalog/chain combination.
+     * @param catalog name of a <code>commons-chain</code> catalog in which
+     * a specified command should be sought. 
+     * @since Struts 1.3.0
+     */
+    public void setCatalog(String catalog) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.catalog = catalog;
+    }
+
 
     // --------------------------------------------------------- Public Methods
 

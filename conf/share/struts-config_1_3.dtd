@@ -361,12 +361,19 @@ The "form-bean" element describes a particular form bean, which is a
                      the bean's specified "name". Optional if "name" is specified,
                      else not valid.
 
+     catalog         The name of a commons-chain catalog in which to look up
+                     a command to be executed as part of servicing this request.
+                     Only meaningful if "command" is also specified.
+
      className       The fully qualified Java class name of the ActionMapping
                      subclass to use for this action mapping object. Defaults to
                      the type specified by the enclosing <action-mappings>
                      element or to "org.apache.struts.action.ActionMapping" if
                      not specified.
                      ["org.apache.struts.action.ActionMapping"]
+
+     command         The name of a commons-chain command which should be looked up
+                     and executed as part of servicing this request.  
 
      forward         Module-relative path of the servlet or other resource that
                      will process this request, instead of the Action class
@@ -443,7 +450,9 @@ The "form-bean" element describes a particular form bean, which is a
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
 <!ATTLIST action         attribute      %BeanName;      #IMPLIED>
+<!ATTLIST action         catalog        CDATA           #IMPLIED>
 <!ATTLIST action         className      %ClassName;     #IMPLIED>
+<!ATTLIST action         command        CDATA           #IMPLIED>
 <!ATTLIST action         forward        %RequestPath;   #IMPLIED>
 <!ATTLIST action         include        %RequestPath;   #IMPLIED>
 <!ATTLIST action         input          %RequestPath;   #IMPLIED>

@@ -154,6 +154,8 @@ public class ActionConfigMatcher implements Serializable {
         config.setForward(convertParam(orig.getForward(), vars));
         config.setInclude(convertParam(orig.getInclude(), vars));
         config.setInput(convertParam(orig.getInput(), vars));
+        config.setCatalog(convertParam(orig.getCatalog(), vars));
+        config.setCommand(convertParam(orig.getCommand(), vars));
 
         ForwardConfig[] fConfigs = orig.findForwardConfigs();
         ForwardConfig cfg;
