@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.7 2003/07/11 23:57:15 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2003/07/11 23:57:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.8 2003/07/12 00:06:01 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/07/12 00:06:01 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * that is named by the request parameter whose name is specified
  * by the <code>parameter</code> property of the corresponding
  * ActionMapping.
- * This action is usefull in following situations :
+ * This action is useful in following situations:
  * <li>
  * <ul>To associate an Url to a definition</ul>
  * <ul>To use Struts &lt;html:link&gt; tag on a definition</ul>
@@ -109,7 +109,7 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.7 $ $Date: 2003/07/11 23:57:15 $
+ * @version $Revision: 1.8 $ $Date: 2003/07/12 00:06:01 $
  */
 public class DefinitionDispatcherAction extends Action {
     
@@ -149,13 +149,9 @@ public class DefinitionDispatcherAction extends Action {
         // Identify the method name to be dispatched to
         String name = request.getParameter(parameter);
         if (name == null) {
-            String msg =
-                "Definition dispatcher action : can't get parameter '"
-                    + parameter
-                    + "'.";
-                    
-            printError(response, msg);
-            return null;
+            log.error("Can't get parameter '" + parameter + "'.");        
+
+            return mapping.findForward("error");
         }
 
         // Try to dispatch to requested definition
@@ -168,39 +164,25 @@ public class DefinitionDispatcherAction extends Action {
                     getServlet().getServletContext());
                     
             if (log.isDebugEnabled()) {
-                log.debug("get Definition " + definition);
+                log.debug("Get Definition " + definition);
             }
             
             DefinitionsUtil.setActionDefinition(request, definition);
             
-        } catch (FactoryNotFoundException ex) {
-            printError(
-                response,
-                "Error - DefinitionDispatcherAction : Can't get definition factory.");
+        } catch (FactoryNotFoundException e) {
+            log.error("Can't get definition factory.", e);
             return mapping.findForward("error");
             
-        } catch (NoSuchDefinitionException ex) {
-            printError(
-                response,
-                "Error - DefinitionDispatcherAction : Can't get definition '"
-                    + name
-                    + "'.");
+        } catch (NoSuchDefinitionException e) {
+            log.error("Can't get definition '" + name + "'.", e);
             return mapping.findForward("error");
             
-        } catch (DefinitionsFactoryException ex) {
-            printError(
-                response,
-                "Error - DefinitionDispatcherAction : General Factory error '"
-                    + ex.getMessage()
-                    + "'.");
+        } catch (DefinitionsFactoryException e) {
+            log.error("General Factory error '" + e.getMessage() + "'.", e);
             return mapping.findForward("error");
             
-        } catch (Exception ex) {
-            printError(
-                response,
-                "Error - DefinitionDispatcherAction : General error '"
-                    + ex.getMessage()
-                    + "'.");
+        } catch (Exception e) {
+            log.error("General error '" + e.getMessage() + "'.", e);
             return mapping.findForward("error");
         }
 
@@ -208,6 +190,9 @@ public class DefinitionDispatcherAction extends Action {
 
     }
 
+    /**
+     * @deprecated This will be removed after Struts 1.2.
+     */
     protected void printError(HttpServletResponse response, String msg)
         throws IOException {
         response.setContentType("text/plain");
