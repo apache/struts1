@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.1 2002/11/06 04:48:29 rleland Exp $
- * $Revision: 1.1 $
- * $Date: 2002/11/06 04:48:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/impl/ModuleConfigImpl.java,v 1.2 2002/12/08 02:09:45 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 02:09:45 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.config.ForwardConfig;
  *
  * @todo Add factory methods to construct ModuleConfig objects.
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/11/06 04:48:29 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 02:09:45 $
  * @since Struts 1.1
  */
 public class ModuleConfigImpl implements Serializable, ModuleConfig {
@@ -334,6 +334,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+        config.setModuleConfig(this);
         formBeans.put(config.getName(), config);
 
     }
@@ -653,6 +654,7 @@ public class ModuleConfigImpl implements Serializable, ModuleConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+        config.setModuleConfig(null);
         formBeans.remove(config.getName());
 
     }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.10 2002/11/15 06:02:42 jmitchell Exp $
- * $Revision: 1.10 $
- * $Date: 2002/11/15 06:02:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.11 2002/12/08 02:09:44 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/12/08 02:09:44 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.10 $ $Date: 2002/11/15 06:02:42 $
+ * @version $Revision: 1.11 $ $Date: 2002/12/08 02:09:44 $
  * @since Struts 1.1
  */
 
@@ -308,35 +308,15 @@ public class DynaActionFormClass implements DynaClass, Serializable {
             if (dynaClasses == null) {
                 dynaClasses = new HashMap();
             }
+            String key =
+                config.getName() + config.getModuleConfig().getPrefix();
             DynaActionFormClass dynaClass =
-                (DynaActionFormClass) dynaClasses.get(config.getName());
+                (DynaActionFormClass) dynaClasses.get(key);
             if (dynaClass == null) {
                 dynaClass = new DynaActionFormClass(config);
-                dynaClasses.put(config.getName(), dynaClass);
+                dynaClasses.put(key, dynaClass);
             }
             return (dynaClass);
-        }
-
-    }
-
-
-    /**
-     * Return an existing <code>DynaActionFormClass</code> of the specified
-     * name, if one has been configured previously.  If no such instance has
-     * been configured, return <code>null</code> instead.
-     *
-     * @param name Name of the <code>DynaActionFormClass</code> to be
-     *  returned
-     */
-    public static DynaActionFormClass
-        getDynaActionFormClass(String name) {
-
-        synchronized (lock) {
-            if (dynaClasses == null) {
-                return (null);
-            } else {
-                return ((DynaActionFormClass) dynaClasses.get(name));
-            }
         }
 
     }

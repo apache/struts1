@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.8 2002/07/19 04:42:21 martinc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/07/19 04:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.9 2002/12/08 02:09:44 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/08 02:09:44 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.action.DynaActionForm;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/07/19 04:42:21 $
+ * @version $Revision: 1.9 $ $Date: 2002/12/08 02:09:44 $
  * @since Struts 1.1
  */
 
@@ -121,6 +121,36 @@ public class FormBeanConfig implements Serializable {
         ; // No action required
     }
 
+
+    /**
+     * The {@link ModuleConfig} with which this form bean definition
+     * is associated.
+     */
+    protected ModuleConfig moduleConfig = null;
+
+
+    /**
+     * Return the {@link ModuleConfig} with which this form bean definition
+     * is associated.
+     */
+    public ModuleConfig getModuleConfig() {
+        return (this.moduleConfig);
+    }
+
+
+    /**
+     * Set the {@link ModuleConfig} with which this form bean definition
+     * is associated.
+     *
+     * @param moduleConfig The new {@link ModuleConfig} or <code>null</code>
+     *  to disassociate this form bean configuration from any module
+     */
+    public void setModuleConfig(ModuleConfig moduleConfig) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.moduleConfig = moduleConfig;
+    }
 
     /**
      * The unique identifier of this form bean, which is used to reference this
