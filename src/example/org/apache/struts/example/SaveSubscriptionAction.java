@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.10 2000/10/15 03:34:54 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/10/15 03:34:54 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.11 2000/10/16 16:50:04 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/10/16 16:50:04 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.PropertyUtils;
  * updates the mail subscription entered by the user.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/10/15 03:34:54 $
+ * @version $Revision: 1.11 $ $Date: 2000/10/16 16:50:04 $
  */
 
 public final class SaveSubscriptionAction extends Action {
@@ -193,9 +193,13 @@ public final class SaveSubscriptionAction extends Action {
             throw new ServletException("Subscription.populate", t);
         }
 
-	// Remove any obsolete session objects
-	if (mapping.getAttribute() != null)
-	    session.removeAttribute(mapping.getAttribute());
+	// Remove the obsolete form bean and current subscription
+	if (mapping.getAttribute() != null) {
+            if ("request".equals(mapping.getScope()))
+                request.removeAttribute(mapping.getAttribute());
+            else
+                session.removeAttribute(mapping.getAttribute());
+        }
 	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
 
 	// Forward control to the specified success URI

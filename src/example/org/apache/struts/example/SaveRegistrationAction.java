@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.10 2000/10/15 03:34:53 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/10/15 03:34:53 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveRegistrationAction.java,v 1.11 2000/10/16 16:50:04 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/10/16 16:50:04 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.PropertyUtils;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/10/15 03:34:53 $
+ * @version $Revision: 1.11 $ $Date: 2000/10/16 16:50:04 $
  */
 
 public final class SaveRegistrationAction extends Action {
@@ -209,9 +209,13 @@ public final class SaveRegistrationAction extends Action {
 	                    "' logged on in session " + session.getId());
 	}
 
-	// Remove any obsolete session objects
-	if (mapping.getAttribute() != null)
-	    session.removeAttribute(mapping.getAttribute());
+	// Remove the obsolete form bean
+	if (mapping.getAttribute() != null) {
+            if ("request".equals(mapping.getScope()))
+                request.removeAttribute(mapping.getAttribute());
+            else
+                session.removeAttribute(mapping.getAttribute());
+        }
 
 	// Forward control to the specified success URI
         if (servlet.getDebug() >= 1)

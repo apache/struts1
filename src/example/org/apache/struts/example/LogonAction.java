@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.8 2000/10/12 21:53:41 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/10/12 21:53:41 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonAction.java,v 1.9 2000/10/16 16:50:03 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/16 16:50:03 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * Implementation of <strong>Action</strong> that validates a user logon.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/10/12 21:53:41 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/16 16:50:03 $
  */
 
 public final class LogonAction extends Action {
@@ -150,6 +150,14 @@ public final class LogonAction extends Action {
 	if (servlet.getDebug() >= 1)
 	    servlet.log("LogonAction: User '" + user.getUsername() +
 	                "' logged on in session " + session.getId());
+
+        // Remove the obsolete form bean
+	if (mapping.getAttribute() != null) {
+            if ("request".equals(mapping.getScope()))
+                request.removeAttribute(mapping.getAttribute());
+            else
+                session.removeAttribute(mapping.getAttribute());
+        }
 
 	// Forward control to the specified success URI
 	return (mapping.findForward("success"));
