@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.2 2001/02/02 20:14:18 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/02/02 20:14:18 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  * this tag.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/02/02 20:14:18 $
  */
 
 public class BaseTag extends TagSupport {
@@ -102,8 +102,16 @@ public class BaseTag extends TagSupport {
     buf.append(request.getScheme());
     buf.append("://");
     buf.append(request.getServerName());
-    buf.append(":");
-    buf.append(request.getServerPort());
+    if ("http".equals(request.getScheme()) &&
+        (80 == request.getServerPort())) {
+        ;
+    } else if ("https".equals(request.getScheme()) &&
+               (443 == request.getServerPort())) {
+        ;
+    } else {
+        buf.append(":");
+        buf.append(request.getServerPort());
+    }
     buf.append(request.getRequestURI());
     buf.append("\">");
     JspWriter out = pageContext.getOut();
