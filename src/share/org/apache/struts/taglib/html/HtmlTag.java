@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.11 2003/03/08 19:23:49 dgraham Exp $
- * $Revision: 1.11 $
- * $Date: 2003/03/08 19:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.12 2003/07/02 03:52:01 dgraham Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/07/02 03:52:01 $
  *
  * ====================================================================
  *
@@ -74,16 +74,14 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
-
 /**
  * Renders an HTML <html> element with appropriate language attributes if
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.11 $ $Date: 2003/03/08 19:23:49 $
+ * @version $Revision: 1.12 $ $Date: 2003/07/02 03:52:01 $
  */
-
 public class HtmlTag extends TagSupport {
   
 
@@ -197,39 +195,6 @@ public class HtmlTag extends TagSupport {
 
     // ------------------------------------------------------ Protected Methods
 
-
-    /**
-     * Return the current Locale for this request, creating a new one if
-     * necessary.  If there is no current Locale, and locale support is not
-     * requested, return <code>null</code>.
-     * @deprecated Use getCurrentLocale instead because it makes the display logic
-     * easier.
-     */
-    protected Locale currentLocale() {
-
-        // Create a new session if necessary
-        HttpSession session = pageContext.getSession();
-        if (locale && (session == null)) {
-            session =
-                ((HttpServletRequest) pageContext.getRequest()).getSession();
-        }
-        
-        // Return any currently set Locale in our session
-        Locale current = (Locale) session.getAttribute(Globals.LOCALE_KEY);
-        if (current != null) {
-            return (current);
-        }
-
-        // Configure a new current Locale, if requested
-        if (!locale) {
-            return (null);
-        }
-        
-         // If client doesn't specify locale then default for server will be returned
-        current = pageContext.getRequest().getLocale();
-        session.setAttribute(Globals.LOCALE_KEY, current);       
-        return (current);
-    }
 
     /**
      * Return the current Locale for this request.  If there is no locale in the session and
