@@ -627,23 +627,29 @@ public class Field implements Cloneable, Serializable {
     }
     
     public String toString() {
-    	String sReturn = "\t\tkey=                 " + key    + "\n" +
-    	                 "\t\tproperty=            " + property    + "\n" +
-    	                 "\t\tindexedProperty=     " + indexedProperty    + "\n" +
-    	                 "\t\tindexedListProperty= " + indexedListProperty    + "\n" +
-    	                 "\t\tdepends=             " + depends    + "\n" +
-    	                 "\t\tpage=                " + page    + "\n" +
-    	                 "\t\tfieldOrder=          " + fieldOrder    + "\n";
+       StringBuffer results = new StringBuffer();
+       
+       results.append("\t\tkey=                 " + key    + "\n");
+       results.append("\t\tproperty=            " + property    + "\n");
+       results.append("\t\tindexedProperty=     " + indexedProperty    + "\n");
+       results.append("\t\tindexedListProperty= " + indexedListProperty    + "\n");
+       results.append("\t\tdepends=             " + depends    + "\n");
+       results.append("\t\tpage=                " + page    + "\n");
+       results.append("\t\tfieldOrder=          " + fieldOrder    + "\n");
 
-    	if (hVars != null) {
-    	   sReturn += "\t\tVars:\n";
-    	   for (Iterator i = hVars.keySet().iterator(); i.hasNext(); ) {
-    	      Object key = i.next();
-    	      sReturn += "\t\t\t" + key + "=" + hVars.get(key) + "\n";
+       if (hVars != null) {
+          results.append("\t\tVars:\n");
+    	  for (Iterator i = hVars.keySet().iterator(); i.hasNext(); ) {
+    	     Object key = i.next();
+    	     results.append("\t\t\t");
+    	     results.append(key);
+    	     results.append("=");
+    	     results.append(hVars.get(key));
+    	     results.append("\n");
     	   }
     	}
     	
-    	return sReturn;
+       return results.toString();
     }
     
 }

@@ -143,10 +143,17 @@ public class Arg implements Cloneable, java.io.Serializable {
     }  
           
     public String toString() {
-    	String sReturn = "Arg: name=" + name + 
-    	                 "  key=" + key + 
-    			 "  resource=" + resource + "\n";
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+       
+       results.append("Arg: name=");
+       results.append(name);
+       results.append("  key=");
+       results.append(key);
+       results.append("  resource=");
+       results.append(resource);
+       results.append("\n");
+    			 
+       return results.toString();
     }
 	
 }

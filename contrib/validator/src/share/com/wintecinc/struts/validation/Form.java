@@ -144,12 +144,19 @@ public class Form implements Serializable {
     }
     
     public String toString() {
-    	String sReturn = "Form: " + name + "\n";
-    			 //"  validationclass=" + validationclass + "\n";
-    	for (Iterator i = lFields.iterator(); i.hasNext(); ) {
-    	   sReturn += "\tField: \n" + i.next() + "\n";;	
-    	}
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+       
+       results.append("Form: ");
+       results.append(name);
+       results.append("\n");
+
+       for (Iterator i = lFields.iterator(); i.hasNext(); ) {
+          results.append("\tField: \n");
+          results.append(i.next());
+          results.append("\n");	
+       }
+       
+       return results.toString();
     }
 	
 }

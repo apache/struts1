@@ -169,10 +169,17 @@ public class Var implements Cloneable, java.io.Serializable {
     }  
            
     public String toString() {
-    	String sReturn = "Var: name=" + name + 
-    			 "  value=" + value + 
-    			 "  jsType=" + jsType + "\n";
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+       
+       results.append("Var: name=");
+       results.append(name);
+       results.append("  value=");
+       results.append(value);
+       results.append("  jsType=");
+       results.append(jsType);
+       results.append("\n");
+       
+       return results.toString();
     }
     
 }

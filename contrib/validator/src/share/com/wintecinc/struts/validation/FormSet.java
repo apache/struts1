@@ -207,11 +207,23 @@ public class FormSet implements Serializable {
     }
     
     public String toString() {
-    	String sReturn = "FormSet: language=" + language + "  country=" + country + 
-    				"  variant=" + variant + "\n";
-    	for (Iterator i = getForms().values().iterator(); i.hasNext(); )
-    	   sReturn += "   " + i.next().toString() +"\n";
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+    
+       results.append("FormSet: language=");
+       results.append(language);
+       results.append("  country=");
+       results.append(country);
+       results.append("  variant=");
+       results.append(variant);
+       results.append("\n");
+       
+       for (Iterator i = getForms().values().iterator(); i.hasNext(); ) {
+          results.append("   ");
+          results.append(i.next());
+          results.append("\n");
+       }
+       
+       return results.toString();
     }
 	
 }

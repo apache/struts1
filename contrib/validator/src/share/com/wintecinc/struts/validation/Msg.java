@@ -119,9 +119,15 @@ public class Msg implements Cloneable, java.io.Serializable {
     }  
         
     public String toString() {
-    	String sReturn = "Msg: name=" + name + 
-    	                 "  key=" + key + "\n";
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+       
+       results.append("Msg: name=");
+       results.append(name);
+       results.append("  key=");
+       results.append(key);
+       results.append("\n");
+       
+       return results.toString();
     }
 	
 }

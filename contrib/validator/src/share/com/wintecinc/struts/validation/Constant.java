@@ -107,9 +107,15 @@ public class Constant implements java.io.Serializable {
     }
        
     public String toString() {
-    	String sReturn = "Constant: name=" + name + 
-    			 "  value=" + value + "\n";
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+    	
+       results.append("Constant: name=");
+       results.append(name);
+       results.append("  value=");
+       results.append(value);
+       results.append("\n");
+       
+       return results.toString();
     }
     
 }

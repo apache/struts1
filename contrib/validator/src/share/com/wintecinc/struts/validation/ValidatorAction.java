@@ -298,8 +298,13 @@ public class ValidatorAction implements Serializable {
     }
     
     public String toString() {
-    	String sReturn = "ValidatorAction: " + name + "\n";
-    	return sReturn;
+       StringBuffer results = new StringBuffer();
+       
+       results.append("ValidatorAction: ");
+       results.append(name);
+       results.append("\n");
+    
+       return results.toString();
     }
 	
 }
