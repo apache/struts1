@@ -20,6 +20,10 @@ so much duplicate code here
 // ------------------------------------------------------------ CHANGES
 
 
+[2002-11-11]
++ BaseAction: Extend from ValidatorForm again.
++ ParameterAction: Amend JavaDocs.
+
 [2002-10-29]
 + ProcessDispatchAction: Resolve problem in Scroller/ScrollBeanBase; 
 helper methods needed to be named UNlike properties to keep from 

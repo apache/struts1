@@ -26,12 +26,17 @@ import org.apache.struts.action.ActionServlet;
  * cross-compatibility with Struts 1.1 and 1.0
  *
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/10/31 14:32:08 $
+ * @version $Revision: 1.3 $ $Date: 2002/11/11 21:25:53 $
  */
 public class ParameterAction extends BaseAction {
 
     /**
      * Append parameter to a query string.
+     * The "dispatch" parameter is used to select a forward.
+     * The value of the parameter named by the "parameter" property
+     * is concaternated to the forward's path.
+     * No parsing of the path is performed at this time.
+     * The value is simply appended.
      *
      * @param mapping The ActionMapping used to select this instance
      * @param form The optional ActionForm bean for this request (if any)
@@ -66,9 +71,9 @@ public class ParameterAction extends BaseAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.2 2002/10/31 14:32:08 husted Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/31 14:32:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.3 2002/11/11 21:25:53 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/11/11 21:25:53 $
  *
  * ====================================================================
  *
