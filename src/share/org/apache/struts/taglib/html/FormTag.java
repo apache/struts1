@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.39 2002/12/13 02:26:24 dgraham Exp $
- * $Revision: 1.39 $
- * $Date: 2002/12/13 02:26:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.40 2002/12/13 02:36:47 dgraham Exp $
+ * $Revision: 1.40 $
+ * $Date: 2002/12/13 02:36:47 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.39 $ $Date: 2002/12/13 02:26:24 $
+ * @version $Revision: 1.40 $ $Date: 2002/12/13 02:36:47 $
  */
 
 public class FormTag extends TagSupport {
@@ -112,12 +112,13 @@ public class FormTag extends TagSupport {
      * The name of the field to receive focus, if any.
      */
     protected String focus = null;
-    
+
     /**
      * The index in the focus field array to receive focus.  This only applies if the field
      * given in the focus attribute is actually an array of fields.  This allows a specific 
      * field in a radio button array to receive focus while still allowing indexed field 
      * names like "myRadioButtonField[1]" to be passed in the focus attribute.
+     * @since Struts 1.1
      */
     protected String focusIndex = null;
 
@@ -624,31 +625,32 @@ public class FormTag extends TagSupport {
         if (this.focus != null) {
             results.append("\r\n");
             results.append(this.getJsStartElement());
-            
+
             // xhtml script content shouldn't use the browser hiding trick
             if (!this.isXhtml()) {
                 results.append("  <!--\r\n");
-            } 
-            
+            }
+
             // Construct the control name that will receive focus.
             // This does not include any index.
-            String focusControl = "document.forms[\""+beanName+"\"].elements[\""+this.focus+"\"]";
- 
-            results.append("  var focusControl = " + focusControl+";\r\n\r\n");
-            
+            String focusControl =
+                "document.forms[\"" + beanName + "\"].elements[\"" + this.focus + "\"]";
+
+            results.append("  var focusControl = " + focusControl + ";\r\n\r\n");
+
             results.append("  if (focusControl.type != \"hidden\") {\r\n");
 
             // Construct the index if needed and insert into focus statement
             String index = "";
-            if(this.focusIndex != null){
-                index="["+this.focusIndex+"]";  
+            if (this.focusIndex != null) {
+                index = "[" + this.focusIndex + "]";
             }
             results.append("     focusControl" + index + ".focus();\r\n  } \r\n");
-            
-             if (!this.isXhtml()) {
+
+            if (!this.isXhtml()) {
                 results.append("  // -->\r\n");
             }
-            
+
             results.append("</script>\r\n");
         }
 
@@ -837,7 +839,7 @@ public class FormTag extends TagSupport {
      */
     private String getJsStartElement() {
         String start = "<script type=\"text/javascript\"";
-        
+
         if (!this.isXhtml()) {
             start += " language=\"JavaScript\"";
         }
@@ -845,7 +847,7 @@ public class FormTag extends TagSupport {
 
         return start;
     }
-    
+
     /**
      * Returns true if this tag should render as xhtml.
      */
@@ -855,7 +857,7 @@ public class FormTag extends TagSupport {
 
         return ("true".equalsIgnoreCase(xhtml));
     }
-    
+
     /**
      * Returns the focusIndex.
      * @return String
