@@ -110,7 +110,7 @@ You can research and report outstanding fixes and feature requests using
 <a href="http://jakarta.apache.org/site/bugs.html">Jakarta Bugzilla</a>. 
 If you are unsure if this is an actual problem, feel free to bring it up the 
 list first. 
-But to sure that an issue is resolved, read 
+But to be sure that an issue is resolved, read 
 <a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">
 How to Report Bugs Effectively</a> and report it to
 <a href="http://jakarta.apache.org/site/bugs.html"><strong>Bugzilla</strong></a>.
@@ -125,7 +125,7 @@ Feature requests are also maintained in the Bugzilla database.
 welcome. 
 If you can't write a patch to fix your bug, a <a href="kickstart.html#tests">unit test</a>
 that demonstrates the problem is also welcome.
-(And, of course, unit tests that prove your patch work are equally welcome.)
+(And, of course, unit tests that prove your patch works are equally welcome.)
 </p>
 
 <p>
@@ -198,7 +198,7 @@ You can try to fake what a JSP container does, but a much more reliable
 testing regime would actually execute the tag in a real container.  
 For that purpose, we use the 
 <a href="http://jakarta.apache.org/cactus">Cactus</a> testing framework, 
-which re-executesthe JUnit-based tests as well to make sure that nothing 
+which re-executes the JUnit-based tests as well to make sure that nothing 
 bad happens when you switch environments.  
 Right now, there are very few dynamic tests; ideally, we will have tests 
 for every tag, that cover every reasonable combination of tag attribute 
@@ -224,7 +224,7 @@ the documentation WAR.
 Then try adding your own XML page under doc/ to see if the build succeeds. 
 If it doesn't, it will report where the bad element is, much like it reports 
 where a bad programming expression is. 
-If it does, then your page should available under target/documentation/.
+If it does, then your page should be available under target/documentation/.
 </p>
 
 <p>
@@ -232,25 +232,25 @@ The website portion of the package is the root directory of doc/.
 The User Guide portion is under the userGuide/ folder. 
 If the material you'd to add doesn't fit right in with what's there, 
 the best thing may to start a new section after the existing material. 
-The navigation column can found in the project.xml document.
+The navigation column can be found in the project.xml document.
 </p>
 
 <p>
 To display markup, substitute &amp;lt; for &lt;. 
-The unmatched trailing > will ignored. 
+The unmatched trailing > will be ignored. 
 Since it is XML, all elements also need to closed. 
 So elements like &lt;br> and &lt;hr> need to set out as &lt;br/> and &lt;hr/>.
 </p>
 
 <p>
-Also watch for the length of code samples. 
-These do not wrap. 
+Also watch for the length of code samples - 
+these do not wrap. 
 If a line is too long, it will force the right margin out past the edge of the 
 screen or printed page.
 </p>
 
 <p>
-The stylesheets we use are adequate, but could certainly improved by an XML
+The stylesheets we use are adequate, but could certainly be improved by an XML
 guru, if you happen to one of those.
 </p>
 
@@ -263,11 +263,11 @@ Here is the truth regarding releases:
 </p>
 
 <p>
-Jakarta products are released the basis of merit, and ~not~ according
+Jakarta products are released on the basis of merit, and ~not~ according
 to a strict timetable. 
-The volunteers devote whatever time they can to working the product. 
+The volunteers devote whatever time they can to work on the product. 
 But all volunteers have real jobs and real lives, that do take precedence. 
-Since Struts does not have paid personnel working the project, 
+Since Struts does not have paid personnel working on the project, 
 we simply cannot make date-oriented commitments.
 </p>
 
@@ -276,7 +276,7 @@ All Jakarta products must circulate a public beta before release.
 If a beta is not in circulation, 
 then it's a good bet that a release is not forthcoming any time soon. 
 Products sometimes go through several betas before final release. 
-So if this is beta 1, then it still may not released any time soon.
+So if this is beta 1, then it still may not be released any time soon.
 </p>
 
 <p>
@@ -310,14 +310,14 @@ Really, you do.
 
 <p>
 <em>So, what do you tell your team?</em> 
-If you can ship your application based the nightly build of your choice, 
+If you can ship your application based on the nightly build of your choice, 
 then consider that an option. 
 You can still ship yours, even if we don't ship ours, 
 and you will have access to all the latest patches or enhancements. 
 (Just like we were working down the hall.) 
-If you can only ship your application based a release build of Struts, 
-then you should base your development the release build of Struts,
-and keep an eye what is coming down the pipeline. 
+If you can only ship your application based on a release build of Struts, 
+then you should base your development on the release build of Struts,
+and keep an eye on what is coming down the pipeline. 
 This way you are at least forewarned and forearmed.
 </p>
 
@@ -335,16 +335,16 @@ This way you are at least forewarned and forearmed.
   <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>. 
   The sooner we resolve any problems, the fewer betas or release candidates 
   we will have to distribute before we are done. 
-  (How do we know when we done? -- When we run out of issues =:o) 
+  (How do we know when we're done? -- When we run out of issues =:o) 
   The sooner we find them, the sooner we are done.)
 </li>
 
 <li>
   <strong>Contribute <a href="kickstart.html#tests">unit tests</a></strong>. 
   The closer we get to a release, the more we worry about breaking something. 
-  The more tests we have, the more confident we can when applying patches. 
-  Tests that proves that a pending issue is actually a bug are the most 
-  welcome. 
+  The more tests we have, the more confident we can be when applying patches. 
+  Tests that prove that a pending issue is actually a bug are the most 
+  welcome ones. 
   But we are eager for any and all tests for any and all features, 
   even those that still work =:0).
 </li>
@@ -352,8 +352,8 @@ This way you are at least forewarned and forearmed.
 <li>
   <strong>Review the list of issues</strong> at <a href="#bugs">Bugzilla</a>. 
   If there are any to which you can respond, please do. 
-  If there any patches posted, feel free to test the patch your system, 
-  report the results, and cast your vote if it works.
+  If there any patches posted, feel free to test them your system, 
+  report the results, and cast your vote if they work.
 </li>
 
 <li>
@@ -361,7 +361,7 @@ This way you are at least forewarned and forearmed.
   Newbies often post feature requests or help-desk questions as "bugs". 
   This bloats the list of fixes we (apparently) need to apply before the next 
   beta, making it hard to see the forest for the trees. 
-  If an issue  doesn't seem to categorized correctly, exercise your best 
+  If an issue doesn't seem to be categorized correctly, exercise your best 
   judgment and change it.
   If one ticket seems like a duplicate of another, go ahead and enter the 
   change. 
@@ -383,9 +383,9 @@ This way you are at least forewarned and forearmed.
 
 <li>
   <strong>Answer questions on the user list.</strong> 
-  The Committers only have so much time to volunteer. 
+  The Committers only have a limited amount of time to volunteer. 
   If Developers are supporting each other on the lists, 
-  the  Committers have more time to spend on the next release.
+  the Committers have more time to spend on the next release.
 </li>
 
 </ul>
