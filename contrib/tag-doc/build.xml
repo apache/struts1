@@ -1,0 +1,85 @@
+<project name="TaglibDoc" default="compile" basedir=".">
+
+  <!-- Load local and user build preferences -->
+  <property file="${user.home}/build.properties"/>
+  <property file="../build.properties"/>
+  <property file="build.properties"/>
+
+  <property name="src.dir"           value="src"/>
+  <property name="classes.dir"       value="classes"/>
+  <property name="dist.dir"          value="dist"/>
+  <property name="dist.jar"          value="${dist.dir}/taglib-docs.jar"/>
+  <property name="java.dir"          value="${src.dir}/java"/>
+  <property name="resources.dir"     value="${src.dir}/resources"/>
+  <property name="target.dir"        value="target"/>
+  <property name="taglibdoc.dir"     value="${target.dir}/taglibdoc"/>
+  <property name="taglibreport.dir"  value="${target.dir}/taglibreport"/>
+
+  <!-- This is the doc directoy relative to the jakarta-struts directory from here -->
+  <property name="struts.doc.dir"    value="../../doc"/>
+  <property name="xml.dir"           value="${struts.doc.dir}/userGuide"/>
+
+  <!-- Compilation Classpath -->
+  <path id="compile.classpath">
+    <pathelement location="${classes.dir}"/>
+    <pathelement location="${ant.jar}"/>
+  </path>
+  
+  <target name="init">
+    <mkdir dir="${classes.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${java.dir}" 
+          destdir="${classes.dir}" >
+      <classpath refid="compile.classpath"/>
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile">
+    <copy todir="${classes.dir}/resources">
+      <fileset dir="${resources.dir}"/>
+    </copy>
+    <jar jarfile="${dist.jar}"
+      basedir="${classes.dir}"
+      includes="**"
+      />
+  </target>
+
+  <target name="taglibdoc" depends="dist">
+    <taskdef name="taglibdoc" 
+         classname="org.apache.struts.taskdefs.TaglibDoc">
+      <classpath path="${dist.jar}"/>
+    </taskdef>
+
+    <taglibdoc destdir="${taglibdoc.dir}">
+      <fileset dir="${xml.dir}">
+        <include name="struts-*.xml"/>
+      </fileset>
+    </taglibdoc>
+  </target>
+  
+  <target name="taglibreport" depends="dist">
+    <taskdef name="taglibreport" 
+         classname="org.apache.struts.taskdefs.TaglibReport">
+      <classpath path="${dist.jar}"/>
+    </taskdef>
+
+    <taglibreport destdir="${taglibreport.dir}">
+      <fileset dir="${xml.dir}">
+        <include name="struts-*.xml"/>
+      </fileset>
+    </taglibreport>
+  </target>
+
+  <target name="clean">
+    <delete dir="${classes.dir}"/>
+    <delete dir="${dist.dir}"/>
+    <delete dir="${taglibdoc.dir}"/>
+    <delete dir="${taglibreport.dir}"/>
+  </target>
+
+  <target name="generate-reports" depends="taglibdoc, taglibreport"/>
+
+</project>

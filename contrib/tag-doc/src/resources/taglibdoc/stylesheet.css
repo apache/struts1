@@ -1,0 +1,35 @@
+/* Javadoc style sheet */
+
+/* Page background color */
+body { background-color: #FFFFFF }
+
+.FrameHeading { 
+	font-weight: bold;
+	font-size: large;
+	text-decoration: none;
+}
+.FrameItem { 
+	text-decoration: none;
+}
+.FrameHeading:link, .FrameHeading:visited, .FrameItem:link, .FrameItem:visited {
+	color: blue;
+}
+.FrameHeading:hover, .FrameHeading:active, .FrameItem:hover, .FrameItem:active {
+	color: #CC3333;
+}
+
+.FrameTitle { 
+	font-weight: bold;
+	font-size: large;
+	text-decoration: none;
+}
+
+.TableHeadingColor     { background: #CCCCFF } /* Dark mauve */
+.TableRowColor         { background: #FFFFFF } /* White */
+
+.TableRowTT            { background: #FFCC99 } /*  Reqd.  RTExprValue */
+.TableRowTF            { background: #FFCC99 } /*  Reqd. !RTExprValue */
+.TableRowFT            { background: #FFFFFF } /* !Reqd.  RTExprValue */
+.TableRowFF            { background: #FFFFFF } /* !Reqd. !RTExprValue */
+
+
