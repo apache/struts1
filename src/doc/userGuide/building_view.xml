@@ -155,6 +155,11 @@
 				with no need to explicitly refer to the JavaBean from which the initial
 				value is retrieved.  That is handled automatically by the framework.
 			</p>
+			<p>
+				Another problem with coding forms is how to handle the multipart form,
+				a form with &lt;input type="file"> elements.  Struts also handles this
+				in a way identical to building normal forms.
+			</p>
 		
 			<section name="3.3.1 Building Forms With Struts" href="building_view_forms">
 				
@@ -271,6 +276,72 @@
 					    are created using message tags,
 					    as with the prompts, so that these values are internationalized.</li>
 				</ul>
+				
+				<p>
+					Handling multipart forms is also easy.  Obviously when you create a multipart
+					form you're creating a form that has at least one input of type "file".  The first step to
+					creating a multipart form is to utilize the struts-html taglib to create the presentation
+					page:
+				</p>
+					
+				<p>
+					<pre>
+						&lt;%@page language="java">
+						
+						&lt;%@taglib uri="/WEB-INF/struts-html.tld" prefix="html">
+						
+						&lt;html:form action="uploadAction.do">
+							Please Input Text: &lt;html:text property="myText">&lt;br />
+							Please Input The File You Wish to Upload:&lt;br />
+							&lt;html:file property="myFile">&lt;br />
+							&lt;html:submit />
+						&lt;/html:form>
+					</pre>
+				</p>
+				<p>
+					The next step is to create your ActionForm bean:
+				</p>
+				<p>
+					<pre>
+						import javax.servlet.http.HttpServletRequest;
+						import javax.servlet.http.HttpServletResponse;
+						import org.apache.struts.action.ActionForm;
+						import org.apache.struts.action.ActionMapping;
+						import org.apache.struts.upload.FormFile;
+						
+						public class UploadForm extends ActionForm {
+							
+							protected String myText;
+							protected FormFile myFile;
+							
+							public void setMyText(String text) {
+								myText = text;
+							}
+							
+							public String getMyText() {
+								return myText;
+							}
+							
+							public void setMyFile(FormFile file) {
+								myFile = file;
+							}
+							
+							public FormFile getMyFile() {
+								return myFile;
+							}
+						}
+					</pre>
+				</p>
+				
+				<p>
+					Look at the <a href="api/index.html">javadocs</a> for FormFile to see the
+					methods it exposes to manipulate files in file uploading.  Also look at the
+					javadocs for ActionServlet and ActionMapping for the various parameters
+					you can specify to change how files are uploaded.  Basically in your
+					peform() method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
+					to retrieve the FormFile and do what you want with it.
+				</p>				
+							
 			</section>
 			
 			<section name="3.3.2 Input Field Types Supported" href="building_view_form_input">
@@ -303,49 +374,38 @@
 			<section name="3.3.3 Other Useful Presentation Tags" href="building_view_presentation_tags">
 				
 				<p>
-					There are several other tags in the Struts library that are useful in
-					creating user interfaces:
+					There are several tags useful for creating presentations, consult the documentation
+					on each specific tag library for more information:
 				</p>
 				
 				<ul>
 					<li><a href="struts-logic.html#iterate">iterate</a> repeats its tag body once
 					    for each element of a specified collection (which can be an Enumeration,
 					    a Hashtable, a Vector, or an array of objects).</li>
-					<li><a href="struts-bean.html#getProperty">getProperty</a> retrieves the specified
-					    property from the specified bean, and exposes it as a page scope
-					    bean to the rest of this page.  Among other things, this is a convenient
-					    way to access a collection to be used by <code>iterate</code>.</li>
-					<li><a href="tags.html#ifAttributeExists">ifAttributeExists</a> evaluates
+					<li><a href="struts-logic.html#ifAttributeExists">ifAttributeExists</a> evaluates
 					    its tag body only if a specified attribute exists in a specified scope.
 					    </li>
-					<li><a href="tags.html#ifAttributeMissing">ifAttributeMissing</a> evaluates
+					<li><a href="struts-logic.html#ifAttributeMissing">ifAttributeMissing</a> evaluates
 					    its tag body only if a specified attribute does not exist in a
 					    specified scope.</li>
-					<li><a href="tags.html#ifParameterEquals">ifParameterEquals</a> evaluates
+					<li><a href="struts-logic.html#ifParameterEquals">ifParameterEquals</a> evaluates
 					    its tag body only if a specified request parameter has a specified
 					    value.</li>
-					<li><a href="tags.html#ifParameterNotEquals">ifParameterNotEquals</a>
+					<li><a href="struts-logic.html#ifParameterNotEquals">ifParameterNotEquals</a>
 					    evaluates its tag body only if a specified request parameter does not
 					    have a specified value, or is not present.</li>
-					<li><a href="tags.html#ifParameterNotNull">ifParameterNotNull</a>
+					<li><a href="struts-logic.html#ifParameterNotNull">ifParameterNotNull</a>
 					    evaluates its tag body only if a specified request parameter is included
 					    in this request, and has a length greater than zero.</li>
-					<li><a href="tags.html#ifParameterNull">ifParameterNull</a> evaluates its
+					<li><a href="struts-logic.html#ifParameterNull">ifParameterNull</a> evaluates its
 					    tag body only if a specified request parameter is not included in this
 					    request, or if it is included with zero length.</li>
-					<li><a href="tags.html#iterate">iterate</a> repeats its tag body once
-					    for each element of a specified collection (which can be a Collection,
-					    an Iterator, a Map, or an array of objects.  This tag supercedes the
-					    <code>enumerate</code> tag on a Java2 environment.</li>
-					<li><a href="tags.html#link">link</a> generates a hyperlink, and automatically
+					<li><a href="struts-html.html#link">link</a> generates a hyperlink, and automatically
 					    applies URL encoding to maintain session state in the absence of
 					    cookie support.</li>
-					<li><a href="tags.html#parameter">parameter</a> renders the specified
-					    request parameter's value, suitably filtered for characters that are
-					    sensitive in HTML.</li>
-					<li><a href="tags.html#property">property</a> displays the named bean
-					    property within a form -- use it instead of <code>text</code> for
-					    properties that should be read only.</li>
+					<li><a href="struts-bean.html#parameter">parameter</a> renders the specified
+					    request parameter's value or exposes it as a scripting variable.I can also be
+					    filtered for characters that are sensitive in HTML.</li>
 				</ul>
 			</section>
 			
@@ -480,7 +540,7 @@
 					    transparently by the server.  Among other things, that means you
 					    can conditionally perform the include by nesting it within a tag
 					    like <a href="tags.html#ifParameterEquals">ifParameterEquals</a>.</li>
-					<li>The <a href="struts-bean.html#include>bean:include</a> tag takes either a
+					<li>The <a href="struts-bean.html#include">bean:include</a> tag takes either a
 						 an argument "forward" representing a logical name mapped to the jsp to include,
 						 or the "id" argument, which represents a page context String variable to print
 						 out to the jsp page.</li>

@@ -38,13 +38,19 @@
 		
 		<section name="4.2 Action Classes" href="building_controller_action_classes">
 			
-			<p>The <code>Action</code> class defines a single method that must be
-				implemented by an <code>Action</code> class, as follows:
+			<p>The <code>Action</code> class defines two methods that could be
+				executed depending on your servlet environment:
 				<pre>
 				    public ActionForward perform(ActionMapping mapping,
 				 											ActionForm form,
 				 											HttpServletRequest request,
 															HttpServletResponse response)
+						throws IOException, ServletException
+						
+					 public ActionForward perform(ActionMapping mapping,
+				 											ActionForm form,
+				 											ServletRequest request,
+															ServletResponse response)
 						throws IOException, ServletException
 				</pre>
 			</p>
@@ -53,7 +59,7 @@
 				The goal of an <code>Action</code> class is to process this request,
 				and then to return an <code>ActionForward</code> object that identifies
 				the JSP page (if any) to which control should be forwarded to generate
-				the corresponding response.  In the <i>Model 2</i> design pattern,
+				the corresponding response.  In the <i>Model-1</i> design pattern,
 				a typical <code>Action</code> class will implement the following
 				logic in its <code>perform()</code> method:
 			</p>
@@ -160,10 +166,10 @@
 				<li><b>unknown</b> - Set to <code>true</code> if this action
 					should be configured as the default for this application, to handle
 					all requests not handled by another action.  Only one action can be
- 					defined as a default within a single application.
+ 					defined as a default within a single application.</li>
 				<li><b>validate</b> - Set to <code>true</code> if the
 					<code>validate()</code> method of the action associated
-					with this mapping should be called.
+					with this mapping should be called.</li>
 			</ul>
 				
 				
@@ -251,7 +257,6 @@
 								<b>name</b>: The name of your &lt;form-bean&gt; element to use with this action
 							</li>
 						</ul>
-					</b>
 				</blockquote>
 			</p>
 				
@@ -305,6 +310,29 @@
 				and saving a bean of the specified class if needed.
 			</p>
 				
+			<p>
+				One more section of good use is the <code>&lt;data-source></code> section, which 
+				specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
+				of struts-config.xml:
+			</p>
+			<p>
+				<pre>
+					&lt;struts-config>
+						&lt;data-source autoCommit="false"
+											 description="Example Data Source Description"
+											 driverClass="org.postgresql.Driver"
+									       maxCount="4"
+									       minCount="2"
+									       password="mypassword"
+									       url="jdbc:postgresql://localhost/mydatabase"
+									       user="myusername"/>
+					&lt;/struts-config>
+				</pre>
+			</p>  
+			<p>
+				For information on how to retrieve the data source, see the 
+				<a href="#building_model_databases">Accessing Relational Databases</a> section.  
+			</p>
 		</section>
 		
 		<section name="4.5 The Web Application Deployment Descriptor" href="building_controller_dd_config">
@@ -375,7 +403,7 @@
 					    <code>MessageResourcesFactory</code> used to create the application
 					    <code>MessageResources</code> object.</li>
 					<li><strong>formBean</strong> - The Java class name of the ActionFormBean
-					    implementation to use [org.apache.struts.action.ActionFormBean].
+					    implementation to use [org.apache.struts.action.ActionFormBean].</li>
 					<li><strong>forward</strong> - The Java class name of the ActionForward
 					    implementation to use [org.apache.struts.action.ActionForward].
 					    Two convenient classes you may wish to use are:
@@ -383,11 +411,11 @@
 					    <li><em>org.apache.struts.action.ForwardingActionForward</em> -
 					        Subclass of <code>org.apache.struts.action.ActionForward</code>
 					        that defaults the <code>redirect</code> property to
-					        <code>false</code> (same as the ActionForward default value).
+					        <code>false</code> (same as the ActionForward default value).</li>
 					    <li><em>org.apache.struts.action.RedirectingActionForward</em> -
 					        Subclass of <code>org.apache.struts.action.ActionForward</code>
 					        that defaults the <code>redirect</code> property to
-					        <code>true</code>.
+					        <code>true</code>.</li>
 					    </ul></li>
 					<li><strong>locale</strong> - If set to <code>true</code>, and there is a
 					    user session, identify and store an appropriate
@@ -400,11 +428,11 @@
 					    <ul>
 					    <li><em>org.apache.struts.action.RequestActionMapping</em> - Subclass
 					        of <code>org.apache.struts.action.ActionMapping</code> that
-					        defaults the <code>scope</code> property to "request".
+					        defaults the <code>scope</code> property to "request".</li>
 					    <li><em>org.apache.struts.action.SessionActionMapping</em> - Subclass
 					        of <code>org.apache.struts.action.ActionMapping</code> that
 					        defaults the <code>scope</code> property to "session".  (Same
-					        as the ActionMapping default value).
+					        as the ActionMapping default value).</li>
 					    </ul></li>
 					<li><strong>maxFileSize</strong> - The maximum size (in bytes) of a file
 					    to be accepted as a file upload.  Can be expressed as a number followed

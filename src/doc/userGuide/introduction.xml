@@ -17,10 +17,12 @@
   			<p>
 	  			In the MVC design pattern, the application flow is controlled by a central <i>Controller</i>,
 	  			which utilizes an implementation of the Mediator design pattern to delegate requests to the
-	  			appropriate handler, called the <i>Model</i>. The Model is responsible for forwarding the request
-	  			to the appropriate <i>View</i> back through the Controller. The appropriate View which to forward
-	  			the request to is acquired by resolving, from a configuration file or database, the logical name
-	  			passed to the Controller.  This provides a loose coupling of the View and Model within the application.	  		
+	  			appropriate handler, which is tied with a <i>Model</i>. The Model is responsible for containg the
+	  			application logic.  The control is then forwarded to the appropriate <i>View</i> back through the 
+	  			Controller. The appropriate View which to forward the request to is acquired by resolving, 
+	  			from a configuration file or database, the logical name passed to the Controller.  This provides
+	  			a loose coupling of the View and Model within the application.	 The MVC implementation in Struts
+	  			is sometimes also called "Model-2". 		
 	  		</p>	  		
 	  		<p>
 	  			See the "<a href="#resources">resources</a>" section at the end of this guide for links to the

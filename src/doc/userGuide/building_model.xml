@@ -78,6 +78,10 @@
 		<section name="2.3 ActionForm Beans" href="building_model_actionform">
 			
 			<p>
+				Note: ActionForm beans are actually closer to the <i>View</i>
+				than the <i>Model</i>
+			</p>
+			<p>
 				The Struts framework generally assumes that you have created an
 				<code>ActionForm</code> bean (that is, a Java class extending the
 				<code>ActionForm</code> class) for each input form required in your
@@ -204,89 +208,42 @@
 			</p>
 		</section>
 		
-		<section name="2.6 An Aside:  Accessing Relational Databases" href="building_model_databases">
+		<section name="2.6 Accessing Relational Databases" href="building_model_databases">
 			
 			<p>
-				Many web applications will utilize a relational database (accessed through
-				a JDBC driver) to store the persistent data associated with the application.
-				Others will use Entity Enterprise JavaBeans for this purpose, which delegates
-				the decisions for how to maintain persistent state to the EJBs themselves.
-				If you are using Enterprise JavaBeans for this purpose, follow the client
-				design patterns described in the Enterprise JavaBeans specification.
-			</p>
-				
-			<p>
-				For web applications based on direct database access, a common design
-				problem is how to make an appropriate JDBC Connection object available when
-				access to the underlying database is required.  There are several possible
-				approaches to this problem -- the following principles describe a
-				recommended approach to this issue:
+				Struts contains in it's mapping config file the ability to specify data sources.
+				See <a href="#building_controller_config">The Action Mappings Configuration File</a>
+				for information on how to set up a datasource.  Do that first.
 			</p>
 			
-			<ul>
-				<li>Create or acquire a ConnectionPool class, which lets a set of database
-				    connections be shared among multiple users.  Struts does not (currently)
-				    include such a class, but many are available.</li>
-				<li>When the application is initialized, define a servlet with a "load on
-				    startup" value in the application deployment descriptor.  We will call
-				    this the <i>startup</i> servlet.  In most cases, there will be no need
-				    for any requests to be processed by this servlet, so there will not be
-				    a <code>&lt;servlet-mapping&gt;</code> entry pointing at it.</li>
-				<li>In the <code>init()</code> method of the startup servlet, configure and
-				    instantiate an instance of your ConnectionPool class, and store it as
-				    a servlet context attribute (which is the same as an application scope
-				    bean from the JSP perspective).  It is usually convenient to configure
-				    the connection pool based on initialization parameters passed to the
-				    startup servlet.</li>
-				<li>In the <code>destroy()</code> method of the startup servlet, include
-				    logic to gracefully release the connections that have been opened by
-				    the connection pool.  This method will get called when the servlet
-				    container shuts down this application.</li>
-				<li>When an <code>Action</code> class needs to call a method of a business
-				    logic bean that requires a database connection (such as "insert a new
-				    customer"), it will the following steps:
-				    
-				    <ul>
-					    <li>
-					    	Acquire the connection pool object from the servlet context
-					        attributes for this web application.
-					    </li>
-					    <li>
-					    	Call the <code>open()</code> method of the connection pool object
-					    	to give you a connection for use within this <code>Action</code>
-					    	class call.
-					    </li>
-					    <li>
-					    	Call the appropriate method of your business logic bean, passing the
-					    	database connection object to be used as an argument.
-					    </li>
-					    <li>
-					    	Call the <code>close()</code> method of the allocated connection,
-					    	which will cause this connection to be returned to the pool for
-					    	later re-use on some other request.
-					    </li>
-				    </ul>
-				</li>
-				    
-				<li>
-					A common programming error is to forget to return the connection to the
-					pool, which can ultimately lead to running out of connections.  Be sure
-					that your <code>Action</code> class logic always returns the connection,
-					even if the business logic bean method throws an exception.
-				</li>
-			</ul>
-				
 			<p>
-				Following the design pattern recommended above means that you can code
-				your business logic classes without having to worry about how they acquire a
-				JDBC Connection to use -- simply include a Connection argument in any method
-				call that needs to access the database.  When your business logic class is
-				utilized within a web application, it will be the responsibility of the
-				<code>Action</code> class to allocate and release an appropriate connection.
-				When you use the same business logic class, for example, in a batch job, it
-				will be the responsibility of that application to provide an appropriate
-				connection (which will not need to be acquired from a pool, because most
-				batch jobs run in a single-threaded environment).
+				After setting up your data source in the config file, most likely you'll want
+				to retrieve a connection from it.  This small example nested inside of an action's
+				<code>perform()</code> method will show you how to do it:
+			</p>
+			<p>
+				<pre>
+					public ActionForward perform(ActionMapping mapping,
+														  ActionForm form,
+														  HttpServletRequest request,
+														  HttpServletResponse response) {
+						try {
+					   	javax.sql.DataSource dataSource = 
+								(DataSource) getServlet().getServletContext().getAttribute(Action.DATA_SOURCE_KEY);
+							
+							Connection myConnection = dataSource.getConnection();
+							//do what you wish with myConnection
+						}
+						catch (SQLException sqle) {
+							sqle.printStackTrace();
+						}
+						finally {
+							//enclose this in a finally block to make
+							//sure the connection is closed
+							myConnection.close();
+						}
+					}
+				</pre>
 			</p>
 		</section>
 	</chapter>
