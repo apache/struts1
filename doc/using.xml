@@ -95,10 +95,14 @@
     </p>
 
     <p>
-    New additions for the Resources page should posted as an enhancement 
-    request to <a href="#Bugs">Bugzilla</a>.
+        If you have comments on existing material, you can make comments via the Struts Wiki. Just follow the
+        "Comments?" link on any page.
+        If you are making a substantial contribution, such as a new HOW-TO, please consider submitting a document in
+        the XML format we use.
+        This will make it easier to add your contribution to the official documentation so that it becomes part of the
+        WAR distributed with Struts.
     </p>
-    
+
     <p>
     For more, see the <a href="./faqs/helping.html">How to Help FAQ</a>.
     </p>
@@ -164,8 +168,10 @@
     <b>MAILING LIST ARCHIVE</b></a> and the very excellent
     <a href="http://www.catb.org/~esr/faqs/smart-questions.html">
     How To Ask Questions The Smart Way</a> by Eric Raymond.
-    Please do be sure to <a href="http://expita.com/nomime.html">turn off 
-    HTML</a> in your email client before posting.
+    </p>
+
+    <p>
+    Please do be sure to <a href="http://expita.com/nomime.html">turn off  HTML</a> in your email client before posting.
     </p>
 
     </section>
@@ -173,19 +179,17 @@
     <section name="Getting Involved" href="Involved">
 
     <p>
-    All work on Struts and the other Jakarta subprojects is provided on a 
-    volunteer basis. 
-    For more about what you can do, see the
-    <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved
-    Overview</a> and the Struts <a href="./faqs/helping.html">How to Help 
-    FAQ</a>.
+        All work on Struts and the other Jakarta subprojects is provided on a volunteer basis.
+        For more about what you can do, see the Jakarta
+        <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved Overview</a> and the Struts
+        <a href="./faqs/helping.html">How to Help FAQ</a>.
     </p>
 
 </section>
 
 <section>
     <p align="right">
-    Next: <a href="volunteers.html">Who We Are</a>
+    <b>Next:</b> <a href="volunteers.html">Who We Are</a>
     </p>
 </section>
 

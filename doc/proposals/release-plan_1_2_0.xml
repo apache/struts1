@@ -11,7 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              <font size="-2">$Id: release-plan_1_2_0.xml,v 1.2 2003/08/11 13:25:56 husted Exp $</font>
+              <font size="-2">$Id: release-plan_1_2_0.xml,v 1.3 2003/08/29 14:27:24 husted Exp $</font>
           </p>
 
           <p>
@@ -33,7 +33,7 @@
 
           <ul>
               <li>
-                  <em>Tag Date</em> - Saturday, August 16, 2003, 23:59:59
+                  <em>Tag Date</em> - Saturday, September 7, 2003, 23:59:59
               </li>
               <li>
                   <em>Release Manager</em> - Ted Husted

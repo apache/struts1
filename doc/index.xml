@@ -34,17 +34,17 @@
     <a href="http://java.sun.com/blueprints/guidelines/designing_enterprise_applications_2e/web-tier/web-tier5.html">
     <b>Model-View-Controller</b></a> (MVC) design paradigm.
     </p>
+
     <p>
-    Struts provides its own <b>Controller</b> component and integrates with
-    <a href="userGuide/preface.html#layers">other technologies</a> to provide 
-    the Model and the View.
-    For the <b>Model</b>, Struts can interact with any 
-    <a href="resources/models.html">standard data access technology</a>, 
-    including Enterprise Java Beans, JDBC, and Object Relational Bridge.
-    For the <b>View</b>, Struts works well with JavaServer Pages,
-    including <a href="./faqs/kickstart.html#jsf">JSTL and JSF</a>,
-    as well as Velocity Templates, XSLT, and
-    <a href="resources/views.html">other presentation systems</a>.
+        Struts provides its own <b>Controller</b> component and integrates with <a href="userGuide/preface.html#layers">
+        other technologies</a> to provide the Model and the View.
+        For the <b>Model</b>, Struts can interact with standard <a href="resources/models.html">data access
+        technologies</a>, like Enterprise Java Beans and JDBC, as well as most any third-party packages, like
+        Hibernate, iBATIS, or Object Relational Bridge.
+        For the <b>View</b>, Struts works well with JavaServer Pages, including
+        <a href="./faqs/kickstart.html#jsf">JSTL and JSF</a>, as well as Velocity Templates, XSLT, and
+        <a href="resources/views.html">other presentation systems
+        </a>.
     </p>
 
     <p>

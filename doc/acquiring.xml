@@ -18,7 +18,7 @@
     <section name="Acquiring Struts" href="Acquiring">
 
     <p>
-    The lastest <i>production release</i> of Struts is
+    The latest <i>production release</i> of Struts is
     available in a convenient binary distribution and also with complete
     source code. 
     </p>
@@ -34,12 +34,12 @@
         
     <li>
         <a href="http://jakarta.apache.org/site/binindex.cgi">
-        <b>Struts Binary Distribution - Latest release</b></a>
+        <b>Struts Binary Distribution - Latest stable release</b></a>
     </li>
 
     <li>
         <a href="http://jakarta.apache.org/site/sourceindex.cgi">
-        <b>Struts Source Code Distribution - Latest Release</b></a>
+        <b>Struts Source Code Distribution - Latest stable release</b></a>
     </li>
     
     </ul>

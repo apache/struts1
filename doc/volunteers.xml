@@ -336,10 +336,6 @@
         </li>
 
         <li>
-            <b>Eddie Bush</b> (ekbush at apache.org)
-        </li>
-
-        <li>
             <b>David Graham</b> (dgraham at apache.org)
         </li>
 
@@ -389,7 +385,9 @@
         <b>Oleg Alexeev</b>
     </li>
 
-
+    <li>
+        <b>Eddie Bush</b>
+    </li>
 
 </ul>
 
@@ -549,35 +547,9 @@
     </p>
 
     <p>
-    My favorite all-time client is WXXI Public Broadcasting Council, where 
-    I've served as the station's Webmaster. 
-    WXXI provides public broadcasting services for television and radio, and
-    we are working to do the same online. 
-    Along with providing companion Web sites for every WXXI production, we 
-    stream both our AM and FM signals, in both Real and QuickTime, with online 
-    archives in the works. 
-    It's a long journey, but we've taken the first steps. 
-    I'm responsible for most of the regular updates to the site, and much of 
-    the overall layout and design. 
-    We're grateful to have won the PBS award for best Web site in our market 
-    for two years running.
-    </p>
-
-    <p>
-    Our most ambitious projects at WXXI have been Spring Marketplace 2000 and 
-    the NY Election Finder. 
-    For Spring Marketplace, we put our annual auction fully online for 
-    simultaneous telephone and Website bidding. 
-    NY Election, we offered not only the usual election-finder application,
-    but collected voter registration records from around the state, so
-    people could also check their registration status and polling place. 
-    I developed the Web-enabled database applications for both projects.
-    </p>
-
-    <p>
-    Currently, I'm expanding the WXXI online auction software into a complete 
-    package for hosting online auctions as fund-raisers; this is to an 
-    open-source project called Gavel, and, of course, is based Struts. 
+    Currently, I'm working with the Department of Environmental Quality for a midwestern state.
+    We are revamping the permit application system as a web application and centralizing the database system between
+    the various DEQ divisions.
     </p>
 
     <h3><a name="cedric">Cedric Dumoulin -- Committer</a></h3>

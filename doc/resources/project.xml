@@ -9,13 +9,11 @@
         <item href="archives.html"  name="Archives"/>
         <item href="articles.html"    name="Articles"/>
         <item href="books.html"       name="Books"/>
-        <item href="consultants.html" name="Consultants"/>
         <item href="enabling.html" name="Enabling Tech"/>
         <item href="examples.html" name="Examples"/>
         <item href="extensions.html" name="Extensions"/>
         <item href="sigs.html" name="Interest Groups"/>
         <item href="hosts.html" name="ISPs"/>
-        <item href="powered.html" name="Powered by"/>
         <item href="seminars.html" name="Seminars"/>
         <item href="taglibs.html" name="Taglibs"/>
         <item href="tools.html" name="Tools (IDEs)"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts Documentation -->
-<!-- $Id: struts.xsl,v 1.8 2003/01/07 05:57:36 martinc Exp $ -->
+<!-- $Id: struts.xsl,v 1.9 2003/08/29 14:27:25 husted Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -71,7 +71,7 @@
 
       <tr><td colspan="2">
         <div align="center"><font color="{$body-link}" size="-1"><em>
-        Copyright (c) 2000-2003, Apache Software Foundation
+        Copyright (c) 2000-2003, Apache Software Foundation - <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a>
         </em></font></div>
         <img src="images/struts-power.gif" align="right" border="0"/>
       </td></tr>

@@ -62,13 +62,14 @@
     </p>
 
     <p>
-    Our <b>Developer Guides</b> are detailed technical references to the 
-    extensions and components provided in the Struts distribution. 
-    Included are package overviews and API referencea for each of the Struts 
-    taglibs, along with guides to the Struts Utilities and the Struts 
-    Validator. 
-    The Developer Guides are designed as a day-to-day reference to help you 
-    get the most out of the standard packages.
+        Our <b>Developer Guides</b> are detailed technical references to the extensions and components provided in the
+        Struts distribution.
+        Included are package overviews and API reference for each of the Struts taglibs, along with guides to the
+        Struts Utilities and the Struts Validator.
+        The Developer Guides are designed as a day-to-day reference to help you get the most out of the standard
+        packages.
+        Links to the various Developer Guides are provided as part of
+        <a href="userGuide/index.html"><b>User Guide</b></a> menu.
     </p>
 
     <p>
@@ -111,9 +112,21 @@
     </p>
 
     <p>
-    A more extensive Struts knowledgebase is available at the
-    <a href="http://jguru.com/faq/Struts">JGuru FAQ</a> and
-    <a href="http://jguru.com/forums/Struts">Forum</a>.
+        The <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages%20">Struts Wiki</a> is a
+        relatively new addition to the Struts documentation.
+        All members of the Struts Community are invited to post comments to the Wiki, as well as the User List.
+        The Wiki is best suited for threads that you think are of lasting importance, while the mailing lists are best
+        suited for incidental questions.
+    </p>
+
+    <p>
+        If you have any comments on the pages you see here, they can be posted to the Wiki by following the link on the
+        bottom of any page.
+    </p>
+
+    <p>
+        For more help, you might try the JGuru Struts knowledgebase at the <a href="http://jguru.com/faq/Struts">JGuru
+        FAQ</a> and <a href="http://jguru.com/forums/Struts">Forum</a>.
     </p>
 
     <p>
@@ -197,28 +210,36 @@
     </ul>
     
     <p>
-    We also showcase a few of the many sites that are 
-    "<a href="resources/powered.html">Powered by Struts</a>."
-    </p>
-
-    <p>
     The Struts <a href="news/index.html"><b>News &amp; Status</b></a> page 
     highlights current events affecting the framework and overvies the current 
     project status. 
     </p>
 
     <p>
-    The <a href="status.html">Roadmap</a> page outlines our tentative plans 
-    for future development. 
+    The <a href="status.html"><b>Roadmap</b></a> page outlines our tentative plans for future development.
+    </p>
+
+    <p>
+        The <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages">Struts Wiki</a> is a relatively
+        new addition to our documentation.
+        Any member of the community (that means you!) is invited to post new material to the Wiki.
+        However, the Wiki is not the place to ask questions of your own.
+        <b>All support questions should be directed to the <a href="Lists">Struts User list</a> or
+        <a href="resources/resources.html">other support forum</a></b>.
+    </p>
+
+    <p>
+        There is also a set of Wiki pages devoted to comments on the documentation.
+        To comment on the documentation, follow the "Comments?" link at the bottom of any page.
     </p>
 
 </section>
 
-<section>
-    <p align="right">
-    Next: <a href="acquiring.html">Acquiring Struts</a>
-    </p>
-</section>
+    <section>
+        <p align="right">
+        Next: <a href="acquiring.html">Acquiring Struts</a>
+        </p>
+    </section>
 
 </body>
 </document>

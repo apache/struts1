@@ -50,9 +50,13 @@
         	href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42"
         	/>
         <item 
-        	name="Known Issues"			 
+        	name="Known Issues (Bugzilla)"
         	href="http://jakarta.apache.org/site/bugs.html"
         	/>              
+        <item
+        	name="Struts Wiki"
+        	href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages"
+        	/>
     </menu>
 
     <menu name="Download">
