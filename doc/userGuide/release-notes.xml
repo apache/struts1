@@ -229,6 +229,16 @@
       &lt;/plug-in&gt;
        </pre>
         </li>
+        <li>validator-rules.xml[intRange]: IntRange now checks select-one and radio fields.
+            Example:
+            This allows populating combo boxes with valid choices plus one additional choice
+            with a caption something like  "Choose one" and a value 0f "-1".
+            Then when the user attempts to submit the form, you can look for the value of
+            "-1" and yell at them if they failed to pick something.
+
+
+           </li>
+
     </ul>
 
     <p><strong>HTML Taglib Package Additions</strong></p>
