@@ -525,7 +525,7 @@
 
     <p>
     The 'mask' action lets you validate a regular expression mask to the field.
-    It uses the Regular Expression Package from the jakarta site.
+    It uses the Regular Expression Package from the Apache Jakarta site.
     All validation rules can be stored in the validator-rules.xml file.
     The main class used is <code>org.apache.regexp.RE</code>.
     </p>

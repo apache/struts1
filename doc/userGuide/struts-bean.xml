@@ -15,7 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>bean</shortname>
   <display-name>Struts Bean Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-bean</uri>
+  <uri>http://struts.apache.org/tags-bean</uri>
   <info>
   <p>This tag library contains tags useful in accessing beans and their
   properties, as well as defining new beans (based on these accesses)
@@ -33,8 +33,8 @@
   <code>org.apache.struts.action.EXCEPTION</code>.</p>
 
   <p>If you are viewing this page from within the Struts Documentation
-  Application (or online at <a href="http://jakarta.apache.org/struts">
-  http://jakarta.apache.org/struts</a>), you can learn more about using
+  Application (or online at <a href="http://struts.apache.org/">
+  http://struts.apache.org/</a>), you can learn more about using
   these tags in the
   <a href="../api/org/apache/struts/taglib/bean/package-summary.html#package_description">
   Bean Tags Developer's Guide</a>.</p>

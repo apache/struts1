@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project 
     name="Struts Framework"
-        href="http://jakarta.apache.org/struts"
+        href="http://struts.apache.org/"
        image="images/struts.gif">
 
     <title>
@@ -61,7 +61,7 @@
             />
         <item
             name="Wiki Pages"
-            href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsProjectPages"
+            href="http://wiki.apache.org/struts"
             />
         <item
             name="List Archive"            

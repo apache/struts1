@@ -13,7 +13,7 @@
   <jspversion>1.1</jspversion>
   <shortname>nested</shortname>
   <display-name>Struts Nested Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-nested</uri>
+  <uri>http://struts.apache.org/tags-nested</uri>
   <info>
     <p>[Since Struts 1.1]</p>
     <p>This tag library brings a nested context to the functionality of the

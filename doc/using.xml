@@ -112,7 +112,7 @@
 <section name="Joining the Mailing Lists" href="Lists">
 
     <p>
-    Before joining any mailing list at Jakarta, please be sure to read the
+    Before joining any Apache mailing list, please be sure to read the
     <a href="mail.html">Mailing List Guidelines</a>.
     If you have read and understood these guidelines, you are welcome to
     <a href="mail.html">join the Struts mailing lists</a>.
@@ -140,7 +140,7 @@
 
     <p>
         All work on Struts (and other Apache projects) is provided on an all-volunteer basis.
-        For more about what you can do, see the Jakarta
+        For more about what you can do, see the Apache Jakarta
         <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved Overview</a> and the Struts
         <a href="./faqs/helping.html">How to Help FAQ</a>.
     </p>

@@ -130,8 +130,8 @@
         </li>
         <li><strong>Struts Framework</strong> - If you are planning to use
             Tiles with Struts, you should download and install Struts from
-            <a href="http://jakarta.apache.org/struts/">
-            Jakarta Struts Project</a>.
+            <a href="http://struts.apache.org/">
+            Apache Struts Project</a>.
             If you have acquired Tiles with the Struts distribution, you
             don't need to install it again. Tiles can run without Struts.
             In this case you loose some features.</li>

@@ -173,7 +173,7 @@ The Tiles framework is bundled with Struts but not enabled by default. To enable
 
 <pre>&lt;%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %&gt;</pre>
 <strong>Servlet 2.3</strong>: You can omit the declaration in <code>WEB-INF/web.xml</code> and replace above line with the full URI:
-<pre>&lt;%@ taglib uri="http://jakarta.apache.org/struts/tags-tiles" prefix="tiles" %&gt;</pre>
+<pre>&lt;%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %&gt;</pre>
 <ul>
 <li>
   If you plan to use Tiles definitions defined in a centralized file, you need to create this file and instruct Struts to load the Tiles plugin which will create the factory corresponding to the file. You can have more than one definitions file.

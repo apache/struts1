@@ -1092,8 +1092,8 @@ throws Exception;
     your application. 
     This format of this document is described by the Document Type Definition
     (DTD) maintained at
-    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
-    http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd</a>.
+    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+    http://struts.apache.org/dtds/struts-config_1_2.dtd</a>.
     This chapter covers the configuration elements that you will typically 
     write as part of developing your application.
     There are several other elements that can be placed in the 
@@ -1234,7 +1234,7 @@ throws Exception;
     <p>
     For a complete description of the elements that can be used with the 
     <code>action</code> element, see the
-    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+    <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">
     Struts Configuration DTD</a> and the
     <a href="../api/org/apache/struts/action/ActionMapping.html">ActionMapping 
     documentation</a>.

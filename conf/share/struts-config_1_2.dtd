@@ -6,9 +6,9 @@
 
      <!DOCTYPE struts-config PUBLIC
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-       "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+       "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 
-     $Id: struts-config_1_2.dtd,v 1.7 2004/02/19 18:19:55 husted Exp $
+     $Id: struts-config_1_2.dtd,v 1.8 2004/04/06 23:30:23 husted Exp $
 -->
 
 

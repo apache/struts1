@@ -58,13 +58,11 @@
     </p>
 
     <p>
-    Struts is part of the
-    <a href="http://jakarta.apache.org">Apache Jakarta Project</a>,
-    sponsored by the
+    Struts is a project of the
     <a href="http://www.apache.org">The Apache Software Foundation</a>.
     The official Struts home page is at
-    <a href="http://jakarta.apache.org/struts">
-    http://jakarta.apache.org/struts</a>.
+    <a href="http://struts.apache.org/">
+    http://struts.apache.org/</a>.
     </p>
 
     <p>
@@ -88,9 +86,9 @@
             Likewise, Struts uses a configuration file to initialize its own resources.
             These resources include <a href="userGuide/building_controller.html#action_form_classes">ActionForms</a> to
             collect input from users,
-            <a href="http://jakarta.apache.org/struts/userGuide/building_controller.html#actionmapping">
+            <a href="http://struts.apache.org/userGuide/building_controller.html#actionmapping">
             ActionMappings</a> to direct input to server-side
-            <a href="http://jakarta.apache.org/struts/userGuide/building_controller.html#action_classes">Actions</a>,
+            <a href="http://struts.apache.org/userGuide/building_controller.html#action_classes">Actions</a>,
             and ActionForwards to select output pages.
         </p>
 
@@ -102,7 +100,7 @@
     <?xml version="1.0" encoding="ISO-8859-1" ?>
     <!DOCTYPE struts-config PUBLIC
               "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-              "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+              "http://struts.apache.org/dtds/struts-config_1_2.dtd">
     <struts-config>
         <form-beans>
             <form-bean

@@ -78,7 +78,7 @@
     moved to this section of <code>struts-config.xml</code> in order to allow
     different modules in the same web application to be configured differently.
     For full details on available parameters see the
-    <a href="http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+    <a href="http://struts.apache.org/dtds/struts-config_1_2.dtd">
     struts-config_1_2.dtd</a> or the list below.
     </p>
 
@@ -905,7 +905,7 @@
 
     <pre><code>
     &lt;%@ taglib
-        uri="http://jakarta.apache.org/struts/tags-html"
+        uri="http://struts.apache.org/tags-html"
         prefix="html" %&gt;
     </code></pre>
 
