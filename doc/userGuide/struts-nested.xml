@@ -1993,6 +1993,12 @@
     </attribute>
 
     <attribute>
+      <name>filter</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+     <attribute>
       <name>labelName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -2045,6 +2051,12 @@
       and usage details.
       </p>
     </info>
+
+    <attribute>
+      <name>filter</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
 
     <attribute>
       <name>label</name>
