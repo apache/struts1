@@ -10,7 +10,7 @@
   <body>  
   <chapter name="Building View Components" href="building_view">
   
-  		<section name="3.1 Overview" href="building_view_overview">
+  		<section name="3.1 Overview" href="overview">
   			
   			<p>
   				This chapter focuses on the task of building the <i>View</i> components
@@ -22,7 +22,7 @@
 			
 		</section>
 		
-		<section name="3.2 Internationalized Messages" href="building_view_i18n">
+		<section name="3.2 Internationalized Messages" href="i18n">
 			
 			<p>
 				A few years ago, application developers could count on having to support
@@ -118,7 +118,7 @@
 			</p>
 		</section>
 
-		<section name="3.3 Forms and FormBean Interactions" href="building_view_form_beans">
+		<section name="3.3 Forms and FormBean Interactions" href="form_beans">
 		
 			<p>
 				At one time or another, most web developers have built forms using
@@ -161,7 +161,7 @@
 				in a way identical to building normal forms.
 			</p>
 		
-			<section name="3.3.1 Building Forms With Struts" href="building_view_forms">
+			<section name="3.3.1 Building Forms With Struts" href="forms">
 				
 				<p>
 					A complete example of a login form will illustrate how Struts
@@ -344,7 +344,7 @@
 							
 			</section>
 			
-			<section name="3.3.2 Input Field Types Supported" href="building_view_form_input">
+			<section name="3.3.2 Input Field Types Supported" href="form_input">
 				
 				<p>
 					Struts defines tags for all of the following types of input fields,
@@ -371,7 +371,7 @@
 				</p>
 			</section>
 			
-			<section name="3.3.3 Other Useful Presentation Tags" href="building_view_presentation_tags">
+			<section name="3.3.3 Other Useful Presentation Tags" href="presentation_tags">
 				
 				<p>
 					There are several tags useful for creating presentations, consult the documentation
@@ -409,7 +409,7 @@
 				</ul>
 			</section>
 			
-			<section name="3.3.4 Automatic Form Validation" href="building_view_form_validation">
+			<section name="3.3.4 Automatic Form Validation" href="form_validation">
 			
 				<p>
 					In addition to the form and bean interactions described above, Struts
@@ -454,7 +454,7 @@
 			</section>
 		</section>
 		
-		<section name="3.4 Other Presentation Techniques" href="building_view_other_presentations">
+		<section name="3.4 Other Presentation Techniques" href="other_presentations">
 		
 			<p>
 				Although the look and feel of your application can be completely constructed
@@ -464,7 +464,7 @@
 				are discussed in the following sections.
 			</p>
 			
-			<section name="3.4.1 Application-Specific Custom Tags" href="building_view_custom_tags">
+			<section name="3.4.1 Application-Specific Custom Tags" href="custom_tags">
 			
 				<p>
 					Beyond using the custom tags provided by the Struts library, it is easy
@@ -496,7 +496,7 @@
 				</p>
 			</section>
 			
-			<section name="3.4.2 Page Composition With Includes" href="building_view_includes">
+			<section name="3.4.2 Page Composition With Includes" href="includes">
 				
 				<p>
 					Creating the entire presentation of a page in one JSP file (with custom
@@ -539,7 +539,7 @@
 					    flush="true" /&gt;</code>) is processed at request time, and is handled
 					    transparently by the server.  Among other things, that means you
 					    can conditionally perform the include by nesting it within a tag
-					    like <a href="tags.html#ifParameterEquals">ifParameterEquals</a>.</li>
+					    like <a href="struts-logic.html#ifParameterEquals">ifParameterEquals</a>.</li>
 					<li>The <a href="struts-bean.html#include">bean:include</a> tag takes either a
 						 an argument "forward" representing a logical name mapped to the jsp to include,
 						 or the "id" argument, which represents a page context String variable to print
@@ -547,7 +547,7 @@
 				</ul>
 			</section>
 
-			<section name="3.4.3 Image Rendering Components" href="building_view_image_rendering">
+			<section name="3.4.3 Image Rendering Components" href="image_rendering">
 			
 				<p>
 					Some applications require dynamically generated images, like the price
@@ -567,6 +567,10 @@
 					    can have the applet make its own connection to the server to receive
 					    these parameters.</li>
 				</ul>
+			
+				<p align="center">
+					Next: <a href="building_controller.html">Building Controller Components</a>
+				</p>
 			</section>
 		</section>
 	</chapter>

@@ -10,7 +10,7 @@
   <body>  
   <chapter name="Building Model Components" href="building_model">
   
-  		<section name="2.1 Overview" href="building_model_overview">
+  		<section name="2.1 Overview" href="overview">
   			
   			<p>
   				The application requirements document that you are using will likely
@@ -26,7 +26,7 @@
 			</p>
 		</section>
 		
-		<section name="2.2 JavaBeans and Scope" href="building_model_javabeans">
+		<section name="2.2 JavaBeans and Scope" href="javabeans">
 		
 			<p>
 				Within a web-based application, JavaBeans can be stored in (and accessed
@@ -75,7 +75,7 @@
 			</pre>
 		</section>
 		
-		<section name="2.3 ActionForm Beans" href="building_model_actionform">
+		<section name="2.3 ActionForm Beans" href="actionform">
 			
 			<p>
 				Note: ActionForm beans are actually closer to the <i>View</i>
@@ -148,7 +148,7 @@
 			</p>
 		</section>
 		
-		<section name="2.4 System State Beans" href="building_model_system_state">
+		<section name="2.4 System State Beans" href="system_state">
 			
 			<p>
 				The actual state of a system is normally represented as a set of one or
@@ -174,7 +174,7 @@
 			</p>
 		</section>
 		
-		<section name="2.5 Business Logic Beans" href="building_model_business_logic">
+		<section name="2.5 Business Logic Beans" href="business_logic">
 			
 			<p>
 				You should encapsulate the functional logic of your application as
@@ -208,11 +208,11 @@
 			</p>
 		</section>
 		
-		<section name="2.6 Accessing Relational Databases" href="building_model_databases">
+		<section name="2.6 Accessing Relational Databases" href="databases">
 			
 			<p>
 				Struts contains in it's mapping config file the ability to specify data sources.
-				See <a href="#building_controller_config">The Action Mappings Configuration File</a>
+				See <a href="building_controller.html#config">The Action Mappings Configuration File</a>
 				for information on how to set up a datasource.  Do that first.
 			</p>
 			
@@ -244,6 +244,10 @@
 						}
 					}
 				</pre>
+			</p>
+			
+			<p align="center">
+				Next: <a href="building_view.html">Building View Components</a>
 			</p>
 		</section>
 	</chapter>

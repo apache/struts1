@@ -10,7 +10,7 @@
   <body>  
   <chapter name="Building Controller Components" href="building_controller">
   
-  		<section name="4.1 Overview" href="building_controller_overview">
+  		<section name="4.1 Overview" href="overview">
   			
   			<p>
   				Now that we understand how to construct the Model and View components
@@ -36,7 +36,7 @@
 			</ul>
 		</section>
 		
-		<section name="4.2 Action Classes" href="building_controller_action_classes">
+		<section name="4.2 Action Classes" href="action_classes">
 			
 			<p>The <code>Action</code> class defines two methods that could be
 				executed depending on your servlet environment:
@@ -145,7 +145,7 @@
 			</p>
 		</section>
 				
-		<section name="4.3 The ActionMapping Implementation" href="building_controller_actionmapping">
+		<section name="4.3 The ActionMapping Implementation" href="actionmapping">
 			
 			<p>
 				In order to operate successfully, the Struts controller servlet needs
@@ -202,7 +202,7 @@
 			</p>
 		</section>
 		
-		<section name="4.4 The Action Mappings Configuration File" href="building_controller_config">
+		<section name="4.4 The Action Mappings Configuration File" href="config">
 			
 			<p>
 				How does the controller servlet learn about the mappings you want?  It
@@ -331,11 +331,11 @@
 			</p>  
 			<p>
 				For information on how to retrieve the data source, see the 
-				<a href="#building_model_databases">Accessing Relational Databases</a> section.  
+				<a href="building_model.html#databases">Accessing Relational Databases</a> section.  
 			</p>
 		</section>
 		
-		<section name="4.5 The Web Application Deployment Descriptor" href="building_controller_dd_config">
+		<section name="4.5 The Web Application Deployment Descriptor" href="dd_config">
 			
 			<p>
 				The final step in setting up the application is to configure the application
@@ -345,7 +345,7 @@
 				to be created or modified.
 			</p>
 			
-			<section name="4.5.1 Configure the Action Servlet Instance" href="building_controller_dd_config_servlet">
+			<section name="4.5.1 Configure the Action Servlet Instance" href="dd_config_servlet">
 				
 				<p>
 					Add an entry defining the action servlet itself, along with the appropriate
@@ -457,7 +457,7 @@
 				</ul>
 			</section>
 			
-			<section name="4.5.2 Configure the Action Servlet Mapping" href="building_controller_dd_config_mapping">
+			<section name="4.5.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
 			
 				<p>
 					There are two common approaches to defining the URLs that will
@@ -515,7 +515,7 @@
 				</p>
 			</section>
 			
-			<section name="4.5.3 Configure the Struts Tag Library" href="building_controller_dd_config_taglib">
+			<section name="4.5.3 Configure the Struts Tag Library" href="dd_config_taglib">
 				
 				<p>
 					Next, you must add an entry defining the Struts tag library.  There are currently four
@@ -572,12 +572,15 @@
 				</p>
 			</section>
 			
-			<section name="4.5.4 Add Struts Components To Your Application" href="building_controller_dd_config_add">
+			<section name="4.5.4 Add Struts Components To Your Application" href="config_add">
 				
 				<p>
 					To use struts, you must copy the .tld files that you require into your
 					WEB-INF directory, and copy struts.jar into your WEB-INF/lib directory.
 				</p>
+                                <p>
+                                        Next: <a href="resources.html">Struts Resources</a>
+                                </p>
 			</section>
 		</section>
 	</chapter>

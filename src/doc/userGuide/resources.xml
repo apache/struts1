@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<document url="./resources.xml">
+
+  <properties>
+    <author>Mike Schachter</author>
+    <title>The Struts Framework Project</title>
+  </properties>
+
+  <body>
+  
+	<chapter name="Struts Resources" href="resources">
+		
+		<section name="Struts Tutorials" href="tutorials">
+		
+			<p>
+				<u>Welcome to the Struts Framework</u>, <a href="http://www.bluestone.com">Bluestone Software</a><br />
+				<a href="http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp">http://developer.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/trailMaps/index.jsp</a>
+			</p>
+	
+			<p>
+				<u>A Walking Tour of the Struts Example Application</u>, <a href="mailto:news.ted@husted.com">Ted Husted</a><br />
+				<a href="http://www.husted.com/about/struts/tour.htm">http://www.husted.com/about/struts/tour.htm</a>
+			</p>
+			
+			<p>
+				<u>Struts with a Fruit Glaze</u>, <a href="mailto:news.ted@husted.com">Ted Husted</a><br />
+				<a href="http://www.husted.com/about/struts/husted-coreservlets-jdbc.zip">http://www.husted.com/about/struts/husted-coreservlets-jdbc.zip</a>
+			</p>
+			
+			<p>
+				<u>About Struts - Husted dot Com</u>, <a href="mailto:news.ted@husted.com">Ted Husted</a><br />
+				<a href="http://www.husted.com/about/struts/">Struts Resources</a>
+			</p>		
+		</section>
+		
+		<section name="Struts Articles" href="articles">
+		
+			<p>
+				<u>Strut Your Stuff With JSP Tags</u>, <a href="Thor.Kristmundsson@javaworld.com">Thor Kristmundsson</a><br />
+				<a href="http://www.javaworld.com/javaworld/jw-12-2000/jw-1201-struts.html">http://www.javaworld.com/javaworld/jw-12-2000/jw-1201-struts.html</a>
+			</p>
+			
+			<p>
+				<u>Using the Struts Framework to Develop a Message Board</u>, Maneesh Sahu<br />
+				<a href="http://informit.com/books/authors/author_template/index.asp?authorid={A08A00B0-71BB-42DB-9B29-08879A9A7ABE}&amp;t={94AE5B48-1D7D-462A-A4A6-83CE19EC0705}&amp;n={4641FAF9-E21F-4902-8F6E-0C8FAF114C62}">Author Page (article requires registration with informit.com)</a>
+			</p>
+				
+			
+		
+		
+		</section>
+		
+		<section name="Struts Mailing List Archives" href="archives">
+			
+			<p>
+				<u>covalent.net</u>, <a href="http://archive.covalent.net/">http://archive.covalent.net</a>
+			</p>
+		</section>
+		
+	
+	</chapter>
+	
+	
+  </body>
+</document>

@@ -5,13 +5,14 @@
     <author>Craig R. McClanahan</author>
     <author>Mike Schachter</author>
     <author>Larry McCay</author>
+    <author>Ted Husted</author>
     <title>The Struts Framework Project</title>
   </properties>
 
   <body>
 
   <chapter name="Introduction" href="introduction">
-  	
+  
   		<section name="The Model-View-Controller ('MVC') Design Pattern" href="mvc">
   		
   			<p>
@@ -24,15 +25,10 @@
 	  			a loose coupling of the View and Model within the application.	 The MVC implementation in Struts
 	  			is sometimes also called "Model-2". 		
 	  		</p>	  		
-	  		<p>
-	  			See the "<a href="#resources">resources</a>" section at the end of this guide for links to the
-	  			Model-View-Controller desgin pattern.
-	  		</p>
 	  		
-  			
   		</section>
   		
-  		<section name="Mapping MVC Concepts to Struts Components" href="introduction_mvcConcepts">
+  		<section name="Mapping MVC Concepts to Struts Components" href="mvcConcepts">
   		
   			<p>
   				The Struts architecture implements the concepts of the
@@ -48,8 +44,118 @@
   				Each major component of this architecture will be discussed in more detail below.
   			</p>
   		</section>
+  		
+  		<section name="Overview" href="overview">
+  			<p>
+  				Struts uses a switchboard, or controller, servlet to route requests to other
+				Struts objects. When initialized, the controller parses a configuration resource
+				file. The configuration resource defines (among other things) the action
+				mappings for the application. The controller uses these mappings to turn HTTP
+				requests into application actions.
+			</p>
+			
+			<p>
+				At a minimum, a mapping must specify (1) a request path and (2) the object
+				type to act upon the request. The action object can handle the request and respond to the client (usually a
+				Web browser), or
+				indicate that control should be forwarded to another action. For example, if a
+				login succeeds, the loginAction object may wish to forward control to the
+				mainMenu action.
+			</p>
+		
+			<p>
+				Action objects are linked to the application's controller, and so have access
+				to that servlet's methods. When forwarding control, an object can indirectly
+				forward one or more shared objects, including JavaBeans, by placing them in one
+				of the standard collections shared by Java servlets.
+			</p>
+			
+			<p>
+				One action object can create a shopping cart bean, add an item to the
+				cart, place the bean in the session collection, and then forward control to
+				another action -- that may use a JSP to display the contents of the user's cart.
+				Since each client has their own session, they will each also have their own
+				shopping cart. In a Struts application, most of the business logic is
+				represented using JavaBeans.
+			</p>
+			
+			<p>
+				JavaBeans can also be used to manage input forms. A key problem in designing
+				Web applications is retaining and validating what a user has entered between
+				requests. With Struts, you can easily store the data for a input form in a form
+				bean. The bean is saved in one of the standard, shared context collections, so that it can
+				be used by other objects.
+			</p>
+			
+			<p>
+				The form bean can be used by a JSP to collect data from the user ... by an
+				action object to validate the user entered ... and then by the JSP again to
+				re-populate the form fields. In the case of validation errors, Struts has a
+				shared mechanism for raising and displaying error messages.
+			</p>
+			
+			<p>
+				A Struts form bean is defined in the configuration resource and linked to an action
+				mapping using a common name. When a request calls for an action that uses a form
+				bean, the controller servlet either retrieves or creates the form bean, and
+				passes it to the action object. The action object can then check the contents of
+				the form bean before its input form is displayed, and also queue messages to be
+				handled by the form. When ready, the action object can return control with a
+				forwarding to its input form, usually a JSP. The controller can then respond to
+				the HTTP request and direct the client to the Java Server Page.
+			</p>
+			
+			<p>
+				The Struts framework includes custom tags that can automatically populate
+				fields from a form bean. The only thing most JavaServer Pages need to know
+				about the rest of the framework is the proper field names and where to submit
+				the form. Components like the messages set by the action object can be output
+				using a single custom tag. Other application-specific tags can also be defined
+				to hide implementation details from the JSPs.
+			</p>
+			
+			<p>
+				The custom tags in the Struts framework are designed to use the
+				internationalization features built into the Java platform. All the field labels
+				and messages can be retrieved from a message resource, and Java can
+				automatically provide the correct resource for a client's country and language.
+				To provide messages for another language, simply add another resource file.
+			</p>
+			
+			<p>
+				Other benefits to this approach are consistent labeling between forms, and
+				the ability to review all labels and messages from a central location.
+			</p>
+			
+			<p>
+				For the simplest applications, an action object can handle the business logic
+				associated with a request. However, in most cases, an action object should pass
+				the request to another object, usually a JavaBean. To allow resuse on other
+				platforms, business-logic JavaBeans should not refer to any Web application
+				objects. The action object should translate needed details from the HTTP request
+				and pass those along to the business-logic beans as regular Java variables.
+			</p>
+				
+			<p>
+				In a database application, the business-logic beans might connect to and
+				query the database and return the result set back to the action's servlet ... to
+				be stored in a form bean ... and then displayed by the JSP. Neither the action's
+				servlet nor the JSP need to know (or care) where the result set comes from.
+			</p>
+			
+			<p>
+				The Struts framework is compliant with the classic Model-View-Controller
+				paradigm, which is the architecture recommended by Sun and most other vendors.
+			</p>
+			
+			<p>
+				In Struts, the ActionServlet object (described above) is the MVC controller,
+				the view is handled by JSP or directly by an Action object, and the model is
+				handled with business-logic beans, or directly by an Action object.
+			</p>
+		</section>
 
-		<section name="The Model: System State and Business Logic JavaBeans" href="introduction_modelConcepts">
+		<section name="The Model: System State and Business Logic JavaBeans" href="modelConcepts">
 			
 			<p>
 				The <i>Model</i> portion of an MVC-based system can be subdivided into
@@ -94,7 +200,7 @@
 			</p>
 		</section>
 
-		<section name="1.4 The View: JSP Pages and Presentation Components" href="introduction_presentationConcepts">
+		<section name="1.4 The View: JSP Pages and Presentation Components" href="presentationConcepts">
 			
 			<p>
 				The <i>View</i> portion of a Struts-based application is generally
@@ -126,7 +232,7 @@
 			</p>
 		</section>
 		
-		<section name="1.5 The Controller: ActionServlet and ActionMapping" href="introduction_controllerConcepts">
+		<section name="1.5 The Controller: ActionServlet and ActionMapping" href="controllerConcepts">
 			
 			<p>
 				The <i>Controller</i> portion of the application is focused on receiving
@@ -156,7 +262,13 @@
 				the control logic (what do I do next) with the view logic (what is the name
 				of the corresponding page).
 			</p>
+			
+			<p align="center">
+				Next: <a href="building_model.html">Building Model Components</a>
+			</p>
   		</section>
+  		
+  		
   	</chapter>
   	</body>
 </document>
