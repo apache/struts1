@@ -22,7 +22,7 @@
 # source code.  To use this file, make a copy of it in "build.properties" and
 # customize the values as required.
 #
-# $Id: build.properties.sample,v 1.6 2004/03/08 03:07:35 craigmcc Exp $
+# $Id: build.properties.sample,v 1.7 2004/07/06 07:26:35 craigmcc Exp $
 
 
 # ---------------------------- BUILD MODE -------------------------------------
@@ -76,6 +76,9 @@ commons-logging.jar=${struts.home}/lib/commons-logging.jar
 
 # The absolute or relative pathname of the Commons Validator Library
 commons-validator.jar=${struts.home}/lib/commons-validator.jar
+
+# The absolute or relative pathname of the Jakarta ORO Library
+jakarta-oro.jar=${struts.home}/lib/jakarta-oro.jar
 
 # The absolute or relative pathname of the JavaServer Faces API Classes
 jsf-api.jar=${jsf.home}/lib/jsf-api.jar
