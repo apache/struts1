@@ -77,7 +77,9 @@
     <copydir src="src/share"         dest="${build.home}/library/classes">
       <include name="**/*.properties" />
     </copydir>
-    <copydir src="src/conf" dest="${build.home}/library"/>
+    <copydir src="src/conf" dest="${build.home}/library">
+      <exclude name="**/*.MF"/>
+    </copydir>
     <style basedir="src/doc" destdir="${build.home}/library"
          extension=".tld" style="stylesheets/tld.xsl"
           includes="struts-*.xml"/>
@@ -171,6 +173,7 @@
              dest="${dist.home}/lib"
          includes="*.tld"/>
     <jar  jarfile="${dist.home}/lib/${app.name}.jar"
+         manifest="src/conf/MANIFEST.MF"
           basedir="${build.home}/library/classes" includes="**"/>
   </target>
 
