@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.95 2002/03/09 22:26:35 craigmcc Exp $
- * $Revision: 1.95 $
- * $Date: 2002/03/09 22:26:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.96 2002/03/10 01:23:29 craigmcc Exp $
+ * $Revision: 1.96 $
+ * $Date: 2002/03/10 01:23:29 $
  *
  * ====================================================================
  *
@@ -269,7 +269,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.95 $ $Date: 2002/03/09 22:26:35 $
+ * @version $Revision: 1.96 $ $Date: 2002/03/10 01:23:29 $
  */
 
 public class ActionServlet
@@ -837,8 +837,8 @@ public class ActionServlet
             }
             DataSource ds = null;
             try {
-                Class clazz = Class.forName(dscs[i].getType());
-                ds = (DataSource) clazz.newInstance();
+                ds = (DataSource)
+                    RequestUtils.applicationInstance(dscs[i].getType());
                 BeanUtils.populate(ds, dscs[i].getProperties());
                 ds.setLogWriter(scw);
                 if (ds instanceof GenericDataSource) {
@@ -952,6 +952,7 @@ public class ActionServlet
         configDigester.setDebug(detail);
         configDigester.setNamespaceAware(true);
         configDigester.setValidating(validating);
+        configDigester.setUseContextClassLoader(true);
         configDigester.addRuleSet(new ConfigRuleSet());
         for (int i = 0; i < registrations.length; i += 2) {
             URL url = this.getClass().getResource(registrations[i+1]);

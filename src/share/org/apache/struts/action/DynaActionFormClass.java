@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.2 2002/01/17 21:26:18 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/17 21:26:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/DynaActionFormClass.java,v 1.3 2002/03/10 01:23:29 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/10 01:23:29 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
@@ -82,7 +83,7 @@ import org.apache.struts.config.FormPropertyConfig;
  * to consult this documentation.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/17 21:26:18 $
+ * @version $Revision: 1.3 $ $Date: 2002/03/10 01:23:29 $
  * @since Struts 1.1
  */
 
@@ -316,8 +317,7 @@ public class DynaActionFormClass implements DynaClass {
 
         // Validate the ActionFormBean implementation class
         try {
-            // FIXME - Use thread context loader?
-            beanClass = Class.forName(config.getType());
+            beanClass = RequestUtils.applicationClass(config.getType());
         } catch (Throwable t) {
             throw new IllegalArgumentException
                 ("Cannot instantiate ActionFormBean class '" +

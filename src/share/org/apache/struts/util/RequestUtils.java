@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.32 2002/03/09 22:26:35 craigmcc Exp $
- * $Revision: 1.32 $
- * $Date: 2002/03/09 22:26:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.33 2002/03/10 01:23:30 craigmcc Exp $
+ * $Revision: 1.33 $
+ * $Date: 2002/03/10 01:23:30 $
  *
  * ====================================================================
  *
@@ -110,7 +110,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.32 $ $Date: 2002/03/09 22:26:35 $
+ * @version $Revision: 1.33 $ $Date: 2002/03/10 01:23:30 $
  */
 
 public class RequestUtils {
@@ -164,6 +164,56 @@ public class RequestUtils {
         throws MalformedURLException {
 
         return (new URL(serverURL(request), request.getContextPath() + path));
+
+    }
+
+
+    /**
+     * Return the <code>Class</code> object for the specified fully qualified
+     * class name, from this web application's class loader.
+     *
+     * @param className Fully qualified class name to be loaded
+     *
+     * @exception ClassNotFoundException if the class cannot be found
+     */
+    public static Class applicationClass(String className)
+        throws ClassNotFoundException {
+
+        // Look up the class loader to be used
+        ClassLoader classLoader =
+            Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = RequestUtils.class.getClassLoader();
+        }
+
+        // Attempt to load the specified class
+        return (classLoader.loadClass(className));
+
+    }
+
+
+    /**
+     * Return a new instance of the specified fully qualified class name,
+     * after loading the class from this web application's class loader.
+     * The specified class <strong>MUST</strong> have a public zero-arguments
+     * constructor.
+     *
+     * @param className Fully qualified class name to use
+     *
+     * @exception ClassNotFoundException if the class cannot be found
+     * @exception IllegalAccessException if the class or its constructor
+     *  is not accessible
+     * @exception InstantiationException if this class represents an
+     *  abstract class, an interface, an array class, a primitive type,
+     *  or void
+     * @exception InstantiationException if this class has no
+     *  zero-arguments constructor
+     */
+    public static Object applicationInstance(String className)
+        throws ClassNotFoundException, IllegalAccessException,
+               InstantiationException {
+
+        return (applicationClass(className).newInstance());
 
     }
 
@@ -557,9 +607,7 @@ public class RequestUtils {
             }
         } else {
             try {
-                // FIXME - thread context class loader?
-                Class clazz = Class.forName(config.getType());
-                instance = (ActionForm) clazz.newInstance();
+                instance = (ActionForm) applicationInstance(config.getType());
             } catch (Throwable t) {
                 LOG.error(servlet.getInternal().getMessage
                             ("formBean", config.getType()), t);
@@ -938,7 +986,7 @@ public class RequestUtils {
         if (multipartClass != null) {
             try {
                 multipartHandler = (MultipartRequestHandler)
-                    Class.forName(multipartClass).newInstance();
+                    applicationInstance(multipartClass);
             }
             catch (ClassNotFoundException cnfe) {
                 LOG.error("MultipartRequestHandler class \"" +
@@ -970,7 +1018,7 @@ public class RequestUtils {
         if (multipartClass != null) {
             try {
                 multipartHandler = (MultipartRequestHandler)
-                    Class.forName(multipartClass).newInstance();
+                    applicationInstance(multipartClass);
             }
             catch (ClassNotFoundException cnfe) {
                 throw new ServletException("Cannot find multipart class \"" +

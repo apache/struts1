@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.11 2002/03/04 05:38:23 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/03/04 05:38:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.12 2002/03/10 01:23:30 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/03/10 01:23:30 $
  *
  * ====================================================================
  *
@@ -71,6 +71,7 @@ import javax.servlet.UnavailableException;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.util.RequestUtils;
  
 
 
@@ -84,7 +85,7 @@ import org.apache.struts.action.RequestProcessor;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2002/03/04 05:38:23 $
+ * @version $Revision: 1.12 $ $Date: 2002/03/10 01:23:30 $
  * @since Struts 1.1
  */
 
@@ -221,9 +222,9 @@ public class ApplicationConfig implements Serializable {
 
         if (processor == null) {
             try {
-                Class clazz =
-                    Class.forName(getControllerConfig().getProcessorClass());
-                processor = (RequestProcessor) clazz.newInstance();
+                processor = (RequestProcessor)
+                    RequestUtils.applicationInstance
+                    (getControllerConfig().getProcessorClass());
                 processor.init(servlet, this);
             } catch (Throwable t) {
                 throw new UnavailableException

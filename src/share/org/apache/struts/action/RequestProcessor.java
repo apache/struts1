@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.6 2002/03/10 00:37:17 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/03/10 00:37:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.7 2002/03/10 01:23:29 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/03/10 01:23:29 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.util.RequestUtils;
  * interested in changing.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/03/10 00:37:17 $
+ * @version $Revision: 1.7 $ $Date: 2002/03/10 01:23:29 $
  * @since Struts 1.1
  */
 
@@ -312,8 +312,8 @@ public class RequestProcessor {
         }
         synchronized (actions) {
             try {
-                Class clazz = Class.forName(className);
-                instance = (Action) clazz.newInstance();
+                instance = (Action)
+                    RequestUtils.applicationInstance(className);
                 instance.setServlet(this.servlet);
                 actions.put(className, instance);
             } catch (Throwable t) {
@@ -499,9 +499,8 @@ public class RequestProcessor {
 
         // Use the configured exception handling
         try {
-            Class handlerClass = Class.forName(config.getHandler());
             ExceptionHandler handler = (ExceptionHandler)
-                handlerClass.newInstance();
+                RequestUtils.applicationInstance(config.getHandler());
             return (handler.execute(exception, config, mapping, form,
                                     request, response));
         } catch (Exception e) {

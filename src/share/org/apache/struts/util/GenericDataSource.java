@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.10 2002/03/09 22:26:35 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2002/03/09 22:26:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/GenericDataSource.java,v 1.11 2002/03/10 01:23:30 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2002/03/10 01:23:30 $
  *
  * ====================================================================
  *
@@ -180,7 +180,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.10 $ $Date: 2002/03/09 22:26:35 $
+ * @version $Revision: 1.11 $ $Date: 2002/03/10 01:23:30 $
  */
 
 public class GenericDataSource implements DataSource {
@@ -677,8 +677,7 @@ public class GenericDataSource implements DataSource {
 
         // Instantiate our database driver
         try {
-            Class clazz = Class.forName(driverClass);
-            driver = (Driver) clazz.newInstance();
+            driver = (Driver) RequestUtils.applicationInstance(driverClass);
         } catch (Throwable t) {
             throw new SQLException("open: " + t);
         }

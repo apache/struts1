@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.6 2002/03/09 22:26:35 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/03/09 22:26:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResourcesFactory.java,v 1.7 2002/03/10 01:23:30 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/03/10 01:23:30 $
  *
  * ====================================================================
  * 
@@ -83,7 +83,7 @@ import org.apache.commons.logging.LogFactory;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/03/09 22:26:35 $
+ * @version $Revision: 1.7 $ $Date: 2002/03/10 01:23:30 $
  */
 
 public abstract class MessageResourcesFactory implements Serializable {
@@ -166,7 +166,7 @@ public abstract class MessageResourcesFactory implements Serializable {
         // Construct a new instance of the specified factory class
         try {
             if (clazz == null)
-                clazz = Class.forName(factoryClass);
+                clazz = RequestUtils.applicationClass(factoryClass);
             MessageResourcesFactory factory =
                 (MessageResourcesFactory) clazz.newInstance();
             return (factory);

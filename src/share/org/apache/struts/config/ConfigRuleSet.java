@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.9 2002/03/04 05:38:23 martinc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/03/04 05:38:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.10 2002/03/10 01:23:30 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/03/10 01:23:30 $
  *
  * ====================================================================
  *
@@ -67,6 +67,7 @@ import org.apache.commons.digester.AbstractObjectCreationFactory;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
 import org.apache.commons.digester.RuleSetBase;
+import org.apache.struts.util.RequestUtils;
 import org.xml.sax.Attributes;
 
 
@@ -75,7 +76,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/03/04 05:38:23 $
+ * @version $Revision: 1.10 $ $Date: 2002/03/10 01:23:30 $
  * @since Struts 1.1
  */
 
@@ -338,8 +339,8 @@ final class ActionMappingFactory extends AbstractObjectCreationFactory {
         // Instantiate the new object and return it
         Object actionMapping = null;
         try {
-            Class clazz = digester.getClassLoader().loadClass(className);
-            actionMapping = clazz.newInstance();
+            actionMapping =
+                RequestUtils.applicationInstance(className);
         } catch (Exception e) {
             digester.log("ActionMappingFactory.createObject: ", e);
         }
