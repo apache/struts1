@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.6 2002/01/13 04:21:18 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/01/13 04:21:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.7 2002/01/15 18:39:36 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/01/15 18:39:36 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.action.RequestProcessor;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/01/13 04:21:18 $
+ * @version $Revision: 1.7 $ $Date: 2002/01/15 18:39:36 $
  * @since Struts 1.1
  */
 
@@ -115,7 +115,7 @@ public class ApplicationConfig implements Serializable {
      * The set of action configurations for this application, if any,
      * keyed by the <code>path</code> property.
      */
-    protected FastHashMap actions = new FastHashMap();
+    protected FastHashMap actionConfigs = new FastHashMap();
 
 
     /**
@@ -264,7 +264,7 @@ public class ApplicationConfig implements Serializable {
         if (configured)
             throw new IllegalStateException("Configuration is frozen");
         config.setApplicationConfig(this);
-        actions.put(config.getPath(), config);
+        actionConfigs.put(config.getPath(), config);
 
     }
 
@@ -349,7 +349,7 @@ public class ApplicationConfig implements Serializable {
      */
     public ActionConfig findActionConfig(String path) {
 
-        return ((ActionConfig) actions.get(path));
+        return ((ActionConfig) actionConfigs.get(path));
 
     }
 
@@ -360,8 +360,8 @@ public class ApplicationConfig implements Serializable {
      */
     public ActionConfig[] findActionConfigs() {
 
-        ActionConfig results[] = new ActionConfig[actions.size()];
-        return ((ActionConfig[]) actions.values().toArray(results));
+        ActionConfig results[] = new ActionConfig[actionConfigs.size()];
+        return ((ActionConfig[]) actionConfigs.values().toArray(results));
 
     }
 
@@ -474,7 +474,7 @@ public class ApplicationConfig implements Serializable {
     public void freeze() {
 
         this.configured = true;
-        actions.setFast(true);
+        actionConfigs.setFast(true);
         dataSources.setFast(true);
         exceptions.setFast(true);
         formBeans.setFast(true);
@@ -500,7 +500,7 @@ public class ApplicationConfig implements Serializable {
         if (configured)
             throw new IllegalStateException("Configuration is frozen");
         config.setApplicationConfig(null);
-        actions.remove(config.getPath());
+        actionConfigs.remove(config.getPath());
 
     }
 
