@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.25 2003/05/18 18:57:13 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2003/05/18 18:57:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.26 2003/07/02 02:50:15 dgraham Exp $
+ * $Revision: 1.26 $
+ * $Date: 2003/07/02 02:50:15 $
  *
  * ====================================================================
  *
@@ -66,7 +66,6 @@ import java.lang.reflect.Method;
 import java.util.Locale;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -85,7 +84,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.25 $ $Date: 2003/05/18 18:57:13 $
+ * @version $Revision: 1.26 $ $Date: 2003/07/02 02:50:15 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -856,14 +855,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * @since Struts 1.1
      */
     protected boolean isXhtml() {
-        String xhtml =
-            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
-        
-        if ("true".equalsIgnoreCase(xhtml)) {
-            return true;
-        } else {
-            return false;
-        }
+        return RequestUtils.isXhtml(this.pageContext);
     }
 
     /**
@@ -873,11 +865,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * @since Struts 1.1
      */
     protected String getElementClose() {
-        if (this.isXhtml()) {
-            return " />";
-        } else {
-            return ">";
-        }
+        return this.isXhtml() ? " />" : ">";
     }
 
     /**
