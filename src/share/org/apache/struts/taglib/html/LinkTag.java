@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.4 2001/02/08 01:08:15 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/02/08 01:08:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.5 2001/03/06 17:00:50 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/03/06 17:00:50 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -86,13 +86,27 @@ import org.apache.struts.util.RequestUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/02/08 01:08:15 $
+ * @version $Revision: 1.5 $ $Date: 2001/03/06 17:00:50 $
  */
 
 public class LinkTag extends BaseHandlerTag {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The anchor to be added to the end of the generated hyperlink.
+     */
+    protected String anchor = null;
+
+    public String getAnchor() {
+        return (this.anchor);
+    }
+
+    public void setAnchor(String anchor) {
+        this.anchor = anchor;
+    }
 
 
     /**
@@ -372,6 +386,7 @@ public class LinkTag extends BaseHandlerTag {
     public void release() {
 
 	super.release();
+        anchor = null;
 	forward = null;
 	href = null;
         linkName = null;
@@ -414,8 +429,7 @@ public class LinkTag extends BaseHandlerTag {
         if (n != 1) {
             JspException e = new JspException
                 (messages.getMessage("linkTag.destination"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
 
@@ -432,13 +446,19 @@ public class LinkTag extends BaseHandlerTag {
 	    ActionForwards forwards = (ActionForwards)
 		pageContext.getAttribute(Action.FORWARDS_KEY,
 					 PageContext.APPLICATION_SCOPE);
-	    if (forwards == null)
-		throw new JspException
+	    if (forwards == null) {
+                JspException e = new JspException
 		    (messages.getMessage("linkTag.forwards"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
 	    ActionForward forward = forwards.findForward(this.forward);
-	    if (forward == null)
-		throw new JspException
+	    if (forward == null) {
+                JspException e = new JspException
 		    (messages.getMessage("linkTag.forward"));
+                RequestUtils.saveException(pageContext, e);
+                throw e;
+            }
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
             href = RequestUtils.absoluteURL(request, forward.getPath());
@@ -451,116 +471,58 @@ public class LinkTag extends BaseHandlerTag {
             href = RequestUtils.absoluteURL(request, page);
         }
 
+        // Save any currently specified anchor string
+        String anchor = this.anchor;
+        int hash = href.indexOf('#');
+        if (hash >= 0) {
+            if (anchor == null)
+                anchor = href.substring(hash + 1);
+            href = href.substring(0, hash);
+        }
+
         // Append a single-parameter name and value, if requested
+        StringBuffer sb = new StringBuffer(href);
         if ((paramId != null) && (paramName != null)) {
             if (href.indexOf('?') < 0)
-                href += '?';
+                sb.append('?');
             else
-                href += '&';
-            href += paramId;
-            href += '=';
-            Object bean = RequestUtils.lookup(pageContext,
-                                              paramName, paramScope);
-            if (bean != null) {
-                if (paramProperty == null)
-                    href += bean.toString();
-                else {
-                    try {
-                        Object value =
-                            PropertyUtils.getProperty(bean, paramProperty);
-                        if (value != null)
-                            href += value.toString();
-                    } catch (IllegalAccessException e) {
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.access",
-                                                 paramProperty, paramName));
-                    } catch (InvocationTargetException e) {
-                        Throwable t = e.getTargetException();
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.result",
-                                                 paramProperty, t.toString()));
-                    } catch (NoSuchMethodException e) {
-                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                                 PageContext.REQUEST_SCOPE);
-                        throw new JspException
-                            (messages.getMessage("getter.method",
-                                                 paramProperty, paramName));
-                    }
-                }
-            }
+                sb.append('&');
+            sb.append(paramId);
+            sb.append('=');
+            Object value = RequestUtils.lookup(pageContext, paramName,
+                                               paramProperty, paramScope);
+            if (value != null)
+                sb.append(value.toString());
         }
 
 	// Just return the "href" attribute if there is no bean to look up
 	if ((property != null) && (name == null)) {
 	    JspException e = new JspException
 		(messages.getMessage("getter.name"));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
+            RequestUtils.saveException(pageContext, e);
             throw e;
         }
-	if (name == null)
-	    return (href);
+	if (name == null) {
+            if (anchor != null) {
+                sb.append('#');
+                sb.append(anchor);
+            }
+	    return (sb.toString());
+        }
 
 	// Look up the map we will be using
-	Object bean = RequestUtils.lookup(pageContext, name, scope);
-        if (bean == null) {
-	    JspException e = new JspException
-		(messages.getMessage("getter.bean", name));
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-            throw e;
+        Map map = null;
+        try {
+            map = (Map) RequestUtils.lookup(pageContext, name,
+                                            property, scope);
+        } catch (ClassCastException e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException
+                (messages.getMessage("linkTag.type"));
         }
-	Map map = null;
-	if (property == null) {
-	    try {
-		map = (Map) bean;
-	    } catch (ClassCastException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("linkTag.type"));
-	    }
-	} else {
-	    try {
-		map = (Map) PropertyUtils.getProperty(bean, property);
-		if (map == null) {
-		    JspException e = new JspException
-			(messages.getMessage("getter.property", property));
-                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                             PageContext.REQUEST_SCOPE);
-                    throw e;
-                }
-	    } catch (IllegalAccessException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.access", property, name));
-	    } catch (InvocationTargetException e) {
-		Throwable t = e.getTargetException();
-                pageContext.setAttribute(Action.EXCEPTION_KEY, t,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, t.toString()));
-	    } catch (ClassCastException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("linkTag.type"));
-	    } catch (NoSuchMethodException e) {
-                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                         PageContext.REQUEST_SCOPE);
-		throw new JspException
-		    (messages.getMessage("getter.method", property, name));
-	    }
-	}
 
 	// Append the required query parameters
-	StringBuffer sb = new StringBuffer(href);
+        href = sb.toString();
 	boolean question = (href.indexOf("?") >= 0);
 	Iterator keys = map.keySet().iterator();
 	while (keys.hasNext()) {
@@ -601,6 +563,12 @@ public class LinkTag extends BaseHandlerTag {
 		sb.append(URLEncoder.encode(value.toString()));
 	    }
 	}
+
+        // Append the anchor (if any)
+        if (anchor != null) {
+            sb.append('#');
+            sb.append(anchor);
+        }
 
 	// Return the final result
 	return (sb.toString());
