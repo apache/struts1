@@ -17,7 +17,7 @@
   <jspversion>1.1</jspversion>
   <shortname>Tiles Tag Library</shortname>
   <display-name>Tiles Tag Library</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-tiles-1.1</uri>
+  <uri>http://jakarta.apache.org/struts/tags-tiles</uri>
   <info>
     This tag library provides tiles tags.
 	<br></br>

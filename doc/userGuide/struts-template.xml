@@ -15,7 +15,7 @@
   <jspversion>1.1</jspversion>
   <shortname>template</shortname>
   <display-name>Template Tags</display-name>
-  <uri>http://jakarta.apache.org/struts/tags-template-1.1</uri>
+  <uri>http://jakarta.apache.org/struts/tags-template</uri>
   <info>
   This tag library contains three tags: put, get, and insert. Put tags
   put content into request scope, which is retrieved by a get tag in
