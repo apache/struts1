@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.20 2003/03/10 01:03:02 craigmcc Exp $
- * $Revision: 1.20 $
- * $Date: 2003/03/10 01:03:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ErrorsTag.java,v 1.21 2003/05/15 23:43:42 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/05/15 23:43:42 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.taglib.html;
-
 
 import java.util.Iterator;
 import java.util.Locale;
@@ -75,7 +73,6 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
-
 
 /**
  * Custom tag that renders error messages if an appropriate request attribute
@@ -98,14 +95,11 @@ import org.apache.struts.util.ResponseUtils;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2003/03/10 01:03:02 $
+ * @version $Revision: 1.21 $ $Date: 2003/05/15 23:43:42 $
  */
-
 public class ErrorsTag extends TagSupport {
 
-
     // ----------------------------------------------------------- Properties
-
 
     /**
      * The servlet context attribute key for our resources.
@@ -120,18 +114,16 @@ public class ErrorsTag extends TagSupport {
         this.bundle = bundle;
     }
 
-
     /**
      * The default locale on our server.
+     * @deprecated Use Locale.getDefault() directly.
      */
     protected static Locale defaultLocale = Locale.getDefault();
-
 
     /**
      * The line ending string.
      */
     protected static String lineEnd = System.getProperty("line.separator");
-
 
     /**
      * The session attribute key for our locale.
@@ -146,13 +138,11 @@ public class ErrorsTag extends TagSupport {
         this.locale = locale;
     }
 
-
     /**
      * The message resources for this package.
      */
     protected static MessageResources messages =
-     MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
-
+        MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
 
     /**
      * The request attribute key for our error messages (if any).
@@ -160,13 +150,12 @@ public class ErrorsTag extends TagSupport {
     protected String name = Globals.ERROR_KEY;
 
     public String getName() {
-    return (this.name);
+        return (this.name);
     }
 
     public void setName(String name) {
-    this.name = name;
+        this.name = name;
     }
-
 
     /**
      * The name of the property for which error messages should be returned,
@@ -182,10 +171,7 @@ public class ErrorsTag extends TagSupport {
         this.property = property;
     }
 
-
-
     // ------------------------------------------------------- Public Methods
-
 
     /**
      * Render the specified error messages if there are any.
@@ -194,79 +180,98 @@ public class ErrorsTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-    // Were any error messages specified?
-    ActionErrors errors = null;
-    try {
+        // Were any error messages specified?
+        ActionErrors errors = null;
+        try {
             errors = RequestUtils.getActionErrors(pageContext, name);
         } catch (JspException e) {
             RequestUtils.saveException(pageContext, e);
             throw e;
         }
+
         if ((errors == null) || errors.isEmpty()) {
-        return (EVAL_BODY_INCLUDE);
+            return (EVAL_BODY_INCLUDE);
         }
 
-        // Check for presence of header and footer message keys
         boolean headerPresent =
             RequestUtils.present(pageContext, bundle, locale, "errors.header");
+
         boolean footerPresent =
             RequestUtils.present(pageContext, bundle, locale, "errors.footer");
+
         boolean prefixPresent =
             RequestUtils.present(pageContext, bundle, locale, "errors.prefix");
+
         boolean suffixPresent =
             RequestUtils.present(pageContext, bundle, locale, "errors.suffix");
 
         // Render the error messages appropriately
-    StringBuffer results = new StringBuffer();
+        StringBuffer results = new StringBuffer();
         boolean headerDone = false;
         String message = null;
-        Iterator reports = null;
-        if (property == null) {
-            reports = errors.get();
-        } else {
-            reports = errors.get(property);
-        }
+        Iterator reports = (property == null) ? errors.get() : errors.get(property);
+
         while (reports.hasNext()) {
             ActionError report = (ActionError) reports.next();
             if (!headerDone) {
                 if (headerPresent) {
-                    message = RequestUtils.message(pageContext, bundle,
-                                                   locale, "errors.header");
+                    message =
+                        RequestUtils.message(
+                            pageContext,
+                            bundle,
+                            locale,
+                            "errors.header");
+                            
                     results.append(message);
                     results.append(lineEnd);
                 }
                 headerDone = true;
             }
+            
             if (prefixPresent) {
-                message = RequestUtils.message(pageContext, bundle,
-                                               locale, "errors.prefix");
+                message =
+                    RequestUtils.message(
+                        pageContext,
+                        bundle,
+                        locale,
+                        "errors.prefix");
                 results.append(message);
             }
-            message = RequestUtils.message(pageContext, bundle,
-                                           locale, report.getKey(),
-                                           report.getValues());
+            
+            message =
+                RequestUtils.message(
+                    pageContext,
+                    bundle,
+                    locale,
+                    report.getKey(),
+                    report.getValues());
+                    
             if (message != null) {
                 results.append(message);
                 results.append(lineEnd);
             }
+            
             if (suffixPresent) {
-                message = RequestUtils.message(pageContext, bundle,
-                                               locale, "errors.suffix");
+                message =
+                    RequestUtils.message(
+                        pageContext,
+                        bundle,
+                        locale,
+                        "errors.suffix");
                 results.append(message);
             }
         }
+        
         if (headerDone && footerPresent) {
-            message = RequestUtils.message(pageContext, bundle,
-                                           locale, "errors.footer");
+            message =
+                RequestUtils.message(pageContext, bundle, locale, "errors.footer");
             results.append(message);
             results.append(lineEnd);
         }
 
-    // Print the results to our output writer
         ResponseUtils.write(pageContext, results.toString());
 
-    // Continue processing this page
-    return (EVAL_BODY_INCLUDE);
+        return (EVAL_BODY_INCLUDE);
 
     }
 
