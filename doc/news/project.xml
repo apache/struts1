@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Apache Struts Web Application Framework"
+         href="http://jakarta.apache.org/struts"
+        image="images/struts.gif">
+
+    <title>Apache Struts Web Application Framework</title>
+
+    <menu name="News and Status">
+        <item href="index.html#status" name="Status"/>
+        <item href="index.html#news" name="Recent News"/>
+        <item href="news_2002_q3.html" name="2002 3rd Quarter News"/>
+        <item href="news_2002_q2.html" name="2002 2nd Quarter News"/>
+        <item href="news_2002_q2.html" name="2002 1st Quarter News"/>
+        <item href="news_2001.html" name="2001 News"/>
+    </menu>
+
+    <menu name="Struts">
+        <item name="Welcome"                 href="../index.html"/>
+        <item name="Learning"                href="../learning.html"/>
+        <item name="Acquiring"               href="../acquiring.html"/>
+        <item name="Using"                   href="../using.html"/>
+        <item name="Who We Are"              href="../volunteers.html"/>
+    </menu>
+
+
+</project>
+
+
+
+
+
+

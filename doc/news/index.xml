@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="husted@apache.org">Ted Husted</author>
+    <title>New and Status - Jakarta Struts</title>
+  </properties>
+
+<body>
+<section name="Status" href="status">
+
+<p>
+The <b>stable production release</b> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
+</p>
+
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/">Struts 1.1b</a> is in its second <b>beta release</b> (12 August 2002).
+</p>
+
+<hr size="1" noshade=""/>
+
+<ul>
+<li>
+  See the <a href="../status.html">Development Roadmap</a> for an overview of future plans.
+</li>
+<li>
+  See the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> for outstanding issues and enhancement requests.
+  </li>
+<li>
+  See the <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">Struts Nightly Build</a> for the latest development distribution.
+</li>
+<li>
+  See the <a href="http://jakarta.apache.org/site/mail.html">Struts-Dev list</a> for current development communications.
+  </li>
+<li>
+  See the <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">Struts CVS</a> for the current development codebase.
+  </li>
+</ul>
+
+<hr size="1" noshade=""/>
+
+<p>
+Struts is a completely open product. The
+<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development
+business using the resources cited here, which are all available to the public. Only
+Struts Committers may write to the
+<a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted
+to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a>.
+</p>
+
+</section>
+
+<section name="Recent News" href="news">
+
+<!--
+<h3><a name=""></a></h3>
+<p><a href=""></a></p>
+<hr size="1" noshade=""/>
+-->
+
+<h3><a name="20021106.2"></a>06 Nov 2002 - Struts in Action now in print</h3>
+<p>
+[:TODO:]
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20021106"></a>06 Nov 2002 - Struts News Roundup</h3>
+<p>
+The
+<a href="http://jakarta.apache.org/struts/volunteers.html">Struts team</a> is proud to welcome 4 new Committers this month, David Karr, Eddie Bush, David Graham, and James Mitchell</p>
+<p>
+Everyone is working steadily toward the release of Struts 1.1 beta 3. To help keep everyone on track, the team added a
+<a href="http://jakarta.apache.org/struts/status.html">Development Roadmap</a>.
+</p>
+<p>
+There are a number of "nice to haves" that won't make Struts 1.1 which are now slated for Struts 1.2. Farther down the road, Struts 2.0 will rely upon the new standards, like JavaServer Faces and JSTL.
+</p>
+<p>
+The platform for Struts 1.1 will remain Servlet 2.2 and JSP 1.1. However, a Struts JSTL taglib is available in the nightly build contrib directory and will be released with Struts 1.1 as a separate download.
+</p>
+<p>
+Solid Struts support for the other new standard,
+<a href="http://jakarta.apache.org/struts/proposals/struts-faces.html">Struts JavaServer Faces</a>,
+is under development, but cannot be released quite yet.
+</p>
+<p>
+Meanwhile, the Struts User list will continue to enjoy its "casual Friday" policy. Off-topic messages are tolerated on Fridays so long as the message is prefixed with the token [FRIDAY]. Posting [FRIDAY] articles on any other weekday is strongly discouraged.
+</p>
+<hr size="1" noshade=""/>
+
+
+<h3><a name="20021031"></a>31 Oct 2002 - Struts in Action Ebook Release</h3>
+<p>
+[:TODO:]
+</p>
+<hr size="1" noshade=""/>
+
+
+<p align="center">
+<a href="news_2002_q3.html">
+<b>MORE NEWS</b></a>
+</p>
+
+</section>
+
+
+</body>
+</document>

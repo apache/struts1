@@ -2,7 +2,7 @@
 <document url="./volunteers.xml">
 <properties>
 <author>Ted Husted</author>
-<title>The Struts User's Guide - Who We Are</title>
+<title>Who We Are - Apache Struts</title>
 </properties>
 <body>
 <chapter name="Who We Are" href="whoWeAre">

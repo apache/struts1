@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<document url="./acquiring.xml">
+
+  <properties>
+    <author>Craig R. McClanahan</author>
+    <author>Ted Husted</author>
+    <author>Martin Cooper</author>
+    <author>James Holmes</author>
+    <title>Learning - The Struts Web Application Framework</title>
+  </properties>
+
+  <body>
+
+  <section name="Acquiring Struts" href="Acquiring">
+
+  <p>
+  The <i>production release</i> of <strong>Struts 1.0.2</strong> is available in
+  a convenient binary distribution and also with complete source code. In
+  addition, a library distribution is available, which contains the latest
+  Struts binaries without the sample applications, providing a smaller,
+  faster download.
+  </p>
+
+  <ul>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2">
+  <b>Struts 1.0.2 Binary Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/lib">
+  <b>Struts 1.0.2 Library Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/src">
+  <b>Struts 1.0.2 Source Code Distribution</b></a></li>
+  </ul>
+
+  <p>
+  Check the
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/release-notes-1.0.2.html">
+  Release Notes</a> for a summary of the changes since the Struts 1.0.1 release.
+  </p>
+
+  <p>
+  <b>In addition to a Struts distribution,</b> you will need to ensure that
+  you have downloaded and installed all of the
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Prerequisites">
+  prerequisite</a> software applications. Then, follow the appropriate instructions to
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Installing">
+  install and use a Struts binary
+  distribution</a> in your web application or for
+  <a href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html#Building">
+  building Struts from the source  distribution</a>.
+  </p>
+
+  <p>
+  The latest <i>beta release</i> of <strong>Struts 1.1</strong> is also
+  available, in the same three distributions. While not necessarily quite as
+  stable as the latest production release, the beta release provides an interim
+  release between the nightly builds and the production release so that
+  developers can start taking advantage of new functionality without the same
+  degree of risk as using the nightly builds may entail.
+  </p>
+
+  <ul>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2">
+  <b>Struts 1.1 Beta 2 Binary Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/lib">
+  <b>Struts 1.1 Beta 2 Library Distribution</b></a></li>
+  <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/src">
+  <b>Struts 1.1 Beta 2 Source Code Distribution</b></a></li>
+  </ul>
+
+  <p>
+  Check the
+  <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b2.html">
+  Release Notes</a> for a summary of the changes since the Struts 1.0.2 release.
+  </p>
+
+  <p>
+  As with the production release, you will need to ensure that you have
+  downloaded and installed all of the
+  <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Prerequisites">
+  prerequisite</a> software applications. Then, follow the appropriate instructions to
+  <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Installing">
+  install and use a Struts binary
+  distribution</a> in your web application or for
+  <a href="http://jakarta.apache.org/struts/userGuide/installation.html#Building">
+  building Struts from the source distribution</a>.
+  </p>
+  </section>
+
+  <section>
+  <p align="center"><a href="./faqs/helping.html#release">So when is the next release coming out?</a></p>
+  </section>
+
+  <section name="Nightly Builds" href="Builds">
+
+  <p>
+  For developers who are helping to develop Struts, or who just want
+  "the latest bits", the latest development version is made available each
+  morning. Use at your own risk!
+  </p>
+
+  <ul>
+  <li>Nightly builds - Download the source directly via
+      <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">
+      Anonymous CVS</a>.</li>
+  <li>Nightly builds - Download the binary distributions from
+      <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly">
+      here</a>.</li>
+  <li>Nightly builds - Download the source distributions from
+      <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/src">
+      here</a>.</li>
+  </ul>
+
+  <p>
+  Be sure to check the
+  <a href="http://jakarta.apache.org/struts/userGuide/release-notes.html">
+  Release Notes</a> for the nightly builds so you know what you are getting!
+  </p>
+
+  <p>
+  Access to the CVS source repository for Struts is available through both
+  <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">web
+  browser</a> and
+  <a href="http://jakarta.apache.org/getinvolved/cvsindex.html">CVS client</a>
+  interfaces.
+  </p>
+
+  </section>
+
+  <section name="Reporting Bugs and Feature Requests" href="Bugs">
+
+  <p>
+  Tracking of bug reports and enhancement requests for Struts is handled
+  through the
+  <a href="http://jakarta.apache.org/site/bugs.html">
+  Apache Bug Database</a>. Please select <strong>Struts</strong> from the product
+  list, along with the details of which component of Struts you feel this report
+  relates to, and details of your operating environment. You will automatically be
+  notified by email as the status of your bug or enhancement report changes. Please
+  be sure to read
+  <a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report
+  Bugs Effectively</a> before posting.
+  </p>
+
+  </section>
+
+  <section name="Contributing Patches to Code or Documentation" href="Patches">
+
+  <p>
+  You can upload a proposed <a href="http://jakarta.apache.org/site/source.html#Patches">
+  patch</a> to either the code or documentation by creating a feature request in
+  <a href="#Bugs">Bugzilla</a>. <b>After creating the ticket</b>, you can go back
+  and upload a file containing your patch.
+  </p>
+  <p>
+  The documentation is maintained in the <code>doc</code> folder of the CVS in a
+  XML format. In the Nightly Build, there is a "compile.website" target in the
+  <code>build.xml</code> file, which renders the XML into the HTML we post to the
+  Website. If you would like to help with the documentation, it is important to
+  provide patches and new pages in the XML source. Otherwise, some other volunteer
+  will have to do this for you, and it may never get done. (Sad but true.) If you
+  are submitting new material, it is important to decide exactly where you would
+  put this in relation to the rest of the documentation. Someone has to figure that
+  out before it can be added, and that someone might as well be you.
+  </p>
+  <p>
+  New additions for the Resources page should posted as an enhancement request to
+  <a href="#Bugs">Bugzilla</a>.
+  </p>
+  <p>
+  For more, see the <a href="./faqs/helping.html">How to Help FAQ</a>.
+  </p>
+
+  </section>
+
+  <section name="Joining the Mailing Lists" href="lists">
+
+  <p>
+  Before joining any mailing list at Jakarta, please be sure to read the
+  <a href="http://jakarta.apache.org/site/mail.html">Mailing Lists - Guidelines</a>.
+  If you have read and understood these guidelines, you are welcome to join the
+  Jakarta Struts mailing lists:
+  </p>
+  <ul>
+  <li><strong>STRUTS-USER Mailing List</strong> - Subscribe to this list
+      to communicate with other developers that are using
+      Struts for their own applications, including questions about the
+      installation of Struts, and the usage of particular Struts features.
+      [<a href="mailto:struts-user-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-user-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-DEV Mailing List</strong> - Subscribe to this
+      mailing list to communicate with other developers interested in expanding
+      and improving the functionality supported by Struts itself.
+      [<a href="mailto:struts-dev-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-dev-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-USER Digest</strong> - Subscribe to this list
+      to receive a daily digest of the Struts USER list.
+      [<a href="mailto:struts-user-digest-subscribe@jakarta.apache.org">Subscribe</a>]
+      [<a href="mailto:struts-user-digest-unsubscribe@jakarta.apache.org">Unsubscribe</a>]
+      </li>
+  <li><strong>STRUTS-USER Newsgroup</strong> - The User list is also mirrored online,
+      so that you can participate <b>without</b> subscribing to the regular mailing
+      list.<br/>
+      [<a href="http://www.proj.com/subscribe.jsp">Struts Newsgroup</a>]<br/>
+      Our thanks to BaseBeans Engineering for providing this much-needed service!
+      </li>
+  </ul>
+
+  </section>
+
+  <section name="Posting a Question to a Mailing List" href="questions">
+
+  <p>
+  Before posting a new question, be sure to consult the
+  <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42">
+  <b>MAILING LIST ARCHIVE</b></a> and the very excellent
+  <a href="http://www.tuxedo.org/~esr/faqs/smart-questions.html">
+  How To Ask Questions The Smart Way</a> by Eric Raymond. Please do be sure
+  to <a href="http://expita.com/nomime.html">turn off HTML</a> in your
+  email client before posting.
+  </p>
+
+  </section>
+
+  <section name="Getting Involved" href="Involved">
+
+  <p>
+  All work on Struts and the other Jakarta subprojects is provided on a volunteer
+  basis. For more about what you can do, see the
+  <a href="http://jakarta.apache.org/site/getinvolved.html">Getting Involved
+  Overview</a> and the Struts <a href="./faqs/helping.html">How to Help FAQ</a>.
+  </p>
+
+  </section>
+
+  </body>
+</document>

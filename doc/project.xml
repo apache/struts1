@@ -5,13 +5,19 @@
 
     <title>Struts Framework</title>
 
-    <menu name="Welcome">
-        <item name="Home"                    href="index.html"/>
-        <item name="News &amp; Status"       href="news.html"/>
+    <menu name="Struts">
+        <item name="Welcome"                 href="index.html"/>
+        <item name="Learning"                href="learning.html"/>
+        <item name="Acquiring"               href="acquiring.html"/>
+        <item name="Using"                   href="using.html"/>
+        <item name="Who We Are"              href="volunteers.html"/>
+    </menu>
+
+    <menu name="Reference">
+        <item name="News &amp; Status"       href="news/index.html"/>
         <item name="FAQs and Howtos"         href="faqs/index.html"/>
         <item name="Resources"               href="resources/index.html"/>
         <item name="List Archive"            href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42"/>
-        <item name="Who We Are"              href="volunteers.html"/>
     </menu>
 
     <menu name="Downloads">

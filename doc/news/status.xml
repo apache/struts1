@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="husted@apache.org">Ted Husted</author>
+    <title>New and Status - Apache Struts</title>
+  </properties>
+
+<body>
+
+<section name="Status" href="status">
+
+<p>
+The <b>stable production release</b> is <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.0.2/">Struts 1.02</a> (11 February 2002).
+</p>
+
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/">Struts 1.1b</a> is in its second <b>beta release</b> (12 August 2002).
+</p>
+
+<hr size="1" noshade=""/>
+
+<ul>
+<li>
+  See <a href="http://jakarta.apache.org/site/bugs.html">the Apache Bug Database</a> for outstanding issues and enhancement requests.
+  </li>
+<li>
+  See <a href="http://jakarta.apache.org/builds/jakarta-struts/nightly/">the Struts Nightly Build</a> for the latest development distribution.
+  </li>.
+<li>
+  See <a href="http://jakarta.apache.org/site/mail.html">the Jakarta Struts-Dev list</a> for current development communications.
+  </li>
+<li>
+  See <a href="http://cvs.apache.org/viewcvs/jakarta-struts/">the Jakarta Struts CVS</a> for the current development codebase.
+  </li>
+</ul>
+
+<hr size="1" noshade=""/>
+
+<p>
+Struts is a completely open product. The
+<a href="http://jakarta.apache.org/struts/volunteers.html">Struts Committers</a> conduct all development
+business using the resources cited here, which are all available to the public. Only
+Struts Committers may write to the
+<a href="http://cvs.apache.org/viewcvs/jakarta-struts/">CVS</a>. Developer contributions may be posted
+to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a>.
+</p>
+
+<p>
+Future development plans are covered on the <a href="../status.html">Development Roadmap</a>.
+</p>
+
+</section>
+
+</body>
+</document>
