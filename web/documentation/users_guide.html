@@ -6,7 +6,7 @@
 
 <div align="center">
 <h1>Struts User's Guide</h2>
-<h3>$Id: users_guide.html,v 1.5 2000/06/20 16:34:10 craigmcc Exp $</h3>
+<h3>$Id: users_guide.html,v 1.6 2000/06/23 17:37:51 craigmcc Exp $</h3>
 </div>
 
 
@@ -981,7 +981,7 @@ about Digester.</p>
 <code>action.xml</code>, and place it in the WEB-INF directory of your
 application.  (Note that no DTD for this file is required, because the
 actual attributes used can be different for different users.)  The
-outermost XML element must be <code>&lt;action-mapping&gt;</code>, and
+outermost XML element must be <code>&lt;action-mappings&gt;</code>, and
 within this element are nested zero or more <code>&lt;action&gt;</code>
 elements -- one per mapping that you wish to define.</p>
 
@@ -989,7 +989,7 @@ elements -- one per mapping that you wish to define.</p>
 the following mapping entry for the "log on" function, which we will use
 to illustrate the requirements:</p>
 <pre>
-  &lt;action-mapping&gt;
+  &lt;action-mappings&gt;
 
     &lt;action   path="/logon"
        actionClass="org.apache.struts.example.LogonAction"
@@ -999,7 +999,7 @@ to illustrate the requirements:</p>
       &lt;forward name="success" path="/mainMenu.jsp"/&gt;
     &lt;/action&gt;
 
-  &lt;/action-mapping&gt;
+  &lt;/action-mappings&gt;
 </pre>
 
 <p>As you can see, this mapping matches the path <code>/logon</code> (actually,
