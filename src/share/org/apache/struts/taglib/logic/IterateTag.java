@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.8 2001/03/31 21:29:37 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2001/03/31 21:29:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.9 2001/03/31 22:27:30 rleland Exp $
+ * $Revision: 1.9 $
+ * $Date: 2001/03/31 22:27:30 $
  *
  * ====================================================================
  *
@@ -83,12 +83,12 @@ import org.apache.struts.util.ResponseUtils;
 /**
  * Custom tag that iterates the elements of a collection, which can be
  * either an attribute or the property of an attribute.  The collection
- * can be any of the following:  an array of objects, an Iterator,
- * a Collection (which includes Lists, Sets and Vectors), or a Map
- * (which includes Hashtables) whose elements will be iterated over.
+ * can be any of the following:  an array of objects, an Enumeration,
+ * an Iterator, a Collection (which includes Lists, Sets and Vectors),
+ * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2001/03/31 21:29:37 $
+ * @version $Revision: 1.9 $ $Date: 2001/03/31 22:27:30 $
  */
 
 public class IterateTag extends BodyTagSupport {
