@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/Constants.java,v 1.3 2000/08/01 20:03:22 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/08/01 20:03:22 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Constants.java,v 1.1 2001/04/11 02:09:59 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:09:59 $
  *
  * ====================================================================
  *
@@ -60,14 +60,14 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 /**
  * Manifest constants for the example application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/08/01 20:03:22 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:09:59 $
  */
 
 public final class Constants {
@@ -76,7 +76,7 @@ public final class Constants {
     /**
      * The package name for this application.
      */
-    public static final String Package = "org.apache.struts.example";
+    public static final String Package = "org.apache.struts.webapp.example";
 
 
     /**

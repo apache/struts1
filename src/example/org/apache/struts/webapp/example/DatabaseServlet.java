@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/DatabaseServlet.java,v 1.6 2001/02/12 22:51:01 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/12 22:51:01 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabaseServlet.java,v 1.1 2001/04/11 02:10:00 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:00 $
  *
  * ====================================================================
  *
@@ -60,7 +60,7 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 import java.io.BufferedInputStream;
@@ -90,7 +90,7 @@ import org.apache.struts.util.MessageResources;
  * Demonstration Application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/12 22:51:01 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:00 $
  */
 
 public final class DatabaseServlet
@@ -271,11 +271,11 @@ public final class DatabaseServlet
 	digester.setDebug(debug);
 	digester.setValidating(false);
 	digester.addObjectCreate("database/user",
-				 "org.apache.struts.example.User");
+				 "org.apache.struts.webapp.example.User");
 	digester.addSetProperties("database/user");
 	digester.addSetNext("database/user", "addUser");
 	digester.addObjectCreate("database/user/subscription",
-				 "org.apache.struts.example.Subscription");
+				 "org.apache.struts.webapp.example.Subscription");
 	digester.addSetProperties("database/user/subscription");
 	digester.addSetTop("database/user/subscription", "setUser");
 

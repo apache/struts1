@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SaveSubscriptionAction.java,v 1.11 2000/10/16 16:50:04 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/10/16 16:50:04 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/EditRegistrationAction.java,v 1.1 2001/04/11 02:10:00 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:00 $
  *
  * ====================================================================
  *
@@ -60,21 +60,19 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
-import java.util.Hashtable;
+import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -84,14 +82,15 @@ import org.apache.struts.util.PropertyUtils;
 
 
 /**
- * Implementation of <strong>Action</strong> that validates and creates or
- * updates the mail subscription entered by the user.
+ * Implementation of <strong>Action</strong> that populates an instance of
+ * <code>RegistrationForm</code> from the profile of the currently logged on
+ * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/10/16 16:50:04 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:00 $
  */
 
-public final class SaveSubscriptionAction extends Action {
+public final class EditRegistrationAction extends Action {
 
 
     // --------------------------------------------------------- Public Methods
@@ -118,93 +117,69 @@ public final class SaveSubscriptionAction extends Action {
 				 HttpServletResponse response)
 	throws IOException, ServletException {
 
-	// Extract attributes and parameters we will need
+	// Extract attributes we will need
 	Locale locale = getLocale(request);
 	MessageResources messages = getResources();
 	HttpSession session = request.getSession();
-	SubscriptionForm subform = (SubscriptionForm) form;
 	String action = request.getParameter("action");
 	if (action == null)
-	    action = "?";
+	    action = "Create";
         if (servlet.getDebug() >= 1)
-            servlet.log("SaveSubscriptionAction:  Processing " + action +
+            servlet.log("EditRegistrationAction:  Processing " + action +
                         " action");
 
 	// Is there a currently logged on user?
-	User user = (User) session.getAttribute(Constants.USER_KEY);
-	if (user == null) {
+	User user = null;
+	if (!"Create".equals(action)) {
+	    user = (User) session.getAttribute(Constants.USER_KEY);
+	    if (user == null) {
+		if (servlet.getDebug() >= 1)
+		    servlet.log(" User is not logged on in session "
+	                        + session.getId());
+		return (servlet.findForward("logon"));
+	    }
+	}
+
+	// Populate the user registration form
+	if (form == null) {
             if (servlet.getDebug() >= 1)
-                servlet.log(" User is not logged on in session "
-                            + session.getId());
-	    return (servlet.findForward("logon"));
-        }
-
-	// Is there a related Subscription object?
-	Subscription subscription =
-	  (Subscription) session.getAttribute(Constants.SUBSCRIPTION_KEY);
-	if (subscription == null) {
-	    servlet.log(" Missing subscription for user '" +
-	                 user.getUsername() + "'");
-	    response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-	                       messages.getMessage("error.noSubscription"));
-	    return (null);
-	}
-
-	// Was this transaction cancelled?
-	if (isCancelled(request)) {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log(" Transaction '" + action +
-	                    "' was cancelled");
-	    if (mapping.getAttribute() != null)
-	        session.removeAttribute(mapping.getAttribute());
-	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	    return (mapping.findForward("success"));
-	}
-
-	// Was this transaction a Delete?
-	if (action.equals("Delete")) {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log(" Deleting mail server '" +
-	                    subscription.getHost() + "' for user '" +
-	                    user.getUsername() + "'");
-	    subscription.setHost(null);
-	    subscription.setUser(null);
-	    if (mapping.getAttribute() != null)
-	        session.removeAttribute(mapping.getAttribute());
-	    session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	    return (mapping.findForward("success"));
-	}
-
-	// All required validations were done by the form itself
-
-	// Update the persistent subscription information
-        if (servlet.getDebug() >= 1)
-            servlet.log(" Populating database from form bean");
-        try {
-            PropertyUtils.copyProperties(subscription, subform);
-        } catch (InvocationTargetException e) {
-            Throwable t = e.getTargetException();
-            if (t == null)
-                t = e;
-            servlet.log("Subscription.populate", t);
-            throw new ServletException("Subscription.populate", t);
-        } catch (Throwable t) {
-            servlet.log("Subscription.populate", t);
-            throw new ServletException("Subscription.populate", t);
-        }
-
-	// Remove the obsolete form bean and current subscription
-	if (mapping.getAttribute() != null) {
+                servlet.log(" Creating new RegistrationForm bean under key "
+                            + mapping.getAttribute());
+	    form = new RegistrationForm();
             if ("request".equals(mapping.getScope()))
-                request.removeAttribute(mapping.getAttribute());
+                request.setAttribute(mapping.getAttribute(), form);
             else
-                session.removeAttribute(mapping.getAttribute());
-        }
-	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+                session.setAttribute(mapping.getAttribute(), form);
+	}
+	RegistrationForm regform = (RegistrationForm) form;
+	if (user != null) {
+            if (servlet.getDebug() >= 1)
+                servlet.log(" Populating form from " + user);
+            try {
+                PropertyUtils.copyProperties(regform, user);
+                regform.setAction(action);
+                regform.setPassword(null);
+                regform.setPassword2(null);
+            } catch (InvocationTargetException e) {
+                Throwable t = e.getTargetException();
+                if (t == null)
+                    t = e;
+                servlet.log("RegistrationForm.populate", t);
+                throw new ServletException("RegistrationForm.populate", t);
+            } catch (Throwable t) {
+                servlet.log("RegistrationForm.populate", t);
+                throw new ServletException("RegistrationForm.populate", t);
+            }
+	}
 
-	// Forward control to the specified success URI
+        // Set a transactional control token to prevent double posting
         if (servlet.getDebug() >= 1)
-            servlet.log(" Forwarding to success page");
+            servlet.log(" Setting transactional control token");
+        saveToken(request);
+
+	// Forward control to the edit user registration page
+        if (servlet.getDebug() >= 1)
+            servlet.log(" Forwarding to 'success' page");
 	return (mapping.findForward("success"));
 
     }

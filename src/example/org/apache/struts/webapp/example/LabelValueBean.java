@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/ApplicationMapping.java,v 1.3 2000/10/12 21:53:39 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/12 21:53:39 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/LabelValueBean.java,v 1.1 2001/04/11 02:10:00 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:00 $
  *
  * ====================================================================
  *
@@ -60,90 +60,71 @@
  */
 
 
-package org.apache.struts.example;
-
-
-import org.apache.struts.action.ActionMapping;
+package org.apache.struts.webapp.example;
 
 
 /**
- * Implementation of <strong>ActionMapping</strong> for the Struts
- * example application.  It defines the following custom properties:
- * <ul>
- * <li><b>failure</b> - The context-relative URI to which this request
- *     should be forwarded if a validation error occurs on the input
- *     information (typically goes back to the input form).
- * <li><b>success</b> - The context-relative URI to which this request
- *     should be forwarded if the requested action is successfully
- *     completed.
- * </ul>
+ * Simple JavaBean to represent label-value pairs for use in collections
+ * that are utilized by the <code>&lt;form:options&gt;</code> tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/12 21:53:39 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:00 $
  */
 
-public final class ApplicationMapping extends ActionMapping {
+public class LabelValueBean {
 
 
-    // --------------------------------------------------- Instance Variables
-
-
-    /**
-     * The failure URI for this mapping.
-     */
-    private String failure = null;
+    // ----------------------------------------------------------- Constructors
 
 
     /**
-     * The success URI for this mapping.
-     */
-    private String success = null;
-
-
-    // ----------------------------------------------------------- Properties
-
-
-    /**
-     * Return the failure URI for this mapping.
-     */
-    public String getFailure() {
-
-	return (this.failure);
-
-    }
-
-
-    /**
-     * Set the failure URI for this mapping.
+     * Construct a new LabelValueBean with the specified values.
      *
-     * @param failure The failure URI for this mapping
+     * @param label The label to be displayed to the user
+     * @param value The value to be returned to the server
      */
-    public void setFailure(String failure) {
+    public LabelValueBean(String label, String value) {
+        this.label = label;
+        this.value = value;
+    }
 
-	this.failure = failure;
 
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * The label to be displayed to the user.
+     */
+    protected String label = null;
+
+    public String getLabel() {
+        return (this.label);
     }
 
 
     /**
-     * Return the success URI for this mapping.
+     * The value to be returned to the server.
      */
-    public String getSuccess() {
+    protected String value = null;
 
-	return (this.success);
-
+    public String getValue() {
+        return (this.value);
     }
 
 
+    // --------------------------------------------------------- Public Methods
+
+
     /**
-     * Set the success URI for this mapping.
-     *
-     * @param success The success URI for this mapping
+     * Return a string representation of this object.
      */
-    public void setSuccess(String success) {
-
-	this.success = success;
-
+    public String toString() {
+        StringBuffer sb = new StringBuffer("LabelValueBean[");
+        sb.append(this.label);
+        sb.append(", ");
+        sb.append(this.value);
+        sb.append("]");
+        return (sb.toString());
     }
 
 

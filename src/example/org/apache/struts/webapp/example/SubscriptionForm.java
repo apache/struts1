@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/Subscription.java,v 1.3 2000/10/15 03:34:54 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/15 03:34:54 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/SubscriptionForm.java,v 1.1 2001/04/11 02:10:02 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:02 $
  *
  * ====================================================================
  *
@@ -60,24 +60,43 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
-import java.io.Serializable;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 
 
 /**
- * Object that represents a subscription of a registered user on a
- * specific mail server.
+ * Form bean for the user profile page.  This form has the following fields,
+ * with default values in square brackets:
+ * <ul>
+ * <li><b>action</b> - The maintenance action we are performing (Create, Delete,
+ *     or Edit).
+ * <li><b>host</b> - The mail host for this subscription.  [REQUIRED]
+ * <li><b>password</b> - The password for this subscription.  [REQUIRED]
+ * <li><b>type</b> - The subscription type (imap,pop3)
+       for this subscription.  [REQUIRED]
+ * <li><b>username</b> - The username of this subscription.  [REQUIRED]
+ * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/15 03:34:54 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:02 $
  */
 
-public final class Subscription implements Serializable {
+public final class SubscriptionForm extends ActionForm  {
 
 
-    // =================================================== Instance Variables
+    // --------------------------------------------------- Instance Variables
+
+
+    /**
+     * The maintenance action we are performing (Create or Edit).
+     */
+    private String action = "Create";
 
 
     /**
@@ -87,36 +106,52 @@ public final class Subscription implements Serializable {
 
 
     /**
-     * The mail host for this subscription.
+     * The host name.
      */
     private String host = null;
 
 
     /**
-     * The password (in clear text).
+     * The password.
      */
     private String password = null;
 
 
     /**
-     * The subscription type ("imap" or "pop3").
+     * The subscription type.
      */
-    private String type = "imap";
+    private String type = null;
 
 
     /**
-     * The User owning this Subscription.
-     */
-    private User user = null;
-
-
-    /**
-     * The username (must be unique).
+     * The username.
      */
     private String username = null;
 
 
-    // =========================================================== Properties
+    // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the maintenance action.
+     */
+    public String getAction() {
+
+	return (this.action);
+
+    }
+
+
+    /**
+     * Set the maintenance action.
+     *
+     * @param action The new maintenance action.
+     */
+    public void setAction(String action) {
+
+        this.action = action;
+
+    }
 
 
     /**
@@ -137,7 +172,6 @@ public final class Subscription implements Serializable {
     public void setAutoConnect(boolean autoConnect) {
 
         this.autoConnect = autoConnect;
-
     }
 
 
@@ -154,15 +188,11 @@ public final class Subscription implements Serializable {
     /**
      * Set the host name.
      *
-     * @param host The new host name
+     * @param host The host name
      */
     public void setHost(String host) {
 
-	if ((this.host != null) && (user != null))
-	    user.removeSubscription(this);
-	this.host = host;
-	if ((this.host != null) && (user != null))
-	    user.addSubscription(this);
+        this.host = host;
 
     }
 
@@ -184,7 +214,7 @@ public final class Subscription implements Serializable {
      */
     public void setPassword(String password) {
 
-	this.password = password;
+        this.password = password;
 
     }
 
@@ -202,37 +232,11 @@ public final class Subscription implements Serializable {
     /**
      * Set the subscription type.
      *
-     * @param type The new subscription type
+     * @param type The subscription type
      */
     public void setType(String type) {
 
-	this.type = type;
-
-    }
-
-
-    /**
-     * Return the User owning this Subscription.
-     */
-    public User getUser() {
-
-	return (this.user);
-
-    }
-
-
-    /**
-     * Set the User owning this Subscription.
-     *
-     * @param user The new User
-     */
-    public void setUser(User user) {
-
-	if ((this.host != null) && (this.user != null))
-	    this.user.removeSubscription(this);
-	this.user = user;
-	if ((this.host != null) && (this.user != null))
-	    this.user.addSubscription(this);
+        this.type = type;
 
     }
 
@@ -254,35 +258,67 @@ public final class Subscription implements Serializable {
      */
     public void setUsername(String username) {
 
-	this.username = username;
+        this.username = username;
 
     }
 
 
-    // ======================================================= Public Methods
+    // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Return a String representation of this object.
+     * Reset all properties to their default values.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
      */
-    public String toString() {
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
 
-        StringBuffer sb = new StringBuffer("Subscription[username=");
-        sb.append(username);
-        if (host != null) {
-            sb.append(", host=");
-            sb.append(host);
-        }
-        if (user != null) {
-            sb.append(", user=");
-            sb.append(user.getUsername());
-        }
-        sb.append(", autoConnect=");
-        sb.append(autoConnect);
-        sb.append("]");
-        return (sb.toString());
+        this.action = "Create";
+        this.autoConnect = false;
+        this.host = null;
+        this.password = null;
+        this.type = null;
+        this.username = null;
+
+    }
+
+
+    /**
+     * Validate the properties that have been set from this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public ActionErrors validate(ActionMapping mapping,
+                                 HttpServletRequest request) {
+
+        ActionErrors errors = new ActionErrors();
+
+	if ((host == null) || (host.length() < 1))
+            errors.add("host",
+                       new ActionError("error.host.required"));
+	if ((username == null) || (username.length() < 1))
+            errors.add("username",
+                       new ActionError("error.username.required"));
+	if ((password == null) || (password.length() < 1))
+            errors.add("password",
+                       new ActionError("error.password.required"));
+	if ((type == null) || (type.length() < 1))
+            errors.add("type",
+                       new ActionError("error.type.required"));
+	else if (!"imap".equals(type) && !"pop3".equals(type))
+            errors.add("type",
+                       new ActionError("error.type.invalid", type));
+
+	return (errors);
 
     }
 
 
 }
+

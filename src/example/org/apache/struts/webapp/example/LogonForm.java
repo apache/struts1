@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogoffAction.java,v 1.4 2000/09/23 22:53:53 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/09/23 22:53:53 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/LogonForm.java,v 1.1 2001/04/11 02:10:01 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:01 $
  *
  * ====================================================================
  *
@@ -60,83 +60,130 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Locale;
-import java.util.Vector;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.util.MessageResources;
 
 
 /**
- * Implementation of <strong>Action</strong> that processes a
- * user logoff.
+ * Form bean for the user profile page.  This form has the following fields,
+ * with default values in square brackets:
+ * <ul>
+ * <li><b>password</b> - Entered password value
+ * <li><b>username</b> - Entered username value
+ * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/09/23 22:53:53 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:01 $
  */
 
-public final class LogoffAction extends Action {
+public final class LogonForm extends ActionForm {
+
+
+    // --------------------------------------------------- Instance Variables
+
+
+    /**
+     * The password.
+     */
+    private String password = null;
+
+
+    /**
+     * The username.
+     */
+    private String username = null;
+
+
+    // ----------------------------------------------------------- Properties
+
+
+    /**
+     * Return the password.
+     */
+    public String getPassword() {
+
+	return (this.password);
+
+    }
+
+
+    /**
+     * Set the password.
+     *
+     * @param password The new password
+     */
+    public void setPassword(String password) {
+
+        this.password = password;
+
+    }
+
+
+    /**
+     * Return the username.
+     */
+    public String getUsername() {
+
+	return (this.username);
+
+    }
+
+
+    /**
+     * Set the username.
+     *
+     * @param username The new username
+     */
+    public void setUsername(String username) {
+
+        this.username = username;
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
+     * Reset all properties to their default values.
      *
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
      */
-    public ActionForward perform(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws IOException, ServletException {
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
 
-	// Extract attributes we will need
-	Locale locale = getLocale(request);
-	MessageResources messages = getResources();
-	HttpSession session = request.getSession();
-	User user = (User) session.getAttribute(Constants.USER_KEY);
+        this.password = null;
+        this.username = null;
 
-	// Process this user logoff
-	if (user != null) {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log("LogoffAction: User '" + user.getUsername() +
-	                    "' logged off in session " + session.getId());
-	} else {
-	    if (servlet.getDebug() >= 1)
-	        servlet.log("LogoffActon: User logged off in session " +
-	                    session.getId());
-	}
-	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-	session.removeAttribute(Constants.USER_KEY);
-	session.invalidate();
+    }
 
-	// Forward control to the specified success URI
-	return (mapping.findForward("success"));
+
+    /**
+     * Validate the properties that have been set from this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     *
+     * @param mapping The mapping used to select this instance
+     * @param request The servlet request we are processing
+     */
+    public ActionErrors validate(ActionMapping mapping,
+                                 HttpServletRequest request) {
+
+        ActionErrors errors = new ActionErrors();
+        if ((username == null) || (username.length() < 1))
+            errors.add("username", new ActionError("error.username.required"));
+        if ((password == null) || (password.length() < 1))
+            errors.add("password", new ActionError("error.password.required"));
+
+        return errors;
 
     }
 

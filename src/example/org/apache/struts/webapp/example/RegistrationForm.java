@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/SubscriptionForm.java,v 1.8 2000/10/15 03:34:55 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/10/15 03:34:55 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/RegistrationForm.java,v 1.1 2001/04/11 02:10:01 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:01 $
  *
  * ====================================================================
  *
@@ -60,7 +60,7 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,23 +71,29 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * Form bean for the user profile page.  This form has the following fields,
+ * Form bean for the user registration page.  This form has the following fields,
  * with default values in square brackets:
  * <ul>
  * <li><b>action</b> - The maintenance action we are performing (Create, Delete,
  *     or Edit).
- * <li><b>host</b> - The mail host for this subscription.  [REQUIRED]
- * <li><b>password</b> - The password for this subscription.  [REQUIRED]
- * <li><b>type</b> - The subscription type (imap,pop3)
-       for this subscription.  [REQUIRED]
- * <li><b>username</b> - The username of this subscription.  [REQUIRED]
+ * <li><b>fromAddress</b> - The EMAIL address of the sender, to be included
+ *     on sent messages.  [REQUIRED]
+ * <li><b>fullName</b> - The full name of the sender, to be included on
+ *     sent messages.  [REQUIRED]
+ * <li><b>password</b> - The password used by this user to log on.
+ * <li><b>password2</b> - The confirmation password, which must match the password
+ *     when changing or setting.
+ * <li><b>replyToAddress</b> - The "Reply-To" address to be included on
+ *     sent messages.  [Same as from address]
+ * <li><b>username</b> - The registered username, which must be unique.
+ *     [REQUIRED]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/10/15 03:34:55 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:01 $
  */
 
-public final class SubscriptionForm extends ActionForm  {
+public final class RegistrationForm extends ActionForm  {
 
 
     // --------------------------------------------------- Instance Variables
@@ -100,15 +106,15 @@ public final class SubscriptionForm extends ActionForm  {
 
 
     /**
-     * Should we auto-connect at startup time?
+     * The from address.
      */
-    private boolean autoConnect = false;
+    private String fromAddress = null;
 
 
     /**
-     * The host name.
+     * The full name.
      */
-    private String host = null;
+    private String fullName = null;
 
 
     /**
@@ -118,9 +124,16 @@ public final class SubscriptionForm extends ActionForm  {
 
 
     /**
-     * The subscription type.
+     * The confirmation password.
      */
-    private String type = null;
+    private String password2 = null;
+
+
+    /**
+     * The reply to address.
+     */
+    private String replyToAddress = null;
+
 
 
     /**
@@ -155,44 +168,45 @@ public final class SubscriptionForm extends ActionForm  {
 
 
     /**
-     * Return the auto-connect flag.
+     * Return the from address.
      */
-    public boolean getAutoConnect() {
+    public String getFromAddress() {
 
-        return (this.autoConnect);
+	return (this.fromAddress);
 
     }
 
 
     /**
-     * Set the auto-connect flag.
+     * Set the from address.
      *
-     * @param autoConnect The new auto-connect flag
+     * @param fromAddress The new from address
      */
-    public void setAutoConnect(boolean autoConnect) {
+    public void setFromAddress(String fromAddress) {
 
-        this.autoConnect = autoConnect;
-    }
-
-
-    /**
-     * Return the host name.
-     */
-    public String getHost() {
-
-	return (this.host);
+        this.fromAddress = fromAddress;
 
     }
 
 
     /**
-     * Set the host name.
+     * Return the full name.
+     */
+    public String getFullName() {
+
+	return (this.fullName);
+
+    }
+
+
+    /**
+     * Set the full name.
      *
-     * @param host The host name
+     * @param fullName The new full name
      */
-    public void setHost(String host) {
+    public void setFullName(String fullName) {
 
-        this.host = host;
+        this.fullName = fullName;
 
     }
 
@@ -220,23 +234,45 @@ public final class SubscriptionForm extends ActionForm  {
 
 
     /**
-     * Return the subscription type.
+     * Return the confirmation password.
      */
-    public String getType() {
+    public String getPassword2() {
 
-	return (this.type);
+	return (this.password2);
 
     }
 
 
     /**
-     * Set the subscription type.
+     * Set the confirmation password.
      *
-     * @param type The subscription type
+     * @param password The new confirmation password
      */
-    public void setType(String type) {
+    public void setPassword2(String password2) {
 
-        this.type = type;
+        this.password2 = password2;
+
+    }
+
+
+    /**
+     * Return the reply to address.
+     */
+    public String getReplyToAddress() {
+
+	return (this.replyToAddress);
+
+    }
+
+
+    /**
+     * Set the reply to address.
+     *
+     * @param replyToAddress The new reply to address
+     */
+    public void setReplyToAddress(String replyToAddress) {
+
+        this.replyToAddress = replyToAddress;
 
     }
 
@@ -275,10 +311,11 @@ public final class SubscriptionForm extends ActionForm  {
     public void reset(ActionMapping mapping, HttpServletRequest request) {
 
         this.action = "Create";
-        this.autoConnect = false;
-        this.host = null;
+        this.fromAddress = null;
+        this.fullName = null;
         this.password = null;
-        this.type = null;
+        this.password2 = null;
+        this.replyToAddress = null;
         this.username = null;
 
     }
@@ -298,27 +335,36 @@ public final class SubscriptionForm extends ActionForm  {
                                  HttpServletRequest request) {
 
         ActionErrors errors = new ActionErrors();
-
-	if ((host == null) || (host.length() < 1))
-            errors.add("host",
-                       new ActionError("error.host.required"));
-	if ((username == null) || (username.length() < 1))
+        if ((username == null) || (username.length() < 1))
             errors.add("username",
                        new ActionError("error.username.required"));
-	if ((password == null) || (password.length() < 1))
-            errors.add("password",
-                       new ActionError("error.password.required"));
-	if ((type == null) || (type.length() < 1))
-            errors.add("type",
-                       new ActionError("error.type.required"));
-	else if (!"imap".equals(type) && !"pop3".equals(type))
-            errors.add("type",
-                       new ActionError("error.type.invalid", type));
+        if (!password.equals(password2))
+            errors.add("password2",
+                       new ActionError("error.password.match"));
+        if ((fromAddress == null) || (fromAddress.length() < 1))
+            errors.add("fromAddress",
+                       new ActionError("error.fromAddress.required"));
+        else {
+	    int atSign = fromAddress.indexOf("@");
+	    if ((atSign < 1) || (atSign >= (fromAddress.length() - 1)))
+		errors.add("fromAddress",
+                           new ActionError("error.fromAddress.format",
+                                           fromAddress));
+	}
+	if ((fullName == null) || (fullName.length() < 1))
+            errors.add("fullName",
+                       new ActionError("error.fullName.required"));
+	if ((replyToAddress != null) && (replyToAddress.length() > 0)) {
+	    int atSign = replyToAddress.indexOf("@");
+	    if ((atSign < 1) || (atSign >= (replyToAddress.length() - 1)))
+                errors.add("replyToAddress",
+                           new ActionError("error.replyToAddress.format",
+                                           replyToAddress));
+	}
 
-	return (errors);
+        return errors;
 
     }
 
 
 }
-

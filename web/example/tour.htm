@@ -213,7 +213,7 @@ mappings (among other things), which is where we find the reference to logon.do:
 <p><code>&lt;!-- Process a user logon --&gt;&nbsp;<br>
  &lt;action<br>
 &nbsp;path=&quot;/logon&quot;<br>
-&nbsp;type=&quot;org.apache.struts.example.LogonAction&quot;<br>
+&nbsp;type=&quot;org.apache.struts.webapp.example.LogonAction&quot;<br>
 &nbsp;name=&quot;logonForm&quot;<br>
 &nbsp;scope=&quot;request&quot;<br>
 &nbsp;input=&quot;/logon.jsp&quot;<br>
@@ -225,7 +225,7 @@ mappings (among other things), which is where we find the reference to logon.do:
 <p><code>&lt;!-- Logon form bean --&gt;&nbsp;<br>
  &lt;form-bean<br>
 &nbsp;name=&quot;logonForm&quot;<br>
-&nbsp;type=&quot;org.apache.struts.example.LogonForm&quot;&nbsp;<br>
+&nbsp;type=&quot;org.apache.struts.webapp.example.LogonForm&quot;&nbsp;<br>
 &nbsp;/&gt;</code></p>
 </blockquote>
 <p>In the action mapping, the path property tells the ActionServlet to forward a
@@ -374,10 +374,10 @@ action is mapped to the (surprise again!), the EditRegistrationAction; it uses a
 <blockquote>
   <p><code>    &lt;!-- Registration form bean --><br>
     &lt;form-bean name=&quot;registrationForm&quot;<br>
-  type=&quot;org.apache.struts.example.RegistrationForm&quot;/&gt;</code></p>
+  type=&quot;org.apache.struts.webapp.example.RegistrationForm&quot;/&gt;</code></p>
   <p><code>    &lt;!-- Edit user registration --><br>
     &lt;action path=&quot;/editRegistration&quot;<br>
-  type=&quot;org.apache.struts.example.EditRegistrationAction&quot;<br>
+  type=&quot;org.apache.struts.webapp.example.EditRegistrationAction&quot;<br>
   name=&quot;registrationForm&quot;<br>
               scope="request"<br>
            validate="false"<br>
@@ -570,11 +570,11 @@ and can be omitted from the tag; all that's needed is the page property -- the r
   <p>    <code>    &lt;!-- Subscription form bean --><br>
     &lt;form-bean&nbsp;<br>
   &nbsp; name=&quot;subscriptionForm&quot;<br>
-  &nbsp; type=&quot;org.apache.struts.example.SubscriptionForm&quot;<br>
+  &nbsp; type=&quot;org.apache.struts.webapp.example.SubscriptionForm&quot;<br>
   /&gt;</code></p>
   <p>   <code>   &lt;!-- Edit mail subscription --><br>
     &lt;action    path="/editSubscription"<br>
-  &nbsp; type=&quot;org.apache.struts.example.EditSubscriptionAction&quot;<br>
+  &nbsp; type=&quot;org.apache.struts.webapp.example.EditSubscriptionAction&quot;<br>
   &nbsp; name=&quot;subscriptionForm&quot;<br>
   &nbsp; scope="request"<br>
   &nbsp; validate=&quot;false&quot;<br>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/CheckLogonTag.java,v 1.5 2001/02/02 02:26:06 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/02 02:26:06 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/ApplicationMapping.java,v 1.1 2001/04/11 02:09:59 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:09:59 $
  *
  * ====================================================================
  *
@@ -60,147 +60,89 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
-import java.io.IOException;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.struts.action.Action;
-import org.apache.struts.util.BeanUtils;
-import org.apache.struts.util.MessageResources;
+import org.apache.struts.action.ActionMapping;
 
 
 /**
- * Check for a valid User logged on in the current session.  If there is no
- * such user, forward control to the logon page.
+ * Implementation of <strong>ActionMapping</strong> for the Struts
+ * example application.  It defines the following custom properties:
+ * <ul>
+ * <li><b>failure</b> - The context-relative URI to which this request
+ *     should be forwarded if a validation error occurs on the input
+ *     information (typically goes back to the input form).
+ * <li><b>success</b> - The context-relative URI to which this request
+ *     should be forwarded if the requested action is successfully
+ *     completed.
+ * </ul>
  *
  * @author Craig R. McClanahan
- * @author Marius Barduta
- * @version $Revision: 1.5 $ $Date: 2001/02/02 02:26:06 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:09:59 $
  */
 
-public final class CheckLogonTag extends TagSupport {
+public final class ApplicationMapping extends ActionMapping {
 
 
     // --------------------------------------------------- Instance Variables
 
 
     /**
-     * The key of the session-scope bean we look for.
+     * The failure URI for this mapping.
      */
-    private String name = Constants.USER_KEY;
+    private String failure = null;
 
 
     /**
-     * The page to which we should forward for the user to log on.
+     * The success URI for this mapping.
      */
-    private String page = "/logon.jsp";
+    private String success = null;
 
 
     // ----------------------------------------------------------- Properties
 
 
     /**
-     * Return the bean name.
+     * Return the failure URI for this mapping.
      */
-    public String getName() {
+    public String getFailure() {
 
-	return (this.name);
+	return (this.failure);
 
     }
 
 
     /**
-     * Set the bean name.
+     * Set the failure URI for this mapping.
      *
-     * @param name The new bean name
+     * @param failure The failure URI for this mapping
      */
-    public void setName(String name) {
+    public void setFailure(String failure) {
 
-	this.name = name;
+	this.failure = failure;
 
     }
 
 
     /**
-     * Return the forward page.
+     * Return the success URI for this mapping.
      */
-    public String getPage() {
+    public String getSuccess() {
 
-	return (this.page);
+	return (this.success);
 
     }
 
 
     /**
-     * Set the forward page.
+     * Set the success URI for this mapping.
      *
-     * @param page The new forward page
+     * @param success The success URI for this mapping
      */
-    public void setPage(String page) {
+    public void setSuccess(String success) {
 
-	this.page = page;
-
-    }
-
-
-    // ------------------------------------------------------- Public Methods
-
-
-    /**
-     * Defer our checking until the end of this tag is encountered.
-     *
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doStartTag() throws JspException {
-
-	return (SKIP_BODY);
-
-    }
-
-
-    /**
-     * Perform our logged-in user check by looking for the existence of
-     * a session scope bean under the specified name.  If this bean is not
-     * present, control is forwarded to the specified logon page.
-     *
-     * @exception JspException if a JSP exception has occurred
-     */
-    public int doEndTag() throws JspException {
-
-	// Is there a valid user logged on?
-	boolean valid = false;
-	HttpSession session = pageContext.getSession();
-	if ((session != null) && (session.getAttribute(name) != null))
-	    valid = true;
-
-	// Forward control based on the results
-	if (valid)
-	    return (EVAL_PAGE);
-	else {
-	    try {
-		pageContext.forward(page);
-	    } catch (Exception e) {
-		throw new JspException(e.toString());
-	    }
-	    return (SKIP_PAGE);
-	}
-
-    }
-
-
-    /**
-     * Release any acquired resources.
-     */
-    public void release() {
-
-        super.release();
-        this.name = Constants.USER_KEY;
-        this.page = "/logon.jsp";
+	this.success = success;
 
     }
 

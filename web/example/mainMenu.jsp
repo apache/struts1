@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <app:checkLogon/>
-<jsp:useBean id="user" scope="session" type="org.apache.struts.example.User"/>
+<jsp:useBean id="user" scope="session" type="org.apache.struts.webapp.example.User"/>
 
 <html:html>
 <head>

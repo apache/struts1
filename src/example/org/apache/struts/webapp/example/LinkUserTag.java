@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LinkUserTag.java,v 1.5 2001/03/06 17:14:20 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/03/06 17:14:20 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LinkUserTag.java,v 1.1 2001/04/11 02:10:00 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:00 $
  *
  * ====================================================================
  *
@@ -60,7 +60,7 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
@@ -79,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * associated query parameters selecting a specified User.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/03/06 17:14:20 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:00 $
  */
 
 public class LinkUserTag extends TagSupport {
@@ -99,7 +99,7 @@ public class LinkUserTag extends TagSupport {
      */
     protected static MessageResources messages =
 	MessageResources.getMessageResources
-	("org.apache.struts.example.ApplicationResources");
+	("org.apache.struts.webapp.example.ApplicationResources");
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/EditRegistrationAction.java,v 1.10 2001/01/07 04:37:04 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2001/01/07 04:37:04 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/LogoffAction.java,v 1.1 2001/04/11 02:10:01 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:01 $
  *
  * ====================================================================
  *
@@ -60,11 +60,11 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
 import javax.servlet.RequestDispatcher;
@@ -78,19 +78,17 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.PropertyUtils;
 
 
 /**
- * Implementation of <strong>Action</strong> that populates an instance of
- * <code>RegistrationForm</code> from the profile of the currently logged on
- * User (if any).
+ * Implementation of <strong>Action</strong> that processes a
+ * user logoff.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2001/01/07 04:37:04 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:01 $
  */
 
-public final class EditRegistrationAction extends Action {
+public final class LogoffAction extends Action {
 
 
     // --------------------------------------------------------- Public Methods
@@ -121,65 +119,23 @@ public final class EditRegistrationAction extends Action {
 	Locale locale = getLocale(request);
 	MessageResources messages = getResources();
 	HttpSession session = request.getSession();
-	String action = request.getParameter("action");
-	if (action == null)
-	    action = "Create";
-        if (servlet.getDebug() >= 1)
-            servlet.log("EditRegistrationAction:  Processing " + action +
-                        " action");
+	User user = (User) session.getAttribute(Constants.USER_KEY);
 
-	// Is there a currently logged on user?
-	User user = null;
-	if (!"Create".equals(action)) {
-	    user = (User) session.getAttribute(Constants.USER_KEY);
-	    if (user == null) {
-		if (servlet.getDebug() >= 1)
-		    servlet.log(" User is not logged on in session "
-	                        + session.getId());
-		return (servlet.findForward("logon"));
-	    }
-	}
-
-	// Populate the user registration form
-	if (form == null) {
-            if (servlet.getDebug() >= 1)
-                servlet.log(" Creating new RegistrationForm bean under key "
-                            + mapping.getAttribute());
-	    form = new RegistrationForm();
-            if ("request".equals(mapping.getScope()))
-                request.setAttribute(mapping.getAttribute(), form);
-            else
-                session.setAttribute(mapping.getAttribute(), form);
-	}
-	RegistrationForm regform = (RegistrationForm) form;
+	// Process this user logoff
 	if (user != null) {
-            if (servlet.getDebug() >= 1)
-                servlet.log(" Populating form from " + user);
-            try {
-                PropertyUtils.copyProperties(regform, user);
-                regform.setAction(action);
-                regform.setPassword(null);
-                regform.setPassword2(null);
-            } catch (InvocationTargetException e) {
-                Throwable t = e.getTargetException();
-                if (t == null)
-                    t = e;
-                servlet.log("RegistrationForm.populate", t);
-                throw new ServletException("RegistrationForm.populate", t);
-            } catch (Throwable t) {
-                servlet.log("RegistrationForm.populate", t);
-                throw new ServletException("RegistrationForm.populate", t);
-            }
+	    if (servlet.getDebug() >= 1)
+	        servlet.log("LogoffAction: User '" + user.getUsername() +
+	                    "' logged off in session " + session.getId());
+	} else {
+	    if (servlet.getDebug() >= 1)
+	        servlet.log("LogoffActon: User logged off in session " +
+	                    session.getId());
 	}
+	session.removeAttribute(Constants.SUBSCRIPTION_KEY);
+	session.removeAttribute(Constants.USER_KEY);
+	session.invalidate();
 
-        // Set a transactional control token to prevent double posting
-        if (servlet.getDebug() >= 1)
-            servlet.log(" Setting transactional control token");
-        saveToken(request);
-
-	// Forward control to the edit user registration page
-        if (servlet.getDebug() >= 1)
-            servlet.log(" Forwarding to 'success' page");
+	// Forward control to the specified success URI
 	return (mapping.findForward("success"));
 
     }

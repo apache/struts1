@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/LogonForm.java,v 1.5 2000/10/15 03:34:53 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/10/15 03:34:53 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/CheckLogonTag.java,v 1.1 2001/04/11 02:09:59 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:09:59 $
  *
  * ====================================================================
  *
@@ -60,130 +60,147 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
-import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
+import java.io.IOException;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.struts.action.Action;
+import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.MessageResources;
 
 
 /**
- * Form bean for the user profile page.  This form has the following fields,
- * with default values in square brackets:
- * <ul>
- * <li><b>password</b> - Entered password value
- * <li><b>username</b> - Entered username value
- * </ul>
+ * Check for a valid User logged on in the current session.  If there is no
+ * such user, forward control to the logon page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/10/15 03:34:53 $
+ * @author Marius Barduta
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:09:59 $
  */
 
-public final class LogonForm extends ActionForm {
+public final class CheckLogonTag extends TagSupport {
 
 
     // --------------------------------------------------- Instance Variables
 
 
     /**
-     * The password.
+     * The key of the session-scope bean we look for.
      */
-    private String password = null;
+    private String name = Constants.USER_KEY;
 
 
     /**
-     * The username.
+     * The page to which we should forward for the user to log on.
      */
-    private String username = null;
+    private String page = "/logon.jsp";
 
 
     // ----------------------------------------------------------- Properties
 
 
     /**
-     * Return the password.
+     * Return the bean name.
      */
-    public String getPassword() {
+    public String getName() {
 
-	return (this.password);
+	return (this.name);
 
     }
 
 
     /**
-     * Set the password.
+     * Set the bean name.
      *
-     * @param password The new password
+     * @param name The new bean name
      */
-    public void setPassword(String password) {
+    public void setName(String name) {
 
-        this.password = password;
+	this.name = name;
 
     }
 
 
     /**
-     * Return the username.
+     * Return the forward page.
      */
-    public String getUsername() {
+    public String getPage() {
 
-	return (this.username);
+	return (this.page);
 
     }
 
 
     /**
-     * Set the username.
+     * Set the forward page.
      *
-     * @param username The new username
+     * @param page The new forward page
      */
-    public void setUsername(String username) {
+    public void setPage(String page) {
 
-        this.username = username;
+	this.page = page;
 
     }
 
 
-    // --------------------------------------------------------- Public Methods
+    // ------------------------------------------------------- Public Methods
 
 
     /**
-     * Reset all properties to their default values.
+     * Defer our checking until the end of this tag is encountered.
      *
-     * @param mapping The mapping used to select this instance
-     * @param request The servlet request we are processing
+     * @exception JspException if a JSP exception has occurred
      */
-    public void reset(ActionMapping mapping, HttpServletRequest request) {
+    public int doStartTag() throws JspException {
 
-        this.password = null;
-        this.username = null;
+	return (SKIP_BODY);
 
     }
 
 
     /**
-     * Validate the properties that have been set from this HTTP request,
-     * and return an <code>ActionErrors</code> object that encapsulates any
-     * validation errors that have been found.  If no errors are found, return
-     * <code>null</code> or an <code>ActionErrors</code> object with no
-     * recorded error messages.
+     * Perform our logged-in user check by looking for the existence of
+     * a session scope bean under the specified name.  If this bean is not
+     * present, control is forwarded to the specified logon page.
      *
-     * @param mapping The mapping used to select this instance
-     * @param request The servlet request we are processing
+     * @exception JspException if a JSP exception has occurred
      */
-    public ActionErrors validate(ActionMapping mapping,
-                                 HttpServletRequest request) {
+    public int doEndTag() throws JspException {
 
-        ActionErrors errors = new ActionErrors();
-        if ((username == null) || (username.length() < 1))
-            errors.add("username", new ActionError("error.username.required"));
-        if ((password == null) || (password.length() < 1))
-            errors.add("password", new ActionError("error.password.required"));
+	// Is there a valid user logged on?
+	boolean valid = false;
+	HttpSession session = pageContext.getSession();
+	if ((session != null) && (session.getAttribute(name) != null))
+	    valid = true;
 
-        return errors;
+	// Forward control based on the results
+	if (valid)
+	    return (EVAL_PAGE);
+	else {
+	    try {
+		pageContext.forward(page);
+	    } catch (Exception e) {
+		throw new JspException(e.toString());
+	    }
+	    return (SKIP_PAGE);
+	}
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+        super.release();
+        this.name = Constants.USER_KEY;
+        this.page = "/logon.jsp";
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/example/Attic/User.java,v 1.3 2000/10/15 03:34:55 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/10/15 03:34:55 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Subscription.java,v 1.1 2001/04/11 02:10:02 rleland Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/04/11 02:10:02 $
  *
  * ====================================================================
  *
@@ -60,37 +60,36 @@
  */
 
 
-package org.apache.struts.example;
+package org.apache.struts.webapp.example;
 
 
 import java.io.Serializable;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 
 /**
- * Object that represents a registered user of the mail reader application.
+ * Object that represents a subscription of a registered user on a
+ * specific mail server.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/10/15 03:34:55 $
+ * @version $Revision: 1.1 $ $Date: 2001/04/11 02:10:02 $
  */
 
-public final class User implements Serializable {
+public final class Subscription implements Serializable {
 
 
     // =================================================== Instance Variables
 
 
     /**
-     * The EMAIL address from which messages are sent.
+     * Should we auto-connect at startup time?
      */
-    private String fromAddress = null;
+    private boolean autoConnect = false;
 
 
     /**
-     * The full name of this user, included in from addresses.
+     * The mail host for this subscription.
      */
-    private String fullName = null;
+    private String host = null;
 
 
     /**
@@ -100,15 +99,15 @@ public final class User implements Serializable {
 
 
     /**
-     * The EMAIL address to which replies should be sent.
+     * The subscription type ("imap" or "pop3").
      */
-    private String replyToAddress = null;
+    private String type = "imap";
 
 
     /**
-     * The set of Subscriptions associated with this User.
+     * The User owning this Subscription.
      */
-    private Hashtable subscriptions = new Hashtable();
+    private User user = null;
 
 
     /**
@@ -121,46 +120,49 @@ public final class User implements Serializable {
 
 
     /**
-     * Return the from address.
+     * Return the auto-connect flag.
      */
-    public String getFromAddress() {
+    public boolean getAutoConnect() {
 
-	return (this.fromAddress);
+        return (this.autoConnect);
 
     }
 
 
     /**
-     * Set the from address.
+     * Set the auto-connect flag.
      *
-     * @param fromAddress The new from address
+     * @param autoConnect The new auto-connect flag
      */
-    public void setFromAddress(String fromAddress) {
+    public void setAutoConnect(boolean autoConnect) {
 
-	this.fromAddress = fromAddress;
-
-    }
-
-
-
-    /**
-     * Return the full name.
-     */
-    public String getFullName() {
-
-	return (this.fullName);
+        this.autoConnect = autoConnect;
 
     }
 
 
     /**
-     * Set the full name.
+     * Return the host name.
+     */
+    public String getHost() {
+
+	return (this.host);
+
+    }
+
+
+    /**
+     * Set the host name.
      *
-     * @param fullName The new full name
+     * @param host The new host name
      */
-    public void setFullName(String fullName) {
+    public void setHost(String host) {
 
-	this.fullName = fullName;
+	if ((this.host != null) && (user != null))
+	    user.removeSubscription(this);
+	this.host = host;
+	if ((this.host != null) && (user != null))
+	    user.addSubscription(this);
 
     }
 
@@ -188,23 +190,49 @@ public final class User implements Serializable {
 
 
     /**
-     * Return the reply-to address.
+     * Return the subscription type.
      */
-    public String getReplyToAddress() {
+    public String getType() {
 
-	return (this.replyToAddress);
+	return (this.type);
 
     }
 
 
     /**
-     * Set the reply-to address.
+     * Set the subscription type.
      *
-     * @param replyToAddress The new reply-to address
+     * @param type The new subscription type
      */
-    public void setReplyToAddress(String replyToAddress) {
+    public void setType(String type) {
 
-	this.replyToAddress = replyToAddress;
+	this.type = type;
+
+    }
+
+
+    /**
+     * Return the User owning this Subscription.
+     */
+    public User getUser() {
+
+	return (this.user);
+
+    }
+
+
+    /**
+     * Set the User owning this Subscription.
+     *
+     * @param user The new User
+     */
+    public void setUser(User user) {
+
+	if ((this.host != null) && (this.user != null))
+	    this.user.removeSubscription(this);
+	this.user = user;
+	if ((this.host != null) && (this.user != null))
+	    this.user.addSubscription(this);
 
     }
 
@@ -235,84 +263,24 @@ public final class User implements Serializable {
 
 
     /**
-     * Find and return the Subscription associated with the specified host.
-     * If none is found, return <code>null</code>.
-     *
-     * @param host Host name to look up
-     */
-    public Subscription findSubscription(String host) {
-
-	if (host == null)
-	    return (null);
-	return ((Subscription) subscriptions.get(host));
-
-    }
-
-
-    /**
-     * Find and return all Subscriptions associated with this user.  If there
-     * are none, a zero-length array is returned.
-     */
-    public Subscription[] getSubscriptions() {
-
-	synchronized (subscriptions) {
-	    Subscription results[] = new Subscription[subscriptions.size()];
-	    Enumeration subs = subscriptions.elements();
-	    int n = 0;
-	    while (subs.hasMoreElements()) {
-		results[n++] = (Subscription) subs.nextElement();
-	    }
-	    return (results);
-	}
-
-    }
-
-
-    /**
      * Return a String representation of this object.
      */
     public String toString() {
 
-        StringBuffer sb = new StringBuffer("User[username=");
+        StringBuffer sb = new StringBuffer("Subscription[username=");
         sb.append(username);
-        if (fullName != null) {
-            sb.append(", fullName=");
-            sb.append(fullName);
+        if (host != null) {
+            sb.append(", host=");
+            sb.append(host);
         }
-        if (replyToAddress != null) {
-            sb.append(", replyToAddres=");
-            sb.append(replyToAddress);
+        if (user != null) {
+            sb.append(", user=");
+            sb.append(user.getUsername());
         }
+        sb.append(", autoConnect=");
+        sb.append(autoConnect);
         sb.append("]");
         return (sb.toString());
-
-    }
-
-
-    // ====================================================== Package Methods
-
-
-    /**
-     * Add the specified Subscription to the set associated with this User.
-     *
-     * @param subscription The subscription to add
-     */
-    void addSubscription(Subscription subscription) {
-
-	subscriptions.put(subscription.getHost(), subscription);
-
-    }
-
-
-    /**
-     * Remove the specified Subscription from the set associated with
-     * this User.
-     *
-     * @param subscription The subscription to remove
-     */
-    void removeSubscription(Subscription subscription) {
-
-	subscriptions.remove(subscription.getHost());
 
     }
 
