@@ -231,6 +231,9 @@
         <p>Update all of the relevant tags to include property accessor support
         using the syntax specified by the XPath standard (www.w3c.org).</p>
       </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
     </task>
 
     <task name="XML DOM Support">
@@ -241,6 +244,9 @@
         object is stored should be transparent to page writers using these
         tags.</p>
       </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
     </task>
 
     <task name="JDBC RowSet Support">
@@ -251,6 +257,9 @@
         is stored should be transparent to page writers using these tags.
         </p>
       </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
     </task>
 
     <task name="Formatting Support">
@@ -263,6 +272,9 @@
         [STRUTS-DEV, Ned Seagoon, 12/13/2000]
         [STRUTS-USER, Ned Seagoon, 01/04/2001]
       </info>
+      <assigned>
+        <a href="mailto:javabettin@yahoo.com">Dave Bettin</a>
+      </assigned>
     </task>
 
   </task-list>
