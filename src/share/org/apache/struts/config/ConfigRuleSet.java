@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.13 2002/11/07 05:18:26 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2002/11/07 05:18:26 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.14 2002/12/21 04:42:20 martinc Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/12/21 04:42:20 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.13 $ $Date: 2002/11/07 05:18:26 $
+ * @version $Revision: 1.14 $ $Date: 2002/12/21 04:42:20 $
  * @since Struts 1.1
  */
 
@@ -112,11 +112,11 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addRule
             ("struts-config/data-sources/data-source/set-property",
-             new AddDataSourcePropertyRule(digester));
+             new AddDataSourcePropertyRule());
 
         digester.addRule
             ("struts-config/action-mappings",
-             new SetActionMappingClassRule(digester));
+             new SetActionMappingClassRule());
 
         digester.addFactoryCreate
             ("struts-config/action-mappings/action",
@@ -267,7 +267,7 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addRule
             ("struts-config/plug-in/set-property",
-             new PlugInSetPropertyRule(digester));
+             new PlugInSetPropertyRule());
 
     }
 
@@ -282,8 +282,8 @@ public class ConfigRuleSet extends RuleSetBase {
 
 final class AddDataSourcePropertyRule extends Rule {
 
-    public AddDataSourcePropertyRule(Digester digester) {
-        super(digester);
+    public AddDataSourcePropertyRule() {
+        super();
     }
 
     public void begin(Attributes attributes) throws Exception {
@@ -302,8 +302,8 @@ final class AddDataSourcePropertyRule extends Rule {
 
 final class PlugInSetPropertyRule extends Rule {
 
-    public PlugInSetPropertyRule(Digester digester) {
-        super(digester);
+    public PlugInSetPropertyRule() {
+        super();
     }
 
     public void begin(Attributes attributes) throws Exception {
@@ -322,8 +322,8 @@ final class PlugInSetPropertyRule extends Rule {
  */
 final class SetActionMappingClassRule extends Rule {
 
-    public SetActionMappingClassRule(Digester digester) {
-        super(digester);
+    public SetActionMappingClassRule() {
+        super();
     }
 
     public void begin(Attributes attributes) throws Exception {
@@ -361,7 +361,8 @@ final class ActionMappingFactory extends AbstractObjectCreationFactory {
             actionMapping =
                 RequestUtils.applicationInstance(className);
         } catch (Exception e) {
-            digester.log("ActionMappingFactory.createObject: ", e);
+            digester.getLogger().error(
+                    "ActionMappingFactory.createObject: ", e);
         }
 
         return actionMapping;
