@@ -12,18 +12,6 @@
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		Test Value
 	</bean:define>
-
-<%
-System.out.println("=========>Request:" + request);
-System.out.println("=========>request.getServerPort():" + request.getServerPort());
-System.out.println("=========>request.getRequestURI():" + request.getRequestURI());
-System.out.println("=========>INCLUDE_TAG_KEY:" + pageContext.getAttribute("INCLUDE_TAG_KEY"));
-System.out.println("=========>EXPECTED_RESULTS:" + pageContext.getAttribute("EXPECTED_RESULTS"));
-
-if (true)
-	throw new Exception();
-%>
-
 </logic:equal>
 
 <logic:equal name="runTest" value="testIncludeTagHref">
