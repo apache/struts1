@@ -6,9 +6,9 @@
 
      <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
-       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
 
-     $Id: tiles-config_1_1.dtd,v 1.7 2004/02/01 16:14:07 rleland Exp $
+     $Id: tiles-config_1_1.dtd,v 1.8 2004/09/01 10:41:11 niallp Exp $
 -->
 
 
