@@ -7,7 +7,7 @@
 
     <menu name="Struts">
         <item name="Welcome"                 href="../index.html"/>
-	</menu>
+    </menu>
 
 </project>
 
