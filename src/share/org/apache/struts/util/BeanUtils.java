@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.26 2001/02/12 00:32:12 craigmcc Exp $
- * $Revision: 1.26 $
- * $Date: 2001/02/12 00:32:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.27 2001/04/16 15:33:16 craigmcc Exp $
+ * $Revision: 1.27 $
+ * $Date: 2001/04/16 15:33:16 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import java.util.Map;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.26 $ $Date: 2001/02/12 00:32:12 $
+ * @version $Revision: 1.27 $ $Date: 2001/04/16 15:33:16 $
  */
 
 public final class BeanUtils {
@@ -268,7 +268,12 @@ public final class BeanUtils {
 	throws IllegalAccessException, InvocationTargetException,
 	       NoSuchMethodException {
 
-        Object value = PropertyUtils.getIndexedProperty(bean, name);
+        StringBuffer sb = new StringBuffer(name);
+        sb.append(PropertyUtils.INDEXED_DELIM);
+        sb.append(index);
+        sb.append(PropertyUtils.INDEXED_DELIM2);
+        Object value = PropertyUtils.getIndexedProperty(bean,
+                                                        sb.toString());
         return (ConvertUtils.convert(value));
 
     }
