@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.16 2001/06/01 20:22:21 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2001/06/01 20:22:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.17 2001/06/10 04:13:34 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2001/06/10 04:13:34 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/06/01 20:22:21 $
+ * @version $Revision: 1.17 $ $Date: 2001/06/10 04:13:34 $
  */
 
 public class RequestUtils {
@@ -489,14 +489,14 @@ public class RequestUtils {
 
         // Look up the requested bean, and return if requested
         Object bean = lookup(pageContext, name, scope);
-        if (property == null)
-            return (bean);
         if (bean == null) {
             JspException e = new JspException
                 (messages.getMessage("lookup.bean", name, scope));
             saveException(pageContext, e);
             throw e;
         }
+        if (property == null)
+            return (bean);
 
         // Locate and return the specified property
         try {
