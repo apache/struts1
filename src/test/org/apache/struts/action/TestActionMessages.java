@@ -63,7 +63,7 @@ import java.util.Iterator;
  *
  * @author Dominique Plante
  * @author David Graham
- * @version $Revision: 1.2 $ $Date: 2002/10/20 18:59:23 $
+ * @version $Revision: 1.3 $ $Date: 2002/10/20 19:04:04 $
  */
 
 public class TestActionMessages extends TestCase {
@@ -119,12 +119,12 @@ public class TestActionMessages extends TestCase {
 	}
 
 	public void testEmpty() {
-		assertTrue("aMsgs is not empty!", aMsgs.empty());
+		assertTrue("aMsgs is not empty!", aMsgs.isEmpty());
 	}
 
 	public void testNotEmpty() {
 		aMsgs.add("myProp", msg1);
-		assertTrue("aMsgs is empty!", aMsgs.empty() == false);
+		assertTrue("aMsgs is empty!", aMsgs.isEmpty() == false);
 	}
 
 	public void testSizeWithOneProperty() {
