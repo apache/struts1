@@ -93,6 +93,9 @@
       <li><em>Lang</em> (Version 1.0 or later)</li>
       <li><em>Logging</em> (Version 1.02 or later)</li>
       <li><em>Pool</em> (Version 1.01 or later)</li>
+      <li><em>Validator</em> (No official release, obtain current 
+                        <a href="http://jakarta.apache.org/builds/jakarta-commons/nightly/commons-validator">Nightly Build</a>
+                        )</li>
       </ul>
   </li>
 
@@ -194,7 +197,12 @@
     <li><strong>webapps/struts-template.war</strong> - This web application
         both introduces and demonstrates the Struts template tags.</li>
     <li><strong>webapps/struts-upload.war</strong> - This web application
-        is a quick example of uploading files using the Struts framework.</li>
+        is a quick example of uploading files using the Struts framework.
+    </li>
+    <li><strong>webapps/struts-validator.war</strong> - This web application
+        is an example of using the validator framework, composed of
+        server-side and optional client-side framework.
+    </li>
         </ul>
 
     <p>To use Struts in your own application, you will need to follow
