@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/OptionBean.java,v 1.1 2001/10/15 05:50:10 martinc Exp $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/LabelValueBean.java,v 1.1 2001/11/08 03:34:39 martinc Exp $
  * $Revision: 1.1 $
- * $Date: 2001/10/15 05:50:10 $
+ * $Date: 2001/11/08 03:34:39 $
  *
  * ====================================================================
  *
@@ -60,18 +60,21 @@
  */
 
 
-package org.apache.struts.webapp.exercise;
+package org.apache.struts.util;
 
 
 /**
- * A simple bean for use in testing the <code>&lt;html:options&gt;</code> tag
- * in conjunction with the <code>collection</code> attribute.
+ * A simple JavaBean to represent label-value pairs. This is most commonly used
+ * when constructing user interface elements which have a label to be displayed
+ * to the user, and a corresponding value to be returned to the server. One
+ * example is the <code>&lt;html:options&gt;</code> tag.
  *
+ * @author  Craig R. McClanahan
  * @author  Martin F N Cooper
- * @version $Revision: 1.1 $ $Date: 2001/10/15 05:50:10 $
+ * @version $Revision: 1.1 $ $Date: 2001/11/08 03:34:39 $
  */
 
-public class OptionBean {
+public class LabelValueBean {
 
 
     // ----------------------------------------------------------- Constructors
@@ -79,8 +82,11 @@ public class OptionBean {
 
     /**
      * Construct an instance with the supplied property values.
+     *
+     * @param label The label to be displayed to the user.
+     * @param value The value to be returned to the server.
      */
-    public OptionBean(String label, String value) {
+    public LabelValueBean(String label, String value) {
         this.label = label;
         this.value = value;
     }
@@ -114,6 +120,22 @@ public class OptionBean {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Return a string representation of this object.
+     */
+    public String toString() {
+        StringBuffer sb = new StringBuffer("LabelValueBean[");
+        sb.append(this.label);
+        sb.append(", ");
+        sb.append(this.value);
+        sb.append("]");
+        return (sb.toString());
     }
 
 

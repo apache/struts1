@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*, org.apache.struts.webapp.exercise.*;"%>
+<%@ page language="java" import="java.util.*, org.apache.struts.util.*;"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
@@ -12,16 +12,16 @@
   pageContext.setAttribute("multipleValues", multipleValues);
 
   Vector options = new Vector();
-  options.add(new OptionBean("Label 0", "Value 0"));
-  options.add(new OptionBean("Label 1", "Value 1"));
-  options.add(new OptionBean("Label 2", "Value 2"));
-  options.add(new OptionBean("Label 3", "Value 3"));
-  options.add(new OptionBean("Label 4", "Value 4"));
-  options.add(new OptionBean("Label 5", "Value 5"));
-  options.add(new OptionBean("Label 6", "Value 6"));
-  options.add(new OptionBean("Label 7", "Value 7"));
-  options.add(new OptionBean("Label 8", "Value 8"));
-  options.add(new OptionBean("Label 9", "Value 9"));
+  options.add(new LabelValueBean("Label 0", "Value 0"));
+  options.add(new LabelValueBean("Label 1", "Value 1"));
+  options.add(new LabelValueBean("Label 2", "Value 2"));
+  options.add(new LabelValueBean("Label 3", "Value 3"));
+  options.add(new LabelValueBean("Label 4", "Value 4"));
+  options.add(new LabelValueBean("Label 5", "Value 5"));
+  options.add(new LabelValueBean("Label 6", "Value 6"));
+  options.add(new LabelValueBean("Label 7", "Value 7"));
+  options.add(new LabelValueBean("Label 8", "Value 8"));
+  options.add(new LabelValueBean("Label 9", "Value 9"));
   pageContext.setAttribute("options", options);
 %>
 </head>
