@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/workflow/RegistryServlet.java,v 1.1 2001/10/04 02:12:02 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2001/10/04 02:12:02 $
+ * $Header: /home/cvs/jakarta-struts/contrib/workflow/RegistryServlet.java,v 1.2 2002/12/08 07:28:11 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 07:28:11 $
  *
  * ====================================================================
  *
@@ -63,14 +63,11 @@ package org.apache.struts.action;
 
 
 import java.io.InputStream;
-import java.io.IOException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.workflow.Activity;
@@ -117,7 +114,7 @@ import simple.workflow.base.BaseRegistry;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/10/04 02:12:02 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 07:28:11 $
  */
 
 
@@ -195,11 +192,6 @@ public class RegistryServlet extends HttpServlet {
      */
     private int debug = 0;
 
-
-    /**
-     * The debugging detail level for our Digester.
-     */
-    private int detail = 0;
 
 
 // --------------------------------------------------------- Public Properties
@@ -349,15 +341,6 @@ public class RegistryServlet extends HttpServlet {
                     ("Debug initialization parameter must be an integer");
             }
         }
-        String detail = getServletConfig().getInitParameter("detail");
-        if (detail != null) {
-            try {
-                this.detail = Integer.parseInt(detail);
-            } catch (NumberFormatException e) {
-                throw new UnavailableException
-                    ("Detail initialization parameter must be an integer");
-            }
-        }
 
         // Record the attribute name for our current Context
         String contextKey = getServletConfig().getInitParameter("context-key");
@@ -405,7 +388,6 @@ public class RegistryServlet extends HttpServlet {
 
         // Configure a Digester instance to parse our definition file
         Digester digester = new Digester();
-        digester.setDebug(detail);
         digester.setNamespaceAware(true);
         digester.setValidating(false);
         digester.push(this);
