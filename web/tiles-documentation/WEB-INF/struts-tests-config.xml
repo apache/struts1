@@ -58,6 +58,12 @@
 	 <forward  name="error"   path="anything" />
   </action>
   
+    <!-- Test Struts action and Tiles integration -->
+  <action     path="/showRequestURI"
+       		  type="org.apache.struts.webapp.tiles.test.NoForward">
+      <forward  name="success"        path="test.action.noforward"/>
+  </action>
+
   </action-mappings>
 
   

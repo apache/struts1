@@ -86,5 +86,12 @@
   <put name="body"  direct="true">second body : body</put>
 </definition>
 
+  <!-- Test instances -->
+<definition name="test.action.noforward" path="/test/layout.jsp" >
+  <put name="title"  value="Test Action with No Forward" />
+  <put name="header" value="header.jsp" />
+  <put name="body"   value="showRequestUri.jsp" />
+</definition>
+
 
 </tiles-definitions>
