@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.10 2002/04/02 03:59:54 dwinterfeldt Exp $
+# $Id: build.properties.sample,v 1.11 2002/07/26 17:01:31 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -36,6 +36,10 @@ commons-dbcp.jar=/usr/local/commons-dbcp-1.0/commons-dbcp.jar
 # from the Jakarta Commons project.
 commons-digester.jar=/usr/local/commons-digester-1.0/commons-digester.jar
 
+# The JAR file containing version 1.0 (or later) of the FileUpload package
+# from the Jakarta Commons project.
+commons-fileupload.jar=/usr/local/commons-fileupload-1.0/commons-fileupload.jar
+
 # The JAR file containing version 1.0 (or later) of the Logging package
 # from the Jakarta Commons project.
 commons-logging.jar=/usr/local/commons-logging-1.0/commons-logging.jar
@@ -43,6 +47,10 @@ commons-logging.jar=/usr/local/commons-logging-1.0/commons-logging.jar
 # The JAR file containing version 1.0 (or later) of the POOL package
 # from the Jakarta Commons project.
 commons-pool.jar=/usr/local/commons-pool-1.0/commons-pool.jar
+
+# The JAR file containing version 1.0 (or later) of the Resources package
+# from the Jakarta Commons project.
+commons-resources.jar=/usr/local/commons-resources-1.0/commons-resources.jar
 
 # The JAR file containing a recent version of the SERVICES package
 # from the Jakarta Commons project.

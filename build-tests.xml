@@ -89,9 +89,11 @@
       <pathelement location="${commons-collections.jar}"/>
       <pathelement location="${commons-dbcp.jar}"/>
       <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-fileupload.jar}"/>
       <pathelement location="${commons-httpclient.jar}"/>
       <pathelement location="${commons-logging.jar}"/>
       <pathelement location="${commons-pool.jar}"/>
+      <pathelement location="${commons-resources.jar}"/>
       <pathelement location="${commons-services.jar}"/>
       <pathelement location="${commons-validator.jar}"/>
       <pathelement location="${aspectjrt.jar}"/>
