@@ -1,4 +1,4 @@
-$Id: TODO,v 1.2 2000/06/24 23:28:34 craigmcc Exp $
+$Id: TODO,v 1.3 2000/08/26 19:53:21 craigmcc Exp $
 
 
 			    Struts TODO List
@@ -11,7 +11,199 @@ projects for the continued development of Struts -- volunteers who wish to help
 are welcome, as are additional ideas.
 
 
-Documentation and Examples
+Strategic Directions:
+--------------------
+
+- Consider how to make the Struts tag library (especially the form related
+  tags) more amenable to a WML environment, as well as environments not using
+  HTTP (and therefore not using HttpServletRequest/HttpServletResponse).
+
+- Think about segregating the various tags into logically divided sublibraries,
+  with the "struts.tld" library still containing all-in-one for backwards
+  compatibility.  Considerations for separate libraries:
+	* "form" - <struts:form> and all its related tags
+	* "i18n" - <struts:message> and other tags specifically related to
+          internationalization
+	* "logic" - Logical flow of control tags: conditionals, loops
+	* "beans" - General access to properties of beans, including
+          representation of beans and properties as collections
+	* "template" - The template library contributed by David Geary
+
+
+MVC Framework [org.apache.struts.action]:
+----------------------------------------
+
+- Add an option on the ActionForward construct that supports some sort of
+  switch across SSL-versus-not access to the same application.  For background,
+  See STRUTS-DEV (06/26/2000) Chris Audley.
+
+- Provide a "standard" set of actions that can be configured into a Struts
+  application to manage the internal configuration (ActionMappings, etc.) and
+  possibly to reload configuration information on demand.  Consider:  new
+  sub-package org.apache.struts.action.admin?  Motivation:  STRUTS-DEV
+  (07/02/2000) Frank Nestel.
+
+- Support a configurable "default" action mapping if none of the other
+  mappings are triggered.  See:  STRUTS-DEV (07/02/2000) Frank Nestel.
+
+- Add an additional (optional) validate() method that takes useful contextual
+  arguments (request?, servlet?).  DECISIONS:  Break backwards compatibility?
+  new interface?  See: STRUTS-USER (08/01/2000) Chris Audley.
+
+- Configurable option to support calculating a user's Locale (if not already
+  present in the session) based on incoming HTTP headers.  See:
+  STRUTS-USER (07/02/2000) Robert Edgar, STRUTS-DEV (08/22/2000) Pierre Metras.
+
+- Consider migrating management of action form population out of ActionServlet
+  and into ActionMapping.  Motivation:  STRUTS-DEV (08/14/2000)
+  Vladimir Blagojevic.
+
+- Review how ActionForm beans get initialized.  Maybe provide a hook by which
+  they can be initialized with some context?  Motivation:  STRUTS-USER
+  (08/18/2000) Pierre Metras.
+
+- Support configurable standard actions for handling file uploads created by
+  the <struts:file> tag.  See:  STRUTS-DEV (08/20/2000) Chris Miller and
+  follow-ups.  Also, STRUTS-USER (07/17/2000) "Re: File uploads support".
+
+- Support a second perform() method on Action that takes ServletRequest and
+  ServletResponse, for use in non-HTTP environments.  STRUTS-DEV
+  (08/23/2000) Frank Nguyen, and follow-ups.
+
+
+XML Digester [org.apache.struts.digester]:
+-----------------------------------------
+
+- Document typical design patterns for using this package.
+
+
+JDBC Data Sources [org.apache.struts.jdbc]:
+------------------------------------------
+
+- Add a "data source" compatible connection pool, and associated supporting
+  classes.
+
+- Add tags that make it possible to create "beans" and look up "properties"
+  from JDBC results sets.  (Not very Model-2-ish, but very handy in many
+  simple cases).
+
+
+Custom Tag Library [org.apache.struts.taglib]:
+---------------------------------------------
+
+	Basic "Struts" Tag Library
+
+- Add tags that treat the rows and columns of a JDBC "RowSet" implementation
+  as beans and properties (from the perspective of other tags in Struts).
+
+- Add capability to generate client-side JavaScript functions for basic
+  format validations, etc.
+
+- Make the "errors" object returned from validators, and used in the
+  <struts:errors> tag, more intelligent and extensible. One option:
+  See STRUTS-DEV (06/25/2000) David Geary, STRUTS-DEV (07/18/2000)
+  Chris Miller, plus follow-ups.
+
+- Decide on whether to include "else"-type tags on the conditionals, and
+  what syntax should be supported.  See:  STRUTS-DEV (06/14/2000) Eduardo
+  Pelegri-Llopart; STRUTS-DEV (06/26/2000) Frank Nestel.
+
+- Support "image" buttons, and deal with the name.x/name.y submit parameters
+  that you end up receiving.  See: STRUTS-USER (07/17/2000) Alec Bau,
+  STRUTS-DEV (07/18/2000) Alec Bau.
+
+- Support "custom populators" for converting between internal and string
+  formats of properties.  May generalize into using PropertyEditors.
+  Proposal:  STRUTS-USER (07/18/2000) Pasi Salminen.
+
+- Make <struts:form> smart enough to consult the action mappings to figure
+  out the attribute name (and class) of the form bean associated with this
+  form, if "name" is not specified.  STRUTS-USER (07/23/2000) Richard
+  Vowles.
+
+- Improve the mechanism by which you define values and corresponding labels
+  for <struts:options>.  Motivation:  STRUTS-DEV (07/27/2000) David
+  Winterfeldt, STRUTS-DEV (08/02/2000) David Winterfeldt.
+
+- Add conditionals like ifPropertyLessThan (a specified value),
+  ifPropertyTrue (for booleans), ....  Motivation:  See also
+  ifAttributeEquals: STRUTS-DEV (07/27/2000) David Winterfeldt.
+
+- Enhance the form management tags to optionally generate JavaScript code
+  for client side validation of things like required fields.  Background:
+  STRUTS-DEV (07/27/2000) David Winterfeldt, plus follow-ups.
+
+- Enhance <struts:enumerate> and <struts:iterate>, or provide new tags,
+  to process parallel collections (such as names and values).  At least
+  support 2 collections, but in general "n" would be better.  See
+  STRUTS-DEV (08/03/2000) Jeff R.
+
+- Modify tags that implement BodyTag to refer to body content ONLY
+  in doAfterTag(), not in doEndTag().  STRUTS-DEV (08/06/2000) Chris Audley.
+
+- Fix Checkboxes!!!  See many notes, including:  STRUTS-DEV (08/08/2000)
+  Jeff R.  Also see STRUTS-DEV (08/22/2000) Chris Miller.
+
+- Add "type" attribute on <struts:enumerate> and <struts:iterate> (plus
+  anywhere else it makes sense) to define the Java class of the object
+  that is exposed.  See:  STRUTS-DEV (08/14/2000) Robert Quillen.
+
+- Improve exception handling inside Struts custom tags.  Among other things,
+  encapsulate them as a request attribute to make them visible elsewhere.
+  See: STRUTS-DEV (08/17,21/2000) Ken Horn and follow-ups.
+
+- Support "disabled" modifier (from HTML 4.0) on relevant tags.
+  STRUTS-USER (08/23/2000) "Re: A new attribute for struts' button tags".
+
+	Templating Tag Library
+
+- Add "templates" tag library contributed by David Geary.
+
+	XML Friendly Tag Library
+
+- Add tag(s) like the <xsl:apply> tag in jakarta-taglibs that facilitate
+  treating XML data as beans, properties, and collections.
+
+
+Tool Classes [org.apache.struts.tools]:
+--------------------------------------
+
+- Create tool for XML-description -> JavaBean generation, especially for
+  form beans.  Possible Basis:  STRUTS-DEV (06/01,16/2000) Mark Wutka.
+
+- Create tool that reads a JSP page with a <struts:form> in it, and
+  generate the Java code for a corresponding form bean.
+  STRUTS-USER (08/25/2000) Pierre Metras.
+
+
+Utility Classes [org.apache.struts.util]:
+----------------------------------------
+
+- Implement and test the new PropertyUtils class, which supports nested and
+  indexed access to properties (both getters and setters) with no data type
+  conversions.
+
+- Modify BeanUtils to utilize the new PropertyUtils support methods.
+
+- Modify BeanUtils to support PropertyEditor-based data conversions between
+  String and the internal property formats.
+
+- Add a BeanUtils.copyProperties() method that is more sensitive to type
+  conversions than the PropertyUtils.copyProperties() method is.
+
+- Validate behavior of loading resource bundles when the default locale
+  is other than en_US.  See: STRUTS-DEV (06/21/2000) Craig Randall.
+
+- Support MessageResources capability to reload bundles that have been
+  updated.  Maybe have a switch for auto-reload that is useful during
+  development?  Motivation:  STRUTS-DEV (07/24/2000) Chris Miller.
+
+- Make MessageResources an interface with a configurable factory method that
+  generates instances.  Motivation:  STRUTS-DEV (07/27/2000) Ignacio
+  Ortega, STRUTS-DEV (08/11/2000) Ignacio Ortega.
+
+
+Documentation and Examples:
 --------------------------
 
 - Complete the example application used to illustrate Struts principles.
@@ -19,21 +211,15 @@ Documentation and Examples
 - Write a more comprehensive example of using a Digester to configure a
   set of related JavaBeans based on the contents of an arbitrary XML file.
 
+- Convert documentation to XML-based source with an XSLT stylesheet.
 
-Custom Tag Library
-------------------
+- Create and maintain a summary of experiences installing and using
+  Struts on various container platforms.
 
-- Enhance the form management tags to optionally generate JavaScript code
-  for client side validation of things like required fields.
+- Improve the depth and information in the User's Guide.
 
-- Add tags that generate hyperlinks useful in documentation applications
-  ("next page", "previous page", "contents", and so on), and use them
-  within the Struts Documentation application itself.
+- Add an example of a multi-page wizard-type form.
 
-- Add tags that treat the rows and columns of a JDBC "RowSet" implementation
-  as beans and properties (from the perspective of other tags in Struts).
-
-- Add tags that paginate long reports (such as the response to a search
-  request that shows ten entries per page), with automatic support for
-  next and previous page links.
+- Update web site information at <http://jakarta.apache.org/struts> to
+  include all of the relevant documentation.
 
