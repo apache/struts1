@@ -208,7 +208,7 @@ public class StringBean4 extends ActionForm {
      array represented by the "labelValue" indexed property.
     </p>
    </section>
-   <section href="dynamicindexes" name="Dynamic Indexed for Indexed Properties">
+   <section href="dynamicindexes" name="Dynamic Indexes for Indexed Properties">
     <p>
      When people started using indexed properties in Struts tags, I'm
      reasonably certain they started out with a high level of enthusiasm, but
