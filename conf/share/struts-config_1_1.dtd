@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.28 2002/07/27 21:53:13 martinc Exp $
+     $Id: struts-config_1_1.dtd,v 1.29 2002/09/02 10:26:49 jholmes Exp $
 -->
 
 
@@ -607,7 +607,7 @@ The "form-bean" element describes a particular form bean, which is a
      elements. The following attributes are supported:
 
      className       Fully qualified Java class name of the plug-in class; must
-                     implement [org.apache.struts.PlugIn].
+                     implement [org.apache.struts.action.PlugIn].
 -->
 <!ELEMENT plug-in           (set-property*)>
 <!ATTLIST plug-in           id          ID              #IMPLIED>
