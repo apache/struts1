@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.1 2002/07/02 01:55:27 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/02 01:55:27 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.2 2002/07/02 04:23:14 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/02 04:23:14 $
  *
  * ====================================================================
  *
@@ -70,7 +70,13 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import junit.framework.*;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
+import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.taglib.html.Constants;
+import org.apache.struts.mock.MockFormBean;
 import org.apache.struts.mock.TestMockBase;
 
 
@@ -78,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/02 01:55:27 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/02 04:23:14 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -132,7 +138,7 @@ public class TestRequestUtils extends TestMockBase {
 
     public void testAbsoluteURL() {
 
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.absoluteURL(request, "/foo/bar.jsp").toString();
@@ -240,7 +246,7 @@ public class TestRequestUtils extends TestMockBase {
     // Single parameter -- scope + name + property
     public void testComputeParameters1c() {
 
-        request.setAttribute("attr", new FormBean("bar"));
+        request.setAttribute("attr", new MockFormBean("bar"));
 
         Map map = null;
         try {
@@ -329,7 +335,7 @@ public class TestRequestUtils extends TestMockBase {
     // Provided map -- scope + name + property
     public void testComputeParameters2c() {
 
-        request.setAttribute("attr", new FormBean());
+        request.setAttribute("attr", new MockFormBean());
 
         Map map = null;
         try {
@@ -387,7 +393,7 @@ public class TestRequestUtils extends TestMockBase {
     // Kitchen sink combination of parameters with a merge
     public void testComputeParameters3a() {
 
-        request.setAttribute("attr", new FormBean("bar3"));
+        request.setAttribute("attr", new MockFormBean("bar3"));
         session.setAttribute(Action.TRANSACTION_TOKEN_KEY, "token");
 
         Map map = null;
@@ -430,7 +436,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default subapp -- Forward only
     public void testComputeURL1a() {
 
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -471,7 +477,7 @@ public class TestRequestUtils extends TestMockBase {
     // Default subapp -- Page only
     public void testComputeURL1c() {
 
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -536,7 +542,7 @@ public class TestRequestUtils extends TestMockBase {
     public void testComputeURL2c() {
 
         request.setAttribute(Action.APPLICATION_KEY, appConfig2);
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -557,7 +563,7 @@ public class TestRequestUtils extends TestMockBase {
     // Add parameters only
     public void testComputeURL3a() {
 
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         Map map = new HashMap();
         map.put("foo1", "bar1");
         map.put("foo2", "bar2");
@@ -581,7 +587,7 @@ public class TestRequestUtils extends TestMockBase {
     // Add anchor only
     public void testComputeURL3b() {
 
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         String url = null;
         try {
             url = RequestUtils.computeURL
@@ -602,7 +608,7 @@ public class TestRequestUtils extends TestMockBase {
     // Add parameters + anchor
     public void testComputeURL3c() {
 
-        request.setPathElements("/myapp", "action.do", null, null);
+        request.setPathElements("/myapp", "/action.do", null, null);
         Map map = new HashMap();
         map.put("foo1", "bar1");
         map.put("foo2", "bar2");
@@ -623,12 +629,221 @@ public class TestRequestUtils extends TestMockBase {
     }
 
 
+    // ----------------------------------------------------- createActionForm()
 
 
+
+    // Default subapp -- No ActionForm should be created
+    public void testCreateActionForm1a() {
+
+        request.setPathElements("/myapp", "/noform.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig.findActionConfig("/noform");
+        assertNotNull("Found /noform mapping", mapping);
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig, null);
+        assertNull("No ActionForm returned", form);
+
+    }
+
+
+    // Second subapp -- No ActionForm should be created
+    public void testCreateActionForm1b() {
+
+        request.setPathElements("/myapp", "/2/noform.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig2.findActionConfig("/noform");
+        assertNotNull("Found /noform mapping", mapping);
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig2, null);
+        assertNull("No ActionForm returned", form);
+
+    }
+
+
+    // Default subapp -- Standard ActionForm should be created
+    public void testCreateActionForm2a() {
+
+        request.setPathElements("/myapp", "/static.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig.findActionConfig("/static");
+        assertNotNull("Found /static mapping", mapping);
+        assertNotNull("Mapping has non-null name",
+                      mapping.getName());
+        assertEquals("Mapping has correct name",
+                     "static",
+                     mapping.getName());
+        assertNotNull("AppConfig has form bean " + mapping.getName(),
+                      appConfig.findFormBeanConfig(mapping.getName()));
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig, null);
+        assertNotNull("ActionForm returned", form);
+        assertTrue("ActionForm of correct type",
+                   form instanceof MockFormBean);
+
+    }
+
+
+    // Second subapp -- Standard ActionForm should be created
+    public void testCreateActionForm2b() {
+
+        request.setPathElements("/myapp", "/2/static.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig2.findActionConfig("/static");
+        assertNotNull("Found /static mapping", mapping);
+        assertNotNull("Mapping has non-null name",
+                      mapping.getName());
+        assertEquals("Mapping has correct name",
+                     "static",
+                     mapping.getName());
+        assertNotNull("AppConfig has form bean " + mapping.getName(),
+                      appConfig.findFormBeanConfig(mapping.getName()));
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig2, null);
+        assertNotNull("ActionForm returned", form);
+        assertTrue("ActionForm of correct type",
+                   form instanceof MockFormBean);
+
+    }
+
+
+    // Default subapp -- Dynamic ActionForm should be created
+    public void testCreateActionForm3a() {
+
+        request.setPathElements("/myapp", "/dynamic.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig.findActionConfig("/dynamic");
+        assertNotNull("Found /dynamic mapping", mapping);
+        assertNotNull("Mapping has non-null name",
+                      mapping.getName());
+        assertEquals("Mapping has correct name",
+                     "dynamic",
+                     mapping.getName());
+        assertNotNull("AppConfig has form bean " + mapping.getName(),
+                      appConfig.findFormBeanConfig(mapping.getName()));
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig, null);
+        assertNotNull("ActionForm returned", form);
+        assertTrue("ActionForm of correct type",
+                   form instanceof DynaActionForm);
+
+    }
+
+
+    // Second subapp -- Dynamic ActionForm should be created
+    public void testCreateActionForm3b() {
+
+        request.setPathElements("/myapp", "/2/dynamic2.do", null, null);
+        ActionMapping mapping = (ActionMapping)
+            appConfig2.findActionConfig("/dynamic2");
+        assertNotNull("Found /dynamic2 mapping", mapping);
+        assertNotNull("Mapping has non-null name",
+                      mapping.getName());
+        assertEquals("Mapping has correct name",
+                     "dynamic2",
+                     mapping.getName());
+        assertNotNull("AppConfig has form bean " + mapping.getName(),
+                      appConfig2.findFormBeanConfig(mapping.getName()));
+        ActionForm form = RequestUtils.createActionForm
+            (request, mapping, appConfig2, null);
+        assertNotNull("ActionForm returned", form);
+        assertTrue("ActionForm of correct type",
+                   form instanceof DynaActionForm);
+
+    }
+
+
+    // ----------------------------------------------------------- requestURL()
+
+
+    public void testRequestURL() {
+
+        request.setPathElements("/myapp", "/foo.do", null, null);
+        String url = null;
+        try {
+            url = RequestUtils.requestURL(request).toString();
+        } catch (MalformedURLException e) {
+            fail("MalformedURLException: " + e);
+        }
+        assertNotNull("URL was returned", url);
+        assertEquals("URL value",
+                     "http://localhost:8080/myapp/foo.do",
+                     url);
+
+    }
+
+
+    // ---------------------------------------------------- selectApplication()
+
+
+    // Map to the default subapp -- direct
+    public void testSelectApplication1a() {
+
+        request.setPathElements("/myapp", "/noform.do", null, null);
+        RequestUtils.selectApplication(request, context);
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        assertNotNull("Selected an application", appConfig);
+        assertEquals("Selected correct application",
+                     "", appConfig.getPrefix());
+        // FIXME - check application resources?
+
+    }
+    
+
+    // Map to the second webapp -- direct
+    public void testSelectApplication1b() {
+
+        request.setPathElements("/myapp", "/2/noform.do", null, null);
+        RequestUtils.selectApplication(request, context);
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        assertNotNull("Selected an application", appConfig);
+        assertEquals("Selected correct application",
+                     "/2", appConfig.getPrefix());
+        // FIXME - check application resources?
+
+    }
+
+
+    // Map to the default subapp -- include
+    public void testSelectApplication2a() {
+
+        request.setPathElements("/myapp", "/2/noform.do", null, null);
+        request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
+                             "/noform.do");
+        RequestUtils.selectApplication(request, context);
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        assertNotNull("Selected an application", appConfig);
+        assertEquals("Selected correct application",
+                     "", appConfig.getPrefix());
+        // FIXME - check application resources?
+
+    }
+    
+
+    // Map to the second subapp -- include
+    public void testSelectApplication2b() {
+
+        request.setPathElements("/myapp", "/noform.do", null, null);
+        request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
+                             "/2/noform.do");
+        RequestUtils.selectApplication(request, context);
+        ApplicationConfig appConfig = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        assertNotNull("Selected an application", appConfig);
+        assertEquals("Selected correct application",
+                     "/2", appConfig.getPrefix());
+        // FIXME - check application resources?
+
+    }
+    
 
     // ------------------------------------------------------------ serverURL()
 
 
+    // Basic test on values in mock objects
     public void testServerURL() {
 
         String url = null;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.1 2002/07/02 01:55:27 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/07/02 01:55:27 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/TestMockBase.java,v 1.2 2002/07/02 04:23:14 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/02 04:23:14 $
  *
  * ====================================================================
  *
@@ -65,9 +65,11 @@ package org.apache.struts.mock;
 
 import junit.framework.*;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ApplicationConfig;
-import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.config.FormPropertyConfig;
 
 
 
@@ -81,7 +83,7 @@ import org.apache.struts.config.ForwardConfig;
  * environment was set up correctly.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/02 01:55:27 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/02 04:23:14 $
  */
 
 public class TestMockBase extends TestCase {
@@ -136,24 +138,132 @@ public class TestMockBase extends TestCase {
         response = new MockHttpServletResponse();
         page = new MockPageContext(config, request, response);
 
-        // Set up application configuration for the default subapp
-        appConfig = new ApplicationConfig("");
-        context.setAttribute(Action.APPLICATION_KEY, appConfig);
-        appConfig.addForwardConfig
-            (new ActionForward("foo", "/bar.jsp", false));
-
-        // Set up application configuration for the second subapp
-        appConfig2 = new ApplicationConfig("/2");
-        context.setAttribute(Action.APPLICATION_KEY + "/2", appConfig2);
-        appConfig2.addForwardConfig
-            (new ActionForward("foo", "/baz.jsp", false));
-
+        // Set up application configurations for our supported subapps
+        setUpDefaultApp();
+        setUpSecondApp();
 
         // NOTE - we do not initialize the request attribute
         // for the selected subapp so that fallbacks to the
         // default subapp can be tested.  To select a subapp,
         // tests should set the request attribute Action.APPLICATION_KEY
         // to the ApplicationConfig instance for the selected subapp
+
+    }
+
+
+    protected void setUpDefaultApp() {
+
+        ActionFormBean formBean = null;
+        ActionForward forward = null;
+        ActionMapping mapping = null;
+
+        appConfig = new ApplicationConfig("");
+        context.setAttribute(Action.APPLICATION_KEY, appConfig);
+
+        // Forward "foo" to "/bar.jsp"
+        appConfig.addForwardConfig
+            (new ActionForward("foo", "/bar.jsp", false));
+
+        // Form Bean "static" is a standard ActionForm subclass
+        formBean = new ActionFormBean
+            ("static",
+             "org.apache.struts.mock.MockFormBean",
+             false);
+        appConfig.addFormBeanConfig(formBean);
+
+        // Action "/static" uses the "static" form bean in request scope
+        mapping = new ActionMapping();
+        mapping.setInput("/static.jsp");
+        mapping.setName("static");
+        mapping.setPath("/static");
+        mapping.setScope("request");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig.addActionConfig(mapping);
+
+        // Form Bean "dynamic" is a DynaActionForm with the same properties
+        formBean = new ActionFormBean
+            ("dynamic",
+             "org.apache.struts.action.DynaActionForm",
+             true);
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("booleanProperty", "boolean", "false"));
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("stringProperty", "java.lang.String",
+                                    null));
+        appConfig.addFormBeanConfig(formBean);
+
+        // Action "/dynamic" uses the "dynamic" form bean in session scope
+        mapping = new ActionMapping();
+        mapping.setInput("/dynamic.jsp");
+        mapping.setName("dynamic");
+        mapping.setPath("/dynamic");
+        mapping.setScope("session");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig.addActionConfig(mapping);
+
+        // Action "/noform" has no form bean associated with it
+        mapping = new ActionMapping();
+        mapping.setPath("/noform");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig.addActionConfig(mapping);
+
+    }
+
+
+    protected void setUpSecondApp() {
+
+        ActionFormBean formBean = null;
+        ActionMapping mapping = null;
+
+        appConfig2 = new ApplicationConfig("/2");
+        context.setAttribute(Action.APPLICATION_KEY + "/2", appConfig2);
+
+        // Forward "foo" to "/baz.jsp" (different from default)
+        appConfig2.addForwardConfig
+            (new ActionForward("foo", "/baz.jsp", false));
+
+        // Form Bean "static" is a standard ActionForm subclass (same as default)
+        formBean = new ActionFormBean
+            ("static",
+             "org.apache.struts.mock.MockFormBean",
+             false);
+        appConfig2.addFormBeanConfig(formBean);
+
+        // Action "/static" uses the "static" form bean in request scope (same as default)
+        mapping = new ActionMapping();
+        mapping.setInput("/static.jsp");
+        mapping.setName("static");
+        mapping.setPath("/static");
+        mapping.setScope("request");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig2.addActionConfig(mapping);
+
+        // Form Bean "dynamic2" is a DynaActionForm with the same properties
+        formBean = new ActionFormBean
+            ("dynamic2",
+             "org.apache.struts.action.DynaActionForm",
+             true);
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("booleanProperty", "boolean", "false"));
+        formBean.addFormPropertyConfig
+            (new FormPropertyConfig("stringProperty", "java.lang.String",
+                                    null));
+        appConfig2.addFormBeanConfig(formBean);
+
+        // Action "/dynamic2" uses the "dynamic2" form bean in session scope
+        mapping = new ActionMapping();
+        mapping.setInput("/dynamic2.jsp");
+        mapping.setName("dynamic2");
+        mapping.setPath("/dynamic2");
+        mapping.setScope("session");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig2.addActionConfig(mapping);
+
+        // Action "/noform" has no form bean associated with it (same as default)
+        mapping = new ActionMapping();
+        mapping.setPath("/noform");
+        mapping.setType("org.apache.struts.mock.MockAction");
+        appConfig2.addActionConfig(mapping);
 
     }
 

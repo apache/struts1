@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/Attic/FormBean.java,v 1.1 2002/07/02 01:55:27 craigmcc Exp $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/mock/MockFormBean.java,v 1.1 2002/07/02 04:23:14 craigmcc Exp $
  * $Revision: 1.1 $
- * $Date: 2002/07/02 01:55:27 $
+ * $Date: 2002/07/02 04:23:14 $
  *
  * ====================================================================
  *
@@ -60,7 +60,7 @@
  */
 
 
-package org.apache.struts.util;
+package org.apache.struts.mock;
 
 
 import java.util.HashMap;
@@ -72,18 +72,18 @@ import org.apache.struts.action.ActionForm;
  * <p>General purpose form bean for unit tests.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2002/07/02 01:55:27 $
+ * @version $Revision: 1.1 $ $Date: 2002/07/02 04:23:14 $
  */
 
-public class FormBean extends ActionForm {
+public class MockFormBean extends ActionForm {
 
 
-    public FormBean() {
+    public MockFormBean() {
         this(null);
     }
 
 
-    public FormBean(String stringProperty) {
+    public MockFormBean(String stringProperty) {
         this.stringProperty = stringProperty;
     }
 
