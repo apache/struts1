@@ -219,6 +219,7 @@
 
             <classpath>
                 <pathelement path="${java.class.path}"/>
+                <pathelement location="${commons-httpclient.jar}"/>
                 <pathelement location="${out.test.dir}/classes"/>
                 <!-- For cactus.properties -->
                 <pathelement location="${conf.test.dir}"/>
