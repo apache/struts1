@@ -62,6 +62,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.validator.FieldChecks;
 
 /**
  *  <p>
@@ -84,9 +85,9 @@ public class StrutsValidator implements Serializable {
     /**
      *  Commons Logging instance.
      */
-    public final static String FIELD_TEST_NULL = "NULL";
-    public final static String FIELD_TEST_NOTNULL = "NOTNULL";
-    public final static String FIELD_TEST_EQUAL = "EQUAL";
+    public final static String FIELD_TEST_NULL = FieldChecks.FIELD_TEST_NULL;
+    public final static String FIELD_TEST_NOTNULL = FieldChecks.FIELD_TEST_NOTNULL;
+    public final static String FIELD_TEST_EQUAL = FieldChecks.FIELD_TEST_EQUAL;
 
 
     /**
