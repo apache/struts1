@@ -10,7 +10,7 @@
 # as a single archive from the Struts downloads directory.
 # Requirements for the Nightly Build may change between releases and betas.
 #
-# $Id: build.properties.sample,v 1.38 2003/06/06 20:55:36 husted Exp $
+# $Id: build.properties.sample,v 1.39 2003/06/06 22:02:08 husted Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -48,7 +48,7 @@ commons-dbcp.jar=${commons-lib.home}/dbcp/dist/commons-dbcp.jar
 # from the Jakarta Commons project.
 commons-digester.jar=${commons-lib.home}/digester/dist/commons-digester.jar
 
-# The JAR file containing the FileUpload package (recent Nightly Build)
+# The JAR file containing the FileUpload package (Version 1.0 RC1 or later)
 # from the Jakarta Commons project.
 commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload.jar
 
@@ -56,7 +56,7 @@ commons-fileupload.jar=${commons-lib.home}/fileupload/dist/commons-fileupload.ja
 # from the Jakarta Commons project.
 commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang.jar
 
-# The JAR file containing the Logging package (Nightly Build or Version 1.0.3 or later)
+# The JAR file containing the Logging package (Version 1.0.3 or later)
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
