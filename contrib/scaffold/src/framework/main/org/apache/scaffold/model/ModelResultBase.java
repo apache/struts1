@@ -14,7 +14,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * used "as-is" to manage a collection of beans
  * returned from the resource layer.
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:17 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/22 10:15:16 $
  */
 public class ModelResultBase implements ModelResult {
 
@@ -40,7 +40,7 @@ public class ModelResultBase implements ModelResult {
     /**
      * Add a message to the List.
      */
-    public boolean addMessage(String message) {
+    public boolean addMessage(Object message) {
         if (isMessages())
             return messages.add(message);
         return false;

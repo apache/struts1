@@ -18,7 +18,7 @@ import java.util.List;
  * Wrappers for interate and size are provided so that they
  * can be accessed as getIterate and getSize.
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:17 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/22 10:15:16 $
  */
 public interface ModelResult {
 
@@ -48,7 +48,7 @@ public interface ModelResult {
     /**
      * Add a message to the List.
      */
-    public boolean addMessage(String message);
+    public boolean addMessage(Object message);
 
 
     /**
