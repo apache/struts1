@@ -137,6 +137,9 @@
         <strong>Wildcard Mappings</strong> - You can now use wildcards in your action-mappings. For details see
         <a href="building_controller.html#action_mapping_wildcards">Using Wildcards in ActionMappings</a> as well as the Struts Mailreader Example application.</p>
         <p>
+         <strong>Action attributes</strong> - An Action attribute has been added to the html img tag, to match what's available on the html link tag now.
+         </p>
+        <p>
        <strong>Module attribute</strong> - A new "module" attribute is available on the forward element as well as several of the core tags. This attribute allows you to specify another module by name (or "prefix") to create direct links between modules. The new module attribute is preferered to the <code>contextRelative</code> attribute and can often be used in lieu of a "SwitchAction".
         </p>
 
@@ -168,7 +171,7 @@
           <li>2003-07-04 - struts-config_1_2.dtd: Added 1.2 struts-config.dtd. This is a copy of the 1.1 DTD except that the &lt;data-source&gt; "type" attribute is now required because Struts does not supply a default DataSource implementation.</li>
         </ul>
         <p>
-        <strong>Project-wide Changes</strong> [
+        <strong>Project-wide Changes</strong>
         </p>
           <ul>
               <li>2004-01-14 - Update License format to please Maven Checkstyle reports.</li>
@@ -184,6 +187,10 @@
         <p>
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
+        <ul>
+          <li>2004-01-24 - Enhance DynaActionForm so that it can be initialized using a FormBeanConfig object. Add corresponding method to RequestUtils to create an ActionForm by passing only a FormBeanConfig and an ActionServlet object.</li>
+          <li>2004-01-19 - Push "findException" from ActionMapping up to ActionConfig so that everyone can take advantage of the superclass search logic.</li>
+        </ul>
         <ul>
           <li>2003-09-29 - RequestProcessor,ActionMappingMatcher,WildcardHelper: Added optional wildcard support for action mappings.</li>
           <li>2003-09-11 - Action,ActionMessages,RequestProcessor: Added ability to save ActionMessages in the session and have them cleaned up after the first use.</li>
@@ -226,6 +233,10 @@
         <p>
         <strong>Config Package</strong> [
         <code>org.apache.struts.config</code>]</p>
+        <ul>
+            <li>2004-02-17 - Undeprecate and Restore the functionality for the 'type' attribute on form-beans and global-forwards elements in the config file.</li>
+            <li>2004-02-13 - Add module property to ForwardConfig to support direct cross-linking between modules. </li>
+        </ul>
         <ul>
             <li>2004-01-10 - Changed WildcardHelper methods from statics to instance methods to allow subclasses to override and customize behavior. Changed WildcardHelper.match() to accept a generic Map parameter rather than HashMap.</li>
         </ul>
@@ -302,6 +313,14 @@
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
         <ul>
+          <li>2004-02-14 - Substitute "-" for "/" in JavaScript function name when form is subclass of ValidatorActionForm.</li>
+          <li>2004-02-07 - Add "module" attribute to IncludeTag, ImgTag, LinkTag, and RewriteTag, as well as to Forward.
+              This permits a module to be referenced by name (or "prefix) for direct cross-linking between modules.</li>
+          <li>2004-02-04 - Run validator messages through a routine to escape quote marks so that the emitted JavaScript is syntactically correct.</li>
+          <li>2004-02-04 - Throw JspException when no form is found in the ValidatorResources under the specified 'name'.</li>
+         </ul>
+          <ul>
+          <li>2004-01-18 - Add "action" attribute to img tag.</li>
           <li>2004-01-09 - Add disabled element to TLD.</li>
           <li>2004-01-03 - Add 10 new tests that cover "some" of the functionality provided by html:options. More to come.</li>
           <li>2004-01-01 - In link-related tags, allow LocalCharacterEncoding to be specified conditionally.</li>
@@ -383,6 +402,9 @@
         <strong>Upload Package Changes</strong> [
         <code>org.apache.struts.upload</code>]:</p>
         <ul>
+          <li>2004-01-21 - Add support for an "EncodingFilter" to handle multibyte file names.</li>
+        </ul>
+        <ul>
           <li>2003-11-26 - DiskMultipartRequestHandler: Deprecate DiskMultipartRequestHandler and friends, which is the buggy old upload implementation, no longer used as the default as of Struts 1.1. This will be removed after 1.2 (meaning as of 1.3/2.0).</li>
         </ul>
         <ul>
@@ -412,7 +434,13 @@
         <strong>Validator Package Changes</strong> [
         <code>org.apache.struts.validator</code>]</p>
         <ul>
+            <li>2004-01-17 - Changed initValidator() to accept an ActionMessages object instead of ActionErrors; changed ACTION_ERRORS_PARAM name to ACTION_MESSAGES_PARAM.</li>
+            <li>2004-01-17 - Add section to Validator User Guide listing standard validations.</li>
+        </ul>
+        <ul>
           <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation; Use action form of html:link;</li>
+        </ul>
+        <ul>
           <li>2003-10-06 - FieldChecks - Add validateUrl. Remove deprecated validateRange.</li>
         </ul>
         <ul>
@@ -455,6 +483,7 @@
         <strong>Combined Examples Application</strong> [
         <code>struts-examples.war</code>]</p>
         <ul>
+          <li>2004-01-17 - Add tests to to hmlt:link page for forwards, actions, and pages.</li>
           <li>2004-01-16 - exercises: Add test pages for html:img and logic:forward,redirect. Add test pages for html:img and logic:forward,redirect tags</li>
           <li>2004-01-08 - Convert Taglib-Exercises, Upload, and Validator example applications into modules of a combined examples application.</li>
         </ul>
