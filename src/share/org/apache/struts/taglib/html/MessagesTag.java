@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.22 2003/09/09 03:49:29 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2003/09/09 03:49:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.23 2003/09/09 03:55:35 rleland Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/09/09 03:55:35 $
  *
  * ====================================================================
  *
@@ -65,8 +65,6 @@ import java.util.Iterator;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -81,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.22 $ $Date: 2003/09/09 03:49:29 $
+ * @version $Revision: 1.23 $ $Date: 2003/09/09 03:55:35 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -231,7 +229,7 @@ public class MessagesTag extends BodyTagSupport {
 
         try {
             messages = TagUtils.getInstance().getActionMessages(pageContext, name);
-            
+
         } catch (JspException e) {
             TagUtils.getInstance().saveException(pageContext, e);
             throw e;
@@ -244,7 +242,7 @@ public class MessagesTag extends BodyTagSupport {
         if (!this.iterator.hasNext()) {
             return SKIP_BODY;
         }
-        
+
         ActionMessage report = (ActionMessage) this.iterator.next();
         String msg =
             TagUtils.getInstance().message(
@@ -263,7 +261,7 @@ public class MessagesTag extends BodyTagSupport {
         if (header != null && header.length() > 0) {
             String headerMessage =
                 TagUtils.getInstance().message(pageContext, bundle, locale, header);
-                
+
             if (headerMessage != null) {
                 TagUtils.getInstance().write(pageContext, headerMessage);
             }
@@ -317,10 +315,10 @@ public class MessagesTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
        if (processed && footer != null && footer.length() > 0) {
-        
+
         String footerMessage =
             TagUtils.getInstance().message(pageContext, bundle, locale, footer);
-            
+
           if (footerMessage != null) {
              TagUtils.getInstance().write(pageContext, footerMessage);
           }
