@@ -1,7 +1,7 @@
 <!--
 @author Ted Husted
 @author Craig McClanahan
-@version $Revision: 1.4 $ $Date: 2003/05/17 13:20:46 $
+@version $Revision: 1.5 $ $Date: 2003/06/06 15:46:11 $
 -->
 
 <project name="struts-legacy" default="compile">
@@ -20,7 +20,9 @@
 
     <property name="commons.home"            location="../../../jakarta-commons"/>
     <property name="commons-logging.jar"     location="${commons.home}/commons-logging/dist/commons-logging.jar"/>
-    <property name="jdk.version"             value="1.4"/>
+    <property name="jdk.version"             value="1.3"/>
+    <property name="jdbc20ext.jar"           location="./../../Java/Programs/sun/jdbc2_0-stdext.jar"/>
+
 
     <!-- ========== Local System Paths ==================================== -->
 
@@ -29,6 +31,7 @@
     <property name="dist.home"               location="dist"/>
     <property name="source.home"             location="src/java"/>
     <property name="source.jdk.home"         location="src/jdk"/>
+
 
     <!-- ========== Java Compilation Defaults ============================= -->
     <!-- These defaults may be overridden by user preferences from above    -->
@@ -44,7 +47,7 @@
       <pathelement location="${jdbc20ext.jar}"/>
     </path>
 
-    <path id="source.path">
+    <path id="source.classpath">
       <pathelement location="${source.jdk.home}/${jdk.version}"/>
       <pathelement location="${source.home}"/>
     </path>
@@ -54,10 +57,11 @@
     <property name="project.title"           value="Struts Legacy Distribution"/>
     <property name="project.version"         value="1.0"/>
     <property name="project.distname"        value="struts-legacy"/>
+    <property name="project.package"         value="org.apache.struts.faces"/>
+    <property name="project.version"         value="1.0"/>
 
 
     <!-- ========== Executable Targets ======================================== -->
-
 
     <target name="init"
      description="Initialize and evaluate conditionals">
@@ -78,7 +82,6 @@
         <mkdir dir="${dist.home}/docs/api"/>
     </target>
 
-
     <target name="resources" depends="prepare"
      description="Copy static resources">
         <tstamp/>
@@ -91,7 +94,6 @@
         </copy>
     </target>
 
-
     <target name="compile" depends="resources"
      description="Compile library classes">
         <javac srcdir="${source.home}"
@@ -99,15 +101,31 @@
                 debug="${compile.debug}"
           deprecation="${compile.deprecation}"
              optimize="${compile.optimize}">
-            <sourcepath>
-                <pathelement location="${source.jdk.home}/${jdk.version}"/>
-            </sourcepath>
+            <sourcepath refid="source.classpath" />
             <classpath refid="compile.classpath"/>
         </javac>
     </target>
 
+    <target name="docs" depends="prepare"
+     description="Create generated documentation and JavaDocs">
 
-    <target name="dist" depends="compile"
+      <javadoc
+          sourcepath="src/java"
+             destdir="${dist.home}/docs/api"
+              author="true"
+             private="true"
+             version="true"
+        packagenames="org.apache.struts.*"
+         windowtitle="${project.title} (Version ${project.version})"
+            doctitle="${project.title} (Version ${project.version})"
+              bottom="Copyright &#169; 2001-2003 - Apache Software Foundation">
+          <sourcepath refid="source.classpath" />
+          <classpath refid="compile.classpath"/>
+      </javadoc>
+
+    </target>
+
+    <target name="dist" depends="compile,docs"
      description="Create binary distribution">
         <copy  todir="${dist.home}" file="LICENSE.txt"/>
         <jar jarfile="${dist.home}/${project.distname}.jar"

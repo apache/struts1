@@ -4,8 +4,14 @@ Struts Legacy Distribution
 This distribution contains classes which have been removed from the
 core Struts distribution but may still be of interest.
 
-These files are considered "stable" and are not actively maintained.
+The classes are considered "stable" but are *not* actively maintained.
+(Hence, the name "legacy".)
 
-This distribution currently requires Java 1.4.
+This distribution can be built against Java 1.3 or Java 1.4.
+
+To provide best compatiblity, Java 1.3 is the default.
+
+The target JDK may be changed by copying "build.properties.sample"
+as "build.properties" and making the appropriate changes.
 
 ###
