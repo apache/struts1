@@ -17,17 +17,22 @@
 package org.apache.shale;
 
 /**
- * <p>{@link ViewController} is an interface describing a JavaBean that is
- * associated with a JavaServer Faces <em>view</em> (typically a JSP page).
- * Such a "backing bean" represents a convenient place to retrieve and store
+ * <p>{@link ViewController} is a "backing bean" interface which adds several
+ * extension points to the standard JavaServer Faces lifecycle. The extension
+ * points help Struts interact with JSF <code>UIComponents</code>.
+ * </p>
+  * <p>
+ * A "backing bean" represents a convenient place to retrieve and store
  * dynamic values associated with the user interface components that comprise
- * the view, as well as code event handlers triggered by state changes on
- * those components.  As such, this interface describes an implementation of the
+ * the view, as well as to code event handlers triggered by state changes on
+ * those components. A JavaServer Faces <em>view</em> is most often a JSP page,
+ * but any JSF view rendering system can be used.
+ * </p>
+ * <p>
+ * Essentially, the ViewController is a
  * <a href="http://java.sun.com/blueprints/corej2eepatterns/Patterns/ViewHelper.html">
- * View Helper</a> design pattern from
- * <a href="http://java.sun.com/blueprints/corej2eepatterns/">Core J2EE
- * Patterns</a>.</p>
- *
+ * View Helper</a> interface for a backing bean and its associated View.
+ * </p>
  * <p><strong>NOTE</strong> - JavaServer Faces imposes no restrictions on
  * the inheritance hierarchy (or interface implementation) for backing beans
  * associated with a view.  Therefore, the use of this interface for your own
@@ -36,15 +41,21 @@ package org.apache.shale;
  * {@link org.apache.shale.view.AbstractViewController}) will receive the
  * benefit of the extra services described by this interface, all of which will be
  * provided automatically.</p>
+ * <p>
+ * To be useful, the ViewController must be plugged into the application
+ * lifecycle through a custom JSF ViewHandler, like the
+ * {@link org.apache.shale.faces.ShaleViewHandler ShaleViewHandler}.
+ * </p>
  *
- * <h3>Using a {@link ViewController}</h3>
+ * <h3>Registering a ViewController backing bean</h3>
  *
- * <p>For each JSF view that you wish to associate with a {@link ViewController}
+ * <p>For each JSF view that you wish to associate with a ViewController
  * backing bean, you must do the following:</p>
  * <ul>
- * <li>As required by the JavaBeans specification, provide a public no-args
- *     constructor in your backing bean implementation class.  Configuration
- *     of {@link ViewController} beans is performed using setter injection.</li>
+ * <li>First, as required by the JavaBeans specification, be sure to provide a public no-args
+ *     constructor in your ViewController backing bean implementation class.
+ *     Configuration of ViewController beans is performed using setter injection,
+ *     rather than through "rich" constructors.</li>
  * <li>Register this class as a JSF <code>&lt;managed-bean&gt;</code>,
  *     using a <code>&lt;managed-bean-name&gt;</code> that corresponds to
  *     the <code>view identifier</code> of the JSF view.  Mapping between
@@ -56,16 +67,22 @@ package org.apache.shale;
  *         matches the corresponding view.</li>
  *     <li>Optionally, you may use <code>&lt;managed-property&gt;</code>
  *         elements within the <code>&lt;managed-bean&gt;</code> element
- *         to configure the behavior of your backing bean.</li>
+ *         to configure the behavior of your ViewController bean.</li>
  *     </ul></li>
- * <li>Optionally, you may use the <code>binding</code> property of any JSF
+ * </ul>
+ *
+ * <p>Since the ViewController is a backing bean, you have the option of
+ * establishing other links with the UIComponents, such as:</p>
+ *
+ * <ul>
+ * <li>You may use the <code>binding</code> property of any JSF
  *     <code>UIComponent</code> to establish a linkage between a component
  *     instance in the component tree representing this view, and a propery
  *     (of type <code>UIComponent</code> or an appropriate subclass) in your
  *     backing bean.  This technique is useful if you need to programmatically
  *     manipulate properties of the corresponding component in an event
  *     handler in the backing bean.</li>
- * <li>Optionally, you may use the <code>value</code> property of any JSF
+ * <li>You may use the <code>value</code> property of any JSF
  *     component that implements <code>ValueHolder</code> (for example, any
  *     component based on <code>UIInput</code> or <code>UIOutput</code>) to
  *     establish a linkage between the dynamic value to be rendered or stored,
@@ -76,7 +93,7 @@ package org.apache.shale;
  *     implicit registration of a <code>Converter</code>.</li>
  * </ul>
  *
- * <h3>Services Provided To A {@link ViewController}</h3>
+ * <h3>ViewController Lifecycle</h3>
  *
  * <p>Once you have configured the use of a {@link ViewController} backing bean
  * associated with a JSF view, Struts will provide the following services:</p>
