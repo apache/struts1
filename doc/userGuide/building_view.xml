@@ -536,7 +536,35 @@ public class UploadForm extends ActionForm {
       </section>
 
     <section name="3.3.5 The Struts Validator" href="validator">
-    <p>[:TODO:]</p>
+    <p>
+    Configuring the Validator to perform form validation is easy.<br/>
+    <ol>
+    	<li>The ActionForm bean must extend ValidatorForm</li>
+    	<li>The form's JSP must include the <a href="struts-html.html">&lt;html:javascript&gt;</a> tag for client side validation.</li>
+    	<li>You must define the validation rules in an xml file like this:<br/>
+    <pre>
+	    &lt;form-validation>
+			&lt;formset>         	   
+      			&lt;form name="logonForm">
+         			&lt;field property="username" depends="required">
+         				&lt;msg name="required" key="error.username"/>
+         			&lt;/field>    
+    			&lt;/form>        
+			&lt;/formset>   
+		&lt;/form-validation>
+    </pre>
+    <br/>
+    The msg element points to the message resource key to use when generating the error message.
+    </li>
+    <li>Lastly, you must enable the ValidatorPlugin in the struts-config.xml file like this:<br/>
+	<pre>
+    &lt;plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    	&lt;set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml"/>
+  	&lt;/plug-in>
+  	</pre>
+    </li>
+    </ol>
+    </p>
     </section>
 
     <section name="3.3.6 Indexed &amp; Mapped Properties" href="indexed">
