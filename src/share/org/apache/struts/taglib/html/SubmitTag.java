@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.16 2002/11/16 06:05:21 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2002/11/16 06:05:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/SubmitTag.java,v 1.17 2003/03/19 18:29:54 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/03/19 18:29:54 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -71,7 +71,7 @@ import org.apache.struts.util.ResponseUtils;
  * Tag for input fields of type "submit".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/11/16 06:05:21 $
+ * @version $Revision: 1.17 $ $Date: 2003/03/19 18:29:54 $
  */
 
 public class SubmitTag extends BaseHandlerTag {
@@ -179,8 +179,9 @@ public class SubmitTag extends BaseHandlerTag {
 
         if (bodyContent != null) {
             String value = bodyContent.getString().trim();
-            if (value.length() > 0)
+            if (value.length() > 0) {
                 text = value;
+            }
         }
         return (SKIP_BODY);
 
@@ -198,10 +199,12 @@ public class SubmitTag extends BaseHandlerTag {
 
         // Acquire the label value we will be generating
         String label = value;
-        if ((label == null) && (text != null))
+        if ((label == null) && (text != null)) {
             label = text;
-        if ((label == null) || (label.length() < 1))
+        }
+        if ((label == null) || (label.length() < 1)) {
             label = "Submit";
+        }
 
         // Generate an HTML element
         StringBuffer results = new StringBuffer();
@@ -210,8 +213,9 @@ public class SubmitTag extends BaseHandlerTag {
             results.append(" name=\"");
             results.append(property);
             // * @since Struts 1.1
-            if( indexed )
+            if (indexed) {
                 prepareIndex( results, null );
+            }
             results.append("\"");
         }
 
