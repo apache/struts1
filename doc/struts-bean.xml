@@ -966,6 +966,71 @@
       </info>
     </attribute>
 
+    <attribute>
+      <name>format</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Specifies the format string to use to convert bean or property value 
+      to the <code>String</code>. If nothing specified, then default format 
+      string for value data type will be searched in message resources by
+      according key.</p>
+      <table>
+       <tr>
+           <td>Key to search format string</td>
+           <td>Data types</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.int</td>
+           <td>java.lang.Byte, java.lang.Short, java.lang.Integer, java.lang.Long, 
+               java.math.BigInteger</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.float</td>
+           <td>java.lang.Float, java.lang.Double, java.math.BigDecimal</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.timestamp</td>
+           <td>java.sql.Timestamp</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.date</td>
+           <td>java.sql.Date</td>
+       </tr>
+       <tr>
+           <td>org.apache.struts.taglib.bean.format.time</td>
+           <td>java.sql.Time</td>
+       </tr>
+      </table>
+      <p>If nothing found, then will be used format string according to current 
+      value data type and locale (object stored as session scope bean).</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the application scope bean under which the
+      <code>MessageResources</code> object containing our messages
+      is stored.  If not specified, the default name (the value of
+      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the session scope bean under which our currently
+      selected <code>Locale</code> object is stored.  If not specified,
+      the default name (the value of the <code>Action.LOCALE_KEY</code>
+      constant string) is used.</p>
+      </info>
+    </attribute>
+
   </tag>
 
 
