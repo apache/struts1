@@ -235,8 +235,11 @@
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      <p>The logical name of the global <code>ActionForward</code> entry
-      that identifies the destination, and forwarding approach, to be used.
+      <p>
+      	The logical name of the global <code>ActionForward</code> entry
+      	that identifies the destination, and forwarding approach, to be used.
+        <strong>Note</strong>: forwarding to Tiles definitions is not supported
+        from this tag.  You should forward to them from an Action subclass.
       </p>
       </info>
     </attribute>
