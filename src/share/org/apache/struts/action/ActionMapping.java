@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.31 2004/01/19 22:20:40 germuska Exp $
- * $Revision: 1.31 $
- * $Date: 2004/01/19 22:20:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.32 2004/01/22 04:54:13 jmitchell Exp $
+ * $Revision: 1.32 $
+ * $Date: 2004/01/22 04:54:13 $
  *
  * ====================================================================
  *
@@ -64,8 +64,8 @@ package org.apache.struts.action;
 
 
 import java.util.ArrayList;
+
 import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
 
 
@@ -85,7 +85,7 @@ import org.apache.struts.config.ForwardConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @version $Revision: 1.31 $ $Date: 2004/01/19 22:20:40 $
+ * @version $Revision: 1.32 $ $Date: 2004/01/22 04:54:13 $
  */
 
 public class ActionMapping extends ActionConfig {

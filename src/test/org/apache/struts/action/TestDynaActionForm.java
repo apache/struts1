@@ -64,12 +64,11 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.commons.beanutils.DynaProperty;
-import org.apache.struts.config.ModuleConfig;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.impl.ModuleConfigImpl;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 
 /**

@@ -62,7 +62,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.struts.action.ActionMapping;
 import org.apache.commons.digester.Digester;
 import org.apache.struts.Globals;
 
@@ -70,7 +69,7 @@ import org.apache.struts.Globals;
 /**
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
- * @version $Revision: 1.5 $ $Date: 2004/01/13 12:48:53 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/22 04:54:13 $
  */
 
 public class TestModuleConfig extends TestCase {

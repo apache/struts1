@@ -1,9 +1,9 @@
 // $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.7 2004/01/13 12:48:53 husted Exp $
- * $Revision: 1.7 $
- * $Date: 2004/01/13 12:48:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParser.java,v 1.8 2004/01/22 04:54:13 jmitchell Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/22 04:54:13 $
  *
  * ====================================================================
  *
@@ -63,30 +63,26 @@
 
 package org.apache.struts.validator.validwhen;
 
-import java.util.Stack; 
+import java.util.Stack;
+
 import org.apache.commons.validator.util.ValidatorUtils;
 
-
-import antlr.TokenBuffer;
-import antlr.TokenStreamException;
-import antlr.TokenStreamIOException;
-import antlr.ANTLRException;
-import antlr.LLkParser;
-import antlr.Token;
-import antlr.TokenStream;
-import antlr.RecognitionException;
 import antlr.NoViableAltException;
-import antlr.MismatchedTokenException;
-import antlr.SemanticException;
 import antlr.ParserSharedInputState;
+import antlr.RecognitionException;
+import antlr.Token;
+import antlr.TokenBuffer;
+import antlr.TokenStream;
+import antlr.TokenStreamException;
 import antlr.collections.impl.BitSet;
 
-public class ValidWhenParser extends antlr.LLkParser       implements ValidWhenParserTokenTypes
- {
-Stack argStack = new Stack();
-Object form;
-int index;
-String value;
+public class ValidWhenParser extends antlr.LLkParser      
+	implements ValidWhenParserTokenTypes {
+
+	Stack argStack = new Stack();
+	Object form;
+	int index;
+	String value;
 
     public void setForm(Object f) { form = f; };
     public void setIndex (int i) { index = i; };

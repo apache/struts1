@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/EditTypeAction.java,v 1.2 2004/01/10 21:03:40 dgraham Exp $
- * $Revision: 1.2 $
- * $Date: 2004/01/10 21:03:40 $
+ * $Header: /home/cvs/jakarta-struts/src/examples/org/apache/struts/webapp/validator/EditTypeAction.java,v 1.3 2004/01/22 04:54:13 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/22 04:54:13 $
  *
  * ====================================================================
  *
@@ -62,7 +62,6 @@ package org.apache.struts.webapp.validator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import org.apache.commons.logging.Log;

@@ -1,9 +1,9 @@
 // $ANTLR 2.7.2: "validWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParserTokenTypes.java,v 1.5 2004/01/13 12:48:53 husted Exp $
- * $Revision: 1.5 $
- * $Date: 2004/01/13 12:48:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/validwhen/ValidWhenParserTokenTypes.java,v 1.6 2004/01/22 04:54:13 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/22 04:54:13 $
  *
  * ====================================================================
  *
@@ -62,10 +62,6 @@
  */
 
 package org.apache.struts.validator.validwhen;
-
-import java.util.Stack; 
-import org.apache.commons.validator.util.ValidatorUtils;
-
 
 public interface ValidWhenParserTokenTypes {
 	int EOF = 1;

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.36 2004/01/19 04:43:10 husted Exp $
- * $Revision: 1.36 $
- * $Date: 2004/01/19 04:43:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.37 2004/01/22 04:54:13 jmitchell Exp $
+ * $Revision: 1.37 $
+ * $Date: 2004/01/22 04:54:13 $
  *
  * ====================================================================
  *
@@ -72,7 +72,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Generate an IMG tag to the specified image URI.
@@ -83,7 +82,7 @@ import org.apache.struts.util.RequestUtils;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.36 $
+ * @version $Revision: 1.37 $
  */
 
 public class ImgTag extends BaseHandlerTag {
