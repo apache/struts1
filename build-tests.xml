@@ -114,6 +114,7 @@
       <pathelement location="${junit.jar}"/>
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts.jar}"/>
+      <pathelement location="${antlr.jar}"/>
     </path>
 
 <!-- ========== Executable Targets ======================================== -->
@@ -732,6 +733,9 @@
         <test       name="org.apache.struts.action.TestDynaActionFormClass"/>
         <test       name="org.apache.struts.config.TestModuleConfig"/>
         <test       name="org.apache.struts.config.TestActionConfigMatcher"/>
+
+        <!-- Tests for org.apache.struts.validator -->
+        <test       name="org.apache.struts.validator.TestValidWhen"/>
 
         <!-- Tests for org.apache.struts.util -->
         <batchtest fork="yes">
