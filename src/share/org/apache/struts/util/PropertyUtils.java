@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.6 2000/12/30 01:20:10 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/12/30 01:20:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/PropertyUtils.java,v 1.7 2000/12/30 02:05:08 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/12/30 02:05:08 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import java.lang.reflect.Method;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.6 $ $Date: 2000/12/30 01:20:10 $
+ * @version $Revision: 1.7 $ $Date: 2000/12/30 02:05:08 $
  */
 
 public final class PropertyUtils {
@@ -374,7 +374,7 @@ public final class PropertyUtils {
      * descriptor.  This method resolves indexed and nested property
      * references in the same manner as other methods in this class, except
      * that if the last (or only) name element is indexed, the descriptor
-     * for the property itself is returned.
+     * for the last resolved property itself is returned.
      *
      * @param bean Bean for which a property descriptor is requested
      * @param name Possibly indexed and/or nested name of the property for
