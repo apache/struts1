@@ -379,6 +379,7 @@
     <p>util</p>
     <ul>
     </ul>
+    
     <p><strong>Classes with members added in Struts 1.2</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">action.A</a><a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ActionServlet</a></p>
     <ul>
@@ -398,8 +399,15 @@
     <ul>
       <li><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxx/xxxx.html"> xxx</a></li>
     </ul>
+    
     <p><strong>Classes with members deprecated between Struts 1.1 and Struts 1.2</strong></p>
     <p><a href="http://jakarta.apache.org/struts/api/org/apache/struts/xxxx/xxxx.html">class.method</a></p>
+
+    <ul>
+    </ul>
+    
+    <p><strong>Classes with members removed between Struts 1.1 and Struts 1.2</strong></p>
+    <p>validator-rules.xml, range() - use intRange() instead.</p>
 
     <ul>
     </ul>
