@@ -150,6 +150,11 @@
     <em>struts-logic</em> custom tag library (package
     <code>org.apache.struts.taglib.logic</code>):</p>
     <ul>
+    <li>The <code>&lt;logic:iterate&gt;</code> tag now supports a new
+        attribute, <code>indexId</code>.  This attribute names a page scope
+        attribute (and corresponding scripting variable) that will be
+        exposed in the nested body of the iteration, which will contain
+        the current loop index as a java.lang.Integer.</li>
     </ul>
 
     <p>The following new features have been added to the
@@ -191,6 +196,13 @@
         such an <code>ActionForm</code> instance and attempt to use it within
         the Struts framework, be sure to call <code>setServlet()</code> (and
         <code>setMultipartRequestHander()</code> if appropriate) first.</li>
+    </ul>
+
+    <p>The following changes and bug fixes have occurred in the file upload
+    package (package <code>org.apache.struts.upload</code>):</p>
+    <ul>
+    <li>Fixed a bug that could cause corruption in the uploaded file,
+        by converting sequences of \r\n\n into \r\n\r\n.</li>
     </ul>
 
     <p>The following changes and bug fixes have occurred in the utilities
@@ -256,6 +268,7 @@
         pages that formerly emitted <code>&lt;project&gt;</code> tags in the
         generated HTML, and generated incorrect references to link colors in
         the navigation bar.</li>
+    <li>Added a "Who We Are" page to the documentation.</li>
     </ul>
 
     <p>The following changes and bug fixes to the Struts Example Application
