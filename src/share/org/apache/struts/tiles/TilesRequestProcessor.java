@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.14 2002/11/28 07:21:57 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2002/11/28 07:21:57 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.15 2002/11/28 07:26:21 rleland Exp $
+ * $Revision: 1.15 $
+ * $Date: 2002/11/28 07:26:21 $
  *
  * ====================================================================
  *
@@ -70,7 +70,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
-import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
