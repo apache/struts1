@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.60 2001/02/21 00:35:45 craigmcc Exp $
- * $Revision: 1.60 $
- * $Date: 2001/02/21 00:35:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.61 2001/02/23 19:57:38 craigmcc Exp $
+ * $Revision: 1.61 $
+ * $Date: 2001/02/23 19:57:38 $
  *
  * ====================================================================
  *
@@ -230,7 +230,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.60 $ $Date: 2001/02/21 00:35:45 $
+ * @version $Revision: 1.61 $ $Date: 2001/02/23 19:57:38 $
  */
 
 public class ActionServlet
@@ -359,12 +359,16 @@ public class ActionServlet
 
     /**
      * The set of public identifiers, and corresponding resource names, for
-     * the versions of the configuration file DTD that we know about.  There
+     * the versions of the configuration file DTDs that we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!
      */
     protected String registrations[] = {
         "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN",
         "/org/apache/struts/resources/struts-config_1_0.dtd",
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN",
+        "/org/apache/struts/resources/web-app_2_2.dtd",
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN",
+        "/org/apache/struts/resources/web-app_2_3.dtd"
     };
 
 
@@ -1377,6 +1381,15 @@ public class ActionServlet
         digester.push(this);
         digester.setDebug(this.debug);
         digester.setValidating(false);
+
+	// Register our local copy of the DTDs that we can find
+        for (int i = 0; i < registrations.length; i += 2) {
+            URL url = this.getClass().getResource(registrations[i+1]);
+            if (url != null)
+                digester.register(registrations[i], url.toString());
+        }
+
+        // Configure the processing rules that we need
         digester.addCallMethod("web-app/servlet-mapping",
                                "addServletMapping", 2);
         digester.addCallParam("web-app/servlet-mapping/servlet-name", 0);
