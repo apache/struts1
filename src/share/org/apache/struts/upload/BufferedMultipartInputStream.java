@@ -2,6 +2,7 @@ package org.apache.struts.upload;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
 
 /**
  * This class implements buffering for an InputStream as well as a
@@ -204,15 +205,29 @@ public class BufferedMultipartInputStream extends InputStream {
             b[offset] = (byte) read;
             count++;
             offset++;
-            //make sure that we don't ignore the last character if a
-            //newline isn't encountered
-            if (count < length) {
-                read = read();
-            }
+            read = read();
         }
         return count;
     }
-    
+
+    /**
+     * This method reads a line, regardless of length.
+     * @return A byte array representing the line.
+     */
+    public byte[] readLine() throws IOException {
+
+        int read = read();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        while (read != -1) {
+            if (read == '\n') {
+                return baos.toByteArray();
+            }
+            baos.write(read);
+            read = read();
+        }
+        return baos.toByteArray();
+    }
+
     /**
      * This method makes a call to the reset() method of the underlying
      * InputStream

@@ -147,7 +147,7 @@ public class MultipartIterator {
         }
         else {
             //default to system-wide tempdir
-            this.tempDir = System.getProperty("java.io.tmpdir");
+            tempDir = System.getProperty("java.io.tmpdir");
         }
         parseRequest();
     }
@@ -447,8 +447,8 @@ public class MultipartIterator {
      * Reads the input stream until it reaches a new line
      */
     protected String readLine() throws ServletException, UnsupportedEncodingException {
-       
-        byte[] bufferByte = new byte[bufferSize];
+
+        byte[] bufferByte;
         int bytesRead;
         
         if (totalLength >= contentLength) {
@@ -456,9 +456,8 @@ public class MultipartIterator {
         }
         
         try {
-            bytesRead = inputStream.readLine(bufferByte,
-                                             0,
-                                             bufferSize);
+            bufferByte = inputStream.readLine();
+            bytesRead  = bufferByte.length;
         }
         catch (IOException ioe) {
             throw new ServletException("IOException while reading multipart request: " + 
@@ -481,8 +480,8 @@ public class MultipartIterator {
         File tempFile = File.createTempFile("strts", null, new File(tempDir));
         BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(tempFile),
                                                             diskBufferSize);
-        byte[] lineBuffer = new byte[MAX_LINE_SIZE];
-	int bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
+        byte[] lineBuffer = inputStream.readLine();
+	    int bytesRead = lineBuffer.length;
         
         boolean cutCarriage = false;
         boolean cutNewline = false;
@@ -493,33 +492,29 @@ public class MultipartIterator {
 
                         if (cutCarriage) {
                             fos.write('\r');
-                            cutCarriage = false;
                         }
                         if (cutNewline) {
                             fos.write('\n');
-                            cutNewline = false;
                         }
+                        cutCarriage = false;
                         if (bytesRead > 0) {
                             if (lineBuffer[bytesRead-1] == '\r') {
-                                //bytesRead--;
+                                bytesRead--;
                                 cutCarriage = true;
-                                fos.write(lineBuffer, 0, bytesRead-1);                                
                             }
-                            else {
-                                fos.write(lineBuffer, 0, bytesRead);
-                            }                               
                         }
-                        if (bytesRead < MAX_LINE_SIZE) {
-                            cutNewline = true;
-                        }
-                        bytesRead = inputStream.readLine(lineBuffer, 0, MAX_LINE_SIZE);
+                        cutNewline = true;
+                        fos.write(lineBuffer, 0, bytesRead);
+                        lineBuffer = inputStream.readLine();
+                        bytesRead = lineBuffer.length;
             }
         }
         catch (IOException ioe) {
             fos.close();
             tempFile.delete();
             throw ioe;
-        }        
+        }
+        
         fos.flush();	
         fos.close();
         return tempFile;
