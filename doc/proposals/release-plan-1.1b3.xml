@@ -11,7 +11,7 @@
 
   <section name="Objective" href="Objective">
 
-  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.15 2003/02/15 12:53:09 husted Exp $</font></p>
+  <p><font size="-2">$Id: release-plan-1.1b3.xml,v 1.16 2003/02/15 21:02:33 husted Exp $</font></p>
 
   <p>The objective of the <strong>Struts 1.1 Beta 3</strong> release is to
   create a milestone release against which a final series of bug fixes and
@@ -237,7 +237,7 @@
         <td>NestedtTiles fail in this release</td>
       </tr>
       <tr>
-          <td>[-]</td>
+          <td>[x]</td>
           <td>
             <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=16603">16603</a></td>
         <td>internalModuleRelativeForward() doesn't treat module-relative paths as defined by forwardPattern</td>
