@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.21 2002/11/08 05:39:24 rleland Exp $
- * $Revision: 1.21 $
- * $Date: 2002/11/08 05:39:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.22 2003/04/21 02:28:20 rleland Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/04/21 02:28:20 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,6 +68,7 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
@@ -87,8 +88,8 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * Commons Logging instance.
      */
     protected static Log log =
-        LogFactory.getLog(DiskMultipartRequestHandler.class);
-    
+            LogFactory.getLog(DiskMultipartRequestHandler.class);
+
     /**
      * The ActionServlet instance used for this class.
      */
@@ -113,24 +114,22 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * A Hashtable representing all elemnents.
      */
     protected Hashtable allElements;
-    
+
     /**
      * The temporary directory.
      */
     protected String tempDir;
-    
-    
+
+
     /**
      * This method populates the internal hashtables with multipart request data.
      * If the request argument is an instance of MultipartRequestWrapper,
      * the request wrapper will be populated as well.
      */
-    public void handleRequest(HttpServletRequest request) throws ServletException
-    {
+    public void handleRequest(HttpServletRequest request) throws ServletException {
         ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
         retrieveTempDir(moduleConfig);
-        try
-        {
+        try {
             MultipartIterator iterator = new MultipartIterator(request, moduleConfig.getControllerConfig().getBufferSize(),
                                                                getMaxSize(moduleConfig.getControllerConfig().getMaxFileSize()),
                                                                tempDir);
@@ -140,46 +139,34 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
             fileElements = new Hashtable();
             allElements = new Hashtable();
 
-            while ((element = iterator.getNextElement()) != null)
-            {
-                if (!element.isFile())
-                {
+            while ((element = iterator.getNextElement()) != null) {
+                if (!element.isFile()) {
                     createTextElement(request, element);
-                }
-                else
-                {
+                } else {
                     createDiskFile(element);
                 }
             }
             //take care of maximum length being exceeded
-            if (iterator.isMaxLengthExceeded())
-            {
+            if (iterator.isMaxLengthExceeded()) {
                 request.setAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED, Boolean.TRUE);
             }
-        }
-        catch (IOException ioe)
-        {
+        } catch(IOException ioe) {
             throw new ServletException(ioe);
         }
     }
 
-    protected void createTextElement(HttpServletRequest request, MultipartElement element)
-    {
-        if (request instanceof MultipartRequestWrapper)
-        {
+    protected void createTextElement(HttpServletRequest request, MultipartElement element) {
+        if (request instanceof MultipartRequestWrapper) {
             ((MultipartRequestWrapper) request).setParameter(element.getName(), element.getValue());
         }
         String[] textValues = (String[]) textElements.get(element.getName());
 
-        if (textValues != null)
-        {
+        if (textValues != null) {
             String[] textValues2 = new String[textValues.length + 1];
             System.arraycopy(textValues, 0, textValues2, 0, textValues.length);
             textValues2[textValues.length] = element.getValue();
             textValues = textValues2;
-        }
-        else
-        {
+        } else {
             textValues = new String[1];
             textValues[0] = element.getValue();
         }
@@ -187,11 +174,9 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
         allElements.put(element.getName(), textValues);
     }
 
-    protected void createDiskFile(MultipartElement element)
-    {
+    protected void createDiskFile(MultipartElement element) {
         File tempFile = element.getFile();
-        if (tempFile.exists())
-        {
+        if (tempFile.exists()) {
             DiskFile theFile = new DiskFile(tempFile.getAbsolutePath());
             theFile.setContentType(element.getContentType());
             theFile.setFileName(element.getFileName());
@@ -254,39 +239,37 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * Gets the maximum post data size in bytes from the string
      * representation in the configuration file.
      */
-    protected long getMaxSize(String stringSize) throws ServletException{
+    protected long getMaxSize(String stringSize) throws ServletException {
         long size = -1;
         int multiplier = 1;
-        
+
         if (stringSize.endsWith("K")) {
             multiplier = 1024;
-            stringSize = stringSize.substring(0, stringSize.length()-1);
+            stringSize = stringSize.substring(0, stringSize.length() - 1);
         }
         if (stringSize.endsWith("M")) {
-            multiplier = 1024*1024;
-            stringSize = stringSize.substring(0, stringSize.length()-1);
+            multiplier = 1024 * 1024;
+            stringSize = stringSize.substring(0, stringSize.length() - 1);
+        } else if (stringSize.endsWith("G")) {
+            multiplier = 1024 * 1024 * 1024;
+            stringSize = stringSize.substring(0, stringSize.length() - 1);
         }
-        else if (stringSize.endsWith("G")) {
-            multiplier = 1024*1024*1024;
-            stringSize = stringSize.substring(0, stringSize.length()-1);
-        }
-        
+
         try {
             size = Long.parseLong(stringSize);
-        }
-        catch (NumberFormatException nfe) {
+        } catch(NumberFormatException nfe) {
             throw new ServletException("Invalid format for maximum file size");
         }
-                
+
         return (size * multiplier);
-    }       
-    
+    }
+
     /**
      * Retrieves the temporary directory from either ActionServlet, a context
      * property, or a system property, in that order.
      */
     protected void retrieveTempDir(ModuleConfig moduleConfig) {
-        
+
         //attempt to retrieve the servlet container's temporary directory
         ActionServlet servlet = getServlet();
         if (servlet != null) {
@@ -295,14 +278,13 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
             try {
                 tempDir =
-                    (String) context.getAttribute("javax.servlet.context.tempdir");
-            }
-            catch (ClassCastException cce) {
+                        (String) context.getAttribute("javax.servlet.context.tempdir");
+            } catch(ClassCastException cce) {
                 tempDir = ((File) context.getAttribute("javax.servlet.context.tempdir")).getAbsolutePath();
             }
-        }           
+        }
 
-        if (tempDir == null) {            
+        if (tempDir == null) {
             //attempt to retrieve the temporary directory from the controller
             tempDir = moduleConfig.getControllerConfig().getTempDir();
 
@@ -312,8 +294,8 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
 
                 if (getServlet().getDebug() > 1) {
                     log.debug("DiskMultipartRequestHandler.handleRequest(): " +
-                    "defaulting to java.io.tmpdir directory \"" +
-                    tempDir);
+                              "defaulting to java.io.tmpdir directory \"" +
+                              tempDir);
                 }
             }
         }
