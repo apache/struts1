@@ -231,6 +231,7 @@ build dist         &lt;-- Windows platform
   <li>iPlanet Application Server - Service Pack 2 is recommended. Note that the database 
   object in the Struts-Example application is not compatible with this container.</li>
   <li>iPlanet Web Server - <a href="installation-ip.html">Additional steps required.</a></li>
+  <li>iPortal Application Server - <a href="installation-ipas.html">Additional steps required.</a></li>
   <li>JRUN - <a href="installation-jrun.html">Additional steps required.</a></li>
   <li>Orion Application Server - <a href="installation-oas.html">Additional steps 
     required.</a></li>
