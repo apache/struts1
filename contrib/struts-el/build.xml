@@ -62,25 +62,6 @@
  <property name="commons-beanutils.jar"
            value="../jakarta-commons/beanutils/dist/lib/beanutils.jar"/>
 
- <!-- Tomcat 4.1.0 Ant configuration -->
- <!-- Configure properties to access the Manager application -->
-  <property name="manager-url"      value="http://localhost:8080/manager"/>
-  <property name="manager-username" value="admin"/>
-  <property name="manager-password" value="admin"/>
-
-  <!-- Configure the custom Ant tasks for the Manager application -->
-  <taskdef name="deploy"    classname="org.apache.catalina.ant.DeployTask"/>
-  <taskdef name="install"   classname="org.apache.catalina.ant.InstallTask"/>
-  <taskdef name="list"      classname="org.apache.catalina.ant.ListTask"/>
-  <taskdef name="reload"    classname="org.apache.catalina.ant.ReloadTask"/>
-  <taskdef name="remove"    classname="org.apache.catalina.ant.RemoveTask"/>
-  <taskdef name="resources" classname="org.apache.catalina.ant.ResourcesTask"/>
-  <taskdef name="roles"     classname="org.apache.catalina.ant.RolesTask"/>
-  <taskdef name="start"     classname="org.apache.catalina.ant.StartTask"/>
-  <taskdef name="stop"      classname="org.apache.catalina.ant.StopTask"/>
-  <taskdef name="undeploy"  classname="org.apache.catalina.ant.UndeployTask"/>
- <!-- End of Tomcat 4.1.0 Ant configuration -->
-
  <!-- ========== Initialization Properties ================================= -->
 
  <!--
