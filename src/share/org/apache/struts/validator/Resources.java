@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.17 2003/07/25 23:55:37 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/25 23:55:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/Resources.java,v 1.18 2003/07/26 00:40:29 dgraham Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/07/26 00:40:29 $
  *
  * ====================================================================
  *
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  * @author David Winterfeldt
  * @author Eddie Bush
  * @author David Graham
- * @version $Revision: 1.17 $ $Date: 2003/07/25 23:55:37 $
+ * @version $Revision: 1.18 $ $Date: 2003/07/26 00:40:29 $
  * @since Struts 1.1
  */
 public class Resources  {
@@ -149,16 +149,11 @@ public class Resources  {
    /**
     * Get the <code>Locale</code> of the current user.
     * @param request servlet request
+    * @deprecated Use RequestUtils.getUserLocale() instead.  This will be removed
+    * after Struts 1.2.
     */
     public static Locale getLocale(HttpServletRequest request) {
-        Locale locale = null;
-        try {
-            locale = (Locale) request.getSession().getAttribute(Globals.LOCALE_KEY);
-        } catch (IllegalStateException e) {
-            // Invalidated session
-        }
-    
-        return (locale == null) ? Locale.getDefault() : locale;
+        return RequestUtils.getUserLocale(request, null);
     }
 
    /**
@@ -182,11 +177,11 @@ public class Resources  {
     * @param request servlet request
     * @param key the request key
     */
-   public static String getMessage(HttpServletRequest request, String key) {
-      MessageResources messages = getMessageResources(request);
-
-      return getMessage(messages, getLocale(request), key);
-   }
+    public static String getMessage(HttpServletRequest request, String key) {
+        MessageResources messages = getMessageResources(request);
+    
+        return getMessage(messages, RequestUtils.getUserLocale(request, null), key);
+    }
 
    /**
     * Gets the locale sensitive message based on the <code>ValidatorAction</code> message and the
@@ -206,20 +201,32 @@ public class Resources  {
    }
 
    /**
-    * Gets the <code>ActionError</code> based on the <code>ValidatorAction</code> message and the
-    * <code>Field</code>'s arg objects.
+    * Gets the <code>ActionError</code> based on the 
+    * <code>ValidatorAction</code> message and the <code>Field</code>'s 
+    * arg objects.
     * @param request the servlet request
     * @param va Validator action
     * @param field the validator Field
     */
-   public static ActionError getActionError(HttpServletRequest request,
-                                            ValidatorAction va, Field field) {
-
-      String args[] = getArgs(va.getName(), getMessageResources(request), getLocale(request), field);
-      String msg = (field.getMsg(va.getName()) != null ? field.getMsg(va.getName()) : va.getMsg());
-
-      return new ActionError(msg, args);
-   }
+    public static ActionError getActionError(
+        HttpServletRequest request,
+        ValidatorAction va,
+        Field field) {
+    
+        String args[] =
+            getArgs(
+                va.getName(),
+                getMessageResources(request),
+                RequestUtils.getUserLocale(request, null),
+                field);
+                
+        String msg =
+            field.getMsg(va.getName()) != null
+                ? field.getMsg(va.getName())
+                : va.getMsg();
+    
+        return new ActionError(msg, args);
+    }
 
    /**
     * Gets the message arguments based on the current <code>ValidatorAction</code>
@@ -284,7 +291,7 @@ public class Resources  {
         ValidatorResources resources =
             Resources.getValidatorResources(application, request);
             
-        Locale locale = Resources.getLocale(request);
+        Locale locale = RequestUtils.getUserLocale(request, null);
     
         Validator validator = new Validator(resources, key);
         validator.setUseContextClassLoader(true);

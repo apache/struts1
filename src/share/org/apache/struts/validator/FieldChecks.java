@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.10 2003/06/25 01:32:31 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/06/25 01:32:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/FieldChecks.java,v 1.11 2003/07/26 00:40:29 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/26 00:40:29 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@ package org.apache.struts.validator;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -73,6 +74,7 @@ import org.apache.commons.validator.GenericValidator;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorUtil;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * <p>
@@ -535,7 +537,7 @@ public class FieldChecks implements Serializable {
         }
         String datePattern = field.getVarValue("datePattern");
         String datePatternStrict = field.getVarValue("datePatternStrict");
-        Locale locale = Resources.getLocale(request);
+        Locale locale = RequestUtils.getUserLocale(request, null);
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
