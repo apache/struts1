@@ -24,6 +24,9 @@
             href="actionForm.html" 
             name="Action Forms"/>
         <item 
+            href="apps.html" 
+            name="Building Apps"/>
+        <item 
             href="database.html" 
             name="Database"/>
         <item 
@@ -43,10 +46,22 @@
             name="Netbeans"/>
     </menu>
 
-    <menu name="Struts">
+    <menu name="Quick Links">
         <item 
-            name="Welcome" 
+            name="Welcome"                 
             href="../index.html"/>
+        <item 
+            name="News and Status"         
+            href="../news/index.html"/>
+        <item 
+            name="Resources"         
+            href="../resources/index.html"/>
+        <item 
+            name="User and Developer Guides" 
+            href="../userGuide/index.html"/>
+        <item 
+            name="FAQs and HowTos *"         
+            href="index.html"/>
     </menu>
 
 </project>
