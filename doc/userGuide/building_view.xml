@@ -230,7 +230,7 @@
 &lt;table border="0" width="100%"&gt;
   &lt;tr&gt;
     &lt;th align="right"&gt;
-      &lt;html:message key="prompt.username"/&gt;
+      &lt;bean:message key="prompt.username"/&gt;
     &lt;/th&gt;
     &lt;td align="left"&gt;
       &lt;html:text property="username"
@@ -239,7 +239,7 @@
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;th align="right"&gt;
-      &lt;html:message key="prompt.password"/&gt;
+      &lt;bean:message key="prompt.password"/&gt;
     &lt;/th&gt;
     &lt;td align="left"&gt;
       &lt;html:password property="password"
@@ -340,7 +340,7 @@
 &lt;%@page language="java">
 &lt;%@taglib uri="/WEB-INF/struts-html.tld"
        prefix="html">
-&lt;html:form action="uploadAction.do">
+&lt;html:form action="uploadAction.do" enctype="multipart/form-data">
   Please Input Text:
   &lt;html:text property="myText">&lt;br/>
   Please Input The File You Wish to Upload:&lt;br/>
