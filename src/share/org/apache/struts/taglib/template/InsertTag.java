@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.6 2001/02/26 16:44:16 dgeary Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/26 16:44:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/InsertTag.java,v 1.7 2001/04/29 03:59:05 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/04/29 03:59:05 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.taglib.template.util.*;
  * tags, which are accessed by &lt;template:get&gt; in the template.
  *
  * @author David Geary
- * @version $Revision: 1.6 $ $Date: 2001/02/26 16:44:16 $
+ * @version $Revision: 1.7 $ $Date: 2001/04/29 03:59:05 $
  */
 public class InsertTag extends TagSupport {
 
@@ -145,8 +145,7 @@ public class InsertTag extends TagSupport {
          pageContext.include(template);
       }
       catch(Exception ex) { // IOException or ServletException
-         pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
-                                  PageContext.REQUEST_SCOPE);
+         saveException(ex);
          throw new JspException(ex.getMessage());
       }
       ContentMapStack.pop(pageContext);
@@ -177,5 +176,23 @@ public class InsertTag extends TagSupport {
       map = null;
 
    }
+
+
+    /**
+     * Save the specified exception in request scope if there is not already
+     * one present.
+     *
+     * @param exception Exception to be conditionally saved
+     */
+    private void saveException(Throwable exception) {
+
+        if (pageContext.getAttribute(Action.EXCEPTION_KEY,
+                                     PageContext.REQUEST_SCOPE) != null)
+            return;
+        pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
+                                 PageContext.REQUEST_SCOPE);
+
+    }
+
 
 }

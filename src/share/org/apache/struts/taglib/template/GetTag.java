@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.7 2001/02/26 16:44:16 dgeary Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/26 16:44:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.8 2001/04/29 03:59:04 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/04/29 03:59:04 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.7 $ $Date: 2001/02/26 16:44:16 $
+ * @version $Revision: 1.8 $ $Date: 2001/04/29 03:59:04 $
  */
 public class GetTag extends TagSupport {
 
@@ -152,8 +152,7 @@ public class GetTag extends TagSupport {
                pageContext.getOut().print(content.toString());
             }
             catch(java.io.IOException ex) {
-               pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
-                                        PageContext.REQUEST_SCOPE);
+               saveException(ex);
                throw new JspException(ex.getMessage());
             }
          }
@@ -162,8 +161,7 @@ public class GetTag extends TagSupport {
                pageContext.include(content.toString());
             }
             catch(Exception ex) { 
-               pageContext.setAttribute(Action.EXCEPTION_KEY, ex,
-                                        PageContext.REQUEST_SCOPE);
+               saveException(ex);
                throw new JspException(ex.getMessage());
             }
          }
@@ -183,5 +181,23 @@ public class GetTag extends TagSupport {
       name = role = null;
 
    }
+
+
+    /**
+     * Save the specified exception in request scope if there is not already
+     * one present.
+     *
+     * @param exception Exception to be conditionally saved
+     */
+    private void saveException(Throwable exception) {
+
+        if (pageContext.getAttribute(Action.EXCEPTION_KEY,
+                                     PageContext.REQUEST_SCOPE) != null)
+            return;
+        pageContext.setAttribute(Action.EXCEPTION_KEY, exception,
+                                 PageContext.REQUEST_SCOPE);
+
+    }
+
 
 }
