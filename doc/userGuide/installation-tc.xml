@@ -70,8 +70,6 @@ Alias /struts-example "$TOMCAT_HOME/webapps/struts-example"
     http://localhost/struts-example</code></li>
 </ul>
   <hr/>
-  <ul><li>Author: Craig R. McClanahan</li></ul>
-  <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>
 </chapter>

@@ -111,12 +111,6 @@ major concern ...</p>
 href="http://www.mail-archive.com/struts-dev@jakarta.apache.org/msg00284.html">More
 fixes for WLS 5.1 SP8</a> from the Struts Developer mailing list</p>
 <hr/>
-  <ul>
-    <li>Author: Robert Hayden</li>
-    <li>Author: Wong Kok Kai</li>
-    <li>Author: Matthias Kerkhoff </li>
-  </ul>
-  <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>
 </chapter>

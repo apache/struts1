@@ -2,7 +2,7 @@
 <project name="Struts User's Guide"
          href="http://jakarta.apache.org/struts/userGuide"
         image="../images/struts.gif"
-      authors="true">
+      authors="false">
 
     <title>Getting Started</title>
     

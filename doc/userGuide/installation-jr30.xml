@@ -179,8 +179,6 @@ to be made:</p>
 <li>registration.jsp, subscription.jsp: Change all instances of filter="true" to <br/>filter=&lt;%= true %></li>
 </ul>
   <hr/>
-  <ul><li>Author: Eric Wu, Mark Budai</li></ul>
-  <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>
 </chapter>

@@ -112,8 +112,6 @@ org/apache/struts/action/ActionServlet.class</code></li>
   browser of choice: <a href="http://localhost/struts-example/">http://localhost/struts-example/" >http://localhost/struts-example/</a></li>
 </ul>
   <hr/>
-  <ul><li>Author: dIon Gillard</li></ul>
-  <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>
 </chapter>

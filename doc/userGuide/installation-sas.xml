@@ -73,8 +73,6 @@
      <li>SilverCmd DeployWar localhost Silvermaster struts-documentation.war -f struts-documentation-depl-plan.xml</li>
    </ul>
   <hr/>
-  <ul><li>Author: John Rousseau</li></ul>
-  <hr/>
   <p>Back to <a href="installation.html#Containers">Installation</a></p>
 </section>
 </chapter>
