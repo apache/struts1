@@ -142,6 +142,12 @@
         if a bean was actually created.</li>
     </ul>
 
+    <p><strong>USAGE NOTE</strong> - There is a restriction in the JSP 1.1
+    Specification that disallows using the same value for an <code>id</code>
+    attribute more than once in a single JSP page.  Therefore, you will not
+    be able to use <code>&lt;bean:define&gt;</code> for the same bean
+    name more than once in a single page.</p>
+
     <p>See the Bean Developer's Guide section on
     <a href="api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
     bean creation</a> for more information about these differences, as well
