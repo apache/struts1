@@ -1,8 +1,8 @@
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.59 2003/04/25 03:17:16 dgraham Exp $
- * $Revision: 1.59 $
- * $Date: 2003/04/25 03:17:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.60 2003/04/25 04:23:28 dgraham Exp $
+ * $Revision: 1.60 $
+ * $Date: 2003/04/25 04:23:28 $
  *
  * ====================================================================
  *
@@ -114,7 +114,7 @@ import org.apache.struts.util.TokenProcessor;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.59 $ $Date: 2003/04/25 03:17:16 $
+ * @version $Revision: 1.60 $ $Date: 2003/04/25 04:23:28 $
  */
 public class Action {
 
@@ -530,16 +530,14 @@ public class Action {
      *
      * @since Struts 1.1
      */
-    protected DataSource getDataSource(HttpServletRequest request,
-                                       String key) {
+    protected DataSource getDataSource(HttpServletRequest request, String key) {
 
         // Identify the current module
         ServletContext context = getServlet().getServletContext();
         ModuleConfig moduleConfig = RequestUtils.getModuleConfig(request,context);
 
         // Return the requested data source instance
-        return ((DataSource) context.getAttribute
-                (key + moduleConfig.getPrefix()));
+        return ((DataSource) context.getAttribute(key + moduleConfig.getPrefix()));
 
     }
 
@@ -553,8 +551,9 @@ public class Action {
 
         HttpSession session = request.getSession();
         Locale locale = (Locale) session.getAttribute(Globals.LOCALE_KEY);
-        if (locale == null)
+        if (locale == null) {
             locale = defaultLocale;
+        }
         return (locale);
 
     }
@@ -759,8 +758,9 @@ public class Action {
     protected void setLocale(HttpServletRequest request, Locale locale) {
 
         HttpSession session = request.getSession();
-        if (locale == null)
+        if (locale == null) {
             locale = defaultLocale;
+        }
         session.setAttribute(Globals.LOCALE_KEY, locale);
 
     }
