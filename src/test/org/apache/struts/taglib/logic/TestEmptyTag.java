@@ -64,6 +64,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import org.apache.cactus.JspTestCase;
 import org.apache.cactus.WebRequest;
+import org.apache.struts.taglib.SimpleBeanForTesting;
 import org.apache.struts.util.LabelValueBean;
 
 /**
