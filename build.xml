@@ -463,9 +463,9 @@
         Construct complete binary distribution
 -->
     <target name="dist"
-         depends="dist.library,dist.webapps,dist.source,dist.contrib,dist.examples"
+         depends="dist.library,dist.source"
      description="Construct binary distribution"/>
-
+<!--          depends="dist.library,dist.webapps,dist.source,dist.contrib,dist.examples" -->
 <!--
         Construct complete release distributions
 -->
@@ -766,8 +766,9 @@
 <!--
         Clean up build and distribution directories
 -->
-    <target name="clean" depends="clean.contrib"
+    <target name="clean"
      description="Clean build and distribution directories">
+<!--     depends="clean.contrib" -->
         <delete dir="${build.home}"/>
         <delete dir="${dist.home}"/>
         <delete dir="${release.home}"/>
