@@ -74,6 +74,9 @@
       change, if you had two actions that used the same Action class name,
       there will now be only one (shared) instance of the Action class,
       rather than two.</li>
+  <li>New <code>log(String, int)</code> method that logs the associated message
+      only if you have configured the debugging detail level for the servlet to
+      an equal or higher value.</li>
   </ul>
 
   <p>The following changes and bug fixes to the Digester module
