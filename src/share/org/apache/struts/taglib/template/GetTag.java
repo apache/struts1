@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.11 2002/03/11 04:56:53 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/03/11 04:56:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/template/Attic/GetTag.java,v 1.12 2002/03/12 05:55:08 martinc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/03/12 05:55:08 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.template.util.*;
  * it, depending upon the value of the content's direct attribute.
  *
  * @author David Geary
- * @version $Revision: 1.11 $ $Date: 2002/03/11 04:56:53 $
+ * @version $Revision: 1.12 $ $Date: 2002/03/12 05:55:08 $
  */
 public class GetTag extends TagSupport {
 
@@ -181,7 +181,7 @@ public class GetTag extends TagSupport {
             }
             catch(IOException ex) {
                saveException(ex);
-               throw new JspException(ex);
+               throw new JspException(ex.getMessage());
             }
          }
          else {
@@ -191,10 +191,10 @@ public class GetTag extends TagSupport {
                pageContext.include(content.toString());
             } catch (IOException ex) {
               saveException(ex);
-              throw new JspException(ex);
+              throw new JspException(ex.getMessage());
             } catch(ServletException ex) {
                saveException(ex);
-               throw new JspException(ex);
+               throw new JspException(ex.getMessage());
             }
          }
       }
