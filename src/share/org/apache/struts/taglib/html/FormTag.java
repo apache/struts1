@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.20 2002/06/22 22:06:33 craigmcc Exp $
- * $Revision: 1.20 $
- * $Date: 2002/06/22 22:06:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.21 2002/06/23 01:38:31 craigmcc Exp $
+ * $Revision: 1.21 $
+ * $Date: 2002/06/23 01:38:31 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2002/06/22 22:06:33 $
+ * @version $Revision: 1.21 $ $Date: 2002/06/23 01:38:31 $
  */
 
 public class FormTag extends TagSupport {
@@ -606,6 +606,10 @@ public class FormTag extends TagSupport {
             bean = RequestUtils.createActionForm
                 ((HttpServletRequest) pageContext.getRequest(),
                  mapping, appConfig, servlet);
+            if (bean instanceof ActionForm) {
+                ((ActionForm) bean).reset
+                    (mapping, (HttpServletRequest) pageContext.getRequest());
+            }
             if (bean == null) {
                 throw new JspException
                     (messages.getMessage("formTag.create", type));

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.39 2002/06/22 22:19:13 craigmcc Exp $
- * $Revision: 1.39 $
- * $Date: 2002/06/22 22:19:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.40 2002/06/23 01:38:31 craigmcc Exp $
+ * $Revision: 1.40 $
+ * $Date: 2002/06/23 01:38:31 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.39 $ $Date: 2002/06/22 22:19:13 $
+ * @version $Revision: 1.40 $ $Date: 2002/06/23 01:38:31 $
  */
 
 public class RequestUtils {
@@ -637,7 +637,6 @@ public class RequestUtils {
             }
         }
         instance.setServlet(servlet);
-        instance.reset(mapping, request);
         return (instance);
 
     }
