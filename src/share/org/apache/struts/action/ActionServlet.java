@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.91 2002/01/23 18:59:12 craigmcc Exp $
- * $Revision: 1.91 $
- * $Date: 2002/01/23 18:59:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.92 2002/02/23 22:54:17 craigmcc Exp $
+ * $Revision: 1.92 $
+ * $Date: 2002/02/23 22:54:17 $
  *
  * ====================================================================
  *
@@ -267,7 +267,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.91 $ $Date: 2002/01/23 18:59:12 $
+ * @version $Revision: 1.92 $ $Date: 2002/02/23 22:54:17 $
  */
 
 public class ActionServlet
@@ -381,8 +381,8 @@ public class ActionServlet
             log(internal.getMessage("finalizing"));
         }
 
-        destroyDataSources();
         destroyApplications();
+        destroyDataSources();
         destroyInternal();
         getServletContext().removeAttribute(Action.ACTION_SERVLET_KEY);
 
@@ -405,9 +405,11 @@ public class ActionServlet
         initServlet();
 
         // Initialize sub-applications as needed
+        getServletContext().setAttribute(Action.ACTION_SERVLET_KEY, this);
         ApplicationConfig ac = initApplicationConfig("", config);
         initApplicationMessageResources(ac);
         initApplicationDataSources(ac);
+        initApplicationPlugIns(ac);
         Enumeration names = getServletConfig().getInitParameterNames();
         while (names.hasMoreElements()) {
             String name = (String) names.nextElement();
@@ -419,9 +421,9 @@ public class ActionServlet
                 (prefix, getServletConfig().getInitParameter(name));
             initApplicationMessageResources(ac);
             initApplicationDataSources(ac);
+            initApplicationPlugIns(ac);
         }
         destroyConfigDigester();
-        getServletContext().setAttribute(Action.ACTION_SERVLET_KEY, this);
 
     }
 
@@ -625,15 +627,26 @@ public class ActionServlet
      */
     protected void destroyApplications() {
 
+        ArrayList values = new ArrayList();
         Enumeration names = getServletContext().getAttributeNames();
         while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
+            values.add(names.nextElement());
+        }
+        Iterator keys = values.iterator();
+        while (keys.hasNext()) {
+            String name = (String) keys.next();
             Object value = getServletContext().getAttribute(name);
             if (value instanceof ApplicationConfig) {
+                ApplicationConfig config = (ApplicationConfig) value;
                 try {
-                    ((ApplicationConfig) value).getProcessor().destroy();
+                    config.getProcessor().destroy();
                 } catch (Throwable t) {
                     ;
+                }
+                PlugIn plugIns[] = config.findPlugIns();
+                for (int i = 0; i < plugIns.length; i++) {
+                    int j = plugIns.length - (i + 1);
+                    plugIns[j].destroy();
                 }
             }
         }
@@ -827,6 +840,30 @@ public class ActionServlet
         if ("".equals(config.getPrefix())) {
             initDataSources();
         }
+
+    }
+
+
+    /**
+     * <p>Initialize the plug ins for the specified sub-application.</p>
+     *
+     * @param config ApplicationConfig information for this application
+     *
+     * @exception ServletException if initialization cannot be performed
+     */
+    protected void initApplicationPlugIns
+        (ApplicationConfig config) throws ServletException {
+
+        if (debug >= 1) {
+            log("Initializing application path '" + config.getPrefix() +
+                "' plug ins");
+        }
+
+        PlugIn plugIns[] = config.findPlugIns();
+        for (int i = 0; i < plugIns.length; i++) {
+            plugIns[i].init(config);
+        }
+
 
     }
 

@@ -156,7 +156,15 @@
     <action    path="/admin/removeMapping"
                type="org.apache.struts.actions.RemoveMappingAction"/>
 
-
   </action-mappings>
+
+
+  <!-- ========== Plug Ins Configuration ================================== -->
+
+  <plug-in className="org.apache.struts.webapp.example.DatabasePlugIn">
+      <set-property property="debug"    value="9"/>
+      <set-property property="pathname" value="/WEB-INF/database.xml"/>
+  </plug-in>
+
 
 </struts-config>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.8 2002/01/20 05:34:08 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/01/20 05:34:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.9 2002/02/23 22:54:18 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/02/23 22:54:18 $
  *
  * ====================================================================
  *
@@ -64,10 +64,12 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.PlugIn;
 import org.apache.struts.action.RequestProcessor;
  
 
@@ -82,7 +84,7 @@ import org.apache.struts.action.RequestProcessor;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/01/20 05:34:08 $
+ * @version $Revision: 1.9 $ $Date: 2002/02/23 22:54:18 $
  * @since Struts 1.1
  */
 
@@ -151,6 +153,13 @@ public class ApplicationConfig implements Serializable {
      * application, if any, keyed by the <code>key</code> property.
      */
     protected FastHashMap messageResources = new FastHashMap();
+
+
+    /**
+     * The set of configured plug in modules for this application,
+     * if any, in the order they were declared and configured.
+     */
+    protected ArrayList plugIns = new ArrayList();
 
 
     // ------------------------------------------------------------- Properties
@@ -349,6 +358,21 @@ public class ApplicationConfig implements Serializable {
 
 
     /**
+     * Add a newly configured {@link PlugIn} instance to the set of
+     * plug in modules for this application.
+     *
+     * @param plugIn The new configured plugIn module
+     */
+    public void addPlugIn(PlugIn plugIn) {
+
+        if (configured)
+            throw new IllegalStateException("Configuration is frozen");
+        plugIns.add(plugIn);
+
+    }
+
+
+    /**
      * Return the action configuration for the specified path, if any;
      * otherwise return <code>null</code>.
      *
@@ -496,6 +520,18 @@ public class ApplicationConfig implements Serializable {
             new MessageResourcesConfig[messageResources.size()];
         return ((MessageResourcesConfig[])
                 messageResources.values().toArray(results));
+
+    }
+
+
+    /**
+     * Return the configured plug in modules for this application.  If there
+     * are none, a zero-length array is returned.
+     */
+    public PlugIn[] findPlugIns() {
+
+        PlugIn results[] = new PlugIn[plugIns.size()];
+        return ((PlugIn[]) plugIns.toArray(results));
 
     }
 

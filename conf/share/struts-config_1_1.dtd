@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.11 2002/01/20 05:34:08 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.12 2002/02/23 22:54:17 craigmcc Exp $
 -->
 
 
@@ -85,7 +85,7 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*)>
+<!ELEMENT struts-config (data-sources?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
 
@@ -496,24 +496,19 @@
 <!ATTLIST message-resources parameter   CDATA           #REQUIRED>
 
 
-<!-- The "set-property" element specifies the name and value of an additional
-     JavaBeans configuration property whose setter method will be called
-     on the object that represents our surrounding element.  This is especially
-     useful when an extended implementation class (with additional properties)
-     is configured on the <global-forwards> or <action-mappings> elements.
-     The following attributes are defined:
+<!-- The "plug-in" element specifies the fully qualified class name of a
+     general purpose application plug-in module that receives notification
+     of application startup and shutdown events.  An instance of the
+     specified class is created for each element, and can be configured
+     with nested "set-property" elements.  The following attributes
+     are supported:
 
-     property        Name of the JavaBeans property whose setter method
-                     will be called.
-
-     value           String representation of the value to which this
-                     property will be set, after suitable type conversion
+     className       Fully qualified Java class name of the plug-in class
+                     (must implement org.apache.struts.PlugIn).
 -->
-<!ELEMENT set-property EMPTY>
-<!ATTLIST set-property   id             ID              #IMPLIED>
-<!ATTLIST set-property   property       %PropName;      #REQUIRED>
-<!ATTLIST set-property   value          CDATA           #REQUIRED>
-
+<!ELEMENT plug-in           (set-property*)>
+<!ATTLIST plug-in           id          ID              #IMPLIED>
+<!ATTLIST plug-in           className   %ClassName;     #REQUIRED>
 
 
 <!-- ========== Subordinate Elements ====================================== -->
@@ -522,9 +517,8 @@
 <!-- The "description" element contains descriptive (paragraph length) text
      about the surrounding element, suitable for use in GUI tools.
 -->
-<!ELEMENT description (#PCDATA)>
+<!ELEMENT description    (#PCDATA)>
 <!ATTLIST description    id             ID              #IMPLIED>
-
 
 
 <!-- The "display-name" element contains a short (one line) description of
@@ -538,7 +532,7 @@
      specify the location, relative to the Struts configuration file, for small
      and large images used to represent the surrounding element in GUI tools.
 -->
-<!ELEMENT icon (small-icon?, large-icon?)>
+<!ELEMENT icon           (small-icon?, large-icon?)>
 <!ATTLIST icon           id             ID              #IMPLIED>
 
 
@@ -546,14 +540,33 @@
      configuration file, of a resource containing a large (32x32 pixel)
      icon image.
 -->
-<!ELEMENT large-icon (%Location;)>
+<!ELEMENT large-icon     (%Location;)>
 <!ATTLIST large-icon     id             ID              #IMPLIED>
+
+
+<!-- The "set-property" element specifies the name and value of an additional
+     JavaBeans configuration property whose setter method will be called
+     on the object that represents our surrounding element.  This is especially
+     useful when an extended implementation class (with additional properties)
+     is configured on the <global-forwards> or <action-mappings> elements.
+     The following attributes are defined:
+
+     property        Name of the JavaBeans property whose setter method
+                     will be called.
+
+     value           String representation of the value to which this
+                     property will be set, after suitable type conversion
+-->
+<!ELEMENT set-property   EMPTY>
+<!ATTLIST set-property   id             ID              #IMPLIED>
+<!ATTLIST set-property   property       %PropName;      #REQUIRED>
+<!ATTLIST set-property   value          CDATA           #REQUIRED>
 
 
 <!-- The "small-icon" element specifies the location, relative to the Struts
      configuration file, of a resource containing a small (16x16 pixel)
      icon image.
 -->
-<!ELEMENT small-icon (%Location;)>
+<!ELEMENT small-icon     (%Location;)>
 <!ATTLIST small-icon     id             ID              #IMPLIED>
 

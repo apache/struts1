@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.6 2002/01/17 00:15:05 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2002/01/17 00:15:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.7 2002/02/23 22:54:18 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/02/23 22:54:18 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/01/17 00:15:05 $
+ * @version $Revision: 1.7 $ $Date: 2002/02/23 22:54:18 $
  * @since Struts 1.1
  */
 
@@ -249,6 +249,21 @@ public class ConfigRuleSet extends RuleSetBase {
 
         digester.addSetProperty
             ("struts-config/message-resources/set-property",
+             "property", "value");
+
+        digester.addObjectCreate
+            ("struts-config/plug-in",
+             null, // Class name MUST be specified in the element
+             "className");
+        digester.addSetProperties
+            ("struts-config/plug-in");
+        digester.addSetNext
+            ("struts-config/plug-in",
+             "addPlugIn",
+             "org.apache.struts.action.PlugIn");
+
+        digester.addSetProperty
+            ("struts-config/plug-in/set-property",
              "property", "value");
 
     }

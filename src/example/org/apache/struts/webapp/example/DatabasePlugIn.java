@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabaseServlet.java,v 1.4 2001/07/16 00:44:50 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/07/16 00:44:50 $
+ * $Header: /home/cvs/jakarta-struts/src/example/org/apache/struts/webapp/example/Attic/DatabasePlugIn.java,v 1.1 2002/02/23 22:54:17 craigmcc Exp $
+ * $Revision: 1.1 $
+ * $Date: 2002/02/23 22:54:17 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,29 +75,33 @@ import java.util.Hashtable;
 import java.util.MissingResourceException;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.digester.Digester;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.action.PlugIn;
+import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.util.MessageResources;
 
 
 /**
- * <strong>DatabaseServlet</strong> initializes and finalizes the persistent
- * storage of User and Subscription information for the Struts
- * Demonstration Application.
+ * <p><strong>DatabasePlugIn</strong> initializes and finalizes the
+ * persistent storage of User and Subscription information for the Struts
+ * Demonstration Application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/07/16 00:44:50 $
+ * @version $Revision: 1.1 $ $Date: 2002/02/23 22:54:17 $
  */
 
-public final class DatabaseServlet
-    extends HttpServlet {
+public final class DatabasePlugIn implements PlugIn {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The application configuration for our owning sub-application.
+     */
+    private ApplicationConfig config = null;
 
 
     /**
@@ -108,9 +112,26 @@ public final class DatabaseServlet
 
 
     /**
+     * The {@link ActionServlet} owning this application.
+     */
+    private ActionServlet servlet = null;
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
      * The debugging detail level for this servlet.
      */
     private int debug = 0;
+
+    public int getDebug() {
+        return (this.debug);
+    }
+
+    public void setDebug(int debug) {
+        this.debug = debug;
+    }
 
 
     /**
@@ -118,65 +139,59 @@ public final class DatabaseServlet
      */
     private String pathname = "/WEB-INF/database.xml";
 
+    public String getPathname() {
+        return (this.pathname);
+    }
 
-    // ---------------------------------------------------- HttpServlet Methods
+    public void setPathname(String pathname) {
+        this.pathname = pathname;
+    }
+
+
+    // --------------------------------------------------------- PlugIn Methods
 
 
     /**
-     * Gracefully shut down this database servlet, releasing any resources
+     * Gracefully shut down this database, releasing any resources
      * that were allocated at initialization.
      */
     public void destroy() {
 
 	if (debug >= 1)
-	    log("Finalizing database servlet");
+	    servlet.log("Finalizing database plug in");
 
         // NOTE:  We do not attempt to unload the database because there
         // is no portable way to do so.  Real applications will have used
         // a real database, with no need to unload it
 
 	// Remove the database from our application attributes
-	getServletContext().removeAttribute(Constants.DATABASE_KEY);
+	servlet.getServletContext().removeAttribute(Constants.DATABASE_KEY);
+        servlet = null;
+        config = null;
 
     }
 
 
     /**
-     * Initialize this servlet, including loading our initial database from
-     * persistent storage.  The following servlet initialization parameters
-     * are processed, with default values in square brackets:
-     * <ul>
-     * <li><strong>debug</strong> - The debugging detail level for this
-     *     servlet, which controls how much information is logged.  [0]
-     * <li><strong>pathname</strong> - Resource pathname to our persistent
-     *     storage ["/WEB-INF/database.xml"]
-     * </ul>
+     * Initialize and load our initial database from persistent storage.
+     *
+     * @param config The ApplicationConfig for our owning sub-application
      *
      * @exception ServletException if we cannot configure ourselves correctly
      */
-    public void init() throws ServletException {
+    public void init(ApplicationConfig config) throws ServletException {
 
-	// Process our servlet initialization parameters
-	String value;
-	value = getServletConfig().getInitParameter("debug");
-	try {
-	    debug = Integer.parseInt(value);
-	} catch (Throwable t) {
-	    debug = 0;
-	}
-	if (debug >= 1)
-	    log("Initializing database servlet");
-        value = getServletConfig().getInitParameter("pathname");
-        if (value != null)
-            pathname = value;
+        // Remember our associated configuration and servlet
+        this.config = config;
+        this.servlet = config.getServlet();
 
 	// Load our database from persistent storage
 	try {
 	    load();
-	    getServletContext().setAttribute(Constants.DATABASE_KEY,
-					     database);
+	    servlet.getServletContext().setAttribute(Constants.DATABASE_KEY,
+                                                     database);
 	} catch (Exception e) {
-	    log("Database load exception", e);
+	    servlet.log("Database load exception", e);
 	    throw new UnavailableException
 		("Cannot load database from '" + pathname + "'");
 	}
@@ -199,16 +214,6 @@ public final class DatabaseServlet
     }
 
 
-    /**
-     * Return the debugging detail level for this servlet.
-     */
-    public int getDebug() {
-
-	return (this.debug);
-
-    }
-
-
     // ------------------------------------------------------ Private Methods
 
 
@@ -225,10 +230,11 @@ public final class DatabaseServlet
 
 	// Acquire an input stream to our database file
 	if (debug >= 1)
-	    log("Loading database from '" + pathname + "'");
-        InputStream is = getServletContext().getResourceAsStream(pathname);
+	    servlet.log("Loading database from '" + pathname + "'");
+        InputStream is =
+            servlet.getServletContext().getResourceAsStream(pathname);
         if (is == null) {
-            log("No such resource available - loading empty database");
+            servlet.log("No such resource available - loading empty database");
             return;
         }
 	BufferedInputStream bis = new BufferedInputStream(is);
