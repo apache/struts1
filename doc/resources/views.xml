@@ -13,10 +13,10 @@
 -->
 <section name="Presentation Systems">
 <p><a href="http://it.cappuccinonet.com/strutscx"><b>StrutsCX: Struts with Castor XML and XSLT</b></a> by Bernhard Woehrlin</p>
-<p><a href="http://www.openroad.ca/opencode/"><b>Stxx</b></a> - Stxx is an extension to Struts, extending its existing functionality to help Action classes to return XML            that will be transformed by an XSL file.</p>
+<p><a href="http://stxx.sourceforge.net"><b>Stxx</b></a> - Stxx is an extension to Struts, extending its existing functionality to help Action classes build XML that will be transformed by technologies like XSL and <a href="http://jakarta.apache.org/velocity/anakia.html">Velocity (Anakia)</a>.</p>
 <p><a href="http://xsltgenerator.sourceforge.net/"><b>Struts XSLT Code Generator</b></a> by Shengmeng Liu - An XSLT based code generator for Struts, completely based on the XSLT transformation and a set of stylesheet files. Ideally, users can customize the stylesheet for each type of Struts files  to have templates of their own without having to access the source code and recompile it.</p>
 <p><a href="http://www.javaworld.com/javaworld/jw-02-2002/jw-0201-strutsxslt.html"><b>Boost Struts with XSLT and XML</b></a> By Julien Mercay and Gilbert Bouzeid.</p>
-<p><a href="http://husted.com/struts/resources/velstruts.zip"><b>Velocity-Tools / Struts</b></a> by the <a href="http://jakarta.apache.org/velocity">Velocity</a> Team. (WAR zipped for download).  Use Velocity templates with Struts 1.0 and beyond! This is the sample WAR from a recent <a href="http://cvs.apache.org/viewcvs/jakarta-velocity-tools/">CVS snapshot</a>t. Just autodeploy, and see for yourself!</p>
+<p><a href="http://jakarta.apache.org/velocity/tools/struts/"><b>VelocityStruts</b></a> by the <a href="http://jakarta.apache.org/velocity">Velocity</a> Team. The VelocityStruts sub-project of <a href="http://jakarta.apache.org/velocity/tools">Velocity Tools</a> integrates Velocity with Struts and enables the use of velocity templates interchangeably with JSP pages for the view layer.</p>
 </section>
 
 </chapter></body></document>
