@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetPropertyRule.java,v 1.2 2000/08/01 20:03:29 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetPropertyRule.java,v 1.3 2001/01/07 22:43:30 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/07 22:43:30 $
  *
  * ====================================================================
  * 
@@ -63,7 +63,7 @@
 package org.apache.struts.digester;
 
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import org.xml.sax.AttributeList;
 import org.apache.struts.util.BeanUtils;
 
@@ -73,7 +73,7 @@ import org.apache.struts.util.BeanUtils;
  * top of the stack, based on attributes with specified names.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:29 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/07 22:43:30 $
  */
 
 public final class SetPropertyRule extends Rule {
@@ -130,7 +130,7 @@ public final class SetPropertyRule extends Rule {
 	// Identify the actual property name and value to be used
 	String actualName = null;
 	String actualValue = null;
-	Hashtable values = new Hashtable();
+	HashMap values = new HashMap();
 	for (int i = 0; i < attributes.getLength(); i++) {
 	    String name = attributes.getName(i);
 	    String value = attributes.getValue(i);
