@@ -1,8 +1,8 @@
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.58 2003/04/23 00:31:09 dgraham Exp $
- * $Revision: 1.58 $
- * $Date: 2003/04/23 00:31:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.59 2003/04/25 03:17:16 dgraham Exp $
+ * $Revision: 1.59 $
+ * $Date: 2003/04/25 03:17:16 $
  *
  * ====================================================================
  *
@@ -65,8 +65,6 @@ package org.apache.struts.action;
 
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 import javax.servlet.ServletContext;
@@ -80,9 +78,9 @@ import javax.sql.DataSource;
 
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.taglib.html.Constants;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.TokenProcessor;
 
 
 /**
@@ -115,7 +113,8 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.58 $ $Date: 2003/04/23 00:31:09 $
+ * @author David Graham
+ * @version $Revision: 1.59 $ $Date: 2003/04/25 03:17:16 $
  */
 public class Action {
 
@@ -312,6 +311,12 @@ public class Action {
     public static final String TRANSACTION_TOKEN_KEY =
         Globals.TRANSACTION_TOKEN_KEY;
 
+    /**
+     * An instance of TokenProcessor to use for token functionality.
+     * @TODO We can make this variable protected and remove Action's token methods
+     * or leave it private and allow the token methods to delegate their calls.
+     */
+    private static TokenProcessor token = TokenProcessor.getInstance();
 
 
     // ----------------------------------------------------- Instance Variables
@@ -496,22 +501,7 @@ public class Action {
      * @param request The request we are processing
      */
     protected String generateToken(HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        try {
-            byte id[] = session.getId().getBytes();
-            byte now[] =
-                new Long(System.currentTimeMillis()).toString().getBytes();
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(id);
-            md.update(now);
-            return (toHex(md.digest()));
-        } catch (IllegalStateException e) {
-            return (null);
-        } catch (NoSuchAlgorithmException e) {
-            return (null);
-        }
-
+        return token.generateToken(request);
     }
 
 
@@ -657,9 +647,9 @@ public class Action {
      *
      * @param request The servlet request we are processing
      */
-    protected synchronized boolean isTokenValid(HttpServletRequest request) {
+    protected boolean isTokenValid(HttpServletRequest request) {
 
-        return (isTokenValid(request, false));
+        return token.isTokenValid(request, false);
 
     }
 
@@ -679,35 +669,11 @@ public class Action {
      * @param request The servlet request we are processing
      * @param reset Should we reset the token after checking it?
      */
-    protected synchronized boolean isTokenValid(
+    protected boolean isTokenValid(
         HttpServletRequest request,
         boolean reset) {
 
-        // Retrieve the current session for this request
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            return (false);
-        }
-        
-        // Retrieve the transaction token from this session, and
-        // reset it if requested
-        String saved = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
-        if (saved == null) {
-            return (false);
-        }
-        
-        if (reset) {
-            this.resetToken(request);
-        }
-        
-        // Retrieve the transaction token included in this request
-        String token = request.getParameter(Constants.TOKEN_KEY);
-        if (token == null) {
-            return (false);
-        }
-        
-        return (saved.equals(token));
-
+        return token.isTokenValid(request, reset);
     }
 
 
@@ -718,13 +684,8 @@ public class Action {
      *
      * @param request The servlet request we are processing
      */
-    protected synchronized void resetToken(HttpServletRequest request) {
-
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            return;
-        }
-        session.removeAttribute(Globals.TRANSACTION_TOKEN_KEY);
+    protected void resetToken(HttpServletRequest request) {
+        token.resetToken(request);
     }
 
 
@@ -783,14 +744,8 @@ public class Action {
      *
      * @param request The servlet request we are processing
      */
-    protected synchronized void saveToken(HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        String token = generateToken(request);
-        if (token != null) {
-            session.setAttribute(Globals.TRANSACTION_TOKEN_KEY, token);
-        }
-
+    protected void saveToken(HttpServletRequest request) {
+        token.saveToken(request);
     }
 
 
@@ -815,19 +770,10 @@ public class Action {
      * Convert a byte array to a String of hexadecimal digits and return it.
      *
      * @param buffer The byte array to be converted
+     * @deprecated This method will be removed in a release after Struts 1.1.
      */
     protected String toHex(byte buffer[]) {
-
-        StringBuffer sb = new StringBuffer();
-        String s = null;
-        for (int i = 0; i < buffer.length; i++) {
-            s = Integer.toHexString((int) buffer[i] & 0xff);
-            if (s.length() < 2)
-                sb.append('0');
-            sb.append(s);
-        }
-        return (sb.toString());
-
+        return token.toHex(buffer);
     }
 
 
