@@ -417,7 +417,7 @@
     <copy  todir="${catalina.home}/webapps/struts-upload">
       <fileset dir="${build.home}/upload"/>
     </copy>
-    <copy  todir="${catalina.home}/webapps/struts-upload/WEB-INF">
+    <copy  todir="${catalina.home}/webapps/struts-upload/WEB-INF/lib">
       <fileset dir="${xerces.home}" includes="xerces.jar"/>
     </copy>
   </target>
