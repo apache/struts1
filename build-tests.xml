@@ -96,6 +96,15 @@
     <!-- Context test is taking place on -->
     <property name="cactus.contextURL" value="${cactus.contextScheme}://${cactus.contextHost}:${cactus.contextPort}/${cactus.contextApp}"/>
 
+	<!-- This is only used if you execute "ant download-dependencies" -->
+    <property name="libdir" value="lib" />
+    	
+    <path id="downloaded.lib.classpath">
+      <fileset dir="${libdir}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${build.home}/library/${app.name}.jar"/>
@@ -114,6 +123,10 @@
       <pathelement location="${servlet.jar}"/>
       <pathelement location="${struts.jar}"/>
       <pathelement location="${antlr.jar}"/>
+      
+		<!-- this is harmless if not used -->
+		<path refid="downloaded.lib.classpath"/>
+		
     </path>
 
 <!-- ========== Executable Targets ======================================== -->

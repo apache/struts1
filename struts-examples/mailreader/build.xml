@@ -73,6 +73,14 @@
   <property name="test.haltonfailure"      value="true"/>
   <property name="test.runner"             value="junit.textui.TestRunner"/>
 
+	<!-- This is only used if you execute "ant download-dependencies" -->
+    <property name="libdir" value="../../lib" />
+
+    <path id="downloaded.lib.classpath">
+      <fileset dir="${libdir}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
 
   <!-- Compile Classpath -->
   <path id="compile.classpath">
@@ -84,6 +92,11 @@
     <pathelement location="${servlet.jar}"/>
     <pathelement location="${struts.jar}"/>
     <pathelement location="${build.home}/classes"/>
+
+      <!-- this is harmless if not used -->
+      <path refid="downloaded.lib.classpath"/>
+      
+
   </path>
 
 

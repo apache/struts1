@@ -157,6 +157,16 @@
 <!-- The target directory for building the unpacked web application -->
 <property name="webapp.target"         value="${build.home}/${webapp.name}" />
 
+
+	<!-- This is only used if you execute "ant download-dependencies" -->
+    <property name="libdir" value="lib" />
+    	
+    <path id="downloaded.lib.classpath">
+      <fileset dir="${libdir}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+
 <!-- The class path used for compiling this library -->
 <path id="classpath">
   <pathelement location="${commons-beanutils.jar}"/>
@@ -168,6 +178,11 @@
   <pathelement location="${struts.libs}/struts.jar"/>
   <pathelement location="${webapp.libs}"/>
   <pathelement path="${compile.classpath}"/>
+  
+	<!-- this is harmless if not used -->
+	<path refid="downloaded.lib.classpath"/>
+        
+
 </path>
 
 
