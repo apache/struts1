@@ -13,7 +13,7 @@
         <html:link action="simpleAction">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -22,7 +22,7 @@
         <html:link action="simpleAction" accesskey="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" accesskey="XXX">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" accesskey="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -226,7 +226,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramMap" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -236,7 +236,7 @@
    </bean:define>
    <bean:define id="thisMap" name="paramPropertyMap" property="map" type="java.util.Map"/>
    <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -246,7 +246,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramMap" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -256,7 +256,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramPropertyMap" property="map" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -266,7 +266,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramMap" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -276,7 +276,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramPropertyMap" property="map" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -286,7 +286,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramMap" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -296,7 +296,7 @@
     </bean:define>
     <bean:define id="thisMap" name="paramPropertyMap" property="map" type="java.util.Map"/>
     <bean:define id="TEST_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", thisMap, null, false)%>">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, thisMap, null, false)%>">Test Link</a>
     </bean:define>
 </logic:equal>
 

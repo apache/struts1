@@ -11,7 +11,7 @@
    </bean:define>
    <bean:define id="thisMap1" name="paramMapNoScope" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null,"/some/image.gif",  null, null, thisMap1, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null,"/some/image.gif",  null, null, null, thisMap1, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -21,7 +21,7 @@
    </bean:define>
    <bean:define id="thisMap2" name="paramPropertyMapNoScope" property="map" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap2, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap2, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -31,7 +31,7 @@
    </bean:define>
    <bean:define id="thisMap1" name="paramMapApplicationScope" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap1, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap1, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -41,7 +41,7 @@
    </bean:define>
    <bean:define id="thisMap2" name="paramPropertyMapApplicationScope" property="map" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap2, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap2, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -51,7 +51,7 @@
    </bean:define>
    <bean:define id="thisMap1" name="paramMapSessionScope" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap1, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap1, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -61,7 +61,7 @@
    </bean:define>
    <bean:define id="thisMap2" name="paramPropertyMapSessionScope" property="map" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap2, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap2, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -71,7 +71,7 @@
    </bean:define>
    <bean:define id="thisMap1" name="paramMapRequestScope" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap1, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap1, null, false)%>">
     </bean:define>
 </logic:equal>
 
@@ -81,7 +81,7 @@
    </bean:define>
    <bean:define id="thisMap2" name="paramPropertyMapRequestScope" property="map" type="java.util.Map"/>
    <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, thisMap2, null, false)%>">
+		<img src="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, "/some/image.gif", null, null, null, thisMap2, null, false)%>">
     </bean:define>
 </logic:equal>
 

@@ -11,7 +11,7 @@
         <html:link action="simpleAction" onblur="onblur">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onblur="onblur">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onblur="onblur">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -20,7 +20,7 @@
         <html:link action="simpleAction" onclick="onclick">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onclick="onclick">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onclick="onclick">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -29,7 +29,7 @@
         <html:link action="simpleAction" ondblclick="ondblclick">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" ondblclick="ondblclick">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" ondblclick="ondblclick">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -38,7 +38,7 @@
         <html:link action="simpleAction" onfocus="onfocus">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onfocus="onfocus">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onfocus="onfocus">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -47,7 +47,7 @@
         <html:link action="simpleAction" onkeydown="onkeydown">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onkeydown="onkeydown">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onkeydown="onkeydown">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -56,7 +56,7 @@
         <html:link action="simpleAction" onkeypress="onkeypress">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onkeypress="onkeypress">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onkeypress="onkeypress">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -65,7 +65,7 @@
         <html:link action="simpleAction" onkeyup="onkeyup">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onkeyup="onkeyup">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onkeyup="onkeyup">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -74,7 +74,7 @@
         <html:link action="simpleAction" onmousedown="onmousedown">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onmousedown="onmousedown">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onmousedown="onmousedown">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -83,7 +83,7 @@
         <html:link action="simpleAction" onmousemove="onmousemove">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onmousemove="onmousemove">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onmousemove="onmousemove">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -92,7 +92,7 @@
         <html:link action="simpleAction" onmouseout="onmouseout">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onmouseout="onmouseout">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onmouseout="onmouseout">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -101,7 +101,7 @@
         <html:link action="simpleAction" onmouseover="onmouseover">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onmouseover="onmouseover">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onmouseover="onmouseover">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -110,7 +110,7 @@
         <html:link action="simpleAction" onmouseup="onmouseup">Test Link</html:link>
     </bean:define>
     <bean:define id="TEST_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" onmouseup="onmouseup">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" onmouseup="onmouseup">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -126,7 +126,7 @@
 		<html:link action="simpleAction" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -136,7 +136,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -146,7 +146,7 @@
 		<html:link action="simpleAction" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -156,7 +156,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -166,7 +166,7 @@
 		<html:link action="simpleAction" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -176,7 +176,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -186,7 +186,7 @@
 		<html:link action="simpleAction" paramId="myParam" paramName="paramName">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -196,7 +196,7 @@
 			paramName="testingParamProperty" paramProperty="string">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
+		<a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?myParam=paramPropertyValue">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -207,7 +207,7 @@
         <html:link action="simpleAction" style="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" style="XXX">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" style="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -217,7 +217,7 @@
         <html:link action="simpleAction" styleClass="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" class="XXX">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" class="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -227,7 +227,7 @@
         <html:link action="simpleAction" styleId="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" id="XXX">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" id="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -237,7 +237,7 @@
         <html:link action="simpleAction" tabindex="4">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" tabindex="4">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" tabindex="4">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -247,7 +247,7 @@
         <html:link action="simpleAction" target="_new">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" target="_new">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" target="_new">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -257,7 +257,7 @@
         <html:link action="simpleAction" title="XXX">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" title="XXX">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" title="XXX">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -267,7 +267,7 @@
         <html:link action="simpleAction" titleKey="default.bundle.message">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>" title="Testing Message">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>" title="Testing Message">Test Link</a>
     </bean:define>
 </logic:equal>
 
@@ -277,7 +277,7 @@
         <html:link action="simpleAction" transaction="true">Test Link</html:link>
     </bean:define>
     <bean:define id="EXPECTED_RESULTS" toScope="page">
-        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, false)%>?org.apache.struts.taglib.html.TOKEN=Some_Token_Here">Test Link</a>
+        <a href="<%=org.apache.struts.taglib.TagUtils.getInstance().computeURL(pageContext, null, null, null, "simpleAction", null, null, null, false)%>?org.apache.struts.taglib.html.TOKEN=Some_Token_Here">Test Link</a>
     </bean:define>
 </logic:equal>
 
