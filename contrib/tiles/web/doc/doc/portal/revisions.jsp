@@ -2,12 +2,25 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 08&nbsp;oct. 2001</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>  
+            Correct bug&nbsp;"path overloaded when 
+        inheriting definition".</FONT>
+        <LI><FONT size=2> Add 
+        example "dynamic portal"</FONT>
+        <LI><FONT size=2>Add Tile Rss Channel (Thanks Ted 
+    Husted)</FONT></LI></UL></TD></TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 27&nbsp;sept. 2001</STRONG> </FONT></TD></TR>
   <TR>
     <TD>
       <UL>
         <LI><FONT size=2>  
-        Correct bug&nbsp;preventing definitions file tobe loaded when using 
+        Correct  
+        bug&nbsp;preventing definitions file to be loaded when using 
         latest commons-digester.jar.</FONT>
         <LI><FONT size=2>Remove component-config.tld 
         (replaced by tiles-config.tld).</FONT>
@@ -96,6 +109,6 @@
           </LI></UL></LI></UL></TD></TR>
   <TR>
     <TD><FONT size=2><STRONG>&nbsp;&nbsp; <A 
-      href="revisionsCont.html"><FONT 
+      href="doc/revisionsCont.html"><FONT 
       size=2><STRONG>more 
 ...</STRONG></FONT></A></STRONG></FONT></TD></TR></table>

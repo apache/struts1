@@ -1,22 +1,19 @@
 <table  width="100%">
 <tr>
-<th bgcolor="aqua"><font size="+1"><strong>News</STRONG></FONT></TH></TR>
+<th bgcolor="aqua"><font size="+1"><strong>News</strong></font></th></tr>
 <tr>
 <td>
-      <P><FONT color=#ff0000><STRONG><EM>Components 
-      </EM></STRONG></FONT>now becomes <FONT 
-      color=#ff0000><EM><STRONG>Tiles</STRONG></EM></FONT>.</P>
-      <P><FONT size=2>Integration with Struts gives the 
-      opportunity to rename <EM>Components 
-      </EM>to a less used name : 
-      "<STRONG><EM>Tiles</EM></STRONG>". This name was proposed in 
-      struts-dev by&nbsp;"Immanuel, Gidado-Yisa", after a weekend spent redoing 
-      a kitchen floor. </FONT></P>
-      <P><STRONG><EM>Tiles </EM></STRONG>/ <EM>Components </EM>integration with Struts is 
-started</P>
-      <P><FONT size=2>Java code 
-      package name has changed according to the new name "Tiles".</FONT></P>
+      <P><FONT color=#ff0000><EM><STRONG>New Example : 
+      Dynamic Portal <FONT 
+      color=#000000>(draft)<BR></FONT></STRONG></EM></FONT><FONT color=#000000 
+      size=2>An example of dynamic portal is shipped with distribution. It 
+      allows user to select and place Tiles in its portal, from a web 
+      browser.</FONT></P>
+      <P><STRONG><EM><FONT color=#ff0000>New Tiles : Rss 
+      Channel<BR></FONT></EM></STRONG><FONT color=#000000 size=2>This Tile 
+      allows to show an Rss Channel. It is possible to specify the Rss URL. This 
+      Tile is used in the dynamic portal example.</FONT></P>
       <P>
       <FONT size=2>
-   Updated 19 Jul. 
-      2001</FONT></P></TD></TR></TABLE>
+   Updated 08 Oct. 
+      2001</FONT></P></td></tr></table>
