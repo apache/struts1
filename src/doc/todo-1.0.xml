@@ -36,6 +36,9 @@
         organization.</p>
         [STRUTS-DEV, Gidado-Yisa Immanuel, 10/31/2000]
       </info>
+      <assigned>
+      Michael Schachter
+      </assigned>
     </task>
 
     <task name="Platform Specific Installation Notes">
@@ -44,6 +47,16 @@
         user experiences on a variety of application server and servlet
         container platforms.</p>
       </info>
+    </task>
+
+    <task name="Struts Resources">
+      <info>
+        <p>Integrate Ted Husted's web page containing available resources
+        about Struts into the standard documentation application.</p>
+      </info>
+      <assigned>
+      Michael Schachter
+      </assigned>
     </task>
 
     <task name="Struts Tutorial">
@@ -136,6 +149,9 @@
         "struts-form.xml" file (deprecated) with new class names to ease
         conversion.</p>
       </info>
+      <assigned>
+      Michael Schachter
+      </assigned>
     </task>
 
     <task name="Image Tag?">
@@ -165,6 +181,9 @@
         [STRUTS-DEV, Matthias Kerkhoff, 11/18/2000]
         [STRUTS-DEV, Eric, 12/15/2000]
       </info>
+      <assigned>
+      Michael Schachter
+      </assigned>
     </task>
 
     <task name="Update HTML Filtering">
