@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.10 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/ImportAttributeTag.java,v 1.11 2004/07/23 09:25:06 husted Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/07/23 09:25:06 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -139,10 +139,10 @@ public class ImportAttributeTag extends TagSupport {
      *
      * @exception JspException On errors processing tag.
      */
-  public int doStartTag() throws JspException
+public int doStartTag() throws JspException
     {
       // retrieve component context
-    ComponentContext compContext = (ComponentContext)pageContext.getAttribute( ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
+    ComponentContext compContext = (ComponentContext)pageContext.getAttribute(ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
     if( compContext == null )
         throw new JspException ( "Error - tag importAttribute : no tiles context found." );
 
@@ -156,7 +156,7 @@ public class ImportAttributeTag extends TagSupport {
         // Check if value exist and if we must send a runtime exception
       if( value == null )
         if(!isErrorIgnored)
-          throw new JspException ( "Error - tag importAttribute : property '"+ name + "' not found in context. Check tag syntax" );
+          throw new JspException ( "Error - tag importAttribute : property '"+  name + "' not found in context. Check tag syntax" );
          else
           return SKIP_BODY;
 
@@ -168,16 +168,28 @@ public class ImportAttributeTag extends TagSupport {
       while(names.hasNext())
         {
         String name = (String)names.next();
-        pageContext.setAttribute(name, compContext.getAttribute(name), scope);
+        if(name == null ) {
+          if(!isErrorIgnored)
+            throw new JspException ( "Error - tag importAttribute : encountered an attribute with key 'null'" );
+          else
+            return SKIP_BODY;
+        }
+
+        Object value = compContext.getAttribute(name);
+        // Check if value exist and if we must send a runtime exception
+        if( value == null ) {
+          if(!isErrorIgnored)
+            throw new JspException ( "Error - tag importAttribute : property '"+ name + "' has a value of 'null'" );
+          else
+            return SKIP_BODY;
+        }
+        pageContext.setAttribute(name, value, scope);
         } // end loop
-      } // end if
+      } // end else
 
       // Continue processing this page
     return SKIP_BODY;
     }
-
-
-
 
     /**
      * Clean up after processing this enumeration.
