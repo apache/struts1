@@ -35,10 +35,7 @@
 		My Errors go here:<html:errors property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header>
-<default_errors_prefix>My Errors Text
-<default_errors_suffix><default_errors_prefix>My Errors Text 2
-<default_errors_suffix><default_errors_footer>
+		My Errors go here:<default_errors_header><default_errors_prefix>My Errors Text<default_errors_suffix><default_errors_prefix>My Errors Text 2<default_errors_suffix><default_errors_footer>
 	</bean:define>
 </logic:equal>
 
@@ -69,10 +66,7 @@
 		My Errors go here:<html:errors bundle="alternate" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header>
-<alternate_errors_prefix>My Alternate Errors Text
-<alternate_errors_suffix><alternate_errors_prefix>My Alternate Errors Text 2
-<alternate_errors_suffix><alternate_errors_footer>
+		My Errors go here:<alternate_errors_header><alternate_errors_prefix>My Alternate Errors Text<alternate_errors_suffix><alternate_errors_prefix>My Alternate Errors Text 2<alternate_errors_suffix><alternate_errors_footer>
 	</bean:define>
 </logic:equal>
 
@@ -102,10 +96,7 @@
 		My Errors go here:<html:errors property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header_fr>
-<default_errors_prefix_fr>My Errors Text (fr)
-<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)
-<default_errors_suffix_fr><default_errors_footer_fr>
+		My Errors go here:<default_errors_header_fr><default_errors_prefix_fr>My Errors Text (fr)<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)<default_errors_suffix_fr><default_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -133,10 +124,7 @@
 		My Errors go here:<html:errors bundle="alternate" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header_fr>
-<alternate_errors_prefix_fr>My Alternate Errors Text (fr)
-<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)
-<alternate_errors_suffix_fr><alternate_errors_footer_fr>
+		My Errors go here:<alternate_errors_header_fr><alternate_errors_prefix_fr>My Alternate Errors Text (fr)<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)<alternate_errors_suffix_fr><alternate_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -167,10 +155,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header_fr>
-<default_errors_prefix_fr>My Errors Text (fr)
-<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)
-<default_errors_suffix_fr><default_errors_footer_fr>
+		My Errors go here:<default_errors_header_fr><default_errors_prefix_fr>My Errors Text (fr)<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)<default_errors_suffix_fr><default_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -197,10 +182,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" bundle="alternate" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header_fr>
-<alternate_errors_prefix_fr>My Alternate Errors Text (fr)
-<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)
-<alternate_errors_suffix_fr><alternate_errors_footer_fr>
+		My Errors go here:<alternate_errors_header_fr><alternate_errors_prefix_fr>My Alternate Errors Text (fr)<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)<alternate_errors_suffix_fr><alternate_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -227,10 +209,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header_fr>
-<default_errors_prefix_fr>My Errors Text (fr)
-<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)
-<default_errors_suffix_fr><default_errors_footer_fr>
+		My Errors go here:<default_errors_header_fr><default_errors_prefix_fr>My Errors Text (fr)<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)<default_errors_suffix_fr><default_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -258,10 +237,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" bundle="alternate" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header_fr>
-<alternate_errors_prefix_fr>My Alternate Errors Text (fr)
-<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)
-<alternate_errors_suffix_fr><alternate_errors_footer_fr>
+		My Errors go here:<alternate_errors_header_fr><alternate_errors_prefix_fr>My Alternate Errors Text (fr)<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)<alternate_errors_suffix_fr><alternate_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -297,10 +273,7 @@
 		My Errors go here:<html:errors name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header>
-<default_errors_prefix>My Errors Text
-<default_errors_suffix><default_errors_prefix>My Errors Text 2
-<default_errors_suffix><default_errors_footer>
+		My Errors go here:<default_errors_header><default_errors_prefix>My Errors Text<default_errors_suffix><default_errors_prefix>My Errors Text 2<default_errors_suffix><default_errors_footer>
 	</bean:define>
 </logic:equal>
 
@@ -327,10 +300,7 @@
 		My Errors go here:<html:errors bundle="alternate" name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header>
-<alternate_errors_prefix>My Alternate Errors Text
-<alternate_errors_suffix><alternate_errors_prefix>My Alternate Errors Text 2
-<alternate_errors_suffix><alternate_errors_footer>
+		My Errors go here:<alternate_errors_header><alternate_errors_prefix>My Alternate Errors Text<alternate_errors_suffix><alternate_errors_prefix>My Alternate Errors Text 2<alternate_errors_suffix><alternate_errors_footer>
 	</bean:define>
 </logic:equal>
 
@@ -357,10 +327,7 @@
 		My Errors go here:<html:errors name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header_fr>
-<default_errors_prefix_fr>My Errors Text (fr)
-<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)
-<default_errors_suffix_fr><default_errors_footer_fr>
+		My Errors go here:<default_errors_header_fr><default_errors_prefix_fr>My Errors Text (fr)<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)<default_errors_suffix_fr><default_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -388,10 +355,7 @@
 		My Errors go here:<html:errors bundle="alternate" name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header_fr>
-<alternate_errors_prefix_fr>My Alternate Errors Text (fr)
-<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)
-<alternate_errors_suffix_fr><alternate_errors_footer_fr>
+		My Errors go here:<alternate_errors_header_fr><alternate_errors_prefix_fr>My Alternate Errors Text (fr)<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)<alternate_errors_suffix_fr><alternate_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -428,10 +392,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header_fr>
-<default_errors_prefix_fr>My Errors Text (fr)
-<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)
-<default_errors_suffix_fr><default_errors_footer_fr>
+		My Errors go here:<default_errors_header_fr><default_errors_prefix_fr>My Errors Text (fr)<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)<default_errors_suffix_fr><default_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -458,10 +419,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" bundle="alternate" name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header_fr>
-<alternate_errors_prefix_fr>My Alternate Errors Text (fr)
-<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)
-<alternate_errors_suffix_fr><alternate_errors_footer_fr>
+		My Errors go here:<alternate_errors_header_fr><alternate_errors_prefix_fr>My Alternate Errors Text (fr)<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)<alternate_errors_suffix_fr><alternate_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -488,10 +446,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<default_errors_header_fr>
-<default_errors_prefix_fr>My Errors Text (fr)
-<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)
-<default_errors_suffix_fr><default_errors_footer_fr>
+		My Errors go here:<default_errors_header_fr><default_errors_prefix_fr>My Errors Text (fr)<default_errors_suffix_fr><default_errors_prefix_fr>My Errors Text 2 (fr)<default_errors_suffix_fr><default_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
@@ -519,10 +474,7 @@
 		My Errors go here:<html:errors locale="MY_LOCALE_KEY" bundle="alternate" name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
 	<bean:define id="TEST_RESULTS" toScope="page">
-		My Errors go here:<alternate_errors_header_fr>
-<alternate_errors_prefix_fr>My Alternate Errors Text (fr)
-<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)
-<alternate_errors_suffix_fr><alternate_errors_footer_fr>
+		My Errors go here:<alternate_errors_header_fr><alternate_errors_prefix_fr>My Alternate Errors Text (fr)<alternate_errors_suffix_fr><alternate_errors_prefix_fr>My Alternate Errors Text 2 (fr)<alternate_errors_suffix_fr><alternate_errors_footer_fr>
 	</bean:define>
 </logic:equal>
 
