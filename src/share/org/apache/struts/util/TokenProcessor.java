@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/TokenProcessor.java,v 1.1 2003/04/25 03:14:48 dgraham Exp $
- * $Revision: 1.1 $
- * $Date: 2003/04/25 03:14:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/TokenProcessor.java,v 1.2 2003/04/25 03:15:49 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/04/25 03:15:49 $
  *
  * ====================================================================
  *
