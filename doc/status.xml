@@ -52,7 +52,7 @@
 <section href="roadmap" name="Development Roadmap">
 
     <p class="version">
-    $Id: status.xml,v 1.54 2003/12/20 23:02:23 husted Exp $
+    $Id: status.xml,v 1.55 2003/12/22 21:52:50 mrdon Exp $
     </p>
 
     <p>
@@ -192,7 +192,7 @@
                 <ul>
                     <li>Consider new Request Processor, if available (which might be based on the Commons Chain
                         of Responsiblity package)</li>
-                    <li>Consider migration to an Action context (which also might be based no the Commons Chain
+                    <li>Consider migration to an Action context (which also might be based on the Commons Chain
                         of Responsiblity package)</li>
                     <li>Consider enhanced support for other platforms (2.3/1.2) if this can be accomplished by
                     specifying an alternate Request Processor</li>
