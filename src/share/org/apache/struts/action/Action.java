@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.9 2000/11/26 05:11:30 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/11/26 05:11:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.10 2000/12/06 19:24:03 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/12/06 19:24:03 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/11/26 05:11:30 $
+ * @version $Revision: 1.10 $ $Date: 2000/12/06 19:24:03 $
  */
 
 public class Action {
@@ -232,6 +232,36 @@ public class Action {
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Process the specified HTTP request, and create the corresponding
+     * HTTP response (or forward to another web component that will create
+     * it).  Return an <code>ActionForward</code> instance describing where
+     * and how control should be forwarded, or <code>null</code> if the
+     * response has already been completed.
+     *
+     * @deprecated Use the new perform() method without a servlet argument
+     *
+     * @param servlet The ActionServlet instance owning this Action
+     * @param mapping The ActionMapping used to select this instance
+     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are processing
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    public ActionForward perform(ActionServlet servlet,
+                                 ActionMapping mapping,
+                                 ActionForm form,
+                                 ServletRequest request,
+                                 ServletResponse response)
+        throws IOException, ServletException {
+
+        return (perform(mapping, form, request, response));
+
+    }
 
 
     /**
