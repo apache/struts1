@@ -147,7 +147,8 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
         if (log.isTraceEnabled()) {
             log.trace("  Marking request complete for '" + uri + "'");
         }
-        context.responseComplete();
+        // context.responseComplete();
+        context.release();
 
     }
 
