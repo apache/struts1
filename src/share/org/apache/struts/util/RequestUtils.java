@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.91 2003/03/02 00:22:40 dgraham Exp $
- * $Revision: 1.91 $
- * $Date: 2003/03/02 00:22:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.92 2003/03/11 02:04:19 dgraham Exp $
+ * $Revision: 1.92 $
+ * $Date: 2003/03/11 02:04:19 $
  *
  * ====================================================================
  *
@@ -115,7 +115,8 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.91 $ $Date: 2003/03/02 00:22:40 $
+ * @author David Graham
+ * @version $Revision: 1.92 $ $Date: 2003/03/11 02:04:19 $
  */
 
 public class RequestUtils {
@@ -268,14 +269,16 @@ public class RequestUtils {
         throws JspException {
 
         // Short circuit if no parameters are specified
-        if ((paramId == null) && (name == null) && !transaction)
+        if ((paramId == null) && (name == null) && !transaction) {
             return (null);
+        }
 
         // Locate the Map containing our multi-value parameters map
         Map map = null;
         try {
-            if (name != null)
+            if (name != null) {
                 map = (Map) lookup(pageContext, name, property, scope);
+            }
         } catch (ClassCastException e) {
             saveException(pageContext, e);
             throw new JspException(messages.getMessage("parameters.multi", name, property, scope));
@@ -286,11 +289,12 @@ public class RequestUtils {
 
         // Create a Map to contain our results from the multi-value parameters
         Map results = null;
-        if (map != null)
+        if (map != null) {
             results = new HashMap(map);
-        else
+        } else {
             results = new HashMap();
-
+        }
+        
         // Add the single-value parameter (if any)
         if ((paramId != null) && (paramName != null)) {
 
@@ -305,15 +309,16 @@ public class RequestUtils {
             if (paramValue != null) {
 
                 String paramString = null;
-                if (paramValue instanceof String)
+                if (paramValue instanceof String) {
                     paramString = (String) paramValue;
-                else
+                } else {
                     paramString = paramValue.toString();
-
+                }
+                
                 Object mapValue = results.get(paramId);
-                if (mapValue == null)
+                if (mapValue == null) {
                     results.put(paramId, paramString);
-                else if (mapValue instanceof String) {
+                } else if (mapValue instanceof String) {
                     String newValues[] = new String[2];
                     newValues[0] = (String) mapValue;
                     newValues[1] = paramString;
@@ -334,10 +339,12 @@ public class RequestUtils {
         if (transaction) {
             HttpSession session = pageContext.getSession();
             String token = null;
-            if (session != null)
+            if (session != null) {
                 token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
-            if (token != null)
+            }
+            if (token != null) {
                 results.put(Constants.TOKEN_KEY, token);
+            }
         }
 
         // Return the completed Map
@@ -801,17 +808,17 @@ public class RequestUtils {
         throws JspException {
 
         Object bean = null;
-        if (scope == null)
+        if (scope == null) {
             bean = pageContext.findAttribute(name);
-        else if (scope.equalsIgnoreCase("page"))
+        } else if (scope.equalsIgnoreCase("page")) {
             bean = pageContext.getAttribute(name, PageContext.PAGE_SCOPE);
-        else if (scope.equalsIgnoreCase("request"))
+        } else if (scope.equalsIgnoreCase("request")) {
             bean = pageContext.getAttribute(name, PageContext.REQUEST_SCOPE);
-        else if (scope.equalsIgnoreCase("session"))
+        } else if (scope.equalsIgnoreCase("session")) {
             bean = pageContext.getAttribute(name, PageContext.SESSION_SCOPE);
-        else if (scope.equalsIgnoreCase("application"))
+        } else if (scope.equalsIgnoreCase("application")) {
             bean = pageContext.getAttribute(name, PageContext.APPLICATION_SCOPE);
-        else {
+        } else {
             JspException e = new JspException(messages.getMessage("lookup.scope", scope));
             saveException(pageContext, e);
             throw e;
@@ -861,8 +868,9 @@ public class RequestUtils {
             saveException(pageContext, e);
             throw e;
         }
-        if (property == null)
+        if (property == null) {
             return (bean);
+        }
 
         // Locate and return the specified property
         try {
@@ -971,8 +979,9 @@ public class RequestUtils {
         }
 
         // Look up the requested Locale
-        if (locale == null)
+        if (locale == null) {
             locale = Globals.LOCALE_KEY;
+        }
         Locale userLocale = retrieveUserLocale(pageContext, locale);
 
         // Return the requested message
@@ -1104,13 +1113,15 @@ public class RequestUtils {
             String name = (String) names.nextElement();
             String stripped = name;
             if (prefix != null) {
-                if (!stripped.startsWith(prefix))
+                if (!stripped.startsWith(prefix)) {
                     continue;
+                }
                 stripped = stripped.substring(prefix.length());
             }
             if (suffix != null) {
-                if (!stripped.endsWith(suffix))
+                if (!stripped.endsWith(suffix)) {
                     continue;
+                }
                 stripped = stripped.substring(0, stripped.length() - suffix.length());
             }
             if (isMultipart) {
@@ -1177,8 +1188,9 @@ public class RequestUtils {
                         + iae.getMessage());
             }
 
-            if (multipartHandler != null)
+            if (multipartHandler != null) {
                 return multipartHandler;
+            }
         }
 
         ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
@@ -1329,14 +1341,15 @@ public class RequestUtils {
      */
     public static String printableURL(URL url) {
 
-        if (url.getHost() != null)
+        if (url.getHost() != null) {
             return (url.toString());
+        }
 
         String file = url.getFile();
         String ref = url.getRef();
-        if (ref == null)
+        if (ref == null) {
             return (file);
-        else {
+        } else {
             StringBuffer sb = new StringBuffer(file);
             sb.append('#');
             sb.append(ref);
@@ -1545,8 +1558,9 @@ public class RequestUtils {
         StringBuffer url = new StringBuffer();
         String scheme = request.getScheme();
         int port = request.getServerPort();
-        if (port < 0)
+        if (port < 0) {
             port = 80; // Work around java.net.URL bug
+        }
         url.append(scheme);
         url.append("://");
         url.append(request.getServerName());
@@ -1574,8 +1588,9 @@ public class RequestUtils {
         StringBuffer url = new StringBuffer();
         String scheme = request.getScheme();
         int port = request.getServerPort();
-        if (port < 0)
+        if (port < 0) {
             port = 80; // Work around java.net.URL bug
+        }
         url.append(scheme);
         url.append("://");
         url.append(request.getServerName());
@@ -1768,6 +1783,7 @@ public class RequestUtils {
     public static ModuleConfig getModuleConfig(
         HttpServletRequest request,
         ServletContext context) {
+            
         ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
         if (moduleConfig == null) {
             moduleConfig = (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
@@ -1849,10 +1865,12 @@ public class RequestUtils {
                     am.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(keys[i]));
             } else if (value instanceof ErrorMessages) {
                 String keys[] = ((ErrorMessages) value).getErrors();
-                if (keys == null)
+                if (keys == null) {
                     keys = new String[0];
-                for (int i = 0; i < keys.length; i++)
+                }
+                for (int i = 0; i < keys.length; i++) {
                     am.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
+                }
             } else if (value instanceof ActionMessages) {
                 am = (ActionMessages) value;
             } else {
@@ -1895,10 +1913,12 @@ public class RequestUtils {
                     errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
             } else if (value instanceof ErrorMessages) {
                 String keys[] = ((ErrorMessages) value).getErrors();
-                if (keys == null)
+                if (keys == null) {
                     keys = new String[0];
-                for (int i = 0; i < keys.length; i++)
+                }
+                for (int i = 0; i < keys.length; i++) {
                     errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
+                }
             } else if (value instanceof ActionErrors) {
                 errors = (ActionErrors) value;
             } else {
