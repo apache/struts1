@@ -193,6 +193,9 @@
         <strong>Action Package Changes</strong> [
         <code>org.apache.struts.action</code>]</p>
         <ul>
+            <li>2004-07-01 - TestDynaActionFormClass: Correct operation of static method calls.</li>
+        </ul>
+        <ul>
            <li>2004-06-26 - Action: Add getErrors, getMessages, addErrors, and AddMessages methods, to better manage error handling. </li>
         </ul>
         <ul>
@@ -275,6 +278,9 @@
         <strong>Contrib Packages</strong> [
         <code>/contrib</code>]</p>
         <ul>
+            <li>2004-06-29 - struts-chain: Wrap HttpServletRequest to ensure correct handling of URIs.</li>
+        </ul>
+        <ul>
             <li>2004-02-29 - struts-chain: Fix problem with large uploads being deleted if validation failed.</li>
         </ul>
         <ul>
@@ -343,6 +349,9 @@
         <p>
         <strong>HTML Taglib Package Changes</strong> [
         <code>org.apache.struts.taglib.html</code>]:</p>
+        <ul>
+            <li>2004-07-01 - JavascriptValidatorTag - Correct naming of JS methods when multiple forms are used.</li>
+        </ul>
         <ul>
           <li>2004-05-17 - OptionsCollectionTag,OptionsTag: Filter values as well as labels.</li>
         </ul>
