@@ -440,9 +440,11 @@
       <info>
       <p>Application-relative name (starting with a '/') of the web application
       resource to be dispatched, and whose response data is to be made
-      available as a bean.  <strong>DEPRECATED - Use the "page" attribute
-      instead</strong>.</p>
+      available as a bean.</p>
       </info>
+      <deprecated>
+      Use the "page" attribute instead.
+      </deprecated>
     </attribute>
 
     <attribute>
@@ -551,7 +553,7 @@
       <code>MessageResources</code> object containing our messages
       is stored.</p>
       </info>
-      <default>Action.MESSAGES_KEY</default>
+      <default>Globals.MESSAGES_KEY</default>
     </attribute>
 
     <attribute>
@@ -574,7 +576,7 @@
       <p>The name of the session scope bean under which our currently
       selected <code>Locale</code> object is stored.</p>
       </info>
-      <default>Action.LOCALE_KEY</default>
+      <default>Globals.LOCALE_KEY</default>
     </attribute>
 
     <attribute>
@@ -968,7 +970,7 @@
       <code>MessageResources</code> object containing our messages
       is stored.</p>
       </info>
-      <default>Action.MESSAGES_KEY</default>
+      <default>Globals.MESSAGES_KEY</default>
     </attribute>
 
     <attribute>
@@ -1070,7 +1072,7 @@
         <p>The name of the session scope bean under which our currently
         selected <code>Locale</code> object is stored.</p>
       </info>
-      <default>Action.LOCALE_KEY</default>
+      <default>Globals.LOCALE_KEY</default>
     </attribute>
 
     <attribute>

@@ -950,9 +950,9 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>By default the tag will retrieve the request scope bean it will
-         iterate over from the <code>Action.ERROR_KEY</code> constant string,
+         iterate over from the <code>Globals.ERROR_KEY</code> constant string,
          but if this attribute is set to 'true' the request scope bean
-         will be retrieved from the <code>Action.MESSAGE_KEY</code>
+         will be retrieved from the <code>Globals.MESSAGE_KEY</code>
          constant string.  Also if this is set to 'true', any value
          assigned to the name attribute will be ignored.
       </p>
@@ -1007,9 +1007,9 @@
       <rtexprvalue>true</rtexprvalue>
       <info>
       <p>By default the tag will retrieve the request scope bean it will
-         iterate over from the <code>Action.ERROR_KEY</code> constant string,
+         iterate over from the <code>Globals.ERROR_KEY</code> constant string,
          but if this attribute is set to 'true' the request scope bean
-         will be retrieved from the <code>Action.MESSAGE_KEY</code>
+         will be retrieved from the <code>Globals.MESSAGE_KEY</code>
          constant string.  Also if this is set to 'true', any value
          assigned to the name attribute will be ignored.
       </p>

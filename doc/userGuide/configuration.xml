@@ -787,7 +787,7 @@
         <strong>locale</strong> - If set to <code>true</code>, and there is a
         user session, identify and store an appropriate
         <code>java.util.Locale</code> object (under the standard key
-        identified by <code>Action.LOCALE_KEY</code>) in the user's session
+        identified by <code>Globals.LOCALE_KEY</code>) in the user's session
         if there is not a Locale object there already.
         [true]
         <em>DEPRECATED - Configure this using the "locale" attribute of

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.14 2003/09/11 21:31:24 sraeburn Exp $ -->
+<!-- $Id: struts.xsl,v 1.15 2003/09/17 18:54:25 sraeburn Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -268,6 +268,13 @@
 
       <xsl:apply-templates select="info"/>
 
+      <xsl:if test="since">
+        <p>Since:  <xsl:value-of select="since"/></p>
+      </xsl:if>
+      <xsl:if test="deprecated">
+        <p class="deprecated"><strong>DEPRECATED:</strong> <xsl:value-of select="deprecated"/></p>
+      </xsl:if>
+
       <xsl:if test="./attribute">
         <table class="tag-attributes">
          <thead>
@@ -285,6 +292,7 @@
 
   </xsl:template>
 
+
   <!-- Create the table of documentation for a tag -->
   <xsl:template match="attribute">
       <tr>
@@ -293,9 +301,15 @@
         </td>
         <td>
           <xsl:apply-templates select="info"/>
-          <xsl:variable name="required">
-            <xsl:value-of select="required"/>
-          </xsl:variable>
+          <xsl:if test="deprecated">
+            <p class="deprecated"><strong>DEPRECATED:</strong> <xsl:value-of select="deprecated"/></p>
+          </xsl:if>
+          <xsl:if test="since">
+            <p class="since">Since:  <xsl:value-of select="since"/></p>
+          </xsl:if>
+          <xsl:if test="default">
+            [<xsl:value-of select="default"/>]
+          </xsl:if>
           <xsl:if test="required='true'">
             [Required]
           </xsl:if>
@@ -305,8 +319,8 @@
         </td>
       </tr>
   </xsl:template>
-
-
+  
+  
   <!-- Process an tag info section -->
   <xsl:template match="info">
      <xsl:apply-templates/>

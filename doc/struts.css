@@ -144,6 +144,10 @@ thead {
 	clear: both;
 }
 
+.deprecated {
+	color: #FF0000;
+}
+
 .float-left {
 	float: left;
 }
@@ -158,6 +162,10 @@ thead {
 
 .right{
 	text-align: right;
+}
+
+.since {
+	font-style: italic;
 }
 
 .version {

@@ -992,7 +992,7 @@
                   <info>
                   Name of the request scope bean under which our error messages
                   have been stored.  If not present, the name specified by the
-                  <code>Action.ERROR_KEY</code> constant string will be used.
+                  <code>Globals.ERROR_KEY</code> constant string will be used.
                   </info>
                 </attribute>
 
@@ -2228,7 +2228,7 @@
             </info>
             <deprecated>
                 Creating a session is undesirable for apps that don't support them.  Use the lang
-                attribute to acheive the same functionality without creating a session.
+                attribute to achieve the same functionality without creating a session.
             </deprecated>
           </attribute>
 
@@ -2289,10 +2289,11 @@
                 <rtexprvalue>true</rtexprvalue>
                 <info>
                 <p>The alignment option for this image.</p>
-                <p>The alignment option for this image. The align attribute is
-                deprecated in HTML 4.x. The suggested alternative is to use CSS.
-                Please see http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.7.4 for more details.</p>
                 </info>
+                <deprecated>
+                    The align attribute is deprecated in HTML 4.x. The suggested alternative is to use CSS.
+                    Please see http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.7.4 for more details.
+                </deprecated>
         </attribute>
 
         <attribute>
@@ -2836,11 +2837,14 @@
                   <required>false</required>
                   <rtexprvalue>true</rtexprvalue>
                   <info>
-                  <p><strong>DEPRECATED</strong> - This attribute is not defined
-                  in the HTML 4.01 spec and will be removed in a future version of Struts.
+                  <p>
                   An image for people with low resolution graphics cards.
                   </p>
                   </info>
+                  <deprecated>
+                      This attribute is not defined in the HTML 4.01 spec and 
+                      will be removed in a future version of Struts.
+                  </deprecated>
                 </attribute>
 
                 <attribute>
@@ -3266,7 +3270,7 @@
             <info>
                 The &lt;script&gt; element will not contain a language attribute
                 when this is set to false.  The default is true but this property is ignored
-                in XHMTL mode.
+                in XHTML mode.
             </info>
             <since>Struts 1.2</since>
         </attribute>
@@ -3884,7 +3888,7 @@
                   <info>
                   Name of the bean in any scope under which our messages
                   have been stored.  If not present, the name specified by the
-                  <code>Action.ERROR_KEY</code> constant string will be used.
+                  <code>Globals.ERROR_KEY</code> constant string will be used.
                   </info>
                 </attribute>
 
@@ -3925,9 +3929,9 @@
                   <rtexprvalue>true</rtexprvalue>
                   <info>
                   By default the tag will retrieve the bean it will
-                  iterate over from the <code>Action.ERROR_KEY</code> constant string,
+                  iterate over from the <code>Globals.ERROR_KEY</code> constant string,
                   but if this attribute is set to 'true' the bean
-                  will be retrieved from the <code>Action.MESSAGE_KEY</code>
+                  will be retrieved from the <code>Globals.MESSAGE_KEY</code>
                   constant string.  Also if this is set to 'true', any value
                   assigned to the name attribute will be ignored.
                   </info>
