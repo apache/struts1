@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ErrorMessages.java,v 1.2 2000/06/29 22:24:45 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/29 22:24:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ErrorMessages.java,v 1.3 2000/10/12 21:51:47 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/10/12 21:51:47 $
  *
  * ====================================================================
  *
@@ -78,8 +78,10 @@ import java.util.Vector;
  *     other Struts components, call <code>getErrors()</code>.
  * </ul>
  *
+ * @deprecated Use org.apache.struts.action.ActionErrors instead
+ *
  * @author David Geary
- * @revision $Revision: 1.2 $ $Date: 2000/06/29 22:24:45 $
+ * @revision $Revision: 1.3 $ $Date: 2000/10/12 21:51:47 $
  */
 
 public class ErrorMessages {
