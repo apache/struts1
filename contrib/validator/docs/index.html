@@ -49,9 +49,10 @@
        </td>
        <!-- Body -->
        <td valign="top">
-          <p>The Validation Framework was made to work with 
-             <a href="http://jakarta.apache.org/struts">Struts</a> although it can be used to perform 
-             validation on any JavaBean (by using the Validator class).  It can perform basic 
+          <p>The Validation Framework is now based on the Commons Validator 
+             (<a href="http://jakarta.apache.org/commons">http://jakarta.apache.org/commons</a>).
+             Everything should work as it previously had  with 
+             <a href="http://jakarta.apache.org/struts">Struts</a>.  It can perform basic 
              validations to check if a field is required, matches a regular expression, 
              email, credit card, and server side type checking and date validation.  Different 
              validation rules can be defined for different locales.  The framework has basic support for 
@@ -60,28 +61,29 @@
              to the framework.  
           </p>
           <p>
-             I wanted to mention that any type of validation can be performed in a validation 
-             method.  There seems to be a conception in some e-mails that the framework is only based on regular 
-             expressions.  They can do a lot so they are used almost exclusively in the examples, but the type 
-             form shows validating some java primitives using standard java methods like Integer.parseInt, 
-             validating a range, validating a credit card number, and validating a date.
+             There is an optional config-rules parameter that the ValdidatorServlet can take.  This allows you 
+             to store your validator rules (validator definitions) in a separate file.  The standard file is 
+             available in the dist directory and is named validator-rules.xml.
           </p>
-          <p>The Struts Validator is going to be incorporated into Struts 1.1.  I'm working on finalizing 
-             any design and/or feature issues before this occurs.<BR>
-             &nbsp;&nbsp;&nbsp; Note: The 7/2/2001 release is the last release build with Struts 1.0.
-	  </p>
 	  <p>Feedback on bugs and suggestions are welcome.<BR>
 	     &nbsp;&nbsp;&nbsp;<a href="mailto:dwinterfeldt@apache.com">dwinterfeldt@yahoo.com</a>
 	  </p>
 	  <BR>
 	  <p>
-	     <font size=-1>Update 1/13/2002</font><BR>
+	     <font size=-1>Update 1/14/2002</font><BR>
 	     <ul>
 	        <li>Upgraded to use Commons Validator (http://jakarta.apache.org/commons).</li>
                 <li>Packages changed to fall under org.apache.struts.validator.</li>
                 <li>Documentation updated</li>
                 <li>Custom JSP Tags except for JavascriptValidatorTag have been removed.</li>
                 <li>GenericAction class and JDBC example have been removed.</li>
+                <li>
+                    Added config-rules parameter to the ValidatorServlet so validation rules 
+                    could be stored in a separate xml file.  The config parameter file 
+                    can still contain rules.  The file specified by config-rules will be loaded 
+                    first so the file specified by config can define or override any validator 
+                    elements necessary.
+                </li>
 	     </ul>
 	  </p>
 

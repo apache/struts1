@@ -50,13 +50,20 @@
        <!-- Body -->
        <td valign="top">
           <H2>Revision Info</H2>
-	   <font size=-1>Update 1/13/2002</font><BR>
+	   <font size=-1>Update 1/14/2002</font><BR>
 	   <ul>
 	      <li>Upgraded to use Commons Validator (http://jakarta.apache.org/commons).</li>
               <li>Packages changed to fall under org.apache.struts.validator.</li>
               <li>Documentation updated</li>
               <li>Custom JSP Tags except for JavascriptValidatorTag have been removed.</li>
               <li>GenericAction class and JDBC example have been removed.</li>
+              <li>
+                  Added config-rules parameter to the ValidatorServlet so validation rules 
+                  could be stored in a separate xml file.  The config parameter file 
+                  can still contain rules.  The file specified by config-rules will be loaded 
+                  first so the file specified by config can define or override any validator 
+                  elements necessary.
+              </li>
 	   </ul>
 	   <font size=-1>Update 10/18/2001 (using Struts 10/18/2001 source)</font><BR>
 	   <ul>

@@ -9,6 +9,10 @@ and version 1.2 of the Jakarta Regular Expression Package
      <servlet> 
         <servlet-name>validator</servlet-name> 
         <servlet-class>org.apache.struts.action.ValidatorServlet</servlet-class> 
+        <init-param>
+          <param-name>config-rules</param-name>
+          <param-value>/WEB-INF/validator-rules.xml</param-value>
+        </init-param>
         <init-param> 
           <param-name>config</param-name> 
           <param-value>/WEB-INF/validation.xml</param-value> 

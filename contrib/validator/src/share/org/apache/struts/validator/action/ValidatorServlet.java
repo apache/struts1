@@ -84,9 +84,14 @@ public class ValidatorServlet extends HttpServlet {
 
     /**
      * The context-relative path to our configuration resource.
-     */
+    */
     protected String config = "WEB-INF/validation.xml";
 
+    /**
+     * The context-relative path to our configuration resource of validator rules.
+    */
+    protected String configRules = "WEB-INF/validator-rules.xml";
+    
     /**
      * The debugging detail level for this servlet.
      */
@@ -202,26 +207,54 @@ public class ValidatorServlet extends HttpServlet {
      * @exception ServletException if we cannot initialize these resources
      */
     protected void initMapping() throws IOException, ServletException {
-	// Acquire an input stream to our database file
+	resources = new ValidatorResources();
 	
 	// Initialize the context-relative path to our configuration resources
 	String value = null;
-	value = getServletConfig().getInitParameter("config");
-	if (value != null)
-	    config = value;
-	if (debug >= 1)
-	    log("Loading validation file from '" + config + "'");
+	value = getServletConfig().getInitParameter("config-rules");
+	if (value != null) {
+	   configRules = value;
+	}
+	if (debug >= 1) {
+	   log("Loading validation rules file from '" + configRules + "'");
+	}
 
 	InputStream input = null;
-	input = getServletContext().getResourceAsStream(config);
-	if (input == null)
-	    throw new UnavailableException("Can't load Validator XML file.");
+	BufferedInputStream bis = null;
+	input = getServletContext().getResourceAsStream(configRules);
+	if (input != null) {
+	   bis = new BufferedInputStream(input);
 
-	BufferedInputStream bis = new BufferedInputStream(input);
+           try {
+              // pass in false so resources aren't processed 
+              // until second file is loaded
+              ValidatorResourcesInitializer.initialize(resources, bis, false);
+           } catch (Exception e) {
+              log("ValidatorServlet::initMapping - " + e.getMessage(), debug);
+           }
+	} else {
+	   log("Skipping validation rules file from '" + configRules + "'.  No stream could be opened.");	
+	}
+
+
+	value = getServletConfig().getInitParameter("config");
+	if (value != null) {
+	   config = value;
+	}
+	if (debug >= 1) {
+	   log("Loading validation file from '" + config + "'");
+	}
+
+	input = getServletContext().getResourceAsStream(config);
+	if (input == null) {
+	    throw new UnavailableException("Can't load Validator XML file.");
+	}
+
+	bis = new BufferedInputStream(input);
 
         try {
-           resources = ValidatorResourcesInitializer.initialize(bis, debug);
-           //  new HttpValidatorLog(getServletContext()), bis, debug);
+           // pass in true so resources are processed
+           ValidatorResourcesInitializer.initialize(resources, bis, true);
         } catch (Exception e) {
            log("ValidatorServlet::initMapping - " + e.getMessage(), debug);
         }

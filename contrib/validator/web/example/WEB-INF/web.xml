@@ -10,6 +10,10 @@
     <servlet-name>validator</servlet-name>
     <servlet-class>org.apache.struts.validator.action.ValidatorServlet</servlet-class>
     <init-param>
+      <param-name>config-rules</param-name>
+      <param-value>/WEB-INF/validator-rules.xml</param-value>
+    </init-param>
+    <init-param>
       <param-name>config</param-name>
       <param-value>/WEB-INF/validation.xml</param-value>
     </init-param>

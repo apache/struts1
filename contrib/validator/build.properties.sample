@@ -1,12 +1,33 @@
 # Properties related to the user's environment. 
 
+
+# The JAR file containing a recent nightly build of the Validator package
+# from the Jakarta Commons project.
 commons-validator.jar=d:/office/jakarta-commons/validator/dist/commons-validator.jar
+
+# The JAR file containing version 1.0 (or later) of the Beanutils package
+# from the Jakarta Commons project.
 commons-beanutils.jar=d:/java/lib/commons-beanutils.jar
+
+# The JAR file containing version 1.0 (or later) of the Collections package
+# from the Jakarta Commons project.
 commons-collections.jar=d:/java/lib/commons-collections.jar
+
+# The JAR file containing version 1.0 (or later) of the Digester package
+# from the Jakarta Commons project.
 commons-digester.jar=d:/java/lib/commons-digester.jar
+
+# The JAR file containing version 1.0 (or later) of the Logging package
+# from the Jakarta Commons project.
+commons-logging.jar=e:/software/commons-logging/commons-logging.jar
+
 struts.jar=d:/office/struts/jakarta-struts/target/library/struts.jar
 struts.tlds=d:/office/struts/jakarta-struts/target/library
+
+# The JAR file containing the Servlet API classes to compile against (either
+# version 2.2 or 2.3)
 servlet.jar=e:/tomcat3/lib/servlet.jar
+
 jdbc20ext.jar=d:/java/lib/jdbc2_0-stdext.jar
 regexp.jar=e:/software/regexp/jakarta-regexp-1.2.jar
 xerces.jar=e:/software/xerces/xerces.jar

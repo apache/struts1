@@ -24,8 +24,9 @@
   <property name="build.javadocs" value="${dist}/${docs}/api" />
   <property name="package.root" value="org/apache/struts/validator"/>
   <property name="package.example" value="${package.root}/example"/>
+  <property name="default.validator.rules" value="${dist}/validator-rules.xml"/>
 
-  <target name="prepare">
+  <target name="prepare" description="Creates default directories">
     <!-- Create the time stamp -->
     <tstamp/>
     <!-- Create the build directory structure used by compile -->
@@ -56,7 +57,7 @@
      <pathelement location="${xerces.jar}"/>
   </path>
                                                             
-  <target name="compile" depends="prepare">
+  <target name="compile" depends="prepare" description="Compile distribution classes.">
     <!-- Compile the java code from ${src} into ${build} -->
     <javac srcdir="${src}/${share}" 
            destdir="${build}">
@@ -64,7 +65,7 @@
     </javac>
   </target>
 
-  <target name="jar" depends="compile">
+  <target name="jar" depends="compile" description="Create distribution jar.">
     <!-- Create the ${dist}/lib directory -->
     <mkdir dir="${dist}" />
 
@@ -73,7 +74,7 @@
          basedir="${build}"/>
   </target>
 
-  <target name="compile_example" depends="jar">
+  <target name="compile_example" depends="jar" description="Compiles example classes">
     <!-- Compile the java code from ${src}/${example} into ${build} -->
     <javac srcdir="${src}/${example}" 
            destdir="${target}/${example}/${web.classes}">
@@ -81,7 +82,7 @@
     </javac>
   </target>
 
-  <target name="copy_example" depends="compile_example">
+  <target name="copy_example" depends="compile_example" description="Copies example files to target directory.">
      <copy todir="${target}/${example}/${web.classes}" >
        <fileset dir="${src}/${example}"
                 excludes="**/*.java" 
@@ -98,7 +99,7 @@
 
   </target>
     
-  <target name="war" depends="copy_example">
+  <target name="war" depends="copy_example" description="Create example web app's war.">
     <mkdir dir="${webapps}" />
      
     <mkdir dir="lib" />
@@ -107,8 +108,12 @@
     <copy file="${commons-beanutils.jar}" todir="lib"/>
     <copy file="${commons-collections.jar}" todir="lib"/>
     <copy file="${commons-digester.jar}" todir="lib"/>
+    <copy file="${commons-logging.jar}" todir="lib"/>
     <copy file="${regexp.jar}" todir="lib"/>
-
+    
+    <!-- default validation rules -->
+    <copy file="${default.validator.rules}" todir="${target}/${example}/WEB-INF"/>
+    
     <copy todir="${target}/${example}" >
       <fileset dir="${web}/${example}">
          <include name="**/**" />
