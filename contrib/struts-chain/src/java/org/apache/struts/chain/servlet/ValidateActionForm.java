@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ValidateActionForm.java,v 1.2 2003/08/31 22:42:45 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/08/31 22:42:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ValidateActionForm.java,v 1.3 2003/11/13 01:29:59 mrdon Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/11/13 01:29:59 $
  *
  * ====================================================================
  *
@@ -64,6 +64,8 @@ package org.apache.struts.chain.servlet;
 
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -76,14 +78,22 @@ import org.apache.struts.config.ActionConfig;
 /**
  * <p>Validate the properties of the form bean for this request.  If there are
  * any validation errors, execute the child commands in our chain; otherwise,
- * proceed normally.</p>
+ * proceed normally.  Also, if any errors are found and the request is a 
+ * multipart request, rollback the <code>MultipartRequestHandler</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/08/31 22:42:45 $
+ * @author Don Brown
+ * @version $Revision: 1.3 $ $Date: 2003/11/13 01:29:59 $
  */
 
 public class ValidateActionForm extends AbstractValidateActionForm {
 
+    // ------------------------------------------------------ Instance Variables
+
+
+    private static final Log log =
+        LogFactory.getLog(ValidateActionForm.class);    
+    
 
     // ------------------------------------------------------- Protected Methods
 
@@ -100,8 +110,20 @@ public class ValidateActionForm extends AbstractValidateActionForm {
                                     ActionForm actionForm) {
 
         ServletWebContext swcontext = (ServletWebContext) context;
-        return (actionForm.validate((ActionMapping) actionConfig,
+        ActionErrors errors = (actionForm.validate((ActionMapping) actionConfig,
                                     swcontext.getRequest()));
+        
+        // Special handling for multipart request
+        if ((errors == null) || errors.isEmpty()) {
+            if (actionForm.getMultipartRequestHandler() != null) {
+                if (log.isTraceEnabled()) {
+                    log.trace("  Rolling back multipart request");
+                }
+                actionForm.getMultipartRequestHandler().rollback();
+            }
+        }
+        
+        return errors;
 
     }
 

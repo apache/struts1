@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.4 2003/09/29 06:55:07 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/09/29 06:55:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.5 2003/11/13 01:29:59 mrdon Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/11/13 01:29:59 $
  *
  * ====================================================================
  *
@@ -73,6 +73,7 @@ import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.upload.MultipartRequestWrapper;
 
 import org.apache.commons.chain.Catalog;
 import org.apache.commons.chain.Command;
@@ -95,8 +96,9 @@ import org.apache.commons.logging.LogFactory;
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
  * @author Greg Reddin
+ * @author Don Brown
  *
- * @version $Revision: 1.4 $ $Date: 2003/09/29 06:55:07 $
+ * @version $Revision: 1.5 $ $Date: 2003/11/13 01:29:59 $
  * @since Struts 1.1
  */
 
@@ -173,6 +175,9 @@ public class ComposableRequestProcessor extends RequestProcessor {
                         HttpServletResponse response)
         throws IOException, ServletException {
 
+        // Wrap the request in the case of a multipart request
+        request = processMultipart(request);
+        
         // Create and populate a Context for this request
         ServletWebContext context = new ServletWebContext();
         context.initialize(getServletContext(), request, response);
@@ -197,6 +202,28 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
         // Release the context.
         context.release();
+    }
+    
+    /**
+     * If this is a multipart request, wrap it with a special wrapper.
+     * Otherwise, return the request unchanged.
+     *
+     * @param request The HttpServletRequest we are processing
+     */
+    protected HttpServletRequest processMultipart(HttpServletRequest request) {
+
+        if (!"POST".equalsIgnoreCase(request.getMethod())) {
+            return (request);
+        }
+        
+        String contentType = request.getContentType();
+        if ((contentType != null) &&
+            contentType.startsWith("multipart/form-data")) {
+            return (new MultipartRequestWrapper(request));
+        } else {
+            return (request);
+        }
+
     }
 
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PerformInclude.java,v 1.1 2003/10/25 00:02:33 mrdon Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/25 00:02:33 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PerformInclude.java,v 1.2 2003/11/13 01:29:59 mrdon Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/11/13 01:29:59 $
  *
  * ====================================================================
  *
@@ -63,11 +63,13 @@ package org.apache.struts.chain.servlet;
 
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.chain.AbstractPerformInclude;
 import org.apache.struts.chain.Constants;
+import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.RequestUtils;
 
 
@@ -76,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * include uri (if any).</p>
  *
  * @author Don Brown
- * @version $Revision: 1.1 $ $Date: 2003/10/25 00:02:33 $
+ * @version $Revision: 1.2 $ $Date: 2003/11/13 01:29:59 $
  */
 
 public class PerformInclude extends AbstractPerformInclude {
@@ -97,9 +99,15 @@ public class PerformInclude extends AbstractPerformInclude {
 
         ServletWebContext swcontext = (ServletWebContext) context;
         
+        // Get the underlying request in the case of a multipart wrapper
+        HttpServletRequest request = swcontext.getRequest();
+        if (request instanceof MultipartRequestWrapper) {
+            request = ((MultipartRequestWrapper) request).getRequest();
+        }
+        
         RequestDispatcher rd =
                 swcontext.getContext().getRequestDispatcher(uri);
-        rd.forward(swcontext.getRequest(), swcontext.getResponse());
+        rd.forward(request, swcontext.getResponse());
     }
 
 

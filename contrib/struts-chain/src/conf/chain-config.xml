@@ -4,7 +4,7 @@
     This file contains definitions of the standard Chain Of Responsibility
     chains that emulate Struts 1.x processing functionality.
 
-    $Id: chain-config.xml,v 1.8 2003/10/25 01:16:52 mrdon Exp $
+    $Id: chain-config.xml,v 1.9 2003/11/13 01:29:59 mrdon Exp $
 -->
 
 
@@ -58,7 +58,7 @@
            between the processXxx methods and the Commands that perform the
            corresponding functionality:
 
-           processMultipart        NOT SUPPORTED YET (so no file upload support)
+           processMultipart        Integrated into servlet and legacy classes
 
            processPath             SelectAction (which also does processMapping)
 

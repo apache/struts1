@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PopulateActionForm.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PopulateActionForm.java,v 1.2 2003/11/13 01:29:59 mrdon Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/11/13 01:29:59 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.chain.servlet;
 
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
+import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.AbstractPopulateActionForm;
@@ -71,10 +72,12 @@ import org.apache.struts.config.ActionConfig;
 
 
 /**
- * <p>Populate the form bean (if any) for this request.</p>
+ * <p>Populate the form bean (if any) for this request.  Sets the multipart
+ * class from the action config in the request attributes.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @author Don Brown
+ * @version $Revision: 1.2 $ $Date: 2003/11/13 01:29:59 $
  */
 
 public class PopulateActionForm extends AbstractPopulateActionForm {
@@ -89,6 +92,12 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
 
         ServletWebContext swcontext = (ServletWebContext) context;
         actionForm.reset((ActionMapping) actionConfig, swcontext.getRequest());
+        
+        // Set the multipart class
+        if (actionConfig.getMultipartClass() != null) {
+            swcontext.getRequestScope().put(Globals.MULTIPART_KEY,
+                                 actionConfig.getMultipartClass());
+        }
 
     }
 
