@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.3 2000/11/18 22:10:56 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/11/18 22:10:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.4 2000/12/30 02:19:30 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/12/30 02:19:30 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/11/18 22:10:56 $
+ * @version $Revision: 1.4 $ $Date: 2000/12/30 02:19:30 $
  */
 
 public class LinkTag extends TagSupport {
@@ -406,7 +406,17 @@ public class LinkTag extends TagSupport {
 	while (keys.hasNext()) {
 	    String key = (String) keys.next();
 	    Object value = map.get(key);
-	    if (value instanceof String[]) {
+            if (value == null) {
+                if (question)
+                    sb.append('&');
+                else {
+                    sb.append('?');
+                    question = true;
+                }
+                sb.append(key);
+                sb.append('=');
+                // Interpret null as "no value specified"
+	    } else if (value instanceof String[]) {
 		String values[] = (String[]) value;
 		for (int i = 0; i < values.length; i++) {
 		    if (question)
