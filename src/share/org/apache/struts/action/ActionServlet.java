@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.115 2002/07/23 01:17:02 craigmcc Exp $
- * $Revision: 1.115 $
- * $Date: 2002/07/23 01:17:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.116 2002/07/24 00:30:24 craigmcc Exp $
+ * $Revision: 1.116 $
+ * $Date: 2002/07/24 00:30:24 $
  *
  * ====================================================================
  *
@@ -95,6 +95,7 @@ import org.apache.commons.beanutils.converters.ShortConverter;
 import org.apache.commons.collections.FastHashMap;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
+import org.apache.commons.digester.RuleSet;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.ActionConfig;
@@ -195,6 +196,12 @@ import org.apache.struts.util.ServletContextWriter;
  * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize to process the application module configuration files. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
+ * <li><strong>rulesets</strong> - Comma-delimited list of fully qualified
+ *     classnames of additional <code>org.apache.commons.digester.RuleSet</code>
+ *     instances that should be added to the <code>Digester</code> that will
+ *     be processing <code>struts-config.xml</code> files.  By default, only
+ *     the <code>RuleSet</code> for the standard configuration elements is
+ *     loaded.  (Since Struts 1.1)<li>
  * <li><strong>validating</strong> - Should we use a validating XML parser to
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
@@ -294,7 +301,7 @@ import org.apache.struts.util.ServletContextWriter;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.115 $ $Date: 2002/07/23 01:17:02 $
+ * @version $Revision: 1.116 $ $Date: 2002/07/24 00:30:24 $
  */
 
 public class ActionServlet
@@ -1046,16 +1053,17 @@ public class ActionServlet
      * configure a corresponding ApplicationConfig object (which must be
      * pushed on to the evaluation stack before parsing begins).</p>
      *
+     * @exception ServletException if a Digester cannot be configured
      * @since Struts 1.1
      */
-    protected Digester initConfigDigester() {
+    protected Digester initConfigDigester() throws ServletException {
 
         // Do we have an existing instance?
         if (configDigester != null) {
             return (configDigester);
         }
 
-        // Create and return a new Digester instance
+        // Create a new Digester instance with standard capabilities
         configDigester = new Digester();
         configDigester.setDebug(detail);
         configDigester.setNamespaceAware(true);
@@ -1067,6 +1075,38 @@ public class ActionServlet
             if (url != null)
                 configDigester.register(registrations[i], url.toString());
         }
+
+        // Add any custom RuleSet instances that have been specified
+        String rulesets = getServletConfig().getInitParameter("rulesets");
+        if (rulesets == null) {
+            rulesets = "";
+        }
+        rulesets = rulesets.trim();
+        String ruleset = null;
+        while (rulesets.length() > 0) {
+            int comma = rulesets.indexOf(",");
+            if (comma < 0) {
+                ruleset = rulesets.trim();
+                rulesets = "";
+            } else {
+                ruleset = rulesets.substring(0, comma).trim();
+                rulesets = rulesets.substring(comma + 1).trim();
+            }
+            if (log.isDebugEnabled()) {
+                log.debug("Configuring custom Digester Ruleset of type " +
+                          ruleset);
+            }
+            try {
+                RuleSet instance = (RuleSet)
+                    RequestUtils.applicationInstance(ruleset);
+                configDigester.addRuleSet(instance);
+            } catch (Exception e) {
+                log.error("Exception configuring custom Digester RuleSet", e);
+                throw new ServletException(e);
+            }
+        }
+
+        // Return the completely configured Digester instance
         return (configDigester);
     }
 
