@@ -490,6 +490,12 @@
               zipfile="${upload.dir}/${upload.file.base}-lib.tar.gz"/>
         <gzip     src="${upload.dir}/${upload.file.base}-src.tar"
               zipfile="${upload.dir}/${upload.file.base}-src.tar.gz"/>
+        <delete>
+            <fileset dir="${upload.dir}" includes="*.tar"/>
+        </delete>
+        <checksum algorithm="MD5" fileext=".md5">
+            <fileset dir="${upload.dir}" includes="*.zip,*.gz"/>
+        </checksum>
     </target>
 
 <!--
