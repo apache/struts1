@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/util/Attic/TagUtils.java,v 1.2 2001/12/27 17:35:37 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/27 17:35:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/util/Attic/TagUtils.java,v 1.3 2002/03/22 17:37:03 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/03/22 17:37:03 $
  * $Author: cedric $
  *
  */
@@ -70,6 +70,10 @@ public class TagUtils {
       return ComponentConstants.COMPONENT_SCOPE;
       }
     else if( scopeName.equals("template") )
+      {
+      return ComponentConstants.COMPONENT_SCOPE;
+      }
+    else if( scopeName.equals("tile") )
       {
       return ComponentConstants.COMPONENT_SCOPE;
       }

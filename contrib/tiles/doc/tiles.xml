@@ -421,8 +421,8 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       Scope into which bean is searched. If not specified, method pageContext.findAttribute is used.
-	  Scope can be any JSP scope, 'component', or 'template'. 
-	  In these two later cases, bean is search in component/template context.
+	  Scope can be any JSP scope, 'tile', 'component', or 'template'. 
+	  In these three later cases, bean is search in tile/component/template context.
       </info>
     </attribute>
 
