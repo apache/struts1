@@ -6,18 +6,30 @@
 
 <web-app>
 
+<!--
+    <filter>
+        <filter-name>FilterRedirectory</filter-name>
+        <filter-class>
+            org.apache.cactus.server.FilterTestRedirector
+        </filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FilterRedirector</filter-name>
+        <url-pattern>/FilterRedirector</url-pattern>
+    </filter-mapping>
+-->
+
     <servlet>
         <servlet-name>ServletRedirector</servlet-name>
-        <servlet-class>org.apache.commons.cactus.server.ServletTestRedirector</servlet-class>
+        <servlet-class>
+            org.apache.cactus.server.ServletTestRedirector
+        </servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>JspRedirector</servlet-name>
-        <jsp-file>/test/redirector.jsp</jsp-file>
-        <init-param>
-          <param-name>param1</param-name>
-          <param-value>value1 used for testing</param-value>
-        </init-param>
+        <jsp-file>/jspRedirector.jsp</jsp-file>
     </servlet>
     
     <servlet-mapping>

@@ -20,8 +20,14 @@
 
         servlet.jar                   The servlet jar (either 2.2 or 2.3)
 
+        cactus.home                   The home directory of your Cactus
+                                      installation (version 1.3 required)
+
+        aspectjrt.jar                 The AspectJ runtime jar that is
+                                      included with Cactus 1.3
+
         cactus.jar                    The Cactus jar (either for Servlet API
-                                      2.2 or 2.3)
+                                      2.2 or 2.3).
 
         cactus.ant.jar                The Cactus custom Ant tasks jar
 
@@ -31,6 +37,9 @@
                                       is installed
 
         tomcat.home.40                The home directory of where Tomcat 4.0
+                                      is installed
+
+        tomcat.home.41                The home directory of where Tomcat 4.1
                                       is installed
 
         compile.debug                 The debug mode for compilation
@@ -75,9 +84,20 @@
     <!-- Compilation Classpath -->
     <path id="compile.classpath">
       <pathelement location="${build.home}/library/${app.name}.jar"/>
-      <pathelement location="${servlet.jar}"/>
+      <pathelement location="${build.home}/test/classes"/>
+      <pathelement location="${commons-beanutils.jar}"/>
+      <pathelement location="${commons-collections.jar}"/>
+      <pathelement location="${commons-dbcp.jar}"/>
+      <pathelement location="${commons-digester.jar}"/>
+      <pathelement location="${commons-httpclient.jar}"/>
+      <pathelement location="${commons-logging.jar}"/>
+      <pathelement location="${commons-pool.jar}"/>
+      <pathelement location="${commons-services.jar}"/>
+      <pathelement location="${commons-validator.jar}"/>
+      <pathelement location="${aspectjrt.jar}"/>
       <pathelement location="${cactus.jar}"/>
       <pathelement location="${junit.jar}"/>
+      <pathelement location="${servlet.jar}"/>
     </path>
 
 <!-- ========== Executable Targets ======================================== -->
@@ -89,7 +109,7 @@
     <target name="init">
 
         <taskdef name="runservertests"
-            classname="org.apache.commons.cactus.ant.RunServerTestsTask">
+            classname="org.apache.cactus.ant.RunServerTestsTask">
 
             <classpath>
                 <pathelement location="${cactus.ant.jar}"/>
@@ -130,7 +150,10 @@
             <classpath refid="compile.classpath"/>
         </javac>
         <copy todir="${out.test.dir}/classes">
-            <fileset dir="${src.test.dir}" includes="**/*.properties"/>
+            <fileset dir="${src.test.dir}" excludes="**/*.java"/>
+        </copy>
+        <copy todir="${out.test.dir}/classes">
+            <fileset dir="${conf.test.dir}" includes="**/*.properties"/>
         </copy>
 
     </target>
@@ -138,13 +161,31 @@
 <!--
         Prepare test war (for all servlet engines)
 -->
-    <target name="prepare.test.war" depends="compile.test" if="tomcat.home.32">
+    <target name="prepare.test.war" depends="compile.test">
 
         <!-- Copy needed libs in /lib -->
         <copy file="${build.home}/library/${app.name}.jar"
             todir="${out.test.dir}/lib"/>
-        <copy file="${junit.jar}" todir="${out.test.dir}/lib"/>
-        <copy file="${cactus.jar}" todir="${out.test.dir}/lib"/>
+        <copy file="${aspectjrt.jar}" todir="${out.test.dir}/lib"/>
+        <copy file="${junit.jar}"     todir="${out.test.dir}/lib"/>
+        <copy file="${log4j.jar}"     todir="${out.test.dir}/lib"/>
+        <copy file="${cactus.jar}"    todir="${out.test.dir}/lib"/>
+        <copy file="${commons-beanutils.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-collections.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-dbcp.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-digester.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-logging.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-pool.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-services.jar}"
+                                      todir="${out.test.dir}/lib"/>
+        <copy file="${commons-validator.jar}"
+                                      todir="${out.test.dir}/lib"/>
 
         <war warfile="${out.test.dir}/test.war"
              webxml="${conf.test.dir}/web.xml">
@@ -195,6 +236,7 @@
                 <include name="org/apache/struts/taglib/logic/Test*.class" />
               </fileset>
             </batchtest>
+
         </junit>
 
     </target>
@@ -281,7 +323,7 @@
     <target name="prepare.test.tomcat.40" depends="prepare.test.war" if="tomcat.home.40">
 
         <property name="out.tomcat.40.dir" value="${out.test.dir}/servers/tomcat40"/>
-        <filter token="out.tomcat.40.full.dir" value="${basedir}/${out.tomcat.40.dir}"/>
+        <filter token="out.tomcat.40.full.dir" value="${out.tomcat.40.dir}"/>
 
         <mkdir dir="${out.tomcat.40.dir}/webapps"/>
         <mkdir dir="${out.tomcat.40.dir}/conf"/>
@@ -322,14 +364,15 @@
 
         <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
             <jvmarg value="-Dcatalina.home=${tomcat.home.40}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.40}"/>
             <arg value="-config"/>
-            <arg value="${basedir}/${out.tomcat.40.dir}/conf/server.xml"/>
+            <arg value="${out.tomcat.40.dir}/conf/server.xml"/>
             <arg value="start"/>
             <classpath>
               <pathelement location="${java.home}/../lib/tools.jar"/>
               <fileset dir="${tomcat.home.40}">
                   <include name="bin/bootstrap.jar"/>
-                  <include name="server/catalina.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
               </fileset>
             </classpath>
         </java>
@@ -343,15 +386,122 @@
 
         <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
             <jvmarg value="-Dcatalina.home=${tomcat.home.40}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.40}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.40.dir}/conf/server.xml"/>
             <arg value="stop"/>
             <classpath>
               <fileset dir="${tomcat.home.40}">
                   <include name="bin/bootstrap.jar"/>
-                  <include name="server/catalina.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
               </fileset>
             </classpath>
         </java>
 
     </target>
+
+<!--
+        Prepare test directory structure for Tomcat 4.1 servlet engine
+-->
+    <target name="prepare.test.tomcat.41" depends="prepare.test.war" if="tomcat.home.41">
+
+        <property name="out.tomcat.41.dir" value="${out.test.dir}/servers/tomcat41"/>
+        <filter token="out.tomcat.41.full.dir" value="${out.tomcat.41.dir}"/>
+
+        <mkdir dir="${out.tomcat.41.dir}/webapps"/>
+        <mkdir dir="${out.tomcat.41.dir}/conf"/>
+
+	<!-- Delete old directory so new war is unzipped -->
+        <delete dir="${out.tomcat.41.dir}/webapps/test"/>
+
+        <!-- Copy war file -->
+        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.41.dir}/webapps"/>
+    
+        <!-- Copy configuration files -->
+        <copy file="${conf.test.dir}/tomcat41/server.xml"
+            todir="${out.tomcat.41.dir}/conf" filtering="on"/>
+
+    </target>
+
+<!--
+        Run unit tests on Tomcat 4.1 servlet engine
+-->
+    <target name="test.tomcat.41" depends="prepare.test.tomcat.41">
+
+        <!-- Start the servlet engine, wait for it to be started, run the
+             unit tests, stop the servlet engine, wait for it to be stopped.
+             The servlet engine is automatically stopped if the tests fail for
+             any reason.-->
+
+        <runservertests testURL="http://localhost:8080/test"
+            startTarget="start.tomcat.41"
+            stopTarget="stop.tomcat.41"
+            testTarget="run.test"/>
+
+    </target>
+
+<!--
+        Start Tomcat 4.1 servlet engine
+-->
+    <target name="start.tomcat.41">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.41}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.41}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.41.dir}/conf/server.xml"/>
+            <arg value="start"/>
+            <classpath>
+              <pathelement location="${java.home}/../lib/tools.jar"/>
+              <fileset dir="${tomcat.home.41}">
+                  <include name="bin/bootstrap.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+<!--
+        Stop Tomcat 4.1 servlet engine
+-->
+    <target name="stop.tomcat.41">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.41}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.41}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.41.dir}/conf/server.xml"/>
+            <arg value="stop"/>
+            <classpath>
+              <fileset dir="${tomcat.home.41}">
+                  <include name="bin/bootstrap.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+
+<!-- ================ Non-Cactus JUnit Based Tests ======================== -->
+
+
+    <target name="test.junit" depends="compile.test"
+     description="Run all non-Cactus based JUnit tests">
+
+      <junit printsummary="yes" haltonfailure="no" haltonerror="no" fork="yes">
+
+        <!-- JUnit Configuration Options -->
+        <classpath refid="compile.classpath"/>
+        <formatter  type="plain" usefile="false"/>
+
+        <!-- Initiate test executions -->
+        <test       name="org.apache.struts.config.TestApplicationConfig"/>
+
+      </junit>
+
+    </target>
+
 
 </project>

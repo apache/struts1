@@ -1,4 +1,5 @@
-<%@page import="org.apache.cactus.server.*" session="true" %><%
+<%@page import="org.apache.cactus.server.*,
+                org.apache.cactus.util.log.LogService" session="true" %><%
 
     /**                                                
      *                                                 
@@ -16,15 +17,22 @@
      * JspWriter).
      */
 
-    JspTestCaller caller = new JspTestCaller();
+    /**
+     * Initialise logging if not already initialised
+     */
+    if (!LogService.getInstance().isInitialized())
+    {
+        LogService.getInstance().init("/log_server.properties");
+    }
 
     JspImplicitObjects objects = new JspImplicitObjects();
-    objects.m_Config = config;
-    objects.m_Request = request;
-    objects.m_Response = response;
-    objects.m_PageContext = pageContext;
-    objects.m_JspWriter = out;
+    objects.setHttpServletRequest(request);
+    objects.setHttpServletResponse(response);
+    objects.setServletConfig(config);
+    objects.setServletContext(application);
+    objects.setJspWriter(out);
+    objects.setPageContext(pageContext);
 
-    caller.doTest(objects);
-
+    JspTestRedirector redirector = new JspTestRedirector();
+    redirector.doGet(objects);
 %>

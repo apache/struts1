@@ -226,7 +226,7 @@ public class TestNotPresentTag extends JspTestCase {
     /**
      * Create cookie for testCookiePresent method test.
     */
-    public void beginCookiePresent(ServletTestRequest testRequest) {
+    public void beginCookiePresent(WebRequest testRequest) {
        testRequest.addCookie(COOKIE_KEY, "cookie value");
     }
 
@@ -257,7 +257,7 @@ public class TestNotPresentTag extends JspTestCase {
     /**
      * Create header for testHeaderPresent method test.
     */
-    public void beginHeaderPresent(ServletTestRequest testRequest) {
+    public void beginHeaderPresent(WebRequest testRequest) {
        testRequest.addHeader(HEADER_KEY, "header value");
     }
 
@@ -288,7 +288,7 @@ public class TestNotPresentTag extends JspTestCase {
     /**
      * Create parameter for testParameterPresent method test.
     */
-    public void beginParameterPresent(ServletTestRequest testRequest) {
+    public void beginParameterPresent(WebRequest testRequest) {
        testRequest.addParameter(PARAMETER_KEY, "parameter value");
     }
 

@@ -8,6 +8,11 @@
 
     <Engine name="Standalone" defaultHost="localhost" debug="0">
 
+      <Logger className="org.apache.catalina.logger.FileLogger"
+              directory="@out.tomcat.40.full.dir@"
+                 prefix="cactus_test"
+                 suffix=".log"/>
+
       <Realm className="org.apache.catalina.realm.MemoryRealm" />
 
       <Host name="localhost" debug="0" appBase="@out.tomcat.40.full.dir@/webapps">
