@@ -208,23 +208,6 @@
       </properties>
     </dependency>
     <dependency>
-      <!--
-                    Note that this version of commons-validator is not yet
-                    served from the iBiblio repository.  You can download
-                    a distribution from http://www.apache.org/~rleland/ValidatorAlpha/1.1.1/
-                    or build it from the CVS repository.  (With Maven, you can use
-                    the goal jar:install to build a jar and put it in your Maven repository.)
-
-                    If you download the binary, don't forget to rename to include the version number
-                    (from "commons-validator.jar" to "commons-validator-1.1.1.jar"
-
-                    If you build it from the CVS repository, you will probably end up with
-                    version 1.1.2-dev.  You can tell Maven to use that version with Struts
-                    by editing your "build.properties" file in the root of your local
-                    copy of the Struts CVS distribution.  Include these two lines:
-                    maven.jar.override=on
-                    maven.jar.commons-validator=1.1.2-dev
-                  -->
       <groupId>commons-validator</groupId>
       <artifactId>commons-validator</artifactId>
       <version>1.1.1</version>
