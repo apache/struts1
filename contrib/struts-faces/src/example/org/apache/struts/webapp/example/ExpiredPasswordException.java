@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/ExpiredPasswordException.java,v 1.1 2003/03/07 03:22:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/07 03:22:42 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/example/org/apache/struts/webapp/example/ExpiredPasswordException.java,v 1.2 2003/07/27 06:36:33 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/07/27 06:36:33 $
  *
  * ====================================================================
  *
@@ -62,7 +62,7 @@
 
 package org.apache.struts.webapp.example;
 
-import org.apache.struts.util.AppException;
+import org.apache.struts.util.ModuleException;
 
 /**
  * Example of an application-specific exception for which a handler
@@ -70,7 +70,7 @@ import org.apache.struts.util.AppException;
  */
 
 
-public class ExpiredPasswordException extends AppException {
+public class ExpiredPasswordException extends ModuleException {
 
 
     /**
