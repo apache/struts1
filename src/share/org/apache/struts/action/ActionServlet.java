@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.170 2003/11/27 05:38:53 husted Exp $
- * $Revision: 1.170 $
- * $Date: 2003/11/27 05:38:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.171 2003/12/18 02:59:33 husted Exp $
+ * $Revision: 1.171 $
+ * $Date: 2003/12/18 02:59:33 $
  *
  * ====================================================================
  *
@@ -142,7 +142,7 @@ import org.xml.sax.SAXException;
  *     component of an MVC architecture.</li>
  * <li>Instead of producing the next page of the user interface directly,
  *     action classes will generally use the
- *     <code>RequestDispatcher.forward()</code> facility of the servlet API
+ *     <code>RequestDispatcher.forward</code> facility of the servlet API
  *     to pass control to an appropriate JSP page to produce the next page
  *     of the user interface.</li>
  * </ul>
@@ -162,10 +162,11 @@ import org.xml.sax.SAXException;
  * <li>Optionally populate the properties of an <code>ActionForm</code> bean
  *     associated with this mapping.</li>
  * <li>Call the <code>execute</code> method of this action class, passing
- *     on a reference to the mapping that was used (thereby providing access
- *     to the underlying ActionServlet and ServletContext, as well as any
- *     specialized properties of the mapping itself), and the request and
- *     response that were passed to the controller by the servlet container.
+ *     on a reference to the mapping that was used, the relevant form-bean
+ *     (if any), and the request and the response that were passed to the
+ *     controller by the servlet container (thereby providing access to any
+ *     specialized properties of the mapping itself as well as to the
+ *     ServletContext).
  *     </li>
  * </ul>
  *
@@ -173,9 +174,7 @@ import org.xml.sax.SAXException;
  * on the following servlet initialization parameters, which you will specify
  * in the web application deployment descriptor (<code>/WEB-INF/web.xml</code>)
  * for your application.  Subclasses that specialize this servlet are free to
- * define additional initialization parameters. Several of these were
- * deprecated between the 1.0 and 1.1 releases. The deprecated parameters
- * are listed after the nominal parameters.</p>
+ * define additional initialization parameters. </p>
  * <ul>
  * <li><strong>config</strong> - Comma-separated list of context-relative
  *     path(s) to the XML resource(s) containing the configuration information
@@ -204,35 +203,12 @@ import org.xml.sax.SAXException;
  * <li><strong>validating</strong> - Should we use a validating XML parser to
  *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
- * <p>The following parameters may still be used with the Struts 1.1 release but
- * are <b>deprecated</b>.
- * <ul>
- * <li><strong>formBean</strong> - The Java class name of the ActionFormBean
- *     implementation to use [org.apache.struts.action.ActionFormBean].
- *     <em>DEPRECATED - Configure this using the "className" attribute
- *     of each &lt;form-bean&gt; element.</em></li>
- * <li><strong>forward</strong> - The Java class name of the ActionForward
- *     implementation to use [org.apache.struts.action.ActionForward].
- *     Two convenient classes you may wish to use are:
- *     <ul>
- *     <li><em>org.apache.struts.action.ForwardingActionForward</em> -
- *         Subclass of <code>org.apache.struts.action.ActionForward</code>
- *         that defaults the <code>redirect</code> property to
- *         <code>false</code> (same as the ActionForward default value).
- *     <li><em>org.apache.struts.action.RedirectingActionForward</em> -
- *         Subclass of <code>org.apache.struts.action.ActionForward</code>
- *         that defaults the <code>redirect</code> property to
- *         <code>true</code>.
- *     </ul>
- *     <em>DEPRECATED - Configure this using the "className" attribute of
- *     each &lt;forward&gt; element.</em></li>
- * </ul>
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.170 $ $Date: 2003/11/27 05:38:53 $
+ * @version $Revision: 1.171 $ $Date: 2003/12/18 02:59:33 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -241,67 +217,72 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Comma-separated list of context-relative path(s) to our configuration
-     * resource(s) for the default module.
+     * <p>Comma-separated list of context-relative path(s) to our configuration
+     * resource(s) for the default module.</p>
      */
     protected String config = "/WEB-INF/struts-config.xml";
 
 
     /**
-     * The Digester used to produce ModuleConfig objects from a
-     * Struts configuration file.
+     * <p>The Digester used to produce ModuleConfig objects from a
+     * Struts configuration file.</p>
+     *
      * @since Struts 1.1
      */
     protected Digester configDigester = null;
 
 
     /**
-     * The flag to request backwards-compatible conversions for form bean
-     * properties of the Java wrapper class types.
+     * <p>The flag to request backwards-compatible conversions for form bean
+     * properties of the Java wrapper class types.</p>
+     *
      * @since Struts 1.1
      */
     protected boolean convertNull = false;
 
 
     /**
-     * The JDBC data sources that has been configured for this module,
+     * <p>The JDBC data sources that has been configured for this module,
      * if any, keyed by the servlet context attribute under which they are
-     * stored.
+     * stored.</p>
      */
     protected FastHashMap dataSources = new FastHashMap();
 
+
     /**
-     * The resources object for our internal resources.
+     * <p>The resources object for our internal resources.</p>
      */
     protected MessageResources internal = null;
 
 
     /**
-     * The Java base name of our internal resources.
+     * <p>The Java base name of our internal resources.</p>
      * @since Struts 1.1
      */
     protected String internalName = "org.apache.struts.action.ActionResources";
 
 
     /**
-     * Commons Logging instance.
+     * <p>Commons Logging instance.</p>
+     *
      * @since Struts 1.1
      */
     protected static Log log = LogFactory.getLog(ActionServlet.class);
 
 
     /**
-     * The <code>RequestProcessor</code> instance we will use to process
-     * all incoming requests.
+     * <p>The <code>RequestProcessor</code> instance we will use to process
+     * all incoming requests.</p>
+     *
      * @since Struts 1.1
      */
     protected RequestProcessor processor = null;
 
 
     /**
-     * The set of public identifiers, and corresponding resource names, for
+     * <p>The set of public identifiers, and corresponding resource names, for
      * the versions of the configuration file DTDs that we know about.  There
-     * <strong>MUST</strong> be an even number of Strings in this list!
+     * <strong>MUST</strong> be an even number of Strings in this list!</p>
      */
     protected String registrations[] = {
         "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN",
@@ -318,15 +299,15 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * The URL pattern to which we are mapped in our web application
-     * deployment descriptor.  FIXME - multiples???
+     * <p>The URL pattern to which we are mapped in our web application
+     * deployment descriptor.</p>
      */
-    protected String servletMapping = null;
+    protected String servletMapping = null; // :FIXME: - multiples?
 
 
     /**
-     * The servlet name under which we are registered in our web application
-     * deployment descriptor.
+     * <p>The servlet name under which we are registered in our web application
+     * deployment descriptor.</p>
      */
     protected String servletName = null;
 
@@ -335,8 +316,8 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Gracefully shut down this controller servlet, releasing any resources
-     * that were allocated at initialization.
+     * <p>Gracefully shut down this controller servlet, releasing any resources
+     * that were allocated at initialization.</p>
      */
     public void destroy() {
 
@@ -347,8 +328,6 @@ public class ActionServlet extends HttpServlet {
         destroyModules();
         destroyInternal();
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
-
-        // FIXME - destroy ModuleConfig and message resource instances
 
         // Release our LogFactory and Log instances (if any)
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -361,7 +340,7 @@ public class ActionServlet extends HttpServlet {
             ; // Servlet container doesn't have the latest version
             ; // of commons-logging-api.jar installed
             
-            // FIXME Why is this dependent on the container's version of commons-logging?
+            // :FIXME: Why is this dependent on the container's version of commons-logging?
             // Shouldn't this depend on the version packaged with Struts?
         }
 
@@ -369,9 +348,9 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Initialize this servlet.  Most of the processing has been factored into
+     * <p>Initialize this servlet.  Most of the processing has been factored into
      * support methods so that you can override particular functionality at a
-     * fairly granular level.
+     * fairly granular level.</p>
      *
      * @exception ServletException if we cannot configure ourselves correctly
      */
@@ -411,9 +390,10 @@ public class ActionServlet extends HttpServlet {
     }
     
     /**
-     * Saves a String[] of module prefixes in the ServletContext under 
+     * <p>Saves a String[] of module prefixes in the ServletContext under
      * Globals.MODULE_PREFIXES_KEY.  <strong>NOTE</strong> -
-     * the "" prefix for the default module is not included in this list.
+     * the "" prefix for the default module is not included in this list.</p>
+     *
      * @param context The servlet context.
      * @since Struts 1.2
      */
@@ -439,7 +419,7 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Process an HTTP "GET" request.
+     * <p>Process an HTTP "GET" request.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -457,7 +437,7 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Process an HTTP "POST" request.
+     * <p>Process an HTTP "POST" request.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -478,8 +458,8 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Remember a servlet mapping from our web application deployment
-     * descriptor, if it is for this servlet.
+     * <p>Remember a servlet mapping from our web application deployment
+     * descriptor, if it is for this servlet.</p>
      *
      * @param servletName The name of the servlet being mapped
      * @param urlPattern The URL pattern to which this servlet is mapped
@@ -499,9 +479,11 @@ public class ActionServlet extends HttpServlet {
 
     }
 
+
     /**
-     * Return the <code>MessageResources</code> instance containing our
-     * internal message strings.
+     * <p>Return the <code>MessageResources</code> instance containing our
+     * internal message strings.</p>
+     *
      * @since Struts 1.1
      */
     public MessageResources getInternal() {
@@ -514,8 +496,9 @@ public class ActionServlet extends HttpServlet {
     // ------------------------------------------------------ Protected Methods
 
     /**
-     * Gracefully terminate use of any modules associated with this
-     * application (if any).
+     * <p>Gracefully terminate use of any modules associated with this
+     * application (if any).</p>
+     *
      * @since Struts 1.1
      */
     protected void destroyModules() {
@@ -563,7 +546,8 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Gracefully release any configDigester instance that we have created.
+     * <p>Gracefully release any configDigester instance that we have created.</p>
+     *
      * @since Struts 1.1
      */
     protected void destroyConfigDigester() {
@@ -572,8 +556,9 @@ public class ActionServlet extends HttpServlet {
 
     }
 
+
     /**
-     * Gracefully terminate use of the internal MessageResources.
+     * <p>Gracefully terminate use of the internal MessageResources.</p>
      */
     protected void destroyInternal() {
 
@@ -582,8 +567,8 @@ public class ActionServlet extends HttpServlet {
     }
 
     /**
-     * Return the module configuration object for the currently selected
-     * module.
+     * <p>Return the module configuration object for the currently selected
+     * module.</p>
      *
      * @param request The servlet request we are processing
      * @since Struts 1.1
@@ -603,8 +588,8 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Look up and return the {@link RequestProcessor} responsible for the
-     * specified module, creating a new one if necessary.
+     * <p>Look up and return the {@link RequestProcessor} responsible for the
+     * specified module, creating a new one if necessary.</p>
      *
      * @param config The module configuration for which to
      *  acquire and return a RequestProcessor.
@@ -614,8 +599,10 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected synchronized RequestProcessor getRequestProcessor(ModuleConfig config)
-        throws ServletException {    
-            
+        throws ServletException {
+
+        // :FIXME: Document UnavailableException?
+
         RequestProcessor processor = this.getProcessorForModule(config);
             
         if (processor == null) {
@@ -642,10 +629,12 @@ public class ActionServlet extends HttpServlet {
         return (processor);
 
     }
-    
+
+
     /**
-     * Returns the RequestProcessor for the given module or null if one does not 
-     * exist.  This method will not create a RequestProcessor.
+     * <p>Returns the RequestProcessor for the given module or null if one does not
+     * exist.  This method will not create a RequestProcessor.</p>
+     *
      * @param config The ModuleConfig.
      */
     private RequestProcessor getProcessorForModule(ModuleConfig config) {
@@ -665,6 +654,7 @@ public class ActionServlet extends HttpServlet {
         }
     }
 
+
     /**
      * <p>Initialize the module configuration information for the
      * specified module.</p>
@@ -678,6 +668,8 @@ public class ActionServlet extends HttpServlet {
      */
     protected ModuleConfig initModuleConfig(String prefix, String paths)
         throws ServletException {
+
+        // :FIXME: Document UnavailableException? (Doesn't actually throw anything)
 
         if (log.isDebugEnabled()) {
             log.debug(
@@ -731,11 +723,14 @@ public class ActionServlet extends HttpServlet {
         return config;
     }
 
+
     /**
-     * Parses one module config file.
+     * <p>Parses one module config file.</p>
+     *
      * @param digester Digester instance that does the parsing
      * @param path The path to the config file to parse.
-     * @throws UnavailableException
+     *
+     * @throws UnavailableException if file cannot be read or parsed
      * @since Struts 1.2
      */
     protected void parseModuleConfigFile(Digester digester, String path)
@@ -766,11 +761,12 @@ public class ActionServlet extends HttpServlet {
         }
     }
 
+
     /**
-     * Simplifies exception handling in the parseModuleConfigFile() method.
+     * <p>Simplifies exception handling in the <code>parseModuleConfigFile</code> method.<p>
      * @param path
      * @param e
-     * @throws UnavailableException
+     * @throws UnavailableException as a wrapper around Exception
      */
     private void handleConfigException(String path, Exception e)
         throws UnavailableException {
@@ -779,6 +775,7 @@ public class ActionServlet extends HttpServlet {
         log.error(msg, e);
         throw new UnavailableException(msg);
     }
+
 
     /**
      * <p>Initialize the data sources for the specified module.</p>
@@ -789,6 +786,8 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected void initModuleDataSources(ModuleConfig config) throws ServletException {
+
+        // :FIXME: Document UnavailableException?
 
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix() +
@@ -829,6 +828,7 @@ public class ActionServlet extends HttpServlet {
 
     }
 
+
     /**
      * <p>Initialize the plug ins for the specified module.</p>
      *
@@ -866,7 +866,7 @@ public class ActionServlet extends HttpServlet {
                   // for doing so.  Why should we fail silently if a property can't be set on
                   // the plugin?
                 }
-                plugIns[i].init(this, (ModuleConfig) config);
+                plugIns[i].init(this, config);
                 
             } catch (ServletException e) {
                 throw e;
@@ -882,9 +882,10 @@ public class ActionServlet extends HttpServlet {
         }
 
     }
-    
+
+
     /**
-     * <p>Initialize the application MessageResources for the specified
+     * <p>Initialize the application <code>MessageResources</code> for the specified
      * module.</p>
      *
      * @param config ModuleConfig information for this module
@@ -927,15 +928,18 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * <p>Create (if needed) and return a new Digester instance that has been
-     * initialized to process Struts module configuraiton files and
-     * configure a corresponding ModuleConfig object (which must be
-     * pushed on to the evaluation stack before parsing begins).</p>
+     * <p>Create (if needed) and return a new <code>Digester</code>
+     * instance that has been initialized to process Struts module
+     * configuration files and configure a corresponding <code>ModuleConfig</code>
+     * object (which must be pushed on to the evaluation stack before parsing
+     * begins).</p>
      *
      * @exception ServletException if a Digester cannot be configured
      * @since Struts 1.1
      */
     protected Digester initConfigDigester() throws ServletException {
+
+        // :FIXME: Where can ServletException be thrown?
 
         // Do we have an existing instance?
         if (configDigester != null) {
@@ -964,8 +968,9 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Add any custom RuleSet instances to configDigester that have 
-     * been specified in the <code>rulesets</code> init parameter.
+     * <p>Add any custom RuleSet instances to configDigester that have
+     * been specified in the <code>rulesets</code> init parameter.</p>
+     *
      * @throws ServletException
      */
     private void addRuleSets() throws ServletException {
@@ -1001,8 +1006,10 @@ public class ActionServlet extends HttpServlet {
         }
     }
 
+
     /**
-     * Check the status of the <code>validating</code> initialization parameter. 
+     * <p>Check the status of the <code>validating</code> initialization parameter.</p>
+     *
      * @return true if the module Digester should validate.
      */
     private boolean isValidating() {
@@ -1021,12 +1028,16 @@ public class ActionServlet extends HttpServlet {
         return validating;
     }
 
+
+
     /**
-     * Initialize our internal MessageResources bundle.
+     * <p>Initialize our internal MessageResources bundle.</p>
      *
      * @exception ServletException if we cannot initialize these resources
      */
     protected void initInternal() throws ServletException {
+
+        // :FIXME: Document UnavailableException
 
         try {
             internal = MessageResources.getMessageResources(internalName);
@@ -1041,7 +1052,7 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Initialize other global characteristics of the controller servlet.
+     * <p>Initialize other global characteristics of the controller servlet.</p>
      *
      * @exception ServletException if we cannot initialize these resources
      */
@@ -1083,9 +1094,10 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Initialize the servlet mapping under which our controller servlet
+     * <p>Initialize the servlet mapping under which our controller servlet
      * is being accessed.  This will be used in the <code>&html:form&gt;</code>
-     * tag to generate correct destination URLs for form submissions.
+     * tag to generate correct destination URLs for form submissions.</p>
+     *
      * @throws ServletException if error happens while scanning web.xml
      */
     protected void initServlet() throws ServletException {
@@ -1160,8 +1172,8 @@ public class ActionServlet extends HttpServlet {
 
 
     /**
-     * Perform the standard request processing for this request, and create
-     * the corresponding response.
+     * <p>Perform the standard request processing for this request, and create
+     * the corresponding response.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
