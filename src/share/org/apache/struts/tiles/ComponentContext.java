@@ -178,10 +178,13 @@ public class ComponentContext implements Serializable {
     /**
      * Get component context from request.
      * @param request ServletRequest.
-     * @return ComponentContext
+     * @return ComponentContext or null if context is not found or an
+     * jspException is present in the request.
      */
     static public ComponentContext getContext(ServletRequest request) {
-        return (ComponentContext) request.getAttribute(
+       if (request.getAttribute("javax.servlet.jsp.jspException") != null) {
+           return null;
+        }        return (ComponentContext) request.getAttribute(
             ComponentConstants.COMPONENT_CONTEXT);
     }
 
