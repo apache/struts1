@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.10 2003/07/02 03:03:55 dgraham Exp $
- * $Revision: 1.10 $
- * $Date: 2003/07/02 03:03:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.11 2003/07/10 04:01:47 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/07/10 04:01:47 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.action.DynaActionForm;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.10 $ $Date: 2003/07/02 03:03:55 $
+ * @version $Revision: 1.11 $ $Date: 2003/07/10 04:01:47 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */
@@ -137,11 +137,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
       * @return <code>ActionErrors</code> object that encapsulates any validation errors.
       */
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
-        // set the page variable before validating
-        Map props = this.getMap();
-        if (props.containsKey("page")) {
-            this.page = ((Integer) props.get("page")).intValue();
-        }
+        this.setPageFromDynaProperty();
 
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
@@ -156,6 +152,24 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         }
 
         return errors;
+    }
+
+    /**
+     * Sets this.page to the value of the Dyna property "page" if it's defined.  This is
+     * used to setup the page variable before validation starts.
+     * @since Struts 1.2
+     */
+    protected void setPageFromDynaProperty() {
+        Map props = this.getMap();
+        if (props.containsKey("page")) {
+            try {
+                this.page = ((Integer) props.get("page")).intValue();
+
+            } catch (ClassCastException e) {
+                log.error("Dyna 'page' property must be of type java.lang.Integer.", e);
+                throw e;
+            }
+        }
     }
 
    /**

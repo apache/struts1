@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.8 2003/03/05 02:53:15 dgraham Exp $
- * $Revision: 1.8 $
- * $Date: 2003/03/05 02:53:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorActionForm.java,v 1.9 2003/07/10 04:01:47 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/10 04:01:47 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.8 $ $Date: 2003/03/05 02:53:15 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/10 04:01:47 $
  * @since Struts 1.1
  */
 public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBean, Serializable {
@@ -109,11 +109,7 @@ public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBe
      * @return ActionErrors containing validation errors.
      */
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
-        // set the page variable before validating
-        Map props = this.getMap();
-        if (props.containsKey("page")) {
-            this.page = ((Integer) props.get("page")).intValue();
-        }
+        this.setPageFromDynaProperty();
         
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
