@@ -112,13 +112,8 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean, Serial
     */
     public Object getInstance() {
 
-        // *** ------------------------------------------------------------ ***
-        // *** WrapDynaBean.getInstance() requires BeanUtils 1.7.0 or later ***
-        // *** Will implement this later.                                   ***
-        // *** ------------------------------------------------------------ ***
         if (dynaBean instanceof WrapDynaBean) {
-            return dynaBean;  // FIXME - return DynaBean until BeanUtils 1.7.0
-            //  return ((WrapDynaBean)dynaBean).getInstance();
+            return ((WrapDynaBean)dynaBean).getInstance();
         }
 
         return dynaBean;
