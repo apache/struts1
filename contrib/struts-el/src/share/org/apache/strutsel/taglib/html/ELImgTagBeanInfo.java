@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.1 2003/02/19 03:45:25 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/02/19 03:45:25 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImgTagBeanInfo.java,v 1.2 2003/02/27 14:21:27 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/27 14:21:27 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -109,7 +109,7 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo
                                                null, "setOndblclickExpr");
             result[15] = new PropertyDescriptor("onkeydown", ELImgTag.class,
                                                null, "setOnkeydownExpr");
-            result[16] = new PropertyDescriptor("keypress", ELImgTag.class,
+            result[16] = new PropertyDescriptor("onkeypress", ELImgTag.class,
                                                null, "setOnkeypressExpr");
             result[17] = new PropertyDescriptor("onkeyup", ELImgTag.class,
                                                null, "setOnkeyupExpr");
