@@ -131,6 +131,12 @@
     If the resource attribute is set to false, it will pass in the value directly
     without retrieving the value from the message resources.
     </p>
+    <p>
+    Note that as of the Struts 1.1 release, you must explicitly define your message
+    resource in any module that is going to use the Validator, due to a problem
+    accessing the top-level resource.  This only effects applications which are
+    using modules.
+    </p>
 
 <pre><code><![CDATA[
 <field
