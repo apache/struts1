@@ -3,9 +3,9 @@
          href="http://jakarta.apache.org/struts/userGuide"
         image="../images/struts.gif">
 
-    <title>Struts User's Guide</title>
+    <title>Getting Started</title>
 
-    <menu name="User's Guide">
+    <menu name="User Guide">
       <item name="Table of Contents"     href="index.html"/>
       <item name="Preface"               href="preface.html"/>
       <item name="Introduction"          href="introduction.html"/>
@@ -13,6 +13,8 @@
       <item name="View Components"       href="building_view.html"/>
       <item name="Controller Components" href="building_controller.html"/>
       <item name="Applications"          href="building_apps.html"/>
+      <item name="Release Notes"		 href="release-notes.html"/>
+      <item name="Installation"			 href="installation.html"/>
     </menu>
 
     <menu name="Developer Guides">
@@ -34,22 +36,8 @@
               href="dev_validator.html"/>
     </menu>
 
-    <menu name="Getting Started">
-      <item name="Release Notes"
-        href="release-notes.html"/>
-      <item name="Installation"
-        href="installation.html"/>
-      <item name="Newbie FAQ"
-        href="../newbie.html"/>
-    </menu>
-
     <menu name="Struts">
         <item name="Welcome"                 href="../index.html"/>
-        <item name="Learning"                href="../learning.html"/>
-        <item name="Acquiring"               href="../acquiring.html"/>
-        <item name="Using"                   href="../using.html"/>
-        <item name="Who We Are"              href="../volunteers.html"/>
-        <item name="Roadmap"                 href="../status.html"/>
     </menu>
 
 </project>
