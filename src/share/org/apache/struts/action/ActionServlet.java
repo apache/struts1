@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.18 2000/08/13 03:48:56 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2000/08/13 03:48:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.19 2000/08/26 19:52:28 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2000/08/26 19:52:28 $
  *
  * ====================================================================
  *
@@ -178,14 +178,14 @@ import org.xml.sax.SAXException;
  * <li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
  *     to every response intended to defeat browser caching of any response we
  *     generate or forward to.  [false]
- * <li><strong>null</strong) - If set to <code>true</code>, set our application
+ * <li><strong>null</strong> - If set to <code>true</code>, set our application
  *     resources to return <code>null</code> if an unknown message key is used.
  *     Otherwise, an error message including the offending message key will
  *     be returned.  [true]
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2000/08/13 03:48:56 $
+ * @version $Revision: 1.19 $ $Date: 2000/08/26 19:52:28 $
  */
 
 public class ActionServlet
