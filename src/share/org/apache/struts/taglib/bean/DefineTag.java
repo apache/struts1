@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.17 2002/06/23 00:07:16 craigmcc Exp $
- * $Revision: 1.17 $
- * $Date: 2002/06/23 00:07:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.18 2002/06/30 03:02:19 craigmcc Exp $
+ * $Revision: 1.18 $
+ * $Date: 2002/06/30 03:02:19 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.17 $ $Date: 2002/06/23 00:07:16 $
+ * @version $Revision: 1.18 $ $Date: 2002/06/30 03:02:19 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -227,6 +227,9 @@ public class DefineTag extends BodyTagSupport {
             body = bodyContent.getString();
             if (body != null) {
                 body = body.trim();
+            }
+            if (body.length() < 1) {
+                body = null;
             }
         }
         return (SKIP_BODY);
