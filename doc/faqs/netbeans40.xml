@@ -6,24 +6,24 @@
 
 <author>Geertjan Wielenga</author>
 
-<title>How to setup a basic Struts project using Netbeans IDE - Apache Struts</title>
+<title>How to setup a basic Struts project using NetBeans IDE - Apache Struts</title>
 
 </properties>
 
 <body>
 
-<section href="netbeans" name="How to setup a basic Struts project using Netbeans IDE"/>
+<section href="netbeans" name="How to setup a basic Struts project using NetBeans IDE 4.0"/>
 <section name="Legal Disclamer">
 
 Please read <a href="http://jakarta.apache.org/site/idedevelopers.html">this</a> first.<br/>
 <p>
-* DISCLAIMER - This simple How-To shows you how easy it is to write code for the Struts<br/>
+* DISCLAIMER - This simple How-To shows you how easy it is to use NetBeans IDE 4.0 to write code for the Struts<br/>
 framework.  It just works straight out of the box. Simply specify where your sources are<br/>
 and where you want to store your Struts application, and NetBeans IDE 4.0 does everything<br/>
 you need -- it even generates a customized Ant build script for you and hooks its targets<br/>
 up to IDE commands such as "Build" and "Run".<br/>
 <br/>
-This is mainly geared toward struts users who are new to NetBeans IDE, and don't want to spend
+This is mainly geared toward struts users who are new to NetBeans IDE 4.0, and don't want to spend
 a lot of time figuring out the differences between their old IDE and this one.
 <br/>
 </p>
@@ -46,7 +46,7 @@ from the Struts distribution and extract it, with the result that it looks like 
   </li>
   <li>
   The New Project wizard appears. Select "Web Project with Existing Sources".<br/>
-  Do this when you want use your own sources to create a web application, but<br/>
+  Do this when you want to use your own sources to create a web application, but<br/>
   you want the IDE to generate an Ant build script for you.<br/>
   <br/>
   <img alt="" src="../images/how-to/netbeans4/creating-project4.jpg"></img><br/><br/><br/>
@@ -112,7 +112,7 @@ Now you will use wizards to set up a new Struts application in NetBeans IDE 4.0,
   <img alt="" src="../images/how-to/netbeans4/new-project1.jpg"></img><br/><br/><br/>
   </li>
   <li>
-  Specify the location of your sources, the location of your new IDE project, and a project name,<br/>
+  Specify the location of your new IDE project and a project name,<br/>
   and decide whether you want your application to support J2EE 1.4 or J2EE 1.3.<br/>	
   <br/>
   <img alt="" src="../images/how-to/netbeans4/new-project2.jpg"></img><br/><br/><br/>
@@ -137,6 +137,12 @@ Now you will use wizards to set up a new Struts application in NetBeans IDE 4.0,
   <br/>
   </li>
 </ol>
+
+<p>For further information, see:</p>
+<ul>
+<li>What's New in NetBeans IDE 4.0 (<a href="http://www.netbeans.org/community/releases/40/whats-new-40.html">http://www.netbeans.org/community/releases/40/whats-new-40.html</a>)</li>
+<li>Using NetBeans IDE 4.0 (<a href="http://www.netbeans.org/kb/using-netbeans/40/index.html">http://www.netbeans.org/kb/using-netbeans/40/index.html</a>)</li>
+</ul>
 
 </section>
 </body>
