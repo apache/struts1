@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetPropertyRule.java,v 1.3 2001/01/07 22:43:30 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/07 22:43:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetPropertyRule.java,v 1.4 2001/04/14 02:11:03 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/04/14 02:11:03 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -73,10 +73,10 @@ import org.apache.struts.util.BeanUtils;
  * top of the stack, based on attributes with specified names.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/07 22:43:30 $
+ * @version $Revision: 1.4 $ $Date: 2001/04/14 02:11:03 $
  */
 
-public final class SetPropertyRule extends Rule {
+public class SetPropertyRule extends Rule {
 
 
     // ----------------------------------------------------------- Constructors
@@ -107,13 +107,13 @@ public final class SetPropertyRule extends Rule {
     /**
      * The attribute that will contain the property name.
      */
-    private String name = null;
+    protected String name = null;
 
 
     /**
      * The attribute that will contain the property value.
      */
-    private String value = null;
+    protected String value = null;
 
 
     // --------------------------------------------------------- Public Methods

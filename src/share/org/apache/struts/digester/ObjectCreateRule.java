@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/ObjectCreateRule.java,v 1.2 2000/08/01 20:03:29 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/08/01 20:03:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/ObjectCreateRule.java,v 1.3 2001/04/14 02:11:02 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/14 02:11:02 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written 
  *    permission, please contact apache@apache.org.
@@ -72,10 +72,10 @@ import org.xml.sax.AttributeList;
  * object will be popped
  *
  * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/08/01 20:03:29 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/14 02:11:02 $
  */
 
-public final class ObjectCreateRule extends Rule {
+public class ObjectCreateRule extends Rule {
 
 
     // ----------------------------------------------------------- Constructors
@@ -119,13 +119,13 @@ public final class ObjectCreateRule extends Rule {
     /**
      * The attribute containing an override class name if it is present.
      */
-    private String attributeName = null;
+    protected String attributeName = null;
 
 
     /**
      * The Java class name of the object to be created.
      */
-    private String className = null;
+    protected String className = null;
 
 
     // --------------------------------------------------------- Public Methods

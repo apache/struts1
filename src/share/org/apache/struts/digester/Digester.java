@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.16 2001/03/13 19:39:48 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2001/03/13 19:39:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/Digester.java,v 1.17 2001/04/14 02:11:02 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2001/04/14 02:11:02 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written 
  *    permission, please contact apache@apache.org.
@@ -102,10 +102,10 @@ import org.xml.sax.SAXParseException;
  * even from the same thread.</p>
  *
  * @author Craig McClanahan
- * @version $Revision: 1.16 $ $Date: 2001/03/13 19:39:48 $
+ * @version $Revision: 1.17 $ $Date: 2001/04/14 02:11:02 $
  */
 
-public final class Digester extends HandlerBase {
+public class Digester extends HandlerBase {
 
 
     // --------------------------------------------------------- Constructors
@@ -127,51 +127,51 @@ public final class Digester extends HandlerBase {
     /**
      * The body text of the current element.
      */
-    private StringBuffer bodyText = new StringBuffer();
+    protected StringBuffer bodyText = new StringBuffer();
 
 
     /**
      * The stack of body text string buffers for surrounding elements.
      */
-    private ArrayStack bodyTexts = new ArrayStack();
+    protected ArrayStack bodyTexts = new ArrayStack();
 
 
     /**
      * The debugging detail level of this component.
      */
-    private int debug = 0;
+    protected int debug = 0;
 
 
     /**
      * The URLs of DTDs that have been registered, keyed by the public
      * identifier that corresponds.
      */
-    private HashMap dtds = new HashMap();
+    protected HashMap dtds = new HashMap();
 
 
     /**
      * The Locator associated with our parser.
      */
-    private Locator locator = null;
+    protected Locator locator = null;
 
 
     /**
      * The current match pattern for nested element processing.
      */
-    private String match = "";
+    protected String match = "";
 
 
     /**
      * The SAXParser we will use to parse the input stream.
      */
-    private SAXParser parser = null;
+    protected SAXParser parser = null;
 
 
     /**
      * The "root" element of the stack (in other words, the last object
      * that was popped.
      */
-    private Object root = null;
+    protected Object root = null;
 
 
     /**
@@ -180,19 +180,19 @@ public final class Digester extends HandlerBase {
      * the value is a List containing the Rules for that pattern, in the
      * order that they were registered.
      */
-    private HashMap rules = new HashMap();
+    protected HashMap rules = new HashMap();
 
 
     /**
      * The object stack being constructed.
      */
-    private ArrayStack stack = new ArrayStack();
+    protected ArrayStack stack = new ArrayStack();
 
 
     /**
      * Do we want to use a validating parser?
      */
-    private boolean validating = false;
+    protected boolean validating = false;
 
 
     // ----------------------------------------------------------- Properties
@@ -1073,7 +1073,7 @@ public final class Digester extends HandlerBase {
     }
 
 
-    // ------------------------------------------------------ Private Methods
+    // ------------------------------------------------------ Protected Methods
 
 
     /**
@@ -1086,7 +1086,7 @@ public final class Digester extends HandlerBase {
      *
      * @param match The current match position
      */
-    private List getRules(String match) {
+    protected List getRules(String match) {
 
         List rulesList = (List) this.rules.get(match);
 	if (rulesList == null) {

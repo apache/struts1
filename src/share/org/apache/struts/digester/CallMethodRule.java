@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.9 2001/03/11 00:42:47 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2001/03/11 00:42:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallMethodRule.java,v 1.10 2001/04/14 02:11:02 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2001/04/14 02:11:02 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written 
  *    permission, please contact apache@apache.org.
@@ -75,10 +75,10 @@ import org.apache.struts.util.ConvertUtils;
  * element.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.9 $ $Date: 2001/03/11 00:42:47 $
+ * @version $Revision: 1.10 $ $Date: 2001/04/14 02:11:02 $
  */
 
-public final class CallMethodRule extends Rule {
+public class CallMethodRule extends Rule {
 
 
     // ----------------------------------------------------------- Constructors
@@ -175,14 +175,14 @@ public final class CallMethodRule extends Rule {
     /**
      * The body text collected from this element.
      */
-    private String bodyText = null;
+    protected String bodyText = null;
 
 
 
     /**
      * The method name to call on the parent object.
      */
-    private String methodName = null;
+    protected String methodName = null;
 
 
     /**
@@ -190,13 +190,13 @@ public final class CallMethodRule extends Rule {
      * If this value is zero, a single parameter will be collected from the
      * body of this element.
      */
-    private int paramCount = 0;
+    protected int paramCount = 0;
 
 
     /**
      * The parameter types of the parameters to be collected.
      */
-    private Class paramTypes[] = null;
+    protected Class paramTypes[] = null;
 
 
     // --------------------------------------------------------- Public Methods

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallParamRule.java,v 1.3 2000/08/13 04:40:03 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/08/13 04:40:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/CallParamRule.java,v 1.4 2001/04/14 02:11:02 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/04/14 02:11:02 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written 
  *    permission, please contact apache@apache.org.
@@ -73,10 +73,10 @@ import org.xml.sax.AttributeList;
  * by a surrounding CallMethodRule rule.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/08/13 04:40:03 $
+ * @version $Revision: 1.4 $ $Date: 2001/04/14 02:11:02 $
  */
 
-public final class CallParamRule extends Rule {
+public class CallParamRule extends Rule {
 
 
     // ----------------------------------------------------------- Constructors
@@ -120,19 +120,19 @@ public final class CallParamRule extends Rule {
     /**
      * The attribute from which to save the parameter value
      */
-    private String attributeName = null;
+    protected String attributeName = null;
 
 
     /**
      * The body text collected from this element.
      */
-    private String bodyText = null;
+    protected String bodyText = null;
 
 
     /**
      * The zero-relative index of the parameter we are saving.
      */
-    private int paramIndex = 0;
+    protected int paramIndex = 0;
 
 
     // --------------------------------------------------------- Public Methods

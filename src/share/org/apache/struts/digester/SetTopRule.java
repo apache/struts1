@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetTopRule.java,v 1.4 2001/01/23 03:50:02 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2001/01/23 03:50:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/digester/Attic/SetTopRule.java,v 1.5 2001/04/14 02:11:03 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/04/14 02:11:03 $
  *
  * ====================================================================
  * 
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights 
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights 
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written 
  *    permission, please contact apache@apache.org.
@@ -72,10 +72,10 @@ import org.xml.sax.AttributeList;
  * object, passing the (top-1) (child) object as an argument.
  *
  * @author Craig McClanahan
- * @version $Revision: 1.4 $ $Date: 2001/01/23 03:50:02 $
+ * @version $Revision: 1.5 $ $Date: 2001/04/14 02:11:03 $
  */
 
-public final class SetTopRule extends Rule {
+public class SetTopRule extends Rule {
 
 
     // ----------------------------------------------------------- Constructors
@@ -122,13 +122,13 @@ public final class SetTopRule extends Rule {
     /**
      * The method name to call on the parent object.
      */
-    private String methodName = null;
+    protected String methodName = null;
 
 
     /**
      * The Java class name of the parameter type expected by the method.
      */
-    private String paramType = null;
+    protected String paramType = null;
 
 
     // --------------------------------------------------------- Public Methods
