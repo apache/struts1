@@ -18,15 +18,15 @@
   <shortname>Tiles Tag Library</shortname>
   <display-name>Tiles Tag Library</display-name>
   <uri>http://jakarta.apache.org/struts/tags-tiles-1.1</uri>
-  <info>  
-    This tag library provides tiles tags. 
+  <info>
+    This tag library provides tiles tags.
 	<br></br>
 	<br></br>
 	Tiles were previously called Components. For historical reasons, names pages, components and templates
-	are used indiferently to design a tile. Also, a lot of tags and attribute names are 
-	left for backward compatibility. 
-	<br></br>To know more about tags defined in this library, check the associated documentation : 
-	tiles-doc. 
+	are used indiferently to design a tile. Also, a lot of tags and attribute names are
+	left for backward compatibility.
+	<br></br>To know more about tags defined in this library, check the associated documentation:
+	tiles-doc.
   </info>
 
  <!-- ===================== Include Tags ====================== -->
@@ -34,22 +34,22 @@
   <tag>
     <name>insert</name>
     <summary>
-    Insert a tiles/component/template. 
+    Insert a tiles/component/template.
     </summary>
 	<info>
-	Insert a tiles/component/template with the possibility to pass parameters 
+	Insert a tiles/component/template with the possibility to pass parameters
 	(called attribute).
 	A tile can be seen as a procedure that can take parameters or attributes.
-	<code>&lt;template:insert&gt;</code> allows to define these attributes and pass them to the inserted jsp page, 
+	<code>&lt;template:insert&gt;</code> allows to define these attributes and pass them to the inserted jsp page,
 	called template.
-	Attributes are defined using nested tag <code>&lt;template:put&gt;</code> or 
+	Attributes are defined using nested tag <code>&lt;template:put&gt;</code> or
 	<code>&lt;template:putList&gt;</code>.
 	<br></br>
-    You must specify one of this tag attribute : 
+    You must specify one of this tag attribute :
 	  <ul>
 	  <li><code>template</code>, for inserting a tiles/component/template page,</li>
 	  <li><code>component</code>, for inserting a tiles/component/template page, (same as template)</li>
-	  <li><code>page</code> for inserting a JSP page, (same as template)</li> 
+	  <li><code>page</code> for inserting a JSP page, (same as template)</li>
 	  <li><code>definition</code>, for inserting a definition from definitons factory</li>
 	  <li><code>attribute</code>, surrounding tiles's attribute name whose value is used.
 	    <br>If attribute is associated to 'direct' flag (see put), and flag is true, write
@@ -58,9 +58,9 @@
 	  <li><code>name</code>, to let 'insert' determine the type of entities to insert. In this later
 	  case, search is done in this order : definitions, tiles/components/templates, pages.
 	  </li>
-	  </ul> 
+	  </ul>
 	  <br></br>
-	  In fact, Page, component and template, are equivalent as a tile, component or template are jsp page. 
+	  In fact, Page, component and template, are equivalent as a tile, component or template are jsp page.
 	  <br></br>
 	  <STRONG>Example : </STRONG>
 	    <pre><code>
@@ -94,7 +94,7 @@
 		<br></br>'page', 'component' and 'template' are synonyms : they have exactly the same behavior.
 	  </info>
    </attribute>
-   
+
     <attribute>
       <name>page</name>
       <required>false</required>
@@ -111,7 +111,7 @@
 	  <rtexprvalue>true</rtexprvalue>
  	  <info>
 	    Name of the definition to insert. Definition are defined in a centralized file.
-		For now, only definition from factory can be inserted with this attribute. 
+		For now, only definition from factory can be inserted with this attribute.
 		To insert a definiton defined with tag &lt;template:definition&gt;, use beanName="".
 	  </info>
     </attribute>
@@ -125,13 +125,13 @@
 		'name' (see attribute 'name').
 	  </info>
     </attribute>
-	
+
     <attribute>
       <name>name</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
   	  <info>
-	    Name of an entity to insert. Search is done in this order : definition, attribute, 
+	    Name of an entity to insert. Search is done in this order : definition, attribute,
 		[tile/component/template/page].
 	  </info>
     </attribute>
@@ -144,9 +144,9 @@
       Name of the bean used as value. Bean is retrieved from specified context, if any. Otherwise,
 	  method pageContext.findAttribute is used.
 	  If beanProperty is also specified, retrieve value from the corresponding bean property.
-	  <br></br>If found bean (or property value) is instance of one of Attribute class (Direct, 
-	  Instance, ...), insertion is done according to the class type. Otherwise, the toString method is 
-	  called on the bean, and returned String is used as name to insert (see 'name' attribute).  
+	  <br></br>If found bean (or property value) is instance of one of Attribute class (Direct,
+	  Instance, ...), insertion is done according to the class type. Otherwise, the toString method is
+	  called on the bean, and returned String is used as name to insert (see 'name' attribute).
       </info>
     </attribute>
 
@@ -166,7 +166,7 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       Scope into which bean is searched. If not specified, method pageContext.findAttribute is used.
-	  Scope can be any JSP scope, 'component', or 'template'. 
+	  Scope can be any JSP scope, 'component', or 'template'.
 	  In these two later cases, bean is search in tile/component/template context.
       </info>
     </attribute>
@@ -179,7 +179,7 @@
 	    True or false. If true, current page out stream is flushed before insertion.
 	  </info>
     </attribute>
-	
+
     <attribute>
       <name>ignore</name>
       <required>false</required>
@@ -196,7 +196,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      If the user is in the specified role, the tag is taken into account; 
+      If the user is in the specified role, the tag is taken into account;
 	  otherwise, the tag is ignored (skipped).
       </info>
     </attribute>
@@ -206,7 +206,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      Url of a controller called immediately before page is inserted.<br></br> 
+      Url of a controller called immediately before page is inserted.<br></br>
 	  Url usually denote a Struts action. Controller (action) is used to prepare data
 	  to be render by inserted Tile.
 	  <br></br>
@@ -219,7 +219,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      Class type of a controller called immediately before page is inserted.<br></br> 
+      Class type of a controller called immediately before page is inserted.<br></br>
 	  Controller is used to prepare data to be render by inserted Tile.
 	  <br></br>
 	  See also controlerUrl
@@ -240,24 +240,24 @@
   <tag>
     <name>definition</name>
     <summary>
-    Create a tile /component / template definition bean. 
+    Create a tile /component / template definition bean.
     </summary>
 	<info>
-	Create a tile/component/template definition as a bean. 
+	Create a tile/component/template definition as a bean.
 	Newly created bean will be saved under specified "id", in the requested "scope".
-	Definition tag has same syntax as <code>insert</code> tag. 	
-	The new definition can extends a definition described in factory (XML file), and overload 
+	Definition tag has same syntax as <code>insert</code> tag.
+	The new definition can extends a definition described in factory (XML file), and overload
 	any previously defined parameters.
 	</info>
         <tagclass>org.apache.struts.taglib.tiles.DefinitionTag</tagclass>
 	    <bodycontent>JSP</bodycontent>
-	
+
 	<attribute>
 	  <name>id</name>
 	  <required>true</required>
 	  <rtexprvalue>false</rtexprvalue>
 	  <info>
-      Specifies the name under which the newly created definition bean will be saved. 
+      Specifies the name under which the newly created definition bean will be saved.
       </info>
     </attribute>
 
@@ -266,8 +266,8 @@
 	  <required>false</required>
 	  <rtexprvalue>false</rtexprvalue>
 	  <info>
-      Specifies the variable scope into which the newly defined bean will be created. 
-	  If not specified, the bean will be created in page scope. 
+      Specifies the variable scope into which the newly defined bean will be created.
+	  If not specified, the bean will be created in page scope.
       </info>
     </attribute>
 
@@ -285,7 +285,7 @@
 	  <required>false</required>
 	  <rtexprvalue>true</rtexprvalue>
 	  <info>
-      URL of the template / component to insert. Same as "template". 
+      URL of the template / component to insert. Same as "template".
       </info>
     </attribute>
 
@@ -295,7 +295,7 @@
 	  <rtexprvalue>true</rtexprvalue>
 	  <info>
       Role to check before inserting this definition. If role is not defined for current user,
-	  definition is not inserted. Checking is done at insert time, not during definition process. 
+	  definition is not inserted. Checking is done at insert time, not during definition process.
       </info>
     </attribute>
 
@@ -304,13 +304,13 @@
 	  <required>false</required>
 	  <rtexprvalue>true</rtexprvalue>
 	  <info>
-      Name of a parent definition that is used to initialize this new definition. 
+      Name of a parent definition that is used to initialize this new definition.
 	  Parent definition is searched in definitions factory.
       </info>
     </attribute>
 
   </tag>
- 
+
   <tag>
     <name>put</name>
     <summary>
@@ -326,7 +326,7 @@
 	  <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
 	  <li>definition : Content come from specified definition (from factory). Name is used as definition name.</li>
 	  </ul>
-	  If type is specified, it is taken into account by 'get' or 'insert' inside the inserted tile. 
+	  If type is specified, it is taken into account by 'get' or 'insert' inside the inserted tile.
       <br></br>If 'type' attribute is not specified, content is 'untyped', unless it comes from a typed bean.
 	  <br></br>Note that using 'direct="true"' is equivalent to 'type="string"'.
 	</info>
@@ -347,12 +347,12 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
   	  <info>
-	    Attribute value. Could be a String or an Object. 
-	   Value can come from a direct assignement (value="aValue") or from a bean. 
+	    Attribute value. Could be a String or an Object.
+	   Value can come from a direct assignement (value="aValue") or from a bean.
 	   One of 'value' 'content' or 'beanName' must be present.
 	  </info>
     </attribute>
- 
+
     <attribute>
       <name>content</name>
       <required>false</required>
@@ -372,8 +372,8 @@
       printed <i>direct</i>ly; false, the default, means content
       is included.
 	  This is another way to specify content type. If 'direct=true' content is 'string', if
-	  'direct=false', content is 'page'. 
-	  Attribute added for compatibility with JSP Template. 
+	  'direct=false', content is 'page'.
+	  Attribute added for compatibility with JSP Template.
       </info>
     </attribute>
 
@@ -387,7 +387,7 @@
 	  <li>String : Content is printed directly.</li>
 	  <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
 	  <li>definition : Value is the name of a definition defined in factory (xml file). Definition will be searched
-	  in the inserted tile, in a <code>&lt;template:insert attribute="attributeName"&gt;</code> tag, where 'attributeName' 
+	  in the inserted tile, in a <code>&lt;template:insert attribute="attributeName"&gt;</code> tag, where 'attributeName'
 	  is the name used for this tag.</li>
 	  </ul>
       If 'type' attribute is not specified, content is 'untyped', unless it comes from a typed bean.
@@ -421,7 +421,7 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       Scope into which bean is searched. If not specified, method pageContext.findAttribute is used.
-	  Scope can be any JSP scope, 'tile', 'component', or 'template'. 
+	  Scope can be any JSP scope, 'tile', 'component', or 'template'.
 	  In these three later cases, bean is search in tile/component/template context.
       </info>
     </attribute>
@@ -431,7 +431,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      If the user is in the specified role, the tag is taken into account; 
+      If the user is in the specified role, the tag is taken into account;
 	  otherwise, the tag is ignored (skipped).
       </info>
     </attribute>
@@ -464,13 +464,13 @@
   <tag>
     <name>add</name>
     <summary>
-       Add an element to the surrounding list. 
+       Add an element to the surrounding list.
 	   Equivalent to 'put', but for list element.
     </summary>
   	<info>
-       Add an element to the surrounding list. 
+       Add an element to the surrounding list.
 	   This tag can only be used inside putList tag.
-	   Value can come from a direct assignement (value="aValue") or from a bean. 
+	   Value can come from a direct assignement (value="aValue") or from a bean.
 	   One of 'value' or 'beanName' must be present.
 	</info>
     <tagclass>org.apache.struts.taglib.tiles.AddTag</tagclass>
@@ -484,7 +484,7 @@
 	    Element value. Can be a String or Object.
 	  </info>
     </attribute>
- 
+
     <attribute>
       <name>content</name>
       <required>false</required>
@@ -504,8 +504,8 @@
       printed <i>direct</i>ly; false, the default, means content
       is included.
 	  This is another way to specify content type. If 'direct=true' content is 'string', if
-	  'direct=false', content is 'page'. 
-	  Attribute added for compatibility with JSP Template. 
+	  'direct=false', content is 'page'.
+	  Attribute added for compatibility with JSP Template.
       </info>
     </attribute>
 
@@ -519,7 +519,7 @@
 	  <li>String : Content is printed directly.</li>
 	  <li>page | template : Content is included from specified URL. Name is used as an URL.</li>
 	  <li>definition : Value denote a definition defined in factory (xml file). Definition will be searched
-	  in the inserted tile, in a <code>&lt;insert attribute="attributeName"&gt;</code> tag, where 'attributeName' 
+	  in the inserted tile, in a <code>&lt;insert attribute="attributeName"&gt;</code> tag, where 'attributeName'
 	  is the name used for this tag.</li>
 	  </ul>
       If 'type' attribute is not specified, content is 'untyped', unless it comes from a typed bean.
@@ -553,7 +553,7 @@
       <rtexprvalue>false</rtexprvalue>
       <info>
       Scope into which bean is searched. If not specified, method pageContext.findAttribute is used.
-	  Scope can be any JSP scope, 'component', or 'template'. 
+	  Scope can be any JSP scope, 'component', or 'template'.
 	  In these two later cases, bean is search in tile/component/template context.
       </info>
     </attribute>
@@ -563,7 +563,7 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      If the user is in the specified role, the tag is taken into account; 
+      If the user is in the specified role, the tag is taken into account;
 	  otherwise, the tag is ignored (skipped).
 	  <br></br>
 	  The role isn't taken into account if &lt;add&gt; tag is used in a definition.
@@ -582,7 +582,7 @@
     <tagclass>org.apache.struts.taglib.tiles.GetTag</tagclass>
     <bodycontent>empty</bodycontent>
     <info>
-    Retrieve content from tile context and include it. 
+    Retrieve content from tile context and include it.
 	<br></br>Take into account the 'type' attribute.
     </info>
 
@@ -614,13 +614,13 @@
 	    True or false. If true, current page  out stream is flushed before insertion.
 	  </info>
     </attribute>
-	
+
     <attribute>
       <name>role</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      If the user is in the specified role, the tag is taken into account; 
+      If the user is in the specified role, the tag is taken into account;
 	  otherwise, the tag is ignored (skipped).
       </info>
     </attribute>
@@ -664,13 +664,13 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
       <info>
-      If the user is in the specified role, the tag is taken into account; 
+      If the user is in the specified role, the tag is taken into account;
 	  otherwise, the tag is ignored (skipped).
       </info>
     </attribute>
 
   </tag>
-  
+
   <tag>
     <name>useAttribute</name>
     <summary>
@@ -679,7 +679,7 @@
   	<info>
 	  Declare a Java variable, and an attribute in the specified scope, using tile attribute value.
 	  <br>
-	  Java variable and attribute will have the name specified by 'id', or the original name if not 
+	  Java variable and attribute will have the name specified by 'id', or the original name if not
 	  specified.
 	  </br>
 	</info>
@@ -691,7 +691,7 @@
       <required>false</required>
       <rtexprvalue>false</rtexprvalue>
   	  <info>
-	    Declared attribute and variable name. 
+	    Declared attribute and variable name.
 	  </info>
     </attribute>
     <attribute>
@@ -731,11 +731,11 @@
     </attribute>
 
   </tag>
-  
+
   <tag>
     <name>importAttribute</name>
     <summary>
-      Import Tile's attribute in specified context. 
+      Import Tile's attribute in specified context.
     </summary>
 	<info>
 	  Import attribute from tile to requested scope.
@@ -774,21 +774,21 @@
     </attribute>
 
   </tag>
-  
+
   <tag>
     <name>initComponentDefinitions</name>
     <summary>
-      Initialize Tile/Component definitions factory. 
+      Initialize Tile/Component definitions factory.
     </summary>
   	<info>
-      Initialize Tile/Components definitions factory. 
+      Initialize Tile/Components definitions factory.
 	  <br>
-	  In order to use Tile/Component definitions factory, you need to initialize the factory. 
-	  This is generally done in a initializing servlet. In particular, it is done in 
-	  "ComponentActionServlet" if you use it. 
-	  If you don't initialize factory in a servlet, you can initialize it using this tag. You need 
+	  In order to use Tile/Component definitions factory, you need to initialize the factory.
+	  This is generally done in a initializing servlet. In particular, it is done in
+	  "ComponentActionServlet" if you use it.
+	  If you don't initialize factory in a servlet, you can initialize it using this tag. You need
 	  to provide the description file name, and optionnaly the factory classname.
-	  Initialization is done only once, at the first call of this tag. Subsequent calls 
+	  Initialization is done only once, at the first call of this tag. Subsequent calls
 	  are ignored (tag checks existance of the factory.
 	  </br>
 	</info>
@@ -811,9 +811,9 @@
 	    If specified, classname of the factory to create and initialized.
 	  </info>
     </attribute>
-		
-  </tag>  
-  
+
+  </tag>
+
 </taglib>
 
 </body>
