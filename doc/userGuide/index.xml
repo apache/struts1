@@ -170,8 +170,10 @@
                     <li><a href="configuration.html#resources_config">7.2.2 Message Resources Configuration</a></li>
                     <li><a href="configuration.html#PlugIn_config">7.2.3 PlugIn Configuration</a></li>
                     <li><a href="configuration.html#data-source_config">7.2.4 Data Source Configuration</a></li>
-                    <li><a href="configuration.html#dd_config_modules">7.2.5 Configuring your application for modules</a></li>
-                    <li><a href="configuration.html#module_config-switching">7.2.6 Switching Modules</a></li>
+                    <li><a href="configuration.html#dd_config_modules">7.3 Configuring your application for modules</a></li>
+                    <li><a href="configuration.html#module_config-switching">7.3.3 Switching Modules</a></li>
+                    <li><a href="configuration.html#dd_config">7.4 The Web Application Deployment Descriptor</a></li>
+                    <li><a href="configuration.html#config_add">7.5 Add Struts Components To Your Application</a></li>
                     </ul>
                 </li>
                 <li>
