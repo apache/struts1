@@ -910,7 +910,7 @@ public class FieldChecks implements Serializable {
      *@param  o  Object to be tested
      *@return    The string value
      */
-    public static boolean isString(Object o) {
+    protected static boolean isString(Object o) {
 
         if (o == null) {
             return (true);
