@@ -10,6 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Tutorials">
+<p><a href="http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - How to use iBATIS Database Layer with Struts, lessons and examples.</p>
 <p><a href="http://developer.java.sun.com/developer/Quizzes/misc.html"><b>The Struts Quiz</b></a> by Ted Husted - Part of an ongoing series at java.sun.com.</p>
 <p><a href="http://javaboutique.internet.com/tutorials/Swing/"><b>Struts meets Swing</b></a> by Keld H. Hansen - Learn how to add a Swing client to your Struts application.</p>
 <p><a href="http://www.projectrefinery.com/struts.html"><b>Introduction to Struts</b></a> by Roger W. Barnes - PowerPoint Presentation reviewing the basics of the Struts was architecture.</p>

@@ -12,29 +12,22 @@
     <section name="Community Support" href="support">
 
         <p>
-            As of June 25, 2003, there were 2744 subscribers to STRUTS-USER (plus an unknown
-            number who read it through newsfeed mirrors).  It's the largest
-            user mailing list at Jakarta, exceeding TOMCAT-USER that has ~2400.
+            In June 2003, there were nearly 2800 subscribers to STRUTS-USER.
+            It's the largest user mailing list at Jakarta, exceeding the TOMCAT-USER list of about 2400 subscribers.
+            In addition to the regular subscribers, an unknown number of developers read the lists through newsfeed
+            mirrors and through several list archives.
         </p>
 
         <p>
-            Since Apache now uses a mirroring system, the precise number of downloads counts
-            is unknown, but in the Summer of 2002, Struts was averaging
-            8500 downloads per month. In liklihood, we well exceed that now.
+            According to recently released
+            <a href="http://www.apache.org/~vgritsenko/stats/projects/struts">statistics</a>, Struts downloads range
+            between 10,000 and 30,000 a week, roughly the same as Jakarta Tomcat.
         </p>
 
         <p>
-            Some high level traffic statistics for the Struts web site
-            are
-            <a href="http://www.apache.org/~vgritsenko/stats/index.html">
-            now available.</a>
-        </p>
-
-        <p>
-            There are a great number of third-party extensions are available for Struts,
-            along with an equally vast number of articles and books.
-            We try to list as many of these as we can in the
-            <a href="resources/index.html">Resources area</a>.
+            There are a great number of third-party extensions are available for Struts, along with an equally vast
+            number of articles and several books
+            We try to list as many of these as we can in the <a href="resources/index.html">Resources area</a>.
         </p>
 
     </section>

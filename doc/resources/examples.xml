@@ -10,7 +10,7 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Projects and Examples">
-<p><a href="http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - Struts lessons and examples.</p>
+<p><a href="http://www.reumann.net/do/struts/main"><b>Struttin' with Struts</b></a> by Rick Reumann - How to use iBATIS Database Layer with Struts, lessons and examples.</p>
 <p><a href="http://www.ajug.org/meetings/download/struts_demo.zip"><b>AJUG Presentation Demo Application</b></a> by Chuck Cavaness - The demo application uses OJB and Hypersonic.</p>
 <p><a href="http://www.ehatchersolutions.com/JavaDevWithAnt/"><b>JavaDevWithAnt</b></a> by Erik Hatchter - Demonstrates using Ant, XDoclet, Struts, JUnit, Cactus, and Lucene within the same application.</p>
 <p><a href="http://basicportal.sourceforge.net/"><b>basicPortal</b></a> by Vic Cekvenich - Sample Struts + JSTL Vertical apps</p>

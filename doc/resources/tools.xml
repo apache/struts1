@@ -38,13 +38,13 @@ your business logic and deploy. Also available as an Eclipse plugin.
 </section>
 
 <section name="IDE Plugins (Eclipse)">
-<p><a href="http://www.strecl.com/">STRECL</a> - A set of tools offering easier utilization of Struts framework, two-way editing of XML files, code generation using wizards (JDBC DAO), JSP editor and many other functions. Oct 16: JSP editor (beta version) is released.</p>
-<p><a href="http://www.improve-technologies.com/alpha/struts-config-editor/">Improve Struts Configuration File Editor</a> - struts-config graphical view</p>
+<p><a href="http://www.strecl.com/"><b>STRECL</b></a> - A set of tools offering easier utilization of Struts framework, two-way editing of XML files, code generation using wizards (JDBC DAO), JSP editor and many other functions. Oct 16: JSP editor (beta version) is released.</p>
+<p><a href="http://www.improve-technologies.com/alpha/struts-config-editor/"><b>Improve Struts Configuration File Editor></b></a> - struts-config graphical view</p>
 <p><a href="http://easystruts.sourceforge.net/"><b>Easy Struts</b></a> by Emmanuel Boudrant - The aim of this project is to provide a bunch of development tools, for Eclipse v2.0 and Borland JBuilder 5-7, in order to facilitate the development of a Struts application. A GUI editor for struts-config.xml files is available in Eclipse 2.0 plugin.</p>
 <p><a href="http://www.jamesholmes.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a standalone Java Swing application for managing Struts-based applications, including plugin support for Eclipse, IBM WSAD, IntelliJ IDEA, JBuilder, NetBeans, Oracle JDeveloper and Sun One Studio (Forte).</p>
-<p><a href="http://sourceforge.net/projects/tinman">Tinman Project:</a> Essential Java Documentation</p>
-<p><a href="http://www.sysdeo.com/eclipse/tomcatPlugin.html">Tomcat Launcher Plugin</a> by Sysdeo</p>	
-<p><a href="http://eclipse-plugins.2y.net/eclipse/">More plugins for Eclipse ...</a></p>
+<p><a href="http://sourceforge.net/projects/tinman"><b>Tinman Project:</b></a> Essential Java Documentation</p>
+<p><a href="http://www.sysdeo.com/eclipse/tomcatPlugin.html"><b>Tomcat Launcher Plugin</b></a> by Sysdeo</p>
+<p><a href="http://eclipse-plugins.2y.net/eclipse/"><b>More plugins for Eclipse</b> ...</a></p>
 </section>
 
 <section name="IDE Plugins (other)">
