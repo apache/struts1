@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="junit.framework.Assert"%>
+<%@page import="org.apache.struts.taglib.TaglibTestBase"%>
+<%@page import="org.apache.oro.text.perl.Perl5Util"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
@@ -55,6 +56,7 @@
      focusControl.focus();
   }
   // -->
+
 </script>
 	</bean:define>
 </logic:equal>
@@ -221,8 +223,8 @@ String expected  = (String) pageContext.getAttribute("EXPECTED_RESULTS");
 String compareTo = (String) pageContext.getAttribute("TEST_RESULTS");
 
 if ((expected == null) || (expected == null)){
-    Assert.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
+    TaglibTestBase.fail("An invalid (or mispelled) test on this page was called.  Please verify that you've setup the tests (and spellings) correctly.");
 }
-	
-Assert.assertEquals(expected, compareTo);
+
+TaglibTestBase.assertResults(expected, compareTo);
 %>
