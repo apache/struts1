@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.25 2003/02/05 05:30:13 dgraham Exp $
- * $Revision: 1.25 $
- * $Date: 2003/02/05 05:30:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.26 2003/02/16 02:51:32 craigmcc Exp $
+ * $Revision: 1.26 $
+ * $Date: 2003/02/16 02:51:32 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.25 $ $Date: 2003/02/05 05:30:13 $
+ * @version $Revision: 1.26 $ $Date: 2003/02/16 02:51:32 $
  * @since Struts 1.1
  */
 
@@ -781,7 +781,10 @@ public class RequestProcessor {
 
     /**
      * Populate the properties of the specified ActionForm instance from
-     * the request parameters included with this request.
+     * the request parameters included with this request.  In addition,
+     * request attribute <code>Globals.CANCEL_KEY</code> will be set if
+     * the request was submitted with a button created by
+     * <code>CancelTag</code>.
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -812,6 +815,12 @@ public class RequestProcessor {
         }
         RequestUtils.populate(form, mapping.getPrefix(), mapping.getSuffix(),
                               request);
+
+        // Set the cancellation request attribute if appropriate
+        if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
+            (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
+            request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
+        }
 
     }
 
@@ -882,11 +891,13 @@ public class RequestProcessor {
 
 
     /**
-     * Call the <code>validate()</code> method of the specified ActionForm,
-     * and forward back to the input form if there are any errors.  Return
-     * <code>true</code> if we should continue processing, or return
-     * <code>false</code> if we have already forwarded control back to the
-     * input form.
+     * <p>If this request was not cancelled, and the request's
+     * {@link ActionMapping} has not disabled validation, call the
+     * <code>validate()</code> method of the specified {@link ActionForm},
+     * and forward back to the input form if there were any errors.
+     * Return <code>true</code> if we should continue processing,
+     * or <code>false</code> if we have already forwarded control back
+     * to the input form.</p>
      *
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -906,9 +917,8 @@ public class RequestProcessor {
             return (true);
         }
 
-        // Was this submit cancelled?
-        if ((request.getParameter(Constants.CANCEL_PROPERTY) != null) ||
-            (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
+        // Was this request cancelled?
+        if (request.getAttribute(Globals.CANCEL_KEY) != null) {
             if (log.isDebugEnabled()) {
                 log.debug(" Cancelled transaction, skipping validation");
             }

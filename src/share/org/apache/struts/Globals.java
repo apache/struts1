@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.4 2002/11/16 06:03:06 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 06:03:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/Globals.java,v 1.5 2003/02/16 02:51:32 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/16 02:51:32 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import java.io.Serializable;
  * themselves have not changed.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/11/16 06:03:06 $
+ * @version $Revision: 1.5 $ $Date: 2003/02/16 02:51:32 $
  */
 
 public class Globals implements Serializable {
@@ -111,6 +111,16 @@ public class Globals implements Serializable {
      */
     public static final String APPLICATION_KEY =
         "org.apache.struts.action.MODULE";
+
+
+    /**
+     * <p>The request attributes key under which a boolean <code>true</code>
+     * value should be stored if this request was cancelled.</p>
+     *
+     * @since Struts 1.1
+     */
+    public static final String CANCEL_KEY =
+        "org.apache.struts.action.CANCEL";
 
 
     /**
