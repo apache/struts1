@@ -30,6 +30,18 @@
     </copy>
   </target>
 
+  <!-- BUILD:  Create directories and copy files for blank application -->
+  <target name="prepare.blank">
+    <mkdir   dir="${build.home}"/>
+    <mkdir   dir="${build.home}/blank"/>
+    <mkdir   dir="${build.home}/blank/WEB-INF"/>
+    <mkdir   dir="${build.home}/blank/WEB-INF/classes"/>
+    <mkdir   dir="${build.home}/blank/WEB-INF/lib"/>
+    <copy  todir="${build.home}/blank">
+      <fileset dir="web/blank"/>
+    </copy>
+  </target>
+
   <!-- BUILD:  Create directories and copy files for documentation app -->
   <target name="prepare.documentation">
     <mkdir   dir="${build.home}"/>
@@ -127,6 +139,29 @@
           includes="struts-*.xml"/>
     <copy    todir="${build.home}/library/classes/META-INF/tlds">
       <fileset dir="${build.home}/library" includes="struts-*.tld"/>
+    </copy>
+  </target>
+
+  <!-- BUILD:  Compile blank application components -->
+  <target name="compile.blank"
+       depends="dist.library,prepare.blank">
+<!--
+    <javac srcdir="src/blank"
+          destdir="${build.home}/blank/WEB-INF/classes"
+        classpath="${build.home}/library/classes:${servlet.jar}"
+            debug="${debug}" optimize="${optimize}"
+      deprecation="${deprecation}"/>
+    <copy  todir="${build.home}/blank/WEB-INF/classes">
+      <fileset dir="src/blank" includes="**/*.properties"/>
+    </copy>
+-->
+    <copy   todir="${build.home}/blank">
+      <fileset dir="web/blank"/>
+    </copy>
+    <copy    file="${dist.home}/lib/${app.name}.jar"
+           tofile="${build.home}/blank/WEB-INF/lib/${app.name}.jar"/>
+    <copy   todir="${build.home}/blank/WEB-INF">
+      <fileset dir="${dist.home}/lib" includes="*.tld"/>
     </copy>
   </target>
 
@@ -284,6 +319,12 @@
           basedir="${build.home}/library/classes" includes="**"/>
   </target>
 
+  <!-- DIST:  Construct blank distributables -->
+  <target name="dist.blank" depends="dist.library,compile.blank">
+    <jar  jarfile="${dist.home}/webapps/${app.name}-blank.war"
+          basedir="${build.home}/blank" includes="**"/>
+  </target>
+
   <!-- DIST:  Construct documentation distributables -->
   <target name="dist.documentation"
        depends="dist.library,compile.documentation,compile.javadoc">
@@ -303,16 +344,16 @@
           basedir="${build.home}/template" includes="**"/>
   </target>
 
-  <!-- DIST:  Construct upload example distributables -->
-  <target name="dist.upload" depends="dist.library,compile.upload">
-    <jar jarfile="${dist.home}/webapps/${app.name}-upload.war"
-         basedir="${build.home}/upload" includes="**"/>
-  </target>
-
   <!-- DIST:  Construct test distributables -->
   <target name="dist.test" depends="dist.library,compile.test">
     <jar  jarfile="${dist.home}/webapps/${app.name}-test.war"
           basedir="${build.home}/test" includes="**"/>
+  </target>
+
+  <!-- DIST:  Construct upload example distributables -->
+  <target name="dist.upload" depends="dist.library,compile.upload">
+    <jar jarfile="${dist.home}/webapps/${app.name}-upload.war"
+         basedir="${build.home}/upload" includes="**"/>
   </target>
 
   <!-- DIST:  Copy sources -->
@@ -333,10 +374,14 @@
 
   <!-- DIST:  Construct complete release distribution -->
   <target name="dist"
-       depends="dist.library,dist.documentation,dist.example,dist.template,dist.upload,dist.test,dist.source"/>
+       depends="dist.library,dist.blank,dist.documentation,dist.example,dist.template,dist.test,dist.upload,dist.source"/>
 
   <!-- DEPLOY:  Deploy these applications on Catalina -->
-  <target name="deploy.catalina" depends="compile.documentation,compile.example,compile.template,compile.upload,compile.test">
+  <target name="deploy.catalina" depends="compile.blank,compile.documentation,compile.example,compile.template,compile.test,compile.upload">
+    <mkdir   dir="${catalina.home}/webapps/struts-blank"/>
+    <copy  todir="${catalina.home}/webapps/struts-blank">
+      <fileset dir="${build.home}/blank"/>
+    </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-documentation"/>
     <copy  todir="${catalina.home}/webapps/struts-documentation">
       <fileset dir="${build.home}/documentation"/>
@@ -360,7 +405,11 @@
   </target>
 
   <!-- DEPLOY:  Deploy these applications on Tomcat -->
-  <target name="deploy.tomcat" depends="compile.documentation,compile.example,compile.template,compile.upload,compile.test">
+  <target name="deploy.tomcat" depends="compile.blank,compile.documentation,compile.example,compile.template,compile.test,compile.upload">
+    <mkdir   dir="${tomcat.home}/webapps/struts-blank"/>
+    <copy  todir="${tomcat.home}/webapps/struts-blank">
+      <fileset dir="${build.home}/blank"/>
+    </copy>
     <mkdir   dir="${tomcat.home}/webapps/struts-documentation"/>
     <copy  todir="${tomcat.home}/webapps/struts-documentation">
       <fileset dir="${build.home}/documentation"/>
@@ -391,6 +440,7 @@
     <echo message="The following targets are available:"/>
     <echo message="  all                    Cleans and builds library and webapps"/>
     <echo message="  clean                  Cleans the build and distribution directories"/>
+    <echo message="  compile.blank          Builds the blank starter app"/>
     <echo message="  compile.documentation  Builds the documentation webapp"/>
     <echo message="  compile.example        Builds the examples webapp"/>
     <echo message="  compile.javadoc        Builds Javadoc API docs for Struts"/>
