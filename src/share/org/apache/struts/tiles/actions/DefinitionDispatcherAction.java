@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.1 2002/06/25 03:15:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/DefinitionDispatcherAction.java,v 1.2 2002/07/11 16:46:40 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:46:40 $
  *
  * ====================================================================
  *
@@ -106,33 +106,30 @@ import org.apache.struts.action.ActionMapping;
  * @author Niall Pemberton <niall.pemberton@btInternet.com>
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/06/25 03:15:42 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/11 16:46:40 $
  */
 
 public final class DefinitionDispatcherAction extends Action {
 
     /**
      * Process the specified HTTP request, and create the corresponding HTTP
-     * response (or forward to another web component that will create it).
-     * Return an <code>ActionForward</code> instance describing where and how
-     * control should be forwarded, or <code>null</code> if the response has
-     * already been completed.
+     * response (or forward to another web component that will create it),
+     * with provision for handling exceptions thrown by the business logic.
      *
-     * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
+     * @since Struts 1.1
      */
-    public ActionForward perform(
-                                 ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
                                  HttpServletRequest request,
                                  HttpServletResponse response)
-                          throws IOException, ServletException
+        throws Exception
     {
         // Identify the request parameter containing the method name
         // If none defined, use "def"

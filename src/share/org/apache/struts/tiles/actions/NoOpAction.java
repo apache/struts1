@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.1 2002/06/25 03:15:42 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:15:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/actions/Attic/NoOpAction.java,v 1.2 2002/07/11 16:46:40 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/11 16:46:40 $
  *
  * ====================================================================
  *
@@ -81,38 +81,34 @@ import org.apache.struts.util.RequestUtils;
 
 
 /**
- * Implementation of <strong>Action</strong> that populates an instance of
- * <code>SubscriptionForm</code> from the currently specified subscription.
+ * Implementation of <strong>Action</strong> that do nothing but a forward to
+ * "success".
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/06/25 03:15:42 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/11 16:46:40 $
  */
 
 public final class NoOpAction extends Action {
 
-
-    // --------------------------------------------------------- Public Methods
-
-
     /**
-     * No op action.
-     * Action doing nothing.
+     * Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it),
+     * with provision for handling exceptions thrown by the business logic.
      *
-     * @param servlet The ActionServlet making this request
      * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * @exception Exception if the application business logic throws
+     *  an exception
+     * @since Struts 1.1
      */
-    public ActionForward perform(
-                                 ActionMapping mapping,
+    public ActionForward execute(ActionMapping mapping,
                                  ActionForm form,
                                  HttpServletRequest request,
                                  HttpServletResponse response)
-                          throws IOException, ServletException
+        throws Exception
     {
       // No op action.
 	  return (mapping.findForward("success"));
