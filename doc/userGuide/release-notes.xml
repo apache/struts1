@@ -11,7 +11,7 @@
       <section name="Introduction" href="Introduction">
         <p>This section contains release notes for changes that have taken place since
         <a href="release-notes-1.1.html">Version 1.1</a> was released. The release notes
-        through the Struts 1.2.1 release are also <a href="release-notes-1.2.1.html">available.</a></p></p>
+        through the Struts 1.2.1 release are also <a href="release-notes-1.2.1.html">available.</a></p>
       </section>
       <section name="What's Included?" href="Included">
         <p>The binary distribution of this release includes the following files relevant to Struts:</p>
@@ -162,7 +162,10 @@
         </p>
         <ul>
             <li>
-                2004-07-08: Add a simplified build.properties file for use by developers who are not actively involved in Jakarta development. This template assumes the developer is using JARS from our "lib" distribution.
+                2004-07-09: struts.xsl: Give each "src" variable a distinct name to follow XSL rules.
+            </li>
+            <li>
+                2004-07-08: build.properties.sample.lib: Add a simplified build.properties file for use by developers who are not actively involved in Jakarta development. This template assumes the developer is using JARS from our "lib" distribution.
             </li>
         </ul>
         <ul>
