@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.7 2000/12/30 02:25:40 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.8 2001/01/03 19:22:51 craigmcc Exp $
 -->
 
 
@@ -171,7 +171,7 @@
      type            Fully qualified Java class name of the implementation
                      class to be used or generated
 -->
-<!ELEMENT form-bean (icon?, display-name?, description?)>
+<!ELEMENT form-bean (icon?, display-name?, description?, set-property*)>
 <!ATTLIST form-bean      id             ID              #IMPLIED>
 <!ATTLIST form-bean      name           %BeanName;      #REQUIRED>
 <!ATTLIST form-bean      type           %ClassName;     #REQUIRED>

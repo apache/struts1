@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.49 2001/01/02 20:17:34 craigmcc Exp $
- * $Revision: 1.49 $
- * $Date: 2001/01/02 20:17:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.50 2001/01/03 19:22:55 craigmcc Exp $
+ * $Revision: 1.50 $
+ * $Date: 2001/01/03 19:22:55 $
  *
  * ====================================================================
  *
@@ -172,6 +172,8 @@ import org.xml.sax.SAXException;
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.</li>
+ * <li><strong>formBean</strong> - The Java class name of the ActionFormBean
+ *     implementation to use [org.apache.struts.action.ActionFormBean].
  * <li><strong>forward</strong> - The Java class name of the ActionForward
  *     implementation to use [org.apache.struts.action.ActionForward].
  *     Two convenient classes you may wish to use are:
@@ -225,7 +227,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.49 $ $Date: 2001/01/02 20:17:34 $
+ * @version $Revision: 1.50 $ $Date: 2001/01/03 19:22:55 $
  */
 
 public class ActionServlet
@@ -1089,6 +1091,10 @@ public class ActionServlet
                             "addFormBean",
                             "org.apache.struts.action.ActionFormBean");
 
+        digester.addSetProperty
+            ("struts-config/form-beans/form-bean/set-property",
+             "property", "value");
+
         // FIXME "struts-config/global-forwards" type attribute
 
         digester.addObjectCreate("struts-config/global-forwards/forward",
@@ -1197,6 +1203,11 @@ public class ActionServlet
 	    else
 	        validate = false;
 	}
+
+        // Initialize the name of our ActionFormBean implementation class
+        value = getServletConfig().getInitParameter("formBean");
+        if (value != null)
+            formBeanClass = value;
 
 	// Initialize the name of our ActionForward implementation class
 	value = getServletConfig().getInitParameter("forward");
