@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.15 2001/05/14 17:54:56 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.15.2.1 2001/06/13 21:26:29 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -63,6 +63,7 @@ package org.apache.struts.taglib.bean;
 
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -92,7 +93,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2001/05/14 17:54:56 $
+ * @version $Revision: 1.15.2.1 $ $Date: 2001/06/13 21:26:29 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -246,10 +247,23 @@ public class IncludeTag extends TagSupport {
 
 	URLConnection conn = null;
 	try {
+            // Set up the basic connection
 	    conn = url.openConnection();
 	    conn.setAllowUserInteraction(false);
 	    conn.setDoInput(true);
 	    conn.setDoOutput(false);
+            // Add a session id cookie if appropriate
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            if ((conn instanceof HttpURLConnection) &&
+                urlString.startsWith(request.getContextPath()) &&
+                (request.getRequestedSessionId() != null) &&
+                request.isRequestedSessionIdFromCookie()) {
+                StringBuffer sb = new StringBuffer("JSESSIONID=");
+                sb.append(request.getRequestedSessionId());
+                conn.setRequestProperty("Cookie", sb.toString());
+            }
+            // Connect to the requested resource
 	    conn.connect();
 	} catch (Exception e) {
             RequestUtils.saveException(pageContext, e);
