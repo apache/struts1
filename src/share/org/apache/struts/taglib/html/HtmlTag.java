@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.4 2002/09/23 05:13:43 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/09/23 05:13:43 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.5 2002/11/07 01:43:34 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/11/07 01:43:34 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.ResponseUtils;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/09/23 05:13:43 $
+ * @version $Revision: 1.5 $ $Date: 2002/11/07 01:43:34 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -144,6 +144,7 @@ public class HtmlTag extends TagSupport {
                     sb.append(" xml:lang=\"");
                     sb.append(lang);
                     sb.append("\"");
+                    sb.append(" xmlns=\"http://www.w3.org/1999/xhtml\"");
                 }
             }
         }
