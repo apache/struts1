@@ -5,7 +5,7 @@
   <name>struts-el</name>
   <id>struts-el</id>
   <groupId>struts</groupId>
-  <currentVersion>1.2.3</currentVersion>
+  <currentVersion>1.2.4</currentVersion>
   <inceptionYear>2003</inceptionYear>
   <package>org.apache.strutsel</package>
   <shortDescription>Extension/adaptation of Struts tag libraries to use JSP 1.2 expression language.</shortDescription>
@@ -57,7 +57,7 @@ for evaluating attribute values.
     <dependency>
       <groupId>struts</groupId>
       <artifactId>struts</artifactId>
-      <version>1.2.3</version>
+      <version>1.2.4</version>
       <url>http://jakarta.apache.org/struts/</url>
     </dependency>
     <dependency>
