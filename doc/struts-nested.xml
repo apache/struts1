@@ -141,6 +141,7 @@
       bean property.
     </summary>
     <tagclass>org.apache.struts.taglib.nested.bean.NestedDefineTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.DefineTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
       <p>Retrieve the value of a specified bean property, and define it
@@ -276,6 +277,7 @@
       Define a bean containing the number of elements in a Collection or Map.
     </summary>
     <tagclass>org.apache.struts.taglib.nested.bean.NestedSizeTag</tagclass>
+    <teiclass>org.apache.struts.taglib.bean.SizeTei</teiclass>
     <bodycontent>empty</bodycontent>
     <info>
       <p>Given a reference to an array, Collection or Map, creates a new bean, of
@@ -4475,6 +4477,7 @@ org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
       Repeat the nested body content of this tag over a specified collection.
     </summary>
     <tagclass>org.apache.struts.taglib.nested.logic.NestedIterateTag</tagclass>
+    <teiclass>org.apache.struts.taglib.nested.logic.NestedIterateTei</teiclass>
     <bodycontent>JSP</bodycontent>
     <info>
       <p>Repeats the nested body content of this tag once for every element
