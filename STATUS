@@ -1,17 +1,16 @@
 STATUS
 ======
-$Id: STATUS,v 1.35 2002/07/21 01:00:40 craigmcc Exp $
+$Id: STATUS,v 1.36 2002/07/21 01:05:23 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
             ====================================================
 
-                           17 open bugs to swat!!
+                           16 open bugs to swat!!
 
 
 Controller:
 ----------
- 8487 Serializability issues in ActionServlet/RequestProcessor
 
 
 Custom Tags:
