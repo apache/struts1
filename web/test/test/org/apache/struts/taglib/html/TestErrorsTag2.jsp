@@ -274,7 +274,7 @@
 
 <!-- Name -->
 
-<logic:equal name="runTest" value="testErrorsDefaultBundle0ErrorsName">
+<logic:equal name="runTest" value="testErrorsDefaultBundle0ErrorsNameProperty">
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		My Errors go here:<html:errors name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
@@ -283,7 +283,7 @@
 	</bean:define>
 </logic:equal>
 
-<logic:equal name="runTest" value="testErrorsDefaultBundle2ErrorsName">
+<logic:equal name="runTest" value="testErrorsDefaultBundle2ErrorsNameProperty">
 <%
 //This should be done in your action.  I do it here to keep the tests simple.
 	ActionErrors errors = new ActionErrors();
@@ -304,7 +304,7 @@
 	</bean:define>
 </logic:equal>
 
-<logic:equal name="runTest" value="testErrorsAlternateBundle0ErrorsName">
+<logic:equal name="runTest" value="testErrorsAlternateBundle0ErrorsNameProperty">
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		My Errors go here:<html:errors name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
@@ -313,7 +313,7 @@
 	</bean:define>
 </logic:equal>
 
-<logic:equal name="runTest" value="testErrorsAlternateBundle2ErrorsName">
+<logic:equal name="runTest" value="testErrorsAlternateBundle2ErrorsNameProperty">
 <%
 //This should be done in your action.  I do it here to keep the tests simple.
 	ActionErrors errors = new ActionErrors();
@@ -334,7 +334,7 @@
 	</bean:define>
 </logic:equal>
 
-<logic:equal name="runTest" value="testErrorsDefaultBundle0ErrorsName_fr">
+<logic:equal name="runTest" value="testErrorsDefaultBundle0ErrorsNameProperty_fr">
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		My Errors go here:<html:errors name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
@@ -343,7 +343,7 @@
 	</bean:define>
 </logic:equal>
 
-<logic:equal name="runTest" value="testErrorsDefaultBundle2ErrorsName_fr">
+<logic:equal name="runTest" value="testErrorsDefaultBundle2ErrorsNameProperty_fr">
 <%
 //This should be done in your action.  I do it here to keep the tests simple.
 	ActionErrors errors = new ActionErrors();
@@ -365,7 +365,7 @@
 </logic:equal>
 
 
-<logic:equal name="runTest" value="testErrorsAlternateBundle0ErrorsName_fr">
+<logic:equal name="runTest" value="testErrorsAlternateBundle0ErrorsNameProperty_fr">
 	<bean:define id="EXPECTED_RESULTS" toScope="page">
 		My Errors go here:<html:errors name="MY_ERRORS_KEY" property="someProperty"/>
 	</bean:define>
@@ -374,7 +374,7 @@
 	</bean:define>
 </logic:equal>
 
-<logic:equal name="runTest" value="testErrorsAlternateBundle2ErrorsName_fr">
+<logic:equal name="runTest" value="testErrorsAlternateBundle2ErrorsNameProperty_fr">
 <%
 //This should be done in your action.  I do it here to keep the tests simple.
 	ActionErrors errors = new ActionErrors();
@@ -528,12 +528,13 @@
 
 
 
-
 <% 
 String expected = "";
 String compareTo = "";
 
-if (pageContext.getAttribute("EXPECTED_RESULTS") != null){
+if (pageContext.getAttribute("EXPECTED_RESULTS") == null){
+    throw new JspException("No tests on this page were called.  Please verify that you've setup the tests correctly.");
+}else{
 	expected=pageContext.getAttribute("TEST_RESULTS").toString();
 }
 if (pageContext.getAttribute("TEST_RESULTS") != null){

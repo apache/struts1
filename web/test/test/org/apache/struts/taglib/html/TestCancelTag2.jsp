@@ -111,10 +111,18 @@
 	</bean:define>
 </logic:equal>
 
-
 <% 
-Assert.assertEquals(
-	pageContext.getAttribute("TEST_RESULTS").toString(), 
-	pageContext.getAttribute("EXPECTED_RESULTS").toString()
-	);
+String expected = "";
+String compareTo = "";
+
+if (pageContext.getAttribute("EXPECTED_RESULTS") == null){
+    throw new JspException("No tests on this page were called.  Please verify that you've setup the tests correctly.");
+}else{
+	expected=pageContext.getAttribute("TEST_RESULTS").toString();
+}
+if (pageContext.getAttribute("TEST_RESULTS") != null){
+	compareTo=pageContext.getAttribute("EXPECTED_RESULTS").toString();
+}
+
+Assert.assertEquals(compareTo, expected);
 %>

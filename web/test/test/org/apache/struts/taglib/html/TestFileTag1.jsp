@@ -13,9 +13,6 @@
 	</bean:define>
 </logic:equal>
  
- enctype="multipart/form-data" 
- accept="image/jpeg, image/gif"
- 
 <logic:equal name="runTest" value="testFilePropertyAccept">
 	<bean:define id="TEST_RESULTS" toScope="page">
 		<html:file property="string" accept="image/jpeg, image/gif"/>
@@ -242,10 +239,18 @@
 </logic:equal>
 
 
-
 <% 
-Assert.assertEquals(
-	pageContext.getAttribute("TEST_RESULTS").toString(), 
-	pageContext.getAttribute("EXPECTED_RESULTS").toString()
-	);
+String expected = "";
+String compareTo = "";
+
+if (pageContext.getAttribute("EXPECTED_RESULTS") == null){
+    throw new JspException("No tests on this page were called.  Please verify that you've setup the tests correctly.");
+}else{
+	expected=pageContext.getAttribute("TEST_RESULTS").toString();
+}
+if (pageContext.getAttribute("TEST_RESULTS") != null){
+	compareTo=pageContext.getAttribute("EXPECTED_RESULTS").toString();
+}
+
+Assert.assertEquals(compareTo, expected);
 %>
