@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/OptionBean.java,v 1.1 2001/10/15 05:50:10 martinc Exp $
- * $Revision: 1.1 $
- * $Date: 2001/10/15 05:50:10 $
+ * $Header: /home/cvs/jakarta-struts/src/exercise-taglib/org/apache/struts/webapp/exercise/Attic/OptionBean.java,v 1.1.2.1 2001/10/15 05:56:22 martinc Exp $
+ * $Revision: 1.1.2.1 $
+ * $Date: 2001/10/15 05:56:22 $
  *
  * ====================================================================
  *
@@ -68,7 +68,7 @@ package org.apache.struts.webapp.exercise;
  * in conjunction with the <code>collection</code> attribute.
  *
  * @author  Martin F N Cooper
- * @version $Revision: 1.1 $ $Date: 2001/10/15 05:50:10 $
+ * @version $Revision: 1.1.2.1 $ $Date: 2001/10/15 05:56:22 $
  */
 
 public class OptionBean {
