@@ -1,4 +1,10 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorActionForm.java,v 1.2 2002/04/02 04:02:13 dwinterfeldt Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/04/02 04:02:13 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
  * Copyright (c) 1999 The Apache Software Foundation.  All rights
@@ -80,8 +86,9 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
  * for validation rules.</li></ul>
  *
- * @since 1.1
  * @author David Winterfeldt
+ * @version $Revision: 1.2 $ $Date: 2002/04/02 04:02:13 $
+ * @since 1.1
 */
 
 public class ValidatorActionForm extends ValidatorForm implements Serializable {
@@ -113,7 +120,7 @@ public class ValidatorActionForm extends ValidatorForm implements Serializable {
 	                                                        errors, page);
 	
 	try {
-	   validator.validate();
+	   validatorResults = validator.validate();
         } catch (ValidatorException e) {
 	   log.error(e.getMessage(), e);
 	}

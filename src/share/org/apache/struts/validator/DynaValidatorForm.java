@@ -1,4 +1,10 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.2 2002/04/02 04:02:13 dwinterfeldt Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/04/02 04:02:13 $
+ *
+ * ====================================================================
+ *
  * The Apache Software License, Version 1.1
  *
  * Copyright (c) 1999 The Apache Software Foundation.  All rights
@@ -57,6 +63,7 @@ package org.apache.struts.validator;
 
 import java.io.Serializable;
 import java.util.Locale;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.beanutils.DynaBean;
@@ -65,6 +72,7 @@ import org.apache.commons.logging.LogSource;
 import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResources;
+import org.apache.commons.validator.ValidatorResults;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -81,8 +89,9 @@ import org.apache.struts.util.StrutsValidatorUtil;
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
  * for validation rules.</li></ul>
  *
- * @since 1.1
  * @author David Winterfeldt
+ * @version $Revision: 1.2 $ $Date: 2002/04/02 04:02:13 $
+ * @since 1.1
  * @see org.apache.struts.action.ActionForm
 */
 
@@ -92,6 +101,12 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
      * Commons Logging instance.
     */
     private Log log = LogSource.getInstance(this.getClass().getName());
+
+    /**
+     * The results returned from the validation performed 
+     * by the <code>Validator</code>.
+    */
+    protected ValidatorResults validatorResults = null;
 
     /**
      * Used to indicate the current page of a multi-page form.
@@ -134,7 +149,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
 	                                                        errors, page);
 	
 	try {
-	   validator.validate();
+	   validatorResults = validator.validate();
         } catch (ValidatorException e) {
 	   log.error(e.getMessage(), e);
 	}
@@ -178,6 +193,33 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
     public void reset(ActionMapping mapping, HttpServletRequest request) {
        super.reset(mapping, request);
        page = 0;
+       validatorResults = null;
+    }
+
+    /**
+     * Get results of the validation performed by the 
+     * <code>Validator</code>.
+    */
+    public ValidatorResults getValidatorResults() {
+       return validatorResults;	
+    }
+
+    /**
+     * Set results of the validation performed by the 
+     * <code>Validator</code>.
+    */
+    public void setValidatorResults(ValidatorResults validatorResults) {
+       this.validatorResults = validatorResults;	
+    }
+
+    /**
+     * Returns a <code>Map</code> of values returned 
+     * from any validation that returns a value other than 
+     * <code>null</code> or <code>Boolean</code> with the  
+     * key the full property path of the field.
+    */
+    public Map getResultValueMap() {
+       return (validatorResults != null ? validatorResults.getResultValueMap() : null);
     }
 
 }
