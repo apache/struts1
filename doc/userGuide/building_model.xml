@@ -85,7 +85,7 @@
         than the <i>Model</i>.
       </p>
       <p>
-        The Struts framework generally assumes that you have created an
+        The Struts framework generally assumes that you have defined an
         <code>ActionForm</code> bean (that is, a Java class extending the
         <code>ActionForm</code> class) for each input form required in your
         application. <code>ActionForm</code> beans are sometimes just called
@@ -135,12 +135,22 @@
             to the usual JavaBeans conventions.  For example, an input field named
             <code>username</code> will cause the <code>setUsername()</code> method
             to be called.</li>
+        <li>Think of your ActionForm beans as a firewall between HTTP and the Action. 
+            Use the validate method to ensure all required properties are present, and 
+            that they contain reasonable values. An ActionForm that fails validation 
+            will not even be presented to the Action for handling.</li>
         <li>You may also place a bean instance on your form, and use nested property 
             references. For example, you might have a "customer" bean on your Action 
             Form, and then refer to the property "customer.name" in your JSP view. 
             This would correspond to the methods <code>customer.getName()</code> and 
             <code>customer.setName(string Name)</code> on your customer bean. See the 
             Tag Library Developer Guides for more about nested syntax.</li>
+        <li><i>Caution:</i> If you nest an existing bean instance on your form, think 
+            about the properties it exposes. Any public property on an ActionForm that 
+            accepts a single String value can be set with a query string. It may be 
+            useful to place such beans inside a thin "wrapper" that exposes only the 
+            properties required. This wrapper can also provide a filter to be 
+            sure runtime properties are not set to inappropriate values.</li> 
       </ul>
         
       <p>
@@ -222,7 +232,7 @@
       
       <p>
         Struts can define the datasources for an application from within its standard 
-        configuration file. A simple JDBC connection pool is also provided. See <a 
+        configuration file. A <b>simple</b> JDBC connection pool is also provided. See <a 
         href="building_controller.html#config">The Action Mappings Configuration File</a>
         section and the Utilities Developer Guide for details. 
       </p>
@@ -259,6 +269,11 @@ public ActionForward
 }
 </pre>
       
+      <p>
+        Note that the Struts generic connection pool is an <b>optional</b> component. Many 
+        Struts applications use other connection pools for better performance, 
+        especially with high-volume production systems. 
+       </p>
       <p align="center">
         Next: <a href="building_view.html">Building View Components</a>
       </p>

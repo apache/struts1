@@ -32,6 +32,7 @@ Apache Jarakta Website.</p>
 <li>Martin Cooper</li>
 <li>Mike Schachter</li>
 <li>Niall Pemberton</li>
+<li>Oleg V Alexeev</li>
 <li>Ralph Schaer</li>
 <li>Rob Leland</li>
 <li>Sean Kelly</li>
@@ -45,12 +46,15 @@ Apache Jarakta Website.</p>
 <li>Craig R. McClanahan</li>
 <li>David Geary</li>
 <li>dIon Gillard</li>
+<li>Ed Burns</li>
 <li>Eric Wu</li>
 <li>John Rousseau</li>
+<li>John Ueltzhoeffer</li>
 <li>Larry McCay</li>
 <li>Martin Cooper</li>
 <li>Matthias Kerkhoff</li>
 <li>Mike Schachter</li>
+<li>Paul Runyan</li>
 <li>Robert Hayden</li>
 <li>Stanley Santiago</li>
 <li>Ted Husted</li>
@@ -61,18 +65,20 @@ Apache Jarakta Website.</p>
 <section name="Active Committers" href="committers"> 
 <ul>
 <li><b>Craig R. McClanahan</b></li> (craigmcc at apache.org)
-<li><b>David Geary</b></li>         (dgeary at apache.org)
 <li><b>Michael Schachter</b></li>   (mschachter at apache.org)
 <li><b>Ted Husted</b></li>          (husted at apache.org)
 <li><b>Rob Leland</b></li>          (rleland at apache.org)
 <li><b>Vincent Massol</b></li>      (vmassol at apache.org)
 <li><b>Cedric Dumoulin</b></li>     (cedric.dumoulin at lifl.fr)
 <li><b>Martin Cooper</b></li>       (martinc at apache.org)
+<li><b>David Winterfeldt</b></li>   (dwinterfeldt at apache.org)
+<li><b>Oleg Alexeev</b></li>        (oalexeev at apache.org)
 </ul>
 </section>
 
 <section name="Emeritus Committers" href="comitters.emeritus"> 
 <ul>
+<li>David Geary</li>
 <li>Luis Arias</li>
 <li>Pierre Delilse</li>
 </ul>
@@ -268,4 +274,8 @@ questions too. Now, I'm glad to be able to give something back to the
 Struts community by helping others understand, and also by contributing 
 ideas and code to help make Struts even better than it already is.</p>
 
-</section></chapter></body></document>
+</section></chapter>
+
+  <p>Next: <a href="../index.html">Struts Home</a></p>
+
+</body></document>

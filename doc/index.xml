@@ -54,9 +54,9 @@
   utility packages.</p>
 
   <p>For more detail about a specific class or package, the Struts 
-  <a href="http://jakarta.apache.org/struts/api-1.0.1/index.html"><b>Javadocs</b></a>
+  <a href="api/index.html"><b>Javadocs</b></a>
   are comprehensive and carefully maintained. It is strongly recommended that 
-  you refer to the <a href="http://jakarta.apache.org/struts/api-1.0.1/index.html">Javadoc</a> 
+  you refer to the <a href="api/index.html">Javadoc</a> 
   for each class as you begin to use it, to be sure important features and options 
   are not overlooked. What you don't know, can't help you.</p>
 
