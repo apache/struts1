@@ -59,13 +59,6 @@
       </assigned>
     </task>
 
-    <task name="Struts Tutorial">
-      <info>
-        <p>Integrate Struts tutorial provided by Bluestone.</p>
-        [STRUTS-DEV, Michael Schachter, 01/02/2001]
-      </info>
-    </task>
-
   </task-list>
 
 
@@ -97,17 +90,6 @@
       <info>
         <p>Create developer guide documentation for this package, in
         file "package.html".</p>
-      </info>
-    </task>
-
-    <task name="Command Token Support">
-      <info>
-        <p>Support the ability to include unique tokens in forms used to
-        detect duplicate or out-of-order submissions.  Will probably also
-        require additions to the <code>&lt;html:form&gt;</code> tag.</p>
-        [STRUTS-USER, William Jaynes, 12/05/2000]
-        [STRUTS-DEV, William Jaynes, 12/07/2000]
-        [STRUTS-DEV, David Geary, 12/22/2000]
       </info>
     </task>
 
@@ -158,20 +140,6 @@
     support for internationalized and localized applications.</p>
     </info>
 
-    <task name="Convert From 'Form' Library">
-      <info>
-        <p>Convert all Java classes from package
-        <code>org.apache.struts.taglib.form</code> to package
-        <code>org.apache.struts.taglib.html</code>.  Copy "struts-form.xml"
-        to "struts-html.xml" and update Java class names.  Leave the old
-        "struts-form.xml" file (deprecated) with new class names to ease
-        conversion.</p>
-      </info>
-      <assigned>
-      Michael Schachter
-      </assigned>
-    </task>
-
     <task name="Image Tag?">
       <info>
         [STRUTS-DEV, Michael Westbay, 12/22/2000]
@@ -187,23 +155,6 @@
       <p>This package contains a variety of utility classes useful within
       Struts as well as in stand-alone applications.</p>
     </info>
-
-    <task name="Support Nested and Indexed Getters and Setters in BeanUtils">
-      <info>
-        <p>Support bean property setters (in BeanUtils) that understand
-        the nested and indexed property syntax now supported by the
-        PropertyUtils getters and setters.</p>
-        [STRUTS-DEV, Chris Audley, 08/07/2000]
-        [STRUTS-DEV, Ken X Horn, 10/17/2000]
-        [STRUTS-DEV, Ken X Horn, 10/18/2000]
-        [STRUTS-DEV, Matthias Kerkhoff, 11/18/2000]
-        [STRUTS-DEV, Eric, 12/15/2000]
-        [STRUTS-USER, Kevin Wang, 12/21/2000]
-      </info>
-      <assigned>
-      Michael Schachter
-      </assigned>
-    </task>
 
     <task name="Update HTML Filtering">
       <info>
