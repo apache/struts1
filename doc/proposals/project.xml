@@ -11,7 +11,8 @@
         <item name="Acquiring"               href="../acquiring.html"/>
         <item name="Using"                   href="../using.html"/>
         <item name="Who We Are"              href="../volunteers.html"/>
-    </menu>
+        <item name="Roadmap"                 href="../status.html"/>
+</menu>
 
 
 </project>
