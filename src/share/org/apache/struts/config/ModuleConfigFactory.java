@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.3 2003/02/04 02:34:09 dgraham Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/04 02:34:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ModuleConfigFactory.java,v 1.4 2003/02/05 00:51:40 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/05 00:51:40 $
  *
  * ====================================================================
  *
@@ -69,7 +69,7 @@ import org.apache.commons.logging.LogFactory;
  * A factory interface for creating {@link ModuleConfig}s.
  *
  * @author Robert Leland
- * @version $Revision: 1.3 $ $Date: 2003/02/04 02:34:09 $ 
+ * @version $Revision: 1.4 $ $Date: 2003/02/05 00:51:40 $ 
  *
  * @see ModuleConfig
  */
@@ -139,12 +139,12 @@ public abstract class ModuleConfigFactory {
      * The Java class to be used for
      * <code>ModuleConfigFactory</code> instances.
      */
-    protected static transient Class clazz = null;
+    protected static Class clazz = null;
 
     /**
      * Commons Logging instance.
      */
-    private static transient Log LOG = LogFactory.getLog(ModuleConfigFactory.class);
+    private static Log LOG = LogFactory.getLog(ModuleConfigFactory.class);
 
 
     /**
