@@ -57,6 +57,13 @@ public class MessageComponent extends UIOutput {
 
 
     /**
+     * <p>Flag indicating whether output should be filtered.</p>
+     */
+    private boolean filter = true;
+    private boolean filterSet = false;
+
+
+    /**
      * <p>Message key to use for message lookup.</p>
      */
     private String key = null;
@@ -110,6 +117,41 @@ public class MessageComponent extends UIOutput {
     public String getFamily() {
 
         return "org.apache.struts.faces.Message";
+
+    }
+
+
+    /**
+     * <p>Return a flag indicating whether filtering should take place.</p>
+     */
+    public boolean isFilter() {
+
+        if (filterSet) {
+            return filter;
+        }
+        ValueBinding vb = getValueBinding("filter");
+        if (vb != null) {
+            Boolean value = (Boolean) vb.getValue(getFacesContext());
+            if (null == value) {
+                return filter;
+            }
+            return value.booleanValue();
+        } else {
+            return filter;
+        }
+
+    }
+
+
+    /**
+     * <p>Set the flag indicating that the output value should be filtered.</p>
+     *
+     * @param filter The new filter flag
+     */
+    public void setFilter(boolean filter) {
+
+        this.filter = filter;
+        this.filterSet = true;
 
     }
 
@@ -209,9 +251,11 @@ public class MessageComponent extends UIOutput {
         Object values[] = (Object[]) state;
         super.restoreState(context, values[0]);
         bundle = (String) values[1];
-        key = (String) values[2];
-        style = (String) values[3];
-        styleClass = (String) values[4];
+        filter = ((Boolean) values[2]).booleanValue();
+        filterSet = ((Boolean) values[3]).booleanValue();
+        key = (String) values[4];
+        style = (String) values[5];
+        styleClass = (String) values[6];
 
     }
 
@@ -223,12 +267,14 @@ public class MessageComponent extends UIOutput {
      */
     public Object saveState(FacesContext context) {
 
-        Object values[] = new Object[5];
+        Object values[] = new Object[7];
         values[0] = super.saveState(context);
         values[1] = bundle;
-        values[2] = key;
-        values[3] = style;
-        values[4] = styleClass;
+        values[2] = filter ? Boolean.TRUE : Boolean.FALSE;
+        values[3] = filterSet ? Boolean.TRUE : Boolean.FALSE;
+        values[4] = key;
+        values[5] = style;
+        values[6] = styleClass;
         return values;
 
     }

@@ -170,10 +170,9 @@
 
   <!-- ========== Message Resources Definitions =========================== -->
 
-<!--
   <message-resources
-    parameter="org.apache.struts.webapp.example.ApplicationResources"/>
--->
+          key="messages"
+    parameter="org.apache.struts.faces.systest.ApplicationResources"/>
 
 
   <!-- ========== Plug Ins Configuration ================================== -->

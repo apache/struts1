@@ -25,6 +25,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlHead;
 import com.gargoylesoftware.htmlunit.html.HtmlLink;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlSpan;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import org.apache.commons.httpclient.HttpState;
  * <p>Test case for a simple Struts-Faces page that is statically examined
  * to ensure that all of the expected elements have been rendered correctly.</p>
  *
- * @version $Revision: 1.1 $ $Date: 2004/08/03 07:01:09 $
+ * @version $Revision: 1.2 $ $Date: 2004/08/07 04:53:35 $
  */
 
 public class SimpleTestCase extends AbstractTestCase {
@@ -142,6 +143,59 @@ public class SimpleTestCase extends AbstractTestCase {
 
 
     /**
+     * <p>Verify that the loadMessages tag properly exposes a Struts
+     * MessageResources instance as a Map.</p>
+     */
+    public void testLoadMessages() throws Exception {
+
+        HtmlSpan span = null;
+
+        span = (HtmlSpan) element("lookup-simple");
+        assertNotNull(span);
+        assertEquals("Resource Simple Text", span.asText());
+
+        span = (HtmlSpan) element("lookup-filtered");
+        assertNotNull(span);
+        assertEquals("Resource <b>Filtered</b> Text", span.asText());
+
+        span = (HtmlSpan) element("lookup-unfiltered");
+        assertNotNull(span);
+        assertEquals("Resource Unfiltered Text", span.asText());
+
+    }
+
+
+    /**
+     * <p>Verify the presence and contents of several message components.</p>
+     */
+    public void testMessage() throws Exception {
+
+        HtmlSpan span = null;
+
+        span = (HtmlSpan) element("message-direct");
+        assertNotNull(span);
+        assertEquals("Resource Simple Text", span.asText());
+
+        span = (HtmlSpan) element("message-indirect");
+        assertNotNull(span);
+        assertEquals("Resource Simple Text", span.asText());
+
+        span = (HtmlSpan) element("message-filtered");
+        assertNotNull(span);
+        assertEquals("Resource <b>Filtered</b> Text", span.asText());
+
+        span = (HtmlSpan) element("message-unfiltered");
+        assertNotNull(span);
+        assertEquals("Resource Unfiltered Text", span.asText());
+
+        span = (HtmlSpan) element("message-substitute");
+        assertNotNull(span);
+        assertEquals("From Here to Eternity", span.asText());
+
+    }
+
+
+    /**
      * <p>Verify the presence and contents of a stylesheet element.</p>
      */
     public void testStylesheet() throws Exception {
@@ -173,11 +227,59 @@ public class SimpleTestCase extends AbstractTestCase {
 
 
     /**
+     * <p>Verify the proper operation of clientId in a subview.</p.
+     */
+    public void testSubview() throws Exception {
+
+        HtmlSpan span = null;
+
+        span = (HtmlSpan) element("subview:write1");
+        assertNotNull(span);
+        assertEquals("subview:write1", span.asText());
+
+    }
+
+
+    /**
      * <p>Verify the title of the returned page.</p>
      */
     public void testTitle() throws Exception {
 
         assertEquals("simple", title());
+
+    }
+
+
+    /**
+     * <p>Verify the presence and contents of several write components.</p>
+     */
+    public void testWrite() throws Exception {
+
+        HtmlSpan span = null;
+
+        span = (HtmlSpan) element("write-literal");
+        assertNotNull(span);
+        assertEquals("Literal Write Content", span.asText());
+
+        span = (HtmlSpan) element("write-filtered");
+        assertNotNull(span);
+        assertEquals("Literal <b>Filtered</b> Content", span.asText());
+
+        span = (HtmlSpan) element("write-unfiltered");
+        assertNotNull(span);
+        assertEquals("Literal Unfiltered Content", span.asText());
+
+        span = (HtmlSpan) element("retrieved-literal");
+        assertNotNull(span);
+        assertEquals("Retrieved Simple Content", span.asText());
+
+        span = (HtmlSpan) element("retrieved-filtered");
+        assertNotNull(span);
+        assertEquals("Retrieved <b>Filtered</b> Content", span.asText());
+
+        span = (HtmlSpan) element("retrieved-unfiltered");
+        assertNotNull(span);
+        assertEquals("Retrieved Unfiltered Content", span.asText());
 
     }
 

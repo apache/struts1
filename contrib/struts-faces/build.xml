@@ -562,7 +562,6 @@
 
     <!-- Compile Java Sources -->
     <mkdir         dir="${build.home}/webapps/systest/WEB-INF/classes"/>
-<!--
     <javac      srcdir="src/systest"
                destdir="${build.home}/webapps/systest/WEB-INF/classes"
                  debug="${compile.debug}"
@@ -570,16 +569,13 @@
               optimize="${compile.optimize}">
       <classpath refid="classpath" />
     </javac>
--->
 
     <!-- Copy non-Java Sources -->
-<!--
     <copy    todir="${build.home}/webapps/systest/WEB-INF/classes">
       <fileset dir="src/systest">
         <exclude name="**/*.java"/>
       </fileset>
     </copy>
--->
 
   </target>
 

@@ -590,6 +590,15 @@
       <p>Substitution parameters for the message may be nested inside this
       tag by using the <code>parameter</code> tag from the standard
       HTML RenderKit tag library.</p>
+
+      <p>Additional control over the rendering process is specified by the
+      following optional attributes, with default values as indicated:</p>
+      <ul>
+      <li><strong>filter</strong> - Set to <code>true</code> to filter the
+          rendered text for characters that are sensitive in HTML, or
+          <code>false</code> to skip filtering.  By default, rendered text
+          is filtered.</li>
+      </ul>
     </description>
 
     <attribute>
@@ -610,6 +619,16 @@
         <p>Name of the servlet context attribute under which the desired
         <code>MessageResources</code> bundle is stored.  If not specified,
         the default bundle for this sub-application will be used.</p>
+      </description>
+    </attribute>
+
+    <attribute>
+      <name>filter</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <description>
+        <p>Should we filter the output for characters that are sensitive
+        in HTML?  The default value is <code>true</code>.</p>
       </description>
     </attribute>
 
@@ -713,52 +732,6 @@
       <rtexprvalue>false</rtexprvalue>
       <description>
         Context-relative path to the resource for this relative link.
-      </description>
-    </attribute>
-
-    <attribute>
-      <name>rendered</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        Boolean attribute indicating whether this component should be
-        rendered or not.
-      </description>
-    </attribute>
-
-  </tag>
-
-
-  <tag>
-
-    <name>subview</name>
-    <summary>
-      Struts-Specific Substitute for JSF Core "subview" tag
-    </summary>
-    <tag-class>org.apache.struts.faces.taglib.SubviewTag</tag-class>
-    <body-content>JSP</body-content>
-    <description>
-      <p>This tag is functionally equivalent to the "subview" tag in the
-      JavaServer Faces Core Tag Library, and is present only to support
-      opportunities for additional debugging.</p>
-    </description>
-
-    <attribute>
-      <name>binding</name>
-      <required>false</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        <p>Value binding expression to bind this component to
-        a backing bean property.</p>
-      </description>
-    </attribute>
-
-    <attribute>
-      <name>id</name>
-      <required>true</required>
-      <rtexprvalue>false</rtexprvalue>
-      <description>
-        <p>Component identifier of the component corresponding to this tag.</p>
       </description>
     </attribute>
 

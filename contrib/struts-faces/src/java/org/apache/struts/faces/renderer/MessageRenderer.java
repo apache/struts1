@@ -29,13 +29,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * <p><code>Renderer</code> implementation for the <code>message</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.6 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.7 $ $Date: 2004/08/07 04:53:35 $
  */
 
 public class MessageRenderer extends WriteRenderer {
@@ -106,8 +107,17 @@ public class MessageRenderer extends WriteRenderer {
         Object args[] = (Object[]) list.toArray(new Object[list.size()]);
 
         // Look up the requested message
-        return (resources.getMessage(context.getViewRoot().getLocale(),
-                                     key, args));
+        String text = resources.getMessage(context.getViewRoot().getLocale(),
+                                           key, args);
+        Boolean filter = (Boolean) component.getAttributes().get("filter");
+        if (filter == null) {
+            filter = Boolean.FALSE;
+        }
+        if (filter.booleanValue()) {
+            return (ResponseUtils.filter(text));
+        } else {
+            return (text);
+        }
 
     }
 

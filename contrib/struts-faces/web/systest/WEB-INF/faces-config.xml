@@ -27,4 +27,20 @@
 
 <faces-config>
 
+  <managed-bean>
+    <managed-bean-name>binding</managed-bean-name>
+    <managed-bean-class>
+      org.apache.struts.faces.systest.BindingBean
+    </managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+
+  <managed-bean>
+    <managed-bean-name>simple</managed-bean-name>
+    <managed-bean-class>
+      org.apache.struts.faces.systest.SimpleBean
+    </managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+
 </faces-config>

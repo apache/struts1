@@ -25,13 +25,24 @@ import javax.faces.component.UIComponent;
  * the <em>Struts-Faces Integration Library</em>.</p>
  *
  *
- * @version $Revision: 1.8 $ $Date: 2004/07/08 01:11:28 $
+ * @version $Revision: 1.9 $ $Date: 2004/08/07 04:53:35 $
  */
 
 public class MessageTag extends AbstractFacesTag {
 
 
     // ---------------------------------------------------------- Tag Attributes
+
+
+    /**
+     * <p>Flag indicating that rendered content should be filtered for
+     * characters that are sensitive in HTML.</p>
+     */
+    private String filter = null;
+
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
 
 
     /**
@@ -53,6 +64,7 @@ public class MessageTag extends AbstractFacesTag {
     public void release() {
 
         super.release();
+        filter = null;
         key = null;
 
     }
@@ -93,6 +105,7 @@ public class MessageTag extends AbstractFacesTag {
     protected void setProperties(UIComponent component) {
 
         super.setProperties(component);
+        setBooleanAttribute(component, "filter", filter);
         setStringAttribute(component, "key", key);
 
     }
