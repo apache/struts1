@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/GetPropertyTag.java,v 1.4 2000/08/01 20:03:33 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/08/01 20:03:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/GetPropertyTag.java,v 1.5 2000/08/13 05:05:17 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/08/13 05:05:17 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Expose the value of a bean property as a scripting variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/08/01 20:03:33 $
+ * @version $Revision: 1.5 $ $Date: 2000/08/13 05:05:17 $
  */
 
 public class GetPropertyTag extends TagSupport {
@@ -206,7 +206,8 @@ public class GetPropertyTag extends TagSupport {
 		(messages.getMessage("getter.method", property));
 	} catch (Exception e) {
 	    throw new JspException
-	        (messages.getMessage("getter.result", property));
+	        (messages.getMessage("getter.result",
+				     property, e.toString()));
 	}
 
 	// Expose this as a scripting variable and continue
