@@ -18,7 +18,8 @@
   <info>
   <p>
 		This taglib contains tags used to create struts 
-		input forms.
+		input forms, as well as other tags generally useful
+                in the creation of HTML-based user interfaces.
   </p>
   </info>
 
@@ -654,6 +655,48 @@
 		</attribute>
 	</tag>
 	
+        <tag>
+                <name>errors</name>
+                <summary>
+                Conditionally display a set of accumulated error messages.
+                </summary>
+                <tagclass>org.apache.struts.taglib.form.ErrorsTag</tagclass>
+                <bodycontent>empty</bodycontent>
+                <info>
+                <p>Displays a set of error messages prepared by a business
+                logic component and stored as an <code>ActionErrors</code>
+                object, a String, or a String array in request scope.  If
+                such a bean is not found, nothing will be rendered.</p>
+
+                <p>In order to use this tag successfully, you must have
+                defined an application scope <code>MessageResources</code>
+                bean under the default attribute name, with at least the
+                following message keys:</p>
+                <ul>
+                <li><strong>errors.header</strong> - Text that will be rendered
+                before the error messages list.  Typically, this message text
+                will end with <code>&lt;ul&gt;</code> to start the
+                error messages list.</li>
+                <li><strong>errors.footer</strong> - Text that will be rendered
+                after the error messages list.  Typically, this message text
+                will begin with <code>&lt;/ul&gt;</code> to end the error
+                messages list.</li>
+                </ul>
+                </info>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  Name of the request scope bean under which our error messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Action.ERROR_KEY</code> constant string will be used.
+                  </info>
+                </attribute>
+
+        </tag>
+
 	<tag>
 		
 		<name>file</name>
@@ -1089,6 +1132,128 @@
 		</attribute>
 	</tag>
 	
+
+        <tag>
+
+                <name>link</name>
+                <summary>Render an HTML hyperlink</summary>
+                <tagclass>org.apache.struts.taglib.form.LinkTag</tagclass>
+                <info>
+
+                <p>Renders an HTML <code>&lt;a&gt;</code> element as a
+                hyperlink to the specified URL.  URL rewriting will be
+                applied automatically, to maintain session state in the
+                absence of cookies.  The content displayed for this
+                hyperlink will be taken from the body of this tag.</p>
+
+                <p>Normally, the hyperlink you specify with the
+                <code>forward</code> or <code>href</code> attribute will be
+                unchanged (other than URL rewriting if necessary).  However,
+                you can also specify instructions for locating a
+                <code>Map</code> implementation that defines query parameters
+                to be added to the hyperlink, in one of two manners:</p>
+                <ul>
+                <li><em>Specify only the <code>name</code> attribute</em> -
+                    The named JSP bean (optionally scoped by the value of
+                    the <code>scope</code> attribute) must identify a
+                    <code>java.util.Map</code> containing the parameters.</li>
+                <li><em>Specify both <code>name</code> and
+                    <code>property</code> attributes</em> - The specified
+                    property getter method will be called on the bean
+                    identified by the <code>name</code> (and optional
+                    <code>scope</code>) attributes, in order to return the
+                    <code>java.util.Map</code> containing the parameters.</li>
+                </ul>
+
+                <p>As the <code>Map</code> is processed, the keys are assumed
+                to be the names of query parameters to be appended to the
+                hyperlink.  The value associated with each key must be either
+                a String or a String array representing the parameter value(s).
+                If a String array is specified, more than one value for the
+                same query parameter name will be created.</p>
+                </info>
+
+                <attribute>
+                  <name>forward</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Logical name of a global <code>ActionForward</code> that
+                  contains the actual content-relative URI of the destination
+                  of this transfer.  This hyperlink may be dynamically
+                  modified by the inclusion of query parameters, as described
+                  in the tag description.  You <strong>must</strong> specify
+                  either the <code>forward</code> attribute or the
+                  <code>href</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>href</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The URL to which this hyperlink will transfer control
+                  if activated.  This hyperlink may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  You <strong>must</strong> specify
+                  either the <code>forward</code> attribute or the
+                  <code>href</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that contains a <code>Map</code>
+                  representing the query parameters (if <code>property</code>
+                  is not specified), or a JSP bean whose property getter is
+                  called to return a <code>Map</code> (if <code>property</code>
+                  is specified).</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>property</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>name</code> attribute, whose return value must be
+                  a <code>java.util.Map</code> containing the query parameters
+                  to be added to the hyperlink.  You <strong>must</strong>
+                  specify the <code>name</code> attribute if you specify
+                  this attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>scope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>name</code> attribute.  If not specified, all
+                  scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>target</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The window target in which the resource requested by this
+                  hyperlink will be displayed, for example in a framed
+                  presentation.</p>
+                  </info>
+                </attribute>
+
+        </tag>
+
+
 	<tag>
 		
 		<name>multibox</name>

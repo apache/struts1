@@ -272,6 +272,102 @@
 
   <tag>
 
+    <name>message</name>
+    <summary>
+    Render an internationalized message string to the response.
+    </summary>
+    <tagclass>org.apache.struts.taglib.bean.MessageTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+    <p>Retrieves an internationalized message for the specified locale,
+    using the specified message key, and write it to the output stream.
+    Up to five parametric replacements (such as "{0}") may be specified.</p>
+    </info>
+
+    <attribute>
+      <name>arg0</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>First parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg1</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Second parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg2</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Third parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg3</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Fourth parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>arg4</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>Fifth parametric replacement value, if any.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>bundle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the application scope bean under which the
+      <code>MessageResources</code> object containing our messages
+      is stored.  If not specified, the default name (the value of
+      the <code>Action.MESSAGES_KEY</code> constant string) is used.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>key</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The message key of the requested message, which must have
+      a corresponding value in the message resources.</p>
+      </info>
+    </attribute>
+
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <info>
+      <p>The name of the session scope bean under which our currently
+      selected <code>Locale</code> object is stored.  If not specified,
+      the default name (the value of the <code>Action.LOCALE_KEY</code>
+      constant string) is used.</p>
+      </info>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+
     <name>page</name>
     <summary>
     Expose a specified item from the page context as a bean.
