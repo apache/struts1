@@ -28,7 +28,7 @@ import org.apache.shale.ViewController;
 
 /**
  * <p>JavaServer Faces <code>PhaseListener</code> that implements phase
- * related functionality.  FIXME - register this with JSF appropriately.</p>
+ * related functionality.</p>
  *
  * $Id$
  */
