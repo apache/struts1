@@ -14,19 +14,18 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.search.Hits;
 
 import org.apache.commons.beanutils.BeanUtils;
-// import org.apache.commons.beanutil.BeanUtils;
 
 import org.apache.scaffold.model.ModelException;
 import org.apache.scaffold.model.ModelPopulateException;
 
 
-/**
- * General purpose utility methods related to Hits
- *
- * @author Craig R. McClanahan
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:58 $
- */
+ /**
+  * General purpose utility methods related to Hits
+  *
+  * @author Craig R. McClanahan
+  * @author Ted Husted
+  * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:26 $
+ **/
  public class LuceneUtils {
 
     /**
@@ -43,7 +42,7 @@ import org.apache.scaffold.model.ModelPopulateException;
      *
      * @exception ModelMapException if an exception is thrown while setting
      *            property values
-     */
+    **/
     public static void populate(Object bean, Document document)
         throws ModelException {
 
@@ -68,20 +67,20 @@ import org.apache.scaffold.model.ModelPopulateException;
     }
 
 
-   /**
-     * Return a ArrayList of hits by looping and calling populate.
-     * No assumptions are made about fields in document. Each is
-     * processed with a separate call to populate. Whatever fields
-     * in each document that match the target bean will be
-     * transferred.
-     *
-     * @param hits The Hits whose documents are to be used
-     * to populate bean properties
-     * @param target An instance of the bean to populate
-     *
-     * @exception ModelMapException if an exception is thrown while setting
-     * property values, populating the bean, or accessing the Hits
-     */
+    /**
+      * Return a ArrayList of hits by looping and calling populate.
+      * No assumptions are made about fields in document. Each is
+      * processed with a separate call to populate. Whatever fields
+      * in each document that match the target bean will be
+      * transferred.
+      *
+      * @param hits The Hits whose documents are to be used
+      * to populate bean properties
+      * @param target An instance of the bean to populate
+      *
+      * @exception ModelMapException if an exception is thrown while setting
+      * property values, populating the bean, or accessing the Hits
+     **/
      public static Collection getCollection(Object target, Hits hits)
         throws ModelException {
 
@@ -162,4 +161,4 @@ import org.apache.scaffold.model.ModelPopulateException;
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/

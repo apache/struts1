@@ -15,8 +15,8 @@ import java.util.Collection;
  * :FIXME: getCollection returns blank string exceptions when used with multiple parameters (single OK).
  * :TODO: Refactor executeUpdate methods like getCollection methods.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:58 $
- */
+ * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:36 $
+**/
 public final class StatementUtils {
 
 
@@ -30,7 +30,7 @@ public final class StatementUtils {
      * <p>
      * @param command The SQL statement to execute.
      * @exception SQLException if SQL error occurs
-     */
+    **/
     public static final int executeUpdate(String resource, String command)
         throws SQLException {
 
@@ -71,7 +71,7 @@ public final class StatementUtils {
      * @param command The SQL statement to execute.
      * @param key The parameter
      * @exception SQLException if SQL error occurs
-     */
+    **/
     public static final int executeUpdate(String resource,
             String command, String key)
         throws SQLException {
@@ -115,7 +115,7 @@ public final class StatementUtils {
      * @param command The SQL statement to execute.
      * @param key The parameter
      * @exception SQLException if SQL error occurs
-     */
+    **/
     public static final int executeUpdate(String resource,
             String command, Integer key)
         throws SQLException {
@@ -148,7 +148,6 @@ public final class StatementUtils {
     } // ---- End executeUpdate ----
 
 
-
     /**
      * Prepares statement using SQL statement and executes
      * with DBMS configured with the ConnectionPool.
@@ -160,7 +159,7 @@ public final class StatementUtils {
      * @param command The SQL statement to execute.
      * @param parameters An array of parameter objects
      * @exception SQLException if SQL error occurs
-     */
+    **/
     public static final int executeUpdate(String resource,
             String command, Object[] parameters)
         throws SQLException {
@@ -209,7 +208,7 @@ public final class StatementUtils {
      * fields and indices
      * @return Result of statement.execute()
      * @exception SQL Exception if SQL error occurs
-     */
+    **/
     public static final int createTable(
             String resource, String tableName, String tableCreate)
             throws SQLException {
@@ -220,18 +219,18 @@ public final class StatementUtils {
     } // ---- End createTable ----
 
 
-    /**
-     * Prepares the given statement using key, and executes
-     * it with DBMS configured with the ConnectionPool to return
-     * a ResultSet. The ResultSet is transferred to a Collection
-     * using the getCollection() method of the Object object.
-     * The ResultSet is released, and the Collection returned.
-     * <p>
-     * @param key The replaceable parameter, if any.
-     * @param command The SQL statement to prepare and execute.
-     * @param target The Object class to create collection from ResultSet
-     * @exception SQLException if SQL error occurs
-     */
+     /**
+      * Prepares the given statement using key, and executes
+      * it with DBMS configured with the ConnectionPool to return
+      * a ResultSet. The ResultSet is transferred to a Collection
+      * using the getCollection() method of the Object object.
+      * The ResultSet is released, and the Collection returned.
+      * <p>
+      * @param key The replaceable parameter, if any.
+      * @param command The SQL statement to prepare and execute.
+      * @param target The Object class to create collection from ResultSet
+      * @exception SQLException if SQL error occurs
+     **/
      public static final Collection getCollection(String resource,
                 Object target, String command, Object[] parameters)
                 throws SQLException {
@@ -298,15 +297,15 @@ public final class StatementUtils {
      }
 
 
-    /**
-     * Variation of <code>getCollection()</code> for commands
-     * that use LIKE operator.
-     * @param key The replaceable parameter to use with LIKE.
-     * @param command The SQL statement to prepare and execute.
-     * @param target The ResultList class to create list from ResultSet
-     * @exception SQLException if SQL error occurs
-     * @see getResultList
-     */
+     /**
+      * Variation of <code>getCollection()</code> for commands
+      * that use LIKE operator.
+      * @param key The replaceable parameter to use with LIKE.
+      * @param command The SQL statement to prepare and execute.
+      * @param target The ResultList class to create list from ResultSet
+      * @exception SQLException if SQL error occurs
+      * @see getResultList
+     **/
      public static final Collection getCollectionLike(String resource,
                 Object target, String command, String key) throws SQLException {
             Object[] parameters = new Object[1];
@@ -346,7 +345,7 @@ public final class StatementUtils {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -374,5 +373,5 @@ public final class StatementUtils {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/
 

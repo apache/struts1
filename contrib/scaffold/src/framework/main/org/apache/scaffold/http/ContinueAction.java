@@ -21,8 +21,8 @@ import org.apache.scaffold.lang.Tokens;
  * Useful for prototyping flow during development,
  * and for creating blank forms for new input.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
- */
+ * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:04 $
+**/
 public final class ContinueAction extends Action {
 
     /**
@@ -32,7 +32,7 @@ public final class ContinueAction extends Action {
      * @param response The HTTP response we are creating
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
-     */
+    **/
     public ActionForward perform(ActionMapping mapping,
                  ActionForm form,
                  HttpServletRequest request,
@@ -47,9 +47,9 @@ public final class ContinueAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ContinueAction.java,v 1.2 2001/12/28 13:34:57 vmassol Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/28 13:34:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ContinueAction.java,v 1.3 2002/01/01 13:44:04 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/01 13:44:04 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ public final class ContinueAction extends Action {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/
 
 
 

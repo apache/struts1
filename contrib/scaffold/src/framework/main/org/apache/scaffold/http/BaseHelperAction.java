@@ -41,9 +41,9 @@ import org.apache.scaffold.lang.Tokens;
  * and an error condition is detected.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:04 $
+ * @version $Revision: 1.1 $ $Date: 2002/01/01 13:44:04 $
 **/
-public class HelperAction extends Action {
+public class BaseHelperAction extends Action {
 
 
 // --------------------------------------------------------- Public Methods
@@ -55,7 +55,7 @@ public class HelperAction extends Action {
      * @author  François Rey (FREY - francois.rey@capco.com)
      * @author  Eric Bariaux (EBRX - eric.bariaux@capco.com)
     **/
-    public Locale getLocale(HttpServletRequest request) {
+    protected Locale getLocale(HttpServletRequest request) {
         Locale result = null;
         HttpSession session = request.getSession();
         if (session!=null) {
@@ -87,7 +87,7 @@ public class HelperAction extends Action {
      * Retrieves a base messages and up to four replaceable
      * parameters from a List, and adds them as an ActionError.
     **/
-    public boolean saveMessage(ActionErrors errors, List messages) {
+    protected boolean saveMessage(ActionErrors errors, List messages) {
         if ((messages==null) || (messages.size()==0)) {
             return false;
         }
@@ -139,7 +139,7 @@ public class HelperAction extends Action {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
     **/
-    public ActionForward perform(ActionMapping mapping,
+    protected ActionForward perform(ActionMapping mapping,
                  ActionForm form,
                  HttpServletRequest request,
                  HttpServletResponse response,
@@ -215,12 +215,12 @@ public class HelperAction extends Action {
 
     } // end perform
 
-} // end HelperAction
+} // end BaseHelperAction
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/HelperAction.java,v 1.3 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.3 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/BaseHelperAction.java,v 1.1 2002/01/01 13:44:04 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/01 13:44:04 $
  *
  * ====================================================================
@@ -249,7 +249,7 @@ public class HelperAction extends Action {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

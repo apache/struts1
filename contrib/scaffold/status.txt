@@ -8,6 +8,17 @@ TODO
 StatementUtils
  * :TODO: Refactor executeUpdate methods like getCollection methods.
 
+31-Dec-2001
+-----------
++ Modified ModelHelper to extend BaseHelperAction
++ Added BaseHelperAction
++ ModelDetailHelper - update JavaDocs.
++ Added SetModelHelper - standard action to set ModelBean as session attribute.
++ Added RemoveModelHelper - standard action to remove session attribute.
++ Added FindForwardAction - Scan parameters for a matching forward name.
++ ModelResult, ModelResultBase - Change parameter names in signature. 
+
+
 23-Dec-2001
 -----------
 + Modified build directory structure

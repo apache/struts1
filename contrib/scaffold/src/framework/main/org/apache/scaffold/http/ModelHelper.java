@@ -25,9 +25,9 @@ import org.apache.scaffold.model.ModelResult;
 /**
  * Standard Action to manage helper objects.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
- */
-public class ModelHelper extends HelperAction {
+ * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:04 $
+**/
+public class ModelHelper extends BaseHelperAction {
 
 
     /**
@@ -38,8 +38,8 @@ public class ModelHelper extends HelperAction {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
      * :FIXME: is there any valid use of the response here?
-     */
-    public ModelResult getResult(ActionMapping mapping,
+    **/
+    protected ModelResult getResult(ActionMapping mapping,
                  ActionForm form,
                  HttpServletRequest request,
                  HttpServletResponse response,
@@ -59,12 +59,35 @@ public class ModelHelper extends HelperAction {
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
+     * @param helper The helper object
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     * :FIXME: is there any valid use of the response here?
+    **/
+     protected ActionForward getContinue(
+         ActionMapping mapping,
+         ActionForm form,
+         HttpServletRequest request,
+         HttpServletResponse response,
+         Object[] helpers
+         ) throws IOException, ServletException {
+
+        // return mapping.findForward(request.getParameter(Tokens.FORWARD));
+        return mapping.findForward(Tokens.CONTINUE);
+
+    }
+
+
+    /**
+     * @param mapping The ActionMapping used to select this instance
+     * @param actionForm The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      * @param helper The helper object
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
-     */
-    public ActionForward perform(ActionMapping mapping,
+    **/
+    protected ActionForward perform(ActionMapping mapping,
                  ActionForm form,
                  HttpServletRequest request,
                  HttpServletResponse response,
@@ -100,7 +123,7 @@ public class ModelHelper extends HelperAction {
             if (mapping.getInput()!=null)
                 return (new ActionForward(mapping.getInput()));
             // If no input page, use error forwarding
-            return (mapping.findForward("error"));
+            return (mapping.findForward(Tokens.ERROR));
         }
 
         // -- Check for confirmation message
@@ -120,16 +143,18 @@ public class ModelHelper extends HelperAction {
             forward = mapping.findForward(Tokens.EMPTY);
         if (forward!=null)
             return forward;
-        return mapping.findForward(Tokens.CONTINUE);
-    };
+
+        // -- Return forward for successful outcome
+        return getContinue(mapping,form,request,response,helpers);
+    }
 
 } // end ModelResultHelper
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ModelHelper.java,v 1.2 2001/12/28 13:34:57 vmassol Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/28 13:34:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ModelHelper.java,v 1.3 2002/01/01 13:44:04 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/01/01 13:44:04 $
  *
  * ====================================================================
  *
@@ -157,7 +182,7 @@ public class ModelHelper extends HelperAction {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -185,7 +210,7 @@ public class ModelHelper extends HelperAction {
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/
 
 
 

@@ -14,7 +14,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * used "as-is" to manage a collection of beans
  * returned from the resource layer.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:17 $
  */
 public class ModelResultBase implements ModelResult {
 
@@ -57,7 +57,7 @@ public class ModelResultBase implements ModelResult {
 
     /**
      * The search description as a phrase,
-     * ie: column = key
+     * ie: field = value
      */
     private String description = null;
 
@@ -81,16 +81,16 @@ public class ModelResultBase implements ModelResult {
 
 
     /**
-     * Set the description as "column = key".
+     * Set the description as "field = value".
      * @param description1 The attribute description
      * @param description2 The value description
      */
-    public void setDescription(String key, String column) {
-        if ((key==null) || ("".equals(key))) {
-            this.description = column + PARAM_EQUALS + PARAM_ANY;
+    public void setDescription(String value, String field) {
+        if ((value==null) || ("".equals(value))) {
+            this.description = field + PARAM_EQUALS + PARAM_ANY;
         }
         else {
-            this.description = column + PARAM_EQUALS + key;
+            this.description = field + PARAM_EQUALS + value;
         }
     }
 
@@ -265,7 +265,7 @@ public class ModelResultBase implements ModelResult {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

@@ -1,53 +1,56 @@
 package org.apache.scaffold.http;
 
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionServlet;
 
-import org.apache.scaffold.lang.Tokens;
+import org.apache.scaffold.http.ModelHelper;
+import org.apache.scaffold.model.ModelException;
+import org.apache.scaffold.model.ModelResult;
 
 
 /**
- * Standard Action to forward control to another mapping
- * given as a runtime parameter (?forward=).
+ * Sets helper object as a session attribute.
  * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:04 $
+ * @version $Revision: 1.1 $ $Date: 2002/01/01 13:44:04 $
 **/
-public final class RelayAction extends Action {
+public class SetModelHelper extends ModelHelper {
+
 
     /**
+     * Standard Action to set a ModelBean helper as a session attribute,
+     * using the helper type as the attribute key,
+     * and then execute the ModelBean.
+     * <p>
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
+     * @param helper The helper object
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet exception occurs
+     * :FIXME: is there any valid use of the response here?
     **/
-    public ActionForward perform(ActionMapping mapping,
+    public ModelResult getResult(ActionMapping mapping,
                  ActionForm form,
                  HttpServletRequest request,
-                 HttpServletResponse response)
-    throws IOException, ServletException {
+                 HttpServletResponse response,
+                 Object[] helpers) throws ModelException {
 
-        return mapping.findForward(request.getParameter(Tokens.FORWARD));
+       request.getSession().setAttribute(mapping.getParameter(),helpers[0]);
+       return super.getResult(mapping,form,request,response,helpers);
 
     }
 
-} // end RelayAction
+} // end SessionModelHelper
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/RelayAction.java,v 1.3 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.3 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/SetModelHelper.java,v 1.1 2002/01/01 13:44:04 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/01 13:44:04 $
  *
  * ====================================================================
@@ -76,7 +79,7 @@ public final class RelayAction extends Action {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

@@ -18,7 +18,7 @@ import java.util.List;
  * Wrappers for interate and size are provided so that they
  * can be accessed as getIterate and getSize.
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
+ * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:17 $
  */
 public interface ModelResult {
 
@@ -72,11 +72,11 @@ public interface ModelResult {
 
 
     /**
-     * Set the description as "column = key".
+     * Set the description as "field = value".
      * @param description1 The attribute description
      * @param description2 The value description
      */
-    public void setDescription(String key, String column);
+    public void setDescription(String value, String field);
 
 
     /**
@@ -166,7 +166,7 @@ public interface ModelResult {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

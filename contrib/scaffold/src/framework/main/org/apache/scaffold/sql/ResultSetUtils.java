@@ -22,17 +22,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
-// import org.apache.commons.beanutil.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-// import org.apache.commons.beanutil.PropertyUtils;
 
 
-/**
- * General purpose utility methods related to ResultSets
- * <p>
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:58 $
- */
+ /**
+  * General purpose utility methods related to ResultSets
+  * <p>
+  * @author Ted Husted
+  * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:36 $
+ **/
  public class ResultSetUtils {
 
     /**
@@ -69,7 +67,7 @@ import org.apache.commons.beanutils.PropertyUtils;
      *  access to the property accessor method
      * @exception InvocationTargetException if the property accessor method
      *  throws an exception
-     */
+    **/
     public static void setProperties(Object bean, Map properties)
         throws IllegalAccessException, InvocationTargetException {
 
@@ -80,7 +78,7 @@ import org.apache.commons.beanutils.PropertyUtils;
         if (debug >= 1)
             System.out.println("BeanUtils.populate(" + bean + ", " +
                                properties + ")");
-        */
+       **/
 
         // Loop through the property name/value pairs to be set
         Iterator names = properties.keySet().iterator();
@@ -99,14 +97,14 @@ import org.apache.commons.beanutils.PropertyUtils;
                 /*
                 if (debug >= 1)
                     System.out.println("    getPropertyDescriptor: " + t);
-                */
+               **/
                 descriptor = null;
             }
             if (descriptor == null) {
                 /*
                 if (debug >= 1)
                     System.out.println("    No such property, skipping");
-                */
+               **/
                 continue;
             }
 
@@ -114,7 +112,7 @@ import org.apache.commons.beanutils.PropertyUtils;
             if (debug >= 1)
                 System.out.println("    Property descriptor is '" +
                                    descriptor + "'");
-            */
+           **/
 
             // Identify the relevant setter method (if there is one)
             Method setter = descriptor.getWriteMethod();
@@ -122,7 +120,7 @@ import org.apache.commons.beanutils.PropertyUtils;
                 /*
                 if (debug >= 1)
                     System.out.println("    No setter method, skipping");
-                */
+               **/
                 continue;
             }
 
@@ -135,13 +133,13 @@ import org.apache.commons.beanutils.PropertyUtils;
                 System.out.println("  name='" + name + "', value.class='" +
                                    (value == null ? "NONE" :
                                    value.getClass().getName()) + "'");
-            */
+           **/
             /*
             if (debug >= 1)
                 System.out.println("    Setting to " +
                                    (parameters[0] == null ? "NULL" :
                                     "'" + parameters[0] + "'"));
-            */
+           **/
 
             // Invoke the setter method
             setter.invoke(bean,args);
@@ -150,7 +148,7 @@ import org.apache.commons.beanutils.PropertyUtils;
         /*
         if (debug >= 1)
             System.out.println("============================================");
-        */
+       **/
 
     }
 
@@ -162,7 +160,7 @@ import org.apache.commons.beanutils.PropertyUtils;
      * @param target An instance of the bean to populate
      * @exception SQLException if an exception is thrown while setting
      * property values, populating the bean, or accessing the ResultSet
-     */
+    **/
      public static Collection getCollection(Object target, ResultSet resultSet)
         throws SQLException {
 
@@ -297,20 +295,20 @@ STRUCT
         return ((Collection) list);
      }
 
-    /**
-     * Return a ArrayList of beans populated form a ResultSet,
-     * transferring all properties as Strings.
-     * If resultSet is empty, then an empty list will be returned.
-     * If properties of target and resultSet do not match, a list of
-     * blank target beans will be returned.
-     * Otherwise, a list of target beans populated from matching
-     * properties (columns) in resultSet will be returned.
-     * @param resultSet The ResultSet whose parameters are to be used
-     * to populate bean properties
-     * @param target An instance of the bean to populate
-     * @exception SQLException if an exception is thrown while setting
-     * property values, populating the bean, or accessing the ResultSet
-     */
+     /**
+      * Return a ArrayList of beans populated form a ResultSet,
+      * transferring all properties as Strings.
+      * If resultSet is empty, then an empty list will be returned.
+      * If properties of target and resultSet do not match, a list of
+      * blank target beans will be returned.
+      * Otherwise, a list of target beans populated from matching
+      * properties (columns) in resultSet will be returned.
+      * @param resultSet The ResultSet whose parameters are to be used
+      * to populate bean properties
+      * @param target An instance of the bean to populate
+      * @exception SQLException if an exception is thrown while setting
+      * property values, populating the bean, or accessing the ResultSet
+     **/
      public static Collection getCollectionString(Object target, ResultSet resultSet)
         throws SQLException {
 
@@ -406,4 +404,4 @@ STRUCT
  * information on the Apache Software Foundation, please see
  * <http://www.apache.org/>.
  *
- */
+**/

@@ -17,14 +17,16 @@ import org.apache.scaffold.lang.Tokens;
 
 
 /**
- * Standard Action to forward control to another mapping
- * given as a runtime parameter (?forward=).
- * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/01/01 13:44:04 $
+ * Scan request parameters for the name of a local or global
+ * forward. If one is found, use it. If not, return null.
+ * @author Dmitri Valdin
+ * @version $Revision: 1.1 $ $Date: 2002/01/01 13:44:04 $
 **/
-public final class RelayAction extends Action {
+public final class FindForwardAction extends Action {
 
     /**
+     * Scan request parameters for the name of a local or global
+     * forward. If one is found, use it. If not, return null.
      * @param mapping The ActionMapping used to select this instance
      * @param actionForm The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
@@ -38,16 +40,39 @@ public final class RelayAction extends Action {
                  HttpServletResponse response)
     throws IOException, ServletException {
 
-        return mapping.findForward(request.getParameter(Tokens.FORWARD));
+        String forwards[] = mapping.findForwards();
+        for (int i=0; i<forwards.length; i++) {
+            if (request.getParameter(forwards[i])!=null) {
+                 // Return the required ActionForward instance
+                 return mapping.findForward(forwards[i]);
+             }
+         }
 
+        return null;
+
+        /*
+        int count=0;
+        ActionForward forward = null;
+        for (int i=0; i<forwards.length; i++) {
+            if (request.getParameter(forwards[i])!=null) {
+                forward = mapping.findForward(forwards[i]);
+                count++;
+             }
+         }
+
+        if (count>1) {
+            // duplicate forward error
+        }
+
+        return forward;
+       **/
     }
 
-} // end RelayAction
-
+} // end FindForwardAction
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/RelayAction.java,v 1.3 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.3 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.1 2002/01/01 13:44:04 husted Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/01 13:44:04 $
  *
  * ====================================================================
@@ -76,7 +101,7 @@ public final class RelayAction extends Action {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
+ * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
