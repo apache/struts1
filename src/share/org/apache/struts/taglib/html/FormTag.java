@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.12 2001/05/04 19:25:17 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2001/05/04 19:25:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.13 2001/05/04 22:21:05 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2001/05/04 22:21:05 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib.html;
 
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -87,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2001/05/04 19:25:17 $
+ * @version $Revision: 1.13 $ $Date: 2001/05/04 22:21:05 $
  */
 
 public class FormTag extends TagSupport {
@@ -594,7 +595,18 @@ public class FormTag extends TagSupport {
 
 	// Render a tag representing the end of our current form
 	StringBuffer results = new StringBuffer("</form>");
+
+        // Render JavaScript to set the input focus if required
 	if (focus != null) {
+            String tempFocus = focus;
+            StringBuffer refocus = new StringBuffer("[");
+            if (tempFocus.indexOf("[") > 0) {
+                StringTokenizer st = new StringTokenizer(tempFocus, "[");
+                if (st.countTokens() == 2) {
+                    tempFocus = st.nextToken();
+                    refocus.append(st.nextToken());
+                }
+            }
 	    results.append("\r\n");
 	    results.append("<script language=\"JavaScript\"");
             results.append(" type=\"text/javascript\">\r\n");
@@ -602,8 +614,11 @@ public class FormTag extends TagSupport {
 	    results.append("    document.forms[\"");
 	    results.append(name);
 	    results.append("\"].elements[\"");
-            results.append(focus);
+            results.append(tempFocus);
             results.append("\"]");
+            if (refocus.length() > 1) {
+                results.append(refocus.toString());
+            }
 	    results.append(".focus()\r\n");
 	    results.append("  // -->\r\n");
 	    results.append("</script>\r\n");
