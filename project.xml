@@ -23,9 +23,9 @@
   <siteDirectory>/www/jakarta.apache.org/struts</siteDirectory>
   <distributionDirectory>/www/apache.mirrors.pair.com/jakarta/struts/</distributionDirectory>
   <repository>
-    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/trunk</connection>
-    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/trunk</developerConnection>
-    <url>http://svn.apache.org/repos/asf/struts/trunk</url>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/core/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/core/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/core/trunk</url>
   </repository>
   <versions>
     <version>

@@ -59,7 +59,7 @@
     <!-- cvs-usage.html doesn't exist so I'm commenting this out
       <item name="CVS Access"          href="cvs-usage.html"/>
     -->  
-      <item name="Subversion Repository"             href="http://svn.apache.org/repos/asf/struts/trunk/"/>
+      <item name="Subversion Repository"             href="http://svn.apache.org/repos/asf/struts/core/trunk/"/>
     <!-- Is there a Subversion equivalent? 
       <item name="Subversion Changelog"              href="changelog-report.html"/>
     -->  

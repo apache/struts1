@@ -86,7 +86,7 @@
         -->
         <item
             name="Subversion Repository"
-            href="http://svn.apache.org/viewcvs.cgi/struts/trunk/?root=Apache-SVN/"
+            href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN/"
             />
         <!-- Again, is there a Subversion equivalent?     
         <item name="CVS Changelog"  href="reports/changelog-report.html"/>

@@ -100,7 +100,7 @@
     <p>
     If you are interested in the Tag Library Descriptor (TLD) files, 
     they are maintained in the 
-    <a href="http://svn.apache.org/repos/asf/struts/trunk/conf/share/">
+    <a href="http://svn.apache.org/repos/asf/struts/core/trunk/conf/share/">
     /conf/share</a> folder of the main repository. 
     </p>
     
@@ -112,7 +112,7 @@
 
     <p>
     Access to the Subversion repository for Struts is available through both
-    <a href="http://svn.apache.org/viewcvs.cgi/struts/trunk/?root=Apache-SVN">web browser</a> 
+    <a href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN">web browser</a> 
     and
     <a href="http://www.apache.org/dev/version-control.html">
     Subversion client</a> interfaces.

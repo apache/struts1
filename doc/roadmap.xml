@@ -327,7 +327,7 @@
 
     <p>
         An early proposal for one possible implementation of Struts 2.x, "Struts Jericho",
-        is available in the <a href="http://svn.apache.org/viewcvs.cgi/struts/trunk/contrib/struts-jericho/?root=Apache-SVN">contrib folder</a>.
+        is available in the <a href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/contrib/struts-jericho/?root=Apache-SVN">contrib folder</a>.
     </p>
 
 </section>
