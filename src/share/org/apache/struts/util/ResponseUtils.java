@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.2 2001/02/12 21:50:02 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/02/12 21:50:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ResponseUtils.java,v 1.3 2001/02/13 17:27:20 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/02/13 17:27:20 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.action.Action;
  * in the Struts controller framework.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/02/12 21:50:02 $
+ * @version $Revision: 1.3 $ $Date: 2001/02/13 17:27:20 $
  */
 
 public class ResponseUtils {
@@ -164,7 +164,7 @@ public class ResponseUtils {
 
     /**
      * Write the specified text as the response to the writer associated with
-     * the page containing the tag within which we are currently nested.
+     * the body content for the tag within which we are currently nested.
      *
      * @param pageContext The PageContext object for this page
      * @param text The text to be written
@@ -175,7 +175,7 @@ public class ResponseUtils {
         throws JspException {
 
         JspWriter writer = pageContext.getOut();
-        while (writer instanceof BodyContent)
+        if (writer instanceof BodyContent)
             writer = ((BodyContent) writer).getEnclosingWriter();
         try {
             writer.print(text);
