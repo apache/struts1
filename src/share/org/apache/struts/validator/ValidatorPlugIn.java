@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.16 2002/11/28 07:20:18 rleland Exp $
- * $Revision: 1.16 $
- * $Date: 2002/11/28 07:20:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.17 2003/05/22 00:42:29 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/05/22 00:42:29 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,9 +59,7 @@
  *
  */
 
-
 package org.apache.struts.validator;
-
 
 import java.util.StringTokenizer;
 import java.io.BufferedInputStream;
@@ -78,13 +76,12 @@ import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
 
-
 /**
  * <p>Loads <code>ValidatorResources</code> based on
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.16 $ $Date: 2002/11/28 07:20:18 $
+ * @version $Revision: 1.17 $ $Date: 2003/05/22 00:42:29 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn {
@@ -98,7 +95,6 @@ public class ValidatorPlugIn implements PlugIn {
      * The module configuration for our owning module.
      */
     private ModuleConfig config = null;
-
 
     /**
      * The {@link ActionServlet} owning this application.
@@ -146,8 +142,6 @@ public class ValidatorPlugIn implements PlugIn {
     }
 
     /**
-
-    /**
      * Initialize and load our resources.
      *
      * @param servlet The ActionServlet for our application
@@ -156,7 +150,7 @@ public class ValidatorPlugIn implements PlugIn {
      * @exception ServletException if we cannot configure ourselves correctly
      */
     public void init(ActionServlet servlet, ModuleConfig config)
-                         throws ServletException {
+        throws ServletException {
 
         // Remember our associated configuration and servlet
         this.config = config;
@@ -165,11 +159,14 @@ public class ValidatorPlugIn implements PlugIn {
         // Load our database from persistent storage
         try {
             initResources();
-            servlet.getServletContext().setAttribute(VALIDATOR_KEY + config.getPrefix(), resources);
+            servlet.getServletContext().setAttribute(
+                VALIDATOR_KEY + config.getPrefix(),
+                resources);
+                
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            throw new UnavailableException
-                                 ("Cannot load a validator resource from '" + pathnames + "'");
+            throw new UnavailableException(
+                "Cannot load a validator resource from '" + pathnames + "'");
         }
 
     }
@@ -197,44 +194,48 @@ public class ValidatorPlugIn implements PlugIn {
      * @exception ServletException if we cannot initialize these resources, not thrown by this implementation
      */
     protected void initResources() throws IOException, ServletException {
-        resources = new ValidatorResources();
+        this.resources = new ValidatorResources();
 
-        if (pathnames != null && pathnames.length() > 0) {
-            StringTokenizer st = new StringTokenizer(pathnames, RESOURCE_DELIM);
+        if (pathnames == null || pathnames.length() <= 0) {
+            return;
+        }
 
-            while (st.hasMoreTokens()) {
-                String validatorRules = st.nextToken();
+        StringTokenizer st = new StringTokenizer(pathnames, RESOURCE_DELIM);
 
-                validatorRules = validatorRules.trim();
+        while (st.hasMoreTokens()) {
+            String validatorRules = st.nextToken().trim();
 
-                if (log.isInfoEnabled()) {
-                    log.info("Loading validation rules file from '" + validatorRules + "'");
-                }
-
-                InputStream input = null;
-                input = servlet.getServletContext().getResourceAsStream(validatorRules);
-
-                if (input != null) {
-                    BufferedInputStream bis = null;
-                    bis = new BufferedInputStream(input);
-
-                    try {
-                        // pass in false so resources aren't processed
-                        // until last file is loaded
-                        ValidatorResourcesInitializer.initialize(resources, bis, false);
-                        bis.close();
-                    } catch (Exception e) {
-                        log.error(e.getMessage(), e);
-                        bis.close();
-                    }
-                } else {
-                    log.error("Skipping validation rules file from '" + validatorRules + "'.  No stream could be opened.");
-                }
+            if (log.isInfoEnabled()) {
+                log.info(
+                    "Loading validation rules file from '" + validatorRules + "'");
             }
 
-            // process resources
-            resources.process();
+            InputStream input =
+                servlet.getServletContext().getResourceAsStream(validatorRules);
+
+            if (input != null) {
+                BufferedInputStream bis = new BufferedInputStream(input);
+
+                try {
+                    // pass in false so resources aren't processed
+                    // until last file is loaded
+                    ValidatorResourcesInitializer.initialize(resources, bis, false);
+                } catch (IOException e) {
+                    log.error(e.getMessage(), e);
+                } finally {
+                    bis.close();
+                }
+
+            } else {
+                log.error(
+                    "Skipping validation rules file from '"
+                        + validatorRules
+                        + "'.  No stream could be opened.");
+            }
         }
+
+        resources.process();
+
     }
 
     /**
