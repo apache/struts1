@@ -137,7 +137,7 @@
     <property name="project.name" value="jakarta-struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.1-rc2-post"/>
+    <property name="project.version" value="1.1-dev"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
@@ -395,6 +395,15 @@
     </target>
 
 <!--
+        Construct distributable struts legacy support for datasources
+-->
+    <target name="dist.legacy" >
+        <ant antfile="build.xml" dir="contrib/struts-legacy"
+              target="dist"/>
+    </target>
+
+
+<!--
         Build the contrib modules that are packaged with the binary
 -->
     <target name="dist.contrib" depends="dist.source" if="jstl.jar">
@@ -418,7 +427,7 @@
         Construct complete binary distribution
 -->
     <target name="dist"
-         depends="dist.library,dist.webapps,dist.source,dist.contrib"
+         depends="dist.legacy,dist.library,dist.webapps,dist.source,dist.contrib"
      description="Construct binary distribution"/>
 
 <!--
@@ -718,11 +727,20 @@
         </copy>
 
     </target>
+    
+<!--
+       Clean struts legacy distribution
+-->
+    <target name="clean.legacy" >
+        <ant antfile="build.xml" dir="contrib/struts-legacy" 
+        inheritall="false" target="clean"/>
+    </target>
+
 
 <!--
         Clean up build and distribution directories
 -->
-    <target name="clean"
+    <target name="clean" depends="clean.legacy"
      description="Clean build and distribution directories">
         <delete dir="${build.home}"/>
         <delete dir="${dist.home}"/>
