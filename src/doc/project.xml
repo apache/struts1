@@ -17,12 +17,12 @@
         <item name="API Javadoc"        href="api/index.html"/>
     </menu>
     <menu name="New Documents">
-        <item name="Bean/Property Tags" href="tags-bean.html"/>
+        <item name="Bean/Property Tags" href="struts-bean.html"/>
 <!--
-        <item name="Form Tags"          href="tags-form.html"/>
-        <item name="Logic Tags"         href="tags-logic.html"/>
-        <item name="Message Tags"       href="tags-message.html"/>
-        <item name="Template Tags"      href="tags-template.html"/>
+        <item name="Form Tags"          href="struts-form.html"/>
+        <item name="Logic Tags"         href="struts-logic.html"/>
+        <item name="Message Tags"       href="struts-message.html"/>
+        <item name="Template Tags"      href="struts-template.html"/>
 -->
     </menu>
 

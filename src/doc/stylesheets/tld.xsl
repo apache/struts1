@@ -65,4 +65,7 @@
     </attribute>
   </xsl:template>
 
+  <!-- Skip irrelevant details -->
+  <xsl:template match="properties"/>
+
 </xsl:stylesheet>

@@ -54,7 +54,8 @@
     </copydir>
     <copydir src="src/conf" dest="${build.home}/library"/>
     <style basedir="src/doc" destdir="${build.home}/library"
-         extension=".tld" style="stylesheets/tld.xsl" includes="tags-*.xml"/>
+         extension=".tld" style="stylesheets/tld.xsl"
+          includes="struts-*.xml"/>
   </target>
 
   <!-- BUILD:  Compile documentation application components -->
