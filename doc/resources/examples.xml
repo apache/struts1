@@ -27,6 +27,7 @@
 <p><a href="http://www.keyboardmonkey.com/StrutMonkey/MonkeyStruts_v2.jsp"><b>MonkeyStruts</b></a> by Arron Bates - Running example of nested hierarchy and the Nested Tags (click <a href="http://www.keyboardmonkey.com/downloads/files/examples/StrutMonkey.war">here</a> to download the war. Needs Struts runtime library etc).</p>
 <p><a href="http://www.keyboardmonkey.com/downloads/files/tutorials/next_two/nested-tutorial.war"><b>Nested Tutorial</b></a> by Arron Bates - War file result of the nested tutorial (requires Struts runtime files).</p>
 <p><a href="http://www.keyboardmonkey.com/downloads/files/tutorials/tree_two/monkey-tree.war"><b>Tree (dynamic nested fun)</b></a> by Arron Bates - War file result of the tree tutorial (requires Struts runtime files). I never thought I'd ever see, something as funky as a tree... </p>
+<p><a href="http://www.ninsky.com/struts/"><b>Struts Examples</b></a> by Steve Raeburn - A collection of examples demonstrating commonly used Struts features.</p>
 </section>
 
 </chapter></body></document>
