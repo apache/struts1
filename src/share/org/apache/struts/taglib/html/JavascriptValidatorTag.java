@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.37 2003/07/28 14:38:15 rleland Exp $
- * $Revision: 1.37 $
- * $Date: 2003/07/28 14:38:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.38 2003/08/27 23:33:25 dgraham Exp $
+ * $Revision: 1.38 $
+ * $Date: 2003/08/27 23:33:25 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  *
  * @author David Winterfeldt
  * @author David Graham
- * @version $Revision: 1.37 $ $Date: 2003/07/28 14:38:15 $
+ * @version $Revision: 1.38 $ $Date: 2003/08/27 23:33:25 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -418,15 +418,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         List actions = this.createActionList(resources, form);
 
-        Object stopOnErrorObj = pageContext.getAttribute(ValidatorPlugIn.STOP_ON_ERROR_KEY + '.'+ config.getPrefix(),
-                PageContext.APPLICATION_SCOPE);
-        boolean stopOnError = true;
-        if (stopOnErrorObj != null && (stopOnErrorObj instanceof Boolean)) {
-            stopOnError = ((Boolean)stopOnErrorObj).booleanValue();
-        }
-
-
-        results.append(this.getJavascriptBegin(this.createMethods(actions,stopOnError)));
+        final String methods = this.createMethods(actions, this.stopOnError(config));
+        results.append(this.getJavascriptBegin(methods));
 
         for (Iterator i = actions.iterator(); i.hasNext();) {
             ValidatorAction va = (ValidatorAction) i.next();
@@ -532,6 +525,27 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     }
 
     /**
+     * Determines if validations should stop on an error.
+     * @param config The <code>ModuleConfig</code> used to lookup the 
+     * stopOnError setting.
+     * @return <code>true</code> if validations should stop on errors.
+     */
+    private boolean stopOnError(ModuleConfig config) {
+        Object stopOnErrorObj =
+            pageContext.getAttribute(
+                ValidatorPlugIn.STOP_ON_ERROR_KEY + '.' + config.getPrefix(),
+                PageContext.APPLICATION_SCOPE);
+                
+        boolean stopOnError = true;
+        
+        if (stopOnErrorObj instanceof Boolean) {
+            stopOnError = ((Boolean) stopOnErrorObj).booleanValue();
+        }
+        
+        return stopOnError;
+    }
+
+    /**
      * Creates the JavaScript methods list from the given actions.
      * @param actions A List of ValidatorAction objects.
      * @param stopOnError If true, behaves like released version of struts 1.1
@@ -540,10 +554,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     private String createMethods(List actions, boolean stopOnError) {
         String methods = null;
-        String methodOperator = " && ";
-        if (!stopOnError) {
-            methodOperator= " & ";
-        }
+        final String methodOperator = stopOnError ? " && " : " & ";
 
         Iterator iter = actions.iterator();
         while (iter.hasNext()) {
