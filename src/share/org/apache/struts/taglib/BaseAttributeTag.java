@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseAttributeTag.java,v 1.1 2000/06/13 22:45:44 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/13 22:45:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseAttributeTag.java,v 1.2 2000/07/17 16:37:44 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/17 16:37:44 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * cannot be directly instantiated; it must be subclassed.
  *
  * @author Arun M. Thomas <arun@ipin.com>
- * @version $Revision: 1.1 $ $Date: 2000/06/13 22:45:44 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/17 16:37:44 $
  */
 
 public abstract class BaseAttributeTag extends TagSupport {
@@ -144,6 +144,18 @@ public abstract class BaseAttributeTag extends TagSupport {
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = null;
+	scope = "session";
+
+    }
 
 
     // ------------------------------------------------------ Protected Methods

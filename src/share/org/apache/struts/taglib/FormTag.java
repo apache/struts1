@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.6 2000/07/16 22:29:05 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/07/16 22:29:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/FormTag.java,v 1.7 2000/07/17 16:37:46 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/07/17 16:37:46 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/07/16 22:29:05 $
+ * @version $Revision: 1.7 $ $Date: 2000/07/17 16:37:46 $
  */
 
 public final class FormTag extends TagSupport {
@@ -535,6 +535,27 @@ public final class FormTag extends TagSupport {
 
 	// Continue processing this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	action = null;
+	focus = null;
+	method = "POST";
+	name = null;
+	onReset = null;
+	onSubmit = null;
+	scope = "session";
+	style = null;
+	styleClass = null;
+	target = null;
+	type = null;
 
     }
 

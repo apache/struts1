@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ParameterTag.java,v 1.2 2000/07/16 22:29:06 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/07/16 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ParameterTag.java,v 1.3 2000/07/17 16:37:49 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/17 16:37:49 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Display the value of the specified query parameter as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:06 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/17 16:37:49 $
  */
 
 public class ParameterTag extends TagSupport {
@@ -153,6 +153,17 @@ public class ParameterTag extends TagSupport {
 
 	// Continue processing this page
 	return (EVAL_BODY_INCLUDE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = null;
 
     }
 

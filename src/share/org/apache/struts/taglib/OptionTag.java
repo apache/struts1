@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/OptionTag.java,v 1.2 2000/07/16 22:29:06 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/07/16 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/OptionTag.java,v 1.3 2000/07/17 16:37:47 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/17 16:37:47 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:06 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/17 16:37:47 $
  */
 
 public final class OptionTag extends BodyTagSupport {
@@ -183,6 +183,17 @@ public final class OptionTag extends BodyTagSupport {
 
 	// Continue evaluating this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	value = null;
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.5 2000/07/16 22:29:05 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/07/16 22:29:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.6 2000/07/17 16:37:46 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/07/17 16:37:46 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/07/16 22:29:05 $
+ * @version $Revision: 1.6 $ $Date: 2000/07/17 16:37:46 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -444,6 +444,26 @@ public final class IterateTag extends BodyTagSupport {
 
 	// Continue processing this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	collection = null;
+	id = null;
+	iterator = null;
+	length = "0";
+	lengthCount = 0;
+	lengthValue = 0;
+	name = null;
+	offset = "0";
+	offsetValue = 0;
+	property = null;
 
     }
 

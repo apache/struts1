@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.6 2000/06/30 00:46:39 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/06/30 00:46:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ErrorsTag.java,v 1.7 2000/07/17 16:37:45 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/07/17 16:37:45 $
  *
  * ====================================================================
  *
@@ -92,7 +92,7 @@ import org.apache.struts.util.MessageResources;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/06/30 00:46:39 $
+ * @version $Revision: 1.7 $ $Date: 2000/07/17 16:37:45 $
  */
 
 public final class ErrorsTag extends TagSupport {
@@ -221,6 +221,16 @@ public final class ErrorsTag extends TagSupport {
 
     }
 
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = Action.ERROR_KEY;
+
+    }
 
 
 }

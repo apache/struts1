@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ButtonTag.java,v 1.4 2000/07/16 22:29:04 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/07/16 22:29:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ButtonTag.java,v 1.5 2000/07/17 16:37:45 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/07/17 16:37:45 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.BeanUtils;
  * Renders an HTML BUTTON tag within the Struts framework.
  *
  * @author Don Clasen
- * @version $Revision: 1.4 $ $Date: 2000/07/16 22:29:04 $
+ * @version $Revision: 1.5 $ $Date: 2000/07/17 16:37:45 $
  */
 
 public final class ButtonTag extends BaseHandlerTag {
@@ -190,6 +190,18 @@ public final class ButtonTag extends BaseHandlerTag {
     }
 
     return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	property = null;
+	value = null;
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.7 2000/07/17 00:20:08 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/07/17 00:20:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.8 2000/07/17 16:37:51 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/07/17 16:37:51 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/07/17 00:20:08 $
+ * @version $Revision: 1.8 $ $Date: 2000/07/17 16:37:51 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -281,6 +281,20 @@ public final class SelectTag extends BaseHandlerTag {
 
 	// Continue processing this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	match = null;
+	name = Constants.BEAN_KEY;
+	property = null;
+	value = null;
 
     }
 

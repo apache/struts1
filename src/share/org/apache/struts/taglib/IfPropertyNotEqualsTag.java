@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyNotEqualsTag.java,v 1.2 2000/07/16 22:29:05 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/07/16 22:29:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyNotEqualsTag.java,v 1.3 2000/07/17 16:37:46 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/07/17 16:37:46 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.MessageResources;
  * of the specified attribute (in any scope) has the specified value.
  *
  * @author Arun M. Thomas <arun@ipin.com>
- * @version $Revision: 1.2 $ $Date: 2000/07/16 22:29:05 $
+ * @version $Revision: 1.3 $ $Date: 2000/07/17 16:37:46 $
  */
 
 public class IfPropertyNotEqualsTag extends BaseAttributeTag {
@@ -186,6 +186,18 @@ public class IfPropertyNotEqualsTag extends BaseAttributeTag {
 	    return (EVAL_BODY_INCLUDE);
 	else
 	    return (SKIP_BODY);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	property = null;
+	value = null;
 
     }
 

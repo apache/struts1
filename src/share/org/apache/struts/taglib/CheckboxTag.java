@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.7 2000/07/17 00:20:08 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/07/17 00:20:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.8 2000/07/17 16:37:45 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/07/17 16:37:45 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/07/17 00:20:08 $
+ * @version $Revision: 1.8 $ $Date: 2000/07/17 16:37:45 $
  */
 
 public final class CheckboxTag extends BaseHandlerTag {
@@ -252,6 +252,19 @@ public final class CheckboxTag extends BaseHandlerTag {
 
 	// Continue evaluating this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = Constants.BEAN_KEY;
+	property = null;
+	value = null;
 
     }
 

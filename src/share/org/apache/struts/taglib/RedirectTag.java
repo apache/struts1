@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RedirectTag.java,v 1.3 2000/07/16 22:29:06 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/16 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RedirectTag.java,v 1.4 2000/07/17 16:37:50 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/07/17 16:37:50 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.MessageResources;
  * the remainder of the current page.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/07/16 22:29:06 $
+ * @version $Revision: 1.4 $ $Date: 2000/07/17 16:37:50 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -161,6 +161,17 @@ public class RedirectTag extends TagSupport {
 
 	// Skip the remainder of the current page
 	return (SKIP_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	href = null;
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseHandlerTag.java,v 1.3 2000/06/24 03:16:11 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/06/24 03:16:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseHandlerTag.java,v 1.4 2000/07/17 16:37:45 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/07/17 16:37:45 $
  *
  * ====================================================================
  *
@@ -71,7 +71,7 @@ import org.apache.struts.util.MessageResources;
  * appropriate implementations of these.
  *
  * @author Don Clasen
- * @version $Revision: 1.3 $ $Date: 2000/06/24 03:16:11 $
+ * @version $Revision: 1.4 $ $Date: 2000/07/17 16:37:45 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
@@ -349,6 +349,40 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         return styleClass;
     }
 
+    // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	accessKey = null;
+	tabIndex = null;
+	onClick = null;
+	onDblClick = null;
+	onMouseOver = null;
+	onMouseOut = null;
+	onMouseMove = null;
+	onMouseDown = null;
+	onMouseUp = null;
+	onKeyDown = null;
+	onKeyUp = null;
+	onKeyPress = null;
+	onSelect = null;
+	onChange = null;
+	onBlur = null;
+	onFocus = null;
+	style = null;
+	styleClass = null;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
     /**
      * Prepares the style attributes for inclusion in the component's HTML tag.
      * @return The prepared String for inclusion in the HTML tag.
@@ -380,6 +414,10 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         prepareFocusEvents(handlers);
         return handlers.toString();
     }
+
+
+    // -------------------------------------------------------- Private Methods
+
 
     /**
      * Prepares the mouse event handlers, appending them to the the given

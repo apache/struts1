@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IncludeTag.java,v 1.1 2000/06/30 00:46:39 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/30 00:46:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IncludeTag.java,v 1.2 2000/07/17 16:37:46 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/17 16:37:46 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * ActionForwards collection associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/30 00:46:39 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/17 16:37:46 $
  */
 
 public final class IncludeTag extends TagSupport {
@@ -172,6 +172,17 @@ public final class IncludeTag extends TagSupport {
 
 	// Evaluate the remainder of this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = null;
 
     }
 

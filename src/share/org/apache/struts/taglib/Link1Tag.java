@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.4 2000/07/17 03:05:20 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/07/17 03:05:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.5 2000/07/17 16:37:46 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/07/17 16:37:46 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/07/17 03:05:20 $
+ * @version $Revision: 1.5 $ $Date: 2000/07/17 16:37:46 $
  */
 
 public class Link1Tag extends TagSupport {
@@ -310,6 +310,21 @@ public class Link1Tag extends TagSupport {
 	}
 
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	forward = null;
+	href = null;
+	name = null;
+	property = null;
+	target = null;
 
     }
 

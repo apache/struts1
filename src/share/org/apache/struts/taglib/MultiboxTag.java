@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.3 2000/07/17 15:16:22 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/17 15:16:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.4 2000/07/17 16:37:47 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/07/17 16:37:47 $
  *
  * ====================================================================
  *
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/07/17 15:16:22 $
+ * @version $Revision: 1.4 $ $Date: 2000/07/17 16:37:47 $
  */
 
 public final class MultiboxTag extends BaseHandlerTag {
@@ -262,6 +262,19 @@ public final class MultiboxTag extends BaseHandlerTag {
 
 	// Continue evaluating this page
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = null;
+	property = null;
+	value = null;
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ResetTag.java,v 1.4 2000/07/16 22:29:06 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/07/16 22:29:06 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/ResetTag.java,v 1.5 2000/07/17 16:37:51 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/07/17 16:37:51 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "reset".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/07/16 22:29:06 $
+ * @version $Revision: 1.5 $ $Date: 2000/07/17 16:37:51 $
  */
 
 public final class ResetTag extends BaseHandlerTag {
@@ -215,6 +215,18 @@ public final class ResetTag extends BaseHandlerTag {
 	}
 
 	return (EVAL_PAGE);
+
+    }
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = "reset";
+	value = null;
 
     }
 

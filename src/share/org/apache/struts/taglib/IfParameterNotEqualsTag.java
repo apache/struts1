@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfParameterNotEqualsTag.java,v 1.1 2000/05/31 22:28:12 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfParameterNotEqualsTag.java,v 1.2 2000/07/17 16:37:46 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/07/17 16:37:46 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * does not match the specified value.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:12 $
+ * @version $Revision: 1.2 $ $Date: 2000/07/17 16:37:46 $
  */
 
 public class IfParameterNotEqualsTag extends TagSupport {
@@ -169,6 +169,18 @@ public class IfParameterNotEqualsTag extends TagSupport {
 
     }
 
+
+
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	name = null;
+	value = null;
+
+    }
 
 
 }

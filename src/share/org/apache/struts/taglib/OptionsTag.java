@@ -209,6 +209,20 @@ public final class OptionsTag extends TagSupport {
     }
 
 
+    /**
+     * Release any acquired resources.
+     */
+    public void release() {
+
+	super.release();
+	labelName = null;
+	labelProperty = null;
+	name = null;
+	property = null;
+
+    }
+
+
     // -------------------------------------------------------- Private Methods
 
 
