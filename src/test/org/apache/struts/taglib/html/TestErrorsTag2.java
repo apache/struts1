@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestErrorsTag2.java,v 1.4 2003/03/08 19:31:55 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2003/03/08 19:31:55 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestErrorsTag2.java,v 1.5 2003/03/23 04:08:29 jmitchell Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/03/23 04:08:29 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -68,12 +68,10 @@ import junit.framework.TestSuite;
 
 import org.apache.cactus.JspTestCase;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
 
 /**
  * Suite of unit tests for the
- * <code>org.apache.struts.taglib.bean.ErrorsTag</code> class.
+ * <code>org.apache.struts.taglib.html.ErrorsTag</code> class.
  *
  * @author James Mitchell
  */

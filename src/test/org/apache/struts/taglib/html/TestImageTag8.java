@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag8.java,v 1.1 2003/03/12 00:20:48 jmitchell Exp $
- * $Revision: 1.1 $
- * $Date: 2003/03/12 00:20:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag8.java,v 1.2 2003/03/23 04:08:29 jmitchell Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/03/23 04:08:29 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -65,6 +65,7 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import javax.servlet.jsp.PageContext;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -74,7 +75,7 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
 
 /**
  * Suite of unit tests for the
- * <code>org.apache.struts.taglib.bean.ImageTag</code> class.
+ * <code>org.apache.struts.taglib.html.ImageTag</code> class.
  *
  * @author James Mitchell
  */

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag2.java,v 1.3 2003/03/08 19:31:55 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2003/03/08 19:31:55 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestFileTag2.java,v 1.4 2003/03/23 04:08:29 jmitchell Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/03/23 04:08:29 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -61,7 +61,6 @@ package org.apache.struts.taglib.html;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -75,7 +74,7 @@ import org.apache.struts.taglib.SimpleBeanForTesting;
 
 /**
  * Suite of unit tests for the
- * <code>org.apache.struts.taglib.bean.FileTag</code> class.
+ * <code>org.apache.struts.taglib.html.FileTag</code> class.
  *
  * @author James Mitchell
  */
