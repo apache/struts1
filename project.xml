@@ -239,9 +239,7 @@
       <groupId>servletapi</groupId>
       <artifactId>servletapi</artifactId>
       <version>2.3</version>
-      
-      put url here
-      
+      <url>http://java.sun.com/products/servlet/</url>
     </dependency>
     
     <dependency>
@@ -325,6 +323,7 @@
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
       <version>2.7.2</version>
+      <url>http://www.antlr.org/download.html</url>
       <properties>
         <war.bundle>true</war.bundle>
       </properties>
