@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.50 2004/03/14 06:23:46 sraeburn Exp $
- * $Revision: 1.50 $
- * $Date: 2004/03/14 06:23:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.51 2004/07/01 00:40:24 husted Exp $
+ * $Revision: 1.51 $
+ * $Date: 2004/07/01 00:40:24 $
  *
  * Copyright 2001-2004 The Apache Software Foundation.
  * 
@@ -41,6 +41,7 @@ import org.apache.commons.validator.ValidatorResources;
 import org.apache.commons.validator.util.ValidatorUtils;
 import org.apache.commons.validator.Var;
 import org.apache.struts.Globals;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
@@ -53,7 +54,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.50 $ $Date: 2004/03/14 06:23:46 $
+ * @version $Revision: 1.51 $ $Date: 2004/07/01 00:40:24 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -118,6 +119,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * &lt;script&gt; &lt;/script&gt; around the javascript.
      */
     protected String formName = null;
+    
+    /**
+     * formName is used for both Javascript and non-javascript validations.
+     * For the javascript validations, there is the possibility that we will
+     * be rewriting the formName (if it is a ValidatorActionForm instead of just
+     * a ValidatorForm) so we need another variable to hold the formName just for
+     * javascript usage.
+     */
+    protected String jsFormName = null;
 
     /**
      * The line ending string.
@@ -190,6 +200,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         this.formName = formName;
     }
 
+	/**
+	 * @return Returns the jsFormName.
+	 */
+	public String getJsFormName() {
+		return jsFormName;
+	}
+	/**
+	 * @param jsFormName The jsFormName to set.
+	 */
+	public void setJsFormName(String jsFormName) {
+		this.jsFormName = jsFormName;
+	}
     /**
      * Gets the current page number of a multi-part form.
      * Only field validations with a matching page numer
@@ -384,7 +406,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         ModuleConfig config,
         ValidatorResources resources,
         Locale locale,
-        Form form) {
+        Form form) throws JspException {
 
         StringBuffer results = new StringBuffer();
 
@@ -396,6 +418,20 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         List actions = this.createActionList(resources, form);
 
         final String methods = this.createMethods(actions, this.stopOnError(config));
+
+        String formName = form.getName();
+        jsFormName = formName;
+                if(jsFormName.charAt(0) == '/') {
+                	String mappingName = TagUtils.getInstance().getActionMappingName(jsFormName);
+                	ActionMapping mapping = (ActionMapping) config.findActionConfig(mappingName);
+                    if (mapping == null) {
+                        JspException e = new JspException(messages.getMessage("formTag.mapping", mappingName));
+                        pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
+                        throw e;
+                    }
+                    jsFormName = mapping.getAttribute();
+                }
+        
         results.append(this.getJavascriptBegin(methods));
 
         for (Iterator i = actions.iterator(); i.hasNext();) {
@@ -411,8 +447,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 functionName = va.getName();
             }
 
-            String formName = form.getName();
-            results.append("    function " + formName + "_" + functionName + " () { \n");
+            
+            results.append("    function " + jsFormName + "_" + functionName + " () { \n");
             for (Iterator x = form.getFields().iterator(); x.hasNext();) {
                 Field field = (Field) x.next();
 
@@ -628,6 +664,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         super.release();
         bundle = Globals.MESSAGES_KEY;
         formName = null;
+        jsFormName = null;
         page = 0;
         methodName = null;
         staticJavascript = "true";
@@ -642,10 +679,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      */
     protected String getJavascriptBegin(String methods) {
         StringBuffer sb = new StringBuffer();
-        String name = formName.replace('/', '_'); // remove any '/' characters
+        String name = jsFormName.replace('/', '_'); // remove any '/' characters
         name =
-            formName.substring(0, 1).toUpperCase()
-                + formName.substring(1, formName.length());
+            jsFormName.substring(0, 1).toUpperCase()
+                + jsFormName.substring(1, jsFormName.length());
 
         sb.append(this.renderStartElement());
 
