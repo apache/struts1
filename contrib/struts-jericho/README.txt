@@ -42,7 +42,7 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 -Also under consideration-
 
-* Services_framework. Utilize Sprint IoC, HiveMind, Avalon, orPico, et cetera, to configure services.
+* Services framework. Utilize Spring IoC, HiveMind, Avalon, orPico, et cetera, to configure services.
 
 * Configuration testing. Integrate utility of Struts TestCase, ideally configured from an XML configuration (a la Canoo Webtest).
 
@@ -50,7 +50,7 @@ Core components will implement signatures that reference a StrutsContext. Implem
 
 * Utilize protocols in resource paths. An mapped path would look like "mapping://foo" or a tiles forward would be "tiles://tilesdef"  This would make it easy to plug in handlers to support different presentation engines.  If no protocol is specified, the path is handled as usual.
 
-* Merge form-bean and validator-form configurations. A single element would allow everything Struts knowns about a form to be configured in one place.
+* Combine form-bean and validator-form configurations. A single element would allow everything Struts knowns about a form to be configured in one place.
 
 * Integrate Tiles definitions into core configuration.
 
