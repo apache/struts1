@@ -229,26 +229,30 @@
         After the datasource is defined, here is an example of establishing a connection 
         from within a Action perform method. 
       </p>
-      <p>
-<pre><font size="-1">public ActionForward perform(ActionMapping mapping,
-                      ActionForm form,
-                      HttpServletRequest request,
-                      HttpServletResponse response) {
+<pre>
+  public ActionForward perform(ActionMapping mapping,
+                               ActionForm form,
+                               HttpServletRequest request,
+                               HttpServletResponse response) {
     try {
-      DataSource dataSource = servlet.findDataSource(null);      
-      Connection myConnection = dataSource.getConnection();
+      javax.sql.DataSource dataSource = servlet.findDataSource(null);      
+      java.sql.Connection myConnection = dataSource.getConnection();
       //do what you wish with myConnection
     }
     catch (SQLException sqle) {
-      sqle.printStackTrace();
+      getServlet().log("Connection.process", sqle);
     }
     finally {
       //enclose this in a finally block to make
       //sure the connection is closed
-      myConnection.close();
+      try {
+        myConnection.close();
+      } catch (SQLException e) {
+        getServlet().log("Connection.close", e);
+      }
     }
-  }</font></pre>
-      </p>
+  }
+</pre>
       
       <p align="center">
         Next: <a href="building_view.html">Building View Components</a>
