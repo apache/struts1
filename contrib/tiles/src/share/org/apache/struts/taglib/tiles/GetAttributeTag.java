@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/GetAttributeTag.java,v 1.1 2001/08/01 14:36:40 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:40 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/GetAttributeTag.java,v 1.2 2001/09/17 08:55:51 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/09/17 08:55:51 $
  * $Author: cedric $
  *
  */
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
    * The usual toString() conversions is applied on found value.
    */
 public class GetAttributeTag extends TagSupport implements ComponentConstants {
-  
+
   private String attribute = null;
     /** Role attribute */
   private String role = null;
@@ -99,8 +99,14 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
       throw new JspException ( "Error - tag.getAsString : component context is not defined. Check tag syntax" );
 
     Object value = compContext.getAttribute(attribute);
-    if( value == null && isErrorIgnored == false )
-      throw new JspException ( "Error - tag.getAsString : attribute '"+ attribute + "' not found in context. Check tag syntax" );
+    if( value == null)
+      { // no value : throw error or fail silently according to ignore
+      if(isErrorIgnored == false )
+        throw new JspException ( "Error - tag.getAsString : attribute '"+ attribute + "' not found in context. Check tag syntax" );
+       else
+        return EVAL_PAGE;
+      } // end if
+
 
     try
       {
