@@ -1,5 +1,6 @@
 <%@ page language="java" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <html>
 <head>
 <title>Test struts-bean:write Tag</title>
@@ -218,6 +219,58 @@
 <% } %>
 </table>
 
+<h3>Test 7 - Localized number display</h3>
+
+<%
+  pageContext.setAttribute("test7.value", new Double(1234567.89));
+%>
+
+<table border="0">
+<tr>
+<td>
+
+<table border="1">
+ <tr>
+   <th>Language</th>
+   <th>Expected format</th>
+  </tr>
+  <tr>
+    <td>de <bean:message key="locale.de"/></td>
+    <td>1.234.567,89</td>
+   </tr>
+   <tr>
+    <td>en <bean:message key="locale.en"/></td>
+    <td>1,234,567.89</td>
+   </tr>
+  <tr>
+    <td>fr <bean:message key="locale.fr"/></td>
+    <td>1 234 567,89</td>
+  </tr>
+</table>
+</td>
+<td>
+<table border="1">
+<tr>
+  <th>Default format</td>
+  <th>Using Format Attribute</th>
+  <th>Using Format Key</th>
+</tr>
+  <tr>
+   <td><%= pageContext.getAttribute("test7.value") %></td>
+    <td>[#,000.00] <bean:write name="test7.value" format="#,000.00"/></td>
+    <td>[<bean:message key="format.pattern" />] <bean:write name="test7.value" formatKey="format.pattern"/></td>
+  </tr>
+</table>
+</td>
+</tr>
+</table>
+
+<h3>Sprache | Language | Langage</h3>
+<ul>
+   <li><html:link action="/locale?page=/bean-write.jsp&amp;language=de">German | Deutsch</html:link> <bean:message key="locale.de"/></li>
+   <li><html:link action="/locale?page=/bean-write.jsp&amp;language=en">English | Anglais</html:link> <bean:message key="locale.en"/></li>
+   <li><html:link action="/locale?page=/bean-write.jsp&amp;language=fr">French | Francais</html:link> <bean:message key="locale.fr"/></li>
+</ul>
 
 </body>
 </html>

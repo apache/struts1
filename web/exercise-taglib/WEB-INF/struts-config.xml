@@ -7,8 +7,18 @@
 <struts-config>
 
   <form-beans>
+
     <form-bean name="testbean"
                type="org.apache.struts.webapp.exercise.TestBean"/>
+
+      <!-- Locale form bean -->
+      <form-bean      name="localeForm"
+                      type="org.apache.struts.action.DynaActionForm">
+        <form-property name="language" type="java.lang.String"/>
+        <form-property name="country" type="java.lang.String"/>
+        <form-property name="page" type="java.lang.String"/>
+     </form-bean>
+
   </form-beans>
 
   <global-forwards>
@@ -52,6 +62,15 @@
            validate="false">
       <forward name="input"                path="/html-setters.jsp"/>
     </action>
+
+      <!-- Locale Action -->
+      <action    path="/locale"
+                 type="org.apache.struts.actions.LocaleAction"
+                 name="localeForm"
+                 scope="request">
+         <forward name="success"              path="/index.jsp"/>
+      </action>
+
   </action-mappings>
 
   <message-resources
