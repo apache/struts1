@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.5 2000/08/14 04:42:59 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/08/14 04:42:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.6 2000/08/14 18:12:31 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/08/14 18:12:31 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.5 $ $Date: 2000/08/14 04:42:59 $
+ * @version $Revision: 1.6 $ $Date: 2000/08/14 18:12:31 $
  */
 
 public final class BeanUtils {
@@ -544,7 +544,7 @@ public final class BeanUtils {
 	    if (prefix != null) {
 		if (!name.startsWith(prefix))
 		    continue;
-		name = name.substring(0, prefix.length());
+		name = name.substring(prefix.length());
 	    }
 	    if (suffix != null) {
 		if (!name.endsWith(suffix))
