@@ -566,7 +566,7 @@ public static boolean validateTwoFields(
     <var-value>true</var-value>
   </var>
   <var>
-    <var-name>field_test[0]</var-name>
+    <var-name>fieldTest[0]</var-name>
     <var-value>NOTNULL</var-value>
   </var>
 </field>
