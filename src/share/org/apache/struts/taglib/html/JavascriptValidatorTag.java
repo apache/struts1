@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.46 2004/02/14 11:11:02 husted Exp $
- * $Revision: 1.46 $
- * $Date: 2004/02/14 11:11:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.47 2004/02/24 22:32:54 germuska Exp $
+ * $Revision: 1.47 $
+ * $Date: 2004/02/24 22:32:54 $
  *
  * ====================================================================
  *
@@ -94,7 +94,7 @@ import java.util.StringTokenizer;
  * on the validation rules loaded by the <code>ValidatorPlugIn</code>
  * defined in the struts-config.xml file.
  *
- * @version $Revision: 1.46 $ $Date: 2004/02/14 11:11:02 $
+ * @version $Revision: 1.47 $ $Date: 2004/02/24 22:32:54 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -378,14 +378,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         Form form = resources.getForm(locale, formName);
 
-        if (form == null)
-        {
-            throw new JspException("No form found under name "
-                                   + formName
-                                   + ", locale "
-                                   + locale);
-        }
-
         if ("true".equalsIgnoreCase(dynamicJavascript)) {
             results.append(
                 this.createDynamicJavascript(config, resources, locale, form));
@@ -421,7 +413,15 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         ModuleConfig config,
         ValidatorResources resources,
         Locale locale,
-        Form form) {
+        Form form) throws JspException {
+
+        if (form == null)
+        {
+            throw new JspException("No form found under name "
+                                   + formName
+                                   + ", locale "
+                                   + locale);
+        }
 
         StringBuffer results = new StringBuffer();
 
