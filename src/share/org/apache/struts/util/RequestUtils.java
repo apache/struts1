@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.51 2002/07/27 23:26:08 craigmcc Exp $
- * $Revision: 1.51 $
- * $Date: 2002/07/27 23:26:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.52 2002/08/08 23:53:44 craigmcc Exp $
+ * $Revision: 1.52 $
+ * $Date: 2002/08/08 23:53:44 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.51 $ $Date: 2002/07/27 23:26:08 $
+ * @version $Revision: 1.52 $ $Date: 2002/08/08 23:53:44 $
  */
 
 public class RequestUtils {
@@ -709,8 +709,14 @@ public class RequestUtils {
         // Look up the requested bean, and return if requested
         Object bean = lookup(pageContext, name, scope);
         if (bean == null) {
-            JspException e = new JspException
-                (messages.getMessage("lookup.bean", name, scope));
+            JspException e = null;
+            if (scope == null) {
+                e = new JspException
+                    (messages.getMessage("lookup.bean.any", name));
+            } else {
+                e = new JspException
+                    (messages.getMessage("lookup.bean", name, scope));
+            }
             saveException(pageContext, e);
             throw e;
         }
