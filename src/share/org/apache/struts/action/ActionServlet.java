@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.139 2002/12/29 21:24:38 cedric Exp $
- * $Revision: 1.139 $
- * $Date: 2002/12/29 21:24:38 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.140 2002/12/31 11:38:25 cedric Exp $
+ * $Revision: 1.140 $
+ * $Date: 2002/12/31 11:38:25 $
  *
  * ====================================================================
  *
@@ -303,7 +303,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.139 $ $Date: 2002/12/29 21:24:38 $
+ * @version $Revision: 1.140 $ $Date: 2002/12/31 11:38:25 $
  */
 
 public class ActionServlet
@@ -1099,7 +1099,7 @@ public class ActionServlet
                   // This plugin config object is needed by Tiles
                 try {
                   PropertyUtils.setProperty(plugIns[i], "currentPlugInConfigObject", plugInConfigs[i]);
-                } catch (NoSuchMethodException e) {
+                } catch (Exception e) {
                   // silently fail
                 }
                 plugIns[i].init(this, (ModuleConfig) config);
