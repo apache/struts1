@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.129 2002/11/12 03:56:08 dgraham Exp $
- * $Revision: 1.129 $
- * $Date: 2002/11/12 03:56:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.130 2002/11/26 02:33:07 rleland Exp $
+ * $Revision: 1.130 $
+ * $Date: 2002/11/26 02:33:07 $
  *
  * ====================================================================
  *
@@ -299,7 +299,7 @@ import org.xml.sax.InputSource;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author Martin Cooper
- * @version $Revision: 1.129 $ $Date: 2002/11/12 03:56:08 $
+ * @version $Revision: 1.130 $ $Date: 2002/11/26 02:33:07 $
  */
 
 public class ActionServlet
@@ -676,13 +676,13 @@ public class ActionServlet
      * @since Struts 1.1
      */
     protected void destroyApplications() {
-        
+
         ArrayList values = new ArrayList();
         Enumeration names = getServletContext().getAttributeNames();
         while (names.hasMoreElements()) {
             values.add(names.nextElement());
         }
-        
+
         Iterator keys = values.iterator();
         while (keys.hasNext()) {
             String name = (String) keys.next();
@@ -1030,18 +1030,9 @@ public class ActionServlet
         for (int i = 0; i < plugIns.length; i++) {
             try {
                 plugIns[i] =
-                    (PlugIn) RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
+                    (PlugIn)RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
                 BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
-                if (plugIns[i] instanceof PlugInPatch) {
-                    ((PlugInPatch) plugIns[i]).init(this, (ModuleConfig) config);
-                } else {
-                    /* Since Struts 1.1 only has one implementation for
-                       ModuleConfig casting is safe here. Used only for
-                       transition purposes !
-                    */
-                    ApplicationConfig ac = new ApplicationConfig((ModuleConfigImpl) config);
-                    plugIns[i].init(this, ac);
-                }
+                    plugIns[i].init(this, (ModuleConfig) config);
             } catch (ServletException e) {
                 // Lets propagate
                 throw e;
@@ -1323,7 +1314,7 @@ public class ActionServlet
             log.debug("Mapping for servlet '" + servletName + "' = '" +
                 servletMapping + "'");
         }
-        
+
         if (servletMapping != null) {
             getServletContext().setAttribute(Globals.SERVLET_KEY, servletMapping);
         }

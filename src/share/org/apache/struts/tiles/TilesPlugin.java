@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.11 2002/11/21 03:42:21 martinc Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/21 03:42:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.12 2002/11/26 02:33:07 rleland Exp $
+ * $Revision: 1.12 $
+ * $Date: 2002/11/26 02:33:07 $
  *
  * ====================================================================
  *
@@ -133,22 +133,6 @@ public class TilesPlugin implements PlugIn, PlugInPatch {
         this.moduleAware = moduleAware;
     }
 
-    /**
-     * <p>Receive notification that the specified module is being
-     * started up.</p>
-     *
-     * @param servlet ActionServlet that is managing all the modules
-     *  in this web application
-     * @param config ApplicationConfig for the module with which
-     *  this plug in is associated
-     *
-     * @exception ServletException if this <code>PlugIn</code> cannot
-     *  be successfully initialized
-     */
-    public void init(ActionServlet servlet, ApplicationConfig config) throws ServletException {
-        init(servlet, (ModuleConfig) config);
-    }
-    
     /**
      * <p>Receive notification that the specified module is being
      * started up.</p>

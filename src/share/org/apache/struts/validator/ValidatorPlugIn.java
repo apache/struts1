@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.13 2002/11/09 16:30:02 rleland Exp $
- * $Revision: 1.13 $
- * $Date: 2002/11/09 16:30:02 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorPlugIn.java,v 1.14 2002/11/26 02:33:07 rleland Exp $
+ * $Revision: 1.14 $
+ * $Date: 2002/11/26 02:33:07 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.config.ModuleConfig;
  * configuration in the struts-config.xml.</p>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.13 $ $Date: 2002/11/09 16:30:02 $
+ * @version $Revision: 1.14 $ $Date: 2002/11/26 02:33:07 $
  * @since Struts 1.1
  */
 public class ValidatorPlugIn implements PlugIn,PlugInPatch {
@@ -148,18 +148,6 @@ public class ValidatorPlugIn implements PlugIn,PlugInPatch {
     }
 
     /**
-     * Initialize and load our resources.
-     *
-     * @param servlet The ActionServlet for our application
-     * @param config The ApplicationConfig for our owning module
-     *
-     * @exception ServletException if we cannot configure ourselves correctly
-     * @deprecated use {@link #init(ActionServlet,ModuleConfig)}
-     */
-    public void init(ActionServlet servlet, ApplicationConfig config)
-                         throws ServletException {
-       init(servlet,(ModuleConfig)config);
-    }
 
     /**
      * Initialize and load our resources.
