@@ -2549,6 +2549,115 @@
 
         </tag>
 
+        <tag>
+                <name>messages</name>
+                <summary>
+                Conditionally display a set of accumulated messages.
+                </summary>
+                <tagclass>org.apache.struts.taglib.html.MessagesTag</tagclass>
+                <teiclass>com.wintecinc.struts.taglib.html.MessagesTei</teiclass>
+                <bodycontent>JSP</bodycontent>
+                <info>
+                <p>Displays a set of messages prepared by a business
+                logic component and stored as an <code>ActionMessages</code>
+                object, <code>ActionErrors</code> object, a String, 
+                or a String array in request scope.  If
+                such a bean is not found, nothing will be rendered.</p>
+
+                <p>In order to use this tag successfully, you must have
+                defined an application scope <code>MessageResources</code>
+                bean under the default attribute name.</p>
+                </info>
+
+                <attribute>
+                  <name>id</name>
+                  <required>true</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  The name of a page scope JSP bean that will contain the current
+                  element of the collection of messages on each iteration, if it is not
+                  <code>null</code>.
+                  </info>
+                </attribute>
+
+                <attribute>
+                    <name>bundle</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    The servlet context attribute key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                    </info>
+                </attribute>
+
+                <attribute>
+                    <name>locale</name>
+                    <required>false</required>
+                    <rtexprvalue>true</rtexprvalue>
+                    <info>
+                    The session attribute key for the Locale used to select
+                    messages to be displayed.  If not specified, defaults to
+                    the Struts standard value.
+                    </info>
+                </attribute>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  Name of the request scope bean under which our messages
+                  have been stored.  If not present, the name specified by the
+                  <code>Action.ERROR_KEY</code> constant string will be used.
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>property</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  Name of the property for which messages should be
+                  displayed.  If not specified, all messages (regardless
+                  of property) are displayed.
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>header</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  This value is an optional message resource key that will 
+                  be printed before the iteration of messages begins.
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>footer</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  This value is an optional message resource key that will 
+                  be printed after the iteration of messages has finished.
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>message</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  If this is set to 'true', it overrides the name attribute and 
+                  the request scope bean under which our messages have been stored 
+                  will be retrieved from the <code>Action.MESSAGE_KEY</code> 
+                  constant string. 
+                  </info>
+                </attribute>
+
+        </tag>
+
 
     <tag>
 
