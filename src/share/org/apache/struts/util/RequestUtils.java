@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.121 2003/07/26 17:39:33 rleland Exp $
- * $Revision: 1.121 $
- * $Date: 2003/07/26 17:39:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.122 2003/07/26 18:44:54 dgraham Exp $
+ * $Revision: 1.122 $
+ * $Date: 2003/07/26 18:44:54 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.121 $ $Date: 2003/07/26 17:39:33 $
+ * @version $Revision: 1.122 $ $Date: 2003/07/26 18:44:54 $
  */
 
 public class RequestUtils {
@@ -558,74 +558,24 @@ public class RequestUtils {
      * <li>If the resulting value does not start with a slash, then a
      *     slash is prepended.</li>
      * </ul>
+     * @deprecated Use TagUtils.getActionMappingName() instead.  This will be 
+     * removed after Struts 1.2.
      */
     public static String getActionMappingName(String action) {
-
-        String value = action;
-        int question = action.indexOf("?");
-        if (question >= 0) {
-            value = value.substring(0, question);
-        }
-        int slash = value.lastIndexOf("/");
-        int period = value.lastIndexOf(".");
-        if ((period >= 0) && (period > slash)) {
-            value = value.substring(0, period);
-        }
-        if (value.startsWith("/")) {
-            return (value);
-        } else {
-            return ("/" + value);
-        }
+        return TagUtils.getInstance().getActionMappingName(action);
     }
 
     /**
      * Return the form action converted into a server-relative URL.
+     * @deprecated Use TagUtils.getActionMappingURL() instead.  This will be 
+     * removed after Struts 1.2.
      */
-    public static String getActionMappingURL(String action, PageContext pageContext) {
-
-        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config = getRequestModuleConfig(request);
-        if (config != null) {
-            value.append(config.getPrefix());
-        }
-
-        // Use our servlet mapping, if one is specified
-        String servletMapping =
-            (String) pageContext.getAttribute(Globals.SERVLET_KEY, PageContext.APPLICATION_SCOPE);
-        if (servletMapping != null) {
-            String queryString = null;
-            int question = action.indexOf("?");
-            if (question >= 0) {
-                queryString = action.substring(question);
-            }
-            String actionMapping = getActionMappingName(action);
-            if (servletMapping.startsWith("*.")) {
-                value.append(actionMapping);
-                value.append(servletMapping.substring(1));
-            } else if (servletMapping.endsWith("/*")) {
-                value.append(servletMapping.substring(0, servletMapping.length() - 2));
-                value.append(actionMapping);
-            } else if (servletMapping.equals("/")) {
-                value.append(actionMapping);
-            }
-            if (queryString != null) {
-                value.append(queryString);
-            }
-        }
-
-        // Otherwise, assume extension mapping is in use and extension is
-        // already included in the action property
-        else {
-            if (!action.startsWith("/")) {
-                value.append("/");
-            }
-            value.append(action);
-        }
-
-        // Return the completed value
-        return (value.toString());
-     }
+    public static String getActionMappingURL(
+        String action,
+        PageContext pageContext) {
+            
+        return TagUtils.getInstance().getActionMappingURL(action, pageContext);
+    }
 
      /**
      * Create (if necessary) and return an ActionForm instance appropriate

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.51 2003/07/26 01:22:30 dgraham Exp $
- * $Revision: 1.51 $
- * $Date: 2003/07/26 01:22:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.52 2003/07/26 18:44:53 dgraham Exp $
+ * $Revision: 1.52 $
+ * $Date: 2003/07/26 18:44:53 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Martin Cooper
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.51 $ $Date: 2003/07/26 01:22:30 $
+ * @version $Revision: 1.52 $ $Date: 2003/07/26 18:44:53 $
  */
 public class FormTag extends TagSupport {
 
@@ -593,7 +593,9 @@ public class FormTag extends TagSupport {
         results.append("\" action=\"");
         results.append(
             response.encodeURL(
-                RequestUtils.getActionMappingURL(this.action, this.pageContext)));
+                TagUtils.getInstance().getActionMappingURL(
+                    this.action,
+                    this.pageContext)));
                 
         results.append("\"");
         
@@ -812,7 +814,7 @@ public class FormTag extends TagSupport {
                 Globals.ACTION_SERVLET_KEY);
 
         // Look up the action mapping we will be submitting to
-        String mappingName = RequestUtils.getActionMappingName(action);
+        String mappingName = TagUtils.getInstance().getActionMappingName(action);
         mapping = (ActionMapping) moduleConfig.findActionConfig(mappingName);
         if (mapping == null) {
             JspException e = new JspException(messages.getMessage("formTag.mapping", mappingName));
