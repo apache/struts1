@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/FormTag.java,v 1.4 2000/11/21 01:45:53 mschachter Exp $
- * $Revision: 1.4 $
- * $Date: 2000/11/21 01:45:53 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/FormTag.java,v 1.5 2000/12/08 04:34:04 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/08 04:34:04 $
  *
  * ====================================================================
  *
@@ -71,6 +71,8 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionFormBean;
+import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMappings;
 import org.apache.struts.util.BeanUtils;
@@ -82,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/11/21 01:45:53 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/08 04:34:04 $
  */
 
 public class FormTag extends TagSupport {
@@ -191,6 +193,8 @@ public class FormTag extends TagSupport {
         String retString = action;
         int period = action.lastIndexOf(".");
         int slash = action.lastIndexOf("/");
+        if (period < slash)
+            period = -1;
         if (period > -1) {
             retString = action.substring(0, period);
         }
@@ -453,6 +457,42 @@ public class FormTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
+        //get unspecified values
+        if ((name == null) || (type == null)) {
+            //get ActionMapping specified by "action"
+            ActionMappings mappings = (ActionMappings)
+                 pageContext.getAttribute(Action.MAPPINGS_KEY,
+                                          PageContext.APPLICATION_SCOPE);
+            ActionFormBeans formBeans = (ActionFormBeans)
+                pageContext.getAttribute(Action.FORM_BEANS_KEY,
+                                         PageContext.APPLICATION_SCOPE);
+            if ((mappings != null) && (formBeans != null)) {
+              String actionMappingName = getActionMappingName();
+              ActionMapping mapping = mappings.findMapping(actionMappingName); 
+            
+              if (mapping != null) {
+                  this.scope = mapping.getScope();
+                  if (name == null) {
+                    this.name = mapping.getAttribute();
+                  }
+                  if (type == null) {
+                    ActionFormBean formBean =
+                        formBeans.findFormBean(mapping.getName());
+                    if (formBean != null)
+                        this.type = formBean.getType();
+                  }
+                }
+                else {
+                    throw new JspTagException("Cannot retrieve mapping for specified form " +
+                        "action path \"" + actionMappingName + "\"");
+                }
+            }
+            else {
+                throw new JspTagException("Cannot retrieve ActionMappings under key \"" + 
+                    Action.MAPPINGS_KEY + "\"");
+            }
+        }
+
 	// Create an appropriate "form" element based on our parameters
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
@@ -512,36 +552,6 @@ public class FormTag extends TagSupport {
 	// Store this tag itself as a page attribute
 	pageContext.setAttribute(Constants.FORM_KEY, this);
         
-        //get unspecified values
-        if ((name == null) || (type == null)) {
-            //get ActionMapping specified by "action"
-            ActionMappings mappings = (ActionMappings)
-                 pageContext.getAttribute(Action.MAPPINGS_KEY, PageContext.APPLICATION_SCOPE);            
-               
-            if (mappings != null) {
-              String actionMappingName = getActionMappingName();
-              ActionMapping mapping = mappings.findMapping(actionMappingName); 
-            
-              if (mapping != null) {
-                  this.scope = mapping.getScope();
-                  if (name == null) {
-                    this.name = mapping.getAttribute();
-                  }
-                  if (type == null) {
-                    this.type = mapping.getName();
-                  }
-                }
-                else {
-                    throw new JspTagException("Cannot retrieve mapping for specified form " +
-                        "action path \"" + actionMappingName + "\"");
-                }
-            }
-            else {
-                throw new JspTagException("Cannot retrieve ActionMappings under key \"" + 
-                    Action.MAPPINGS_KEY + "\"");
-            }
-        }
-
 	// Locate or create the bean associated with our form
 	int scope = PageContext.SESSION_SCOPE;
 	if ("request".equals(this.scope))

@@ -33,10 +33,7 @@
 
 <form:errors/>
 
-<form:form action="saveSubscription.do" name="subscriptionForm"
-            focus="host"
-            scope="request"
-             type="org.apache.struts.example.SubscriptionForm">
+<form:form action="saveSubscription.do" focus="host">
 <form:hidden property="action"/>
 <table border="0" width="100%">
 

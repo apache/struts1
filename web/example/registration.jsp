@@ -24,8 +24,7 @@
 
 <form:errors/>
 
-<form:form action="saveRegistration.do" name="registrationForm"
-            scope="request" type="org.apache.struts.example.RegistrationForm">
+<form:form action="saveRegistration.do">
 <form:hidden property="action"/>
 <table border="0" width="100%">
 
