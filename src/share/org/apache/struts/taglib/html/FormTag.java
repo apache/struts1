@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.45 2003/03/10 01:57:30 craigmcc Exp $
- * $Revision: 1.45 $
- * $Date: 2003/03/10 01:57:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.46 2003/04/23 00:01:18 dgraham Exp $
+ * $Revision: 1.46 $
+ * $Date: 2003/04/23 00:01:18 $
  *
  * ====================================================================
  *
@@ -88,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * @author Craig R. McClanahan
  * @author Martin Cooper
  * @author James Turner
- * @version $Revision: 1.45 $ $Date: 2003/03/10 01:57:30 $
+ * @version $Revision: 1.46 $ $Date: 2003/04/23 00:01:18 $
  */
 
 public class FormTag extends TagSupport {
@@ -506,69 +506,11 @@ public class FormTag extends TagSupport {
         lookup();
 
         // Create an appropriate "form" element based on our parameters
-        HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
-        StringBuffer results = new StringBuffer("<form");
-        results.append(" name=\"");
-        results.append(beanName);
-        results.append("\"");
-         results.append(" method=\"");
-         results.append(method == null ? "post" : method);
-         results.append("\" action=\"");
-         results.append(response.encodeURL(RequestUtils.getActionMappingURL(action, pageContext)));
-         results.append("\"");
-         if (styleClass != null) {
-             results.append(" class=\"");
-            results.append(styleClass);
-            results.append("\"");
-        }
-        if (enctype != null) {
-            results.append(" enctype=\"");
-            results.append(enctype);
-            results.append("\"");
-        }
-        if (onreset != null) {
-            results.append(" onreset=\"");
-            results.append(onreset);
-            results.append("\"");
-        }
-        if (onsubmit != null) {
-            results.append(" onsubmit=\"");
-            results.append(onsubmit);
-            results.append("\"");
-        }
-        if (style != null) {
-            results.append(" style=\"");
-            results.append(style);
-            results.append("\"");
-        }
-        if (styleId != null) {
-            results.append(" id=\"");
-            results.append(styleId);
-            results.append("\"");
-        }
-        if (target != null) {
-            results.append(" target=\"");
-            results.append(target);
-            results.append("\"");
-        }
-        results.append(">");
+        StringBuffer results = new StringBuffer();
+        
+        results.append(this.renderFormStartElement());
 
-        // Add a transaction token (if present in our session)
-        HttpSession session = pageContext.getSession();
-        if (session != null) {
-            String token = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
-            if (token != null) {
-                results.append("<input type=\"hidden\" name=\"");
-                results.append(Constants.TOKEN_KEY);
-                results.append("\" value=\"");
-                results.append(token);
-                if (this.isXhtml()) {
-                    results.append("\" />");
-                } else {
-                    results.append("\">");
-                }
-            }
-        }
+        results.append(this.renderToken());
 
         // Print this field to our output writer
         ResponseUtils.write(pageContext, results.toString());
@@ -619,6 +561,96 @@ public class FormTag extends TagSupport {
     }
 
     /**
+     * Generates the opening <code>&lt;form&gt;</code> element with appropriate
+     * attributes.
+     * @since Struts 1.1
+     */
+    protected String renderFormStartElement() {
+        HttpServletResponse response =
+            (HttpServletResponse) this.pageContext.getResponse();
+            
+        StringBuffer results = new StringBuffer("<form");
+        results.append(" name=\"");
+        results.append(beanName);
+        results.append("\"");
+        results.append(" method=\"");
+        results.append(method == null ? "post" : method);
+        results.append("\" action=\"");
+        results.append(
+            response.encodeURL(
+                RequestUtils.getActionMappingURL(this.action, this.pageContext)));
+                
+        results.append("\"");
+        
+        if (styleClass != null) {
+            results.append(" class=\"");
+            results.append(styleClass);
+            results.append("\"");
+        }
+        if (enctype != null) {
+            results.append(" enctype=\"");
+            results.append(enctype);
+            results.append("\"");
+        }
+        if (onreset != null) {
+            results.append(" onreset=\"");
+            results.append(onreset);
+            results.append("\"");
+        }
+        if (onsubmit != null) {
+            results.append(" onsubmit=\"");
+            results.append(onsubmit);
+            results.append("\"");
+        }
+        if (style != null) {
+            results.append(" style=\"");
+            results.append(style);
+            results.append("\"");
+        }
+        if (styleId != null) {
+            results.append(" id=\"");
+            results.append(styleId);
+            results.append("\"");
+        }
+        if (target != null) {
+            results.append(" target=\"");
+            results.append(target);
+            results.append("\"");
+        }
+        results.append(">");
+        return results.toString();
+    }
+
+    /**
+     * Generates a hidden input field with token information, if any.
+     * @return A hidden input field containing the token.
+     * @since Struts 1.1
+     */
+    protected String renderToken() {
+        StringBuffer results = new StringBuffer();
+        HttpSession session = pageContext.getSession();
+
+        if (session != null) {
+            String token =
+                (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
+                
+            if (token != null) {
+                results.append("<input type=\"hidden\" name=\"");
+                results.append(Constants.TOKEN_KEY);
+                results.append("\" value=\"");
+                results.append(token);
+                if (this.isXhtml()) {
+                    results.append("\" />");
+                } else {
+                    results.append("\">");
+                }
+            }
+        }
+
+        return results.toString();
+    }
+
+    /**
      * Render the end of this form.
      *
      * @exception JspException if a JSP exception has occurred
@@ -634,56 +666,7 @@ public class FormTag extends TagSupport {
 
         // Render JavaScript to set the input focus if required
         if (this.focus != null) {
-
-            results.append(lineEnd);
-            results.append(this.getJsStartElement());
-
-            // xhtml script content shouldn't use the browser hiding trick
-            if (!this.isXhtml()) {
-                results.append("  <!--");
-                results.append(lineEnd);
-            }
-
-            // Construct the control name that will receive focus.
-            // This does not include any index.
-            StringBuffer focusControl = new StringBuffer("document.forms[\"");
-            focusControl.append(beanName);
-            focusControl.append("\"].elements[\"");
-            focusControl.append(this.focus);
-            focusControl.append("\"]");
-
-            results.append("  var focusControl = ");
-            results.append(focusControl.toString());
-            results.append(";");
-            results.append(lineEnd);
-            results.append(lineEnd);
-
-            results.append("  if (focusControl.type != \"hidden\") {");
-            results.append(lineEnd);
-
-            // Construct the index if needed and insert into focus statement
-            String index = "";
-            if (this.focusIndex != null) {
-                StringBuffer sb = new StringBuffer("[");
-                sb.append(this.focusIndex);
-                sb.append("]");
-                index = sb.toString();
-            }
-            results.append("     focusControl");
-            results.append(index);
-            results.append(".focus();");
-            results.append(lineEnd);
-
-            results.append("  }");
-            results.append(lineEnd);
-
-            if (!this.isXhtml()) {
-                results.append("  // -->");
-                results.append(lineEnd);
-            }
-
-            results.append("</script>");
-            results.append(lineEnd);
+            results.append(this.renderFocusJavascript());
         }
 
         // Print this value to our output writer
@@ -697,6 +680,71 @@ public class FormTag extends TagSupport {
         // Continue processing this page
         return (EVAL_PAGE);
 
+    }
+
+    /**
+     * Generates javascript to set the initial focus to the form element given in the
+     * tag's "focus" attribute.
+     * @since Struts 1.1
+     */
+    protected String renderFocusJavascript() {
+        StringBuffer results = new StringBuffer();
+
+        results.append(lineEnd);
+        results.append("<script type=\"text/javascript\"");
+        if (!this.isXhtml()) {
+            results.append(" language=\"JavaScript\"");
+        }
+        results.append(">");
+        results.append(lineEnd);
+
+        // xhtml script content shouldn't use the browser hiding trick
+        if (!this.isXhtml()) {
+            results.append("  <!--");
+            results.append(lineEnd);
+        }
+
+        // Construct the control name that will receive focus.
+        // This does not include any index.
+        StringBuffer focusControl = new StringBuffer("document.forms[\"");
+        focusControl.append(beanName);
+        focusControl.append("\"].elements[\"");
+        focusControl.append(this.focus);
+        focusControl.append("\"]");
+
+        results.append("  var focusControl = ");
+        results.append(focusControl.toString());
+        results.append(";");
+        results.append(lineEnd);
+        results.append(lineEnd);
+
+        results.append("  if (focusControl.type != \"hidden\") {");
+        results.append(lineEnd);
+
+        // Construct the index if needed and insert into focus statement
+        String index = "";
+        if (this.focusIndex != null) {
+            StringBuffer sb = new StringBuffer("[");
+            sb.append(this.focusIndex);
+            sb.append("]");
+            index = sb.toString();
+        }
+        results.append("     focusControl");
+        results.append(index);
+        results.append(".focus();");
+        results.append(lineEnd);
+
+        results.append("  }");
+        results.append(lineEnd);
+
+        if (!this.isXhtml()) {
+            results.append("  // -->");
+            results.append(lineEnd);
+        }
+
+        results.append("</script>");
+        results.append(lineEnd);
+        return results.toString();
     }
 
     /**
@@ -786,22 +834,10 @@ public class FormTag extends TagSupport {
     }
 
     /**
-     * Returns the starting javascript element formatted for xhtml if needed.
-     */
-    private String getJsStartElement() {
-        StringBuffer sb = new StringBuffer("<script type=\"text/javascript\"");
-        if (!this.isXhtml()) {
-            sb.append(" language=\"JavaScript\"");
-        }
-        sb.append(">");
-        sb.append(lineEnd);
-        return sb.toString();
-    }
-
-    /**
      * Returns true if this tag should render as xhtml.
+     * @since Struts 1.1
      */
-    private boolean isXhtml() {
+    protected boolean isXhtml() {
         String xhtml =
             (String) this.pageContext.getAttribute(Globals.XHTML_KEY, PageContext.PAGE_SCOPE);
 
