@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.3 2003/11/28 02:25:47 husted Exp $
- * $Revision: 1.3 $
- * $Date: 2003/11/28 02:25:47 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/config/TestActionConfigMatcher.java,v 1.4 2003/11/28 08:48:29 mrdon Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/11/28 08:48:29 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.ActionConfigMatcher</code>.</p>
  *
  * @author Don Brown
- * @version $Revision: 1.3 $ $Date: 2003/11/28 02:25:47 $
+ * @version $Revision: 1.4 $ $Date: 2003/11/28 08:48:29 $
  */
 
 public class TestActionConfigMatcher extends TestMockBase {
@@ -183,10 +183,16 @@ public class TestActionConfigMatcher extends TestMockBase {
         assertTrue("Input hasn't been replaced", "input,Bar".equals(m.getInput()));
 
         ForwardConfig[] fConfigs = m.findForwardConfigs();
-        ForwardConfig cfg = fConfigs[0];
-        assertTrue("ContextRelative isn't correct", cfg.getContextRelative());
-        // :FIXME: assertTrue("Name isn't correct", "name".equals(cfg.getName()));
-        // :FIXME: assertTrue("Path hasn't been replaced", "path,Bar".equals(cfg.getPath()));
+        boolean found = false;
+        for (int x=0; x<fConfigs.length; x++) {
+            ForwardConfig cfg = fConfigs[x];
+            if ("name".equals(cfg.getName())) {
+                found = true;
+                assertTrue("ContextRelative isn't correct", cfg.getContextRelative());
+                assertTrue("Path hasn't been replaced", "path,Bar".equals(cfg.getPath()));
+            }
+        }
+        assertTrue("The forward config 'name' cannot be found", found);
     }
     
     private ActionConfig buildActionConfig(String path) {
