@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.21 2003/07/31 00:34:15 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/07/31 00:34:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MultiboxTag.java,v 1.22 2003/11/15 21:33:57 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/11/15 21:33:57 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
+ * Copyright (c) 2001-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -80,7 +80,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.21 $ $Date: 2003/07/31 00:34:15 $
+ * @version $Revision: 1.22 $ $Date: 2003/11/15 21:33:57 $
  */
 
 public class MultiboxTag extends BaseHandlerTag {
@@ -188,12 +188,15 @@ public class MultiboxTag extends BaseHandlerTag {
      */
     public int doAfterBody() throws JspException {
 
-        if (bodyContent != null)
+        if (bodyContent != null) {
             this.constant = bodyContent.getString().trim();
-        if ("".equals(this.constant))
+        }
+            
+        if ("".equals(this.constant)) {
             this.constant = null;
-        return (SKIP_BODY);
-
+        }
+            
+        return SKIP_BODY;
     }
 
     /**
@@ -219,9 +222,8 @@ public class MultiboxTag extends BaseHandlerTag {
             results.append("\"");
         }
         results.append(" value=\"");
-        String value = this.value;
-        if (value == null)
-            value = this.constant;
+        String value = (this.value == null) ? this.constant : this.value;
+            
         if (value == null) {
             JspException e = new JspException(messages.getMessage("multiboxTag.value"));
             pageContext.setAttribute(Globals.EXCEPTION_KEY, e, PageContext.REQUEST_SCOPE);
@@ -231,12 +233,17 @@ public class MultiboxTag extends BaseHandlerTag {
         results.append("\"");
         Object bean = TagUtils.getInstance().lookup(pageContext, name, null);
         String values[] = null;
-        if (bean == null)
+        
+        if (bean == null) {
             throw new JspException(messages.getMessage("getter.bean", name));
+        }
+            
         try {
             values = BeanUtils.getArrayProperty(bean, property);
-            if (values == null)
+            if (values == null) {
                 values = new String[0];
+            }
+                
         } catch (IllegalAccessException e) {
             throw new JspException(messages.getMessage("getter.access", property, name));
         } catch (InvocationTargetException e) {
@@ -245,20 +252,21 @@ public class MultiboxTag extends BaseHandlerTag {
         } catch (NoSuchMethodException e) {
             throw new JspException(messages.getMessage("getter.method", property, name));
         }
+        
         for (int i = 0; i < values.length; i++) {
             if (value.equals(values[i])) {
                 results.append(" checked=\"checked\"");
                 break;
             }
         }
+        
         results.append(prepareEventHandlers());
         results.append(prepareStyles());
         results.append(getElementClose());
 
         TagUtils.getInstance().write(pageContext, results.toString());
 
-        return (EVAL_PAGE);
-
+        return EVAL_PAGE;
     }
 
     /**
