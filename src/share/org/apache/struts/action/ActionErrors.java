@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.8 2002/09/22 05:46:51 martinc Exp $
- * $Revision: 1.8 $
- * $Date: 2002/09/22 05:46:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionErrors.java,v 1.9 2002/10/20 19:10:45 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/10/20 19:10:45 $
  *
  * ====================================================================
  *
@@ -59,12 +59,9 @@
  *
  */
 
-
 package org.apache.struts.action;
 
-
 import java.io.Serializable;
-
 
 /**
  * <p>A class that encapsulates the error messages being reported by
@@ -86,38 +83,49 @@ import java.io.Serializable;
  *
  * @author David Geary
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2002/09/22 05:46:51 $
+ * @version $Revision: 1.9 $ $Date: 2002/10/20 19:10:45 $
  */
 
 public class ActionErrors extends ActionMessages implements Serializable {
 
+	// ----------------------------------------------------- Manifest Constants
 
-    // ----------------------------------------------------- Manifest Constants
+	/**
+	 * The "property name" marker to use for global errors, as opposed to
+	 * those related to a specific property.
+	 */
+	public static final String GLOBAL_ERROR = "org.apache.struts.action.GLOBAL_ERROR";
 
+	// --------------------------------------------------------- Public Methods
 
-    /**
-     * The "property name" marker to use for global errors, as opposed to
-     * those related to a specific property.
-     */
-    public static final String GLOBAL_ERROR =
-        "org.apache.struts.action.GLOBAL_ERROR";
+	/**
+	 * Create an empty <code>ActionErrors</code> object.
+	 */
+	public ActionErrors() {
+		super();
+	}
 
+	/**
+	 * Create an <code>ActionErrors</code> object initialized with the given 
+	 * messages.
+	 * 
+	 * @param messages The messages to be initially added to this object.
+	 * @since Struts 1.1
+	 */
+	public ActionErrors(ActionErrors messages) {
+		super(messages);
+	}
 
+	/**
+	 * Add an error message to the set of errors for the specified property.
+	 *
+	 * @param property Property name (or ActionErrors.GLOBAL_ERROR)
+	 * @param error The error message to be added
+	 */
+	public void add(String property, ActionError error) {
 
-    // --------------------------------------------------------- Public Methods
-    
-    
-    /**
-     * Add an error message to the set of errors for the specified property.
-     *
-     * @param property Property name (or ActionErrors.GLOBAL_ERROR)
-     * @param error The error message to be added
-     */
-    public void add(String property, ActionError error) {
+		super.add(property, error);
 
-        super.add(property, error);
-
-    }
-
+	}
 
 }
