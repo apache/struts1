@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/struts/org/apache/struts/action/Attic/ServicesServlet.java,v 1.1 2001/07/25 20:19:41 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:19:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/struts/org/apache/struts/action/Attic/ServicesServlet.java,v 1.2 2002/12/08 07:53:32 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 07:53:32 $
  *
  * ====================================================================
  *
@@ -61,33 +61,22 @@
 
 package org.apache.struts.action;
 
-import java.lang.Class;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.digester.Digester;
-import org.apache.commons.digester.Rule;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.taglib.html.Constants;
+import org.apache.struts.Globals;
 import org.apache.struts.service.ServiceManager;
 import org.apache.struts.service.ServletServiceManager;
 import org.apache.struts.upload.MultipartRequestWrapper;
-import org.xml.sax.AttributeList;
-import org.xml.sax.SAXException;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:19:41 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 07:53:32 $
  */
 public class ServicesServlet
     extends ActionServlet {
@@ -195,7 +184,7 @@ public class ServicesServlet
             request.setAttribute(Action.MULTIPART_KEY,
                                 mapping.getMultipartClass());
         //also pass the mapping through the request
-        request.setAttribute(Action.MAPPING_KEY,
+        request.setAttribute(Globals.MAPPING_KEY,
                              mapping);
 
         try {
@@ -217,8 +206,6 @@ public class ServicesServlet
         ActionForm formInstance, HttpServletRequest request,
         HttpServletResponse response)
         throws IOException, ServletException {
-
-        Boolean result = null;
 
         if (formInstance == null)
             return (true);
@@ -250,7 +237,7 @@ public class ServicesServlet
 
                         // Call the validate() method of our ActionForm bean
                         errors = formInstance.validate(mapping, request);
-                        if ((errors == null) || errors.empty()) {
+                        if ((errors == null) || errors.isEmpty()) {
                                 if (debug >= 1)
                                         log("  No errors detected by form validate");
                                 if( services.performBooleanCall( "validateAfter", 
@@ -288,7 +275,7 @@ public class ServicesServlet
         // Save our error messages and return to the input form if possible
         if (debug >= 1)
             log("  Validation error(s), redirecting to: " + uri);
-        request.setAttribute(Action.ERROR_KEY, errors);
+        request.setAttribute(Globals.ERROR_KEY, errors);
         //unwrap the multipart request if there is one
         if (request instanceof MultipartRequestWrapper) {
             request = ((MultipartRequestWrapper) request).getRequest();

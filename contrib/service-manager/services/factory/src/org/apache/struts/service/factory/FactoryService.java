@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/Attic/FactoryService.java,v 1.1 2001/07/25 20:42:22 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:42:22 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/Attic/FactoryService.java,v 1.2 2002/12/08 07:53:31 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 07:53:31 $
  *
  * ====================================================================
  *
@@ -73,12 +73,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.MessageResources;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.collections.FastHashMap;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.util.MessageResources;
 import org.apache.struts.service.Service;
 import org.apache.struts.service.ServiceManager;
 import org.apache.struts.service.ServletServiceManager;
@@ -467,7 +465,7 @@ public class FactoryService extends Service {
      *  </p>
      *  
      *  @param parameterMapping Mapping for parameter
-     *  @param beanRegistration Bean registration
+     *  @param registration Bean registration
      *  @param request The servlet request we are processing
      *
      *  @return Parameter
@@ -543,7 +541,7 @@ public class FactoryService extends Service {
       * find it in map of early created factories. It returns one if finds
       * any. Otherwise new factory will be instantiated, stored in
       * in cash and method returns it.
-      * @param beanFactoryMapping - factory mapping with factory definitions
+      * @param factoryMapping - factory mapping with factory definitions
       * @param request - http request link
      */
     protected Factory processFactoryCreate( FactoryMapping factoryMapping,

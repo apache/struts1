@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/core/org/apache/struts/service/Attic/ServiceManager.java,v 1.1 2001/07/25 20:19:40 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:19:40 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/core/org/apache/struts/service/Attic/ServiceManager.java,v 1.2 2002/12/08 07:53:32 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 07:53:32 $
  *
  * ====================================================================
  *
@@ -63,7 +63,6 @@ package org.apache.struts.service;
 
 import java.io.Serializable;
 import java.io.InputStream;
-import java.io.IOException;
 import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.HashMap;
@@ -79,7 +78,7 @@ import org.apache.struts.util.MessageResources;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:19:40 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 07:53:32 $
  */
 public class ServiceManager implements Serializable {
 
@@ -373,7 +372,6 @@ public class ServiceManager implements Serializable {
          */
         public Digester initDigester( int detail ) {
                 Digester digester = new Digester();
-                digester.setDebug(detail);
                 digester.setNamespaceAware(true);
                 digester.setValidating(false);
                 return initDigester( digester, null );

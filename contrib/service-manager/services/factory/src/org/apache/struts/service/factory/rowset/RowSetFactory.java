@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/rowset/Attic/RowSetFactory.java,v 1.1 2001/07/25 20:42:23 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:42:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/rowset/Attic/RowSetFactory.java,v 1.2 2002/12/08 07:53:31 rleland Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/12/08 07:53:31 $
  *
  * ====================================================================
  *
@@ -61,28 +61,19 @@
 
 package org.apache.struts.service.factory.rowset;
 
-import java.lang.Class;
 import java.lang.Throwable;
-import java.util.Iterator;
-import java.util.Hashtable;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.sql.RowSet;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import sun.jdbc.rowset.CachedRowSet;
 import javax.servlet.ServletException;
 import org.apache.struts.service.factory.Factory;
 import org.apache.struts.service.factory.Parameter;
-import org.apache.struts.action.Action;
 import org.apache.struts.service.ServletServiceManager;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:42:23 $
+ * @version $Revision: 1.2 $ $Date: 2002/12/08 07:53:31 $
  */
 public class RowSetFactory extends Factory {
 
