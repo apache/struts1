@@ -96,4 +96,22 @@
 
   </action-mappings>
 
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources parameter="ApplicationResources"/>
+
+  <!-- ========== Plug Ins Configuration ================================== -->
+  
+  <!-- 
+     Add multiple validator resource files by setting the pathname property. 
+     Default pluggable validator definitions are contained in validator-rules.xml. 
+     Add any validation rules for forms in validator.xml.
+  -->
+  <!--
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathname" value="/WEB-INF/validator-rules.xml"/>
+    <set-property property="pathname" value="/WEB-INF/validator.xml"/>
+  </plug-in>
+  -->
+
 </struts-config>
