@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.6 2002/12/08 07:12:16 rleland Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/08 07:12:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/ForwardAction.java,v 1.7 2003/03/07 05:00:20 jmitchell Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/03/07 05:00:20 $
  *
  * ====================================================================
  *
@@ -89,14 +89,14 @@ import org.apache.struts.util.MessageResources;
  *           name="subscriptionForm"
  *          scope="request"
  *          input="/subscription.jsp"
- *      parameter="/path/to/processing/servlet"&gt;
+ *      parameter="/path/to/processing/servlet"/&gt;
  * </code>
  *
  * <p>which will forward control to the context-relative URI specified by the
  * <code>parameter</code> attribute.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/12/08 07:12:16 $
+ * @version $Revision: 1.7 $ $Date: 2003/03/07 05:00:20 $
  */
 
 public class ForwardAction extends Action {
