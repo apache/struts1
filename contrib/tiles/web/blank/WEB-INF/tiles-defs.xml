@@ -1,0 +1,91 @@
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+
+  <!-- =======================================================  -->
+  <!-- Master definition  									-->
+  <!-- =======================================================  -->
+
+  <!-- Main page layout used as a root for other pages defintion.
+    -->
+  <definition name="site.mainLayout" path="/layouts/classicLayout.jsp">
+	  <put name="title"  value="Tiles Blank Site" />
+	  <put name="header" value="/tiles/common/header.jsp" />
+	  <put name="menu"   value="site.menu.bar" />
+	  <put name="footer" value="/tiles/common/footer.jsp" />
+	  <put name="body"   value="/tiles/body.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Index page definition  									-->
+  <!-- =======================================================  -->
+
+    <!-- This definition inherits from the main definition.
+	  It overload the page title, and the body used.
+	  Use the same mechanism to define new pages sharing common 
+	  properties (here header, menu, footer, layout)
+	-->
+  <definition name="site.index.page" extends="site.mainLayout" >
+	  <put name="title"  value="Tiles Blank Site Index" />
+	  <put name="body"   value="/tiles/body.jsp" />
+  </definition>
+  
+  <!-- =======================================================  -->
+  <!-- Menus definitions  									-->
+  <!-- =======================================================  -->
+
+  <!-- Menu bar definition 
+    This definition describe a "bar" of menu stacked verticaly.
+	Each menu is describe elsewhere.
+	Add new entry in the list to add new menu.
+  -->
+<definition name="site.menu.bar" path="/layouts/vboxLayout.jsp" >
+  <putList name="list" >
+    <add value="site.menu.links" />
+    <add value="site.menu.documentation" />
+  </putList>
+</definition>
+
+  <!-- Menu description
+    A menu has a title and a set of entries rendered as links.
+	Add new entry to add new links in menu.
+   -->
+<definition name="site.menu.links" path="/layouts/menuNoStruts.jsp" >
+  <put name="title" value="Useful Links" />
+    <putList name="items" >
+      <item value="Home"           
+	  		link="/index.jsp"             
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="A Menu Item" 
+	  		link="/templateNoDef.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    </putList>
+</definition>
+
+  <!-- Another Menu description
+    A menu has a title and a set of entries rendered as links.
+	Add new entry to add new links in menu.
+   -->
+<definition name="site.menu.documentation" path="/layouts/menuNoStruts.jsp" >
+  <put name="title" value="Documentation" />
+    <putList name="items" >
+      <item value="User Guide"           
+	  		link="/index.jsp"             
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Tags Index" 
+	  		link="/index.jsp" 
+			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+      <item value="Struts Home" 
+	  		icon="/images/struts-power.gif"        
+			link="http://www.apache.org" 
+	        classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    </putList>
+</definition>
+
+
+
+</tiles-definitions>
