@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.4 2003/07/04 21:41:18 dgraham Exp $
- * $Revision: 1.4 $
- * $Date: 2003/07/04 21:41:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentContext.java,v 1.5 2003/07/04 21:44:55 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/07/04 21:44:55 $
  *
  * ====================================================================
  *
@@ -62,6 +62,7 @@
 package org.apache.struts.tiles;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -81,11 +82,6 @@ public class ComponentContext implements Serializable {
      * Component attributes.
      */
     private Map attributes=null;
-
-    /**
-     * EmptyIterator over component attributes.
-     */
-    private static Iterator EMPTY_ITERATOR = new EmptyIterator();
 
     /**
      * Constructor.
@@ -167,7 +163,7 @@ public class ComponentContext implements Serializable {
      */
     public Iterator getAttributeNames() {
         if (attributes == null) {
-            return EMPTY_ITERATOR;
+            return Collections.EMPTY_LIST.iterator();
         }
         
         return attributes.keySet().iterator();
@@ -244,18 +240,3 @@ public class ComponentContext implements Serializable {
         request.setAttribute(ComponentConstants.COMPONENT_CONTEXT, context);
     }
 }
-
-class EmptyIterator implements Iterator {
-
-    public boolean hasNext() {
-        return false;
-    }
-
-    public Object next() {
-        throw new java.util.NoSuchElementException();
-    }
-
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
-} // end inner class
