@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.15 2004/03/16 21:06:03 husted Exp $
- * $Revision: 1.15 $
- * $Date: 2004/03/16 21:06:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.16 2004/09/03 02:47:00 niallp Exp $
+ * $Revision: 1.16 $
+ * $Date: 2004/09/03 02:47:00 $
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  * 
@@ -60,7 +60,7 @@ import org.apache.struts.config.ForwardConfig;
  * for the fact that it is part of the public API that existing applications
  * are using.</p>
  *
- * @version $Revision: 1.15 $ $Date: 2004/03/16 21:06:03 $
+ * @version $Revision: 1.16 $ $Date: 2004/09/03 02:47:00 $
  */
 
 public class ActionForward extends ForwardConfig {
@@ -130,6 +130,7 @@ public class ActionForward extends ForwardConfig {
      * @param path Path for this instance
      * @param redirect Redirect flag for this instance
      * @param contextRelative Context relative flag for this instance
+     * @deprecated Use module rather than contextRelative
      */
     public ActionForward(String name, String path, boolean redirect,
                          boolean contextRelative) {
@@ -144,13 +145,34 @@ public class ActionForward extends ForwardConfig {
 
 
     /**
+     * Construct a new instance with the specified values.
+     *
+     * @param name Name of this forward
+     * @param path Path to which control should be forwarded or redirected
+     * @param redirect Should we do a redirect?
+     * @param module Module prefix, if any
+     */
+    public ActionForward(String name, String path, boolean redirect,
+                         String module) {
+
+        super();
+        setName(name);
+        setPath(path);
+        setRedirect(redirect);
+        setModule(module);
+
+    }
+
+
+    /**
      * <p>Construct a new instance based on the values of another ActionForward.</p>
      *
      * @param copyMe An ActionForward instance to copy
      * @since Struts 1.2.1
      */
     public ActionForward(ActionForward copyMe) {
-        this(copyMe.getName(),copyMe.getPath(),copyMe.getRedirect(),copyMe.getContextRelative());
+        this(copyMe.getName(),copyMe.getPath(),copyMe.getRedirect(),copyMe.getModule());
+        setContextRelative(copyMe.getContextRelative());
     }
 
 }
