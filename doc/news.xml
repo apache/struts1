@@ -40,6 +40,13 @@ to <a href="http://jakarta.apache.org/site/bugs.html">The Apache Bug Database</a
  
 <section name="News" href="news">
 
+<h3><a name="20020709"></a>09 July 2002 - Struts Adoption article</h3>
+<p>
+<a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html">
+<b>Issues In Struts Adoption</b></a> by Harry Rusli and John Yu.
+</p>
+<hr size="1" noshade=""/>
+
 <h3><a name="20020708"></a>08 July 2002 - Struts article in e-Promagazine</h3>
 <p>
 The e-Promag.com site is featuring a new article entitled 
@@ -47,7 +54,6 @@ The e-Promag.com site is featuring a new article entitled
 <b>Struts: A Standard Architecture for Web Applications</b></a>" by Don Denoncourt.
 </p>
 <hr size="1" noshade=""/>
-
 
 <h3><a name="20020708"></a>08 July 2002 - JAAS article highlighting Authorization and Authentication with Struts</h3>
 <p>
