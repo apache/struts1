@@ -70,7 +70,7 @@ import org.apache.struts.Globals;
  * Unit tests for the <code>org.apache.struts.config</code> package.
  *
  * @author Rob Leland
- * @version $Revision: 1.1 $ $Date: 2002/12/22 05:55:30 $
+ * @version $Revision: 1.2 $ $Date: 2003/07/26 04:23:41 $
  */
 
 public class TestModuleConfig extends TestCase {
@@ -80,7 +80,7 @@ public class TestModuleConfig extends TestCase {
 
 
     /**
-     * The ApplicationConfig we are testing.
+     * The ModuleConfig we are testing.
      */
     protected ModuleConfig config = null;
 
