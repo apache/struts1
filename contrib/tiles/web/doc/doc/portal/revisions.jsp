@@ -2,6 +2,13 @@
 <tr>
 <th bgcolor="aqua"><FONT size=4>History</FONT></th></tr>
   <TR>
+    <TD><FONT size=2><STRONG> 02&nbsp;nov. 2001</STRONG> </FONT></TD></TR>
+  <TR>
+    <TD>
+      <UL>
+        <LI><FONT size=2>  Correct another bug with Orion : "importAttribute 
+        not working whenreused"</FONT></LI></UL></TD></TR> 
+  <TR>
     <TD><FONT size=2><STRONG> 29&nbsp;oct. 2001</STRONG> </FONT></TD></TR>
   <TR>
     <TD>

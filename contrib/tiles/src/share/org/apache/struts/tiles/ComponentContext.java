@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ComponentContext.java,v 1.2 2001/09/10 12:52:11 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2001/09/10 12:52:11 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/tiles/Attic/ComponentContext.java,v 1.3 2001/11/02 16:50:05 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/11/02 16:50:05 $
  * $Author: cedric $
  *
  */
@@ -17,11 +17,12 @@ import java.util.Set;
 import javax.servlet.ServletRequest;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.taglib.tiles.ComponentConstants;
+import java.io.Serializable;
 
 /**
  * Component context.
  */
-public class ComponentContext
+public class ComponentContext implements Serializable
 {
 
   /**

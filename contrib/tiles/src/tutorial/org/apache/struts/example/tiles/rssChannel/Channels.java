@@ -31,10 +31,13 @@ import org.apache.struts.tiles.ComponentContext;
  * @expects path={uri} on command line or as parameter property to ActionMapping.
  * @expects an input page or error forwarding if exception digesting RSS
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/10/08 13:39:24 $
+ * @version $Revision: 1.2 $ $Date: 2001/11/02 16:50:05 $
  */
 public final class Channels extends Action {
 
+
+      /** Debug flag */
+    public static final boolean debug = true;
     /**
      * Tile attribute key for saving Channel bean
      */
@@ -60,7 +63,8 @@ public final class Channels extends Action {
                                  HttpServletResponse response)
         throws IOException, ServletException {
 
-    System.out.println( "Enter Rss Channel Action" );
+    if(debug)
+      System.out.println( "Enter Rss Channel Action" );
 
           // Try to retrieve tile context
     ComponentContext context = ComponentContext.getContext( request );
@@ -87,14 +91,22 @@ public final class Channels extends Action {
             //channels.add("http://lwn.net/headlines/rss");
         // channels.trimToSize();
 
-        System.out.println( "urls count" + channels.size() ) ;
+        if(debug)
+          System.out.println( "urls count" + channels.size() ) ;
         // -- Loop through channels --
         ArrayList channelBeans = new ArrayList(channels.size());
         try {
             for (int i=0; i<channels.size(); i++) {
                 RSSDigester digester = new RSSDigester();
-                Channel obj = (Channel)digester.parse((String)channels.get(i));
-                System.out.println( "Channel:" + obj) ;
+                String url = (String)channels.get(i);
+                  // Add application path if needed
+                if( url.startsWith("/") )
+                  {
+                  url = toFullUrl( request, url );
+                  }
+                if(debug)  System.out.println( "Channel url=" + url) ;
+                Channel obj = (Channel)digester.parse(url);
+                if(debug)  System.out.println( "Channel:" + obj) ;
                 //System.out.println( "Channel.items:" + obj.getI) ;
                 channelBeans.add(obj);
             }
@@ -111,26 +123,39 @@ public final class Channels extends Action {
             if (mapping.getInput()!=null)
                 return (new ActionForward(mapping.getInput()));
             // If no input page, use error forwarding
-         System.out.println( "Exit Rss Channel Action : error" );
+         if(debug)
+           System.out.println( "Exit Rss Channel Action : error" );
             return (mapping.findForward("error"));
         }
 
         // -- Save Bean, and Continue  ---
 
-         System.out.println( "Exit Rss Channel Action" );
+         if(debug)
+           System.out.println( "Exit Rss Channel Action" );
         //request.setAttribute(CHANNELS_KEY,channelBeans);
           // Use Tile context to pass channels
         context.putAttribute( CHANNELS_KEY,channelBeans);
         return (mapping.findForward("continue"));
     } // ---- End perform ----
 
+  private String toFullUrl( HttpServletRequest request, String url )
+    {
+    StringBuffer buff = new StringBuffer();
+
+    buff.append( request.getScheme() ) .append( "://" ) . append(request.getServerName());
+    if( request.getServerPort() != 80 )
+      buff.append( ":" ).append( request.getServerPort() );
+    buff.append( request.getContextPath()).append( url);
+    return buff.toString();
+    }
+
 } // ---- End Fetch ----
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/tutorial/org/apache/struts/example/tiles/rssChannel/Attic/Channels.java,v 1.1 2001/10/08 13:39:24 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/10/08 13:39:24 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/tutorial/org/apache/struts/example/tiles/rssChannel/Attic/Channels.java,v 1.2 2001/11/02 16:50:05 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/11/02 16:50:05 $
  *
  * ====================================================================
  *

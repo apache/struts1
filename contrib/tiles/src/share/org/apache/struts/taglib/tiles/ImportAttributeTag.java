@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/ImportAttributeTag.java,v 1.1 2001/08/01 14:36:40 cedric Exp $
- * $Revision: 1.1 $
- * $Date: 2001/08/01 14:36:40 $
+ * $Header: /home/cvs/jakarta-struts/contrib/tiles/src/share/org/apache/struts/taglib/tiles/Attic/ImportAttributeTag.java,v 1.2 2001/11/02 16:50:05 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/11/02 16:50:05 $
  * $Author: cedric $
  *
  */
@@ -65,7 +65,7 @@ public final class ImportAttributeTag extends TagSupport {
     }
 
     /**
-     * Return the length.
+     * Return the name.
      */
     public String getName()
      {
@@ -74,9 +74,9 @@ public final class ImportAttributeTag extends TagSupport {
 
 
     /**
-     * Set the length.
+     * Set the name.
      *
-     * @param length The new length
+     * @param name The new name
      */
     public void setName(String name)
      {
@@ -138,11 +138,11 @@ public final class ImportAttributeTag extends TagSupport {
       Iterator names = compContext.getAttributeNames();
       while(names.hasNext())
         {
-        name = (String)names.next();
+        String name = (String)names.next();
         pageContext.setAttribute(name, compContext.getAttribute(name), scope);
         } // end loop
       } // end if
-      
+
 	    // Continue processing this page
     return SKIP_BODY;
     }

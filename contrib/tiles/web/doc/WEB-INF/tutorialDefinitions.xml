@@ -214,8 +214,8 @@
     <!-- Dynamic portal main page (use common layout) -->
 <definition name="rssLocalChannelTile"  path="/actions/rssChannel.do" >
       <putList name="urls" >
-	    <add value="http://localhost:8080/wtiles-struts/rss/rss-example.xml" />
-	    <add value="http://localhost:8080/wtiles-struts/rss/apacheweek-headlines.xml" />
+	    <add value="/rss/rss-example.xml" />
+	    <add value="/rss/apacheweek-headlines.xml" />
 	  </putList>
 </definition>
 
@@ -238,10 +238,11 @@
 	    <add value="/tutorial/portal/messages.jsp" />
 	    <add value="/tutorial/portal/newsFeed.jsp" />
 	    <add value="/tutorial/portal/advert2.jsp" />
-	    <add value="rssLocalChannelTile" />
+	    <add value="rssChannelTile" />
 	  </putList>
 	  <putList name="list1" >
 	    <add value="/tutorial/portal/advert3.jsp" />
+	    <add value="rssLocalChannelTile" />
 	    <add value="/tutorial/portal/stocks.jsp" />
 	    <add value="/tutorial/portal/whatsNew.jsp" />
 	    <add value="/tutorial/portal/personalLinks.jsp" />
