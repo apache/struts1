@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.9 2002/12/08 06:54:51 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2002/12/08 06:54:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.10 2003/02/26 04:51:09 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/02/26 04:51:09 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -70,6 +70,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
 
 
@@ -79,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Craig R. McClanahan
  * @author David Graham
- * @version $Revision: 1.9 $ $Date: 2002/12/08 06:54:51 $
+ * @version $Revision: 1.10 $ $Date: 2003/02/26 04:51:09 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -238,28 +239,15 @@ public class HtmlTag extends TagSupport {
      */
     protected Locale getCurrentLocale() {
 
-        // Create a new session if necessary
-        HttpSession session = pageContext.getSession();
-        if (this.locale && (session == null)) {
-            session = ((HttpServletRequest) this.pageContext.getRequest()).getSession();
-        }
-
-        // Return any currently set Locale in our session
-        Locale current = (Locale) session.getAttribute(Globals.LOCALE_KEY);
-        if (current != null) {
-            return (current);
-        }
-
-        // If client doesn't specify a locale preference in header then default for 
-        // server will be returned.
-        current = pageContext.getRequest().getLocale();
+        Locale userLocale = RequestUtils.retrieveUserLocale(pageContext, Globals.LOCALE_KEY);
 
         // Store a new current Locale, if requested
         if (this.locale) {
-            session.setAttribute(Globals.LOCALE_KEY, current);
+            HttpSession session = ((HttpServletRequest) this.pageContext.getRequest()).getSession();
+            session.setAttribute(Globals.LOCALE_KEY, userLocale);
         }
 
-        return (current);
+        return userLocale;
     }
 
 }
