@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.28 2000/10/07 22:55:13 craigmcc Exp $
- * $Revision: 1.28 $
- * $Date: 2000/10/07 22:55:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.29 2000/10/12 21:51:03 craigmcc Exp $
+ * $Revision: 1.29 $
+ * $Date: 2000/10/12 21:51:03 $
  *
  * ====================================================================
  *
@@ -197,7 +197,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.28 $ $Date: 2000/10/07 22:55:13 $
+ * @version $Revision: 1.29 $ $Date: 2000/10/12 21:51:03 $
  */
 
 public class ActionServlet
@@ -1039,6 +1039,7 @@ public class ActionServlet
 
 	// Process any ActionForm bean related to this request
 	ActionForm formInstance = processActionForm(mapping, request);
+        processPopulate(formInstance, mapping, request);
 	if (!processValidate(mapping, formInstance, request, response))
 	    return;
 
@@ -1069,7 +1070,7 @@ public class ActionServlet
                                          HttpServletRequest request) {
 
         // Acquire the Action instance we will be using
-        String actionClass = mapping.getActionClass();
+        String actionClass = mapping.getType();
         Action actionInstance = (Action) actions.get(actionClass);
         if (actionInstance == null) {
             try {
@@ -1090,56 +1091,66 @@ public class ActionServlet
 
 
     /**
-     * Process the <code>ActionForm</code> bean associated with this
-     * mapping, if any.  Return the <code>ActionForm</code> instance if
-     * we created or utilized one.
+     * Retrieve and return the <code>ActionForm</code> bean associated with
+     * this mapping, creating and stashing one if necessary.  If there is no
+     * form bean associated with this mapping, return <code>null</code>.
      *
      * @param mapping The ActionMapping we are processing
      * @param request The servlet request we are processing
-     *
-     * @exception ServletException if thrown by BeanUtils.populate()
      */
     protected ActionForm processActionForm(ActionMapping mapping,
-    					   HttpServletRequest request)
-	throws ServletException {
+    					   HttpServletRequest request) {
 
+        // Is there a form bean associated with this mapping?
+	String attribute = mapping.getAttribute();
+        if (attribute == null)
+            return (null);
+
+        // Look up the existing form bean, if any
+        if (debug >= 1)
+            log(" Looking for ActionForm bean under attribute '" +
+                attribute + "'");
+	ActionForm instance = null;
 	HttpSession session = null;
-	ActionForm formInstance = null;
-	String formAttribute = mapping.getFormAttribute();
-	if (formAttribute != null) {
-	    if (debug >= 1)
-	        log(" Looking for ActionForm bean under attribute '" +
-		    formAttribute + "'");
-	    if ("request".equals(mapping.getFormScope())) {
-		formInstance =
-		    (ActionForm) request.getAttribute(formAttribute);
-	    } else {
-		session = request.getSession();
-		formInstance =
-		    (ActionForm) session.getAttribute(formAttribute);
-	    }
-	    if (formInstance == null) {
-		if (debug >= 1)
-		    log(" Creating new ActionForm instance");
-		formInstance = mapping.createFormInstance();
-		if (formInstance != null) {
-		    if (debug >= 1)
-		        log(" Storing instance under attribute '" +
-			    formAttribute + "'");
-		    if ("request".equals(mapping.getFormScope()))
-			request.setAttribute(formAttribute, formInstance);
-		    else
-			session.setAttribute(formAttribute, formInstance);
-	        }
-	    }
-	}
-	if (formInstance != null) {
-	    if (debug >= 1)
-	        log(" Populating bean properties from this request");
-	    BeanUtils.populate(formInstance, mapping.getFormPrefix(),
-			       mapping.getFormSuffix(), request);
+        if ("request".equals(mapping.getScope())) {
+            instance = (ActionForm) request.getAttribute(attribute);
+        } else {
+            session = request.getSession();
+            instance = (ActionForm) session.getAttribute(attribute);
         }
-	return (formInstance);
+        if (instance != null)
+            return (instance);
+
+        // Create a new form bean if we need to
+        if (debug >= 1)
+            log(" Creating new ActionForm instance");
+        String name = mapping.getName();
+        String className = null;
+        ActionFormBean formBean = findFormBean(name);
+        if (formBean != null)
+            className = formBean.getType();
+        if (className != null) {
+            try {
+                Class clazz = Class.forName(className);
+                instance = (ActionForm) clazz.newInstance();
+                instance.setServlet(this);
+            } catch (Throwable t) {
+                log("Error creating ActionForm instance of class '" +
+                    className + "'", t);
+            }
+        }
+        if (instance == null)
+            return (null);
+
+        // Store the newly created bean in the appropriate scope
+        if (debug >= 1)
+            log(" Storing instance under attribute '" +
+                attribute + "'");
+        if ("request".equals(mapping.getScope()))
+            request.setAttribute(attribute, instance);
+        else
+            session.setAttribute(attribute, instance);
+        return (instance);
 
     }
 
@@ -1322,11 +1333,40 @@ public class ActionServlet
 
 
     /**
-     * If this form is a ValidatingActionForm, perform the required validation
+     * Populate the properties of the specified ActionForm from the request
+     * parameters included with this request.
+     *
+     * @param formInstance The ActionForm we are processing
+     * @param mapping The ActionMapping we are processing
+     * @param request The servlet request we are processing
+     *
+     * @exception ServletException if thrown by BeanUtils.populate()
+     */
+    protected void processPopulate(ActionForm formInstance,
+                                   ActionMapping mapping,
+                                   HttpServletRequest request)
+	throws ServletException {
+
+        if (formInstance == null)
+            return;
+
+        // Populate the bean properties of this ActionForm instance
+        if (debug >= 1)
+            log(" Populating bean properties from this request");
+        formInstance.reset();
+        BeanUtils.populate(formInstance, mapping.getPrefix(),
+                           mapping.getSuffix(), request);
+
+    }
+
+
+    /**
+     * Call the <code>validate()</code> method of the specified ActionForm,
      * and forward back to the input form if there are any errors.  Return
-     * <code>true</code> if we should continue processing (and call the Action
-     * class perform() method), or <code>false</code> if have already forwarded
-     * control back to the input form.
+     * <code>true</code> if we should continue processing (and call the
+     * <code>Action</code> class <code>perform()</code> method), or return
+     * <code>false</code> if we have already forwarded control back to the
+     * input form.
      *
      * @param mapping The ActionMapping we are processing
      * @param formInstance The ActionForm we are processing
@@ -1341,25 +1381,18 @@ public class ActionServlet
         HttpServletResponse response)
         throws IOException, ServletException {
 
-	// Skip validation if it is not appropriate
-	if (formInstance == null)
-	    return (true);
-	if (!(formInstance instanceof ValidatingActionForm))
-	    return (true);
-	if (mapping.getInputForm() == null)
-	    return (true);
-	if (request.getParameter(Constants.CANCEL_PROPERTY) != null)
-	    return (true);
+        if (formInstance == null)
+            return (true);
 
-	// Perform the requested validation
-	if (debug >= 1)
-	    log(" Validating bean properties");
-	String errors[] = ((ValidatingActionForm) formInstance).validate();
-	if ((errors == null) || (errors.length == 0))
-	    return (true);
+        // Call the validate() method of our ActionForm bean
+        if (debug >= 1)
+            log(" Calling form validation method");
+        ActionErrors errors = formInstance.validate(mapping, request);
+        if ((errors == null) || errors.empty())
+            return (true);
 
 	// Save our error messages and return to the input form
-	String uri = mapping.getInputForm();
+	String uri = mapping.getInput();
 	if (debug >= 1)
 	    log(" Form validation error: redirecting to: " + uri);
 	request.setAttribute(Action.ERROR_KEY, errors);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.5 2000/09/23 22:51:45 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/09/23 22:51:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.6 2000/10/12 21:51:00 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/10/12 21:51:00 $
  *
  * ====================================================================
  *
@@ -105,7 +105,7 @@ import org.apache.struts.util.MessageResources;
  * by this Action.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/09/23 22:51:45 $
+ * @version $Revision: 1.6 $ $Date: 2000/10/12 21:51:00 $
  */
 
 public class Action {
@@ -348,20 +348,19 @@ public class Action {
      * created.
      *
      * @param request The servlet request we are processing
-     * @param messages Vector containing message keys for looking
-     *  up errors in the application resources
+     * @param errors Error messages object
      */
     protected void saveErrors(HttpServletRequest request,
-			      ErrorMessages messages) {
+			      ActionErrors errors) {
 
 	// Remove any error messages attribute if none are required
-	if ((messages == null) || (messages.getSize() == 0)) {
+	if ((errors == null) || errors.empty()) {
 	    request.removeAttribute(ERROR_KEY);
 	    return;
 	}
 
 	// Save the error messages we need
-	request.setAttribute(ERROR_KEY, messages.getErrors());
+	request.setAttribute(ERROR_KEY, errors);
 
     }
 

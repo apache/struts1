@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ValidatingActionForm.java,v 1.1 2000/06/16 01:32:24 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/16 01:32:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ValidatingActionForm.java,v 1.2 2000/10/12 21:51:04 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/12 21:51:04 $
  *
  * ====================================================================
  *
@@ -64,16 +64,20 @@ package org.apache.struts.action;
 
 
 /**
- * An <strong>ValidatingActionForm</strong> is a JavaBean optionally associated with
- * a particular <code>ActionMapping</code>.  Such a bean will have had its
- * properties initialized from the corresponding request parameters before
- * the action's <code>perform()</code> method is called.
+ * <p>An <strong>ValidatingActionForm</strong> is a JavaBean optionally
+ * associated with one or more <code>ActionMappings</code>.  Such a bean will
+ * have had its properties initialized from the corresponding request
+ * parameters before the action's <code>perform()</code> method is called.</p>
+ *
+ * @deprecated Application ActionForm beans should now extend ActionForm
+ *  directly, and override the validate() method if they wish to provide
+ *  such services
  *
  * @author Jeff Hutchison
- * @version $Revision: 1.1 $ $Date: 2000/06/16 01:32:24 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/12 21:51:04 $
  */
 
-public interface ValidatingActionForm extends ActionForm {
+public class ValidatingActionForm extends ActionForm {
 
 
     // --------------------------------------------------------- Public Methods
@@ -82,11 +86,15 @@ public interface ValidatingActionForm extends ActionForm {
     /**
      * Perform validations on the form input values included in this form bean.
      * If validation errors occur, return a String array containing the message
-     * keys of corresponding error messages (in our application MessageResources)
-     * to be displayed.  If no validation errors occur, return <code>null</code>.
+     * keys of corresponding error messages (in our application
+     * MessageResources) to be displayed.  If no validation errors occur,
+     * return <code>null</code>.
      */
+    public String[] validate() {
 
-    public String[] validate();
+        return (null);
+
+    }
 
 
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.1 2000/05/31 22:28:11 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/05/31 22:28:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForm.java,v 1.2 2000/10/12 21:51:01 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/10/12 21:51:01 $
  *
  * ====================================================================
  * 
@@ -63,20 +63,138 @@
 package org.apache.struts.action;
 
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
+
 /**
- * An <strong>ActionForm</strong> is a JavaBean optionally associated with
- * a particular <code>ActionMapping</code>.  Such a bean will have had its
+ * <p>An <strong>ActionForm</strong> is a JavaBean optionally associated with
+ * one or more <code>ActionMappings</code>.  Such a bean will have had its
  * properties initialized from the corresponding request parameters before
- * the action's <code>perform()</code> method is called.
+ * the corresonding action's <code>perform()</code> method is called.</p>
+ *
+ * <p>When the properties of this bean have been populated, but before the
+ * <code>perform()</code> method of the action is called, this bean's
+ * <code>validate()</code> method will be called, which gives the bean a chance
+ * to verify that the properties submitted by the user are correct and valid.
+ * If this method finds problems, it returns an error messages object that
+ * encapsulates those problems, and the controller servlet will return control
+ * to the corresponding input form.  Otherwise, the <code>validate()</code>
+ * method returns <code>null()</code>, indicating that everything is acceptable
+ * and the corresponding Action's <code>perform()</code> method should be
+ * called.</p>
+ *
+ * <p>This class must be subclassed in order to be instantiated.  Subclasses
+ * should provide property getter and setter methods for all of the bean
+ * properties they wish to expose, plus override any of the public or
+ * protected methods for which they wish to provide modified functionality.
+ * </p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/05/31 22:28:11 $
+ * @version $Revision: 1.2 $ $Date: 2000/10/12 21:51:01 $
  */
 
-public interface ActionForm {
+public abstract class ActionForm {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * The controller servlet instance to which we are attached.
+     */
+    protected ActionServlet servlet = null;
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the controller servlet instance to which we are attached.
+     */
+    public ActionServlet getServlet() {
+
+        return (this.servlet);
+
+    }
+
+
+    /**
+     * Set the controller servlet instance to which we are attached (if
+     * <code>servlet</code> is non-null), or release any allocated resources
+     * (if <code>servlet</code> is null).
+     *
+     * @param servlet The new controller servlet, if any
+     */
+    public void setServlet(ActionServlet servlet) {
+
+        this.servlet = servlet;
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Reset all bean properties to their default state.  This method is
+     * called before the properties are repopulated by the controller servlet.
+     * <p>
+     * The default implementation does nothing.  Subclasses should override
+     * this method to reset all bean properties to default values.
+     */
+    public void reset() {
+
+        ;       // Default implementation does nothing
+
+    }
+
+
+    /**
+     * Validate the properties that have been set for this non-HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found, return
+     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * recorded error messages.
+     * <p>
+     * The default implementation attempts to forward to the HTTP version of
+     * this method.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param request The non-HTTP request we are processing
+     */
+    public ActionErrors validate(ActionMapping mapping,
+                                 ServletRequest request) {
+
+        try {
+            return (validate(mapping, (HttpServletRequest) request));
+        } catch (ClassCastException e) {
+            return (null);
+        }
+
+    }
+
+
+    /**
+     * Validate the properties that have been set for this HTTP request,
+     * and return an <code>ActionErrors</code> object that encapsulates any
+     * validation errors that have been found.  If no errors are found,
+     * return <code>null</code> or an <code>ActionErrors</code> object with
+     * no recorded error messages.
+     * <p>
+     * The default ipmlementation performs no validation and returns
+     * <code>null</code>.  Subclasses must override this method to provide
+     * any validation they wish to perform.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param request The HTTP servlet request we are processing
+     */
+    public ActionErrors validate(ActionMapping mapping,
+                                 HttpServletRequest request) {
+
+        return (null);
+
+    }
 
 
 }

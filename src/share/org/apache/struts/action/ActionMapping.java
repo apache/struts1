@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.8 2000/09/23 22:51:46 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/09/23 22:51:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.9 2000/10/12 21:51:02 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/10/12 21:51:02 $
  *
  * ====================================================================
  *
@@ -138,7 +138,7 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/23 22:51:46 $
+ * @version $Revision: 1.9 $ $Date: 2000/10/12 21:51:02 $
  */
 
 public class ActionMapping {
@@ -654,6 +654,9 @@ public class ActionMapping {
     /**
      * Create and return an initialized instance of our form class.  If
      * instantiation fails for any reason, <code>null</code> is returned.
+     *
+     * @deprecated Creation of ActionForm instances is now the responsibility
+     *  of the controller servlet
      */
     public ActionForm createFormInstance() {
 
@@ -725,7 +728,14 @@ public class ActionMapping {
      */
     public String toString() {
 
-	return ("ActionMapping[" + path + "]");
+        StringBuffer sb = new StringBuffer("ActionMapping[path=");
+        sb.append(path);
+        if (type != null) {
+            sb.append(", type=");
+            sb.append(type);
+        }
+        sb.append("]");
+        return (sb.toString());
 
     }
 
