@@ -40,13 +40,13 @@ one  bean's access    go through another bean is known as "nesting beans".
 The  first bean is known    as the parent bean. The bean which it references,
  is known as a child bean.    The terms "parent" and "child" are commonly
 used to describe the model's    hierarchy.   </p>
-<p><b>A simple example...</b><br /="">
+<p><b>A simple example...</b><br />
        Take an object which represents a monkey. The monkey's job is to pick
   bunches    of bananas. On each bunch picked hangs many bananas. If this
 case  was    translated to bean objects, the monkey object would have a reference
   to the    bunch objects he picked, and each bunch object would hold a reference
   to the    bananas hanging in the bunch.   </p>
-<p><b>To describe this...</b><br /="">
+<p><b>To describe this...</b><br />
        The monkey object is the parent to the bunch object, and the bunch 
 object  is a    child of the monkey object. The bunch object is parent to 
 its child  banana    objects, and the child banana objects children of the 
@@ -117,7 +117,7 @@ which             is in "scope" by specifying its name within this tag.</td>
   </tbody>
 </table>
 </p>
-<br /="">
+<br />
 <p><b>Nested Parent Tags</b> (Affect the hierarchy)       
 <table border="1">
   <tbody>
@@ -139,7 +139,7 @@ which             is in "scope" by specifying its name within this tag.</td>
   </tbody>
 </table>
 </p>
-<br /="">
+<br />
 <p><b>Markup Parent Tags</b> (marked-up like parent tags, but don't affect
   the hierarchy)       
 <table border="1">
@@ -204,8 +204,8 @@ which             is in "scope" by specifying its name within this tag.</td>
   </tbody>
 </table>
 </p>
-<br /="">
-<p><b>Base tags</b> (usually a tag which has no body content)       
+<br />
+<p><b>Basic tags</b> (usually a tag which has no body content)
 <table border="1">
   <tbody>
     <tr>
@@ -227,6 +227,10 @@ which             is in "scope" by specifying its name within this tag.</td>
     <tr>
       <td>nested:image</td>
       <td><code>html:image</code> extension.</td>
+    </tr>
+    <tr>
+      <td>nested:img</td>
+      <td><code>html:img</code> extension.</td>
     </tr>
     <tr>
       <td>nested:link</td>
@@ -307,7 +311,7 @@ for tags defining your object model.</p>
   to   reference from the root of the model and start over. e.g. "/propertyOne". 
     This allow a convenient way to move around a few levels as well as "forking" 
     in the object structure among other felixble approaches to structure.</p>
-<p><b>Parent References...</b><br /="">
+<p><b>Parent References...</b><br />
        "property" properties, including the relative properties described 
 above,  all    end up referencing a property of a child bean. For example 
 "/myProperty"  will   return an object from the "myProperty" of the root bean.
@@ -353,7 +357,7 @@ the BeanUtils/PropertyUtils    cannot handle (if this is a requirement, you
 could use a "fake nested   property". A getter which simply returns the same
 bean instance ("this")  and   simply add an extra <code>nested:nest</code>
   level at the start of your   hierarchy. Works just fine).   </p>
-<hr><br>
+<hr><br />
 <img src="doc-files/nestedUML.jpg" alt="nested UML">
 <a name="doc.ImplementationDetails"></a>
 <h3>Implementation Details.</h3>
@@ -408,9 +412,9 @@ hard to   picture a valid requirement for inter-mixing multiple object structure
  In the   case of a NestedIterator being the parent tag, it will also append
  the current   index reference. e.g. propertyOne.propertyTwo[5]</p>
 </dir>
-<br /="">
-<br /="">
-<br>
-<br>
+<br />
+<br />
+<br />
+<br />
 </body>
 </html>
