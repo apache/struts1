@@ -532,16 +532,25 @@
     </p>
     
     <p>
-    In JSP pages using Struts custom tags (except bean:define), attributes of
+    In JSP pages using the original Struts custom tags, attributes of
     <code>DynaActionForm</code> objects can be referenced just like ordinary
-    <code>ActionForm</code> objects.  
-    However, when utilizing the JavaServer Pages Standard Tag Library (JSTL), only
-    properties of ordinary <code>ActionForm</code> objects can be directly 
+    <code>ActionForm</code> objects. Wherever a Struts tag refers to a
+    "property", the tags will automatically use the DynaActionForm properties
+    just like those of a conventional JavaBean.
+    You can even expose DynaActionForm properties using bean:define.
+    (Although, tou can't use bean:define to <b>instantiate</b> a DynaActionForm,
+    since it needs to be setup with the appropriate dyna-properties).
+    </p>
+
+    <p>
+    If you are using the Struts JSTL EL taglib, the references are different,
+    however.
+    Only properties of ordinary <code>ActionForm</code> objects can be directly
     accessed through the JSTL expression language syntax.  
-    Although, <code>DynaActionForm</code> properties can be accessed through a
+    The <code>DynaActionForm</code> properties must be accessed through a
     slightly different syntax. 
     The JSTL EL syntax for referencing a property
-    of an <code>ActionForm</code> would be something like:
+    of an <code>ActionForm</code> goes like this:
     </p>
     
 <pre><code>${formbean.prop}</code></pre>
@@ -563,7 +572,7 @@
     DynaActionForms are meant as an easy solution to a common problem:
     <i>Your ActionForms use simple properties and standard validations,
     and you just pass these properties over to another JavaBean</i>
-    (say using BeanUtils.copyProperties(<code>myBusinessBean,form)</code>).
+    (say using <code>BeanUtils.copyProperties(myBusinessBean,form)</code>).
     </p>
 
     <p>

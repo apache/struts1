@@ -167,6 +167,14 @@
     be able to use <code>&lt;bean:define&gt;</code> for the same bean
     name more than once in a single page.</p>
 
+    <p><strong>USAGE NOTE</strong> - You cannot use bean:define to <b>instantiate</b>
+    a DynaActionForm (type="org.apache.struts.action.DynaActionForm") with
+    the properties specified in the struts-config. The mechanics of creating
+    the dyna-properties is complex and cannot be handled by a no-argument
+    constructor. If you need to create an ActionForm this way, you must use
+    a conventional ActionForm.
+    </p>
+
     <p>See the Bean Developer's Guide section on
     <a href="../api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
     bean creation</a> for more information about these differences, as well
