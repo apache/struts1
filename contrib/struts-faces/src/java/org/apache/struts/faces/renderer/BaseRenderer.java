@@ -18,12 +18,15 @@ package org.apache.struts.faces.renderer;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-// import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -32,7 +35,7 @@ import org.apache.commons.logging.LogFactory;
  * <p><code>Renderer</code> implementation for the <code>base</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.9 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.10 $ $Date: 2004/07/08 04:17:47 $
  */
 
 public class BaseRenderer extends AbstractRenderer {
@@ -67,6 +70,11 @@ public class BaseRenderer extends AbstractRenderer {
             throw new NullPointerException();
         }
 
+        if (log.isTraceEnabled()) {
+            log.trace("viewId='" + context.getViewRoot().getViewId() +
+                      "' --> uri='" + uri(context) + "'");
+        }
+
         ResponseWriter writer = context.getResponseWriter();
         writer.startElement("base", component);
         writer.writeURIAttribute("href", uri(context), null);
@@ -85,17 +93,95 @@ public class BaseRenderer extends AbstractRenderer {
 
 
     /**
-     * <p>Return the absolute URI to be rendered as the value of the
-     * <code>href</code> attribute.</p>
+     * <p>Return <code>true</code> if this is a portlet request instance.
+     * NOTE:  Implementation must not require portlet API classes to be
+     * present.</p>
      *
      * @param context <code>FacesContext</code> for the current request
      */
-    protected String uri(FacesContext context) {
+    protected boolean isPortletRequest(FacesContext context) {
 
-        return (context.getApplication().getViewHandler().
-                getActionURL(context, context.getViewRoot().getViewId()));
+        Object request = context.getExternalContext().getRequest();
+        Class clazz = request.getClass();
+        while (clazz != null) {
+            // Does this class implement PortletRequest?
+            Class interfaces[] = clazz.getInterfaces();
+            if (interfaces == null) {
+                interfaces = new Class[0];
+            }
+            for (int i = 0; i < interfaces.length; i++) {
+                if ("javax.portlet.PortletRequest".equals
+                    (interfaces[i].getName())) {
+                    return (true);
+                }
+            }
+            // Try our superclass (if any)
+            clazz = clazz.getSuperclass();
+        }
+        return (false);
 
-        /*
+    }
+
+
+    /**
+     * <p>Return <code>true</code> if this is a servlet request instance.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     */
+    protected boolean isServletRequest(FacesContext context) {
+
+        Object request = context.getExternalContext().getRequest();
+        return (request instanceof HttpServletRequest);
+
+    }
+
+
+    /**
+     * <p>Return an absolute URI for the current page suitable for use
+     * in a portlet environment.  NOTE:  Implementation must not require
+     * portlet API classes to be present, so use reflection as needed.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     */
+    protected String portletUri(FacesContext context) {
+
+        Object request = context.getExternalContext().getRequest();
+        try {
+            String scheme = (String)
+                MethodUtils.invokeMethod(request, "getScheme", null);
+            StringBuffer sb = new StringBuffer(scheme);
+            sb.append("://");
+            sb.append(MethodUtils.invokeMethod(request, "getServerName", null));
+            Integer port = (Integer)
+                MethodUtils.invokeMethod(request, "getServerPort", null);
+            if ("http".equals(scheme) && (port.intValue() == 80)) {
+                ;
+            } else if ("https".equals(scheme) && (port.intValue() == 443)) {
+                ;
+            } else {
+                sb.append(":" + port);
+            }
+            sb.append
+                (MethodUtils.invokeMethod(request, "getContextPath", null));
+            sb.append(context.getViewRoot().getViewId());
+            return (sb.toString());
+        } catch (InvocationTargetException e) {
+            throw new FacesException(e.getTargetException());
+        } catch (Exception e) {
+            throw new FacesException(e);
+        }
+
+    }
+
+
+    /**
+     * <p>Return an absolute URI for the current page suitable for use
+     * in a servlet environment.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     */
+    protected String servletUri(FacesContext context) {
+
         HttpServletRequest request = (HttpServletRequest)
             context.getExternalContext().getRequest();
         StringBuffer sb = new StringBuffer(request.getScheme());
@@ -111,19 +197,28 @@ public class BaseRenderer extends AbstractRenderer {
             sb.append(":" + request.getServerPort());
         }
         sb.append(request.getContextPath());
-        String servletPath = request.getServletPath();
-        if (servletPath != null) {
-            if (servletPath.startsWith("/faces")) {
-                sb.append(servletPath.substring(6));
-            } else {
-                sb.append(servletPath);
-            }
-        }
-        if (request.getPathInfo() != null) {
-            sb.append(request.getPathInfo());
-        }
+        sb.append(context.getViewRoot().getViewId());
         return (sb.toString());
-        */
+
+    }
+
+
+    /**
+     * <p>Return the absolute URI to be rendered as the value of the
+     * <code>href</code> attribute.</p>
+     *
+     * @param context <code>FacesContext</code> for the current request
+     */
+    protected String uri(FacesContext context) {
+
+        if (isServletRequest(context)) {
+            return (servletUri(context));
+        } else if (isPortletRequest(context)) {
+            return (portletUri(context));
+        } else {
+            throw new IllegalArgumentException
+                ("Request is neither HttpServletRequest nor PortletRequest");
+        }
 
     }
 
