@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts User's Guide"
+         href="http://jakarta.apache.org/struts/userGuide"
+        image="../images/struts.gif">
+
+    <title>Struts User's Guide</title>
+
+    <menu name="Quick Links">
+      <item name="Home"                  href="../index.html"/>
+      <item name="Table of Contents"     href="index.html"/>
+      <item name="Introduction"          href="introduction.html"/>
+      <item name="Model Components"      href="building_model.html"/>
+      <item name="View Components"       href="building_view.html"/>
+      <item name="Controller Components" href="building_controller.html"/>
+      <item name="Resources"             href="resources.html"/>
+    </menu>
+
+</project>

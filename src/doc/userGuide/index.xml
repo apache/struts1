@@ -6,14 +6,14 @@
     <author>Mike Schachter</author>
     <author>Larry McCay</author>
     <author>Ted Husted</author>
-    <title>The Struts Framework Project</title>
+    <title>The Struts User's Guide - Table of Contents</title>
   </properties>
 
   <body>
 
     <chapter name="0. Contents" href="contents">
 
-      <section name="0.1 Table of Contents" href="toc">
+      <section name="Table of Contents" href="toc">
 
         <ul>
             <li><a href="introduction.html">1. Introduction</a>
