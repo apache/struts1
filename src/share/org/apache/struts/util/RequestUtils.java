@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.103 2003/06/14 18:36:19 dgraham Exp $
- * $Revision: 1.103 $
- * $Date: 2003/06/14 18:36:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.104 2003/06/20 04:09:57 dgraham Exp $
+ * $Revision: 1.104 $
+ * $Date: 2003/06/20 04:09:57 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.103 $ $Date: 2003/06/14 18:36:19 $
+ * @version $Revision: 1.104 $ $Date: 2003/06/20 04:09:57 $
  */
 
 public class RequestUtils {
@@ -396,7 +396,7 @@ public class RequestUtils {
 	return computeURL(pageContext, forward, href, page, null, params,
 			  anchor, redirect);
     }
-
+    
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -432,6 +432,60 @@ public class RequestUtils {
         String anchor,
         boolean redirect)
         throws MalformedURLException {
+            
+        return computeURL(
+            pageContext,
+            forward,
+            href,
+            page,
+            action,
+            params,
+            anchor,
+            redirect,
+            true);
+    }
+
+    /**
+     * Compute a hyperlink URL based on the <code>forward</code>,
+     * <code>href</code>, <code>action</code> or <code>page</code> parameter
+     * that is not null.
+     * The returned URL will have already been passed to
+     * <code>response.encodeURL()</code> for adding a session identifier.
+     *
+     * @param pageContext PageContext for the tag making this call
+     *
+     * @param forward Logical forward name for which to look up
+     *  the context-relative URI (if specified)
+     * @param href URL to be utilized unmodified (if specified)
+     * @param page Module-relative page for which a URL should
+     *  be created (if specified)
+     * @param action Logical action name for which to look up
+     *  the context-relative URI (if specified)
+     *
+     * @param params Map of parameters to be dynamically included (if any)
+     * @param anchor Anchor to be dynamically included (if any)
+     *
+     * @param redirect Is this URL for a <code>response.sendRedirect()</code>?
+     * @param encodeSeparator This is only checked if redirect is set to false (never
+     * encoded for a redirect).  If true, query string parameter separators are encoded
+     * as &gt;amp;, else &amp; is used.
+     * @return URL with session identifier
+     * @exception MalformedURLException if a URL cannot be created
+     *  for the specified parameters
+     */
+    public static String computeURL(
+        PageContext pageContext,
+        String forward,
+        String href,
+        String page,
+        String action,
+        Map params,
+        String anchor,
+        boolean redirect,
+        boolean encodeSeparator)
+        throws MalformedURLException {
+            
+        // TODO All the computeURL() methods need refactoring!
 
         // Validate that exactly one specifier was included
         int n = 0;
@@ -513,7 +567,14 @@ public class RequestUtils {
             }
 
             // Define the parameter separator
-            String separator = redirect ? "&" : "&amp;";
+            String separator = null;
+            if (redirect) {
+                separator = "&";
+            } else if (encodeSeparator) {
+                separator = "&amp;";
+            } else {
+                separator = "&";
+            }
 
             // Add the required request parameters
             boolean question = temp.indexOf('?') >= 0;
