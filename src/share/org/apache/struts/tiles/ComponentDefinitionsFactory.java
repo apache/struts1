@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinitionsFactory.java,v 1.1 2002/06/25 03:14:49 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:14:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinitionsFactory.java,v 1.2 2002/07/15 12:51:52 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/15 12:51:52 $
  *
  * ====================================================================
  *
@@ -74,6 +74,7 @@ import javax.servlet.ServletContext;
  * factory implementation.
  * Implementation must be Serializable, in order to be compliant with web Container
  * having this constraint (Weblogic 6.x).
+ * @deprecated Use DefinitionsFactory instead.
 */
 public interface ComponentDefinitionsFactory extends Serializable
 {
