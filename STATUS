@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.10 2002/07/08 01:03:25 craigmcc Exp $
+$Id: STATUS,v 1.11 2002/07/08 11:24:15 jholmes Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -35,6 +35,7 @@ File Upload:
  5274 OutOfMemoryError when uploading big files
  9198 First line feed in text parameters lost
 10388 ServletException: Multipart data doesn't start with boundary
+10542 The multipartClass init-param is broken
 
 
 Standard Actions:
