@@ -27,9 +27,9 @@
 &quot;deploy_war.dtd&quot;&gt;
 &lt;warJarOptions&gt;
 &lt;warJar&gt;
-&lt;warJarName&gt;struts-documentation.war&lt;/warJarName&gt;
+&lt;warJarName&gt;struts-example.war&lt;/warJarName&gt;
 &lt;isEnabled&gt;true&lt;/isEnabled&gt;
-&lt;urls&gt;&lt;el&gt;struts-documentation&lt;/el&gt;&lt;/urls&gt;
+&lt;urls&gt;&lt;el&gt;struts-example&lt;/el&gt;&lt;/urls&gt;
 &lt;/warJar&gt;
 &lt;/warJarOptions&gt;
 ----- cut here -----
@@ -50,7 +50,7 @@
   &quot;deploy_war.dtd&quot;&gt;
 &lt;warJarOptions&gt;
 &lt;warJar&gt;
-&lt;warJarName&gt;struts-example.war&lt;/warJarName&gt;
+&lt;warJarName&gt;struts-documentation.war&lt;/warJarName&gt;
 &lt;isEnabled&gt;true&lt;/isEnabled&gt;
 &lt;urls&gt;&lt;el&gt;struts-documentation&lt;/el&gt;&lt;/urls&gt;
 &lt;/warJar&gt;
