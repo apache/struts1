@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.1 2003/08/07 04:01:41 dgraham Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/07 04:01:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/plugins/DigestingPlugIn.java,v 1.2 2003/08/07 04:02:21 dgraham Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/08/07 04:02:21 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.xml.sax.SAXException;
  * 
  * @author Joe Germuska
  * @author David Graham
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @see PlugIn
  */
 public class DigestingPlugIn implements PlugIn {
