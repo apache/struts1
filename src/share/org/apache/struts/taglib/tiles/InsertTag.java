@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.8 2002/12/12 21:23:29 ekbush Exp $
- * $Revision: 1.8 $
- * $Date: 2002/12/12 21:23:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.9 2002/12/29 21:31:02 cedric Exp $
+ * $Revision: 1.9 $
+ * $Date: 2002/12/29 21:31:02 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib.tiles;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -82,7 +83,8 @@ import org.apache.struts.tiles.Controller;
 import org.apache.struts.tiles.DefinitionAttribute;
 import org.apache.struts.tiles.DefinitionNameAttribute;
 import org.apache.struts.tiles.DefinitionsFactoryException;
-import org.apache.struts.tiles.DefinitionsUtil;
+//import org.apache.struts.tiles.DefinitionsUtil;
+import org.apache.struts.tiles.TilesUtil;
 import org.apache.struts.tiles.DirectStringAttribute;
 import org.apache.struts.tiles.FactoryNotFoundException;
 import org.apache.struts.tiles.NoSuchDefinitionException;
@@ -94,11 +96,9 @@ import org.apache.struts.tiles.NoSuchDefinitionException;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.8 $ $Date: 2002/12/12 21:23:29 $
+ * @version $Revision: 1.9 $ $Date: 2002/12/29 21:31:02 $
  */
-public class InsertTag
-	extends DefinitionTagSupport
-	implements PutTagParent, ComponentConstants, PutListTagParent {
+public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent {
 
 	/** Commons Logging instance. */
 	protected static Log log = LogFactory.getLog(InsertTag.class);
@@ -553,28 +553,28 @@ public class InsertTag
 	 */
 	protected TagHandler processDefinitionName(String name) throws JspException {
 
-        try {
-            ComponentDefinition definition = DefinitionsUtil.getDefinition(name, pageContext);
-            if (definition == null) { // is it possible ?
-                throw new NoSuchDefinitionException();
-            }
-            return processDefinition(definition);
+    try {
+        ComponentDefinition definition = TilesUtil.getDefinition(name, (HttpServletRequest)pageContext.getRequest(),pageContext.getServletContext());
+        if (definition == null) { // is it possible ?
+            throw new NoSuchDefinitionException();
+        }
+        return processDefinition(definition);
 
-        } catch (NoSuchDefinitionException ex) {
-            throw new JspException(
-                "Error -  Tag Insert : Can't get definition '"
-                    + definitionName
-                    + "'. Check if this name exist in definitions factory.");
-        } catch (FactoryNotFoundException ex) { // factory not found.
-            throw new JspException(ex.getMessage());
-        } // end catch
-        catch (DefinitionsFactoryException ex) {
-            if (log.isDebugEnabled())
-                ex.printStackTrace();
-            // Save exception to be able to show it later
-            pageContext.setAttribute(Globals.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
-            throw new JspException(ex.getMessage());
-        } // end catch
+    } catch (NoSuchDefinitionException ex) {
+        throw new JspException(
+            "Error -  Tag Insert : Can't get definition '"
+                + definitionName
+                + "'. Check if this name exist in definitions factory.");
+    } catch (FactoryNotFoundException ex) { // factory not found.
+        throw new JspException(ex.getMessage());
+    } // end catch
+    catch (DefinitionsFactoryException ex) {
+        if (log.isDebugEnabled())
+            ex.printStackTrace();
+        // Save exception to be able to show it later
+        pageContext.setAttribute(Globals.EXCEPTION_KEY, ex, PageContext.REQUEST_SCOPE);
+        throw new JspException(ex.getMessage());
+    } // end catch
     }
 
 	/**
@@ -664,7 +664,7 @@ public class InsertTag
 	 */
 	public TagHandler processAsDefinitionOrURL(String name) throws JspException {
 		try {
-			ComponentDefinition definition = DefinitionsUtil.getDefinition(name, pageContext);
+			ComponentDefinition definition = TilesUtil.getDefinition(name, pageContext.getRequest(), pageContext.getServletContext());
 			if (definition != null)
 				return processDefinition(definition);
 		} catch (DefinitionsFactoryException ex) { // silently failed, because we can choose to not define a factory.
@@ -700,8 +700,12 @@ public class InsertTag
 	 * @throws IOException - Thrown by call to pageContext.include()
 	 */
 	protected void doInclude(String page) throws ServletException, IOException {
-		pageContext.include(page);
+		TilesUtil.doInclude( page,
+                        (HttpServletRequest)pageContext.getRequest(),
+                        (HttpServletResponse)pageContext.getResponse(),
+                        pageContext.getServletContext());
 	}
+
 
 	/////////////////////////////////////////////////////////////////////////////
 
@@ -873,6 +877,25 @@ public class InsertTag
 			}
 		}
 	}
+
+    /**
+     * Parse the list of roles and return true or false based on whether
+     * the user has that role or not.
+     * @param role a comma-delimited list of roles
+     * @param request the request
+     */
+  static public boolean userHasRole(HttpServletRequest request, String role)
+  {
+  StringTokenizer st = new StringTokenizer(role, ROLE_DELIMITER, false);
+  while( st.hasMoreTokens())
+   {
+   if(request.isUserInRole(st.nextToken()))
+     return true;
+   } // end loop
+  return false;
+  }
+    /** The role delimiter */
+  static public final String ROLE_DELIMITER =",";
 
 	/////////////////////////////////////////////////////////////////////////////
 
