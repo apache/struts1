@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.23 2003/07/02 03:03:55 dgraham Exp $
- * $Revision: 1.23 $
- * $Date: 2003/07/02 03:03:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.24 2003/08/02 22:22:13 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/08/02 22:22:13 $
  *
  * ====================================================================
  *
@@ -63,18 +63,19 @@ package org.apache.struts.upload;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.Enumeration;
+import java.util.Hashtable;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.Globals;
+import org.apache.struts.util.ModuleUtils;
 
 /**
  * This is a MultipartRequestHandler that writes file data directly to
@@ -127,12 +128,17 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
      * the request wrapper will be populated as well.
      */
     public void handleRequest(HttpServletRequest request) throws ServletException {
-        ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
-        retrieveTempDir(moduleConfig);
+        ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
+        this.retrieveTempDir(moduleConfig);
+        
         try {
-            MultipartIterator iterator = new MultipartIterator(request, moduleConfig.getControllerConfig().getBufferSize(),
-                                                               getMaxSize(moduleConfig.getControllerConfig().getMaxFileSize()),
-                                                               tempDir);
+            MultipartIterator iterator =
+                new MultipartIterator(
+                    request,
+                    moduleConfig.getControllerConfig().getBufferSize(),
+                    getMaxSize(moduleConfig.getControllerConfig().getMaxFileSize()),
+                    tempDir);
+                    
             MultipartElement element;
 
             textElements = new Hashtable();
@@ -146,10 +152,12 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                     createDiskFile(element);
                 }
             }
+            
             //take care of maximum length being exceeded
             if (iterator.isMaxLengthExceeded()) {
                 request.setAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED, Boolean.TRUE);
             }
+            
         } catch(IOException ioe) {
             throw new ServletException(ioe);
         }
