@@ -204,8 +204,7 @@
 &lt;/title&gt;
 &lt;body bgcolor="white"&gt;
 &lt;html:errors/&gt;
-&lt;html:form name="logonForm" action="logon.do"
-  type="org.apache.struts.example.LogonForm"&gt;
+&lt;html:form action="/logon focus="username"&gt;
 &lt;table border="0" width="100%"&gt;
   &lt;tr&gt;
     &lt;th align="right"&gt;
