@@ -11,7 +11,7 @@
 
   <!-- Main Layout Definition description  -->
   <definition name="mainLayout" path="/layout/classicLayout.jsp">
-	  <put name="title"  value="World Financial Online - German Version" />
+	  <put name="title"  value="World Financial Online - Deutsche Version" />
 	  <put name="header" value="/tutorial/common/header.jsp" />
 	  <put name="footer" value="/tutorial/de/common/footer.jsp" />
 	  <put name="menu"   value="menu.main" />
@@ -20,10 +20,10 @@
   
   <!-- select language menu -->
 <definition name="menu.lang" path="/common/submenu.jsp" >
-  <put name="title" value="Langue" />
+  <put name="title" value="Sprache" />
   <putList name="items" >
-    <add value="English" />
-    <add value="Francais" />
+    <add value="Englisch" />
+    <add value="Französisch" />
   </putList>
   <putList name="links" >
     <add value="/tutorial/lang.do?language=UK" />

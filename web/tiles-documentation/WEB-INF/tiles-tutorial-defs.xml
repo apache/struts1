@@ -166,7 +166,7 @@
   <putList name="items" >
     <add value="Français" />
     <add value="English" />
-    <add value="Deutch" />
+    <add value="Deutsch" />
   </putList>
   <putList name="links" >
     <add value="/tutorial/lang.do?language=FR" />
