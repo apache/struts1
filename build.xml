@@ -148,7 +148,7 @@
     <property name="project.name" value="jakarta-struts"/>
 
     <!-- Version of the project -->
-    <property name="project.version" value="1.2.0"/>
+    <property name="project.version" value="1.2.1-dev"/>
 
 
 <!-- ========== Derived Properties ======================================== -->
