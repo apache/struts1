@@ -56,12 +56,11 @@
   <!-- Some definition come from other definition files (ex : doc.menu.*) -->
 <definition name="examples.menu.bar" path="/layouts/vboxLayout.jsp" >
   <putList name="list" >
+    <add value="common.menu.home" />
     <add value="examples.userMenu" />
     <add value="examples.menu.links" />
-    <add value="doc.menu.links" />
+    <add value="common.menu.doc" />
     <add value="examples.menu.settings" />
-    <add value="doc.menu.taglib.references" />
-    <add value="doc.menu.printer.friendly" />
     <add value="examples.menu.admin" />
   </putList>
 </definition>
@@ -101,13 +100,9 @@
 <definition name="examples.menu.links" extends="examples.menu.root" >
   <put name="title" value="Examples" />
   <putList name="items" >
-    <item value="Examples Home"
-			link="/examples/index.jsp" />
-    <item value="Portal"
-			link="/examples/portal.jsp" />
-    <item value="my Portal"
-			link="/examples/myPortal.jsp"
-          	classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
+    <item value="Examples Home"			link="/examples/index.jsp" />
+    <item value="Portal"    			link="/examples/portal.jsp" />
+    <item value="my Portal"             link="/examples/myPortal.jsp" />
     <item value="my Portal Settings"	link="/examples/myPortalSettings.jsp" />
     <item value="my Menu Settings"		link="/examples/myMenuSettings.jsp" />
     <item value="Tabs (choosen pages)"	link="/examples/tabs.jsp"/>
@@ -264,10 +259,10 @@
 	<put name="parameterName"  value="selected" />
     <putList name="tabList" >
       <item value="Doc Home"		link="/index.jsp" />
-      <item value="Quick overview"	link="/doc/quickOverview.jsp" />
-      <item value="Tutorial"		link="/doc/tutorial.jsp" />
+      <item value="Quick overview"	link="/test/quickOverview.do" />
+      <!-- <item value="Tutorial"		link="/doc/tutorial.jsp" /> -->
       <item value="Examples Home"	link="/examples/index.jsp" />
-      <item value="Tutorial Home"	link="/tutorial/index.jsp" />
+      <item value="Tutorial Home"	link="/tutorial/index.do" />
       <item value="Login"			link="/examples/tiles/portal/login.jsp" />
       <item value="Messages"		link="/examples/tiles/portal/messages.jsp" />
       <item value="NewsFeed"		link="/examples/tiles/portal/newsFeed.jsp" />
@@ -319,7 +314,7 @@
   <definition name="examples.rssChannel.body" path="/examples/tiles/rssChannels.jsp"
 			  controllerUrl="/examples/controller/rssChannel.do" >
     <putList name="urls" >
-	    <add value="http://www.newsforge.com/newsforge.rss" />
+	    <!--<add value="http://www.newsforge.com/newsforge.rss" /> -->
 	    <add value="http://xmlhack.com/rss.php" />
 	    <add value="http://lwn.net/headlines/rss" />
 	  </putList>

@@ -72,10 +72,11 @@
 <definition name="menu.logo" path="/tutorial/common/menu/menuLogo.jsp" />
   
   <!-- Documentation menu -->
+  <!-- Old style menu. Check module 'examples' for new style -->
 <definition name="menu.documentation" path="/common/submenu.jsp" >
-  <put name="title" value="Documentation" />
+  <put name="title" value="Tiles" />
   <putList name="items" >
-    <add value="Documentation Home" />
+    <add value="Home" />
   </putList>
   <putList name="links" >
     <add value="/index.jsp" />
@@ -120,7 +121,7 @@
 </definition>
 
   <!-- Menu sources definition -->
-<definition name="menu.src" path="/common/menuViewSrc.jsp" >
+<definition name="menu.src" path="/tutorial/common/menuViewSrc.jsp" >
   <putList name="list" >
     <add value="/tutorial/index.jsp" />
     <add value="/tutorial/basicPage.jsp" />
@@ -203,7 +204,7 @@
   <!-- =======================================================  -->
 
     <!-- Dynamic portal main page (use common layout) -->
-<definition name="rssChannelTile" path="/actions/rssChannel.do" >
+<definition name="rssChannelTile" path="/tutorial/actions/rssChannel.do" >
       <putList name="urls" >
 	    <add value="http://www.newsforge.com/newsforge.rss" />
 	    <add value="http://xmlhack.com/rss.php" />

@@ -41,10 +41,14 @@
       <param-name>config/test</param-name>
       <param-value>/WEB-INF/struts-tests-config.xml</param-value>
     </init-param>
-    <!--
     <init-param>
       <param-name>config/tutorial</param-name>
       <param-value>/WEB-INF/struts-tutorial-config.xml</param-value>
+    </init-param>
+    <!--
+    <init-param>
+      <param-name>config/doc</param-name>
+      <param-value>/WEB-INF/struts-doc-config.xml</param-value>
     </init-param>
     -->
     <init-param>

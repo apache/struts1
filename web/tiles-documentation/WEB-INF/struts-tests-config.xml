@@ -17,27 +17,16 @@
 
 <struts-config>
 
-
-  
-  <!-- ========== Form Bean Definitions =================================== -->
-  <form-beans>
-
-    <!-- Logon form bean -->
-    <form-bean      name="invoiceForm"
-                    type="org.apache.struts.webapp.tiles.invoice.InvoiceForm"/>
-    <form-bean      name="portalPrefsForm"
-                    type="org.apache.struts.webapp.tiles.dynPortal.PortalPrefsForm"/>
-  </form-beans>
-
-
-  <!-- ========== Global Forward Definitions ============================== -->
-  <global-forwards>
-    <forward   name="failure"              path="forward.example.failure.page"/>
-  </global-forwards>
-
-
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
+
+    <!-- Main page url entry. 
+	     This action is used to map an URL to an internal jsp.
+	     A side effect is that the struts module is switched to the module 
+		 associated to this config file  -->
+    <action    path="/quickOverview"
+               type="org.apache.struts.actions.ForwardAction"
+               parameter="test.home.page"/>
 
   <!-- =======================================================  -->
   <!-- Test actions  -->
@@ -51,7 +40,7 @@
   </action>
 
     <!-- Test Struts Forwardintegration -->
-  <action     path="/test/testForward"
+  <action     path="/testForward"
        		  type="org.apache.struts.webapp.tiles.test.TestActionTileAction"
 			  forward="test.struts.action"/>
 
@@ -67,21 +56,6 @@
 				parameter="def">
 	 <forward  name="success" path="anything" />
 	 <forward  name="error"   path="anything" />
-  </action>
-  
-  <!-- =======================================================  -->
-  <!-- test, to be removed -->
-  <!-- =======================================================  -->
-    <action     path="/tutorial/testAction"
-                type="org.apache.struts.webapp.tiles.lang.SelectLocaleAction">
-      <forward  name="failure"        path="/tutorial/common/footer.jsp"/>
-      <forward  name="success"        path="/tutorial/common/footer.jsp"/>
-  </action>
-  
-    <action     path="/tutorial/testAction2"
-                type="org.apache.struts.webapp.tiles.tutorial.ForwardExampleAction">
-      <forward  name="failure"        path="forward.example.success.page"/>
-      <forward  name="success"        path="forward.example.success.page"/>
   </action>
   
   </action-mappings>
@@ -100,9 +74,7 @@
   <plug-in className="org.apache.struts.tiles.TilesPlugin" >
     <set-property property="definitions-config" 
 	                 value="/WEB-INF/tiles-defs.xml,
-                            /WEB-INF/tiles-tests-defs.xml,
-							/WEB-INF/tiles-tutorial-defs.xml,
-                            /WEB-INF/tiles-examples-defs.xml" />
+                            /WEB-INF/tiles-tests-defs.xml" />
     <set-property property="moduleAware" value="true" />
   </plug-in>
 

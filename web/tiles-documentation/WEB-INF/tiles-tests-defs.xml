@@ -9,6 +9,13 @@
 <tiles-definitions>
 
 
+  <!-- Test instances -->
+<definition name="test.home.page" extends="doc.mainLayout" >
+  <put name="title"  value="Tiles: test page" />
+  <put name="body"   value="/test/testAll.jsp" />
+</definition>
+
+
   <!-- Test menu definition -->
 <definition name="test.menu.links" path="/layouts/menu.jsp" >
   <put name="title" value="Tests" />
