@@ -38,7 +38,7 @@ import org.apache.struts.faces.component.FormComponent;
  * <p><code>Renderer</code> implementation for the <code>form</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @version $Revision: 1.7 $ $Date: 2004/03/08 02:49:54 $
+ * @version $Revision: 1.8 $ $Date: 2004/08/28 07:44:54 $
  */
 
 public class FormRenderer extends AbstractRenderer {
@@ -112,7 +112,9 @@ public class FormRenderer extends AbstractRenderer {
         ModuleConfig moduleConfig = form.lookupModuleConfig(context);
         ActionConfig actionConfig = moduleConfig.findActionConfig(action);
         String beanName = actionConfig.getAttribute();
-        form.getAttributes().put("beanName", beanName);
+        if (beanName != null) {
+            form.getAttributes().put("beanName", beanName);
+        }
 
         // Look up attribute values we need
         String clientId = component.getClientId(context);

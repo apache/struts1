@@ -49,6 +49,9 @@
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
 
+    <forward         name="context1"
+                     path="/context1.jsp"/>
+
     <forward         name="logon"
                      path="/logon.jsp"/>
 
@@ -60,6 +63,11 @@
 
   <!-- ========== Action Mapping Definitions ============================== -->
   <action-mappings>
+
+    <!-- Render Context Values Action -->
+    <action          path="/context"
+                     type="org.apache.struts.faces.systest.ContextAction"
+                 validate="false"/>
 
     <!-- Execute Logon Action -->
     <action          path="/logon"
