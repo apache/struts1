@@ -621,6 +621,19 @@
     </attribute>
 
     <attribute>
+      <name>ignore</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+      <info>
+      <p>If this attribute is set to <code>true</code>, and the bean specified
+      by the <code>name</code> and <code>scope</code> attributes does not
+      exist, simply return without writing anything.  The default value is
+      <code>false</code>, which will cause a runtime exception to be thrown,
+      consistent with the other tags in this tag library.</p>
+      </info>
+    </attribute>
+
+    <attribute>
       <name>name</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
@@ -640,7 +653,8 @@
       <p>Specifies the name of the property to be accessed on the bean
       specified by <code>name</code>.  This value may be a simple, indexed,
       or nested property reference expression.  If not specified, the bean
-      identified by <code>name</code> will itself be rendered.</p>
+      identified by <code>name</code> will itself be rendered.  If the
+      specified property returns null, no output will be rendered.</p>
       </info>
     </attribute>
 

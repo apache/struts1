@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.6 2000/10/30 06:02:15 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/10/30 06:02:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.7 2000/12/07 01:19:11 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2000/12/07 01:19:11 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/10/30 06:02:15 $
+ * @version $Revision: 1.7 $ $Date: 2000/12/07 01:19:11 $
  */
 
 public class WriteTag extends TagSupport {
@@ -103,6 +103,21 @@ public class WriteTag extends TagSupport {
     public void setFilter(String filter) {
         this.filter = filter;
     }
+
+
+    /**
+     * Should we ignore missing beans and simply output nothing?
+     */
+    protected boolean ignore = false;
+
+    public boolean getIgnore() {
+        return (this.ignore);
+    }
+
+    public void setIgnore(boolean ignore) {
+        this.ignore = ignore;
+    }
+
 
 
     /**
@@ -180,7 +195,9 @@ public class WriteTag extends TagSupport {
                 throw new JspException
                     (messages.getMessage("getter.scope", scope));
             }
-            if (bean == null) {
+	    if ((bean == null) && ignore)
+                return (SKIP_BODY);  // Nothing to output
+            else if (bean == null) {
                 JspException e = new JspException
                     (messages.getMessage("getter.bean", name));
                 pageContext.setAttribute(Action.EXCEPTION_KEY, e,
@@ -256,6 +273,7 @@ public class WriteTag extends TagSupport {
 
         super.release();
         filter = null;
+	ignore = false;
 	name = null;
 	property = null;
 	scope = null;
