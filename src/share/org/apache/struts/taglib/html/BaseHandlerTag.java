@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.22 2003/01/05 01:40:44 martinc Exp $
- * $Revision: 1.22 $
- * $Date: 2003/01/05 01:40:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseHandlerTag.java,v 1.23 2003/01/05 01:44:08 turner Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/01/05 01:44:08 $
  *
  * ====================================================================
  *
@@ -72,6 +72,8 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Base class for tags that render form elements capable of including JavaScript
@@ -81,10 +83,15 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @author Don Clasen
  * @author James Turner
- * @version $Revision: 1.22 $ $Date: 2003/01/05 01:40:44 $
+ * @version $Revision: 1.23 $ $Date: 2003/01/05 01:44:08 $
  */
 
 public abstract class BaseHandlerTag extends BodyTagSupport {
+
+    /**
+     * Commons Logging instance.
+     */
+    private static Log log = LogFactory.getLog(BaseHandlerTag.class);
 
     // ----------------------------------------------------- Instance Variables
 
@@ -585,30 +592,43 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 	    triedJstlInit = true;
 	    try {
 		loopTagSupportClass = 
-		    Class.forName("javax.servlet.jsp.jstl.core.LoopTagSupport");
+		    RequestUtils.applicationClass("javax.servlet.jsp.jstl.core.LoopTagSupport");
 		loopTagSupportGetStatus = 
 		    loopTagSupportClass.getDeclaredMethod("getLoopStatus", null);
 		loopTagStatusClass =
-		    Class.forName("javax.servlet.jsp.jstl.core.LoopTagStatus");
+		    RequestUtils.applicationClass("javax.servlet.jsp.jstl.core.LoopTagStatus");
 		loopTagStatusGetIndex = 
 		    loopTagStatusClass.getDeclaredMethod("getIndex", null);
 		triedJstlSuccess = true;
 	    }
+	    // These just mean that JSTL isn't loaded, so ignore
 	    catch (ClassNotFoundException ex) {}
 	    catch (NoSuchMethodException ex) {}
 	}
 	if (triedJstlSuccess) {
 	    try {
 		Object loopTag = findAncestorWithClass(this, loopTagSupportClass);
-		if (loopTag == null)  return null;
+		if (loopTag == null)  {
+		    return null;
+		}
 		Object status = loopTagSupportGetStatus.invoke(loopTag, null);
 		return (Integer) loopTagStatusGetIndex.invoke(status, null);
 	    } 
-	    catch (IllegalAccessException ex) {}
-	    catch (IllegalArgumentException ex) {}
-	    catch (InvocationTargetException ex) {}
-	    catch (NullPointerException ex) {}
-	    catch (ExceptionInInitializerError ex) {}
+	    catch (IllegalAccessException ex) {
+		log.error(ex.getMessage(), ex);
+	    }
+	    catch (IllegalArgumentException ex) {
+		log.error(ex.getMessage(), ex);
+	    }
+	    catch (InvocationTargetException ex) {
+		log.error(ex.getMessage(), ex);
+	    }
+	    catch (NullPointerException ex) {
+		log.error(ex.getMessage(), ex);
+	    }
+	    catch (ExceptionInInitializerError ex) {
+		log.error(ex.getMessage(), ex);
+	    }
 	}
 	return null;
     }
