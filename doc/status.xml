@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<document url="./status.xml">
+<properties>
+<author>Craig R. McClanahan</author>
+<title>The Struts User's Guide - Development Roadmap</title>
+</properties>
+<body>
+<chapter href="status" name="Development Roadmap">
+
+<section href="status" name="Development Roadmap">
+<p><font size="-2">$Id: status.xml,v 1.1 2002/10/17 12:00:47 husted Exp $</font></p>
+<p>
+This document outlines some of changes we expect to
+see in future releases of Struts.
+</p>
+<p>
+This document is provided for discussion purposes only.
+All releases and changes to the codebase are subject to
+<a href="http://jakarta.apache.org/site/decisions.html">a vote</a> of the
+<a href="volunteers.html#committers">Struts Committers</a>.
+</p>
+</section>
+
+<section href="struts_1_1" name="Struts 1.1">
+<p>
+Struts 1.1 provides a number of functional enhancements, including
+support for application modules. Other enhancments include
+action-based authentification, declarative exception
+handling, Plug-In Actions, and a pluggable request processor.
+Several extensions are now bundled with the Struts distribution,
+including the Nested taglib, Tiles, and the Commons Validator.
+Backward-compatiblity with Struts 1.0.x is a primary goal.
+</p>
+<p>
+Remaining tasks:
+</p>
+<ul>
+<li>Refactor Tiles to be 1.1 compliant</li>
+<li>Other routine changes per
+<a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;version=Unknown&amp;version=1.0.1+Final&amp;version=1.0+Final&amp;version=1.0+Beta+3&amp;version=1.0+Beta+2&amp;version=1.0+Beta+1&amp;version=0.5+Final&amp;version=1.0.2+Final&amp;version=1.1+Beta+1&amp;version=1.1+Beta+2&amp;version=Nightly+Build&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">Bugzilla</a>
+and <a href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=41">Dev list</a></li>
+</ul>
+</section>
+
+<section href="struts_1_2" name="Struts 1.2.x">
+<p>
+Struts 1.2.x will include additional functional enhancements
+along the same lines as Struts 1.1. The platform requirements
+will remain the same (Servlet 2.2 / JSP 1.1). The
+release will focus on refactoring of existing functionality,
+with a continued emphasis on backwards compatibility.
+</p>
+<p>
+The Struts 1.2.x series is expected to incorporate several
+incremental releases (in contrast to Stuts 1.1).
+</p>
+</section>
+
+<section href="struts_2_0" name="Struts 2.0.x">
+<p>
+Struts 2.0.x will include broader enhancements.
+The implementation will expect a minimum platform of
+Servlet 2.3 / JSP 1.2 and refactorings may include
+the use of Filters. It is expected that Struts 2.0.x
+will rely on JSTL and JavaServer Faces as supporting
+technologies.
+</p>
+</section>
+
+<section href="proposals" name="Relevant Proposals">
+<ul>
+<li><a href="proposals/release-plan-1.1b2.html">Release Plan 1.1-b2</a></li>
+<li><a href="proposals/workflow.html">Workflow Proposal</a></li>
+</ul>
+</section>
+
+</chapter></body></document>

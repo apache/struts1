@@ -10,12 +10,35 @@
 
 <section href="contents" name="How to Help FAQ">
 <ul>
+    <li><a href="#corp">What can my company do to help support Struts?</a></li>
     <li><a href="#bugs">How can I report bugs or make feature requests?</a></li>
     <li><a href="#contribute">How can I contribute to Struts source code?</a></li>
     <li><a href="#documentation">How can I contribute to the documentation?</a></li>
     <li><a href="#release">So when is the next release coming out?</a></li>
     <li><a href="#release_help">How can I help the next release along?</a></li>
 </ul>
+</section>
+
+
+<section href="corp" name="What can my company do to help support Struts?">
+<p>Struts is an all volunteer product. Our customers are the volunteers who donate
+their time and energy to supporting the product. If you want to support Struts, and
+become one of our customers, then you need to
+<a href="http://jakarta.apache.org/site/getinvolved.html">get involved</a> and become a volunteer.</p>
+<p>Our challenge to any team using Struts is to donate the time of one team member one
+afternoon a week (or more if you can spare the resources). Have your team member browse Bugzilla for any
+issues without a <a href="#code">patch</a> or <a href="#tests">unit test</a>, and add the patch or test.
+If the patch is written on company time, and you want to give your company an author's credit, that's
+fine with us. </p>
+<p>If Struts doesn't do what <i>you</i> want, it's up to <b>you</b> to step up and propose the patch.
+If Struts doesn't ship as often as you would like, it's up to you to step up with the tests and fixes that
+get a release out the door. </p>
+<p>If Struts does do what you want, help others become involved by turning your war stories into FAQs and
+how-tos that we can make part of the <a ahref="documentation">documentation</a>. The mailing list is very
+active and trundling through the archives is no picnic. We can always use people who can reduce the best
+threads to coherent articles that we can put in the User Guide.</p>
+<p>We don't sell Struts for money, but anyone who wants to be our customer can pay us back by donating
+the time and energy that money represents.</p>
 </section>
 
 <section href="bugs" name="How can I report bugs or make feature requests?">

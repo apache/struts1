@@ -12,6 +12,7 @@
         <item name="Resources"               href="resources/index.html"/>
         <item name="Who We Are"              href="volunteers.html"/>
         <item name="How to Help"             href="helping.html"/>
+        <item name="List Archive"            href="http://nagoya.apache.org/eyebrowse/SummarizeList?listId=42"/>
     </menu>
 
     <menu name="Downloads">
@@ -49,10 +50,8 @@
             href="userGuide/release-notes.html"/>
         <item name="Installation"
             href="userGuide/installation.html"/>
-        <item name="Workflow Proposal"
-            href="proposals/workflow.html"/>
-        <item name="Wish List"
-            href="proposals/todo-1.1.html"/>
+        <item name="Development Roadmap"
+            href="status.html"/>
     </menu>
 
 </project>
