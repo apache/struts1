@@ -128,7 +128,7 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 <a href="http://www.amazon.com/exec/obidos/ISBN=1861002092/hitchhikeguidetoA/"><b>Beginning JSP Web Development</b></a> by Falkner, Galbraith, Irani, Kochmer, Kunnumpurath, Panduranga,  Perrumal, Timney (Wrox book). August 2001. One chapter focuses on an introduction to Struts 1.0 and two chapters on creating an application that uses Struts.
 </p>
 <p>
-<a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks.
+<a href="http://www.redbooks.ibm.com/pubs/pdfs/redbooks/sg246134.pdf"><b>WebSphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - IBM Redbook, Chapter 7 covers designing with both the Struts and WebSphere frameworks.
 </p>
 <p>
 <a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.
