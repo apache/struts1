@@ -28,9 +28,19 @@
 
 -Recent Changes-
 
-* "Local" ActionForms now observe pluggable classes
+* Local, as well as global, ActionForwards now observe pluggable classes.
+
+* Validator plugin now throws exception if XML is not valid. 
+
+* Multiple wilcard characters are now supported in Action paths. 
+
+* Add missing filter attribute to nested:options and nested:optionsCollection.
+
+* Add "copy constructor" to ActionForward.
 
 * Nightly build requires Commons Validator 1.1.2+
+
+* Initial draft of bylaws page [http://struts.apache.org/bylaws.html]. Not linked into other documentation yet as other pages are to follow.
 
 * See also: http://jakarta.apache.org/struts/userGuide/release-notes.html
 
@@ -78,7 +88,7 @@
 
 -CVS Activity-
 
-* Total Commits: ### Total Number of Files Changed: ### 
+*  Timeframe: 30 days, Total Commits: 41 Total Number of Files Changed: 86.
 
 
 -Active Committers-
@@ -98,5 +108,5 @@
     * Joe Germuska (germuska at apache.org)
 
 
-$Id: STATUS.txt,v 1.6 2004/04/16 00:07:06 husted Exp $
+$Id: STATUS.txt,v 1.7 2004/04/17 01:15:09 husted Exp $
 ###
