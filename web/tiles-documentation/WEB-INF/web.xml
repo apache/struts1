@@ -66,7 +66,7 @@
       <!-- Added as a trick for a bug in Struts -->
     <init-param>
       <param-name>application</param-name>
-      <param-value>org.apache.struts.example.tiles.dev1-1.ApplicationResources</param-value>
+      <param-value>org.apache.struts.webapp.tiles.dev1-1.ApplicationResources</param-value>
     </init-param>
     
     <load-on-startup>2</load-on-startup>
