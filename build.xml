@@ -16,10 +16,9 @@
 <!-- ========== Prerequisite Properties =================================== -->
 
 <!--
-        These properties MUST be set on the "ant" command line, the "antrc"
-        properties file in your home directory, or from settings in a superior
-        build.xml script, if you wish to take advantage of the corresponding
-        functionality.
+        These properties MUST be set on the "ant" command line, a
+        "build.properties" file in the base directory, or a
+        "build.properties" file in your user home directory.
       
         catalina.home                 (optional). The path to the Tomcat 4.0
                                       installation. This is required only when
@@ -157,7 +156,8 @@
 <!-- 
         Compile core struts library directory components
 -->
-    <target name="compile.library" depends="prepare.library">
+    <target name="compile.library" depends="prepare.library"
+     description="Compile Struts library files">
         <javac srcdir="${src.share.dir}"
             destdir="${build.home}/library/classes"
             classpath="${servlet.jar}"
@@ -188,14 +188,16 @@
 <!--
         Compile code for web applications
 -->
-    <target name="compile.webapps" depends="compile.library,static.webapps">
+    <target name="compile.webapps" depends="compile.library,static.webapps"
+     description="Compile Struts web applications">
         <ant antfile="build-webapps.xml" target="compile"/>
     </target>
 
 <!--
         Create Javadoc documentation
 -->
-    <target name="compile.javadoc">
+    <target name="compile.javadoc"
+     description="Generate JavaDoc API docs">
         <delete dir="${build.home}/documentation/api"/>
         <mkdir dir="${build.home}/documentation/api"/>
         <javadoc sourcepath="${src.share.dir}"
@@ -261,12 +263,14 @@
 <!--
         Construct complete release distribution
 -->
-    <target name="dist" depends="dist.library,dist.webapps,dist.source"/>
+    <target name="dist" depends="dist.library,dist.webapps,dist.source"
+     description="Construct binary distribution"/>
 
 <!--
         Deploy these applications on Catalina
 -->
-    <target name="deploy.catalina" depends="compile.webapps">
+    <target name="deploy.catalina" depends="compile.webapps"
+     description="Deploy Struts web.apps in Catalina (Tomcat 4.0)">
         <mkdir dir="${catalina.home}/webapps/struts-blank"/>
         <copy todir="${catalina.home}/webapps/struts-blank">
             <fileset dir="${build.home}/blank"/>
@@ -314,7 +318,8 @@
 <!--
         Deploy these applications on Tomcat
 -->
-    <target name="deploy.tomcat" depends="compile.webapps">
+    <target name="deploy.tomcat" depends="compile.webapps"
+     description="Deploy Struts web.apps in Tomcat 3.x">
         <mkdir dir="${tomcat.home}/webapps/struts-blank"/>
         <copy todir="${tomcat.home}/webapps/struts-blank">
             <fileset dir="${build.home}/blank"/>
@@ -342,35 +347,17 @@
     </target>
 
 <!--
-        Display all targets intended for developer use
--->
-    <target name="targets">
-        <echo message=""/>
-        <echo message="ANT build for ${project.name} ${project.version}"/>
-        <echo message=""/>
-        <echo message="The following targets are available:"/>
-        <echo message="  all                     Cleans and builds library and webapps"/>
-        <echo message="  clean                   Cleans the build and distribution directories"/>
-        <echo message="  compile.javadoc         Builds Javadoc API docs for Struts"/>
-        <echo message="  compile.library         Builds the main packages"/>
-        <echo message="  compile.webapps         Builds the web applications"/>
-        <echo message="  deploy.catalina         Deploys build to Catalina build directory"/>
-        <echo message="  deploy.tomcat           Depoys build to Tomcat build directory"/>
-        <echo message="  dist                    Builds binary distribution in dist directory"/>
-        <echo message=""/>
-        <echo message="Default target is 'compile.library'"/>
-    </target>
-
-<!--
         Clean up build and distribution directories
 -->
-    <target name="clean">
+    <target name="clean"
+     description="Clean build and distribution directories">
         <delete dir="${build.home}"/>
     </target>
 
 <!--
         All-in-one build target
 -->
-    <target name="all" depends="clean,compile.library,compile.webapps"/>
+    <target name="all" depends="clean,compile.library,compile.webapps"
+     description="Clean and build library and web applications"/>
 
 </project>
