@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.15 2002/11/28 07:26:21 rleland Exp $
- * $Revision: 1.15 $
- * $Date: 2002/11/28 07:26:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.16 2002/12/27 10:57:01 cedric Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/12/27 10:57:01 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.config.ModuleConfig;
 public class TilesRequestProcessor extends RequestProcessor
 {
     /** Definitions factory */
-  private DefinitionsFactory definitionsFactory;
+  protected DefinitionsFactory definitionsFactory;
 
      /**
       * Commons Logging instance.
@@ -119,11 +119,12 @@ public class TilesRequestProcessor extends RequestProcessor
     /**
      * Read component instance mapping configuration file.
      * This is where we read files properties.
+     * @param moduleConfig The ModuleConfig we are associated with.
      */
   protected void initDefinitionsMapping() throws ServletException
     {
       // Retrieve and set factory for this modules
-    definitionsFactory = DefinitionsUtil.getDefinitionsFactory(getServletContext());
+    definitionsFactory = ((TilesUtilStrutsImpl)TilesUtil.getTilesUtil()).getDefinitionsFactory(getServletContext(), moduleConfig);
     if( definitionsFactory == null )
       {  // problem !
         if(log.isErrorEnabled())
