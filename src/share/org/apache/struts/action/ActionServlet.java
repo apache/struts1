@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.20 2000/09/20 04:20:22 craigmcc Exp $
- * $Revision: 1.20 $
- * $Date: 2000/09/20 04:20:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.21 2000/09/23 18:26:48 craigmcc Exp $
+ * $Revision: 1.21 $
+ * $Date: 2000/09/23 18:26:48 $
  *
  * ====================================================================
  *
@@ -188,7 +188,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.20 $ $Date: 2000/09/20 04:20:22 $
+ * @version $Revision: 1.21 $ $Date: 2000/09/23 18:26:48 $
  */
 
 public class ActionServlet
@@ -921,7 +921,7 @@ public class ActionServlet
 	processNoCache(response);
 
 	// Look up the corresponding mapping
-	ActionMapping mapping = processMapping(path);
+	ActionMapping mapping = processMapping(path, request);
 	if (mapping == null) {
 	    if (debug >= 1)
 		log(" No mapping available for path " + path);
@@ -1047,10 +1047,16 @@ public class ActionServlet
     /**
      * Identify and return an appropriate ActionMapping for the specified
      * path.  If no such mapping can be identified, return <code>null</code>.
+     * The <code>request</code> parameter is available if you need to make
+     * decisions on available mappings (such as checking permissions) based
+     * on request parameters or other properties, but it is not used in the
+     * default implementation.
      *
      * @param path Path component used to select a mapping
+     * @param request The request we are processing
      */
-    protected ActionMapping processMapping(String path) {
+    protected ActionMapping processMapping(String path,
+                                           HttpServletRequest request) {
 
         ActionMapping mapping = findMapping(path);
         if (mapping == null)
