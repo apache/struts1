@@ -70,7 +70,9 @@
 	  </item>
 	  -->
       <item value="Quick overview" link="/doc/quickOverview.jsp"  />
+      <!--
       <item value="Tutorial"       link="/doc/tutorial.jsp"  />
+      -->
       <item value="Tutorial Live Examples" link="/tutorial/index.jsp" />
       <item value="Download"       link="/doc/download.jsp" />
       <item value="Installation"   link="/doc/installation.jsp" />
