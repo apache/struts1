@@ -149,7 +149,7 @@
 				The case above would be rendered like this using Struts:
 				
 				<pre>
-					&lt;struts:text name="username"/&gt;
+					&lt;html:text name="username"/&gt;
 				</pre>
 				
 				with no need to explicitly refer to the JavaBean from which the initial
@@ -167,48 +167,49 @@
 				
 				<pre>
 						&lt;%@ page language="java" %&gt;
-						&lt;%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %&gt;
+						&lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
+						&lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
+
 					
 						&lt;html&gt;
 						&lt;head&gt;
-						&lt;title&gt;&lt;struts:message key="logon.title"/&gt;&lt;/title&gt;
+						&lt;title&gt;&lt;bean:message key="logon.title"/&gt;&lt;/title&gt;
 						&lt;body bgcolor="white"&gt;
 					
-						&lt;struts:errors/&gt;
+						&lt;html:errors/&gt;
 					
-						&lt;struts:form action="logon.do" name="logonForm"
-							type="org.apache.struts.example.LogonForm"/&gt;
+						&lt;html:form action="logon.do"&gt;
 						&lt;table border="0" width="100%"&gt;
 					    &lt;tr&gt;
 					      &lt;th align="right"&gt;
-					        &lt;struts:message key="prompt.username"/&gt;
+					        &lt;html:message key="prompt.username"/&gt;
 					      &lt;/th&gt;
 					      &lt;td align="left"&gt;
-					        &lt;struts:text name="username" size="16"/&gt;
+					        &lt;html:text name="username" size="16"/&gt;
 					      &lt;/td&gt;
 					    &lt;/tr&gt;
 					    &lt;tr&gt;
 					      &lt;th align="right"&gt;
-					        &lt;struts:message key="prompt.password"/&gt;
+					        &lt;html:message key="prompt.password"/&gt;
 					      &lt;/th&gt;
 					      &lt;td align="left"&gt;
-					        &lt;struts:password name="password" size="16"/&gt;
+					        &lt;html:password name="password" size="16"/&gt;
 					      &lt;/td&gt;
 					    &lt;/tr&gt;
 					    &lt;tr&gt;
 					      &lt;td align="right"&gt;
 					        &lt;struts:submit&gt;
-					          &lt;struts:message key="button.submit"/&gt;
+					          &lt;bean:message key="button.submit"/&gt;
 					        &lt;/struts:submit&gt;
 					      &lt;/td&gt;
 					      &lt;td align="right"&gt;
-					        &lt;struts:reset&gt;
-					          &lt;struts:message key="button.reset"/&gt;
-					        &lt;/struts:reset&gt;
+					        &lt;html:reset&gt;
+					          &lt;bean:message key="button.reset"/&gt;
+					        &lt;/html:reset&gt;
 					      &lt;/td&gt;
 					    &lt;/tr&gt;
 					  &lt;/table&gt;
-					  &lt;/struts:form&gt;
+					  &lt;/html:form&gt;
 					
 					  &lt;/body&gt;
 					  &lt;/html&gt;
@@ -222,10 +223,11 @@
 				<ul>
 					<li>The <code>taglib</code> directive tells the JSP page compiler where to
 					    find the <i>tag library descriptor</i> for the Struts tag library.  In
-					    this case, we are using <code>struts</code> as the prefix that identifies
-					    tags from this library, but any desired prefix can be used.</li>
+					    this case, we are using <code>bean</code> as the prefix that identifies
+					    tags from the struts-bean library, and "html" as the prefix that identifies
+					    tags from the struts-html library.  Any desired prefix can be used.</li>
 					<li>This page uses several occurrences of the
-					    <a href="tags.html#message">message</a> tag to look up internationalized
+					    message tag to look up internationalized
 					    message strings from a <code>MessageResources</code> object containing
 					    all the resources for this application.  For this page to work, the
 					    following message keys must be defined in these resources:
@@ -242,11 +244,11 @@
 					    implement giving the user an option to switch languages -- simply change
 					    the stored <code>Locale</code> object, and all messages are switched
 					    automatically.</li>
-					<li>The <a href="tags.html#errors">errors</a> tag displays any error
+					<li>The errors tag displays any error
 					    messages that have been stored by a business logic component, or nothing
 					    if no errors have been stored.  This tag will be described further
 					    below.</li>
-					<li>The <a href="tags.html#form">form</a> tag renders an HTML
+					<li>The form tag renders an HTML
 					    <code>&lt;form&gt;</code> element, based on the specified attributes.
 					    It also associates all of the fields within this form with a session
 					    scoped FormBean that is stored under the key <code>logonForm</code>.
@@ -254,19 +256,19 @@
 					    fields that have names matching the property names of the bean.
 					    If an appropriate bean is not found, a new one will be created
 					    automatically, using the specified Java class name.</li>
-					<li>The <a href="tags:html#text">text</a> tag renders an HTML
+					<li>The text tag renders an HTML
 					    <code>&lt;input&gt;</code> element of type "text".  In this case,
 					    the number of character positions to occupy on the browser's screen
 					    has been specified as well.  When this page is executed, the current
 					    value of the <code>username</code> property of the corresponding bean
 					    (that is, the value returned by <code>getUsername()</code>).</li>
-					<li>The <a href="tags.html#password">password</a> tag is used similarly.
+					<li>The password tag is used similarly.
 					    The difference is that the browser will echo asterisk characters,
 					    instead of the input value, as the user types their password.</li>.
-					<li>The <a href="tags.html#submit">submit</a> and
-					    <a href="tags.html#reset">reset</a> tags generate the corresponding
+					<li>The submit and
+					    reset tags generate the corresponding
 					    buttons at the bottom of the form.  The text labels for each button
-					    are created using <a href="tags.html#message">message</a> tags,
+					    are created using message tags,
 					    as with the prompts, so that these values are internationalized.</li>
 				</ul>
 			</section>
@@ -279,16 +281,16 @@
 				</p>
 				
 				<ul>
-						<li><a href="tags.html#checkbox">checkboxes</a></li>
-						<li><a href="tags.html#hidden">hidden</a> fields</li>
-						<li><a href="tags.html#password">password</a> input fields</li>
-						<li><a href="tags.html#radio">radio</a> buttons</li>
-						<li><a href="tags.html#reset">reset</a> buttons</li>
-						<li><a href="tags.html#select">select</a> lists with embedded</li>
-						<li><a href="tags.html#option">options</a></li>
-						<li><a href="tags.html#submit">submit</a> buttons</li>
-						<li><a href="tags.html#text">text</a> input fields</li>
-						<li><a href="tags.html#textarea">textareas</a></li>
+						<li><a href="struts-html.html#checkbox">checkboxes</a></li>
+						<li><a href="struts-html.html#hidden">hidden</a> fields</li>
+						<li><a href="struts-html.html#password">password</a> input fields</li>
+						<li><a href="struts-html.html#radio">radio</a> buttons</li>
+						<li><a href="struts-html.html#reset">reset</a> buttons</li>
+						<li><a href="struts-html.html#select">select</a> lists with embedded</li>
+						<li><a href="struts-html.html#option">options</a></li>
+						<li><a href="struts-html.html#submit">submit</a> buttons</li>
+						<li><a href="struts-html.html#text">text</a> input fields</li>
+						<li><a href="struts-html.html#textarea">textareas</a></li>
 				</ul>
 				
 				<p>
@@ -306,13 +308,13 @@
 				</p>
 				
 				<ul>
-					<li><a href="tags.html#enumerate">enumerate</a> repeats its tag body once
+					<li><a href="struts-logic.html#iterate">iterate</a> repeats its tag body once
 					    for each element of a specified collection (which can be an Enumeration,
 					    a Hashtable, a Vector, or an array of objects).</li>
-					<li><a href="tags.html#getProperty">getProperty</a> retrieves the specified
+					<li><a href="struts-bean.html#getProperty">getProperty</a> retrieves the specified
 					    property from the specified bean, and exposes it as a page scope
 					    bean to the rest of this page.  Among other things, this is a convenient
-					    way to access a collection to be used by <code>enumerate</code>.</li>
+					    way to access a collection to be used by <code>iterate</code>.</li>
 					<li><a href="tags.html#ifAttributeExists">ifAttributeExists</a> evaluates
 					    its tag body only if a specified attribute exists in a specified scope.
 					    </li>
@@ -351,19 +353,19 @@
 			
 				<p>
 					In addition to the form and bean interactions described above, Struts
-					offers an additional facility if your bean knows how to validate the input
-					fields it has received.  To utilize this feature, have your bean class
-					implement the <code>ValidatingActionForm</code> interface, rather than the
-					<code>ActionForm</code> interface.  A ValidatingActionForm adds an additional
-					method signature:
-				</p>
-					
+					offers an additional facility to validate the input
+					fields it has received.  To utilize this feature, override either of the following
+					methods, depending on your servlet environment, in your ActionForm class:
 					<pre>
-					    public String[] validate()
-					</pre>
-					
+						public ActionErrors validate(ActionMapping mapping,
+                                               ServletRequest request)
+                  public ActionErrors validate(ActionMapping mapping,
+                  									  HttpServletRequest request)
+               </pre>
+				</p>
+				
 				<p>
-					for a method that is called by the controller servlet after the bean
+					The validate() method is called by the controller servlet after the bean
 					properties have been populated, but before the corresponding action class's
 					<code>perform()</code> method is invoked.  The <code>validate()</code> method
 					has the following options:
@@ -371,21 +373,22 @@
 				
 				<ul>
 					<li>Perform the appropriate validations and find no problems -- Return either
-					    <code>null</code> or a zero-length String array, and the controller servlet
+					    <code>null</code> or a zero-length ActionErrors instance, and the controller servlet
 					    will proceed to call the <code>perform()</code> method of the appropriate
 					    <code>Action</code> class.</li>
-					<li>Perform the appropriate validations and find problems -- Return a String
-					    array whose contents are the error message keys (into the application's
+					<li>Perform the appropriate validations and find problems -- Return an ActionErrors
+					    instance containing <code>ActionError</code>'s, which are classes that contain
+					    the error message keys (into the application's
 					    <code>MessageResources</code> bundle) that should be displayed.  The
 					    controller servlet will store this array as a request attribute suitable
-					    for use by the <code>&lt;struts:errors&gt;</code> tag, and will forward
+					    for use by the <code>&lt;html:errors&gt;</code> tag, and will forward
 					    control back to the input form (identified by the <code>inputForm</code>
 					    property for this <code>ActionMapping</code>.</li>
 				</ul>
 					
 				<p>
-					As mentioned earlier, this feature is entirely optional.  If your form bean
-					implements only the <code>ActionForm</code> interface, the controller servlet
+					As mentioned earlier, this feature is entirely optional.  The default implementation
+					of the validate() method returns <code>null</code>, and the controller servlet
 					will assume that any required validation is done by the action class.
 				</p>
 			</section>
@@ -460,7 +463,8 @@
 					The development of the various segments of this site is easier if you
 					can divide up the work, and assign different developers to the different
 					segments.  Then, you can use the <i>include</i> capability of JavaServer Pages
-					technology to combine the results into a single result page.  There are two
+					technology to combine the results into a single result page, or use the include tag
+					provided with Struts.  There are three
 					types of <i>include</i> available, depending on when you want the combination
 					of output to occur:
 				</p>
@@ -476,6 +480,10 @@
 					    transparently by the server.  Among other things, that means you
 					    can conditionally perform the include by nesting it within a tag
 					    like <a href="tags.html#ifParameterEquals">ifParameterEquals</a>.</li>
+					<li>The <a href="struts-bean.html#include>bean:include</a> tag takes either a
+						 an argument "forward" representing a logical name mapped to the jsp to include,
+						 or the "id" argument, which represents a page context String variable to print
+						 out to the jsp page.</li>
 				</ul>
 			</section>
 
