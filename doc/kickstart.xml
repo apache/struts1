@@ -82,7 +82,8 @@
 <section href="install" name="How do I install Struts?">
 <p>To develop applications with Struts, you can usually just add the Struts JAR file
 to your Java development environment. You can then start using the Struts classes as
-part of your own application. A <a href="struts-blank.war">blank Struts application</a>
+part of your own application. A blank Struts application (in the
+<code>webapps</code> directory, open <code>struts-blank.war</code>)
 is provided, which you can just copy to get a quick-start on your own brainchild.</p>
 <p>Since the full source code for Struts is available, we also provide
 <a href="http://jakarta.apache.org/struts/installation.html">complete instructions</a>
