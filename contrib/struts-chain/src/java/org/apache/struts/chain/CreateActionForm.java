@@ -39,7 +39,7 @@ import org.apache.commons.logging.LogFactory;
  * <p>Create (if necessary) and cache a form bean for this request.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2004/04/09 15:17:43 $
+ * @version $Revision: 1.6 $ $Date: 2004/07/05 19:00:30 $
  */
 
 public class CreateActionForm implements Command {
@@ -251,7 +251,7 @@ public class CreateActionForm implements Command {
             ModuleConfig moduleConfig = (ModuleConfig)
                 wcontext.get(getModuleConfigKey());
             DynaActionFormClass dynaClass =
-                DynaActionFormClass.createDynaActionFormClass(formBeanConfig, moduleConfig);
+                DynaActionFormClass.createDynaActionFormClass(formBeanConfig);
             instance = (ActionForm) dynaClass.newInstance();
             ((DynaActionForm) instance).initialize
                 ((ActionMapping) actionConfig);
