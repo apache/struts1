@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.35 2002/11/17 00:56:19 dgraham Exp $
- * $Revision: 1.35 $
- * $Date: 2002/11/17 00:56:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.36 2002/11/17 00:57:07 dgraham Exp $
+ * $Revision: 1.36 $
+ * $Date: 2002/11/17 00:57:07 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.35 $ $Date: 2002/11/17 00:56:19 $
+ * @version $Revision: 1.36 $ $Date: 2002/11/17 00:57:07 $
  */
 
 public class FormTag extends TagSupport {
@@ -652,15 +652,6 @@ public class FormTag extends TagSupport {
             results.append("         focusControl = focusControl[0];\r\n");
             results.append("     }\r\n");
             results.append("     focusControl.focus();\r\n");
-//            results.append("    document.forms[\"");
-//            results.append(beanName);
-//            results.append("\"].elements[\"");
-//            results.append(tempFocus);
-//            results.append("\"]");
-//            if (refocus.length() > 1) {
-//                results.append(refocus.toString());
-//            }
-//            results.append(".focus();\r\n");
             
             results.append("  // -->\r\n");
             results.append("</script>\r\n");
