@@ -32,7 +32,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * @version $Rev$ $Date$
  * @since Struts 1.0.1
  */
-public class ActionServletWrapper {
+public class ActionServletWrapper implements java.io.Serializable {
 
     /**
      * <p>The servlet instance to which we are attached.</p>
