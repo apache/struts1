@@ -209,10 +209,12 @@ public class Validator implements Serializable {
                     String depend = st.nextToken().trim();
                     Object o = hActionsRun.get(depend);
 
-		    //logger.info("***### Validator main - " + va.getName() + " - " + va.getDepends());
+                    //if (logger.getDebug() > 10)
+		    //   logger.info("***### Validator main - " + va.getName() + " - " + va.getDepends());
 		                       
                     if (o == null) {
-                       //logger.info("***### Validator o==null - " + va.getName() + " - " + va.getDepends());
+                       //if (logger.getDebug() > 10)
+                       //   logger.info("***### Validator o==null - " + va.getName() + " - " + va.getDepends());
                           
                        lActions.clear();
                        va = null;
@@ -221,7 +223,8 @@ public class Validator implements Serializable {
                     } else {
                        boolean bContinue = ((Boolean)o).booleanValue();
                        
-                       //logger.info("***### Validator - " + va.getName() + "  depend=" + depend + "  bContinue=" + bContinue);
+                       //if (logger.getDebug() > 10)
+                       //   logger.info("***### Validator - " + va.getName() + "  depend=" + depend + "  bContinue=" + bContinue);
                        
                        if (!bContinue) {
                           lActions.clear();
@@ -237,7 +240,7 @@ public class Validator implements Serializable {
               }
 	      
 	      // For debug   
-	      /*if (logger.getDebug() > 0) {
+	      /**if (logger.getDebug() > 10) {
 	         logger.info("***Order ******************************");
 	         
 	         for (Iterator actions = lActions.iterator(); actions.hasNext(); ) {
@@ -251,14 +254,14 @@ public class Validator implements Serializable {
 	      if (va != null) {
                  for (Iterator i = form.getFields().iterator(); i.hasNext(); ) {
                     Field field = (Field)i.next();         
- 
+
                     if (field.getPage() <= page && (field.getDepends() != null && field.isDependency(va.getName()))) {
 	               try {
 	               	  // Add these two Objects to the resources since they reference 
 	               	  // the current validator action and field
 	               	  hResources.put(VALIDATOR_ACTION_KEY, va);
 	               	  hResources.put(FIELD_KEY, field);
-	               	  
+
 	               	  Class c = Class.forName(va.getClassname(), true, this.getClass().getClassLoader());
 	               	  
 	               	  List lParams = va.getMethodParamsList();
@@ -296,7 +299,7 @@ public class Validator implements Serializable {
 	                                   "of class " + va.getClassname() + ".  " + ex.getMessage());   
 	                     }
 	                  }
-                          
+
                           Object result = null;
                           
                           if (field.isIndexed()) {
@@ -328,7 +331,7 @@ public class Validator implements Serializable {
                              }
                           } else {
                              result = m.invoke(va.getClassnameInstance(), paramValue);
-                             
+
                              if (result instanceof Boolean) {
                                 Boolean valid = (Boolean)result;
                                 if (!valid.booleanValue())
@@ -352,12 +355,14 @@ public class Validator implements Serializable {
                     hActionsRun.put(va.getName(), new Boolean(false));
 	         }
 	         
-	         //logger.info("*** Validator - " + va.getName() + "  size=" + lActions.size());
+	         if (logger.getDebug() > 10)
+	            logger.info("*** Validator - " + va.getName() + "  size=" + lActions.size());
                     
                  if (lActions.size() > 0)
 	            lActions.remove(0);
 	         
-	         //logger.info("*** Validator - after remove - " + va.getName() + "  size=" + lActions.size());
+	         if (logger.getDebug() > 10)
+	            logger.info("*** Validator - after remove - " + va.getName() + "  size=" + lActions.size());
               }
               
 	      if (lActions.size() == 0)

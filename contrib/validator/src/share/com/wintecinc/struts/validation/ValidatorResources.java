@@ -395,8 +395,6 @@ public class ValidatorResources implements Serializable {
            !GenericValidator.isBlankOrNull(variant)) {
           Form form = get(language, country, null, formKey);
 
-          // FIX ME - getFieldMap() can be removed if method in this class 
-          // can loop through and find the matching field based on the Field.getProperty()
           if (form.getFieldMap().containsKey(fieldKey))
              field = (Field)form.getFieldMap().get(fieldKey);
        }

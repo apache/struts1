@@ -393,6 +393,9 @@ public class Field implements Cloneable, Serializable {
      * Gets a unique key based on the property and indexedProperty fields.
     */
     public String getKey() {
+       if (key == null)
+          generateKey();
+          
        return key;
     }
 
@@ -415,7 +418,17 @@ public class Field implements Cloneable, Serializable {
        else
           return false;
     }
-            
+
+    /**
+     * Generate correct <code>key</code> value.
+    */    
+    public void generateKey() {
+       if (isIndexed())
+          key = indexedProperty + TOKEN_INDEXED + "." + property;
+       else
+          key = property;
+    }
+                
     /**
      * Replace constants with values in fields and process the depends field 
      * to create the dependency <code>Map</code>.
@@ -428,13 +441,8 @@ public class Field implements Cloneable, Serializable {
        hArg3.setFast(true);
        hVars.setFast(true);
 
-       // If the field is indexed, combine property and 
-       // indexedProperty to make a unique key.
-       if (isIndexed())
-          key = indexedProperty + TOKEN_INDEXED + "." + property;
-       else
-          key = property;
-       
+       generateKey();
+              
        // Process FormSet Constants
        for (Iterator i = constants.keySet().iterator(); i.hasNext(); ) {
           String key = (String)i.next();
@@ -557,13 +565,22 @@ public class Field implements Cloneable, Serializable {
        try {
            Field field = (Field)super.clone();
 
+           if (key != null)
+              field.setKey(new String(key));
+
            if (property != null)
               field.setProperty(new String(property));
+
+           if (indexedProperty != null)
+              field.setIndexedProperty(new String(indexedProperty));
+
+           if (indexedListProperty != null)
+              field.setIndexedListProperty(new String(indexedListProperty));
            
            if (depends != null)
               field.setDepends(new String(depends));
-              
-           // page field taken care of by clone method
+
+           // page & fieldOrder should be taken care of by clone method
            
            field.hDependencies = copyFastHashMap(hDependencies);
            field.hVars = copyFastHashMap(hVars);
@@ -572,7 +589,7 @@ public class Field implements Cloneable, Serializable {
            field.hArg1 = copyFastHashMap(hArg1);
            field.hArg2 = copyFastHashMap(hArg2);
            field.hArg3 = copyFastHashMap(hArg3);
-
+    
            return field;
        } catch (CloneNotSupportedException e) {
           throw new InternalError(e.toString());
@@ -610,9 +627,14 @@ public class Field implements Cloneable, Serializable {
     }
     
     public String toString() {
-    	String sReturn = "\t\tproperty=   " + property    + "\n" +
-    	                 "\t\tdepends=   " + depends    + "\n";
-    	
+    	String sReturn = "\t\tkey=                 " + key    + "\n" +
+    	                 "\t\tproperty=            " + property    + "\n" +
+    	                 "\t\tindexedProperty=     " + indexedProperty    + "\n" +
+    	                 "\t\tindexedListProperty= " + indexedListProperty    + "\n" +
+    	                 "\t\tdepends=             " + depends    + "\n" +
+    	                 "\t\tpage=                " + page    + "\n" +
+    	                 "\t\tfieldOrder=          " + fieldOrder    + "\n";
+
     	if (hVars != null) {
     	   sReturn += "\t\tVars:\n";
     	   for (Iterator i = hVars.keySet().iterator(); i.hasNext(); ) {
