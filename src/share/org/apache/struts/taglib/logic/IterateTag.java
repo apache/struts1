@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.11.2.1 2001/06/14 04:24:27 martinc Exp $
- * $Revision: 1.11.2.1 $
- * $Date: 2001/06/14 04:24:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.11.2.2 2002/03/12 05:36:18 craigmcc Exp $
+ * $Revision: 1.11.2.2 $
+ * $Date: 2002/03/12 05:36:18 $
  *
  * ====================================================================
  *
@@ -63,7 +63,8 @@
 package org.apache.struts.taglib.logic;
 
 
-import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -88,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11.2.1 $ $Date: 2001/06/14 04:24:27 $
+ * @version $Revision: 1.11.2.2 $ $Date: 2002/03/12 05:36:18 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -310,15 +311,20 @@ public class IterateTag extends BodyTagSupport {
 
 
 	// Construct an iterator for this collection
-	if (collection.getClass().isArray())
-	    collection = Arrays.asList((Object[]) collection);
-	if (collection instanceof Collection)
+	if (collection.getClass().isArray()) {
+            int length = Array.getLength(collection);
+            ArrayList c = new ArrayList(length);
+            for (int i = 0; i < length; i++) {
+                c.add(Array.get(collection, i));
+            }
+            iterator = c.iterator();
+	} else if (collection instanceof Collection)
 	    iterator = ((Collection) collection).iterator();
 	else if (collection instanceof Iterator)
 	    iterator = (Iterator) collection;
 	else if (collection instanceof Map)
 	    iterator = ((Map) collection).entrySet().iterator();
-    else if (collection instanceof Enumeration)
+        else if (collection instanceof Enumeration)
 	    iterator = new IteratorAdapter((Enumeration)collection);
    	else {
 	    JspException e = new JspException
