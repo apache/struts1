@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.34 2000/11/18 22:10:55 craigmcc Exp $
- * $Revision: 1.34 $
- * $Date: 2000/11/18 22:10:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.35 2000/11/19 02:11:15 craigmcc Exp $
+ * $Revision: 1.35 $
+ * $Date: 2000/11/19 02:11:15 $
  *
  * ====================================================================
  *
@@ -200,7 +200,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.34 $ $Date: 2000/11/18 22:10:55 $
+ * @version $Revision: 1.35 $ $Date: 2000/11/19 02:11:15 $
  */
 
 public class ActionServlet
@@ -1477,7 +1477,7 @@ public class ActionServlet
 
         ActionMapping mapping = findMapping(path);
         if (mapping == null)
-            mapping = mappings.getUnknown();
+            mapping = mappings.getUnknown(request);
         return (mapping);
 
     }

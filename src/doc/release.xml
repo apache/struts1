@@ -119,6 +119,13 @@
       modifiers removed, and <code>private</code> instance variables
       changed to <code>protected</code>.  This makes it possible to easily
       subclass these tags to provide specialized functionality.</li>
+  <li>The <code>&lt;form:link&gt;</code> tag has been enhanced to support
+      a new <code>page</code> attribute that allows you to use
+      context-relative URIs in a portable manner.</li>
+  <li>A new <code>&lt;form:html&gt;</code> tag has been created that
+      renders an HTML <code>&lt;html&gt;</code> element with appropriate
+      <code>lang</code> and <code>xml:lang</code> attributes, based on the
+      session stored in the user's session (if there is one).</li>
   </ul>
 
   <p>The following major new features have been added to the
@@ -185,6 +192,9 @@
       <code>&lt;jsp:include/&gt;</code> call.  Previously, it would mistakenly
       use the original request URI, rather than the included path, to calculate
       which action class to execute.</li>
+  <li>The <code>ActionMappings.getUnknown()</code> method now takes the current
+      request as an parameter, so that context-sensitive decisions can be
+      made.</li>
   </ul>
 
   <p>The following changes and bug fixes to the Digester module

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.3 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/09/20 04:20:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.4 2000/11/19 02:11:15 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/11/19 02:11:15 $
  *
  * ====================================================================
  *
@@ -66,6 +66,8 @@ package org.apache.struts.action;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -73,7 +75,7 @@ import java.util.Vector;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.4 $ $Date: 2000/11/19 02:11:15 $
  */
 
 public class ActionMappings {
@@ -105,8 +107,24 @@ public class ActionMappings {
 
     /**
      * Return the Action that should handle unknown request paths, if any.
+     * The default implementation casts the request to HttpServletRequest
+     * and calls the corresponding version of this method.
+     *
+     * @param request The servlet request we are processing
      */
-    public ActionMapping getUnknown() {
+    public ActionMapping getUnknown(ServletRequest request) {
+
+        return (getUnknown((HttpServletRequest) request));
+
+    }
+
+
+    /**
+     * Return the Action that should handle unknown request paths, if any.
+     *
+     * @param request The servlet request we are processing
+     */
+    public ActionMapping getUnknown(HttpServletRequest request) {
 
         if (unknown != null)
             return (unknown);
