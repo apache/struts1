@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.23 2003/09/09 03:55:35 rleland Exp $
- * $Revision: 1.23 $
- * $Date: 2003/09/09 03:55:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/MessagesTag.java,v 1.24 2003/09/22 01:39:19 dgraham Exp $
+ * $Revision: 1.24 $
+ * $Date: 2003/09/22 01:39:19 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * to the default <code>ErrorsTag</code>.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.23 $ $Date: 2003/09/09 03:55:35 $
+ * @version $Revision: 1.24 $ $Date: 2003/09/22 01:39:19 $
  * @since Struts 1.1
  */
 public class MessagesTag extends BodyTagSupport {
@@ -252,10 +252,10 @@ public class MessagesTag extends BodyTagSupport {
                 report.getKey(),
                 report.getValues());
 
-        if (msg != null) {
-            pageContext.setAttribute(id, msg);
-        } else {
+        if (msg == null) {
             pageContext.removeAttribute(id);
+        } else {
+            pageContext.setAttribute(id, msg);
         }
 
         if (header != null && header.length() > 0) {
@@ -298,7 +298,11 @@ public class MessagesTag extends BodyTagSupport {
                     report.getKey(),
                     report.getValues());
 
-           pageContext.setAttribute(id, msg);
+           if (msg == null) {
+               pageContext.removeAttribute(id);
+           } else {
+               pageContext.setAttribute(id, msg);
+           }
 
            return (EVAL_BODY_TAG);
         } else {
