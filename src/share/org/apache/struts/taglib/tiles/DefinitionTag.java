@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/DefinitionTag.java,v 1.2 2002/07/17 09:24:29 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/17 09:24:29 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import javax.servlet.jsp.JspException;
  * used in &lt;tiles:insert&gt.
  *
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/06/25 03:16:30 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/17 09:24:29 $
  */
 public class DefinitionTag extends DefinitionTagSupport implements PutTagParent, PutListTagParent
 {
@@ -263,7 +263,7 @@ public class DefinitionTag extends DefinitionTagSupport implements PutTagParent,
    if( extendsDefinition != null && !extendsDefinition.equals("") )
      {
      ComponentDefinition parentDef = TagUtils.getComponentDefinition( extendsDefinition, pageContext );
-     System.out.println( "parent definition=" + parentDef );
+     //System.out.println( "parent definition=" + parentDef );
      definition = new ComponentDefinition( parentDef );
      }  // end if
     else
