@@ -171,7 +171,6 @@
   <pathelement location="${commons-collections.jar}"/>
   <pathelement location="${commons-digester.jar}"/>
   <pathelement location="${commons-fileupload.jar}"/>
-  <pathelement location="${commons-lang.jar}"/>
   <pathelement location="${commons-logging.jar}"/>
   <pathelement location="${commons-validator.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>

@@ -315,7 +315,7 @@
   </ant>
   <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="example"/>
-    <property name="webapp.war"       value="struts-example.war"/>
+    <property name="webapp.war"       value="struts-mailreader.war"/>
   </ant>
   <ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="examples"/>

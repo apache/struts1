@@ -36,19 +36,19 @@
       your operating system platform.
       A good starting point for locating Java Development Kit distributions is
       <a href="http://java.sun.com/j2se">http://java.sun.com/j2se</a>.
-      To build Struts, Java 1.4.2 or later is suggested. </li>
+      To build Struts, Java 1.4.2 (the latest production JDK) is suggested. </li>
 
   <li><strong>Servlet Container</strong> - You <strong>must</strong> download and install a
       servlet container that is compatible with the Servlet API Specification,
       version 2.2 or later, and the JavaServer Pages (JSP) Specification,
       version 1.1 or later.  One popular choice is to download Apache's
-      <a href="http://jakarta.apache.org/tomcat">Tomcat</a> (version 3.1
-      or later required, version 3.3 or later recommended).</li>
+      <a href="http://jakarta.apache.org/tomcat/">Tomcat</a>, but any compliant
+      container should work well with Struts.</li>
 
   <li><strong>XML Parser</strong> - Struts <strong>requires</strong> the presence of an XML
       parser that is compatible with the Java API for XML Parsing (JAXP)
       specification, 1.1 or later. This is bundled with J2SE 1.4 and later.
-      (For earlier versions of Java, the easiest way to obtain JAXP is
+      For earlier versions of Java, the easiest way to obtain JAXP is
       probably by downloading the Web Services Developers Kit
       (1.1 or later!). See the <a href="http://java.sun.com/xml/jaxp/faq.html#jaxp-ri-latest">
       Sun JAXP FAQ</a> for more information.)
@@ -68,7 +68,12 @@
       <li>Make sure that the "ant" and "ant.bat" scripts are executable, by
           adding the $ANT_HOME/bin directory to your PATH environment
           variable.</li>
-      </ul></li>
+      </ul>
+      <a href="http://maven.apache.org/">Maven</a> property files are also
+      provided, but the Maven build is still experimental. New developers
+      may find Maven easier to use, since it acquires the appropriate JARs
+      automatically.
+      </li>
 
   <li><strong>Servlet API Classes</strong> - In order to compile Struts itself,
       or applications that use Struts, you will need a <code>servlet.jar</code>
@@ -90,18 +95,18 @@
       These are the packages which must be available if you wish to
       build Struts from source:
       <ul>
-      <li><em>ANTLR</em> (Version 2.7.2 or later)</li>
-      <li><em>Commons Beanutils</em> (Version 1.6.1 or later)</li>
-      <li><em>Commons Collections</em> (Version 2.1 or later)</li>
-      <li><em>Commons Digester</em> (Version 1.5 or later)</li>
-      <li><em>Commons FileUpload</em> (Version 1.0 or later)</li>
-      <li><em>Commons Lang</em> (Version 2.0 or later)</li>
-      <li><em>Commons Logging</em> (Version 1.0.3 or later when it is available)</li>
-      <li><em>Commons Validator</em> (Version 1.1.3 or later) </li>
-      <li><em>Jakarta ORO</em> (Version 2.0.7 or later)</li>
+      <li><a href="http://www.antlr.org/">ANTLR</a> (Version 2.7.2)</li>
+      <li><a href="http://jakarta.apache.org/commons/beanutils/">Commons Beanutils</a> (Version 1.6.1)</li>
+      <li><a href="http://jakarta.apache.org/commons/collections/">Commons Collections</a> (Version 2.1)</li>
+      <li><a href="http://jakarta.apache.org/commons/digester/">Commons Digester</a> (Version 1.5)</li>
+      <li><a href="http://jakarta.apache.org/commons/fileupload/">Commons FileUpload</a> (Version 1.0)</li>
+      <li><a href="http://jakarta.apache.org/commons/logging/">Commons Logging</a> (Version 1.0.4)</li>
+      <li><a href="http://jakarta.apache.org/commons/validator/">Commons Validator</a> (Version 1.1.3) </li>
+      <li><a href="http://jakarta.apache.org/oro/">Jakarta ORO</a> (Version 2.0.7 or later)</li>
       </ul>
-      ANTLR is a public domain library; all other libraries are distributed under the
-      Apache Software License.
+      ANTLR is a <a href="http://antlr.org/license.html">public domain library</a>;
+      all other libraries are distributed under the
+      <a href="http://www.apache.org/licenses/">Apache Software License</a>.
       For your convenience, the requisite JARs are provided as a single
       download under the <code>lib</code> sub-directory with each release
       distribution.
@@ -142,24 +147,24 @@
     for you). The distribution consists of the following contents:</p>
 
     <ul>
-    <li><strong>lib/commons-*.jar</strong> - These JAR files contain packages
-        from the Jakarta Commons project that are utilized within Struts
-        itself.  When you assemble a Struts-based application, you will need
-        to copy these files to the <code>WEB-INF/lib</code> directory.</li>
-    <li><strong>lib/struts.jar</strong> - This JAR file contains all of the
-        Java classes included in Struts.  It should be copied into the
-        <code>WEB-INF/lib</code> directory of your web application.
+    <li><strong>lib/*.jar</strong> - The struts.jar contains the Java classes
+        distributed by the Struts project. The other JAR files contain packages
+        from other projects that are imported by Struts. When you launch
+        a Struts-based application, these JARs need to be available to your
+        application, usually by copying them to the application's
+        <code>WEB-INF/lib</code> directory. <br />
         <em>WARNING</em> - If you are going to be hosting multiple Struts
         based applications on the same servlet container, you will be tempted
         to place the <code>struts.jar</code> file into the shared repository
-        supported by your container.  Be advised that this will like cause you
-        to encounter ClassNotFoundException problems unless <em>all</em> of
+        supported by your container.  Be advised that this may cause
+        ClassNotFoundException problems unless <em>all</em> of
         your application classes are stored in the shared repository.</li>
-    <li><strong>lib/struts-*.tld</strong> - These are the "tag library
+    <li><strong>lib/*.tld</strong> - These are the "tag library
         descriptor" files that describe the custom tags in the various Struts
-        tag libraries. They should be copied into the <code>WEB-INF</code>
-        directory of your web application. (Servlet 2.3 can omit this step
-        if the <a href="configuration.html#dd_config_taglib_23">standard uri</a>
+        tag libraries. The tld file for any Struts taglibs that you use should
+        be copied into the <code>WEB-INF</code> directory of your web
+        application. (Applications under Servlet 2.3 containers can omit this
+        step if the <a href="configuration.html#dd_config_taglib_23">standard uri</a>
         is referenced.)</li>
     <li><strong>webapps/struts-blank.war</strong> - This is a simple "web
         application archive" file containing a basic starting point for
@@ -167,42 +172,40 @@
     <li><strong>webapps/struts-documentation.war</strong> - This is a
         "web application archive" file containing all of the Struts
         documentation found on the
-        <a href="http://jakarta.apache.org/struts">Struts web site</a>
+        <a href="http://struts.apache.org/">Struts web site</a>
         (including these pages).  You can install this web application
         on any servlet container compatible with Servlet API 2.2 or later.</li>
-    <li><strong>webapps/struts-example.war</strong> - This is an example
+    <li><strong>webapps/struts-examples.war</strong> - This "modular"
+        applications combines several usefule demonstrations:
+        <ul><li>Exercise-Taglib - This application module contains test pages for
+        the various custom tags distributed with Struts.  It is primarily of use to
+        developers who are enhancing the Struts custom tag libraries, but may also
+        be useful as simple examples of the usage of various Struts tags.</li>
+    <li><strong>Upload</strong> - This application module
+        is a quick example of uploading files using the Struts framework.
+    </li>
+    <li><strong>Validator</strong> - This application module
+        is an example of using the validator framework, using both the
+        server-side and optional client-side validation.
+    </li></ul></li>
+    <li><strong>webapps/struts-mailreader.war</strong> - This is an example
         web application that uses a large percentage of Struts features.
         You can install this web application on any servlet container
         compatible with the Servlet 2.2 (or later) and JSP 1.1 (or later)
         specifications.  If an XML parser is not made available to web
         applications by your container, you will need to add one to the
         WEB-INF/lib directory of this web application.</li>
-    <li><strong>webapps/struts-exercise-taglib.war</strong> - This web
-        application contains test pages for the various custom tags supported
-        by Struts.  It is primarily of use to developers who are enhancing the
-        Struts custom tag libraries, but may also be useful as simple examples
-        of the usage of various Struts tags.</li>
-    <li><strong>webapps/struts-upload.war</strong> - This web application
-        is a quick example of uploading files using the Struts framework.
-    </li>
-    <li><strong>webapps/struts-validator.war</strong> - This web application
-        is an example of using the validator framework, using both the
-        server-side and optional client-side validation.
-    </li>
-        <li><strong>webapps/tiles-documentation.war</strong> - This web
+    <li><strong>webapps/tiles-documentation.war</strong> - This web
         application documents how to use tiles, and was developed using tiles.</li>
     </ul>
 
     <p>To use Struts in your own application, you will need to follow
     these steps:</p>
     <ul>
-    <li>Copy the files <code>lib/commons-*.jar</code> from the Struts
+    <li>Copy the <code>lib/*.jar</code> files from the Struts
         distribution into the <code>WEB-INF/lib</code> directory of your
         web application.</li>
-    <li>Copy the file <code>lib/struts.jar</code> from the Struts distribution
-        into the <code>WEB-INF/lib</code> directory of your web application.
-        </li>
-    <li>Copy the all of the files that match <code>lib/struts-*.tld</code>
+    <li>Copy the <code>lib/*.tld</code> files for any Struts taglibs you use
         from the Struts distribution into the <code>WEB-INF</code> directory
         of your web application.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file for your web application
@@ -243,15 +246,14 @@
         this particular page, like this:</li>
     </ul>
 
-<pre>&lt;%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %&gt;
-&lt;%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %&gt;
+<pre>&lt;%@ taglib uri="/tags/struts-bean" prefix="bean" %&gt;
+&lt;%@ taglib uri="/tags/struts-html" prefix="html" %&gt;
+&lt;%@ taglib uri="/tags/struts-logic" prefix="logic" %&gt;
 </pre>
 
     <ul>
     <li>When compiling the Java classes that comprise your application, be sure
-        to include the <code>struts.jar</code> and
-        <code>commons-*.jar</code> files (copied earlier) on the
+        to include the JAR files (copied earlier) on the
         CLASSPATH that is submitted to the compiler.</li>
     </ul>
 </section> <section name="Installing Struts With Your Servlet Container" href="Containers">
