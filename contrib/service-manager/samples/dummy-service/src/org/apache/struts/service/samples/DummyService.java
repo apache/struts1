@@ -1,7 +1,7 @@
 package org.apache.struts.service.samples;
 
-import org.apache.struts.service.*;
 import org.apache.commons.digester.Digester;
+import org.apache.struts.service.Service;
 
 public class DummyService extends Service {
 

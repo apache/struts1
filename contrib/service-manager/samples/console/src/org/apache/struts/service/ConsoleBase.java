@@ -1,7 +1,7 @@
 package org.apache.struts.service.samples;
 
-import java.io.*;
-import org.apache.struts.service.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class ConsoleBase {
 
