@@ -715,7 +715,7 @@
         <strong>configFactory</strong> - The Java class name of the 
         <code>ModuleConfigFactory</code> used to create the implementation of the 
         <code>ModuleConfig</code> interface. 
-        [org.apache.struts.config.impl.DefaultModuleConfigFactory]
+         [org.apache.struts.config.impl.DefaultModuleConfigFactory]
         </li>
 
     </ul>
