@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
-import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+// import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
@@ -43,7 +43,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
  * compatibility with 1_0.
  *
  * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/08/19 22:36:15 $
+ * @version $Revision: 1.3 $ $Date: 2002/09/12 12:39:50 $
  */
 public class BaseAction extends Action {
 
@@ -58,10 +58,9 @@ public class BaseAction extends Action {
      * @deprecated Will be removed after Struts 1.1 final ships.
      */
     private final boolean isStruts_1_0() {
-        return true;
+        return true;  // Struts 1.0.x
+//      return false; // Struts 1.1
     }
-
-
 
 // ---------------------------------------------------------------- Log
 

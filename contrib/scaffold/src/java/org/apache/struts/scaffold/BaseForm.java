@@ -8,11 +8,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-// import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
-import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+// import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+// import org.apache.struts.util.PropertyUtils; // Struts 1.0.x
+import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
+import org.apache.commons.beanutils.PropertyUtils; // Struts 1.1
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 // import org.apache.struts.validator.ValidatorForm; // Struts 1.1
@@ -24,11 +27,11 @@ import org.apache.commons.scaffold.lang.ChainedException;
 /**
  * Enhanced base ActionForm.
  * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/09/06 21:48:52 $
+ * @version $Revision: 1.5 $ $Date: 2002/09/12 12:39:50 $
  * @todo Change from BeanUtil.populate to copyProperties
  * in 1.1 version.
  */
-public class BaseForm extends ValidatorForm {
+public class BaseForm extends ActionForm {
 
 
 // ----------------------------------------------------------- Properties
@@ -260,7 +263,7 @@ public class BaseForm extends ValidatorForm {
 
     /**
      * Return map of properties for this bean.
-     * Base method uses <code>BeanUtils.describe</code>.
+     * Base method uses <code>PropertyUtils.describe</code>.
      * Override if some properties should not be transfered
      * this way, or a property name should be altered.
      * This will return the actual public properties.
@@ -270,7 +273,7 @@ public class BaseForm extends ValidatorForm {
     public Map describe() throws Exception {
 
         try {
-            return BeanUtils.describe(this);
+            return PropertyUtils.describe(this);
         } catch (Throwable t) {
             throw new ChainedException(t);
       }
@@ -280,8 +283,8 @@ public class BaseForm extends ValidatorForm {
 
     /**
      * Set properties from given object.
-     * Base method uses <code>BeanUtils.populate</code> and
-     * <code>BeanUtils.describe</code>.
+     * Base method uses <code>BeanUtils.copyProperties</code> and
+     * <code>PropertyUtils.describe</code>.
      *
      * @param o The object to use to populate this object.
      * @exception Throws Exception on any error.
@@ -289,7 +292,7 @@ public class BaseForm extends ValidatorForm {
     public void set(Object o) throws Exception {
 
         try {
-            BeanUtils.populate(this,BeanUtils.describe(o));
+            BeanUtils.copyProperties(this,o);
         } catch (Throwable t) {
             throw new ChainedException(t);
       }
@@ -299,7 +302,7 @@ public class BaseForm extends ValidatorForm {
 
     /**
      * Populate matching properties on given object.
-     * Base method uses <code>BeanUtils.populate</code> and
+     * Base method uses <code>BeanUtils.copyProperties</code> and
      * <code>describe()</code>.
      *
      * @param o The object to populate from this object.
@@ -308,7 +311,7 @@ public class BaseForm extends ValidatorForm {
     public void populate(Object o) throws Exception {
 
         try {
-            BeanUtils.populate(o,describe());
+            BeanUtils.copyProperties(o,describe());
         } catch (Throwable t) {
             throw new ChainedException(t);
       }
@@ -334,7 +337,7 @@ public class BaseForm extends ValidatorForm {
      * <p>
      * This method is forwardly-compatible with BaseMapForm.
      * For an instance of BaseMapForm, getMap() is used; otherwise
-     * describe() or BeanUtils.describe() is used.
+     * describe() or PropertyUtils.describe() is used.
      *
      * @fixme Needs testing. Works OK without a profile bean =:o)
      * @param profile The profile bean, if any
@@ -363,7 +366,7 @@ public class BaseForm extends ValidatorForm {
                 userMap = form.describe();
             }
             else {
-                userMap = BeanUtils.describe(this);
+                userMap = PropertyUtils.describe(this);
             }
 
                 // Add user element to formMap if form element is null or blank

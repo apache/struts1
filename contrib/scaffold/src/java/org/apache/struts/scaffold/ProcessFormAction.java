@@ -3,8 +3,9 @@ package org.apache.struts.scaffold;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
-// import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
-import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+
+import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
+// import org.apache.struts.util.BeanUtils; // Struts 1.0.x
 
 import org.apache.commons.scaffold.lang.ChainedException;
 import org.apache.commons.scaffold.lang.Log;
@@ -34,7 +35,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  *
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.4 $ $Date: 2002/08/20 21:35:25 $
+ * @version $Revision: 1.5 $ $Date: 2002/09/12 12:39:50 $
  */
 public class ProcessFormAction extends ProcessAction {
 
@@ -73,8 +74,7 @@ public class ProcessFormAction extends ProcessAction {
             }
             else {
                 try {
-                    BeanUtils.populate(form,
-                        BeanUtils.describe(bean));
+                    BeanUtils.copyProperties(form,bean);
                 }
                 catch (Exception e) {
                     throw new RuntimeException(e.toString());
@@ -88,8 +88,7 @@ public class ProcessFormAction extends ProcessAction {
             }
             else {
                 try {
-                    BeanUtils.populate(form,
-                        BeanUtils.describe(bean));
+                    BeanUtils.copyProperties(form,bean);
                 }
                 catch (Exception e) {
                     throw new RuntimeException(e.toString());
@@ -103,8 +102,7 @@ public class ProcessFormAction extends ProcessAction {
             }
             else {
                 try {
-                    BeanUtils.populate(form,
-                        BeanUtils.describe(bean));
+                    BeanUtils.copyProperties(form,bean);
                 }
                 catch (Exception e) {
                     throw new RuntimeException(e.toString());

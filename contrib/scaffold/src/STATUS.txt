@@ -20,6 +20,12 @@ so much duplicate code here
 // ------------------------------------------------------------ CHANGES
 
 
+11-SEP-2002
+-----------
++ Replace calls to BeanUtils.populate with copyProperties
++ Migrate to latest commons.beanutil.BeanUtils
+
+
 06-SEP-2002
 -----------
 + ActionForm: Add remoteAddr property (automatic). Add validate 

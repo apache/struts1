@@ -1,9 +1,9 @@
 <!--
 @author Ted Husted
-@version $Revision: 1.6 $ $Date: 2002/08/14 18:58:11 $
+@version $Revision: 1.7 $ $Date: 2002/09/12 12:40:27 $
 -->
 
-<project name="scaffold" default="compile">
+<project name="scaffold" default="compile.lib">
 
     <!-- Change this to compile against a different version  -->
     <property name="compile.classpath" value="compile.classpath_1_0"/>
@@ -28,6 +28,7 @@
 
     <!-- Build working classpath -->
     <path id="compile.classpath_1_0">
+        <pathelement path ="lib/commons-beanutils.jar"/>
         <pathelement path ="lib/commons-digester.jar"/>
         <pathelement path ="lib/commons-scaffold_1_0.jar"/>
         <pathelement path ="lib/struts_1_0_2.jar"/>
@@ -71,7 +72,7 @@
         file="./LICENSE"
         todir="classes"/>
         <!-- Remove "jikes" value if you must use javac instead -->
-        <property name="build.compiler" value="jikes"/>
+        <!-- property name="build.compiler" value="jikes"/ -->
         <javac srcdir="src" destdir="classes">
             <classpath refid="${compile.classpath}"/>
         </javac>
@@ -104,11 +105,29 @@
     </target>
 
     <!-- Build binary distribution -->
-    <target name="dist"
+    <target name="compile.lib"
+        depends="compile"
         description="Create binary distribution">
 
       <mkdir
         dir="${distpath.project}"/>
+
+      <jar
+        jarfile="${distpath.project}/${project.distname}.jar"
+        basedir="./classes"/>
+
+    </target>
+
+    <!-- Build distribution -->
+    <target name="dist"
+        description="Create distribution">
+
+      <mkdir
+        dir="${distpath.project}"/>
+
+      <zip zipfile="${distpath.project}/${project.distname}.zip">
+        <zipfileset dir="." prefix="struts-scaffold"/>
+      </zip>
 
       <jar
         jarfile="${distpath.project}/${project.distname}.jar"

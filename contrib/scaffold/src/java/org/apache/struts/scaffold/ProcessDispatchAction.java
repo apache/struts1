@@ -20,8 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
-// import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
-import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+// import org.apache.struts.util.BeanUtils; // Struts 1.0.x
+// import org.apache.struts.util.PropertyUtils; // Struts 1.0.x
+import org.apache.commons.beanutils.BeanUtils; // Struts 1.1
+import org.apache.commons.beanutils.PropertyUtils; // Struts 1.1
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionError;
@@ -49,7 +51,7 @@ import org.apache.commons.scaffold.util.ResultListBase;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author OK State DEQ
- * @version $Revision: 1.4 $ $Date: 2002/08/23 18:30:00 $
+ * @version $Revision: 1.5 $ $Date: 2002/09/12 12:39:50 $
  */
 public class ProcessDispatchAction extends ProcessFormAction {
 
@@ -130,12 +132,12 @@ public class ProcessDispatchAction extends ProcessFormAction {
                 dataBean.setRemoteServer(getRemoteServer());
             }
             else {
-                properties = BeanUtils.describe(form);
+                properties = PropertyUtils.describe(form);
             }
         } // end null form
         else if (null!=userBean) {
                 // if no form, but is profile, still use profile
-            properties = BeanUtils.describe(userBean);
+            properties = PropertyUtils.describe(userBean);
         }
 
             // Execute business logic, using values from  map
