@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.15 2003/07/13 23:33:27 dgraham Exp $
- * $Revision: 1.15 $
- * $Date: 2003/07/13 23:33:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/ForwardTag.java,v 1.16 2003/07/13 23:37:30 dgraham Exp $
+ * $Revision: 1.16 $
+ * $Date: 2003/07/13 23:37:30 $
  *
  * ====================================================================
  *
@@ -76,7 +76,7 @@ import org.apache.struts.util.RequestUtils;
  * configuration information associated with our application.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.15 $ $Date: 2003/07/13 23:33:27 $
+ * @version $Revision: 1.16 $ $Date: 2003/07/13 23:37:30 $
  */
 public class ForwardTag extends TagSupport {
 
@@ -144,39 +144,58 @@ public class ForwardTag extends TagSupport {
         path = config.getPrefix() + path;
 
         if (forward.getRedirect()) {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-                
-            HttpServletResponse response =
-                (HttpServletResponse) pageContext.getResponse();
-                
-            try {
-                if (path.startsWith("/")) {
-                    path = request.getContextPath() + path;
-                }
-                response.sendRedirect(response.encodeRedirectURL(path));
-                
-            } catch (Exception e) {
-                RequestUtils.saveException(pageContext, e);
-                throw new JspException(
-                    messages.getMessage("forward.redirect", name, e.toString()));
-            }
-            
+            this.doRedirect(path);
         } else {
-            
-            try {
-                pageContext.forward(path);
-                
-            } catch (Exception e) {
-                RequestUtils.saveException(pageContext, e);
-                throw new JspException(
-                    messages.getMessage("forward.forward", name, e.toString()));
-            }
+            this.doForward(path);
         }
 
         // Skip the remainder of this page
         return (SKIP_PAGE);
 
+    }
+
+    /**
+     * Forward to the given path converting exceptions to JspException.
+     * @param path The path to forward to.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected void doForward(String path) throws JspException {
+        try {
+            pageContext.forward(path);
+            
+        } catch (Exception e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException(
+                messages.getMessage("forward.forward", name, e.toString()));
+        }
+    }
+
+    /**
+     * Redirect to the given path converting exceptions to JspException.
+     * @param path The path to redirect to.
+     * @throws JspException
+     * @since Struts 1.2
+     */
+    protected void doRedirect(String path) throws JspException {
+        HttpServletRequest request =
+            (HttpServletRequest) pageContext.getRequest();
+            
+        HttpServletResponse response =
+            (HttpServletResponse) pageContext.getResponse();
+            
+        try {
+            if (path.startsWith("/")) {
+                path = request.getContextPath() + path;
+            }
+            
+            response.sendRedirect(response.encodeRedirectURL(path));
+            
+        } catch (Exception e) {
+            RequestUtils.saveException(pageContext, e);
+            throw new JspException(
+                messages.getMessage("forward.redirect", name, e.toString()));
+        }
     }
 
     /**
