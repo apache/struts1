@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedMessagesTag.java,v 1.2 2002/03/29 21:49:09 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/03/29 21:49:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedMessagesTag.java,v 1.3 2002/04/02 04:53:38 dwinterfeldt Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/04/02 04:53:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -67,11 +67,11 @@ import javax.servlet.jsp.tagext.*;
 import org.apache.struts.taglib.html.MessagesTag;
 
 /**
- * NestedTextTag.
+ * NestedMessagesTag.
  * @author Arron Bates
  * @author David Winterfeldt
  * @since Struts 1.1
- * @version $Revision: 1.2 $ $Date: 2002/03/29 21:49:09 $
+ * @version $Revision: 1.3 $ $Date: 2002/04/02 04:53:38 $
  */
 public class NestedMessagesTag extends MessagesTag implements NestedPropertySupport {
 
