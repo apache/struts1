@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.9 2000/08/14 04:42:51 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/08/14 04:42:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.10 2000/08/27 05:21:19 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/08/27 05:21:19 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/08/14 04:42:51 $
+ * @version $Revision: 1.10 $ $Date: 2000/08/27 05:21:19 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -311,6 +311,7 @@ public final class IterateTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
 
 	// Acquire the collection we are going to iterate over (if necessary)
+        Object collection = this.collection;
 	if (collection == null) {
 	    try {
 		Object bean = pageContext.findAttribute(name);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.8 2000/08/14 04:42:50 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/14 04:42:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.9 2000/08/27 05:21:19 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/08/27 05:21:19 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/08/14 04:42:50 $
+ * @version $Revision: 1.9 $ $Date: 2000/08/27 05:21:19 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {
@@ -308,6 +308,7 @@ public final class EnumerateTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
 
 	// Acquire the collection we are going to enumerate (if necessary)
+        Object collection = this.collection;
 	if (collection == null) {
 	    try {
 		Object bean = pageContext.findAttribute(name);
