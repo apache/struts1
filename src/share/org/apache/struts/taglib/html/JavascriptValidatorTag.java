@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.24 2003/03/10 01:57:31 craigmcc Exp $
- * $Revision: 1.24 $
- * $Date: 2003/03/10 01:57:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.25 2003/04/04 06:41:09 dgraham Exp $
+ * $Revision: 1.25 $
+ * $Date: 2003/04/04 06:41:09 $
  *
  * ====================================================================
  *
@@ -93,7 +93,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.24 $ $Date: 2003/03/10 01:57:31 $
+ * @version $Revision: 1.25 $ $Date: 2003/04/04 06:41:09 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -320,8 +320,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             locale = defaultLocale;
         }
 
-        Form form = null;
-        form = resources.get(locale, formName);
+        Form form = resources.get(locale, formName);;
         if (form != null) {
             if ("true".equals(dynamicJavascript)) {
                 MessageResources messages =
@@ -438,47 +437,52 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
                             results.append("new Function (\"varName\", \"");
 
-                            Map hVars = field.getVars();
+                            Map vars = field.getVars();
                             // Loop through the field's variables.
-                            for (Iterator iVars = hVars.keySet().iterator(); iVars.hasNext();) {
-                                String varKey = (String) iVars.next();
-                                Var var = (Var) hVars.get(varKey);
+                            for (Iterator varsIterator = vars.keySet().iterator(); varsIterator.hasNext();) {
+                                String varName = (String) varsIterator.next();
+                                Var var = (Var) vars.get(varName);
                                 String varValue = var.getValue();
                                 String jsType = var.getJsType();
+                                
+                                // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
+                                if (varName.startsWith("field")){
+                                    continue;
+                                }
 
                                 if (Var.JSTYPE_INT.equalsIgnoreCase(jsType)) {
                                     results.append(
                                         "this."
-                                            + varKey
+                                            + varName
                                             + "="
                                             + ValidatorUtil.replace(varValue, "\\", "\\\\")
                                             + "; ");
                                 } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
                                     results.append(
                                         "this."
-                                            + varKey
+                                            + varName
                                             + "=/"
                                             + ValidatorUtil.replace(varValue, "\\", "\\\\")
                                             + "/; ");
                                 } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
                                     results.append(
                                         "this."
-                                            + varKey
+                                            + varName
                                             + "='"
                                             + ValidatorUtil.replace(varValue, "\\", "\\\\")
                                             + "'; ");
                                     // So everyone using the latest format doesn't need to change their xml files immediately.
-                                } else if ("mask".equalsIgnoreCase(varKey)) {
+                                } else if ("mask".equalsIgnoreCase(varName)) {
                                     results.append(
                                         "this."
-                                            + varKey
+                                            + varName
                                             + "=/"
                                             + ValidatorUtil.replace(varValue, "\\", "\\\\")
                                             + "/; ");
                                 } else {
                                     results.append(
                                         "this."
-                                            + varKey
+                                            + varName
                                             + "='"
                                             + ValidatorUtil.replace(varValue, "\\", "\\\\")
                                             + "'; ");
@@ -492,8 +496,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 }
             } else if ("true".equals(staticJavascript)) {
                 results.append(this.getStartElement());
-                if ("true".equals(htmlComment))
+                if ("true".equals(htmlComment)) {
                     results.append(htmlBeginComment);
+                }
             }
         }
         if ("true".equals(staticJavascript)) {
