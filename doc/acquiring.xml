@@ -75,17 +75,17 @@
     </p>
 
     <ul>
-    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2">
-    <b>Struts 1.1 Beta 2 Binary Distribution</b></a></li>
-    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/lib">
-    <b>Struts 1.1 Beta 2 Library Distribution</b></a></li>
-    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/src">
-    <b>Struts 1.1 Beta 2 Source Code Distribution</b></a></li>
+    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3">
+    <b>Struts 1.1 Beta 3 Binary Distribution</b></a></li>
+    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/lib">
+    <b>Struts 1.1 Beta 3 Library Distribution</b></a></li>
+    <li><a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/src">
+    <b>Struts 1.1 Beta 3 Source Code Distribution</b></a></li>
     </ul>
 
     <p>
     Check the
-    <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b2.html">
+    <a href="http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html">
     Release Notes</a> for a summary of the changes since the Struts 1.0.2 
     release.
     </p>

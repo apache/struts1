@@ -14,7 +14,7 @@ The <b>stable production release</b> is <a href="http://jakarta.apache.org/build
 </p>
 
 <p>
-<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/">Struts 1.1b</a> is in its second <b>beta release</b> (12 August 2002).
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/">Struts 1.1b</a> is in its third <b>beta release</b> (30 December 2002).
 </p>
 
 <hr size="1" noshade=""/>
@@ -111,6 +111,41 @@ which only just trails Tomcat:
 </p>
 <hr size="1" noshade=""/>
 -->
+
+<h3><a name="20021230"></a>30 Dec 2002 - Struts 1.1 Beta 3 Released</h3>
+<p>The Struts team is proud to announce the release of Struts 1.1 Beta 3. This
+release includes significant new functionality, while retaining full
+backwards compatibility with earlier versions of Struts. It also
+incorporates fixes for a number of bugs which were reported against earlier
+versions.
+</p>
+<p>
+The binary distribution is available at:
+</p>
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/</a>
+</p>
+<p>
+and the source distribution is available at:
+</p>
+<p>
+<a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/src/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/src/</a>
+</p>
+<p>
+In addition, the library distribution, which contains updated binaries
+without the sample applications, is available at:
+</p>
+<p>
+  http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b3/lib/
+</p>
+<p>
+Details of the changes in this release are available in the Release Notes,
+which can be found here:
+</p>
+<p>
+  http://jakarta.apache.org/struts/userGuide/release-notes-1.1-b3.html
+</p>
+<hr size="1" noshade=""/>
 
 <h3><a name="20021213"></a>12 December 2002 - Struts book #1 and #2</h3>
 <p>

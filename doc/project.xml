@@ -85,14 +85,14 @@
         	/>
     </menu>
 
-    <menu name="Beta Release (1.1-b2)">
+    <menu name="Beta Release (1.1-b3)">
         <item 
         	name="Release Notes"
-            href="userGuide/release-notes-1.1-b2.html"
+            href="userGuide/release-notes-1.1-b3.html"
             />
         <item 
         	name="Release Plan"
-            href="proposals/release-plan-1.1b2.html"
+            href="proposals/release-plan-1.1b3.html"
             />
     </menu>
 
