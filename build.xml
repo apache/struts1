@@ -87,8 +87,8 @@
 -->
 
     <!-- Load local and user build preferences -->
-    <property file="build.properties"/>
     <property file="${user.home}/build.properties"/>
+    <property file="build.properties"/>
 
     <!-- Default values for unspecified properties -->
     <property name="catalina.home"   value="../jakarta-tomcat-4.0/build"/>
@@ -479,7 +479,7 @@
        password="${catalina.password}"/>
     </target>
 
-    <target name="reload.catalina"
+    <target name="reload.catalina" depends="compile.webapps"
      description="Dynamically reload struts-example on Catalina (Tomcat 4.1)">
       <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"/>
       <reload url="${catalina.url}" username="${catalina.username}"

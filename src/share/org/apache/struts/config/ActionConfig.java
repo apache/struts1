@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.5 2002/02/23 23:53:29 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/02/23 23:53:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.6 2002/06/16 05:11:36 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/06/16 05:11:36 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import javax.servlet.http.HttpServletRequest;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/02/23 23:53:29 $
+ * @version $Revision: 1.6 $ $Date: 2002/06/16 05:11:36 $
  * @since Struts 1.1
  */
 
@@ -325,7 +325,7 @@ public class ActionConfig implements Serializable {
             int comma = roles.indexOf(',');
             if (comma < 0)
                 break;
-            list.add(roles.substring(1, comma).trim());
+            list.add(roles.substring(0, comma).trim());
             roles = roles.substring(comma + 1);
         }
         roles = roles.trim();
