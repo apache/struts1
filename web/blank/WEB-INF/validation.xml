@@ -28,12 +28,12 @@
             <field
                 property="username"
                 depends="required">
-                    <arg0 key="logonForm.username"/>
+                    <arg key="logonForm.username"/>
              </field>
          <field
             property="password"
             depends="required,mask">
-            <arg0 key="logonForm.password"/>
+            <arg key="logonForm.password"/>
             <var>
                 <var-name>mask</var-name>
                 <var-value>^[0-9a-zA-Z]*$</var-value>

@@ -18,8 +18,8 @@
     </constant>
     <form name="registrationForm">
       <field property="firstName" depends="required,mask,minlength">
-        <arg0 key="registrationForm.firstname.displayname" />
-        <arg1 name="minlength" key="${var:minlength}" resource="false" />
+        <arg key="registrationForm.firstname.displayname" />
+        <arg name="minlength" key="${var:minlength}" resource="false" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -31,8 +31,8 @@
       </field>
       <field property="lastName" depends="required,mask,maxlength">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
-        <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+        <arg key="registrationForm.lastname.displayname" />
+        <arg name="maxlength" key="${var:maxlength}" resource="false" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
@@ -43,43 +43,43 @@
         </var>
       </field>
       <field property="addr" depends="required">
-        <arg0 key="registrationForm.addr.displayname" />
+        <arg key="registrationForm.addr.displayname" />
       </field>
       <field property="cityStateZip.city" depends="required,mask">
-        <arg0 key="registrationForm.city.displayname" />
+        <arg key="registrationForm.city.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv" depends="required,mask">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.zipPostal[1]" depends="required,mask">
-        <arg0 key="registrationForm.zippostal.displayname" />
+        <arg key="registrationForm.zippostal.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${zip}</var-value>
         </var>
       </field>
       <field property="phone" depends="mask">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${phone}</var-value>
         </var>
       </field>
       <field property="email" depends="required,email">
-        <arg0 key="registrationForm.email.displayname" />
+        <arg key="registrationForm.email.displayname" />
       </field>
     </form>
     <form name="multiRegistrationForm">
       <field property="firstName" depends="required,mask" page="1">
-        <arg0 key="registrationForm.firstname.displayname" />
+        <arg key="registrationForm.firstname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -87,61 +87,61 @@
       </field>
       <field property="lastName" depends="required,mask" page="1">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
+        <arg key="registrationForm.lastname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="addr" depends="required" page="1">
-        <arg0 key="registrationForm.addr.displayname" />
+        <arg key="registrationForm.addr.displayname" />
       </field>
       <field property="cityStateZip.city" depends="required,mask" page="1">
-        <arg0 key="registrationForm.city.displayname" />
+        <arg key="registrationForm.city.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv" depends="required,mask" page="2">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.zipPostal[1]" depends="required,mask" page="2">
-        <arg0 key="registrationForm.zippostal.displayname" />
+        <arg key="registrationForm.zippostal.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${zip}</var-value>
         </var>
       </field>
       <field property="phone" depends="mask" page="2">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${phone}</var-value>
         </var>
       </field>
       <field property="email" depends="required,email" page="2">
-        <arg0 key="registrationForm.email.displayname" />
+        <arg key="registrationForm.email.displayname" />
       </field>
     </form>
     <form name="typeForm">
       <field property="name" depends="required,byte">
-        <arg0 key="typeForm.name.displayname" />
+        <arg key="typeForm.name.displayname" />
       </field>
       <field property="byte" depends="required,byte">
-        <arg0 key="typeForm.byte.displayname" />
+        <arg key="typeForm.byte.displayname" />
       </field>
       <field property="short" depends="required,short">
-        <arg0 key="typeForm.short.displayname" />
+        <arg key="typeForm.short.displayname" />
       </field>
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>10</var-value>
@@ -152,15 +152,15 @@
         </var>
       </field>
       <field property="long" depends="required,long">
-        <arg0 key="typeForm.long.displayname" />
+        <arg key="typeForm.long.displayname" />
       </field>
       <field property="float" depends="required,float">
-        <arg0 key="typeForm.float.displayname" />
+        <arg key="typeForm.float.displayname" />
       </field>
       <field property="floatRange" depends="required,float,floatRange">
-        <arg0 key="typeForm.floatRange.displayname" />
-        <arg1 name="floatRange" key="${var:min}" resource="false" />
-        <arg2 name="floatRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.floatRange.displayname" />
+        <arg name="floatRange" key="${var:min}" resource="false" />
+        <arg name="floatRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -171,36 +171,36 @@
         </var>
       </field>
       <field property="double" depends="required,double">
-        <arg0 key="typeForm.double.displayname" />
+        <arg key="typeForm.double.displayname" />
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>MM/dd/yyyy</var-value>
         </var>
       </field>
       <field property="creditCard" depends="required,creditCard">
-        <arg0 key="typeForm.creditCard.displayname" />
+        <arg key="typeForm.creditCard.displayname" />
       </field>
       <field property="value" indexedListProperty="nameList" depends="required">
-        <arg0 key="typeForm.nested.name.displayname" />
+        <arg key="typeForm.nested.name.displayname" />
       </field>
     </form>
     <form name="jsTypeForm">
       <field property="name" depends="required,byte">
-        <arg0 key="typeForm.name.displayname" />
+        <arg key="typeForm.name.displayname" />
       </field>
       <field property="byte" depends="required,byte">
-        <arg0 key="typeForm.byte.displayname" />
+        <arg key="typeForm.byte.displayname" />
       </field>
       <field property="short" depends="required,short">
-        <arg0 key="typeForm.short.displayname" />
+        <arg key="typeForm.short.displayname" />
       </field>
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>10</var-value>
@@ -211,12 +211,12 @@
         </var>
       </field>
       <field property="float" depends="required,float">
-        <arg0 key="typeForm.float.displayname" />
+        <arg key="typeForm.float.displayname" />
       </field>
       <field property="floatRange" depends="required,float,floatRange">
-        <arg0 key="typeForm.floatRange.displayname" />
-        <arg1 name="floatRange" key="${var:min}" resource="false" />
-        <arg2 name="floatRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.floatRange.displayname" />
+        <arg name="floatRange" key="${var:min}" resource="false" />
+        <arg name="floatRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -227,29 +227,29 @@
         </var>
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>MM/dd/yyyy</var-value>
         </var>
       </field>
       <field property="creditCard" depends="required,creditCard">
-        <arg0 key="typeForm.creditCard.displayname" />
+        <arg key="typeForm.creditCard.displayname" />
       </field>
       <field property="satisfaction" depends="required">
-        <arg0 key="typeForm.option.satisfaction" />
+        <arg key="typeForm.option.satisfaction" />
       </field>
       <field property="osList" depends="required">
-        <arg0 key="typeForm.option.os.list" />
+        <arg key="typeForm.option.os.list" />
       </field>
       <field property="overallSatisfaction" depends="required">
-        <arg0 key="typeForm.radio.overall.satisfaction" />
+        <arg key="typeForm.radio.overall.satisfaction" />
       </field>
       <field property="wouldRecommend" depends="required">
-        <arg0 key="typeForm.checkbox.wouldrecommend" />
+        <arg key="typeForm.checkbox.wouldrecommend" />
       </field>
       <field property="usedLanguages" depends="required">
-        <arg0 key="typeForm.checkbox.used.languages" />
+        <arg key="typeForm.checkbox.used.languages" />
       </field>
     </form>
   </formset>
@@ -257,22 +257,22 @@
     <form name="registrationForm">
       <field property="lastName" depends="required,mask">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
+        <arg key="registrationForm.lastname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg  key="registrationForm.stateprov.displayname" />
       </field>
       <field property="phone">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
       </field>
     </form>
     <form name="multiRegistrationForm">
       <field property="firstName" depends="required,mask" page="1">
-        <arg0 key="registrationForm.firstname.displayname" />
+        <arg key="registrationForm.firstname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -280,44 +280,44 @@
       </field>
       <field property="lastName" depends="required,mask" page="1">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
+        <arg key="registrationForm.lastname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
         </var>
       </field>
       <field property="addr" depends="required" page="1">
-        <arg0 key="registrationForm.addr.displayname" />
+        <arg key="registrationForm.addr.displayname" />
       </field>
       <field property="cityStateZip.city" depends="required,mask" page="1">
-        <arg0 key="registrationForm.city.displayname" />
+        <arg key="registrationForm.city.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv" page="2">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
       </field>
       <field property="cityStateZip.zipPostal[1]" depends="required,mask" page="2">
-        <arg0 key="registrationForm.zippostal.displayname" />
+        <arg key="registrationForm.zippostal.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${zip}</var-value>
         </var>
       </field>
       <field property="phone" page="2">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
       </field>
       <field property="email" depends="required,email" page="2">
-        <arg0 key="registrationForm.email.displayname" />
+        <arg key="registrationForm.email.displayname" />
       </field>
     </form>
     <form name="typeForm">
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>50</var-value>
@@ -328,7 +328,7 @@
         </var>
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>dd.MM.yyyy</var-value>
@@ -337,9 +337,9 @@
     </form>
     <form name="jsTypeForm">
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>100</var-value>
@@ -350,7 +350,7 @@
         </var>
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>dd.MM.yyyy</var-value>
@@ -369,8 +369,8 @@
     </constant>
     <form name="registrationForm">
       <field property="firstName" depends="required,mask,minlength">
-        <arg0 key="registrationForm.firstname.displayname" />
-        <arg1 name="minlength" key="${var:minlength}" resource="false" />
+        <arg key="registrationForm.firstname.displayname" />
+        <arg name="minlength" key="${var:minlength}" resource="false" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -382,8 +382,8 @@
       </field>
       <field property="lastName" depends="required,mask,maxlength">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
-        <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+        <arg key="registrationForm.lastname.displayname" />
+        <arg name="maxlength" key="${var:maxlength}" resource="false" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
@@ -394,43 +394,43 @@
         </var>
       </field>
       <field property="addr" depends="required">
-        <arg0 key="registrationForm.addr.displayname" />
+        <arg key="registrationForm.addr.displayname" />
       </field>
       <field property="cityStateZip.city" depends="required,mask">
-        <arg0 key="registrationForm.city.displayname" />
+        <arg key="registrationForm.city.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv" depends="required,mask">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.zipPostal[1]" depends="required,mask">
-        <arg0 key="registrationForm.zippostal.displayname" />
+        <arg key="registrationForm.zippostal.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${zip}</var-value>
         </var>
       </field>
       <field property="phone" depends="mask">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${phone}</var-value>
         </var>
       </field>
       <field property="email" depends="required,email">
-        <arg0 key="registrationForm.email.displayname" />
+        <arg key="registrationForm.email.displayname" />
       </field>
     </form>
     <form name="multiRegistrationForm">
       <field property="firstName" depends="required,mask" page="1">
-        <arg0 key="registrationForm.firstname.displayname" />
+        <arg key="registrationForm.firstname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -438,61 +438,61 @@
       </field>
       <field property="lastName" depends="required,mask" page="1">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
+        <arg key="registrationForm.lastname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="addr" depends="required" page="1">
-        <arg0 key="registrationForm.addr.displayname" />
+        <arg key="registrationForm.addr.displayname" />
       </field>
       <field property="cityStateZip.city" depends="required,mask" page="1">
-        <arg0 key="registrationForm.city.displayname" />
+        <arg key="registrationForm.city.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv" depends="required,mask" page="2">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.zipPostal[1]" depends="required,mask" page="2">
-        <arg0 key="registrationForm.zippostal.displayname" />
+        <arg key="registrationForm.zippostal.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${zip}</var-value>
         </var>
       </field>
       <field property="phone" depends="mask" page="2">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${phone}</var-value>
         </var>
       </field>
       <field property="email" depends="required,email" page="2">
-        <arg0 key="registrationForm.email.displayname" />
+        <arg key="registrationForm.email.displayname" />
       </field>
     </form>
     <form name="typeForm">
       <field property="name" depends="required,byte">
-        <arg0 key="typeForm.name.displayname" />
+        <arg key="typeForm.name.displayname" />
       </field>
       <field property="byte" depends="required,byte">
-        <arg0 key="typeForm.byte.displayname" />
+        <arg key="typeForm.byte.displayname" />
       </field>
       <field property="short" depends="required,short">
-        <arg0 key="typeForm.short.displayname" />
+        <arg key="typeForm.short.displayname" />
       </field>
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>400</var-value>
@@ -503,15 +503,15 @@
         </var>
       </field>
       <field property="long" depends="required,long">
-        <arg0 key="typeForm.long.displayname" />
+        <arg key="typeForm.long.displayname" />
       </field>
       <field property="float" depends="required,float">
-        <arg0 key="typeForm.float.displayname" />
+        <arg key="typeForm.float.displayname" />
       </field>
       <field property="floatRange" depends="required,float,floatRange">
-        <arg0 key="typeForm.floatRange.displayname" />
-        <arg1 name="floatRange" key="${var:min}" resource="false" />
-        <arg2 name="floatRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.floatRange.displayname" />
+        <arg name="floatRange" key="${var:min}" resource="false" />
+        <arg name="floatRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -522,36 +522,36 @@
         </var>
       </field>
       <field property="double" depends="required,double">
-        <arg0 key="typeForm.double.displayname" />
+        <arg key="typeForm.double.displayname" />
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>yyyy/MM/dd</var-value>
         </var>
       </field>
       <field property="creditCard" depends="required,creditCard">
-        <arg0 key="typeForm.creditCard.displayname" />
+        <arg key="typeForm.creditCard.displayname" />
       </field>
       <field property="value" indexedListProperty="nameList" depends="required">
-        <arg0 key="typeForm.nested.name.displayname" />
+        <arg key="typeForm.nested.name.displayname" />
       </field>
     </form>
     <form name="jsTypeForm">
       <field property="name" depends="required,byte">
-        <arg0 key="typeForm.name.displayname" />
+        <arg key="typeForm.name.displayname" />
       </field>
       <field property="byte" depends="required,byte">
-        <arg0 key="typeForm.byte.displayname" />
+        <arg key="typeForm.byte.displayname" />
       </field>
       <field property="short" depends="required,short">
-        <arg0 key="typeForm.short.displayname" />
+        <arg key="typeForm.short.displayname" />
       </field>
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>400</var-value>
@@ -562,12 +562,12 @@
         </var>
       </field>
       <field property="float" depends="required,float">
-        <arg0 key="typeForm.float.displayname" />
+        <arg key="typeForm.float.displayname" />
       </field>
       <field property="floatRange" depends="required,float,floatRange">
-        <arg0 key="typeForm.floatRange.displayname" />
-        <arg1 name="floatRange" key="${var:min}" resource="false" />
-        <arg2 name="floatRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.floatRange.displayname" />
+        <arg name="floatRange" key="${var:min}" resource="false" />
+        <arg name="floatRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>-2.17</var-value>
@@ -578,14 +578,14 @@
         </var>
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>yyyy/MM/dd</var-value>
         </var>
       </field>
       <field property="creditCard" depends="required,creditCard">
-        <arg0 key="typeForm.creditCard.displayname" />
+        <arg key="typeForm.creditCard.displayname" />
       </field>
     </form>
   </formset>
@@ -593,22 +593,22 @@
     <form name="registrationForm">
       <field property="lastName" depends="required,mask">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
+        <arg key="registrationForm.lastname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
       </field>
       <field property="phone">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
       </field>
     </form>
     <form name="multiRegistrationForm">
       <field property="firstName" depends="required,mask" page="1">
-        <arg0 key="registrationForm.firstname.displayname" />
+        <arg key="registrationForm.firstname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
@@ -616,44 +616,44 @@
       </field>
       <field property="lastName" depends="required,mask" page="1">
         <msg name="mask" key="registrationForm.lastname.maskmsg" />
-        <arg0 key="registrationForm.lastname.displayname" />
+        <arg key="registrationForm.lastname.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^\w+$</var-value>
         </var>
       </field>
       <field property="addr" depends="required" page="1">
-        <arg0 key="registrationForm.addr.displayname" />
+        <arg key="registrationForm.addr.displayname" />
       </field>
       <field property="cityStateZip.city" depends="required,mask" page="1">
-        <arg0 key="registrationForm.city.displayname" />
+        <arg key="registrationForm.city.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z]*$</var-value>
         </var>
       </field>
       <field property="cityStateZip.stateProv" page="2">
-        <arg0 key="registrationForm.stateprov.displayname" />
+        <arg key="registrationForm.stateprov.displayname" />
       </field>
       <field property="cityStateZip.zipPostal[1]" depends="required,mask" page="2">
-        <arg0 key="registrationForm.zippostal.displayname" />
+        <arg key="registrationForm.zippostal.displayname" />
         <var>
           <var-name>mask</var-name>
           <var-value>${zip}</var-value>
         </var>
       </field>
       <field property="phone" page="2">
-        <arg0 key="registrationForm.phone.displayname" />
+        <arg key="registrationForm.phone.displayname" />
       </field>
       <field property="email" depends="required,email" page="2">
-        <arg0 key="registrationForm.email.displayname" />
+        <arg key="registrationForm.email.displayname" />
       </field>
     </form>
     <form name="typeForm">
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>50</var-value>
@@ -664,7 +664,7 @@
         </var>
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>dd.MM.yyyy</var-value>
@@ -673,9 +673,9 @@
     </form>
     <form name="jsTypeForm">
       <field property="integer" depends="required,integer,intRange">
-        <arg0 key="typeForm.integer.displayname" />
-        <arg1 name="intRange" key="${var:min}" resource="false" />
-        <arg2 name="intRange" key="${var:max}" resource="false" />
+        <arg key="typeForm.integer.displayname" />
+        <arg name="intRange" key="${var:min}" resource="false" />
+        <arg name="intRange" key="${var:max}" resource="false" />
         <var>
           <var-name>min</var-name>
           <var-value>100</var-value>
@@ -686,7 +686,7 @@
         </var>
       </field>
       <field property="date" depends="required,date">
-        <arg0 key="typeForm.date.displayname" />
+        <arg key="typeForm.date.displayname" />
         <var>
           <var-name>datePatternStrict</var-name>
           <var-value>MM-dd-yyyy</var-value>
