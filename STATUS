@@ -1,0 +1,60 @@
+STATUS
+======
+$Id: STATUS,v 1.1 2002/07/07 02:26:12 craigmcc Exp $
+
+
+            OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
+            ====================================================
+
+
+
+Controller:
+----------
+ 8487 Serializability issues in ActionServlet/RequestProcessor
+
+
+Example Webapps:
+---------------
+ 9709 Does not work with BEA Weblogic 7.0
+
+
+
+File Upload:
+-----------
+ 7663 FileUpload example throws exception on JBoss 3.0
+ 8732 RequestProcessor doesn't uncast the Request properly
+ 9198 First line feed in text parameters lost
+10388 ServletException: Multipart data doesn't start with boundary
+
+
+Standard Actions:
+----------------
+10322 Problems with LookupDispatchAction and other locales
+
+
+Unknown:
+-------
+ 7579 Tomcat 4.0.3 + struts fails with -security
+10380 DynaActionFormClass not serializable
+10501 Error running struts under JRun 3.1
+
+
+Utilities:
+---------
+ 7541 Digester/Commons Logging error with -security
+
+
+Validator Framework:
+-------------------
+ 7347 Validator contrib directory should be dead
+ 7348 No Validator Documentation
+ 7351 Validator JavaScript Primitive Validation Error
+ 7352 Struts 1.1 Beta 1 Release incorrectly reference contrib/validator
+ 7353 Validator JavaScript Select Error
+ 7751 DynaValidatorActionForm throws NPE and class cast exception
+ 8446 Zero values are not validated as byte, integer, etc.
+ 9051 [PATCH] 0 should be a valid float
+10191 Validator range checking bug
+10348 Validator is not available under sub-application
+10349 Validator: date validation does not allow blank input?
+10432 DynaValidatorActionForm does not validate data
