@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.55 2002/10/11 22:17:51 rleland Exp $
- * $Revision: 1.55 $
- * $Date: 2002/10/11 22:17:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.56 2002/10/12 19:42:22 rleland Exp $
+ * $Revision: 1.56 $
+ * $Date: 2002/10/12 19:42:22 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.55 $ $Date: 2002/10/11 22:17:51 $
+ * @version $Revision: 1.56 $ $Date: 2002/10/12 19:42:22 $
  */
 
 public class RequestUtils {
@@ -914,7 +914,7 @@ public class RequestUtils {
             }
 
             // Obtain a MultipartRequestHandler
-            MultipartRequestHandler multipartHandler = getMultipartHandler(request, servlet);
+            MultipartRequestHandler multipartHandler = getMultipartHandler(request);
 
             // Set the multipart request handler for our ActionForm.
             // If the bean isn't an ActionForm, an exception would have been
@@ -987,9 +987,6 @@ public class RequestUtils {
      *
      * @param request The HTTP request for which the multipart handler should
      *                be found.
-     * @param servlet The <code>ActionServletWrapper</code> processing the supplied
-     *                request.
-     *
      * @return the multipart handler to use, or <code>null</code> if none is
      *         found.
      *
@@ -997,7 +994,7 @@ public class RequestUtils {
      *                             to locate the multipart handler.
      */
     private static MultipartRequestHandler getMultipartHandler(
-            HttpServletRequest request, ActionServletWrapper servlet)
+            HttpServletRequest request)
         throws ServletException {
 
         MultipartRequestHandler multipartHandler = null;
