@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.3 2002/07/04 00:05:48 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/07/04 00:05:48 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/util/TestRequestUtils.java,v 1.4 2002/07/05 20:56:27 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/07/05 20:56:27 $
  *
  * ====================================================================
  *
@@ -84,7 +84,7 @@ import org.apache.struts.mock.TestMockBase;
  * <p>Unit tests for <code>org.apache.struts.util.RequestUtils</code>.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/07/04 00:05:48 $
+ * @version $Revision: 1.4 $ $Date: 2002/07/05 20:56:27 $
  */
 
 public class TestRequestUtils extends TestMockBase {
@@ -148,6 +148,54 @@ public class TestRequestUtils extends TestMockBase {
         } catch (MalformedURLException e) {
             fail("Threw MalformedURLException: " + e);
         }
+
+    }
+
+
+    // ------------------------------------------------------------ actionURL()
+
+
+    // Default application -- extension mapping
+    public void testActionURL1() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setPathElements("/myapp", "/foo.do", null, null);
+        String url = RequestUtils.actionURL
+            (request, appConfig.findActionConfig("/dynamic"), "*.do");
+        assertNotNull("URL was returned", url);
+        assertEquals("URL value",
+                     "/myapp/dynamic.do",
+                     url);
+
+    }
+
+
+    // Second application -- extension mapping
+    public void testActionURL2() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig2);
+        request.setPathElements("/myapp", "/2/foo.do", null, null);
+        String url = RequestUtils.actionURL
+            (request, appConfig2.findActionConfig("/dynamic2"), "*.do");
+        assertNotNull("URL was returned", url);
+        assertEquals("URL value",
+                     "/myapp/2/dynamic2.do",
+                     url);
+
+    }
+
+
+    // Default application -- path mapping
+    public void testActionURL3() {
+
+        request.setAttribute(Action.APPLICATION_KEY, appConfig);
+        request.setPathElements("/myapp", "/do/foo", null, null);
+        String url = RequestUtils.actionURL
+            (request, appConfig.findActionConfig("/dynamic"), "/do/*");
+        assertNotNull("URL was returned", url);
+        assertEquals("URL value",
+                     "/myapp/do/dynamic",
+                     url);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.42 2002/07/04 00:05:48 craigmcc Exp $
- * $Revision: 1.42 $
- * $Date: 2002/07/04 00:05:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.43 2002/07/05 20:56:27 craigmcc Exp $
+ * $Revision: 1.43 $
+ * $Date: 2002/07/05 20:56:27 $
  *
  * ====================================================================
  *
@@ -98,6 +98,7 @@ import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.ActionServletWrapper;
 import org.apache.struts.action.DynaActionFormClass;
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ApplicationConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -112,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.42 $ $Date: 2002/07/04 00:05:48 $
+ * @version $Revision: 1.43 $ $Date: 2002/07/05 20:56:27 $
  */
 
 public class RequestUtils {
@@ -1133,6 +1134,38 @@ public class RequestUtils {
             sb.append(ref);
             return (sb.toString());
         }
+
+    }
+
+
+    /**
+     * Return the server-relative URL that corresponds to the specified
+     * {@link ActionConfig}, relative to the sub-application associated
+     * with the current subapp's {@link ApplicationConfig}.
+     *
+     * @param request The servlet request we are processing
+     * @param action ActionConfig to be evaluated
+     * @param pattern URL pattern used to map the controller servlet
+     */
+    public static String actionURL(HttpServletRequest request,
+                                   ActionConfig action,
+                                   String pattern) {
+
+        StringBuffer sb = new StringBuffer();
+        sb.append(request.getContextPath());
+        if (pattern.endsWith("/*")) {
+            sb.append(pattern.substring(0, pattern.length() - 2));
+            sb.append(action.getPath());
+        } else if (pattern.startsWith("*.")) {
+            ApplicationConfig appConfig = (ApplicationConfig)
+                request.getAttribute(Action.APPLICATION_KEY);
+            sb.append(appConfig.getPrefix());
+            sb.append(action.getPath());
+            sb.append(pattern.substring(1));
+        } else {
+            throw new IllegalArgumentException(pattern);
+        }
+        return (sb.toString());
 
     }
 
