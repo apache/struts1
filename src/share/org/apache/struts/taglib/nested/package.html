@@ -227,7 +227,7 @@ will be managed in a nested context.
 
 <hr>
 <a name="doc.PropertyProperty"></a>
-<H3>The "property" property.</H3></a>
+<H3>The relative references and the "property" property.</H3></a>
 
 
   <p>Use of the "property" property is exactly the same as the original Struts tag 
@@ -257,6 +257,53 @@ will be managed in a nested context.
   This allow a convenient way to move around a few levels as well as "forking"
   in the object structure among other felixble approaches to structure.</p>
   
+  <p><b>Parent References...</b><br />
+  "property" properties, including the relative properties described above, all 
+  end up referencing a property of a child bean. For example "/myProperty" will
+  return an object from the "myProperty" of the root bean. The fact that a
+  property is specified means that you are accessing the result of that
+  property. This results in never being able to properly access a parent object
+  itself within its current related context.
+  </p>
+  <p>
+  Take for example you simply want to print out a list of String objects. In a 
+  bean you create a list of them, offer them out to the system via a getter, and
+  you markup using the nested:iterate or logic:iterate tag (both contain the 
+  same issues). The only way to get at the object itself is get the iterate tag
+  to declare a scripting variable. With the nested tags you can now simply
+  reference the object using a parent reference of "./" or "this/". Any property
+  ending in the "/" will be treaded as a parent reference. So if you use
+  "parent/" as your property, it will step back one parent and use this block's
+  parent. The special cases to use the parent of the current nested block are
+  "./" or "this/". Not just the iterate tag, this will return the object
+  represented by any nested parent tag.
+  </p>
+  <p>
+  This allows you to be in a nested tag block and use the custom tags work 
+  directly against the parent defined object, indexed or otherwise. So to be in 
+  an iterate block, and to print out the String representation of the current 
+  iterated object, you can now use...
+  </p>
+  <pre>eg:
+  &lt;nested:iterate property="myItemList" &gt;
+    &lt;html:write property="this/" &gt;&lt;br&gt;
+  &lt;/html:iterate&gt;</pre>
+  <p>
+  or if you want to print the string value of a parent the other side of the 
+  object...
+  <pre>eg:
+  &lt;nested:iterate property="myBeanList" &gt;
+    &lt;nested:iterate property="myItemList" &gt;
+      &lt;html:write property="beanListObject/" &gt;&lt;br&gt;
+    &lt;/html:iterate&gt;
+  &lt;/html:iterate&gt;</pre>
+  <p>
+  The fact that it didn't use the special cases of "./" or "this/" means that it
+  steps back in the hierarchy as a typical relative reference. This is unlimited
+  the amount of steps you can take back in the hierarchy. For example, to go
+  back three parents your property would be "one/two/three/".
+  </p>
+  
   <p><b>Note:</b> The logic identifies the leading "/" and then reads the property
   from the last index of "/".  Resulting in "/three/four/anotherProperty" working
   the same as "/anotherProperty".</p>
@@ -267,8 +314,17 @@ will be managed in a nested context.
   
   <p><b>Note:</b> If you try to reference beneath the level of the nesting, it will
   simply act like as if a leading "/" property was defined.</p>
-
-
+  
+  <p><b>Parent Reference Note:</b>
+  The only thing to keep in mind with parent references is that
+  you cannot parent reference the root bean. This is because the resulting
+  property would be an empty string. Something that the BeanUtils/PropertyUtils
+  cannot handle (if this is a requirement, you could use a "fake nested
+  property". A getter which simply returns the same bean instance ("this") and
+  simply add an extra <code>nested:nest</code> level at the start of your
+  hierarchy. Works just fine).
+  </p>
+  
 <hr>
 <a name="doc.ImplementationDetails"></a>
 <H3>Implementation Details.</H3></a>

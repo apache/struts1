@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.3 2002/01/22 23:27:48 arron Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/22 23:27:48 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.4 2002/01/23 06:38:22 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/23 06:38:22 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,7 +76,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/01/22 23:27:48 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/23 06:38:22 $
  */ 
 public class NestedPropertyHelper {
   
@@ -234,13 +234,21 @@ public class NestedPropertyHelper {
     
     /* Special case... reference my parent's nested property.
        Otherwise impossible for things like indexed properties */
-    if ("./".equals(property)) {
+    if ("./".equals(property) || "this/".equals(property)) {
       return parent;
     }
     /* remove the stepping from the property */
-    String stepping = property.substring(0,property.lastIndexOf('/')+1);
-    /* isolate the property */
-    property = property.substring(property.lastIndexOf('/')+1,property.length());
+    String stepping;
+    
+    /* isolate a parent reference */
+    if (property.endsWith("/")) {
+      stepping = property;
+      property = "";
+    } else {
+      stepping = property.substring(0,property.lastIndexOf('/')+1);
+      /* isolate the property */
+      property = property.substring(property.lastIndexOf('/')+1,property.length());
+    }
     
     if (stepping.startsWith("/")) {
       /* return from root */
@@ -264,7 +272,12 @@ public class NestedPropertyHelper {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < count; i++) {
           result.append(proT.nextToken());
-          result.append('.');
+          
+          /* don't place dot if there's no property to append afterwards
+             (for parent referencing) */
+          if ((i == (count-1)) && (property.length() > 0)) {
+            result.append('.');
+          }
         }
         result.append(property);
         
