@@ -1,6 +1,6 @@
 <%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
 
-<tiles:insert page="/common/menuViewSrc.jsp" flush="true" >
+<tiles:insert page="/tutorial/common/menuViewSrc.jsp" flush="true" >
   <tiles:putList name="list" >
     <tiles:add value="/tutorial/basicPage.jsp" />
     <tiles:add value="/tutorial/portalPage.jsp" />
