@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.43 2000/12/27 00:16:03 craigmcc Exp $
- * $Revision: 1.43 $
- * $Date: 2000/12/27 00:16:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.44 2000/12/27 02:29:25 craigmcc Exp $
+ * $Revision: 1.44 $
+ * $Date: 2000/12/27 02:29:25 $
  *
  * ====================================================================
  *
@@ -212,7 +212,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.43 $ $Date: 2000/12/27 00:16:03 $
+ * @version $Revision: 1.44 $ $Date: 2000/12/27 02:29:25 $
  */
 
 public class ActionServlet
@@ -1567,50 +1567,12 @@ public class ActionServlet
             return;             // Locale object is already present
 
         // Use the Locale returned by the servlet container (if any)
-        Locale locale = null;
-        try {
-            locale = request.getLocale();
-        } catch (Throwable t) {
-            locale = null;      // Method not present in servlet 2.1
-        }
+        Locale locale = request.getLocale();
         if (locale != null) {
             if (debug >= 1)
                 log("Setting locale '" + locale + "'");
             session.setAttribute(Action.LOCALE_KEY, locale);
-            return;
         }
-
-        // Calculate a Locale based on the HTTP headers with this request
-        String value = request.getHeader("Accept-Language");
-        if (value == null) {
-            session.setAttribute(Action.LOCALE_KEY, defaultLocale);
-            return;             // No Accept-Language header was present
-        }
-
-        int comma = value.indexOf(',');
-        if (comma >= 0)
-            value = value.substring(0, comma);  // Use first entry only
-        int semi = value.indexOf(';');
-        if (semi >= 0)
-            value = value.substring(0, semi);   // Strip quality ranking
-
-        String language = null;
-        String country = null;
-        int dash = value.indexOf('-');
-        if (dash < 0) {
-            language = value.trim();
-            country = "";
-        } else {
-            language = value.substring(0, dash).trim();
-            country = value.substring(dash + 1).trim();
-        }
-        locale = new Locale(language, country);
-
-        // Store the calculated Locale in the user's session
-        if (debug >= 1)
-            log("Setting locale '" + locale + "' for header '" +
-                request.getHeader("Accept-Language") + "'");
-        session.setAttribute(Action.LOCALE_KEY, locale);
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/HtmlTag.java,v 1.3 2000/11/22 20:08:22 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/11/22 20:08:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/HtmlTag.java,v 1.4 2000/12/27 02:29:25 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/12/27 02:29:25 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/11/22 20:08:22 $
+ * @version $Revision: 1.4 $ $Date: 2000/12/27 02:29:25 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -87,6 +87,20 @@ public class HtmlTag extends TagSupport {
      */
     protected static MessageResources messages =
      MessageResources.getMessageResources(Constants.Package + ".LocalStrings");
+
+
+    /**
+     * Should we set the current Locale for this user if needed?
+     */
+    protected boolean locale = false;
+
+    public boolean getLocale() {
+        return (locale);
+    }
+
+    public void setLocale(boolean locale) {
+        this.locale = locale;
+    }
 
 
     /**
@@ -112,9 +126,20 @@ public class HtmlTag extends TagSupport {
 
         StringBuffer sb = new StringBuffer("<html");
         HttpSession session = pageContext.getSession();
-        Locale locale = (Locale) session.getAttribute(Action.LOCALE_KEY);
-        if (locale != null) {
-            String lang = locale.getLanguage();
+
+        // Set the current Locale if necessary
+        if (locale &&
+            (session.getAttribute(Action.LOCALE_KEY) == null)) {
+            Locale newLocale = pageContext.getRequest().getLocale();
+            if (newLocale != null)
+                session.setAttribute(Action.LOCALE_KEY, newLocale);
+        }
+
+        // Use the current Locale to set our language preferences
+        Locale currentLocale =
+            (Locale) session.getAttribute(Action.LOCALE_KEY);
+        if (currentLocale != null) {
+            String lang = currentLocale.getLanguage();
             if ((lang != null) && (lang.length() > 0)) {
                 sb.append(" lang=\"");
                 sb.append(lang);
@@ -127,6 +152,8 @@ public class HtmlTag extends TagSupport {
             }
         }
         sb.append(">");
+
+        // Write out the beginning tag for this page
         JspWriter out = pageContext.getOut();
         try {
             out.println(sb.toString());
@@ -167,6 +194,7 @@ public class HtmlTag extends TagSupport {
      */
     public void release() {
 
+        locale = false;
         xhtml = false;
 
     }

@@ -1166,9 +1166,25 @@
           </info>
 
           <attribute>
+            <name>locale</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <info>
+              <p>Set to <code>true</code> in order to record a Locale based on
+              the current request's <code>Accept-Language</code> header (if
+              any) if none has currently been set.</p>
+            </info>
+          </attribute>
+
+          <attribute>
             <name>xhtml</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
+            <info>
+              <p>Set to <code>true</code> in order to render an
+              <code>xml:lang</code> attribute on the generated
+              <code>html</code> element.</p>
+            </info>
           </attribute>
 
         </tag>
