@@ -172,8 +172,9 @@
         </li>
 
         <li>
-        Set editors to replace tabs with spaces, and do not trim trailing
-        spaces.
+        Set editors to replace tabs with spaces and do not trim trailing
+        spaces. Tabs confound the CVS email alerts. Trimming trailing spaces
+        creates unnecessary changes.
         </li>
 
         <li>
@@ -189,7 +190,10 @@
         Use <code>:FIXME:</code> and <code>:TODO:</code> tokens to mark follow up
         notes in code.
         You may also include your Apache username and the date.
-        <code>:FIXME: we need to do this sometime (husted 2002-11-14)</code>
+        </li>
+
+        <li>
+        Omit <code>@author</code> tags.
         </li>
 
         <li>
@@ -206,7 +210,7 @@
         </li>
 
         <li>
-        Please do your best to provide high-quality JavaDocs for all source code
+        Please do your best to provide high-quality Javadocs for all source code
         elements.
         Package overviews (aka "Developer Guides") are also encouraged.
         </li>
@@ -214,7 +218,7 @@
         <li>
         When working on a bugfix, please first write a
         <a href="http://www.junit.org">JUnit</a> test that proves the bug exists,
-        and then use the test to prove  the bug is fixed. =:0)
+        and then use the test to prove the bug is fixed. =:0)
         </li>
 
         <li>
@@ -228,8 +232,9 @@
         <li>
         As files are updated from year to year, the copyright on each file should
         be extended to include the current year.
-        You do not need to change the copyright year unless you change the file.
-        Every source file should include the current Apache License and copyright.
+        <b>You do not need to change the copyright year unless you change the file.</b>
+        Every source file should include the ASF copyright notice and current
+        Apache License and copyright.
         </li>
 
         <li>
