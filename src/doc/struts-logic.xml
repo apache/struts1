@@ -1189,30 +1189,224 @@
   </tag>
 
 
-  <tag>
+        <tag>
 
-    <name>redirect</name>
-    <summary>
-    Perform an HTTP redirect to the specified URL.
-    </summary>
-    <tagclass>org.apache.struts.taglib.logic.RedirectTag</tagclass>
-    <bodycontent>empty</bodycontent>
-    <info>
-    <p>Performs a <code>HttpServletResponse.sendRedirect()</code> to the
-    specified URL, after applying URL rewriting as needed.</p>
-    </info>
+                <name>redirect</name>
+                <summary>Render an HTTP Redirect</summary>
+                <tagclass>org.apache.struts.taglib.logic.RedirectTag</tagclass>
+                <body-content>empty</body-content>
+                <info>
 
-    <attribute>
-      <name>href</name>
-      <required>true</required>
-      <rtexprvalue>true</rtexprvalue>
-      <info>
-      <p>The relative or absolute URL to which the client should be
-      redirected.</p>
-      </info>
-    </attribute>
+                <p>Performs an <code>HttpServletResponse.sendRedirect()</code>
+                call to the hyperlink specified by the attributes to this
+                tag.  URL rewriting will be applied automatically, to
+                maintain session state in the absence of cookies.</p>
 
-  </tag>
+                <p>The base URL for this redirect is calculated based on
+                which of the following attributes you specify (you must
+                specify exactly one of them):</p>
+                <ul>
+                <li><em>forward</em> - Use the value of this attribute as the
+                    name of a global <code>ActionForward</code> to be looked
+                    up, and use the context-relative URI found there.</li>
+                <li><em>href</em> - Use the value of this attribute unchanged.
+                    </li>
+                <li><em>page</em> - Use the value of this attribute as a
+                    context-relative URI, and generate a server-relative URI
+                    by including the context path.</li>
+                </ul>
+
+                <p>Normally, the redirect you specify with one of the
+                attributes described in the previous paragraph will be left
+                unchanged (other than URL rewriting if necessary).  However,
+                there are two ways you can append one or more dynamically
+                defined query parameters to the hyperlink -- specify a single
+                parameter with the <code>paramId</code> attribute (and its
+                associated attributes to select the value), or specify the
+                <code>name</code> (and optional <code>property</code>)
+                attributes to select a <code>java.util.Map</code> bean that
+                contains one or more parameter ids and corresponding values.
+                </p>
+
+                <p>To specify a single parameter, use the <code>paramId</code>
+                attribute to define the name of the request parameter to be
+                submitted.  To specify the corresponding value, use one of the
+                following approaches:</p>
+                <ul>
+                <li><em>Specify only the <code>paramName</code> attribute</em>
+                    - The named JSP bean (optionally scoped by the value of the
+                    <code>paramScope</code> attribute) must identify a value
+                    that can be converted to a String.</li>
+                <li><em>Specify both the <code>paramName</code> and
+                    <code>paramProperty</code> attributes</em> - The specified
+                    property getter method will be called on the JSP bean
+                    identified by the <code>paramName</code> (and optional
+                    <code>paramScope</code>) attributes, in order to select
+                    a value that can be converted to a String.</li>
+                </ul>
+
+                <p>If you prefer to specify a <code>java.util.Map</code> that
+                contains all of the request parameters to be added to the
+                hyperlink, use one of the following techniques:</p>
+                <ul>
+                <li><em>Specify only the <code>name</code> attribute</em> -
+                    The named JSP bean (optionally scoped by the value of
+                    the <code>scope</code> attribute) must identify a
+                    <code>java.util.Map</code> containing the parameters.</li>
+                <li><em>Specify both <code>name</code> and
+                    <code>property</code> attributes</em> - The specified
+                    property getter method will be called on the bean
+                    identified by the <code>name</code> (and optional
+                    <code>scope</code>) attributes, in order to return the
+                    <code>java.util.Map</code> containing the parameters.</li>
+                </ul>
+
+                <p>As the <code>Map</code> is processed, the keys are assumed
+                to be the names of query parameters to be appended to the
+                hyperlink.  The value associated with each key must be either
+                a String or a String array representing the parameter value(s).
+                If a String array is specified, more than one value for the
+                same query parameter name will be created.</p>
+                </info>
+
+                <attribute>
+                  <name>forward</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>Logical name of a global <code>ActionForward</code> that
+                  contains the actual content-relative URI of the destination
+                  of this redirect.  This URI may be dynamically
+                  modified by the inclusion of query parameters, as described
+                  in the tag description.  You <strong>must</strong> specify
+                  exactly one of the <code>forward</code> attribute, the
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>href</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The URL to which this redirect will transfer control.
+                  This URL may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  You <strong>must</strong> specify
+                  exactly one of the <code>forward</code> attribute, the
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>name</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that contains a <code>Map</code>
+                  representing the query parameters (if <code>property</code>
+                  is not specified), or a JSP bean whose property getter is
+                  called to return a <code>Map</code> (if <code>property</code>
+                  is specified).</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>page</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The context-relative path (beginning with a "/"
+                  character) to which this hyperlink will transfer control
+                  if activated.  This hyperlink may be dynamically modified
+                  by the inclusion of query parameters, as described in the
+                  tag description.  You <strong>must</strong> specify exactly
+                  one of the <code>forward</code> attribute, the
+                  <code>href</code> attribute, the <code>linkName</code>
+                  attribute, or the <code>page</code> attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramId</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of the request parameter that will be dynamically
+                  added to the generated hyperlink.  The corresponding value is
+                  defined by the <code>paramName</code> and (optional)
+                  <code>paramProperty</code> attributes, optionally scoped by
+                  the <code>paramScope</code> attributel</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramName</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a JSP bean that is a String containing the
+                  value for the request parameter named by <code>paramId</code>
+                  (if <code>paramProperty</code> is not specified), or a JSP
+                  bean whose property getter is called to return a String
+                  (if <code>paramProperty</code> is specified).  The JSP bean
+                  is constrained to the bean scope specified by the
+                  <code>paramScope</code> property, if it is specified.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramProperty</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>paramName</code> attribute, whose return value must
+                  be a String containing the value of the request parameter
+                  (named by the <code>paramId</code> attribute) that will be
+                  dynamically added to this hyperlink.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>paramScope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>paramName</code> attribute.  If not specified,
+                  all scopes are searched.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>property</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The name of a property of the bean specified by the
+                  <code>name</code> attribute, whose return value must be
+                  a <code>java.util.Map</code> containing the query parameters
+                  to be added to the hyperlink.  You <strong>must</strong>
+                  specify the <code>name</code> attribute if you specify
+                  this attribute.</p>
+                  </info>
+                </attribute>
+
+                <attribute>
+                  <name>scope</name>
+                  <required>false</required>
+                  <rtexprvalue>true</rtexprvalue>
+                  <info>
+                  <p>The scope within which to search for the bean specified
+                  by the <code>name</code> attribute.  If not specified, all
+                  scopes are searched.</p>
+                  </info>
+                </attribute>
+
+        </tag>
 
 
 </taglib>

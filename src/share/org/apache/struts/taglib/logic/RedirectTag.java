@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.4 2000/10/30 06:02:23 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 06:02:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.5 2001/02/09 19:33:11 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/02/09 19:33:11 $
  *
  * ====================================================================
  *
@@ -64,22 +64,30 @@ package org.apache.struts.taglib.logic;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
- * Perform a sendRedirect() to the specified URL, and skip evaluating
- * the remainder of the current page.
+ * Generate a URL-encoded redirect to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:23 $
+ * @version $Revision: 1.5 $ $Date: 2001/02/09 19:33:11 $
  */
 
 public class RedirectTag extends TagSupport {
@@ -89,16 +97,30 @@ public class RedirectTag extends TagSupport {
 
 
     /**
-     * The relative or absolute URL to which the client should be redirected.
+     * The logical forward name from which to retrieve the redirect URI.
+     */
+    protected String forward = null;
+
+    public String getForward() {
+	return (this.forward);
+    }
+
+    public void setForward(String forward) {
+	this.forward = forward;
+    }
+
+
+    /**
+     * The redirect URI.
      */
     protected String href = null;
 
     public String getHref() {
-        return (this.href);
+	return (this.href);
     }
 
     public void setHref(String href) {
-        this.href = href;
+	this.href = href;
     }
 
 
@@ -106,58 +128,395 @@ public class RedirectTag extends TagSupport {
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.taglib.logic.LocalStrings");
+     MessageResources.getMessageResources
+        ("org.apache.struts.taglib.logic.LocalStrings");
+
+
+    /**
+     * The JSP bean name for query parameters.
+     */
+    protected String name = null;
+
+    public String getName() {
+	return (this.name);
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+
+    /**
+     * The context-relative page URL (beginning with a slash) to which
+     * this redirect will be rendered.
+     */
+    protected String page = null;
+
+    public String getPage() {
+        return (this.page);
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+
+    /**
+     * The single-parameter request parameter name to generate.
+     */
+    protected String paramId = null;
+
+    public String getParamId() {
+        return (this.paramId);
+    }
+
+    public void setParamId(String paramId) {
+        this.paramId = paramId;
+    }
+
+
+    /**
+     * The single-parameter JSP bean name.
+     */
+    protected String paramName = null;
+
+    public String getParamName() {
+        return (this.paramName);
+    }
+
+    public void setParamName(String paramName) {
+        this.paramName = paramName;
+    }
+
+
+    /**
+     * The single-parameter JSP bean property.
+     */
+    protected String paramProperty = null;
+
+    public String getParamProperty() {
+        return (this.paramProperty);
+    }
+
+    public void setParamProperty(String paramProperty) {
+        this.paramProperty = paramProperty;
+    }
+
+
+    /**
+     * The single-parameter JSP bean scope.
+     */
+    protected String paramScope = null;
+
+    public String getParamScope() {
+        return (this.paramScope);
+    }
+
+    public void setParamScope(String paramScope) {
+        this.paramScope = paramScope;
+    }
+
+
+    /**
+     * The JSP bean property name for query parameters.
+     */
+    protected String property = null;
+
+    public String getProperty() {
+	return (this.property);
+    }
+
+    public void setProperty(String property) {
+	this.property = property;
+    }
+
+
+    /**
+     * The scope of the bean specified by the name property, if any.
+     */
+    protected String scope = null;
+
+    public String getScope() {
+        return (this.scope);
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Defer processing until the end of this tag is encountered.
+     * Defer generation until the end of this tag is encountered.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
 
-	return (SKIP_BODY);
+        return (SKIP_BODY);
 
     }
 
 
     /**
-     * Render a redirect to the specified hyperlink, and skip the
-     * remainder of the current page.
+     * Render the redirect and skip the remainder of this page.
      *
      * @exception JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
 
-	// Perform the requested redirect
+        // Perform the redirection
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
-	try {
-	    response.sendRedirect(response.encodeRedirectURL(href));
-	} catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-		(messages.getMessage("redirect.redirect", href, e.toString()));
-	}
+        String hyperlink = BeanUtils.filter(hyperlink());
+        try {
+            response.sendRedirect(response.encodeRedirectURL(hyperlink));
+        } catch (IOException e) {
+            throw new JspException
+                (messages.getMessage("common.io"));
+        }
 
-	// Skip the remainder of the current page
-	return (SKIP_PAGE);
+        // Skip the remainder of this apge
+        return (SKIP_PAGE);
 
     }
 
 
     /**
-     * Release all allocated resources.
+     * Release any acquired resources.
      */
     public void release() {
 
-        super.release();
-        href = null;
+	super.release();
+	forward = null;
+	href = null;
+	name = null;
+        page = null;
+	paramId = null;
+	paramName = null;
+	paramProperty = null;
+	paramScope = null;
+	property = null;
+        scope = null;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the specified hyperlink, modified as necessary with optional
+     * request parameters.  Return <code>null</code> if we are generating
+     * a name anchor rather than a hyperlink.
+     *
+     * @exception JspException if an error occurs preparing the hyperlink
+     */
+    protected String hyperlink() throws JspException {
+
+        // Validate the number of href specifiers that were specified
+        int n = 0;
+        if (forward != null)
+            n++;
+        if (href != null)
+            n++;
+        if (page != null)
+            n++;
+        if (n != 1) {
+            JspException e = new JspException
+                (messages.getMessage("redirect.destination"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
+        // Start with an unadorned "href"
+	String href = null;
+
+        // If "href" was specified, use it as is
+        if (this.href != null) {
+            href = this.href;
+        }
+
+	// If "forward" was specified, compute the "href" to forward to
+	else if (forward != null) {
+	    ActionForwards forwards = (ActionForwards)
+		pageContext.getAttribute(Action.FORWARDS_KEY,
+					 PageContext.APPLICATION_SCOPE);
+	    if (forwards == null)
+		throw new JspException
+		    (messages.getMessage("linkTag.forwards"));
+	    ActionForward forward = forwards.findForward(this.forward);
+	    if (forward == null)
+		throw new JspException
+		    (messages.getMessage("linkTag.forward"));
+	    HttpServletRequest request =
+		(HttpServletRequest) pageContext.getRequest();
+            href = RequestUtils.absoluteURL(request, forward.getPath());
+	}
+
+        // If "page" was specified, compute the "href" to forward to
+        else if (page != null) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            href = RequestUtils.absoluteURL(request, page);
+        }
+
+        // Append a single-parameter name and value, if requested
+        if ((paramId != null) && (paramName != null)) {
+            if (href.indexOf('?') < 0)
+                href += '?';
+            else
+                href += '&';
+            href += paramId;
+            href += '=';
+            Object bean = RequestUtils.lookup(pageContext,
+                                              paramName, paramScope);
+            if (bean != null) {
+                if (paramProperty == null)
+                    href += bean.toString();
+                else {
+                    try {
+                        Object value =
+                            PropertyUtils.getProperty(bean, paramProperty);
+                        if (value != null)
+                            href += value.toString();
+                    } catch (IllegalAccessException e) {
+                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                                 PageContext.REQUEST_SCOPE);
+                        throw new JspException
+                            (messages.getMessage("getter.access",
+                                                 paramProperty, paramName));
+                    } catch (InvocationTargetException e) {
+                        Throwable t = e.getTargetException();
+                        pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                                 PageContext.REQUEST_SCOPE);
+                        throw new JspException
+                            (messages.getMessage("getter.result",
+                                                 paramProperty, t.toString()));
+                    } catch (NoSuchMethodException e) {
+                        pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                                 PageContext.REQUEST_SCOPE);
+                        throw new JspException
+                            (messages.getMessage("getter.method",
+                                                 paramProperty, paramName));
+                    }
+                }
+            }
+        }
+
+	// Just return the "href" attribute if there is no bean to look up
+	if ((property != null) && (name == null)) {
+	    JspException e = new JspException
+		(messages.getMessage("getter.name"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+	if (name == null)
+	    return (href);
+
+	// Look up the map we will be using
+	Object bean = RequestUtils.lookup(pageContext, name, scope);
+        if (bean == null) {
+	    JspException e = new JspException
+		(messages.getMessage("getter.bean", name));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+	Map map = null;
+	if (property == null) {
+	    try {
+		map = (Map) bean;
+	    } catch (ClassCastException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+		throw new JspException
+		    (messages.getMessage("linkTag.type"));
+	    }
+	} else {
+	    try {
+		map = (Map) PropertyUtils.getProperty(bean, property);
+		if (map == null) {
+		    JspException e = new JspException
+			(messages.getMessage("getter.property", property));
+                    pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                             PageContext.REQUEST_SCOPE);
+                    throw e;
+                }
+	    } catch (IllegalAccessException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+                pageContext.setAttribute(Action.EXCEPTION_KEY, t,
+                                         PageContext.REQUEST_SCOPE);
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
+	    } catch (ClassCastException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+		throw new JspException
+		    (messages.getMessage("linkTag.type"));
+	    } catch (NoSuchMethodException e) {
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
+	    }
+	}
+
+	// Append the required query parameters
+	StringBuffer sb = new StringBuffer(href);
+	boolean question = (href.indexOf("?") >= 0);
+	Iterator keys = map.keySet().iterator();
+	while (keys.hasNext()) {
+	    String key = (String) keys.next();
+	    Object value = map.get(key);
+            if (value == null) {
+                if (question)
+                    sb.append('&');
+                else {
+                    sb.append('?');
+                    question = true;
+                }
+                sb.append(key);
+                sb.append('=');
+                // Interpret null as "no value specified"
+	    } else if (value instanceof String[]) {
+		String values[] = (String[]) value;
+		for (int i = 0; i < values.length; i++) {
+		    if (question)
+			sb.append('&');
+		    else {
+			sb.append('?');
+			question = true;
+		    }
+		    sb.append(key);
+		    sb.append('=');
+		    sb.append(URLEncoder.encode(values[i]));
+		}
+	    } else {
+		if (question)
+		    sb.append('&');
+		else {
+		    sb.append('?');
+		    question = true;
+		}
+		sb.append(key);
+		sb.append('=');
+		sb.append(URLEncoder.encode(value.toString()));
+	    }
+	}
+
+	// Return the final result
+	return (sb.toString());
 
     }
 
