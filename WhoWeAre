@@ -152,14 +152,15 @@ print-book idea), and I had a lot of fun bringing it forward onto the
 Web. (Now, if I only had time to bring it current and dress it up!)
 
 One of my best clients is WXXI Public Broadcasting Council, where
-serving as the stateion's Webmaster. WXXI provides public broadcasting
+serving as the station's Webmaster. WXXI provides public broadcasting
 services for television and radio, and we are working to do the same
 online. Along with providing companion Web sites for every WXXI
-production, we stream both our AM and FM signals, with online archives
-in the works. It's a long journey, but we've taken the first steps. I'm
-responsible for most of the regular updates to the site, and much of the
-overall layout and design. We're grateful to have won the PBS award for
-best Web site in our market for two year's in a row.
+production, we stream both our AM and FM signals, in both Real and 
+QuickTime, with online archives in the works. It's a long journey, but 
+we've taken the first steps. I'm responsible for most of the regular 
+updates to the site, and much of the overall layout and design. We're 
+grateful to have won the PBS award for best Web site in our market for 
+two years in a row.
 
 Our most ambitious projects at WXXI have been Spring Marketplace 2000
 and the NY Election Finder. For Spring Marketplace, we put our annual
@@ -168,22 +169,10 @@ NY Election, we offered not only the usual election-finder application,
 but collected voter registration records from around the state, so
 people could also check their registration status and polling place. I
 developed the Web-enabled database applications for both projects.
+
 Currently, I'm expanding the WXXI online auction software into a
 complete package for hosting live and online auctions as fund-raisers;
 this is to be an open-source project called Gavel, and will, of course,
 rely heavily on Struts.
-
-Our most ambitious projects at WXXI have been Spring Marketplace 2000
-and the NY Election Finder. For Spring Marketplace, we put our annual
-auction fully online for simultaneous telephone and Website bidding. On
-NY Election, we offered not only the usual election-finder application,
-but collected voter registration records from around the state, so
-people could also check their registration status and polling place. I
-developed the Web-enabled database applications for both projects.
-Currently, I'm expanding the WXXI online auction software into a
-complete package for hosting live and online auctions as fund-raisers;
-this is to be an open-source project called Gavel, and will, of course,
-rely heavily on Struts.
-
 
 ###
