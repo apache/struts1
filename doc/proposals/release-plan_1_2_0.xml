@@ -11,7 +11,7 @@
 
       <section name="Objective" href="objective">
           <p>
-              $Id: release-plan_1_2_0.xml,v 1.6 2003/12/16 17:07:56 husted Exp $
+              $Id: release-plan_1_2_0.xml,v 1.7 2003/12/16 17:13:57 martinc Exp $
           </p>
 
           <p>
@@ -40,7 +40,7 @@
                   <em>Tag Date</em> - Saturday, December 20, 2003, 23:59:59
               </li>
               <li>
-                  <em>Release Manager(s)</em> - Ted Husted, ?
+                  <em>Release Manager(s)</em> - Ted Husted, Martin Cooper
               </li>
               <li>
                   <em>Alpha Release Announcement</em> - To the following mailing list:
