@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.76 2002/12/29 16:59:58 husted Exp $
- * $Revision: 1.76 $
- * $Date: 2002/12/29 16:59:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.77 2002/12/29 21:27:32 cedric Exp $
+ * $Revision: 1.77 $
+ * $Date: 2002/12/29 21:27:32 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Craig R. McClanahan
  * @author Ted Husted
  * @author James Turner
- * @version $Revision: 1.76 $ $Date: 2002/12/29 16:59:58 $
+ * @version $Revision: 1.77 $ $Date: 2002/12/29 21:27:32 $
  */
 
 public class RequestUtils {
@@ -1618,6 +1618,7 @@ public class RequestUtils {
      * Get the module name to which the specified request belong.
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
+     * @return The module prefix or ""
      */
     public static String getModuleName(HttpServletRequest request, ServletContext context) {
 
@@ -1627,7 +1628,16 @@ public class RequestUtils {
         if (matchPath == null) {
             matchPath = request.getServletPath();
         }
+        return getModuleName( matchPath, context);
+    }
 
+    /**
+     * Get the module name to which the specified uri belong.
+     * @param matchPath The uri from which we want the module name.
+     * @param context The ServletContext for this web application
+     * @return The module prefix or ""
+     */
+    public static String getModuleName(String matchPath, ServletContext context) {
         if (log.isDebugEnabled()) {
             log.debug("Get module name for path " + matchPath);
         }
@@ -1670,6 +1680,23 @@ public class RequestUtils {
                 (ModuleConfig) pageContext.getServletContext().getAttribute(Globals.MODULE_KEY);
         }
         return moduleConfig;
+    }
+
+    /**
+     * Return the current ModuleConfig object stored in request, if it exists,
+     * null otherwise.
+     * This method can be used by plugin to retrieve the current module config
+     * object. If no moduleConfig is found, this means that the request haven't
+     * hit the server throught the struts servlet. The appropriate module config
+     * can be set and found with
+     * <code>{@link RequestUtils.selectModule(request, servletContext)} </code>.
+     * @param request The servlet request we are processing
+     * @return the ModuleConfig object from request, or null if none is set in
+     * the request.
+     * @since 1.1b3
+     */
+    public static ModuleConfig getRequestModuleConfig( HttpServletRequest request) {
+        return (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
     }
 
     /**
