@@ -24,7 +24,6 @@ import org.apache.struts.Globals;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.chain.Constants;
 
 
 /**

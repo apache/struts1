@@ -18,11 +18,11 @@
 
 package org.apache.struts.validator;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.LazyDynaBean;
-import org.apache.commons.beanutils.LazyDynaMap;
 
 /**
  * <p>Struts <i>Lazy</i> <code>ActionForm</code> which <i>wraps</i> a <code>LazyDynaBean</code>.</p>

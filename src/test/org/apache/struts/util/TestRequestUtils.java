@@ -21,8 +21,6 @@ package org.apache.struts.util;
 
 
 import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

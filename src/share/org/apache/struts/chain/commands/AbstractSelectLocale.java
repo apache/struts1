@@ -22,7 +22,6 @@ import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**

@@ -20,13 +20,10 @@ package org.apache.struts.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
-import java.io.IOException;
-import org.apache.struts.Globals;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * General purpose utility methods related to generating a servlet response

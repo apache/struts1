@@ -136,10 +136,8 @@ public class TestDynaActionFormClass extends TestCase
 
     public void tearDown() {
 
-        DynaActionFormClass.clear();
         dynaClass = null;
         beanConfig = null;
-        DynaActionFormClass.clear();
 
     }
 

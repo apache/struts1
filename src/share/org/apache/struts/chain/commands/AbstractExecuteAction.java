@@ -24,7 +24,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.chain.Constants;
 
 
 /**

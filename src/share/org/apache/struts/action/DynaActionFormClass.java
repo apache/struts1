@@ -28,7 +28,6 @@ import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
-import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.RequestUtils;
 
 

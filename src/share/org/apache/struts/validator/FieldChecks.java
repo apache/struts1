@@ -19,7 +19,6 @@
 package org.apache.struts.validator;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
