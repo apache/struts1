@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.18 2001/05/20 04:54:41 craigmcc Exp $
- * $Revision: 1.18 $
- * $Date: 2001/05/20 04:54:41 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.19 2001/10/04 03:02:27 craigmcc Exp $
+ * $Revision: 1.19 $
+ * $Date: 2001/10/04 03:02:27 $
  *
  * ====================================================================
  *
@@ -130,7 +130,7 @@ import java.io.Serializable;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2001/05/20 04:54:41 $
+ * @version $Revision: 1.19 $ $Date: 2001/10/04 03:02:27 $
  */
 
 public class ActionMapping implements Serializable {
@@ -623,7 +623,14 @@ public class ActionMapping implements Serializable {
             return (forward);
 
         // Second, check the globally defined forwards
-        return (getMappings().getServlet().findForward(name));
+        ActionMappings mappings = getMappings();
+        if (mappings == null)
+            return (null);
+        ActionServlet servlet = mappings.getServlet();
+        if (servlet == null)
+            return (null);
+        else
+            return (servlet.findForward(name));
 
     }
 
