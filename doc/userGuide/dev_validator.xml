@@ -134,11 +134,11 @@
     depends="required,integer,intRange">
     <arg0 key="typeForm.integer.displayname"/>
     <arg1
-        name="range"
+        name="intRange"
         key="${var:min}"
         resource="false"/>
     <arg2
-        name="range"
+        name="intRange"
         key="${var:max}"
         resource="false"/>
     <var>
@@ -201,11 +201,11 @@
     depends="required,integer,intRange">
     <arg0 key="typeForm.integer.displayname"/>
     <arg1
-        name="range"
+        name="intRange"
         key="${var:min}"
         resource="false"/>
     <arg2
-        name="range"
+        name="intRange"
         key="${var:max}"
         resource="false"/>
     <var>
