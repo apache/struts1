@@ -50,7 +50,32 @@
        <!-- Body -->
        <td valign="top">
           <H2>Revision Info</H2>
-
+	   <font size=-1>Update 9/25/2001 (using Struts 9/25/2001 source)</font><BR>
+	   <ul>
+              <li>Upgraded to commons packages for Bean Utils, Collections, and the Digester.</li>
+              <li>Modified build.xml and build.properties.</li>
+              <li>A jsFunctionName attribute was added to the validator element so you could specify 
+                  a function/object name to be used when the JavascriptValidatorTag generates the 
+                  dynamic JavaScript.  Netscape seemed to assume validators like float were keywords.  
+                  If another function/object name was used, everything worked fine in Netscape.
+              </li>
+              <li>Basic indexed validation capablities have been added for use with 'indexed="true"' 
+                  capablilities of the html form tags.<br>
+                  <br>
+                  I haven't had time to add this to an example, but below is a sample usage.<br>
+                  <br>
+                  &nbsp;&nbsp;&nbsp; &lt;logic:iterate id="listElement" name="registrationForm" property="listElementList" indexId="index"&gt;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;html:textarea indexed="true" name="listElement" property="value" cols="60" rows="8"/&gt;&lt;br&gt;<br>
+                  &nbsp;&nbsp;&nbsp; &lt;/logic:iterate&gt;<br>
+                  <br>
+                  &nbsp;&nbsp;&nbsp; &lt;field property="value"<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; indexedProperty="listElement"<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; indexedListProperty="listElementList"<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required"&gt;<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.paragraph.displayname"/&gt;<br>
+                  &nbsp;&nbsp;&nbsp; &lt;/field&gt;
+              </li>
+	   </ul>
 	  <font size=-1>Update 7/2/2001 (using Struts 1.0)</font><BR>
 	  <ul>
              <li>Only the fields that are different from the default FormSet need to be 

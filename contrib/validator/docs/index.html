@@ -50,7 +50,8 @@
        <!-- Body -->
        <td valign="top">
           <p>The Validation Framework was made to work with 
-             <a href="http://jakarta.apache.org/struts">Struts</a>.  It can perform basic 
+             <a href="http://jakarta.apache.org/struts">Struts</a> although it can be used to perform 
+             validation on any JavaBean (by using the Validator class).  It can perform basic 
              validations to check if a field is required, matches a regular expression, 
              email, credit card, and server side type checking and date validation.  Different 
              validation rules can be defined for different locales.  The framework has basic support for 
@@ -67,33 +68,38 @@
           </p>
           <p>The Struts Validator is going to be incorporated into Struts 1.1.  I'm working on finalizing 
              any design and/or feature issues before this occurs.<BR>
-             &nbsp;&nbsp;&nbsp; Note: The version 0.5 release is the most stable release (using Struts 3/6/2001 build).
+             &nbsp;&nbsp;&nbsp; Note: The 7/2/2001 release is the last release build with Struts 1.0.
 	  </p>
 	  <p>Feedback on bugs and suggestions are welcome.<BR>
 	     &nbsp;&nbsp;&nbsp;<a href="mailto:dwinterfeldt@yahoo.com">dwinterfeldt@yahoo.com</a>
 	  </p>
 	  <BR>
 	  <p>
-	     <font size=-1>Update 7/2/2001 (using Struts 1.0)</font><BR>
+	     <font size=-1>Update 9/25/2001 (using Struts 9/25/2001 source)</font><BR>
 	     <ul>
-                <li>Only the fields that are different from the default FormSet need to be 
-                    added to the FormSet of another locale.  A complete list of fields 
-                    will be generated for each locale based on the default FormSet.  As 
-                    the complete list of fields is generated, the list will be built 
-                    with the fields that are the closest match for the locale of the FormSet.  
-                    If the language is 'fr' and country is 'CA', then if the field doesn't exist 
-                    under 'fr_CA' it will be looked for under 'fr' and then it will use the 
-                    default locale.  If you are using a variable, replacement won't occur 
-                    until after the complete field list for each locale is generated.  This 
-                    needs more testing, but seems functional.
+                <li>Upgraded to commons packages for Bean Utils, Collections, and the Digester.</li>
+                <li>Modified build.xml and build.properties.</li>
+                <li>A jsFunctionName attribute was added to the validator element so you could specify 
+                    a function/object name to be used when the JavascriptValidatorTag generates the 
+                    dynamic JavaScript.  Netscape seemed to assume validators like float were keywords.  
+                    If another function/object name was used, everything worked fine in Netscape.
                 </li>
-	        <li>Changed all StrutsValidator methods (except validateRequired) to only 
-	            perform validation if there is something other than a space entered.  
-	            This way if you want to removed the depends="required" from a validator, 
-	            the user will receive an error message once once something is entered 
-	            in a field along with any fields that are still required.
-	        </li>
-	        <li>The required JavaScript function now also checks for select and radio fields.</li>
+                <li>Basic indexed validation capablities have been added for use with 'indexed="true"' 
+                    capablilities of the html form tags.<br>
+                    <br>
+                    I haven't had time to add this to an example, but below is a sample usage.<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp; &lt;logic:iterate id="listElement" name="registrationForm" property="listElementList" indexId="index"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;html:textarea indexed="true" name="listElement" property="value" cols="60" rows="8"/&gt;&lt;br&gt;<br>
+                    &nbsp;&nbsp;&nbsp; &lt;/logic:iterate&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp; &lt;field property="value"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; indexedProperty="listElement"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; indexedListProperty="listElementList"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; depends="required"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg0 key="registrationForm.paragraph.displayname"/&gt;<br>
+                    &nbsp;&nbsp;&nbsp; &lt;/field&gt;
+                </li>
 	     </ul>
 	  </p>
 
