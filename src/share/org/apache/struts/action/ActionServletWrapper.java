@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.8 2003/05/01 16:16:49 rleland Exp $
- * $Revision: 1.8 $
- * $Date: 2003/05/01 16:16:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServletWrapper.java,v 1.9 2003/07/02 03:03:55 dgraham Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/07/02 03:03:55 $
  *
  * ====================================================================
  *
@@ -73,43 +73,15 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * could be exploited by automatic population of properties.
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.8 $ $Date: 2003/05/01 16:16:49 $
+ * @version $Revision: 1.9 $ $Date: 2003/07/02 03:03:55 $
  * @since Struts 1.0.1
  */
 public class ActionServletWrapper {
-
 
     /**
      * The controller servlet instance to which we are attached.
      */
     protected transient ActionServlet servlet = null;
-
-
-
-    /**
-     * Log the specified message if the current debugging detail level for
-     * this servlet has been set to an equal or higher value.  Otherwise,
-     * ignore this message.
-     *
-     * @param message Message to be logged
-     * @param level Debugging detail level of this message
-     * @deprecated  Logging should now use the commons logging
-     */
-    public void log(String message, int level) {
-
-           servlet.log(message,level);
-
-    }
-
-    /**
-     * Log message.
-     * @param message
-     */
-    public void log(String message) {
-
-            servlet.log(message);
-
-    }
 
     /**
      * Set servlet to a MultipartRequestHandler.

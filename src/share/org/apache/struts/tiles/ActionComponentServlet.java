@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.9 2003/03/18 02:25:11 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/03/18 02:25:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/ActionComponentServlet.java,v 1.10 2003/07/02 03:03:55 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/02 03:03:55 $
  *
  * ====================================================================
  *
@@ -211,13 +211,13 @@ public class ActionComponentServlet extends ActionServlet {
 
         if (formInstance == null)
             return (true);
-        if (debug >= 1)
-            log(" Validating input form properties");
+        
+        log(" Validating input form properties");
 
         // Was this submit cancelled?
         if ((request.getParameter(Constants.CANCEL_PROPERTY) != null)
             || (request.getParameter(Constants.CANCEL_PROPERTY_X) != null)) {
-            if (debug >= 1)
+            
                 log("  Cancelled transaction, no validation");
             return (true);
         }
@@ -231,7 +231,7 @@ public class ActionComponentServlet extends ActionServlet {
         // backward compatibility.
         ActionErrors errors = formInstance.validate(mapping, request);
         if ((errors == null) || errors.empty()) { //
-            if (debug >= 1)
+            
                 log("  No errors detected, accepting input");
             return (true);
         }
@@ -239,9 +239,9 @@ public class ActionComponentServlet extends ActionServlet {
         //does our form have a multipart request?
         if (formInstance.getMultipartRequestHandler() != null) {
             //rollback the request
-            if (debug > 1) {
+            
                 log("  Rolling back the multipart request");
-            }
+            
 
             formInstance.getMultipartRequestHandler().rollback();
         }
@@ -249,7 +249,7 @@ public class ActionComponentServlet extends ActionServlet {
         // Has an input form been specified for this mapping?
         String uri = mapping.getInput();
         if (uri == null) {
-            if (debug >= 1)
+            
                 log("  No input form, but validation returned errors");
             response.sendError(
                 HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
@@ -258,7 +258,7 @@ public class ActionComponentServlet extends ActionServlet {
         }
 
         // Save our error messages and return to the input form if possible
-        if (debug >= 1)
+        
             log("  Validation error(s), redirecting to: " + uri);
         request.setAttribute(Globals.ERROR_KEY, errors);
         doForward(uri, request, response);

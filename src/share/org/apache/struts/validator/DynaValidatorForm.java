@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.9 2003/05/01 17:54:04 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/05/01 17:54:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/DynaValidatorForm.java,v 1.10 2003/07/02 03:03:55 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/02 03:03:55 $
  *
  * ====================================================================
  *
@@ -62,8 +62,10 @@ package org.apache.struts.validator;
 
 import java.io.Serializable;
 import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -71,8 +73,8 @@ import org.apache.commons.validator.Validator;
 import org.apache.commons.validator.ValidatorException;
 import org.apache.commons.validator.ValidatorResults;
 import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 
 /**
  * <p>This class extends <strong>DynaActionForm</strong> and provides
@@ -85,7 +87,7 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.9 $ $Date: 2003/05/01 17:54:04 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/02 03:03:55 $
  * @since Struts 1.1
  * @see org.apache.struts.action.ActionForm
  */
@@ -154,35 +156,6 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean, Seria
         }
 
         return errors;
-    }
-
-   /**
-     * Convenience method that call the comparable servlet log method and writes
-     * an explanatory message and a stack trace for a given Throwable exception to the
-     * servlet log file.
-     *
-     * @param   message     String that describes the error or exception
-     * @deprecated Use common-logging, or other logging implementation to log debug messages.
-     */
-    protected void log(String message) {
-        if (getServlet().getDebug() >= 1) {
-            getServlet().log(message);
-        }
-    }
-
-   /**
-     * Convenience method that call the comparable servlet log method and writes
-     * an explanatory message and a stack trace for a given Throwable exception to the
-     * servlet log file.
-     *
-     * @param   message     String that describes the error or exception
-     * @param   throwable   Throwable error or exception
-     * @deprecated Use common-logging, or other logging implementation to log debug messages.
-     */
-    protected void log(String message, Throwable throwable) {
-        if (getServlet().getDebug() >= 1) {
-            getServlet().log(message, throwable);
-        }
     }
 
    /**

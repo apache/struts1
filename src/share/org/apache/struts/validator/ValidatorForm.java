@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.9 2003/05/01 17:47:55 rleland Exp $
- * $Revision: 1.9 $
- * $Date: 2003/05/01 17:47:55 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/validator/ValidatorForm.java,v 1.10 2003/07/02 03:03:55 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/02 03:03:55 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,8 +61,8 @@
 package org.apache.struts.validator;
 
 import java.io.Serializable;
-
 import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -86,11 +86,10 @@ import org.apache.struts.action.ActionMapping;
  * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
- * @version $Revision: 1.9 $ $Date: 2003/05/01 17:47:55 $
+ * @version $Revision: 1.10 $ $Date: 2003/07/02 03:03:55 $
  * @see org.apache.struts.action.ActionForm
  * @since Struts 1.1
  */
-
 public class ValidatorForm extends ActionForm implements Serializable {
 
     /**
@@ -155,35 +154,6 @@ public class ValidatorForm extends ActionForm implements Serializable {
         }
 
         return errors;
-    }
-
-    /**
-     * Convenience method that call the comparable servlet log method and writes
-     * an explanatory message and a stack trace for a given Throwable exception to the
-     * servlet log file.
-     *
-     * @param   message     String that describes the error or exception
-     * @deprecated Use common-logging to log debug messages.
-     */
-    protected void log(String message) {
-        if (getServlet().getDebug() >= 1) {
-            getServlet().log(message);
-        }
-    }
-
-    /**
-     * Convenience method that call the comparable servlet log method and writes
-     * an explanatory message and a stack trace for a given Throwable exception to the
-     * servlet log file.
-     *
-     * @param   message     String that describes the error or exception
-     * @param   throwable   Throwable error or exception
-     * @deprecated Use common-logging to log debug messages.
-     */
-    protected void log(String message, Throwable throwable) {
-        if (getServlet().getDebug() >= 1) {
-            getServlet().log(message, throwable);
-        }
     }
 
     /**

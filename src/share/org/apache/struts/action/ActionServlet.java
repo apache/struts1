@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.150 2003/06/28 06:16:34 dgraham Exp $
- * $Revision: 1.150 $
- * $Date: 2003/06/28 06:16:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.151 2003/07/02 03:03:55 dgraham Exp $
+ * $Revision: 1.151 $
+ * $Date: 2003/07/02 03:03:55 $
  *
  * ====================================================================
  *
@@ -223,11 +223,6 @@ import org.xml.sax.SAXException;
  *     servlet or JSP page.  [text/html]
  *     <em>DEPRECATED - Configure this using the "contentType" attribute
  *     of the &lt;controller&gt; element.</em></li>
- * <li><strong>debug</strong> - TThe debugging detail level that controls how much
- *     information is logged for this servlet. Accepts values 0 (off) and from
- *     1 (least serious) through 6 (most serious). [0]
- *     <em>DEPRECATED - Configure the logging detail level in your
- *     underlying logging implementation.</em></li>
  * <li><strong>factory</strong> - The Java class name of the
  *     <code>MessageResourcesFactory</code> used to create the application
  *     <code>MessageResources</code> object.
@@ -309,7 +304,7 @@ import org.xml.sax.SAXException;
  * @author Ted Husted
  * @author Martin Cooper
  * @author David Graham
- * @version $Revision: 1.150 $ $Date: 2003/06/28 06:16:34 $
+ * @version $Revision: 1.151 $ $Date: 2003/07/02 03:03:55 $
  */
 public class ActionServlet extends HttpServlet {
 
@@ -346,14 +341,6 @@ public class ActionServlet extends HttpServlet {
      * stored.
      */
     protected FastHashMap dataSources = new FastHashMap();
-
-
-    /**
-     * The debugging detail level for this servlet.
-     * @deprecated
-     */
-    protected int debug = 0;
-
 
     /**
      * The resources object for our internal resources.
@@ -629,20 +616,6 @@ public class ActionServlet extends HttpServlet {
 
     }
 
-
-    /**
-     * Return the debugging detail level for this servlet.
-     *
-     * @deprecated Configure the logging detail level in your underlying
-     *  logging implementation
-     */
-    public int getDebug() {
-
-        return (this.debug);
-
-    }
-
-
     /**
      * Return the <code>MessageResources</code> instance containing our
      * internal message strings.
@@ -667,24 +640,6 @@ public class ActionServlet extends HttpServlet {
 
         return ((MessageResources) getServletContext().getAttribute
                 (Globals.MESSAGES_KEY));
-
-    }
-
-
-    /**
-     * Log the specified message if the current debugging detail level for
-     * this servlet has been set to an equal or higher value.  Otherwise,
-     * ignore this message.
-     *
-     * @param message Message to be logged
-     * @param level Debugging detail level of this message
-     * @deprecated Use commons-logging instead.
-     */
-    public void log(String message, int level) {
-
-        if (debug >= level) {
-            log(message);
-        }
 
     }
 
@@ -1348,17 +1303,6 @@ public class ActionServlet extends HttpServlet {
         value = getServletConfig().getInitParameter("config");
         if (value != null) {
             config = value;
-        }
-        
-        value = getServletConfig().getInitParameter("debug");
-        if (value != null) {
-            try {
-                debug = Integer.parseInt(value);
-            } catch (NumberFormatException e) {
-                // FIXME Why should we catch this?  If the programmer has specified an
-                // invalid integer we should probably let this RuntimeException bubble up.
-                debug = 0;
-            }
         }
 
         // Backwards compatibility for form beans of Java wrapper classes

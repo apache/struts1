@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.22 2003/04/21 02:28:20 rleland Exp $
- * $Revision: 1.22 $
- * $Date: 2003/04/21 02:28:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/DiskMultipartRequestHandler.java,v 1.23 2003/07/02 03:03:55 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/07/02 03:03:55 $
  *
  * ====================================================================
  *
@@ -292,11 +292,10 @@ public class DiskMultipartRequestHandler implements MultipartRequestHandler {
                 //default to system-wide tempdir
                 tempDir = System.getProperty("java.io.tmpdir");
 
-                if (getServlet().getDebug() > 1) {
-                    log.debug("DiskMultipartRequestHandler.handleRequest(): " +
-                              "defaulting to java.io.tmpdir directory \"" +
-                              tempDir);
-                }
+                log.debug(
+                    "DiskMultipartRequestHandler.handleRequest(): "
+                        + "defaulting to java.io.tmpdir directory \""
+                        + tempDir);
             }
         }
     }
