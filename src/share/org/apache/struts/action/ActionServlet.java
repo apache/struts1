@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.109 2002/07/06 17:31:58 husted Exp $
- * $Revision: 1.109 $
- * $Date: 2002/07/06 17:31:58 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.110 2002/07/06 19:11:06 husted Exp $
+ * $Revision: 1.110 $
+ * $Date: 2002/07/06 19:11:06 $
  *
  * ====================================================================
  *
@@ -196,6 +196,8 @@ import org.apache.struts.util.ServletContextWriter;
  * <li><strong>detail</strong> - The debugging detail level for the Digester
  *     we utilize to process the application configuration files. Accepts
  *     values 0 (off) and 1 (least serious) through 6 (most serious). [0]</li>
+ * <li><strong>validating</strong> - Should we use a validating XML parser to
+ *     process the configuration file (strongly recommended)? [true]</li>
  * </ul>
  * <p>The following parameters may still be used with the Struts 1.1 release but
  * are <b>deprecated</b>.
@@ -291,7 +293,7 @@ import org.apache.struts.util.ServletContextWriter;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.109 $ $Date: 2002/07/06 17:31:58 $
+ * @version $Revision: 1.110 $ $Date: 2002/07/06 19:11:06 $
  */
 
 public class ActionServlet
