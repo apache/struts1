@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.95 2003/03/24 04:39:35 dgraham Exp $
- * $Revision: 1.95 $
- * $Date: 2003/03/24 04:39:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.96 2003/04/03 01:29:03 dgraham Exp $
+ * $Revision: 1.96 $
+ * $Date: 2003/04/03 01:29:03 $
  *
  * ====================================================================
  *
@@ -116,7 +116,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.95 $ $Date: 2003/03/24 04:39:35 $
+ * @version $Revision: 1.96 $ $Date: 2003/04/03 01:29:03 $
  */
 
 public class RequestUtils {
@@ -967,14 +967,16 @@ public class RequestUtils {
         // Look up the requested MessageResources
         if (bundle == null) {
             bundle = Globals.MESSAGES_KEY;
-            resources =
+        }
+        
+        resources =
                 (MessageResources) pageContext.getAttribute(bundle, PageContext.REQUEST_SCOPE);
 
-        }
         if (resources == null) {
             resources =
                 (MessageResources) pageContext.getAttribute(bundle, PageContext.APPLICATION_SCOPE);
         }
+        
         if (resources == null) {
             JspException e = new JspException(messages.getMessage("message.bundle", bundle));
             saveException(pageContext, e);
