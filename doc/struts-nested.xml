@@ -15,6 +15,7 @@
   <display-name>Struts Nested Tags</display-name>
   <uri>http://jakarta.apache.org/struts/tags-nested-1.0</uri>
   <info>
+    <p>[Since Struts 1.1]</p>
     <p>This tag library brings a nested context to the functionality of the
     Struts custom tag library.</p>
     
@@ -77,18 +78,18 @@
       <p>
       Example...<br />
       <pre>
-  &lt;nested:write property="myNestedLevel.propertyOne" /&gt;
-  &lt;nested:write property="myNestedLevel.propertyTwo" /&gt;
-  &lt;nested:write property="myNestedLevel.propertyThree" /&gt;
+&lt;nested:write property="myNestedLevel.propertyOne" /&gt;
+&lt;nested:write property="myNestedLevel.propertyTwo" /&gt;
+&lt;nested:write property="myNestedLevel.propertyThree" /&gt;
       </pre>
       Can instead become...
       <pre>
-      myNestedLevel
-  &lt;nested:nest property="myNestedLevel" /&gt;
-    &lt;nested:write property="propertyOne" /&gt;
-    &lt;nested:write property="propertyTwo" /&gt;
-    &lt;nested:write property="propertyThree" /&gt;
-  &lt;/nested:nest &gt;
+  myNestedLevel
+&lt;nested:nest property="myNestedLevel" /&gt;
+&lt;nested:write property="propertyOne" /&gt;
+&lt;nested:write property="propertyTwo" /&gt;
+&lt;nested:write property="propertyThree" /&gt;
+&lt;/nested:nest &gt;
       </pre>
       </p>
     </info>
@@ -412,6 +413,7 @@
       to the <code>String</code>. If nothing specified, then default format
       string for value data type will be searched in message resources by
       according key.</p>
+<!-- move to developer's guide
       <table>
        <tr>
            <td>Key to search format string</td>
@@ -444,16 +446,17 @@
        </tr>
       </table>
       <p>Default format strings in resources can be written as - <br />
-        <pre>
-                org.apache.struts.taglib.nested.bean.Nestedformat.int=######
-                org.apache.struts.taglib.nested.bean.Nestedformat.float=######,####
-                org.apache.struts.taglib.nested.bean.Nestedformat.sql.timestamp=hh 'o''clock' a, zzzz
-                org.apache.struts.taglib.nested.bean.Nestedformat.sql.date=EEE, MMM d, ''yy
-                org.apache.struts.taglib.nested.bean.Nestedformat.sql.time=h:mm a
-                org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
-        </pre>
+        <pre><small>
+org.apache.struts.taglib.nested.bean.Nestedformat.int=######
+org.apache.struts.taglib.nested.bean.Nestedformat.float=######,####
+org.apache.struts.taglib.nested.bean.Nestedformat.sql.timestamp=hh 'o''clock' a, zzzz
+org.apache.struts.taglib.nested.bean.Nestedformat.sql.date=EEE, MMM d, ''yy
+org.apache.struts.taglib.nested.bean.Nestedformat.sql.time=h:mm a
+org.apache.struts.taglib.nested.bean.Nestedformat.date=hh 'o''clock' a, zzzz
+        </small></pre>
         <br />values for resource file entries are standart Java format strings for
         date, time and number values.</p>
+-->
       </info>
     </attribute>
 
@@ -5344,10 +5347,10 @@
       <info>
       <p>Checks whether the currently authenticated user (if any) has been
       associated with any of the specified security roles. Use a comma-delimited
-  	  list to check for multiple roles. Example:
-  	  <code>&lt;logic:present role="role1,role2,role3"&gt;
-	            code.....
-			&lt;/logic:present&gt;</code></p>
+      list to check for multiple roles. Example:
+      <code>&lt;logic:present role="role1,role2,role3"&gt;
+                code.....
+            &lt;/logic:present&gt;</code></p>
       </info>
     </attribute>
 

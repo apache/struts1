@@ -948,6 +948,7 @@
       to the <code>String</code>. If nothing specified, then default format 
       string for value data type will be searched in message resources by
       according key.</p>
+<!-- move to developers guide
       <table>
        <tr>
            <td>Key to search format string</td>
@@ -990,6 +991,7 @@
         </pre>                
         <br />values for resource file entries are standart Java format strings for
         date, time and number values.</p>
+-->
       </info>
     </attribute>
 
