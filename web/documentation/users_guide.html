@@ -6,7 +6,7 @@
 
 <div align="center">
 <h1>Struts User's Guide</h2>
-<h3>$Id: users_guide.html,v 1.8 2000/07/07 15:44:04 craigmcc Exp $</h3>
+<h3>$Id: users_guide.html,v 1.9 2000/07/09 03:00:20 craigmcc Exp $</h3>
 </div>
 
 
@@ -995,6 +995,8 @@ to illustrate the requirements:</p>
 <pre>
   &lt;action-mappings&gt;
 
+    &lt;forward name="logon" path="/logon.jsp"/&gt;
+
     &lt;action   path="/logon"
        actionClass="org.apache.struts.example.LogonAction"
      formAttribute="logonForm"
@@ -1012,16 +1014,20 @@ specify in a JSP page would end in <code>/logon.do</code>).  When a request
 that matches this path is received, an instance of the <code>LogonAction</code>
 class will be created (the first time only) and used.  The controller servlet
 will look for a session scoped bean under key <code>logonForm</code>, creating
-and saving a bean of the specified class if needed.  The <code>success</code>
-and <code>failure</code> properties indicate that the logon action should
-forward control to the main menu if successful, or back to the logon form
-if not successful (such as an invalid username or password).</p>
+and saving a bean of the specified class if needed.</p>
 
 <p>This <code>action</code> element also defines a logical name "success",
 which is used within the <code>LogonAction</code> class to identify the
 page to be used when a user successfully logs on.  Using a logical name like
 this allows the action class to be insulated from any changes in the page
 names that might occur due to a site redesign.</p>
+
+<p>There is a second <code>forward</code> element that is declared outside
+of any <code>action</code>, so it is globally available to all actions.  In
+this case, it defines a logical name for the logon page.  In your action
+code, when you call <code>mapping.findForward()</code>, Struts first looks at
+the locally defined logical names for this action.  If it does not find one,
+it then searches the global definitions for you automatically.</p>
 
 
 <h3>4.5 The Web Application Deployment Descriptor</h3>
@@ -1062,8 +1068,32 @@ initialization parameters.  Such an entry might look like this:
 </pre>
 
 <p>The initialization parameters supported by the controller servlet are
-described in the <a href="api/index.html">Javadocs</a> for the
-<code>ActionServlet</code> class.</p>
+described below, which is copied from the <a href="api/index.html">Javadocs</a>
+for the <code>ActionServlet</code> class.  Square brackets describe the
+default values that are assumed if you do not provide a value for that
+initialization parameter.</p>
+<ul>
+<li><strong>application</strong> - Java class name of the application
+    resources bundle base class.  [NONE].
+<li><strong>config</strong> - Context-relative path to the XML resource
+    containing our configuration information.  [/WEB-INF/action.xml]
+<li><strong>debug</strong> - The debugging detail level for this
+    servlet, which controls how much information is logged.  [0]
+<li><strong>digester</strong> - The debugging detail level for the Digester
+    we utilize in <code>initMapping()</code>, which logs to System.out
+    instead of the servlet log.  [0]
+<li><strong>forward</strong> - The Java class name of the ActionForward
+    implementation to use [org.apache.struts.action.ActionForward]
+<li><strong>mapping</strong> - The Java class name of the ActionMapping
+    implementation to use [org.apache.struts.action.ActionMappingBase]
+<li><strong>nocache</strong> - If set to <code>true</code>, add HTTP headers
+    to every response intended to defeat browser caching of any response we
+    generate or forward to.  [false]
+<li><strong>null</strong) - If set to <code>true</code>, set our application
+    resources to return <code>null</code> if an unknown message key is used.
+    Otherwise, an error message including the offending message key will
+    be returned.  [true]
+</ul>
 
 
 <h4>4.5.2 Configure the Action Servlet Mapping</h4>
