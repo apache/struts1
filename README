@@ -1,4 +1,4 @@
-$Id: README,v 1.8 2000/08/14 22:45:33 craigmcc Exp $
+$Id: README,v 1.9 2000/09/11 20:02:26 craigmcc Exp $
 
 				Struts
 				======
@@ -30,8 +30,10 @@ Installing and Using Struts
 ---------------------------
 
 You can utilize a binary distribution of Struts in your own web applications
-by following these steps (only the steps marked (*) are required if you only
-wish to use the custom tag library:
+by following these steps.  All of these steps are required if you want to
+run the Struts application framework (including executing the example
+application).  If you simply wish to use the Struts custom tag library,
+and not the MVC framework, only the steps marked (*) are required.
 
 - (*) Download and install a version 1.1 or later Java Development Kit
   implementation for your operating system platform.  Note that some
