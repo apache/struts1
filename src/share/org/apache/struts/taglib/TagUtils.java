@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.9 2003/07/26 18:44:54 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/26 18:44:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.10 2003/07/26 18:51:37 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/07/26 18:51:37 $
  *
  * ====================================================================
  *
@@ -90,7 +90,7 @@ import org.apache.struts.taglib.html.Constants;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -457,6 +457,18 @@ public class TagUtils {
         return RequestUtils.getUserLocale(
             (HttpServletRequest) pageContext.getRequest(),
             locale);
+    }
+    
+    /**
+     * Returns true if the custom tags are in XHTML mode.
+     */
+    public boolean isXhtml(PageContext pageContext) {
+        String xhtml =
+            (String) pageContext.getAttribute(
+                Globals.XHTML_KEY,
+                PageContext.PAGE_SCOPE);
+
+        return "true".equalsIgnoreCase(xhtml);
     }
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.123 2003/07/26 18:45:24 dgraham Exp $
- * $Revision: 1.123 $
- * $Date: 2003/07/26 18:45:24 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.124 2003/07/26 18:51:37 dgraham Exp $
+ * $Revision: 1.124 $
+ * $Date: 2003/07/26 18:51:37 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.123 $ $Date: 2003/07/26 18:45:24 $
+ * @version $Revision: 1.124 $ $Date: 2003/07/26 18:51:37 $
  */
 
 public class RequestUtils {
@@ -1752,6 +1752,8 @@ public class RequestUtils {
     /**
      * Returns true if the custom tags are in XHTML mode.
      * @since Struts 1.1
+     * @deprecated Use TagUtils.isXhtml() instead.  This will be removed after
+     * Struts 1.2.
      */
     public static boolean isXhtml(PageContext pageContext) {
         String xhtml =

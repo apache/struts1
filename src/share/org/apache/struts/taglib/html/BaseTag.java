@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.16 2003/05/17 01:56:51 dgraham Exp $
- * $Revision: 1.16 $
- * $Date: 2003/05/17 01:56:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.17 2003/07/26 18:51:56 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/26 18:51:56 $
  *
  * ====================================================================
  *
@@ -70,8 +70,8 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
-import org.apache.struts.util.RequestUtils;
 
 /**
  * Renders an HTML <base> element with an href 
@@ -83,7 +83,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Luis Arias <luis@elysia.com>
  * @author David Graham
- * @version $Revision: 1.16 $ $Date: 2003/05/17 01:56:51 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/26 18:51:56 $
  */
 
 public class BaseTag extends TagSupport {
@@ -178,7 +178,7 @@ public class BaseTag extends TagSupport {
             tag.append("\"");
         }
         
-        if (RequestUtils.isXhtml(this.pageContext)) {
+        if (TagUtils.getInstance().isXhtml(this.pageContext)) {
             tag.append(" />");
         } else {
             tag.append(">");
