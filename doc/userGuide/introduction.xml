@@ -236,7 +236,7 @@
 
         <p>
           The <b>Model</b> layer in a MVC application is often project-specific. Struts is 
-          designed to makes it easy to access the business-end of your application, 
+          designed to make it easy to access the business-end of your application, 
           but leaves that part of the programming to other products, like 
           <a href="http://java.sun.com/products/jdbc/index.html">JDBC</a>, 
           <a href="http://java.sun.com/products/ejb/index.html">Enterprise Java Beans</a>, 
