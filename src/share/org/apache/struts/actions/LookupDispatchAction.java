@@ -109,9 +109,7 @@ import org.apache.struts.util.MessageResources;
  *  Your subclass must implement both getKeyMethodMap and the
  *  methods defined in the map. An example of such implementations are:</p>
  * <pre>
- *  protected Map getKeyMethodMap(ActionMapping mapping,
- *           ActionForm form,
- *          HttpServletRequest request) {
+ *  protected Map getKeyMethodMap() {
  *      Map map = new HashMap();
  *      map.put("button.add", "add");
  *      map.put("button.delete", "delete");
