@@ -121,7 +121,7 @@
 
     </target>
 
-<!-- 
+<!--
         Create directories and copy files for the struts tests
 -->
     <target name="prepare.test" depends="init">
@@ -138,7 +138,7 @@
 
     </target>
 
-<!-- 
+<!--
         Compile unit tests
 -->
     <target name="compile.test" depends="prepare.test">
@@ -189,9 +189,9 @@
 
         <war warfile="${out.test.dir}/test.war"
              webxml="${conf.test.dir}/web.xml">
-	    
+
 	    <fileset dir="${web.dir}/test"/>
- 
+
             <classes dir="${out.test.dir}/classes"/>
 
             <!-- We need to copy the Cactus, JUnit and Struts jars in the war.
@@ -249,6 +249,13 @@
               </fileset>
             </batchtest>
 
+            <!-- org.apache.struts.util package Tests -->
+            <batchtest fork="yes">
+              <fileset dir="${out.test.dir}/classes">
+                <include name="org/apache/struts/tiles/Test*.class" />
+              </fileset>
+            </batchtest>
+
         </junit>
 
     </target>
@@ -266,10 +273,10 @@
 
 	<!-- Delete old directory so new war is unzipped -->
         <delete dir="${out.tomcat.32.dir}/webapps/test"/>
-        
+
         <!-- Copy war file -->
         <copy file="${out.test.dir}/test.war" todir="${out.tomcat.32.dir}/webapps"/>
-    
+
         <!-- Copy configuration files -->
         <copy file="${conf.test.dir}/tomcat32/server.xml"
             todir="${out.tomcat.32.dir}/conf" filtering="on"/>
@@ -301,7 +308,7 @@
         <java classname="org.apache.tomcat.startup.Tomcat" fork="yes">
             <arg value="-config"/>
             <arg value="${out.tomcat.32.dir}/conf/server.xml"/>
-            <classpath>            
+            <classpath>
                 <pathelement location="${java.home}/../lib/tools.jar"/>
                 <fileset dir="${tomcat.home.32}/lib">
                     <include name="*.jar"/>
@@ -319,7 +326,7 @@
         <java classname="org.apache.tomcat.startup.Tomcat" fork="yes">
             <jvmarg value="-Dtomcat.home=${tomcat.home.32}"/>
             <arg value="-stop"/>
-            <classpath>            
+            <classpath>
                 <pathelement location="${java.home}/../lib/tools.jar"/>
                 <fileset dir="${tomcat.home.32}/lib">
                     <include name="*.jar"/>
@@ -438,7 +445,7 @@
 
         <!-- Copy war file -->
         <copy file="${out.test.dir}/test.war" todir="${out.tomcat.40.dir}/webapps"/>
-    
+
         <!-- Copy configuration files -->
         <copy file="${conf.test.dir}/tomcat40/server.xml"
             todir="${out.tomcat.40.dir}/conf" filtering="on"/>
@@ -521,7 +528,7 @@
 
         <!-- Copy war file -->
         <copy file="${out.test.dir}/test.war" todir="${out.tomcat.41.dir}/webapps"/>
-    
+
         <!-- Copy configuration files -->
         <copy file="${conf.test.dir}/tomcat41/server.xml"
             todir="${out.tomcat.41.dir}/conf" filtering="on"/>
