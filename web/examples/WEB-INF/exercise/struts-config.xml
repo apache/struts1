@@ -45,6 +45,22 @@
     <action path="/logic-redirect-test-forward" forward="/logic-redirect-test-forward.jsp" />
     <action path="/logic-redirect-test-page" forward="/logic-redirect-test-page.jsp" />
 
+    <action path="/forward-redirect-default" type="org.apache.struts.webapp.exercise.SuccessAction" >
+        <forward name="success" path="/" redirect="true" contextRelative="true" />
+    </action>
+    <action path="/forward-redirect-default-module" type="org.apache.struts.webapp.exercise.SuccessAction" >
+        <forward name="success" path="/" redirect="true" />
+    </action>
+    <action path="/forward-redirect-path" type="org.apache.struts.webapp.exercise.SuccessAction" >
+        <forward name="success" path="/html-link.do" redirect="true" />
+    </action>
+
+      <!-- :FIXME: We could allow forward to use an action attribute
+      <action path="/forward-redirect-default-module" type="org.apache.struts.webapp.exercise.SuccessAction" >
+          <forward name="success" action="/html-link" redirect="true" />
+      </action>
+      -->
+
     <!-- Locale Action -->
     <action path="/locale" type="org.apache.struts.webapp.validator.LocaleAction" name="localeForm" scope="request">
       <forward name="success" path="/welcome.do" />
