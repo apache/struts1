@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.5 2003/05/13 18:21:13 turner Exp $
- * $Revision: 1.5 $
- * $Date: 2003/05/13 18:21:13 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/bean/TestIncludeTag.java,v 1.6 2003/09/30 00:15:47 jmitchell Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/09/30 00:15:47 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -137,7 +137,7 @@ public class TestIncludeTag extends JspTestCase {
 	}
 
     /*
-     * Testing IncludeTag using href="http://localhost:9090/test/something"
+     * Testing IncludeTag
      */
     public void testIncludeTagHref(){ 
     	runMyTest("testIncludeTagHref");
