@@ -379,7 +379,13 @@ public class JavascriptValidatorTag extends BodyTagSupport {
        sb.append("	      if (bCancel) \n");
        sb.append("	 	return true; \n");
        sb.append("	      else \n");     
-       sb.append("	 	return " + methods + "; \n");
+       
+       // Always return true if there aren't any Javascript validation methods
+       if (methods == null || methods.length() == 0)
+          sb.append("	 	return true; \n");
+       else
+          sb.append("	 	return " + methods + "; \n");
+          
        sb.append("	 } \n\n");
        
        return sb.toString();
