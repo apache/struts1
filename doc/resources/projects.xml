@@ -11,8 +11,8 @@
 
 <section name="Projects and Examples">
 <!-- <p><a href="http://www.basebeans.com/downloads.jsp"></a></p> -->
-<p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip">
-<b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
+<p><a href="http://www.ajug.org/meetings/download/struts_demo.zip"><b>AJUG Presentation Demo Application</b></a> by Chuck Cavaness - The demo application uses OJB and Hypersonic.</p>
+<p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip"><b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
 <p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
 <p><a href="http://husted.com/struts/resources/artimus.zip"><b>Artimus</b></a> by Ted  Husted - News poster application. Demonstrates using beans beans and a JDBC database with Struts, along with other niceties. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
 <p><a href="http://husted.com/struts/resources/scaffold.zip"><b>Scaffold</b></a> by Ted Husted - Utility package of classes that can be used with various Web applications.</p>
