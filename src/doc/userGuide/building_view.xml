@@ -149,7 +149,7 @@
         The case above would be rendered like this using Struts:
         
 <pre>
-  &lt;html:text name="username"/&gt;
+  &lt;html:text property="username"/&gt;
 </pre>
         
         with no need to explicitly refer to the JavaBean from which the initial
@@ -193,7 +193,7 @@
       &lt;html:message key="prompt.username"/&gt;
     &lt;/th&gt;
     &lt;td align="left"&gt;
-      &lt;html:text name="username" size="16"/&gt;
+      &lt;html:text property="username" size="16"/&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -201,7 +201,7 @@
       &lt;html:message key="prompt.password"/&gt;
     &lt;/th&gt;
     &lt;td align="left"&gt;
-      &lt;html:password name="password" size="16"/&gt;
+      &lt;html:password property="password" size="16"/&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -528,11 +528,11 @@ public class UploadForm extends ActionForm {
         </p>
           
         <ul>
-          <li>The include <i>directive</i> (<code>&lt;%@ include file="xxxxx"
-              %&gt;</code>) is processed when the JSP page is compiled.  It is
-              useful when you are including HTML code that will not need to change
-              at request time.  It treats the text being included as static text,
-              much like the <code>#include</code> directive in C or C++.</li>
+          <li>An <%@ include file="xxxxx" %> directive can include a file that contains
+				  java code or jsp tags. The code in the included file can even reference
+				  variables declared earlier in the outer jsp page. The code is inlined into
+				  the other jsp before it is compiled so it can definately contain more than
+				  just HTML.</li>
           <li>The include <i>action</i> (<code>&lt;jsp:include page="xxxxx"
               flush="true" /&gt;</code>) is processed at request time, and is handled
               transparently by the server.  Among other things, that means you
