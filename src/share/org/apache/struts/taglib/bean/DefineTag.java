@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.16 2002/03/16 05:04:33 craigmcc Exp $
- * $Revision: 1.16 $
- * $Date: 2002/03/16 05:04:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/DefineTag.java,v 1.17 2002/06/23 00:07:16 craigmcc Exp $
+ * $Revision: 1.17 $
+ * $Date: 2002/06/23 00:07:16 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * bean property.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/03/16 05:04:33 $
+ * @version $Revision: 1.17 $ $Date: 2002/06/23 00:07:16 $
  */
 
 public class DefineTag extends BodyTagSupport {
@@ -90,6 +90,13 @@ public class DefineTag extends BodyTagSupport {
     protected static MessageResources messages =
         MessageResources.getMessageResources
         ("org.apache.struts.taglib.bean.LocalStrings");
+
+
+    /**
+     * The body content of this tag (if any).
+     */
+    protected String body = null;
+
 
     // ------------------------------------------------------------- Properties
 
@@ -195,19 +202,37 @@ public class DefineTag extends BodyTagSupport {
 
     // --------------------------------------------------------- Public Methods
 
+
     /**
-    *
-    * Check if we need to evaluate the body of the tag
-    *
-    * @exception JspException if a JSP exception has occurred
-    */
+     * Check if we need to evaluate the body of the tag
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
     public int doStartTag() throws JspException {
        
-        if( this.name!=null || this.value!=null )
-            return (SKIP_BODY);
-        else
-            return (EVAL_BODY_TAG);
+        return (EVAL_BODY_TAG);
+
     }
+
+
+    /**
+     * Save the body content of this tag (if any), or throw a JspException
+     * if the value was already defined.
+     *
+     * @exception JspException if value was defined by an attribute
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            body = bodyContent.getString();
+            if (body != null) {
+                body = body.trim();
+            }
+        }
+        return (SKIP_BODY);
+
+    }
+
 
     /**
      * Retrieve the required property and expose it as a scripting variable.
@@ -216,21 +241,31 @@ public class DefineTag extends BodyTagSupport {
      */
     public int doEndTag() throws JspException {
 
-        if( ( this.value!=null || 
-              this.name!=null ) && 
-                bodyContent!=null )
-                throw new JspException( messages.getMessage("define.value", name) );
+        // Enforce restriction on ways to declare the new value
+        int n = 0;
+        if (this.body != null) {
+            n++;
+        }
+        if (this.name != null) {
+            n++;
+        }
+        if (this.value != null) {
+            n++;
+        }
+        if (n != 1) {
+            JspException e =
+                new JspException(messages.getMessage("define.value"));
+            RequestUtils.saveException(pageContext, e);
+            throw e;
+        }
 
         // Retrieve the required property value
         Object value = this.value;
-        if ((value == null) && (name!=null)) {
+        if ((value == null) && (name != null)) {
             value = RequestUtils.lookup(pageContext, name, property, scope);
         }
-        if (value == null) {
-            value = bodyContent.getString();
-            if (value != null) {
-                value = ((String) value).trim();
-            }
+        if ((value == null) && (body != null)) {
+            value = body;
         }
         if (value == null) {
             JspException e =
@@ -260,6 +295,7 @@ public class DefineTag extends BodyTagSupport {
     public void release() {
 
         super.release();
+        body = null;
         id = null;
         name = null;
         property = null;

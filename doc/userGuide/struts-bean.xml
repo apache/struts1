@@ -120,21 +120,27 @@
     <teiclass>org.apache.struts.taglib.bean.DefineTei</teiclass>
     <bodycontent>JSP</bodycontent>
     <info>
-    <p>Retrieve the value of a specified bean property, and define it
-    as an attribute (in the scope specified by the <code>toScope</code>
-    property) accessible to the remainder of the current
-    page.  No type conversion is performed on the returned property value,
-    unless it is a Java primitive type, in which case it is wrapped in the
-    appropriate wrapper class (i.e. int is wrapped by java.lang.Integer).</p>
-
-    <p>If you specify a "value" attribute, the exposed bean will be of type
-    <code>java.lang.String</code> and initialized to the specified value.</p>
-
-    <p>If you specify a body, the exposed bean will be of type
-    <code>java.lang.String</code> and initialized to the body content.</p>
-
-    <p>You can not specify a "value" attribute and body simultaneously - 
-    JspException will be thrown.</p>
+    <p>Create a new attribute (in the scope specified by the
+    <code>toScope</code> property, if any), and a corresponding scripting
+    variable, both of which are named by the value of the <code>id</code>
+    attribute.  The corresponding value to which this new attribute (and
+    scripting variable) is set are specified via use of exactly one of the
+    following approaches (trying to use more than one will result in a
+    JspException being thrown):</p>
+    <ul>
+    <li>Specify a <code>name</code> attribute (plus optional
+        <code>property</code> and <code>scope</code> attributes) -
+        The created attribute and scripting variable will be of the type of the
+        retrieved JavaBean property, unless it is a Java primitive type,
+        in which case it will be wrapped in the appropriate wrapper class
+        (i.e. int is wrapped by java.lang.Integer).</li>
+    <li>Specify a <code>value</code> attribute - The created attribute and
+        scripting variable will be of type <code>java.lang.String</code>,
+        set to the value of this attribute.</li>
+    <li>Specify nested body content - The created attribute and scripting
+        variable will be of type <code>java.lang.String</code>, set to
+        the value of the nested body content.</li>
+    </ul>
 
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
@@ -188,7 +194,7 @@
       specified) or the attribute name of the bean that is duplicated with
       the new reference created by this tag (if <code>property</code> is not
       also specified).  This attribute is required unless you specify
-      a <code>value</code> attribute.</p>
+      a <code>value</code> attribute or nested body content.</p>
       </info>
     </attribute>
 
@@ -246,7 +252,7 @@
       <info>
       <p>The <code>java.lang.String</code> value to which the exposed bean
       should be set.  This attribute is required unless you specify the
-      <code>name</code> attribute.</p>
+      <code>name</code> attribute or nested body content.</p>
       </info>
     </attribute>
 
