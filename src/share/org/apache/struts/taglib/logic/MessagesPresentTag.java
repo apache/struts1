@@ -130,7 +130,12 @@ public class MessagesPresentTag extends ConditionalTagBase {
         boolean bMessages = false;
 
         try {
-            am = RequestUtils.getActionMessages(pageContext, name);
+            // Definitely know it should be an error so 
+            // use method to retrieve errors.
+            if (Action.ERROR_KEY.equals(name))
+               am = RequestUtils.getActionErrors(pageContext, name);
+            else 
+               am = RequestUtils.getActionMessages(pageContext, name);
         } catch(JspException e) {
             RequestUtils.saveException(pageContext, e);
             throw e;
