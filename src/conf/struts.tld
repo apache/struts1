@@ -15,6 +15,11 @@
     This tag library contains useful general-purpose tags supporting the
     development of JSP/servlet applications based on the "Model 2" (MVC
     based) design pattern.
+
+    WARNING:  ALL OF THE TAGS IN THIS LIBRARY ARE DEPRECATED, AND
+    ARE MAINTAINED ONLY FOR BACKWARDS COMPATIBILITY.  THEY WILL BE
+    REMOVED IN A FUTURE VERSION OF STRUTS.
+
   </info>
 
   <!-- ===================== Control Flow Tags ====================== -->
