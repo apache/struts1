@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.29 2002/07/18 11:33:56 jholmes Exp $
+$Id: STATUS,v 1.30 2002/07/19 03:30:19 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -18,7 +18,6 @@ Custom Tags:
 -----------
  1586 The <html:form> tag generates incorrect focus javascript for radio buttons.
  8460 using null="false" in message-resources adds alt & title element to generated html
-10923 Submit tags generating extra quote
 
 
 Documentation:
