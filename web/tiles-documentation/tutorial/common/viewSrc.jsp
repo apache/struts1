@@ -3,5 +3,5 @@
 
 <tiles:insert definition="mainLayout" flush="true" >
   <tiles:put name="title" value="JSP Source Code" />
-  <tiles:put name="body" value="/common/viewSrcBody.jsp" />
+  <tiles:put name="body" value="/tutorial/common/viewSrcBody.jsp" />
 </tiles:insert>  
