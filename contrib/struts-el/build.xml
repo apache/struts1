@@ -158,7 +158,7 @@
   <pathelement location="${commons-validator.jar}"/>
   <pathelement location="${jdbc20ext.jar}"/>
   <pathelement location="${servlet.jar}"/>
-  <pathelement location="${struts.jar}"/>
+  <pathelement location="../../dist/lib/struts.jar"/>
   <pathelement location="${struts-el.jar}"/>
   <pathelement location="${jstl.jar}"/>
   <pathelement location="${jstl-standard.jar}"/>
@@ -193,7 +193,7 @@
  <target name="prepare.library" depends="init">
   <mkdir dir="${build.home}/library/classes/META-INF"/>
   <mkdir dir="${build.home}/library/classes/META-INF/tlds"/>
-  <copy file="${struts.jar}" tofile="${build.home}/library/struts.jar"/>
+  <copy file="../../dist/lib/struts.jar" tofile="${build.home}/library/struts.jar"/>
   <copy file="${jstl.jar}" tofile="${build.home}/library/jstl.jar"/>
   <copy file="${jstl-standard.jar}"
         tofile="${build.home}/library/standard.jar"/>
@@ -277,7 +277,7 @@
   <mkdir dir="${build.home}/documentation/api"/>
   <javadoc sourcepath="${src.share.dir}"
            destdir="${build.home}/documentation/api"
-           classpath="${servlet.jar}:${jdbc20ext.jar}:${struts.jar}:${jstl.jar}:${jstl-standard.jar}"
+           classpath="${servlet.jar}:${jdbc20ext.jar}:../../dist/lib/struts.jar:${jstl.jar}:${jstl-standard.jar}"
            packagenames="org.apache.strutsel.*" author="true" private="true"
            use="true"
            version="true"
