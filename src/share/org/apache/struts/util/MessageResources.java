@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.16 2002/11/09 04:04:11 dmkarr Exp $
- * $Revision: 1.16 $
- * $Date: 2002/11/09 04:04:11 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/MessageResources.java,v 1.17 2003/07/02 03:34:04 dgraham Exp $
+ * $Revision: 1.17 $
+ * $Date: 2003/07/02 03:34:04 $
  *
  * ====================================================================
  * 
@@ -91,7 +91,7 @@ import org.apache.commons.logging.LogFactory;
  * application server environments.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.16 $ $Date: 2002/11/09 04:04:11 $
+ * @version $Revision: 1.17 $ $Date: 2003/07/02 03:34:04 $
  */
 
 public abstract class MessageResources implements Serializable {
@@ -432,17 +432,15 @@ public abstract class MessageResources implements Serializable {
      * @param arg2 The replacement for placeholder {2} in the message
      * @param arg3 The replacement for placeholder {3} in the message
      */
-    public String getMessage(Locale locale,
-			     String key, Object arg0, Object arg1,
-			     Object arg2, Object arg3) {
+    public String getMessage(
+        Locale locale,
+        String key,
+        Object arg0,
+        Object arg1,
+        Object arg2,
+        Object arg3) {
 
-	Object args[] = new Object[4];
-	args[0] = arg0;
-	args[1] = arg1;
-	args[2] = arg2;
-	args[3] = arg3;
-	return (getMessage(locale, key, args));
-
+        return this.getMessage(locale, key, new Object[] { arg0, arg1, arg2, arg3 });
     }
 
 
