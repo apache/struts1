@@ -5,6 +5,8 @@
   <property name="build.home"     value="../build/${app.name}"/>
   <property name="deploy.home"    value="../build/catalina/webapps/struts"/>
   <property name="dist.home"      value="../dist/${app.name}"/>
+  <property name="upload.dest"    value="craigmcc@jakarta.apache.org:/www/jakarta.apache.org/builds/struts/nightly"/>
+  <property name="upload.home"    value="../upload/${app.name}"/>
 
   <!-- BUILD:  Create directories and copy files for library -->
   <target name="prepare.library">
@@ -119,6 +121,29 @@
   <target name="deploy" depends="compile.example">
     <mkdir dir="${deploy.home}"/>
     <copydir src="${build.home}/example" dest="${deploy.home}"/>
+  </target>
+
+  <!-- DEPLOY:  Package up the distribution in various formats -->
+  <target name="package" depends="dist">
+    <!-- Create the uploads directory -->
+    <deltree dir="${upload.home}"/>
+    <mkdir dir="${upload.home}"/>
+    <!-- Create the uploadable files in various formats -->
+    <tstamp/>
+    <tar tarfile="${upload.home}/${app.name}-${DSTAMP}.tar"
+         basedir="${dist.home}/.." includes="${app.name}/**"/>
+    <gzip    src="${upload.home}/${app.name}-${DSTAMP}.tar"
+         zipfile="${upload.home}/${app.name}-${DSTAMP}.tar.gz"/>
+    <exec    dir="${upload.home}"
+         command="compress ${app.name}-${DSTAMP}.tar"/>
+    <zip zipfile="${upload.home}/${app.name}-${DSTAMP}.zip"
+         basedir="${dist.home}/.." includes="${app.name}/**"/>
+  </target>
+
+  <!-- DEPLOY:  Upload distribution files to Jakarta web site -->
+  <target name="upload" depends="package">
+    <exec     dir="${upload.home}"
+          command="scp ${app.name}-${DSTAMP}.* ${upload.dest}"/>
   </target>
 
   <!-- UTILITY:  Clean up build and distribution directories -->

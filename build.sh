@@ -18,7 +18,7 @@
 #   TOMCAT_HOME           Distribution directory for "jakarta-tomcat".
 #                         [../jakarta-tomcat]
 #
-# $Id: build.sh,v 1.1 2000/05/31 22:28:09 craigmcc Exp $
+# $Id: build.sh,v 1.2 2000/06/01 00:05:54 craigmcc Exp $
 # -----------------------------------------------------------------------------
 
 
@@ -57,7 +57,7 @@ fi
 
 # ----- Execute The Requested Build -------------------------------------------
 
-java $ANT_OPTS -classpath "$CP" org.apache.tools.ant.Main -Dservlet.jar=$SERVLETAPI_HOME/lib/servlet.jar -Dtomcat.home=$TOMCAT_HOME "$@"
+java $ANT_OPTS -classpath "$CP" org.apache.tools.ant.Main -Dant.home=$ANT_HOME -Dservlet.jar=$SERVLETAPI_HOME/lib/servlet.jar -Dtomcat.home=$TOMCAT_HOME "$@"
 
 
 
