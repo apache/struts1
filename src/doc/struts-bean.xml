@@ -113,6 +113,9 @@
 
     <p>If a problem occurs while retrieving the specified bean property, a
     request time exception will be thrown.</p>
+    
+    <p>Define differs from "jsp:useBean" in that it allows you to easily 
+    create a new page-scope bean using the property of an existing bean.</p>
     </info>
 
     <attribute>

@@ -139,7 +139,11 @@
         It is primarily of use to developers who are enhancing the Struts
         custom tag libraries, but may also be useful as simple examples of
         the usage of various Struts tags.</li>
-    </ul>
+    <li><strong>webapps/struts-template.war</strong> - This web application
+        both introduces and demonstrates the Struts template tags.</li>       
+    <li><strong>webapps/struts-upload.war</strong> - This web application
+        is a quick example of uploading files using the Struts framework.</li>
+        </ul>
 
     <p>To use Struts in your own application, you will need to follow
     these steps:</p>
