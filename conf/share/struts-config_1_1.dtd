@@ -11,11 +11,17 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-     $Id: struts-config_1_1.dtd,v 1.7 2002/01/13 04:21:18 craigmcc Exp $
+     $Id: struts-config_1_1.dtd,v 1.8 2002/01/15 20:22:20 craigmcc Exp $
 -->
 
 
 <!-- ========== Defined Types ============================================= -->
+
+
+<!-- An "AttributeName" is the identifier of a page, request, session, or
+     application scope attribute.
+-->
+<!ENTITY % AttributeName "CDATA">
 
 
 <!-- A "BeanName" is the identifier of a JavaBean, such as a form bean,
@@ -98,6 +104,10 @@
      and made available as a servlet context attribute (i.e. application
      scope bean).  The following attributes are required:
 
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.config.DataSourceConfig]
+
      key             Servlet context attribute key under which this data
                      source will be stored.  Default is the value specified
                      by string constant Action.DATA_SOURCE_KEY.
@@ -141,7 +151,8 @@
 -->
 <!ELEMENT data-source (set-property*)>
 <!ATTLIST data-source    id             ID              #IMPLIED>
-<!ATTLIST data-source    key            %BeanName;      #IMPLIED>
+<!ATTLIST data-source    className      %ClassName;     #IMPLIED>
+<!ATTLIST data-source    key            %AttributeName; #IMPLIED>
 <!ATTLIST data-source    type           %ClassName;     #IMPLIED>
 <!-- All of the following attributes are deprecated.  Use a nested          -->
 <!-- set-property element to configure data source properties.              -->
@@ -171,8 +182,13 @@
      occur during Action delegation and should be handled by the
      ActionServlet.
 
+    className        Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.config.ExceptionConfig]
+
     handler          Fully qualified Java class name of the exception handler
                      which should handle this exception.
+                     [org.apache.struts.action.ExceptionHandler]
 
     key              Message resources key specifying the error message
                      associated with this exception.
@@ -189,7 +205,8 @@
 -->
 <!ELEMENT exception (icon?, display-name?, description?, set-property*)>
 <!ATTLIST exception      id             ID              #IMPLIED>
-<!ATTLIST exception      handler        %ClassName;     "org.apache.struts.action.ExceptionHandler">
+<!ATTLIST exception      className      %ClassName;     #IMPLIED>
+<!ATTLIST exception      handler        %ClassName;     #IMPLIED>
 <!ATTLIST exception      key            CDATA           #IMPLIED>
 <!ATTLIST exception      path           %RequestPath;   #IMPLIED>
 <!ATTLIST exception      scope          CDATA           #IMPLIED>
@@ -209,17 +226,16 @@
 -->
 <!ELEMENT form-beans (form-bean*)>
 <!ATTLIST form-beans     id             ID              #IMPLIED>
-<!ATTLIST form-beans     type           %ClassName;     "org.apache.struts.action.ActionFormBean">
+<!ATTLIST form-beans     type           %ClassName;     #IMPLIED>
 
 
 <!-- The "form-bean" element describes a particular form bean, which is a
      JavaBean that implements the org.apache.struts.action.ActionForm
      class.  The following attributes are defined:
 
-     className       Fully qualified Java class name of the ActionFormBean
-                     implementation class to use.  Defaults to the value
-                     configured as the "formBean" initialization parameter
-                     to the Struts controller servlet.
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.config.FormBeanConfig]
 
      name            Unique identifier of this bean, used to reference it
                      in corresponding action mappings.
@@ -227,11 +243,34 @@
      type            Fully qualified Java class name of the implementation
                      class to be used or generated
 -->
-<!ELEMENT form-bean (icon?, display-name?, description?, set-property*)>
+<!ELEMENT form-bean (icon?, display-name?, description?, set-property*, form-property*)>
 <!ATTLIST form-bean      id             ID              #IMPLIED>
 <!ATTLIST form-bean      className      %ClassName;     #IMPLIED>
 <!ATTLIST form-bean      name           %BeanName;      #REQUIRED>
 <!ATTLIST form-bean      type           %ClassName;     #REQUIRED>
+
+
+<!-- The "form-property" element describes a particular JavaBean property of a
+     form bean.  It is utilized only when the "type" of the surrounding
+     "form-bean" element is "org.apache.struts.action.DynaActionForm" (or
+     a subclass of that class), and thus supports dynamic properties.  The
+     following attributes are defined:
+
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.config.FormPropertyConfig]
+
+     name            JavaBeans property name of the property being described
+                     by this element.
+
+     type            Fully qualified Java class name of the implementation
+                     class of this bean property, optionally followed by "[]"
+                     to indicate that this property is indexed.
+-->
+<!ELEMENT form-property  (set-property*)>
+<!ATTLIST form-property  className      %ClassName;     #IMPLIED>
+<!ATTLIST form-property  name           %PropName;      #REQUIRED>
+<!ATTLIST form-property  type           %ClassName;     #REQUIRED>
 
 
 <!-- The "global-forwards" element configures the global mappings of logical
@@ -250,17 +289,16 @@
 -->
 <!ELEMENT global-forwards (forward*)>
 <!ATTLIST global-forwards id            ID              #IMPLIED>
-<!ATTLIST global-forwards type          %ClassName;     "org.apache.struts.action.ActionForward">
+<!ATTLIST global-forwards type          %ClassName;     #IMPLIED>
 
 
 <!-- The "forward" element describes a mapping of a logical name (used within
      the application) to a mappable resource identified by an
      application-relative URI path.  The following attributes are defined:
 
-     className       Fully qualified Java class name of the ActionForward
-                     implementation class to use.  Defaults to the value
-                     configured as the "forward" initialization parameter
-                     to the Struts controller servlet.
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.action.ActionForward]
 
     contextRelative  Set to "true" if the path should be considered relative
                      to the entire web application, rather than prefixed with
@@ -301,7 +339,7 @@
 -->
 <!ELEMENT action-mappings (action*)>
 <!ATTLIST action-mappings id             ID              #IMPLIED>
-<!ATTLIST action-mappings type           %ClassName;     "org.apache.struts.action.ActionMapping">
+<!ATTLIST action-mappings type           %ClassName;     #IMPLIED>
 
 
 <!-- The "action" element describes a mapping from a request paths to the
@@ -313,10 +351,9 @@
                      than the bean's specified "name".  Optional if
                      "name" is specified, else not allowed.
 
-     className       Fully qualified Java class name of the ActionMapping
-                     implementation class to use.  Defaults to the value
-                     configured as the "mapping" initialization parameter
-                     to the Struts controller servlet.
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.action.ActionMapping]
 
      forward         Application-relative path of the servlet or JSP resource
                      that will process this request, instead of instantiating
@@ -400,6 +437,10 @@
      bufferSize      The size of the input buffer used when processing
                      file uploads.  [4096]
 
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.config.ControllerConfig]
+
      contentType     Default content type (and optional character encoding)
                      to be set on each response.  May be overridden by a
                      forwarded-to servlet or JSP page.  [text/html]
@@ -429,9 +470,10 @@
      tempDir         Temporary working directory to use when processing
                      file uploads.  [Directory provided by servlet container]
 -->
-<!ELEMENT controller     EMPTY>
+<!ELEMENT controller     (set-property*)>
 <!ATTLIST controller     id             ID              #IMPLIED>
 <!ATTLIST controller     bufferSize     %Integer;       #IMPLIED>
+<!ATTLIST controller     className      %ClassName;     #IMPLIED>
 <!ATTLIST controller     contentType    CDATA           #IMPLIED>
 <!ATTLIST controller     debug          %Integer;       #IMPLIED>  
 <!ATTLIST controller     locale         %Boolean;       #IMPLIED>
@@ -445,6 +487,10 @@
 <!-- The "message-resources" element specifies the characteristics of the
      MessageResources containing the messages for this application.  The
      following attributes are defined:
+
+     className       Implementation subclass of the standard configuration
+                     bean, if you do not want to use the standard value.
+                     [org.apache.struts.config.MessageResourcesConfig]
 
      factory         Fully qualified Java class name of the
                      MessageResourcesFactory class we should use, if any.
@@ -460,6 +506,7 @@
 -->
 <!ELEMENT message-resources EMPTY>
 <!ATTLIST message-resources id          ID              #IMPLIED>
+<!ATTLIST message-resources className   %ClassName;     #IMPLIED>
 <!ATTLIST message-resources factory     %ClassName;     #IMPLIED>
 <!ATTLIST message-resources null        %Boolean;       #IMPLIED>
 <!ATTLIST message-resources parameter   CDATA           #REQUIRED>

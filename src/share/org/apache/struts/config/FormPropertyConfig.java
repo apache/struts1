@@ -1,6 +1,6 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormBeanConfig.java,v 1.2 2002/01/15 20:22:20 craigmcc Exp $
- * $Revision: 1.2 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.1 2002/01/15 20:22:20 craigmcc Exp $
+ * $Revision: 1.1 $
  * $Date: 2002/01/15 20:22:20 $
  *
  * ====================================================================
@@ -64,40 +64,26 @@ package org.apache.struts.config;
 
 
 import java.io.Serializable;
-import org.apache.commons.collections.FastHashMap;
 
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;form-bean&gt;</code> element in a Struts application
+ * <code>&lt;form-property&gt;</code> element in a Struts application
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/15 20:22:20 $
+ * @version $Revision: 1.1 $ $Date: 2002/01/15 20:22:20 $
  * @since Struts 1.1
  */
 
-public class FormBeanConfig implements Serializable {
-
-
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * The set of FormProperty elements defining dynamic form properties for
-     * this form bean, keyed by property name.
-     */
-    protected FastHashMap formProperties = new FastHashMap();
+public class FormPropertyConfig implements Serializable {
 
 
     // ------------------------------------------------------------- Properties
 
 
     /**
-     * The unique identifier of this form bean, which is used to reference this
-     * bean in <code>ActionMapping</code> instances as well as for the name of
-     * the request or session attribute under which the corresponding form bean
-     * instance is created or accessed.
+     * The JavaBean property name of the property described by this element.
      */
     protected String name = null;
 
@@ -112,7 +98,8 @@ public class FormBeanConfig implements Serializable {
 
     /**
      * The fully qualified Java class name of the implementation class
-     * to be used or generated.
+     * of this bean property, optionally followed by <code>[]</code> to
+     * indicate that the property is indexed.
      */
     protected String type = null;
 
@@ -129,62 +116,11 @@ public class FormBeanConfig implements Serializable {
 
 
     /**
-     * Add a new <code>FormPropertyConfig</code> instance to the set associated
-     * with this application.
-     *
-     * @param config The new configuration instance to be added
-     */
-    public void addFormPropertyConfig(FormPropertyConfig config) {
-
-        formProperties.put(config.getName(), config);
-
-    }
-
-
-    /**
-     * Return the form property configuration for the specified property
-     * name, if any; otherwise return <code>null</code>.
-     *
-     * @param name Form property name to find a configuration for
-     */
-    public FormPropertyConfig findFormPropertyConfig(String name) {
-
-        return ((FormPropertyConfig) formProperties.get(name));
-
-    }
-
-
-    /**
-     * Return the form property configurations for this application.  If there
-     * are none, a zero-length array is returned.
-     */
-    public FormPropertyConfig[] findFormPropertyConfigs() {
-
-        FormPropertyConfig results[] =
-            new FormPropertyConfig[formProperties.size()];
-        return ((FormPropertyConfig[]) formProperties.values().toArray(results));
-
-    }
-
-
-    /**
-     * Remove the specified form property configuration instance.
-     *
-     * @param config FormPropertyConfig instance to be removed
-     */
-    public void removeFormPropertyConfig(FormPropertyConfig config) {
-
-        formProperties.remove(config.getName());
-
-    }
-
-
-    /**
      * Return a String representation of this object.
      */
     public String toString() {
 
-        StringBuffer sb = new StringBuffer("FormBeanConfig[");
+        StringBuffer sb = new StringBuffer("FormPropertyConfig[");
         sb.append("name=");
         sb.append(this.name);
         sb.append(",type=");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.3 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.4 2002/01/15 20:22:20 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/01/15 20:22:20 $
  *
  * ====================================================================
  *
@@ -72,7 +72,7 @@ import org.apache.commons.digester.RuleSetBase;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.4 $ $Date: 2002/01/15 20:22:20 $
  * @since Struts 1.1
  */
 
@@ -183,6 +183,17 @@ public class ConfigRuleSet extends RuleSetBase {
             ("struts-config/form-beans/form-bean",
              "addFormBeanConfig",
              "org.apache.struts.config.FormBeanConfig");
+
+        digester.addObjectCreate
+            ("struts-config/form-beans/form-bean/form-property",
+             "org.apache.struts.config.FormPropertyConfig",
+             "className");
+        digester.addSetProperties
+            ("struts-config/form-beans/form-bean/form-property");
+
+        digester.addSetProperty
+            ("struts-config/form-beans/form-bean/form-property/set-property",
+             "property", "value");
 
         digester.addSetProperty
             ("struts-config/form-beans/form-bean/set-property",
