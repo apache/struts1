@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.18 2003/04/19 01:20:32 dgraham Exp $
- * $Revision: 1.18 $
- * $Date: 2003/04/19 01:20:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ExceptionHandler.java,v 1.19 2003/07/26 00:13:20 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/07/26 00:13:20 $
  *
  * ====================================================================
  *
@@ -58,23 +58,31 @@
  * <http://www.apache.org/>.
  *
  */
+ 
 package org.apache.struts.action;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.util.ModuleException;
 
 /**
- * An ExceptionHandler is configured in the Struts configuration file to handle a specific
- * type of exception thrown by an Action's execute method.
+ * An ExceptionHandler is configured in the Struts configuration file to handle a 
+ * specific type of exception thrown by an Action's execute method.
  * 
  * @since Struts 1.1
  */
 public class ExceptionHandler {
+    
+    /**
+     * Commons logging instance.
+     */
+    private static final Log log = LogFactory.getLog(ExceptionHandler.class);
     
     /**
      * Handle the exception.
@@ -121,11 +129,22 @@ public class ExceptionHandler {
             property = error.getKey();
         }
 
+        this.logException(ex);
+
         // Store the exception
         request.setAttribute(Globals.EXCEPTION_KEY, ex);
         storeException(request, property, error, forward, ae.getScope());
 
         return forward;
+    }
+    
+    /**
+     * Logs the exception using commons-logging.
+     * @param e The Exception to log.
+     * @since Struts 1.2
+     */
+    protected void logException(Exception e){
+        log.debug(e);
     }
 
     /**
