@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.13 2003/03/18 02:42:59 dgraham Exp $
- * $Revision: 1.13 $
- * $Date: 2003/03/18 02:42:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.14 2003/03/18 02:46:01 dgraham Exp $
+ * $Revision: 1.14 $
+ * $Date: 2003/03/18 02:46:01 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.TilesUtil;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.13 $ $Date: 2003/03/18 02:42:59 $
+ * @version $Revision: 1.14 $ $Date: 2003/03/18 02:46:01 $
  */
 public class InsertTag
     extends DefinitionTagSupport
@@ -871,11 +871,16 @@ public class InsertTag
                 if (flush) {
                     pageContext.getOut().flush();
                 }
-                doInclude(page);
+                
+                if ((page != null) && (page.length() > 0)) {
+                    doInclude(page);
+                }
+                
             } catch (IOException ex) {
                 processException(
                     ex,
                     "Can't insert page '" + page + "' : " + ex.getMessage());
+                    
             } catch (IllegalArgumentException ex) { // Can't resolve page uri
                 // Do we ignore bad page uri errors ?
                 if (!(page == null && isErrorIgnored)) {
@@ -887,6 +892,7 @@ public class InsertTag
                             + "'. Check if it exists.\n"
                             + ex.getMessage());
                 }
+                
             } catch (ServletException ex) {
                 Throwable realEx = ex;
                 if (ex.getRootCause() != null) {
@@ -899,10 +905,12 @@ public class InsertTag
                         + "] "
                         + realEx.getMessage()
                         + "'");
+                        
             } catch (Exception ex) {
                 processException(
                     ex,
                     "[Exception in:" + page + "] " + ex.getMessage());
+                    
             } finally {
                 // restore old context
                 // done only if currentContext not null (bug with Silverstream ?; related by Arvindra Sehmi 20010712)
