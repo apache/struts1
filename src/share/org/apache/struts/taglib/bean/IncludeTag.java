@@ -1,5 +1,5 @@
 /*
- * $Id: IncludeTag.java,v 1.11 2001/05/03 03:29:36 craigmcc Exp $
+ * $Id: IncludeTag.java,v 1.12 2001/05/09 04:42:10 craigmcc Exp $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -68,6 +68,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -90,7 +91,7 @@ import org.apache.struts.util.RequestUtils;
  * wrapped response passed to RequestDispatcher.include().
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2001/05/03 03:29:36 $
+ * @version $Revision: 1.12 $ $Date: 2001/05/09 04:42:10 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -350,24 +351,9 @@ public class IncludeTag extends TagSupport {
 
         // Append the session identifier if appropriate
         if (includeSession) {
-            String sessionId = null;
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            HttpSession session = request.getSession();
-            try {
-                sessionId = session.getId();
-            } catch (Throwable t) {
-                sessionId = null;
-            }
-            if (sessionId != null) {
-                int question = href.indexOf('?');
-                if (question < 0)
-                    href += ";jsessionid=" + sessionId;
-                else
-                    href = href.substring(0, question) +
-                        ";jsessionid=" + sessionId +
-                        href.substring(question);
-            }
+            HttpServletResponse response =
+                (HttpServletResponse) pageContext.getResponse();
+            href = response.encodeURL(href);
         }
 
         // Convert the hyperlink to a URL
