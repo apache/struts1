@@ -502,8 +502,65 @@ public static boolean validateTwoFields(
     non-null and field Y equals 'male'".
     </p>
 
+     <p>Let's assume you have a medical information form with three fields, sex, dateOfLastMamogram, and testResult.  
+     If sex is 'f' or 'F', dateOfLastMamogram is required.  If dateOfLastMamogram is not blank, testResult is required.
+     The entry in your validation.xml file would look like this:
+     </p>
+     <pre>
+&lt;form name="medicalStatusForm"&gt;
+
+&lt;field
+    property="dateOfLastMamogram" depends="requiredif"&gt;
+  &lt;arg0 key="medicalStatusForm.dateOfLastMamogram.label"/&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field[0]&lt;/var-name&gt;
+    &lt;var-value&gt;sex&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-test[0]&lt;/var-name&gt;
+    &lt;var-value&gt;EQUAL&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-value[0]&lt;/var-name&gt;
+    &lt;var-value&gt;F&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field[1]&lt;/var-name&gt;
+    &lt;var-value&gt;sex&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-test[1]&lt;/var-name&gt;
+    &lt;var-value&gt;EQUAL&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-value[1]&lt;/var-name&gt;
+    &lt;var-value&gt;f&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-join&lt;/var-name&gt;
+    &lt;var-value&gt;OR&lt;/var-value&gt;
+  &lt;/var&gt;
+&lt;/field&gt;
+
+&lt;field
+    property="testResult" depends="requiredif"&gt;
+  &lt;arg0 key="medicalStatusForm.testResult.label"/&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field[0]&lt;/var-name&gt;
+    &lt;var-value&gt;dateOfLastMamogram&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-test[0]&lt;/var-name&gt;
+    &lt;var-value&gt;NOTNULL&lt;/var-value&gt;
+  &lt;/var&gt;
+&lt;/field&gt;
+&lt;/form&gt;
+</pre>
+   
+     
+
     <p>
-    The syntax looks like this:
+    Here's a more complex example using indexed properties.
     </p>
 
     <p>
@@ -516,8 +573,7 @@ public static boolean validateTwoFields(
     type="org.apache.struts.webapp.validator.forms.ValidatorForm">
     <form-property
         name="dependents"
-        type="org.apache.struts.webapp.validator.Dependent[]"
-        initial="{'','','','','','','','','','',''}"/>
+        type="org.apache.struts.webapp.validator.Dependent[]" size="10"/>
     <form-property
         name="insureDependents"
         type="java.lang.Boolean"
@@ -547,11 +603,11 @@ public static boolean validateTwoFields(
     <var-value>lastName</var-value>
   </var>
   <var>
-    <var-name>fieldIndexed[0]</var-name>
+    <var-name>field-indexed[0]</var-name>
     <var-value>true</var-value>
   </var>
   <var>
-    <var-name>fieldTest[0]</var-name>
+    <var-name>field-test[0]</var-name>
     <var-value>NOTNULL</var-value>
   </var>
 </field>
@@ -566,11 +622,11 @@ public static boolean validateTwoFields(
     <var-value>lastName</var-value>
   </var>
   <var>
-    <var-name>fieldIndexed[0]</var-name>
+    <var-name>field-indexed[0]</var-name>
     <var-value>true</var-value>
   </var>
   <var>
-    <var-name>fieldTest[0]</var-name>
+    <var-name>field-test[0]</var-name>
     <var-value>NOTNULL</var-value>
   </var>
 </field>
@@ -585,11 +641,11 @@ public static boolean validateTwoFields(
     <var-value>lastName</var-value>
   </var>
   <var>
-    <var-name>fieldIndexed[0]</var-name>
+    <var-name>field-indexed[0]</var-name>
     <var-value>true</var-value>
   </var>
   <var>
-    <var-name>fieldTest[0]</var-name>
+    <var-name>field-test[0]</var-name>
     <var-value>NOTNULL</var-value>
   </var>
   <var>
@@ -597,15 +653,15 @@ public static boolean validateTwoFields(
     <var-value>insureDependents</var-value>
   </var>
   <var>
-    <var-name>fieldTest[1]</var-name>
+    <var-name>field-test[1]</var-name>
     <var-value>EQUAL</var-value>
   </var>
   <var>
-    <var-name>fieldValue[1]</var-name>
+    <var-name>field-value[1]</var-name>
     <var-value>true</var-value>
   </var>
   <var>
-    <var-name>fieldJoin</var-name>
+    <var-name>field-join</var-name>
     <var-value>AND</var-value>
   </var>
 </field>

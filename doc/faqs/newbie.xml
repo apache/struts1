@@ -5,6 +5,7 @@
 <author>James Holmes</author>
 <author>Craig R. McClanahan</author>
 <author>Edgar Dollin</author>
+<author>James Turner</author>
 <title>Newbie FAQ - Apache Struts</title>
 </properties>
 <body>
@@ -108,6 +109,10 @@
 
     <li>
     <a href="#prepopulate">How can I prepopulate a form?</a>
+    </li>
+
+    <li>
+    <a href="#requiredif">Can you give me a simple example of using the requiredif Validator rule?</a>
     </li>
 
     </ul>
@@ -699,6 +704,64 @@ XHTML specification</a></p>
         instead of calling your processing action.</li>
     </ul>
 
+</section>
+
+<section href="requiredif"
+         name="Can you give me a simple example of using the requiredif Validator rule?">
+     <p>Let's assume you have a medical information form with three fields, sex, dateOfLastMamogram, and testResult.  
+     If sex is 'f' or 'F', dateOfLastMamogram is required.  If dateOfLastMamogram is not blank, testResult is required.
+     The entry in your validation.xml file would look like this:
+     </p>
+     <pre>
+&lt;form name="medicalStatusForm"&gt;
+
+&lt;field
+    property="dateOfLastMamogram" depends="requiredif"&gt;
+  &lt;arg0 key="medicalStatusForm.dateOfLastMamogram.label"/&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field[0]&lt;/var-name&gt;
+    &lt;var-value&gt;sex&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-test[0]&lt;/var-name&gt;
+    &lt;var-value&gt;EQUAL&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-value[0]&lt;/var-name&gt;
+    &lt;var-value&gt;F&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field[1]&lt;/var-name&gt;
+    &lt;var-value&gt;sex&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-test[1]&lt;/var-name&gt;
+    &lt;var-value&gt;EQUAL&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-value[1]&lt;/var-name&gt;
+    &lt;var-value&gt;f&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-join&lt;/var-name&gt;
+    &lt;var-value&gt;OR&lt;/var-value&gt;
+  &lt;/var&gt;
+&lt;/field&gt;
+
+&lt;field
+    property="testResult" depends="requiredif"&gt;
+  &lt;arg0 key="medicalStatusForm.testResult.label"/&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field[0]&lt;/var-name&gt;
+    &lt;var-value&gt;dateOfLastMamogram&lt;/var-value&gt;
+  &lt;/var&gt;
+  &lt;var&gt;
+    &lt;var-name&gt;field-test[0]&lt;/var-name&gt;
+    &lt;var-value&gt;NOTNULL&lt;/var-value&gt;
+  &lt;/var&gt;
+&lt;/field&gt;
+&lt;/form&gt;
+</pre>
 </section>
 
 
