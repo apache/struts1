@@ -11,7 +11,7 @@
        "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
        "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
 
-     $Id: struts-config_1_0.dtd,v 1.4 2001/05/20 01:46:00 craigmcc Exp $
+     $Id: struts-config_1_0.dtd,v 1.4.2.1 2001/06/02 18:18:25 craigmcc Exp $
 -->
 
 
@@ -96,14 +96,23 @@
      source object (that implements javax.sql.DataSource) which will be
      configured according to the properties and nested elements found here,
      and made available as a servlet context attribute (i.e. application
-     scope bean).  The following attributes are defined:
+     scope bean).  The following attributes are required:
+
+     key             Servlet context attribute key under which this data
+                     source will be stored.  Default is the value specified
+                     by string constant Action.DATA_SOURCE_KEY.
 
      type            Fully qualified Java class name of the implementation
-                     class (must implement javax.sql.DataSource).
+                     class (must implement javax.sql.DataSource).  Default
+                     value is 'org.apache.struts.util.GenericDataSource'.
 
      NOTE:  The following attributes are defined by the default data source
      implementation, and only take effect for that class or subclasses of
      that class.
+
+     WARNING:  The use of these attributes is deprecated.  You should use
+     nested &lt;set-property&gt; elements to configure *all* properties of
+     your data source implementation.
 
      autoCommit      The default auto-commit state for newly created
                      connections.
@@ -113,12 +122,8 @@
      driverClass     The Java class name of the JDBC driver to be used.
                      [REQUIRED]
 
-     key             Servlet context attribute key under which this data
-                     source will be stored.  Default is the value specified
-                     by string constant Action.DATA_SOURCE_KEY.
-
      loginTimeout    The maximum number of seconds to wait for a connection
-                     to be created or returned.
+                     to be created or returned.  Default is driver dependent.
 
      maxCount        The maximum number of connections to be created.
 
@@ -136,18 +141,20 @@
 -->
 <!ELEMENT data-source (set-property*)>
 <!ATTLIST data-source    id             ID              #IMPLIED>
-<!ATTLIST data-source    type           %ClassName;     "org.apache.struts.util.GenericDataSource">
-<!ATTLIST data-source    autoCommit     %Boolean;       "true">
-<!ATTLIST data-source    description    CDATA           #IMPLIED>
-<!ATTLIST data-source    driverClass    %ClassName;     #REQUIRED>
 <!ATTLIST data-source    key            %BeanName;      #IMPLIED>
+<!ATTLIST data-source    type           %ClassName;     #IMPLIED>
+<!-- All of the following attributes are deprecated.  Use a nested          -->
+<!-- set-property element to configure data source properties.              -->
+<!ATTLIST data-source    autoCommit     %Boolean;       #IMPLIED>
+<!ATTLIST data-source    description    CDATA           #IMPLIED>
+<!ATTLIST data-source    driverClass    %ClassName;     #IMPLIED>
 <!ATTLIST data-source    loginTimeout   %Integer;       #IMPLIED>
-<!ATTLIST data-source    maxCount       %Integer;       "2">
-<!ATTLIST data-source    minCount       %Integer;       "1">
-<!ATTLIST data-source    password       CDATA           #REQUIRED>
-<!ATTLIST data-source    readOnly       %Boolean;       "false">
-<!ATTLIST data-source    url            CDATA           #REQUIRED>
-<!ATTLIST data-source    user           CDATA           #REQUIRED>
+<!ATTLIST data-source    maxCount       %Integer;       #IMPLIED>
+<!ATTLIST data-source    minCount       %Integer;       #IMPLIED>
+<!ATTLIST data-source    password       CDATA           #IMPLIED>
+<!ATTLIST data-source    readOnly       %Boolean;       #IMPLIED>
+<!ATTLIST data-source    url            CDATA           #IMPLIED>
+<!ATTLIST data-source    user           CDATA           #IMPLIED>
 
 
 <!-- The "form-beans" element is the root of the set of form bean descriptors

@@ -22,16 +22,24 @@
   <!-- ========== Data Source Configuration =============================== -->
 <!--
   <data-sources>
-    <data-source
-       autoCommit="false"
-      description="Example Data Source Configuration"
-      driverClass="org.postgresql.Driver"
-         maxCount="4"
-         minCount="2"
-         password="mypassword"
-              url="jdbc:postgresql://localhost/mydatabase"
-             user="myusername"
-    />
+    <data-source>
+      <set-property property="autoCommit"
+                       value="false"/>
+      <set-property property="description"
+                       value="Example Data Source Configuration"/>
+      <set-property property="driverClass"
+                       value="org.postgresql.Driver"/>
+      <set-property property="maxCount"
+                       value="4"/>
+      <set-property property="minCount"
+                       value="2"/>
+      <set-property property="password"
+                       value="mypassword"/>
+      <set-property property="url"
+                       value="jdbc:postgresql://localhost/mydatabase"/>
+      <set-property property="user"
+                       value="myusername"/>
+    </data-source>
   </data-sources>
 -->
 
