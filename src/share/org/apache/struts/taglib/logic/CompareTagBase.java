@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.6 2001/02/12 21:49:54 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2001/02/12 21:49:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/CompareTagBase.java,v 1.6.2.1 2002/03/16 03:06:42 craigmcc Exp $
+ * $Revision: 1.6.2.1 $
+ * $Date: 2002/03/16 03:06:42 $
  *
  * ====================================================================
  *
@@ -78,7 +78,7 @@ import org.apache.struts.util.RequestUtils;
  * define values for desired1 and desired2.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2001/02/12 21:49:54 $
+ * @version $Revision: 1.6.2.1 $ $Date: 2002/03/16 03:06:42 $
  */
 
 public abstract class CompareTagBase extends ConditionalTagBase {
@@ -253,10 +253,7 @@ public abstract class CompareTagBase extends ConditionalTagBase {
             throw e;
         }
         if (variable == null) {
-            JspException e = new JspException
-                (messages.getMessage("logic.variable", value));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
+            variable = "";    // Coerce null to a zero-length String
         }
 
         // Perform the appropriate comparison

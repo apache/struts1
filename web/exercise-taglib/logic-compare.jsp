@@ -390,38 +390,6 @@
     </td>
   </tr>
   <tr>
-    <td>string / EQ</td>
-    <td><bean:write name="bean" property="stringProperty"/></td>
-    <td><%= str1 %></td>
-    <td>equal greaterEqual lessEqual</td>
-    <td>
-      <logic:equal name="bean" property="stringProperty"
-             value="<%= str1 %>">
-        equal
-      </logic:equal>
-      <logic:greaterEqual name="bean" property="stringProperty"
-             value="<%= str1 %>">
-        greaterEqual
-      </logic:greaterEqual>
-      <logic:greaterThan name="bean" property="stringProperty"
-             value="<%= str1 %>">
-        greaterThan
-      </logic:greaterThan>
-      <logic:lessEqual name="bean" property="stringProperty"
-             value="<%= str1 %>">
-        lessEqual
-      </logic:lessEqual>
-      <logic:lessThan name="bean" property="stringProperty"
-             value="<%= str1 %>">
-        lessThan
-      </logic:lessThan>
-      <logic:notEqual name="bean" property="stringProperty"
-             value="<%= str1 %>">
-        notEqual
-      </logic:notEqual>
-    </td>
-  </tr>
-  <tr>
     <td>long / EQ</td>
     <td><bean:write name="bean" property="longProperty"/></td>
     <td><%= long1 %></td>
@@ -614,6 +582,38 @@
     </td>
   </tr>
   <tr>
+    <td>string / EQ</td>
+    <td><bean:write name="bean" property="stringProperty"/></td>
+    <td><%= str1 %></td>
+    <td>equal greaterEqual lessEqual</td>
+    <td>
+      <logic:equal name="bean" property="stringProperty"
+             value="<%= str1 %>">
+        equal
+      </logic:equal>
+      <logic:greaterEqual name="bean" property="stringProperty"
+             value="<%= str1 %>">
+        greaterEqual
+      </logic:greaterEqual>
+      <logic:greaterThan name="bean" property="stringProperty"
+             value="<%= str1 %>">
+        greaterThan
+      </logic:greaterThan>
+      <logic:lessEqual name="bean" property="stringProperty"
+             value="<%= str1 %>">
+        lessEqual
+      </logic:lessEqual>
+      <logic:lessThan name="bean" property="stringProperty"
+             value="<%= str1 %>">
+        lessThan
+      </logic:lessThan>
+      <logic:notEqual name="bean" property="stringProperty"
+             value="<%= str1 %>">
+        notEqual
+      </logic:notEqual>
+    </td>
+  </tr>
+  <tr>
     <td>string / GT</td>
     <td><bean:write name="bean" property="stringProperty"/></td>
     <td><%= str2 %></td>
@@ -673,6 +673,38 @@
       </logic:lessThan>
       <logic:notEqual name="bean" property="stringProperty"
              value="<%= str3 %>">
+        notEqual
+      </logic:notEqual>
+    </td>
+  </tr>
+  <tr>
+    <td>string / NULL</td>
+    <td><bean:write name="bean" property="nullProperty"/>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>equal greaterEqual lessEqual</td>
+    <td>
+      <logic:equal name="bean" property="nullProperty"
+             value="">
+        equal
+      </logic:equal>
+      <logic:greaterEqual name="bean" property="nullProperty"
+             value="">
+        greaterEqual
+      </logic:greaterEqual>
+      <logic:greaterThan name="bean" property="nullProperty"
+             value="">
+        greaterThan
+      </logic:greaterThan>
+      <logic:lessEqual name="bean" property="nullProperty"
+             value="">
+        lessEqual
+      </logic:lessEqual>
+      <logic:lessThan name="bean" property="nullProperty"
+             value="">
+        lessThan
+      </logic:lessThan>
+      <logic:notEqual name="bean" property="nullProperty"
+             value="">
         notEqual
       </logic:notEqual>
     </td>
