@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.4 2003/01/25 05:52:35 martinc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/01/25 05:52:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/Attic/TilesServlet.java,v 1.5 2003/04/17 03:51:12 dgraham Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/04/17 03:51:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,8 +75,8 @@ import javax.servlet.http.HttpServlet;
  * parameters available with the specified factory.
  * This servlet is intended to be used in application using Tiles without Struts.
  * @author Cedric Dumoulin
+ * @deprecated Use the ActionServlet instead.
  */
-
 public class TilesServlet extends HttpServlet
 {
     /** Commons Logging instance. */

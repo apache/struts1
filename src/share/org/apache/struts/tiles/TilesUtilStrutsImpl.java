@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.3 2003/02/27 19:20:50 cedric Exp $
- * $Revision: 1.3 $
- * $Date: 2003/02/27 19:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtilStrutsImpl.java,v 1.4 2003/04/17 03:51:12 dgraham Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/04/17 03:51:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -82,11 +82,11 @@ public class TilesUtilStrutsImpl extends TilesUtilImpl
      * @param className Fully qualified class name to be loaded.
      * @return Class object.
      * @exception ClassNotFoundException if the class cannot be found
+     * @deprecated Use RequestUtils.applicationClass() instead.
      */
-  public Class applicationClass(String className) throws ClassNotFoundException
-  {
-  return RequestUtils.applicationClass(className);
-  }
+    public Class applicationClass(String className) throws ClassNotFoundException {
+        return RequestUtils.applicationClass(className);
+    }
 
     /**
      * Get definition factory for the module attached to the specified moduleConfig.

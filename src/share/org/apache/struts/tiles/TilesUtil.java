@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.6 2003/03/22 00:25:30 cedric Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/22 00:25:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesUtil.java,v 1.7 2003/04/17 03:51:12 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/04/17 03:51:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -172,11 +172,10 @@ public class TilesUtil
      * @param response Current page response.
      * @param servletContext Current servlet context.
      */
-  public static void doInclude(String uri, PageContext pageContext)
-        throws IOException, ServletException
-  {
-  tilesUtilImpl.doInclude(uri, pageContext);
-  }
+    public static void doInclude(String uri, PageContext pageContext)
+        throws IOException, ServletException {
+        TilesUtilImpl.doInclude(uri, pageContext);
+    }
 
     /**
      * Get definition factory from appropriate servlet context.
@@ -239,11 +238,12 @@ public class TilesUtil
      * @param className Fully qualified class name to be loaded.
      * @return Class object.
      * @exception ClassNotFoundException if the class cannot be found
+     * @deprecated Use RequestUtils.applicationClass() instead.
      */
-  public static Class applicationClass(String className) throws ClassNotFoundException
-  {
-  return tilesUtilImpl.applicationClass(className);
-  }
+    public static Class applicationClass(String className)
+        throws ClassNotFoundException {
+        return tilesUtilImpl.applicationClass(className);
+    }
 
 
     /**

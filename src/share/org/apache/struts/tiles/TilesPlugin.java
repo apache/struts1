@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.19 2003/02/27 19:20:50 cedric Exp $
- * $Revision: 1.19 $
- * $Date: 2003/02/27 19:20:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesPlugin.java,v 1.20 2003/04/17 03:51:12 dgraham Exp $
+ * $Revision: 1.20 $
+ * $Date: 2003/04/17 03:51:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -188,8 +188,11 @@ public class TilesPlugin implements PlugIn {
         { // A classname is specified for the tilesUtilImp, use it.
         try
           {
-          TilesUtilStrutsImpl impl = (TilesUtilStrutsImpl)TilesUtil.applicationClass( getTilesUtilImplClassname() ).newInstance();
-          TilesUtil.setTilesUtil(impl);
+        TilesUtilStrutsImpl impl =
+            (TilesUtilStrutsImpl) RequestUtils
+                .applicationClass(getTilesUtilImplClassname())
+                .newInstance();
+        TilesUtil.setTilesUtil(impl);
           }
          catch( ClassCastException ex )
           {

@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.6 2003/01/25 05:52:35 martinc Exp $
- * $Revision: 1.6 $
- * $Date: 2003/01/25 05:52:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/ComponentDefinition.java,v 1.7 2003/04/17 03:51:12 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/04/17 03:51:12 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,10 +63,12 @@
 package org.apache.struts.tiles;
 
 import java.io.Serializable;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Definition of a template / component attributes.
@@ -560,7 +562,7 @@ public class ComponentDefinition implements Serializable
    {
     try
      {
-     Class requestedClass = TilesUtil.applicationClass(classname);
+     Class requestedClass = RequestUtils.applicationClass(classname);
      Object instance = requestedClass.newInstance();
      /*
      if( instance instanceof org.apache.struts.action.Action )
