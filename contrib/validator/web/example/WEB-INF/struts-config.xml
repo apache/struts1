@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
 <!DOCTYPE struts-config PUBLIC
-          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
-          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
 <!--
      This is the Struts configuration file for the example application,
@@ -94,5 +94,13 @@
 
   <message-resources
     parameter="org.apache.struts.validator.example.ApplicationResources"/>
-    
+
+  <!-- ========== Plug Ins Configuration ================================== -->
+  
+  <!-- Add multiple validator resource files by setting the pathname property -->
+  <plug-in className="org.apache.struts.validator.action.ValidatorPlugIn">
+    <set-property property="pathname" value="/WEB-INF/validator-rules.xml"/>
+    <set-property property="pathname" value="/WEB-INF/validation.xml"/>
+  </plug-in>
+      
 </struts-config>
