@@ -42,6 +42,10 @@
                                       dependent JAR files will be added if
                                       "webapp.libs" is defined.
 
+        build.home                    Base directory into which we are building
+                                      the Struts components.
+
+
         servlet.jar                   MUST be set to the pathname of the
                                       servlet API classes you wish to
                                       compile against.
@@ -78,6 +82,9 @@
 
 -->
 
+<property name="build.home"            value="target" />
+<property name="servlet.jar"          value="../jakarta-servletapi/lib/servlet.jar"/>
+
 
 
 <!-- ========== Initialization Properties ================================= -->
@@ -91,6 +98,7 @@
 -->
 
 
+
 <!-- Should Java compilations set the debug compiler option? -->
 <property name="compile.debug"         value="true" />
 
@@ -102,9 +110,6 @@
 
 <!-- The base directory for distribution targets -->
 <property name="dist.home"             value="dist" />
-
-<!-- The base directory for compile targets -->
-<property name="target.home"           value="target" />
 
 <!-- The source directory for Java compilations related to this webapp -->
 <property name="webapp.src"            value="src/${webapp.name}" />
@@ -131,7 +136,7 @@
 <property name="webapp.dist"           value="${dist.home}/webapps" />
 
 <!-- The target directory for building the unpacked web application -->
-<property name="webapp.target"         value="${target.home}/${webapp.name}" />
+<property name="webapp.target"         value="${build.home}/${webapp.name}" />
 
 <!-- The class path used for compiling this library -->
 <path id="classpath">
@@ -161,6 +166,15 @@
 
   <!-- Should we copy Struts library and TLD files? -->
   <available property="webapp.struts"    file="${struts.libs}" />
+
+  <!-- FIXME debugging messages -->
+  <echo message="copy.libs = ${copy.libs}"/>
+  <echo message="webapp.compile = ${webapp.compile}"/>
+  <echo message="webapp.struts = ${webapp.struts}"/>
+  <echo message="servlet.jar = ${servlet.jar}"/>
+  <echo message="struts.libs = ${struts.libs}"/>
+  <echo message="webapp.libs = ${webapp.libs}"/>
+  <echo message="compile.classpath = ${compile.classpath}"/>
 
 </target>
 
@@ -273,7 +287,6 @@
 <target name="dist" depends="compile"
         description="Create web application archive">
   <echo    message="Processing webapp ${webapp.name}"/>
-  <delete  file="${webapp.dist}/${webapp.war}"/>
   <jar  jarfile="${webapp.dist}/${webapp.war}"
         basedir="${webapp.target}"/>
 </target>

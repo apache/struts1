@@ -34,8 +34,10 @@
                                       "*.jar" files are copied to the web
                                       application's WEB-INF/lib directory.
 -->
+
+<property name="build.home"           value="target"/>
 <property name="servlet.jar"          value="../jakarta-servletapi/lib/servlet.jar"/>
-<property name="struts.libs"          value="target/library"/>
+<property name="struts.libs"          value="${build.home}/library"/>
 
 
 
@@ -63,10 +65,7 @@
 <property name="dist.home"             value="dist" />
 
 <!-- The directory into which Struts JAR and TLD files have been created -->
-<property name="struts.home"           value="target/library" />
-
-<!-- The base directory for compile targets -->
-<property name="target.home"           value="target" />
+<property name="struts.home"           value="${build.home}/library" />
 
 
 <!-- ========== Executable Targets ======================================== -->
