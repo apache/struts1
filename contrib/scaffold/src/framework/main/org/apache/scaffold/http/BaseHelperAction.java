@@ -41,7 +41,7 @@ import org.apache.scaffold.lang.Tokens;
  * and an error condition is detected.
  * <p>
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/01/01 13:44:04 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/22 22:37:50 $
 **/
 public class BaseHelperAction extends Action {
 
@@ -65,14 +65,6 @@ public class BaseHelperAction extends Action {
             result = Locale.getDefault();
         }
         return result;
-    }
-
-
-    /**
-     * Return the application resources for this web application, if any.
-    **/
-    public MessageResources getMessageResources() {
-        return servlet.getResources();
     }
 
 
@@ -219,9 +211,9 @@ public class BaseHelperAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/BaseHelperAction.java,v 1.1 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/01 13:44:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/BaseHelperAction.java,v 1.2 2002/01/22 22:37:50 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/22 22:37:50 $
  *
  * ====================================================================
  *

@@ -13,6 +13,10 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
 
+import org.apache.struts.config.ApplicationConfig;
+import org.apache.struts.config.ForwardConfig;
+
+
 import org.apache.scaffold.lang.Tokens;
 
 
@@ -20,7 +24,7 @@ import org.apache.scaffold.lang.Tokens;
  * Scan request parameters for the name of a local or global
  * forward. If one is found, use it. If not, return null.
  * @author Dmitri Valdin
- * @version $Revision: 1.1 $ $Date: 2002/01/01 13:44:04 $
+ * @version $Revision: 1.2 $ $Date: 2002/01/22 22:37:50 $
 **/
 public final class FindForwardAction extends Action {
 
@@ -40,11 +44,14 @@ public final class FindForwardAction extends Action {
                  HttpServletResponse response)
     throws IOException, ServletException {
 
-        String forwards[] = mapping.findForwards();
+        //   String forwards[] = ActionMapping.findForwards();
+        ApplicationConfig config = (ApplicationConfig)
+            request.getAttribute(Action.APPLICATION_KEY);
+        ForwardConfig forwards[] = config.findForwardConfigs();
         for (int i=0; i<forwards.length; i++) {
-            if (request.getParameter(forwards[i])!=null) {
+            if (request.getParameter(forwards[i].getName())!=null) {
                  // Return the required ActionForward instance
-                 return mapping.findForward(forwards[i]);
+                 return mapping.findForward(forwards[i].getName());
              }
          }
 
@@ -71,9 +78,9 @@ public final class FindForwardAction extends Action {
 } // end FindForwardAction
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.1 2002/01/01 13:44:04 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/01/01 13:44:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/FindForwardAction.java,v 1.2 2002/01/22 22:37:50 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/01/22 22:37:50 $
  *
  * ====================================================================
  *
