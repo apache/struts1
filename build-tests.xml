@@ -631,6 +631,89 @@
 
     </target>
 
+<!--
+        Prepare test directory structure for Tomcat 5.0 servlet engine
+-->
+    <target name="prepare.test.tomcat.50" depends="prepare.test.war" if="tomcat.home.50">
+
+        <property name="out.tomcat.50.dir" value="${out.test.dir}/servers/tomcat50"/>
+        <filter token="out.tomcat.50.full.dir" value="${out.tomcat.50.dir}"/>
+        <filter token="tomcat.connector.port" value="${cactus.contextPort}"/>
+
+        <mkdir dir="${out.tomcat.50.dir}/webapps"/>
+        <mkdir dir="${out.tomcat.50.dir}/conf"/>
+
+	<!-- Delete old directory so new war is unzipped -->
+        <delete dir="${out.tomcat.50.dir}/webapps/test"/>
+
+        <!-- Copy war file -->
+        <copy file="${out.test.dir}/test.war" todir="${out.tomcat.50.dir}/webapps"/>
+
+        <!-- Copy configuration files -->
+        <copy file="${conf.test.dir}/tomcat50/server.xml"
+            todir="${out.tomcat.50.dir}/conf" filtering="on"/>
+
+    </target>
+
+<!--
+        Run unit tests on Tomcat 5.0 servlet engine
+-->
+    <target name="test.tomcat.50" depends="prepare.test.tomcat.50">
+
+        <!-- Start the servlet engine, wait for it to be started, run the
+             unit tests, stop the servlet engine, wait for it to be stopped.
+             The servlet engine is automatically stopped if the tests fail for
+             any reason.-->
+
+        <runservertests testURL="${cactus.contextURL}"
+            startTarget="start.tomcat.50"
+            stopTarget="stop.tomcat.50"
+            testTarget="run.test"/>
+
+    </target>
+
+<!--
+        Start Tomcat 5.0 servlet engine
+-->
+    <target name="start.tomcat.50">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.50}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.50}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.50.dir}/conf/server.xml"/>
+            <arg value="start"/>
+            <classpath>
+              <pathelement location="${java.home}/../lib/tools.jar"/>
+              <fileset dir="${tomcat.home.50}">
+                  <include name="bin/bootstrap.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+<!--
+        Stop Tomcat 5.0 servlet engine
+-->
+    <target name="stop.tomcat.50">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.50}"/>
+            <jvmarg value="-Dcatalina.base=${tomcat.home.50}"/>
+            <arg value="-config"/>
+            <arg value="${out.tomcat.50.dir}/conf/server.xml"/>
+            <arg value="stop"/>
+            <classpath>
+              <fileset dir="${tomcat.home.50}">
+                  <include name="bin/bootstrap.jar"/>
+<!--                  <include name="server/catalina.jar"/> -->
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
 
 <!-- ================ Non-Cactus JUnit Based Tests ======================== -->
 

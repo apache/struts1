@@ -868,6 +868,22 @@
     </target>
 
 
+    <target name="skip.tomcat.50" unless="tomcat.home.50">
+        <echo message="*****************************************************"/>
+        <echo message="WARNING : Property 'tomcat.home.50' has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*****************************************************"/>
+        <echo message=""/>
+    </target>
+
+    <target name="test.tomcat.50" if="tomcat.home.50"
+         depends="skip.tomcat.50,compile.library"
+     description="Run unit tests on Tomcat 5.0">
+        <echo message="tomcat.home.50 = ${tomcat.home.50}"/>
+        <ant antfile="build-tests.xml" target="test.tomcat.50"/>
+    </target>
+
+
     <!-- ========== Non-Cactus Unit Tests ================================= -->
 
     <target name="test.junit" depends="compile.library"
