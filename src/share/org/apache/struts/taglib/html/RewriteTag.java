@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.2 2001/04/03 19:19:00 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/04/03 19:19:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.3 2001/04/18 23:51:32 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/04/18 23:51:32 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -79,13 +79,14 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2001/04/03 19:19:00 $
+ * @version $Revision: 1.3 $ $Date: 2001/04/18 23:51:32 $
  */
 
 public class RewriteTag extends LinkTag {
@@ -108,15 +109,7 @@ public class RewriteTag extends LinkTag {
 	results.append(response.encodeURL(hyperlink()));
 
 	// Print this element to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
-                                     PageContext.REQUEST_SCOPE);
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Skip the body of this tag
 	return (SKIP_BODY);

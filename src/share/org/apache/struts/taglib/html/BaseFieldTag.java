@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.5 2001/04/03 19:23:15 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/04/03 19:23:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseFieldTag.java,v 1.6 2001/04/18 23:51:30 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/04/18 23:51:30 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -80,7 +80,7 @@ import org.apache.struts.util.ResponseUtils;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/04/03 19:23:15 $
+ * @version $Revision: 1.6 $ $Date: 2001/04/18 23:51:30 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -228,13 +228,7 @@ public abstract class BaseFieldTag extends BaseInputTag {
 	results.append(">");
 
 	// Print this field to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, results.toString());
 
 	// Continue processing this page
 	return (EVAL_BODY_TAG);

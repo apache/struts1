@@ -67,6 +67,7 @@ import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.IteratorAdapter;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.PropertyUtils;
+import org.apache.struts.util.ResponseUtils;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -250,14 +251,9 @@ public class OptionsTag extends TagSupport {
 	}
 
 	// Render this element to our writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(sb.toString());
-	}
-	catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("common.io", e.toString()));
-	}
+        ResponseUtils.write(pageContext, sb.toString());
+
+        // Evaluate the remainder of this page
 	return EVAL_PAGE;
 
     }
