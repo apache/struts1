@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.15 2002/07/09 23:57:05 husted Exp $
- * $Revision: 1.15 $
- * $Date: 2002/07/09 23:57:05 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/RequestProcessor.java,v 1.16 2002/07/19 10:00:41 cedric Exp $
+ * $Revision: 1.16 $
+ * $Date: 2002/07/19 10:00:41 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
  *
  * @author Craig R. McClanahan
  * @author Cedric Dumoulin
- * @version $Revision: 1.15 $ $Date: 2002/07/09 23:57:05 $
+ * @version $Revision: 1.16 $ $Date: 2002/07/19 10:00:41 $
  * @since Struts 1.1
  */
 
@@ -387,6 +387,23 @@ public class RequestProcessor {
                                         HttpServletResponse response,
                                         ActionForward forward)
         throws IOException, ServletException {
+    processForwardConfig( request, response, forward );
+    }
+    /**
+     * Forward or redirect to the specified destination, by the specified
+     * mechanism.
+     *
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     * @param forward The ForwardConfig controlling where we go next
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet exception occurs
+     */
+    protected void processForwardConfig(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        ForwardConfig forward)
+        throws IOException, ServletException {
 
         if (forward == null) {
             return;
@@ -524,15 +541,7 @@ public class RequestProcessor {
             return (true);
         }
 
-        // Construct a request dispatcher for the specified path
-        String uri = appConfig.getPrefix() + forward;
-
-        // Delegate the processing of this request
-        // FIXME - exception handling?
-        if (log.isDebugEnabled()) {
-            log.debug(" Delegating via forward to '" + uri + "'");
-        }
-        doForward(uri, request, response);
+        internalModuleRelativeForward(forward, request, response);
         return (false);
 
     }
@@ -558,15 +567,7 @@ public class RequestProcessor {
             return (true);
         }
 
-        // Construct a request dispatcher for the specified path
-        String uri = appConfig.getPrefix() + include;
-
-        // Delegate the processing of this request
-        // FIXME - exception handling?
-        if (log.isDebugEnabled()) {
-            log.debug(" Delegating via include to '" + uri + "'");
-        }
-        doInclude(uri, request, response);
+        internalModuleRelativeInclude(include, request, response);
         return (false);
 
     }
@@ -925,18 +926,70 @@ public class RequestProcessor {
         String uri = null;
         if (appConfig.getControllerConfig().getInputForward()) {
             ForwardConfig forward = mapping.findForward(input);
-            uri = RequestUtils.forwardURL(request, forward);
+            processForwardConfig( request, response, forward);
         } else {
-            uri = appConfig.getPrefix() + input;
+            internalModuleRelativeForward(input, request, response);
         }
-        doForward(uri, request, response);
+
         return (false);
 
     }
 
     /**
+     * Do a module relative forward to specified uri using request dispatcher.
+     * Uri is relative to the current module. The real uri is compute by prefixing
+     * the module name.
+     * This method is used internally and is not part of the public API. It is
+     * advice to not use it in subclasses.
+     * @param uri Module-relative URI to forward to
+     * @param request Current page request
+     * @param response Current page response
+     * @since Struts 1.1
+     */
+    protected void internalModuleRelativeForward(String uri, HttpServletRequest request,
+                             HttpServletResponse response)
+        throws IOException, ServletException
+    {
+    // Construct a request dispatcher for the specified path
+    uri = appConfig.getPrefix() + uri;
+
+    // Delegate the processing of this request
+    // FIXME - exception handling?
+    if (log.isDebugEnabled()) {
+        log.debug(" Delegating via forward to '" + uri + "'");
+    }
+    doForward(uri, request, response);
+    }
+
+    /**
+     * Do a module relative include to specified uri using request dispatcher.
+     * Uri is relative to the current module. The real uri is compute by prefixing
+     * the module name.
+     * This method is used internally and is not part of the public API. It is
+     * advice to not use it in subclasses.
+     * @param uri Module-relative URI to include
+     * @param request Current page request
+     * @param response Current page response
+     * @since Struts 1.1
+     */
+    protected void internalModuleRelativeInclude(String uri, HttpServletRequest request,
+                             HttpServletResponse response)
+        throws IOException, ServletException
+    {
+    // Construct a request dispatcher for the specified path
+    uri = appConfig.getPrefix() + uri;
+
+    // Delegate the processing of this request
+    // FIXME - exception handling?
+    if (log.isDebugEnabled()) {
+        log.debug(" Delegating via include to '" + uri + "'");
+    }
+    doInclude(uri, request, response);
+    }
+
+    /**
      * Do a forward to specified uri using request dispatcher.
-     * This method is used by all internal method needi
+     * This method is used by all internal method needing to do a forward.
      * @param uri Context-relative URI to forward to
      * @param request Current page request
      * @param response Current page response
@@ -964,7 +1017,7 @@ public class RequestProcessor {
 
     /**
      * Do an include of specified uri using request dispatcher.
-     * This method is used by all internal method needi
+     * This method is used by all internal method needing to do an include
      * @param uri Context-relative URI to include
      * @param request Current page request
      * @param response Current page response
