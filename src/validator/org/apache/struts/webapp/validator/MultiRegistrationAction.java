@@ -61,10 +61,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessages;
 
 /**
  * Implementation of <strong>Action</strong> that validates a multi-page
@@ -115,10 +115,10 @@ public final class MultiRegistrationAction extends Action {
 
             removeFormBean(mapping, request);
 
-            return (mapping.findForward("success"));
+            return mapping.findForward("success");
         }
 
-        ActionErrors errors = info.validate(mapping, request);
+        ActionMessages errors = info.validate(mapping, request);
 
         if (errors != null && errors.isEmpty()) {
             if (info.getPage() == 1)
@@ -128,12 +128,15 @@ public final class MultiRegistrationAction extends Action {
                 return mapping.findForward("success");
                 
         } else {
-            saveErrors(request, errors);
-            if (info.getPage() == 1)
+            this.saveErrors(request, errors);
+            
+            if (info.getPage() == 1){
                 return mapping.findForward("input" + info.getPage());
+            }
                 
-            if (info.getPage() == 2)
+            if (info.getPage() == 2){
                 return mapping.findForward("input" + info.getPage());
+            }
         }
 
         return mapping.findForward("input1");
