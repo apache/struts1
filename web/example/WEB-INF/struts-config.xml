@@ -159,11 +159,17 @@
   </action-mappings>
 
 
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources
+    parameter="org.apache.struts.webapp.example.ApplicationResources"/>
+
+
   <!-- ========== Plug Ins Configuration ================================== -->
 
   <plug-in className="org.apache.struts.webapp.example.DatabasePlugIn">
-      <set-property property="debug"    value="9"/>
-      <set-property property="pathname" value="/WEB-INF/database.xml"/>
+    <set-property property="debug"    value="9"/>
+    <set-property property="pathname" value="/WEB-INF/database.xml"/>
   </plug-in>
 
 

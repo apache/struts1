@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.7 2002/02/23 22:54:18 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2002/02/23 22:54:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigRuleSet.java,v 1.8 2002/02/27 06:20:59 martinc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/02/27 06:20:59 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.xml.sax.Attributes;
  * configuration file (<code>struts-config.xml</code>).</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/02/23 22:54:18 $
+ * @version $Revision: 1.8 $ $Date: 2002/02/27 06:20:59 $
  * @since Struts 1.1
  */
 
@@ -243,8 +243,8 @@ public class ConfigRuleSet extends RuleSetBase {
         digester.addSetProperties
             ("struts-config/message-resources");
         digester.addSetNext
-            ("struts-config/messageResources",
-             "setMessageResourcesConfig",
+            ("struts-config/message-resources",
+             "addMessageResourcesConfig",
              "org.apache.struts.config.MessageResourcesConfig");
 
         digester.addSetProperty
