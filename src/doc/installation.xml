@@ -3,6 +3,10 @@
 
   <properties>
     <author>Craig R. McClanahan</author>
+    <author>Martin Cooper</author>
+    <author>Ted Husted</author>
+    <author>Robert Hayden</author>
+    <author>Wong Kok Kai</author>
     <title>The Struts Framework Project - Installation</title>
   </properties>
 
@@ -95,11 +99,9 @@
     directory to the directory in which you have unpacked the Struts
     source distribution, and then type one of the following commands (based
     on whether you are running on a Unix or Windows platform):</p>
-    <pre>
-        ./build.sh dist            &lt;-- Unix platform
-        build dist                 &lt;-- Windows platform
-    </pre>
-
+<pre>./build.sh dist    &lt;-- Unix platform
+build dist         &lt;-- Windows platform
+</pre>
     <p>This command will create a binary distribution of Struts, in a
     directory named <code>dist</code> (relative to where you
     are compiling from).  This directory contains an exact replica of the
@@ -166,43 +168,43 @@
         <code>WEB-INF/web.xml</code> file from the Struts example application
         for a detailed example of the required syntax.</li>
     <li>Modify the <code>WEB-INF/web.xml</code> file of your web application
-        to include the following tag library declarations:
-        <pre>
-        &lt;taglib&gt;
-          &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
-          &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
-        &lt;/taglib&gt;
+        to include the following tag library declarations:</li>
+    </ul>
+<pre>&lt;taglib&gt;
+  &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;/WEB-INF/struts-bean.tld&lt;/taglib-location&gt;
+&lt;/taglib&gt;
 
-        &lt;taglib&gt;
-          &lt;taglib-uri&gt;/WEB-INF/struts-form.tld&lt;/taglib-uri&gt;
-          &lt;taglib-location&gt;/WEB-INF/struts-form.tld&lt;/taglib-location&gt;
-        &lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;/WEB-INF/struts-form.tld&lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;/WEB-INF/struts-form.tld&lt;/taglib-location&gt;
+&lt;/taglib&gt;
 
-        &lt;taglib&gt;
-          &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
-          &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
-        &lt;/taglib&gt;
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;/WEB-INF/struts-logic.tld&lt;/taglib-location&gt;
+&lt;/taglib&gt;
 
-        &lt;taglib&gt;
-          &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
-          &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
-        &lt;/taglib&gt;
-        </pre>
-        </li>
+&lt;taglib&gt;
+  &lt;taglib-uri&gt;/WEB-INF/struts-template.tld&lt;/taglib-uri&gt;
+  &lt;taglib-location&gt;/WEB-INF/struts-template.tld&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+</pre>
+    <ul>
     <li>Create a file <code>WEB-INF/struts-config.xml</code> that defines the
         action mappings and other characteristics of your specific application.
         You can use the <code>struts-config.xml</code> file from the Struts
         example application for a detailed example of the required syntax.</li>
     <li>At the top of each JSP page that will use the Struts custom tags,
         add line(s) declaring the Struts custom tag libraries used on
-        this particular page, like this:
-        <pre>
-        &lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="struts-bean" %&gt;
-        &lt;@ taglib uri="/WEB-INF/struts-form.tld" prefix="struts-form" %&gt;
-        &lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="struts-logic" %&gt;
-        &lt;@ taglib uri="/WEB-INF/struts-template.tld" prefix="struts-template" %&gt;
-        </pre>
-        </li>
+        this particular page, like this:</li>
+    </ul>
+<pre>&lt;@ taglib uri="/WEB-INF/struts-bean.tld" prefix="struts-bean" %&gt;
+&lt;@ taglib uri="/WEB-INF/struts-form.tld" prefix="struts-form" %&gt;
+&lt;@ taglib uri="/WEB-INF/struts-logic.tld" prefix="struts-logic" %&gt;
+&lt;@ taglib uri="/WEB-INF/struts-template.tld" prefix="struts-template" %&gt;
+</pre>
+    <ul>
     <li>When compiling the Java classes that comprise your application, be sure
         to include the <code>struts.jar</code> file (copied earlier) on the
         CLASSPATH that is submitted to the compiler.</li>
@@ -210,6 +212,242 @@
 
   </section>
 
+  <section name="Installing Struts with various servlet containers" href="Containers">
+  
+  <p>ORION APPLICATION SERVER</p>
+
+     <p>In the steps below, <code>$ORION_HOME</code> refers to the directory in which you
+        have installed Orion, and <code>$STRUTS_HOME</code> is the directory in which you
+        unpacked the Struts binary distribution.</p>
+  
+  <ul>
+    <li>Modify the file <code>$ORION_HOME/config/application.xml</code> to define the two
+        new applications, by adding the following declarations, immediately
+        following the <code>web-module</code> directive for the default web application:</li>
+    </ul>
+<pre>&lt;web-module id="strutsDoc"
+path="$STRUTS_HOME/webapps/struts-documentation.war"/>
+&lt;web-module id="strutsExample"
+path="$STRUTS_HOME/webapps/struts-example.war"/>
+</pre>
+
+    <ul>
+    <li>Modify the file <code>$ORION_HOME/config/default-web-site.xml</code> (or the
+        configuration file for any other Orion web site) to include the following
+        declarations, after the declaration for the &lt;default-web-app> if any:</li>
+    </ul>
+<pre>&lt;web-app application="default" name="strutsDoc"
+  root="/struts-documentation"/>
+&lt;web-app application="default" name="strutsExample"
+  root="/struts-example"/>
+</pre>
+  
+    <ul>
+    <li>After you start Orion, you should now be able to access these applications
+        (assuming you haven't changed the port number from the default of 80) at:</li>
+    </ul>
+<pre>http://localhost/struts-documentation
+http://localhost/struts-example
+</pre>
+  
+   <ul>
+   <li>Versions of Orion up to at least 1.0.3 have a bug related to
+       ServletContext.getResource() calls that prevent the Struts example
+       application from working out of the box.  This manifests itself as a
+       JSP error when you try to access the example application, with the
+       following message:<br/> 
+       <code>javax.servlet.jsp.JspException:
+       Missing resources attributeorg.apache.struts.action.MESSAGE</code><br/>
+       followed by an error traceback.  There will also be an initialization
+       error message in the <code>ORION_HOME/log/global-application.log</code> log file.
+       To work around this problem, you can take the following steps:</li>
+  <ul>
+  <li>Go to the <code>$STRUTS_HOME/webapps</code> directory, where you will note that
+      Orion has automatically expanded each web application into an
+      unpacked directory structure.</li>
+  
+  <li>Go to the <code>$STRUTS_HOME/webapps/struts-example/WEB-INF</code> directory,
+      and copy the file <code>struts-config.xml</code> one directory up (that is, into
+      <code>$STRUTS_HOME/webapps/struts-example</code>.</li>
+  
+  <li>Modify the <code>$STRUTS_HOME/webapps/struts-example/WEB-INF/web.xm</code> file,
+      changing the value of the "config" initialization parameter (for the
+      action servlet) from <code>/WEB-INF/struts-config.xml</code> to <code>/action.xml</code>.</li>
+  
+  <li>Restart Orion, and you should be able to access the example application.</li>
+  
+  <li>Note that this workaround has a negative security-related side effect:
+      your <code>struts-conifig.xml</code> file can now be retrieved by remote clients at the
+      following URL:<br/>
+      <code>http://localhost/struts-example/struts-config.xml</code><br/>
+      Therefore, you should be sure you do not store sensitive information
+      (such as database passwords) in this file. </li>
+   </ul>
+   </ul>
+  
+   <p>RESIN STAND-ALONE</p>
+  
+  <ul>
+  <li>In the steps below, $RESIN_HOME refers to the directory in which you
+      have installed Resin, and $STRUTS_HOME is the directory in which you
+      unpacked the Struts binary distribution.</li>
+  
+  <li>These instructions have been tested with the default resin.conf settings
+      in the 1.2.2 release (16-Jan-2001).</li>
+  
+  <li>Copy the Struts applications (*.war) from $STRUTS_HOME/webapps to your
+      $RESIN_HOME/webapps directory.</li>
+  
+  <li>Restart Resin if it is already running.</li>
+  
+  <li>You should now be able to access the Struts applications (assuming you are
+      using Resin's default port number of 8080) at, for example:<br/>
+      <code>http://localhost:8080/struts-documentation</code></li>
+  
+  <li>When developing your own applications, you can create a new folder under
+      $RESIN_HOME/doc and modify the file "$RESIN_HOME/conf/resin.conf" to
+      recognize your application, for example:<br/>  
+      &lt;web-app id='/struts-myapp' /><br/>   
+      Resin will then read your application's configuration from WEB-INF/web.xml</li>
+  </ul>
+  
+
+  <p>TOMCAT 3.1 (OR LATER) STAND-ALONE</p>
+  
+  <ul>
+  <li>Copy <code>struts-documentation.war</code> and <code>struts-example.war</code>
+      to your <code>$TOMCAT_HOME/webapps directory</code></li>
+  
+  <li>Restart Tomcat if it is already running</li>
+  </ul>
+  
+  <p>TOMCAT 3.1 (OR LATER) WITH APACHE</p>
+    
+  <ul>
+  <li>These instructions assume you have successfully integrated
+      Tomcat with Apache according to the Tomcat documentation.</li>
+  
+  <li>Copy "struts-documentation.war" and "struts-example.war"
+      to your $TOMCAT_HOME/webapps directory</li>
+  
+  <li>Restart Tomcat if it is already running</li>
+  
+  <li>Tomcat will generate a file "$TOMCAT_HOME/conf/tomcat-apache.conf"
+      that will be used by Apache.  This file is regenerated every time
+      you start Tomcat, so copy this file to a safe place (such as
+      your Apache configuration directory; on Unix systems this is usually
+      <code>/usr/local/apache/conf</code>.</li>
+  
+  <li>If you are running Tomcat 3.1, Tomcat will not have generated the
+      entries for your new applications.  Add the following lines to the
+      <code>tomcat-apache.conf</code> file that you have saved, replacing
+      $TOMCAT_HOME with the path to your Tomcat home directory:</li>
+  </ul>
+<pre>Alias /struts-documentation "$TOMCAT_HOME/webapps/struts-documentation
+  &lt;Directory "$TOMCAT_HOME/webapps/struts-documentation>
+  Options Indexes FollowSymLinks
+  &lt;/Directory>
+  ApJServMount /struts-documentation/servlet /struts-documentation
+  &lt;Location "/struts-documentation/WEB-INF/">
+  AllowOverride None
+  deny from all
+  &lt;/Location>
+Alias /struts-example "$TOMCAT_HOME/webapps/struts-example"
+  &lt;Directory "$TOMCAT_HOME/webapps/struts-example>
+  Options Indexes FollowSymLinks
+  &lt;/Directory>
+  ApJServMount /struts-example/servlet /struts-example
+  &lt;Location "/struts-example/WEB-INF/">
+  AllowOverride None
+  deny from all
+  &lt;/Location>
+</pre>
+  <ul>
+  <li>On all versions of Tomcat, the generated file above does not
+      know anything about extension mappings defined in a web.xml file,
+      so the "*.do" URIs that go to the controller servlet will not be
+      recognized.  To fix this, add the following line to the saved
+      version of "tomcat-apache.conf", after the corresponding line
+      for the .jsp extension:<br/>
+      <code>AddHandler jserv-servlet .do</code></li>
+  
+  <li>Ensure that the saved version of "tomcat-apache.conf" is referenced
+      in your Apache "httpd.conf" configuration file.  A typical use would
+      have the following line at the bottom of "httpd.conf":<br/>
+      <code>Include /usr/local/apache/conf/tomcat-apache.conf</code></li>
+
+  <li>In order to recognize "index.jsp" as a default page for web
+      applications, search in your "httpd.conf" for a "DirectoryIndex"
+      directive.  If you have one, add "index.jsp" to the end of the
+      list, so that it might look like this:<br/>
+      <code>DirectoryIndex index.html index.jsp</code><br/>  
+      If you do not have such an entry, add one like this:<br/> 
+  	  <code>DirectoryIndex index.jsp</code></li>
+  
+  <li>Restart Apache to make it aware of the new applications.  You should
+      now be able to access the applications from a browser like this:<br/>  
+  	  <code>http://localhost/struts-documentation<br/>
+  	  http://localhost/struts-example</code></li>
+  </ul>
+  
+    <p>WEBLOGIC 5.1 (service pack 8)</p>
+    
+  <ul>
+  <li>Obtain and install the Xerces XML parser (problems have been reported
+      with the Sun reference implementation). Put xerces.jar in your WebLogic system
+      path.</li>
+    
+  <li>Obtain and unpack the Struts binary distribution (this procedure assumes
+      it was extracted to <code>c:\jakarta-struts</code>).</li>
+    
+  <li>Add an entry to weblogic.properties for each of the Struts web
+      applications that you would like to configure. For example, to make the
+      struts-example application available, add the following line to
+      weblogic.properties:<br/>
+      <code>weblogic.httpd.webApp.strutsexample=<br/>
+      c:/jakarta-struts/webapps/struts-example.war</code></li>
+    
+  <li>You do not need to include struts.jar or any of the application specific
+      classes in the WebLogic classpath, since this will be done automatically
+      (unless deploying an unpacked web archive- see below).</li>
+    
+  <li>Start WebLogic server and point your web browser to the struts
+      application. For example, to connect to the example application added in
+      step 3:<br/>
+      <code>http://localhost:7001/strutsexample</code></li>
+    
+  <li>This example application depends on the Struts specific resource file
+      ApplicationResources.properties to be present on the classpath. However,
+      WebLogic only extracts *.class files from the archive so this file will not
+      be found, resulting in an error the first time it is needed- something
+      similar to: javax.servlet.ServletException: runtime failure in custom tag
+      'message'. Steps 6 &amp; 7 will need to be performed for this application, and
+      any other that relies on ApplicationResources.properties.</li>
+    
+  <li>Extract ApplicationResources.properties from the *.war file, and
+      manually copy it to the respective package in the _tmp_war_ directory
+      WebLogic created for this application. Again referring to the struts-example
+      application, this would be:<br/>    
+      <code>c:\jakarta-struts\webapps\WEB-INF\_tmp_war_strutsexample</code></li>
+    
+  <li>Restart WebLogic. You will now be able to run the application:<br/>    
+      <code>http://localhost:7001/strutsexample</code></li>
+  </ul>
+  
+   <p>The above steps should be followed for applications deployed as *.war
+      files. For unpacked web applications, configuration involves adding both
+      <code>struts.jar</code> and <code>/WEB-INF/classes</code> to the WebLogic classpath. For this reason,
+      I would suggest deploying applications as war files to WebLogic. However,
+      the same example application can be successfully deployed in extracted
+      format by modifying weblogic.properties (assuming the war was extracted to
+      directory webapps/struts-example):</p>    
+   <p><code>weblogic.httpd.webApp.strutsexample=<br/>
+      c:/jakarta-struts/webapps/struts-example/</code></p>
+   <p>And starting WebLogic with the updated WebLogic classpath. For example:</p>
+   <p><code>c:\jdk1.3\bin\java -ms16m -mx64m<br/>
+      -classpath c:\weblogic\lib\weblogic510sp8boot.jar;</code></p> 
+  
+  </section>
 
   </body>
 
