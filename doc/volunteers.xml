@@ -71,16 +71,12 @@
                <li>
                <strong>Joe Germuska</strong>
                (germuska at apache.org)</li>
+
+                <li>
+                <strong>Niall Pemberton</strong>
+                (niallp at apache.org)</li>
             </ul>
          </section>
-
-        <section name="Active Committers" href="committers">
-            <ul>
-            <li>
-            <strong>Niall Pemberton</strong>
-            (niallp at apache.org)</li>
-            </ul>
-        </section>
 
          <section name="Emeritus Committers" href="comitters.emeritus">
             <ul>
@@ -103,7 +99,7 @@
          </section>
 
          <section name="More About Us" href="about">
-            <h4 id="craigmcc">Craig R. McClanahan -- Committer</h4>
+            <h4 id="craigmcc">Craig R. McClanahan -- PMC Chair</h4>
 
             <p>I've been involved with servlet and JSP technology since around 1998. It started out that I needed a way to build some web applications for several projects, and liked Java a lot better than the alternatives. I also liked the price tag of open source software, and started using Apache JServ -- later, getting involved in the project (like many people, I was whining about the twelve months it took to get from version 0.9 to version 1.0, and my son said "Dad, you know Java -- go help them finish it!" -- so I did :-).</p>
 
@@ -131,31 +127,21 @@
 
             <p>I figured out I was getting pretty old when I realized that 2000 was the 25th year I had been paid to work in some aspect of software development :-). I've got a son who is a full-time software developer (primarily in PHP so far, but I'm going to corrupt him with Java eventually :-), and a daughter in college. I'll happily let the other committers speak for themselves.</p>
 
-            <h4 id="mschachter">Mike Schachter -- Committer</h4>
+            <h4 id="mschachter">Mike Schachter -- Emeritus Committer</h4>
 
             <p>I'm currently a student of computer science at Drexel University in Philadelphia, PA. I've been working at HP Middleware, formerly Bluestone Software for 3 years programming in Java and recently J2EE technologies. I'm a full time worker from September until April and a student and part time worker from April until August. In my spare time I've been known to run monkey-knife fights in a shady south philly warehouse. Err... I mean... nothing.</p>
 
-            <h4 id="husted">Ted Husted -- Committer</h4>
+            <h4 id="husted">Ted Husted -- PMC Member</h4>
 
-            <p>My primary interest in Struts is to put it to work writing lots of real-life Web applications:-) To do that effectively means having good documentation and code samples at my fingertips, so that's been my focus with the Struts product so far.</p>
+            <p><a href="http://husted.com/ted/">Ted Husted</a> is a developer, author, and mentor. He is a Member of the Apache Software Foundation and Struts Project Management Committee. Ted's books include JUnit in Action, Struts in Action, and Professional JSP Site Design. He has consulted with teams throughout the United States, including CitiGroup, Nationwide Insurance, and PepsiCo. Ted is currently working with the Oklahoma State Department of Environmental Services to improve their permitting system.</p>
 
-            <p>I've been writing software for hire since 1984, but only recently jumped the Java bandwagon. My initial interest was with electronic publishing, and started by converting my various print projects to electronic media. The "Information Superhighway" was still the private stomping ground of Universities and government agencies then. The rest of us had to make do with diskettes and bulletin boards.</p>
-
-            <p>Between 1985 and 1994, I created and marketed several software products for publishing disk, the most popular being "Dart" and "Iris". In 1992, Dart was awarded the Digital Quill for software excellence, featured in PC Magazine (February 1992), and bundled with McGraw Hill's bookset,"Paperless Publishing" by Colin Hayes (McGraw Hill 1994). Dart won a second Digital Quill in 1993. Several titles that used Iris for a publishing system have also won awards and been widely distributed, including "Hermitville USA." I was also fortunate to find kindred souls CompuServe and America Online, who helped me pioneer resources areas there in 1993 and 1994 for the nascent electronic publishing industry.</p>
-
-            <p>I finally cut loose the Internet in 1995, launching Epub News, an electronic newspage about electronic publishing. After taking several private contracts, I opened the Husted dot Com Website (www.husted.com) in 1996. I've drifted away from electronic books, but have noticed that several products are now making their way into the consumer mainstream -- as usual, I was twenty minutes into the future:-)</p>
-
-            <p>My favorite all-time project is the Hitchhikers Guide to Science Fiction. This was one of my earliest hypertext projects (it started as a print-book idea), and I had a lot of fun bringing it forward onto the Web. (Now, if I only had time to bring it current and dress it up!)</p>
-
-            <p>Currently, I'm working with the Department of Environmental Quality for a midwestern state. We are revamping the permit application system as a web application and centralizing the database system between the various DEQ divisions.</p>
-
-            <h4 id="cedric">Cedric Dumoulin -- Committer</h4>
+            <h4 id="cedric">Cedric Dumoulin -- PMC Member</h4>
 
             <p>As a dreamer / researcher I have thought a lot about a framework like Struts. But, as a lazy developer I have first checked what already exists, and I have found Struts. Struts goals fulfilled nearly all I needed for my (now old) portal project, except the capability to reuse and assemble easily pieces of pages or components. So, I have proposed the Components framework. This framework can seen as a superset of the Templates tag library contributed by David Geary, and contains lot of interesting features.</p>
 
             <p>From a professional point of view, I have a Ph.D. in computer science. I have worked for 3 years in the R&amp;D department of a worldwide company developing Internet banking solutions. I am now a researcher at a university, and work European research projects. My main research interest is WWW, Distributed Systems and Object Oriented Design. When developing code, I always try to first propose reusable pieces of code.</p>
 
-            <h4 id="martinc">Martin Cooper -- Committer</h4>
+            <h4 id="martinc">Martin Cooper -- PMC Member</h4>
             <p>
               Early in the year 2000, I was asked, by my employer at that time,
               to investigate the best way to develop a new web-based application
@@ -207,13 +193,13 @@
               perspective with which to do that!
             </p>
 
-            <h4 id="dwinterfeldt">David Winterfeldt -- Committer</h4>
+            <h4 id="dwinterfeldt">David Winterfeldt -- Emeritus Committer</h4>
 
             <p>As I worked web based projects I started looking for something that would really help save time during development. I ran across Struts in the Summer of 2000 and decided it was a good solution for web development. As I used Struts it really helped to remove a lot of the repetitive work, but validation still seemed very repetitive. I had an idea to create validation rules in an xml file and have them easily integrated with Struts. It started out simple and continued to develop over time. The validation project was eventually incorporated into Struts and the core was moved to Jakarta Commons. I'm happy to see Struts continue to grow and develop.</p>
 
             <p>I currently am employed at Forbes.com. I occasionally get to do some internal projects using Struts. The last interesting project was a publishing system using Message Driven EJBs in JBoss and Struts was used to display the status of each publishing process.</p>
 
-            <h4 id="rleland">Rob Leland -- Committer</h4>
+            <h4 id="rleland">Rob Leland -- PMC Member</h4>
 
             <p>I have gone from Unix -to- Windows -to- Unix based development about ever 6 years now. When moving to Windows I was amazed at how primitive the OS was compared to Unix. While developing for Win32 I had the pleasure of discovering Delphi and developed many GUI/databases, telephony, Internet enabled applications. I remain impressed with its design. Delphi, always enabled development of a simple elegant solution, much like the language itself. I was convinced after 10 years of development with C/C++ that it was a kinder gentler language.</p>
 
@@ -221,15 +207,15 @@
 
             <p>To date I have mainly served to pitch in where needed. I continue to amazed at the Struts committers' generous contributions of time, insight, and good will. I feel fortunate to part of the struts team.</p>
 
-            <h4 id="dgraham">David Graham -- Committer</h4>
+            <h4 id="dgraham">David Graham -- PMC Member</h4>
 
             <p>I, like many others, discovered Struts when contemplating writing my own MVC Java framework for the web. Struts had everything I needed and more so I scrapped plans for my own and joined the mailing lists. After playing with it for several months I started submitting documentation and a few source patches. I'm excited about helping Struts evolve and am continually amazed by the framework and the community surrounding it.</p>
 
-            <h4 id="jmitchell">James Mitchell -- Committer</h4>
+            <h4 id="jmitchell">James Mitchell -- PMC Member</h4>
 
             <p>James has been so busy answering users questions and adding test cases that he hasn't taken the time to brag about himself. I thought that I would add a place marker for him until and if he does decide to --blow his own horn-- ! -Rob :-D !</p>
 
-            <h4 id="jturner">James Turner -- Committer</h4>
+            <h4 id="jturner">James Turner -- PMC Member</h4>
 
             <p>I discovered Struts somewhat by accident. In 2001 I began writing a book for SAMS on JSP web development (MySQL and JSP Web Development), and as part of it, I decided to write a chapter on Struts in the advanced section. In the process of learning enough about Struts to write about it, I realized that it could simplify some of the projects that I was working on for clients.</p>
 
