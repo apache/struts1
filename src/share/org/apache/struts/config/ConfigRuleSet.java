@@ -26,6 +26,7 @@ import org.apache.commons.digester.Rule;
 import org.apache.commons.digester.RuleSetBase;
 import org.apache.struts.util.RequestUtils;
 import org.xml.sax.Attributes;
+import org.apache.commons.digester.SetPropertyRule;
 
 
 /**
@@ -84,9 +85,9 @@ public class ConfigRuleSet extends RuleSetBase {
              "addActionConfig",
              "org.apache.struts.config.ActionConfig");
 
-        digester.addSetProperty
+        digester.addRule
             ("struts-config/action-mappings/action/set-property",
-             "property", "value");
+             new ActionConfigSetPropertyRule());
 
         digester.addObjectCreate
             ("struts-config/action-mappings/action/exception",
@@ -294,6 +295,43 @@ final class SetActionFormBeanClassRule extends Rule {
 
 }
 
+/**
+ * A variant of the standard Digester <code>SetPropertyRule</code> which
+ * accepts one of two "naming" attributes.  If the element being processed
+ * has an attribute whose name matches <code>nameAttrName</code>, then the 
+ * standard <code>SetPropertyRule</code> behavior is invoked, and the value will
+ * be used to set a bean property on the object on top of the Digester stack.  
+ * However, if there is an attribute whose name matches <code>keyAttrName</code>,
+ * then the value will be used to call <code>setProperty(key,value)</code> on the object
+ * on top of the stack, which will be assumed to be of type <code>ActionConfig</code>.
+ */
+final class ActionConfigSetPropertyRule extends SetPropertyRule {
+
+    public ActionConfigSetPropertyRule() {
+        super("name", "value");
+    }
+
+    public void begin(Attributes attributes) throws Exception {
+
+        if (attributes.getIndex("key") == -1) { 
+            super.begin(attributes);
+            return;
+        }
+
+        if (attributes.getIndex("name") != -1) {
+            throw new IllegalArgumentException("<set-property> inside <action> accepts only one of 'key' or 'name' attributes.");
+        }
+
+        ActionConfig actionConfig = (ActionConfig) digester.peek();
+        actionConfig.setProperty(attributes.getValue("key"),
+                                 attributes.getValue("value"));
+
+
+    }
+
+
+}
+
 
 /**
  * An object creation factory which creates action form bean instances, taking
@@ -473,3 +511,4 @@ final class ActionForwardFactory extends AbstractObjectCreationFactory {
     }
 
 }
+
