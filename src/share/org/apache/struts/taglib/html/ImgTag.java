@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.7 2001/02/20 02:59:00 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/02/20 02:59:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.8 2001/04/03 19:18:59 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/04/03 19:18:59 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Michael Westbay
  * @author Craig McClanahan
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -510,14 +510,13 @@ public class ImgTag extends BaseHandlerTag {
         String srcurl = url(tmp);
         if (srcurl != null) {
             results.append(" src=\"");
-            results.append(response.encodeURL(ResponseUtils.filter(srcurl)));
+            results.append(response.encodeURL(srcurl));
             results.append("\"");
         }
         String lowsrcurl = url(this.lowsrc);
         if (lowsrcurl != null) {
             results.append(" lowsrc=\"");
-            results.append
-                (response.encodeURL(ResponseUtils.filter(lowsrcurl)));
+            results.append(response.encodeURL(lowsrcurl));
             results.append("\"");
         }
         tmp = alt();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.1 2001/01/06 21:50:39 mschachter Exp $
- * $Revision: 1.1 $
- * $Date: 2001/01/06 21:50:39 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/RewriteTag.java,v 1.2 2001/04/03 19:19:00 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/04/03 19:19:00 $
  *
  * ====================================================================
  *
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded URI as a string.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/01/06 21:50:39 $
+ * @version $Revision: 1.2 $ $Date: 2001/04/03 19:19:00 $
  */
 
 public class RewriteTag extends LinkTag {
@@ -105,7 +105,7 @@ public class RewriteTag extends LinkTag {
 	HttpServletResponse response =
 	  (HttpServletResponse) pageContext.getResponse();
         StringBuffer results = new StringBuffer();
-	results.append(response.encodeURL(BeanUtils.filter(hyperlink())));
+	results.append(response.encodeURL(hyperlink()));
 
 	// Print this element to our output writer
 	JspWriter writer = pageContext.getOut();
