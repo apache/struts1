@@ -402,7 +402,7 @@
 
 <section href="validwhen" name="Designing Complex Validations with validwhen">
     <p>
-    A frequent requirement in validation design is to validate one field
+    [Since Struts 1.2.0] A frequent requirement in validation design is to validate one field
     against another (for example, if you have asked the user to type in
     a password twice for confirmation, to make sure that the values match.)
     In addition, there are fields in a form that may only be required if
@@ -927,10 +927,10 @@ public static boolean validateTwoFields(
 
 </section>
 
-    <section heref="stopOnFirstError" name="Unstoppable JavaScript Validations">
+    <section href="stopOnFirstError" name="Unstoppable JavaScript Validations">
 
         <p>
-        You can now force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property, <code>stopOnFirstError</code>, on the Validator PlugIn to false.
+        [Since Struts 1.2.0] You can force the clientside Javascript validation to check all constraints, instead of stopping at the first error. By setting a new property, <code>stopOnFirstError</code>, on the Validator PlugIn to false.
         </p>
 
         <p>
