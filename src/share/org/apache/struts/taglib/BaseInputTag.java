@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.4 2000/06/27 02:48:07 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/27 02:48:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseInputTag.java,v 1.5 2000/06/30 16:50:27 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/30 16:50:27 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.MessageResources;
  * Abstract base class for the various input tags.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/27 02:48:07 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/30 16:50:27 $
  */
 
 public abstract class BaseInputTag extends BaseHandlerTag {
@@ -87,13 +87,13 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      * The number of character columns for this field, or negative
      * for no limit.
      */
-    protected int cols = -1;
+    protected String cols = null;
 
 
     /**
      * The maximum number of characters allowed, or negative for no limit.
      */
-    protected int maxlength = -1;
+    protected String maxlength = null;
 
 
     /**
@@ -113,7 +113,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * The number of rows for this field, or negative for no limit.
      */
-    protected int rows = -1;
+    protected String rows = null;
 
 
     /**
@@ -129,7 +129,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * Return the number of columns for this field.
      */
-    public int getCols() {
+    public String getCols() {
 
 	return (this.cols);
 
@@ -143,11 +143,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setCols(String cols) {
 
-	try {
-	    this.cols = Integer.parseInt(cols);
-	} catch (NumberFormatException e) {
-	    ;
-	}
+	this.cols = cols;
 
     }
 
@@ -155,7 +151,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * Return the maximum length allowed.
      */
-    public int getMaxlength() {
+    public String getMaxlength() {
 
 	return (this.maxlength);
 
@@ -169,11 +165,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setMaxlength(String maxlength) {
 
-	try {
-	    this.maxlength = Integer.parseInt(maxlength);
-	} catch (NumberFormatException e) {
-	    ;
-	}
+	this.maxlength = maxlength;
 
     }
 
@@ -203,7 +195,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * Return the number of rows for this field.
      */
-    public int getRows() {
+    public String getRows() {
 
 	return (this.rows);
 
@@ -217,11 +209,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void setRows(String rows) {
 
-	try {
-	    this.rows = Integer.parseInt(rows);
-	} catch (NumberFormatException e) {
-	    ;
-	}
+	this.rows = rows;
 
     }
 
@@ -229,7 +217,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * Return the size of this field (synonym for <code>getCols()</code>).
      */
-    public int getSize() {
+    public String getSize() {
 
 	return (getCols());
 
