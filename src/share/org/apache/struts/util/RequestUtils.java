@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.46 2002/07/10 00:00:19 husted Exp $
- * $Revision: 1.46 $
- * $Date: 2002/07/10 00:00:19 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.47 2002/07/10 14:57:10 cedric Exp $
+ * $Revision: 1.47 $
+ * $Date: 2002/07/10 14:57:10 $
  *
  * ====================================================================
  *
@@ -113,7 +113,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.46 $ $Date: 2002/07/10 00:00:19 $
+ * @version $Revision: 1.47 $ $Date: 2002/07/10 14:57:10 $
  */
 
 public class RequestUtils {
@@ -1191,9 +1191,11 @@ public class RequestUtils {
         // Handle a ForwardConfig marked as context relative
         StringBuffer sb = new StringBuffer();
         if (forward.getContextRelative()) {
+            /* Disabled to let Tiles definition names unchanged !
             if (!path.startsWith("/")) {
                 sb.append("/");
             }
+            */
             sb.append(path);
             return (sb.toString());
         }
@@ -1206,9 +1208,11 @@ public class RequestUtils {
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
             sb.append(appConfig.getPrefix());
+            /* Disabled to let Tiles definition names unchanged !
             if (!path.startsWith("/")) {
                 sb.append("/");
             }
+            */
             sb.append(path);
         } else {
             boolean dollar = false;
@@ -1220,9 +1224,11 @@ public class RequestUtils {
                         sb.append(appConfig.getPrefix());
                         break;
                     case 'P':
+                        /* Disabled to let Tiles definition names unchanged !
                         if (!path.startsWith("/")) {
                             sb.append("/");
                         }
+                        */
                         sb.append(path);
                         break;
                     case '$':
