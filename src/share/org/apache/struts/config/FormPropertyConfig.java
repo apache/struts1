@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.3 2002/01/17 21:26:18 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/17 21:26:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/FormPropertyConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.commons.beanutils.ConvertUtils;
  * configuration file.<p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/01/17 21:26:18 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
@@ -82,6 +82,12 @@ public class FormPropertyConfig implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Has this component been completely configured?
+     */
+    protected boolean configured = false;
 
 
     /**
@@ -109,6 +115,9 @@ public class FormPropertyConfig implements Serializable {
     }
 
     public void setInitial(String initial) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.initial = initial;
     }
 
@@ -123,6 +132,9 @@ public class FormPropertyConfig implements Serializable {
     }
 
     public void setName(String name) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.name = name;
     }
 
@@ -139,6 +151,9 @@ public class FormPropertyConfig implements Serializable {
     }
 
     public void setType(String type) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.type = type;
     }
 
@@ -237,6 +252,16 @@ public class FormPropertyConfig implements Serializable {
             initialized = true;
         }
         return (initialValue);
+
+    }
+
+
+    /**
+     * Freeze the configuration of this component.
+     */
+    public void freeze() {
+
+        configured = true;
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.3 2002/01/20 05:34:08 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/20 05:34:08 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/MessageResourcesConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -73,11 +73,20 @@ import org.apache.struts.action.Action;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/01/20 05:34:08 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
 public class MessageResourcesConfig implements Serializable {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Has this component been completely configured?
+     */
+    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -95,6 +104,9 @@ public class MessageResourcesConfig implements Serializable {
     }
 
     public void setFactory(String factory) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.factory = factory;
     }
 
@@ -110,6 +122,9 @@ public class MessageResourcesConfig implements Serializable {
     }
 
     public void setKey(String key) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.key = key;
     }
 
@@ -124,6 +139,9 @@ public class MessageResourcesConfig implements Serializable {
     }
 
     public void setNull(boolean nullValue) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.nullValue = nullValue;
     }
 
@@ -139,11 +157,24 @@ public class MessageResourcesConfig implements Serializable {
     }
 
     public void setParameter(String parameter) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.parameter = parameter;
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Freeze the configuration of this component.
+     */
+    public void freeze() {
+
+        configured = true;
+
+    }
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ExceptionConfig.java,v 1.3 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -72,11 +72,20 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.3 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
 public class ExceptionConfig implements Serializable {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Has this component been completely configured?
+     */
+    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -93,6 +102,9 @@ public class ExceptionConfig implements Serializable {
     }
 
     public void setHandler(String handler) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.handler = handler;
     }
 
@@ -108,6 +120,9 @@ public class ExceptionConfig implements Serializable {
     }
 
     public void setKey(String key) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.key = key;
     }
 
@@ -123,6 +138,9 @@ public class ExceptionConfig implements Serializable {
     }
 
     public void setPath(String path) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.path = path;
     }
 
@@ -138,6 +156,9 @@ public class ExceptionConfig implements Serializable {
     }
 
     public void setScope(String scope) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.scope = scope;
     }
 
@@ -153,11 +174,24 @@ public class ExceptionConfig implements Serializable {
     }
 
     public void setType(String type) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.type = type;
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Freeze the configuration of this component.
+     */
+    public void freeze() {
+
+        configured = true;
+
+    }
 
 
     /**

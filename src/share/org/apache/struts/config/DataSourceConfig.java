@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.3 2002/01/16 17:42:40 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/16 17:42:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/DataSourceConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -80,12 +80,21 @@ import org.apache.struts.action.Action;
  * of them may be ignored by custom data source implementations.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/01/16 17:42:40 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
 public class DataSourceConfig implements Serializable {
 
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Has this component been completely configured?
+     */
+    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -102,6 +111,9 @@ public class DataSourceConfig implements Serializable {
     }
 
     public void setKey(String key) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.key = key;
     }
 
@@ -127,6 +139,9 @@ public class DataSourceConfig implements Serializable {
     }
 
     public void setType(String type) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.type = type;
     }
 
@@ -142,7 +157,20 @@ public class DataSourceConfig implements Serializable {
      */
     public void addProperty(String name, String value) {
 
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         properties.put(name, value);
+
+    }
+
+
+    /**
+     * Freeze the configuration of this data source.
+     */
+    public void freeze() {
+
+        configured = true;
 
     }
 

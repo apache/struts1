@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.2 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ForwardConfig.java,v 1.3 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -72,11 +72,20 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.3 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
 public class ForwardConfig implements Serializable {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Has this component been completely configured?
+     */
+    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -94,6 +103,9 @@ public class ForwardConfig implements Serializable {
     }
 
     public void setContextRelative(boolean contextRelative) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.contextRelative = contextRelative;
     }
 
@@ -109,6 +121,9 @@ public class ForwardConfig implements Serializable {
     }
 
     public void setName(String name) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.name = name;
     }
 
@@ -125,6 +140,9 @@ public class ForwardConfig implements Serializable {
     }
 
     public void setPath(String path) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.path = path;
     }
 
@@ -139,11 +157,24 @@ public class ForwardConfig implements Serializable {
     }
 
     public void setRedirect(boolean redirect) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.redirect = redirect;
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Freeze the configuration of this component.
+     */
+    public void freeze() {
+
+        configured = true;
+
+    }
 
 
     /**

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.9 2002/02/23 22:54:18 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2002/02/23 22:54:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/Attic/ApplicationConfig.java,v 1.10 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -65,9 +65,9 @@ package org.apache.struts.config;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
-import org.apache.commons.collections.FastHashMap;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
 import org.apache.struts.action.RequestProcessor;
@@ -84,7 +84,7 @@ import org.apache.struts.action.RequestProcessor;
  * previous Struts behavior that only supported one application.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2002/02/23 22:54:18 $
+ * @version $Revision: 1.10 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
@@ -117,42 +117,42 @@ public class ApplicationConfig implements Serializable {
      * The set of action configurations for this application, if any,
      * keyed by the <code>path</code> property.
      */
-    protected FastHashMap actionConfigs = new FastHashMap();
+    protected HashMap actionConfigs = new HashMap();
 
 
     /**
      * The set of JDBC data source configurations for this
      * application, if any, keyed by the <code>key</code> property.
      */
-    protected FastHashMap dataSources = new FastHashMap();
+    protected HashMap dataSources = new HashMap();
 
 
     /**
      * The set of exception handling configurations for this
      * application, if any, keyed by the <code>type</code> property.
      */
-    protected FastHashMap exceptions = new FastHashMap();
+    protected HashMap exceptions = new HashMap();
 
 
     /**
      * The set of form bean configurations for this application, if any,
      * keyed by the <code>name</code> property.
      */
-    protected FastHashMap formBeans = new FastHashMap();
+    protected HashMap formBeans = new HashMap();
 
 
     /**
      * The set of global forward configurations for this application, if any,
      * keyed by the <code>name</code> property.
      */
-    protected FastHashMap forwards = new FastHashMap();
+    protected HashMap forwards = new HashMap();
 
 
     /**
      * The set of message resources configurations for this
      * application, if any, keyed by the <code>key</code> property.
      */
-    protected FastHashMap messageResources = new FastHashMap();
+    protected HashMap messageResources = new HashMap();
 
 
     /**
@@ -183,14 +183,16 @@ public class ApplicationConfig implements Serializable {
     protected ControllerConfig controllerConfig = null;
 
     public ControllerConfig getControllerConfig() {
-        if (this.controllerConfig == null)
+        if (this.controllerConfig == null) {
             this.controllerConfig = new ControllerConfig();
+        }
         return (this.controllerConfig);
     }
 
     public void setControllerConfig(ControllerConfig cc) {
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         this.controllerConfig = cc;
     }
 
@@ -259,8 +261,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addActionConfig(ActionConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         config.setApplicationConfig(this);
         actionConfigs.put(config.getPath(), config);
 
@@ -278,8 +281,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addDataSourceConfig(DataSourceConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         dataSources.put(config.getKey(), config);
 
     }
@@ -296,8 +300,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addExceptionConfig(ExceptionConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         exceptions.put(config.getType(), config);
 
     }
@@ -314,8 +319,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addFormBeanConfig(FormBeanConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         formBeans.put(config.getName(), config);
 
     }
@@ -332,8 +338,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addForwardConfig(ForwardConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         forwards.put(config.getName(), config);
 
     }
@@ -350,8 +357,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addMessageResourcesConfig(MessageResourcesConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         messageResources.put(config.getKey(), config);
 
     }
@@ -365,8 +373,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void addPlugIn(PlugIn plugIn) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         plugIns.add(plugIn);
 
     }
@@ -544,15 +553,37 @@ public class ApplicationConfig implements Serializable {
     public void freeze() {
 
         this.configured = true;
-        actionConfigs.setFast(true);
-        dataSources.setFast(true);
-        exceptions.setFast(true);
-        formBeans.setFast(true);
-        forwards.setFast(true);
-        messageResources.setFast(true);
-        ActionConfig[] configs = findActionConfigs();
-        for (int i = 0; i < configs.length; i++) {
-            configs[i].freeze();
+
+        ActionConfig[] aconfigs = findActionConfigs();
+        for (int i = 0; i < aconfigs.length; i++) {
+            aconfigs[i].freeze();
+        }
+
+        getControllerConfig().freeze();
+
+        DataSourceConfig[] dsconfigs = findDataSourceConfigs();
+        for (int i = 0; i < dsconfigs.length; i++) {
+            dsconfigs[i].freeze();
+        }
+
+        ExceptionConfig[] econfigs = findExceptionConfigs();
+        for (int i = 0; i < econfigs.length; i++) {
+            econfigs[i].freeze();
+        }
+
+        FormBeanConfig[] fbconfigs = findFormBeanConfigs();
+        for (int i = 0; i < fbconfigs.length; i++) {
+            fbconfigs[i].freeze();
+        }
+
+        ForwardConfig[] fconfigs = findForwardConfigs();
+        for (int i = 0; i < fconfigs.length; i++) {
+            fconfigs[i].freeze();
+        }
+
+        MessageResourcesConfig[] mrconfigs = findMessageResourcesConfigs();
+        for (int i = 0; i < mrconfigs.length; i++) {
+            mrconfigs[i].freeze();
         }
 
     }
@@ -568,8 +599,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void removeActionConfig(ActionConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         config.setApplicationConfig(null);
         actionConfigs.remove(config.getPath());
 
@@ -586,8 +618,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void removeExceptionConfig(ExceptionConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         exceptions.remove(config.getType());
 
     }
@@ -603,8 +636,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void removeDataSourceConfig(DataSourceConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         dataSources.remove(config.getKey());
 
     }
@@ -620,8 +654,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void removeFormBeanConfig(FormBeanConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         formBeans.remove(config.getName());
 
     }
@@ -637,8 +672,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void removeForwardConfig(ForwardConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         forwards.remove(config.getName());
 
     }
@@ -654,8 +690,9 @@ public class ApplicationConfig implements Serializable {
      */
     public void removeMessageResourcesConfig(MessageResourcesConfig config) {
 
-        if (configured)
+        if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
         messageResources.remove(config.getKey());
 
     }

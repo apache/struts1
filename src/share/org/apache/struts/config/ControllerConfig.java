@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.3 2002/01/13 04:21:18 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2002/01/13 04:21:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ControllerConfig.java,v 1.4 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -72,11 +72,20 @@ import java.io.Serializable;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2002/01/13 04:21:18 $
+ * @version $Revision: 1.4 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
 public class ControllerConfig implements Serializable {
+
+
+    // ----------------------------------------------------- Instance Variables
+
+
+    /**
+     * Has this component been completely configured?
+     */
+    protected boolean configured = false;
 
 
     // ------------------------------------------------------------- Properties
@@ -92,6 +101,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setBufferSize(int bufferSize) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.bufferSize = bufferSize;
     }
 
@@ -106,6 +118,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setContentType(String contentType) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.contentType = contentType;
     }
 
@@ -120,6 +135,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setDebug(int debug) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.debug = debug;
     }
 
@@ -134,6 +152,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setLocale(boolean locale) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.locale = locale;
     }
 
@@ -148,6 +169,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setMaxFileSize(String maxFileSize) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.maxFileSize = maxFileSize;
     }
 
@@ -164,6 +188,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setMultipartClass(String multipartClass) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.multipartClass = multipartClass;
     }
 
@@ -178,6 +205,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setNocache(boolean nocache) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.nocache = nocache;
     }
 
@@ -194,6 +224,9 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setProcessorClass(String processorClass) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.processorClass = processorClass;
     }
 
@@ -208,11 +241,24 @@ public class ControllerConfig implements Serializable {
     }
 
     public void setTempDir(String tempDir) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.tempDir = tempDir;
     }
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    /**
+     * Freeze the configuration of this component.
+     */
+    public void freeze() {
+
+        configured = true;
+
+    }
 
 
     /**

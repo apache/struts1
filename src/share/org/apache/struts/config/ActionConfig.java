@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.4 2002/01/13 00:25:36 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2002/01/13 00:25:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ActionConfig.java,v 1.5 2002/02/23 23:53:29 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2002/02/23 23:53:29 $
  *
  * ====================================================================
  *
@@ -65,8 +65,8 @@ package org.apache.struts.config;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.collections.FastHashMap;
 
 
 /**
@@ -75,7 +75,7 @@ import org.apache.commons.collections.FastHashMap;
  * configuration file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2002/01/13 00:25:36 $
+ * @version $Revision: 1.5 $ $Date: 2002/02/23 23:53:29 $
  * @since Struts 1.1
  */
 
@@ -86,17 +86,23 @@ public class ActionConfig implements Serializable {
 
 
     /**
+     * Has configuration of this component been completed?
+     */
+    protected boolean configured = false;
+
+
+    /**
      * The set of exception handling configurations for this
      * action, if any, keyed by the <code>type</code> property.
      */
-    protected FastHashMap exceptions = new FastHashMap();
+    protected HashMap exceptions = new HashMap();
 
 
     /**
      * The set of local forward configurations for this action, if any,
      * keyed by the <code>name</code> property.
      */
-    protected FastHashMap forwards = new FastHashMap();
+    protected HashMap forwards = new HashMap();
 
 
     // ------------------------------------------------------------- Properties
@@ -112,6 +118,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setApplicationConfig(ApplicationConfig applicationConfig) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.applicationConfig = applicationConfig;
     }
 
@@ -132,6 +141,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setAttribute(String attribute) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.attribute = attribute;
     }
 
@@ -150,6 +162,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setForward(String forward) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.forward = forward;
     }
 
@@ -168,6 +183,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setInclude(String include) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.include = include;
     }
 
@@ -184,6 +202,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setInput(String input) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.input = input;
     }
 
@@ -200,6 +221,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setMultipartClass(String multipartClass) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.multipartClass = multipartClass;
     }
 
@@ -214,6 +238,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setName(String name) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.name = name;
     }
 
@@ -230,6 +257,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setParameter(String parameter) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.parameter = parameter;
     }
 
@@ -246,6 +276,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setPath(String path) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.path = path;
     }
 
@@ -261,6 +294,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setPrefix(String prefix) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.prefix = prefix;
     }
 
@@ -276,6 +312,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setRoles(String roles) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.roles = roles;
         if (roles == null) {
             roleNames = new String[0];
@@ -318,6 +357,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setScope(String scope) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.scope = scope;
     }
 
@@ -333,6 +375,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setSuffix(String suffix) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.suffix = suffix;
     }
 
@@ -351,6 +396,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setType(String type) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.type = type;
     }
 
@@ -366,6 +414,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setUnknown(boolean unknown) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.unknown = unknown;
     }
 
@@ -380,6 +431,9 @@ public class ActionConfig implements Serializable {
     }
 
     public void setValidate(boolean validate) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         this.validate = validate;
     }
 
@@ -398,6 +452,9 @@ public class ActionConfig implements Serializable {
      */
     public void addExceptionConfig(ExceptionConfig config) {
 
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         exceptions.put(config.getType(), config);
 
     }
@@ -414,6 +471,9 @@ public class ActionConfig implements Serializable {
      */
     public void addForwardConfig(ForwardConfig config) {
 
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         forwards.put(config.getName(), config);
 
     }
@@ -474,8 +534,17 @@ public class ActionConfig implements Serializable {
      */
     public void freeze() {
 
-        exceptions.setFast(true);
-        forwards.setFast(true);
+        configured = true;
+
+        ExceptionConfig[] econfigs = findExceptionConfigs();
+        for (int i = 0; i < econfigs.length; i++) {
+            econfigs[i].freeze();
+        }
+
+        ForwardConfig[] fconfigs = findForwardConfigs();
+        for (int i = 0; i < fconfigs.length; i++) {
+            fconfigs[i].freeze();
+        }
 
     }
 
@@ -490,6 +559,9 @@ public class ActionConfig implements Serializable {
      */
     public void removeExceptionConfig(ExceptionConfig config) {
 
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         exceptions.remove(config.getType());
 
     }
@@ -505,6 +577,9 @@ public class ActionConfig implements Serializable {
      */
     public void removeForwardConfig(ForwardConfig config) {
 
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
         forwards.remove(config.getName());
 
     }
