@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.4 2000/10/30 06:02:15 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/10/30 06:02:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/StrutsTag.java,v 1.5 2001/01/06 01:50:25 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2001/01/06 01:50:25 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.PropertyUtils;
  * internal configuraton object.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/10/30 06:02:15 $
+ * @version $Revision: 1.5 $ $Date: 2001/01/06 01:50:25 $
  */
 
 public class StrutsTag extends TagSupport {
@@ -188,19 +188,22 @@ public class StrutsTag extends TagSupport {
         if (formBean != null) {
             selector = formBean;
             ActionFormBeans collection = (ActionFormBeans)
-                pageContext.getAttribute(Action.FORM_BEANS_KEY);
+                pageContext.getAttribute(Action.FORM_BEANS_KEY,
+                                         PageContext.APPLICATION_SCOPE);
             if (collection != null)
                 object = collection.findFormBean(formBean);
         } else if (forward != null) {
             selector = forward;
             ActionForwards collection = (ActionForwards)
-                pageContext.getAttribute(Action.FORWARDS_KEY);
+                pageContext.getAttribute(Action.FORWARDS_KEY,
+                                         PageContext.APPLICATION_SCOPE);
             if (collection != null)
                 object = collection.findForward(forward);
         } else if (mapping != null) {
             selector = mapping;
             ActionMappings collection = (ActionMappings)
-                pageContext.getAttribute(Action.MAPPINGS_KEY);
+                pageContext.getAttribute(Action.MAPPINGS_KEY,
+                                         PageContext.APPLICATION_SCOPE);
             if (collection != null)
                 object = collection.findMapping(mapping);
         }
