@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.5 2001/02/20 05:20:09 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2001/02/20 05:20:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.6 2001/03/06 16:58:24 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2001/03/06 16:58:24 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Struts", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -76,8 +76,8 @@ import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionFormBeans;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMappings;
-import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 
 /**
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2001/02/20 05:20:09 $
+ * @version $Revision: 1.6 $ $Date: 2001/03/06 16:58:24 $
  */
 
 public class FormTag extends TagSupport {
@@ -451,7 +451,7 @@ public class FormTag extends TagSupport {
 	results.append(method);
         results.append("\" action=\"");
         results.append
-            (response.encodeURL(BeanUtils.filter(getActionMappingURL())));
+            (response.encodeURL(ResponseUtils.filter(getActionMappingURL())));
         results.append("\"");
         if (styleClass != null) {
             results.append(" class=\"");
@@ -619,6 +619,9 @@ public class FormTag extends TagSupport {
     protected String getActionMappingName() {
 
         String value = action;
+        int question = action.indexOf("?");
+        if (question >= 0)
+            value = value.substring(0, question);
         int slash = action.lastIndexOf("/");
         int period = action.lastIndexOf(".");
         if ((period >= 0) && (period > slash))
@@ -645,6 +648,10 @@ public class FormTag extends TagSupport {
             pageContext.getAttribute(Action.SERVLET_KEY,
                                      PageContext.APPLICATION_SCOPE);
         if (servletMapping != null) {
+            String queryString = null;
+            int question = action.indexOf("?");
+            if (question >= 0)
+                queryString = action.substring(question);
             String actionMapping = getActionMappingName();
             if (servletMapping.startsWith("*.")) {
                 value.append(actionMapping);
@@ -654,6 +661,8 @@ public class FormTag extends TagSupport {
                              (0, servletMapping.length() - 2));
                 value.append(actionMapping);
             }
+            if (queryString != null)
+                value.append(queryString);
         }
 
         // Otherwise, assume extension mapping is in use and extension is
