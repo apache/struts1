@@ -324,6 +324,15 @@
         <copy todir="${build.home}/library/classes/META-INF/tlds">
             <fileset dir="${build.home}/library" includes="struts-*.tld"/>
         </copy>
+        <copy todir="${build.home}/library/classes/META-INF/tlds" overwrite="true">
+            <fileset dir="${build.home}/library" includes="struts-*.tld"/>
+            <mapper type="regexp" from="^(.*)\.tld$$" to="\1-1.1.tld"/>
+        </copy>
+        <replace dir="${build.home}/library/classes/META-INF/tlds" >
+            <include name="*-1.1.tld"/>
+            <replacefilter token="http://struts.apache.org/tags" 
+                           value="http://jakarta.apache.org/struts/tags"/>
+        </replace>
         <jar jarfile="${build.home}/library/${app.name}.jar"
             manifest="${conf.share.dir}/MANIFEST.MF"
             basedir="${build.home}/library/classes"
