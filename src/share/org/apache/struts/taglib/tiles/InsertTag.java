@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.1 2002/06/25 03:16:30 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2002/06/25 03:16:30 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.2 2002/07/26 16:18:28 cedric Exp $
+ * $Revision: 1.2 $
+ * $Date: 2002/07/26 16:18:28 $
  *
  * ====================================================================
  *
@@ -97,7 +97,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.1 $ $Date: 2002/06/25 03:16:30 $
+ * @version $Revision: 1.2 $ $Date: 2002/07/26 16:18:28 $
  */
 public class InsertTag extends DefinitionTagSupport implements PutTagParent, ComponentConstants, PutListTagParent
 {
@@ -109,15 +109,15 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
   protected boolean flush = true;
 
     /** Name to insert */
-  private String name = null;
+  protected String name = null;
     /** Name of attribute from which to read page name to include */
-  private String attribute = null;
+  protected String attribute = null;
     /** Name of bean used as entity to include */
-  private String beanName = null;
+  protected String beanName = null;
     /** Name of bean property, if any */
-  private String beanProperty = null;
+  protected String beanProperty = null;
     /** Scope of bean, if any */
-  private String beanScope = null;
+  protected String beanScope = null;
 
     /**
      * Are errors ignored. This is the property for attribute 'ignore'.
@@ -126,18 +126,18 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
      */
   protected boolean isErrorIgnored = false;
     /** Name of component instance to include */
-  private String definitionName = null;
+  protected String definitionName = null;
 
     /* Internal properties */
     /**
      * Does the end tag need to be processed.
      * Default value is true. Boolean set in case of ignored errors.
      */
-  private boolean processEndTag = true;
+  protected boolean processEndTag = true;
     /** Current component context */
   protected ComponentContext cachedCurrentContext;
     /** Finale handler of tag methods */
-  private TagHandler tagHandler = null;
+  protected TagHandler tagHandler = null;
 
     /** Trick to allows inner classes to access pageContext */
   protected PageContext pageContext = null;
@@ -186,10 +186,26 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
       }
 
     /**
+     * Get the pageContext property
+     */
+  public PageContext getPageContext()
+  {
+  return pageContext;
+  }
+
+    /**
      * Set property.
      */
   public void setName(String value){
     this.name = value;
+  }
+
+    /**
+     * Get the property.
+     */
+  public String getName()
+  {
+  return name;
   }
 
     /**
@@ -215,6 +231,14 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
   }
 
     /**
+     * Get the property.
+     */
+  public String getDefinitionName()
+  {
+  return definitionName;
+  }
+
+    /**
      * Set property
      */
   public void setAttribute(String value){
@@ -229,10 +253,26 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
   }
 
     /**
+     * Get the property.
+     */
+  public String getBeanName()
+  {
+  return beanName;
+  }
+
+    /**
      * Set property.
      */
   public void setBeanProperty(String value){
     this.beanProperty = value;
+  }
+
+    /**
+     * Get the property.
+     */
+  public String getBeanProperty()
+  {
+  return beanProperty;
   }
 
     /**
@@ -243,10 +283,26 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
   }
 
     /**
+     * Get the property.
+     */
+  public String getBeanScope()
+  {
+  return beanScope;
+  }
+
+    /**
      * Set property
      */
   public void setFlush(boolean flush){
     this.flush = flush;
+  }
+
+    /**
+     * Get the property.
+     */
+  public boolean getFlush()
+  {
+  return flush;
   }
 
     /**
@@ -264,6 +320,14 @@ public class InsertTag extends DefinitionTagSupport implements PutTagParent, Com
     {
     this.isErrorIgnored = ignore;
     }
+
+    /**
+     * Get the property.
+     */
+  public boolean getIgnore()
+  {
+  return isErrorIgnored;
+  }
 
 
      /////////////////////////////////////////////////////////////////////////

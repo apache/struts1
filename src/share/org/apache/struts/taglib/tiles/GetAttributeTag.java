@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.2 2002/07/11 16:54:33 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:54:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/GetAttributeTag.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/26 16:18:28 $
  *
  * ====================================================================
  *
@@ -112,12 +112,28 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
   }
 
     /**
+     * Get property
+     */
+  public String getAttribute()
+  {
+  return attribute;
+  }
+
+    /**
      * Set attribute
      */
   public void setName(String value)
     {
     this.attribute = value;
     }
+
+    /**
+     * Get property
+     */
+  public String getName()
+  {
+  return attribute;
+  }
 
     /**
      * Set attribute
@@ -128,12 +144,28 @@ public class GetAttributeTag extends TagSupport implements ComponentConstants {
     }
 
     /**
+     * Get the property.
+     */
+  public boolean getIgnore()
+  {
+  return isErrorIgnored;
+  }
+
+    /**
      * Set role attribute
      * @param name The role the user must be in to store content.
      */
    public void setRole(String role) {
       this.role = role;
    }
+
+    /**
+     * Get property
+     */
+  public String getRole()
+  {
+  return role;
+  }
 
     /**
      * Set attribute

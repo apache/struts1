@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.2 2002/07/24 09:38:44 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/24 09:38:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/UseAttributeTag.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/26 16:18:28 $
  *
  * ====================================================================
  *
@@ -162,6 +162,13 @@ public final class UseAttributeTag extends TagSupport {
     this.attributeName = value;
   }
 
+    /**
+     * Get property
+     */
+  public String getName()
+  {
+  return attributeName;
+  }
 
     /**
      * Set the offset.
@@ -169,10 +176,16 @@ public final class UseAttributeTag extends TagSupport {
      * @param offset The new offset
      */
     public void setScope(String scope) {
-
 	this.scopeName = scope;
-
     }
+
+    /**
+     * Get property
+     */
+  public String getScope()
+  {
+  return scopeName;
+  }
 
     /**
      * Set ignore attribute
@@ -181,6 +194,14 @@ public final class UseAttributeTag extends TagSupport {
     {
     this.isErrorIgnored = ignore;
     }
+
+    /**
+     * Get property
+     */
+  public boolean getIgnore()
+  {
+  return isErrorIgnored;
+  }
 
     // --------------------------------------------------------- Public Methods
 

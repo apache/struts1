@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.2 2002/07/11 16:54:33 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/11 16:54:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/26 16:18:28 $
  *
  * ====================================================================
  *
@@ -263,10 +263,24 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
   }
 
     /**
+     * Get property.
+     */
+  public String getBeanName(){
+    return beanName;
+  }
+
+    /**
      * Set property.
      */
   public void setBeanProperty(String value){
     this.beanProperty = value;
+  }
+
+    /**
+     * Get property.
+     */
+  public String getBeanProperty(){
+    return beanProperty;
   }
 
     /**
@@ -275,6 +289,14 @@ public class PutTag extends BodyTagSupport implements  ComponentConstants {
   public void setBeanScope(String value){
     this.beanScope = value;
   }
+
+      /**
+     * Get property.
+     */
+  public String getBeanScope(){
+    return beanScope;
+  }
+
 
     /**
      * Set role attribute

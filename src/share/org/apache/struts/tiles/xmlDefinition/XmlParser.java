@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.2 2002/07/02 12:59:31 cedric Exp $
- * $Revision: 1.2 $
- * $Date: 2002/07/02 12:59:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/xmlDefinition/XmlParser.java,v 1.3 2002/07/26 16:18:28 cedric Exp $
+ * $Revision: 1.3 $
+ * $Date: 2002/07/26 16:18:28 $
  *
  * ====================================================================
  *
@@ -107,6 +107,8 @@ public class XmlParser
      * <strong>MUST</strong> be an even number of Strings in this list!
      */
     protected String registrations[] = {
+        "-//Apache Software Foundation//DTD Tiles Configuration//EN",
+        "/org/apache/struts/tiles/resources/tiles-config.dtd",
         "-//Apache Software Foundation//DTD Tiles Configuration//EN",
         "/org/apache/struts/tiles/resources/tiles-config.dtd",
         "-//Apache Software Foundation//DTD Tiles Configuration//EN",
