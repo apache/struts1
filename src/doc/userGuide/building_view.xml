@@ -349,16 +349,16 @@ public class UploadForm extends ActionForm {
         </p>
         
         <ul>
-            <li><a href="struts-html.html#checkbox">checkboxes</a></li>
-            <li><a href="struts-html.html#hidden">hidden</a> fields</li>
-            <li><a href="struts-html.html#password">password</a> input fields</li>
-            <li><a href="struts-html.html#radio">radio</a> buttons</li>
-            <li><a href="struts-html.html#reset">reset</a> buttons</li>
-            <li><a href="struts-html.html#select">select</a> lists with embedded</li>
-            <li><a href="struts-html.html#option">options</a></li>
-            <li><a href="struts-html.html#submit">submit</a> buttons</li>
-            <li><a href="struts-html.html#text">text</a> input fields</li>
-            <li><a href="struts-html.html#textarea">textareas</a></li>
+            <li><a href="../struts-html.html#checkbox">checkboxes</a></li>
+            <li><a href="../struts-html.html#hidden">hidden</a> fields</li>
+            <li><a href="../struts-html.html#password">password</a> input fields</li>
+            <li><a href="../struts-html.html#radio">radio</a> buttons</li>
+            <li><a href="../struts-html.html#reset">reset</a> buttons</li>
+            <li><a href="../struts-html.html#select">select</a> lists with embedded</li>
+            <li><a href="../struts-html.html#option">options</a></li>
+            <li><a href="../struts-html.html#submit">submit</a> buttons</li>
+            <li><a href="../struts-html.html#text">text</a> input fields</li>
+            <li><a href="../struts-html.html#textarea">textareas</a></li>
         </ul>
         
         <p>
@@ -378,10 +378,10 @@ public class UploadForm extends ActionForm {
         
         <ul>
        
-          <li><a href="struts-logic.html#iterate">iterate</a> repeats its tag body once
+          <li><a href="../struts-logic.html#iterate">iterate</a> repeats its tag body once
               for each element of a specified collection (which can be an Enumeration,
               a Hashtable, a Vector, or an array of objects).</li>
-          <li><a href="struts-logic.html#present">present</a> depending on which attribute
+          <li><a href="../struts-logic.html#present">present</a> depending on which attribute
               is specified, this tag checks the current request, and evaluates the nested 
               body content of this tag only if the specified value is present. Only one of 
               the attributes may be used in one occurrence of this tag, unless you use the
@@ -389,14 +389,14 @@ public class UploadForm extends ActionForm {
               attributes include cookie, header, name, parameter, property, role, scope, 
               and user.
           </li>
-          <li><a href="struts-logic.html#notPresent">notPresent</a> the companion tag to 
+          <li><a href="../struts-logic.html#notPresent">notPresent</a> the companion tag to 
               present, notPresent provides the same functionality when the specified attribute
               is not present.</li>        
-          <li><a href="struts-html.html#link">link</a> generates a HTML &lt;a&gt; element 
+          <li><a href="../struts-html.html#link">link</a> generates a HTML &lt;a&gt; element 
               as an anchor definition or a hyperlink to the specified URL, and automatically
               applies URL encoding to maintain session state in the absence of
               cookie support.</li>
-          <li><a href="struts-bean.html#parameter">parameter</a> retrieves the value of the 
+          <li><a href="../struts-bean.html#parameter">parameter</a> retrieves the value of the 
               specified request parameter, and defines the result as a page scope attribute of
               type String or String[].</li>
         </ul>
@@ -533,9 +533,9 @@ public ActionErrors
               flush="true" /&gt;</code>) is processed at request time, and is handled
               transparently by the server.  Among other things, that means you
               can conditionally perform the include by nesting it within a tag
-              like <a href="struts-logic.html#equals">equals</a> by using it's
+              like <a href="../struts-logic.html#equals">equals</a> by using it's
               parameter attribute.</li>
-          <li>The <a href="struts-bean.html#include">bean:include</a> tag takes either a
+          <li>The <a href="../struts-bean.html#include">bean:include</a> tag takes either a
              an argument "forward" representing a logical name mapped to the jsp to include,
              or the "id" argument, which represents a page context String variable to print
              out to the jsp page.</li>
