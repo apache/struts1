@@ -84,8 +84,9 @@ package org.apache.shale;
  * <li>Whenever a JSF view with the appropriate <code>view identifier</code>
  *     is created or restored, an appropriate instance of the corresponding
  *     {@link ViewController} class will be created via the managed beans
- *     facility (if such a bean does not already exist).  As a side effect,
- *     property setters will be called for any
+ *     facility (if such a bean does not already exist), using a key derived
+ *     from the {@link ViewControllerMapper} for this application.  As a
+ *     side effect, property setters wil be called for any
  *     <code>&lt;managed-property&gt;</code> configuration you have
  *     specified.</li>
  * <li>Prior to any other method calls, the following additional property
