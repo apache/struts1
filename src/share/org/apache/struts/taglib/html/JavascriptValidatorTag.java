@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.29 2003/07/02 03:47:23 dgraham Exp $
- * $Revision: 1.29 $
- * $Date: 2003/07/02 03:47:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/JavascriptValidatorTag.java,v 1.30 2003/07/07 23:46:35 dgraham Exp $
+ * $Revision: 1.30 $
+ * $Date: 2003/07/07 23:46:35 $
  *
  * ====================================================================
  *
@@ -93,10 +93,14 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.29 $ $Date: 2003/07/02 03:47:23 $
+ * @version $Revision: 1.30 $ $Date: 2003/07/07 23:46:35 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
+
+    private static final String HTML_BEGIN_COMMENT = "\n<!-- Begin \n";
+
+    private static final String HTML_END_COMMENT = "//End --> \n";
 
     // ----------------------------------------------------------- Properties
 
@@ -161,10 +165,6 @@ public class JavascriptValidatorTag extends BodyTagSupport {
      * Hide JavaScript methods in a CDATA section for XHTML when "true".
      */
     protected String cdata = "true";
-
-    private String htmlBeginComment = "\n<!-- Begin \n";
-
-    private String htmlEndComment = "//End --> \n";
     
     /**
      * Gets the key (form name) that will be used
@@ -511,7 +511,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             } else if ("true".equalsIgnoreCase(staticJavascript)) {
                 results.append(this.getStartElement());
                 if ("true".equalsIgnoreCase(htmlComment)) {
-                    results.append(htmlBeginComment);
+                    results.append(HTML_BEGIN_COMMENT);
                 }
             }
         }
@@ -571,7 +571,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
         
         if (!this.isXhtml() && "true".equals(htmlComment)) {
-            sb.append(htmlBeginComment);
+            sb.append(HTML_BEGIN_COMMENT);
         }
         sb.append("\n     var bCancel = false; \n\n");
 
@@ -629,7 +629,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
         sb.append("\n");
         if (!this.isXhtml() && "true".equals(htmlComment)){
-            sb.append(htmlEndComment);
+            sb.append(HTML_END_COMMENT);
         }
         
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
