@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.8 2000/07/17 16:37:45 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/07/17 16:37:45 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/CheckboxTag.java,v 1.9 2000/08/14 04:42:50 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/08/14 04:42:50 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
@@ -75,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "checkbox".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/07/17 16:37:45 $
+ * @version $Revision: 1.9 $ $Date: 2000/08/14 04:42:50 $
  */
 
 public final class CheckboxTag extends BaseHandlerTag {
@@ -200,13 +201,17 @@ public final class CheckboxTag extends BaseHandlerTag {
 		value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)
 		    value = "";
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 	if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes")

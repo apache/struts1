@@ -58,6 +58,7 @@
 package org.apache.struts.taglib;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -252,13 +253,17 @@ public final class OptionsTag extends TagSupport {
 	if (property != null) {
 	    try {
 		collection = BeanUtils.getPropertyValue(bean, property);
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 

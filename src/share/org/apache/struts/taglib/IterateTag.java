@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.8 2000/08/13 05:05:17 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/08/13 05:05:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IterateTag.java,v 1.9 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.taglib;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -86,7 +87,7 @@ import org.apache.struts.util.MessageResources;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/08/13 05:05:17 $
+ * @version $Revision: 1.9 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public final class IterateTag extends BodyTagSupport {
@@ -323,13 +324,17 @@ public final class IterateTag extends BodyTagSupport {
 		if (collection == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 

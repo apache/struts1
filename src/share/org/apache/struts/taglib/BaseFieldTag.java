@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.10 2000/07/18 05:35:12 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/07/18 05:35:12 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/BaseFieldTag.java,v 1.11 2000/08/14 04:42:50 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/08/14 04:42:50 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -76,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Convenience base class for the various input tags for text fields.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/07/18 05:35:12 $
+ * @version $Revision: 1.11 $ $Date: 2000/08/14 04:42:50 $
  */
 
 public abstract class BaseFieldTag extends BaseInputTag {
@@ -177,13 +178,17 @@ public abstract class BaseFieldTag extends BaseInputTag {
 		if (value == null)
 		    value = "";
 		results.append(BeanUtils.filter(value));
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 	results.append("\"");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.4 2000/07/17 16:37:47 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/07/17 16:37:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/MultiboxTag.java,v 1.5 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
@@ -80,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Ralph Schaer
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/07/17 16:37:47 $
+ * @version $Revision: 1.5 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public final class MultiboxTag extends BaseHandlerTag {
@@ -208,13 +209,17 @@ public final class MultiboxTag extends BaseHandlerTag {
 	    values = BeanUtils.getArrayProperty(bean, property);
 	    if (values == null)
 		values = new String[0];
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
 	} catch (NoSuchMethodException e) {
 	    throw new JspException
-		(messages.getMessage("getter.method", property));
-	} catch (Exception e) {
-	    throw new JspException
-		(messages.getMessage("getter.result",
-				     property, e.toString()));
+		(messages.getMessage("getter.method", property, name));
 	}
 	for (int i = 0; i < values.length; i++) {
 	    if (value.equals(values[i])) {

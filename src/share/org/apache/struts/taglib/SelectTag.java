@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.10 2000/08/01 20:03:35 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/08/01 20:03:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/SelectTag.java,v 1.11 2000/08/14 04:42:52 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/08/14 04:42:52 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -78,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * inside a form tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/08/01 20:03:35 $
+ * @version $Revision: 1.11 $ $Date: 2000/08/14 04:42:52 $
  */
 
 public final class SelectTag extends BaseHandlerTag {
@@ -275,13 +276,17 @@ public final class SelectTag extends BaseHandlerTag {
 		match = BeanUtils.getScalarProperty(bean, property);
 		if (match == null)
 		    match = "";
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 

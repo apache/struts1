@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.7 2000/08/13 05:05:16 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/08/13 05:05:16 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/EnumerateTag.java,v 1.8 2000/08/14 04:42:50 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/08/14 04:42:50 $
  *
  * ====================================================================
  *
@@ -63,6 +63,7 @@
 package org.apache.struts.taglib;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -83,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  * <b>FIXME</b> - Should support Java2 collection classes as well!
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/08/13 05:05:16 $
+ * @version $Revision: 1.8 $ $Date: 2000/08/14 04:42:50 $
  */
 
 public final class EnumerateTag extends BodyTagSupport {
@@ -321,13 +322,17 @@ public final class EnumerateTag extends BodyTagSupport {
 		if (collection == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyEqualsTag.java,v 1.3 2000/07/17 16:37:46 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/17 16:37:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/IfPropertyEqualsTag.java,v 1.4 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import org.apache.struts.util.BeanUtils;
@@ -75,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * of the specified attribute (in any scope) has the specified value.
  *
  * @author Arun M. Thomas <arun@ipin.com>
- * @version $Revision: 1.3 $ $Date: 2000/07/17 16:37:46 $
+ * @version $Revision: 1.4 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public class IfPropertyEqualsTag extends BaseAttributeTag {
@@ -170,13 +171,17 @@ public class IfPropertyEqualsTag extends BaseAttributeTag {
 		value = BeanUtils.getScalarProperty(bean, property);
 		if (value == null)
 		    value = "";
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		  (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
-		throw new JspException
-		  (messages.getMessage("getter.result",
-				       property, e.toString()));
+		  (messages.getMessage("getter.method", property, name));
 	    }
 	    equals = this.value.equals(value);
 	}

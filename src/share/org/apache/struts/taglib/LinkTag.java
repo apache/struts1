@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.10 2000/08/01 20:03:34 craigmcc Exp $
- * $Revision: 1.10 $
- * $Date: 2000/08/01 20:03:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.11 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.11 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
@@ -84,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.10 $ $Date: 2000/08/01 20:03:34 $
+ * @version $Revision: 1.11 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public class LinkTag extends TagSupport {
@@ -384,16 +385,20 @@ public class LinkTag extends TagSupport {
 		if (map == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
 	    } catch (ClassCastException e) {
 		throw new JspException
 		    (messages.getMessage("linkTag.type"));
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 

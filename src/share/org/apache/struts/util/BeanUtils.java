@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.4 2000/07/16 22:29:10 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/07/16 22:29:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/BeanUtils.java,v 1.5 2000/08/14 04:42:59 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/08/14 04:42:59 $
  *
  * ====================================================================
  *
@@ -81,7 +81,8 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Craig R. McClanahan
  * @author Ralph Schaer
- * @version $Revision: 1.4 $ $Date: 2000/07/16 22:29:10 $
+ * @author Chris Audley
+ * @version $Revision: 1.5 $ $Date: 2000/08/14 04:42:59 $
  */
 
 public final class BeanUtils {
@@ -325,11 +326,16 @@ public final class BeanUtils {
      * @param bean Bean whose property is to be extracted
      * @param name Name of the property to be extracted
      *
-     * @exception Exception if any problem occurs while acquiring or
-     *  converting this property value.
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
      */
     public static String[] getArrayProperty(Object bean, String name)
-	throws Exception {
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
 
 	Object value = getPropertyValue(bean, name);
 	if (value == null) {
@@ -415,11 +421,16 @@ public final class BeanUtils {
      * @param bean Bean whose property is to be extracted
      * @param name Name of the property to be extracted
      *
-     * @exception Exception if any problem occurs while acquiring
-     *  this property value.
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
      */
     public static Object getPropertyValue(Object bean, String name)
-	throws Exception {
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
 
 	// Retrieve the property getter method for the specified property
 	PropertyDescriptor descriptor =
@@ -446,11 +457,16 @@ public final class BeanUtils {
      * @param bean Bean whose property is to be extracted
      * @param name Name of the property to be extracted
      *
-     * @exception Exception if any problem occurs while acquiring or
-     *  converting this property value.
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
+     * @exception NoSuchMethodException if an accessor method for this
+     *  propety cannot be found
      */
     public static String getScalarProperty(Object bean, String name)
-	throws Exception {
+	throws IllegalAccessException, InvocationTargetException,
+	       NoSuchMethodException {
 
 	Object value = getPropertyValue(bean, name);
 	if (value == null) {
@@ -561,10 +577,13 @@ public final class BeanUtils {
      * @param properties Hashtable keyed by property name, with the
      *  corresponding (String or String[]) value(s) to be set
      *
-     * @exception Exception if thrown while setting properties
+     * @exception IllegalAccessException if the caller does not have
+     *  access to the property accessor method
+     * @exception InvocationTargetException if the property accessor method
+     *  throws an exception
      */
     public static void populate(Object bean, Hashtable properties)
-	throws Exception {
+	throws IllegalAccessException, InvocationTargetException {
 
 	if ((bean == null) || (properties == null))
 	    return;

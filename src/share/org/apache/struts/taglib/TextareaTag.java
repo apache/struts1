@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.12 2000/07/17 16:37:52 craigmcc Exp $
- * $Revision: 1.12 $
- * $Date: 2000/07/17 16:37:52 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/TextareaTag.java,v 1.13 2000/08/14 04:42:52 craigmcc Exp $
+ * $Revision: 1.13 $
+ * $Date: 2000/08/14 04:42:52 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -76,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Custom tag for input fields of type "textarea".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.12 $ $Date: 2000/07/17 16:37:52 $
+ * @version $Revision: 1.13 $ $Date: 2000/08/14 04:42:52 $
  */
 
 public class TextareaTag extends BaseInputTag {
@@ -147,13 +148,17 @@ public class TextareaTag extends BaseInputTag {
 		if (value == null)
 		    value = "";
 		results.append(BeanUtils.filter((String) value));
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 	results.append("</textarea>");

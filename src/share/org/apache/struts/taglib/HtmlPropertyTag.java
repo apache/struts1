@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/HtmlPropertyTag.java,v 1.3 2000/07/17 16:37:46 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2000/07/17 16:37:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/HtmlPropertyTag.java,v 1.4 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  * 
@@ -64,7 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -79,7 +79,7 @@ import org.apache.struts.util.MessageResources;
  * HTML-related characters do not cause difficulties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2000/07/17 16:37:46 $
+ * @version $Revision: 1.4 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public final class HtmlPropertyTag extends TagSupport {
@@ -185,21 +185,23 @@ public final class HtmlPropertyTag extends TagSupport {
 		(messages.getMessage("getter.bean", name));
 
 	// Acquire the requested property value
-	String methodName = "get" + BeanUtils.capitalize(property);
 	Class paramTypes[] = new Class[0];
-	Method method = null;
 	Object value = null;
 	try {
 	    value = BeanUtils.getPropertyValue(bean, property);
 	    if (value == null)
 		value = "";
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
 	} catch (NoSuchMethodException e) {
 	    throw new JspException
-		(messages.getMessage("getter.method", property));
-	} catch (Exception e) {
-	    throw new JspException
-		(messages.getMessage("getter.result",
-				     property, e.toString()));
+		(messages.getMessage("getter.method", property, name));
 	}
 
 	// Print this property value to our output writer, suitably encoded

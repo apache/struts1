@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/GetPropertyTag.java,v 1.5 2000/08/13 05:05:17 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2000/08/13 05:05:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/GetPropertyTag.java,v 1.6 2000/08/14 04:42:50 craigmcc Exp $
+ * $Revision: 1.6 $
+ * $Date: 2000/08/14 04:42:50 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -76,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Expose the value of a bean property as a scripting variable.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2000/08/13 05:05:17 $
+ * @version $Revision: 1.6 $ $Date: 2000/08/14 04:42:50 $
  */
 
 public class GetPropertyTag extends TagSupport {
@@ -201,13 +202,17 @@ public class GetPropertyTag extends TagSupport {
 	    if (value == null)
 		throw new JspException
 		    (messages.getMessage("getter.property", property));
+	} catch (IllegalAccessException e) {
+	    throw new JspException
+		(messages.getMessage("getter.access", property, name));
+	} catch (InvocationTargetException e) {
+	    Throwable t = e.getTargetException();
+	    throw new JspException
+		(messages.getMessage("getter.result",
+				     property, t.toString()));
 	} catch (NoSuchMethodException e) {
 	    throw new JspException
-		(messages.getMessage("getter.method", property));
-	} catch (Exception e) {
-	    throw new JspException
-	        (messages.getMessage("getter.result",
-				     property, e.toString()));
+		(messages.getMessage("getter.method", property, name));
 	}
 
 	// Expose this as a scripting variable and continue

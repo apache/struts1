@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.9 2000/08/01 20:03:35 craigmcc Exp $
- * $Revision: 1.9 $
- * $Date: 2000/08/01 20:03:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/RadioTag.java,v 1.10 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.10 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.JspWriter;
@@ -75,7 +76,7 @@ import org.apache.struts.util.MessageResources;
  * Tag for input fields of type "radio".
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.9 $ $Date: 2000/08/01 20:03:35 $
+ * @version $Revision: 1.10 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public final class RadioTag extends BaseHandlerTag {
@@ -185,13 +186,17 @@ public final class RadioTag extends BaseHandlerTag {
 	    current = BeanUtils.getScalarProperty(bean, property);
 	    if (current == null)
 	        current = "";
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
 	} catch (NoSuchMethodException e) {
 	    throw new JspException
-	        (messages.getMessage("getter.method", property));
-        } catch (Exception e) {
-	    throw new JspException
-	        (messages.getMessage("getter.result",
-	                             property, e.toString()));
+	        (messages.getMessage("getter.method", property, name));
 	}
 
 	// Create an appropriate "input" element based on our parameters

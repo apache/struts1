@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.7 2000/08/01 20:03:34 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/08/01 20:03:34 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.8 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
@@ -85,7 +86,7 @@ import org.apache.struts.util.MessageResources;
  * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/08/01 20:03:34 $
+ * @version $Revision: 1.8 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public class Link1Tag extends TagSupport {
@@ -386,16 +387,20 @@ public class Link1Tag extends TagSupport {
 		if (dictionary == null)
 		    throw new JspException
 			(messages.getMessage("getter.property", property));
+	    } catch (IllegalAccessException e) {
+		throw new JspException
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
+		throw new JspException
+		    (messages.getMessage("getter.result",
+					 property, t.toString()));
 	    } catch (ClassCastException e) {
 		throw new JspException
 		    (messages.getMessage("linkTag.type1"));
 	    } catch (NoSuchMethodException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
-		throw new JspException
-		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 

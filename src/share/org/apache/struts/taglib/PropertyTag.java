@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.7 2000/08/01 20:03:35 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2000/08/01 20:03:35 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/PropertyTag.java,v 1.8 2000/08/14 04:42:51 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2000/08/14 04:42:51 $
  *
  * ====================================================================
  *
@@ -64,6 +64,7 @@ package org.apache.struts.taglib;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -76,7 +77,7 @@ import org.apache.struts.util.MessageResources;
  * Display the value of the specified bean property as read-only HTML text.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2000/08/01 20:03:35 $
+ * @version $Revision: 1.8 $ $Date: 2000/08/14 04:42:51 $
  */
 
 public class PropertyTag extends BaseInputTag {
@@ -123,13 +124,17 @@ public class PropertyTag extends BaseInputTag {
 		if (value == null)
 		    value = "";
 		results.append(BeanUtils.filter(value));
-	    } catch (NoSuchMethodException e) {
+	    } catch (IllegalAccessException e) {
 		throw new JspException
-		    (messages.getMessage("getter.method", property));
-	    } catch (Exception e) {
+		    (messages.getMessage("getter.access", property, name));
+	    } catch (InvocationTargetException e) {
+		Throwable t = e.getTargetException();
 		throw new JspException
 		    (messages.getMessage("getter.result",
-					 property, e.toString()));
+					 property, t.toString()));
+	    } catch (NoSuchMethodException e) {
+		throw new JspException
+		    (messages.getMessage("getter.method", property, name));
 	    }
 	}
 
