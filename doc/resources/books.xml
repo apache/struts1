@@ -93,10 +93,16 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 
 <section name="Books with Struts coverage">
 <p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=0672323095/hitchhikeguidetoA/"><b>MySQL and JSP Web Applications: Data-Driven Programming Using Tomcat and MySQL</b></a> by James Turner. March 2002. Includes a chapter on Tomcat and Struts.
+</p>
+<p>
 <a href="http://www.amazon.com/exec/obidos/ISBN=0735710953/hitchhikeguidetoA/"><b>JSP and Tag Libraries for Web Development </b></a>- by Wellington L. S. Da Silva. January 2002. Several chapters regarding Struts.
 </p>
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - Wrox book by Husted, Kunnumpurath, Lavandowska, Panduranga, et al. November 2001. Features Struts in chapters 2 (The Struts Framework), 6 (Navigation), 8 (Data Access Patterns), 12 (Content Management), 13 (Searching), and 14 (Portals).
+<a href="http://www.amazon.com/exec/obidos/ISBN=1861005512/hitchhikeguidetoA/"><b>Professional JSP Site Design</b></a> - by Gabraith, Husted, Nelson, Kochmer, et al (Wrox book). November 2001. Features Struts in chapters 2 (The Struts Framework), 6 (Navigation), 8 (Data Access Patterns), 12 (Content Management), 13 (Searching), and 14 (Portals).
+</p>
+<p>
+<a href="http://www.amazon.com/exec/obidos/ISBN=1861002092/hitchhikeguidetoA/"><b>Beginning JSP Web Development</b></a> by Falkner, Galbraith, Irani, Kochmer, Kunnumpurath, Panduranga,  Perrumal, Timney (Wrox book). August 2001. One chapter focuses on an introduction to Struts 1.0 and two chapters on creating an application that uses Struts.
 </p>
 <p>
 <a href="http://www.redbooks.ibm.com/redpieces/pdfs/sg246134.pdf"><b>Websphere Version 4 Application Development Handbook</b></a> <font size="1">(PDF)</font> - Chapter 7 covers designing with both the Struts and Websphere frameworks.
@@ -105,21 +111,17 @@ by Victor Cekvenich - Practical Application with Database Access and Struts Exte
 <a href="http://shannon.informatik.fh-wiesbaden.de/jsp/index.html"><b>Java Server Pages and J2EE Web-based Applications for Enterprises</b></a> - In German, with a Chapter regarding MVC and Struts.
 </p>
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> - Many of these patterns are deployed in Struts.
+<a href="http://www.amazon.com/exec/obidos/ISBN=0130648841/hitchhikeguidetoA/"><b>Core J2EE Patterns</b></a> by Alur, Crupi, Malks. June 2001. Many of these patterns are deployed in Struts.
 </p>
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=1861004958/hitchhikeguidetoA/"><b>Professional JSP 2nd Edition</b></a> - Wrox book - long chapter on Struts.
+<a href="http://www.amazon.com/exec/obidos/ISBN=1861004958/hitchhikeguidetoA/"><b>Professional JSP 2nd Edition</b></a> by Wilkenson et al (Wrox book). April 2001. Long chapter on Struts.
 </p>
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary - Features template tag library from Struts 1.0.
+<a href="http://www.amazon.com/exec/obidos/ISBN=0130307041/hitchhikeguidetoA/"><b>Advanced JavaServer Pages</b></a> by David Geary. May 2001. Features template tag library from Struts 1.0.
 </p>
 <p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0672323095/hitchhikeguidetoA/"><b>MySQL and JSP Web Applications: Data-Driven Programming Using Tomcat and MySQL</b></a> by James Turner - Includes a chapter on Tomcat and Struts.
+<a href="http://www.amazon.com/exec/obidos/ISBN=0764547879/hitchhikeguidetoA/"><b>JSP, Servlets, and MySQL</b></a> by David Harms, 2001 - Features a chapter on Struts 1.0.
 </p>
-</section>
-
-<section name="Coming Soon">
-
 </section>
 
 </chapter></body></document>
