@@ -498,7 +498,7 @@ This release adds more support for 1.1 config files and updates some of the help
 Changes with Struts Console v1.10
 </p>
 <ul>
-<li>Added ability to specify new config file versionin stand-alone app when creating new config files from scratch.</li>
+<li>Added ability to specify new config file version in stand-alone app when creating new config files from scratch.</li>
 <li>Added support for &lt;controller> element in 1.1config files.</li>
 <li>Removed unnecessary duplicate of JDOM classes from console.jar thus making downloads smaller.</li>
 <li>Updated help/installation documentation.</li>
@@ -578,7 +578,7 @@ integrated into a Struts application.
 <h3><a name="20020504"></a>04 May 2002 - Chinese Translation of Struts User Guide</h3>
 <p>
 The translated document is being reviewed in a 
-small circle of experenced Java programmers in both mainland China and US.
+small circle of experienced Java programmers in both mainland China and US.
 </p>
 <p>
 Preview can be found at<br/>
@@ -691,7 +691,7 @@ from Strut 1.0, are available at:</p>
 </p>
 <hr size="1" noshade=""/>
 
-<h3><a name="20020423.1"></a>23 Apr 2002 - Synthis Corporation annouces support for the Apache Struts J2EE Architecture</h3>
+<h3><a name="20020423.1"></a>23 Apr 2002 - Synthis Corporation announces support for the Apache Struts J2EE Architecture</h3>
 <p>
 Synthis Corporation is pleased to announce that Adalon, a next-generation functional design tool for modeling Internet
 applications, now offers full support for the Struts framework, the leading open-source J2EE Web application architecture
@@ -771,7 +771,7 @@ depreciated testable interface and depreciated setup values, updated French
 message bundle, updated Sybase support, separate test suites, as well as
 refactoring ListBase and createTable. Various corrections and bug fixes have
 also been made. This release includes some new user documentation including
-on workflow which is onsite. Addionally there are EDG updates such as the
+on workflow which is onsite. Additionally there are EDG updates such as the
 section on XML Viewhandler. The EDG documents are not yet updated onsite but
 will be soon.</p>
 <p>

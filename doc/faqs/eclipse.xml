@@ -17,7 +17,7 @@
 
 <p>
 * DISCLAIMER - This simple How-To shows you one of many ways to setup a working project using<br/>
-the Struts framewoek.  This is mainly geared toward struts users who are new to Eclipse, and<br/> 
+the Struts framework.  This is mainly geared toward struts users who are new to Eclipse, and<br/> 
 don't want to spend a lot of time figuring out the differences between their old IDE (if any)<br/>
 and this one.<br/>
 <br/>
@@ -167,8 +167,8 @@ Add a build.xml file to the project root.  I use something like this:
         <li>
             Compilation warnings and errors are detected immediately.  In this screenshot, I drill down<br/>
             into the source folder, package, file, class, and double click on the method....which <br/>
-            brings up the source editor.  I hover the mouse over the affending warning to see <br/>
-            a description of what' wrong.<br/>
+            brings up the source editor.  I hover the mouse over the offending warning to see <br/>
+            a description of what's wrong.<br/>
             <img src="../images/how-to/eclipse/developing-eclipse-style14.jpg"></img><br/><br/><br/>
         </li>
         <li>
@@ -211,7 +211,7 @@ Add a build.xml file to the project root.  I use something like this:
             <img src="../images/how-to/eclipse/developing-eclipse-style27.jpg"></img><br/><br/><br/>
         </li>
         <li>
-            Cant't forget that last one<br/>
+            Can't forget that last one<br/>
             <img src="../images/how-to/eclipse/developing-eclipse-style28.jpg"></img><br/><br/><br/>
         </li>
         <li>

@@ -112,35 +112,6 @@ which only just trails Tomcat:
 <hr size="1" noshade=""/>
 -->
 
-<h3><a name="20021213"></a>12 December 2002 - Struts book #1 and #2</h3>
-<p>
-<a href="http://www.amazon.com/exec/obidos/ISBN=0672324725/hitchhikeguidetoA/">
-<b>Struts Kick Start</b></a> 
-by James Turner and Kevin Bedell is now available from Amazon for immediate delivery:
-</p>
-<p>
-Buy one, buy two. They make great stocking stuffers. Use them as door
-stops. Learn to use the enclosed CD as a lethal thrown weapon. Fun for
-the whole family.
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021212"></a>12 December 2002 - Struts book #1 and #2</h3>
-<p>
-<a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13"><img border="0" src="../images/books/topsellers.jpg" width="284" height="220" align="right" valign="top"/></a>
-Struts books top the #1 <strong>and</strong> #2 slots on Amazon's <a href="http://www.amazon.com/exec/obidos/tg/browse/-/3610/1/002-5420337-0432053?rank=%2Bsalesrank&amp;submit.x=4&amp;submit.y=13">Java Programming bestseller list</a>!
-</p>
-<hr size="1" noshade=""/>
-
-
-<h3><a name="20021203"></a>3 December 2002 - Struts book rated 11 out of 10</h3>
-<p>
-<small>(3 December 2002)</small><br /><strong>Struts in Action</strong> rated 11 out of 10 by <a href="http://books.slashdot.org/article.pl?sid=02/11/25/1731249&amp;mode=thread&amp;tid=156">Slashdot</a>.
-</p>
-<hr size="1" noshade=""/>
-
-
 <h3><a name="20021127"></a>27 Nov 2002 - Expresso 5.0.2 Released</h3>
 <p>
 Expresso 5.0.2 can be downloaded freely from:
@@ -602,7 +573,7 @@ For more information about this package visit
 <h3><a name="20021101"></a>2002 Nov 01 - New Struts Article posted on OnJava</h3>
 <p>
 Sorry for the self promotion, but I thought this article
-might help some on thes list. I wrote a Struts "lessons
+might help some on this list. I wrote a Struts "lessons
 learned" article for O'Reilly that contains information
 that is discussed here on the list frequently, but never
 hurts to be explained in more detail.
@@ -727,10 +698,10 @@ Features:
 Lightweight framework running on any Servlet Engine or J2EE Application Server.Simple and fast to implement.
 </li>
 <li>
-Support of internationalization. IS0-8859-1 and any other language, like chinese, korean, arabic, too!
+Support of internationalization. IS0-8859-1 and any other language, like Chinese, Korean, Arabic, too!
 </li>
 <li>
-StrutsCXServlet: Replaces Struts JSP and Message Ressources features with a pure XML and XSLT solution 100% internationalizable.
+StrutsCXServlet: Replaces Struts JSP and MessageResources features with a pure XML and XSLT solution 100% internationalizable.
 </li>
 <li>
 Output of 100% standard conform XML, XHTML, XSL-FO, WML or whatever you like.
@@ -742,7 +713,7 @@ Simple validation error mechanism.
 Prototype persists via Castor XML.
 </li>
 <li>
-Prototype featuring the CRUD cycle (Create, Reatrieve, Update, Delete) and support for english, german and korean language.
+Prototype featuring the CRUD cycle (Create, Retrieve, Update, Delete) and support for English, German and Korean language.
 </li>
 </ul>
 <p>

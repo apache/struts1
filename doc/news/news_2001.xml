@@ -161,7 +161,7 @@ http://www.jcorporate.com/product/expresso.html.
 The 
 <a href="http://www.inigoserrano.com/ISValidator/en/ejemploStrutsCompleto0010ISValidator.htm">
 <b>ISValidator</b></a> is a set of routines designed to help validate data 
-in diferents scenarios, command line argumets, Servlets Parameters, 
+in different scenarios, command line arguments, Servlets Parameters, 
 and so forth. Support has now been added to use ISValidator with
 Struts 1.0. 
 </p>

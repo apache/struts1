@@ -294,7 +294,7 @@ mailing list</a>, where there are more people still using these approaches.
 
 <section href="tags" name="Why do the Struts tags provide for so little formatting?">
 <p>
-<i>The Struts tags seem to provide only the most rudimentary funcationality.
+<i>The Struts tags seem to provide only the most rudimentary functionality.
 Why is there not better support for date formatting and advanced string handling?</i>
 </p>
 <p>
@@ -321,7 +321,7 @@ If you are interested in a prewritten taglib that offers more layout options, se
 <a href="http://struts.application-servers.com">struts-layout taglib</a>.
 </p>
 <p>
-In the same arena, there is a well regarded contributtor taglib that can help you create
+In the same arena, there is a well regarded contributor taglib that can help you create
 <a href="http://sourceforge.net/projects/struts-menu/">Menus for your Struts applications</a>.
 </p>
 </section>
@@ -330,7 +330,7 @@ In the same arena, there is a well regarded contributtor taglib that can help yo
 <section href="link" name="Why does the &lt;html:link> tag URL-encode javascript and mailto links?">
 <p>
 The &lt;html:link> tag is not intended for use with client-side references like those used to launch Javascripts or email clients.
-The purpose of link tag is to interject the context (or module) path into the URI so that your server-side links are not dependant on your context (or modoule) name.
+The purpose of link tag is to interject the context (or module) path into the URI so that your server-side links are not dependant on your context (or module) name.
 It also encodes the link, as needed, to maintain the client's session on the server.
 Neither feature applies to client-side links, so there is no reason to use the &lt;html:link> tag.
 Simply markup the client-side links using the standard <a/> tag.
@@ -350,7 +350,7 @@ passes the result back to the web/presentation tier.
 <p>
 A common approach is to create an Action class for each of the business API methods/classes that you need to call.
 Ideally, all the database access code should be encapsulated in the business API classes, so Struts doesn't know
-what persistent layer you are using (or even if there is a persisentance layer). It just passes a key or search
+what persistent layer you are using (or even if there is a persistence layer). It just passes a key or search
 String and gets back a bean or collection of beans. This lets you use the same business API classes in other
 environments, and also to run unit tests against your business API outside of Struts or a HTTP environment.
 </p>
@@ -359,7 +359,7 @@ To get started, it's simplest to setup a 1:1 correspondence between the Actions 
 your business API. As you gain experience, you will find ways to combine your Actions, say by using the
 DispatchAction. It's even possible to use a single "framework" Action to call all of your business
 classes, as is done with Scaffold ProcessAction in the contrib folder. Using fewer Actions does require
-a deeper understanding of how Struts and MVC frameworks operate. Don't hestitate to err on the side
+a deeper understanding of how Struts and MVC frameworks operate. Don't hesitate to err on the side
 of creating more Actions at first. The Struts configuration makes it easy to refactor your Actions
 later, since you can change the Action type without changing anything else in the application.
 </p>

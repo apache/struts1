@@ -114,7 +114,7 @@ containers</a> are available.</p>
 <p>Why is that an important distinction? Because if you are using a servlet container on your development machine to test your application, the &quot;struts.jar&quot; <b>must not</b> be on your CLASSPATH environment variable when running the container. (This is because each Web application must also have their own copy of the Struts classes, and the container will become confused if it is on the environment path as well.)</p>
 <p>There are several general approaches to this issue:</p>
 <ul>
-<li><b>Use ANT</b> for building your projects -- it can easily assemble  classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
+<li><b>Use ANT</b> for building your projects -- it can easily assemble classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
 <li><b>Use an IDE</b> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
 <li><b>Use a shell script</b> that temporarily adds struts.jar  to the classpath just for compilation, for example<br/>
 <i>javac -classpath /path/to/struts.jar:$CLASSPATH $@</i></li>
@@ -131,7 +131,7 @@ For static unit tests, we use the <a href="http://www.junit.org">JUnit framework
 The sources for these tests are in the "src/test"
 hierarchy in the CVS repository, and are executed via the "test.junit"
 target in the top-level build.xml file.  Such tests are focused on the
-low-level functionality of individual methods, are are particularly
+low-level functionality of individual methods, are particularly
 suitable for the static methods in the org.apache.struts.util utility
 classes.  In the test hierarchy, there are also some "mock object" classes
 (in the org.apache.struts.mock package) so that you can package up things
@@ -204,20 +204,20 @@ links.
 
 <section href="turbine" name="What's the difference between Struts and Turbine? What's the difference between Struts and Expresso?">
 <p>
-If you are starting fromn scratch, packages like
+If you are starting from scratch, packages like
 <a href="http://jakarta.apache.org/turbine">Turbine</a> and
 <a href="http://jcorporate.com">Expresso</a>
 can be very helpful since they try to provide all of the basic services that your team is likely to need.
-Such services include things like data persistance and logging.
+Such services include things like data persistence and logging.
 </p>
 <p>
 If you are not starting from scratch, and need to hook up your web application to an existing infrastructure, then "plain vanilla" Struts can be a better choice.
-The core Struts framework does not presuppose that you are using a given set of data persistance, presentation, or logging tools.
+The core Struts framework does not presuppose that you are using a given set of data persistence, presentation, or logging tools.
 Anything goes =:0)
 </p>
 <p>
 Compared to other offerings, Struts endeavors to be a minimalist framework.
-We try leverage existing technologies whenever we can and then provide only the missing pieces you need to combine disparent technologies into a coherent application.
+We try leverage existing technologies whenever we can and then provide only the missing pieces you need to combine disparate technologies into a coherent application.
 This is great when you want to select your own tools to use with Struts.
 But, if you prefer a more integrated infrastructure, then packages like Turbine or Expresso are perfectly good ways to go.
 </p>

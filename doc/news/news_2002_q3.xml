@@ -92,7 +92,7 @@ Changes with Struts Console v2.1.1
 <h3><a name="20020830.3"></a>28 Aug 2002 - Easy Struts 0.5.2 for Eclipse</h3>
 <p>
 Easy Struts 0.5.2 available (Only Eclipse plugin), I make a little demo for you, this demo require
-Flash 5 and show you some fonctionnality from Easy Struts Editor in Eclipse. Enjoy ;)
+Flash 5 and show you some functionality from Easy Struts Editor in Eclipse. Enjoy ;)
 </p>
 <p>
 Demo : http://easystruts.sourceforge.net/editor.html (4Mo, be patient)
@@ -121,7 +121,7 @@ Demo : http://easystruts.sourceforge.net/editor.html (4Mo, be patient)
 <p>
 Re-Hello, I fix some bugs from Easy Struts 0.5. Here the changes:<br/>
   - [FIX] When element removed from Editor UI, elements wasn't removed in xml source.<br/>
-  - [FIX] Synchronisation with Easy Struts wizards when editor is open.<br/>
+  - [FIX] Synchronization with Easy Struts wizards when editor is open.<br/>
   - [FIX] When editor is re-open (after closed), struts-config.xml was in read only mode.<br/>
   - [FIX] Some editor bugs... I include some screenshots:<a href="http://easystruts.sourceforge.net/editor.html">http://easystruts.sourceforge.net</a><br/>
 </p>
@@ -180,7 +180,7 @@ and the source distribution is available at:
 <a href="http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/src/">http://jakarta.apache.org/builds/jakarta-struts/release/v1.1-b2/src/</a>
 </p>
 <p>
-In addition, the library distibution, which contains updated binaries
+In addition, the library distribution, which contains updated binaries
 without the sample applications, is available at:
 </p>
 <p>
@@ -231,10 +231,10 @@ http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/
 <p>Is anyone interested in joining?  Looks like we have a group of 3-5 people
 already interested. We are thinking about having meetings in the New
 Brunswick area. I have made arrangements for website hosting for the group
-and have a committment from Vic Cekvenich at BaseBeans to be a guest
+and have a commitment from Vic Cekvenich at BaseBeans to be a guest
 speaker.</p>
 <p>I'm not duplicating an already existing group am I?</p>
-<p>Anyone intersted in participating please contact me at
+<p>Anyone interested in participating please contact me at
 <a href="mailto:john@eagleinfosystems.com">john at eagleinfosystems.com</a>
 </p>
 <hr size="1" noshade=""/>
@@ -294,8 +294,8 @@ Changes 0.4.2
 Changes 0.4.1
 </p>
 <ul>
-<li>Fix dialog box which appear everytime (about update classpath in Eclipse project).</li>
-<li>SWTError throwed on Eclipse Linux GTK Platform fix.</li>
+<li>Fix dialog box which appear every time (about update classpath in Eclipse project).</li>
+<li>SWTError thrown on Eclipse Linux GTK Platform fix.</li>
 <li>JBuilder Error while copying libs/tlds fixed.</li>
 <li>Improve Easy Form and Input wizard.</li>
 <li>In Eclipse plugin, jdom.jar located in lib\directory.</li>
@@ -506,13 +506,13 @@ What's new in v2.0:
 </p>
 <ul>
 <li>Supports Struts 1.1 features - Manages multiple modules on multiple Storyboards, declarative exception handling, dynamic FormBeans, etc.</li>
-<li>Enhanced Zoomable Storyboards - Manages each module on its own Storyboard with cross module connectivities. Supports zooming, snap-to-grid, auto-alignment and multiple segements paths.</li>
+<li>Enhanced Zoomable Storyboards - Manages each module on its own Storyboard with cross module connectivities. Supports zooming, snap-to-grid, auto-alignment and multiple segments paths.</li>
 <li>Built-in JSP source editor with syntax-highlighting - Automatic two-way synchronization between the editors and the Storyboards.</li>
 <li>Auto file synchronization - Detects external modifications of the JSPs.</li>
 <li>Inspector and Cross Referencing Tool - Allows quick viewing and modifying attributes of the elements and provide powerful cross-referencing facility.</li>
 <li>Enhanced Code Generator Wizard - Supports different generated code styles of FormBean and Action classes to suit your need.</li>
 <li>Enhanced JSP Parser - Revised and more forgiving on non-standard HTML syntax.</li>
-<li>Revised User Inteface</li>
+<li>Revised User Interface</li>
 <li>Expanded XML Character Encoding Support - Allows customized setting.</li>
 <li>Supports both JVM 1.4 and JVM 1.3.</li>
 </ul>
@@ -592,7 +592,7 @@ Changes with Struts Console v2.0
 <li>Added support for "forwardPattern", "pagePattern" and "inputForward" attributes to Controller screen for 1.1 config files.</li>
 <li>Added support for "bundle" attribute to Exception screen for 1.1 config files.</li>
 <li>Added ability to move elements up and down in relation to their parent.</li>
-<li>Added ability to specifiy the number of lines between elements in the Ouput Options.</li>
+<li>Added ability to specify the number of lines between elements in the Output Options.</li>
 <li>Added "Key" column to Exceptions tables and make "Key" a required field per the latest DTD for 1.1 config files.</li>
 <li>Updated Data Sources screen to be more consistent with the other screens.</li>
 <li>Extensive refactorings to improve performance and reduce code size.</li>

@@ -18,7 +18,7 @@
 Please read <a href="http://jakarta.apache.org/site/idedevelopers.html">this</a> first.<br/>
 <p>
 * DISCLAIMER - This simple How-To shows you one of many ways to setup a working project using<br/>
-the Struts framewoek.  This is mainly geared toward struts users who are new to Netbeans, and<br/> 
+the Struts framework.  This is mainly geared toward struts users who are new to Netbeans, and<br/> 
 don't want to spend a lot of time figuring out the differences between their old IDE (if any)<br/>
 and this one.<br/>
 <br/>
@@ -52,7 +52,7 @@ a customized version of the struts-example.<br/>
   directory of your project. (Actually, it doesn't matter where sits so long as you make <br/>
   the appropriate changes to directories and such.)<br/>
   <br/>
-  *Note - I will not spend any time here trying to convice you why you should be <br/>
+  *Note - I will not spend any time here trying to convince you why you should be <br/>
   using Ant to build your projects.  I guess I consider this to be obvious.<br/>
   Here is the build.xml file I use for this demonstration (you MUST modify this <br/>
   to use your environment):<br/>
@@ -179,7 +179,7 @@ Total time: 11 seconds
   specified correctly.<br/>
   </li>
   <li>
-  Now we can finish seting up our Netbeans project<br/><br/>
+  Now we can finish setting up our Netbeans project<br/><br/>
   Mount the directory where we extracted the example and where we ran the build:<br/>
   <img src="../images/how-to/netbeans/building1.jpg"></img><br/><br/><br/>
   <img src="../images/how-to/netbeans/building2.jpg"></img><br/><br/><br/>
@@ -191,7 +191,7 @@ Total time: 11 seconds
   </li>
   <li>
     I usually get rid of the additional mounted directory under /WEB-INF/classes.  <br/>
-    Since everthing there gets overwritten with each build, I don't usually need to<br/> 
+    Since everything there gets overwritten with each build, I don't usually need to<br/> 
     see this (or possibly make changes in the wrong place)<br/>
     <img src="../images/how-to/netbeans/building4.jpg"></img><br/><br/><br/>
   </li>
