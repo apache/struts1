@@ -463,7 +463,7 @@
       explicit or implicit integer, such as <code>child[].lastName</code>, 
       which will use the same index into the array as the index of the 
       field being tested.</li>
-      <li>The literal <code>*this</code>, which contains the value of
+      <li>The literal <code>*this*</code>, which contains the value of
       the field currently being tested</li>
    </ul>
    <p>
