@@ -425,6 +425,18 @@
   </task-list>
 
 
+  <task-list name="WML Tag Library [org.apache.struts.taglib.wml]"
+             href="WML">
+
+    <info>
+    <p>This tag library will contain tags useful in preparing web applications
+    similar to those supported by the HTML tag library, but render output that
+    is well-formed XML in accordance with WML specifications.</p>
+    </info>
+
+  </task-list>
+
+
   <task-list name="XFORMS Tag Library [org.apache.struts.taglib.xforms]"
              href="xforms">
 
