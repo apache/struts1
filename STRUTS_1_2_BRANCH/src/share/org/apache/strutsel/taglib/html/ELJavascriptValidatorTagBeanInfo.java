@@ -78,6 +78,10 @@ public class ELJavascriptValidatorTagBeanInfo extends SimpleBeanInfo
             proplist.add(new PropertyDescriptor("htmlComment", ELJavascriptValidatorTag.class,
                                                 null, "setHtmlCommentExpr"));
         } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("bundle", ELJavascriptValidatorTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
         
         PropertyDescriptor[] result =
             new PropertyDescriptor[proplist.size()];

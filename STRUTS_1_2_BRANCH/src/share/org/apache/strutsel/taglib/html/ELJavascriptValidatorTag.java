@@ -82,6 +82,11 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String htmlCommentExpr;
+    /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
 
     /**
      * Getter method for "cdata" tag attribute.
@@ -128,6 +133,11 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getHtmlCommentExpr() { return (htmlCommentExpr); }
+    /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
 
     /**
      * Setter method for "cdata" tag attribute.
@@ -174,6 +184,11 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setHtmlCommentExpr(String htmlCommentExpr) { this.htmlCommentExpr = htmlCommentExpr; }
+    /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -190,6 +205,7 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
         setSrcExpr(null);
         setStaticJavascriptExpr(null);
         setHtmlCommentExpr(null);
+        setBundleExpr(null);
     }
 
     /**
@@ -248,5 +264,9 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
         if ((string = EvalHelper.evalString("htmlComment", getHtmlCommentExpr(),
                                             this, pageContext)) != null)
             setHtmlComment(string);
+
+        if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
+                                            this, pageContext)) != null)
+            setBundle(string);
     }
 }

@@ -3678,6 +3678,17 @@
                </p>
             </info>
         </attribute>
+        <attribute>
+                <name>bundle</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+                <info>
+                    The servlet context attributes key for the MessageResources
+                    instance to use.  If not specified, defaults to the
+                    application resources configured for our action servlet.
+                </info>
+                <since>Struts 1.2.7</since>
+        </attribute>
 
     </tag>
 
