@@ -274,6 +274,25 @@ questions too. Now, I'm glad to be able to give something back to the
 Struts community by helping others understand, and also by contributing 
 ideas and code to help make Struts even better than it already is.</p>
 
+<h3><a name="dwinterfeldt">David Winterfeldt -- Committer</a></h3>
+
+<p>As I worked on web based projects I started looking for something 
+that would really help save time during development.  I ran across
+Struts in the Summer of 2000 and 
+decided it was a good solution for web development.  As I used Struts 
+it really helped to remove a lot of the repetitive work, 
+but validation still seemed very repetitive.
+I had an idea to create validation rules in an xml file and have them 
+easily integrated with Struts.  It started out simple and continued to 
+develop over time.  The validation project was eventually incorporated 
+into Struts and the core was moved to Jakarta Commons. I'm happy to see 
+Struts continue to grow and develop.</p>
+
+<p>I currently am employed at Forbes.com.  I occasionaly get 
+to do some internal projects using Struts.  The last interesting 
+project was a publishing system using Message Driven EJBs in JBoss 
+and Struts was used to display the status of each publishing process.</p>
+
   <p>Next: <a href="index.html">Struts Home</a></p>
 
 </section></chapter></body></document>
