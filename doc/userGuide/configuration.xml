@@ -977,7 +977,6 @@
 
         <p>
         Next, you must add an entry defining the Struts tag library.
-        There are six taglibs included with the Struts distribution.
         </p>
 
         <p>
@@ -1003,15 +1002,8 @@
         </p>
 
         <p>
-        The struts-template taglib contains tags that define a template
-        mechanism.
-        </p>
-
-        <p>
         The struts-tiles taglib contains tags used for combining various view
         components, called "tiles", into a final composite view.
-        This is similar to struts-template in that it's used for view
-        composition, but tiles is a more full featured set of tags.
         </p>
 
         <p>

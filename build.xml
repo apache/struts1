@@ -505,11 +505,6 @@
             <fileset dir="${build.home}/example"/>
         </copy>
 
-        <mkdir dir="${catalina.home}/webapps/struts-template"/>
-        <copy todir="${catalina.home}/webapps/struts-template">
-            <fileset dir="${build.home}/template-example"/>
-        </copy>
-
         <mkdir dir="${catalina.home}/webapps/struts-exercise-taglib"/>
         <copy todir="${catalina.home}/webapps/struts-exercise-taglib">
             <fileset dir="${build.home}/exercise-taglib"/>
@@ -716,11 +711,6 @@
         <mkdir dir="${tomcat.home}/webapps/struts-example"/>
         <copy todir="${tomcat.home}/webapps/struts-example">
             <fileset dir="${build.home}/example"/>
-        </copy>
-
-        <mkdir dir="${tomcat.home}/webapps/struts-template"/>
-        <copy todir="${tomcat.home}/webapps/struts-template">
-            <fileset dir="${build.home}/template-example"/>
         </copy>
 
         <mkdir dir="${tomcat.home}/webapps/struts-exercise-taglib"/>

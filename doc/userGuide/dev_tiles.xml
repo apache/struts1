@@ -59,20 +59,6 @@ change the look and feel of a website.
 </li>
 
 <li>
-Templating
-<ul>
-
-<li>
-  <strong><em>The Tiles</em></strong> framework is entirely compatible with <em>Templates</em> (deprecated as for Struts 1.1) defined by David Geary and implemented in Struts
-</li>
-
-<li>
-  You can replace the <em>Templates</em> library with <strong><em>Tiles</em></strong>
-</li>
-</ul>
-</li>
-
-<li>
 Layouts
 
 <ul>

@@ -94,9 +94,6 @@
   <ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="exercise-taglib"/>
   </ant>
-  <ant  antfile="build-webapp.xml"    target="static">
-    <property name="webapp.name"      value="template-example"/>
-  </ant>
   <!--ant  antfile="build-webapp.xml"    target="static">
     <property name="webapp.name"      value="test"/>
   </ant-->
@@ -156,9 +153,6 @@
   </ant>
   <ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="exercise-taglib"/>
-  </ant>
-  <ant  antfile="build-webapp.xml"    target="compile">
-    <property name="webapp.name"      value="template-example"/>
   </ant>
   <!--ant  antfile="build-webapp.xml"    target="compile">
     <property name="webapp.name"      value="test"/>
@@ -294,10 +288,6 @@
     <property name="webapp.name"      value="exercise-taglib"/>
     <property name="webapp.war"       value="struts-exercise-taglib.war"/>
   </ant>
-  <ant  antfile="build-webapp.xml"    target="dist">
-    <property name="webapp.name"      value="template-example"/>
-    <property name="webapp.war"       value="struts-template.war"/>
-  </ant>
   <!--ant  antfile="build-webapp.xml"    target="dist">
     <property name="webapp.name"      value="test"/>
     <property name="webapp.war"       value="struts-test.war"/>
@@ -355,9 +345,6 @@
   </ant>
   <ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="exercise-taglib"/>
-  </ant>
-  <ant  antfile="build-webapp.xml"    target="clean">
-    <property name="webapp.name"      value="template-example"/>
   </ant>
   <!--ant  antfile="build-webapp.xml"    target="clean">
     <property name="webapp.name"      value="test"/>
