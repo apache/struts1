@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.5 2002/07/21 01:00:40 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2002/07/21 01:00:40 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/PropertyMessageResources.java,v 1.6 2002/10/17 02:56:58 rleland Exp $
+ * $Revision: 1.6 $
+ * $Date: 2002/10/17 02:56:58 $
  *
  * ====================================================================
  * 
@@ -87,7 +87,7 @@ import org.apache.commons.logging.LogFactory;
  * the same locale + key combination.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2002/07/21 01:00:40 $
+ * @version $Revision: 1.6 $ $Date: 2002/10/17 02:56:58 $
  */
 
 public class PropertyMessageResources extends MessageResources {
@@ -169,6 +169,7 @@ public class PropertyMessageResources extends MessageResources {
      * @param locale The requested message Locale, or <code>null</code>
      *  for the system default Locale
      * @param key The message key to look up
+     * @return text message for the specified key and locale
      */
     public String getMessage(Locale locale, String key) {
 
@@ -218,8 +219,7 @@ public class PropertyMessageResources extends MessageResources {
             synchronized (messages) {
                 message = (String) messages.get(messageKey);
                 if (message != null) {
-                    if (addIt)
-                        messages.put(originalKey, message);
+                    messages.put(originalKey, message);
                     return (message);
                 }
             }
@@ -232,8 +232,7 @@ public class PropertyMessageResources extends MessageResources {
         synchronized (messages) {
             message = (String) messages.get(messageKey);
             if (message != null) {
-                if (addIt)
-                    messages.put(originalKey, message);
+                messages.put(originalKey, message);
                 return (message);
             }
         }
