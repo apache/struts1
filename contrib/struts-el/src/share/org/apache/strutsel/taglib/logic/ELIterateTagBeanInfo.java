@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.4 2002/10/24 05:08:06 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/10/24 05:08:06 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,27 +89,26 @@ public class ELIterateTagBeanInfo extends SimpleBeanInfo
         PropertyDescriptor[]  result   = new PropertyDescriptor[9];
 
         try {
-            Method collectionGetter  =
-                ELIterateTag.class.getMethod("getCollectionExpr", new Class[0]);
-            Method collectionSetter  =
-                ELIterateTag.class.getMethod("setCollectionExpr",
-                                             new Class[]{String.class});
-
             result[0] =
-                new PropertyDescriptor("collection",
-                                       collectionGetter, collectionSetter);
+                new PropertyDescriptor("collection", ELIterateTag.class,
+                                       null, "setCollectionExpr");
 
-            result[1] = new PropertyDescriptor("id", ELIterateTag.class);
-            result[2] = new PropertyDescriptor("indexId", ELIterateTag.class);
-            result[3] = new PropertyDescriptor("length", ELIterateTag.class);
-            result[4] = new PropertyDescriptor("name", ELIterateTag.class);
-            result[5] = new PropertyDescriptor("offset", ELIterateTag.class);
-            result[6] = new PropertyDescriptor("property", ELIterateTag.class);
-            result[7] = new PropertyDescriptor("scope", ELIterateTag.class);
-            result[8] = new PropertyDescriptor("type", ELIterateTag.class);
-        }
-        catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
+            result[1] = new PropertyDescriptor("id", ELIterateTag.class,
+                                               null, "setId");
+            result[2] = new PropertyDescriptor("indexId", ELIterateTag.class,
+                                               null, "setIndexId");
+            result[3] = new PropertyDescriptor("length", ELIterateTag.class,
+                                               null, "setLength");
+            result[4] = new PropertyDescriptor("name", ELIterateTag.class,
+                                               null, "setName");
+            result[5] = new PropertyDescriptor("offset", ELIterateTag.class,
+                                               null, "setOffset");
+            result[6] = new PropertyDescriptor("property", ELIterateTag.class,
+                                               null, "setProperty");
+            result[7] = new PropertyDescriptor("scope", ELIterateTag.class,
+                                               null, "setScope");
+            result[8] = new PropertyDescriptor("type", ELIterateTag.class,
+                                               null, "setType");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();
