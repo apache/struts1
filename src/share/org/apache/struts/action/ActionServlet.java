@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.2 2000/06/02 22:26:25 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/02 22:26:25 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.3 2000/06/05 05:28:49 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/06/05 05:28:49 $
  *
  * ====================================================================
  *
@@ -140,7 +140,7 @@ import org.xml.sax.SAXException;
  * <p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/02 22:26:25 $
+ * @version $Revision: 1.3 $ $Date: 2000/06/05 05:28:49 $
  */
 
 public class ActionServlet
@@ -359,6 +359,19 @@ public class ActionServlet
 
 
     /**
+     * Return the mapping associated with the specified request path, if any;
+     * otherwise return <code>null</code>.
+     *
+     * @param path Request path for which a mapping is requested
+     */
+    public ActionMapping getMapping(String path) {
+
+	return ((ActionMapping) mappings.get(path));
+
+    }
+
+
+    /**
      * Deregister a mapping from the set configured for this servlet.
      *
      * @param mapping The mapping to be deregistered
@@ -435,7 +448,7 @@ public class ActionServlet
 	    log("Processing a " + request.getMethod() + " for " + path);
 
 	// Look up the corresponding mapping
-	ActionMapping mapping = (ActionMapping) mappings.get(path);
+	ActionMapping mapping = getMapping(path);
 	if (mapping == null) {
 	    if (debug >= 1)
 		log(" No mapping available for path " + path);

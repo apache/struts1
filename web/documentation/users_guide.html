@@ -5,55 +5,375 @@
 <body bgcolor="white">
 
 <div align="center">
-<h1>User's Guide:  Application Design Using Struts</h2>
+<h1>Struts User's Guide</h2>
+<h3>$Id: users_guide.html,v 1.2 2000/06/05 05:28:50 craigmcc Exp $</h3>
 </div>
 
 
 
 <h2>1. Introduction</h2>
 
+
 <h3>1.1 The Model-View-Controller (MVC) Design Pattern</h3>
+
+<p><b>FIXME</b> - Need a general introduction to the pattern.</p>
+
 
 <h3>1.2 Mapping MVC Concepts to Struts Components</h3>
 
-<h4>1.2.1 The Model:  JavaBeans and Business Logic Classes</h4>
+<p>The <i>Struts</i> architecture implements the concepts of the
+Model-View-Controller design pattern by mapping them to web application
+components and concepts, as outlined in the following diagram:</p>
 
-<h4>1.2.2 The View:  JSP Pages and Presentation Components</h4>
+<hr><div align="center">
+<img src="model2.gif">
+</div><hr>
 
-<h4>1.2.3 The Controller:  ActionServlet and ActionMapping</h4>
-
-<h3>1.3 Designing For The Future</h3>
-
+<p>Each major component of this architecture will be discussed in more
+detail below.</p>
 
 
-<h2>2. Defining Application Requirements</h2>
+<h3>1.3 The Model:  System State and Business Logic JavaBeans</h3>
 
-<h3>2.1 User Interface Requirements</h3>
+<p>The <i>Model</i> portion of an MVC-based system can be subdivided into
+concepts -- the internal state of the system, and the actions that can be
+taken to change that state.  In grammatical terms, we might think about
+state information as <i>nouns</i> (things) and actions as <i>verbs</i>
+(changes to the state of those things).</p>
 
-<h3>2.2 Functional Processing Requirements</h3>
+<p>Generally, your application will represent the internal state of the
+system as a set of one or more JavaBeans, with properties that represent
+the details of the state.  Depending on your application's complexity,
+these beans may be self contained (and know how to save their state
+information persistently somehow), or they may be facades that know
+how to retrieve information from external sources (such as a database)
+when it is requested.  Entity Enterprise JavaBeans (EJBs) are also commonly
+used to represent internal state.</p>
 
-<h3>2.3 Applications as Conversations</h3>
+<p>Large-scale applications will often represent the business logic actions
+that are possible in a system as methods that can be called on the beans
+maintaining the state information.  For example, you might have a shopping
+cart bean, stored in session scope for each current user, with properties
+that represent the current set of items that the user has decided to
+purchase.  This bean might also have a <code>checkOut()</code> method
+that authorizes the user's credit card, and sends the order to the
+warehouse to be picked and shipped.  Other systems will represent the
+available actions separately, perhaps as Session Enterprise JavaBeans
+(EJBs).</p>
 
+<p>In some smaller scale applications, on the other hand, the available
+actions might be embedded within the <code>Action</code> classes that are
+part of the Controller role.  This is appropriate when the logic is very
+simple, or where reuse of the business logic in other environments is not
+contemplated.  The Struts framework supports any of these approaches, but
+recommends separating the business logic ("what to do") from the role that
+<code>Action</code> classes play ("deciding what to do").</p>
+
+
+<h3>1.4 The View:  JSP Pages and Presentation Components</h3>
+
+<p>The <i>View</i> portion of a Struts-based application is generally
+constructed using JavaServer Pages (JSP) technology.  JSP pages can
+contain static HTML (or XML) text called "template text", plus the
+ability to insert dynamic content based on the interpretation (at page
+request time) of special action tags.  The JSP environment includes a
+set of standard action tags, such as <code>&lt;jsp:useBean&gt;</code>
+whose purpose is described in the JavaServer Pages Specification.  In
+addition, there is a standard facility to define your own tags, which
+are organized into "custom tag libraries."</p>
+
+<p>Struts includes an extensive custom tag library that facilitates
+creating user interfaces that are fully internationalized, and that
+interact gracefully with <code>ActionForm</code> beans that are part
+of the <i>Model</i> portion of the system.  The use of these tags is
+discussed in detail later.</p>
+
+<p>In addition to JSP pages and the action and custom tags they contain,
+it is often necessary for business objects to be able to render
+themselves in HTML (or XML), based on their current state at request time.
+The rendered output from such objects can be easily included in a
+resulting JSP page by using the <code>&lt;jsp:include&gt;</code>
+standard action tag.</p>
+
+
+<h3>1.5 The Controller:  ActionServlet and ActionMapping</h3>
+
+<p>The <i>Controller</i> portion of the application is focused on receiving
+requests from the client (typically a user running a web browser), deciding
+what business logic function is to be performed, and then delegating
+responsibility for producing the next phase of the user interface to
+an appropriate View component.  In Struts, the primary component of the
+controller is a servlet of class <code>ActionServlet</code>.  This servlet
+is configured by defining a set of mappings (described by a Java interface
+<code>ActionMapping</code>).  Each mapping defines a <code>path</code>
+that is matched against the request URI of the incoming request, and the
+fully qualified class name of an <code>Action</code> class (that is, a
+Java class implementing the <code>Action</code> interface) which is
+responsible for performing the desired business logic, and then dispatching
+control to the appropriate View component to create the response.</p>
+
+<p>Struts also supports the ability to use <code>ActionMapping</code>
+classes that have additional properties beyond the standard ones required
+to operate the framework.  In many cases, this facility can be used to
+declare the JSP page names of the appropriate "next" page, or pages, to
+be displayed after the business logic represented by this <code>Action</code>
+class is complete.  Using extended mappings in such a manner lets you
+decouple the <i>Controller</i> logic (in the <code>Action</code> class)
+from the <i>View</i> logic (in the JSP pages).  For example, most web
+sites and web applications undergo periodic updates to their look and
+feel (as well as changes in availble functionality).  Typically, such
+redesigns cause the names of the relevant JSP pages to be changed.  If
+you have defined the names of these pages only in the mappings, dealing
+with such redesigns is substantially easier than if you had to go update
+all of the <code>Action</code> classes individually.</p>
+
+
+<h2>2. Building the Model Components</h2>
+
+
+<h3>2.1 Overview</h3>
+
+<p>The application requirements document that you are using will likely
+have focused on the user interface to be created.  However, you should ensure
+that the processing required for each submitted request is also clearly
+defined.  In general, the developer of the <i>Model</i> components will be
+focusing on the creation of JavaBeans classes that support all of the
+functional requirements.  The precise nature of the beans required by a
+particular application will vary widely depending on those requirements,
+but they can generally be classified into several categories discussed
+below.  However, a brief review of the concept of "scope" as it relates
+to beans is useful first.</p>
+
+
+<h3>2.2 JavaBeans and Scope</h3>
+
+<p>Within a web-based application, JavaBeans can be stored in (and accessed
+from) a number of different collections of "attributes".  Each collection
+has different rules for the lifetime of that collection, and the visibility
+of the beans stored there.  Together, the rules defining lifetime and
+visibility are called the <i>scope</i> of those beans.  The JavaServer
+Pages (JSP) Specification defines scope choices using the following terms
+(with the equivalent servlet API concept defined in parentheses):</p>
+<ul>
+<li><b>page</b> - Beans that are visible within a single JSP page,
+    for the lifetime of the current request.  (Local variables of
+    the <code>service()</code> method)</li>
+<li><b>request</b> - Beans that are visible within a single JSP page,
+    as well as to any page or servlet that is included in this page,
+    or forwarded to by this page.  (Request attributes)</li>
+<li><b>session</b> - Beans that are visible to all JSP pages and
+    servlets that participate in a particular user session, across one
+    or more requests.  (Session attributes)</li>
+<li><b>application</b> - Beans that are visible to all JSP pages and
+    servlets that are part of a web application.  (Servlet context
+    attributes)</li>
+</ul>
+
+<p>It is important to remember that JSP pages and servlets in the same
+web application share the same sets of bean collections.  For example,
+a bean stored as a request attribute in a servlet like this:</p>
+<pre>
+    MyCart mycart = new MyCart(...);
+    request.setAttribute("cart", mycart);
+</pre>
+<p>is immediately visible to a JSP page which this servlet forwards to,
+using a standard action tag like this:</p>
+<pre>
+    &lt;jsp:useBean id="cart" scope="request"
+     class="com.mycompany.MyApp.MyCart"/&gt;
+</pre>
+
+
+<h3>2.3 ActionForm Beans</h3>
+
+<p>The Struts framework generally assumes that you have created an
+<code>ActionForm</code> bean (that is, a Java class implementing the
+<code>ActionForm</code> interface) for each input form required in your
+application.  If you define such beans in your <code>ActionMapping</code>
+configuration file (see "Building the Controller Components"), the Struts
+controller servlet will automatically perform the following services for
+you, before invoking the appropriate <code>Action</code> method:</p>
+<ul>
+<li>Check in the user's session for an instance of a bean of the
+    appropriate class, under the appropriate key.</li>
+<li>If there is no such session scope bean available, a new one is
+    automatically created and added to the user's session.</li>
+<li>For every request parameter whose name corresponds to the name
+    of a property in the bean, the corresponding setter method will
+    be called.  This operates in a manner similar to the standard
+    JSP action <code>&lt;jsp:setProperty&gt;</code> when you use the
+    asterisk wildcard to select all properties.</li>
+<li>The updated <code>ActionForm</code> bean will be passed to the
+    Action Class <code>perform()</code> method when it is called,
+    making these values immediately available.</li>
+</ul>
+
+<p>When you code your <code>ActionForm</code> beans, keep the following
+principles in mind:</p>
+<ul>
+<li>The <code>ActionForm</code> interface itself requires no specific
+    methods to be implemented.  It is used to identify the role these
+    particular beans play in the overall architecture.  Typically, an
+    <code>ActionForm</code> bean will have only property getter and
+    property setter methods, with no business logic.</li>
+<li>Generally, there will be very little input validation logic in an
+    <code>ActionForm</code> bean.  The primary reason such beans exist
+    is to save the most recent values entered by the user for the
+    associated form -- even if errors are detected -- so that the same
+    page can be reproduced, along with a set of error messages, so the
+    user need only correct the fields that are wrong.  Validation
+    of user input should be performed within <code>Action</code> classes
+    (if it is simple), or appropriate business logic beans.</li>
+<li>Define a property (with associated <code>getXxx()</code> and
+    <code>setXxx()</code> methods) for each field that is present
+    in the form.  The field name and property name must match according
+    to the usual JavaBeans conventions.  For example, an input field named
+    <code>username</code> will cause the <code>setUsername()</code> method
+    to be called.</li>
+</ul>
+
+<p>You should note that a "form", in the sense discussed here, does not
+necessarily correspond to a single JSP page in the user interface.  It is
+common in many applications to have a "form" (from the user's perspective)
+that extends over multiple pages.  Think, for example, of the wizard style
+user interface that is commonly used when installing new applications.  Struts
+encourages you to define a single <code>ActionForm</code> bean that contains
+properties for all of the fields, no matter which page the field is actually
+displayed on.  Likewise, the various pages of the same form should all be
+submitted to the same Action Class.  If you follow these suggestions, the
+page designers can rearrange the fields among the various pages, with no
+changes required to the processing logic in most cases.</p>
+
+
+<h3>2.4 System State Beans</h3>
+
+<p>The actual state of a system is normally represented as a set of one or
+more JavaBeans classes, whose properties define the current state.  A
+shopping cart system, for example, will include a bean that represents the
+cart being maintained for each individual shopper, and will (among other
+things) include the set of items that the shopper has currently selected
+for purchase.  Separately, the system will also include different beans
+for the user's profile information (including their credit card and ship-to
+addresses), as well as the catalog of available items and their current
+inventory levels.</p>
+
+<p>For small scale systems, or for state information that need not be kept
+for a long period of time, a set of system state beans may contain all the
+knowledge that the system ever has of these particular details.  Or, as is
+often the case, the system state beans will represent information that is
+stored permanently in some external database (such as a CustomerBean object
+that corresponds to a particular row in the CUSTOMERS table), and are
+created or removed from the server's memory as needed.  Entity Enterprise
+JavaBeans are also used for this purpose in large scale applications.</p>
+
+
+<h3>2.5 Business Logic Beans</h3>
+
+<p>You should encapsulate the functional logic of your application as
+method calls on JavaBeans designed for this purpose.  These methods may
+be part of the same classes used for the system state beans, or they may
+be in separate classes dedicated to performing the logic.  In the latter
+case, you will usually need to pass the system state beans to be manipulated
+to these methods as arguments.</p>
+
+<p>For maximum code re-use, business logic beans should be designed and
+implemented so that they do <b>not</b> know they are being executed in a
+web application environment.  If you find yourself having to import a
+<code>javax.servlet.*</code> class in your bean, you
+are tying this business logic to the web application environment.  Consider
+rearranging things so that your <code>Action</code> classes (part of the
+Controller role, as described below) translate all required information
+from the HTTP request being processed into property setter calls on your
+business logic beans, after which a call to an <code>execute()</code> method
+can be made.  Such a business logic class can be reused in environments
+other than the web application for which they were initially constructed.</p>
+
+<p>Depending on the complexity and scope of your application, business logic
+beans might be ordinary JavaBeans that interact with system state beans
+passed as arguments, or ordinary JavaBeans that access a database using
+JDBC calls.  For larger applications, these beans will often be stateful
+or stateless Enterprise JavaBeans (EJBs) instead.</p>
+
+
+<h3>2.6 An Aside:  Accessing Relational Databases</h3>
+
+<p>Many web applications will utilize a relational database (accessed through
+a JDBC driver) to store the persistent data associated with the application.
+Others will use Entity Enterprise JavaBeans for this purpose, which delegates
+the decisions for how to maintain persistent state to the EJBs themselves.
+If you are using Enterprise JavaBeans for this purpose, follow the client
+design patterns described in the Enterprise JavaBeans specification.</p>
+
+<p>For web applications based on direct database access, a common design
+problem is how to make an appropriate JDBC Connection object available when
+access to the underlying database is required.  There are several possible
+approaches to this problem -- the following principles describe a
+recommended approach to this issue:</p>
+<ul>
+<li>Create or acquire a ConnectionPool class, which lets a set of database
+    connections be shared among multiple users.  Struts does not (currently)
+    include such a class, but many are available.</li>
+<li>When the application is initialized, define a servlet with a "load on
+    startup" value in the application deployment descriptor.  We will call
+    this the <i>startup</i> servlet.  In most cases, there will be no need
+    for any requests to be processed by this servlet, so there will not be
+    a <code>&lt;servlet-mapping&gt;</code> entry pointing at it.</li>
+<li>In the <code>init()</code> method of the startup servlet, configure and
+    instantiate an instance of your ConnectionPool class, and store it as
+    a servlet context attribute (which is the same as an application scope
+    bean from the JSP perspective).  It is usually convenient to configure
+    the connection pool based on initialization parameters passed to the
+    startup servlet.</li>
+<li>In the <code>destroy()</code> method of the startup servlet, include
+    logic to gracefully release the connections that have been opened by
+    the connection pool.  This method will get called when the servlet
+    container shuts down this application.</li>
+<li>When an <code>Action</code> class needs to call a method of a business
+    logic bean that requires a database connection (such as "insert a new
+    customer"), it will the following steps:
+    <ul>
+    <li>Acquire the connection pool object from the servlet context
+        attributes for this web application.</li>
+    <li>Call the <code>open()</code> method of the connection pool object
+        to give you a connection for use within this <code>Action</code>
+        class call.</li>
+    <li>Call the appropriate method of your business logic bean, passing the
+        database connection object to be used as an argument.</li>
+    <li>Call the <code>close()</code> method of the allocated connection,
+        which will cause this connection to be returned to the pool for
+        later re-use on some other request.</li>
+    </ul>
+<li>A common programming error is to forget to return the connection to the
+    pool, which can ultimately lead to running out of connections.  Be sure
+    that your <code>Action</code> class logic always returns the connection,
+    even if the business logic bean method throws an exception.</li>
+</ul>
+
+<p>Following the design pattern recommended above means that you can code
+your business logic classes without having to worry about how they acquire a
+JDBC Connection to use -- simply include a Connection argument in any method
+call that needs to access the database.  When your business logic class is
+utilized within a web application, it will be the responsibility of the
+<code>Action</code> class to allocate and release an appropriate connection.
+When you use the same business logic class, for example, in a batch job, it
+will be the responsibility of that application to provide an appropriate
+connection (which will not need to be acquired from a pool, because most
+batch jobs run in a single-threaded environment).</p>
 
 
 <h2>3. Building the View Components</h2>
 
+
 <h3>3.1 Overview</h3>
 
-<p>Once you have defined the application requirements, work on implementing
-these requirements can begin.  In larger projects, many of these efforts
-can proceed in parallel, because the mutual interdependencies are minimized
-by the use of the MVC design pattern.</p>
-
 <p>This chapter focuses on the task of building the <i>View</i> components
-of the architecture, which will primarily be created using JavaServer Pages
-(JSP) technology.  In particular, the support Struts provides for building
-internationalized applications, and interacting with input forms.  Several
-other topics related to the View components are briefly discussed.</p>
+of the application, which will primarily be created using JavaServer Pages
+(JSP) technology.  In particular, Struts provides support for building
+internationalized applications, as well as for interacting with input forms.
+Several other topics related to the View components are briefly discussed.</p>
+
 
 <h3>3.2 Internationalized Messages</h3>
-
-<h4>3.2.1 Background Information</h4>
 
 <p>A few years ago, application developers could count on having to support
 only residents of their own country, who are used to only one (or sometimes
@@ -68,7 +388,7 @@ letters in between the "i" and the "n") and <i>localization</i>.</p>
 
 <p>Struts builds upon the Java platform to provide assistance
 for building internationalized and localized applications.  The key concepts
-of importance are:</p>
+to become familiar with are:</p>
 <ul>
 <li><b>Locale</b> - The fundamental Java class that supports
     internationalization is <code>java.util.Locale</code>.  Each
@@ -101,8 +421,6 @@ of importance are:</p>
     associated with the current user) instead of for the default Locale
     the server itself is running in.
 </ul>
-
-<h4>3.2.2 Development Tasks Required</h4>
 
 <p>For an internationalized application, follow the steps described in
 the Internationalization document in the JDK documentation bundle for your
@@ -141,8 +459,6 @@ for the application.  In the case described above, it would be
 
 <h3>3.3 Forms and FormBean Interactions</h3>
 
-<h4>3.3.1 Background Information</h4>
-
 <p>At one time or another, most web developers have built forms using
 the standard capabilities of HTML, such as the <code>&lt;input&gt;</code>
 tag.  Users have come to expect interactive applications to have certain
@@ -169,9 +485,10 @@ The case above would be rendered like this using Struts:
 with no need to explicitly refer to the JavaBean from which the initial
 value is retrieved.  That is handled automatically by the framework.</p>
 
-<h4>3.3.2 Building Forms With Struts</h4>
 
-<p>A more complete example of a login form will illustrate how Struts
+<h4>3.3.1 Building Forms With Struts</h4>
+
+<p>A complete example of a login form will illustrate how Struts
 makes dealing with forms much less painful than using straight HTML
 and standard JSP facilities.  Consider the following page (from the
 example application included with Struts) named <code>logon.jsp</code>:</p>
@@ -277,7 +594,8 @@ based on this example:</p>
     as with the prompts, so that these values are internationalized.</li>
 </ul>
 
-<h4>3.3.3 Input Field Types Supported</h4>
+
+<h4>3.3.2 Input Field Types Supported</h4>
 
 <p>Struts defines tags for all of the following types of input fields,
 with hyperlinks to the corresponding reference information.</p>
@@ -298,7 +616,8 @@ case, a field tag must be nested within a <code>form</code> tag, so that
 the field knows what bean to use for initializing displayed values.
 </p>
 
-<h4>3.3.4 Other Useful Presentation Tags</h4>
+
+<h4>3.3.3 Other Useful Presentation Tags</h4>
 
 <p>There are several other tags in the Struts library that are useful in
 creating user interfaces:</p>
@@ -422,191 +741,22 @@ to meet these requirements:</p>
 </ul>
 
 
-<h2>4. Building the Model Components</h2>
+<h2>4. Building the Controller Components</h2>
 
 
 <h3>4.1 Overview</h3>
 
-<p>The application requirements document that you produced above will likely
-have focused on the user interface to be created.  However, you should ensure
-that the processing required for each submitted request is also clearly
-defined.  In general, the developer of the model components will be focusing
-on the creation of Action Classes (i.e. classes that implement the
-<code>Action</code> interface), supporting JavaBeans components of various
-types, and deciding how to maintain the state of the application persistently
-when the application is not currently operating.  The Action Classes are
-actually part of the Controller in a Model-View-Controller architecture, so
-they are discussed in a subsequent section.</p>
-
-
-<h3>4.2 JavaBeans Components</h3>
-
-<p>The precise nature of the JavaBeans classes required by a particular
-application will vary widely based on its particular requirements.  However,
-the following general categories of beans are often necessary.</p>
-
-
-<h4>4.2.1 ActionForm Beans</h4>
-
-<p>The Struts framework generally assumes that you have created an ActionForm
-bean (that is, a Java class implementing the <code>ActionForm</code> interface)
-for each input form required in your application.  If you define such beans
-in your <code>ActionMapping</code> configuration file (see below), the Struts
-controller servlet will automatically perform the following services for you,
-before calling the appropriate Action Class method:</p>
+<p>Now that we understand how to construct the Model and View components
+of your application, it is time to focus on the <code>Controller</code>
+components.  Struts includes a servlet that implements the primary function
+of mapping a request URI to an <code>Action</code> class.  Therefore, your
+primary responsibilities related to the Controller are:</p>
 <ul>
-<li>Check in the user's session for an instance of a bean of the
-    appropriate type, under the appropriate key.</li>
-<li>If there is no such session scope bean available, a new one is
-    automatically created and added to the user's session.</li>
-<li>For every request parameter whose name corresponds to the name
-    of a property in the bean, the corresponding setter method will
-    be called.  This operates in a manner similar to the standard
-    JSP action <code>&lt;jsp:setProperty&gt;</code> when you use the
-    asterisk wildcard to select all properties.</li>
-<li>The updated <code>ActionForm</code> bean will be passed to the
-    Action Class <code>perform()</code> method when it is called,
-    making these values immediately available.</li>
-</ul>
-
-<p>When you code your <code>ActionForm</code> beans, keep the following
-principles in mind:</p>
-<ul>
-<li>Generally, there will be very little validation logic in an
-    <code>ActionForm</code> bean itself.  This is because the purpose
-    of an <code>ActionForm</code> bean is to maintain the most recent
-    state of what the user actually typed (whether it is correct or not)
-    so that, in the case of detected errors, the same page can be
-    redisplayed exactly as the user last entered it.  Then, the user
-    need only correct the fields that have errors, rather than typing
-    everything over again.  (Remember, the <code>form</code> custom tag
-    and the associated field tags do the redisplay part for you.)</li>
-<li>Define a property (with associated <code>getXxx()</code> and
-    <code>setXxx()</code>) methods for each field.  The field name
-    and property name must match according to the usual JavaBeans
-    conventions.  For example, an input field named <code>username</code>
-    will cause the <code>setUsername()</code> method to be called.</li>
-<li>When defining String-valued properties, you might want to take special
-    actions if a null value is passed to a property setter method.
-    In the example application, attempts to set a String property to
-    null are changed to set a zero-length String instead.  Note that
-    the custom tags for fields, such as <code>text</code>, deal with
-    null values correctly by treating them as zero-length strings,
-    but such conversions might be useful if you access the properties
-    of these beans in other ways.</li>
-</ul>
-
-<p>You should note that a "form", in the sense discussed here, does not
-necessarily correspond to a single JSP page in the user interface.  It is
-common in many applications to have a "form" (from the user's perspective)
-that extends over multiple pages.  Think, for example, of the wizard style
-user interface that is commonly used when installing new applications.  Struts
-encourages you to define a single <code>ActionForm</code> bean that contains
-properties for all of the fields, no matter which page the field is actually
-displayed on.  Likewise, the various pages of the same form should all be
-submitted to the same Action Class.  If you follow these suggestions, the
-page designer can rearrange the fields among the various pages, with no
-changes required to the processing logic in most cases.</p>
-
-
-<h4>4.2.2 Business Logic Beans</h4>
-
-<p>You should model the basic functional logic of your application as a set
-of calls to property setters of JavaBeans, followed by calls to an appropriate
-method to invoke the requested logic.  For maximum code re-use, these beans
-should <b>not</b> know that they are being executed by a servlet.
-If you find yourself having to import a <code>javax.servlet.*</code> class
-in your bean, you know that you're tying yourself to servlets -- this should
-be avoided.</p>
-
-<p>Depending on the complexity and scope of your application, business logic
-beans might be ordinary JavaBeans that interact with a database through JDBC
-calls, or a directory server through JNDI calls.  For larger applications,
-these beans will often be stateful or stateless Session Enterprise JavaBeans
-instead.</p>
-
-
-<h3>4.3 Persistent Storage Options</h3>
-
-<p>Many web applications will utilize a relational database (accessed through
-a JDBC driver) to store the persistent data associated with the application.
-Others will use Entity Enterprise JavaBeans for this purpose, which delegates
-the decisions for how to maintain persistent state to the EJBs themselves.
-If you are using Enterprise JavaBeans for this purpose, follow the client
-design patterns described in the Enterprise JavaBeans specification.</p>
-
-<p>For web applications based on direct database access, a common design
-problem is how to make an appropriate JDBC Connection object available when
-access to the underlying database is required.  There are several possible
-approaches to this problem -- the following rules describe one model for
-dealing with this issue:</p>
-<ul>
-<li>Create or acquire a ConnectionPool class, which lets a set of database
-    connections be shared among multiple users.  Struts does not (currently)
-    include such a class.</li>
-<li>When the application is initialized, define a servlet with a load on
-    startup value in the application deployment descriptor.  Call this the
-    "startup" servlet.  (In most cases, there will be no need for any
-    requests to be processed directly by this servelt, so there would be
-    no <code>&lt;servlet-mapping&gt;</code> element pointing at it.)</li>
-<li>In the <code>init()</code> method of the startup servlet, configure and
-    instantiate an instance of your ConnectionPool class, and store it as
-    a servlet context attribute (which is the same as an application scope
-    bean from the JSP perspective).  It is usually convenient to configure
-    the connection pool based on initialization parameters passed to the
-    startup servlet.</li>
-<li>In the <code>destroy()</code> method of the startup servlet, include
-    logic to gracefully release the connections that have been opened by
-    the connection pool.  This will get called when the servlet container
-    shuts down this application.</li>
-<li>When an Action Class needs to call a method of a business logic bean
-    that requires a database connection (such as "insert a new customer"),
-    it will perform steps like this:
-    <ul>
-    <li>Acquire the connection pool object from the servlet context
-        attributes.</li>
-    <li>Call the <code>open()</code> method of the connection pool object
-        to give you a connection for use within this Action Class call.</li>
-    <li>Call the appropriate method of your business logic bean, passing the
-        database connection object to be used as an argument.</li>
-    <li>Call the <code>close()</code> method of the allocated connection,
-        which will cause this connection to be returned to the pool for
-        later re-use on some other request.</li>
-    </ul>
-<li>A common programming error is to forget to return the connection to the
-    pool, which can ultimately lead to running out of connections.  Be sure
-    that your Action Class logic always returns the connection, even if the
-    business logic bean throws an exception.</li>
-</ul>
-
-<p>Following the design pattern recommended above means that you can design
-your business logic classes without having to worry about how they acquire a
-JDBC Connection to use -- simply include a Connection argument in any method
-call that needs to access the database.  When your business logic class is
-utilized within a web application, it will be the responsibility of the Action
-Class to allocate and release an appropriate connection.  When you use the
-same business logic class, for example, in a batch job, it will be
-the responsibility of that application to provide an appropriate connection
-(which will not need to be acquired from a pool, because most batch jobs
-run in a single-threaded environment).</p>
-
-
-<h2>5. Building the Controller Components</h2>
-
-
-<h3>5.1 Overview</h3>
-
-<p>Now that you have the View and Model components of your application, it is
-time to focus on the Controller components.  Struts includes a servlet
-that implements the primary function of mapping a request URI to an Action
-Class.  Therefore, the primary development responsibilities related to the
-Controller are:</p>
-<ul>
-<li>Write an Action class (that is, an implementation of the
+<li>Write an <code>Action</code> class (that is, an implementation of the
     <code>Action</code> interface) for each logical request
     that may be received.</li>
-<li>Write an ActionMapping class (that is, an implementation of the
-    <code>ActionMapping</code> interface) that defines the class
+<li>Write an <code>ActionMapping</code> class (that is, an implementation
+    of the <code>ActionMapping</code> interface) that defines the class
     names and other information associated with each possible
     mapping.</li>
 <li>Write the action mapping configuration file (in XML) that is used
@@ -617,10 +767,10 @@ Controller are:</p>
 </ul>
 
 
-<h3>5.2 Action Classes</h3>
+<h3>4.2 Action Classes</h3>
 
 <p>The <code>Action</code> interface defines a single method that must be
-implemented by the Action Class, as follows:</p>
+implemented by an <code>Action</code> class, as follows:</p>
 <pre>
     public void perform(ActionServlet servlet,
                         ActionMapping mapping,
@@ -630,101 +780,112 @@ implemented by the Action Class, as follows:</p>
       throws IOException, ServletException;
 </pre>
 
-<p>The goal of the Action Class is to process this request, and generate the
-corresponding response (or forward control to another component, such as a
-JSP page, that will do this), just as if it were the <code>doGet()</code> or
-<code>doPost()</code> method of a servlet itself.  In the <i>Model 2</i>
-design pattern, a typical Action Class will look like this:
+<p>The goal of an <code>Action</code> class is to process this request,
+and to forward control to the View component, such as a JSP page, that
+will generate the corresponding response.  In the <i>Model 2</i> design
+pattern, a typical <code>Action</code> class will implement the following
+logic in its <code>perform()</code> method:
 <ul>
 <li>Validate the current state of the user's session (for example, checking
-    that the user has successfully logged on).  If the Action Class finds
-    that no logon exists, the request should be forwarded to the JSP page
-    that displays the username and password prompts for logging on.</li>
+    that the user has successfully logged on).  If the <code>Action</code>
+    class finds that no logon exists, the request should be forwarded to
+    the JSP page that displays the username and password prompts for
+    logging on.  This could occur because a user tried to enter your
+    application "in the middle" (say, from a bookmark), or because the
+    session has timed out, and the servlet container created a new one.</li>
 <li>Validate the request parameters included with this request.  If the
-    Action Class finds a problem, it stores appropriate error messages in
-    a request scope bean, and forwards control back to the originating
-    JSP page so that the errors can be corrected.</li>
+    <code>Action</code> class finds a problem, it stores appropriate error
+    messages in a request scope bean, and forwards control back to the
+    originating JSP page so that the errors can be corrected.</li>
 <li>Perform the processing required to deal with this request (such as
     saving a row into a database).  This can be done by code embedded within
-    the Action Class itself, or by calling appropriate methods of beans
-    being manipulated by the Action Class.</li>
+    the <code>Action</code> class itself, but should generally be performed
+    by calling an appropriate method of a business logic bean.
 <li>Update the server-side objects that will be used to create the next
     page of the user interface (typically request scope or session scope
     beans, depending on how long you need to keep these items available).</li>
-<li>Forward this request (using <code>RequestDispatcher.forward()</code> to
+<li>Forward this request (using <code>RequestDispatcher.forward()</code>) to
     the appropriate JSP page to create the next page of the user interface,
     based on the newly updated beans.</li>
 </ul>
 
-<p>One design issue to remember as you code Action Classes is that they are
-used in a multi-threaded environment.  Two users who make a request to the same
-Action Class at the same time will be sharing the same instance.  So, an
-important design rule is to not use instance variables within the Action
-Class itself.  This helps, because local variables (those created within the
-<code>perform()</code> method), are not shared -- the JVM maintains a stack
-for each active thread.</p>
-
-<p>In addition, you want to guard against Action Classes that are too large.
-This can happen when you embed your business logic in the Action Class itself,
-rather than embedding it in beans that are accessed by the Action Class.  It
-is useful to think of Action Classes as implementing the "Adapter" pattern
-in Design Patterns terminology:</p>
+<p>Design issues to remember when coding <code>Action</code> classes
+include the following:</p>
 <ul>
-<li>The Action Class knows it is accessed in a web application environment,
-    because it receives arguments defined by the Java Servlet API (such as
-    <code>HttpServletRequest</code> and <code>HttpServletResponse</code>.</li>
-<li>The primary behavior of the Action Class should be to "adapt" these
-    servlet specific components into general JavaBeans components that do
-    not necessarily know they are being executed in a web application.
-    This is typically done by calling property setter methods on the beans,
-    and then invoking business logic methods as required.</li>
-<li>In simple cases, the business logic itself is embedded within the Action
-    Classes.  However, this makes maintenance and re-use of such code more
-    difficult.  Try to limit the code in your Action Classes to translating
-    the servlet-specific request parameters into generic JavaBeans properties,
-    and managing the control flow (such as choosing which JSP page to forward
-    to, based on the state of the computation).</li>
+<li>The controller servlet creates only one instance of your
+    <code>Action</code> class, and uses it for all requests.  Thus,
+    you need to code your <code>Action</code> class so that it operates
+    correctly in a multi-threaded environment, just as you must code a
+    servlet's <code>service()</code> method safely.</li>
+<li>The most important principle that aids in thread-safe coding is to
+    use only local variables, not instance variables, in your
+    <code>Action</code> class.  Local variables are created on a
+    stack that is assigned (by your JVM) to each request thread, so
+    there is no need to worry about sharing them.</li>
+<li>Although they should not, the beans that represent the Model of
+    your system may throw exceptions.  You should trap all such exceptions
+    in the logic of your <code>perform()</code> method, and log them to the
+    application logfile (along with the corresponding stack trace) by
+    calling:
+    <pre>
+	servlet.log("Error message text", exception);
+    </pre></li>
+<li>As a general rule, allocating scarce resources and keeping them across
+    requests from the same user (in the user's session) can cause
+    scalability problems.  You should strive to release such resources
+    (such as database connections) prior to forwarding control to the
+    appropriate View component -- even if a bean method you have called
+    throws an exception.</li>
 </ul>
 
-<p>The example application included with Struts stretches this design principle
-somewhat, because the business logic itself is embedded in the Action Classes.
-The reason for this is that the focus of the application is on illustrating the
-various features of Struts.  In a "real" version of this application, the logic
-to maintain user subscriptions, for example, would be performed inside
-JavaBeans that talk to a relational database or a directory server, or via
-Enterprise JavaBeans.</p>
+<p>In addition, you will want to guard against <code>Action</code> classes
+that are too large.  The easiest way for this to happen is to embed your
+functional logic in the <code>Action</code> class itself, rather than
+coding it in separate business logic beans.  Besides making the
+<code>Action</code> class itself hard to understand and maintain, this
+approach also makes it harder to re-use the business logic code, because
+it is embedded inside a component (the <code>Action</code> class) that
+is tied to being executed in a web application environment.</p>
+
+<p>The example application included with Struts stretches this design
+principle somewhat, because the business logic itself is embedded in the
+<code>Action</code> classes.  This should be considered something of a
+bug in the design of the sample application, rather than an intrinsic
+feature of the Struts architecture, or an approach to be emulated.</p>
 
 
-<h3>5.2 The ActionMapping Implementation</h3>
+<h3>4.3 The ActionMapping Implementation</h3>
 
-<p>In order to operate successfully, the Struts controller servlet needs to
-know several things about how each request URI should be mapped to an
-appropriate <code>Action</code> class (along with other related information).
-The required knowledge has been encapsulated in a Java interface named
-<code>ActionMapping</code>, which has the following properties:</p>
+<p>In order to operate successfully, the Struts controller servlet needs
+to know several things about how each request URI should be mapped to an
+appropriate <code>Action</code> class.  The required knowledge has been
+encapsulated in a Java interface named <code>ActionMapping</code>, which
+has the following properties:</p>
 <ul>
 <li><b>actionClass</b> - The fully qualified Java class name of the
     <code>Action</code> class used for this mapping.  The first time
     a particular mapping is used, an instance of this class will be
     created and saved for reuse later.</li>
-<li><b>formAttribute</b> - The name of the session scope bean under which
-    the current <code>ActionForm</code> for this mapping is stored.  If
-    this property is not defined, no <code>ActionForm</code> will be used.</li>
+<li><b>formAttribute</b> - The name of the session scope bean under
+    which the current <code>ActionForm</code> for this mapping is stored.
+    If this property is not defined, no <code>ActionForm</code> will be
+    used.</li>
 <li><b>formClass</b> - The fully qualified Java class name of the
     <code>ActionForm</code> class used for this mapping.  If you are
     using the support for form beans, an instance of this class will be
-    created and saved automatically whenever necessary.</li>
+    created and saved (in the current user's session) automatically
+    whenever necessary.</li>
 <li><b>path</b> - The request URI path that is matched to select this
     mapping.  See below for examples of how matching works.</li>
 </ul>
 
 <p>Struts includes a convenient implementation of the
 <code>ActionMapping</code> interface, in a class named
-<code>org.apache.struts.action.ActionMappingBase</code>.  If you do not need
-to define any additional properties for your own mappings, feel free to use
-this class as your <code>ActionMapping</code> class, as described in the
-following section.  However, it is also possible to define an
-<code>ActionMapping</code> implementation (perhaps extending the
+<code>ActionMappingBase</code>.  If you do not need to define any
+additional properties for your own mappings, feel free to use
+this class as your <code>ActionMapping</code> class, configured as
+described in the following section.  However, it is also possible to
+define an <code>ActionMapping</code> implementation (perhaps extending the
 <code>ActionMappingBase</code> class) that contains additional properties.
 The controller servlet knows how to configure these custom properties
 automatically, because it uses the Struts Digester module to read the
@@ -745,22 +906,25 @@ define two additional properties:</p>
     the next page of the conversation flow for this application.</li>
 </ul>
 
-<p>Using these two extra properties, the Action classes in the example
-application are almost totally independent of the actual names of the JSP
-pages that are used by the page designers.  The pages can be renamed (for
-example) during a redesign, with negligible impact on the Action classes
-themselves.  If the names of the "next" JSP pages were hard coded into the
-Action classes, they would also need to be modified.</p>
+<p>Using these two extra properties, the <code>Action</code> classes in the
+example application are almost totally independent of the actual names of
+the JSP pages that are used by the page designers.  The pages can be renamed
+(for example) during a redesign, with negligible impact on the
+<code>Action</code> classes themselves.  If the names of the "next" JSP
+pages were hard coded into the <code>Action</code> classes, all of these
+classes would also need to be modified.</p>
 
 
-<h3>5.3 The Action Mappings Configuration File</h3>
+<h3>4.4 The Action Mappings Configuration File</h3>
 
 <p>How does the controller servlet learn about the mappings you want?  It
 would be possible (but tedious) to write a small Java class that simply
 instantiated new <code>ActionMapping</code> instances, and called all of
 the appropriate setter methods.  To make this process easier, Struts includes
 a Digester module that is capable of reading an XML-based description of
-the desired mappings, creating the appropriate objects along the way.</p>
+the desired mappings, creating the appropriate objects along the way.
+See the <a href="api/index.html">API documentation</a> for more information
+about Digester.</p>
 
 <p>The developer's responsibility is to create an XML file named
 <code>action.xml</code>, and place it in the WEB-INF directory of your
@@ -799,7 +963,7 @@ forward control to the main menu if successful, or back to the logon form
 if not successful (such as an invalid username or password).</p>
 
 
-<h3>5.4 The Application Deployment Descriptor</h3>
+<h3>4.5 The Web Application Deployment Descriptor</h3>
 
 <p>The final step in setting up the application is to configure the application
 deployment descriptor (stored in file <code>WEB-INF/web.xml</code>) to include
@@ -808,7 +972,7 @@ for the example application as a guide, we see that the following entries need
 to be created or modified.</p>
 
 
-<h4>5.4.1 Configure the Action Servlet Instance</h4>
+<h4>4.5.1 Configure the Action Servlet Instance</h4>
 
 <p>Add an entry defining the action servlet itself, along with the appropriate
 initialization parameters.  Such an entry might look like this:
@@ -842,7 +1006,7 @@ described in the <a href="api/index.html">Javadocs</a> for the
 <code>init()</code> method.</p>
 
 
-<h4>5.4.2 Configure the Action Servlet Mapping</h4>
+<h4>4.5.2 Configure the Action Servlet Mapping</h4>
 
 <p>There are two common approaches to defining the URLs that will
 be processed by the controller servlet -- prefix matching and extension
@@ -885,7 +1049,7 @@ earlier might look like this:
 </pre>
 
 
-<h4>5.4.3 Configure the Struts Tag Library</h4>
+<h4>4.5.3 Configure the Struts Tag Library</h4>
 
 <p>Next, you must add an entry defining the Struts tag library.  The entry
 should look like this:
@@ -901,7 +1065,7 @@ for this library (in your application's WEB-INF directory, instead of
 out on the Internet somewhere).</p>
 
 
-<h4>5.4.4 Add Struts Components To Your Application</h4>
+<h4>4.5.4 Add Struts Components To Your Application</h4>
 
 <p>To use Struts when your application executes, you must copy the
 <code>struts.tld</code> file to your <code>WEB-INF</code> directory,
