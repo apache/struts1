@@ -4,288 +4,147 @@
           "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
           "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-
-
 <!--
-
      This is a blank Struts configuration file with an example
-
      welcome action/page and other commented sample elements.
 
-
-
      Tiles and the Struts Validator are configured using the factory defaults
-
      and are ready-to-use.
 
-
-
      NOTE: If you have a generator tool to create the corresponding Java classes
-
      for you, you could include the details in the "form-bean" declarations.
-
      Otherwise, you would only define the "form-bean" element itself, with the
-
      corresponding "name" and "type" attributes, as shown here.
-
 -->
-
-
-
 
 
 <struts-config>
 
-
-
 <!-- ==================================== Data Source Configuration -->
-
 <!--
-
  <data-sources>
-
    <data-source>
-
      <set-property
-
         property="autoCommit"
-
         value="false"/>
-
      <set-property
-
         property="description"
-
         value="Example Data Source Configuration"/>
-
      <set-property
-
         property="driverClass"
-
         value="org.postgresql.Driver"/>
-
      <set-property
-
         property="maxCount"
-
         value="4"/>
-
      <set-property
-
         property="minCount"
-
         value="2"/>
-
      <set-property
-
         property="password"
-
         value="mypassword"/>
-
      <set-property
-
         property="url"
-
         value="jdbc:postgresql://localhost/mydatabase"/>
-
      <set-property
-
         property="user"
-
         value="myusername"/>
-
    </data-source>
-
  </data-sources>
-
 -->
-
-
 
 <!-- ======================================== Form Bean Definitions -->
 
-
-
     <form-beans>
 
-
-
     <!-- sample form bean descriptor for an ActionForm
-
         <form-bean
-
             name="inputForm"
-
             type="app.InputForm"/>
-
     end sample -->
-
-
 
     <!-- sample form bean descriptor for a DynaActionForm
-
         <form-bean
-
             name="logonForm"
-
             type="org.apache.struts.action.DynaActionForm">
-
             <form-property
-
                 name="username"
-
                 type="java.lang.String"/>
-
             <form-property
-
                 name="password"
-
                 type="java.lang.String"/>
-
+       </form-bean>
     end sample -->
-
 
 
     </form-beans>
 
 
-
-
-
 <!-- ================================= Global Exception Definitions -->
 
-
-
     <global-exceptions>
-
         <!-- sample exception handler
-
         <exception
-
             key="expired.password"
-
             type="app.ExpiredPasswordException"
-
             path="/changePassword.jsp"/>
-
         end sample -->
-
     </global-exceptions>
-
-
-
 
 
 <!-- =================================== Global Forward Definitions -->
 
-
-
     <global-forwards>
-
         <!-- Default forward to "Welcome" action -->
-
         <!-- Demonstrates using index.jsp to forward -->
-
         <forward
-
             name="welcome"
-
             path="/Welcome.do"/>
-
     </global-forwards>
-
-
-
 
 
 <!-- =================================== Action Mapping Definitions -->
 
-
-
     <action-mappings>
 
-
-
             <!-- Default "Welcome" action -->
-
             <!-- Forwards to Welcome.jsp -->
-
         <action
-
             path="/Welcome"
-
             type="org.apache.struts.actions.ForwardAction"
-
             parameter="/pages/Welcome.jsp"/>
-
-
 
     <!-- sample input and input submit actions
 
-
-
         <action
-
             path="/Input"
-
             type="org.apache.struts.actions.ForwardAction"
-
             parameter="/pages/Input.jsp"/>
 
-
-
         <action
-
             path="/InputSubmit"
-
             type="app.InputAction"
-
             name="inputForm"
-
             scope="request"
-
             validate="true"
-
             input="/pages/Input.jsp"/>
 
-
-
     end samples -->
-
-
-
-
 
     </action-mappings>
 
 
-
-
-
 <!-- ===================================== Controller Configuration -->
 
-
-
     <controller
-
        processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
-
-
-
 
 
 <!-- ================================ Message Resources Definitions -->
 
-
-
     <message-resources parameter="resources.application"/>
 
 
-
-
-
 <!-- ======================================= Plug Ins Configuration -->
-
 
   <!-- ========== Tiles plugin ===================  -->
   <!--												-->
