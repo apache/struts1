@@ -41,11 +41,6 @@
         <item name="Template Tags"      href="struts-template.html"/>
     </menu>
 
-    <menu name="Old Documents">
-        <item name="Tag Library (Old)"  href="tags.html"/>
-        <item name="User's Guide (Old)" href="users_guide.html"/>
-    </menu>
-
 </project>
 
 
