@@ -28,8 +28,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
 /**
  * Enhanced base ActionForm.
  * :TODO: Extend from DynaValidatorForm in 1.1 version.
- * @author Ted Husted
- * @version $Revision: 1.12 $ $Date: 2002/11/24 15:53:05 $
+ * @version $Revision: 1.13 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BaseForm extends ValidatorForm {
 

@@ -25,9 +25,7 @@ import org.apache.commons.scaffold.util.MessagesImpl;
  * which passes the business request to a business service 
  * [<code>org.apache.commons.scaffold.BizService</code>].
  * 
- * @author Ted Husted
- * @author Nationwide Insurance Company
- * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:09 $
  */
 public interface BizForm {
 	

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.4 2003/09/22 04:00:21 husted Exp $
- * $Revision: 1.4 $
- * $Date: 2003/09/22 04:00:21 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/CatalogConfiguratorPlugIn.java,v 1.5 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -94,8 +94,6 @@ import org.apache.commons.logging.LogFactory;
  *     or a separate file under <code>/WEB-INF/classes</code>.</li>
  * </ul>
  *
- * @author Craig R. McClanahan
- * @author Greg Reddin
  */
 
 public class CatalogConfiguratorPlugIn implements PlugIn {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELUseAttributeTag.java,v 1.2 2003/12/20 17:34:51 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/12/20 17:34:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELUseAttributeTag.java,v 1.3 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:12 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -73,8 +73,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @author David M. Karr
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ELUseAttributeTag extends UseAttributeTag {
 

@@ -19,9 +19,6 @@ import javax.servlet.http.*;
 
 /**
  *
- * @author James Duncan Davidson <duncan@eng.sun.com>
- * @author Jason Hunter <jch@eng.sun.com>
- * @author Ted Husted <husted@apache.org>
  */
 
 public final class SnoopAction extends Action {

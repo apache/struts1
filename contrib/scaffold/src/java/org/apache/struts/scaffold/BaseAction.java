@@ -29,8 +29,7 @@ import org.apache.commons.scaffold.text.ConvertUtils;
  * compatibility with 1_0.
  * :TODO: Remove deprecations after formal 1.0 Scaffod release.
  *
- * @author Ted Husted
- * @version $Revision: 1.8 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.9 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BaseAction extends Action {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.4 2003/12/29 22:45:52 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2003/12/29 22:45:52 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/ActionListenerImpl.java,v 1.5 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 13:43:12 $
  *
  * ====================================================================
  *
@@ -94,8 +94,7 @@ import org.apache.struts.util.RequestUtils;
  * into execution of the corresponding Struts request processing lifecycle.
  * </p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2003/12/29 22:45:52 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:12 $
  */
 
 public class ActionListenerImpl implements ActionListener {

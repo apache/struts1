@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/struts/org/apache/struts/action/Attic/ServicesServlet.java,v 1.2 2002/12/08 07:53:32 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/08 07:53:32 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/struts/org/apache/struts/action/Attic/ServicesServlet.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.service.ServletServiceManager;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
 /** 
- * @author Oleg V Alexeev
- * @version $Revision: 1.2 $ $Date: 2002/12/08 07:53:32 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 public class ServicesServlet
     extends ActionServlet {

@@ -31,9 +31,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * The net result is an automatic data transfer from a
  * business bean to the form bean.
  *
- * @author Ted Husted
- * @author OK State DEQ
- * @version $Revision: 1.9 $ $Date: 2003/01/15 10:19:26 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/18 13:43:09 $
  */
 public class ProcessFormAction extends ProcessAction {
 

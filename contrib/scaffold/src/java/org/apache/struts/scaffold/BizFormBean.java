@@ -6,8 +6,7 @@ import org.apache.struts.action.ActionFormBean;
 /**
  * An <code>ActionFormBean</code> for specifying a <code>BizForm</code>.
  *
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/11/24 15:53:05 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BizFormBean extends ActionFormBean {
 
@@ -30,9 +29,9 @@ public class BizFormBean extends ActionFormBean {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BizFormBean.java,v 1.1 2002/11/24 15:53:05 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/11/24 15:53:05 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BizFormBean.java,v 1.2 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *

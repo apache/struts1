@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/Attic/Factory.java,v 1.1 2001/07/25 20:42:22 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:42:22 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/Attic/Factory.java,v 1.2 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *
@@ -66,8 +66,7 @@ import org.apache.struts.service.Service;
 
 /** Factory abstraction. Every real factory MUST define <code>create</code> method.
  *
- * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:42:22 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:09 $
  */        
 public abstract class Factory {
 

@@ -1,6 +1,5 @@
 <!--
-@author Ted Husted
-@version $Revision: 1.8 $ $Date: 2003/01/07 05:42:55 $
+@version $Revision: 1.9 $ $Date: 2004/01/18 13:43:09 $
 -->
 
 <project name="scaffold" default="compile.lib">

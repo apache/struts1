@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.6 2003/12/24 03:21:01 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/24 03:21:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/renderer/BaseRenderer.java,v 1.7 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/18 13:43:12 $
  *
  * ====================================================================
  *
@@ -77,8 +77,7 @@ import org.apache.commons.logging.LogFactory;
  * <p><code>Renderer</code> implementation for the <code>base</code> tag
  * from the <em>Struts-Faces Integration Library</em>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/12/24 03:21:01 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/18 13:43:12 $
  */
 
 public class BaseRenderer extends AbstractRenderer {

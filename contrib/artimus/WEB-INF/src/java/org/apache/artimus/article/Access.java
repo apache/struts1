@@ -37,8 +37,7 @@ import org.apache.lucene.index.Term;
  * <p>
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
- * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/12/08 08:26:37 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/18 13:43:08 $
 **/
 public final class Access {
 

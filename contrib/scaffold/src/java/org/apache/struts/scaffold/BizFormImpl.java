@@ -26,8 +26,7 @@ import org.apache.commons.scaffold.util.MessagesImpl;
  *
  * :FIXME: This implementation can only be used with the default module.
  *
- * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BizFormImpl extends BaseForm implements BizForm {
     

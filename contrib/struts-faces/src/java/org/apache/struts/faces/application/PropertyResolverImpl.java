@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/PropertyResolverImpl.java,v 1.2 2003/07/27 06:41:27 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/07/27 06:41:27 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/PropertyResolverImpl.java,v 1.3 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:12 $
  *
  * ====================================================================
  *
@@ -117,8 +117,7 @@ import org.apache.struts.action.DynaActionForm;
  *     are wrapping.</li>
  * </ul>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/07/27 06:41:27 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:12 $
  */
 
 public class PropertyResolverImpl extends PropertyResolver {

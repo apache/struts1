@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/Attic/SimpleFactory.java,v 1.1 2001/07/25 20:42:22 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:42:22 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/Attic/SimpleFactory.java,v 1.2 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *
@@ -68,8 +68,7 @@ import java.lang.reflect.Constructor;
 /** Simple factory. Take parameters list and call
  *  appropriate constructor for such parameters and target type.
  *
- * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:42:22 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:09 $
  */
 public class SimpleFactory extends Factory {
 

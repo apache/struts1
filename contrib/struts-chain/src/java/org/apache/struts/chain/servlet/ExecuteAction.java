@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ExecuteAction.java,v 1.1 2003/08/11 04:55:34 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/11 04:55:34 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ExecuteAction.java,v 1.2 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -77,8 +77,7 @@ import org.apache.struts.config.ForwardConfig;
  * <p>Invoke the appropriate <code>Action</code> for this request, and cache
  * the returned <code>ActionForward</code>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/11 04:55:34 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class ExecuteAction extends AbstractExecuteAction {

@@ -14,8 +14,7 @@ import org.apache.artimus.keys.sql.Commands;
 /**
  * Data access methods for Articles application.
  * <p>
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
  */
 public final class Access {
 
@@ -32,9 +31,8 @@ public final class Access {
      * keys for other tables (CollectionS and ARTICLE).
      * <p>
      * @exception SQL exception if SQL error occurs
-     * @author Ted Husted
-     * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
-     */
+     * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
+     **/
     public static final void createTable() throws ModelException {
 
         try {

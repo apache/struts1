@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMessagesNotPresentTag.java,v 1.6 2003/03/09 05:47:26 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2003/03/09 05:47:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMessagesNotPresentTag.java,v 1.7 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/18 13:43:12 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,8 +76,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * attribute values to be specified as expressions utilizing the JavaServer
  * Pages Standard Library expression language.
  *
- * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELMessagesNotPresentTag extends MessagesNotPresentTag {
 

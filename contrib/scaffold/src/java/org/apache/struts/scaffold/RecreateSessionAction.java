@@ -19,8 +19,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Create a new session, perserving any locale attribute
  * from the current session.
  *
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2003/09/04 16:03:41 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:09 $
  */
 public final class RecreateSessionAction extends BaseAction {
 

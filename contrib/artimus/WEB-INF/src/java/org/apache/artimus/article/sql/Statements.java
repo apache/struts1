@@ -11,8 +11,7 @@ import org.apache.scaffold.sql.ConnectionPool;
 
 /**
  * SQL statements for the Article package.
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
  */
 public final class Statements {
 

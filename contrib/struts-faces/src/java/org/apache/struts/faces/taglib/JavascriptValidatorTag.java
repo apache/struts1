@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/JavascriptValidatorTag.java,v 1.2 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/JavascriptValidatorTag.java,v 1.3 2004/01/18 13:43:13 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:13 $
  *
  * ====================================================================
  *
@@ -100,9 +100,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * to reflect differences in the way JavaServer Faces renders field
  * identifiers.
  *
- * @author David Winterfeldt
- * @author Craig McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/12/31 07:17:48 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:13 $
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
 

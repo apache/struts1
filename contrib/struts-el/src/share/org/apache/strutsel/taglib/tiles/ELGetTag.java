@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELGetTag.java,v 1.1 2003/09/07 03:22:45 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2003/09/07 03:22:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/tiles/ELGetTag.java,v 1.2 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:12 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -81,8 +81,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * be specified as expressions utilizing the JavaServer Pages Standard Library
  * expression language.
  *
- * @author David M. Karr
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ELGetTag extends GetTag {
 

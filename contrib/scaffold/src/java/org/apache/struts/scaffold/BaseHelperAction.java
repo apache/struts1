@@ -21,8 +21,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Multiple helper classes may be specified in a semi-colon delimited list,
  * which will be instantiated in the helpers array in the order given.
  *
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BaseHelperAction extends BaseAction {
 

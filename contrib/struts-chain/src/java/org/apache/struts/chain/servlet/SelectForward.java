@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectForward.java,v 1.1 2003/10/24 02:35:02 mrdon Exp $
- * $Revision: 1.1 $
- * $Date: 2003/10/24 02:35:02 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectForward.java,v 1.2 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -80,8 +80,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Create and return a <code>ForwardConfig</code> representing the
  * specified module-relative destination.</p>
  *
- * @author Don Brown
- * @version $Revision: 1.1 $ $Date: 2003/10/24 02:35:02 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class SelectForward extends AbstractSelectForward {

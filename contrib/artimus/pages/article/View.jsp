@@ -2,8 +2,7 @@
 /**
  * Display complete article (read-only).
  *
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:05:16 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
 */
 --%>
 

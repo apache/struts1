@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.7 2003/03/09 07:47:09 dmkarr Exp $
- * $Revision: 1.7 $
- * $Date: 2003/03/09 07:47:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELNotMatchTag.java,v 1.8 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.8 $
+ * $Date: 2004/01/18 13:43:12 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -74,8 +74,7 @@ import org.apache.strutsel.taglib.utils.EvalHelper;
  * to be specified as expressions utilizing the JavaServer Pages Standard
  * Library expression language.
  *
- * @author David M. Karr
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ELNotMatchTag extends NotMatchTag {
 

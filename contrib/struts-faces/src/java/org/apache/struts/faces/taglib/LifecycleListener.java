@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.6 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/taglib/Attic/LifecycleListener.java,v 1.7 2004/01/18 13:43:13 husted Exp $
+ * $Revision: 1.7 $
+ * $Date: 2004/01/18 13:43:13 $
  *
  * ====================================================================
  *
@@ -89,8 +89,7 @@ import org.apache.struts.faces.application.ViewHandlerImpl;
  * objects, and perform other one-time setup tasks, for the
  * <em>Struts-Faces Integration Library</em>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2003/12/31 07:17:48 $
+ * @version $Revision: 1.7 $ $Date: 2004/01/18 13:43:13 $
  */
 
 public class LifecycleListener

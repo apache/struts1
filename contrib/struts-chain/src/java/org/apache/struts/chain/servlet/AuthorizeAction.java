@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/AuthorizeAction.java,v 1.2 2003/10/25 01:16:52 mrdon Exp $
- * $Revision: 1.2 $
- * $Date: 2003/10/25 01:16:52 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/AuthorizeAction.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -76,8 +76,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * <p>Determine if the action is authorized for the given roles.</p>
  *
- * @author Don Brown
- * @version $Revision: 1.2 $ $Date: 2003/10/25 01:16:52 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class AuthorizeAction extends AbstractAuthorizeAction {

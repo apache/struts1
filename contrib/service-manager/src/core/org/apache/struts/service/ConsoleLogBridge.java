@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/core/org/apache/struts/service/Attic/ConsoleLogBridge.java,v 1.1 2001/07/25 20:19:40 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:19:40 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/core/org/apache/struts/service/Attic/ConsoleLogBridge.java,v 1.2 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -62,8 +62,7 @@
 package org.apache.struts.service;
 
 /** 
- * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:19:40 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:10 $
  */
 public class ConsoleLogBridge extends LogBridge {
 

@@ -2,8 +2,7 @@
 /**
  * Display data entered form (read-only).
  *
- * @author Ted Husted
- * @version $Revision: 1.2 $ $dateString: 2001/08/23 $
+ * @version $Revision: 1.3 $ $dateString: 2001/08/23 $
 */
 --%>
 <%@ page language="java" %>

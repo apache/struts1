@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/Constants.java,v 1.2 2003/06/04 17:38:13 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/06/04 17:38:13 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/Constants.java,v 1.3 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:12 $
  *
  * ====================================================================
  *
@@ -66,8 +66,7 @@ package org.apache.struts.faces;
  * <p>Global manifest constants for the
  * <em>Struts-Faces Integration Library</em>.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/06/04 17:38:13 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:12 $
  */
 
 public final class Constants {

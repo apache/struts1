@@ -7,8 +7,7 @@ import java.util.Map;
 /**
  * Enhanced base ActionForm for Struts 1.1 and later.
  *
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BaseMapForm extends BaseForm {
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/util/Attic/Slide.java,v 1.1 2001/07/25 20:42:23 oalexeev Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/25 20:42:23 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/util/Attic/Slide.java,v 1.2 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -64,8 +64,7 @@ package org.apache.struts.util;
 import java.util.ArrayList;
 
 /** 
- * @author Oleg V Alexeev
- * @version $Revision: 1.1 $ $Date: 2001/07/25 20:42:23 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:10 $
  */
 public class Slide {
 

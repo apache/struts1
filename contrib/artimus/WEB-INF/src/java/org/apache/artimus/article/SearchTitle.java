@@ -10,8 +10,7 @@ import org.apache.scaffold.model.ModelResultBase;
 
 /**
  * Search article for a title.
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:08 $
  */
 public class SearchTitle extends SearchProperty {
 

@@ -23,8 +23,7 @@ import org.apache.artimus.wizard.sql.Statements;
  * <p>
  * This class could be based on an interface if another
  * (non-SQL) type of access was needed.
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:08 $
  */
 public final class Model {
 
@@ -32,8 +31,7 @@ public final class Model {
      * Return next key for WIZARD table.
      * @return The Integer key value to be inserted
      * @exception ModelException if SQL error occurs
-     * @author Ted Husted
-     * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
+     * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:08 $
     **/
     public synchronized static final Integer allocateKey()
             throws ModelException {
@@ -105,8 +103,7 @@ public final class Model {
      * @exception ModelException if SQL error occurs
      * @param key
      * @param target Object object to create Collection from ResultSet
-     * @author Ted Husted
-     * @version $Revision: 1.2 $ $Date: 2002/12/08 08:26:37 $
+     * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:08 $
     **/
     public static final Collection select(Object target, int key)
             throws ModelException {

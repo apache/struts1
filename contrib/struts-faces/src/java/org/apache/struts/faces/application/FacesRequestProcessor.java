@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.5 2003/12/28 22:03:27 craigmcc Exp $
- * $Revision: 1.5 $
- * $Date: 2003/12/28 22:03:27 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesRequestProcessor.java,v 1.6 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/18 13:43:12 $
  *
  * ====================================================================
  *
@@ -94,8 +94,7 @@ import org.apache.struts.faces.component.FormComponent;
  * instance normally configured by Struts, so it must support non-Faces
  * requests as well.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.5 $ $Date: 2003/12/28 22:03:27 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/18 13:43:12 $
  */
 
 public class FacesRequestProcessor extends RequestProcessor {

@@ -18,8 +18,7 @@ import org.apache.struts.action.ActionMapping;
  * This class extends BaseAction to provide
  * cross-compatibility with Struts 1.1 and 1.0
  *
- * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:09 $
  */
 public class ParameterAction extends BaseAction {
 
@@ -64,9 +63,9 @@ public class ParameterAction extends BaseAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.4 2002/12/08 08:14:29 rleland Exp $
- * $Revision: 1.4 $
- * $Date: 2002/12/08 08:14:29 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/ParameterAction.java,v 1.5 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.5 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *

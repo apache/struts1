@@ -5,8 +5,7 @@ import org.apache.struts.action.RequestActionMapping;
 
 /**
  * Enhanced base ActionMapping.
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2002/10/09 21:59:03 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:09 $
  */
 public class BaseActionMapping extends RequestActionMapping {
 
@@ -65,9 +64,9 @@ public class BaseActionMapping extends RequestActionMapping {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BaseActionMapping.java,v 1.1 2002/10/09 21:59:03 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/09 21:59:03 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/BaseActionMapping.java,v 1.2 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *

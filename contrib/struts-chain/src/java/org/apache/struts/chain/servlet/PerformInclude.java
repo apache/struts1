@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PerformInclude.java,v 1.2 2003/11/13 01:29:59 mrdon Exp $
- * $Revision: 1.2 $
- * $Date: 2003/11/13 01:29:59 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/PerformInclude.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -77,8 +77,7 @@ import org.apache.struts.util.RequestUtils;
  * <p>Perform forwarding or redirection based on the specified
  * include uri (if any).</p>
  *
- * @author Don Brown
- * @version $Revision: 1.2 $ $Date: 2003/11/13 01:29:59 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class PerformInclude extends AbstractPerformInclude {

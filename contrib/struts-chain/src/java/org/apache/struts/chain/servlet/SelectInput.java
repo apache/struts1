@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectInput.java,v 1.1 2003/08/31 22:42:45 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/08/31 22:42:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectInput.java,v 1.2 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -81,8 +81,7 @@ import org.apache.struts.config.ModuleConfig;
  * any validation errors, execute the child commands in our chain; otherwise,
  * proceed normally.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/08/31 22:42:45 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class SelectInput extends AbstractSelectInput {

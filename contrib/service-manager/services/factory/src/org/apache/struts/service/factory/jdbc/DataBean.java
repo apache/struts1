@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/jdbc/Attic/DataBean.java,v 1.2 2002/12/08 07:53:31 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/08 07:53:31 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/jdbc/Attic/DataBean.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -64,8 +64,7 @@ package org.apache.struts.service.factory.jdbc;
 import java.sql.ResultSet;
 
 /** 
- * @author Oleg V Alexeev
- * @version $Revision: 1.2 $ $Date: 2002/12/08 07:53:31 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 public interface DataBean {
         

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.5 2003/11/13 01:29:59 mrdon Exp $
- * $Revision: 1.5 $
- * $Date: 2003/11/13 01:29:59 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/legacy/ComposableRequestProcessor.java,v 1.6 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.6 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -93,12 +93,7 @@ import org.apache.commons.logging.LogFactory;
  * whatever chain is stored under id <code>servlet-standard</code> (currently
  * hardcoded; needs to be made configurable) to process this request.</p>
  *
- * @author Craig R. McClanahan
- * @author Cedric Dumoulin
- * @author Greg Reddin
- * @author Don Brown
- *
- * @version $Revision: 1.5 $ $Date: 2003/11/13 01:29:59 $
+ * @version $Revision: 1.6 $ $Date: 2004/01/18 13:43:10 $
  * @since Struts 1.1
  */
 

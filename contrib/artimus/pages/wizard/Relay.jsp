@@ -2,8 +2,7 @@
 /**
  * Form to enter data.
  *
- * @author Ted Husted
- * @version $Revision: 1.2 $ $dateString: 2001/09/25 $
+ * @version $Revision: 1.3 $ $dateString: 2001/09/25 $
 */
 --%>
 <%@ page language="java" %>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/jdbc/Attic/JDBCArrayFactory.java,v 1.2 2002/12/08 07:53:31 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/08 07:53:31 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/services/factory/src/org/apache/struts/service/factory/jdbc/Attic/JDBCArrayFactory.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -71,8 +71,7 @@ import org.apache.struts.service.factory.Factory;
 import org.apache.struts.service.factory.Parameter;
 
 /** 
- * @author Oleg V Alexeev
- * @version $Revision: 1.2 $ $Date: 2002/12/08 07:53:31 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 public class JDBCArrayFactory extends JDBCFactory {
 

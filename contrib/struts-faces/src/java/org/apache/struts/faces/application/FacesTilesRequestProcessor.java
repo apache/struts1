@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesTilesRequestProcessor.java,v 1.1 2003/12/31 07:17:48 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2003/12/31 07:17:48 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-faces/src/java/org/apache/struts/faces/application/FacesTilesRequestProcessor.java,v 1.2 2004/01/18 13:43:12 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:12 $
  *
  * ====================================================================
  *
@@ -94,8 +94,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
  * instance normally configured by Struts+Tiles, so it must support non-Faces
  * requests as well.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2003/12/31 07:17:48 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:12 $
  */
 
 public class FacesTilesRequestProcessor extends TilesRequestProcessor {

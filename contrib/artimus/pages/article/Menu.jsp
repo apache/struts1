@@ -1,8 +1,7 @@
 <%--
 /**
  * Menu page.
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/06/26 23:38:52 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:08 $
  */
 --%>
 

@@ -14,8 +14,7 @@ import org.apache.artimus.article.http.Form;
 
 /**
  * Insert or update an article.
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:12 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
  */
 public class Store extends Bean {
 

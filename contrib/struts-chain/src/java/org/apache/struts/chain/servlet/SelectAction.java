@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectAction.java,v 1.2 2003/09/29 06:55:08 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/SelectAction.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -75,8 +75,7 @@ import org.apache.struts.config.ModuleConfig;
  * <p>Cache the <code>ActionConfig</code> instance for the
  * action to be used for processing this request.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:08 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class SelectAction extends AbstractSelectAction {

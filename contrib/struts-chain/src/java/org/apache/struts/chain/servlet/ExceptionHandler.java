@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ExceptionHandler.java,v 1.2 2003/09/29 06:55:08 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2003/09/29 06:55:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-chain/src/java/org/apache/struts/chain/servlet/ExceptionHandler.java,v 1.3 2004/01/18 13:43:10 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:10 $
  *
  * ====================================================================
  *
@@ -82,8 +82,7 @@ import org.apache.struts.config.ModuleConfig;
 /**
  * <p>Handle the specified exception.</p>
  *
- * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2003/09/29 06:55:08 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:10 $
  */
 
 public class ExceptionHandler extends AbstractExceptionHandler {

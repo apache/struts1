@@ -26,8 +26,7 @@ import org.apache.artimus.article.Access;
 
 /**
  * Create search engine indexes used by application.
- * @author Ted Husted
- * @version $Revision: 1.3 $ $Date: 2002/12/08 08:26:37 $
+ * @version $Revision: 1.4 $ $Date: 2004/01/18 13:43:08 $
 **/
 public final class CreateIndex extends Action {
 
@@ -97,9 +96,9 @@ public final class CreateIndex extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.3 2002/12/08 08:26:37 rleland Exp $
- * $Revision: 1.3 $
- * $Date: 2002/12/08 08:26:37 $
+ * $Header: /home/cvs/jakarta-struts/contrib/artimus/WEB-INF/src/java/org/apache/artimus/http/CreateIndex.java,v 1.4 2004/01/18 13:43:08 husted Exp $
+ * $Revision: 1.4 $
+ * $Date: 2004/01/18 13:43:08 $
  *
  * ====================================================================
  *

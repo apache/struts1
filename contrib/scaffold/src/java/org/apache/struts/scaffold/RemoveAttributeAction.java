@@ -18,8 +18,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * Remove an object from the user's session.
  * The name of the attribute is passed via the parameter property.
  *
- * @author Ted Husted
- * @version $Revision: 1.4 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.5 $ $Date: 2004/01/18 13:43:09 $
  */
 public final class RemoveAttributeAction extends BaseAction {
 

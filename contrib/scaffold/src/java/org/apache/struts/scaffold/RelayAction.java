@@ -17,8 +17,7 @@ import org.apache.commons.scaffold.lang.Tokens;
  * This class extends BaseAction to provide
  * cross-compatibility with Struts 1.1 and 1.0
  *
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2002/12/08 08:14:29 $
+ * @version $Revision: 1.3 $ $Date: 2004/01/18 13:43:09 $
  */
 public final class RelayAction extends BaseAction {
 
@@ -48,9 +47,9 @@ public final class RelayAction extends BaseAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/RelayAction.java,v 1.2 2002/12/08 08:14:29 rleland Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/08 08:14:29 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/RelayAction.java,v 1.3 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.3 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *

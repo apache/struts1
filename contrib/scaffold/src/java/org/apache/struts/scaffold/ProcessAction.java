@@ -21,10 +21,7 @@ import java.util.Map;
  * Advanced framework class to instantiate and execute helper beans
  * and process the result.
  *
- * @author Ted Husted
- * @author  Synthis Corporation.
- * @author OK State DEQ
- * @version $Revision: 1.10 $ $Date: 2003/01/15 10:19:26 $
+ * @version $Revision: 1.11 $ $Date: 2004/01/18 13:43:09 $
  * @deprecated Use BizAction instead
  */
 public class ProcessAction extends BaseHelperAction {

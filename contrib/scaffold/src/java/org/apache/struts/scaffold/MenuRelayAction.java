@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * given as a runtime parameter (?dispatch=),
  * after running any model classes.
  *
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2003/01/02 19:42:45 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:09 $
  */
 public final class MenuRelayAction extends BaseAction {
 
@@ -62,9 +61,9 @@ public final class MenuRelayAction extends BaseAction {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/MenuRelayAction.java,v 1.1 2003/01/02 19:42:45 husted Exp $
- * $Revision: 1.1 $
- * $Date: 2003/01/02 19:42:45 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/java/org/apache/struts/scaffold/MenuRelayAction.java,v 1.2 2004/01/18 13:43:09 husted Exp $
+ * $Revision: 1.2 $
+ * $Date: 2004/01/18 13:43:09 $
  *
  * ====================================================================
  *

@@ -12,8 +12,7 @@ import org.apache.scaffold.model.ModelResultBase;
 
 /**
  * Select article by primary key.
- * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/11/10 12:04:13 $
+ * @version $Revision: 1.2 $ $Date: 2004/01/18 13:43:08 $
  */
 public class Search extends Bean {
 
