@@ -13,6 +13,8 @@
 their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">JGuru</a>.</b></p>
   <ul>
 
+    <li><a href="#modules">What is a modular application? What does module-relative mean?</a></li>
+
     <li><a href="#naming">Why are some of the class and element names counter-intuitive?</a></li>
 
     <li>Why is ActionForm a base class rather than an interface?</li>
@@ -64,6 +66,35 @@ their first project. <b>For an in-depth, searchable FAQ, visit our friends at <a
   </ul>
 </section>
 
+
+<section href="modules" name="What is a modular application? What does module-relative mean?">
+
+<p>
+Since Struts 1.1, the framework supports multiple application modules. All applications have at 
+least one root, or default, module. Like the root directory in a file system, the default application 
+has no name. (Or is named with an empty string, depending your viewpoint.) Developing an application 
+with only a default module is no different from how applications were developed under Struts 1.0. 
+Since Struts 1.1, you can add additional modules to your application, each of which can have their 
+own configuration files, messages resources, and so forth. Each module is developed in the same way as 
+the default module. Applications that were developed as a single module can added to a multiple 
+module application, and modules can promoted to a standalone application without change. For more 
+about configuring your application to support multiple modules, see 
+<a href="userGuide/building_controller.html#module_config">Building Controller Components</a> in the 
+User Guide. 
+</p>
+
+<p>
+But to answer the question =:0), a modular application is a Struts application that uses more than 
+one module. Module-relative means that the URI starts at the application-module level, rather than at 
+the application-context level, or the absolute-URL level.
+</p>
+<ul>
+<li>Absolute URL: http://localhost/myApplication/myModule/myAction.do</li>
+<li>context-relative: /myModule/myAction.do</li>
+<li>module-relative: /myAction.do</li>
+</ul>
+
+</section>
 
 <section href="naming" name="Why are some of the class and element names counter-intuitive?">
 <p>
