@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.22 2003/08/02 22:19:37 dgraham Exp $
- * $Revision: 1.22 $
- * $Date: 2003/08/02 22:19:37 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.23 2003/08/16 18:35:41 dgraham Exp $
+ * $Revision: 1.23 $
+ * $Date: 2003/08/16 18:35:41 $
  *
  * ====================================================================
  *
@@ -83,7 +83,6 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
@@ -102,7 +101,7 @@ import org.apache.struts.util.RequestUtils;
  * @author James Turner
  * @author David Graham
  * @author Rob Leland
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -645,12 +644,12 @@ public class TagUtils {
             } else if (value instanceof String) {
                 errors.add(
                     ActionErrors.GLOBAL_ERROR,
-                    new ActionError((String) value));
+                    new ActionMessage((String) value));
 
             } else if (value instanceof String[]) {
                 String keys[] = (String[]) value;
                 for (int i = 0; i < keys.length; i++) {
-                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionError(keys[i]));
+                    errors.add(ActionErrors.GLOBAL_ERROR, new ActionMessage(keys[i]));
                 }
 
             } else if (value instanceof ActionErrors) {

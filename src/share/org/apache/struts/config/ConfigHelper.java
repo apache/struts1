@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.9 2003/08/08 23:26:36 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/08/08 23:26:36 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.10 2003/08/16 18:38:56 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2003/08/16 18:38:56 $
  *
  * ====================================================================
  *
@@ -71,12 +71,12 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.MultipartRequestWrapper;
 import org.apache.struts.util.MessageResources;
@@ -107,7 +107,7 @@ import org.apache.struts.util.MessageResources;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.9 $ $Date: 2003/08/08 23:26:36 $
+ * @version $Revision: 1.10 $ $Date: 2003/08/16 18:38:56 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -743,7 +743,7 @@ public class ConfigHelper implements ConfigHelperInterface {
         }
 
         while (reports.hasNext()) {
-            ActionError report = (ActionError) reports.next();
+            ActionMessage report = (ActionMessage) reports.next();
             message = getMessage(report.getKey(), report.getValues());
             if (message != null) {
                 results.append(message);
