@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"><html lang="en">
+<head>
+<title>Tiles Package</title>
+</head>
+<body>
+<div class="mainContent">
+<p>The Tiles taglib and framework allows building web pages by assembling reusable piece of pages, called Tiles. A Tiles is usually a simple jsp page.</p>
+<div class="section">
+<h2>Introduction</h2>
+<p>The Tiles framework allows building pages by assembling reusable Tiles. As example, the page in the next figure can be build by assembling a header, a footer, a menu and a body.</p>
+<p><img src="doc-files/image001.gif" height="130,8" width="112,8" alt="doc-files/image001"></p>
+<p>Each Tiles (header, menu, body, ...) is a jsp page and can itself be build by assembling other Tiles.</p>
+<p>Using Tiles can be compared as using Java methods:  You need to define the Tiles (the method body), and then you can "call" this body anywhere you want, passing it some parameters. In Tiles, parameters are called "attributes" in order to avoid confusion with the request parameters.</p>
+<p>The Tiles body can be a simple jsp page, a Struts action or any URI pointing to a resource inside the current web site.</p>
+<p>Inserting the body, or calling it, is done with the tag &lt;tiles:insert ...&gt; anywhere in a jsp page. Insertion can also be done by specifying a <em>definition name </em>as the path of a Struts forward or as input, forward or include attributes of a Struts action.</p>
+<p>Tiles bodies are used to create layouts, reusable parts, ... Tiles insertion are used to insert a Tiles. A same Tiles can be reused several times in the same site, or even in the same page.</p>
+<p>Insertion of a Tiles body can be associated to a logical name in what Tiles calls a "definition". A definition contains a logical name, a page used as body and some attribute values. The definition declaration doesn't insert the associated Tiles body. It just associates it with the name. A definition name can be used anywhere insertion of a Tiles body can occur. The associated Tiles body is then inserted with associated attributes.</p>
+<p>The definition declarations can be done in jsp pages or in one or more centralized files. A definition can extends another one, overload some attributes, add new attributes ... This allows the declaration of a "master" definition declaring the common layout, header, menu and footer. All others definitions extend this master layout. Then, it is possible to change the entire site look &amp; feel simply by changing the master definition. </p>
+</div>
+<div class="section">
+<h2>Simple Examples</h2>
+<div class="subsection1">
+<h3>Insert a jsp page</h3>
+<pre>
+<p class="CodewithBorder">&lt;tiles:insert <strong>page</strong>="/layouts/commonLayout.jsp" flush="true"/&gt;</p>
+</pre>
+<p>This example inserts the specified page in place of the tag. The page attribute is any valid URL pointing to a resource inside the current site.</p>
+</div>
+<div class="subsection1">
+<h3>Insert a Tiles passing some attributes</h3>
+<pre>
+&lt;tiles:insert page="/layouts/classicLayout.jsp" flush="true"&gt;
+  &lt;tiles:put name="title"  value="Page Title" /&gt;
+  &lt;tiles:put name="header" value="/common/header.jsp" /&gt;
+  &lt;tiles:put name="footer" value="/common/footer.jsp" /&gt;
+  &lt;tiles:put name="menu"   value="/common/menu.jsp" /&gt;
+  &lt;tiles:put name="body"   value="/tiles/mainBody.jsp" /&gt;
+&lt;/tiles:insert&gt;
+</pre>
+<p>This example inserts the specified page, passing it the attributes. Attributes are stored in a Tiles context which is passed to the inserted page. This later can then access the attribute values by their names.</p>
+</div>
+<div class="subsection1">
+<h3>Retrieve an attribute value as String</h3>
+<pre>
+<p class="CodewithBorder">&lt;tiles:getAsString name="title"/&gt;</p>
+</pre>
+<p>This example retrieves the value of the attribute "title" and prints it as a String in the current output stream. The method toString() is applied on the attribute value, allowing to pass any kind of object as value.</p>
+</div>
+<div class="subsection1">
+<h3>Insert Tiles referenced by an attribute</h3>
+<pre>
+<p class="CodewithBorder">&lt;tiles:insert attribute='menu'/&gt;</p>
+</pre>
+<p>This inserts the tiles referenced by the attribute "menu" value. The specified attribute value is first retrieve from current Tiles context, and then the value is used as a page target to insert.</p>
+</div>
+<div class="subsection1">
+<h3>Classic Layout </h3>
+<p>This example is a layout assembling a page in the classic header-footer-menu-body fashion. </p>
+<pre>
+&lt;%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;link rel=stylesheet href="&lt;%=request.getContextPath()%&gt;/layouts/stylesheet.css" 
+                  type="text/css"&gt;
+    &lt;title&gt;&lt;tiles:getAsString name="title"/&gt;&lt;/title&gt;
+  &lt;/HEAD&gt;
+&lt;body&gt;
+&lt;table border="0" width="100%" cellspacing="5"&gt;
+&lt;tr&gt;
+  &lt;td colspan="2"&gt;&lt;tiles:insert attribute="header" /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td width="140" valign="top"&gt;
+    &lt;tiles:insert attribute='menu'/&gt;
+  &lt;/td&gt;
+  &lt;td valign="top"  align="left"&gt;
+    &lt;tiles:insert attribute='body' /&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td colspan="2"&gt;
+    &lt;tiles:insert attribute="footer" /&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>Such layout is declared in a jsp page (ex: /layouts/classicLayout.jsp). It can be used in conjunction with the tag described in "<a href="#_Insert_a_page_passing some attribut">Insert a page passing some attributes</a>". </p>
+</div>
+</div>
+<div class="section">
+<h2>Definitions</h2>
+<p>A definition associates a logical name with the URL of a Tiles to be inserted and some attribute values. A definition doesn't insert the Tiles. This is done later using the definition name. A definition name can be inserted as often as you want in your site, making easy to reuse a Tiles. </p>
+<p>A definition can extend another definition and overload some attributes or adding new ones. This make easy factorization of definitions differing by some attributes. For example, you can define a master definition declaring the main header, menu, footer, and a default title. Then let each of your page definition extends this master definition and overloads the title and the body.</p>
+<p>Definitions can be declared in a jsp page, or in one or more centralized files. To enable the definitions from centralized files, you need to initialize the "definitions factory" which will parse the definitions from the files and serves them to the tiles framework.</p>
+<div class="subsection1">
+<h3>Enabling Definition Factory</h3>
+<p>To enable Tiles definitions described in one or more files, you need to write these files and to initialize the definition factory. </p>
+<p>Initialization is different regarding the Struts version you use, or if you do not use Struts at all.</p>
+<div class="subsection2">
+<h4>Struts1.1</h4>
+<p>Use the Tiles plug-in to enable Tiles definitions. This plug-in creates the definition factory and pass it a configuration object populated with parameters explained here after. Parameters can be specified in the web.xml file or as the plug-in parameters. The plug-in first read parameters from web.xml, and then overload them with the one found in the plug-in. All parameters are optional and can be omitted. The plug-in should be declared in each struts-config file:</p>
+<pre>
+  &lt;plug-in className="org.apache.struts.tiles.TilesPlugin" &gt;
+    &lt;set-property property="definitions-config" 
+	                 value="/WEB-INF/tiles-defs.xml,
+                            /WEB-INF/tiles-tests-defs.xml,/WEB-INF/tiles-tutorial-defs.xml,
+                            /WEB-INF/tiles-examples-defs.xml" /&gt;
+    &lt;set-property property="definitions-debug" value="1" /&gt;
+    &lt;set-property property="definitions-parser-details" value="0" /&gt;
+    &lt;set-property property="definitions-parser-validate" value="true" /&gt;
+  &lt;/plug-in&gt;
+</pre>
+<ul>
+<li>definitions-config: (optional) <ul>
+<li>Specify configuration file names. There can be several comma separated file names (default: ?? )</li>
+</ul>
+</li>
+<li>definitions-debug: (optional<ul>
+<li>Specify Tiles debug level<ul>
+<li>0 : no debug information</li>
+<li>1 : debug information</li>
+<li>2 : more debug information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>definitions-parser-details: (optional<ul>
+<li>Specify Digester debug level. This value is passed to Digester<ul>
+<li>0 : no debug information (default)</li>
+<li>1 : debug information</li>
+<li>2 : more debug information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>definitions-parser-validate: (optional<ul>
+<li>Specify if xml parser should validate the Tiles configuration file<ul>
+<li>true : validate. DTD should be specified in file header. (default)</li>
+<li>false : no validation	  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The TilesPlugin class create one single definition factory shared by all struts modules, even if the plugin is declared several times. Paths found in Tiles definitions are relative to the main context.</p>
+<p>You don't need to specify a TilesRequestProcessor, this is automatically done by the plug-in. If, however, you want to specify your own RequestProcessor, this later should extends the TilesRequestProcessor. The plug-in checks check this constraint.</p>
+</div>
+<div class="subsection2">
+<h4>Struts1.0.x</h4>
+<p>You need to use a special servlet extending the Struts servlet. This is specified in the web.xml file of your application:</p>
+<pre>
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+	&lt;servlet-class&gt;org.apache.struts.tiles.ActionComponentServlet&lt;/servlet-class&gt;   
+        &lt;!-- Tiles Servlet parameter 
+		  Specify configuration file names. There can be several comma 
+		  separated file names
+		--&gt; 	
+	&lt;init-param&gt;
+        &lt;param-name&gt;definitions-config&lt;/param-name&gt;
+        &lt;param-value&gt;/WEB-INF/tiles-defs.xml&lt;/param-value&gt;
+       &lt;/init-param&gt;
+        &lt;!-- Tiles Servlet parameter 
+		  Specify Tiles debug level.
+		  O : no debug information
+		  1 : debug information
+		  2 : more debug information
+		--&gt; 	
+    &lt;init-param&gt;
+      &lt;param-name&gt;definitions-debug&lt;/param-name&gt;
+      &lt;param-value&gt;1&lt;/param-value&gt;
+    &lt;/init-param&gt;
+        &lt;!-- Tiles Servlet parameter 
+		Specify Digester debug level. This value is passed to Digester
+		  O : no debug information
+		  1 : debug information
+		  2 : more debug information
+		--&gt; 	
+    &lt;init-param&gt;
+      &lt;param-name&gt;definitions-parser-details&lt;/param-name&gt;
+      &lt;param-value&gt;0&lt;/param-value&gt;
+    &lt;/init-param&gt;
+        &lt;!-- Tiles Servlet parameter 
+		Specify if xml parser should validate the Tiles configuration file.
+		true : validate. DTD should be specified in file header.
+		false : no validation
+		--&gt; 	
+    &lt;init-param&gt;
+      &lt;param-name&gt;definitions-parser-validate&lt;/param-name&gt;
+      &lt;param-value&gt;true&lt;/param-value&gt;
+    &lt;/init-param&gt;
+     ...
+  &lt;/servlet&gt;
+</pre>
+</div>
+<div class="subsection2">
+<h4>Without Struts</h4>
+<p>Tiles can be used without Struts. To initialize the definition factory, you can use the provided servlet. Declare it in the web.xml file of your application:</p>
+<pre>
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;action&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.apache.struts.tiles.TilesServlet&lt;/servlet-class&gt;
+
+
+	&lt;init-param&gt;
+        &lt;param-name&gt;definitions-config&lt;/param-name&gt;
+        &lt;param-value&gt;/WEB-INF/tiles-defs.xml&lt;/param-value&gt;
+       &lt;/init-param&gt;
+       &lt;init-param&gt;
+         &lt;param-name&gt;definitions-debug&lt;/param-name&gt;
+         &lt;param-value&gt;1&lt;/param-value&gt;
+       &lt;/init-param&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;definitions-parser-details&lt;/param-name&gt;
+      &lt;param-value&gt;0&lt;/param-value&gt;
+    &lt;/init-param&gt;	
+    &lt;init-param&gt;
+      &lt;param-name&gt;definitions-parser-validate&lt;/param-name&gt;
+      &lt;param-value&gt;true&lt;/param-value&gt;
+    &lt;/init-param&gt;
+   ...
+</pre>
+<p>The parameters are the same as for Struts1.1 or 1.0.</p>
+</div>
+</div>
+<div class="subsection1">
+<h3>Definition File Syntax</h3>
+<p>The definition file syntax can be found in the struts-tiles.dtd file.</p>
+<p>Following is a simple example:</p>
+<pre>
+&lt;!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd"&gt;
+&lt;!-- Definitions for Tiles documentation   --&gt;
+&lt;tiles-definitions&gt;
+  &lt;!-- =======================================================  --&gt;
+  &lt;!-- Master definition  									--&gt;
+  &lt;!-- =======================================================  --&gt;
+  &lt;!-- Main page layout used as a root for other pages defintion.
+    --&gt;
+  &lt;definition name="site.mainLayout" path="/layouts/classicLayout.jsp"&gt;
+	  &lt;put name="title"  value="Tiles Blank Site" /&gt;
+	  &lt;put name="header" value="/tiles/common/header.jsp" /&gt;
+	  &lt;put name="menu"   value="site.menu.bar" /&gt;
+	  &lt;put name="footer" value="/tiles/common/footer.jsp" /&gt;
+	  &lt;put name="body"   value="/tiles/body.jsp" /&gt;
+  &lt;/definition&gt;
+  &lt;!-- =======================================================  --&gt;
+  &lt;!-- Index page definition  									--&gt;
+  &lt;!-- =======================================================  --&gt;
+    &lt;!-- This definition inherits from the main definition.
+	  It overload the page title, and the body used.
+	  Use the same mechanism to define new pages sharing common 
+	  properties (here header, menu, footer, layout)
+	--&gt;
+  &lt;definition name="site.index.page" extends="site.mainLayout" &gt;
+	  &lt;put name="title"  value="Tiles Blank Site Index" /&gt;
+	  &lt;put name="body"   value="/tiles/body.jsp" /&gt;
+  &lt;/definition&gt;
+&lt;/tiles-definition&gt;
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
+
