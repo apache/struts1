@@ -194,7 +194,9 @@
   <!-- Dynamic portal main page (uses common layout) -->
 <definition name="rssChannelTile" path="/tutorial/actions/rssChannel.do" >
       <putList name="urls" >
+  <!-- 
 	    <add value="http://www.newsforge.com/newsforge.rss" />
+    -->
 	    <add value="http://xmlhack.com/rss.php" />
 	    <add value="http://lwn.net/headlines/rss" />
 	  </putList>
@@ -203,8 +205,8 @@
   <!-- Dynamic portal main page (uses common layout) -->
 <definition name="rssLocalChannelTile"  path="/tutorial/actions/rssChannel.do" >
       <putList name="urls" >
-	    <add value="/tutorial/rss/rss-example.xml" />
-	    <add value="/tutorial/rss/apacheweek-headlines.xml" />
+	    <add value="/examples/rssFeed/rss-example.xml" />
+	    <add value="/examples/rssFeed/apacheweek-headlines.xml" />
 	  </putList>
 </definition>
 
