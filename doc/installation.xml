@@ -130,6 +130,12 @@
     files included in a binary distribution of Struts, as described
     in the following section.</p>
 
+    <p>IMPORTANT NOTE: The <code>struts.jar</code> must be in your classpath when 
+    compiling Struts. The <code>build.xml</code> provided does this automatically. 
+    If you use your development machine to test Struts application locally, be 
+    sure that the <code>stuts.jar</code> is NOT on your classpath when your 
+    container is running.</p>
+
   </section>
 
   <section name="Install A Struts Binary Distribution" href="Installing">
