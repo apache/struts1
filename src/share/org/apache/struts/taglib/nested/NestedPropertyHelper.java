@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.11 2002/11/16 07:07:07 rleland Exp $
- * $Revision: 1.11 $
- * $Date: 2002/11/16 07:07:07 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyHelper.java,v 1.12 2003/02/06 00:26:11 arron Exp $
+ * $Revision: 1.12 $
+ * $Date: 2003/02/06 00:26:11 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -65,6 +65,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.tagext.Tag;
 
 import org.apache.struts.taglib.html.FormTag;
+import org.apache.struts.taglib.html.Constants;
 
 /** A simple helper class that does everything that needs to be done to get the
  * nested tag extension to work. Knowing what tags can define the lineage of
@@ -76,7 +77,7 @@ import org.apache.struts.taglib.html.FormTag;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.11 $ $Date: 2002/11/16 07:07:07 $
+ * @version $Revision: 1.12 $ $Date: 2003/02/06 00:26:11 $
  */ 
 public class NestedPropertyHelper {
   
@@ -209,14 +210,18 @@ public class NestedPropertyHelper {
   public static String getNestedNameProperty(NestedTagSupport tag) {
     
     Tag namedTag = (Tag)tag;
-
+    String defaultName = null;
     // see if we're already in the right location
     if (namedTag instanceof NestedNameSupport) {
 	    String name = ((NestedNameSupport)namedTag).getName();
-	    // return if we already have a name
-	    if (name != null) {
-	      return name;
-	    }
+        // return if we already have a name and not just default
+        if (name != null) {
+            if (name.equals(Constants.BEAN_KEY)) {
+                defaultName = name;
+            } else {
+                return name;
+            }
+        }
     }
 
     /* loop all parent tags until we get one which
@@ -228,7 +233,10 @@ public class NestedPropertyHelper {
               !(namedTag instanceof NestedParentSupport) );
     
     if (namedTag == null) {
-      // need to spit some chips
+        if (defaultName != null) {
+            return defaultName;
+        }
+        // now there's an issue
     }
     
     String nameTemp = null;
@@ -251,7 +259,7 @@ public class NestedPropertyHelper {
     
     /* get and set the relative property */
     String property = getNestedProperty(tag);
-    ((NestedPropertySupport)tag).setProperty(property);
+    tag.setProperty(property);
    
     /* if the tag implements NestedNameSupport, set the name for the tag also */
     if (tag instanceof NestedNameSupport && property != null) {
