@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.14 2003/08/13 05:29:27 rleland Exp $
- * $Revision: 1.14 $
- * $Date: 2003/08/13 05:29:27 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.15 2003/08/31 23:53:36 husted Exp $
+ * $Revision: 1.15 $
+ * $Date: 2003/08/31 23:53:36 $
  *
  *  ====================================================================
  *
@@ -252,30 +252,19 @@ public abstract class LookupDispatchAction extends DispatchAction {
     protected abstract Map getKeyMethodMap();
 
     /**
-     * Returns the method name, given a parameter's value.
+     * Lookup the method name corresponding to the client request's locale.
      *
-     * @param mapping The ActionMapping used to select this instance
-     * @param form The optional ActionForm bean for this request (if any)
      * @param request The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     * @param parameter The <code>ActionMapping</code> parameter's name
+     * @param keyName The parameter name to use as the properties key
+     * @param mapping The ActionMapping used to select this instance
      *
-     * @return The method's name.
-     * @since Struts 1.2.1
-     */
-    protected String getMethodName(ActionMapping mapping,
-                                   ActionForm form,
-                                   HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   String parameter)
-            throws Exception {
-
-        // Identify the method name to be dispatched to.
-        // dispatchMethod() will call unspecified() if name is null
-        String keyName = request.getParameter(parameter);
-        if (StringUtils.isEmpty(keyName)) {
-            return null;
-        }
+     * @return The method's localized name.
+     * @throws ServletException if keyName cannot be resolved
+     * @since Struts 1.2.0
+     */ protected String getLookupMapName(HttpServletRequest request,
+                                          String keyName,
+                                          ActionMapping mapping)
+            throws ServletException {
 
         // Based on this request's Locale get the lookupMap
         Map lookupMap = null;
@@ -308,5 +297,37 @@ public abstract class LookupDispatchAction extends DispatchAction {
 
         return methodName;
     }
+
+    /**
+     * Returns the method name, given a parameter's value.
+     *
+     * @param mapping The ActionMapping used to select this instance
+     * @param form The optional ActionForm bean for this request (if any)
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @param parameter The <code>ActionMapping</code> parameter's name
+     *
+     * @return The method's name.
+     * @since Struts 1.2.0
+     */
+    protected String getMethodName(ActionMapping mapping,
+                                   ActionForm form,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   String parameter)
+            throws Exception {
+
+        // Identify the method name to be dispatched to.
+        // dispatchMethod() will call unspecified() if name is null
+        String keyName = request.getParameter(parameter);
+        if (StringUtils.isEmpty(keyName)) {
+            return null;
+        }
+
+        String methodName = getLookupMapName(request, keyName, mapping);
+
+        return methodName;
+    }
+
 
 }
