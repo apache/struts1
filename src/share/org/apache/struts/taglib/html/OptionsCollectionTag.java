@@ -1,9 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsCollectionTag.java,v 1.8 2003/02/01 05:12:24 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2003/02/01 05:12:24 $
+ * 
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 2002 The Apache Software Foundation.  All rights
+ * Copyright (c) 2002-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,10 +67,12 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.util.IteratorAdapter;
+import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -85,7 +91,7 @@ import org.apache.struts.util.ResponseUtils;
  * <b>NOTE</b> - This tag requires a Java2 (JDK 1.2 or later) platform.
  *
  * @author Martin Cooper
- * @version $Revision: 1.7 $ $Date: 2002/10/04 05:34:19 $
+ * @version $Revision: 1.8 $ $Date: 2003/02/01 05:12:24 $
  * @since Struts 1.1
  */
 
@@ -399,7 +405,7 @@ public class OptionsCollectionTag extends TagSupport {
         else if (collection instanceof Map)
             return (((Map)collection).entrySet().iterator());
         else if (collection instanceof Enumeration)
-            return(new IteratorAdapter((Enumeration)collection));
+            return IteratorUtils.asIterator((Enumeration)collection);
         else
             throw new JspException(
                     messages.getMessage("optionsCollectionTag.iterator",

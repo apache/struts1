@@ -1,13 +1,13 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.18 2002/12/18 07:06:17 rleland Exp $
- * $Revision: 1.18 $
- * $Date: 2002/12/18 07:06:17 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/IterateTag.java,v 1.19 2003/02/01 05:12:25 dgraham Exp $
+ * $Revision: 1.19 $
+ * $Date: 2003/02/01 05:12:25 $
  *
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -70,9 +70,11 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.struts.util.IteratorAdapter;
+
+import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -86,7 +88,7 @@ import org.apache.struts.util.ResponseUtils;
  * or a Map (which includes Hashtables) whose elements will be iterated over.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.18 $ $Date: 2002/12/18 07:06:17 $
+ * @version $Revision: 1.19 $ $Date: 2003/02/01 05:12:25 $
  */
 
 public class IterateTag extends BodyTagSupport {
@@ -329,7 +331,7 @@ public class IterateTag extends BodyTagSupport {
 	else if (collection instanceof Map)
 	    iterator = ((Map) collection).entrySet().iterator();
         else if (collection instanceof Enumeration)
-	    iterator = new IteratorAdapter((Enumeration)collection);
+	    iterator = IteratorUtils.asIterator((Enumeration)collection);
    	else {
 	    JspException e = new JspException
 	        (messages.getMessage("iterate.iterator"));

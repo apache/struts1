@@ -1,9 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionsTag.java,v 1.21 2003/02/01 05:12:25 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/02/01 05:12:25 $
+ * 
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
  *
- * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ * Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  * reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,10 +67,12 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.util.IteratorAdapter;
+import org.apache.commons.collections.IteratorUtils;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.util.ResponseUtils;
@@ -128,11 +134,11 @@ public class OptionsTag extends TagSupport {
     protected String labelName = null;
 
     public String getLabelName() {
-	return labelName;
+        return labelName;
     }
 
     public void setLabelName(String labelName) {
-	this.labelName = labelName;
+	   this.labelName = labelName;
     }
 
     /**
@@ -141,11 +147,11 @@ public class OptionsTag extends TagSupport {
     protected String labelProperty = null;
 
     public String getLabelProperty() {
-	return labelProperty;
+	   return labelProperty;
     }
 
     public void setLabelProperty(String labelProperty) {
-	this.labelProperty = labelProperty;
+	   this.labelProperty = labelProperty;
     }
 
     /**
@@ -154,11 +160,11 @@ public class OptionsTag extends TagSupport {
     protected String name=null;
 
     public String getName() {
-	return name;
+	   return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+	   this.name = name;
     }
 
 
@@ -168,11 +174,11 @@ public class OptionsTag extends TagSupport {
     protected String property=null;
 
     public String getProperty() {
-	return property;
+	   return property;
     }
 
     public void setProperty(String property) {
-	this.property = property;
+	   this.property = property;
     }
 
 
@@ -441,21 +447,25 @@ public class OptionsTag extends TagSupport {
 	}
 
 	// Construct and return an appropriate iterator
-	if (collection.getClass().isArray())
-	    collection = Arrays.asList((Object[]) collection);
-	if (collection instanceof Collection)
-	    return (((Collection) collection).iterator());
-	else if (collection instanceof Iterator)
-	    return ((Iterator) collection);
-	else if (collection instanceof Map)
-	    return (((Map) collection).entrySet().iterator());
-    else if (collection instanceof Enumeration)
-	    return( new IteratorAdapter((Enumeration)collection));
-	else
-	    throw new JspException
-	        (messages.getMessage("optionsTag.iterator",
-	                             collection.toString()));
+    if (collection.getClass().isArray()) {
+        collection = Arrays.asList((Object[]) collection);
+    }
 
+    if (collection instanceof Collection) {
+        return (((Collection) collection).iterator());
+        
+    } else if (collection instanceof Iterator) {
+        return ((Iterator) collection);
+        
+    } else if (collection instanceof Map) {
+        return (((Map) collection).entrySet().iterator());
+        
+    } else if (collection instanceof Enumeration) {
+        return IteratorUtils.asIterator((Enumeration) collection);
+        
+    } else {
+        throw new JspException(messages.getMessage("optionsTag.iterator", collection.toString()));
+    }
     }
 
 }
