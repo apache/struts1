@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.31 2004/01/01 22:39:59 husted Exp $
- * $Revision: 1.31 $
- * $Date: 2004/01/01 22:39:59 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/WriteTag.java,v 1.32 2004/01/02 11:55:38 husted Exp $
+ * $Revision: 1.32 $
+ * $Date: 2004/01/02 11:55:38 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * output stream, optionally filtering characters that are sensitive in HTML.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.31 $ $Date: 2004/01/01 22:39:59 $
+ * @version $Revision: 1.32 $ $Date: 2004/01/02 11:55:38 $
  */
 public class WriteTag extends TagSupport {
 
@@ -116,7 +116,7 @@ public class WriteTag extends TagSupport {
         "org.apache.struts.taglib.bean.format.int";
 
     /**
-     * The key to search default format string for float (double, BigDecimal) in 
+     * The key to search default format string for float (double, BigDecimal) in
      * resources.
      */
     public static final String FLOAT_FORMAT_KEY =
@@ -197,7 +197,7 @@ public class WriteTag extends TagSupport {
     }
 
     /**
-     * The format string to be used as format to convert 
+     * The format string to be used as format to convert
      * value to String.
      */
     protected String formatStr = null;
@@ -290,7 +290,7 @@ public class WriteTag extends TagSupport {
     /**
      * Retrieve format string from message bundle and return null if
      * message not found or message string.
-     * 
+     *
      * @param formatKey value to use as key to search message in bundle
      * @exception JspException if a JSP exception has occurred
      */
@@ -319,9 +319,10 @@ public class WriteTag extends TagSupport {
      *
      * When a format string is retrieved from the message resources,
      * <code>applyLocalizedPattern</code> is used. For more about localized
-     * patterns, see <http://tinyurl.com/33y54>. (To obtain the correct
-     * value for some characters, you may need to view the file in a
-     * hex editor and then use the Unicode escape form in the
+     * patterns, see
+     * <http://www.dei.unipd.it/corsi/fi2ae-docs/source/jdk1.1.7/src/java/text/resources/>.
+     * (To obtain the correct value for some characters, you may need to view
+     * the file in a hex editor and then use the Unicode escape form in the
      * property resources file.)
      *
      * @param valueToFormat value to process and convert to String

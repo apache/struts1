@@ -3139,6 +3139,18 @@
                   </info>
                 </attribute>
 
+            <attribute>
+              <name>useLocalEncoding</name>
+              <required>false</required>
+              <rtexprvalue>true</rtexprvalue>
+              <info>
+              <p>If set to <code>true</code>, LocalCharacterEncoding will be
+              used, that is, the characterEncoding set to the HttpServletResponse,
+              as prefered character encoding rather than UTF-8, when
+              URLEncoding is done on parameters of the URL.</p>
+              </info>
+            </attribute>
+
                 <attribute>
                   <name>usemap</name>
                   <required>false</required>
@@ -3825,6 +3837,18 @@
                   in the receiving Action.</p>
                   </info>
                 </attribute>
+
+            <attribute>
+              <name>useLocalEncoding</name>
+              <required>false</required>
+              <rtexprvalue>true</rtexprvalue>
+              <info>
+              <p>If set to <code>true</code>, LocalCharacterEncoding will be
+              used, that is, the characterEncoding set to the HttpServletResponse,
+              as prefered character encoding rather than UTF-8, when
+              URLEncoding is done on parameters of the URL.</p>
+              </info>
+            </attribute>
 
         </tag>
 
@@ -5733,6 +5757,18 @@
                   in the receiving Action.</p>
                   </info>
                 </attribute>
+
+            <attribute>
+              <name>useLocalEncoding</name>
+              <required>false</required>
+              <rtexprvalue>true</rtexprvalue>
+              <info>
+              <p>If set to <code>true</code>, LocalCharacterEncoding will be
+              used, that is, the characterEncoding set to the HttpServletResponse,
+              as prefered character encoding rather than UTF-8, when
+              URLEncoding is done on parameters of the URL.</p>
+              </info>
+            </attribute>
 
         </tag>
 

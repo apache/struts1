@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.9 2003/07/31 00:19:04 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2003/07/31 00:19:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/NestedPropertyTag.java,v 1.10 2004/01/02 11:55:38 husted Exp $
+ * $Revision: 1.10 $
+ * $Date: 2004/01/02 11:55:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,7 +77,7 @@ import org.apache.struts.taglib.TagUtils;
  *
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.9 $ $Date: 2003/07/31 00:19:04 $
+ * @version $Revision: 1.10 $ $Date: 2004/01/02 11:55:38 $
  */
 public class NestedPropertyTag extends BodyTagSupport implements NestedNameSupport {
 
@@ -147,7 +147,7 @@ public class NestedPropertyTag extends BodyTagSupport implements NestedNameSuppo
   public int doEndTag() throws JspException {
     /* set the reference back */
     HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-    if (originalNest == null) {
+    if (originalNest == null && originalName == null) {
       NestedPropertyHelper.deleteReference(request);
     } else {
       NestedPropertyHelper.setName(request, originalName);
