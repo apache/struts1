@@ -1,9 +1,13 @@
 /*
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/actions/LookupDispatchAction.java,v 1.11 2003/02/01 21:56:33 dgraham Exp $
+ * $Revision: 1.11 $
+ * $Date: 2003/02/01 21:56:33 $
+ * 
  *  ====================================================================
  *
  *  The Apache Software License, Version 1.1
  *
- *  Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
+ *  Copyright (c) 1999-2003 The Apache Software Foundation.  All rights
  *  reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -69,6 +73,8 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.config.MessageResourcesConfig;
+import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 
 /**
@@ -139,10 +145,10 @@ import org.apache.struts.util.MessageResources;
  *  getKeys, only the first one found will be returned. If no corresponding key
  *  is found then an exception will be thrown.
  *
- *@author     Erik Hatcher
- *@author     Scott Carlson
+ * @author Erik Hatcher
+ * @author Scott Carlson
+ * @author David Graham
  */
-
 public abstract class LookupDispatchAction extends DispatchAction {
 
     /**
@@ -151,7 +157,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
     protected Map localeMap = new HashMap();
 
     /**
-     * Resource key to method name lookup
+     * Resource key to method name lookup.
      */
     protected Map keyMethodMap = null;
 
@@ -164,15 +170,12 @@ public abstract class LookupDispatchAction extends DispatchAction {
      *  control should be forwarded, or <code>null</code> if the response has
      *  already been completed.
      *
-     *@param  mapping               The ActionMapping used to select this
-     *      instance
-     *@param  request               The HTTP request we are processing
-     *@param  response              The HTTP response we are creating
-     *@param  form                  The optional ActionForm bean for this
-     *      request (if any)
-     *@return                       Describes where and how control should be
-     *      forwarded.
-     *@exception  Exception         if an error occurs
+     * @param mapping The ActionMapping used to select this instance
+     * @param request The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @param form The optional ActionForm bean for this request (if any)
+     * @return Describes where and how control should be forwarded.
+     * @exception Exception if an error occurs
      */
     public ActionForward execute(
         ActionMapping mapping,
@@ -201,26 +204,41 @@ public abstract class LookupDispatchAction extends DispatchAction {
         Locale userLocale = getLocale(request);
         boolean newLookupMap = false;
         synchronized (localeMap) {
-            lookupMap = (Map) localeMap.get(userLocale);
+            lookupMap = (Map) this.localeMap.get(userLocale);
             if (lookupMap == null) {
                 newLookupMap = true;
                 lookupMap = new HashMap();
-                localeMap.put(userLocale, lookupMap);
+                this.localeMap.put(userLocale, lookupMap);
             }
         }
+        
         synchronized (lookupMap) {
             if (newLookupMap) {
-                // This is the first time this Locale is used
-                // Build the reverse lookup Map.
-                MessageResources resources = (MessageResources)
-                    request.getAttribute(Globals.MESSAGES_KEY);
-                keyMethodMap = getKeyMethodMap();
-                Iterator iter = keyMethodMap.keySet().iterator();
-                while (iter.hasNext()) {
-                    String key = (String) iter.next();
-                    String text = resources.getMessage(userLocale, key);
-                    if ((text != null) && !lookupMap.containsKey(text)) {
-                        lookupMap.put(text, key);
+                /*
+                 * This is the first time this Locale is used so build the reverse lookup Map.
+                 * Search for message keys in all configured MessageResources for
+                 * the current module.
+                 */
+                this.keyMethodMap = this.getKeyMethodMap();
+                
+                ModuleConfig moduleConfig = (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+                MessageResourcesConfig[] mrc = moduleConfig.findMessageResourcesConfigs();
+                
+                // Look through all module's MessageResources
+                for (int i = 0; i < mrc.length; i++) {
+                    MessageResources resources =
+                        this.getResources(request, mrc[i].getKey());
+
+                    // Look for key in MessageResources
+                    Iterator iter = this.keyMethodMap.keySet().iterator();
+                    while (iter.hasNext()) {
+                        String key = (String) iter.next();
+                        String text = resources.getMessage(userLocale, key);
+                        
+                        // Found key and haven't added to Map yet, so add the text
+                        if ((text != null) && !lookupMap.containsKey(text)) {
+                            lookupMap.put(text, key);
+                        }
                     }
                 }
             }
@@ -235,9 +253,9 @@ public abstract class LookupDispatchAction extends DispatchAction {
     }
 
     /**
-     *  Provides the mapping from resource key to method name
+     * Provides the mapping from resource key to method name.
      *
-     *@return          Resource key / method name map
+     * @return Resource key / method name map.
      */
     protected abstract Map getKeyMethodMap();
 
