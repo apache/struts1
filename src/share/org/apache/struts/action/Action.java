@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.41 2002/06/25 00:42:44 husted Exp $
- * $Revision: 1.41 $
- * $Date: 2002/06/25 00:42:44 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.42 2002/07/01 04:10:38 martinc Exp $
+ * $Revision: 1.42 $
+ * $Date: 2002/07/01 04:10:38 $
  *
  * ====================================================================
  *
@@ -109,7 +109,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.41 $ $Date: 2002/06/25 00:42:44 $
+ * @version $Revision: 1.42 $ $Date: 2002/07/01 04:10:38 $
  */
 
 public class Action {
@@ -645,7 +645,7 @@ public class Action {
 
     /**
      * Save the specified error messages keys into the appropriate request
-     * attribute for use by the &lt;struts:errors&gt; tag, if any messages
+     * attribute for use by the &lt;html:errors&gt; tag, if any messages
      * are required.  Otherwise, ensure that the request attribute is not
      * created.
      *
@@ -669,7 +669,7 @@ public class Action {
 
     /**
      * Save the specified messages keys into the appropriate request
-     * attribute for use by the &lt;struts:messages&gt; tag (if
+     * attribute for use by the &lt;html:messages&gt; tag (if
      * messages="true" is set), if any messages are required.  Otherwise,
      * ensure that the request attribute is not created.
      *
