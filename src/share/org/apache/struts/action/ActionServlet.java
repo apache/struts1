@@ -701,14 +701,20 @@ public class ActionServlet extends HttpServlet {
         try {
             URL url = getServletContext().getResource(path);
 
-	    if (url == null) {
-		String msg = internal.getMessage("configMissing", path);
-		log.error(msg);
-		throw new UnavailableException(msg);
-	    }
+            // If the config isn't in the servlet context, try the class loader
+            // which allows the config files to be stored in a jar
+            if (url == null) {
+                url = getClass().getResource(path);
+            }
+            
+            if (url == null) {
+                String msg = internal.getMessage("configMissing", path);
+                log.error(msg);
+                throw new UnavailableException(msg);
+            }
 	    
             InputSource is = new InputSource(url.toExternalForm());
-            input = getServletContext().getResourceAsStream(path);
+            input = url.openStream();
             is.setByteStream(input);
             digester.parse(is);
 

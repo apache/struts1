@@ -499,6 +499,12 @@ public class I18nFactorySet extends FactorySet {
                 } catch (Exception e) {
                 }
             }
+            
+            // If the config isn't in the servlet context, try the class loader
+            // which allows the config files to be stored in a jar
+            if (input == null) {
+                input = getClass().getResourceAsStream(filename);
+            }
 
             // If still nothing found, this mean no config file is associated
             if (input == null) {

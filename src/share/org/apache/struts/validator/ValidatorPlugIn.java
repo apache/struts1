@@ -212,6 +212,12 @@ public class ValidatorPlugIn implements PlugIn {
                 }
 
                 InputStream input = servlet.getServletContext().getResourceAsStream(validatorRules);
+                
+                // If the config isn't in the servlet context, try the class loader
+                // which allows the config files to be stored in a jar
+                if (input == null) {
+                    input = getClass().getResourceAsStream(validatorRules);
+                }
 
                 if (input != null) {
                     BufferedInputStream bis = new BufferedInputStream(input);
