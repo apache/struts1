@@ -24,12 +24,20 @@ main menu.
     <td align="left">
       <html:checkbox property="booleanProperty"/>
     </td>
+    <th align="right">nested.booleanProperty</th>
+    <td align="left">
+      <html:checkbox property="nested.booleanProperty"/>
+    </td>
   </tr>
 
   <tr>
     <th align="right">doubleProperty</th>
     <td align="left">
       <html:text property="doubleProperty" size="32"/>
+    </td>
+    <th align="right">nested.doubleProperty</th>
+    <td align="left">
+      <html:text property="nested.doubleProperty" size="32"/>
     </td>
   </tr>
 
@@ -38,12 +46,20 @@ main menu.
     <td align="left">
       <html:text property="floatProperty" size="32"/>
     </td>
+    <th align="right">nested.floatProperty</th>
+    <td align="left">
+      <html:text property="nested.floatProperty" size="32"/>
+    </td>
   </tr>
 
   <tr>
     <th align="right">intProperty</th>
     <td align="left">
       <html:text property="intProperty" size="32"/>
+    </td>
+    <th align="right">nested.intProperty</th>
+    <td align="left">
+      <html:text property="nested.intProperty" size="32"/>
     </td>
   </tr>
 
@@ -52,6 +68,10 @@ main menu.
     <td align="left">
       <html:text property="longProperty" size="32"/>
     </td>
+    <th align="right">nested.longProperty</th>
+    <td align="left">
+      <html:text property="nested.longProperty" size="32"/>
+    </td>
   </tr>
 
   <tr>
@@ -59,9 +79,60 @@ main menu.
     <td align="left">
       <html:text property="stringProperty" size="32"/>
     </td>
+    <th align="right">nested.stringProperty</th>
+    <td align="left">
+      <html:text property="nested.stringProperty" size="32"/>
+    </td>
+  </tr>
+
+<%--
+  <tr>
+    <th align="right">intArray[0]</th>
+    <td align="left">
+      <html:text property="intArray[0]" size="32"/>
+    </td>
+    <th align="right">nested.intArray[0]</th>
+    <td align="left">
+      <html:text property="nested.intArray[0]" size="32"/>
+    </td>
   </tr>
 
   <tr>
+    <th align="right">intArray[1]</th>
+    <td align="left">
+      <html:text property="intArray[1]" size="32"/>
+    </td>
+    <th align="right">nested.intArray[1]</th>
+    <td align="left">
+      <html:text property="nested.intArray[1]" size="32"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">stringArray[0]</th>
+    <td align="left">
+      <html:text property="stringArray[0]" size="32"/>
+    </td>
+    <th align="right">nested.stringArray[0]</th>
+    <td align="left">
+      <html:text property="nested.stringArray[0]" size="32"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">stringArray[1]</th>
+    <td align="left">
+      <html:text property="stringArray[1]" size="32"/>
+    </td>
+    <th align="right">nested.stringArray[1]</th>
+    <td align="left">
+      <html:text property="nested.stringArray[1]" size="32"/>
+    </td>
+  </tr>
+--%>
+
+  <tr>
+    <td>&nbsp;</td>
     <td align="right">
       <html:submit>Save</html:submit>
     </td>
@@ -69,6 +140,7 @@ main menu.
       <html:reset>Reset</html:reset>
       <html:cancel>Cancel</html:cancel>
     </td>
+    <td>&nbsp;</td>
   </tr>
 
 </table>
