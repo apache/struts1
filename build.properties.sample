@@ -6,7 +6,7 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.15 2002/10/14 18:09:09 rleland Exp $
+# $Id: build.properties.sample,v 1.16 2002/10/18 15:20:53 jholmes Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below assume that the build.xml file is in the
@@ -79,6 +79,9 @@ jakarta-oro.jar=${apache.home}/jakarta-oro-2.0.6/jakarta-oro-2.0.6.jar
 # The JAR file containing the JDBC 2.0 Optional Package extensions API
 # (javax.sql).  This file will automatically be added to your class path
 # when you compile Struts
+#
+# This file can be obtained from:
+# http://java.sun.com/products/jdbc/download.html
 jdbc20ext.jar=../../../Java/Programs/sun/jdbc2_0-stdext.jar
 
 # The JAR file containing the Servlet API classes to compile against (either
