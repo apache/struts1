@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/ServiceManager.java,v 1.3 2001/07/23 12:35:07 oalexeev Exp $
- * $Revision: 1.3 $
- * $Date: 2001/07/23 12:35:07 $
+ * $Header: /home/cvs/jakarta-struts/contrib/service-manager/src/org/apache/struts/service/Attic/ServiceManager.java,v 1.4 2001/07/23 12:51:06 oalexeev Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/07/23 12:51:06 $
  *
  * ====================================================================
  *
@@ -79,13 +79,13 @@ import org.apache.struts.util.MessageResources;
 
 /** 
  * @author Oleg V Alexeev
- * @version $Revision: 1.3 $ $Date: 2001/07/23 12:35:07 $
+ * @version $Revision: 1.4 $ $Date: 2001/07/23 12:51:06 $
  */
 public class ServiceManager implements Serializable {
 
         protected static final String serviceRegistrationClass = "org.apache.struts.service.ServiceRegistration";
 
-        protected static final String processRegistrationClass = "org.apache.struts.service.ProcessRegistration";
+        protected static final String processRegistrationClass = "org.apache.struts.service.ProcessRegistration";  
 
         protected static final String processSubscriptionClass = "org.apache.struts.service.ProcessSubscription";
 
