@@ -1317,6 +1317,158 @@ four argument values to use as replacement text.</p>
 <a href="#Top">Top</a>
 
 
+<a name="multibox"></a>
+<h1><i>multibox</i> - Render A Checkbox Input Field</h1>
+
+<p>Renders an HTML <code>&lt;input&gt;</code> element of type
+<code>checkbox</code>, whose "checked" status is initialized based on
+whether the specified value matches one of the elements of the underlying
+property's array of current values.  This element is useful when you have
+large numbers of checkboxes, and prefer to combine the values into a single
+array-valued property instead of multiple boolean properties.  This
+tag is only valid when nested inside a <code>form</code> tag body.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">accessKey</td>
+    <td>
+      The keyboard character used to move focus immediately to this element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onBlur</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onChange</td>
+    <td>
+      JavaScript event handler executed when this element loses input focus
+      and its value has changed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onDblClick</td>
+    <td>
+      JavaScript event handler executed when this element receives a
+      mouse double click.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onFocus</td>
+    <td>
+      JavaScript event handler executed when this element receives input focus.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyDown</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyPress</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is depressed and released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onKeyUp</td>
+    <td>
+      JavaScript event handler executed when this element has focus and
+      a key is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseDown</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is depressed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseMove</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and the pointer is moved.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOut</td>
+    <td>
+      JavaScript event handler executed when this element was under the
+      mouse pointer but the pointer was moved outside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseOver</td>
+    <td>
+      JavaScript event handler executed when this element was not under
+      the mouse pointer but the pointer is moved inside the element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">onMouseUp</td>
+    <td>
+      JavaScript event handler executed when this element is under the mouse
+      pointer and a mouse button is released.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Name of this input field, and the name of the corresponding bean
+      property whose value is used to initialize our "checked" status.
+      The underlying bean property must be of an array type whose current
+      values can be converted to Strings and compared the the value of the
+      <code>value</code> attribute.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">style</td>
+    <td>
+      CSS styles to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">styleClass</td>
+    <td>
+      CSS stylesheet class to be applied to this HTML element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">tabIndex</td>
+    <td>
+      The tab order (ascending positive integers) for this element.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">value</td>
+    <td>
+      The value which, if present in one of the array elements of our
+      attribute's current value, will cause this checkbox to be
+      initialized to "checked".
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="option"></a>
 <h1><i>option</i> - Render A Select Option</h1>
 
@@ -1391,6 +1543,102 @@ The following combinations are allowed:</p>
     <code>labelProperty</code> attribute is the name of some property of
     that bean which will return the collection.
 </ul>
+
+<p>See <a href="#options1">options1</a> for a version of this tag that is
+compatible with JDK 1.1.</p>.
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">labelName</td>
+    <td>
+      Name of the JSP bean (in some scope) containing the collection
+      of labels to be displayed to the user for these options.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">labelProperty</td>
+    <td>
+      Property of the form bean, or the bean specified by the
+      <code>labelName</code> attribute, that will return the
+      collection of labels to be displayed to the user for these
+      options.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the JSP bean (in some scope) containing the collection
+      of values to be returned to the server for these options.  If not
+      specified, the form bean associated with our form is assumed.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">property</td>
+    <td>
+      Property of the form bean, or the bean specified by the
+      <code>name</code> attribute, that will return the collection
+      of values to returned to the server for these options.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="options1"></a>
+<h1><i>options1</i> - Render a Collection of Select Options</h1>
+
+<p>Renders a set of HTML <code>&lt;option&gt;</code> elements, representing
+possible choices for a <code>&lt;select&gt;</code> element.  This tag can be
+used multiple times within a particular <code>&lt;struts:select&gt;</code>
+element, either in conjunction with or instead of one or more
+<code>&lt;struts:option&gt;</code> tags.<p>
+
+<p>The collection of values actually selected depends on the presence or
+absence of the <code>name</code> and <code>property</code> attributes.  The
+following combinations are allowed:<p>
+<ul>
+<li><i>Only <code>name</code> is specified</i> - The value of this attribute
+    is the name of a JSP bean in some scope that is the
+    collection.</li>
+<li><i>Only <code>property</code> is specified</i> - The value of this
+    attribute is the name of a property of the ActionForm bean associated
+    with our form, which will return the collection.</li>
+<li><i>Both <code>name</code> and <code>property</code> are specified</i> -
+    The value of the <code>name</code> attribute identifies a JSP bean
+    in some scope.  The value of the <code>property</code> attribute is the
+    name of some property of that bean which will return the collection.
+</ul>
+
+<p>The collection of labels displayed to the user can be the same as the
+option values themselves, or can be different, depending on the presence or
+absence of the <code>labelName</code> and <code>labelProperty</code>
+attributes.  If this feature is used, the collection of labels must contain
+the same number of elements as the corresponding collection of values.
+The following combinations are allowed:</p>
+<ul>
+<li><i>Neither <code>labelName</code> nor <code>labelProperty</code> is
+    specified</i> - The labels will be the same as the option values
+    themselves.
+<li><i>Only <code>labelName</code> is specified</i> - The value of this
+    attribute is the name of a JSP bean in some scope that is the
+    collection.</li>
+<li><i>Only <code>labelProperty</code> is specified</i> - The value of this
+    attribute is the name of a property of the ActionForm bean associated
+    with our form, which will return the collection.</li>
+<li><i>Both <code>labelName</code> and <code>labelProperty</code> are
+    specified</i> - The value of the <code>labelName</code> attribute
+    identifies a JSP bean in some scope.  The value of the
+    <code>labelProperty</code> attribute is the name of some property of
+    that bean which will return the collection.
+</ul>
+
+<p>See <a href="#options1">options</a> for a version of this tag that is
+compatible with Java2.</p>.
 
 <table width="100%" border="1">
   <tr>
