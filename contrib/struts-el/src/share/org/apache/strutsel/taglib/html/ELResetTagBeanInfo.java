@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELResetTagBeanInfo.java,v 1.1 2002/10/15 03:12:41 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/15 03:12:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELResetTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -92,65 +92,64 @@ public class ELResetTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELResetTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELResetTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELResetTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELResetTag.class,
                                                null, "setDisabledExpr");
             result[4] = new PropertyDescriptor("onblur", ELResetTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[5] = new PropertyDescriptor("onchange", ELResetTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[6] = new PropertyDescriptor("onclick", ELResetTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[7] = new PropertyDescriptor("ondblclick",
                                                ELResetTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[8] = new PropertyDescriptor("onfocus", ELResetTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[9] = new PropertyDescriptor("onkeydown",
                                                 ELResetTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[10] = new PropertyDescriptor("onkeypress",
                                                 ELResetTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[11] = new PropertyDescriptor("onkeyup", ELResetTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[12] = new PropertyDescriptor("onmousedown",
                                                ELResetTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[13] = new PropertyDescriptor("onmousemove",
                                                ELResetTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[14] = new PropertyDescriptor("onmouseout",
                                                ELResetTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[15] = new PropertyDescriptor("onmouseover",
                                                ELResetTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[16] = new PropertyDescriptor("onmouseup",
                                                 ELResetTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[17] = new PropertyDescriptor("property", ELResetTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[18] = new PropertyDescriptor("style", ELResetTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[19] = new PropertyDescriptor("styleClass",
                                                ELResetTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[20] = new PropertyDescriptor("styleId", ELResetTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[21] = new PropertyDescriptor("tabindex", ELResetTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[22] = new PropertyDescriptor("title", ELResetTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[23] = new PropertyDescriptor("titleKey", ELResetTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[24] = new PropertyDescriptor("value", ELResetTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

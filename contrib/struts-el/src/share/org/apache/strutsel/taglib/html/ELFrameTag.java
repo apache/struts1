@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.5 2003/01/06 21:29:27 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/01/06 21:29:27 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTag.java,v 1.6 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,82 +88,403 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELFrameTag extends FrameTag {
 
     /**
-     * String value of the "noresize" attribute.
+     * Instance variable mapped to "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   noresizeExpr;
+    private String anchorExpr;
     /**
-     * String value of the "transaction" attribute.
+     * Instance variable mapped to "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   transactionExpr;
+    private String forwardExpr;
     /**
-     * String value of the "marginheight" attribute.
+     * Instance variable mapped to "frameborder" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   marginheightExpr;
+    private String frameborderExpr;
     /**
-     * String value of the "marginwidth" attribute.
+     * Instance variable mapped to "frameName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   marginwidthExpr;
+    private String frameNameExpr;
+    /**
+     * Instance variable mapped to "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String hrefExpr;
+    /**
+     * Instance variable mapped to "longdesc" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String longdescExpr;
+    /**
+     * Instance variable mapped to "marginheight" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String marginheightExpr;
+    /**
+     * Instance variable mapped to "marginwidth" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String marginwidthExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "noresize" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String noresizeExpr;
+    /**
+     * Instance variable mapped to "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String pageExpr;
+    /**
+     * Instance variable mapped to "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramIdExpr;
+    /**
+     * Instance variable mapped to "paramName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramNameExpr;
+    /**
+     * Instance variable mapped to "paramProperty" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramPropertyExpr;
+    /**
+     * Instance variable mapped to "paramScope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramScopeExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+    /**
+     * Instance variable mapped to "scrolling" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scrollingExpr;
+    /**
+     * Instance variable mapped to "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleExpr;
+    /**
+     * Instance variable mapped to "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleClassExpr;
+    /**
+     * Instance variable mapped to "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleIdExpr;
+    /**
+     * Instance variable mapped to "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String titleExpr;
+    /**
+     * Instance variable mapped to "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String titleKeyExpr;
+    /**
+     * Instance variable mapped to "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String transactionExpr;
 
     /**
-     * Returns the string value of the "noresize" attribute.
+     * Getter method for "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getNoresizeExpr() { return (noresizeExpr); }
+    public String getAnchorExpr() { return (anchorExpr); }
     /**
-     * Returns the string value of the "transaction" attribute.
+     * Getter method for "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getTransactionExpr() { return (transactionExpr); }
+    public String getForwardExpr() { return (forwardExpr); }
     /**
-     * Returns the string value of the "marginheight" attribute.
+     * Getter method for "frameborder" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getMarginheightExpr() { return (marginheightExpr); }
+    public String getFrameborderExpr() { return (frameborderExpr); }
     /**
-     * Returns the string value of the "marginwidth" attribute.
+     * Getter method for "frameName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getMarginwidthExpr() { return (marginwidthExpr); }
+    public String getFrameNameExpr() { return (frameNameExpr); }
+    /**
+     * Getter method for "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHrefExpr() { return (hrefExpr); }
+    /**
+     * Getter method for "longdesc" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLongdescExpr() { return (longdescExpr); }
+    /**
+     * Getter method for "marginheight" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getMarginheightExpr() { return (marginheightExpr); }
+    /**
+     * Getter method for "marginwidth" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getMarginwidthExpr() { return (marginwidthExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "noresize" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNoresizeExpr() { return (noresizeExpr); }
+    /**
+     * Getter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPageExpr() { return (pageExpr); }
+    /**
+     * Getter method for "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamIdExpr() { return (paramIdExpr); }
+    /**
+     * Getter method for "paramName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamNameExpr() { return (paramNameExpr); }
+    /**
+     * Getter method for "paramProperty" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamPropertyExpr() { return (paramPropertyExpr); }
+    /**
+     * Getter method for "paramScope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamScopeExpr() { return (paramScopeExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+    /**
+     * Getter method for "scrolling" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScrollingExpr() { return (scrollingExpr); }
+    /**
+     * Getter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleExpr() { return (styleExpr); }
+    /**
+     * Getter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleClassExpr() { return (styleClassExpr); }
+    /**
+     * Getter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleIdExpr() { return (styleIdExpr); }
+    /**
+     * Getter method for "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTitleExpr() { return (titleExpr); }
+    /**
+     * Getter method for "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTitleKeyExpr() { return (titleKeyExpr); }
+    /**
+     * Getter method for "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTransactionExpr() { return (transactionExpr); }
 
     /**
-     * Sets the string value of the "noresize" attribute.  This attribute is
-     * mapped to this method by the <code>ELFrameTagBeanInfo</code> class.
+     * Setter method for "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setNoresizeExpr(String noresizeExpr)
-    { this.noresizeExpr  = noresizeExpr; }
-
+    public void setAnchorExpr(String anchorExpr) { this.anchorExpr = anchorExpr; }
     /**
-     * Sets the string value of the "transaction" attribute.  This attribute is
-     * mapped to this method by the <code>ELFrameTagBeanInfo</code> class.
+     * Setter method for "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setTransactionExpr(String transactionExpr)
-    { this.transactionExpr  = transactionExpr; }
-
+    public void setForwardExpr(String forwardExpr) { this.forwardExpr = forwardExpr; }
     /**
-     * Sets the string value of the "marginheight" attribute.  This attribute is
-     * mapped to this method by the <code>ELFrameTagBeanInfo</code> class.
+     * Setter method for "frameborder" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setMarginheightExpr(String marginheightExpr)
-    { this.marginheightExpr  = marginheightExpr; }
-
+    public void setFrameborderExpr(String frameborderExpr) { this.frameborderExpr = frameborderExpr; }
     /**
-     * Sets the string value of the "marginwidth" attribute.  This attribute is
-     * mapped to this method by the <code>ELFrameTagBeanInfo</code> class.
+     * Setter method for "frameName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setMarginwidthExpr(String marginwidthExpr)
-    { this.marginwidthExpr  = marginwidthExpr; }
-    
+    public void setFrameNameExpr(String frameNameExpr) { this.frameNameExpr = frameNameExpr; }
+    /**
+     * Setter method for "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHrefExpr(String hrefExpr) { this.hrefExpr = hrefExpr; }
+    /**
+     * Setter method for "longdesc" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLongdescExpr(String longdescExpr) { this.longdescExpr = longdescExpr; }
+    /**
+     * Setter method for "marginheight" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setMarginheightExpr(String marginheightExpr) { this.marginheightExpr = marginheightExpr; }
+    /**
+     * Setter method for "marginwidth" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setMarginwidthExpr(String marginwidthExpr) { this.marginwidthExpr = marginwidthExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "noresize" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNoresizeExpr(String noresizeExpr) { this.noresizeExpr = noresizeExpr; }
+    /**
+     * Setter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPageExpr(String pageExpr) { this.pageExpr = pageExpr; }
+    /**
+     * Setter method for "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamIdExpr(String paramIdExpr) { this.paramIdExpr = paramIdExpr; }
+    /**
+     * Setter method for "paramName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamNameExpr(String paramNameExpr) { this.paramNameExpr = paramNameExpr; }
+    /**
+     * Setter method for "paramProperty" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamPropertyExpr(String paramPropertyExpr) { this.paramPropertyExpr = paramPropertyExpr; }
+    /**
+     * Setter method for "paramScope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamScopeExpr(String paramScopeExpr) { this.paramScopeExpr = paramScopeExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+    /**
+     * Setter method for "scrolling" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScrollingExpr(String scrollingExpr) { this.scrollingExpr = scrollingExpr; }
+    /**
+     * Setter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleExpr(String styleExpr) { this.styleExpr = styleExpr; }
+    /**
+     * Setter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleClassExpr(String styleClassExpr) { this.styleClassExpr = styleClassExpr; }
+    /**
+     * Setter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleIdExpr(String styleIdExpr) { this.styleIdExpr = styleIdExpr; }
+    /**
+     * Setter method for "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTitleExpr(String titleExpr) { this.titleExpr = titleExpr; }
+    /**
+     * Setter method for "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTitleKeyExpr(String titleKeyExpr) { this.titleKeyExpr = titleKeyExpr; }
+    /**
+     * Setter method for "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTransactionExpr(String transactionExpr) { this.transactionExpr = transactionExpr; }
+
     /**
      * Resets attribute values for tag reuse.
      */
     public void release()
     {
         super.release();
-        setNoresizeExpr(null);
-        setTransactionExpr(null);
+        setAnchorExpr(null);
+        setForwardExpr(null);
+        setFrameborderExpr(null);
+        setFrameNameExpr(null);
+        setHrefExpr(null);
+        setLongdescExpr(null);
         setMarginheightExpr(null);
         setMarginwidthExpr(null);
+        setNameExpr(null);
+        setNoresizeExpr(null);
+        setPageExpr(null);
+        setParamIdExpr(null);
+        setParamNameExpr(null);
+        setParamPropertyExpr(null);
+        setParamScopeExpr(null);
+        setPropertyExpr(null);
+        setScopeExpr(null);
+        setScrollingExpr(null);
+        setStyleExpr(null);
+        setStyleClassExpr(null);
+        setStyleIdExpr(null);
+        setTitleExpr(null);
+        setTitleKeyExpr(null);
+        setTransactionExpr(null);
     }
 
     /**
@@ -210,43 +531,37 @@ public class ELFrameTag extends FrameTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setAnchor((String) evalAttr("anchor", getAnchor(), String.class));
+            setAnchor((String) evalAttr("anchor", getAnchorExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setAnchor(null);
         }
 
         try {
-            setForward((String) evalAttr("forward", getForward(),
+            setForward((String) evalAttr("forward", getForwardExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setForward(null);
         }
 
         try {
-            setFrameborder((String) evalAttr("frameborder", getFrameborder(),
+            setFrameborder((String) evalAttr("frameborder", getFrameborderExpr(),
                                              String.class));
         } catch (NullAttributeException ex) {
-            setFrameborder(null);
         }
 
         try {
-            setFrameName((String) evalAttr("frameName", getFrameName(),
+            setFrameName((String) evalAttr("frameName", getFrameNameExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setFrameName(null);
         }
 
         try {
-            setHref((String) evalAttr("href", getHref(), String.class));
+            setHref((String) evalAttr("href", getHrefExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setHref(null);
         }
 
         try {
-            setLongdesc((String) evalAttr("longdesc", getLongdesc(),
+            setLongdesc((String) evalAttr("longdesc", getLongdescExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setLongdesc(null);
         }
 
         try {
@@ -255,7 +570,6 @@ public class ELFrameTag extends FrameTag {
                                                 Integer.class)).
                             intValue());
         } catch (NullAttributeException ex) {
-            setMarginheight(0);
         }
 
         try {
@@ -264,13 +578,11 @@ public class ELFrameTag extends FrameTag {
                                                Integer.class)).
                            intValue());
         } catch (NullAttributeException ex) {
-            setMarginwidth(0);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
@@ -278,95 +590,81 @@ public class ELFrameTag extends FrameTag {
                                             Boolean.class)).
                         booleanValue());
         } catch (NullAttributeException ex) {
-            setNoresize(false);
         }
 
         try {
-            setPage((String) evalAttr("page", getPage(), String.class));
+            setPage((String) evalAttr("page", getPageExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setPage(null);
         }
 
         try {
-            setParamId((String) evalAttr("paramId", getParamId(),
+            setParamId((String) evalAttr("paramId", getParamIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setParamId(null);
         }
 
         try {
-            setParamName((String) evalAttr("paramName", getParamName(),
+            setParamName((String) evalAttr("paramName", getParamNameExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setParamName(null);
         }
 
         try {
             setParamProperty((String) evalAttr("paramProperty",
-                                               getParamProperty(),
+                                               getParamPropertyExpr(),
                                                String.class));
         } catch (NullAttributeException ex) {
-            setParamProperty(null);
         }
 
         try {
-            setParamScope((String) evalAttr("paramScope", getParamScope(),
+            setParamScope((String) evalAttr("paramScope", getParamScopeExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setParamScope(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
 
         try {
-            setScrolling((String) evalAttr("scrolling", getScrolling(),
+            setScrolling((String) evalAttr("scrolling", getScrollingExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setScrolling(null);
         }
 
         try {
-            setStyle((String) evalAttr("style", getStyle(), String.class));
+            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setStyle(null);
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(),
+            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setStyleId(null);
         }
 
         try {
-            setTitle((String) evalAttr("title", getTitle(), String.class));
+            setTitle((String) evalAttr("title", getTitleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setTitle(null);
         }
 
         try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKey(),
+            setTitleKey((String) evalAttr("titleKey", getTitleKeyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setTitleKey(null);
         }
 
         try {
@@ -375,7 +673,6 @@ public class ELFrameTag extends FrameTag {
                                                Boolean.class)).
                            booleanValue());
         } catch (NullAttributeException ex) {
-            setTransaction(false);
         }
     }
 }

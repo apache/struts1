@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELButtonTag.java,v 1.4 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELButtonTag.java,v 1.5 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -160,7 +160,7 @@ public class TestELButtonTag
     public void testDisabled()
                       throws ServletException, JspException {
 
-        elButtonTag.setDisabled(true);
+        elButtonTag.setDisabledExpr("true");
 
         String requiredDisabledValue = "disabled";
         response.addHeader(REQUIRED_DISABLED_VALUE_KEY, requiredDisabledValue);
@@ -199,19 +199,19 @@ public class TestELButtonTag
 
         String expr  = "${" + "testFormBean.value" + "}";
 
-        elButtonTag.setOnblur(expr);
-        elButtonTag.setOnchange(expr);
-        elButtonTag.setOnclick(expr);
-        elButtonTag.setOndblclick(expr);
-        elButtonTag.setOnfocus(expr);
-        elButtonTag.setOnkeydown(expr);
-        elButtonTag.setOnkeypress(expr);
-        elButtonTag.setOnkeyup(expr);
-        elButtonTag.setOnmousedown(expr);
-        elButtonTag.setOnmousemove(expr);
-        elButtonTag.setOnmouseout(expr);
-        elButtonTag.setOnmouseover(expr);
-        elButtonTag.setOnmouseup(expr);
+        elButtonTag.setOnblurExpr(expr);
+        elButtonTag.setOnchangeExpr(expr);
+        elButtonTag.setOnclickExpr(expr);
+        elButtonTag.setOndblclickExpr(expr);
+        elButtonTag.setOnfocusExpr(expr);
+        elButtonTag.setOnkeydownExpr(expr);
+        elButtonTag.setOnkeypressExpr(expr);
+        elButtonTag.setOnkeyupExpr(expr);
+        elButtonTag.setOnmousedownExpr(expr);
+        elButtonTag.setOnmousemoveExpr(expr);
+        elButtonTag.setOnmouseoutExpr(expr);
+        elButtonTag.setOnmouseoverExpr(expr);
+        elButtonTag.setOnmouseupExpr(expr);
 
         int startTagReturn  = elButtonTag.doStartTag();
         int afterBodyReturn = elButtonTag.doAfterBody();

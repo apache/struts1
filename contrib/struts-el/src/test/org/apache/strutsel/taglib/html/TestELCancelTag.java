@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELCancelTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELCancelTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -103,7 +103,7 @@ public class TestELCancelTag
     public void setUp() {
         elCancelTag = new ELCancelTag();
         elCancelTag.setPageContext(pageContext);
-        elCancelTag.setProperty(PROPERTY_ATTR_VALUE);
+        elCancelTag.setPropertyExpr(PROPERTY_ATTR_VALUE);
     }
 
     public void tearDown() {
@@ -142,7 +142,7 @@ public class TestELCancelTag
                                             "/html/body/input", attrMap);
             DOMHelper.verifyAttributesPresent(attrMap, 
                                               new String[] {
-                "name", "type", "value" }, 
+                "name", "type", "value", "onclick" }, 
                                               false);
 
             checkAttrValue(attrMap, testResponse, REQUIRED_NAME_VALUE_KEY, 
@@ -163,7 +163,7 @@ public class TestELCancelTag
     public void testDisabled()
                       throws ServletException, JspException {
 
-        elCancelTag.setDisabled(true);
+        elCancelTag.setDisabledExpr("true");
 
         String requiredDisabledValue = "disabled";
         response.addHeader(REQUIRED_DISABLED_VALUE_KEY, requiredDisabledValue);

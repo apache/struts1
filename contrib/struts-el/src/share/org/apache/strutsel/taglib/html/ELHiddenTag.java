@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.4 2002/10/14 03:18:38 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/14 03:18:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTag.java,v 1.5 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,50 +75,163 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELHiddenTag extends HiddenTag {
 
     /**
-     * String value of the "write" attribute.
+     * Instance variable mapped to "alt" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   writeExpr;
+    private String altExpr;
     /**
-     * String value of the "indexed" attribute.
+     * Instance variable mapped to "altKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   indexedExpr;
+    private String altKeyExpr;
+    /**
+     * Instance variable mapped to "indexed" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String indexedExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String titleExpr;
+    /**
+     * Instance variable mapped to "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String titleKeyExpr;
+    /**
+     * Instance variable mapped to "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String valueExpr;
+    /**
+     * Instance variable mapped to "write" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String writeExpr;
 
     /**
-     * Returns the string value of the "write" attribute.
+     * Getter method for "alt" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getWriteExpr() { return (writeExpr); }
+    public String getAltExpr() { return (altExpr); }
     /**
-     * Returns the string value of the "indexed" attribute.
+     * Getter method for "altKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getIndexedExpr() { return (indexedExpr); }
+    public String getAltKeyExpr() { return (altKeyExpr); }
+    /**
+     * Getter method for "indexed" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIndexedExpr() { return (indexedExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTitleExpr() { return (titleExpr); }
+    /**
+     * Getter method for "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTitleKeyExpr() { return (titleKeyExpr); }
+    /**
+     * Getter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getValueExpr() { return (valueExpr); }
+    /**
+     * Getter method for "write" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getWriteExpr() { return (writeExpr); }
 
     /**
-     * Sets the string value of the "write" attribute.  This attribute is
-     * mapped to this method by the <code>ELHiddenTagBeanInfo</code> class.
+     * Setter method for "alt" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setWriteExpr(String writeExpr)
-    { this.writeExpr  = writeExpr; }
-
+    public void setAltExpr(String altExpr) { this.altExpr = altExpr; }
     /**
-     * Sets the string value of the "indexed" attribute.  This attribute is
-     * mapped to this method by the <code>ELHiddenTagBeanInfo</code> class.
+     * Setter method for "altKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setIndexedExpr(String indexedExpr)
-    { this.indexedExpr  = indexedExpr; }
-    
+    public void setAltKeyExpr(String altKeyExpr) { this.altKeyExpr = altKeyExpr; }
+    /**
+     * Setter method for "indexed" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIndexedExpr(String indexedExpr) { this.indexedExpr = indexedExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTitleExpr(String titleExpr) { this.titleExpr = titleExpr; }
+    /**
+     * Setter method for "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTitleKeyExpr(String titleKeyExpr) { this.titleKeyExpr = titleKeyExpr; }
+    /**
+     * Setter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setValueExpr(String valueExpr) { this.valueExpr = valueExpr; }
+    /**
+     * Setter method for "write" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setWriteExpr(String writeExpr) { this.writeExpr = writeExpr; }
+
     /**
      * Resets attribute values for tag reuse.
      */
     public void release()
     {
         super.release();
-        setWriteExpr(null);
+        setAltExpr(null);
+        setAltKeyExpr(null);
         setIndexedExpr(null);
+        setNameExpr(null);
+        setPropertyExpr(null);
+        setTitleExpr(null);
+        setTitleKeyExpr(null);
+        setValueExpr(null);
+        setWriteExpr(null);
     }
 
     /**
@@ -165,15 +278,13 @@ public class ELHiddenTag extends HiddenTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setAlt((String) evalAttr("alt", getAlt(), String.class));
+            setAlt((String) evalAttr("alt", getAltExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setAlt(null);
         }
 
         try {
-            setAltKey((String) evalAttr("altKey", getAltKey(), String.class));
+            setAltKey((String) evalAttr("altKey", getAltKeyExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setAltKey(null);
         }
 
         try {
@@ -181,39 +292,33 @@ public class ELHiddenTag extends HiddenTag {
                                            Boolean.class)).
                        booleanValue());
         } catch (NullAttributeException ex) {
-            setIndexed(false);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setTitle((String) evalAttr("title", getTitle(), String.class));
+            setTitle((String) evalAttr("title", getTitleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setTitle(null);
         }
 
         try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKey(),
+            setTitleKey((String) evalAttr("titleKey", getTitleKeyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setTitleKey(null);
         }
 
         try {
-            setValue((String) evalAttr("value", getValue(), String.class));
+            setValue((String) evalAttr("value", getValueExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setValue(null);
         }
 
         try {
@@ -221,7 +326,6 @@ public class ELHiddenTag extends HiddenTag {
                                          Boolean.class)).
                      booleanValue());
         } catch (NullAttributeException ex) {
-            setWrite(false);
         }
     }
 }

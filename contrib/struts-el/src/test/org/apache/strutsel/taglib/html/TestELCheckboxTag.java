@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELCheckboxTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELCheckboxTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -105,7 +105,7 @@ public class TestELCheckboxTag
     public void setUp() {
         elCheckboxTag = new ELCheckboxTag();
         elCheckboxTag.setPageContext(pageContext);
-        elCheckboxTag.setProperty(PROPERTY_ATTR_VALUE);
+        elCheckboxTag.setPropertyExpr(PROPERTY_ATTR_VALUE);
     }
 
     public void tearDown() {
@@ -131,7 +131,7 @@ public class TestELCheckboxTag
         TestFormBean formBean = new TestFormBean();
         pageContext.setAttribute("testFormBean", formBean);
 
-        elCheckboxTag.setName("testFormBean");
+        elCheckboxTag.setNameExpr("testFormBean");
 
         int startTagReturn  = elCheckboxTag.doStartTag();
         int afterBodyReturn = elCheckboxTag.doAfterBody();

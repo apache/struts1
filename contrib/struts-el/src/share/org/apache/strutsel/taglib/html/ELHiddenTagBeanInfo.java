@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHiddenTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,23 +89,21 @@ public class ELHiddenTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("alt", ELHiddenTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[1] = new PropertyDescriptor("altKey", ELHiddenTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[2] = new PropertyDescriptor("indexed", ELHiddenTag.class,
                                                null, "setIndexedExpr");
             result[3] = new PropertyDescriptor("name", ELHiddenTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[4] = new PropertyDescriptor("property", ELHiddenTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[5] = new PropertyDescriptor("title", ELHiddenTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[6] = new PropertyDescriptor("titleKey", ELHiddenTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[7] = new PropertyDescriptor("value", ELHiddenTag.class,
-                                               null, "setValue");
-            // This attribute has a non-standard mapping.
+                                               null, "setValueExpr");
             result[8] = new PropertyDescriptor("write", ELHiddenTag.class,
                                                null, "setWriteExpr");
         }

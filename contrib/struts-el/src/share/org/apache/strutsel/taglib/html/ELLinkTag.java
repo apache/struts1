@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.6 2002/12/31 04:17:26 dmkarr Exp $
- * $Revision: 1.6 $
- * $Date: 2002/12/31 04:17:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTag.java,v 1.7 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.7 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -75,50 +75,595 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ELLinkTag extends LinkTag {
 
     /**
-     * String value of the "transaction" attribute.
+     * Instance variable mapped to "accessKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   transactionExpr;
+    private String accessKeyExpr;
     /**
-     * String value of the "indexed" attribute.
+     * Instance variable mapped to "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   indexedExpr;
+    private String actionExpr;
+    /**
+     * Instance variable mapped to "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String anchorExpr;
+    /**
+     * Instance variable mapped to "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String forwardExpr;
+    /**
+     * Instance variable mapped to "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String hrefExpr;
+    /**
+     * Instance variable mapped to "indexed" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String indexedExpr;
+    /**
+     * Instance variable mapped to "indexId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String indexIdExpr;
+    /**
+     * Instance variable mapped to "linkName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String linkNameExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "onblur" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onblurExpr;
+    /**
+     * Instance variable mapped to "onclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onclickExpr;
+    /**
+     * Instance variable mapped to "ondblclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String ondblclickExpr;
+    /**
+     * Instance variable mapped to "onfocus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onfocusExpr;
+    /**
+     * Instance variable mapped to "onkeydown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onkeydownExpr;
+    /**
+     * Instance variable mapped to "onkeypress" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onkeypressExpr;
+    /**
+     * Instance variable mapped to "onkeyup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onkeyupExpr;
+    /**
+     * Instance variable mapped to "onmousedown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmousedownExpr;
+    /**
+     * Instance variable mapped to "onmousemove" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmousemoveExpr;
+    /**
+     * Instance variable mapped to "onmouseout" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmouseoutExpr;
+    /**
+     * Instance variable mapped to "onmouseover" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmouseoverExpr;
+    /**
+     * Instance variable mapped to "onmouseup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onmouseupExpr;
+    /**
+     * Instance variable mapped to "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String pageExpr;
+    /**
+     * Instance variable mapped to "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramIdExpr;
+    /**
+     * Instance variable mapped to "paramName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramNameExpr;
+    /**
+     * Instance variable mapped to "paramProperty" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramPropertyExpr;
+    /**
+     * Instance variable mapped to "paramScope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String paramScopeExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+    /**
+     * Instance variable mapped to "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleExpr;
+    /**
+     * Instance variable mapped to "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleClassExpr;
+    /**
+     * Instance variable mapped to "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleIdExpr;
+    /**
+     * Instance variable mapped to "tabindex" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String tabindexExpr;
+    /**
+     * Instance variable mapped to "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String targetExpr;
+    /**
+     * Instance variable mapped to "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String titleExpr;
+    /**
+     * Instance variable mapped to "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String titleKeyExpr;
+    /**
+     * Instance variable mapped to "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String transactionExpr;
 
     /**
-     * Returns the string value of the "transaction" attribute.
+     * Getter method for "accessKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getTransactionExpr() { return (transactionExpr); }
+    public String getAccesskeyExpr() { return (accessKeyExpr); }
     /**
-     * Returns the string value of the "indexed" attribute.
+     * Getter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getIndexedExpr() { return (indexedExpr); }
+    public String getActionExpr() { return (actionExpr); }
+    /**
+     * Getter method for "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getAnchorExpr() { return (anchorExpr); }
+    /**
+     * Getter method for "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getForwardExpr() { return (forwardExpr); }
+    /**
+     * Getter method for "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHrefExpr() { return (hrefExpr); }
+    /**
+     * Getter method for "indexed" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIndexedExpr() { return (indexedExpr); }
+    /**
+     * Getter method for "indexId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIndexIdExpr() { return (indexIdExpr); }
+    /**
+     * Getter method for "linkName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLinkNameExpr() { return (linkNameExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "onblur" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnblurExpr() { return (onblurExpr); }
+    /**
+     * Getter method for "onclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnclickExpr() { return (onclickExpr); }
+    /**
+     * Getter method for "ondblclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOndblclickExpr() { return (ondblclickExpr); }
+    /**
+     * Getter method for "onfocus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnfocusExpr() { return (onfocusExpr); }
+    /**
+     * Getter method for "onkeydown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnkeydownExpr() { return (onkeydownExpr); }
+    /**
+     * Getter method for "onkeypress" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnkeypressExpr() { return (onkeypressExpr); }
+    /**
+     * Getter method for "onkeyup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnkeyupExpr() { return (onkeyupExpr); }
+    /**
+     * Getter method for "onmousedown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmousedownExpr() { return (onmousedownExpr); }
+    /**
+     * Getter method for "onmousemove" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmousemoveExpr() { return (onmousemoveExpr); }
+    /**
+     * Getter method for "onmouseout" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmouseoutExpr() { return (onmouseoutExpr); }
+    /**
+     * Getter method for "onmouseover" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmouseoverExpr() { return (onmouseoverExpr); }
+    /**
+     * Getter method for "onmouseup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnmouseupExpr() { return (onmouseupExpr); }
+    /**
+     * Getter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPageExpr() { return (pageExpr); }
+    /**
+     * Getter method for "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamIdExpr() { return (paramIdExpr); }
+    /**
+     * Getter method for "paramName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamNameExpr() { return (paramNameExpr); }
+    /**
+     * Getter method for "paramProperty" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamPropertyExpr() { return (paramPropertyExpr); }
+    /**
+     * Getter method for "paramScope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParamScopeExpr() { return (paramScopeExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+    /**
+     * Getter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleExpr() { return (styleExpr); }
+    /**
+     * Getter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleClassExpr() { return (styleClassExpr); }
+    /**
+     * Getter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleIdExpr() { return (styleIdExpr); }
+    /**
+     * Getter method for "tabindex" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTabindexExpr() { return (tabindexExpr); }
+    /**
+     * Getter method for "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTargetExpr() { return (targetExpr); }
+    /**
+     * Getter method for "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTitleExpr() { return (titleExpr); }
+    /**
+     * Getter method for "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTitleKeyExpr() { return (titleKeyExpr); }
+    /**
+     * Getter method for "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTransactionExpr() { return (transactionExpr); }
 
     /**
-     * Sets the string value of the "transaction" attribute.  This attribute is
-     * mapped to this method by the <code>ELLinkTagBeanInfo</code> class.
+     * Setter method for "accessKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setTransactionExpr(String transactionExpr)
-    { this.transactionExpr  = transactionExpr; }
-
+    public void setAccesskeyExpr(String accessKeyExpr) { this.accessKeyExpr = accessKeyExpr; }
     /**
-     * Sets the string value of the "indexed" attribute.  This attribute is
-     * mapped to this method by the <code>ELButtonTagBeanInfo</code> class.
+     * Setter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setIndexedExpr(String indexedExpr)
-    { this.indexedExpr  = indexedExpr; }
-    
+    public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
+    /**
+     * Setter method for "anchor" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setAnchorExpr(String anchorExpr) { this.anchorExpr = anchorExpr; }
+    /**
+     * Setter method for "forward" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setForwardExpr(String forwardExpr) { this.forwardExpr = forwardExpr; }
+    /**
+     * Setter method for "href" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHrefExpr(String hrefExpr) { this.hrefExpr = hrefExpr; }
+    /**
+     * Setter method for "indexed" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIndexedExpr(String indexedExpr) { this.indexedExpr = indexedExpr; }
+    /**
+     * Setter method for "indexId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIndexIdExpr(String indexIdExpr) { this.indexIdExpr = indexIdExpr; }
+    /**
+     * Setter method for "linkName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLinkNameExpr(String linkNameExpr) { this.linkNameExpr = linkNameExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "onblur" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnblurExpr(String onblurExpr) { this.onblurExpr = onblurExpr; }
+    /**
+     * Setter method for "onclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnclickExpr(String onclickExpr) { this.onclickExpr = onclickExpr; }
+    /**
+     * Setter method for "ondblclick" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOndblclickExpr(String ondblclickExpr) { this.ondblclickExpr = ondblclickExpr; }
+    /**
+     * Setter method for "onfocus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnfocusExpr(String onfocusExpr) { this.onfocusExpr = onfocusExpr; }
+    /**
+     * Setter method for "onkeydown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnkeydownExpr(String onkeydownExpr) { this.onkeydownExpr = onkeydownExpr; }
+    /**
+     * Setter method for "onkeypress" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnkeypressExpr(String onkeypressExpr) { this.onkeypressExpr = onkeypressExpr; }
+    /**
+     * Setter method for "onkeyup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnkeyupExpr(String onkeyupExpr) { this.onkeyupExpr = onkeyupExpr; }
+    /**
+     * Setter method for "onmousedown" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmousedownExpr(String onmousedownExpr) { this.onmousedownExpr = onmousedownExpr; }
+    /**
+     * Setter method for "onmousemove" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmousemoveExpr(String onmousemoveExpr) { this.onmousemoveExpr = onmousemoveExpr; }
+    /**
+     * Setter method for "onmouseout" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmouseoutExpr(String onmouseoutExpr) { this.onmouseoutExpr = onmouseoutExpr; }
+    /**
+     * Setter method for "onmouseover" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmouseoverExpr(String onmouseoverExpr) { this.onmouseoverExpr = onmouseoverExpr; }
+    /**
+     * Setter method for "onmouseup" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnmouseupExpr(String onmouseupExpr) { this.onmouseupExpr = onmouseupExpr; }
+    /**
+     * Setter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPageExpr(String pageExpr) { this.pageExpr = pageExpr; }
+    /**
+     * Setter method for "paramId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamIdExpr(String paramIdExpr) { this.paramIdExpr = paramIdExpr; }
+    /**
+     * Setter method for "paramName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamNameExpr(String paramNameExpr) { this.paramNameExpr = paramNameExpr; }
+    /**
+     * Setter method for "paramProperty" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamPropertyExpr(String paramPropertyExpr) { this.paramPropertyExpr = paramPropertyExpr; }
+    /**
+     * Setter method for "paramScope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParamScopeExpr(String paramScopeExpr) { this.paramScopeExpr = paramScopeExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+    /**
+     * Setter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleExpr(String styleExpr) { this.styleExpr = styleExpr; }
+    /**
+     * Setter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleClassExpr(String styleClassExpr) { this.styleClassExpr = styleClassExpr; }
+    /**
+     * Setter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleIdExpr(String styleIdExpr) { this.styleIdExpr = styleIdExpr; }
+    /**
+     * Setter method for "tabindex" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTabindexExpr(String tabindexExpr) { this.tabindexExpr = tabindexExpr; }
+    /**
+     * Setter method for "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTargetExpr(String targetExpr) { this.targetExpr = targetExpr; }
+    /**
+     * Setter method for "title" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTitleExpr(String titleExpr) { this.titleExpr = titleExpr; }
+    /**
+     * Setter method for "titleKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTitleKeyExpr(String titleKeyExpr) { this.titleKeyExpr = titleKeyExpr; }
+    /**
+     * Setter method for "transaction" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTransactionExpr(String transactionExpr) { this.transactionExpr = transactionExpr; }
+
     /**
      * Resets attribute values for tag reuse.
      */
     public void release()
     {
         super.release();
-        setTransactionExpr(null);
+        setAccesskeyExpr(null);
+        setActionExpr(null);
+        setAnchorExpr(null);
+        setForwardExpr(null);
+        setHrefExpr(null);
         setIndexedExpr(null);
+        setIndexIdExpr(null);
+        setLinkNameExpr(null);
+        setNameExpr(null);
+        setOnblurExpr(null);
+        setOnclickExpr(null);
+        setOndblclickExpr(null);
+        setOnfocusExpr(null);
+        setOnkeydownExpr(null);
+        setOnkeypressExpr(null);
+        setOnkeyupExpr(null);
+        setOnmousedownExpr(null);
+        setOnmousemoveExpr(null);
+        setOnmouseoutExpr(null);
+        setOnmouseoverExpr(null);
+        setOnmouseupExpr(null);
+        setPageExpr(null);
+        setParamIdExpr(null);
+        setParamNameExpr(null);
+        setParamPropertyExpr(null);
+        setParamScopeExpr(null);
+        setPropertyExpr(null);
+        setScopeExpr(null);
+        setStyleExpr(null);
+        setStyleClassExpr(null);
+        setStyleIdExpr(null);
+        setTabindexExpr(null);
+        setTargetExpr(null);
+        setTitleExpr(null);
+        setTitleKeyExpr(null);
+        setTransactionExpr(null);
     }
 
     /**
@@ -165,36 +710,31 @@ public class ELLinkTag extends LinkTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setAccesskey((String) evalAttr("accessKey", getAccesskey(),
+            setAccesskey((String) evalAttr("accessKey", getAccesskeyExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setAccesskey(null);
         }
 
         try {
-            setAction((String) evalAttr("action", getAction(),
+            setAction((String) evalAttr("action", getActionExpr(),
                                         String.class));
         } catch (NullAttributeException ex) {
-            setAction(null);
         }
 
         try {
-            setAnchor((String) evalAttr("anchor", getAnchor(), String.class));
+            setAnchor((String) evalAttr("anchor", getAnchorExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setAnchor(null);
         }
 
         try {
-            setForward((String) evalAttr("forward", getForward(),
+            setForward((String) evalAttr("forward", getForwardExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setForward(null);
         }
 
         try {
-            setHref((String) evalAttr("href", getHref(), String.class));
+            setHref((String) evalAttr("href", getHrefExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setHref(null);
         }
 
         try {
@@ -202,211 +742,174 @@ public class ELLinkTag extends LinkTag {
                                            Boolean.class)).
                        booleanValue());
         } catch (NullAttributeException ex) {
-            setIndexed(false);
         }
 
         try {
-            setIndexId((String) evalAttr("indexId", getIndexId(),
+            setIndexId((String) evalAttr("indexId", getIndexIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setIndexId(null);
         }
 
         try {
-            setLinkName((String) evalAttr("linkName", getLinkName(),
+            setLinkName((String) evalAttr("linkName", getLinkNameExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setLinkName(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setOnblur((String) evalAttr("onblur", getOnblur(), String.class));
+            setOnblur((String) evalAttr("onblur", getOnblurExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setOnblur(null);
         }
 
         try {
-            setOnclick((String) evalAttr("onclick", getOnclick(),
+            setOnclick((String) evalAttr("onclick", getOnclickExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setOnclick(null);
         }
 
         try {
-            setOndblclick((String) evalAttr("ondblclick", getOndblclick(),
+            setOndblclick((String) evalAttr("ondblclick", getOndblclickExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setOndblclick(null);
         }
 
         try {
-            setOnfocus((String) evalAttr("onfocus", getOnfocus(),
+            setOnfocus((String) evalAttr("onfocus", getOnfocusExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setOnfocus(null);
         }
 
         try {
-            setOnkeydown((String) evalAttr("onkeydown", getOnkeydown(),
+            setOnkeydown((String) evalAttr("onkeydown", getOnkeydownExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setOnkeydown(null);
         }
 
         try {
-            setOnkeypress((String) evalAttr("onkeypress", getOnkeypress(),
+            setOnkeypress((String) evalAttr("onkeypress", getOnkeypressExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setOnkeypress(null);
         }
 
         try {
-            setOnkeyup((String) evalAttr("onkeyup", getOnkeyup(),
+            setOnkeyup((String) evalAttr("onkeyup", getOnkeyupExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setOnkeyup(null);
         }
 
         try {
-            setOnmousedown((String) evalAttr("onmousedown", getOnmousedown(),
+            setOnmousedown((String) evalAttr("onmousedown", getOnmousedownExpr(),
                                              String.class));
         } catch (NullAttributeException ex) {
-            setOnmousedown(null);
         }
 
         try {
-            setOnmousemove((String) evalAttr("onmousemove", getOnmousemove(), 
+            setOnmousemove((String) evalAttr("onmousemove", getOnmousemoveExpr(), 
                                              String.class));
         } catch (NullAttributeException ex) {
-            setOnmousemove(null);
         }
 
         try {
-            setOnmouseout((String) evalAttr("onmouseout", getOnmouseout(),
+            setOnmouseout((String) evalAttr("onmouseout", getOnmouseoutExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setOnmouseout(null);
         }
 
         try {
-            setOnmouseover((String) evalAttr("onmouseover", getOnmouseover(), 
+            setOnmouseover((String) evalAttr("onmouseover", getOnmouseoverExpr(), 
                                              String.class));
         } catch (NullAttributeException ex) {
-            setOnmouseover(null);
         }
 
         try {
-            setOnmouseup((String) evalAttr("onmouseup", getOnmouseup(),
+            setOnmouseup((String) evalAttr("onmouseup", getOnmouseupExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setOnmouseup(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
-                                          String.class));
+            setPage((String) evalAttr("page", getPageExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setPage((String) evalAttr("page", getPage(), String.class));
-        } catch (NullAttributeException ex) {
-            setPage(null);
-        }
-
-        try {
-            setParamId((String) evalAttr("paramId", getParamId(),
+            setParamId((String) evalAttr("paramId", getParamIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setParamId(null);
         }
 
         try {
-            setParamName((String) evalAttr("paramName", getParamName(),
+            setParamName((String) evalAttr("paramName", getParamNameExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setParamName(null);
         }
 
         try {
             setParamProperty((String) evalAttr("paramProperty",
-                                               getParamProperty(),
+                                               getParamPropertyExpr(),
                                                String.class));
         } catch (NullAttributeException ex) {
-            setParamProperty(null);
         }
 
         try {
-            setParamScope((String) evalAttr("paramScope", getParamScope(),
+            setParamScope((String) evalAttr("paramScope", getParamScopeExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setParamScope(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
 
         try {
-            setStyle((String) evalAttr("style", getStyle(), String.class));
+            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setStyle(null);
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(),
+            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setStyleId(null);
         }
 
         try {
-            setTabindex((String) evalAttr("tabindex", getTabindex(),
+            setTabindex((String) evalAttr("tabindex", getTabindexExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setTabindex(null);
         }
 
         try {
-            setTarget((String) evalAttr("target", getTarget(), String.class));
+            setTarget((String) evalAttr("target", getTargetExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setTarget(null);
         }
 
         try {
-            setTitle((String) evalAttr("title", getTitle(), String.class));
+            setTitle((String) evalAttr("title", getTitleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setTitle(null);
         }
 
         try {
-            setTitleKey((String) evalAttr("titleKey", getTitleKey(),
+            setTitleKey((String) evalAttr("titleKey", getTitleKeyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setTitleKey(null);
         }
 
         try {
@@ -415,7 +918,6 @@ public class ELLinkTag extends LinkTag {
                                                Boolean.class)).
                            booleanValue());
         } catch (NullAttributeException ex) {
-            setTransaction(false);
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchTag.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMatchTag.java,v 1.4 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,9 +76,132 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELMatchTag extends MatchTag {
+
+    /**
+     * Instance variable mapped to "cookie" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String cookieExpr;
+    /**
+     * Instance variable mapped to "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String headerExpr;
+    /**
+     * Instance variable mapped to "location" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String locationExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "parameter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String parameterExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+    /**
+     * Instance variable mapped to "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String valueExpr;
+
+    /**
+     * Getter method for "cookie" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getCookieExpr() { return (cookieExpr); }
+    /**
+     * Getter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHeaderExpr() { return (headerExpr); }
+    /**
+     * Getter method for "location" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLocationExpr() { return (locationExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "parameter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParameterExpr() { return (parameterExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+    /**
+     * Getter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getValueExpr() { return (valueExpr); }
+
+    /**
+     * Setter method for "cookie" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setCookieExpr(String cookieExpr) { this.cookieExpr = cookieExpr; }
+    /**
+     * Setter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHeaderExpr(String headerExpr) { this.headerExpr = headerExpr; }
+    /**
+     * Setter method for "location" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLocationExpr(String locationExpr) { this.locationExpr = locationExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "parameter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParameterExpr(String parameterExpr) { this.parameterExpr = parameterExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+    /**
+     * Setter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setValueExpr(String valueExpr) { this.valueExpr = valueExpr; }
 
     /**
      * String value of expression to be evaluated.
@@ -107,6 +230,14 @@ public class ELMatchTag extends MatchTag {
     public void release()
     {
         super.release();
+        setCookieExpr(null);
+        setHeaderExpr(null);
+        setLocationExpr(null);
+        setNameExpr(null);
+        setParameterExpr(null);
+        setPropertyExpr(null);
+        setScopeExpr(null);
+        setValueExpr(null);
         setExpr(null);
     }
     
@@ -173,60 +304,51 @@ public class ELMatchTag extends MatchTag {
     private void evaluateExpressions() throws JspException {
 
         try {
-            setCookie((String) evalAttr("cookie", getCookie(), String.class));
+            setCookie((String) evalAttr("cookie", getCookieExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setCookie(null);
         }
 
         try {
             setExpr((String) evalAttr("expr", getExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setExpr(null);
         }
 
         try {
-            setHeader((String) evalAttr("header", getHeader(), String.class));
+            setHeader((String) evalAttr("header", getHeaderExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setHeader(null);
         }
 
         try {
-            setLocation((String) evalAttr("location", getLocation(),
+            setLocation((String) evalAttr("location", getLocationExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setLocation(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setParameter((String) evalAttr("parameter", getParameter(),
+            setParameter((String) evalAttr("parameter", getParameterExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setParameter(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
 
         try {
-            setValue((String) evalAttr("value", getValue(), String.class));
+            setValue((String) evalAttr("value", getValueExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setValue(null);
         }
     }
 }

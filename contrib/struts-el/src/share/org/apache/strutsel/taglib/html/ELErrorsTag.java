@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELErrorsTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELErrorsTag.java,v 1.4 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -92,10 +92,85 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELErrorsTag extends ErrorsTag {
 
+    /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
+    /**
+     * Instance variable mapped to "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String localeExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+
+    /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
+    /**
+     * Getter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLocaleExpr() { return (localeExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+
+    /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
+     * Setter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLocaleExpr(String localeExpr) { this.localeExpr = localeExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setBundleExpr(null);
+        setLocaleExpr(null);
+        setNameExpr(null);
+        setPropertyExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -137,28 +212,24 @@ public class ELErrorsTag extends ErrorsTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setBundle((String) evalAttr("bundle", getBundle(), String.class));
+            setBundle((String) evalAttr("bundle", getBundleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setBundle(null);
         }
 
         try {
-            setLocale((String) evalAttr("locale", getLocale(), String.class));
+            setLocale((String) evalAttr("locale", getLocaleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setLocale(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
     }
 }

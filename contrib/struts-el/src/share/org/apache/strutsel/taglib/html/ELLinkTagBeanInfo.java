@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTagBeanInfo.java,v 1.2 2002/12/31 04:17:26 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/31 04:17:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELLinkTagBeanInfo.java,v 1.3 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,86 +88,85 @@ public class ELLinkTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELLinkTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("action", ELLinkTag.class,
-                                               null, "setAction");
+                                               null, "setActionExpr");
             result[2] = new PropertyDescriptor("anchor", ELLinkTag.class,
-                                               null, "setAnchor");
+                                               null, "setAnchorExpr");
             result[3] = new PropertyDescriptor("forward", ELLinkTag.class,
-                                               null, "setForward");
+                                               null, "setForwardExpr");
             result[4] = new PropertyDescriptor("href", ELLinkTag.class,
-                                               null, "setHref");
-            // This attribute has a non-standard mapping.
+                                               null, "setHrefExpr");
             result[5] = new PropertyDescriptor("indexed", ELLinkTag.class,
                                                null, "setIndexedExpr");
             result[6] = new PropertyDescriptor("indexId", ELLinkTag.class,
-                                               null, "setIndexId");
+                                               null, "setIndexIdExpr");
             result[7] = new PropertyDescriptor("linkName", ELLinkTag.class,
-                                               null, "setLinkName");
+                                               null, "setLinkNameExpr");
             result[8] = new PropertyDescriptor("name", ELLinkTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[9] = new PropertyDescriptor("onblur", ELLinkTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[10] = new PropertyDescriptor("onclick", ELLinkTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[11] = new PropertyDescriptor("ondblclick",
                                                ELLinkTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[12] = new PropertyDescriptor("onfocus", ELLinkTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[13] = new PropertyDescriptor("onkeydown",
                                                 ELLinkTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[14] = new PropertyDescriptor("onkeypress",
                                                 ELLinkTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[15] = new PropertyDescriptor("onkeyup", ELLinkTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[16] = new PropertyDescriptor("onmousedown",
                                                ELLinkTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[17] = new PropertyDescriptor("onmousemove",
                                                ELLinkTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[18] = new PropertyDescriptor("onmouseout",
                                                ELLinkTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[19] = new PropertyDescriptor("onmouseover",
                                                ELLinkTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[20] = new PropertyDescriptor("onmouseup",
                                                 ELLinkTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[21] = new PropertyDescriptor("page", ELLinkTag.class,
-                                               null, "setPage");
+                                               null, "setPageExpr");
             result[22] = new PropertyDescriptor("paramId", ELLinkTag.class,
-                                               null, "setParamId");
+                                               null, "setParamIdExpr");
             result[23] = new PropertyDescriptor("paramName", ELLinkTag.class,
-                                               null, "setParamName");
+                                               null, "setParamNameExpr");
             result[24] = new PropertyDescriptor("paramProperty",
                                                 ELLinkTag.class,
-                                               null, "setParamProperty");
+                                               null, "setParamPropertyExpr");
             result[25] = new PropertyDescriptor("paramScope", ELLinkTag.class,
-                                               null, "setParamScope");
+                                               null, "setParamScopeExpr");
             result[26] = new PropertyDescriptor("property", ELLinkTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[27] = new PropertyDescriptor("scope", ELLinkTag.class,
-                                               null, "setScope");
+                                               null, "setScopeExpr");
             result[28] = new PropertyDescriptor("style", ELLinkTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[29] = new PropertyDescriptor("styleClass",
                                                ELLinkTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[30] = new PropertyDescriptor("styleId", ELLinkTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[31] = new PropertyDescriptor("tabindex", ELLinkTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[32] = new PropertyDescriptor("target", ELLinkTag.class,
-                                               null, "setTarget");
+                                               null, "setTargetExpr");
             result[33] = new PropertyDescriptor("title", ELLinkTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[34] = new PropertyDescriptor("titleKey", ELLinkTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[35] = new PropertyDescriptor("transaction", ELLinkTag.class,
                                                null, "setTransactionExpr");
         }

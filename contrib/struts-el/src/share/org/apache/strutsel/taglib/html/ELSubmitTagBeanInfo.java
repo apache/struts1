@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELSubmitTagBeanInfo.java,v 1.1 2002/10/16 03:48:26 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/16 03:48:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELSubmitTagBeanInfo.java,v 1.2 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,62 +89,60 @@ public class ELSubmitTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELSubmitTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELSubmitTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELSubmitTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELSubmitTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[4] = new PropertyDescriptor("indexed", ELSubmitTag.class,
                                                null, "setIndexedExpr");
             result[5] = new PropertyDescriptor("onblur", ELSubmitTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[6] = new PropertyDescriptor("onchange", ELSubmitTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[7] = new PropertyDescriptor("onclick", ELSubmitTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[8] = new PropertyDescriptor("ondblclick", ELSubmitTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[9] = new PropertyDescriptor("onfocus", ELSubmitTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[10] = new PropertyDescriptor("onkeydown", ELSubmitTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[11] = new PropertyDescriptor("onkeypress", ELSubmitTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[12] = new PropertyDescriptor("onkeyup", ELSubmitTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[13] = new PropertyDescriptor("onmousedown",
                                                ELSubmitTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[14] = new PropertyDescriptor("onmousemove",
                                                ELSubmitTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[15] = new PropertyDescriptor("onmouseout", ELSubmitTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[16] = new PropertyDescriptor("onmouseover",
                                                ELSubmitTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[17] = new PropertyDescriptor("onmouseup", ELSubmitTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[18] = new PropertyDescriptor("property", ELSubmitTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[19] = new PropertyDescriptor("style", ELSubmitTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[20] = new PropertyDescriptor("styleClass", ELSubmitTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[21] = new PropertyDescriptor("styleId", ELSubmitTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[22] = new PropertyDescriptor("tabindex", ELSubmitTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[23] = new PropertyDescriptor("title", ELSubmitTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[24] = new PropertyDescriptor("titleKey", ELSubmitTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[25] = new PropertyDescriptor("value", ELSubmitTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

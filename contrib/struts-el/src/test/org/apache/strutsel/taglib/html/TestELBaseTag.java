@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELBaseTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELBaseTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -179,7 +179,7 @@ public class TestELBaseTag
 
         String varName = "targetVar";
         pageContext.setAttribute(varName, requiredTargetValue);
-        elBaseTag.setTarget("${" + varName + "}");
+        elBaseTag.setTargetExpr("${" + varName + "}");
 
         int startTagReturn = elBaseTag.doStartTag();
     }
@@ -218,7 +218,7 @@ public class TestELBaseTag
 
         String varName = "targetVar";
         pageContext.setAttribute(varName, "flork");
-        elBaseTag.setTarget("${" + varName + "x" + "}");
+        elBaseTag.setTargetExpr("${" + varName + "x" + "}");
 
         int startTagReturn = elBaseTag.doStartTag();
     }

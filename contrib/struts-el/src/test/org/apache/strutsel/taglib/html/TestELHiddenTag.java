@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELHiddenTag.java,v 1.1 2002/10/12 05:23:01 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/12 05:23:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELHiddenTag.java,v 1.2 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -103,8 +103,8 @@ public class TestELHiddenTag
         LabelValueBean  bean  = new LabelValueBean("junk", "stuff");
         pageContext.setAttribute("testFormBean", bean);
 
-        elHiddenTag.setName("testFormBean");
-        elHiddenTag.setProperty("value");
+        elHiddenTag.setNameExpr("testFormBean");
+        elHiddenTag.setPropertyExpr("value");
 
         int startTagReturn  = elHiddenTag.doStartTag();
         int afterBodyReturn = elHiddenTag.doAfterBody();

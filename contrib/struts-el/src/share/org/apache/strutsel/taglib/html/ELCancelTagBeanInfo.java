@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCancelTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCancelTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -92,65 +92,64 @@ public class ELCancelTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELCancelTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELCancelTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELCancelTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELCancelTag.class,
                                                null, "setDisabledExpr");
             result[4] = new PropertyDescriptor("onblur", ELCancelTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[5] = new PropertyDescriptor("onchange", ELCancelTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[6] = new PropertyDescriptor("onclick", ELCancelTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[7] = new PropertyDescriptor("ondblclick",
                                                ELCancelTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[8] = new PropertyDescriptor("onfocus", ELCancelTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[9] = new PropertyDescriptor("onkeydown",
                                                 ELCancelTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[10] = new PropertyDescriptor("onkeypress",
                                                 ELCancelTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[11] = new PropertyDescriptor("onkeyup", ELCancelTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[12] = new PropertyDescriptor("onmousedown",
                                                ELCancelTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[13] = new PropertyDescriptor("onmousemove",
                                                ELCancelTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[14] = new PropertyDescriptor("onmouseout",
                                                ELCancelTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[15] = new PropertyDescriptor("onmouseover",
                                                ELCancelTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[16] = new PropertyDescriptor("onmouseup",
                                                 ELCancelTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[17] = new PropertyDescriptor("property", ELCancelTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[18] = new PropertyDescriptor("style", ELCancelTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[19] = new PropertyDescriptor("styleClass",
                                                ELCancelTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[20] = new PropertyDescriptor("styleId", ELCancelTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[21] = new PropertyDescriptor("tabindex", ELCancelTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[22] = new PropertyDescriptor("title", ELCancelTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[23] = new PropertyDescriptor("titleKey", ELCancelTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[24] = new PropertyDescriptor("value", ELCancelTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRadioTagBeanInfo.java,v 1.1 2002/10/14 03:11:09 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRadioTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,63 +88,61 @@ public class ELRadioTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELRadioTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELRadioTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELRadioTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELRadioTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[4] = new PropertyDescriptor("indexed", ELRadioTag.class,
                                                null, "setIndexedExpr");
             result[5] = new PropertyDescriptor("name", ELRadioTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[6] = new PropertyDescriptor("onblur", ELRadioTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[7] = new PropertyDescriptor("onchange", ELRadioTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[8] = new PropertyDescriptor("onclick", ELRadioTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[9] = new PropertyDescriptor("ondblclick", ELRadioTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[10] = new PropertyDescriptor("onfocus", ELRadioTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[11] = new PropertyDescriptor("onkeydown", ELRadioTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[12] = new PropertyDescriptor("onkeypress", ELRadioTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[13] = new PropertyDescriptor("onkeyup", ELRadioTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[14] = new PropertyDescriptor("onmousedown", ELRadioTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[15] = new PropertyDescriptor("onmousemove", ELRadioTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[16] = new PropertyDescriptor("onmouseout", ELRadioTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[17] = new PropertyDescriptor("onmouseover", ELRadioTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[18] = new PropertyDescriptor("onmouseup", ELRadioTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[19] = new PropertyDescriptor("property", ELRadioTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[20] = new PropertyDescriptor("style", ELRadioTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[21] = new PropertyDescriptor("styleClass", ELRadioTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[22] = new PropertyDescriptor("styleId", ELRadioTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[23] = new PropertyDescriptor("tabindex", ELRadioTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[24] = new PropertyDescriptor("title", ELRadioTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[25] = new PropertyDescriptor("titleKey", ELRadioTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[26] = new PropertyDescriptor("value", ELRadioTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
             result[27] = new PropertyDescriptor("idName", ELRadioTag.class,
-                                               null, "setIdName");
+                                               null, "setIdNameExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELPasswordTagBeanInfo.java,v 1.1 2002/10/14 03:11:09 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELPasswordTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,79 +89,77 @@ public class ELPasswordTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELPasswordTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELPasswordTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELPasswordTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELPasswordTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[4] = new PropertyDescriptor("indexed", ELPasswordTag.class,
                                                null, "setIndexedExpr");
             result[5] = new PropertyDescriptor("maxlength", ELPasswordTag.class,
-                                               null, "setMaxlength");
+                                               null, "setMaxlengthExpr");
             result[6] = new PropertyDescriptor("name", ELPasswordTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[7] = new PropertyDescriptor("onblur", ELPasswordTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[8] = new PropertyDescriptor("onchange", ELPasswordTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[9] = new PropertyDescriptor("onclick", ELPasswordTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[10] = new PropertyDescriptor("ondblclick",
                                                ELPasswordTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[11] = new PropertyDescriptor("onfocus", ELPasswordTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[12] = new PropertyDescriptor("onkeydown",
                                                 ELPasswordTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[13] = new PropertyDescriptor("onkeypress",
                                                 ELPasswordTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[14] = new PropertyDescriptor("onkeyup", ELPasswordTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[15] = new PropertyDescriptor("onmousedown",
                                                ELPasswordTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[16] = new PropertyDescriptor("onmousemove",
                                                ELPasswordTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[17] = new PropertyDescriptor("onmouseout",
                                                ELPasswordTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[18] = new PropertyDescriptor("onmouseover",
                                                ELPasswordTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[19] = new PropertyDescriptor("onmouseup",
                                                 ELPasswordTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[20] = new PropertyDescriptor("property", ELPasswordTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[21] = new PropertyDescriptor("readonly", ELPasswordTag.class,
                                                null, "setReadonlyExpr");
             result[22] = new PropertyDescriptor("redisplay",
                                                 ELPasswordTag.class,
                                                null, "setRedisplayExpr");
             result[23] = new PropertyDescriptor("style", ELPasswordTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[24] = new PropertyDescriptor("styleClass",
                                                ELPasswordTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[25] = new PropertyDescriptor("styleId", ELPasswordTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[26] = new PropertyDescriptor("size", ELPasswordTag.class,
-                                               null, "setSize");
+                                               null, "setSizeExpr");
             result[27] = new PropertyDescriptor("tabindex", ELPasswordTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[28] = new PropertyDescriptor("title", ELPasswordTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[29] = new PropertyDescriptor("titleKey", ELPasswordTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[30] = new PropertyDescriptor("value", ELPasswordTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTag.java,v 1.5 2002/10/14 03:18:38 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/14 03:18:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,26 +77,132 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELOptionTag extends OptionTag {
 
     /**
-     * String value of the "disabled" attribute.
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   disabledExpr;
+    private String bundleExpr;
+    /**
+     * Instance variable mapped to "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String disabledExpr;
+    /**
+     * Instance variable mapped to "key" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String keyExpr;
+    /**
+     * Instance variable mapped to "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String localeExpr;
+    /**
+     * Instance variable mapped to "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleExpr;
+    /**
+     * Instance variable mapped to "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleClassExpr;
+    /**
+     * Instance variable mapped to "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleIdExpr;
+    /**
+     * Instance variable mapped to "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String valueExpr;
 
     /**
-     * Returns the string value of the "disabled" attribute.
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getDisabledExpr() { return (disabledExpr); }
+    public String getBundleExpr() { return (bundleExpr); }
+    /**
+     * Getter method for "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getDisabledExpr() { return (disabledExpr); }
+    /**
+     * Getter method for "key" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getKeyExpr() { return (keyExpr); }
+    /**
+     * Getter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLocaleExpr() { return (localeExpr); }
+    /**
+     * Getter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleExpr() { return (styleExpr); }
+    /**
+     * Getter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleClassExpr() { return (styleClassExpr); }
+    /**
+     * Getter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleIdExpr() { return (styleIdExpr); }
+    /**
+     * Getter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getValueExpr() { return (valueExpr); }
 
     /**
-     * Sets the string value of the "disabled" attribute.  This attribute is
-     * mapped to this method by the <code>ELOptionTagBeanInfo</code> class.
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setDisabledExpr(String disabledExpr)
-    { this.disabledExpr  = disabledExpr; }
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
+     * Setter method for "disabled" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setDisabledExpr(String disabledExpr) { this.disabledExpr = disabledExpr; }
+    /**
+     * Setter method for "key" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setKeyExpr(String keyExpr) { this.keyExpr = keyExpr; }
+    /**
+     * Setter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLocaleExpr(String localeExpr) { this.localeExpr = localeExpr; }
+    /**
+     * Setter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleExpr(String styleExpr) { this.styleExpr = styleExpr; }
+    /**
+     * Setter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleClassExpr(String styleClassExpr) { this.styleClassExpr = styleClassExpr; }
+    /**
+     * Setter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleIdExpr(String styleIdExpr) { this.styleIdExpr = styleIdExpr; }
+    /**
+     * Setter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setValueExpr(String valueExpr) { this.valueExpr = valueExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -104,7 +210,14 @@ public class ELOptionTag extends OptionTag {
     public void release()
     {
         super.release();
+        setBundleExpr(null);
         setDisabledExpr(null);
+        setKeyExpr(null);
+        setLocaleExpr(null);
+        setStyleExpr(null);
+        setStyleClassExpr(null);
+        setStyleIdExpr(null);
+        setValueExpr(null);
     }
 
     /**
@@ -151,9 +264,8 @@ public class ELOptionTag extends OptionTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setBundle((String) evalAttr("bundle", getBundle(), String.class));
+            setBundle((String) evalAttr("bundle", getBundleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setBundle(null);
         }
 
         try {
@@ -161,45 +273,38 @@ public class ELOptionTag extends OptionTag {
                                             Boolean.class)).
                         booleanValue());
         } catch (NullAttributeException ex) {
-            setDisabled(false);
         }
 
         try {
-            setKey((String) evalAttr("key", getKey(), String.class));
+            setKey((String) evalAttr("key", getKeyExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setKey(null);
         }
 
         try {
-            setLocale((String) evalAttr("locale", getLocale(), String.class));
+            setLocale((String) evalAttr("locale", getLocaleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setLocale(null);
         }
 
         try {
-            setStyle((String) evalAttr("style", getStyle(), String.class));
+            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setStyle(null);
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(),
+            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setStyleId(null);
         }
 
         try {
-            setValue((String) evalAttr("value", getValue(), String.class));
+            setValue((String) evalAttr("value", getValueExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setValue(null);
         }
     }
 }

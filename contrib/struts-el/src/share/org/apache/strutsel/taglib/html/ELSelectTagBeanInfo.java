@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELSelectTagBeanInfo.java,v 1.2 2002/10/27 20:30:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/27 20:30:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELSelectTagBeanInfo.java,v 1.3 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,67 +89,65 @@ public class ELSelectTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("alt", ELSelectTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[1] = new PropertyDescriptor("altKey", ELSelectTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[2] = new PropertyDescriptor("disabled", ELSelectTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[3] = new PropertyDescriptor("indexed", ELSelectTag.class,
                                                null, "setIndexedExpr");
             result[4] = new PropertyDescriptor("multiple", ELSelectTag.class,
-                                               null, "setMultiple");
+                                               null, "setMultipleExpr");
             result[5] = new PropertyDescriptor("name", ELSelectTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[6] = new PropertyDescriptor("onblur", ELSelectTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[7] = new PropertyDescriptor("onchange", ELSelectTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[8] = new PropertyDescriptor("onclick", ELSelectTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[9] = new PropertyDescriptor("ondblclick", ELSelectTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[10] = new PropertyDescriptor("onfocus", ELSelectTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[11] = new PropertyDescriptor("onkeydown", ELSelectTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[12] = new PropertyDescriptor("onkeypress", ELSelectTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[13] = new PropertyDescriptor("onkeyup", ELSelectTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[14] = new PropertyDescriptor("onmousedown",
                                                ELSelectTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[15] = new PropertyDescriptor("onmousemove",
                                                ELSelectTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[16] = new PropertyDescriptor("onmouseout", ELSelectTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[17] = new PropertyDescriptor("onmouseover",
                                                ELSelectTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[18] = new PropertyDescriptor("onmouseup", ELSelectTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[19] = new PropertyDescriptor("property", ELSelectTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[20] = new PropertyDescriptor("size", ELSelectTag.class,
-                                               null, "setSize");
+                                               null, "setSizeExpr");
             result[21] = new PropertyDescriptor("style", ELSelectTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[22] = new PropertyDescriptor("styleClass",
                                                ELSelectTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[23] = new PropertyDescriptor("styleId", ELSelectTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[24] = new PropertyDescriptor("tabindex", ELSelectTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[25] = new PropertyDescriptor("title", ELSelectTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[26] = new PropertyDescriptor("titleKey", ELSelectTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[27] = new PropertyDescriptor("value", ELSelectTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

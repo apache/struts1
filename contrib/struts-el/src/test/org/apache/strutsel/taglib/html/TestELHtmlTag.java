@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELHtmlTag.java,v 1.1 2002/10/14 03:11:09 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELHtmlTag.java,v 1.2 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -103,8 +103,8 @@ public class TestELHtmlTag
         Boolean   bool  = new Boolean(true);
         pageContext.setAttribute("localeFlag", bool);
 //         elHtmlTag.setLocale("${localeFlag}");
-        elHtmlTag.setLocale(true);
-        elHtmlTag.setXhtml(true);
+        elHtmlTag.setLocaleExpr("true");
+        elHtmlTag.setXhtmlExpr("true");
 
         int startTagReturn  = elHtmlTag.doStartTag();
         int afterBodyReturn = elHtmlTag.doAfterBody();
@@ -123,7 +123,8 @@ public class TestELHtmlTag
                                             "/html", attrMap);
             DOMHelper.
                 verifyAttributesPresent(attrMap,
-                                        new String[] { "lang", "xml:lang" }, 
+                                        new String[] { "lang", "xml:lang",
+                                                       "xmlns" }, 
                                         false);
         } catch (Exception ex) {
             ex.printStackTrace();

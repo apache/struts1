@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELTextTagBeanInfo.java,v 1.1 2002/10/16 03:48:26 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/16 03:48:26 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELTextTagBeanInfo.java,v 1.2 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,76 +89,74 @@ public class ELTextTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELTextTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELTextTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELTextTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELTextTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[4] = new PropertyDescriptor("indexed", ELTextTag.class,
                                                null, "setIndexedExpr");
             result[5] = new PropertyDescriptor("maxlength", ELTextTag.class,
-                                               null, "setMaxlength");
+                                               null, "setMaxlengthExpr");
             result[6] = new PropertyDescriptor("name", ELTextTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[7] = new PropertyDescriptor("onblur", ELTextTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[8] = new PropertyDescriptor("onchange", ELTextTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[9] = new PropertyDescriptor("onclick", ELTextTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[10] = new PropertyDescriptor("ondblclick",
                                                ELTextTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[11] = new PropertyDescriptor("onfocus", ELTextTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[12] = new PropertyDescriptor("onkeydown",
                                                 ELTextTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[13] = new PropertyDescriptor("onkeypress",
                                                 ELTextTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[14] = new PropertyDescriptor("onkeyup", ELTextTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[15] = new PropertyDescriptor("onmousedown",
                                                ELTextTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[16] = new PropertyDescriptor("onmousemove",
                                                ELTextTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[17] = new PropertyDescriptor("onmouseout",
                                                ELTextTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[18] = new PropertyDescriptor("onmouseover",
                                                ELTextTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[19] = new PropertyDescriptor("onmouseup",
                                                 ELTextTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[20] = new PropertyDescriptor("property", ELTextTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[21] = new PropertyDescriptor("readonly", ELTextTag.class,
                                                null, "setReadonlyExpr");
             result[22] = new PropertyDescriptor("size", ELTextTag.class,
-                                               null, "setSize");
+                                               null, "setSizeExpr");
             result[23] = new PropertyDescriptor("style", ELTextTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[24] = new PropertyDescriptor("styleClass",
                                                ELTextTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[25] = new PropertyDescriptor("styleId", ELTextTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[26] = new PropertyDescriptor("tabindex", ELTextTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[27] = new PropertyDescriptor("title", ELTextTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[28] = new PropertyDescriptor("titleKey", ELTextTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[29] = new PropertyDescriptor("value", ELTextTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTagBeanInfo.java,v 1.1 2002/10/16 04:03:56 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/16 04:03:56 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELRedirectTagBeanInfo.java,v 1.2 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,29 +89,29 @@ public class ELRedirectTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("anchor", ELRedirectTag.class,
-                                               null, "setAnchor");
+                                               null, "setAnchorExpr");
             result[1] = new PropertyDescriptor("forward", ELRedirectTag.class,
-                                               null, "setForward");
+                                               null, "setForwardExpr");
             result[2] = new PropertyDescriptor("href", ELRedirectTag.class,
-                                               null, "setHref");
+                                               null, "setHrefExpr");
             result[3] = new PropertyDescriptor("name", ELRedirectTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[4] = new PropertyDescriptor("page", ELRedirectTag.class,
-                                                null, "setPage");
+                                                null, "setPageExpr");
             result[5] = new PropertyDescriptor("paramId", ELRedirectTag.class,
-                                                null, "setParamId");
+                                                null, "setParamIdExpr");
             result[6] = new PropertyDescriptor("paramName", ELRedirectTag.class,
-                                                null, "setParamName");
+                                                null, "setParamNameExpr");
             result[7] = new PropertyDescriptor("paramProperty",
                                                 ELRedirectTag.class,
-                                                null, "setParamProperty");
+                                                null, "setParamPropertyExpr");
             result[8] = new PropertyDescriptor("paramScope",
                                                 ELRedirectTag.class,
-                                                null, "setParamScope");
+                                                null, "setParamScopeExpr");
             result[9] = new PropertyDescriptor("property", ELRedirectTag.class,
-                                                null, "setProperty");
+                                                null, "setPropertyExpr");
             result[10] = new PropertyDescriptor("scope", ELRedirectTag.class,
-                                                null, "setScope");
+                                                null, "setScopeExpr");
             result[11] = new PropertyDescriptor("transaction",
                                                 ELRedirectTag.class,
                                                 null, "setTransactionExpr");

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMessagesPresentTag.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELMessagesPresentTag.java,v 1.4 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -78,10 +78,69 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELMessagesPresentTag extends MessagesPresentTag {
 
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "message" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String messageExpr;
+
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "message" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getMessageExpr() { return (messageExpr); }
+
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "message" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setMessageExpr(String messageExpr) { this.messageExpr = messageExpr; }
+
+    /**
+     * Releases state of custom tag so this instance can be reused.
+     */
+    public void release()
+    {
+        super.release();
+        setNameExpr(null);
+        setPropertyExpr(null);
+        setMessageExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -125,23 +184,20 @@ public class ELMessagesPresentTag extends MessagesPresentTag {
     private void evaluateExpressions() throws JspException {
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), 
+            setProperty((String) evalAttr("property", getPropertyExpr(), 
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setMessage((String) evalAttr("message", getMessage(),
+            setMessage((String) evalAttr("message", getMessageExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setMessage(null);
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.4 2002/12/13 03:52:21 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/12/13 03:52:21 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFormTag.java,v 1.5 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,10 +76,245 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELFormTag extends FormTag {
 
+    /**
+     * Instance variable mapped to "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String actionExpr;
+    /**
+     * Instance variable mapped to "enctype" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String enctypeExpr;
+    /**
+     * Instance variable mapped to "focus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String focusExpr;
+    /**
+     * Instance variable mapped to "focusIndex" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String focusIndexExpr;
+    /**
+     * Instance variable mapped to "method" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String methodExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "onreset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onresetExpr;
+    /**
+     * Instance variable mapped to "onsubmit" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String onsubmitExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+    /**
+     * Instance variable mapped to "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleExpr;
+    /**
+     * Instance variable mapped to "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleClassExpr;
+    /**
+     * Instance variable mapped to "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleIdExpr;
+    /**
+     * Instance variable mapped to "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String targetExpr;
+    /**
+     * Instance variable mapped to "type" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String typeExpr;
+
+    /**
+     * Getter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getActionExpr() { return (actionExpr); }
+    /**
+     * Getter method for "enctype" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getEnctypeExpr() { return (enctypeExpr); }
+    /**
+     * Getter method for "focus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getFocusExpr() { return (focusExpr); }
+    /**
+     * Getter method for "focusIndex" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getFocusIndexExpr() { return (focusIndexExpr); }
+    /**
+     * Getter method for "method" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getMethodExpr() { return (methodExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "onreset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnresetExpr() { return (onresetExpr); }
+    /**
+     * Getter method for "onsubmit" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOnsubmitExpr() { return (onsubmitExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+    /**
+     * Getter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleExpr() { return (styleExpr); }
+    /**
+     * Getter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleClassExpr() { return (styleClassExpr); }
+    /**
+     * Getter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleIdExpr() { return (styleIdExpr); }
+    /**
+     * Getter method for "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTargetExpr() { return (targetExpr); }
+    /**
+     * Getter method for "type" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTypeExpr() { return (typeExpr); }
+
+    /**
+     * Setter method for "action" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setActionExpr(String actionExpr) { this.actionExpr = actionExpr; }
+    /**
+     * Setter method for "enctype" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setEnctypeExpr(String enctypeExpr) { this.enctypeExpr = enctypeExpr; }
+    /**
+     * Setter method for "focus" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setFocusExpr(String focusExpr) { this.focusExpr = focusExpr; }
+    /**
+     * Setter method for "focusIndex" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setFocusIndexExpr(String focusIndexExpr) { this.focusIndexExpr = focusIndexExpr; }
+    /**
+     * Setter method for "method" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setMethodExpr(String methodExpr) { this.methodExpr = methodExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "onreset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnresetExpr(String onresetExpr) { this.onresetExpr = onresetExpr; }
+    /**
+     * Setter method for "onsubmit" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOnsubmitExpr(String onsubmitExpr) { this.onsubmitExpr = onsubmitExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+    /**
+     * Setter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleExpr(String styleExpr) { this.styleExpr = styleExpr; }
+    /**
+     * Setter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleClassExpr(String styleClassExpr) { this.styleClassExpr = styleClassExpr; }
+    /**
+     * Setter method for "styleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleIdExpr(String styleIdExpr) { this.styleIdExpr = styleIdExpr; }
+    /**
+     * Setter method for "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTargetExpr(String targetExpr) { this.targetExpr = targetExpr; }
+    /**
+     * Setter method for "type" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTypeExpr(String typeExpr) { this.typeExpr = typeExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setActionExpr(null);
+        setEnctypeExpr(null);
+        setFocusExpr(null);
+        setFocusIndexExpr(null);
+        setMethodExpr(null);
+        setNameExpr(null);
+        setOnresetExpr(null);
+        setOnsubmitExpr(null);
+        setScopeExpr(null);
+        setStyleExpr(null);
+        setStyleClassExpr(null);
+        setStyleIdExpr(null);
+        setTargetExpr(null);
+        setTypeExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -121,93 +356,79 @@ public class ELFormTag extends FormTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setAction((String) evalAttr("action", getAction(), String.class));
+            setAction((String) evalAttr("action", getActionExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setAction(null);
         }
 
         try {
-            setEnctype((String) evalAttr("enctype", getEnctype(),
+            setEnctype((String) evalAttr("enctype", getEnctypeExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setEnctype(null);
         }
 
         try {
-            setFocus((String) evalAttr("focus", getFocus(), String.class));
+            setFocus((String) evalAttr("focus", getFocusExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setFocus(null);
         }
 
         try {
-            setFocusIndex((String) evalAttr("focusIndex", getFocusIndex(),
+            setFocusIndex((String) evalAttr("focusIndex", getFocusIndexExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setFocusIndex(null);
         }
 
         try {
-            setMethod((String) evalAttr("method", getMethod(), String.class));
+            setMethod((String) evalAttr("method", getMethodExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setMethod(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setOnreset((String) evalAttr("onreset", getOnreset(),
+            setOnreset((String) evalAttr("onreset", getOnresetExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setOnreset(null);
         }
 
         try {
-            setOnsubmit((String) evalAttr("onsubmit", getOnsubmit(),
+            setOnsubmit((String) evalAttr("onsubmit", getOnsubmitExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setOnsubmit(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
 
         try {
-            setStyle((String) evalAttr("style", getStyle(), String.class));
+            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setStyle(null);
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(),
+            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(),
                                             String.class));
         } catch (NullAttributeException ex) {
-            setStyleClass(null);
         }
 
         try {
-            setStyleId((String) evalAttr("styleId", getStyleId(),
+            setStyleId((String) evalAttr("styleId", getStyleIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setStyleId(null);
         }
 
         try {
-            setTarget((String) evalAttr("target", getTarget(), String.class));
+            setTarget((String) evalAttr("target", getTargetExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setTarget(null);
         }
 
         try {
-            setType((String) evalAttr("type", getType(), String.class));
+            setType((String) evalAttr("type", getTypeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setType(null);
         }
     }
 }

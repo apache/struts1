@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFileTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFileTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -105,7 +105,7 @@ public class TestELFileTag
     public void setUp() {
         elFileTag = new ELFileTag();
         elFileTag.setPageContext(pageContext);
-        elFileTag.setProperty(PROPERTY_ATTR_VALUE);
+        elFileTag.setPropertyExpr(PROPERTY_ATTR_VALUE);
     }
 
     public void tearDown() {
@@ -121,7 +121,7 @@ public class TestELFileTag
 
         TestFormBean formBean = new TestFormBean();
         pageContext.setAttribute("testFormBean", formBean);
-        elFileTag.setName("testFormBean");
+        elFileTag.setNameExpr("testFormBean");
 
         String requiredNameValue = PROPERTY_ATTR_VALUE;
         response.addHeader(REQUIRED_NAME_VALUE_KEY, requiredNameValue);
@@ -170,9 +170,9 @@ public class TestELFileTag
 
         TestFormBean formBean = new TestFormBean();
         pageContext.setAttribute("testFormBean", formBean);
-        elFileTag.setName("testFormBean");
+        elFileTag.setNameExpr("testFormBean");
 
-        elFileTag.setDisabled(true);
+        elFileTag.setDisabledExpr("true");
 
         String requiredDisabledValue = "disabled";
         response.addHeader(REQUIRED_DISABLED_VALUE_KEY, requiredDisabledValue);

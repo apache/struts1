@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELBaseTag.java,v 1.4 2002/11/17 20:53:31 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/11/17 20:53:31 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELBaseTag.java,v 1.5 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -80,10 +80,53 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELBaseTag extends BaseTag {
 
+    /**
+     * Instance variable mapped to "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String targetExpr;
+    /**
+     * Instance variable mapped to "server" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String serverExpr;
+
+    /**
+     * Getter method for "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTargetExpr() { return (targetExpr); }
+    /**
+     * Getter method for "server" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getServerExpr() { return (serverExpr); }
+
+    /**
+     * Setter method for "target" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTargetExpr(String targetExpr) { this.targetExpr = targetExpr; }
+    /**
+     * Setter method for "server" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setServerExpr(String serverExpr) { this.serverExpr = serverExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setTargetExpr(null);
+        setServerExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -126,15 +169,13 @@ public class ELBaseTag extends BaseTag {
     private void evaluateExpressions() throws JspException {
 
         try {
-            setTarget((String) evalAttr("target", getTarget(), String.class));
+            setTarget((String) evalAttr("target", getTargetExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setTarget(null);
         }
 
         try {
-            setServer((String) evalAttr("server", getServer(), String.class));
+            setServer((String) evalAttr("server", getServerExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setServer(null);
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTag.java,v 1.5 2002/10/14 03:18:38 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2002/10/14 03:18:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -84,27 +84,117 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELOptionsCollectionTag extends OptionsCollectionTag {
 
     /**
-     * String value of the "filter" attribute.
+     * Instance variable mapped to "filter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   filterExpr;
+    private String filterExpr;
+    /**
+     * Instance variable mapped to "label" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String labelExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleExpr;
+    /**
+     * Instance variable mapped to "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String styleClassExpr;
+    /**
+     * Instance variable mapped to "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String valueExpr;
 
     /**
-     * Returns the string value of the "filter" attribute.
+     * Getter method for "filter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getFilterExpr() { return (filterExpr); }
+    public String getFilterExpr() { return (filterExpr); }
+    /**
+     * Getter method for "label" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLabelExpr() { return (labelExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleExpr() { return (styleExpr); }
+    /**
+     * Getter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStyleClassExpr() { return (styleClassExpr); }
+    /**
+     * Getter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getValueExpr() { return (valueExpr); }
 
     /**
-     * Sets the string value of the "filter" attribute.  This attribute is
-     * mapped to this method by the <code>ELOptionsCollectionTagBeanInfo</code>
-     * class.
+     * Setter method for "filter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setFilterExpr(String filterExpr)
-    { this.filterExpr  = filterExpr; }
+    public void setFilterExpr(String filterExpr) { this.filterExpr = filterExpr; }
+    /**
+     * Setter method for "label" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLabelExpr(String labelExpr) { this.labelExpr = labelExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "style" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleExpr(String styleExpr) { this.styleExpr = styleExpr; }
+    /**
+     * Setter method for "styleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStyleClassExpr(String styleClassExpr) { this.styleClassExpr = styleClassExpr; }
+    /**
+     * Setter method for "value" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setValueExpr(String valueExpr) { this.valueExpr = valueExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -113,6 +203,12 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
     {
         super.release();
         setFilterExpr(null);
+        setLabelExpr(null);
+        setNameExpr(null);
+        setPropertyExpr(null);
+        setStyleExpr(null);
+        setStyleClassExpr(null);
+        setValueExpr(null);
     }
 
     /**
@@ -163,39 +259,33 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
                                           Boolean.class)).
                       booleanValue());
         } catch (NullAttributeException ex) {
-            setFilter(false);
         }
 
         try {
-            setLabel((String) evalAttr("label", getLabel(), String.class));
+            setLabel((String) evalAttr("label", getLabelExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setLabel(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(), 
+            setProperty((String) evalAttr("property", getPropertyExpr(), 
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setStyle((String) evalAttr("style", getStyle(), String.class));
+            setStyle((String) evalAttr("style", getStyleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setStyle(null);
         }
 
         try {
-            setStyleClass((String) evalAttr("styleClass", getStyleClass(), 
+            setStyleClass((String) evalAttr("styleClass", getStyleClassExpr(), 
                                             String.class));
         } catch (NullAttributeException ex) {
-            setStyleClass(null);
         }
 
         // Note that in contrast to other elements which have "style" and
@@ -206,9 +296,8 @@ public class ELOptionsCollectionTag extends OptionsCollectionTag {
         // does not support this attribute.
 
         try {
-            setValue((String) evalAttr("value", getValue(), String.class));
+            setValue((String) evalAttr("value", getValueExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setValue(null);
         }
     }
 }

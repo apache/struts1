@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTagBeanInfo.java,v 1.1 2002/10/14 03:11:09 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:09 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionsCollectionTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -93,22 +93,22 @@ public class ELOptionsCollectionTagBeanInfo extends SimpleBeanInfo
                                                null, "setFilterExpr");
             result[1] = new PropertyDescriptor("label",
                                                ELOptionsCollectionTag.class,
-                                               null, "setLabel");
+                                               null, "setLabelExpr");
             result[2] = new PropertyDescriptor("name",
                                                ELOptionsCollectionTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[3] = new PropertyDescriptor("property",
                                                ELOptionsCollectionTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[4] = new PropertyDescriptor("style",
                                                ELOptionsCollectionTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[5] = new PropertyDescriptor("styleClass",
                                                ELOptionsCollectionTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[6] = new PropertyDescriptor("value",
                                                ELOptionsCollectionTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/bean/TestELSizeTag.java,v 1.2 2002/09/28 04:43:06 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/09/28 04:43:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/bean/TestELSizeTag.java,v 1.3 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -99,9 +99,9 @@ public class TestELSizeTag extends JspTestCase
         formBean.setArrayProperty(new String[] {"abc", "def", "ghi"});
         pageContext.setAttribute("testFormBean", formBean);
 
-        elSizeTag.setId("sizeVar");
-        elSizeTag.setName("testFormBean");
-        elSizeTag.setProperty("arrayProperty");
+        elSizeTag.setIdExpr("sizeVar");
+        elSizeTag.setNameExpr("testFormBean");
+        elSizeTag.setPropertyExpr("arrayProperty");
 
         int startTagReturn = elSizeTag.doStartTag();
 
@@ -128,7 +128,7 @@ public class TestELSizeTag extends JspTestCase
         formBean.setArrayProperty(new String[] {"abc", "def", "ghi"});
         pageContext.setAttribute("testFormBean", formBean);
 
-        elSizeTag.setId("sizeVar");
+        elSizeTag.setIdExpr("sizeVar");
         elSizeTag.setCollectionExpr("${" + "testFormBean.arrayProperty" + "}");
 
         int startTagReturn = elSizeTag.doStartTag();

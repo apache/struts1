@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTagBeanInfo.java,v 1.2 2002/10/15 03:11:04 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/10/15 03:11:04 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELFrameTagBeanInfo.java,v 1.3 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,60 +89,60 @@ public class ELFrameTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("anchor", ELFrameTag.class,
-                                               null, "setAnchor");
+                                               null, "setAnchorExpr");
             result[1] = new PropertyDescriptor("forward", ELFrameTag.class,
-                                               null, "setForward");
+                                               null, "setForwardExpr");
             result[2] = new PropertyDescriptor("frameborder", ELFrameTag.class,
-                                               null, "setFrameborder");
+                                               null, "setFrameborderExpr");
             result[3] = new PropertyDescriptor("frameName", ELFrameTag.class,
-                                               null, "setFrameName");
+                                               null, "setFrameNameExpr");
             result[4] = new PropertyDescriptor("href", ELFrameTag.class,
-                                               null, "setHref");
+                                               null, "setHrefExpr");
             result[5] = new PropertyDescriptor("longdesc", ELFrameTag.class,
-                                               null, "setLongdesc");
+                                               null, "setLongdescExpr");
             result[6] = new PropertyDescriptor("marginheight", ELFrameTag.class,
                                                null, "setMarginheightExpr");
             result[7] = new PropertyDescriptor("marginwidth", ELFrameTag.class,
                                                null, "setMarginwidthExpr");
             result[8] = new PropertyDescriptor("name", ELFrameTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[9] = new PropertyDescriptor("noresize",
                                                ELFrameTag.class,
                                                null, "setNoresizeExpr");
             result[10] = new PropertyDescriptor("page", ELFrameTag.class,
-                                               null, "setPage");
+                                               null, "setPageExpr");
             result[11] = new PropertyDescriptor("paramId",
                                                 ELFrameTag.class,
-                                               null, "setParamId");
+                                               null, "setParamIdExpr");
             result[12] = new PropertyDescriptor("paramName",
                                                 ELFrameTag.class,
-                                               null, "setParamName");
+                                               null, "setParamNameExpr");
             result[13] = new PropertyDescriptor("paramProperty",
                                                 ELFrameTag.class,
-                                               null, "setParamProperty");
+                                               null, "setParamPropertyExpr");
             result[14] = new PropertyDescriptor("paramScope",
                                                ELFrameTag.class,
-                                               null, "setParamScope");
+                                               null, "setParamScopeExpr");
             result[15] = new PropertyDescriptor("property",
                                                ELFrameTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[16] = new PropertyDescriptor("scope",
                                                ELFrameTag.class,
-                                               null, "setScope");
+                                               null, "setScopeExpr");
             result[17] = new PropertyDescriptor("scrolling",
                                                ELFrameTag.class,
-                                               null, "setScrolling");
+                                               null, "setScrollingExpr");
             result[18] = new PropertyDescriptor("style", ELFrameTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[19] = new PropertyDescriptor("styleClass",
                                                ELFrameTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[20] = new PropertyDescriptor("styleId", ELFrameTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[21] = new PropertyDescriptor("title", ELFrameTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[22] = new PropertyDescriptor("titleKey", ELFrameTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[23] = new PropertyDescriptor("transaction", ELFrameTag.class,
                                                null, "setTransactionExpr");
         }

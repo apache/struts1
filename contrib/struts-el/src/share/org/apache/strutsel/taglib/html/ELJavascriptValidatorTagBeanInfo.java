@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTagBeanInfo.java,v 1.2 2003/01/18 05:04:14 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/18 05:04:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTagBeanInfo.java,v 1.3 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -90,28 +90,28 @@ public class ELJavascriptValidatorTagBeanInfo extends SimpleBeanInfo
         try {
             result[0] = new PropertyDescriptor("cdata",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setCdata");
+                                               null, "setCdataExpr");
             result[1] = new PropertyDescriptor("dynamicJavascript",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setDynamicJavascript");
+                                               null, "setDynamicJavascriptExpr");
             result[2] = new PropertyDescriptor("formName",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setFormName");
+                                               null, "setFormNameExpr");
             result[3] = new PropertyDescriptor("method",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setMethod");
+                                               null, "setMethodExpr");
             result[4] = new PropertyDescriptor("page",
                                                ELJavascriptValidatorTag.class,
                                                null, "setPageExpr");
             result[5] = new PropertyDescriptor("src",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setSrc");
+                                               null, "setSrcExpr");
             result[6] = new PropertyDescriptor("staticJavascript",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setStaticJavascript");
+                                               null, "setStaticJavascriptExpr");
             result[7] = new PropertyDescriptor("htmlComment",
                                                ELJavascriptValidatorTag.class,
-                                               null, "setHtmlComment");
+                                               null, "setHtmlCommentExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

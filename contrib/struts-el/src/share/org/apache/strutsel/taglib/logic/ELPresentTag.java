@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELPresentTag.java,v 1.1 2002/10/25 04:45:01 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/25 04:45:01 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELPresentTag.java,v 1.2 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,10 +76,149 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ELPresentTag extends PresentTag {
 
+    /**
+     * Instance variable mapped to "cookie" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String cookieExpr;
+    /**
+     * Instance variable mapped to "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String headerExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "parameter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String parameterExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "role" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String roleExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+    /**
+     * Instance variable mapped to "user" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String userExpr;
+
+    /**
+     * Getter method for "cookie" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getCookieExpr() { return (cookieExpr); }
+    /**
+     * Getter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHeaderExpr() { return (headerExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "parameter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getParameterExpr() { return (parameterExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "role" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getRoleExpr() { return (roleExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+    /**
+     * Getter method for "user" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getUserExpr() { return (userExpr); }
+
+    /**
+     * Setter method for "cookie" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setCookieExpr(String cookieExpr) { this.cookieExpr = cookieExpr; }
+    /**
+     * Setter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHeaderExpr(String headerExpr) { this.headerExpr = headerExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "parameter" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setParameterExpr(String parameterExpr) { this.parameterExpr = parameterExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "role" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setRoleExpr(String roleExpr) { this.roleExpr = roleExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+    /**
+     * Setter method for "user" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setUserExpr(String userExpr) { this.userExpr = userExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setCookieExpr(null);
+        setHeaderExpr(null);
+        setNameExpr(null);
+        setParameterExpr(null);
+        setPropertyExpr(null);
+        setRoleExpr(null);
+        setScopeExpr(null);
+        setUserExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -124,54 +263,46 @@ public class ELPresentTag extends PresentTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setCookie((String) evalAttr("cookie", getCookie(), String.class));
+            setCookie((String) evalAttr("cookie", getCookieExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setCookie(null);
         }
 
         try {
-            setHeader((String) evalAttr("header", getHeader(),
+            setHeader((String) evalAttr("header", getHeaderExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setHeader(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setParameter((String) evalAttr("parameter", getParameter(),
+            setParameter((String) evalAttr("parameter", getParameterExpr(),
                                            String.class));
         } catch (NullAttributeException ex) {
-            setParameter(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setRole((String) evalAttr("role", getRole(), String.class));
+            setRole((String) evalAttr("role", getRoleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setRole(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
 
         try {
-            setUser((String) evalAttr("user", getUser(), String.class));
+            setUser((String) evalAttr("user", getUserExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setUser(null);
         }
     }
 }

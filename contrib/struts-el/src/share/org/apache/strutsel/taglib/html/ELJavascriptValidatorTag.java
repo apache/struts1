@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.5 2003/01/18 05:04:14 dmkarr Exp $
- * $Revision: 1.5 $
- * $Date: 2003/01/18 05:04:14 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELJavascriptValidatorTag.java,v 1.6 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.6 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -77,27 +77,132 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * Pages Standard Library expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
 
     /**
-     * String value of the "page" attribute.
+     * Instance variable mapped to "cdata" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   pageExpr;
+    private String cdataExpr;
+    /**
+     * Instance variable mapped to "dynamicJavascript" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String dynamicJavascriptExpr;
+    /**
+     * Instance variable mapped to "formName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String formNameExpr;
+    /**
+     * Instance variable mapped to "method" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String methodExpr;
+    /**
+     * Instance variable mapped to "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String pageExpr;
+    /**
+     * Instance variable mapped to "src" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String srcExpr;
+    /**
+     * Instance variable mapped to "staticJavascript" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String staticJavascriptExpr;
+    /**
+     * Instance variable mapped to "htmlComment" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String htmlCommentExpr;
 
     /**
-     * Returns the string value of the "page" attribute.
+     * Getter method for "cdata" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getPageExpr() { return (pageExpr); }
+    public String getCdataExpr() { return (cdataExpr); }
+    /**
+     * Getter method for "dynamicJavascript" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getDynamicJavascriptExpr() { return (dynamicJavascriptExpr); }
+    /**
+     * Getter method for "formName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getFormNameExpr() { return (formNameExpr); }
+    /**
+     * Getter method for "method" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getMethodExpr() { return (methodExpr); }
+    /**
+     * Getter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPageExpr() { return (pageExpr); }
+    /**
+     * Getter method for "src" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getSrcExpr() { return (srcExpr); }
+    /**
+     * Getter method for "staticJavascript" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getStaticJavascriptExpr() { return (staticJavascriptExpr); }
+    /**
+     * Getter method for "htmlComment" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHtmlCommentExpr() { return (htmlCommentExpr); }
 
     /**
-     * Sets the string value of the "page" attribute.  This attribute is mapped
-     * to this method by the <code>ELJavascriptValidatorTagBeanInfo</code>
-     * class.
+     * Setter method for "cdata" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setPageExpr(String pageExpr)
-    { this.pageExpr  = pageExpr; }
+    public void setCdataExpr(String cdataExpr) { this.cdataExpr = cdataExpr; }
+    /**
+     * Setter method for "dynamicJavascript" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setDynamicJavascriptExpr(String dynamicJavascriptExpr) { this.dynamicJavascriptExpr = dynamicJavascriptExpr; }
+    /**
+     * Setter method for "formName" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setFormNameExpr(String formNameExpr) { this.formNameExpr = formNameExpr; }
+    /**
+     * Setter method for "method" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setMethodExpr(String methodExpr) { this.methodExpr = methodExpr; }
+    /**
+     * Setter method for "page" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPageExpr(String pageExpr) { this.pageExpr = pageExpr; }
+    /**
+     * Setter method for "src" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setSrcExpr(String srcExpr) { this.srcExpr = srcExpr; }
+    /**
+     * Setter method for "staticJavascript" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setStaticJavascriptExpr(String staticJavascriptExpr) { this.staticJavascriptExpr = staticJavascriptExpr; }
+    /**
+     * Setter method for "htmlComment" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHtmlCommentExpr(String htmlCommentExpr) { this.htmlCommentExpr = htmlCommentExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -105,7 +210,14 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
     public void release()
     {
         super.release();
+        setCdataExpr(null);
+        setDynamicJavascriptExpr(null);
+        setFormNameExpr(null);
+        setMethodExpr(null);
         setPageExpr(null);
+        setSrcExpr(null);
+        setStaticJavascriptExpr(null);
+        setHtmlCommentExpr(null);
     }
 
     /**
@@ -152,59 +264,51 @@ public class ELJavascriptValidatorTag extends JavascriptValidatorTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setCdata((String) evalAttr("cdata", getCdata(),
+            setCdata((String) evalAttr("cdata", getCdataExpr(),
                                        String.class));
         } catch (NullAttributeException ex) {
-            setCdata(null);
         }
 
         try {
             setDynamicJavascript((String) evalAttr("dynamicJavascript",
-                                                   getDynamicJavascript(), 
+                                                   getDynamicJavascriptExpr(), 
                                                    String.class));
         } catch (NullAttributeException ex) {
-            setDynamicJavascript(null);
         }
 
         try {
-            setFormName((String) evalAttr("formName", getFormName(),
+            setFormName((String) evalAttr("formName", getFormNameExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setFormName(null);
         }
 
         try {
-            setMethod((String) evalAttr("method", getMethod(), String.class));
+            setMethod((String) evalAttr("method", getMethodExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setMethod(null);
         }
 
         try {
             setPage(((Integer) evalAttr("page", getPageExpr(), Integer.class)).
                     intValue());
         } catch (NullAttributeException ex) {
-            setPage(0);
         }
 
         try {
-            setSrc((String) evalAttr("src", getSrc(), String.class));
+            setSrc((String) evalAttr("src", getSrcExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setSrc(null);
         }
 
         try {
             setStaticJavascript((String) evalAttr("staticJavascript",
-                                                  getStaticJavascript(), 
+                                                  getStaticJavascriptExpr(), 
                                                   String.class));
         } catch (NullAttributeException ex) {
-            setStaticJavascript(null);
         }
 
         try {
-            setHtmlComment((String) evalAttr("htmlComment", getHtmlComment(),
+            setHtmlComment((String) evalAttr("htmlComment", getHtmlCommentExpr(),
                                              String.class));
         } catch (NullAttributeException ex) {
-            setHtmlComment(null);
         }
     }
 }

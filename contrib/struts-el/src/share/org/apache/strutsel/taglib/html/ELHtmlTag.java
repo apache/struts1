@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.4 2002/10/14 03:18:38 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/14 03:18:38 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELHtmlTag.java,v 1.5 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -76,41 +76,42 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ELHtmlTag extends HtmlTag {
 
     /**
-     * String value of the "locale" attribute.
+     * Instance variable mapped to "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   localeExpr;
+    private String localeExpr;
     /**
-     * String value of the "xhtml" attribute.
+     * Instance variable mapped to "xhtml" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   xhtmlExpr;
+    private String xhtmlExpr;
 
     /**
-     * Returns the string value of the "locale" attribute.
+     * Getter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
     public String getLocaleExpr() { return (localeExpr); }
     /**
-     * Returns the string value of the "xhtml" attribute.
+     * Getter method for "xhtml" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
     public String getXhtmlExpr() { return (xhtmlExpr); }
 
     /**
-     * Sets the string value of the "locale" attribute.  This attribute is
-     * mapped to this method by the <code>ELHtmlTagBeanInfo</code> class.
+     * Setter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public void setLocaleExpr(String localeExpr)
-    { this.localeExpr = localeExpr; }
-
+    public void setLocaleExpr(String localeExpr) { this.localeExpr = localeExpr; }
     /**
-     * Sets the string value of the "xhtml" attribute.  This attribute is
-     * mapped to this method by the <code>ELHtmlTagBeanInfo</code> class.
+     * Setter method for "xhtml" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public void setXhtmlExpr(String xhtmlExpr)
-    { this.xhtmlExpr = xhtmlExpr; }
+    public void setXhtmlExpr(String xhtmlExpr) { this.xhtmlExpr = xhtmlExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -170,7 +171,6 @@ public class ELHtmlTag extends HtmlTag {
                                           Boolean.class)).
                       booleanValue());
         } catch (NullAttributeException ex) {
-            setLocale(false);
         }
 
         try {
@@ -178,7 +178,6 @@ public class ELHtmlTag extends HtmlTag {
                                          Boolean.class)).
                      booleanValue());
         } catch (NullAttributeException ex) {
-            setXhtml(false);
         }
     }
 }

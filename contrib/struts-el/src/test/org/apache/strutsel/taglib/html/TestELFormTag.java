@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFormTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/html/TestELFormTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -243,10 +243,10 @@ public class TestELFormTag extends JspTagTestCase
             response.encodeURL(getActionMappingURL(mapping.getName()));
 
         response.addHeader(REQUIRED_NAME_VALUE_KEY, ACTION_NAME);
-        response.addHeader(REQUIRED_METHOD_VALUE_KEY, "POST");
+        response.addHeader(REQUIRED_METHOD_VALUE_KEY, "post");
         response.addHeader(REQUIRED_ACTION_VALUE_KEY, encodedURL);
 
-        elFormTag.setAction(ACTION_NAME);
+        elFormTag.setActionExpr(ACTION_NAME);
 
         int startTagReturn = elFormTag.doStartTag();
         int endTagReturn   = elFormTag.doEndTag();
@@ -311,8 +311,8 @@ public class TestELFormTag extends JspTagTestCase
         response.addHeader(REQUIRED_METHOD_VALUE_KEY, "GET");
         response.addHeader(REQUIRED_ACTION_VALUE_KEY, encodedURL);
 
-        elFormTag.setAction(ACTION_NAME);
-        elFormTag.setMethod("GET");
+        elFormTag.setActionExpr(ACTION_NAME);
+        elFormTag.setMethodExpr("GET");
 
         int startTagReturn = elFormTag.doStartTag();
         int endTagReturn   = elFormTag.doEndTag();

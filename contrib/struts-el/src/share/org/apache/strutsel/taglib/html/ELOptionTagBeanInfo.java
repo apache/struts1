@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTagBeanInfo.java,v 1.2 2003/01/07 23:40:18 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2003/01/07 23:40:18 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELOptionTagBeanInfo.java,v 1.3 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,22 +88,21 @@ public class ELOptionTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("bundle", ELOptionTag.class,
-                                               null, "setBundle");
-            // This attribute has a non-standard mapping.
+                                               null, "setBundleExpr");
             result[1] = new PropertyDescriptor("disabled", ELOptionTag.class,
                                                null, "setDisabledExpr");
             result[2] = new PropertyDescriptor("key", ELOptionTag.class,
-                                               null, "setKey");
+                                               null, "setKeyExpr");
             result[3] = new PropertyDescriptor("locale", ELOptionTag.class,
-                                               null, "setLocale");
+                                               null, "setLocaleExpr");
             result[4] = new PropertyDescriptor("style", ELOptionTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[5] = new PropertyDescriptor("styleClass", ELOptionTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[6] = new PropertyDescriptor("styleId", ELOptionTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[7] = new PropertyDescriptor("value", ELOptionTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

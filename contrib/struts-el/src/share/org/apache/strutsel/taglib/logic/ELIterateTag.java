@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTag.java,v 1.3 2002/10/01 04:25:51 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:51 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTag.java,v 1.4 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -79,31 +79,147 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELIterateTag extends IterateTag {
 
     /**
-     * String value of expression to be evaluated to result in a Collection.
+     * Instance variable mapped to "collection" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    private String   collectionExpr;
+    private String collectionExpr;
+    /**
+     * Instance variable mapped to "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String idExpr;
+    /**
+     * Instance variable mapped to "indexId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String indexIdExpr;
+    /**
+     * Instance variable mapped to "length" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String lengthExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "offset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String offsetExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String scopeExpr;
+    /**
+     * Instance variable mapped to "type" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String typeExpr;
 
     /**
-     * Returns the string value of the Collection expression.  This value will
-     * be evaluated by the JSTL EL engine.
-     *<p>
-     * Note that this value is associated with the <code>collection</code>
-     * attribute of the custom tag.  The class <code>ELIterateTagBeanInfo</code>
-     * maps the <code>collection</code> attribute of the custom tag to the
-     * <code>collectionExpr</code> attribute of this class.
+     * Getter method for "collection" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  String   getCollectionExpr() { return (collectionExpr); }
+    public String getCollectionExpr() { return (collectionExpr); }
     /**
-     * Sets the string value of the Collection expression.  This expression
-     * will be evaluated by the JSTL EL engine.
+     * Getter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
      */
-    public  void     setCollectionExpr(String collectionExpr)
-    { this.collectionExpr   = collectionExpr; }
+    public String getIdExpr() { return (idExpr); }
+    /**
+     * Getter method for "indexId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIndexIdExpr() { return (indexIdExpr); }
+    /**
+     * Getter method for "length" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLengthExpr() { return (lengthExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "offset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getOffsetExpr() { return (offsetExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getScopeExpr() { return (scopeExpr); }
+    /**
+     * Getter method for "type" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getTypeExpr() { return (typeExpr); }
+
+    /**
+     * Setter method for "collection" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setCollectionExpr(String collectionExpr) { this.collectionExpr = collectionExpr; }
+    /**
+     * Setter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIdExpr(String idExpr) { this.idExpr = idExpr; }
+    /**
+     * Setter method for "indexId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIndexIdExpr(String indexIdExpr) { this.indexIdExpr = indexIdExpr; }
+    /**
+     * Setter method for "length" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLengthExpr(String lengthExpr) { this.lengthExpr = lengthExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "offset" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setOffsetExpr(String offsetExpr) { this.offsetExpr = offsetExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "scope" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setScopeExpr(String scopeExpr) { this.scopeExpr = scopeExpr; }
+    /**
+     * Setter method for "type" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setTypeExpr(String typeExpr) { this.typeExpr = typeExpr; }
 
     /**
      * Releases state of custom tag so this instance can be reused.
@@ -112,6 +228,14 @@ public class ELIterateTag extends IterateTag {
     {
         super.release();
         setCollectionExpr(null);
+        setIdExpr(null);
+        setIndexIdExpr(null);
+        setLengthExpr(null);
+        setNameExpr(null);
+        setOffsetExpr(null);
+        setPropertyExpr(null);
+        setScopeExpr(null);
+        setTypeExpr(null);
     }
 
     /**
@@ -159,57 +283,48 @@ public class ELIterateTag extends IterateTag {
             setCollection(evalAttr("collection", getCollectionExpr(), 
                                    Object.class));
         } catch (NullAttributeException ex) {
-            setCollection(null);
         }
 
         try {
-            setId((String) evalAttr("id", getId(), String.class));
+            setId((String) evalAttr("id", getIdExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setId(null);
         }
 
         try {
-            setIndexId((String) evalAttr("indexId", getIndexId(),
+            setIndexId((String) evalAttr("indexId", getIndexIdExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setIndexId(null);
         }
 
         try {
-            setLength((String) evalAttr("length", getLength(), String.class));
+            setLength((String) evalAttr("length", getLengthExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setLength(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setOffset((String) evalAttr("offset", getOffset(), String.class));
+            setOffset((String) evalAttr("offset", getOffsetExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setOffset(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setScope((String) evalAttr("scope", getScope(), String.class));
+            setScope((String) evalAttr("scope", getScopeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setScope(null);
         }
 
         try {
-            setType((String) evalAttr("type", getType(), String.class));
+            setType((String) evalAttr("type", getTypeExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setType(null);
         }
     }
 }

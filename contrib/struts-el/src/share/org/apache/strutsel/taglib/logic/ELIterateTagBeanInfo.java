@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.4 2002/10/24 05:08:06 dmkarr Exp $
- * $Revision: 1.4 $
- * $Date: 2002/10/24 05:08:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/logic/ELIterateTagBeanInfo.java,v 1.5 2003/02/19 03:54:38 dmkarr Exp $
+ * $Revision: 1.5 $
+ * $Date: 2003/02/19 03:54:38 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -92,23 +92,22 @@ public class ELIterateTagBeanInfo extends SimpleBeanInfo
             result[0] =
                 new PropertyDescriptor("collection", ELIterateTag.class,
                                        null, "setCollectionExpr");
-
             result[1] = new PropertyDescriptor("id", ELIterateTag.class,
-                                               null, "setId");
+                                               null, "setIdExpr");
             result[2] = new PropertyDescriptor("indexId", ELIterateTag.class,
-                                               null, "setIndexId");
+                                               null, "setIndexIdExpr");
             result[3] = new PropertyDescriptor("length", ELIterateTag.class,
-                                               null, "setLength");
+                                               null, "setLengthExpr");
             result[4] = new PropertyDescriptor("name", ELIterateTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[5] = new PropertyDescriptor("offset", ELIterateTag.class,
-                                               null, "setOffset");
+                                               null, "setOffsetExpr");
             result[6] = new PropertyDescriptor("property", ELIterateTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[7] = new PropertyDescriptor("scope", ELIterateTag.class,
-                                               null, "setScope");
+                                               null, "setScopeExpr");
             result[8] = new PropertyDescriptor("type", ELIterateTag.class,
-                                               null, "setType");
+                                               null, "setTypeExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

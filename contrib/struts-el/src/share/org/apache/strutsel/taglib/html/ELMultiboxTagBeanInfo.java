@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMultiboxTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMultiboxTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -92,67 +92,66 @@ public class ELMultiboxTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELMultiboxTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELMultiboxTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELMultiboxTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELMultiboxTag.class,
                                                null, "setDisabledExpr");
             result[4] = new PropertyDescriptor("name", ELMultiboxTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[5] = new PropertyDescriptor("onblur", ELMultiboxTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[6] = new PropertyDescriptor("onchange", ELMultiboxTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[7] = new PropertyDescriptor("onclick", ELMultiboxTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[8] = new PropertyDescriptor("ondblclick",
                                                ELMultiboxTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[9] = new PropertyDescriptor("onfocus", ELMultiboxTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[10] = new PropertyDescriptor("onkeydown",
                                                 ELMultiboxTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[11] = new PropertyDescriptor("onkeypress",
                                                 ELMultiboxTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[12] = new PropertyDescriptor("onkeyup", ELMultiboxTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[13] = new PropertyDescriptor("onmousedown",
                                                ELMultiboxTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[14] = new PropertyDescriptor("onmousemove",
                                                ELMultiboxTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[15] = new PropertyDescriptor("onmouseout",
                                                ELMultiboxTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[16] = new PropertyDescriptor("onmouseover",
                                                ELMultiboxTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[17] = new PropertyDescriptor("onmouseup",
                                                 ELMultiboxTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[18] = new PropertyDescriptor("property", ELMultiboxTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[19] = new PropertyDescriptor("style", ELMultiboxTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[20] = new PropertyDescriptor("styleClass",
                                                ELMultiboxTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[21] = new PropertyDescriptor("styleId", ELMultiboxTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[22] = new PropertyDescriptor("tabindex", ELMultiboxTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[23] = new PropertyDescriptor("title", ELMultiboxTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[24] = new PropertyDescriptor("titleKey", ELMultiboxTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[25] = new PropertyDescriptor("value", ELMultiboxTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

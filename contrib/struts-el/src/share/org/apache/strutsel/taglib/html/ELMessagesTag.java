@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMessagesTag.java,v 1.3 2002/10/01 04:25:50 dmkarr Exp $
- * $Revision: 1.3 $
- * $Date: 2002/10/01 04:25:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELMessagesTag.java,v 1.4 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -79,10 +79,149 @@ import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
  * expression language.
  *
  * @author David M. Karr
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ELMessagesTag extends MessagesTag {
 
+    /**
+     * Instance variable mapped to "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String idExpr;
+    /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
+    /**
+     * Instance variable mapped to "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String localeExpr;
+    /**
+     * Instance variable mapped to "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String nameExpr;
+    /**
+     * Instance variable mapped to "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String propertyExpr;
+    /**
+     * Instance variable mapped to "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String headerExpr;
+    /**
+     * Instance variable mapped to "footer" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String footerExpr;
+    /**
+     * Instance variable mapped to "message" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String messageExpr;
+
+    /**
+     * Getter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getIdExpr() { return (idExpr); }
+    /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
+    /**
+     * Getter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getLocaleExpr() { return (localeExpr); }
+    /**
+     * Getter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getNameExpr() { return (nameExpr); }
+    /**
+     * Getter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHeaderExpr() { return (headerExpr); }
+    /**
+     * Getter method for "footer" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getFooterExpr() { return (footerExpr); }
+    /**
+     * Getter method for "message" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getMessageExpr() { return (messageExpr); }
+
+    /**
+     * Setter method for "id" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setIdExpr(String idExpr) { this.idExpr = idExpr; }
+    /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
+     * Setter method for "locale" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setLocaleExpr(String localeExpr) { this.localeExpr = localeExpr; }
+    /**
+     * Setter method for "name" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
+    /**
+     * Setter method for "property" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHeaderExpr(String headerExpr) { this.headerExpr = headerExpr; }
+    /**
+     * Setter method for "footer" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setFooterExpr(String footerExpr) { this.footerExpr = footerExpr; }
+    /**
+     * Setter method for "message" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setMessageExpr(String messageExpr) { this.messageExpr = messageExpr; }
+
+    /**
+     * Resets attribute values for tag reuse.
+     */
+    public void release()
+    {
+        super.release();
+        setIdExpr(null);
+        setBundleExpr(null);
+        setLocaleExpr(null);
+        setNameExpr(null);
+        setPropertyExpr(null);
+        setHeaderExpr(null);
+        setFooterExpr(null);
+        setMessageExpr(null);
+    }
+    
     /**
      * Process the start tag.
      *
@@ -124,53 +263,45 @@ public class ELMessagesTag extends MessagesTag {
      */
     private void evaluateExpressions() throws JspException {
         try {
-            setId((String) evalAttr("id", getId(), String.class));
+            setId((String) evalAttr("id", getIdExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setId(null);
         }
 
         try {
-            setBundle((String) evalAttr("bundle", getBundle(), String.class));
+            setBundle((String) evalAttr("bundle", getBundleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setBundle(null);
         }
 
         try {
-            setLocale((String) evalAttr("locale", getLocale(), String.class));
+            setLocale((String) evalAttr("locale", getLocaleExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setLocale(null);
         }
 
         try {
-            setName((String) evalAttr("name", getName(), String.class));
+            setName((String) evalAttr("name", getNameExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setName(null);
         }
 
         try {
-            setProperty((String) evalAttr("property", getProperty(),
+            setProperty((String) evalAttr("property", getPropertyExpr(),
                                           String.class));
         } catch (NullAttributeException ex) {
-            setProperty(null);
         }
 
         try {
-            setHeader((String) evalAttr("header", getHeader(), String.class));
+            setHeader((String) evalAttr("header", getHeaderExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setHeader(null);
         }
 
         try {
-            setFooter((String) evalAttr("footer", getFooter(), String.class));
+            setFooter((String) evalAttr("footer", getFooterExpr(), String.class));
         } catch (NullAttributeException ex) {
-            setFooter(null);
         }
 
         try {
-            setMessage((String) evalAttr("message", getMessage(),
+            setMessage((String) evalAttr("message", getMessageExpr(),
                                          String.class));
         } catch (NullAttributeException ex) {
-            setMessage(null);
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCheckboxTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELCheckboxTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,70 +89,68 @@ public class ELCheckboxTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELCheckboxTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELCheckboxTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELCheckboxTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELCheckboxTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[4] = new PropertyDescriptor("indexed", ELCheckboxTag.class,
                                                null, "setIndexedExpr");
             result[5] = new PropertyDescriptor("name", ELCheckboxTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[6] = new PropertyDescriptor("onblur", ELCheckboxTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[7] = new PropertyDescriptor("onchange", ELCheckboxTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[8] = new PropertyDescriptor("onclick", ELCheckboxTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[9] = new PropertyDescriptor("ondblclick",
                                                ELCheckboxTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[10] = new PropertyDescriptor("onfocus", ELCheckboxTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[11] = new PropertyDescriptor("onkeydown",
                                                 ELCheckboxTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[12] = new PropertyDescriptor("onkeypress",
                                                 ELCheckboxTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[13] = new PropertyDescriptor("onkeyup", ELCheckboxTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[14] = new PropertyDescriptor("onmousedown",
                                                ELCheckboxTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[15] = new PropertyDescriptor("onmousemove",
                                                ELCheckboxTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[16] = new PropertyDescriptor("onmouseout",
                                                ELCheckboxTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[17] = new PropertyDescriptor("onmouseover",
                                                ELCheckboxTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[18] = new PropertyDescriptor("onmouseup",
                                                 ELCheckboxTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[19] = new PropertyDescriptor("property", ELCheckboxTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[20] = new PropertyDescriptor("style", ELCheckboxTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[21] = new PropertyDescriptor("styleClass",
                                                ELCheckboxTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[22] = new PropertyDescriptor("styleId", ELCheckboxTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[23] = new PropertyDescriptor("tabindex", ELCheckboxTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[24] = new PropertyDescriptor("title", ELCheckboxTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[25] = new PropertyDescriptor("titleKey", ELCheckboxTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[26] = new PropertyDescriptor("value", ELCheckboxTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

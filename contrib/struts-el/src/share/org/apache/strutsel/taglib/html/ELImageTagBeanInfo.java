@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImageTagBeanInfo.java,v 1.2 2002/12/11 17:12:20 dmkarr Exp $
- * $Revision: 1.2 $
- * $Date: 2002/12/11 17:12:20 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELImageTagBeanInfo.java,v 1.3 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,84 +88,82 @@ public class ELImageTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELImageTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("align", ELImageTag.class,
-                                               null, "setAlign");
+                                               null, "setAlignExpr");
             result[2] = new PropertyDescriptor("alt", ELImageTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[3] = new PropertyDescriptor("altKey", ELImageTag.class,
-                                               null, "setAltKey");
+                                               null, "setAltKeyExpr");
             result[4] = new PropertyDescriptor("border", ELImageTag.class,
-                                               null, "setBorder");
+                                               null, "setBorderExpr");
             result[5] = new PropertyDescriptor("bundle", ELImageTag.class,
-                                               null, "setBundle");
-            // This attribute has a non-standard mapping.
+                                               null, "setBundleExpr");
             result[6] = new PropertyDescriptor("disabled", ELImageTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[7] = new PropertyDescriptor("indexed", ELImageTag.class,
                                                null, "setIndexedExpr");
             result[8] = new PropertyDescriptor("locale", ELImageTag.class,
-                                               null, "setLocale");
+                                               null, "setLocaleExpr");
             result[9] = new PropertyDescriptor("onblur", ELImageTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[10] = new PropertyDescriptor("onchange", ELImageTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[11] = new PropertyDescriptor("onclick", ELImageTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[12] = new PropertyDescriptor("ondblclick",
                                                ELImageTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[13] = new PropertyDescriptor("onfocus", ELImageTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[14] = new PropertyDescriptor("onkeydown",
                                                 ELImageTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[15] = new PropertyDescriptor("onkeypress",
                                                 ELImageTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[16] = new PropertyDescriptor("onkeyup", ELImageTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[17] = new PropertyDescriptor("onmousedown",
                                                ELImageTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[18] = new PropertyDescriptor("onmousemove",
                                                ELImageTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[19] = new PropertyDescriptor("onmouseout",
                                                ELImageTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[20] = new PropertyDescriptor("onmouseover",
                                                ELImageTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[21] = new PropertyDescriptor("onmouseup",
                                                 ELImageTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[22] = new PropertyDescriptor("page", ELImageTag.class,
-                                               null, "setPage");
+                                               null, "setPageExpr");
             result[23] = new PropertyDescriptor("pageKey", ELImageTag.class,
-                                               null, "setPageKey");
+                                               null, "setPageKeyExpr");
             result[24] = new PropertyDescriptor("property", ELImageTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[25] = new PropertyDescriptor("src", ELImageTag.class,
-                                               null, "setSrc");
+                                               null, "setSrcExpr");
             result[26] = new PropertyDescriptor("srcKey", ELImageTag.class,
-                                               null, "setSrcKey");
+                                               null, "setSrcKeyExpr");
             result[27] = new PropertyDescriptor("style", ELImageTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[28] = new PropertyDescriptor("styleClass",
                                                ELImageTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[29] = new PropertyDescriptor("styleId", ELImageTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[30] = new PropertyDescriptor("tabindex", ELImageTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[31] = new PropertyDescriptor("title", ELImageTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[32] = new PropertyDescriptor("titleKey", ELImageTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[33] = new PropertyDescriptor("value", ELImageTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();

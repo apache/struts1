@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.1 2002/10/15 03:12:41 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/15 03:12:41 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELRewriteTagBeanInfo.java,v 1.2 2003/02/19 03:53:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:53:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -89,29 +89,29 @@ public class ELRewriteTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("anchor", ELRewriteTag.class,
-                                               null, "setAnchor");
+                                               null, "setAnchorExpr");
             result[1] = new PropertyDescriptor("forward", ELRewriteTag.class,
-                                               null, "setForward");
+                                               null, "setForwardExpr");
             result[2] = new PropertyDescriptor("href", ELRewriteTag.class,
-                                               null, "setHref");
+                                               null, "setHrefExpr");
             result[3] = new PropertyDescriptor("name", ELRewriteTag.class,
-                                               null, "setName");
+                                               null, "setNameExpr");
             result[4] = new PropertyDescriptor("page", ELRewriteTag.class,
-                                                null, "setPage");
+                                                null, "setPageExpr");
             result[5] = new PropertyDescriptor("paramId", ELRewriteTag.class,
-                                                null, "setParamId");
+                                                null, "setParamIdExpr");
             result[6] = new PropertyDescriptor("paramName", ELRewriteTag.class,
-                                                null, "setParamName");
+                                                null, "setParamNameExpr");
             result[7] = new PropertyDescriptor("paramProperty",
                                                 ELRewriteTag.class,
-                                                null, "setParamProperty");
+                                                null, "setParamPropertyExpr");
             result[8] = new PropertyDescriptor("paramScope",
                                                 ELRewriteTag.class,
-                                                null, "setParamScope");
+                                                null, "setParamScopeExpr");
             result[9] = new PropertyDescriptor("property", ELRewriteTag.class,
-                                                null, "setProperty");
+                                                null, "setPropertyExpr");
             result[10] = new PropertyDescriptor("scope", ELRewriteTag.class,
-                                                null, "setScope");
+                                                null, "setScopeExpr");
             result[11] = new PropertyDescriptor("transaction",
                                                 ELRewriteTag.class,
                                                 null, "setTransactionExpr");

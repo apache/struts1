@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/logic/TestELNotMatchTag.java,v 1.3 2002/11/16 05:12:06 jmitchell Exp $
- * $Revision: 1.3 $
- * $Date: 2002/11/16 05:12:06 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/test/org/apache/strutsel/taglib/logic/TestELNotMatchTag.java,v 1.4 2003/02/19 03:54:39 dmkarr Exp $
+ * $Revision: 1.4 $
+ * $Date: 2003/02/19 03:54:39 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -114,10 +114,10 @@ public class TestELNotMatchTag
 
         pageContext.setAttribute(VAR_KEY, VALUE_KEY);
 
-        elNotMatchTag.setName("testFormBean");
-        elNotMatchTag.setProperty(PROP_KEY);
+        elNotMatchTag.setNameExpr("testFormBean");
+        elNotMatchTag.setPropertyExpr(PROP_KEY);
 
-        elNotMatchTag.setValue(VALUE_KEY);
+        elNotMatchTag.setValueExpr(VALUE_KEY);
 
         int startTagReturn = elNotMatchTag.doStartTag();
         assertEquals("Match string matches comparison", false, 

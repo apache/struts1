@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELButtonTagBeanInfo.java,v 1.1 2002/10/14 03:11:08 dmkarr Exp $
- * $Revision: 1.1 $
- * $Date: 2002/10/14 03:11:08 $
+ * $Header: /home/cvs/jakarta-struts/contrib/struts-el/src/share/org/apache/strutsel/taglib/html/ELButtonTagBeanInfo.java,v 1.2 2003/02/19 03:52:49 dmkarr Exp $
+ * $Revision: 1.2 $
+ * $Date: 2003/02/19 03:52:49 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -88,68 +88,66 @@ public class ELButtonTagBeanInfo extends SimpleBeanInfo
 
         try {
             result[0] = new PropertyDescriptor("accesskey", ELButtonTag.class,
-                                               null, "setAccesskey");
+                                               null, "setAccesskeyExpr");
             result[1] = new PropertyDescriptor("alt", ELButtonTag.class,
-                                               null, "setAlt");
+                                               null, "setAltExpr");
             result[2] = new PropertyDescriptor("altKey", ELButtonTag.class,
-                                               null, "setAltKey");
-            // This attribute has a non-standard mapping.
+                                               null, "setAltKeyExpr");
             result[3] = new PropertyDescriptor("disabled", ELButtonTag.class,
                                                null, "setDisabledExpr");
-            // This attribute has a non-standard mapping.
             result[4] = new PropertyDescriptor("indexed", ELButtonTag.class,
                                                null, "setIndexedExpr");
             result[5] = new PropertyDescriptor("onblur", ELButtonTag.class,
-                                               null, "setOnblur");
+                                               null, "setOnblurExpr");
             result[6] = new PropertyDescriptor("onchange", ELButtonTag.class,
-                                               null, "setOnchange");
+                                               null, "setOnchangeExpr");
             result[7] = new PropertyDescriptor("onclick", ELButtonTag.class,
-                                               null, "setOnclick");
+                                               null, "setOnclickExpr");
             result[8] = new PropertyDescriptor("ondblclick",
                                                ELButtonTag.class,
-                                               null, "setOndblclick");
+                                               null, "setOndblclickExpr");
             result[9] = new PropertyDescriptor("onfocus", ELButtonTag.class,
-                                               null, "setOnfocus");
+                                               null, "setOnfocusExpr");
             result[10] = new PropertyDescriptor("onkeydown",
                                                 ELButtonTag.class,
-                                               null, "setOnkeydown");
+                                               null, "setOnkeydownExpr");
             result[11] = new PropertyDescriptor("onkeypress",
                                                 ELButtonTag.class,
-                                               null, "setOnkeypress");
+                                               null, "setOnkeypressExpr");
             result[12] = new PropertyDescriptor("onkeyup", ELButtonTag.class,
-                                               null, "setOnkeyup");
+                                               null, "setOnkeyupExpr");
             result[13] = new PropertyDescriptor("onmousedown",
                                                ELButtonTag.class,
-                                               null, "setOnmousedown");
+                                               null, "setOnmousedownExpr");
             result[14] = new PropertyDescriptor("onmousemove",
                                                ELButtonTag.class,
-                                               null, "setOnmousemove");
+                                               null, "setOnmousemoveExpr");
             result[15] = new PropertyDescriptor("onmouseout",
                                                ELButtonTag.class,
-                                               null, "setOnmouseout");
+                                               null, "setOnmouseoutExpr");
             result[16] = new PropertyDescriptor("onmouseover",
                                                ELButtonTag.class,
-                                               null, "setOnmouseover");
+                                               null, "setOnmouseoverExpr");
             result[17] = new PropertyDescriptor("onmouseup",
                                                 ELButtonTag.class,
-                                               null, "setOnmouseup");
+                                               null, "setOnmouseupExpr");
             result[18] = new PropertyDescriptor("property", ELButtonTag.class,
-                                               null, "setProperty");
+                                               null, "setPropertyExpr");
             result[19] = new PropertyDescriptor("style", ELButtonTag.class,
-                                               null, "setStyle");
+                                               null, "setStyleExpr");
             result[20] = new PropertyDescriptor("styleClass",
                                                ELButtonTag.class,
-                                               null, "setStyleClass");
+                                               null, "setStyleClassExpr");
             result[21] = new PropertyDescriptor("styleId", ELButtonTag.class,
-                                               null, "setStyleId");
+                                               null, "setStyleIdExpr");
             result[22] = new PropertyDescriptor("tabindex", ELButtonTag.class,
-                                               null, "setTabindex");
+                                               null, "setTabindexExpr");
             result[23] = new PropertyDescriptor("title", ELButtonTag.class,
-                                               null, "setTitle");
+                                               null, "setTitleExpr");
             result[24] = new PropertyDescriptor("titleKey", ELButtonTag.class,
-                                               null, "setTitleKey");
+                                               null, "setTitleKeyExpr");
             result[25] = new PropertyDescriptor("value", ELButtonTag.class,
-                                               null, "setValue");
+                                               null, "setValueExpr");
         }
         catch (IntrospectionException ex) {
             ex.printStackTrace();
