@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.1 2001/07/12 05:18:31 dwinterfeldt Exp $
- * $Revision: 1.1 $
- * $Date: 2001/07/12 05:18:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMessages.java,v 1.2 2001/07/16 05:14:09 dwinterfeldt Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/07/16 05:14:09 $
  *
  * ====================================================================
  *
@@ -66,8 +66,10 @@ package org.apache.struts.action;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -87,7 +89,7 @@ import java.util.HashMap;
  * @author David Geary
  * @author Craig R. McClanahan
  * @author David Winterfeldt
- * @revision $Revision: 1.1 $ $Date: 2001/07/12 05:18:31 $
+ * @revision $Revision: 1.2 $ $Date: 2001/07/16 05:14:09 $
  */
 
 public class ActionMessages implements Serializable {
@@ -112,24 +114,39 @@ public class ActionMessages implements Serializable {
      * as an ArrayList) for each property, keyed by property name.
      */
     protected HashMap messages = new HashMap();
+    
+    /**
+     * The current number of the property/key being added.  This is used 
+     * to maintain the order messages are added.
+    */
+    protected int iCount = 0;
 
 
     // --------------------------------------------------------- Public Methods
 
 
     /**
-     * Add a message to the set of messages for the specified property.
+     * Add a message to the set of messages for the specified property.  An 
+     * order of the property/key is maintained based on the initial addition 
+     * of the property/key.
      *
      * @param property 	Property name (or ActionMessages.GLOBAL_MESSAGE)
      * @param message 	The message to be added
      */
     public void add(String property, ActionMessage message) {
 
-        ArrayList list = (ArrayList) messages.get(property);
-        if (list == null) {
-            list = new ArrayList();
-            messages.put(property, list);
+        ActionMessageItem ami = (ActionMessageItem) messages.get(property);
+        List list = null;
+        
+        if (ami == null) {
+           list = new ArrayList();
+           ami = new ActionMessageItem(list, iCount++);
+            
+           messages.put(property, ami);
+        } else {
+           list = ami.getList();
         }
+        
         list.add(message);
 
     }
@@ -165,14 +182,28 @@ public class ActionMessages implements Serializable {
 
         if (messages.size() == 0)
             return (Collections.EMPTY_LIST.iterator());
+        
         ArrayList results = new ArrayList();
-        Iterator props = messages.keySet().iterator();
-        while (props.hasNext()) {
-            String prop = (String) props.next();
-            Iterator messages = ((ArrayList) this.messages.get(prop)).iterator();
-            while (messages.hasNext())
-                results.add(messages.next());
+        ArrayList actionItems = new ArrayList();
+        
+        for (Iterator i =  messages.values().iterator(); i.hasNext(); )
+           actionItems.add(i.next());
+
+        // Sort ActionMessageItems based on the initial order the 
+        // property/key was added to ActionMessages.
+        Collections.sort(actionItems, new Comparator() {
+           public int compare(Object o1, Object o2) {
+              return ((ActionMessageItem) o1).getOrder() - ((ActionMessageItem) o2).getOrder();
+           }
+        });
+        
+        for (Iterator i =  actionItems.iterator(); i.hasNext(); ) {
+           ActionMessageItem ami = (ActionMessageItem)i.next();
+           
+           for (Iterator messages =  ami.getList().iterator(); messages.hasNext(); )
+              results.add(messages.next());
         }
+        
         return (results.iterator());
 
     }
@@ -186,11 +217,12 @@ public class ActionMessages implements Serializable {
      */
     public Iterator get(String property) {
 
-        ArrayList list = (ArrayList) messages.get(property);
-        if (list == null)
-            return (Collections.EMPTY_LIST.iterator());
+        ActionMessageItem ami = (ActionMessageItem) messages.get(property);
+
+        if (ami == null)
+           return (Collections.EMPTY_LIST.iterator());
         else
-            return (list.iterator());
+           return (ami.getList().iterator());
 
     }
 
@@ -218,12 +250,12 @@ public class ActionMessages implements Serializable {
     public int size() {
 
         int total = 0;
-        Iterator keys = messages.keySet().iterator();
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            ArrayList list = (ArrayList) messages.get(key);
-            total += list.size();
+
+        for (Iterator i = messages.values().iterator(); i.hasNext(); ) {
+            ActionMessageItem ami = (ActionMessageItem) i.next();
+            total += ami.getList().size();
         }
+
         return (total);
 
     }
@@ -236,13 +268,52 @@ public class ActionMessages implements Serializable {
      */
     public int size(String property) {
 
-        ArrayList list = (ArrayList) messages.get(property);
-        if (list == null)
+        ActionMessageItem ami = (ActionMessageItem) messages.get(property);
+
+        if (ami == null)
             return (0);
         else
-            return (list.size());
+            return (ami.getList().size());
 
     }
 
+    /**
+     * This class is used to store a set of messages associated with a 
+     * property/key and the position it was initially added to list.
+    */
+    protected class ActionMessageItem implements Serializable {
+
+       /**
+        * The list of <code>ActionMessage</code>s.
+       */
+       protected List list = null;
+
+       /**
+        * The position in the list of messages.
+       */
+       protected int iOrder = 0;
+       
+       public ActionMessageItem(List list, int iOrder) {
+       	  this.list = list;
+       	  this.iOrder = iOrder;	
+       }
+       
+       public List getList() {
+       	  return list;
+       }	
+       
+       public void setList(List list) {
+       	  this.list = list;
+       }
+       
+       public int getOrder() {
+       	  return iOrder;
+       }
+       
+       public void setOrder(int iOrder) {
+          this.iOrder = iOrder;	
+       }
+       
+    }
 
 }
