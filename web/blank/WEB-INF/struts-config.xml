@@ -311,9 +311,7 @@
 			  true : validate. DTD should be specified in file header. (default)
 			  false : no validation
 			  
-	  The TilesPlugin class create one single definition factory shared by all struts
-	  modules, even if the plugin is declared several times. Paths found in Tiles
-	  definitions are relative to the main context.
+	  Paths found in Tiles definitions are relative to the main context.
   -->
   <!-- comment following if struts1.0.x -->
   <plug-in className="org.apache.struts.tiles.TilesPlugin" >
