@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.10 2004/03/14 06:23:49 sraeburn Exp $
- * $Revision: 1.10 $
- * $Date: 2004/03/14 06:23:49 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/PutTag.java,v 1.11 2004/05/17 17:38:09 germuska Exp $
+ * $Revision: 1.11 $
+ * $Date: 2004/05/17 17:38:09 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -114,6 +114,11 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
     protected Object realValue = null;
 
     /**
+     * The body content of this tag.
+     */
+    protected String body = null;
+
+    /**
      * Default constructor.
      */
     public PutTag() {
@@ -135,6 +140,7 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
         beanProperty = null;
         beanScope = null;
         role = null;
+        body = null;
     }
 
     /**
@@ -317,8 +323,8 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
         // If realValue is not set, value must come from body
         if (value == null && beanName == null) {
             // Test body content in case of empty body.
-            if (bodyContent != null) {
-                realValue = bodyContent.getString();
+            if (body != null) {
+                realValue = body;
             } else {
                 realValue = "";
             }
@@ -422,6 +428,10 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
      * Do start tag.
      */
     public int doStartTag() throws JspException {
+
+        // clear body content
+        body = null;
+
         // Do we need to evaluate body ?
         if (value == null && beanName == null) {
             return EVAL_BODY_TAG;
@@ -429,6 +439,20 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
 
         // Value is set, don't evaluate body.
         return SKIP_BODY;
+    }
+
+    /**
+     * Save the body content of this tag (if any)
+     *
+     * @exception JspException if a JSP exception has occurred
+     */
+    public int doAfterBody() throws JspException {
+
+        if (bodyContent != null) {
+            body = bodyContent.getString();
+        }
+        return (SKIP_BODY);
+
     }
 
     /**
