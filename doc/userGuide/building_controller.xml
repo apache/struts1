@@ -560,7 +560,7 @@
     </p>
 
     <p>
-    DynaActionForms are meant as a simple solution to a simple problem:
+    DynaActionForms are meant as an easy solution to a common problem:
     <i>Your ActionForms use simple properties and standard validations,
     and you just pass these properties over to another JavaBean</i>
     (say using BeanUtils.copyProperties(<code>myBusinessBean,form)</code>).
@@ -575,12 +575,6 @@
     </p>
 
     <p>
-    If need be, you can subclass the DynaActionForm to add whatever
-    helper methods you might need. Simply specify your subclass
-    in the struts-config instead.
-    </p>
-
-    <p>
     DynaActionForms cannot be instantiated using a no-argument constructor.
     In order to simulate the extra properties,
     there is a lot of machinery involved in their construction.
@@ -589,9 +583,15 @@
     </p>
 
     <p>
+    If need be, you can extend the DynaActionForm to add whatever
+    helper methods you might need. Simply specify your subclass
+    in the struts-config instead.
+    </p>
+
+    <p>
     To use DynaActionForms with the Struts Validator, specify
-    <code>org.apache.struts.validator.ValidatorActionForm</code> as
-    the form-bean class.
+    <code>org.apache.struts.validator.ValidatorActionForm</code>
+    (or your subclass) as the form-bean class.
     </p>
 
 </section>
