@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.7 2001/06/01 20:43:18 craigmcc Exp $
- * $Revision: 1.7 $
- * $Date: 2001/06/01 20:43:18 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/OptionTag.java,v 1.8 2001/06/10 03:53:31 craigmcc Exp $
+ * $Revision: 1.8 $
+ * $Date: 2001/06/10 03:53:31 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.ResponseUtils;
  * the server if this option is selected.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2001/06/01 20:43:18 $
+ * @version $Revision: 1.8 $ $Date: 2001/06/10 03:53:31 $
  */
 
 public class OptionTag extends BodyTagSupport {
@@ -248,9 +248,9 @@ public class OptionTag extends BodyTagSupport {
 	results.append(value);
 	results.append("\"");
         if (disabled)
-            results.append(" disabled=\"true\"");
+            results.append(" disabled=\"disabled\"");
         if (selectTag.isMatched(value))
-	    results.append(" selected=\"true\"");
+	    results.append(" selected=\"selected\"");
 	results.append(">");
         String text = text();
 	if (text == null)
