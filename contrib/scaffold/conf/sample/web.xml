@@ -17,7 +17,7 @@
     </init-param>
     <init-param>
       <param-name>config</param-name>
-      <param-value>/WEB-INF/conf/struts-config.xml</param-value>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
     </init-param>
     <init-param>
       <param-name>debug</param-name>
@@ -34,6 +34,11 @@
     <load-on-startup>2</load-on-startup>
   </servlet>
 
+  <!-- This is only needed for Cactus integration unit tests -->
+  <servlet>
+    <servlet-name>ServletRedirector</servlet-name>
+    <servlet-class>org.apache.cactus.server.ServletTestRedirector</servlet-class>
+  </servlet>
 
   <!-- Standard Action Servlet Mapping -->
   <servlet-mapping>
@@ -41,6 +46,11 @@
     <url-pattern>/do/*</url-pattern>
   </servlet-mapping>
 
+  <!-- This is only needed for Cactus integration unit tests -->
+  <servlet-mapping>
+    <servlet-name>ServletRedirector</servlet-name>
+    <url-pattern>/ServletRedirector</url-pattern>
+  </servlet-mapping>
 
   <!-- The Usual Welcome File List -->
   <welcome-file-list>
@@ -49,18 +59,18 @@
 
   <!-- Struts Tag Library Descriptors -->
   <taglib>
-    <taglib-uri>/tags/struts-bean</taglib-uri>
-    <taglib-location>/WEB-INF/lib/struts-bean.tld</taglib-location>
+    <taglib-uri>/WEB-INF/struts-bean</taglib-uri>
+    <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
   </taglib>
 
   <taglib>
-    <taglib-uri>/tags/struts-html</taglib-uri>
-    <taglib-location>/WEB-INF/lib/struts-html.tld</taglib-location>
+    <taglib-uri>/WEB-INF/struts-html</taglib-uri>
+    <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
   </taglib>
 
   <taglib>
-    <taglib-uri>/tags/struts-logic</taglib-uri>
-    <taglib-location>/WEB-INF/lib/struts-logic.tld</taglib-location>
+    <taglib-uri>/WEB-INF/struts-logic</taglib-uri>
+    <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
   </taglib>
 
 </web-app>

@@ -21,7 +21,7 @@ import org.apache.scaffold.lang.Tokens;
  * Useful for prototyping flow during development,
  * and for creating blank forms for new input.
  * @author Ted Husted
- * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:50 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
  */
 public final class ContinueAction extends Action {
 
@@ -47,9 +47,9 @@ public final class ContinueAction extends Action {
 
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ContinueAction.java,v 1.1 2001/12/23 19:32:50 vmassol Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/23 19:32:50 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/ContinueAction.java,v 1.2 2001/12/28 13:34:57 vmassol Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/28 13:34:57 $
  *
  * ====================================================================
  *
@@ -77,7 +77,7 @@ public final class ContinueAction extends Action {
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.

@@ -8,7 +8,7 @@ package org.apache.scaffold.lang;
     /**
      * http://www.javaworld.com/javaworld/jw-08-2001/jw-0803-exceptions.html
      * @author Brian Geotz
-     * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:51 $
+     * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
      */
     public class ChainedException extends Exception {
 
@@ -96,7 +96,7 @@ package org.apache.scaffold.lang;
   *    Alternately, this acknowlegement may appear in the software itself,
   *    if and wherever such third-party acknowlegements normally appear.
   *
-  * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+  * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
   *    Foundation" must not be used to endorse or promote products derived
   *    from this software without prior written permission. For written
   *    permission, please contact apache@apache.org.

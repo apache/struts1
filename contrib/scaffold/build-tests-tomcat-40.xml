@@ -1,0 +1,135 @@
+    <!--
+       ========================================================================
+         Run Cactus unit tests on Tomcat 4.0
+       ========================================================================
+    -->
+    <target name="tests_tomcat_40" depends="prepare_tests_tomcat_40" if="tomcat.home.40">
+
+        <!-- Start the servlet engine, wait for it to be started, run the
+             unit tests, stop the servlet engine, wait for it to be stopped.
+             The servlet engine is stopped if the tests fail for any reason -->
+
+        <runservertests
+          testURL="http://localhost:${test.port}/${target.sample.name}/index.jsp"
+          startTarget="start_tomcat_40"
+          stopTarget="stop_tomcat_40"
+          testTarget="tests.client"/>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Start Tomcat 4.0
+       ========================================================================
+    -->
+    <target name="start_tomcat_40">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.40}"/>
+            <arg value="-config"/>
+            <arg value="${target.tomcat40.full.dir}/conf/server.xml"/>
+            <arg value="start"/>
+            <classpath>
+
+              <!-- This is to allow the use of -Dbuild.sysclasspath=only when
+                   starting Ant - Meaning that all jars need to be on the
+                   initial classpath -->
+              <pathelement path="${java.class.path}"/>
+
+              <!-- These are ignore if -Dbuild.sysclasspath=only is used -->
+              <fileset dir="${tomcat.home.40}">
+                  <include name="bin/bootstrap.jar"/>
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Stop Tomcat 4.0
+       ========================================================================
+    -->
+    <target name="stop_tomcat_40">
+
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="yes">
+            <jvmarg value="-Dcatalina.home=${tomcat.home.40}"/>
+            <arg value="stop"/>
+            <classpath>
+
+              <!-- This is to allow the use of -Dbuild.sysclasspath=only when
+                   starting Ant - Meaning that all jars need to be on the
+                   initial classpath -->
+              <pathelement path="${java.class.path}"/>
+
+              <!-- These are ignored if -Dbuild.sysclasspath=only is used -->
+              <fileset dir="${tomcat.home.40}">
+                  <include name="bin/bootstrap.jar"/>
+                  <include name="server/catalina.jar"/>
+              </fileset>
+            </classpath>
+        </java>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Display a warning message if the needed servlet engine home property
+         is not set
+       ========================================================================
+    -->
+    <target name="check_tests_tomcat_40" depends="init" unless="tomcat.home.40">
+
+        <echo message=""/>
+        <echo message="*********************************************************"/>
+        <echo message="WARNING : The 'tomcat.home.40' property has not been set."/>
+        <echo message="          No test will be run on that servlet engine."/>
+        <echo message="*********************************************************"/>
+        <echo message=""/>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Prepare directories and variables for running the tests
+       ========================================================================
+    -->
+    <target name="prepare_tests_tomcat_40"
+      depends="check_tests_tomcat_40,sample" if="tomcat.home.40">
+
+        <echo message="tomcat.home.40 = ${tomcat.home.40}"/>
+
+        <property name="target.tomcat40.dir"
+          value="${target.test.dir}/tomcat40"/>
+        <property name="conf.tomcat40.dir"
+          value="${conf.sample.test.dir}/tomcat40"/>
+        <property name="target.tomcat40.full.dir"
+          value="${basedir}/${target.tomcat40.dir}"/>
+
+        <filter token="target.tomcat40.full.dir"
+          value="${target.tomcat40.full.dir}"/>
+
+        <!-- Create work and conf directories and copy configuration files -->
+        <mkdir dir="${target.tomcat40.dir}/conf"/>
+        <mkdir dir="${target.tomcat40.dir}/work"/>
+        <mkdir dir="${target.tomcat40.dir}/webapps"/>
+
+        <!-- Delete some config file so that they will be copied every time -->
+        <delete file="${target.tomcat40.dir}/conf/server.xml"/>
+
+        <!-- Remove the auto deployed webapp so that it is redeployed every
+             time -->
+        <delete dir="${target.tomcat40.dir}/webapps/test"/>
+
+        <!-- Copy the default tomcat web.xml to our test conf/ directory. -->
+        <copy file="${conf.tomcat40.dir}/web.xml"
+            todir="${target.tomcat40.dir}/conf"/>
+
+        <copy file="${conf.tomcat40.dir}/server.xml"
+            todir="${target.tomcat40.dir}/conf" filtering="on"/>
+
+        <!-- Copy the war file -->
+        <copy file="${target.sample.dir}/${target.sample.name}.war"
+          todir="${target.tomcat40.dir}/webapps"/>
+
+    </target>

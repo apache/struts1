@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/util/Attic/LabelValueBean.java,v 1.1 2001/12/23 19:32:52 vmassol Exp $
- * $Revision: 1.1 $
- * $Date: 2001/12/23 19:32:52 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/util/Attic/LabelValueBean.java,v 1.2 2001/12/28 13:34:58 vmassol Exp $
+ * $Revision: 1.2 $
+ * $Date: 2001/12/28 13:34:58 $
  *
  * ====================================================================
  *
@@ -29,7 +29,7 @@
  *    Alternately, this acknowlegement may appear in the software itself,
  *    if and wherever such third-party acknowlegements normally appear.
  *
- * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
+ * 4. The names "The Jakarta Project", "Scaffold", and "Apache Software
  *    Foundation" must not be used to endorse or promote products derived
  *    from this software without prior written permission. For written
  *    permission, please contact apache@apache.org.
@@ -67,7 +67,7 @@ package org.apache.scaffold.util;
  * that are utilized by the <code>&lt;form:options&gt;</code> tag.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2001/12/23 19:32:52 $
+ * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:58 $
  */
 
 public class LabelValueBean {

@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 
+<!DOCTYPE project [
+    <!ENTITY build-tests-tomcat-40 SYSTEM "file:./build-tests-tomcat-40.xml">
+]>
+
 <!--
   =============================================================================
     Build file for Scaffold.
@@ -9,6 +13,8 @@
 
        digester.jar     [REQUIRED] Location of the Jakarta Commons Digester jar
        beanutils.jar    [REQUIRED] Location of the Jakarta Commons Beanutils jar
+       collections.jar  [REQUIRED] Location of the Jakarta Commons Collections
+                                   jar
        struts.jar       [REQUIRED] Location of the Jakarta Struts jar
        lucene.jar       [REQUIRED] Location of the Jakarta Lucene jar
        poolman.jar      [REQUIRED] Location of the CodeStudio.com Poolman jar
@@ -23,6 +29,25 @@
        struts-html.tld  [OPTIONAL] Location of the Struts HTML tag library.
                                    Needed to generate the sample application.
 
+       cactus.jar       [OPTIONAL] Location the Jakarta Cactus jar. Needed for
+                                   the unit tests and to generate the sample
+                                   application
+       cactus.ant.jar   [OPTIONAL] Location of the Jakarta Cactus custom Ant
+                                   tasks. Needed for the unit tests and to
+                                   generate the sample application
+       junit.jar        [OPTIONAL] Location of the Junit jar. Needed by Cactus.
+       httpclient.jar   [OPTIONAL] Location of the Jakarta Commons HttpClient
+                                   jar. Needed by Cactus.
+       aspectjrt.jar    [OPTIONAL] Location of the AspectJ runtime jar. Needed
+                                   by Cactus.
+
+       tomcat.home.40   [OPTIONAL] Location of the Tomcat 4.x installation
+                                   directory. Needs to be defined to execute
+                                   the Cactus tests on Tomcat 4.x.
+
+    In addition, the junit Ant task must be present in your Ant installation
+    for running the unit tests (the junit jar must be located in ANT_HOME/lib).
+
     This script should be started with the following command line :
 
         ant <target>
@@ -32,7 +57,7 @@
 
     @author <a href="mailto:ted@husted.com">Ted Husted</a>
     @author <a href="mailto:vmassol@apache.org">Vincent Massol</a>
-    @version $Id: build.xml,v 1.1 2001/12/23 19:32:50 vmassol Exp $
+    @version $Id: build.xml,v 1.2 2001/12/28 13:34:56 vmassol Exp $
   =============================================================================
 -->
 <project name="Scaffold" default="dist" basedir=".">
@@ -59,6 +84,9 @@
     <property name="optimize" value="off"/>
     <property name="deprecation" value="off"/>
 
+    <!-- Port to use to start the servlet engines for the unit tests -->
+    <property name="test.port" value="8080"/>
+
     <!--
        ========================================================================
          Set the properties related to the source tree
@@ -69,10 +97,12 @@
     <property name="src.framework.dir" value="${src.dir}/framework"/>
     <property name="src.framework.main.dir" value="${src.framework.dir}/main"/>
     <property name="src.sample.dir" value="${src.dir}/sample"/>
+    <property name="src.sample.main.dir" value="${src.sample.dir}/main"/>
     <property name="src.sample.web.dir" value="${src.sample.dir}/web"/>
     <property name="conf.dir" value="conf"/>
     <property name="conf.framework.dir" value="${conf.dir}/framework"/>
     <property name="conf.sample.dir" value="${conf.dir}/sample"/>
+    <property name="conf.sample.test.dir" value="${conf.dir}/sample/test"/>
 
     <!--
        ========================================================================
@@ -84,14 +114,18 @@
     <property name="target.classes.dir" value="${target.dir}/classes"/>
     <property name="target.classes.framework.dir"
       value="${target.classes.dir}/framework"/>
+    <property name="target.classes.sample.dir"
+      value="${target.classes.dir}/sample"/>
     <property name="target.conf.dir" value="${target.dir}/conf"/>
     <property name="target.conf.framework.dir"
       value="${target.conf.dir}/framework"/>
     <property name="target.conf.sample.dir"
       value="${target.conf.dir}/sample"/>
     <property name="target.lib.dir" value="${target.dir}/lib"/>
+    <property name="target.tld.dir" value="${target.dir}/tld"/>
     <property name="target.doc.dir" value="${target.dir}/doc"/>
     <property name="target.javadoc.dir" value="${target.doc.dir}/api"/>
+    <property name="target.test.dir" value="${target.dir}/test"/>
 
     <!-- The scaffold library jar -->
     <property name="target.framework.name" value="${project.name.file}"/>
@@ -124,11 +158,21 @@
     <path id="compile.classpath">
         <pathelement path="${digester.jar}"/>
         <pathelement path="${beanutils.jar}"/>
+        <pathelement path="${collections.jar}"/>
         <pathelement path="${lucene.jar}"/>
         <pathelement path="${poolman.jar}"/>
         <pathelement path="${struts.jar}"/>
         <pathelement path="${servlet.jar}"/>
         <pathelement path="${jdbc20ext.jar}"/>
+    </path>
+
+    <!-- Test classpath -->
+    <path id="test.classpath">
+        <pathelement path="${cactus.jar}"/>
+        <pathelement path="${cactus.ant.jar}"/>
+        <pathelement path="${junit.jar}"/>
+        <pathelement path="${httpclient.jar}"/>
+        <pathelement path="${aspectjrt.jar}"/>
     </path>
 
     <!--
@@ -161,11 +205,22 @@
         <filter token="version" value="${project.version}"/>
         <filter token="project.name.text" value="${project.name.text}"/>
         <filter token="project.name.file" value="${project.name.file}"/>
+        <filter token="test.port" value="${test.port}"/>
+
+        <!-- Initialize custom Ant task needed for running the server tests -->
+        <taskdef name="runservertests"
+          classname="org.apache.cactus.ant.RunServerTestsTask">
+            <classpath>
+                <pathelement location="${cactus.ant.jar}"/>
+                <pathelement path="${java.class.path}"/>
+            </classpath>
+        </taskdef>
+
     </target>
 
     <!--
        ========================================================================
-         Compiles the sources
+         Compiles the framework sources
        ========================================================================
     -->
     <target name="compile" depends="init" description="Compile the sources">
@@ -188,6 +243,31 @@
 
         <!-- Copy the license file as part of the classes tree -->
         <copy todir="${target.classes.framework.dir}" file="LICENSE"/>
+
+    </target>
+
+    <!--
+       ========================================================================
+         Compiles the sample sources
+       ========================================================================
+    -->
+    <target name="compile.sample" depends="compile"
+      description="Compile the sample sources">
+
+        <mkdir dir="${target.classes.sample.dir}"/>
+
+        <javac srcdir="${src.sample.main.dir}"
+          destdir="${target.classes.sample.dir}"
+          deprecation="${deprecation}" optimize="${optimize}">
+            <classpath>
+                <pathelement location="${target.classes.framework.dir}"/>
+            </classpath>
+            <classpath refid="compile.classpath"/>
+            <classpath refid="test.classpath"/>
+        </javac>
+
+        <copy todir="${target.classes.sample.dir}"
+          file="${conf.sample.test.dir}/cactus.properties" filtering="on"/>
 
     </target>
 
@@ -245,7 +325,7 @@
          Generate the sample application
        ========================================================================
     -->
-    <target name="sample" depends="jar"
+    <target name="sample" depends="compile.sample,jar"
       description="Generate the sample application">
 
         <mkdir dir="${target.lib.dir}"/>
@@ -256,8 +336,15 @@
         <copy todir="${target.lib.dir}" file="${struts.jar}"/>
         <copy todir="${target.lib.dir}" file="${beanutils.jar}"/>
         <copy todir="${target.lib.dir}" file="${digester.jar}"/>
+        <copy todir="${target.lib.dir}" file="${collections.jar}"/>
         <copy todir="${target.lib.dir}" file="${lucene.jar}"/>
         <copy todir="${target.lib.dir}" file="${poolman.jar}"/>
+        <copy todir="${target.tld.dir}" file="${struts-bean.tld}"/>
+        <copy todir="${target.tld.dir}" file="${struts-logic.tld}"/>
+        <copy todir="${target.tld.dir}" file="${struts-html.tld}"/>
+        <copy todir="${target.lib.dir}" file="${cactus.jar}"/>
+        <copy todir="${target.lib.dir}" file="${junit.jar}"/>
+        <copy todir="${target.lib.dir}" file="${aspectjrt.jar}"/>
 
         <!-- Copy the manifest in order to replace the version token filter -->
         <copy todir="${target.conf.sample.dir}"
@@ -267,14 +354,23 @@
           manifest="${target.conf.sample.dir}/manifest"
           webxml="${conf.sample.dir}/web.xml">
             <lib dir="${target.lib.dir}"/>
+            <lib dir="${target.framework.dir}">
+                <include name="${target.framework.name}.jar"/>
+            </lib>
             <classes dir="${conf.sample.dir}">
-                <include name="Resources.properties"/>
+                <include name="ApplicationResources.properties"/>
+            </classes>
+            <classes dir="${target.classes.sample.dir}">
+                <exclude name="cactus.properties"/>
             </classes>
             <webinf dir=".">
                 <include name="LICENSE"/>
             </webinf>
             <webinf dir="${conf.sample.dir}">
-                <include name="conf/struts-config.xml"/>
+                <include name="struts-config.xml"/>
+            </webinf>
+            <webinf dir="${target.tld.dir}">
+                <include name="*.tld"/>
             </webinf>
             <fileset dir="${src.sample.web.dir}"/>
         </war>
@@ -317,5 +413,38 @@
         </zip>
 
     </target>
+
+    <!--
+       ========================================================================
+         Run the Cactus unit tests (automatically create a test war - the
+         sample application -, deploy it on the server to test, start the
+         server, run the Cactus unit tests in the container and stop the server
+       ========================================================================
+    -->
+    <target name="tests" depends="tests_tomcat_40"
+      description="Run the Cactus unit tests on all servlet engines">
+    </target>
+
+    <!-- Run the Cactus unit tests using JUnit -->
+    <target name="tests.client">
+
+        <junit printsummary="yes" haltonfailure="yes" haltonerror="yes"
+          fork="yes">
+            <formatter type="plain" usefile="false"/>
+
+            <test name="org.apache.scaffold.http.TestHelperAction"/>
+
+            <classpath refid="compile.classpath"/>
+            <classpath refid="test.classpath"/>
+            <classpath>
+                <pathelement location="${target.classes.framework.dir}"/>
+                <pathelement location="${target.classes.sample.dir}"/>
+            </classpath>
+
+        </junit>
+
+    </target>
+
+    &build-tests-tomcat-40;
 
 </project>

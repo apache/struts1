@@ -6,7 +6,7 @@
 # rename this file to "build.properties" in the same directory that contains the
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.1 2001/12/23 19:32:50 vmassol Exp $
+# $Id: build.properties.sample,v 1.2 2001/12/28 13:34:56 vmassol Exp $
 # -----------------------------------------------------------------------------
 
 # WARNING:  The relative paths below are relative to the directory where the
@@ -21,6 +21,9 @@ digester.jar=../../../jakarta-commons/digester/dist/commons-digester.jar
 
 # Location of the Jakarta Commons Beanutils jar
 beanutils.jar=../../../jakarta-commons/beanutils/dist/commons-beanutils.jar
+
+# Location of the Jakarta Commons Collections jar
+collections.jar=../../../jakarta-commons/collections/dist/commons-collections.jar
 
 # Location of the Jakarta Struts jar
 struts.jar=../../dist/lib/struts.jar
@@ -47,8 +50,32 @@ struts-bean.tld=../../dist/lib/struts-bean.tld
 
 # Location of the Struts Logic tag library. Needed to generate the sample
 # application
-struts-logic.tld=../../dist/lib/struts-html.tld
+struts-logic.tld=../../dist/lib/struts-logic.tld
 
 # Location of the Struts HTML tag library. Needed to generate the sample
 # application
 struts-html.tld=../../dist/lib/struts-html.tld
+
+# Location the Jakarta Cactus jar. Needed for running the unit tests and to
+# generate the sample application
+cactus.jar=../../../jakarta-cactus/target/servlet23/dist/lib/cactus.jar
+
+# Location of the Jakarta Cactus custom Ant tasks. Needed for running the unit
+# tests and to generate the sample application
+cactus.ant.jar=../../../jakarta-cactus/target/cactus-ant.jar
+
+# Location of the Junit jar. Needed by Cactus.
+junit.jar=../../../junit/junit3.7/junit.jar
+
+# Location of the Jakarta Commons HttpClient jar. Needed by Cactus.
+httpclient.jar=../../../jakarta-commons/httpclient/dist/commons-httpclient.jar
+
+# Location of the AspectJ runtime jar. Needed by Cactus.
+aspectjrt.jar=../../../aspectj/lib/aspectjrt.jar
+
+# Location of the Tomcat 4.x installation directory. Needs to be defined to
+# execute the Cactus tests on Tomcat 4.x.
+tomcat.home.40=c:/Apps/jakarta-tomcat-4.0.1
+
+# Port to use to start the servlet engines for the unit tests
+test.port=8080

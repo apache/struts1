@@ -1,66 +1,81 @@
 package org.apache.scaffold.http;
 
+import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-
-import org.apache.scaffold.model.ModelBean;
-import org.apache.scaffold.model.ModelResult;
-import org.apache.scaffold.model.ModelException;
-
+import org.apache.cactus.ServletTestCase;
+import org.apache.cactus.WebRequest;
 
 /**
- * Standard Action to manage helper objects.
- * This provides the same default behavior as ModelHelper,
- * but expects two helpers. The first retrieves a "master"
- * record that is returned in the ActionForm. The second
- * retrieves detail based on the master. (A field in the
- * master record would usually match a field in the detail.)
- * @author Ted Husted
- * @version $Revision: 1.2 $ $Date: 2001/12/28 13:34:57 $
+ * Integration unit tests for <code>HelperAction</code>.
+ *
+ * @author <a href="mailto:vmassol@apache.org">Vincent Massol</a>
  */
-public class MasterDetailHelper extends ModelHelper {
-
-
+public class TestHelperAction extends ServletTestCase
+{
     /**
-     * @param mapping The ActionMapping used to select this instance
-     * @param actionForm The optional ActionForm bean for this request (if any)
-     * @param request The HTTP request we are processing
-     * @param helpers The helper objects
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet exception occurs
+     * Defines the testcase name for JUnit.
+     *
+     * @param theName the testcase's name.
      */
-    public ModelResult getResult(ActionMapping mapping,
-                 ActionForm form,
-                 HttpServletRequest request,
-                 HttpServletResponse response,
-                 Object[] helpers) throws ModelException {
-
-        // Run master query; populate form with master record
-        ModelResult result = super.getResult(mapping,form,request,response,helpers);
-
-        if (helpers.length==1)
-            return result;
-        else {
-            // Return detail from helper, using master as key
-            ModelBean detail = (ModelBean) helpers[1];
-            result = detail.execute(helpers[0]);
-            return result;
-       }
-
+    public TestHelperAction(String theName)
+    {
+        super(theName);
     }
 
+    /**
+     * Start the tests.
+     *
+     * @param theArgs the arguments. Not used
+     */
+    public static void main(String[] theArgs)
+    {
+        junit.swingui.TestRunner.main(new String[] {
+            TestHelperAction.class.getName()});
+    }
 
-} // end ModelResultHelper
+    /**
+     * @return a test suite (<code>TestSuite</code>) that includes all methods
+     *         starting with "test"
+     */
+    public static Test suite()
+    {
+        // All methods starting with "test" will be executed in the test suite.
+        return new TestSuite(TestHelperAction.class);
+    }
 
+    //-------------------------------------------------------------------------
+
+    /**
+     * Verify that calling <code>getLocale()</code> with no locale defined in
+     * the request and no session returns the default locale.
+     */
+    public void beginGetLocaleNoLocaleInRequestNoSession(WebRequest request)
+    {
+        request.setAutomaticSession(false);
+    }
+
+    /**
+     * Verify that calling <code>getLocale()</code> with no locale defined in
+     * the request and no session returns the default locale.
+     */
+    public void testGetLocaleNoLocaleInRequestNoSession()
+    {
+        HelperAction helper = new HelperAction();
+        Locale locale = helper.getLocale(request);
+        assertEquals(Locale.getDefault(), locale);
+    }
+
+    //-------------------------------------------------------------------------
+
+}
 
 /*
- * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/framework/main/org/apache/scaffold/http/Attic/MasterDetailHelper.java,v 1.2 2001/12/28 13:34:57 vmassol Exp $
- * $Revision: 1.2 $
- * $Date: 2001/12/28 13:34:57 $
+ * $Header: /home/cvs/jakarta-struts/contrib/scaffold/src/sample/main/org/apache/scaffold/http/Attic/TestHelperAction.java,v 1.1 2001/12/28 13:34:58 vmassol Exp $
+ * $Revision: 1.1 $
+ * $Date: 2001/12/28 13:34:58 $
  *
  * ====================================================================
  *
@@ -117,7 +132,3 @@ public class MasterDetailHelper extends ModelHelper {
  * <http://www.apache.org/>.
  *
  */
-
-
-
-
