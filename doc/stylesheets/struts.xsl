@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: struts.xsl,v 1.18 2003/11/27 04:06:52 husted Exp $ -->
+<!-- $Id: struts.xsl,v 1.19 2004/02/22 20:06:01 martinc Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -138,7 +138,7 @@
           <xsl:value-of select="$relative-path"/><xsl:value-of select="$powered-logo"/>
         </xsl:variable>
         <img src="{$src}" alt="Powered by Struts" id="powered-logo"/>
-        Copyright (c) 2000-2003, Apache Software Foundation <span class="noprint">- 
+        Copyright (c) 2000-2004, Apache Software Foundation <span class="noprint">- 
         <a href="http://nagoya.apache.org/wiki/apachewiki.cgi?StrutsDocComments">Comments?</a></span>
       </div>
       <xsl:comment>end footer</xsl:comment>
