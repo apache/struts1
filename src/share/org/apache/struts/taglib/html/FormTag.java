@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.3 2001/01/26 19:27:23 craigmcc Exp $
- * $Revision: 1.3 $
- * $Date: 2001/01/26 19:27:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.4 2001/01/27 23:21:08 craigmcc Exp $
+ * $Revision: 1.4 $
+ * $Date: 2001/01/27 23:21:08 $
  *
  * ====================================================================
  *
@@ -64,12 +64,12 @@ package org.apache.struts.taglib.html;
 
 
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionFormBean;
@@ -85,7 +85,7 @@ import org.apache.struts.util.MessageResources;
  * properties correspond to the various fields of the form.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.3 $ $Date: 2001/01/26 19:27:23 $
+ * @version $Revision: 1.4 $ $Date: 2001/01/27 23:21:08 $
  */
 
 public class FormTag extends TagSupport {
@@ -184,28 +184,7 @@ public class FormTag extends TagSupport {
 
     // ------------------------------------------------------------- Properties
 
-    /**
-     * Returns a form action converted into an action mapping path.
-     * Anything after a period (".") is considered a name extension and ignored.
-     * Anything before the last forward slash ("/") is considered a name 
-     * extension and ignored.
-     */
-    protected String getActionMappingName() {
-        String retString = action;
-        int period = action.lastIndexOf(".");
-        int slash = action.lastIndexOf("/");
-        if (period < slash)
-            period = -1;
-        if (period > -1) {
-            retString = action.substring(0, period);
-        }
-        if (slash > -1) {
-            retString = retString.substring(slash+1, retString.length());
-        }
-        return "/" + retString;
-    }
-    
-    
+
     /**
      * Return the action URL to which this form should be submitted.
      */
@@ -458,41 +437,8 @@ public class FormTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-        //get unspecified values
-        if ((name == null) || (type == null)) {
-            //get ActionMapping specified by "action"
-            ActionMappings mappings = (ActionMappings)
-                 pageContext.getAttribute(Action.MAPPINGS_KEY,
-                                          PageContext.APPLICATION_SCOPE);
-            ActionFormBeans formBeans = (ActionFormBeans)
-                pageContext.getAttribute(Action.FORM_BEANS_KEY,
-                                         PageContext.APPLICATION_SCOPE);
-            if ((mappings != null) && (formBeans != null)) {
-              String actionMappingName = getActionMappingName();
-              ActionMapping mapping = mappings.findMapping(actionMappingName); 
-            
-              if (mapping != null) {
-                  this.scope = mapping.getScope();
-                  if (name == null) {
-                    this.name = mapping.getAttribute();
-                  }
-                  if (type == null) {
-                    ActionFormBean formBean =
-                        formBeans.findFormBean(mapping.getName());
-                    if (formBean != null)
-                        this.type = formBean.getType();
-                  }
-                }
-                else {
-                    throw new JspTagException("Cannot retrieve mapping for specified form " +
-                        "action path \"" + actionMappingName + "\"");
-                }
-            }
-            else {
-                throw new JspTagException("Cannot retrieve ActionMappings under key \"" + 
-                    Action.MAPPINGS_KEY + "\"");
-            }
-        }
+        // Look up the form bean name, scope, and type if necessary
+        lookup();
 
 	// Create an appropriate "form" element based on our parameters
 	HttpServletResponse response =
@@ -503,12 +449,10 @@ public class FormTag extends TagSupport {
 	results.append("\"");
 	results.append(" method=\"");
 	results.append(method);
-	results.append("\"");
-	if (action != null) {
-	    results.append(" action=\"");
-	    results.append(response.encodeURL(BeanUtils.filter(action)));
-	    results.append("\"");
-	}
+        results.append("\" action=\"");
+        results.append
+            (response.encodeURL(BeanUtils.filter(getActionMappingURL())));
+        results.append("\"");
         if (styleClass != null) {
             results.append(" class=\"");
             results.append(styleClass);
@@ -654,6 +598,124 @@ public class FormTag extends TagSupport {
 	styleClass = null;
 	target = null;
 	type = null;
+
+    }
+
+
+    // ------------------------------------------------------ Protected Methods
+
+
+    /**
+     * Return the form action converted into an action mapping path.  The
+     * value of the <code>action</code> property is manipulated as follows in
+     * computing the name of the requested mapping:
+     * <ul>
+     * <li>Any filename extension is removed (on the theory that extension
+     *     mapping is being used to select the controller servlet).</li>
+     * <li>If the resulting value does not start with a slash, then a
+     *     slash is prepended.</li>
+     * </ul>
+     */
+    protected String getActionMappingName() {
+
+        String value = action;
+        int slash = action.lastIndexOf("/");
+        int period = action.lastIndexOf(".");
+        if ((period >= 0) && (period > slash))
+            value = value.substring(0, period);
+        if (value.startsWith("/"))
+            return (value);
+        else
+            return ("/" + value);
+
+    }
+
+
+    /**
+     * Return the form action converted into a server-relative URL.  The
+     * URL string is composed of the following pieces:
+     * <ul>
+     * <li>The context path of this web application.</li>
+     * <li>If the <code>action</code> property value does not start with
+     *     a slash, a slash is inserted.</li>
+     * <li>The <code>action</code> property value.</li>
+     */
+    protected String getActionMappingURL() {
+
+        HttpServletRequest request =
+            (HttpServletRequest) pageContext.getRequest();
+        StringBuffer value = new StringBuffer(request.getContextPath());
+        if (!action.startsWith("/"))
+            value.append("/");
+        value.append(action);
+        return (value.toString());
+
+    }
+
+
+    /**
+     * Look up values for the <code>name</code>, <code>scope</code>, and
+     * <code>type</code> properties if necessary.
+     *
+     * @exception JspException if a required value cannot be looked up
+     */
+    protected void lookup() throws JspException {
+
+        // Were the required values already specified?
+        if (name != null) {
+            if (scope == null)
+                scope = "session";
+            if (type == null) {
+                JspException e = new JspException
+                    (messages.getMessage("formTag.nameType"));
+                pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                         PageContext.REQUEST_SCOPE);
+                throw e;
+            }
+            return;
+        }
+
+        // Look up the application scope collections that we need
+        ActionMappings mappings = (ActionMappings)
+            pageContext.getAttribute(Action.MAPPINGS_KEY,
+                                     PageContext.APPLICATION_SCOPE);
+        ActionFormBeans formBeans = (ActionFormBeans)
+            pageContext.getAttribute(Action.FORM_BEANS_KEY,
+                                     PageContext.APPLICATION_SCOPE);
+        if ((mappings == null) || (formBeans == null)) {
+            JspException e = new JspException
+                (messages.getMessage("formTag.collections"));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
+        // Look up the action mapping we will be submitting to
+        String mappingName = getActionMappingName();
+        ActionMapping mapping = mappings.findMapping(mappingName);
+        if (mapping == null) {
+            JspException e = new JspException
+                (messages.getMessage("formTag.mapping", mappingName));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
+        // Look up the form bean definition
+        ActionFormBean formBean =
+            formBeans.findFormBean(mapping.getName());
+        if (formBean == null) {
+            JspException e = new JspException
+                (messages.getMessage("formTag.formBean", mapping.getName()));
+            pageContext.setAttribute(Action.EXCEPTION_KEY, e,
+                                     PageContext.REQUEST_SCOPE);
+            throw e;
+        }
+
+        // Calculate the required values
+        name = mapping.getName();
+        scope = mapping.getScope();
+        type = formBean.getType();
 
     }
 

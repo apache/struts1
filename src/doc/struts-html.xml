@@ -985,15 +985,25 @@
 		
 		<attribute>
 			<name>action</name>
-			<required>false</required>
+			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 			<info>
-				The URL to which this form will be submitted. Typically, this will
-				match a mapping for the ActionServlet managing this application.
-				URL rewriting will automatically be performed on this URL, to
-				maintain session state in the absence of cookies. [Form will be
-				submitted to this page itself] 
-			</info>
+                        <p>The URL to which this form will be submitted.  This
+                        value is also used to select the ActionMapping we are
+                        assumed to be processing, from which we can identify
+                        the appropriate form bean and scope.</p>
+
+                        <p>If you are using extension mapping for selecting the
+                        controller servlet, this value should be equal to the
+                        <code>path</code> attribute of the corresponding
+                        <code>&lt;action&gt;</code> element, plus the correct
+                        file extension suffix.</p>
+
+                        <p>If you are using path mapping to select the
+                        controller servlet, this value should be exactly equal
+                        to the <code>path</code> attribute of the corresponding
+                        <code>&lt;action&gt;</code> element.</p>
+                        </info>
 		</attribute>
 		
 		<attribute>
@@ -1034,14 +1044,22 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<info>
-				Name of the request scope or session scope bean (as defined by
-				the scope attribute) whose properties will be used to populate
-				input field values. If no such bean is found, a new bean will
-				be created (and added to the appropriate scope), using the Java
-				class name specified by the type attribute. 
-			</info>
-		</attribute>
-		
+                        <p>Name of the request scope or session scope bean
+                        (as defined by the <code>scope</code> attribute)
+                        whose properties will be used to populate the input
+                        field values.  If no such bean is found, a new bean
+                        will be created and added to the appropriate scope,
+                        using the Java class name specified by the
+                        <code>type</code> attribute.</p>
+
+                        <p>If this attribute is not specified, it will be
+                        calculated by using the value of the
+                        <code>action</code> attribute to look up the
+                        corresponding ActionMapping element, from which
+                        we will select the specified form bean name.</p>
+                        </info>
+                </attribute>
+
 		<attribute>
 			<name>onreset</name>
 			<required>false</required>
@@ -1065,9 +1083,17 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<info>
-				JSP scope within which the associated bean will be accessed
-				or created (request, session). [session]
-			</info>
+                        <p>Scope within which the form bean associated with
+                        this input form will be accessed or created (must be
+                        either <code>request</code> or <code>session</code>.
+                        </p>
+
+                        <p>If this attribute is not specified, it will be
+                        calculated by using the value of the
+                        <code>action</code> attribute to look up the
+                        corresponding ActionMapping element, from which
+                        we will select the specified form bean scope.</p>
+                        </info>
 		</attribute>
 		
 		<attribute>
@@ -1103,12 +1129,16 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<info>
-				Fully qualified Java class name of the bean to be created
-				if no bean is found for the specified name and scope. To
-				be used successfully with the Struts ActionServlet, this class
-				must implement the org.apache.struts.action.ActionForm interface.
-				[Runtime error if bean creation is attempted]
-			</info>
+                        <p>Fully qualified Java class name of the form bean to
+                        be created, if no such bean is found in the specified
+                        scope.</p>
+
+                        <p>If this attribute is not specified, it will be
+                        calculated by using the value of the
+                        <code>action</code> attribute to look up the
+                        corresponding ActionMapping element, from which
+                        we will select the specified form bean type.</p>
+                        </info>
 		</attribute>
 	</tag>
 	
