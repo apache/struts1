@@ -23,11 +23,23 @@
 
   </section>
 
-  <section name="Beta Fixes" href="beta.Changes">
+<section name="Beta Fixes" href="beta.Changes">
 
-  <p>Blank application: Fixed configuration problem with Struts Blank application.</p>
+  <p>
+  <b>ApplicationConfig:</b> In Struts 1.1. beta 3, the ApplicationConfig class 
+  is renamed to ModuleConfig, to conform with the venacular.
+  </p>
 
-  </section>
+  <p>
+  <b>Dyna*Form:</b> In Struts 1.1. beta 3, the reset method was changed so that 
+  it conforms to the original ActionForm implementation.</p>
+
+  <p>
+  <b>Blank application:</b> Fixed configuration problem with Struts Blank 
+  application.
+  </p>
+
+</section>
 
   <section name="Introduction" href="Introduction">
 
@@ -319,7 +331,6 @@
     <p>The following changes and bug fixes have occurred in the basic
     controller framework (package <code>org.apache.struts.action</code>):</p>
     <ul>
-    <li>Dyna*Form: In Struts 1.1. beta 3, the reset method was changed so that it conforms to the original ActionForm implementation.</li>
     <li>ActionMapping: input property may now refer to an ActionForward rather than a module-relative path if inputForward is set to true on the module's ControllerConfig bean [org.apache.struts.config.ControllerConfig.</li>
     <li>ActionServlet: Added convertNull parameter to simulate the Struts 1.0 behavior when populating forms. If set to true, the numeric Java wrapper class types (like java.lang.Integer) will default to null (rather than 0).</li>
     <li>ActionServlet: Added "config/$foo" parameter and deprecated several others in favor of components in the new config package. </li>

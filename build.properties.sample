@@ -6,7 +6,11 @@
 # to "build.properties" in the same directory that contains the Struts
 # "build.xml" file.
 #
-# $Id: build.properties.sample,v 1.22 2002/12/29 13:07:48 husted Exp $
+# The JARS required for each release or beta distribution are available 
+# as a single archive from the Struts downloads directory. 
+# Requirements for the Nightly Build may change between releases and betas.
+#
+# $Id: build.properties.sample,v 1.23 2002/12/29 20:54:15 husted Exp $
 # -----------------------------------------------------------------------------
 compile.deprecation=true
 
@@ -51,7 +55,7 @@ commons-fileupload.jar=${commons-lib.home}/fileupload/target/commons-fileupload-
 # from the Jakarta Commons project.
 commons-lang.jar=${commons-lib.home}/lang/dist/commons-lang-1.1.jar
 
-# The JAR file containing the Logging package (Version 1.0.2 or later)
+# The JAR file containing the Logging package (Nightly Build or Version 1.0.3 or later)
 # from the Jakarta Commons project.
 commons-logging.jar=${commons-lib.home}/logging/dist/commons-logging.jar
 
