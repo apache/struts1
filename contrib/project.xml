@@ -23,12 +23,13 @@
   <siteAddress>jakarta.apache.org/struts</siteAddress>
   <siteDirectory>/www/jakarta.apache.org/struts/contrib/${pom.artifactId.substring(8)}/</siteDirectory>
   <distributionDirectory>/www/jakarta.apache.org/builds/jakarta-commons-sandbox/${pom.artifactId.substring(8)}/</distributionDirectory>
-  
+
+<!--  FIX ME
   <repository>
     <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts/contrib/${pom.artifactId.substring(8)}</connection>
     <url>http://cvs.apache.org/viewcvs/jakarta-struts/contrib/${pom.artifactId.substring(8)}/</url>
   </repository>
-
+-->
     <mailingLists>
       <mailingList>
         <name>Struts User List</name>
