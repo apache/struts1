@@ -12,8 +12,8 @@
 <p><a href=""></a> by . </p>
 -->
 <section name="Contributor Extensions">
-<p><a href="http://sourceforge.net/projects/imagebuttonbean/">ImageButtonBeanManager</a> by Ken Fitzpatrick. Combines the HTML Image Tag and the ImageButtonBean class in a manner analgous to the Struts HTML Submit Tag.</p>
-<p><a href="http://dynclass.sourceforge.net/">dynclass.sourceforge.net</a> by John Raley. A Class-creation API with very simple but powerful Map-to-JavaBeans translation</p>
+<p><a href="http://sourceforge.net/projects/imagebuttonbean/"><b>ImageButtonBeanManager</b></a> by Ken Fitzpatrick. Combines the HTML Image Tag and the ImageButtonBean class in a manner analgous to the Struts HTML Submit Tag.</p>
+<p><a href="http://dynclass.sourceforge.net/"><b>dynclass.sourceforge.net</b></a> by John Raley. A Class-creation API with very simple but powerful Map-to-JavaBeans translation</p>
 <p><a href="http://www.livinglogic.de/Struts/"><b>Workflow Extension</b></a> by Matthias Bauer - An extension to the core Struts framework which provides control flow between actions.</p>
 <p><a href="http://otn.oracle.com/products/jdev/content.html">JDeveloper9i 9.0.3 w/ Struts, J2EE 1.3, et. al.</a> by Oracle. Developer's Preview of interest to Struts users who might be using (or might want to evaluate) Oracle's JDeveloper Java IDE</p>
 <p><a href="http://jcorporate.com/"><b>Expresso 5.0</b></a> by jCorporate - Expresso provides a foundation set of reusable, standards-based Java software components designed to shorten time-to-delivery of Web applications, and is integrated with the Struts framework. See also <a href="http://www.xenonsoft.demon.co.uk/products/java.html">Best Practice with Expresso Framework 4.0</a>.</p>

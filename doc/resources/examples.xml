@@ -10,18 +10,19 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
 
 <section name="Projects and Examples">
+<p><a href="http://www.ehatchersolutions.com/JavaDevWithAnt/"><b>JavaDevWithAnt</b></a> by Erik Hatchter - Demonstrates using Ant, XDoclet, Struts, JUnit, Cactus, and Lucene within the same application.</p>
 <p><a href="http://basicportal.sourceforge.net/"><b>basicPortal</b></a> by Vic Cekvenich - Sample Struts + JSTL Vertical apps</p>
 <p><a href="http://geocities.yahoo.com/dominique_plante/sdstuff/strutsGuessingGame1.0.zip"><b>Struts Guessing Game v1.0</b></a> by Dominique Plante - A guessing game written with Struts like the one that comes with Tomcat's examples, includes sources, ANT build script and a Struts jar distribution</p>
 <p><a href="http://chiki.emaho.org/"><b>Chiki</b></a> by GhootEmaho - A Wiki-like webapp built using Struts and J2EE,  and runs on Tomcat.</p>
-<p><a href="http://husted.com/struts/resources/artimus.zip"><b>Artimus</b></a> by Ted  Husted - News poster application. Demonstrates using beans beans and a JDBC database with Struts, along with other niceties. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
-<p><a href="http://husted.com/struts/resources/scaffold.zip"><b>Scaffold</b></a> by Ted Husted - Utility package of classes that can be used with various Web applications.</p>
-<p><a href="http://husted.com/struts/resources/polls-20011024.zip"><b>Struts Polls</b></a> by Ted Husted - Simple poll application. Demonstrates using a database with Struts.</p>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=49385"><b>Artimus</b></a> by Ted  Husted - News poster application. Demonstrates using beans beans and a JDBC database with Struts, along with other niceties. WAR zipped for download. Uses Scaffold package. See WEB-INF/README.txt for setup.</p>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=49385"><b>Scaffold</b></a> by Ted Husted - Utility package of classes that can be used with various Web applications.</p>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=49385"><b>Struts Polls</b></a> by Ted Husted - Simple poll application. Demonstrates using a database with Struts.</p>
 <p><a href="http://www.raibledesigns.com/struts/"><b>Struts-example modified for iPlanet Application Server SP2</b></a> by Matt Raible.</p>
 <p><a href="http://www.newparticles.com/struts/"><b>The Struts Framework</b></a> by Steve Wilkinson - Excerpt from latest Wrox Professional JSP book.</p>
 <p><a href="http://mycart.cjb.net/"><b>myCart</b></a> - Example Shopping Cart application using Struts - joint project with several contributors.</p>
 <p><a href="http://www.oakgrovesoftware.com/~rbackhouse"><b>Sample hdml/wireless based struts application</b></a> by Richard Backhouse.</p>
-<p><a href="http://husted.com/struts/resources/struts-logon.zip"><b>Struts Login</b></a> (WAR file zipped for download) by Ted Husted - A minimalist Struts application demonstrating form validation and tracking users with a session attribute (WAR file).</p>
-<p><a href="http://husted.com/struts/resources/struts-simple.zip"><b>Struts-Simple</b></a> by Ted Husted - (WAR file zipped for download) A simple skeleton application outlining the files needs to input and re-display data. Now also demonstrates using &quot;wizards&quot; and &quot;nested&quot; beans.</p>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=49385"><b>Struts Login</b></a> (WAR file zipped for download) by Ted Husted - A minimalist Struts application demonstrating form validation and tracking users with a session attribute (WAR file).</p>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=49385"><b>Struts-Simple</b></a> by Ted Husted - (WAR file zipped for download) A simple skeleton application outlining the files needs to input and re-display data. Now also demonstrates using &quot;wizards&quot; and &quot;nested&quot; beans.</p>
 <p><a href="http://gallery.bluestone.com/scripts/SaISAPI.dll/Gallery.class/demos/i18n/index.jsp"><b>Sonic Struts Storefront</b></a><b> -</b> The Sonic Struts Storefront sample application demonstrates how to assemble                            an internationalized e-business application using the Struts framework.</p>
 <p><a href="http://www.keyboardmonkey.com/StrutMonkey/MonkeyStruts_v2.jsp"><b>MonkeyStruts</b></a> by Arron Bates - Running example of nested hierarchy and the Nested Tags (click <a href="http://www.keyboardmonkey.com/downloads/files/examples/StrutMonkey.war">here</a> to download the war. Needs Struts runtime library etc).</p>
 <p><a href="http://www.keyboardmonkey.com/downloads/files/tutorials/next_two/nested-tutorial.war"><b>Nested Tutorial</b></a> by Arron Bates - War file result of the nested tutorial (requires Struts runtime files).</p>
