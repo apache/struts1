@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.17 2003/07/26 18:51:56 dgraham Exp $
- * $Revision: 1.17 $
- * $Date: 2003/07/26 18:51:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.18 2003/08/28 05:50:32 rleland Exp $
+ * $Revision: 1.18 $
+ * $Date: 2003/08/28 05:50:32 $
  *
  * ====================================================================
  *
@@ -72,6 +72,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.struts.Globals;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * Renders an HTML <base> element with an href 
@@ -83,7 +84,7 @@ import org.apache.struts.util.MessageResources;
  *
  * @author Luis Arias <luis@elysia.com>
  * @author David Graham
- * @version $Revision: 1.17 $ $Date: 2003/07/26 18:51:56 $
+ * @version $Revision: 1.18 $ $Date: 2003/08/28 05:50:32 $
  */
 
 public class BaseTag extends TagSupport {
@@ -156,20 +157,8 @@ public class BaseTag extends TagSupport {
         String uri) {
             
         StringBuffer tag = new StringBuffer("<base href=\"");
-        tag.append(scheme);
-        tag.append("://");
-        
-        tag.append(serverName);
-        if ("http".equals(scheme) && (port == 80)) {
-            ;
-        } else if ("https".equals(scheme) && (port == 443)) {
-            ;
-        } else {
-            tag.append(":");
-            tag.append(port);
-        }
-        
-        tag.append(uri);
+        tag.append(RequestUtils.createServerUriStringBuffer(scheme,serverName,port,uri));
+
         tag.append("\"");
         
         if (this.target != null) {

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.135 2003/08/12 15:03:42 martinc Exp $
- * $Revision: 1.135 $
- * $Date: 2003/08/12 15:03:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.136 2003/08/28 05:50:32 rleland Exp $
+ * $Revision: 1.136 $
+ * $Date: 2003/08/28 05:50:32 $
  *
  * ====================================================================
  *
@@ -106,7 +106,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * @author Ted Husted
  * @author James Turner
  * @author David Graham
- * @version $Revision: 1.135 $ $Date: 2003/08/12 15:03:42 $
+ * @version $Revision: 1.136 $ $Date: 2003/08/28 05:50:32 $
  */
 public class RequestUtils {
 
@@ -121,8 +121,8 @@ public class RequestUtils {
      * The message resources for this package.
      */
     private static MessageResources messages =
-        MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
-    
+            MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
+
 
     // --------------------------------------------------------- Public Methods
 
@@ -137,7 +137,7 @@ public class RequestUtils {
      * @exception MalformedURLException if we cannot create an absolute URL
      */
     public static URL absoluteURL(HttpServletRequest request, String path)
-        throws MalformedURLException {
+            throws MalformedURLException {
 
         return (new URL(serverURL(request), request.getContextPath() + path));
 
@@ -182,7 +182,7 @@ public class RequestUtils {
      *  zero-arguments constructor
      */
     public static Object applicationInstance(String className)
-        throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+            throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         return (applicationClass(className).newInstance());
 
@@ -221,18 +221,18 @@ public class RequestUtils {
      * Use {@link org.apache.struts.taglib.TagUtils#computeParameters(PageContext,String,String,String,String,String,String,String,boolean)} instead.
      */
     public static Map computeParameters(
-        PageContext pageContext,
-        String paramId,
-        String paramName,
-        String paramProperty,
-        String paramScope,
-        String name,
-        String property,
-        String scope,
-        boolean transaction)
-        throws JspException {
-         return TagUtils.getInstance().computeParameters(pageContext,paramId,paramName,paramProperty,paramScope,
-                                                                                 name,property,scope,transaction);
+            PageContext pageContext,
+            String paramId,
+            String paramName,
+            String paramProperty,
+            String paramScope,
+            String name,
+            String property,
+            String scope,
+            boolean transaction)
+            throws JspException {
+        return TagUtils.getInstance().computeParameters(pageContext, paramId, paramName, paramProperty, paramScope,
+                                                        name, property, scope, transaction);
     }
 
     /**
@@ -261,19 +261,19 @@ public class RequestUtils {
      */
 
     public static String computeURL(
-        PageContext pageContext,
-        String forward,
-        String href,
-        String page,
-        Map params,
-        String anchor,
-        boolean redirect)
-        throws MalformedURLException {
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            Map params,
+            String anchor,
+            boolean redirect)
+            throws MalformedURLException {
 
         return computeURL(pageContext, forward, href, page, null, params,
                           anchor, redirect);
     }
-    
+
     /**
      * Compute a hyperlink URL based on the <code>forward</code>,
      * <code>href</code>, <code>action</code> or <code>page</code> parameter
@@ -302,25 +302,25 @@ public class RequestUtils {
      * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean)} instead.
      */
     public static String computeURL(
-        PageContext pageContext,
-        String forward,
-        String href,
-        String page,
-        String action,
-        Map params,
-        String anchor,
-        boolean redirect)
-        throws MalformedURLException {
-            
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            String action,
+            Map params,
+            String anchor,
+            boolean redirect)
+            throws MalformedURLException {
+
         return TagUtils.getInstance().computeURL(
-            pageContext,
-            forward,
-            href,
-            page,
-            action,
-            params,
-            anchor,
-            redirect);
+                pageContext,
+                forward,
+                href,
+                page,
+                action,
+                params,
+                anchor,
+                redirect);
     }
 
     /**
@@ -354,26 +354,26 @@ public class RequestUtils {
      * Use {@link org.apache.struts.taglib.TagUtils#computeURL(PageContext,String,String,String,String,Map,String,boolean,boolean)} instead.
      */
     public static String computeURL(
-        PageContext pageContext,
-        String forward,
-        String href,
-        String page,
-        String action,
-        Map params,
-        String anchor,
-        boolean redirect,
-        boolean encodeSeparator)
-        throws MalformedURLException {
-    return (TagUtils.getInstance().computeURL(
-        pageContext,
-        forward,
-        href,
-        page,
-        action,
-        params,
-        anchor,
-        redirect,
-        encodeSeparator));
+            PageContext pageContext,
+            String forward,
+            String href,
+            String page,
+            String action,
+            Map params,
+            String anchor,
+            boolean redirect,
+            boolean encodeSeparator)
+            throws MalformedURLException {
+        return (TagUtils.getInstance().computeURL(
+                pageContext,
+                forward,
+                href,
+                page,
+                action,
+                params,
+                anchor,
+                redirect,
+                encodeSeparator));
     }
 
     /**
@@ -386,7 +386,7 @@ public class RequestUtils {
      * <li>If the resulting value does not start with a slash, then a
      *     slash is prepended.</li>
      * </ul>
-     * @deprecated Use TagUtils.getActionMappingName() instead.  This will be 
+     * @deprecated Use TagUtils.getActionMappingName() instead.  This will be
      * removed after Struts 1.2.
      */
     public static String getActionMappingName(String action) {
@@ -395,17 +395,17 @@ public class RequestUtils {
 
     /**
      * Return the form action converted into a server-relative URL.
-     * @deprecated Use TagUtils.getActionMappingURL() instead.  This will be 
+     * @deprecated Use TagUtils.getActionMappingURL() instead.  This will be
      * removed after Struts 1.2.
      */
     public static String getActionMappingURL(
-        String action,
-        PageContext pageContext) {
-            
+            String action,
+            PageContext pageContext) {
+
         return TagUtils.getInstance().getActionMappingURL(action, pageContext);
     }
 
-     /**
+    /**
      * Create (if necessary) and return an ActionForm instance appropriate
      * for this request.  If no ActionForm instance is required, return
      * <code>null</code>.
@@ -417,10 +417,10 @@ public class RequestUtils {
      * @return ActionForm instance associated with this request
      */
     public static ActionForm createActionForm(
-        HttpServletRequest request,
-        ActionMapping mapping,
-        ModuleConfig moduleConfig,
-        ActionServlet servlet) {
+            HttpServletRequest request,
+            ActionMapping mapping,
+            ModuleConfig moduleConfig,
+            ActionServlet servlet) {
 
         // Is there a form bean associated with this mapping?
         String attribute = mapping.getAttribute();
@@ -438,7 +438,7 @@ public class RequestUtils {
         // Look up any existing form bean instance
         if (log.isDebugEnabled()) {
             log.debug(
-                " Looking for ActionForm bean instance in scope '"
+                    " Looking for ActionForm bean instance in scope '"
                     + mapping.getScope()
                     + "' under attribute key '"
                     + attribute
@@ -460,7 +460,7 @@ public class RequestUtils {
                 if (className.equals(config.getName())) {
                     if (log.isDebugEnabled()) {
                         log.debug(
-                            " Recycling existing DynaActionForm instance "
+                                " Recycling existing DynaActionForm instance "
                                 + "of type '"
                                 + className
                                 + "'");
@@ -474,7 +474,7 @@ public class RequestUtils {
                     if (configClass.isAssignableFrom(instance.getClass())) {
                         if (log.isDebugEnabled()) {
                             log.debug(
-                                " Recycling existing ActionForm instance "
+                                    " Recycling existing ActionForm instance "
                                     + "of class '"
                                     + instance.getClass().getName()
                                     + "'");
@@ -482,7 +482,7 @@ public class RequestUtils {
                         }
                         return (instance);
                     }
-                } catch (Throwable t) {
+                } catch(Throwable t) {
                     log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                     return (null);
                 }
@@ -493,18 +493,18 @@ public class RequestUtils {
         if (config.getDynamic()) {
             try {
                 DynaActionFormClass dynaClass =
-                    DynaActionFormClass.createDynaActionFormClass(config);
+                        DynaActionFormClass.createDynaActionFormClass(config);
                 instance = (ActionForm) dynaClass.newInstance();
                 ((DynaActionForm) instance).initialize(mapping);
                 if (log.isDebugEnabled()) {
                     log.debug(
-                        " Creating new DynaActionForm instance "
+                            " Creating new DynaActionForm instance "
                             + "of type '"
                             + config.getType()
                             + "'");
                     log.trace(" --> " + instance);
                 }
-            } catch (Throwable t) {
+            } catch(Throwable t) {
                 log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                 return (null);
             }
@@ -513,13 +513,13 @@ public class RequestUtils {
                 instance = (ActionForm) applicationInstance(config.getType());
                 if (log.isDebugEnabled()) {
                     log.debug(
-                        " Creating new ActionForm instance "
+                            " Creating new ActionForm instance "
                             + "of type '"
                             + config.getType()
                             + "'");
                     log.trace(" --> " + instance);
                 }
-            } catch (Throwable t) {
+            } catch(Throwable t) {
                 log.error(servlet.getInternal().getMessage("formBean", config.getType()), t);
                 return (null);
             }
@@ -546,10 +546,10 @@ public class RequestUtils {
      * Use {@link org.apache.struts.taglib.TagUtils#lookup(PageContext,String,String)} instead.
      */
     public static Object lookup(PageContext pageContext, String name, String scopeName)
-        throws JspException {
-        return TagUtils.getInstance().lookup(pageContext,name,scopeName);
+            throws JspException {
+        return TagUtils.getInstance().lookup(pageContext, name, scopeName);
     }
-    
+
     /**
      * Converts the scope name into its corresponding PageContext constant value.
      * @param scopeName Can be "page", "request", "session", or "application" in any
@@ -590,34 +590,34 @@ public class RequestUtils {
 
      */
     public static Object lookup(
-        PageContext pageContext,
-        String name,
-        String property,
-        String scope)
-        throws JspException {
+            PageContext pageContext,
+            String name,
+            String property,
+            String scope)
+            throws JspException {
 
-        return TagUtils.getInstance().lookup(pageContext,name,property,scope);
+        return TagUtils.getInstance().lookup(pageContext, name, property, scope);
     }
 
     /**
      * Look up and return current user locale, based on the specified parameters.
      *
      * @param pageContext The PageContext associated with this request
-     * @param locale Name of the session attribute for our user's Locale.  If this is 
+     * @param locale Name of the session attribute for our user's Locale.  If this is
      * <code>null</code>, the default locale key is used for the lookup.
      * @return current user locale
-     * @deprecated Use TagUtils.getUserLocale() instead.  This will be removed 
+     * @deprecated Use TagUtils.getUserLocale() instead.  This will be removed
      * after Struts 1.2.
      */
     public static Locale retrieveUserLocale(PageContext pageContext, String locale) {
         return TagUtils.getInstance().getUserLocale(pageContext, locale);
     }
-    
+
     /**
      * Look up and return current user locale, based on the specified parameters.
      *
-     * @param request The request used to lookup the Locale 
-     * @param locale Name of the session attribute for our user's Locale.  If this is 
+     * @param request The request used to lookup the Locale
+     * @param locale Name of the session attribute for our user's Locale.  If this is
      * <code>null</code>, the default locale key is used for the lookup.
      * @return current user locale
      * @since Struts 1.2
@@ -625,7 +625,7 @@ public class RequestUtils {
     public static Locale getUserLocale(HttpServletRequest request, String locale) {
         Locale userLocale = null;
         HttpSession session = request.getSession(false);
- 
+
         if (locale == null) {
             locale = Globals.LOCALE_KEY;
         }
@@ -659,11 +659,11 @@ public class RequestUtils {
      * Struts 1.2.
      */
     public static String message(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key)
-        throws JspException {
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key)
+            throws JspException {
 
         return TagUtils.getInstance().message(pageContext, bundle, locale, key);
     }
@@ -684,19 +684,19 @@ public class RequestUtils {
      * Struts 1.2.
      */
     public static String message(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key,
-        Object args[])
-        throws JspException {
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key,
+            Object args[])
+            throws JspException {
 
         return TagUtils.getInstance().message(
-            pageContext,
-            bundle,
-            locale,
-            key,
-            args);
+                pageContext,
+                bundle,
+                locale,
+                key,
+                args);
     }
 
     /**
@@ -745,11 +745,11 @@ public class RequestUtils {
      *            property values
      */
     public static void populate(
-        Object bean,
-        String prefix,
-        String suffix,
-        HttpServletRequest request)
-        throws ServletException {
+            Object bean,
+            String prefix,
+            String suffix,
+            HttpServletRequest request)
+            throws ServletException {
 
         // Build a list of relevant request parameters from this request
         HashMap properties = new HashMap();
@@ -763,8 +763,8 @@ public class RequestUtils {
         boolean isMultipart = false;
 
         if ((contentType != null)
-            && (contentType.startsWith("multipart/form-data"))
-            && (method.equalsIgnoreCase("POST"))) {
+                && (contentType.startsWith("multipart/form-data"))
+                && (method.equalsIgnoreCase("POST"))) {
 
             // Get the ActionServletWrapper from the form bean
             ActionServletWrapper servlet;
@@ -772,7 +772,7 @@ public class RequestUtils {
                 servlet = ((ActionForm) bean).getServletWrapper();
             } else {
                 throw new ServletException(
-                    "bean that's supposed to be "
+                        "bean that's supposed to be "
                         + "populated from a multipart request is not of type "
                         + "\"org.apache.struts.action.ActionForm\", but type "
                         + "\""
@@ -787,20 +787,20 @@ public class RequestUtils {
             // If the bean isn't an ActionForm, an exception would have been
             // thrown earlier, so it's safe to assume that our bean is
             // in fact an ActionForm.
-             ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
+            ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
 
             if (multipartHandler != null) {
                 isMultipart = true;
                 // Set servlet and mapping info
                 servlet.setServletFor(multipartHandler);
                 multipartHandler.setMapping(
-                    (ActionMapping) request.getAttribute(Globals.MAPPING_KEY));
+                        (ActionMapping) request.getAttribute(Globals.MAPPING_KEY));
                 // Initialize multipart request class handler
                 multipartHandler.handleRequest(request);
                 //stop here if the maximum length has been exceeded
                 Boolean maxLengthExceeded =
-                    (Boolean) request.getAttribute(
-                        MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
+                        (Boolean) request.getAttribute(
+                                MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
                 if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue())) {
                     return;
                 }
@@ -840,7 +840,7 @@ public class RequestUtils {
         // Set the corresponding properties of our bean
         try {
             BeanUtils.populate(bean, properties);
-        } catch (Exception e) {
+        } catch(Exception e) {
             throw new ServletException("BeanUtils.populate", e);
         }
 
@@ -860,7 +860,7 @@ public class RequestUtils {
      *                             to locate the multipart handler.
      */
     private static MultipartRequestHandler getMultipartHandler(HttpServletRequest request)
-        throws ServletException {
+            throws ServletException {
 
         MultipartRequestHandler multipartHandler = null;
         String multipartClass = (String) request.getAttribute(Globals.MULTIPART_KEY);
@@ -870,23 +870,23 @@ public class RequestUtils {
         if (multipartClass != null) {
             try {
                 multipartHandler = (MultipartRequestHandler) applicationInstance(multipartClass);
-            } catch (ClassNotFoundException cnfe) {
+            } catch(ClassNotFoundException cnfe) {
                 log.error(
-                    "MultipartRequestHandler class \""
+                        "MultipartRequestHandler class \""
                         + multipartClass
                         + "\" in mapping class not found, "
                         + "defaulting to global multipart class");
-            } catch (InstantiationException ie) {
+            } catch(InstantiationException ie) {
                 log.error(
-                    "InstantiaionException when instantiating "
+                        "InstantiaionException when instantiating "
                         + "MultipartRequestHandler \""
                         + multipartClass
                         + "\", "
                         + "defaulting to global multipart class, exception: "
                         + ie.getMessage());
-            } catch (IllegalAccessException iae) {
+            } catch(IllegalAccessException iae) {
                 log.error(
-                    "IllegalAccessException when instantiating "
+                        "IllegalAccessException when instantiating "
                         + "MultipartRequestHandler \""
                         + multipartClass
                         + "\", "
@@ -900,34 +900,34 @@ public class RequestUtils {
         }
 
         ModuleConfig moduleConfig =
-            ModuleUtils.getInstance().getModuleConfig(request);
-            
+                ModuleUtils.getInstance().getModuleConfig(request);
+
         multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
         if (multipartClass != null) {
             try {
                 multipartHandler = (MultipartRequestHandler) applicationInstance(multipartClass);
-                
-            } catch (ClassNotFoundException cnfe) {
+
+            } catch(ClassNotFoundException cnfe) {
                 throw new ServletException(
-                    "Cannot find multipart class \""
+                        "Cannot find multipart class \""
                         + multipartClass
                         + "\""
                         + ", exception: "
                         + cnfe.getMessage());
-                        
-            } catch (InstantiationException ie) {
+
+            } catch(InstantiationException ie) {
                 throw new ServletException(
-                    "InstantiaionException when instantiating "
+                        "InstantiaionException when instantiating "
                         + "multipart class \""
                         + multipartClass
                         + "\", exception: "
                         + ie.getMessage());
-                        
-            } catch (IllegalAccessException iae) {
+
+            } catch(IllegalAccessException iae) {
                 throw new ServletException(
-                    "IllegalAccessException when instantiating "
+                        "IllegalAccessException when instantiating "
                         + "multipart class \""
                         + multipartClass
                         + "\", exception: "
@@ -965,7 +965,7 @@ public class RequestUtils {
         }
 
         if (request instanceof MultipartRequestWrapper) {
-            request = ((MultipartRequestWrapper)request).getRequest();
+            request = ((MultipartRequestWrapper) request).getRequest();
             e = request.getParameterNames();
             while (e.hasMoreElements()) {
                 String key = (String) e.nextElement();
@@ -994,11 +994,11 @@ public class RequestUtils {
      * Struts 1.2.
      */
     public static boolean present(
-        PageContext pageContext,
-        String bundle,
-        String locale,
-        String key)
-        throws JspException {
+            PageContext pageContext,
+            String bundle,
+            String locale,
+            String key)
+            throws JspException {
 
         return TagUtils.getInstance().present(pageContext, bundle, locale, key);
     }
@@ -1044,26 +1044,26 @@ public class RequestUtils {
      * @since Struts 1.1
      */
     public static String actionURL(
-        HttpServletRequest request,
-        ActionConfig action,
-        String pattern) {
+            HttpServletRequest request,
+            ActionConfig action,
+            String pattern) {
 
         StringBuffer sb = new StringBuffer();
         if (pattern.endsWith("/*")) {
             sb.append(pattern.substring(0, pattern.length() - 2));
             sb.append(action.getPath());
-            
+
         } else if (pattern.startsWith("*.")) {
             ModuleConfig appConfig =
-                ModuleUtils.getInstance().getModuleConfig(request);
+                    ModuleUtils.getInstance().getModuleConfig(request);
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
             sb.append(pattern.substring(1));
-            
+
         } else {
             throw new IllegalArgumentException(pattern);
         }
-        
+
         return sb.toString();
 
     }
@@ -1125,7 +1125,7 @@ public class RequestUtils {
 
         // Calculate a context relative path for this ForwardConfig
         ModuleConfig moduleConfig =
-            ModuleUtils.getInstance().getModuleConfig(request);
+                ModuleUtils.getInstance().getModuleConfig(request);
         String forwardPattern = moduleConfig.getControllerConfig().getForwardPattern();
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
@@ -1135,24 +1135,24 @@ public class RequestUtils {
                 sb.append("/");
             }
             sb.append(path);
-            
+
         } else {
             boolean dollar = false;
             for (int i = 0; i < forwardPattern.length(); i++) {
                 char ch = forwardPattern.charAt(i);
                 if (dollar) {
                     switch (ch) {
-                        case 'M' :
+                        case 'M':
                             sb.append(moduleConfig.getPrefix());
                             break;
-                        case 'P' :
+                        case 'P':
                             // add '/' if needed
                             if (!path.startsWith("/")) {
                                 sb.append("/");
                             }
                             sb.append(path);
                             break;
-                        case '$' :
+                        case '$':
                             sb.append('$');
                             break;
                         default :
@@ -1167,7 +1167,7 @@ public class RequestUtils {
                 }
             }
         }
-        
+
         return (sb.toString());
 
     }
@@ -1201,23 +1201,8 @@ public class RequestUtils {
      * @exception MalformedURLException if a URL cannot be created
      */
     public static URL requestURL(HttpServletRequest request) throws MalformedURLException {
-
-        StringBuffer url = new StringBuffer();
-        String scheme = request.getScheme();
-        int port = request.getServerPort();
-        if (port < 0) {
-            port = 80; // Work around java.net.URL bug
-        }
-        url.append(scheme);
-        url.append("://");
-        url.append(request.getServerName());
-        if ((scheme.equals("http") && (port != 80)) || (scheme.equals("https") && (port != 443))) {
-            url.append(':');
-            url.append(port);
-        }
-        url.append(request.getRequestURI());
+        StringBuffer url = requestToServerUriStringBuffer(request);
         return (new URL(url.toString()));
-
     }
 
     /**
@@ -1231,30 +1216,92 @@ public class RequestUtils {
      * @exception MalformedURLException if a URL cannot be created
      */
     public static URL serverURL(HttpServletRequest request) throws MalformedURLException {
+        StringBuffer url = requestToServerStringBuffer(request);
+        return (new URL(url.toString()));
+    }
+
+    /**
+     * Return the string representing the scheme, server, and port number of
+     * the current request.  Server-relative URLs can be created by simply
+     * appending the server-relative path (starting with '/') to this.
+     *
+     * @param request The servlet request we are processing
+     * @return URL representing the scheme, server, and port number of
+     *     the current request
+     * @since Struts 1.2.0
+     */
+    public static StringBuffer requestToServerUriStringBuffer(HttpServletRequest request) {
+        StringBuffer serverUri = createServerUriStringBuffer(request.getScheme(),request.getServerName(),
+        request.getServerPort(),request.getRequestURI());
+        return serverUri;
+    }
+
+    /**
+     * Return the StringBuffer representing the scheme, server, and port number of
+     * the current request.  Server-relative URLs can be created by simply
+     * appending the server-relative path (starting with '/') to this.
+     *
+     * @param request The servlet request we are processing
+     * @return URL representing the scheme, server, and port number of
+     *     the current request
+     * @since Struts 1.2.0
+     */
+    public static StringBuffer requestToServerStringBuffer(HttpServletRequest request) {
+        return createServerStringBuffer(request.getScheme(),request.getServerName(),request.getServerPort());
+    }
+
+    /**
+     * Return the string representing the scheme, server, and port number of
+     * the current request.
+     *
+     * @param scheme The scheme name to use
+     * @param server The server name to use
+     * @param port The port value to use
+     * @return StringBuffer in the form scheme: server: port
+     * @since Struts 1.2.0
+     */
+    public static StringBuffer createServerStringBuffer(String scheme,String server,int port) {
 
         StringBuffer url = new StringBuffer();
-        String scheme = request.getScheme();
-        int port = request.getServerPort();
         if (port < 0) {
             port = 80; // Work around java.net.URL bug
         }
         url.append(scheme);
         url.append("://");
-        url.append(request.getServerName());
+        url.append(server);
         if ((scheme.equals("http") && (port != 80)) || (scheme.equals("https") && (port != 443))) {
             url.append(':');
             url.append(port);
         }
-        return (new URL(url.toString()));
+        return url;
 
     }
+    /**
+     * Return the string representing the scheme, server, and port number of
+     * the current request.
+     *
+     * @param scheme The scheme name to use
+     * @param server The server name to use
+     * @param port The port value to use
+     * @param uri The uri value to use
+     * @return StringBuffer in the form scheme: server: port
+     * @since Struts 1.2.0
+     */
+    public static StringBuffer createServerUriStringBuffer(String scheme,String server,int port,String uri) {
+
+        StringBuffer serverUri = createServerStringBuffer(scheme,server,port);
+        serverUri.append(uri);
+        return serverUri;
+
+    }
+
 
     /**
      * Save the specified exception as a request attribute for later use.
      *
      * @param pageContext The PageContext for the current page
      * @param exception The exception to be saved
-     * @deprecated Use TagUtils.saveException() instead. This will be removed 
+     * @deprecated Use TagUtils.saveException() instead. This will be removed
      * after Struts 1.2.
      */
     public static void saveException(PageContext pageContext, Throwable exception) {
@@ -1273,9 +1320,9 @@ public class RequestUtils {
      * removed after Struts 1.2.
      */
     public static void selectModule(
-        String prefix,
-        HttpServletRequest request,
-        ServletContext context) {
+            String prefix,
+            HttpServletRequest request,
+            ServletContext context) {
 
         ModuleUtils.getInstance().selectModule(prefix, request, context);
     }
@@ -1332,7 +1379,7 @@ public class RequestUtils {
      * @deprecated Use ModuleUtils.getModuleConfig() instead.  This will be
      * removed after Struts 1.2.
      */
-    public static ModuleConfig getRequestModuleConfig( HttpServletRequest request) {
+    public static ModuleConfig getRequestModuleConfig(HttpServletRequest request) {
         return ModuleUtils.getInstance().getModuleConfig(request);
     }
 
@@ -1346,12 +1393,12 @@ public class RequestUtils {
      * removed after Struts 1.2.
      */
     public static ModuleConfig getModuleConfig(
-        HttpServletRequest request,
-        ServletContext context) {
-        
+            HttpServletRequest request,
+            ServletContext context) {
+
         return ModuleUtils.getInstance().getModuleConfig(request, context);
     }
-    
+
     /**
      * Return the ModuleConfig object if it exists, null if otherwise.
      * @param pageContext The page context.
@@ -1387,13 +1434,13 @@ public class RequestUtils {
      * @param paramName     Key for parameter value
      * @return ActionErros in page context.
      * @throws JspException
-     * @deprecated Use TagUtils.getActionMessages() instead.  This will be 
+     * @deprecated Use TagUtils.getActionMessages() instead.  This will be
      * removed after Struts 1.2.
      */
     public static ActionMessages getActionMessages(PageContext pageContext, String paramName)
-        throws JspException {
-        
-        return TagUtils.getInstance().getActionMessages(pageContext,paramName);
+            throws JspException {
+
+        return TagUtils.getInstance().getActionMessages(pageContext, paramName);
     }
 
     /**
@@ -1408,7 +1455,7 @@ public class RequestUtils {
      * after Struts 1.2.
      */
     public static ActionErrors getActionErrors(PageContext pageContext, String paramName)
-        throws JspException {
+            throws JspException {
 
         return TagUtils.getInstance().getActionErrors(pageContext, paramName);
     }
@@ -1425,7 +1472,7 @@ public class RequestUtils {
     public static String encodeURL(String url) {
         return TagUtils.getInstance().encodeURL(url);
     }
-    
+
     /**
      * Returns true if the custom tags are in XHTML mode.
      * @since Struts 1.1
@@ -1434,9 +1481,9 @@ public class RequestUtils {
      */
     public static boolean isXhtml(PageContext pageContext) {
         String xhtml =
-            (String) pageContext.getAttribute(
-                Globals.XHTML_KEY,
-                PageContext.PAGE_SCOPE);
+                (String) pageContext.getAttribute(
+                        Globals.XHTML_KEY,
+                        PageContext.PAGE_SCOPE);
 
         return "true".equalsIgnoreCase(xhtml);
     }

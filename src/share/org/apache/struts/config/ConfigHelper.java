@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.12 2003/08/23 17:33:28 dgraham Exp $
- * $Revision: 1.12 $
- * $Date: 2003/08/23 17:33:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/config/ConfigHelper.java,v 1.13 2003/08/28 05:50:32 rleland Exp $
+ * $Revision: 1.13 $
+ * $Date: 2003/08/28 05:50:32 $
  *
  * ====================================================================
  *
@@ -103,7 +103,7 @@ import org.apache.struts.util.RequestUtils;
  * @since Struts 1.1
  * @author Ted Husted
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.12 $ $Date: 2003/08/23 17:33:28 $
+ * @version $Revision: 1.13 $ $Date: 2003/08/28 05:50:32 $
  */
 public class ConfigHelper implements ConfigHelperInterface {
 
@@ -497,21 +497,7 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         if (request == null)
             return null;
-
-        StringBuffer result = new StringBuffer();
-        result.append(request.getScheme());
-        result.append("://");
-        result.append(request.getServerName());
-        if ("http".equals(request.getScheme()) && (80 == request.getServerPort())) {
-            ;
-        } else if ("https".equals(request.getScheme()) && (443 == request.getServerPort())) {
-            ;
-        } else {
-            result.append(":");
-            result.append(request.getServerPort());
-        }
-        result.append(request.getRequestURI());
-
+        StringBuffer result = RequestUtils.requestToServerUriStringBuffer(request);
         return result.toString();
     }
 
@@ -523,18 +509,7 @@ public class ConfigHelper implements ConfigHelperInterface {
         if (request == null)
             return null;
 
-        StringBuffer result = new StringBuffer();
-        result.append(request.getScheme());
-        result.append("://");
-        result.append(request.getServerName());
-        if ("http".equals(request.getScheme()) && (80 == request.getServerPort())) {
-            ;
-        } else if ("https".equals(request.getScheme()) && (443 == request.getServerPort())) {
-            ;
-        } else {
-            result.append(":");
-            result.append(request.getServerPort());
-        }
+        StringBuffer result = RequestUtils.requestToServerStringBuffer(request);
         String path = null;
         if (forward == null)
             path = request.getRequestURI();
