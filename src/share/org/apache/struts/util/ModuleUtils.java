@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.8 2004/03/14 06:23:51 sraeburn Exp $
- * $Revision: 1.8 $
- * $Date: 2004/03/14 06:23:51 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/ModuleUtils.java,v 1.9 2004/07/22 13:29:44 husted Exp $
+ * $Revision: 1.9 $
+ * $Date: 2004/07/22 13:29:44 $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
  * 
@@ -28,11 +28,12 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.config.MessageResourcesConfig;
 
 /**
  * General purpose utility methods related to module processing.
  * 
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since Struts 1.2
  */
 public class ModuleUtils {
@@ -46,12 +47,6 @@ public class ModuleUtils {
      * Commons logging instance.
      */
     private static final Log log = LogFactory.getLog(ModuleUtils.class);
-
-    /**
-     * The message resources for this package.
-     */
-    private static final MessageResources messages =
-        MessageResources.getMessageResources("org.apache.struts.util.LocalStrings");
 
     /**
      * Returns the Singleton instance of TagUtils.
@@ -252,15 +247,16 @@ public class ModuleUtils {
             request.removeAttribute(Globals.MODULE_KEY);
         }
 
-        MessageResources resources =
-            (MessageResources) context.getAttribute(Globals.MESSAGES_KEY + prefix);
-
-        if (resources != null) {
-            request.setAttribute(Globals.MESSAGES_KEY, resources);
-        } else {
-            request.removeAttribute(Globals.MESSAGES_KEY);
+        MessageResourcesConfig[] mrConfig = config.findMessageResourcesConfigs();
+        for(int i = 0; i < mrConfig.length; i++) {
+          String key = mrConfig[i].getKey();
+          MessageResources resources =
+            (MessageResources) context.getAttribute(key + prefix);
+          if (resources != null) {
+              request.setAttribute(key, resources);
+          } else {
+              request.removeAttribute(key);
+          }
         }
-
     }
-
 }
