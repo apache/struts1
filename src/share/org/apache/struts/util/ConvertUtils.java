@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.2 2001/01/08 20:34:56 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2001/01/08 20:34:56 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/Attic/ConvertUtils.java,v 1.3 2001/01/28 01:07:57 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2001/01/28 01:07:57 $
  *
  * ====================================================================
  *
@@ -73,10 +73,19 @@ import java.lang.reflect.Array;
  * @author Craig R. McClanahan
  * @author Ralph Schaer
  * @author Chris Audley
- * @version $Revision: 1.2 $ $Date: 2001/01/08 20:34:56 $
+ * @version $Revision: 1.3 $ $Date: 2001/01/28 01:07:57 $
  */
 
 public final class ConvertUtils {
+
+
+    // ------------------------------------------------------- Static Variables
+
+
+    /**
+     * The Class object for java.lang.String.
+     */
+    private static Class stringClass = "".getClass();
 
 
     // --------------------------------------------------------- Public Classes
@@ -114,46 +123,30 @@ public final class ConvertUtils {
      * to the correct value) is returned instead.
      *
      * @param value Value to be converted (may be null)
-     * @param clazz Java class to be converted to (must be String, one of
-     *  the Java primitive types, or one of the primitive wrappers)
+     * @param clazz Java class to be converted to (must be java.lang.String
+     *  or one of the primitive type wrappers)
      */
     public static Object convert(String value, Class clazz) {
 
-        String type = clazz.getName();
-        if ("java.lang.String".equals(type) ||
-            "String".equals(type)) {
+        if (clazz == stringClass) {
             if (value == null)
                 return ((String) null);
             else
                 return (value);
-        } else if ("java.lang.Boolean".equals(type) ||
-                   Boolean.TYPE.getName().equals(type) ||
-                   "boolean".equals(type)) {
-            return (convertBoolean(value));
-        } else if ("java.lang.Byte".equals(type) ||
-                   Byte.TYPE.getName().equals(type) ||
-                   "byte".equals(type)) {
-            return (convertByte(value));
-        } else if ("java.lang.Character".equals(type) ||
-                   Character.TYPE.getName().equals(type) ||
-                   "char".equals(type)) {
-            return (convertCharacter(value));
-        } else if ("java.lang.Integer".equals(type) ||
-                   Integer.TYPE.getName().equals(type) ||
-                   "int".equals(type)) {
+        } else if (clazz == Integer.TYPE) {
             return (convertInteger(value));
-        } else if ("java.lang.Long".equals(type) ||
-                   Long.TYPE.getName().equals(type) ||
-                   "long".equals(type)) {
+        } else if (clazz == Boolean.TYPE) {
+            return (convertBoolean(value));
+        } else if (clazz == Long.TYPE) {
             return (convertLong(value));
-        } else if ("java.lang.Float".equals(type) ||
-                   Float.TYPE.getName().equals(type) ||
-                   "float".equals(type)) {
-            return (convertFloat(value));
-        } else if ("java.lang.Double".equals(type) ||
-                   Double.TYPE.getName().equals(type) ||
-                   "double".equals(type)) {
+        } else if (clazz == Double.TYPE) {
             return (convertDouble(value));
+        } else if (clazz == Character.TYPE) {
+            return (convertCharacter(value));
+        } else if (clazz == Byte.TYPE) {
+            return (convertByte(value));
+        } else if (clazz == Float.TYPE) {
+            return (convertFloat(value));
         } else {
             if (value == null)
                 return ((String) null);
@@ -172,14 +165,13 @@ public final class ConvertUtils {
      * or a Java wrapper class for the primitive types) will be returned.
      *
      * @param value Value to be converted (may be null)
-     * @param clazz Java array class to be converted to (must be String, one of
-     *  the Java primitive types, or one of the primitive wrappers)
+     * @param clazz Java array class to be converted to (must be String[],
+     *  or an array of one of the Java primitive types)
      */
     public static Object convert(String values[], Class clazz) {
 
-        String type = clazz.getComponentType().getName();
-        if ("java.lang.String".equals(type) ||
-            "String".equals(type)) {
+        Class type = clazz.getComponentType();
+        if (type == stringClass) {
             if (values == null)
                 return ((String[]) null);
             else
@@ -187,79 +179,41 @@ public final class ConvertUtils {
         }
 
         int len = values.length;
-        if ("java.lang.Boolean".equals(type)) {
-            Boolean array[] = new Boolean[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertBoolean(values[i]);
-            return (array);
-        } else if ("boolean".equals(type) ||
-                   Boolean.TYPE.getName().equals(type)) {
-            boolean array[] = new boolean[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertBoolean(values[i]).booleanValue();
-        } else if ("java.lang.Byte".equals(type)) {
-            Byte array[] = new Byte[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertByte(values[i]);
-            return (array);
-        } else if ("byte".equals(type) ||
-                   Byte.TYPE.getName().equals(type)) {
-            byte array[] = new byte[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertByte(values[i]).byteValue();
-        } else if ("java.lang.Character".equals(type)) {
-            Character array[] = new Character[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertCharacter(values[i]);
-            return (array);
-        } else if ("char".equals(type) ||
-                   Character.TYPE.getName().equals(type)) {
-            char array[] = new char[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertCharacter(values[i]).charValue();
-        } else if ("java.lang.Integer".equals(type)) {
-            Integer array[] = new Integer[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertInteger(values[i]);
-            return (array);
-        } else if ("int".equals(type) ||
-                   Integer.TYPE.getName().equals(type)) {
+
+        if (type == Integer.TYPE) {
             int array[] = new int[len];
             for (int i = 0; i < len; i++)
                 array[i] = convertInteger(values[i]).intValue();
             return (array);
-        } else if ("java.lang.Long".equals(type)) {
-            Long array[] = new Long[len];
+        } else if (type == Boolean.TYPE) {
+            boolean array[] = new boolean[len];
             for (int i = 0; i < len; i++)
-                array[i] = convertLong(values[i]);
+                array[i] = convertBoolean(values[i]).booleanValue();
             return (array);
-        } else if ("long".equals(type) ||
-                   Long.TYPE.getName().equals(type)) {
+        } else if (type == Long.TYPE) {
             long array[] = new long[len];
             for (int i = 0; i < len; i++)
                 array[i] = convertLong(values[i]).longValue();
             return (array);
-        } else if ("java.lang.Float".equals(type)) {
-            Float array[] = new Float[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertFloat(values[i]);
-            return (array);
-        } else if ("float".equals(type) ||
-                   Float.TYPE.getName().equals(type)) {
-            float array[] = new float[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertFloat(values[i]).floatValue();
-            return (array);
-        } else if ("java.lang.Double".equals(type)) {
-            Double array[] = new Double[len];
-            for (int i = 0; i < len; i++)
-                array[i] = convertDouble(values[i]);
-            return (array);
-        } else if ("double".equals(type) ||
-                   Double.TYPE.getName().equals(type)) {
+        } else if (type == Double.TYPE) {
             double array[] = new double[len];
             for (int i = 0; i < len; i++)
                 array[i] = convertDouble(values[i]).doubleValue();
+            return (array);
+        } else if (type == Character.TYPE) {
+            char array[] = new char[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertCharacter(values[i]).charValue();
+            return (array);
+        } else if (type == Byte.TYPE) {
+            byte array[] = new byte[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertByte(values[i]).byteValue();
+            return (array);
+        } else if (type == Float.TYPE) {
+            float array[] = new float[len];
+            for (int i = 0; i < len; i++)
+                array[i] = convertFloat(values[i]).floatValue();
             return (array);
         } else {
             if (values == null)
@@ -271,8 +225,6 @@ public final class ConvertUtils {
                 return (array);
             }
         }
-
-        return ((String[]) null);	// Make the compiler shut up
 
     }
 
