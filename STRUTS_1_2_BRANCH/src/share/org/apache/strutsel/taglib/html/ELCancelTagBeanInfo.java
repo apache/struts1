@@ -58,6 +58,10 @@ public class ELCancelTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAltKeyExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELCancelTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELCancelTag.class,
                                                 null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {}

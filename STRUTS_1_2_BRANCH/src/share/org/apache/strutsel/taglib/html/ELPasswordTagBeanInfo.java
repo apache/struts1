@@ -55,8 +55,28 @@ public class ELPasswordTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAltKeyExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELPasswordTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELPasswordTag.class,
                                                 null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorKey", ELPasswordTag.class,
+                                                null, "setErrorKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyle", ELPasswordTag.class,
+                                                null, "setErrorStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyleClass", ELPasswordTag.class,
+                                                null, "setErrorStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyleId", ELPasswordTag.class,
+                                                null, "setErrorStyleIdExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("indexed", ELPasswordTag.class,

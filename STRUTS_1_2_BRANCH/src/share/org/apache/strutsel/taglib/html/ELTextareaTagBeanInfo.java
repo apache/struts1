@@ -55,12 +55,32 @@ public class ELTextareaTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAltKeyExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELTextareaTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("cols", ELTextareaTag.class,
                                                 null, "setColsExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("disabled", ELTextareaTag.class,
                                                 null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorKey", ELTextareaTag.class,
+                                                null, "setErrorKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyle", ELTextareaTag.class,
+                                                null, "setErrorStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyleClass", ELTextareaTag.class,
+                                                null, "setErrorStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyleId", ELTextareaTag.class,
+                                                null, "setErrorStyleIdExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("indexed", ELTextareaTag.class,

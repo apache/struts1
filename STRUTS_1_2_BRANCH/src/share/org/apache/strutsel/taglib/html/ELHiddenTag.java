@@ -51,6 +51,11 @@ public class ELHiddenTag extends HiddenTag {
      */
     private String altKeyExpr;
     /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
+    /**
      * Instance variable mapped to "disabled" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -186,6 +191,11 @@ public class ELHiddenTag extends HiddenTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getAltKeyExpr() { return (altKeyExpr); }
+    /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
     /**
      * Getter method for "disabled" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -323,6 +333,11 @@ public class ELHiddenTag extends HiddenTag {
      */
     public void setAltKeyExpr(String altKeyExpr) { this.altKeyExpr = altKeyExpr; }
     /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
      * Setter method for "disabled" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -452,6 +467,7 @@ public class ELHiddenTag extends HiddenTag {
         setAccesskeyExpr(null);
         setAltExpr(null);
         setAltKeyExpr(null);
+        setBundleExpr(null);
         setDisabledExpr(null);
         setIndexedExpr(null);
         setNameExpr(null);
@@ -509,6 +525,10 @@ public class ELHiddenTag extends HiddenTag {
         if ((string = EvalHelper.evalString("altKey", getAltKeyExpr(),
                                             this, pageContext)) != null)
             setAltKey(string);
+
+        if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
+                                            this, pageContext)) != null)
+            setBundle(string);
 
         if ((bool = EvalHelper.evalBoolean("disabled", getDisabledExpr(),
                                            this, pageContext)) != null)

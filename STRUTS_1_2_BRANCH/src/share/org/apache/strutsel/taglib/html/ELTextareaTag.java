@@ -52,6 +52,11 @@ public class ELTextareaTag extends TextareaTag {
      */
     private String altKeyExpr;
     /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
+    /**
      * Instance variable mapped to "cols" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -61,6 +66,26 @@ public class ELTextareaTag extends TextareaTag {
      * (Mapping set in associated BeanInfo class.)
      */
     private String disabledExpr;
+    /**
+     * Instance variable mapped to "errorKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String errorKeyExpr;
+    /**
+     * Instance variable mapped to "errorStyle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String errorStyleExpr;
+    /**
+     * Instance variable mapped to "errorStyleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String errorStyleClassExpr;
+    /**
+     * Instance variable mapped to "errorStyleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String errorStyleIdExpr;
     /**
      * Instance variable mapped to "indexed" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -208,6 +233,11 @@ public class ELTextareaTag extends TextareaTag {
      */
     public String getAltKeyExpr() { return (altKeyExpr); }
     /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
+    /**
      * Getter method for "cols" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -217,6 +247,26 @@ public class ELTextareaTag extends TextareaTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getDisabledExpr() { return (disabledExpr); }
+    /**
+     * Getter method for "errorKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getErrorKeyExpr() { return (errorKeyExpr); }
+    /**
+     * Getter method for "errorStyle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getErrorStyleExpr() { return (errorStyleExpr); }
+    /**
+     * Getter method for "errorStyleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getErrorStyleClassExpr() { return (errorStyleClassExpr); }
+    /**
+     * Getter method for "errorStyleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getErrorStyleIdExpr() { return (errorStyleIdExpr); }
     /**
      * Getter method for "indexed" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -364,6 +414,11 @@ public class ELTextareaTag extends TextareaTag {
      */
     public void setAltKeyExpr(String altKeyExpr) { this.altKeyExpr = altKeyExpr; }
     /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
      * Setter method for "cols" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -373,6 +428,26 @@ public class ELTextareaTag extends TextareaTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public void setDisabledExpr(String disabledExpr) { this.disabledExpr = disabledExpr; }
+    /**
+     * Setter method for "errorKey" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setErrorKeyExpr(String errorKeyExpr) { this.errorKeyExpr = errorKeyExpr; }
+    /**
+     * Setter method for "errorStyle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setErrorStyleExpr(String errorStyleExpr) { this.errorStyleExpr = errorStyleExpr; }
+    /**
+     * Setter method for "errorStyleClass" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setErrorStyleClassExpr(String errorStyleClassExpr) { this.errorStyleClassExpr = errorStyleClassExpr; }
+    /**
+     * Setter method for "errorStyleId" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setErrorStyleIdExpr(String errorStyleIdExpr) { this.errorStyleIdExpr = errorStyleIdExpr; }
     /**
      * Setter method for "indexed" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -513,8 +588,13 @@ public class ELTextareaTag extends TextareaTag {
         setAccesskeyExpr(null);
         setAltExpr(null);
         setAltKeyExpr(null);
+        setBundleExpr(null);
         setColsExpr(null);
         setDisabledExpr(null);
+        setErrorKey(null);
+        setErrorStyleExpr(null);
+        setErrorStyleClassExpr(null);
+        setErrorStyleIdExpr(null);
         setIndexedExpr(null);
         setNameExpr(null);
         setOnblurExpr(null);
@@ -575,6 +655,10 @@ public class ELTextareaTag extends TextareaTag {
                                             this, pageContext)) != null)
             setAltKey(string);
 
+        if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
+                                            this, pageContext)) != null)
+            setBundle(string);
+
         if ((string = EvalHelper.evalString("cols", getColsExpr(),
                                             this, pageContext)) != null)
             setCols(string);
@@ -582,6 +666,22 @@ public class ELTextareaTag extends TextareaTag {
         if ((bool = EvalHelper.evalBoolean("disabled", getDisabledExpr(),
                                            this, pageContext)) != null)
             setDisabled(bool.booleanValue());
+
+        if ((string = EvalHelper.evalString("errorKey", getErrorKeyExpr(),
+                                            this, pageContext)) != null)
+            setErrorKey(string);
+
+        if ((string = EvalHelper.evalString("errorStyle", getErrorStyleExpr(),
+                                            this, pageContext)) != null)
+            setErrorStyle(string);
+
+        if ((string = EvalHelper.evalString("errorStyleClass", getErrorStyleClassExpr(),
+                                            this, pageContext)) != null)
+            setErrorStyleClass(string);
+
+        if ((string = EvalHelper.evalString("errorStyleId", getErrorStyleIdExpr(),
+                                            this, pageContext)) != null)
+            setErrorStyleId(string);
 
         if ((bool = EvalHelper.evalBoolean("indexed", getIndexedExpr(),
                                            this, pageContext)) != null)

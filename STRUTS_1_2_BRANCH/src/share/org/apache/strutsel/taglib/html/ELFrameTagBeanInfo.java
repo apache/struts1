@@ -55,6 +55,10 @@ public class ELFrameTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAnchorExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELFrameTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("forward", ELFrameTag.class,
                                                 null, "setForwardExpr"));
         } catch (IntrospectionException ex) {}

@@ -55,6 +55,10 @@ public class ELSubmitTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAltKeyExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELSubmitTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELSubmitTag.class,
                                                 null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {}

@@ -55,8 +55,28 @@ public class ELCheckboxTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAltKeyExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELCheckboxTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELCheckboxTag.class,
                                                 null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorKey", ELCheckboxTag.class,
+                                                null, "setErrorKeyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyle", ELCheckboxTag.class,
+                                                null, "setErrorStyleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyleClass", ELCheckboxTag.class,
+                                                null, "setErrorStyleClassExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("errorStyleId", ELCheckboxTag.class,
+                                                null, "setErrorStyleIdExpr"));
         } catch (IntrospectionException ex) {}
         try {
             proplist.add(new PropertyDescriptor("indexed", ELCheckboxTag.class,

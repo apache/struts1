@@ -40,6 +40,14 @@ public class ELErrorsTagBeanInfo extends SimpleBeanInfo
                                                 null, "setBundleExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("footer", ELErrorsTag.class,
+                                                null, "setFooterExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("header", ELErrorsTag.class,
+                                                null, "setHeaderExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("locale", ELErrorsTag.class,
                                                 null, "setLocaleExpr"));
         } catch (IntrospectionException ex) {}
@@ -48,8 +56,16 @@ public class ELErrorsTagBeanInfo extends SimpleBeanInfo
                                                 null, "setNameExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("prefix", ELErrorsTag.class,
+                                                null, "setPrefixExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("property", ELErrorsTag.class,
                                                 null, "setPropertyExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
+            proplist.add(new PropertyDescriptor("suffix", ELErrorsTag.class,
+                                                null, "setSuffixExpr"));
         } catch (IntrospectionException ex) {}
         
         PropertyDescriptor[] result =

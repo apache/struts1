@@ -55,6 +55,10 @@ public class ELButtonTagBeanInfo extends SimpleBeanInfo
                                                 null, "setAltKeyExpr"));
         } catch (IntrospectionException ex) {}
         try {
+            proplist.add(new PropertyDescriptor("bundle", ELButtonTag.class,
+                                                null, "setBundleExpr"));
+        } catch (IntrospectionException ex) {}
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELButtonTag.class,
                                                 null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {}

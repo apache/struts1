@@ -56,6 +56,11 @@ public class ELLinkTag extends LinkTag {
      */
     private String anchorExpr;
     /**
+     * Instance variable mapped to "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String bundleExpr;
+    /**
      * Instance variable mapped to "forward" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -246,6 +251,11 @@ public class ELLinkTag extends LinkTag {
      * (Mapping set in associated BeanInfo class.)
      */
     public String getAnchorExpr() { return (anchorExpr); }
+    /**
+     * Getter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getBundleExpr() { return (bundleExpr); }
     /**
      * Getter method for "forward" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -438,6 +448,11 @@ public class ELLinkTag extends LinkTag {
      */
     public void setAnchorExpr(String anchorExpr) { this.anchorExpr = anchorExpr; }
     /**
+     * Setter method for "bundle" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
      * Setter method for "forward" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -618,6 +633,7 @@ public class ELLinkTag extends LinkTag {
         setActionExpr(null);
         setModuleExpr(null);
         setAnchorExpr(null);
+        setBundleExpr(null);
         setForwardExpr(null);
         setHrefExpr(null);
         setIndexedExpr(null);
@@ -689,6 +705,10 @@ public class ELLinkTag extends LinkTag {
         if ((string = EvalHelper.evalString("anchor", getAnchorExpr(),
                                             this, pageContext)) != null)
             setAnchor(string);
+
+        if ((string = EvalHelper.evalString("bundle", getBundleExpr(),
+                                            this, pageContext)) != null)
+            setBundle(string);
 
         if ((string = EvalHelper.evalString("forward", getForwardExpr(),
                                             this, pageContext)) != null)

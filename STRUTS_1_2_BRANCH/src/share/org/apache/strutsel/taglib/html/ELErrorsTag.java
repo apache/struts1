@@ -58,6 +58,16 @@ public class ELErrorsTag extends ErrorsTag {
      */
     private String bundleExpr;
     /**
+     * Instance variable mapped to "footer" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String footerExpr;
+    /**
+     * Instance variable mapped to "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String headerExpr;
+    /**
      * Instance variable mapped to "locale" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
@@ -68,16 +78,36 @@ public class ELErrorsTag extends ErrorsTag {
      */
     private String nameExpr;
     /**
+     * Instance variable mapped to "prefix" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String prefixExpr;
+    /**
      * Instance variable mapped to "property" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     private String propertyExpr;
+    /**
+     * Instance variable mapped to "suffix" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    private String suffixExpr;
 
     /**
      * Getter method for "bundle" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     public String getBundleExpr() { return (bundleExpr); }
+    /**
+     * Getter method for "footer" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getFooterExpr() { return (footerExpr); }
+    /**
+     * Getter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getHeaderExpr() { return (headerExpr); }
     /**
      * Getter method for "locale" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -89,16 +119,36 @@ public class ELErrorsTag extends ErrorsTag {
      */
     public String getNameExpr() { return (nameExpr); }
     /**
+     * Getter method for "prefix" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getPrefixExpr() { return (prefixExpr); }
+    /**
      * Getter method for "property" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     public String getPropertyExpr() { return (propertyExpr); }
+    /**
+     * Getter method for "suffix" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public String getSuffixExpr() { return (suffixExpr); }
 
     /**
      * Setter method for "bundle" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     public void setBundleExpr(String bundleExpr) { this.bundleExpr = bundleExpr; }
+    /**
+     * Setter method for "footer" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setFooterExpr(String footerExpr) { this.footerExpr = footerExpr; }
+    /**
+     * Setter method for "header" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setHeaderExpr(String headerExpr) { this.headerExpr = headerExpr; }
     /**
      * Setter method for "locale" tag attribute.
      * (Mapping set in associated BeanInfo class.)
@@ -110,10 +160,20 @@ public class ELErrorsTag extends ErrorsTag {
      */
     public void setNameExpr(String nameExpr) { this.nameExpr = nameExpr; }
     /**
+     * Setter method for "prefix" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setPrefixExpr(String prefixExpr) { this.prefixExpr = prefixExpr; }
+    /**
      * Setter method for "property" tag attribute.
      * (Mapping set in associated BeanInfo class.)
      */
     public void setPropertyExpr(String propertyExpr) { this.propertyExpr = propertyExpr; }
+    /**
+     * Setter method for "suffix" tag attribute.
+     * (Mapping set in associated BeanInfo class.)
+     */
+    public void setSuffixExpr(String suffixExpr) { this.suffixExpr = suffixExpr; }
 
     /**
      * Resets attribute values for tag reuse.
@@ -122,9 +182,13 @@ public class ELErrorsTag extends ErrorsTag {
     {
         super.release();
         setBundleExpr(null);
+        setFooterExpr(null);
+        setHeaderExpr(null);
         setLocaleExpr(null);
         setNameExpr(null);
+        setPrefixExpr(null);
         setPropertyExpr(null);
+        setSuffixExpr(null);
     }
     
     /**
@@ -150,6 +214,14 @@ public class ELErrorsTag extends ErrorsTag {
                                             this, pageContext)) != null)
             setBundle(string);
 
+        if ((string = EvalHelper.evalString("footer", getFooterExpr(),
+                                            this, pageContext)) != null)
+            setFooter(string);
+
+        if ((string = EvalHelper.evalString("header", getHeaderExpr(),
+                                            this, pageContext)) != null)
+            setHeader(string);
+
         if ((string = EvalHelper.evalString("locale", getLocaleExpr(),
                                             this, pageContext)) != null)
             setLocale(string);
@@ -158,8 +230,16 @@ public class ELErrorsTag extends ErrorsTag {
                                             this, pageContext)) != null)
             setName(string);
 
+        if ((string = EvalHelper.evalString("prefix", getPrefixExpr(),
+                                            this, pageContext)) != null)
+            setPrefix(string);
+
         if ((string = EvalHelper.evalString("property", getPropertyExpr(),
                                             this, pageContext)) != null)
             setProperty(string);
+
+        if ((string = EvalHelper.evalString("suffix", getSuffixExpr(),
+                                            this, pageContext)) != null)
+            setSuffix(string);
     }
 }
