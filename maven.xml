@@ -19,7 +19,7 @@
         Some contrib projects extend Struts' project.xml (and by extension maven.xml)
         so only generate the TLDs for 'struts' itself.
     -->
-    <j:if test="${pom.name.equals('struts')}">
+    <j:if test="${pom.name.equals('struts') or pom.name.equals('struts-el')}">
     <!-- Generate TLDs -->
             ${systemScope.setProperty('javax.xml.transform.TransformerFactory','org.apache.xalan.processor.TransformerFactoryImpl')}
 	<ant:style basedir="doc/userGuide"
