@@ -198,6 +198,11 @@
          	   depends="required,creditCard">
          	     <arg0 key="typeForm.creditCard.displayname"/>
          </field>
+         <field property="value"
+                indexedListProperty="nameList"
+                depends="required">
+            <arg0 key="typeForm.nested.name.displayname"/>
+         </field> 
       </form>
       <form    name="jsTypeForm">
          <field    property="byte"

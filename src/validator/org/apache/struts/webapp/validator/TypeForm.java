@@ -56,8 +56,11 @@
 package org.apache.struts.webapp.validator;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.util.LabelValueBean;
 import org.apache.struts.validator.ValidatorForm;
 
 
@@ -77,6 +80,8 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     private String sDouble = null;
     private String sDate = null;
     private String sCreditCard = null;
+    
+    private List lNames = initNames();
 
     public String getAction() {
 	return action;
@@ -149,7 +154,15 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     public void setCreditCard(String sCreditCard) {
        	this.sCreditCard = sCreditCard;
     }
-        
+    
+    public List getNameList() {
+       return lNames;	
+    }
+
+    public void setNameList(List lNames) {
+       this.lNames = lNames;	
+    }
+    
     /**
      * Reset all properties to their default values.
      *
@@ -166,6 +179,20 @@ public final class TypeForm extends ValidatorForm implements Serializable {
        sDouble = null;
        sDate = null;
        sCreditCard = null;
+       
+       //lNames = initNames();
     }
 
+    /**
+     * Initialize list.
+    */
+    private List initNames() {
+       List lResults = new ArrayList();
+       
+       for (int i = 0; i < 3; i++) {
+          lResults.add(new LabelValueBean(null, null));
+       }
+       
+       return lResults;   	
+    }
 }
