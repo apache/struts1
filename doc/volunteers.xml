@@ -294,16 +294,56 @@
             <p>From a professional point of view, I have a Ph.D. in computer science. I have worked for 3 years in the R&amp;D department of a worldwide company developing Internet banking solutions. I am now a researcher at a university, and work European research projects. My main research interest is WWW, Distributed Systems and Object Oriented Design. When developing code, I always try to first propose reusable pieces of code.</p>
 
             <h4 id="martinc">Martin Cooper -- Committer</h4>
-
-            <p>Currently, I'm a Principal Software Engineer at Tumbleweed Communications, working the Messaging Management System. Early last year (2000), I was working the architecture for a new web- based administration system for the product, and headed in the direction of servlets and JSP. I joined the JSP-INTEREST and SERVLET-INTEREST mailing lists to see what was going in those respective areas.</p>
-
-            <p>Before too long, some interesting discussions started up around the topic of Model 2 architectures. Model 2 sounded like the right way to go about things, and I followed those discussions closely. I was, however, still looking for a "leg up" - something to give me that core which to build.</p>
-
-            <p>Then, in May, I saw a post to JSP-INTEREST from Craig McClanahan entitled something like "New Jakarta-Struts Subproject", and describing Struts, and his vision for it. I hopped right over to the Jakarta web site and signed up for the mailing list. Before long, I realized this was exactly what I had been looking for.</p>
-
-            <p>Now, a year or so later, we have a team of people, which I am the technical lead, just finishing up our web-based administration system as Struts reaches its 1.0 release. And I am still firmly convinced that I made the right decision in going with Struts in the first place.</p>
-
-            <p>Like anyone else, my first postings to the struts-user list were questions to help me understand how to do things, and why Struts is the way it is. Over time, reading the lists and also the source code, and working my own fairly large web application, I came to the point where I could answer questions too. Now, I'm glad to able to give something back to the Struts community by helping others understand, and also by contributing ideas and code to help make Struts even better than it already is.</p>
+            <p>
+              Early in the year 2000, I was asked, by my employer at that time,
+              to investigate the best way to develop a new web-based application
+              for the administration and management of an existing product.
+              After exploring a number of technologies, I settled on Java, along
+              with servlets and JSP, as the way to go. Then I started looking
+              for methodologies and "best practices", since others must surely
+              have been down that path before me.
+            </p>
+            <p>
+              In addition to rummaging around on the web, I subscribed to the
+              SERVLET-INTEREST and JSP-INTEREST mailing lists, along with
+              several others, and monitored the discussions for a while. It was
+              clear that others were seeking the same answers as I was, and it
+              was also clear that many people were building their applications
+              in truly horrible ways.
+            </p>
+            <p>
+              At some point -- I don't recall when, exactly -- the concept of
+              "Model 1" versus "Model 2" applications came up, and there was a
+              great deal of discussion around that. Model 2 seemed very much
+              like A Good Thing to me, and I paid it close attention.
+            </p>
+            <p>
+              Then, in May of 2000, I saw a message from Craig McClanahan
+              about a new framework called Struts that was designed to ease
+              the process of building Model 2 applications, and provide
+              solutions for some of the important issues at the same time. I
+              hopped on over to the web site and took a look around. This was
+              exactly what I had been looking for.
+            </p>
+            <p>
+              My first postings to the Struts mailing list were, of course,
+              questions to help me understand how to do things and why Struts
+              is the way it is. Over time, I became more involved in both the
+              user and developer communities, started submitting bug reports,
+              patches and change requests, and eventually became a committer.
+              Not long after that, I volunteered to take on the release process,
+              and became the release manager for Struts 1.0.1 and beyond. Little
+              did I know what I was letting myself in for!
+            </p>
+            <p>
+              A large majority of the people who contribute to Apache projects
+              are volunteers who are not paid for their contributions. Like most
+              of those volunteers, I also have a "day job" to put bread on the
+              table. Currently, I am a UI Architect at Informatica, where I work
+              on the architecture, design and implementation of web applications.
+              Working with, and on, Struts has provided me with an excellent
+              perspective with which to do that!
+            </p>
 
             <h4 id="dwinterfeldt">David Winterfeldt -- Committer</h4>
 
