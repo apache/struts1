@@ -708,26 +708,26 @@ XHTML specification</a></p>
 
 <section href="requiredif"
          name="Can you give me a simple example of using the requiredif Validator rule?">
-     <p>Let's assume you have a medical information form with three fields, sex, dateOfLastMamogram, and testResult.  
-     If sex is 'f' or 'F', dateOfLastMamogram is required.  If dateOfLastMamogram is not blank, testResult is required.
+     <p>Let's assume you have a medical information form with three fields, sex, pregnancyTest, and testResult.  
+     If sex is 'f' or 'F', pregnancyTest is required.  If pregnancyTest is not blank, testResult is required.
      The entry in your validation.xml file would look like this:
      </p>
      <pre>
 &lt;form name="medicalStatusForm"&gt;
 
 &lt;field
-    property="dateOfLastMamogram" depends="requiredif"&gt;
-  &lt;arg0 key="medicalStatusForm.dateOfLastMamogram.label"/&gt;
+    property="pregnancyTest" depends="requiredif"&gt;
+  &lt;arg0 key="medicalStatusForm.pregnancyTest.label"/&gt;
   &lt;var&gt;
     &lt;var-name&gt;field[0]&lt;/var-name&gt;
     &lt;var-value&gt;sex&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
-    &lt;var-name&gt;field-test[0]&lt;/var-name&gt;
+    &lt;var-name&gt;fieldTest[0]&lt;/var-name&gt;
     &lt;var-value&gt;EQUAL&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
-    &lt;var-name&gt;field-value[0]&lt;/var-name&gt;
+    &lt;var-name&gt;fieldValue[0]&lt;/var-name&gt;
     &lt;var-value&gt;F&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
@@ -735,15 +735,15 @@ XHTML specification</a></p>
     &lt;var-value&gt;sex&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
-    &lt;var-name&gt;field-test[1]&lt;/var-name&gt;
+    &lt;var-name&gt;fieldTest[1]&lt;/var-name&gt;
     &lt;var-value&gt;EQUAL&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
-    &lt;var-name&gt;field-value[1]&lt;/var-name&gt;
+    &lt;var-name&gt;fieldValue[1]&lt;/var-name&gt;
     &lt;var-value&gt;f&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
-    &lt;var-name&gt;field-join&lt;/var-name&gt;
+    &lt;var-name&gt;fieldJoin&lt;/var-name&gt;
     &lt;var-value&gt;OR&lt;/var-value&gt;
   &lt;/var&gt;
 &lt;/field&gt;
@@ -753,10 +753,10 @@ XHTML specification</a></p>
   &lt;arg0 key="medicalStatusForm.testResult.label"/&gt;
   &lt;var&gt;
     &lt;var-name&gt;field[0]&lt;/var-name&gt;
-    &lt;var-value&gt;dateOfLastMamogram&lt;/var-value&gt;
+    &lt;var-value&gt;pregnancyTest&lt;/var-value&gt;
   &lt;/var&gt;
   &lt;var&gt;
-    &lt;var-name&gt;field-test[0]&lt;/var-name&gt;
+    &lt;var-name&gt;fieldTest[0]&lt;/var-name&gt;
     &lt;var-value&gt;NOTNULL&lt;/var-value&gt;
   &lt;/var&gt;
 &lt;/field&gt;
