@@ -614,7 +614,7 @@ http://www.mycompany.com/myapplication/logon.do
          <code>WEB-INF/lib</code> directory.
         </p>
                                 <p>
-                                        Next: <a href="resources.html">Struts Resources</a>
+                                        Next: <a href="taglib.html">Struts Tag Libraries</a>
                                 </p>
       </section>
     </section>

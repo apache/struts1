@@ -18,6 +18,7 @@
 </section>
 
 <section name="Contributor Extensions" href="extensions"> 
+<p><a href="http://www.scioworks.com/scioworks_camino.html"><b>Scioworks Camino</b></a> by Scioworks Pte Ltd. A visual tool for Struts. </p>
 <p><a href="http://www.ejcenter.com/struts/"><b>Struts Console</b></a> by James Holmes. The Struts Console is a Java Swing application that provides an easy to use interface for editing Struts' &quot;struts-config.xml&quot; configuration file.</p>
 <p><a href="http://jcorporate.com/"><b>Expresso</b></a> by JCorporate. An open source application development (AD) framework integrated with Struts.</p>
 <p><a href="http://husted.com/about/struts/DynamicProperties.htm"><b>Dynamic ActionForm Properties</b></a> by Jan Sorensen.</p>
@@ -38,7 +39,7 @@
 <p><a href="http://www.lifl.fr/~dumoulin/tiles/"><b>Tiles Library for building JSP views</b></a> [Also in the nightly build /contrib folder] by Cedric Dumoulin - A component is a JSP page that can be inserted in another JSP page, like templates, but can take "parameters" (URLs or 'direct' string intemplates).</p>
 </section>
 
-<section name="Projects and Examples" href="example">
+<section name="Projects and Examples" href="examples">
 <p><a href="http://husted.com/about/struts/polls-20010812.zip"><b>Struts Polls</b></a> by Ted Husted - Simple poll application. Demonstrates using a database with Struts.</p>
 <p><a href="http://www.raibledesigns.com/struts/"><b>Struts-example modified for iPlanet Application Server SP2</b></a> by Matt Raible.</p>
 <p><a href="http://www.newparticles.com/struts/"><b>The Struts Framework</b></a> by Steve Wilkinson - Excerpt from latest Wrox Professional JSP book.</p>
@@ -87,9 +88,65 @@
 </ul>
 </section>
 
+<section name="Selected APIs, RFCs, and JSRs" href="apis"> 
+
+<ul>
+<li><a href="http://java.sun.com/products/servlet/download.html">Servlet API</a></li>
+<li><a href="http://java.sun.com/products/jsp/technical.html"> JavaServer Pages</a></li>
+<ul>
+<li><a href="http://java.sun.com/products/jsp/technical.html">JSP Tag Libraries</a></li>
+<ul>
+<li><a href="http://jakarta.apache.org/taglibs/doc/jsptl-doc/intro.html">JavaServer Pages Standard Tag Library (JSPTL) Early Release</a></li>
+</ul>
+</ul>
+</ul>
+
+<ul>
+<li> <a href="http://java.sun.com/products/javabeans/docs/"> JavaBeans</a></li>
+<li> <a href="http://java.sun.com/j2se/1.3/docs/guide/jdbc/index.html"> JDBC API Documentation</a></li>
+<li> <a href="http://java.sun.com/j2ee/blueprints/"> Java2 Enterprise Edition (J2EE)</a></li>
+<li> <a href="http://java.sun.com/products/jaas/index-10.html">Java Authentication and Authorization Service</a> (JAAS)</li>
+</ul>
+
+<ul>
+<li> <a href="http://www.w3.org/MarkUp/">HyperText Markup Language</a> (w3c)</li>
+<ul>
+<li><a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a></li>
+</ul>
+</ul>
+
+<ul>
+<li><a href="http://www.ietf.org/rfc/rfc2396.txt">Uniform Resource Identifiers (URI): Generic Syntax</a></li>
+<ul>
+<li><a href="http://www.w3.org/Addressing/#9808uri">Naming and Addressing: URIs, URLs, ...</a></li>
+</ul>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2616.txt">Hypertext Transfer Protocol -- HTTP/1.1</a></li>
+<ul>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2617.txt">HTTP Authentication: Basic and Digest Access Authentication</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2660.txt">The Secure HyperText Transfer Protocol</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2936.txt">HTTP MIME Type Handler Detection</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2854.txt">The 'text/html' Media Type</a></li>
+<li><a href="ftp://ftp.isi.edu/in-notes/rfc2518.txt">HTTP Extensions for Distributed Authoring -- WEBDAV</a></li>
+<ul>
+<li><a href="http://www.ics.uci.edu/pub/ietf/webdav/intro/webdav_intro.pdf">WebDAV: IETF Standard for Collaborative Authoring on the Web</a></li>
+</ul>
+</ul>
+<li><a href="http://www.rfc-editor.org/"><b>RFC Editor (index)</b></a></li>
+</ul>
+
+<ul>
+<li><a href="http://www.jcp.org/jsr/detail/52.jsp">Standard Tag Library for JavaServer Pages</a></li>
+<li><a href="http://jcp.org/jsr/detail/127.jsp">Java Faces</a></li>
+<li><a href="http://jcp.org/jsr/overview/index.jsp"><b>JSR Index</b></a></li>
+</ul>
+</section>
+
 <section name="Other Resource Pages" href="other"> 
+<p><a href="http://www.jguru.com/faq/home.jsp?topic=Struts"><b>JGuru FAQ</b></a></p>
 <p><a href="http://husted.com/about/struts/"><b>Scaffolding</b></a> by <a href="mailto:support@husted.com">Husted dot Com</a>.</p>
 <p><a href="http://habweb.de/struts/"><b>German Translation of Users Guide</b></a> by Hartmut Bernecker.</p>
+<p><a href="http://java.sun.com/docs/books/tutorial/"><b>Javasoft Tutorials</b></a></p>
+<p><a href="http://archives.java.sun.com"><b>Javasoft Mailing Lists</b></a></p>
 </section>
 
 <section name="Mailing List Archives" href="archives"> 
@@ -136,7 +193,7 @@
   </ul>
 </section>
 
-<section name="Consultants" href="consulants">
+<section name="Consultants" href="consultants">
 <p>Provided as a reference only. No endorsements given or implied. To be listed, post a documentation enhancement request in Bugzilla.</p>
 <ul>
   <li><b>AccessData</b> - <a href="http://www.accessdc.com/">www.accessdc.com</a> - <a href="mailto:cassenza@Accessdc.com">Chris Assenza</a>.</li>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<document url="./struts_tags.xml">
+
+  <properties>
+    <author>Ted Husted</author>
+    <title>The Struts User's Guide - Struts Tag Libraries</title>
+  </properties>
+  
+  <body>  
+  <chapter name="5. Struts Tag Libraries" href="struts_tags">
+  <section name="5.1 Struts Bean Tag Library" href="bean">
+    <ul>
+    <li><a href="taglib_struts-bean-dev.html">5.1.1 Overview</a></li>
+    <li><a href="taglib_struts-bean-ref.html">5.1.2 Reference</a></li>
+    </ul>
+  </section>  
+  <section name="5.2 Struts HTML Tag Library" href="html">
+    <ul>
+    <li><a href="../api-1.0/org/apache/struts/taglib/html/package-summary.html#package_description">5.2.1 Overview</a></li>
+    <li><a href="taglib_struts-html-ref.html">5.2.2 Reference</a></li>
+    </ul>  </section>  
+  <section name="5.3 Struts Logic Tag Library" href="logic">
+    <ul>
+    <li><a href="../api-1.0/org/apache/struts/taglib/logic/package-summary.html#package_description">5.3.1 Overview</a></li>
+    <li><a href="taglib_struts-logic-ref.html">5.3.2 Reference</a></li>
+    </ul>
+  </section>  
+  <section name="5.4 Struts Template Tag Library" href="template">
+    <ul>
+    <li><a href="../api-1.0/org/apache/struts/taglib/template/package-summary.html#package_description">5.4.1 Overview</a></li>
+    <li><a href="taglib_struts-template-ref.html">5.4.2 Reference</a></li>
+    </ul>
+  <p>Next: <a href="resources.html">Struts Resources</a></p>
+  </section>  
+  </chapter>
+  </body>
+</document> 
+  
+
+
+
