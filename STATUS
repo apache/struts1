@@ -1,6 +1,6 @@
 STATUS
 ======
-$Id: STATUS,v 1.8 2002/07/07 23:46:27 craigmcc Exp $
+$Id: STATUS,v 1.9 2002/07/08 00:55:49 craigmcc Exp $
 
 
             OUTSTANDING BUGS IN STRUTS 1.1-b1 AND NIGHTLY BUILDS
@@ -44,7 +44,6 @@ Standard Actions:
 
 Unknown:
 -------
- 7579 Tomcat 4.0.3 + struts fails with -security
 10380 DynaActionFormClass not serializable
 10501 Error running struts under JRun 3.1
 

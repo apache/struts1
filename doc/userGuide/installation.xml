@@ -216,13 +216,7 @@
         <code>commons-*.jar</code> files (copied earlier) on the
         CLASSPATH that is submitted to the compiler.</li>
     </ul>
-</section> <section name="Installing Struts with your servlet container" href="Containers"> 
-
-<p><strong>WARNING</strong> - Do <strong>NOT</strong> add
-<code>struts.jar</code> to the classpath of your servlet container in an
-attempt to avoid placing it in the <code>/WEB-INF/lib</code> directory of
-each individual web app!  Doing so will cause problems with
-<code>ClassNotFoundException</code> exceptions.</p>
+</section> <section name="Installing Struts With Your Servlet Container" href="Containers"> 
 
 <p>For most containers, you need only to: </p>
 <ul>
@@ -230,7 +224,22 @@ each individual web app!  Doing so will cause problems with
     containers <code>webapps</code> directory. </li>
   <li>In some cases, you may need to restart your container if it is running.</li>
 </ul>
-<h3>Status of various containers</h3>
+
+<h3>Running Struts Applications Under A Security Manager</h3>
+
+<p>Many application servers execute web applications under the control of a
+Java security manager, with restricted permissions on what classes in the web
+application can do.  If you utilize form beans with mapped properties, you may
+encounter security exceptions unless you add the following permission to the
+set of permissions granted to your Struts application's codebase:</p>
+<pre>
+  permission java.lang.RuntimePermission "accessDeclaredMembers";
+</pre>
+
+<p>Consult the documentation on your application server for more information
+about how to configure additional security manager permissions.</p>
+
+<h3>Installing Struts on Various Containers</h3>
 <ul>
   <li>Bluestone Universal Business Server - <a href="installation-ubs.html">Additional 
     steps required.</a></li>
