@@ -167,6 +167,13 @@
     be able to use <code>&lt;bean:define&gt;</code> for the same bean
     name more than once in a single page.</p>
 
+    <p><strong>USAGE NOTE</strong> - If you use another tag to create the
+    body content (e.g. bean:write), that tag must return a non-empty String.
+    An empty String equates to an empty body or a null String, and a new
+    scripting variable cannot be defined as null. Your bean must return a
+    non-empty String, or the define tag must be wrapped within a logic tag
+    to test for an empty or null value.</p>
+
     <p><strong>USAGE NOTE</strong> - You cannot use bean:define to <b>instantiate</b>
     a DynaActionForm (type="org.apache.struts.action.DynaActionForm") with
     the properties specified in the struts-config. The mechanics of creating

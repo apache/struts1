@@ -10,6 +10,8 @@
 <chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Contributor Taglibs">
+<p><a href="http://sourceforge.net/projects/struts-wml"><b>WML Tag Support #2</b></a> by Davor Cengija - Struts support for WML markup.</p>
+<p><a href="http://sourceforge.net/projects/struts"><b>WML Tag Support #1</b></a> by Mitchell Morris - Struts support for WML markup.</p>
 <p><a href="http://jakarta.apache.org/builds/jakarta-struts/release/struts-faces/">Struts Java Server Faces tablib (early release)</a></p>
 <p><a href="http://www.keyboardmonkey.com/next"><b>Nested Taglib v2</b></a> [Also included in Struts 1.1] by Arron Bates - More efficient markup of beans and their nested children (linked site provides library for previous struts versions).</p>
 <p><a href="http://www.mycgiserver.com/~eboudrant/#regexp"><font size="2"><b>REGEXP.VALIDATOR.STRUTS</b></font></a> by Emmanuel Boudrant - A validation component that works with Struts 1.0, to manage form validation on server-side and client-side. </p>

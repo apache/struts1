@@ -657,7 +657,7 @@
     <ul>
     
         <li>
-        the bean property named <code>mapname</code> is indexed using Strings 
+        The bean property named <code>mapname</code> is indexed using Strings
         (probably backed by a Map), and that 
         </li>
 
@@ -723,6 +723,13 @@ String name = "value(foo-" + i + ")";
     <code>listname</code> is indexed (probably backed by a List), and that 
     Struts should look for get/set methods that take an index parameter in 
     order to find the correct sub-property value.
+    </p>
+
+    <p>
+        While map-backed ActionForms provide you with more flexibility, they do not support the same range of syntax
+        available to conventional or DynaActionForms.
+        You might have difficulty referencing <a href="../faqs/indexedprops">indexed or mapped properties</a>
+        using a map-backed ActionForm.
     </p>
 
 </section>
