@@ -60,8 +60,8 @@
       </p>
         
 <pre>
-	 MyCart mycart = new MyCart(...);
-	 request.setAttribute("cart", mycart);
+   MyCart mycart = new MyCart(...);
+   request.setAttribute("cart", mycart);
 </pre>
       
       <p>
@@ -79,16 +79,17 @@
       
       <p>
         Note: ActionForm beans are actually closer to the <i>View</i>
-        than the <i>Model</i>
+        than the <i>Model</i>.
       </p>
       <p>
         The Struts framework generally assumes that you have created an
         <code>ActionForm</code> bean (that is, a Java class extending the
         <code>ActionForm</code> class) for each input form required in your
         application.  If you define such beans in your <code>ActionMapping</code>
-        configuration file (see "Building the Controller Components"), the Struts
-        controller servlet will automatically perform the following services for
-        you, before invoking the appropriate <code>Action</code> method:
+        configuration file (see "<a href="building_controller.html#config">
+        Building the Controller Components</a>"), the Struts  controller servlet 
+        will automatically perform the following services for you, before 
+        invoking the appropriate <code>Action</code> method:
       </p>
         
       <ul>
@@ -128,13 +129,19 @@
             might also want to provide further  "business logic" validation as 
             part of your Action object. (See "Action Form Validation" for details.) 
             Of course, you can also ignore the ActionForm validation and provide 
-            your own in the Action object</li>            
+            your own in the Action object.</li>            
         <li>Define a property (with associated <code>getXxx()</code> and
             <code>setXxx()</code> methods) for each field that is present
             in the form.  The field name and property name must match according
             to the usual JavaBeans conventions.  For example, an input field named
             <code>username</code> will cause the <code>setUsername()</code> method
             to be called.</li>
+        <li>You may also place a bean instance on your form, and use nested property 
+            references. For example, you might have a "customer" bean on your Action 
+            Form, and then refer to the property "customer.name" in your JSP view. 
+            This would correspond to the methods customer.getName() and 
+            customer.setName(string Name) on your customer bean. See the Tag Library 
+            Developer Guides for more about nested syntax.</li>
       </ul>
         
       <p>
@@ -215,15 +222,14 @@
     <section name="2.6 Accessing Relational Databases" href="databases">
       
       <p>
-        Struts contains in it's mapping config file the ability to specify data sources.
-        See <a href="building_controller.html#config">The Action Mappings Configuration File</a>
-        for information on how to set up a datasource.  Do that first.
+        Struts can define the datasources for an application from within its standard 
+        configuration file. A simple JDBC connection pool is also provided. See <a 
+        href="building_controller.html#config">The Action Mappings Configuration File</a>
+        section and the Utilities Developer Guide for details. 
       </p>
-      
       <p>
-        After setting up your data source in the config file, most likely you'll want
-        to retrieve a connection from it.  This small example nested inside of an action's
-        <code>perform()</code> method will show you how to do it:
+        After the datasource is defined, here is an example of establishing a connection 
+        from within a Action perform method. 
       </p>
       <p>
 <pre>
@@ -232,7 +238,7 @@
                       HttpServletRequest request,
                       HttpServletResponse response) {
     try {
-      javax.sql.DataSource dataSource = getServlet().findDataSource(null);
+      DataSource dataSource = servlet.findDataSource(null);
       
       Connection myConnection = dataSource.getConnection();
       //do what you wish with myConnection

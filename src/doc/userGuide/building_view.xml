@@ -169,7 +169,7 @@
         <p>
           A complete example of a login form will illustrate how Struts
           makes dealing with forms much less painful than using straight HTML
-          and standard JSP facilities.  Consider the following page (from the
+          and standard JSP facilities.  Consider the following page (based on the
           example application included with Struts) named <code>logon.jsp</code>:
         </p>
         
@@ -186,7 +186,7 @@
 
 &lt;html:errors/&gt;
 
-&lt;html:form action="logon.do"&gt;
+&lt;html:form name="logonForm" action="logon.do"&gt;
 &lt;table border="0" width="100%"&gt;
   &lt;tr&gt;
     &lt;th align="right"&gt;
@@ -263,7 +263,10 @@
               This bean is used to provide initial values for all of the input
               fields that have names matching the property names of the bean.
               If an appropriate bean is not found, a new one will be created
-              automatically, using the specified Java class name.</li>
+              automatically, using the specified Java class name. (The form bean name 
+              can also be specified in the Struts configuration file, and then omitted 
+              here. See "<a href="building_controller.html#config">The Action Mappings 
+              Configuration File</a>" for details.)</li>
           <li>The text tag renders an HTML
               <code>&lt;input&gt;</code> element of type "text".  In this case,
               the number of character positions to occupy on the browser's screen
@@ -337,7 +340,7 @@ public class UploadForm extends ActionForm {
         </p>
         
         <p>
-          Look at the <a href="api/index.html">javadocs</a> for FormFile to see the
+          Look at the <a href="../api/index.html">javadocs</a> for FormFile to see the
           methods it exposes to manipulate files in file uploading.  Also look at the
           javadocs for ActionServlet and ActionMapping for the various parameters
           you can specify to change how files are uploaded.  Basically in your
@@ -425,7 +428,7 @@ public class UploadForm extends ActionForm {
         <p>
           The validate() method is called by the controller servlet after the bean
           properties have been populated, but before the corresponding action class's
-          <code>perform()</code> method is invoked.  The <code>validate()</code> method
+          <code>perform()</code> method is invoked. The <code>validate()</code> method
           has the following options:
         </p>
         
@@ -437,11 +440,11 @@ public class UploadForm extends ActionForm {
           <li>Perform the appropriate validations and find problems -- Return an ActionErrors
               instance containing <code>ActionError</code>'s, which are classes that contain
               the error message keys (into the application's
-              <code>MessageResources</code> bundle) that should be displayed.  The
+              <code>MessageResources</code> bundle) that should be displayed. The
               controller servlet will store this array as a request attribute suitable
               for use by the <code>&lt;html:errors&gt;</code> tag, and will forward
               control back to the input form (identified by the <code>inputForm</code>
-              property for this <code>ActionMapping</code>.</li>
+              property for this <code>ActionMapping</code>).</li>
         </ul>
           
         <p>
@@ -529,10 +532,10 @@ public class UploadForm extends ActionForm {
           
         <ul>
           <li>An <code>&lt;%@ include file="xxxxx" %&gt;</code> directive can include a file that contains
-				  java code or jsp tags. The code in the included file can even reference
-				  variables declared earlier in the outer jsp page. The code is inlined into
-				  the other jsp before it is compiled so it can definately contain more than
-				  just HTML.</li>
+          java code or jsp tags. The code in the included file can even reference
+          variables declared earlier in the outer jsp page. The code is inlined into
+          the other jsp before it is compiled so it can definately contain more than
+          just HTML.</li>
           <li>The include <i>action</i> (<code>&lt;jsp:include page="xxxxx"
               flush="true" /&gt;</code>) is processed at request time, and is handled
               transparently by the server.  Among other things, that means you
@@ -544,6 +547,10 @@ public class UploadForm extends ActionForm {
              or the "id" argument, which represents a page context String variable to print
              out to the jsp page.</li>
         </ul>
+        <p>
+          Another approach to this would be to use the Struts Template Tag library. See the         
+          Developer's Guide for details.
+        </p>  
       </section>
 
       <section name="3.4.3 Image Rendering Components" href="image_rendering">
