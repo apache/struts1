@@ -685,7 +685,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         sb.append(this.renderStartElement());
 
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
-            sb.append("<![CDATA[\r\n");
+            sb.append("//<![CDATA[\r\n");
         }
 
         if (!this.isXhtml() && "true".equals(htmlComment)) {
@@ -754,7 +754,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         }
 
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
-            sb.append("]]>\r\n");
+            sb.append("//]]>\r\n");
         }
 
         sb.append("</script>\n\n");
