@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag2.java,v 1.2 2003/03/08 19:31:55 jmitchell Exp $
- * $Revision: 1.2 $
- * $Date: 2003/03/08 19:31:55 $
+ * $Header: /home/cvs/jakarta-struts/src/test/org/apache/struts/taglib/html/TestImageTag2.java,v 1.3 2003/03/11 23:46:05 jmitchell Exp $
+ * $Revision: 1.3 $
+ * $Date: 2003/03/11 23:46:05 $
  * 
  * ====================================================================
  * The Apache Software License, Version 1.1
@@ -182,8 +182,8 @@ public class TestImageTag2 extends JspTestCase {
         runMyTest("testImagePageTitleKeyDefaultBundle_fr", "fr");
     }
 
-    public void testImagePageTitleKeyAlterateBundle_fr(){
-        runMyTest("testImagePageTitleKeyAlterateBundle_fr", "fr");
+    public void testImagePageTitleKeyAlternateBundle_fr(){
+        runMyTest("testImagePageTitleKeyAlternateBundle_fr", "fr");
     }
 
     public void testImagePageIndexedArray(){ 

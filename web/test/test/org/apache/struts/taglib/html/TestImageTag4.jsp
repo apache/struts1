@@ -146,7 +146,7 @@
 </logic:equal>
 
 
-<logic:equal name="runTest" value="testImagePageKeyTitleKeyAlterateBundle_fr">
+<logic:equal name="runTest" value="testImagePageKeyTitleKeyAlternateBundle_fr">
     <bean:define id="TEST_RESULTS" toScope="page">
         <html:image pageKey="alternate.testing.image" titleKey="alternate.bundle.message" bundle="alternate"/>
     </bean:define>
