@@ -6,8 +6,8 @@
 <author>James Holmes</author>
 <title>Resources - Consultants - Jakarta Struts</title>
 </properties>
-<body> 
-<chapter name="Struts Resources" href="http://husted.com/struts/resources"> 
+<body>
+<chapter name="Struts Resources" href="http://husted.com/struts/resources">
 
 <section name="Consultants">
 <p><b>Provided as a reference only. No endorsements given or implied.
@@ -26,7 +26,7 @@ removed.</font></b></p>
 <p><a href="http://www.creatrixs.com">Creatrix</a> - <a href="mailto:sami.elhini@creatrixs.com">sami.elhini@creatrixs.com</a>.</p>
 <p><a href="http://www.caraveltech.com/struts/">Caravel Technologies</a> - <a href="mailto:wchao@caraveltech.com">Wellie Chao</a>.</p>
 <p><a href="http://www.chikli.com/training_support.html">Chikli Consulting LLC</a> - <a href="mailto:nayan@chikli.com">Nayan Hajratwala</a>.</p>
-<p><a href="http://www.christopherbenson.com">Christopher Benson</a> - <a href="mailto:benson@mindspring.com"> Christopher Benson</a>.</p>  
+<p><a href="http://www.christopherbenson.com">Christopher Benson</a> - <a href="mailto:benson@mindspring.com"> Christopher Benson</a>.</p>
 <p><a href="http://www.differentum.com">Differentum</a> - <a href="mailto:info@differentum.com">Sanjay Sharma</a>.</p>
 <p><a href="http://www.eblox.com/">eBlox</a> - <a href="mailto:andrewb@eblox.com">andrewb@eblox.com</a>.</p>
 <p><a href="http://www.etmint.com">ETM International</a> - <a href="mailto:mathias.bogaert@etmint.com">mathias.bogaert@etmint.com</a></p>
@@ -49,15 +49,16 @@ removed.</font></b></p>
 <p><a href="http://www.objectwave.com">ObjectWave Corp.</a> - <a href="mailto:info@objectwave.com">info@objectwave.com</a></p>
 <p><a href="http://www.orbeon.com/">Orbeon</a> - <a href="mailto:gbouzeid@orbeon.com">Gilbert Bouzeid</a>.</p>
 <p><a href="http://www.oio.de/struts-consulting.htm">Orientation in Objects (Germany)</a> - <a href="mailto:bayer@oio.de">Thomas Bayer</a>.</p>
-<p><a href="http://www.projectrefinery.com">Project Refinery</a> - <a href="mailto:jsmith@projectrefinery.com"> Jason Smith</a></p>  
+<p><a href="http://www.projectrefinery.com">Project Refinery</a> - <a href="mailto:jsmith@projectrefinery.com"> Jason Smith</a></p>
 <p><a href="http://www.raibledesigns.com/">Raible Designs</a> - <a href="mailto:matt_raible@yahoo.com">Matt Raible</a>.</p>
+<p><a href="http://www.runtime-collective.com">Runtime Collective</a> - <a href="mailto:steve@runtime-collective.com">Steve Crossan</a></p>
 <p><a href="http://www.sbti.com/">Segue Solutions</a>  - <a href="mailto:jthomas@segue.biz">John J. Thomas</a>.</p>
 <p><a href="http://www.scioworks.com/">Scioworks Technologies [Singapore]</a>  - <a href="mailto:info@scioworks.com">info@scioworks.com</a>.</p>
 <p><a href="http://www.sharedskills.com/">Shared Skills Ltd (UK)</a> - <a href="mailto:mike.way@sharedskills.com">Mike Way</a>.</p>
 <p><a href="http://softwareMentor.com/">SoftwareMentor</a> - <a href="mailto:tim@softwareMentor.com">Tim Biernat</a>.</p>
 <p><a href="http://www.solutionarray.com/">Solution Array</a> - <a href="mailto:chkmiec@hotmail.com">Chris Kmiec</a>.</p>
 <p><a href="http://www.connection.se/">Swedish Connection</a> - <a href="mailto:micke@connection.se">Mikael Eriksson</a>.</p>
-<p><a href="http://www.sysdeo.com">Sysdeo [FR]</a> - <a href="mailto:abuisine@sysdeo.com"> Arnaud Buisine</a>.</p>  
+<p><a href="http://www.sysdeo.com">Sysdeo [FR]</a> - <a href="mailto:abuisine@sysdeo.com"> Arnaud Buisine</a>.</p>
 <p><a href="http://www.tallan.com/">Tallan</a> - <a href="mailto:michael.grassotti@tallan.com">Michael Grassotti</a>.</p>
 <p><a href="http://www.thales-is.ch/">Thalles Information Services</a> - <a href="mailto:markus.colombo@thales-is.ch">Markus Collumbo</a>.</p>
 <p><a href="http://www.tngtech.de/">TNGtech</a> - <a href="mailto:henrik.klagges@tngtech.com">Henrik Klagges</a>.</p>
