@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./resources.xml">
+<properties>
+<author>Ted Husted</author> 
+<title>The Struts User's Guide - Logic Taglib Guide</title>
+</properties>
+<body> 
+<chapter name="Logic Taglib Guide"> 
+
+<section href="html" name="The Logic Taglib">
+
+<p>
+The "struts-logic" tag library contains tags that are useful in managing conditional generation of output text, looping over object collections for repetitive generation of
+output text, and application flow management
+</p>
+
+</section>
+
+<section href="resources" name="Logic Tag Resources">
+
+<ul>
+<li><a href="../api/org/apache/struts/taglib/logic/package-summary.html#package_description">Logic Taglib Package Description</a></li>
+<li><a href="struts-logic.html">Logic Taglib API Reference</a></li>
+</ul>
+</section>
+
+</chapter></body></document>

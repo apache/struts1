@@ -144,7 +144,7 @@
     <p>Java applications, including web applications, are often configured using 
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Properties.html">Properties</a> 
     files. Properties files are the basis for the 
-    <a href="resourcebundle">ResourceBundles</a> that Struts uses to provide messages resources 
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that Struts uses to provide messages resources 
     to an application. </p>
 
     <p>For more about Properties files, see: </p>
@@ -154,9 +154,7 @@
     <b>Using Properties to Manage Program Attributes</b></a> in The Java Tutorial</li>
     </ul>
 
-    <p>Java 
-    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> 
-    use one or more Properties files to provide internationalized messages 
+    <p>Java ResourceBundles use one or more Properties files to provide internationalized messages 
     to users based their 
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Locale.html">Locale</a>. 
     Support for localizing an application was built into Struts from the ground-up.</p>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./resources.xml">
+<properties>
+<author>Ted Husted</author> 
+<author>David Winterfeldt</author> 
+<title>The Struts User's Guide - Validator Developer Guide</title>
+</properties>
+<body> 
+<chapter name="Struts Validator Developer Guide"> 
+
+<section href="validator" name="Struts Validator">
+<p>
+[:TODO:]
+</p>
+
+</section>
+
+<section href="resources" name="Validator Resources">
+
+<p><b><u>Validating Input</u></b> by David Winterfeldt and Ted Husted. 
+Sample chapter from <u>Java Web Development with Struts</u>; available as a 
+<u>free download</u> (PDF).
+</p>
+
+</section>
+
+</chapter></body></document>

@@ -3,10 +3,10 @@
 <properties>
 <author>Ted Husted</author> 
 <author>Cedric Dumoulin</author> 
-<title>The Struts User's Guide - Validating user input</title>
+<title>The Struts User's Guide - Tiles Guide</title>
 </properties>
 <body> 
-<chapter name="Tiles Developer Guide"> 
+<chapter name="Tiles Guide"> 
 
 <section href="tiles" name="The Tiles Document Assembly Framework">
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document url="./resources.xml">
+<properties>
+<author>Ted Husted</author> 
+<author>Cedric Dumoulin</author> 
+<title>The Struts User's Guide - Bean Taglib Guide</title>
+</properties>
+<body> 
+<chapter name="Bean Taglib Guide"> 
+
+<section href="bean" name="The Bean Taglib">
+
+<p>
+The "struts-bean" tag library contains JSP custom tags useful in defining new beans (in any desired scope) from a variety of possible sources, as well as a tag to
+render a particular bean (or bean property) to the output response. 
+</p>
+
+<p>
+This tag library contains tags useful in accessing beans and their properties, as well as defining new beans (based on these
+accesses) that are accessible to the remainder of the page via scripting variables and page scope attributes. Convenient
+mechanisms to create new beans based on the value of request cookies, headers, and parameters are also provided.
+</p>
+
+</section>
+
+<section href="resources" name="Bean Taglib Resources">
+
+<ul>
+<li><a href="../api/org/apache/struts/taglib/bean/package-summary.html#package_description">Bean Taglib Package Description</a></li>
+<li><a href="struts-bean.html">Bean Taglib API Reference</a></li>
+</ul>
+</section>
+
+</chapter></body></document>

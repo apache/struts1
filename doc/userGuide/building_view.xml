@@ -49,23 +49,26 @@
       </p>
       
       <ul>
-        <li><b>Locale</b> - The fundamental Java class that supports
-            internationalization is <code>java.util.Locale</code>.  Each
+        <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Locale.html"><b>Locale</b></a> - 
+            The fundamental Java class that supports
+            internationalization is <code>Locale</code>.  Each
             <code>Locale</code> represents a particular choice of country and
             language (plus an optional language variant), and also a set of
             formatting assumptions for things like numbers and dates.</li>
-        <li><b>ResourceBundle</b> - The <code>java.util.ResourceBundle</code> class
+        <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html"><b>ResourceBundle</b></a> - 
+            The <code>java.util.ResourceBundle</code> class
             provides the fundamental tools for supporting messages in multiple
             languages.  See the Javadocs for the <code>ResourceBundle</code> class,
             and the information on Internationalization in the documentation bundle
             for your JDK release, for more information.</li>
-        <li><b>PropertyResourceBundle</b> - One of the standard implementations of
+        <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/PropertyResourceBundle.html"><b>PropertyResourceBundle</b></a> - 
+            One of the standard implementations of
             <code>ResourceBundle</code> allows you to define resources using the
             same "name=value" syntax used to initialize properties files.  This is
             very convenient for preparing resource bundles with messages that are
             used in a web application, because these messages are generally text
             oriented.</li>
-        <li><b>MessageFormat</b> - The <code>java.text.MessageFormat</code> class
+        <li><a href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/MessageFormat.html"><b>MessageFormat</b></a> - The <code>java.text.MessageFormat</code> class
             allows you to replace portions of a message string (in this case,
             one retrieved from a resource bundle) with arguments specified at
             run time.  This is useful in cases where you are creating a sentence,
@@ -73,8 +76,8 @@
             The placeholder string <code>{0}</code> in the message is replaced by
             the first runtime argument, <code>{1}</code> is replaced by the second
             argument, and so on.</li>
-        <li><b>MessageResources</b> - The Struts class
-            <code><a href="api/org/apache/struts/util/MessageResources.html">org.apache.struts.util.MessageResources</a></code> lets you treat
+        <li><a href="api/org/apache/struts/util/MessageResources.html"><b>MessageResources</b></a> - 
+            The Struts class <code>org.apache.struts.util.MessageResources</code> lets you treat
             a set of resource bundles like a database, and allows you to request
             a particular message string for a particular Locale (normally one
             associated with the current user) instead of for the default Locale
@@ -111,8 +114,9 @@
             might have an entry like this:
             <code>prompt.hello=Hello</code></li>
         <li><b>MyResources_xx.properties</b> - Contains the same messages in the
-            language whose ISO language code is "xx" (See the ResourceBundle
-            Javadoc page for a link to the current list).  For a French version
+            language whose ISO language code is "xx" (See the 
+            <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundle Javadoc</a> 
+            page for a link to the current list).  For a French version
             of the message shown above, you would have this entry:
             <code>prompt.hello=Bonjour</code>
             You can have resource bundle files for as many languages as you need.</li>
@@ -163,7 +167,7 @@
       <blockquote> 
         <b>Note:</b> While the examples given here use JSP and custom tags, 
         the ActionForm beans and the other Struts controller components are 
-        View neutral. Struts can be used with Velocity Templates, XLST, and 
+        View neutral. Struts can be used with Velocity Templates, XSL, and 
         any other presentation technology that can be rendered via a Java 
         servlet. See the 
         <a href="../resources/index.html">
@@ -317,7 +321,8 @@
               It also associates all of the fields within this form with a session
               scoped FormBean that is stored under the key <code>logonForm</code>.
               The Struts developer provides the Java implementation of this form
-              bean, subclassing the Struts class <code>ActionForm</code>.
+              bean, subclassing the Struts class <code>ActionForm</code>
+              (see <a href="building_controller">Building Controller</a> components).
               This bean is used to provide initial values for all of the input
               fields that have names matching the property names of the bean.
               If an appropriate bean is not found, a new one will be created
@@ -394,9 +399,11 @@ public class UploadForm extends ActionForm {
 </pre>
 <hr/>        
         <p>
-          Look at the <a href="../api/index.html">Javadocs</a> for FormFile to see the
-          methods it exposes to manipulate files in file uploading.  Also look at the
-          Javadocs for ActionServlet and ActionMapping for the various parameters
+          Look at the Javadocs for <code><a href="../api/org/apache/struts/upload/FormFile.html">FormFile</a></code> 
+          to see the methods it exposes to manipulate files in file uploading.  
+          Also look at the Javadocs for 
+          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionServlet.html">ActionServlet</a> and 
+          <a href="http://jakarta.apache.org/struts/api/org/apache/struts/action/ActionMapping.html">ActionMapping</a> for the various parameters
           you can specify to change how files are uploaded.  Basically in your
           <code>execute</code> method in your action class you would call <code>((UploadForm) form).getMyFile()</code>
           to retrieve the FormFile and do what you want with it.
@@ -539,7 +546,7 @@ public class UploadForm extends ActionForm {
         <p>
           Beyond using the custom tags provided by the Struts library, it is easy
           to create tags that are specific to the application you are building, to
-          assist in creating the user interface.  The example application included with
+          assist in creating the user interface.  The MailRead example application included with
           Struts illustrates this principle by creating the following tags unique to
           the implementation of this application:
         </p>
@@ -616,19 +623,17 @@ public class UploadForm extends ActionForm {
              or the "id" argument, which represents a page context String variable to print
              out to the jsp page.</li>
         </ul>
+
+      </section>
+
+      <section name="3.4.3 Page Composition With Tiles" href="Tiles">
+
         <p>
-          Another approach to this would be to use the Struts Template Tag library. See the         
-          Developer's Guide for details. 
-        </p>  
-        <p>
-          Tiles is an alternative to the original Template Tag library, offering several 
-          enhancements and new capabilities. Tiles is bundled with Struts 1.1 and also 
-          available from <a href="http://www.lifl.fr/~dumoulin/tiles/">
-          Cedric Dumoulin's Web site</a>.
+            [:TODO:]
         </p>
       </section>
 
-      <section name="3.4.3 Image Rendering Components" href="image_rendering">
+      <section name="3.4.4 Image Rendering Components" href="image_rendering">
       
         <p>
           Some applications require dynamically generated images, like the price
@@ -650,7 +655,7 @@ public class UploadForm extends ActionForm {
         </ul>
       </section>
 
-      <section name="3.4.4 Rendering Text" href="text_rendering">
+      <section name="3.4.5 Rendering Text" href="text_rendering">
 
          <p>
            Some applications require dynamically generated text or markup, 

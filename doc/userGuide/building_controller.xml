@@ -38,7 +38,19 @@
       </ul>
     </section>
     
-    <section name="4.2 Action Classes" href="action_classes">
+    <section name="4.2 ActionForm Classes" href="action_form_classes">
+    <p>[:TODO:]</p>
+    </section>
+
+    <section name="4.2.1 DynaActionForm Classes" href="dyna_action_form_classes">
+    <p>[:TODO:]</p>
+    </section>
+
+    <section name="4.2.3 Map-backed ActionForms" href="map_action_form_classes">
+    <p>[:TODO:]</p>
+    </section>
+
+    <section name="4.3 Action Classes" href="action_classes">
       
       <p>The <code>Action</code> class defines two methods that could be
         executed depending on your servlet environment:
@@ -169,7 +181,15 @@ public ActionForward execute(ActionMapping mapping,
     </p>
     </section>
         
-    <section name="4.3 The ActionMapping Implementation" href="actionmapping">
+    <section name="4.4 The ActionServlet" href="action_servlet">
+    <p>[:TODO:]</p>
+    </section>
+
+    <section name="4.4.x Exception Handler" href="exception_handler">
+    <p>[:TODO:]</p>
+    </section>
+
+    <section name="4.5 The ActionMapping Implementation" href="actionmapping">
       
       <p>
         In order to operate successfully, the Struts controller servlet needs
@@ -201,7 +221,7 @@ public ActionForward execute(ActionMapping mapping,
                
     </section>
     
-    <section name="4.4 The Struts Configuration File" href="config">
+    <section name="4.6 The Struts Configuration File" href="config">
       
       <p>
         How does the controller servlet learn about the mappings you want?  It
@@ -223,7 +243,7 @@ public ActionForward execute(ActionMapping mapping,
       </p>
       
       <p>
-        Inside of the &lt;struts-config&gt; element, there are two important
+        Inside of the &lt;struts-config&gt; element, there are three important
         elements that are used to describe your actions:
         
         <blockquote>
@@ -242,6 +262,9 @@ public ActionForward execute(ActionMapping mapping,
                 <b>type</b>: The fully-qualified Java classname of the ActionForm subclass to use with this form bean.
               </li>
             </ul>
+        </blockquote>
+        <blockquote>
+            [:TODO: ActionForwards]
         </blockquote>
         <blockquote>
           <b>&lt;action-mappings&gt;</b><br />
@@ -263,7 +286,10 @@ public ActionForward execute(ActionMapping mapping,
           </blockquote>
         
       </p>
-        
+
+      </section>
+
+      <section name="4.6.1 ActionMapping Example" href="action_mapping_example">       
 
       <p>
         The <code>struts-config.xml</code> file from the example application includes
@@ -342,8 +368,16 @@ public ActionForward execute(ActionMapping mapping,
         whatever local forward properties makes sense for your own application.
       </p>
         
+      </section>
+      <section name="4.6.2 Other Configuration Objects" href="other_config">
+
       <p>
-        One more section of good use is the <code>&lt;data-sources></code> section, which 
+        Besides the objects related to defining ActionMappings, the Struts configuration may 
+        contain elements that create other useful objects.
+      </p>
+
+      <p>
+        The <code>&lt;data-sources></code> section, which 
         specifies data sources that your application can use.This is how you would specify a basic data source for your application inside
         of struts-config.xml:
       </p>
@@ -377,9 +411,14 @@ public ActionForward execute(ActionMapping mapping,
         For information on how to retrieve the data source, see the 
         <a href="building_model.html#databases">Accessing Relational Databases</a> section.  
       </p>
+
+      <p>
+        [:TODO: MessageResources, Controller, PlugIn ]
+      </p>
+
     </section>
-    
-    <section name="4.5 The Web Application Deployment Descriptor" href="dd_config">
+
+    <section name="4.7 The Web Application Deployment Descriptor" href="dd_config">
       
       <p>
         The final step in setting up the application is to configure the application
@@ -388,8 +427,9 @@ public ActionForward execute(ActionMapping mapping,
         for the example application as a guide, we see that the following entries need
         to be created or modified.
       </p>
-      
-      <section name="4.5.1 Configure the Action Servlet Instance" href="dd_config_servlet">
+
+      </section>
+      <section name="4.7.1 Configure the Action Servlet Instance" href="dd_config_servlet">
         
         <p>
           Add an entry defining the action servlet itself, along with the appropriate
@@ -434,6 +474,9 @@ public ActionForward execute(ActionMapping mapping,
           href="../api/index.html">Javadocs</a> for the ActionServlet class.) Square brackets 
           describe the default values that are assumed if you do not provide a value for 
           that initialization parameter.
+        </p>
+        <p>
+           [:TODO: Conform with JavaDoc as to nominal and deprecated params]
         </p>
         <ul>
   
@@ -511,7 +554,7 @@ public ActionForward execute(ActionMapping mapping,
         </ul>
       </section>
       
-      <section name="4.5.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
+      <section name="4.7.2 Configure the Action Servlet Mapping" href="dd_config_mapping">
       
         <p>
           <strong>Note:</strong> The material in this section is not specific to
@@ -588,7 +631,7 @@ http://www.mycompany.com/myapplication/logon.do
 
       </section>
       
-      <section name="4.5.3 Configure the Struts Tag Library" href="dd_config_taglib">
+      <section name="4.7.3 Configure the Struts Tag Library" href="dd_config_taglib">
         
         <p>
           Next, you must add an entry defining the Struts tag library.  There are currently four
@@ -661,7 +704,7 @@ http://www.mycompany.com/myapplication/logon.do
         </p>
       </section>
       
-      <section name="4.5.4 Add Struts Components To Your Application" href="config_add">
+      <section name="4.7.4 Add Struts Components To Your Application" href="config_add">
         
         <p>
          To use Struts, you must copy the .tld files that you require into
@@ -674,7 +717,7 @@ http://www.mycompany.com/myapplication/logon.do
       Next: <a href="release-notes.html">Release Notes</a>
       </p>
       </section>
-    </section>
+
   </chapter>
   </body>
 </document>
