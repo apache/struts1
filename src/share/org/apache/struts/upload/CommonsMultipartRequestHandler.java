@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.8 2003/02/15 12:39:23 husted Exp $
- * $Revision: 1.8 $
- * $Date: 2003/02/15 12:39:23 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/upload/CommonsMultipartRequestHandler.java,v 1.9 2003/04/27 17:49:34 martinc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2003/04/27 17:49:34 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -89,7 +89,7 @@ import org.apache.struts.Globals;
   * by providing a wrapper around the Jakarta Commons FileUpload library.
   *
   * @author Martin Cooper
-  * @version $Revision: 1.8 $ $Date: 2003/02/15 12:39:23 $
+  * @version $Revision: 1.9 $ $Date: 2003/04/27 17:49:34 $
   * @since Struts 1.1
   */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -213,8 +213,8 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         ModuleConfig ac = (ModuleConfig) request.getAttribute(
                 Globals.MODULE_KEY);
 
-        // Create and configure a FileUpload instance.
-        FileUpload upload = new FileUpload();
+        // Create and configure a DIskFileUpload instance.
+        DiskFileUpload upload = new DiskFileUpload();
         // Set the maximum size before a FileUploadException will be thrown.
         upload.setSizeMax((int) getSizeMax(ac));
         // Set the maximum size that will be stored in memory.
@@ -231,15 +231,13 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         List items = null;
         try {
             items = upload.parseRequest(request);
-        } catch (FileUploadException e) {
+        } catch (DiskFileUpload.SizeLimitExceededException e) {
             // Special handling for uploads that are too big.
-            if (e.getMessage().endsWith("size exceeds allowed range")) {
-                request.setAttribute(
-                        MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED,
-                        Boolean.TRUE);
-                return;
-            }
-
+            request.setAttribute(
+                    MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED,
+                    Boolean.TRUE);
+            return;
+        } catch (FileUploadException e) {
             log.error("Failed to parse multipart request", e);
             throw new ServletException(e);
         }
