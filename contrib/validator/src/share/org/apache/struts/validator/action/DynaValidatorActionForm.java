@@ -71,13 +71,14 @@ import org.apache.struts.validator.util.StrutsValidatorUtil;
 
 
 /**
- * <p>This class extends <strong>ValidatorForm</strong> and provides 
+ * <p>This class extends <strong>DynaValidatorForm/strong> and provides 
  * basic field validation based on an XML file.  The key passed into the 
  * validator is the action element's 'path' attribute from the 
  * struts-config.xml which should match the form element's name attribute 
  * in the validation.xml.</p>
  *
- * <ul><li>See /WEB-INF/validation.xml for validation rules.</li></ul>
+ * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
+ * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
 */

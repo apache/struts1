@@ -77,12 +77,12 @@ import org.apache.struts.validator.util.StrutsValidatorUtil;
  * struts-config.xml which should match the form element's name attribute 
  * in the validation.xml.</p>
  *
- * <ul><li>See /WEB-INF/validation.xml for validation rules.</li></ul>
+ * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml 
+ * for validation rules.</li></ul>
  *
  * @author David Winterfeldt
  * @see org.apache.struts.action.ActionForm
 */
-
 public class ValidatorForm extends ActionForm implements Serializable {
 
     /**
