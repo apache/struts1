@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.40 2002/06/23 01:38:31 craigmcc Exp $
- * $Revision: 1.40 $
- * $Date: 2002/06/23 01:38:31 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.41 2002/07/02 01:51:10 craigmcc Exp $
+ * $Revision: 1.41 $
+ * $Date: 2002/07/02 01:51:10 $
  *
  * ====================================================================
  *
@@ -111,7 +111,7 @@ import org.apache.struts.upload.MultipartRequestHandler;
  *
  * @author Craig R. McClanahan
  * @author Ted Husted
- * @version $Revision: 1.40 $ $Date: 2002/06/23 01:38:31 $
+ * @version $Revision: 1.41 $ $Date: 2002/07/02 01:51:10 $
  */
 
 public class RequestUtils {
@@ -235,7 +235,7 @@ public class RequestUtils {
      * @param paramProperty Property (of bean named by <code>paramName</code>
      *  containing single-value parameter value
      * @param paramScope Scope containing bean named by
-     *  <code>paramScope</code>
+     *  <code>paramName</code>
      *
      * @param name Bean containing multi-value parameters Map (if any)
      * @param property Property (of bean named by <code>name</code>
@@ -462,7 +462,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else {
-                        url.append("&amp;");
+                        url.append("&");
                     }
                     url.append(URLEncoder.encode(key));
                     url.append('='); // Interpret null as "no value"
@@ -471,7 +471,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else {
-                        url.append("&amp;");
+                        url.append("&");
                     }
                     url.append(URLEncoder.encode(key));
                     url.append('=');
@@ -483,7 +483,7 @@ public class RequestUtils {
                             url.append('?');
                             question = true;
                         } else {
-                            url.append("&amp;");
+                            url.append("&");
                         }
                         url.append(URLEncoder.encode(key));
                         url.append('=');
@@ -494,7 +494,7 @@ public class RequestUtils {
                         url.append('?');
                         question = true;
                     } else {
-                        url.append("&amp;");
+                        url.append("&");
                     }
                     url.append(URLEncoder.encode(key));
                     url.append('=');
@@ -505,7 +505,7 @@ public class RequestUtils {
             // Re-add the saved anchor (if any)
             if (anchor != null) {
                 url.append('#');
-                url.append(anchor);
+                url.append(URLEncoder.encode(anchor));
             }
 
         }
