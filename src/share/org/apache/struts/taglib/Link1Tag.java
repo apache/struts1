@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.1 2000/06/27 01:58:29 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/06/27 01:58:29 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/Link1Tag.java,v 1.2 2000/06/30 16:20:59 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/06/30 16:20:59 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  * a Map, so that it works on JDK 1.1 platforms.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/06/27 01:58:29 $
+ * @version $Revision: 1.2 $ $Date: 2000/06/30 16:20:59 $
  */
 
 public class Link1Tag extends TagSupport {
@@ -295,21 +295,27 @@ public class Link1Tag extends TagSupport {
 
 	// Look up the dictionary we will be using
 	Object bean = pageContext.findAttribute(name);
-	Dictionary dictionary = null;
-	if (dictionary == null)
+	if (bean == null)
 	    throw new JspException
 		(messages.getMessage("linkTag.bean", name));
-	if (property != null) {
+	Dictionary dictionary = null;
+	if (property == null) {
+	    try {
+		dictionary = (Dictionary) bean;
+	    } catch (ClassCastException e) {
+		throw new JspException
+		    (messages.getMessage("linkTag.type1"));
+	    }
+	} else {
 	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    try {
 		method = bean.getClass().getMethod(methodName, paramTypes);
-		bean = method.invoke(dictionary, new Object[0]);
+		dictionary = (Dictionary) method.invoke(bean, new Object[0]);
 		if (bean == null)
 		    throw new JspException
 			(messages.getMessage("linkTag.property", methodName));
-		dictionary = (Dictionary) bean;
 	    } catch (ClassCastException e) {
 		throw new JspException
 		    (messages.getMessage("linkTag.type1"));

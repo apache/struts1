@@ -17,6 +17,5 @@
 <li><struts:link href="logoff.do"><struts:message key="mainMenu.logoff"/></struts:link>
 </ul>
 
-
 </body>
 </html>

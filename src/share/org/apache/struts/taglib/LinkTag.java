@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.4 2000/06/29 21:54:03 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/06/29 21:54:03 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/Attic/LinkTag.java,v 1.5 2000/06/30 16:21:00 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/06/30 16:21:00 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/06/29 21:54:03 $
+ * @version $Revision: 1.5 $ $Date: 2000/06/30 16:21:00 $
  */
 
 public class LinkTag extends TagSupport {
@@ -294,21 +294,27 @@ public class LinkTag extends TagSupport {
 
 	// Look up the map we will be using
 	Object bean = pageContext.findAttribute(name);
-	Map map = null;
-	if (map == null)
+	if (bean == null)
 	    throw new JspException
 		(messages.getMessage("linkTag.bean", name));
-	if (property != null) {
+	Map map = null;
+	if (property == null) {
+	    try {
+		map = (Map) bean;
+	    } catch (ClassCastException e) {
+		throw new JspException
+		    (messages.getMessage("linkTag.type"));
+	    }
+	} else {
 	    String methodName = "get" + BeanUtils.capitalize(property);
 	    Class paramTypes[] = new Class[0];
 	    Method method = null;
 	    try {
 		method = bean.getClass().getMethod(methodName, paramTypes);
-		bean = method.invoke(map, new Object[0]);
+		map = (Map) method.invoke(bean, new Object[0]);
 		if (bean == null)
 		    throw new JspException
 			(messages.getMessage("linkTag.property", methodName));
-		map = (Map) bean;
 	    } catch (ClassCastException e) {
 		throw new JspException
 		    (messages.getMessage("linkTag.type"));
