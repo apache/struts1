@@ -299,6 +299,77 @@ that are sensitive in HTML.</p>
 <a href="#Top">Top</a>
 
 
+<a name="ifAttributeExists"></a>
+<h1><i>ifAttributeExists</i> - Conditionally Evaluate Tag Body</h1>
+
+<p>Evaluates and processes the body of this tag if the specified attribute
+exists in the specified scope.  Otherwise, the body of this tag is skipped.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the attribute whose existence is tested.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">scope</td>
+    <td>
+      The scope within which this attribute's existence is tested (must be
+      "application", "page", "request", or "session").  If not specified,
+      session scope is assumed.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
+<a name="ifAttributeMissing"></a>
+<h1><i>ifAttributeMissing</i> - Conditionally Evaluate Tag Body</h1>
+
+<p>Evaluates and processes the body of this tag if the specified attribute
+exists in the specified scope.  Otherwise, the body of this tag is skipped.</p>
+
+<p>This tag might commonly be used to test for the existence of a user login
+object in session scope.  If such an object is missing (either because the user
+tried to bypass logging in, or because their session timed out and a new one
+was created), they can be redirected to the login page like this:
+</p>
+<pre>
+    &lt;struts:ifAttributeMissing name="userObject"&gt;
+      &lt;jsp:forward page="login.jsp"/&gt;
+    &lt;struts:ifAttributeMissing&gt;
+</pre>
+
+<table width="100%" border="1">
+  <tr>
+    <th width="15%">Attribute</th>
+    <th width="85%">Description</th>
+  </tr>
+  <tr>
+    <td align="center">name</td>
+    <td>
+      Name of the attribute whose existence is tested.
+    </td>
+  </tr>
+  <tr>
+    <td align="center">scope</td>
+    <td>
+      The scope within which this attribute's existence is tested (must be
+      "application", "page", "request", or "session").  If not specified,
+      session scope is assumed.
+    </td>
+  </tr>
+</table>
+
+<a href="#Top">Top</a>
+
+
 <a name="ifParameterEquals"></a>
 <h1><i>ifParameterEquals</i> - Conditionally Evaluate Tag Body</h1>
 
