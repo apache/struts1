@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.3 2002/03/13 13:13:28 arron Exp $
- * $Revision: 1.3 $
- * $Date: 2002/03/13 13:13:28 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/nested/html/NestedFormTag.java,v 1.4 2002/03/19 23:29:23 arron Exp $
+ * $Revision: 1.4 $
+ * $Date: 2002/03/19 23:29:23 $
  * ====================================================================
  *
  * The Apache Software License, Version 1.1
@@ -69,7 +69,7 @@ import org.apache.struts.taglib.html.FormTag;
  * NestedFormTag.
  * @author Arron Bates
  * @since Struts 1.1
- * @version $Revision: 1.3 $ $Date: 2002/03/13 13:13:28 $
+ * @version $Revision: 1.4 $ $Date: 2002/03/19 23:29:23 $
  */
 public class NestedFormTag extends FormTag implements NestedParentSupport {
 
@@ -110,9 +110,9 @@ public class NestedFormTag extends FormTag implements NestedParentSupport {
    * This is only overriden to clean up the include reference
    * @return int JSP continuation directive.
    */
-  public int doAfterBody() throws JspException {
+  public int doEndTag() throws JspException {
     /* store original result */
-    int temp = super.doAfterBody();
+    int temp = super.doEndTag();
 
     /* all done. clean up */
     HttpSession session = (HttpSession)pageContext.getSession();
