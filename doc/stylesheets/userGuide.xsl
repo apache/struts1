@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Content Stylesheet for Struts User's Guide -->
-<!-- $Id: userGuide.xsl,v 1.8 2002/08/03 18:43:40 craigmcc Exp $ -->
+<!-- $Id: userGuide.xsl,v 1.9 2002/08/31 13:13:36 husted Exp $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
@@ -24,7 +24,14 @@
                 select="document('../userGuide/project.xml')/project"/>
     <html>
     <head>
-    <meta name="author" content="{properties/author/.}"/>
+
+    <xsl:for-each select="properties/author">
+    <xsl:variable name="author">
+      <xsl:value-of select="."/>
+    </xsl:variable>
+    <meta name="author" content="{$author}"/>
+    </xsl:for-each>
+
     <!-- <link rel="stylesheet" type="text/css" href="default.css"/> -->
     <xsl:choose>
       <xsl:when test="properties/title">
@@ -41,7 +48,7 @@
 
     <body bgcolor="{$body-bg}" text="{$body-fg}" link="{$body-link}"
           alink="{$body-link}" vlink="{$body-link}">
-
+ 
     <table border="0" width="100%" cellspacing="5">
 
       <tr><td colspan="2">
@@ -101,6 +108,12 @@
         <font color="{$banner-fg}" face="arial,helvetica,sanserif" size="+1">
           <strong><xsl:value-of select="@name"/></strong>
         </font>
+      </td></tr>
+      <tr><td><p>Contributors: </p><ul>
+    <xsl:for-each select="/document/properties/author">
+    <li><xsl:value-of select="."/></li>
+    </xsl:for-each>
+    </ul>
       </td></tr>
     </table>
     <xsl:apply-templates select="section" />
@@ -180,7 +193,7 @@
         <blockquote>
           <table border="1" cellspacing="2" cellpadding="2">
             <tr>
-              <th width="15%">Tag Name</th>
+              <th width="15%"><a name="index"></a>Tag Name</th>
               <th>Description</th>
             </tr>
             <xsl:for-each select="tag">
@@ -238,6 +251,7 @@
         <xsl:call-template name="document-tag-attributes" />
       </xsl:if>
     </table>
+    <p><a href="#index">Back to top</a></p>
   </xsl:template>
 
 
