@@ -175,13 +175,19 @@
     <p>The following new features have been added to the basic controller
     framework [<code>org.apache.struts.action</code>]:</p>
     <ul>
-    <li>The ActionServlet now provides support for modular Struts applications and
-    sports several new extension points.</li>
-    <li>The new <code>ActionMessages</code> class will support a superset of
-        the capabilities of <code>ActionErrors</code>, and will be useful as
-        a collection of general purpose messages, not just errors.</li>
+      <li></li>
+      <li></li>
     </ul>
-
+    <p><strong>Actions Package Additions</strong></p>
+    <p>The following new features have been added to the adapters between the
+        incoming HTTP request and the corresponding business logic
+    framework [<code>org.apache.struts.actions</code>]:</p>
+    <ul>
+      <li>The DispatchAction now provides default cancel handler that can be overridden.
+          It also also possible to specify the default handler name.</li>
+      <li>The LookupDispatchAction now provides default cancel handler that can be overridden.
+          It also also possible to specify the default handler name.</li>
+    </ul>
 
     <p><strong>Util Package Additions</strong></p>
     <p>The following new features have been added to the utility classes
