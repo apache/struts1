@@ -9,6 +9,8 @@
     <url>http://jakarta.apache.org/</url>
   </organization>
   <inceptionYear>2000</inceptionYear>
+  <logo href="/doc//images/struts.jpg">Commons</logo>
+
   <package>org.apache.struts</package>
 
   <shortDescription>MVC Web Application Framework</shortDescription>
@@ -237,10 +239,26 @@ and proven design patterns.
     </dependency>
     
     <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.2</version>
+    </dependency>
+
+    <dependency>
       <id>junit</id>
       <version>3.8.1</version>
     </dependency>
     
+    <dependency>
+      <groupId>cactus</groupId>
+      <artifactId>cactus</artifactId>
+      <version>12-1.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>cactus</groupId>
+      <artifactId>cactus-ant</artifactId>
+      <version>1.4.1</version>
+    </dependency>
   </dependencies>
 
   <build>
