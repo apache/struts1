@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/IncludeTag.java,v 1.28 2004/01/13 12:48:46 husted Exp $
- * $Revision: 1.28 $
- * $Date: 2004/01/13 12:48:46 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/bean/IncludeTag.java,v 1.29 2004/02/07 15:55:02 husted Exp $
+ * $Revision: 1.29 $
+ * $Date: 2004/02/07 15:55:02 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.taglib.TagUtils;
  * <strong>FIXME</strong>:  In a servlet 2.3 environment, we can use a
  * wrapped response passed to RequestDispatcher.include().
  *
- * @version $Revision: 1.28 $ $Date: 2004/01/13 12:48:46 $
+ * @version $Revision: 1.29 $ $Date: 2004/02/07 15:55:02 $
  */
 
 public class IncludeTag extends TagSupport {
@@ -232,7 +232,7 @@ public class IncludeTag extends TagSupport {
         URL url = null;
         try {
             urlString =
-                TagUtils.getInstance().computeURLWithCharEncoding(pageContext, forward, href, page, null,params, anchor, false, useLocalEncoding);
+                TagUtils.getInstance().computeURLWithCharEncoding(pageContext, forward, href, page, null,null, params, anchor, false, useLocalEncoding);
             if (urlString.indexOf(':') < 0) {
                 HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
                 url = new URL(RequestUtils.requestURL(request), urlString);

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.30 2004/01/19 04:43:10 husted Exp $
- * $Revision: 1.30 $
- * $Date: 2004/01/19 04:43:10 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/TagUtils.java,v 1.31 2004/02/07 15:55:02 husted Exp $
+ * $Revision: 1.31 $
+ * $Date: 2004/02/07 15:55:02 $
  *
  * ====================================================================
  *
@@ -96,7 +96,7 @@ import org.apache.struts.util.RequestUtils;
 /**
  * Provides helper methods for JSP tags.
  *
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  * @since Struts 1.2
  */
 public class TagUtils {
@@ -311,6 +311,7 @@ public class TagUtils {
 			String href,
 			String page,
 			String action,
+			String module,
 			Map params,
 			String anchor,
 			boolean redirect)
@@ -321,6 +322,7 @@ public class TagUtils {
 								href,
 								page,
 								action,
+								module,
 								params,
 								anchor,
 								redirect,
@@ -358,6 +360,7 @@ public class TagUtils {
             String href,
             String page,
             String action,
+            String module,
             Map params,
             String anchor,
             boolean redirect,
@@ -370,6 +373,7 @@ public class TagUtils {
                 href,
                 page,
                 action,
+                module,
                 params,
                 anchor,
                 redirect,
@@ -383,6 +387,7 @@ public class TagUtils {
 			String href,
 			String page,
 			String action,
+			String module,
 			Map params,
 			String anchor,
 			boolean redirect,
@@ -394,6 +399,7 @@ public class TagUtils {
 				href,
 				page,
 				action,
+				module,
 				params,
 				anchor,
 				redirect,
@@ -439,6 +445,7 @@ public class TagUtils {
             String href,
             String page,
             String action,
+            String module,
             Map params,
             String anchor,
             boolean redirect,
@@ -471,7 +478,7 @@ public class TagUtils {
         }
 
         // Look up the module configuration for this request
-        ModuleConfig config = instance.getModuleConfig(pageContext);
+        ModuleConfig config = instance.getModuleConfig(module, pageContext);
 
         // Calculate the appropriate URL
         StringBuffer url = new StringBuffer();
@@ -493,7 +500,7 @@ public class TagUtils {
         } else if (href != null) {
             url.append(href);
         } else if (action != null) {
-            url.append(instance.getActionMappingURL(action, pageContext));
+            url.append(instance.getActionMappingURL(action, module, pageContext, false));
 
         } else /* if (page != null) */ {
             url.append(request.getContextPath());
@@ -778,18 +785,18 @@ public class TagUtils {
      * Return the form action converted into a server-relative URL.
      */
     public String getActionMappingURL(String action, PageContext pageContext) {
-        return getActionMappingURL(action,pageContext,false);
+        return getActionMappingURL(action,null,pageContext,false);
     }
 
 
     /**
      * Return the form action converted into a server-relative URL.
      */
-    public String getActionMappingURL(String action, PageContext pageContext, boolean contextRelative) {
+    public String getActionMappingURL(String action, String module, PageContext pageContext, boolean contextRelative) {
 
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         StringBuffer value = new StringBuffer(request.getContextPath());
-        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request);
+        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(module, request, pageContext.getServletContext());
 
         if ((config != null) && (!contextRelative)) {
             value.append(config.getPrefix());
@@ -903,10 +910,23 @@ public class TagUtils {
      * @return the ModuleConfig object
      */
     public ModuleConfig getModuleConfig(PageContext pageContext) {
-        return ModuleUtils.getInstance().getModuleConfig(
-                (HttpServletRequest) pageContext.getRequest(),
-                pageContext.getServletContext());
+        return getModuleConfig(
+                null,
+                pageContext);
     }
+
+	/**
+	 * Return the ModuleConfig object for the given prefix if it exists, null if otherwise.
+	 * @param module The module prefix
+	 * @param pageContext The page context.
+	 * @return the ModuleConfig object
+	 */
+	public ModuleConfig getModuleConfig(String module, PageContext pageContext) {
+		return ModuleUtils.getInstance().getModuleConfig(
+				module,
+				(HttpServletRequest) pageContext.getRequest(),
+				pageContext.getServletContext());
+	}
 
     /**
      * Converts the scope name into its corresponding PageContext constant value.
@@ -1242,6 +1262,13 @@ public class TagUtils {
                     (MessageResources) pageContext.getAttribute(
                             bundle + config.getPrefix(),
                             PageContext.APPLICATION_SCOPE);
+        }
+        
+        if (resources == null) {
+			resources =
+					(MessageResources) pageContext.getAttribute(
+							bundle,
+							PageContext.APPLICATION_SCOPE);
         }
 
         if (resources == null) {

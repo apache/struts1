@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.34 2004/01/13 12:48:47 husted Exp $
- * $Revision: 1.34 $
- * $Date: 2004/01/13 12:48:47 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.35 2004/02/07 15:55:02 husted Exp $
+ * $Revision: 1.35 $
+ * $Date: 2004/02/07 15:55:02 $
  *
  * ====================================================================
  *
@@ -74,7 +74,7 @@ import org.apache.struts.util.MessageResources;
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
- * @version $Revision: 1.34 $ $Date: 2004/01/13 12:48:47 $
+ * @version $Revision: 1.35 $ $Date: 2004/02/07 15:55:02 $
  */
 public class LinkTag extends BaseHandlerTag {
 
@@ -183,19 +183,34 @@ public class LinkTag extends BaseHandlerTag {
     }
 
 
-    /**
-     * The module-relative action (beginning with a slash) which will be
-     * called by this link
-     */
-    protected String action = null;
+	/**
+	 * The module-relative action (beginning with a slash) which will be
+	 * called by this link
+	 */
+	protected String action = null;
 
-    public String getAction() {
-        return (this.action);
-    }
+	public String getAction() {
+		return (this.action);
+	}
 
-    public void setAction(String action) {
-        this.action = action;
-    }
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+
+	/**
+	 * The module prefix (beginning with a slash) which will be
+	 * used to find the action for this link.
+	 */
+	protected String module = null;
+
+	public String getModule() {
+		return (this.module);
+	}
+
+	public void setModule(String module) {
+		this.module = module;
+	}
 
 
     /**
@@ -497,7 +512,7 @@ public class LinkTag extends BaseHandlerTag {
         String url = null;
         try {
             url = TagUtils.getInstance().computeURLWithCharEncoding(pageContext, forward, href,
-                                          page, action, params, anchor, false, useLocalEncoding);
+                                          page, action, module, params, anchor, false, useLocalEncoding);
         } catch (MalformedURLException e) {
             TagUtils.getInstance().saveException(pageContext, e);
             throw new JspException

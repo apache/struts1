@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.144 2004/01/27 01:09:32 germuska Exp $
- * $Revision: 1.144 $
- * $Date: 2004/01/27 01:09:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/util/RequestUtils.java,v 1.145 2004/02/07 15:55:02 husted Exp $
+ * $Revision: 1.145 $
+ * $Date: 2004/02/07 15:55:02 $
  *
  * ====================================================================
  *
@@ -102,7 +102,7 @@ import org.apache.struts.upload.MultipartRequestWrapper;
  * <p>General purpose utility methods related to processing a servlet request
  * in the Struts controller framework.</p>
  *
- * @version $Revision: 1.144 $ $Date: 2004/01/27 01:09:32 $
+ * @version $Revision: 1.145 $ $Date: 2004/02/07 15:55:02 $
  */
 public class RequestUtils {
 
@@ -1216,7 +1216,7 @@ public class RequestUtils {
         // :TODO: Remove after Struts 1.2
 
         return (TagUtils.getInstance().computeURLWithCharEncoding(
-                pageContext, forward, href, page, null, params, anchor, redirect, false));
+                pageContext, forward, href, page, null, null, params, anchor, redirect, false));
     }
 
 
@@ -1263,6 +1263,7 @@ public class RequestUtils {
                 href,
                 page,
                 action,
+                null,
                 params,
                 anchor,
                 redirect);
@@ -1317,6 +1318,7 @@ public class RequestUtils {
                 href,
                 page,
                 action,
+                null,
                 params,
                 anchor,
                 redirect,

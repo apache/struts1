@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.22 2004/01/16 04:55:00 husted Exp $
- * $Revision: 1.22 $
- * $Date: 2004/01/16 04:55:00 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/logic/RedirectTag.java,v 1.23 2004/02/07 15:55:02 husted Exp $
+ * $Revision: 1.23 $
+ * $Date: 2004/02/07 15:55:02 $
  *
  * ====================================================================
  *
@@ -75,7 +75,7 @@ import org.apache.struts.taglib.TagUtils;
 /**
  * Generate a URL-encoded redirect to the specified URI.
  *
- * @version $Revision: 1.22 $ $Date: 2004/01/16 04:55:00 $
+ * @version $Revision: 1.23 $ $Date: 2004/02/07 15:55:02 $
  */
 public class RedirectTag extends TagSupport {
 
@@ -167,6 +167,21 @@ public class RedirectTag extends TagSupport {
     public void setAction(String action) {
         this.action = action;
     }
+
+
+	/**
+	 * The module prefix (beginning with a slash) which will be
+	 * used to find the action for this link.
+	 */
+	protected String module = null;
+
+	public String getModule() {
+		return (this.module);
+	}
+
+	public void setModule(String module) {
+		this.module = module;
+	}
 
     /**
      * The single-parameter request parameter name to generate.
@@ -326,6 +341,7 @@ public class RedirectTag extends TagSupport {
                     href,
                     page,
                     action,
+                    module,
                     params,
                     anchor,
                     true,

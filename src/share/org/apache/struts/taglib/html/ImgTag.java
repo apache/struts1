@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.37 2004/01/22 04:54:13 jmitchell Exp $
- * $Revision: 1.37 $
- * $Date: 2004/01/22 04:54:13 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/ImgTag.java,v 1.38 2004/02/07 15:55:02 husted Exp $
+ * $Revision: 1.38 $
+ * $Date: 2004/02/07 15:55:02 $
  *
  * ====================================================================
  *
@@ -82,7 +82,7 @@ import org.apache.struts.util.MessageResources;
  *       <strong>lowsrc</strong> settable from properties (for i18n)</li>
  * </ul>
  *
- * @version $Revision: 1.37 $
+ * @version $Revision: 1.38 $
  */
 
 public class ImgTag extends BaseHandlerTag {
@@ -273,6 +273,19 @@ public class ImgTag extends BaseHandlerTag {
         this.action = action;
     }
 
+	/**
+	 * The module prefix (beginning with a slash) which will be
+	 * used to find the action for this link.
+	 */
+	protected String module = null;
+
+	public String getModule() {
+		return (this.module);
+	}
+
+	public void setModule(String module) {
+		this.module = module;
+	}
 
     /**
      * In situations where an image is dynamically generated (such as to create
@@ -631,7 +644,7 @@ public class ImgTag extends BaseHandlerTag {
             if ((this.src != null) || (this.srcKey != null)) {
                 throwImgTagSrcException();
             }
-            return TagUtils.getInstance().getActionMappingURL(action, pageContext, isContextRelativeSet());
+            return TagUtils.getInstance().getActionMappingURL(action, module, pageContext, isContextRelativeSet());
         }
 
         // Deal with an absolute source that has been specified
