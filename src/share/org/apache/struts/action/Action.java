@@ -1,8 +1,8 @@
 
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.57 2003/03/13 01:55:09 dgraham Exp $
- * $Revision: 1.57 $
- * $Date: 2003/03/13 01:55:09 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Action.java,v 1.58 2003/04/23 00:31:09 dgraham Exp $
+ * $Revision: 1.58 $
+ * $Date: 2003/04/23 00:31:09 $
  *
  * ====================================================================
  *
@@ -115,7 +115,7 @@ import org.apache.struts.util.RequestUtils;
  * by this Action.</p>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.57 $ $Date: 2003/03/13 01:55:09 $
+ * @version $Revision: 1.58 $ $Date: 2003/04/23 00:31:09 $
  */
 public class Action {
 
@@ -657,7 +657,7 @@ public class Action {
      *
      * @param request The servlet request we are processing
      */
-    protected boolean isTokenValid(HttpServletRequest request) {
+    protected synchronized boolean isTokenValid(HttpServletRequest request) {
 
         return (isTokenValid(request, false));
 
@@ -679,33 +679,34 @@ public class Action {
      * @param request The servlet request we are processing
      * @param reset Should we reset the token after checking it?
      */
-    protected boolean isTokenValid(HttpServletRequest request, boolean reset) {
+    protected synchronized boolean isTokenValid(
+        HttpServletRequest request,
+        boolean reset) {
 
         // Retrieve the current session for this request
         HttpSession session = request.getSession(false);
-        if (session == null)
+        if (session == null) {
             return (false);
-
-        synchronized (session) {
-
-            // Retrieve the transaction token from this session, and
-            // reset it if requested
-            String saved = (String)
-                session.getAttribute(TRANSACTION_TOKEN_KEY);
-            if (saved == null)
-                return (false);
-            if (reset)
-                session.removeAttribute(TRANSACTION_TOKEN_KEY);
-
-            // Retrieve the transaction token included in this request
-            String token = request.getParameter(Constants.TOKEN_KEY);
-            if (token == null)
-                return (false);
-
-            // Do the values match?
-            return (saved.equals(token));
-
         }
+        
+        // Retrieve the transaction token from this session, and
+        // reset it if requested
+        String saved = (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
+        if (saved == null) {
+            return (false);
+        }
+        
+        if (reset) {
+            this.resetToken(request);
+        }
+        
+        // Retrieve the transaction token included in this request
+        String token = request.getParameter(Constants.TOKEN_KEY);
+        if (token == null) {
+            return (false);
+        }
+        
+        return (saved.equals(token));
 
     }
 
@@ -717,13 +718,13 @@ public class Action {
      *
      * @param request The servlet request we are processing
      */
-    protected void resetToken(HttpServletRequest request) {
+    protected synchronized void resetToken(HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
-        if (session == null)
+        if (session == null) {
             return;
-        session.removeAttribute(TRANSACTION_TOKEN_KEY);
-
+        }
+        session.removeAttribute(Globals.TRANSACTION_TOKEN_KEY);
     }
 
 
@@ -782,12 +783,13 @@ public class Action {
      *
      * @param request The servlet request we are processing
      */
-    protected void saveToken(HttpServletRequest request) {
+    protected synchronized void saveToken(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         String token = generateToken(request);
-        if (token != null)
-            session.setAttribute(TRANSACTION_TOKEN_KEY, token);
+        if (token != null) {
+            session.setAttribute(Globals.TRANSACTION_TOKEN_KEY, token);
+        }
 
     }
 
