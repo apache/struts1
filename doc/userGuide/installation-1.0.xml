@@ -75,7 +75,7 @@
 
   </section>
 
-  <section name="Install A Struts Binary Distribution" href="#Installing">
+  <section name="Install A Struts Binary Distribution" href="Installing">
 
     <p>First, download a binary distribution of Struts by following the
     instructions <a href="../acquiring.html">here</a>.  Then, make sure
