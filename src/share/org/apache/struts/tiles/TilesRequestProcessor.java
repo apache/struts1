@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.20 2003/09/13 00:30:50 dgraham Exp $
- * $Revision: 1.20 $
- * $Date: 2003/09/13 00:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/tiles/TilesRequestProcessor.java,v 1.21 2003/09/13 00:33:27 dgraham Exp $
+ * $Revision: 1.21 $
+ * $Date: 2003/09/13 00:33:27 $
  *
  * ====================================================================
  *
@@ -255,11 +255,15 @@ public class TilesRequestProcessor extends RequestProcessor {
 
 		// Execute controller associated to definition, if any.
 		if (controller != null) {
-			controller.perform(
-				tileContext,
-				request,
-				response,
-				getServletContext());
+			try {
+				controller.perform(
+					tileContext,
+					request,
+					response,
+					getServletContext());
+			} catch (Exception e) {
+				throw new ServletException(e); 
+			}
 		}
 
 		// If request comes from a previous Tile, do an include.

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.21 2003/09/13 00:30:50 dgraham Exp $
- * $Revision: 1.21 $
- * $Date: 2003/09/13 00:30:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/tiles/InsertTag.java,v 1.22 2003/09/13 00:33:27 dgraham Exp $
+ * $Revision: 1.22 $
+ * $Date: 2003/09/13 00:33:27 $
  *
  * ====================================================================
  *
@@ -95,7 +95,7 @@ import org.apache.struts.tiles.TilesUtil;
  *
  * @author David Geary
  * @author Cedric Dumoulin
- * @version $Revision: 1.21 $ $Date: 2003/09/13 00:30:50 $
+ * @version $Revision: 1.22 $ $Date: 2003/09/13 00:33:27 $
  */
 public class InsertTag
 	extends DefinitionTagSupport
@@ -912,11 +912,15 @@ public class InsertTag
 
 				// Call controller if any
 				if (controller != null) {
-					controller.perform(
-						subCompContext,
-						(HttpServletRequest) pageContext.getRequest(),
-						(HttpServletResponse) pageContext.getResponse(),
-						pageContext.getServletContext());
+					try {
+						controller.perform(
+							subCompContext,
+							(HttpServletRequest) pageContext.getRequest(),
+							(HttpServletResponse) pageContext.getResponse(),
+							pageContext.getServletContext());
+					} catch (Exception e) {
+						throw new ServletException(e);
+					}
 
 				}
 
