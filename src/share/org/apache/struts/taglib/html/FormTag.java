@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.33 2002/11/12 06:08:33 dgraham Exp $
- * $Revision: 1.33 $
- * $Date: 2002/11/12 06:08:33 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FormTag.java,v 1.34 2002/11/16 06:05:21 dgraham Exp $
+ * $Revision: 1.34 $
+ * $Date: 2002/11/16 06:05:21 $
  *
  * ====================================================================
  *
@@ -87,7 +87,7 @@ import org.apache.struts.Globals;
  *
  * @author Craig R. McClanahan
  * @author Martin Cooper
- * @version $Revision: 1.33 $ $Date: 2002/11/12 06:08:33 $
+ * @version $Revision: 1.34 $ $Date: 2002/11/16 06:05:21 $
  */
 
 public class FormTag extends TagSupport {
@@ -833,7 +833,10 @@ public class FormTag extends TagSupport {
      */
     private String getJsStartElement() {
         String start = "<script type=\"text/javascript\"";
-        if (!BaseHandlerTag.isXhtml(this)) {
+        String xhtml =
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+
+        if (!("true".equalsIgnoreCase(xhtml))) {
             start += " language=\"JavaScript\"";
         }
         start += ">\r\n";

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.7 2002/11/13 06:10:54 dgraham Exp $
- * $Revision: 1.7 $
- * $Date: 2002/11/13 06:10:54 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/FrameTag.java,v 1.8 2002/11/16 06:05:21 dgraham Exp $
+ * $Revision: 1.8 $
+ * $Date: 2002/11/16 06:05:21 $
  *
  * ====================================================================
  *
@@ -86,7 +86,7 @@ import org.apache.struts.util.ResponseUtils;
  *
  * @author Joe Germuska
  * @author Craig R. McClanahan
- * @version $Revision: 1.7 $ $Date: 2002/11/13 06:10:54 $
+ * @version $Revision: 1.8 $ $Date: 2002/11/16 06:05:21 $
  * @since Struts 1.1
  */
 
@@ -243,7 +243,7 @@ public class FrameTag extends LinkTag {
             results.append("\"");
         }
         results.append(prepareStyles());
-        results.append(getElementClose(this));
+        results.append(getElementClose());
         ResponseUtils.write(pageContext,results.toString());
 
     // Skip the body of this tag

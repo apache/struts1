@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.6 2002/11/12 03:47:42 dgraham Exp $
- * $Revision: 1.6 $
- * $Date: 2002/11/12 03:47:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/HtmlTag.java,v 1.7 2002/11/16 06:05:21 dgraham Exp $
+ * $Revision: 1.7 $
+ * $Date: 2002/11/16 06:05:21 $
  *
  * ====================================================================
  *
@@ -79,7 +79,7 @@ import org.apache.struts.util.ResponseUtils;
  * there is a current Locale available in the user's session.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2002/11/12 03:47:42 $
+ * @version $Revision: 1.7 $ $Date: 2002/11/16 06:05:21 $
  */
 
 public class HtmlTag extends TagSupport {
@@ -132,7 +132,6 @@ public class HtmlTag extends TagSupport {
      * @exception JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-
         StringBuffer sb = new StringBuffer("<html");
 
         // Use the current Locale to set our language preferences
@@ -143,7 +142,13 @@ public class HtmlTag extends TagSupport {
                 sb.append(" lang=\"");
                 sb.append(lang);
                 sb.append("\"");
-                if (xhtml) {
+                
+                if (this.xhtml) {
+                    this.pageContext.setAttribute(
+                        Globals.XHTML_KEY,
+                        "true",
+                        this.pageContext.PAGE_SCOPE);
+                        
                     sb.append(" xml:lang=\"");
                     sb.append(lang);
                     sb.append("\"");
@@ -158,7 +163,6 @@ public class HtmlTag extends TagSupport {
 
         // Evaluate the included content of this tag
         return (EVAL_BODY_INCLUDE);
-
     }
 
 

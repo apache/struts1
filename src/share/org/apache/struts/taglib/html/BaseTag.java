@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.9 2002/11/12 03:47:42 dgraham Exp $
- * $Revision: 1.9 $
- * $Date: 2002/11/12 03:47:42 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/BaseTag.java,v 1.10 2002/11/16 06:05:22 dgraham Exp $
+ * $Revision: 1.10 $
+ * $Date: 2002/11/16 06:05:22 $
  *
  * ====================================================================
  *
@@ -81,7 +81,7 @@ import org.apache.struts.util.MessageResources;
  * used to call the ActionServlet.
  *
  * @author Luis Arias <luis@elysia.com>
- * @version $Revision: 1.9 $ $Date: 2002/11/12 03:47:42 $
+ * @version $Revision: 1.10 $ $Date: 2002/11/16 06:05:22 $
  */
 
 public class BaseTag extends TagSupport {
@@ -132,8 +132,11 @@ public class BaseTag extends TagSupport {
             buf.append("\"");
         }
 
-        if (BaseHandlerTag.isXhtml(this)) {
-            buf.append("/>");
+        String xhtml =
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+        
+        if ("true".equalsIgnoreCase(xhtml)) {
+            buf.append(" />");
         } else {
             buf.append(">");
         }

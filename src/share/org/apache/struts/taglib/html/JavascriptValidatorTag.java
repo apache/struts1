@@ -88,7 +88,7 @@ import org.apache.struts.validator.ValidatorPlugIn;
  * defined in the struts-config.xml file.
  *
  * @author David Winterfeldt
- * @version $Revision: 1.15 $ $Date: 2002/11/12 05:59:24 $
+ * @version $Revision: 1.16 $ $Date: 2002/11/16 06:05:21 $
  * @since Struts 1.1
  */
 public class JavascriptValidatorTag extends BodyTagSupport {
@@ -632,7 +632,10 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
 
         // there is no language attribute in xhtml
-        if (!BaseHandlerTag.isXhtml(this)) {
+        String xhtml =
+            (String) this.pageContext.getAttribute(Globals.XHTML_KEY, this.pageContext.PAGE_SCOPE);
+        
+        if (!("true".equalsIgnoreCase(xhtml))) {
             start.append(" language=\"Javascript1.1\"");
         }
 
