@@ -69,6 +69,23 @@
   </task-list>
 
 
+  <task-list name="Struts Example Application" href="Example">
+
+    <info>
+      <p>An example web application utilizing the Struts framework and
+      custom tag library.</p>
+    </info>
+
+    <task name="Locale Switching">
+      <info>
+        <p>Add support for switching Locales on the fly to the Struts
+        example application.</p>
+      </info>
+    </task>
+
+  </task-list>
+
+
   <task-list name="MVC Framework [org.apache.struts.action]" href="MVC">
 
     <info>

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.6 2000/12/31 00:17:20 craigmcc Exp $
- * $Revision: 1.6 $
- * $Date: 2000/12/31 00:17:20 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/form/Attic/LinkTag.java,v 1.7 2001/01/05 23:02:22 craigmcc Exp $
+ * $Revision: 1.7 $
+ * $Date: 2001/01/05 23:02:22 $
  *
  * ====================================================================
  *
@@ -78,13 +78,14 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForwards;
 import org.apache.struts.util.BeanUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.RequestUtils;
 
 
 /**
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.6 $ $Date: 2000/12/31 00:17:20 $
+ * @version $Revision: 1.7 $ $Date: 2001/01/05 23:02:22 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -414,10 +415,15 @@ public class LinkTag extends BaseHandlerTag {
         }
 
         // Start with an unadorned "href"
-	String href = this.href;
+	String href = null;
+
+        // If "href" was specified, use it as is
+        if (this.href != null) {
+            href = this.href;
+        }
 
 	// If "forward" was specified, compute the "href" to forward to
-	if (forward != null) {
+	else if (forward != null) {
 	    ActionForwards forwards = (ActionForwards)
 		pageContext.getAttribute(Action.FORWARDS_KEY,
 					 PageContext.APPLICATION_SCOPE);
@@ -430,14 +436,14 @@ public class LinkTag extends BaseHandlerTag {
 		    (messages.getMessage("linkTag.forward"));
 	    HttpServletRequest request =
 		(HttpServletRequest) pageContext.getRequest();
-	    href = request.getContextPath() + forward.getPath();
+            href = RequestUtils.absoluteURL(request, forward.getPath());
 	}
 
         // If "page" was specified, compute the "href" to forward to
-        if (page != null) {
+        else if (page != null) {
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
-            href = request.getContextPath() + page;
+            href = RequestUtils.absoluteURL(request, page);
         }
 
         // Append a single-parameter name and value, if requested
