@@ -308,7 +308,6 @@
     <copy    file="INSTALL" tofile="${dist.home}/INSTALL"/>
     <copy    file="LICENSE" tofile="${dist.home}/LICENSE"/>
     <copy    file="README"  tofile="${dist.home}/README"/>
-    <copy    file="TODO"    tofile="${dist.home}/TODO"/>
     <copy   todir="${dist.home}/src">
       <fileset dir="src"/>
     </copy>
@@ -337,7 +336,7 @@
     </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-test"/>
     <copy  todir="${catalina.home}/webapps/struts-test">
-      <fileset dir="${catalina.home}/test"/>
+      <fileset dir="${build.home}/test"/>
     </copy>
     <mkdir   dir="${catalina.home}/webapps/struts-upload"/>
     <copy  todir="${catalina.home}/webapps/struts-upload">
