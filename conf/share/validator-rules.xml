@@ -766,25 +766,6 @@
 
       </validator>
 
-<!-- range is deprecated use intRange instead -->
-      <validator name="range"
-            classname="org.apache.struts.validator.FieldChecks"
-               method="validateIntRange"
-         methodParams="java.lang.Object,
-                       org.apache.commons.validator.ValidatorAction,
-                       org.apache.commons.validator.Field,
-                       org.apache.struts.action.ActionErrors,
-                       javax.servlet.http.HttpServletRequest"
-              depends="integer"
-                  msg="errors.range">
-
-         <javascript><![CDATA[
-            function validateRange(form) {
-                return validateIntRange(form);
-            }]]>
-         </javascript>
-
-      </validator>
 
       <validator name="intRange"
             classname="org.apache.struts.validator.FieldChecks"
