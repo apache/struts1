@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.14.2.1 2001/06/11 17:05:04 craigmcc Exp $
- * $Revision: 1.14.2.1 $
- * $Date: 2001/06/11 17:05:04 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/taglib/html/LinkTag.java,v 1.14.2.2 2001/06/11 17:39:52 craigmcc Exp $
+ * $Revision: 1.14.2.2 $
+ * $Date: 2001/06/11 17:39:52 $
  *
  * ====================================================================
  *
@@ -89,7 +89,7 @@ import org.apache.struts.util.ResponseUtils;
  * Generate a URL-encoded hyperlink to the specified URI.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.14.2.1 $ $Date: 2001/06/11 17:05:04 $
+ * @version $Revision: 1.14.2.2 $ $Date: 2001/06/11 17:39:52 $
  */
 
 public class LinkTag extends BaseHandlerTag {
@@ -430,133 +430,5 @@ public class LinkTag extends BaseHandlerTag {
         transaction = false;
 
     }
-
-
-    /*
-
-        // Save any currently specified anchor string
-        String anchor = this.anchor;
-        int hash = href.indexOf('#');
-        if (hash >= 0) {
-            if (anchor == null)
-                anchor = href.substring(hash + 1);
-            href = href.substring(0, hash);
-        }
-
-        // Append the transaction token, if requested and it exists
-        if (transaction) {
-            HttpSession session = pageContext.getSession();
-            String token = null;
-            if (session != null)
-                token =
-                   (String) session.getAttribute(Action.TRANSACTION_TOKEN_KEY);
-            if (token != null) {
-                StringBuffer sb = new StringBuffer(href);
-                if (href.indexOf('?') < 0)
-                    sb.append('?');
-                else
-                    sb.append('&');
-                sb.append(Constants.TOKEN_KEY);
-                sb.append('=');
-                sb.append(token);
-                href = sb.toString();
-            }
-        }
-
-        // Append a single-parameter name and value, if requested
-        StringBuffer sb = new StringBuffer(href);
-        if ((paramId != null) && (paramName != null)) {
-            if (href.indexOf('?') < 0)
-                sb.append('?');
-            else
-                sb.append('&');
-            sb.append(paramId);
-            sb.append('=');
-            Object value = RequestUtils.lookup(pageContext, paramName,
-                                               paramProperty, paramScope);
-            if (value != null)
-                sb.append(value.toString());
-        }
-
-	// Just return the "href" attribute if there is no bean to look up
-	if ((property != null) && (name == null)) {
-	    JspException e = new JspException
-		(messages.getMessage("getter.name"));
-            RequestUtils.saveException(pageContext, e);
-            throw e;
-        }
-	if (name == null) {
-            if (anchor != null) {
-                sb.append('#');
-                sb.append(anchor);
-            }
-	    return (sb.toString());
-        }
-
-	// Look up the map we will be using
-        Map map = null;
-        try {
-            map = (Map) RequestUtils.lookup(pageContext, name,
-                                            property, scope);
-        } catch (ClassCastException e) {
-            RequestUtils.saveException(pageContext, e);
-            throw new JspException
-                (messages.getMessage("linkTag.type"));
-        }
-
-	// Append the required query parameters
-        href = sb.toString();
-	boolean question = (href.indexOf("?") >= 0);
-	Iterator keys = map.keySet().iterator();
-	while (keys.hasNext()) {
-	    String key = (String) keys.next();
-	    Object value = map.get(key);
-            if (value == null) {
-                if (question)
-                    sb.append('&');
-                else {
-                    sb.append('?');
-                    question = true;
-                }
-                sb.append(key);
-                sb.append('=');
-                // Interpret null as "no value specified"
-	    } else if (value instanceof String[]) {
-		String values[] = (String[]) value;
-		for (int i = 0; i < values.length; i++) {
-		    if (question)
-			sb.append('&');
-		    else {
-			sb.append('?');
-			question = true;
-		    }
-		    sb.append(key);
-		    sb.append('=');
-		    sb.append(URLEncoder.encode(values[i]));
-		}
-	    } else {
-		if (question)
-		    sb.append('&');
-		else {
-		    sb.append('?');
-		    question = true;
-		}
-		sb.append(key);
-		sb.append('=');
-		sb.append(URLEncoder.encode(value.toString()));
-	    }
-	}
-
-        // Append the anchor (if any)
-        if (anchor != null) {
-            sb.append('#');
-            sb.append(anchor);
-        }
-
-	// Return the final result
-	return (sb.toString());
-
-    */
-
 
 }
