@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.11 2000/11/30 20:12:50 craigmcc Exp $
- * $Revision: 1.11 $
- * $Date: 2000/11/30 20:12:50 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionMapping.java,v 1.12 2000/12/30 00:39:04 craigmcc Exp $
+ * $Revision: 1.12 $
+ * $Date: 2000/12/30 00:39:04 $
  *
  * ====================================================================
  *
@@ -61,6 +61,9 @@
 
 
 package org.apache.struts.action;
+
+
+import java.io.Serializable;
 
 
 /**
@@ -141,10 +144,10 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.11 $ $Date: 2000/11/30 20:12:50 $
+ * @version $Revision: 1.12 $ $Date: 2000/12/30 00:39:04 $
  */
 
-public class ActionMapping {
+public class ActionMapping implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables

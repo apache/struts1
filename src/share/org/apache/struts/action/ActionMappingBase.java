@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.8 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.8 $
- * $Date: 2000/09/20 04:20:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappingBase.java,v 1.9 2000/12/30 00:39:05 craigmcc Exp $
+ * $Revision: 1.9 $
+ * $Date: 2000/12/30 00:39:05 $
  *
  * ====================================================================
  *
@@ -63,9 +63,6 @@
 package org.apache.struts.action;
 
 
-import java.util.Hashtable;
-
-
 /**
  * A minimal implementation of <strong>ActionMapping</strong> that contains
  * only the required properties.  Additional properties can be provided by
@@ -74,7 +71,7 @@ import java.util.Hashtable;
  * @deprecated Now that ActionMapping is a class, you should use it intead
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.8 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.9 $ $Date: 2000/12/30 00:39:05 $
  */
 
 public class ActionMappingBase extends ActionMapping {

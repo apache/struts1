@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.1 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/20 04:20:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionFormBeans.java,v 1.2 2000/12/30 00:39:04 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/30 00:39:04 $
  *
  * ====================================================================
  *
@@ -63,9 +63,8 @@
 package org.apache.struts.action;
 
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.io.Serializable;
+import org.apache.struts.util.FastHashMap;
 
 
 /**
@@ -73,10 +72,10 @@ import java.util.Vector;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/30 00:39:04 $
  */
 
-public class ActionFormBeans {
+public class ActionFormBeans implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -85,7 +84,32 @@ public class ActionFormBeans {
     /**
      * The collection of ActionFormBean instances, keyed by name.
      */
-    private Hashtable formBeans = new Hashtable();
+    protected FastHashMap formBeans = new FastHashMap();
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the "fast" mode flag.
+     */
+    public boolean getFast() {
+
+        return (formBeans.getFast());
+
+    }
+
+
+    /**
+     * Set the "fast" mode flag.
+     *
+     * @param fast The new fast mode flag
+     */
+    public void setFast(boolean fast) {
+
+        formBeans.setFast(fast);
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -122,13 +146,8 @@ public class ActionFormBeans {
      */
     public String[] findFormBeans() {
 
-	Vector names = new Vector();
-	Enumeration keys = formBeans.keys();
-	while (keys.hasMoreElements())
-	    names.addElement(keys.nextElement());
-	String results[] = new String[names.size()];
-	names.copyInto(results);
-	return (results);
+        return
+         ((String[]) formBeans.keySet().toArray(new String[formBeans.size()]));
 
     }
 

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.1 2000/09/20 04:20:21 craigmcc Exp $
- * $Revision: 1.1 $
- * $Date: 2000/09/20 04:20:21 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionFormBean.java,v 1.2 2000/12/30 00:39:04 craigmcc Exp $
+ * $Revision: 1.2 $
+ * $Date: 2000/12/30 00:39:04 $
  *
  * ====================================================================
  *
@@ -63,6 +63,9 @@
 package org.apache.struts.action;
 
 
+import java.io.Serializable;
+
+
 /**
  * An <strong>ActionFormBean</strong> is the definition of a form bean that
  * is loaded from a <code>&lt;form-bean&gt;</code> element in the Struts
@@ -70,10 +73,10 @@ package org.apache.struts.action;
  * properties.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.1 $ $Date: 2000/09/20 04:20:21 $
+ * @version $Revision: 1.2 $ $Date: 2000/12/30 00:39:04 $
  */
 
-public class ActionFormBean {
+public class ActionFormBean implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.46 2000/12/29 20:06:22 craigmcc Exp $
- * $Revision: 1.46 $
- * $Date: 2000/12/29 20:06:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionServlet.java,v 1.47 2000/12/30 00:39:05 craigmcc Exp $
+ * $Revision: 1.47 $
+ * $Date: 2000/12/30 00:39:05 $
  *
  * ====================================================================
  *
@@ -67,13 +67,11 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Hashtable;
-import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.MissingResourceException;
-import java.util.Vector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
@@ -86,6 +84,7 @@ import org.apache.struts.digester.Digester;
 import org.apache.struts.digester.Rule;
 import org.apache.struts.taglib.form.Constants;
 import org.apache.struts.util.BeanUtils;
+import org.apache.struts.util.FastHashMap;
 import org.apache.struts.util.GenericDataSource;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
@@ -212,7 +211,7 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.46 $ $Date: 2000/12/29 20:06:22 $
+ * @version $Revision: 1.47 $ $Date: 2000/12/30 00:39:05 $
  */
 
 public class ActionServlet
@@ -226,7 +225,7 @@ public class ActionServlet
      * The set of Action instances that have been created and initialized,
      * keyed by the fully qualified Java class name.
      */
-    protected Hashtable actions = new Hashtable();
+    protected FastHashMap actions = new FastHashMap();
 
 
     /**
@@ -253,7 +252,7 @@ public class ActionServlet
      * if any, keyed by the servlet context attribute under which they are
      * stored.
      */
-    protected HashMap dataSources = new HashMap();
+    protected FastHashMap dataSources = new FastHashMap();
 
 
     /**
@@ -414,6 +413,7 @@ public class ActionServlet
      */
     public void init() throws ServletException {
 
+        initActions();
 	initInternal();
 	initDebug();
 	initApplication();
@@ -480,9 +480,7 @@ public class ActionServlet
 
         if (key == null)
             key = Action.DATA_SOURCE_KEY;
-        synchronized (dataSources) {
-            dataSources.put(key, dataSource);
-        }
+        dataSources.put(key, dataSource);
 
     }
 
@@ -531,12 +529,10 @@ public class ActionServlet
      */
     public DataSource findDataSource(String key) {
 
-        synchronized (dataSources) {
-            if (key == null)
-                return ((DataSource) dataSources.get(Action.DATA_SOURCE_KEY));
-            else
-                return ((DataSource) dataSources.get(key));
-        }
+        if (key == null)
+            return ((DataSource) dataSources.get(Action.DATA_SOURCE_KEY));
+        else
+            return ((DataSource) dataSources.get(key));
 
     }
 
@@ -709,6 +705,7 @@ public class ActionServlet
         destroyInternal();
 
         // Restart from our confirmation files
+        initActions();
         initInternal();
         initDebug();
         initApplication();
@@ -850,10 +847,9 @@ public class ActionServlet
     protected void destroyActions() {
 
         synchronized (this.actions) {
-            Vector actives = new Vector();
-            Enumeration actions = this.actions.elements();
-            while (actions.hasMoreElements()) {
-                Action action = (Action) actions.nextElement();
+            Iterator actions = this.actions.values().iterator();
+            while (actions.hasNext()) {
+                Action action = (Action) actions.next();
                 action.setServlet(null);
             }
             this.actions.clear();
@@ -896,6 +892,7 @@ public class ActionServlet
                     }
                 }
             }
+            dataSources.setFast(false);
         }
 
     }
@@ -907,6 +904,20 @@ public class ActionServlet
     protected void destroyInternal() {
 
 	internal = null;
+
+    }
+
+
+    /**
+     * Initialize the collection of previously instantiated Action instances.
+     */
+    protected void initActions() {
+
+        synchronized (actions) {
+            actions.setFast(false);
+            actions.clear();
+            actions.setFast(true);
+        }
 
     }
 
@@ -976,6 +987,7 @@ public class ActionServlet
                 }
                 getServletContext().setAttribute(key, dataSource);
             }
+            dataSources.setFast(true);
         }
 
     }
@@ -1204,8 +1216,14 @@ public class ActionServlet
 
 	// Parse the input stream to configure our mappings
 	try {
+            formBeans.setFast(false);
+            forwards.setFast(false);
+            mappings.setFast(false);
 	    digester.parse(input);
 	    input.close();
+            mappings.setFast(true);
+            forwards.setFast(true);
+            formBeans.setFast(true);
 	} catch (SAXException e) {
 	    throw new ServletException
 		(internal.getMessage("configParse", config), e);
@@ -1399,18 +1417,33 @@ public class ActionServlet
 
         // Acquire the Action instance we will be using
         String actionClass = mapping.getType();
+        if (debug >= 1)
+            log(" Looking for Action instance for class " + actionClass);
         Action actionInstance = (Action) actions.get(actionClass);
         if (actionInstance == null) {
-            try {
-                Class clazz = Class.forName(actionClass);
-                actionInstance = (Action) clazz.newInstance();
-                actionInstance.setServlet(this);
-                actions.put(actionClass, actionInstance);
-            } catch (Throwable t) {
-                log("Error creating Action instance for path '" +
-                    mapping.getPath() + "', class name '" +
-                    actionClass + "'", t);
-                return (null);
+            synchronized (actions) {
+                if (debug >= 1)
+                    log("  Double checking for Action instance already there");
+                // Double check to avoid a race condition
+                actionInstance = (Action) actions.get(actionClass);
+                if (actionInstance != null)
+                    return (actionInstance);
+                // Go ahead and create the new Action instance
+                // ASSERT:  This will never ever happen more than once
+                //  for a particular action class name
+                try {
+                    if (debug >= 1)
+                        log("  Creating new Action instance");
+                    Class clazz = Class.forName(actionClass);
+                    actionInstance = (Action) clazz.newInstance();
+                    actionInstance.setServlet(this);
+                    actions.put(actionClass, actionInstance);
+                } catch (Throwable t) {
+                    log("Error creating Action instance for path '" +
+                        mapping.getPath() + "', class name '" +
+                        actionClass + "'", t);
+                    return (null);
+                }
             }
         }
         return (actionInstance);

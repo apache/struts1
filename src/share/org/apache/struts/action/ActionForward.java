@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.2 2000/06/24 23:26:22 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/24 23:26:22 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/ActionForward.java,v 1.3 2000/12/30 00:39:04 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/12/30 00:39:04 $
  *
  * ====================================================================
  *
@@ -63,6 +63,9 @@
 package org.apache.struts.action;
 
 
+import java.io.Serializable;
+
+
 /**
  * An <strong>ActionForward</strong> represents a destination to which the
  * controller servlet, <code>ActionServlet</code>, might be directed to
@@ -87,10 +90,10 @@ package org.apache.struts.action;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/24 23:26:22 $
+ * @version $Revision: 1.3 $ $Date: 2000/12/30 00:39:04 $
  */
 
-public class ActionForward {
+public class ActionForward implements Serializable {
 
 
     // ----------------------------------------------------------- Constructors

@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.4 2000/11/19 02:11:15 craigmcc Exp $
- * $Revision: 1.4 $
- * $Date: 2000/11/19 02:11:15 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionMappings.java,v 1.5 2000/12/30 00:39:05 craigmcc Exp $
+ * $Revision: 1.5 $
+ * $Date: 2000/12/30 00:39:05 $
  *
  * ====================================================================
  *
@@ -63,11 +63,12 @@
 package org.apache.struts.action;
 
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.util.FastHashMap;
 
 
 /**
@@ -75,10 +76,10 @@ import javax.servlet.http.HttpServletRequest;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.4 $ $Date: 2000/11/19 02:11:15 $
+ * @version $Revision: 1.5 $ $Date: 2000/12/30 00:39:05 $
  */
 
-public class ActionMappings {
+public class ActionMappings implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -87,13 +88,13 @@ public class ActionMappings {
     /**
      * The collection of ActionMapping instances, keyed by request path.
      */
-    protected Hashtable mappings = new Hashtable();
+    protected FastHashMap mappings = new FastHashMap();
 
 
     /**
      * The ActionServlet instance of our owning application.
      */
-    protected ActionServlet servlet = null;
+    transient protected ActionServlet servlet = null;
 
 
     /**
@@ -103,6 +104,28 @@ public class ActionMappings {
 
 
     // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the "fast" mode flag.
+     */
+    public boolean getFast() {
+
+        return (mappings.getFast());
+
+    }
+
+
+    /**
+     * Set the "fast" mode flag.
+     *
+     * @param fast The new fast mode flag
+     */
+    public void setFast(boolean fast) {
+
+        mappings.setFast(fast);
+
+    }
 
 
     /**
@@ -202,13 +225,8 @@ public class ActionMappings {
      */
     public String[] findMappings() {
 
-	Vector paths = new Vector();
-	Enumeration keys = mappings.keys();
-	while (keys.hasMoreElements())
-	    paths.addElement(keys.nextElement());
-	String results[] = new String[paths.size()];
-	paths.copyInto(results);
-	return (results);
+        return
+           ((String[]) mappings.keySet().toArray(new String[mappings.size()]));
 
     }
 

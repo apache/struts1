@@ -1,7 +1,7 @@
 /*
- * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.2 2000/06/30 01:19:32 craigmcc Exp $
- * $Revision: 1.2 $
- * $Date: 2000/06/30 01:19:32 $
+ * $Header: /home/cvs/jakarta-struts/src/share/org/apache/struts/action/Attic/ActionForwards.java,v 1.3 2000/12/30 00:39:04 craigmcc Exp $
+ * $Revision: 1.3 $
+ * $Date: 2000/12/30 00:39:04 $
  *
  * ====================================================================
  *
@@ -63,9 +63,8 @@
 package org.apache.struts.action;
 
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.io.Serializable;
+import org.apache.struts.util.FastHashMap;
 
 
 /**
@@ -73,10 +72,10 @@ import java.util.Vector;
  * administered and searched, while hiding the internal implementation.
  *
  * @author Craig R. McClanahan
- * @version $Revision: 1.2 $ $Date: 2000/06/30 01:19:32 $
+ * @version $Revision: 1.3 $ $Date: 2000/12/30 00:39:04 $
  */
 
-public class ActionForwards {
+public class ActionForwards implements Serializable {
 
 
     // ----------------------------------------------------- Instance Variables
@@ -85,7 +84,32 @@ public class ActionForwards {
     /**
      * The collection of ActionForward instances, keyed by logical name.
      */
-    private Hashtable forwards = new Hashtable();
+    private FastHashMap forwards = new FastHashMap();
+
+
+    // ------------------------------------------------------------- Properties
+
+
+    /**
+     * Return the "fast" mode flag.
+     */
+    public boolean getFast() {
+
+        return (forwards.getFast());
+
+    }
+
+
+    /**
+     * Set the "fast" mode flag.
+     *
+     * @param fast The new fast mode flag
+     */
+    public void setFast(boolean fast) {
+
+        forwards.setFast(fast);
+
+    }
 
 
     // --------------------------------------------------------- Public Methods
@@ -122,13 +146,8 @@ public class ActionForwards {
      */
     public String[] findForwards() {
 
-	Vector names = new Vector();
-	Enumeration keys = forwards.keys();
-	while (keys.hasMoreElements())
-	    names.addElement(keys.nextElement());
-	String results[] = new String[names.size()];
-	names.copyInto(results);
-	return (results);
+        return
+           ((String[]) forwards.keySet().toArray(new String[forwards.size()]));
 
     }
 
